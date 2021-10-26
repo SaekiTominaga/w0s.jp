@@ -1,0 +1,46 @@
+/* ===== 会話 ===== */
+.p-talk {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	border-collapse: collapse;
+	width: 100%;
+
+	& + .p-talk {
+		margin-top: 25px;
+	}
+
+	& th,
+	& td {
+		padding: 0.55em 0.5vw 0.45em;
+		border: 1px solid #000;
+
+		@media screen and (min-width: 1280px) {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		@media screen and (max-width: 37.5em) {
+			font-size: calc(1rem / var(--font-ratio-2));
+		}
+	}
+
+	& th {
+		background: #eee;
+		font-weight: normal;
+		text-align: left;
+		white-space: nowrap;
+	}
+
+	& td {
+		width: 100%;
+		background: #fff;
+	}
+}
+
+.p-talk__omit {
+	padding-top: 0.4em;
+	padding-bottom: 0.3em;
+	color: #666;
+	background: #fcfcfc;
+	font-weight: bold;
+	text-align: center;
+}

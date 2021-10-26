@@ -1,0 +1,428 @@
+/* ==============================
+ *   メインエリア
+ * ============================== */
+
+/* ===== セクション ===== */
+.p-section {
+	--margin-start: var(--component-interval);
+
+	margin: calc(var(--margin-start) - 10px) -10px -10px;
+	padding: 10px;
+	border-radius: 0.5em;
+
+	&:target {
+		animation: sec_target 1s;
+	}
+
+	&.-hdg-a {
+		--margin-start: calc(var(--component-interval) * 3);
+	}
+
+	&.-hdg-b {
+		--margin-start: calc(var(--component-interval) * 2.5);
+	}
+
+	&.-hdg-c {
+		--margin-start: calc(var(--component-interval) * 2);
+	}
+
+	&.-hdg-d {
+		--margin-start: calc(var(--component-interval) * 1.5);
+	}
+
+	/* <section> + <hn> + <section> のケースでコンポーネント間隔が無駄に広い状態になるのを防ぐ */
+	@nest .p-hdg + &, .p-hdg + .p-tile > .p-tile__tile > & {
+		--margin-start: var(--component-interval);
+	}
+}
+
+@keyframes sec_target {
+	0% {
+		background-color: #fdd;
+	}
+
+	50% {
+		background-color: #fdd;
+	}
+
+	100% {
+		background-color: transparent;
+	}
+}
+
+/* ===== パンくず ===== */
+.p-topic-path {
+	margin-bottom: 0.5em;
+	font-size: calc(1rem / var(--font-ratio-1));
+
+	& a {
+		outline-offset: 0.1em;
+	}
+}
+
+.p-topic-path__separator {
+	margin: 0 0.3em;
+}
+
+/* ===== ページタイトル ===== */
+.p-page-title {
+	& h1 {
+		padding: 0.75em 1.5%;
+		border: 1px solid #000;
+		border-radius: 0.1em;
+		box-sizing: border-box;
+		background: linear-gradient(#fff, #ccc);
+		font-size: clamp(calc(1rem * var(--font-ratio-2)), 7vw, calc(1rem * var(--font-ratio-10) * var(--font-ratio-1)));
+
+		@supports not (font-size: clamp(0px, 0px, 0px)) {
+			/* for Safari 13.0- */
+			font-size: max(calc(1rem * var(--font-ratio-2)), min(7vw, calc(1rem * var(--font-ratio-10) * var(--font-ratio-1))));
+		}
+
+		font-weight: bold;
+		line-height: var(--line-height--narrow);
+		text-shadow: 1px 1px 1px #999;
+	}
+}
+
+.p-page-title__sub-hdg {
+	font-size: 1rem;
+	font-weight: normal;
+	text-shadow: none;
+}
+
+.p-page-title__update {
+	margin-top: 0.5em;
+	text-align: right;
+}
+
+/* ===== ローカルナビ ===== */
+.p-local-nav {
+	margin: 30px 0 0;
+}
+
+.p-local-nav__list {
+	margin: auto;
+	display: flex;
+	flex-flow: wrap;
+
+	@media screen and (min-width: 37.5em) {
+		width: 90%;
+	}
+
+	&:not(:first-child) {
+		margin-top: 0.25em;
+	}
+
+	& > li {
+		margin: -0.5px;
+		border: 1px solid #ccc;
+		display: flex;
+		flex: auto;
+		text-align: center;
+	}
+
+	& a {
+		--bullet-color: #0bb; /* アイコンの色 */
+		--bullet-width: 0.75em; /* ビュレットアイコンの幅 */
+		--bullet-height: 0.75em; /* ビュレットアイコンの高さ */
+
+		padding: 0.5em 0.5em 0.4em;
+		flex: 100%;
+		outline-offset: 0.2em;
+
+		&:focus {
+			z-index: 0;
+		}
+
+		&::before {
+			content: "";
+			display: inline-block;
+			-webkit-mask: var(--image-link-bullet) left/contain no-repeat;
+			mask: var(--image-link-bullet) left/contain no-repeat;
+			width: var(--bullet-width);
+			height: var(--bullet-height);
+			background: var(--bullet-color);
+		}
+
+		&:any-link {
+			background-color: #fff;
+
+			&:focus,
+			&:hover {
+				--bullet-color: var(--anchor-hover-color);
+
+				background-color: #f4f4f4;
+			}
+		}
+
+		/* 現在ページ */
+		&:not(:any-link) {
+			--bullet-color: #999;
+
+			color: #444;
+			background-color: #fef;
+		}
+
+		&.-current {
+			background-color: #fef;
+
+			&:any-link {
+				&:hover,
+				&:focus {
+					background-color: #fff6ff;
+				}
+			}
+		}
+	}
+}
+
+/* ===== ページ送り ===== */
+.p-page-nav {
+	margin-top: 30px;
+}
+
+.p-page-nav__list {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+
+	& > li {
+		margin: 0.5em 3%;
+	}
+}
+
+.p-page-nav__link {
+	padding: 0.5em 1em 0.4em;
+	border: 1px solid #ccc;
+	border-radius: 0.5em;
+	display: inline-block;
+	background: #fff;
+	text-decoration: none;
+	white-space: nowrap;
+	outline-offset: 0.1em;
+
+	&:hover,
+	&:focus {
+		background-color: #f9f9f9;
+	}
+
+	&.-prev {
+		&::before {
+			margin-right: 0.5em;
+			content: "≪";
+		}
+	}
+
+	&.-next {
+		&::after {
+			margin-left: 0.5em;
+			content: "≫";
+		}
+	}
+}
+
+/* ===== 注意事項 ===== */
+.p-attention {
+	margin: 30px auto 0;
+	padding: 1em 12px;
+	border: 1px solid #f00;
+	border-radius: 0.5em;
+	color: #d00;
+	background: #fee;
+	max-width: 45em;
+}
+
+.p-attention__mark,
+.p-attention__text {
+	display: table-cell;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.p-attention__mark {
+	padding-right: 0.1em;
+}
+
+/* ===== コンテンツ説明 ===== */
+.p-description {
+	margin: 45px auto 0;
+	width: 75%;
+
+	@media screen and (max-width: 37.5em) {
+		width: 90%;
+	}
+
+	& > p {
+		text-align: justify;
+		text-indent: 1em;
+
+		&:not(:first-child) {
+			margin-top: 0.25em;
+		}
+	}
+}
+
+/* ===== ステップ ===== */
+.p-step {
+	--step-arrow-color: var(--page-bgcolor); /* 矢印の色 */
+	--step-arrow-width: 2px; /* 矢印の幅 */
+	--step-arrow-height: 1.15em; /* 矢印の高さ */
+	--step-arrow-inclination: 0.6; /* 矢印の傾斜度（高さに対する割合、 1 = 45°） */
+
+	margin: 30px auto 0;
+	display: flex;
+
+	& > li {
+		margin: var(--step-arrow-width) var(--step-arrow-width) var(--step-arrow-width) 0;
+		flex: auto;
+		position: relative;
+		font-size: calc(1rem * var(--font-ratio-2));
+		text-align: center;
+
+		&:not(:first-child) {
+			& .p-step__text {
+				padding-left: 1.5em;
+			}
+		}
+
+		&:not(:last-child) {
+			&::after {
+				border-top: calc(var(--step-arrow-height) + var(--step-arrow-width)) solid transparent;
+				border-bottom: calc(var(--step-arrow-height) + var(--step-arrow-width)) solid transparent;
+				border-left: calc(var(--step-arrow-height) * var(--step-arrow-inclination)) solid var(--step-arrow-color);
+				content: "";
+				position: absolute;
+				top: calc(50% - var(--step-arrow-height) - (var(--step-arrow-width) / 2));
+				left: 100%;
+				transform: translateX(var(--step-arrow-width));
+				z-index: 1;
+			}
+
+			& .p-step__text {
+				&::after {
+					border-top: calc(var(--step-arrow-height) + var(--step-arrow-width)) solid transparent;
+					border-bottom: calc(var(--step-arrow-height) + var(--step-arrow-width)) solid transparent;
+					border-left: calc(var(--step-arrow-height) * var(--step-arrow-inclination)) solid;
+					border-left-color: inherit;
+					content: "";
+					position: absolute;
+					top: calc(50% - var(--step-arrow-height) - (var(--step-arrow-width) / 2));
+					left: 100%;
+					z-index: 2;
+				}
+			}
+		}
+	}
+}
+
+.p-step__text {
+	padding: 0.5em;
+	border-color: #ddd;
+	display: block;
+	background: #ddd;
+
+	&.-current {
+		border-color: #fdd;
+		color: #444;
+		background-color: #fdd;
+		font-weight: bold;
+	}
+}
+
+/* ===== 目次 ===== */
+.p-subtoc {
+	margin-top: 30px;
+	padding: 20px;
+	border: 1px solid #333;
+	border-radius: 0.5em;
+	background: #f7f7f7;
+	line-height: var(--line-height--narrow);
+
+	@nest .p-local-nav + & {
+		margin-top: 2.5em;
+	}
+
+	& > li {
+		--bullet-image: var(--image-link-bullet--hash); /* ビュレットアイコンの画像 */
+		--bullet-color: #666; /* アイコンの色 */
+		--bullet-width: 0.75em; /* ビュレットアイコンの幅 */
+		--bullet-height: 0.75em; /* ビュレットアイコンの高さ */
+		--bullet-gap: 0.4em; /* ビュレットアイコンと後続テキストの間隔 */
+
+		padding-left: calc(var(--bullet-width) + var(--bullet-gap));
+		text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+
+		& + li {
+			margin-top: 0.5em;
+		}
+
+		& > a {
+			outline-offset: 0.1em;
+
+			&::before {
+				margin-right: var(--bullet-gap);
+				content: "";
+				display: inline-block;
+				-webkit-mask: var(--bullet-image) left/contain no-repeat;
+				mask: var(--bullet-image) left/contain no-repeat;
+				width: var(--bullet-width);
+				height: var(--bullet-height);
+				background: var(--bullet-color);
+			}
+
+			&:focus,
+			&:hover {
+				--bullet-color: var(--anchor-hover-color);
+			}
+		}
+	}
+}
+
+/* ===== ダイアログ ===== */
+.p-dialog {
+	/* ↓リセット */
+	margin: 0;
+	padding: 0;
+	border: none;
+	color: inherit;
+
+	/* ↑リセット */
+
+	justify-content: center;
+	align-items: center;
+	display: none; /* <dialog> 未対応ブラウザ用 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.15); /* <dialog> 未対応ブラウザ用 */
+	z-index: 2147483647; /* <dialog> 未対応ブラウザ用 */
+
+	&[open] {
+		display: flex;
+	}
+
+	&::backdrop {
+		background: rgba(0, 0, 0, 0.15);
+	}
+}
+
+.p-dialog__inner {
+	padding: 1.5em;
+	border: 2px solid #d00;
+	border-radius: 0.25em;
+	box-sizing: border-box;
+	box-shadow: 0 0 1em #999;
+	max-width: 640px;
+	max-height: 80vh;
+	background: #fee;
+	overflow-y: auto;
+	overscroll-behavior-y: contain;
+
+	@media screen and (max-width: 711.11px) {
+		/* 640px / .9 */
+		max-width: 90vw;
+	}
+}

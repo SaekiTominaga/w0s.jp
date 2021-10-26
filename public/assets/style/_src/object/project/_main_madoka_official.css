@@ -1,0 +1,270 @@
+/* ===== 公式サイトニュース ===== */
+.p-madoka-official-news {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+
+	& > li {
+		margin-top: 1em;
+		padding-bottom: 1em;
+		border-bottom: 1px dotted #ccc;
+	}
+
+	&.-compact {
+		& > li {
+			margin-top: 0.5em;
+			padding-bottom: 0.5em;
+		}
+
+		& .p-madoka-official-news__title {
+			margin-top: 0;
+			font-size: 1rem;
+			font-weight: normal;
+		}
+	}
+}
+
+.p-madoka-official-news__date {
+	color: #666; /* lighten(var(--page-color), 40%) */
+	font-size: calc(1rem / var(--font-ratio-1));
+}
+
+.p-madoka-official-news__title {
+	margin-top: 0.25em;
+	font-size: calc(1rem * var(--font-ratio-4));
+	font-weight: bold;
+
+	& :any-link {
+		--bullet-width: 0.45em;
+		--bullet-height: 0.75em;
+		--bullet-color: #0bb;
+		--bullet-gap: 0.5em;
+
+		padding-left: calc(var(--bullet-width) + var(--bullet-gap));
+		display: inline-block;
+		font-size: calc(1rem * var(--font-ratio-1));
+		text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+
+		&::before {
+			margin-right: var(--bullet-gap);
+			content: "";
+			display: inline-block;
+			clip-path: var(--shape-link-triangle);
+			width: var(--bullet-width);
+			height: var(--bullet-height);
+			background: var(--bullet-color);
+		}
+
+		&:focus,
+		&:hover {
+			--bullet-color: var(--anchor-hover-color);
+		}
+	}
+}
+
+.p-madoka-official-news__message {
+	margin-top: 1em;
+	font-size: calc(1rem / var(--font-ratio-2));
+}
+
+.p-madoka-official-news__images {
+	margin-top: 1em;
+	display: flex;
+	flex-flow: wrap;
+	align-items: flex-start;
+	gap: 15px;
+
+	& img {
+		max-width: 240px;
+		height: auto;
+	}
+}
+
+/* ===== マギレコ アナウンス 一覧 ===== */
+.p-madoka-magireco-announce {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+
+	& > li {
+		display: table-row;
+	}
+}
+
+.p-madoka-magireco-announce__date {
+	padding: 0.5em;
+	border: 1px solid #000;
+	display: table-cell;
+	background: #f8f8f8;
+	white-space: nowrap;
+}
+
+.p-madoka-magireco-announce__title {
+	padding: 0.5em;
+	border: 1px solid #000;
+	display: table-cell;
+	width: 100%;
+}
+
+.p-madoka-magireco-announce__os {
+	padding: 0.4em 0.5em 0.3em;
+	border: 1px solid #000;
+	border-radius: 0.25em;
+	display: inline-block;
+	color: #000;
+	background: #fff;
+	font-size: calc(1rem / var(--font-ratio-4));
+	font-weight: bold;
+	line-height: 1;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+@media screen and (max-width: 36em) {
+	.p-madoka-magireco-announce {
+		display: block;
+
+		& > li {
+			display: block;
+
+			& + li {
+				margin-top: 0.5em;
+			}
+		}
+	}
+
+	.p-madoka-magireco-announce__date {
+		padding: 0.25em 0.5em;
+		border: none;
+		display: block;
+		background: #eee;
+		white-space: normal;
+	}
+
+	.p-madoka-magireco-announce__title {
+		border: none;
+		display: block;
+		width: auto;
+	}
+}
+
+/* ===== マギレコ アナウンス 記事 ===== */
+.p-madoka-magireco-announce-topic-contents {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	padding: 2.5%;
+	border: 1px solid #000;
+	color: #000;
+	background: #fff;
+	white-space: pre-wrap;
+
+	& img {
+		height: auto;
+		max-width: 100%;
+		display: block;
+	}
+}
+
+.p-madoka-magireco-announce-topic-contents__os {
+	padding: 0.4em 0.5em 0.3em;
+	border: 1px solid #000;
+	border-radius: 0.25em;
+	display: inline-block;
+	color: #000;
+	background: #fff;
+	font-size: calc(1rem / var(--font-ratio-4));
+	font-weight: bold;
+	line-height: 1;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+/* ===== 公式系Twitterデータ ===== */
+.p-madoka-twitter {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	display: flow-root;
+}
+
+.p-madoka-twitter__account {
+	font-size: calc(1rem * var(--font-ratio-2));
+	font-weight: bold;
+	line-height: var(--line-height--narrow);
+
+	& img {
+		margin-right: 15px;
+		border: 1px solid #000;
+		display: inline-block;
+		vertical-align: top;
+		float: left;
+	}
+
+	& a:any-link {
+		&:hover,
+		&:focus {
+			& img {
+				box-shadow: 0 0 3px #666;
+			}
+		}
+	}
+}
+
+.p-madoka-twitter__option {
+	margin-top: 0.75em;
+	font-size: calc(1rem / var(--font-ratio-1));
+	overflow: hidden;
+}
+
+.p-madoka-twitter__term {
+	font-weight: bold;
+
+	&::after {
+		margin: 0 0.1em;
+		content: ":";
+	}
+}
+
+.p-madoka-twitter-images {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	display: grid;
+	grid-template-columns: repeat(auto-fit, var(--width));
+	gap: 15px;
+
+	&.-icon {
+		--width: 133px; /* image width = 73px */
+
+		@media screen and (max-width: 320px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&.-banner {
+		--width: 300px; /* image width = 300px */
+
+		@media screen and (max-width: 400px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	& > li {
+	}
+
+	& :any-link {
+		display: inline-block;
+
+		&:hover,
+		&:focus {
+			& img {
+				box-shadow: 0 0 3px #666;
+			}
+		}
+	}
+
+	& img {
+		display: block;
+		height: auto;
+		max-width: 100%;
+	}
+}
+
+.p-madoka-twitter-images__period {
+	display: block;
+	font-size: calc(1rem / var(--font-ratio-3));
+}

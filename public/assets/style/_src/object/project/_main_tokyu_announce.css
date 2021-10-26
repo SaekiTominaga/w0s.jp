@@ -1,0 +1,255 @@
+/* ==============================
+ *   東急電車形態研究・自動放送
+ * ============================== */
+
+/* ===== インデックスページの路線別見出し ===== */
+.p-tokyu-announce-index-hdg-line {
+	--line-color: #999;
+
+	margin-bottom: 1em;
+	line-height: var(--line-height--narrow);
+
+	&.-toyoko {
+		--line-color: var(--tokyu-color-toyoko);
+	}
+
+	&.-meguro {
+		--line-color: var(--tokyu-color-meguro);
+	}
+
+	&.-dento {
+		--line-color: var(--tokyu-color-dento);
+	}
+
+	&.-oimachi {
+		--line-color: var(--tokyu-color-oimachi);
+	}
+
+	&.-ikegami {
+		--line-color: var(--tokyu-color-ikegami);
+	}
+
+	&.-tamagawa {
+		--line-color: var(--tokyu-color-tamagawa);
+	}
+
+	&.-kodomo {
+		--line-color: var(--tokyu-color-kodomo);
+	}
+
+	&.-setagaya {
+		--line-color: var(--tokyu-color-setagaya);
+	}
+
+	&.-ttm {
+		--line-color: var(--tokyu-color-ttm);
+	}
+}
+
+.p-tokyu-announce-index-hdg-line__hdg {
+	padding-left: 0.8em;
+	position: relative;
+	font-size: calc(1rem * var(--font-ratio-5));
+	font-weight: bold;
+
+	&::before {
+		border-radius: 1em;
+		content: "";
+		display: block;
+		height: 85%;
+		width: 0.3em;
+		position: absolute;
+		top: 0.025em;
+		left: 0;
+		background: var(--line-color);
+	}
+}
+
+.p-tokyu-announce-index-hdg-line__sub-hdg {
+	font-size: 1rem;
+	font-weight: normal;
+}
+
+/* ===== インデックスページの下層ページへのリンク ===== */
+.p-tokyu-announce-index-links {
+	margin-top: 1em;
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.5em 1.5em;
+
+	& :any-link {
+		--bullet-width: 0.45em;
+		--bullet-height: 0.75em;
+		--bullet-color: #0bb;
+		--bullet-gap: 0.5em;
+
+		padding-left: calc(var(--bullet-width) + var(--bullet-gap));
+		display: inline-block;
+		font-size: calc(1rem * var(--font-ratio-1));
+		text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+
+		&::before {
+			margin-right: var(--bullet-gap);
+			content: "";
+			display: inline-block;
+			clip-path: var(--shape-link-triangle);
+			width: var(--bullet-width);
+			height: var(--bullet-height);
+			background: var(--bullet-color);
+		}
+
+		&:focus,
+		&:hover {
+			--bullet-color: var(--anchor-hover-color);
+		}
+	}
+}
+
+/* ===== 下層ページ ===== */
+.p-tokyu-announce {
+	margin: 3em 0;
+}
+
+.p-tokyu-announce__header {
+	padding: 0.3em 1em 0.2em;
+	border: 1px solid #999;
+	background: #eee;
+	font-size: calc(1rem / var(--font-ratio-1));
+	text-align: center;
+}
+
+.p-tokyu-announce__main {
+}
+
+.p-tokyu-announce__footer {
+	margin-top: 2em;
+	text-align: center;
+}
+
+/* 行先 */
+.p-tokyu-announce__meta-train {
+	& .c-tokyu-train {
+		margin-right: 0.1em;
+		font-size: calc(1rem * var(--font-ratio-4));
+		font-weight: bold;
+	}
+}
+
+.p-tokyu-announce__meta-train-note {
+	margin-left: 0.5em;
+}
+
+/* 期間 */
+.p-tokyu-announce__meta-period {
+}
+
+/* 注釈 */
+.p-tokyu-announce__meta-note {
+	color: #666;
+}
+
+.p-tokyu-announce__station {
+	padding: 0.5em;
+	border-color: #999;
+	border-style: solid;
+	border-width: 0 1px 1px;
+	background: #fdfdfd;
+}
+
+.p-tokyu-announce__announce {
+	&:not(:first-child) {
+		margin-top: 1em;
+	}
+
+	& p {
+		margin-top: 0.25em;
+	}
+}
+
+.p-tokyu-announce__hdg {
+	color: #666;
+	font-weight: normal;
+
+	&::before {
+		content: "\FF08";
+	}
+
+	&::after {
+		content: "\FF09";
+	}
+}
+
+/* 放送開始前のチャイム */
+.p-tokyu-announce__chime {
+	&::before {
+		content: "\266A"; /* ♪ */
+	}
+}
+
+/* 宣伝放送概略 */
+.p-tokyu-announce__cm-summary {
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+	color: #06f;
+
+	& + .p-tokyu-announce__cm-summary {
+		margin-top: 0;
+	}
+
+	&::before {
+		content: "（";
+	}
+
+	&::after {
+		content: "）";
+	}
+
+	& b {
+		font-weight: normal;
+	}
+}
+
+/* 備考 */
+.p-tokyu-announce__note {
+	margin: 1em 0;
+	text-align: center;
+}
+
+/* 収録データ */
+.p-tokyu-announce__data {
+	padding: 0.2em 1em 0;
+	background-color: #fec;
+	border: 1px solid #666;
+	border-radius: 0.5em;
+	display: inline-flex;
+	flex-flow: wrap;
+
+	& dt {
+		&::after {
+			content: ":";
+			padding: 0 0.2em;
+		}
+	}
+
+	& dd:not(:last-child) {
+		margin-right: 2em;
+	}
+
+	@media screen and (max-width: 30em) {
+		display: inline-block;
+
+		& dt,
+		& dd {
+			display: inline;
+		}
+
+		& dd:not(:last-child) {
+			margin-right: 0;
+
+			&::after {
+				content: "\A";
+				white-space: pre;
+			}
+		}
+	}
+}

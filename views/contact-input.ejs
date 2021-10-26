@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>問い合わせ（入力）</title>
+
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+		<link rel="stylesheet" href="/assets/style/w0s.css" />
+		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
+		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" id="stylesheet-print" />
+
+		<script src="/assets/script/trusted-types.js"></script>
+		<script src="/assets/script/w0s.mjs" type="module"></script>
+		<script src="/assets/script/contact.mjs" type="module"></script>
+		<script src="https://www.googletagmanager.com/gtag/js?id=G-SZYWFCF4JS" defer=""></script>
+		<script src="/assets/script/google-analytics.js" defer=""></script>
+	</head>
+	<body itemscope="" itemtype="http://schema.org/ContactPage">
+		<div class="l-page">
+			<%- include('./_include/_header') %>
+
+			<main role="main" id="main" class="l-main -nosidebar">
+				<div class="l-main__header">
+					<div class="p-topic-path">
+						<p itemprop="breadcrumb"><a href="/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
+					</div>
+
+					<div class="p-page-title">
+						<h1 itemprop="name">問い合わせ</h1>
+					</div>
+				</div>
+				<div class="l-main__main">
+					<ol class="p-step">
+						<li class="js-screen-input"><em class="p-step__text -current">入力</em></li>
+						<li class="js-screen-confirm" hidden=""><span class="p-step__text">入力</span></li>
+						<li class="js-screen-input" hidden=""><span class="p-step__text">確認</span></li>
+						<li class="js-screen-confirm" hidden=""><em class="p-step__text -current">確認</em></li>
+						<li><span class="p-step__text">完了</span></li>
+					</ol>
+
+					<form
+						novalidate=""
+						method="post"
+						class="p-block js-submit-overlay"
+						id="contact-form"
+						data-dialog-class="p-dialog-overlay"
+						data-dialog-message='&lt;p&gt;&lt;img src="/assets/image/loading.svg" alt=""/&gt;&lt;/p&gt;&lt;p&gt;お待ちください&lt;/p&gt;'
+					>
+						<% if (validateErrors.length > 0) { %>
+						<div class="p-form-errors js-form-errors">
+							<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
+							<ul>
+								<% for (const validateError of validateErrors) { %>
+								<li><%= validateError.msg %></li>
+								<% } %>
+							</ul>
+						</div>
+						<% } %>
+
+						<div class="js-screen-input">
+							<div class="p-form-grid">
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-name">名前 <strong class="c-required -optional">任意</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<% if (page.query.name === null) { %>
+												<input class="c-input" name="yourname" id="input-name" style="--input-width: 24em" />
+												<% } else { %>
+												<input class="c-input" name="yourname" value="<%= page.query.name %>" id="input-name" style="--input-width: 24em" />
+												<% } %>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-email">Eメールアドレス <strong class="c-required -required">必須</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<% if (page.query.email === null) { %>
+												<input
+													type="email"
+													class="c-input js-convert-trim js-validation"
+													name="email"
+													required=""
+													autocomplete="email"
+													id="input-email"
+													style="--input-width: 24em"
+													data-validation-message-for="input-validate-email"
+												/>
+												<% } else { %>
+												<input
+													type="email"
+													class="c-input js-convert-trim js-validation"
+													name="email"
+													value="<%= page.query.email %>"
+													required=""
+													autocomplete="email"
+													id="input-email"
+													style="--input-width: 24em"
+													data-validation-message-for="input-validate-email"
+												/>
+												<% } %>
+											</div>
+											<div class="p-fc-invalid">
+												<p hidden="" id="input-validate-email"></p>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend" id="label-reply">返信の有無 <strong class="c-required -required">必須</strong></legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block -check" role="radiogroup" aria-labelledby="label-reply">
+												<% for ([key, value] of Object.entries(reply)) { %>
+												<label class="c-label-check -radio">
+													<% if (key !== page.query.reply) { %>
+													<input
+														type="radio"
+														class="js-validation"
+														name="reply"
+														value="<%= key %>"
+														required=""
+														data-validation-message-for="input-validate-reply"
+													/>
+													<% } else { %>
+													<input
+														type="radio"
+														class="js-validation"
+														name="reply"
+														value="<%= key %>"
+														required=""
+														checked=""
+														data-validation-message-for="input-validate-reply"
+													/>
+													<% } %>
+													<span class="c-label-check__label"><%= value %></span>
+												</label>
+												<% } %>
+											</div>
+											<div class="p-fc-invalid">
+												<p hidden="" id="input-validate-reply"></p>
+											</div>
+											<div class="p-fc-note">
+												<p>おことわり：「必要」を選択された場合でも、内容によっては返信しかねる場合があります。</p>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-body">内容 <strong class="c-required -required">必須</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<textarea
+													is="w0s-textarea-height-adjust"
+													class="c-textarea js-convert-trim js-validation"
+													name="body"
+													required=""
+													id="input-body"
+													style="--textarea-height: 16em"
+													data-validation-message-for="input-validate-body"
+												>
+<%= page.query.body %></textarea
+												>
+											</div>
+											<div class="p-fc-invalid">
+												<p hidden="" id="input-validate-body"></p>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+
+							<p><input type="hidden" name="referrer" value="<%= page.query.referrer %>" /></p>
+						</div>
+
+						<div class="js-screen-confirm" hidden="">
+							<table class="p-table-data -full">
+								<tbody>
+									<tr>
+										<th scope="row">名前</th>
+										<td class="js-confirm-output" data-ctrl-name="yourname"></td>
+									</tr>
+									<tr>
+										<th scope="row">Eメールアドレス</th>
+										<td class="js-confirm-output" data-ctrl-name="email"></td>
+									</tr>
+									<tr>
+										<th scope="row">返信の有無</th>
+										<td class="js-confirm-output" data-ctrl-name="reply"></td>
+									</tr>
+									<tr>
+										<th scope="row">内容</th>
+										<td><pre class="p-form-pre js-confirm-output" data-ctrl-name="body"></pre></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="p-submit -center">
+							<span class="p-submit__button js-screen-input" hidden=""><button class="c-button-submit" id="js-confirm-button">入力内容を確認</button></span>
+							<span class="p-submit__button js-screen-confirm" hidden=""
+								><button type="button" class="c-button-submit -cancel" id="js-correct-button">修正</button></span
+							>
+							<span class="p-submit__button js-screen-confirm"
+								><button name="actionsend" value="1" class="c-button-submit" id="js-send-button">送信</button></span
+							>
+						</div>
+					</form>
+				</div>
+			</main>
+
+			<%- include('./_include/_footer') %>
+		</div>
+	</body>
+</html>

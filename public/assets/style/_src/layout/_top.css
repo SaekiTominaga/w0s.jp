@@ -1,0 +1,31 @@
+/* ==============================
+ *   トップページ
+ * ============================== */
+.l-top {
+	display: grid;
+	grid-template-areas:
+		"nav nav"
+		"blog update";
+	grid-template-columns: 1fr 1.6fr;
+	gap: 40px;
+
+	@media screen and (max-width: 37.5em) {
+		grid-template-areas:
+			"nav"
+			"blog"
+			"update";
+		grid-template-columns: 1fr;
+	}
+}
+
+.l-top__nav {
+	grid-column: nav;
+}
+
+.l-top__blog {
+	grid-column: blog;
+}
+
+.l-top__update {
+	grid-column: update;
+}

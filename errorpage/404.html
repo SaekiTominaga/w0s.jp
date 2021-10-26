@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>w0s.jp</title>
+
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+		<link rel="stylesheet" href="/assets/style/error.css" />
+
+		<script src="/assets/script/error.mjs" type="module"></script>
+	</head>
+	<body>
+		<div class="l-page">
+			<main id="main" class="l-main">
+				<h1 class="p-err-title"><span class="p-err-title__code">404 Not Found</span> <span class="p-err-title__msg">コンテンツが存在しません</span></h1>
+
+				<div class="p-err-text">
+					<p id="parentpage-msg" hidden="">「<a id="parentpage-anchor"></a>」でお探しのコンテンツが見つかるかもしれませんし、見つからないかもしれません。</p>
+				</div>
+
+				<div class="p-err-parentthumb">
+					<w0s-portal class="p-err-parentthumb__portal" id="parentpage-portal" hidden=""></w0s-portal>
+				</div>
+
+				<form action="https://www.google.com/search" class="p-err-search" role="search">
+					<fieldset>
+						<legend class="p-err-search__legend">サイト内検索（Google 検索）</legend>
+						<div class="p-err-search__ctrl">
+							<span class="p-err-search__ctrl-site">
+								<input type="hidden" name="as_sitesearch" value="w0s.jp" />
+							</span>
+							<span class="p-err-search__ctrl-query">
+								<input type="search" name="q" required="" title="検索キーワード" />
+							</span>
+							<span class="p-err-search__ctrl-submit">
+								<button>
+									<svg role="img" aria-labelledby="search-button">
+										<title id="search-button">検索</title>
+
+										<use xlink:href="/assets/image/icon/search.svg#icon"></use>
+									</svg>
+								</button>
+							</span>
+						</div>
+					</fieldset>
+				</form>
+			</main>
+		</div>
+	</body>
+</html>

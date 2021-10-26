@@ -1,0 +1,38 @@
+<header role="banner" id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			<div class="p-header-site">
+				<% if (page.path === '/') { %>
+				<h1 class="p-header-site__name" itemprop="name">w0s.jp</h1>
+				<p class="p-header-site__summary" itemprop="description">富永冴樹の個人サイト</p>
+				<% } else { %>
+				<p class="p-header-site__name"><a href="/">w0s.jp</a></p>
+				<p class="p-header-site__summary">富永冴樹の個人サイト</p>
+				<% } %>
+			</div>
+		</div>
+		<div class="l-header__nav">
+			<form action="https://www.google.com/search" role="search" class="p-header-search" aria-label="サイト内検索">
+				<div class="p-header-search__ctrl">
+					<span class="p-header-search__ctrl-site">
+						<input type="hidden" name="as_sitesearch" value="w0s.jp" />
+					</span>
+
+					<span class="p-header-search__ctrl-query">
+						<input type="search" name="q" required="" title="検索キーワード" />
+					</span>
+
+					<span class="p-header-search__ctrl-submit">
+						<button>
+							<svg role="img" aria-labelledby="header-search-button">
+								<title id="header-search-button">検索</title>
+
+								<use xlink:href="/assets/image/icon/search.svg#icon"></use>
+							</svg>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</header>

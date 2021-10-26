@@ -1,0 +1,219 @@
+/*
+リンク
+
+Styleguide 2.4.
+*/
+
+/*
+単一リンク
+
+Markup:
+<p class="p-link"><a href="https://example.com/">リンク</a></p>
+
+Styleguide 2.4.1
+*/
+.p-link {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+
+	& > a {
+		--bullet-width: 0.45em;
+		--bullet-height: 0.75em;
+		--bullet-color: #0bb;
+		--bullet-gap: 0.5em;
+
+		padding-left: calc(var(--bullet-width) + var(--bullet-gap));
+		display: inline-block;
+		font-size: calc(1rem * var(--font-ratio-1));
+		text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+
+		&::before {
+			margin-right: var(--bullet-gap);
+			content: "";
+			display: inline-block;
+			clip-path: var(--shape-link-triangle);
+			width: var(--bullet-width);
+			height: var(--bullet-height);
+			background: var(--bullet-color);
+		}
+
+		&:focus,
+		&:hover {
+			--bullet-color: var(--anchor-hover-color);
+		}
+	}
+}
+
+/*
+複数リンク
+
+Markup:
+<ul class="p-links {{modifier_class}}">
+<li><a href="https://example.com/">リンク</a></li>
+<li><a href="https://example.com/">リンク<span class="p-links__subtitle">（サブタイトル）</span></a>
+<p>テキストテキストテキスト</p></li>
+<li><a href="https://example.com/">リンク</a>
+	<ul>
+	<li><a href="https://example.com/">リンク</a></li>
+	</ul></li>
+</ul>
+
+.-large - 大きな文字
+.-inline - インライン
+
+Styleguide 2.4.2
+*/
+.p-links {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	display: flex;
+	flex-flow: column;
+
+	& > li {
+		& + li {
+			margin-top: 0.5em;
+		}
+
+		& > a {
+			--bullet-width: 0.45em;
+			--bullet-height: 0.75em;
+			--bullet-color: #0bb;
+			--bullet-gap: 0.5em;
+
+			padding-left: calc(var(--bullet-width) + var(--bullet-gap));
+			display: inline-block;
+			font-size: calc(1rem * var(--font-ratio-1));
+			text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+
+			&::before {
+				margin-right: var(--bullet-gap);
+				content: "";
+				display: inline-block;
+				clip-path: var(--shape-link-triangle);
+				width: var(--bullet-width);
+				height: var(--bullet-height);
+				background: var(--bullet-color);
+			}
+
+			&:focus,
+			&:hover {
+				--bullet-color: var(--anchor-hover-color);
+			}
+		}
+
+		& > ul > li {
+			margin-left: 1.4em;
+			text-indent: -0.9em;
+
+			&::before {
+				margin-right: 0.4em;
+				content: "";
+				display: inline-block;
+				width: 0.5em;
+				height: 0.5em;
+				background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHZpZXdCb3g9IjAgMCA2IDYiPjxsaW5lIHN0cm9rZT0iIzAwMCIgeTI9IjYiLz48bGluZSBzdHJva2U9IiMwMDAiIHkxPSI2IiB4Mj0iNiIgeTI9IjYiLz48L3N2Zz4=) left/contain no-repeat;
+				vertical-align: 0.2em;
+			}
+		}
+	}
+
+	&.-large {
+		& > li {
+			font-size: calc(1rem * var(--font-ratio-2));
+
+			& > a {
+				font-size: calc(1rem * var(--font-ratio-6));
+			}
+
+			& li {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	&.-inline {
+		margin-bottom: -0.5em;
+		flex-flow: row wrap;
+
+		& > li {
+			margin-bottom: 0.5em;
+
+			&:not(:last-child) {
+				margin-right: 1.5em;
+			}
+
+			& + li {
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+/*
+商品リンク
+
+Markup:
+<div class="p-item">
+<a href="https://example.com/" class="p-item__link {{modifier_class}}">
+<img src="https://dummyimage.com/360x180/ccc/fff" alt="" class="p-item__image"/>
+<span class="p-item__title">タイトル</span>
+</a>
+<div class="p-item__text">
+<p>テキスト</p>
+</div>
+</div>
+
+Styleguide 2.4.3
+*/
+.p-item {
+	margin-top: calc(var(--component-interval) * var(--component-interval-ratio));
+	display: flow-root;
+}
+
+.p-item__link {
+	--bullet-width: 0.75em; /* ビュレットアイコンの幅 */
+	--bullet-height: 0.75em; /* ビュレットアイコンの高さ */
+
+	margin-left: calc(0em - var(--bullet-width));
+	margin-bottom: 0.5em;
+
+	&:any-link {
+		&:focus,
+		&:hover {
+			& .p-item__image {
+				box-shadow: 0 0 5px #999;
+			}
+		}
+	}
+}
+
+.p-item__image {
+	margin-right: calc(1em + var(--bullet-width));
+	float: left;
+	height: auto;
+	max-width: 40%;
+}
+
+.p-item__title {
+	--bullet-color: #0bb; /* アイコンの色 */
+
+	display: inline;
+	font-weight: bold;
+
+	&::before {
+		content: "";
+		display: inline-block;
+		-webkit-mask: var(--image-link-bullet) left/contain no-repeat;
+		mask: var(--image-link-bullet) left/contain no-repeat;
+		width: var(--bullet-width);
+		height: var(--bullet-height);
+		background: var(--bullet-color);
+	}
+
+	@nest :any-link:focus &, :any-link:hover & {
+		--bullet-color: var(--anchor-hover-color);
+	}
+}
+
+.p-item__text {
+	margin-top: 0.5em;
+	overflow: hidden;
+}

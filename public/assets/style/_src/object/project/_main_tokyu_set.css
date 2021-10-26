@@ -1,0 +1,165 @@
+/* ==============================
+ *   東急電車形態研究・設定器
+ * ============================== */
+
+/* ===== インデックスページの路線別見出し ===== */
+.p-tokyu-hdg-set {
+	--line-color: #999;
+
+	line-height: var(--line-height--narrow);
+
+	&.-toyoko {
+		--line-color: var(--tokyu-color-toyoko);
+	}
+
+	&.-meguro {
+		--line-color: var(--tokyu-color-meguro);
+	}
+
+	&.-dento {
+		--line-color: var(--tokyu-color-dento);
+	}
+
+	&.-oimachi {
+		--line-color: var(--tokyu-color-oimachi);
+	}
+
+	&.-ikegami {
+		--line-color: var(--tokyu-color-ikegami);
+	}
+
+	&.-kodomo {
+		--line-color: var(--tokyu-color-kodomo);
+	}
+
+	&.-setagaya {
+		--line-color: var(--tokyu-color-setagaya);
+	}
+
+	&.-ttm {
+		--line-color: var(--tokyu-color-ttm);
+	}
+}
+
+.p-tokyu-hdg-set__hdg {
+	padding-left: 1.2em;
+	position: relative;
+	font-size: calc(1rem * var(--font-ratio-5));
+	font-weight: bold;
+
+	&::before {
+		content: "";
+		height: 0.6em;
+		width: 0.6em;
+		position: absolute;
+		top: 0.2em;
+		left: 0.15em;
+		background: var(--line-color);
+		transform: rotate(45deg);
+	}
+}
+
+/* ===== 下層ページ ===== */
+.p-tokyu-set {
+	margin: 2em 0;
+	max-width: var(--panel-width, auto);
+}
+
+/* 期間 */
+.p-tokyu-set__period {
+	text-align: center;
+}
+
+.p-tokyu-set__panel {
+	margin-top: 1em;
+
+	/* ===== ダイヤル式 ===== */
+	&.-dial {
+		padding: 15px;
+		background: #ffc;
+	}
+
+	/* ===== ダイヤル式（8500系） ===== */
+	&.-dial-8500 {
+		padding: 15px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 15px;
+		background: #ffc;
+
+		@media screen and (max-width: 30em) {
+			grid-template-columns: 1fr;
+			grid-gap: 30px;
+		}
+
+		& h2 {
+			margin-bottom: 10px;
+			padding-left: 0.5em;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			letter-spacing: 0.5em;
+		}
+	}
+
+	/* ===== 押ボタン式 ===== */
+	&.-push {
+		& td {
+			border: 1px solid #000;
+			width: 5em;
+			min-height: 2em;
+			text-align: center;
+		}
+	}
+
+	/* ===== 押ボタン式（300系） ===== */
+	&.-push-300 {
+		& ul {
+			display: flex;
+			flex-wrap: wrap;
+
+			& > li {
+				margin: 0 2px 2px 0;
+				padding: 0.3em;
+				border: 1px solid #000;
+				width: 5em;
+				min-height: 2em;
+				line-height: 1;
+				text-align: center;
+			}
+		}
+	}
+
+	/* ===== 番号選択式（8090系） ===== */
+	&.-num-8090 {
+	}
+
+	/* ===== 番号選択式（長野電鉄8500系） ===== */
+	&.-num_ner8500 {
+		& th,
+		& td {
+			border: 1px solid #000;
+		}
+
+		& th {
+			font-weight: normal;
+			text-align: center;
+		}
+	}
+}
+
+.p-tokyu-set__image {
+	display: block;
+	height: auto;
+	max-width: 100%;
+
+	& section {
+		& + section {
+			margin-top: 1em;
+		}
+	}
+
+	& h2 {
+		font-weight: bold;
+	}
+}

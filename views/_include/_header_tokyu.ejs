@@ -1,0 +1,57 @@
+<header role="banner" id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			<div class="p-header-site">
+				<% if (page.path === '/tokyu/') { %>
+				<h1 class="p-header-site__name" itemprop="name">東急電車形態研究</h1>
+				<p class="p-header-site__summary" itemprop="description">東急電車の車両形態や自動放送を紹介するサイト</p>
+				<% } else { %>
+				<p class="p-header-site__name"><a href="/tokyu/">東急電車形態研究</a></p>
+				<p class="p-header-site__summary">東急電車の車両形態や自動放送を紹介するサイト</p>
+				<% } %>
+			</div>
+		</div>
+		<div class="l-header__nav">
+			<form action="https://www.google.com/search" role="search" class="p-header-search" aria-label="サイト内検索">
+				<div class="p-header-search__ctrl">
+					<span class="p-header-search__ctrl-site">
+						<input type="hidden" name="as_sitesearch" value="w0s.jp/tokyu/" />
+					</span>
+
+					<span class="p-header-search__ctrl-query">
+						<input type="search" name="q" required="" title="検索キーワード" />
+					</span>
+
+					<span class="p-header-search__ctrl-submit">
+						<button>
+							<svg role="img" aria-labelledby="header-search-button">
+								<title id="header-search-button">検索</title>
+
+								<use xlink:href="/assets/image/icon/search.svg#icon"></use>
+							</svg>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="l-header__gnav">
+		<nav role="navigation" class="p-header-gnav">
+			<ul class="p-header-gnav__links" itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
+				<% for (const [path, title] of new Map([ ['/tokyu/data/', '車両データ'], ['/tokyu/sty/', '車両形態'], ['/tokyu/yomoyama/', '車両よもやま'],
+				['/tokyu/an/', '自動放送'], ['/tokyu/set/', '設定器'], ['/tokyu/book/', '鉄道本執筆'] ])) { %>
+				<li>
+					<% if (page.path === path) { %>
+					<a aria-current="page" class="p-header-gnav__link"><%= title %></a>
+					<% } else if (page.path.startsWith(path)) { %>
+					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link -my-category"><%= title %></a>
+					<% } else { %>
+					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link"><%= title %></a>
+					<% } %>
+				</li>
+				<% } %>
+			</ul>
+		</nav>
+	</div>
+</header>

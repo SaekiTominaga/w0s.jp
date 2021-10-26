@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>ウェブ巡回（リソース）</title>
+
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+		<link rel="stylesheet" href="/assets/style/admin.css" />
+		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
+		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" id="stylesheet-print" />
+
+		<script src="/assets/script/w0s.mjs" type="module"></script>
+	</head>
+	<body>
+		<div class="l-page">
+			<%- include('./_include/_header') %>
+
+			<main role="main" id="main" class="l-main -nosidebar">
+				<div class="l-main__header">
+					<div class="p-page-title">
+						<h1>ウェブ巡回（リソース）</h1>
+					</div>
+				</div>
+				<div class="l-main__main">
+					<section class="p-section -hdg-a">
+						<div class="p-hdg">
+							<h2 class="p-hdg__hdg">データ登録</h2>
+						</div>
+
+						<form action="<%= page.path %>" method="post">
+							<div class="p-form-grid">
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="fc-url">URL <strong class="c-required -required">必須</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<% if (page.query.action_revise_preview || page.query.action_revise) { %>
+												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" readonly="" />
+												<% } else { %>
+												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" />
+												<% } %>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="fc-title">タイトル <strong class="c-required -required">必須</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<input class="c-input -full js-convert-trim" id="fc-title" name="title" value="<%= page.query.title %>" required="" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="fc-category">カテゴリー <strong class="c-required -required">必須</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<select class="c-select" id="fc-category" name="category">
+													<% for (const category of categoryMaster) { %> <% if (page.query.category === category.fk) { %>
+													<option value="<%= category.fk %>" selected=""><%= category.name %></option>
+													<% } else { %>
+													<option value="<%= category.fk %>"><%= category.name %></option>
+													<% } %> <% } %>
+												</select>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="fc-priority">優先度 <strong class="c-required -required">必須</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<select class="c-select" id="fc-priority" name="priority">
+													<% for (const priority of priorityMaster) { %> <% if (page.query.priority === priority.fk) { %>
+													<option value="<%= priority.fk %>" selected=""><%= priority.name %></option>
+													<% } else { %>
+													<option value="<%= priority.fk %>"><%= priority.name %></option>
+													<% } %> <% } %>
+												</select>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="fc-class">ブラウザ</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<label class="c-label-check -checkbox">
+													<% if (page.query.browser) { %>
+													<input type="checkbox" name="browser" value="1" checked="" />
+													<% } else { %>
+													<input type="checkbox" name="browser" value="1" />
+													<% } %>
+													<span class="c-label-check__label">ウェブブラウザでアクセスするか</span></label
+												>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="fc-selector">セレクター <strong class="c-required -optional">任意</strong></label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="p-form-grid__contents-block">
+												<input class="c-input -full js-convert-trim" id="fc-selector" name="selector" value="<%= page.query.selector %>" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+
+							<div class="p-submit">
+								<% if (page.query.action_revise_preview || page.query.action_revise) { %>
+								<span class="p-submit__button"><button class="c-button-submit" name="actionrev" value="1">修正</button></span>
+								<% } else { %>
+								<span class="p-submit__button"><button class="c-button-submit" name="actionadd" value="1">登録</button></span>
+								<% } %>
+							</div>
+						</form>
+					</section>
+
+					<% for (const [categoryName, resourcePageOfCategory] of resourcePageList) { %>
+					<section class="p-section -hdg-a">
+						<div class="p-hdg">
+							<h2 class="p-hdg__hdg"><%= categoryName %></h2>
+						</div>
+
+						<table class="p-table-data">
+							<thead>
+								<tr>
+									<th></th>
+									<th>対象ページ</th>
+									<th>優先</th>
+									<th>🌐</th>
+									<th>セレクター</th>
+									<th>サイズ</th>
+									<th>更新日時</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for (const resourcePage of resourcePageOfCategory) { %>
+								<tr>
+									<td>
+										<form action="<%= page.path %>" method="post" class="p-admin-crawler-table-ctrl">
+											<p>
+												<input type="hidden" name="url" value="<%= resourcePage.url %>" />
+												<button name="actionrevpre" value="1" formmethod="get">修正</button>
+												<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?">削除</button>
+											</p>
+											<p><a href="/admin/crawler-resource-log?dir=<%= resourcePage.url.hostname %><%= resourcePage.url.pathname.replace(/\/$/g, '') %>">差分チェック</a></p>
+										</form>
+									</td>
+									<td>
+										<a href="<%= resourcePage.url %>" referrerpolicy="no-referrer"><%= resourcePage.title %></a>
+										<p class="u-small"><%= resourcePage.url %></p>
+									</td>
+									<td><%= resourcePage.priority %></td>
+									<td><% if (resourcePage.browser) { %>✔<% } %></td>
+									<td><%= resourcePage.selector %></td>
+									<td><%= resourcePage.content_length %></td>
+									<% if (resourcePage.last_modified !== null) { %>
+									<td><%= resourcePage.last_modified.format('YYYY年M月D日 H時m分') %></td>
+									<% } else { %>
+									<td></td>
+									<% } %>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
+					</section>
+					<% } %>
+				</div>
+			</main>
+
+			<%- include('./_include/_footer') %>
+		</div>
+	</body>
+</html>

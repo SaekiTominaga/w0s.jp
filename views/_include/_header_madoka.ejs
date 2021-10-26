@@ -1,0 +1,57 @@
+<header role="banner" id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			<div class="p-header-site">
+				<% if (page.path === '/madoka-magica/') { %>
+				<h1 class="p-header-site__name" itemprop="name">まどか資料館</h1>
+				<p class="p-header-site__summary" itemprop="description">『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト</p>
+				<% } else { %>
+				<p class="p-header-site__name"><a href="/madoka-magica/">まどか資料館</a></p>
+				<p class="p-header-site__summary">『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト</p>
+				<% } %>
+			</div>
+		</div>
+		<div class="l-header__nav">
+			<form action="https://www.google.com/search" role="search" class="p-header-search" aria-label="サイト内検索">
+				<div class="p-header-search__ctrl">
+					<span class="p-header-search__ctrl-site">
+						<input type="hidden" name="as_sitesearch" value="w0s.jp/madoka-magica/" />
+					</span>
+
+					<span class="p-header-search__ctrl-query">
+						<input type="search" name="q" required="" title="検索キーワード" />
+					</span>
+
+					<span class="p-header-search__ctrl-submit">
+						<button>
+							<svg role="img" aria-labelledby="header-search-button">
+								<title id="header-search-button">検索</title>
+
+								<use xlink:href="/assets/image/icon/search.svg#icon"></use>
+							</svg>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="l-header__gnav">
+		<nav role="navigation" class="p-header-gnav">
+			<ul class="p-header-gnav__links" itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
+				<% for (const [path, title] of new Map([ ['/madoka-magica/video/', '映像'], ['/madoka-magica/library/', '書籍'], ['/madoka-magica/event/', 'イベント'],
+				['/madoka-magica/yomoyama/', 'よもやま'], ['/madoka-magica/official/', '公式データ'], ['/madoka-magica/dojin/', '同人誌'] ])) { %>
+				<li>
+					<% if (page.path === path) { %>
+					<a aria-current="page" class="p-header-gnav__link"><%= title %></a>
+					<% } else if (page.path.startsWith(path)) { %>
+					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link -my-category"><%= title %></a>
+					<% } else { %>
+					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link"><%= title %></a>
+					<% } %>
+				</li>
+				<% } %>
+			</ul>
+		</nav>
+	</div>
+</header>

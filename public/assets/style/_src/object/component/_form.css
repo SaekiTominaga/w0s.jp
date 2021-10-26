@@ -1,0 +1,435 @@
+/*
+フォーム
+
+Styleguide 1.4.
+*/
+
+/* プレースホルダー */
+::placeholder {
+	color: #000;
+	opacity: 0.54;
+}
+
+::-ms-input-placeholder {
+	color: #000;
+	opacity: 0.54;
+} /* Edge */
+
+/*
+一行入力欄（type="text", type="search", type="date"）
+
+Markup:
+<input class="c-input {{modifier_class}}"/>
+
+.-full - 全幅
+.-compact - コンパクトな表示
+.-invalid - エラー時
+
+Styleguide 1.4.1
+*/
+.c-input {
+	padding: 0.5em;
+	border: 1px solid #999;
+	border-radius: 0.25em;
+	box-sizing: border-box;
+	display: inline-block;
+	max-width: 100%;
+	width: var(--input-width, auto);
+	color: #000;
+	background: linear-gradient(#f8f8f8, #fff);
+	vertical-align: middle;
+	outline: none;
+	transition: border-color 0.5s;
+
+	/* 全幅 */
+	&.-full {
+		width: 100%;
+	}
+
+	&:disabled {
+		color: #888;
+		background: #ccc;
+	}
+
+	&:read-only {
+		color: #888;
+		background: #ccc;
+	}
+
+	&:enabled:read-write {
+		&:focus,
+		&:hover {
+			border-color: var(--focus-ring-color);
+		}
+	}
+
+	&:enabled.-invalid {
+		border-color: var(--invalid-border-color);
+		box-shadow: 0 0 1px var(--invalid-border-color); /* Firefox の box-shadow リセットを兼ねている */
+
+		&:focus,
+		&:hover {
+			border-color: var(--invalid-border-color);
+		}
+	}
+}
+
+/*
+ファイル選択（type="file"）
+
+Markup:
+<input type="file" class="c-input-file"/>
+
+Styleguide 1.4.2
+*/
+.c-input-file {
+	padding: 0.5em 0;
+	border-radius: 0.25em;
+	display: inline-block;
+	background: transparent;
+	vertical-align: middle;
+
+	&:disabled {
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		color: #666;
+		background: #ccc;
+		cursor: auto;
+	}
+}
+
+/*
+プルダウン（select）
+
+Markup:
+<select class="c-select">
+<option value="" selected="">選択肢</option>
+<option value="">選択肢</option>
+</select>
+
+Styleguide 1.4.3
+*/
+.c-select,
+.p-fc-date-select-group select {
+	padding: 0.5em 0;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/*
+複数行入力（textarea）
+
+Markup:
+<textarea class="c-textarea {{modifier_class}}"></textarea>
+
+.-invalid - エラー時
+
+Styleguide 1.4.4
+*/
+.c-textarea {
+	padding: 0.5em;
+	border: 1px solid #999;
+	border-radius: 0.25em;
+	box-sizing: border-box;
+	display: inline-block;
+	min-height: var(--textarea-height, auto);
+	width: 100%;
+	color: #000;
+	background: #fff;
+	vertical-align: middle;
+	outline: none;
+	transition: border-color 0.5s;
+
+	&:focus,
+	&:hover {
+		border-color: var(--focus-ring-color);
+	}
+
+	&.-invalid {
+		border-color: #e00;
+		box-shadow: 0 0 1px #e00; /* Firefox の box-shadow リセットを兼ねている */
+
+		&:focus,
+		&:hover {
+			border-color: #e00;
+		}
+	}
+}
+
+/*
+ラベル
+
+Markup:
+<input class="c-input" id="input1"/><label for="input1">ラベル</label>
+
+Styleguide 1.4.5
+*/
+.c-input,
+.c-select {
+	& + label {
+		margin-left: 0.25em;
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+/*
+送信ボタン
+
+Markup:
+<button class="c-button-submit {{modifier_class}}">ボタン</button>
+
+.-cancel - キャンセルボタン
+.-compact - コンパクトな表示
+
+Styleguide 1.4.6
+*/
+.c-button-submit {
+	--padding: 0.6em 1em 0.5em;
+	--color: #fff;
+	--bg-color: #007acc;
+	--bg-color--hover: #0069bb;
+	--border-color: var(--bg-color);
+	--font-size: calc(1rem * var(--font-ratio-3));
+	--ripple-effect-color: #fff;
+	--ripple-effect-opacity: 0.25;
+	--ripple-effect-transition-duration: 0.5s;
+
+	padding: var(--padding);
+	border: 1px solid var(--border-color);
+	border-radius: 0.25em;
+	display: inline-block;
+	color: var(--color);
+	background: var(--bg-color);
+	font-size: var(--font-size);
+	font-weight: bold;
+	line-height: 1;
+	outline-offset: 0.25em;
+	position: relative; /* for ripple effect */
+	overflow: hidden; /* for ripple effect */
+
+	&:enabled {
+		&:hover,
+		&:focus {
+			box-shadow: 0 0 2px #ccc;
+
+			--bg-color: var(--bg-color--hover);
+		}
+
+		/* ripple effect */
+		&::before {
+			content: "";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-image: radial-gradient(circle, var(--ripple-effect-color) 25%, transparent 0);
+			opacity: 0;
+			transform: scale(4);
+			transition: var(--ripple-effect-transition-duration);
+		}
+
+		/* ripple effect */
+		&:active::before {
+			opacity: var(--ripple-effect-opacity);
+			transform: scale(0);
+			transition: initial;
+		}
+	}
+
+	&:disabled {
+		--color: #666;
+		--bg-color: #ccc;
+	}
+
+	/* キャンセルボタン */
+	&.-cancel {
+		--color: #333;
+		--bg-color: #fff;
+		--bg-color--hover: #f8f8f8;
+		--border-color: var(--color);
+		--font-size: 1rem;
+		--ripple-effect-color: #000;
+	}
+}
+
+/*
+一行入力欄のラベル
+
+Markup:
+<label class="c-label-input"><span class="c-label-input__label">ラベル</span><input class="c-input"/></label>
+
+Styleguide 1.4.7
+*/
+.c-label-input {
+	display: inline-block;
+
+	&:not(:last-child) {
+		margin-right: 1em;
+	}
+}
+
+.c-label-input__label {
+	&:not(:first-child) {
+		margin-left: 0.5em;
+	}
+
+	&:not(:last-child) {
+		margin-right: 0.5em;
+	}
+}
+
+/*
+チェックボックス、ラジオボタンのラベル
+
+Markup:
+<label class="c-label-check {{modifier_class}}"><input type="checkbox"/><span class="c-label-check__label">ラベル</span></label>
+
+.-checkbox - チェックボックス
+.-radio - ラジオボタン
+
+Styleguide 1.4.8
+*/
+.c-label-check {
+	margin: 0 0.5em 0.25em 0;
+	display: inline-flex;
+	align-items: center;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	& input {
+		margin: 0;
+		box-sizing: border-box;
+		height: 1em;
+		width: 1em;
+		opacity: 0.001;
+		-webkit-appearance: none;
+		appearance: none;
+
+		&:focus {
+			& + .c-label-check__label {
+				outline: var(--focus-ring-width) solid var(--focus-ring-color);
+			}
+		}
+
+		&:hover {
+			& + .c-label-check__label {
+				border-color: #ffc;
+				background-color: #ffc;
+			}
+		}
+
+		&:checked {
+			& + .c-label-check__label {
+				border-color: #eff;
+				background-color: #eff;
+
+				@supports (background-size: 0) {
+					/* TODO IE 11 はアニメーション時に左右のずれが生じるので、 @supports を使って適用されないようにする */
+					animation: input_checked 0.2s;
+				}
+
+				@media print {
+					border-color: #000;
+				}
+			}
+		}
+
+		&:enabled.-invalid {
+			& + .c-label-check__label {
+				border-color: var(--invalid-border-color);
+				background-color: #fee;
+			}
+		}
+	}
+
+	/* チェックボックスのラベル */
+	&.-checkbox {
+		& .c-label-check__label {
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cmVjdCB4PSIxLjUiIHk9IjEuNSIgd2lkdGg9IjMzIiBoZWlnaHQ9IjMzIiByeD0iMyIgcnk9IjMiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9zdmc+);
+		}
+
+		& input:checked + .c-label-check__label {
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cmVjdCB4PSIxLjUiIHk9IjEuNSIgd2lkdGg9IjMzIiBoZWlnaHQ9IjMzIiByeD0iMyIgcnk9IjMiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBvbHlnb24gZmlsbD0iIzMzMyIgcG9pbnRzPSI5LjUsMTUuOSA2LjYsMTguOCAxNC40LDI3IDI5LjQsMTIuMSAyNi41LDkuMSAxNC42LDIwLjgiLz48L3N2Zz4=);
+		}
+	}
+
+	/* ラジオボタンのラベル */
+	&.-radio {
+		& .c-label-check__label {
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48Y2lyY2xlIGN4PSIxOCIgY3k9IjE4IiByPSIxNi41IiBmaWxsPSIjZmZmIiBzdHJva2U9IiM2NjYiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==);
+		}
+
+		& input:checked + .c-label-check__label {
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48Y2lyY2xlIGN4PSIxOCIgY3k9IjE4IiByPSIxNi41IiBmaWxsPSIjZmZmIiBzdHJva2U9IiM2NjYiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjE4IiBjeT0iMTgiIHI9IjkiIGZpbGw9IiMzMzMiLz48L3N2Zz4=);
+		}
+	}
+}
+
+.c-label-check__label {
+	margin-left: -1em;
+	padding: 0.3em 0.3em 0.2em calc(0.3em + 1em + 0.4em);
+	border: 1px solid transparent;
+	border-radius: 0.25em;
+	background: no-repeat 0.3em 50%/1em;
+	transition: 0.5s;
+	transition-property: border-color, background-color;
+}
+
+@keyframes input_checked {
+	0% {
+		background-position: 0.3em 50%;
+		background-size: 1em;
+	}
+
+	50% {
+		background-position: 0.2em 50%;
+		background-size: 1.2em;
+	}
+
+	100% {
+		background-position: 0.3em 50%;
+		background-size: 1em;
+	}
+}
+
+/*
+任意/必須マーク
+
+Markup:
+<strong class="c-required {{modifier_class}}">必須</strong>
+
+.-optional - 任意
+.-required - 必須
+
+Styleguide 1.4.9
+*/
+.c-required {
+	--color: #fff;
+	--bg-color: #666;
+
+	margin-left: 0.5em;
+	padding: 0.35em 0.5em;
+	border: 1px solid var(--bg-color);
+	border-radius: 0.5em;
+	display: inline-block;
+	color: var(--color);
+	background: var(--bg-color);
+	font-size: calc(1rem / var(--font-ratio-5));
+	line-height: 1;
+	vertical-align: 0.15em;
+	white-space: nowrap;
+
+	&.-optional {
+		--color: #fff;
+		--bg-color: #008a00;
+	}
+
+	&.-required {
+		--color: #fff;
+		--bg-color: #e00;
+	}
+}

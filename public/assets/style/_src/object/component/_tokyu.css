@@ -1,0 +1,361 @@
+/* ==============================
+ *   東急電車形態研究
+ * ============================== */
+
+/* ===== 列車種別カラー ===== */
+.c-tokyu-train {
+	/* 普通 */
+	&.-local {
+		color: #000;
+	}
+
+	/* G各停、準急、伊豆急快速 */
+	&.-gkakutei,
+	&.-semiexp,
+	&.-ikk_rapid {
+		color: #007f00;
+	}
+
+	/* B各停、日比谷線直通 */
+	&.-bkakutei,
+	&.-hibiya {
+		color: #00f;
+	}
+
+	/* 急行、弘南快速、大井川急行、北鉄準急 */
+	&.-exp,
+	&.-kohnan_rapid,
+	&.-oigawa_exp,
+	&.-hokutetsu_semiexp {
+		color: #dc0000;
+	}
+
+	/* 特急 */
+	&.-ltd {
+		color: #ff4600;
+	}
+}
+
+/* ===== 編成表 ===== */
+
+/* M, Mc, T などの区分 */
+.c-tokyu-form-type {
+	margin-top: 0.1em;
+	padding: 0.1em;
+	display: block;
+	font-weight: bold;
+
+	/* 電動車（直流電動機） */
+	&.-m-dc {
+		background-color: #bee;
+	}
+
+	/* 電動車（交流電動機） */
+	&.-m-ac {
+		background-color: #fb9;
+	}
+
+	/* 制御車、付随車 */
+	&.-t,
+	&.-tc {
+		background-color: #9e9;
+	}
+}
+
+/* 機器 */
+.c-tokyu-form-device {
+	/* 制御装置・抵抗制御 */
+	&.-ctr-r {
+		color: #000;
+	}
+
+	/* 制御装置・界磁チョッパ */
+	&.-ctr-ch {
+		color: #000;
+	}
+
+	/* 制御装置・GTO-VVVF */
+	&.-ctr-gto {
+		color: #00f;
+	}
+
+	/* 制御装置・IGBT-VVVF */
+	&.-ctr-igbt {
+		color: #e00;
+	}
+
+	/* 制御装置・SIV一体型VVVF */
+	&.-ctr-siv {
+		color: #060;
+	}
+
+	/* 補助電源装置・大容量 */
+	&.-aps-much {
+		color: #00f;
+	}
+
+	/* 補助電源装置・小容量 */
+	&.-aps-few {
+		color: #e00;
+	}
+
+	/* 空気圧縮機・直流駆動 */
+	&.-cp-dc {
+		color: #00f;
+	}
+
+	/* 空気圧縮機・交流駆動 */
+	&.-cp-ac {
+		color: #e00;
+	}
+
+	/* 蓄電池・100V */
+	&.-bt-100 {
+		color: #00f;
+	}
+
+	/* 蓄電池・24V */
+	&.-bt-24 {
+		color: #e00;
+	}
+
+	/* 蓄電池・100V/24V一体型 */
+	&.-bt-124 {
+		color: #060;
+	}
+}
+
+/* ===== 編成表（譲渡車両） ===== */
+
+/* 編成表の方向（駅名） */
+.c-tokyu-localform-dir {
+	transform: scaleX(var(--font-stretch, 1));
+
+	/* 上り */
+	&.-up {
+		transform-origin: left;
+	}
+
+	/* 下り */
+	&.-down {
+		transform-origin: right;
+	}
+}
+
+/* 車両形式 */
+.c-tokyu-localform-series {
+	padding: 0.1em;
+	border: 1px solid var(--bgcolor, #000);
+	display: block;
+	color: #000;
+	background: var(--bgcolor, #fff);
+
+	/* 電動車（直流電動機） */
+	&.-m-dc {
+		--bgcolor: #bee;
+	}
+
+	/* 電動車（交流電動機） */
+	&.-m-ac {
+		--bgcolor: #fb9;
+	}
+
+	/* 制御車、付随車 */
+	&.-t,
+	&.-tc {
+		--bgcolor: #9e9;
+	}
+}
+
+/* M, Mc, T などの区分 */
+.c-tokyu-localform-type {
+	display: block;
+}
+
+/* M1, M2 などのユニット数字 */
+.c-tokyu-localform-type-unit {
+	font-size: 65%;
+	vertical-align: bottom;
+}
+
+/* 車号 */
+.c-tokyu-localform-num {
+	display: block;
+	font-size: 120%;
+	font-weight: bold;
+}
+
+/* 全所有者車号 */
+.c-tokyu-localform-oldnum {
+	margin-top: 0.1em;
+	display: block;
+	font-size: 75%;
+}
+
+/* 車体形態 */
+.c-tokyu-localform-style {
+	/* 軽量車（8000系、8500系） */
+	&.-light {
+		text-decoration: underline double;
+	}
+}
+
+/* 車両振り替えが行われた際、何代目かを示す（豊橋鉄道1800系） */
+.c-tokyu-localform-count {
+	font-size: 60%;
+	font-weight: normal;
+	vertical-align: middle;
+}
+
+/* 電装品（7000系、7200系） */
+.c-tokyu-localform-maker {
+	margin-inline-start: 0.25em;
+	font-size: 60%;
+	font-weight: normal;
+	vertical-align: middle;
+
+	/* 東洋電機製造 */
+	&.-toyo {
+	}
+
+	/* 日立製作所 */
+	&.-hitachi {
+	}
+}
+
+/* 更新 */
+.c-tokyu-localform-renewal {
+	/* 車体更新 */
+	&.-body {
+		color: #00f;
+		text-decoration: underline wavy;
+	}
+
+	/* 室内更新 */
+	&.-room {
+		color: #e40000;
+		text-decoration: underline dashed;
+	}
+
+	/* 化粧板修繕 */
+	&.-board {
+		color: #070;
+		text-decoration: underline;
+	}
+
+	/* 新玉川線復旧（8000系） */
+	&.-shintama {
+		border: 1px solid #cfc;
+		background: #dfd;
+	}
+}
+
+/* ===== SIV区分 ===== */
+.c-tokyu-siv-type {
+	/* BS-482 */
+	@nest .p-table-data &.-bs482 {
+		background-color: #ff6;
+	}
+
+	/* INV-008 */
+	@nest .p-table-data &.-inv008 {
+		background-color: #fbc;
+	}
+
+	/* INV-029 */
+	@nest .p-table-data &.-inv029 {
+		background-color: #cfc;
+	}
+
+	/* INV-095 */
+	@nest .p-table-data &.-inv095 {
+		background-color: #0ff;
+	}
+}
+
+/* ===== 台車区分 ===== */
+.c-tokyu-truck-type {
+	--icon-color: #000;
+	--icon-bgcolor: #fff;
+
+	margin-left: 0.5em;
+	padding: 0.2em 0.3em 0.1em;
+	border: 1px solid var(--icon-color);
+	border-radius: 0.25em;
+	display: inline-block;
+	color: var(--icon-color);
+	background-color: var(--icon-bgcolor);
+	font-size: calc(1rem / var(--font-ratio-3));
+	font-weight: normal;
+	line-height: 1;
+	white-space: nowrap;
+	vertical-align: middle;
+
+	@nest .p-hdg & {
+		margin-left: 1em;
+		font-size: calc(1rem / var(--font-ratio-2));
+	}
+
+	/* 動力台車 */
+	&.-m {
+		--icon-color: #e00;
+		--icon-bgcolor: #fff9f9;
+	}
+
+	/* 付随台車 */
+	&.-t {
+		--icon-color: #00f;
+		--icon-bgcolor: #eef;
+	}
+}
+
+/* ===== 設定機区分 ===== */
+.c-tokyu-set-type {
+	margin-left: 1em;
+	padding: 0.1em 0.5em;
+	border: 1px solid #666;
+	border-radius: 0.25em;
+	display: inline-block;
+	background: #eee;
+	font-size: calc(1rem / var(--font-ratio-5));
+	white-space: nowrap;
+	text-indent: 0;
+	vertical-align: text-top;
+}
+
+/* ===== 「○○と同内容」の注釈 ===== */
+.c-tokyu-set-same {
+	font-size: 90%;
+	font-weight: normal;
+}
+
+/* ===== 自動放送色分け ===== */
+.c-tokyu-announce {
+	/* マナー */
+	&.-manners {
+		color: #080;
+	}
+
+	/* メニュー、非扱、その他注意 */
+	&.-menu,
+	&.-door,
+	&.-attention {
+		color: #e00;
+	}
+
+	/* ワンマン */
+	&.-oneman {
+		color: #00f;
+	}
+
+	/* 乗換 */
+	&.-change {
+		color: #b0f;
+	}
+
+	/* 立客、宣伝 */
+	&.-stand,
+	&.-cm {
+		color: #06f;
+	}
+}

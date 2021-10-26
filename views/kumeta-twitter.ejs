@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>久米田康治 Twitter アイコン履歴</title>
+
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+		<style>
+			body {
+				margin: auto;
+				padding: 10px;
+				max-width: 1280px;
+			}
+
+			main {
+				margin: 1em 0;
+				display: block;
+			}
+
+			.p-section.-hdg-c {
+				margin: 3em 0;
+			}
+
+			.p-text {
+				margin: 1em 0;
+			}
+
+			.p-page-title {
+				margin: 0;
+				font-size: 1.75rem;
+				font-weight: bold;
+			}
+
+			.p-hdg {
+				margin: 0;
+			}
+
+			.p-section.-hdg-c .p-hdg {
+				font-size: 1.25rem;
+				font-weight: bold;
+			}
+
+			.p-hdg .p-hdg__sub {
+				font-size: 1rem;
+				font-weight: normal;
+			}
+
+			.p-twitter-info {
+				margin: 1em 0;
+				display: table;
+				border-collapse: collapse;
+			}
+
+			.p-twitter-info > div {
+				display: table-row;
+			}
+
+			.p-twitter-info dt {
+				border: 1px solid #999;
+				padding: 0.25em 1em 0.25em 0.5em;
+				display: table-cell;
+				font-weight: bold;
+			}
+
+			.p-twitter-info dd {
+				border: 1px solid #999;
+				padding: 0.25em 0.5em;
+				display: table-cell;
+			}
+
+			.p-twitter-images {
+				margin: 1em 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, var(--width));
+				gap: 15px;
+			}
+
+			.p-twitter-images.-icon {
+				--width: 133px; /* image width = 73px */
+			}
+
+			@media screen and (max-width: 320px) {
+				.p-twitter-images.-icon {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.p-twitter-images.-banner {
+				--width: 300px; /* image width = 300px */
+			}
+
+			@media screen and (max-width: 400px) {
+				.p-twitter-images.-banner {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.p-twitter-images > li {
+				list-style: none;
+			}
+
+			.p-twitter-images a {
+				display: inline-block;
+			}
+
+			.p-twitter-images img {
+				display: block;
+				height: auto;
+				max-width: 100%;
+			}
+
+			.p-twitter-images__period {
+				display: block;
+				font-size: 0.8rem;
+			}
+
+			footer {
+				margin-top: 5em;
+				padding-top: 1em;
+				border-top: 1px solid #ccc;
+			}
+
+			footer address {
+				font-style: normal;
+				text-align: end;
+			}
+		</style>
+
+		<script src="https://www.googletagmanager.com/gtag/js?id=G-SZYWFCF4JS" defer=""></script>
+		<script src="/assets/script/google-analytics.js" defer=""></script>
+	</head>
+	<body itemscope="" itemtype="http://schema.org/WebPage">
+		<div class="l-page">
+			<main>
+				<h1 class="p-page-title" itemprop="name">久米田康治 Twitter アイコン履歴</h1>
+
+				<p class="p-text">漫画家の久米田康治先生の Twitter アカウントデータをまとめています。</p>
+
+				<dl class="p-twitter-info">
+					<div>
+						<dt>ユーザー名</dt>
+						<dd>
+							<a href="https://twitter.com/<%= accountData.account %>">@<%= accountData.account %></a>
+						</dd>
+					</div>
+					<div>
+						<dt>名前</dt>
+						<dd><%= accountData.name %></dd>
+					</div>
+					<% if (accountData.description !== null) { %>
+					<div>
+						<dt>自己紹介</dt>
+						<dd><%= accountData.description %></dd>
+					</div>
+					<% } %>
+					<div>
+						<dt>登録日時</dt>
+						<dd>
+							<time datetime="<%= accountData.created.format('YYYY-MM-DDTHH:mm:ssZ') %>"><%= accountData.created.format('YYYY年M月D日 H時m分') %></time
+							>（日本時間）
+						</dd>
+					</div>
+					<% if (accountData.location !== null) { %>
+					<div>
+						<dt>場所</dt>
+						<dd><%= accountData.location %></dd>
+					</div>
+					<% } %> <% if (accountData.url !== null) { %>
+					<div>
+						<dt>ウェブサイト</dt>
+						<dd><a href="<%= accountData.url %>"><%= accountData.url %></a><b class="c-domain">(<%= new URL(accountData.url).host %>)</b></dd>
+					</div>
+					<% } %>
+				</dl>
+
+				<section class="p-section -hdg-c">
+					<h2 class="p-hdg">アイコン履歴<% if (profileImages !== null) { %><span class="p-hdg__sub">（新しい順）</span><% } %></h2>
+
+					<% if (profileImages !== null) { %>
+					<ul class="p-twitter-images -icon">
+						<% profileImages.forEach((profileImage, index) => { %> <% if (profileImage.file_name !== null) { %>
+						<li>
+							<a href="https://media.w0s.jp/image/kumeta/twitter/<%= profileImage.file_name %>">
+								<picture>
+									<source
+										type="image/avif"
+										srcset="https://media.w0s.jp/thumbimage/kumeta/twitter/<%= profileImage.file_name %>?type=avif;w=100;h=100;quality=60, https://media.w0s.jp/thumbimage/kumeta/twitter/<%= profileImage.file_name %>?type=avif;w=200;h=200;quality=30 2x"
+									/>
+									<source
+										type="image/webp"
+										srcset="https://media.w0s.jp/thumbimage/kumeta/twitter/<%= profileImage.file_name %>?type=webp;w=100;h=100;quality=60, https://media.w0s.jp/thumbimage/kumeta/twitter/<%= profileImage.file_name %>?type=webp;w=200;h=200;quality=30 2x"
+									/>
+									<img src="https://media.w0s.jp/thumbimage/kumeta/twitter/<%= profileImage.file_name %>?type=jpeg;w=100;h=100;quality=60" alt="アイコン画像" />
+								</picture>
+							</a>
+							<% if (index === 0) { %>
+							<span class="p-twitter-images__period"><%= profileImage.regist_date.format('YYYY年M月D日') %>頃 ～</span>
+							<% } else if (index === profileImages.length - 1) { %>
+							<span class="p-twitter-images__period">～ <%= profileImages[index - 1].regist_date.format('YYYY年M月D日') %>頃</span>
+							<% } else { %>
+							<span class="p-twitter-images__period"
+								><%= profileImage.regist_date.format('YYYY年M月D日') %>頃 ～ <%= profileImages[index - 1].regist_date.format('YYYY年M月D日') %>頃</span
+							>
+							<% } %>
+						</li>
+						<% } else { %>
+						<li>なし</li>
+						<% } %> <% }) %>
+					</ul>
+					<% } else { %>
+					<p class="p-text">登録なし</p>
+					<% } %>
+				</section>
+
+				<section class="p-section -hdg-c">
+					<h2 class="p-hdg">バナー履歴<% if (banners !== null) { %><span class="p-hdg__sub">（新しい順）</span><% } %></h2>
+
+					<% if (banners !== null) { %>
+					<ul class="p-twitter-images -banner">
+						<% banners.forEach((banner, index) => { %> <% if (banner.file_name !== null) { %>
+						<li>
+							<a href="https://media.w0s.jp/image/kumeta/twitter/<%= banner.file_name %>">
+								<picture>
+									<source
+										type="image/avif"
+										srcset="https://media.w0s.jp/thumbimage/kumeta/twitter/<%= banner.file_name %>?type=avif;w=300;quality=60, https://media.w0s.jp/thumbimage/kumeta/twitter/<%= banner.file_name %>?type=avif;w=600;quality=30 2x"
+									/>
+									<source
+										type="image/webp"
+										srcset="https://media.w0s.jp/thumbimage/kumeta/twitter/<%= banner.file_name %>?type=webp;w=300;quality=60, https://media.w0s.jp/thumbimage/kumeta/twitter/<%= banner.file_name %>?type=webp;w=600;quality=30 2x"
+									/>
+									<img src="https://media.w0s.jp/thumbimage/kumeta/twitter/<%= banner.file_name %>?type=jpeg;w=300;quality=60" alt="バナー画像" /> </picture
+							></a>
+
+							<% if (index === 0) { %>
+							<span class="p-twitter-images__period"><%= banner.regist_date.format('YYYY年M月D日') %>頃 ～</span>
+							<% } else if (index === banners.length - 1) { %>
+							<span class="p-twitter-images__period">～ <%= banners[index - 1].regist_date.format('YYYY年M月D日') %>頃</span>
+							<% } else { %>
+							<span class="p-twitter-images__period"
+								><%= banner.regist_date.format('YYYY年M月D日') %>頃 ～ <%= banners[index - 1].regist_date.format('YYYY年M月D日') %>頃</span
+							>
+							<% } %>
+						</li>
+						<% } else { %>
+						<li>なし</li>
+						<% } %> <% }) %>
+					</ul>
+					<% } else { %>
+					<p class="p-text">登録なし</p>
+					<% } %>
+				</section>
+
+				<p class="p-text">
+					初めてアイコン画像が登録された2019年9月24日から、本プログラムが稼働する10月4日までの変更情報は<a
+						href="https://twitter.com/i/moments/1184734292766679041"
+						>Twitterモーメント</a
+					>にまとめています。
+				</p>
+			</main>
+
+			<footer>
+				<address><a href="/info">サイトについて</a></address>
+			</footer>
+		</div>
+	</body>
+</html>

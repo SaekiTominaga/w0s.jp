@@ -1,0 +1,267 @@
+/*
+テキスト
+
+Styleguide 1.1.
+*/
+
+/*
+ルビ
+
+Markup:
+<ruby class="c-ruby-after">美樹 さやか<rp>（</rp><rt>みき さやか</rt><rp>）</rp></ruby>
+
+Styleguide 1.1.1
+*/
+.c-ruby-after {
+	display: inline-flex;
+	align-items: baseline;
+
+	& rt,
+	& rp {
+		display: inline;
+		font-size: calc(1rem / var(--font-ratio-2));
+	}
+}
+
+/*
+コード断片
+
+Markup:
+<code class="c-code">&lt;html&gt;</code>
+
+Styleguide 1.1.2
+*/
+.c-code {
+	padding: 0.25em;
+	border-radius: 0.25em;
+	color: #666;
+	background: #f8f8f8;
+	font: bold 90% monospace;
+}
+
+/*
+マーク
+
+Markup:
+<mark class="c-mark">マーク</mark>
+
+Styleguide 1.1.3
+*/
+.c-mark {
+	margin: 0 0.1em;
+	padding: 0 0.1em;
+	border-radius: 0.2em;
+	color: #333;
+	background: #ff9;
+	font-weight: bold;
+
+	@media print {
+		color: inherit;
+		background-color: transparent;
+		text-decoration: underline;
+	}
+}
+
+/*
+挿入
+
+Markup:
+<ins class="c-ins">テキスト</ins>
+
+Styleguide 1.1.4
+*/
+.c-ins {
+	color: #e00;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: underline;
+	text-decoration-style: dashed; /* Firefox 36+, Chrome 57+ */
+}
+
+/*
+削除
+
+Markup:
+<del class="c-del">テキスト</del>
+
+Styleguide 1.1.5
+*/
+.c-del {
+	color: #666;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: line-through;
+}
+
+/*
+リード文
+
+Markup:
+<b class="c-lede">リード文</b>
+
+Styleguide 1.1.6
+*/
+.c-lede {
+	color: #444;
+	background: linear-gradient(transparent 0, transparent 70%, #ff9 85%, transparent 100%);
+	font-size: calc(1rem * var(--font-ratio-4));
+	font-weight: normal;
+}
+
+/*
+注釈
+
+Markup:
+<sup class="c-annotate"><a href="#fn1" id="r1">[1]</a></sup>
+
+Styleguide 1.1.7
+*/
+.c-annotate {
+	margin: 0 0.5em 0 0.25em;
+	font-size: 75%;
+	vertical-align: text-top;
+
+	@supports (font-variant-position: super) and (text-underline-offset: 0) {
+		font-size: inherit;
+		font-variant-position: super;
+		text-underline-offset: 0;
+		vertical-align: baseline;
+	}
+
+	& :target {
+		padding: 0.2em;
+		border: 1px solid #f00;
+		border-radius: 0.5em;
+		background: #fee;
+		font-weight: bold;
+	}
+
+	& :focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	& :focus:not(:-moz-focusring) {
+		outline: none;
+	}
+
+	& a[role="button"] {
+		/* JS 有効時のみ */
+		cursor: default;
+
+		&:focus,
+		&:hover {
+			color: revert;
+		}
+	}
+}
+
+/*
+コード
+
+Markup:
+<code>&lt;span&gt;Hello World!&lt;/span&gt;</code>
+
+Styleguide 1.1.8
+*/
+.c-code-highlight {
+	&.-comment,
+	&.-quote {
+		color: #767676; /* original: #998 */
+		font-style: italic;
+	}
+
+	&.-keyword,
+	&.-selector-tag,
+	&.-subst {
+		color: #333;
+		font-weight: bold;
+	}
+
+	&.-number,
+	&.-literal,
+	&.-variable,
+	&.-template-variable,
+	&.-tag &.-attr {
+		color: #008080;
+	}
+
+	&.-string,
+	&.-doctag {
+		color: #d14;
+	}
+
+	&.-title,
+	&.-section,
+	&.-selector-id {
+		color: #900;
+		font-weight: bold;
+	}
+
+	&.-subst {
+		font-weight: normal;
+	}
+
+	&.-type,
+	&.-class &.-title {
+		color: #458;
+		font-weight: bold;
+	}
+
+	&.-tag,
+	&.-name,
+	&.-attribute {
+		color: #000080;
+		font-weight: normal;
+	}
+
+	&.-regexp,
+	&.-link {
+		color: #008a26; /* original: #009926 */
+	}
+
+	&.-symbol,
+	&.-bullet {
+		color: #990073;
+	}
+
+	&.-built_in,
+	&.-builtin-name {
+		color: #007eb3; /* original: #0086b3 */
+	}
+
+	&.-meta {
+		color: #767676; /* original: #999 */
+		font-weight: bold;
+	}
+
+	&.-deletion {
+		background: #fdd;
+	}
+
+	&.-addition {
+		background: #dfd;
+	}
+
+	&.-emphasis {
+		font-style: italic;
+	}
+
+	&.-strong {
+		font-weight: bold;
+	}
+}
+
+/*
+ドメイン表記
+
+Markup:
+<a href="https://example.com/">リンク</a><b class="c-domain">(example.com)</b>
+
+Styleguide 1.1.9
+*/
+.c-domain {
+	margin: 0 0.25em;
+	color: #666;
+	font-size: 85%;
+	font-weight: normal;
+}
