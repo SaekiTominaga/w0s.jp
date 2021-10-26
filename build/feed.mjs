@@ -21,12 +21,12 @@ const FEED_INFOS = [
 		feed_path: 'public/tokyu/feed.atom',
 	},
 	{
-		html_path: 'public/madoka-magica/index.html',
+		html_path: 'public/madoka/index.html',
 		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update__entry"]',
 		xpath_date: './/*[@class="p-top-update__date"]/x:time/@datetime',
 		xpath_content: './/*[@class="p-top-update__info"]/*',
-		feed_template: 'views/feed/madoka-magica.ejs',
-		feed_path: 'public/madoka-magica/feed.atom',
+		feed_template: 'views/feed/madoka.ejs',
+		feed_path: 'public/madoka/feed.atom',
 	},
 ];
 
