@@ -126,7 +126,11 @@ app.use(
 		threshold: config.response.compression.threshold,
 	})
 );
-app.use(Express.urlencoded({ limit: 1000000 })); // 1MB
+app.use(
+	Express.urlencoded({
+		extended: true,
+	})
+);
 app.use(async (req, res, next) => {
 	/* Basic Authentication */
 	const basic = config.static.auth_basic.find((basic) => basic.directory.find((urlPath) => req.url.startsWith(urlPath)));
