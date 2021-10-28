@@ -98,11 +98,10 @@ export default class BlogPostDao {
 		await dbh.exec('BEGIN');
 		try {
 			/* いったんクリア */
-			const deleteSth = await dbh.prepare(`
+			await dbh.run(`
 				DELETE FROM
 					d_info
 			`);
-			await deleteSth.finalize();
 
 			/* 現在日時を記録 */
 			const insertSth = await dbh.prepare(`
