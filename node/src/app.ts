@@ -347,14 +347,14 @@ app.get('/kumeta/twitter', async (req, res, next) => {
 /**
  * まどか☆マギカ・公式サイトニュース
  */
-app.get('/madoka-magica/official/news/', async (req, res, next) => {
+app.get('/madoka/official/news/', async (req, res, next) => {
 	try {
 		await new MadokaOfficialNewsIndexController(config).execute(req, res);
 	} catch (e) {
 		next(e);
 	}
 });
-app.get('/madoka-magica/official/news/:month', async (req, res, next) => {
+app.get('/madoka/official/news/:month', async (req, res, next) => {
 	try {
 		await new MadokaOfficialNewsMonthController(config).execute(req, res);
 	} catch (e) {
