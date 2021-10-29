@@ -75,7 +75,7 @@ Styleguide 2.4.2
 		& > a {
 			--bullet-width: 0.45em;
 			--bullet-height: 0.75em;
-			--bullet-color: #0bb;
+			--bullet-color: #999;
 			--bullet-gap: 0.5em;
 
 			padding-left: calc(var(--bullet-width) + var(--bullet-gap));
@@ -93,9 +93,13 @@ Styleguide 2.4.2
 				background: var(--bullet-color);
 			}
 
-			&:focus,
-			&:hover {
-				--bullet-color: var(--anchor-hover-color);
+			&:any-link {
+				--bullet-color: #0bb;
+
+				&:focus,
+				&:hover {
+					--bullet-color: var(--anchor-hover-color);
+				}
 			}
 		}
 
