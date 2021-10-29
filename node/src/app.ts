@@ -123,7 +123,6 @@ app.use(async (req, res, next) => {
 	if (basic !== undefined) {
 		const httpBasicAuth = new HttpBasicAuth(req);
 		if (!(await httpBasicAuth.htpasswd(basic.htpasswd))) {
-			logger.debug('Basic 認証', req.url);
 			new HttpResponse(req, res, config).send401('Basic', basic.realm);
 			return;
 		}
@@ -136,8 +135,7 @@ app.use(
 		extensions: config.static.extensions,
 		index: config.static.indexes,
 		setHeaders: (res, localPath) => {
-			const req = res.req;
-			const requestUrl = req.url; // リクエストパス e.g. ('/foo.html.br')
+			const requestUrl = res.req.url; // リクエストパス e.g. ('/foo.html.br')
 			const requestUrlOrigin = requestUrl.endsWith(EXTENTIONS.brotli) ? requestUrl.substring(0, requestUrl.length - EXTENTIONS.brotli.length) : requestUrl; // 元ファイル（圧縮ファイルではない）のリクエストパス (e.g. '/foo.html')
 			const localPathOrigin = localPath.endsWith(EXTENTIONS.brotli) ? localPath.substring(0, localPath.length - EXTENTIONS.brotli.length) : localPath; // 元ファイルの絶対パス (e.g. '/var/www/public/foo.html')
 			const extensionOrigin = path.extname(localPathOrigin); // 元ファイルの拡張子 (e.g. '.html')
