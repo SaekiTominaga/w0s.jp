@@ -33,6 +33,7 @@ export default class MadokaOfficialNewsIndexController extends Controller implem
 
 		if (req.query.month !== undefined && typeof req.query.month === 'string') {
 			httpResponse.send301(req.query.month);
+			return;
 		}
 
 		const dao = new MadokaOfficialNewsIndexDao(this.#configCommon);
