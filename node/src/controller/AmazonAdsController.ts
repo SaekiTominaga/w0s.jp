@@ -189,7 +189,7 @@ export default class AmazonAdsController extends Controller implements Controlle
 	 * @param {HttpBasicAuthCredentials} httpBasicCredentials - Basic 認証の資格情報
 	 */
 	private async createJson(req: Request, dao: AmazonAdsDao, httpBasicCredentials: HttpBasicAuthCredentials): Promise<void> {
-		const urlBase = req.hostname === 'localhost' ? this.#config.json_create.url_base_local : this.#config.json_create.url_base;
+		const urlBase = req.hostname === 'localhost' ? this.#config.json_create.url_base_dev : this.#config.json_create.url_base;
 
 		for (const jsonPath of await dao.getJsonPaths()) {
 			const url = `${urlBase}/${jsonPath}`;

@@ -28,6 +28,5 @@ export interface NoName2 {
 }
 export interface JSON {
   url_base: JSONURL;
-  url_base_local: JSONURLLocal;
-  [k: string]: unknown;
+  url_base_dev: JSONURLLocal;
 }

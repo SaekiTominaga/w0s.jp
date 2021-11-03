@@ -266,7 +266,7 @@ export default class BlogPostController extends Controller implements Controller
 	 * @param {HttpBasicAuthCredentials | null} httpBasicCredentials - Basic 認証の資格情報
 	 */
 	private async createFeed(req: Request, httpBasicCredentials: HttpBasicAuthCredentials): Promise<void> {
-		const url = req.hostname === 'localhost' ? this.#config.feed_create.url_local : this.#config.feed_create.url;
+		const url = req.hostname === 'localhost' ? this.#config.feed_create.url_dev : this.#config.feed_create.url;
 
 		this.logger.info('Fetch', url);
 
@@ -288,7 +288,7 @@ export default class BlogPostController extends Controller implements Controller
 	 * @param {HttpBasicAuthCredentials | null} httpBasicCredentials - Basic 認証の資格情報
 	 */
 	private async createNewlyJson(req: Request, httpBasicCredentials: HttpBasicAuthCredentials | null): Promise<void> {
-		const url = req.hostname === 'localhost' ? this.#config.newly_json_create.url_local : this.#config.newly_json_create.url;
+		const url = req.hostname === 'localhost' ? this.#config.newly_json_create.url_dev : this.#config.newly_json_create.url;
 
 		this.logger.info('Fetch', url);
 
@@ -372,7 +372,7 @@ export default class BlogPostController extends Controller implements Controller
 			throw new Error('ファイルアップロード時にファイルが指定されていない');
 		}
 
-		const url = req.hostname === 'localhost' ? this.#config.media_upload.url_local : this.#config.media_upload.url;
+		const url = req.hostname === 'localhost' ? this.#config.media_upload.url_dev : this.#config.media_upload.url;
 
 		const result: BlogPostResponse.MediaUpload[] = [];
 

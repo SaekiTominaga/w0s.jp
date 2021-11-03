@@ -72,9 +72,8 @@ export interface NoName9 {
 }
 export interface Feed {
   url: URL;
-  url_local: URLLocal;
+  url_dev: URLLocal;
   api_response: API;
-  [k: string]: unknown;
 }
 export interface API {
   success_message: NoName11;
@@ -82,9 +81,8 @@ export interface API {
 }
 export interface JSON {
   url: URL1;
-  url_local: URLLocal1;
+  url_dev: URLLocal1;
   api_response: API1;
-  [k: string]: unknown;
 }
 export interface API1 {
   success_message: NoName13;
@@ -109,9 +107,8 @@ export interface API2 {
 }
 export interface NoName19 {
   url: URL4;
-  url_local: URLLocal2;
+  url_dev: URLLocal2;
   api_response: API3;
-  [k: string]: unknown;
 }
 export interface API3 {
   success: NoName20;
