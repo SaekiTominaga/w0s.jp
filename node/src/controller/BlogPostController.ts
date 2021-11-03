@@ -101,7 +101,7 @@ export default class BlogPostController extends Controller implements Controller
 				topicPostResults = [...topicPostResults, { success: true, message: this.#config.update_modified.success_message }];
 
 				if (requestQuery.social) {
-					const apiResult = await Promise.all([
+					const [apiResultFeed, apiResultSitemap, apiResultNewlyJson, apiResultSocial] = await Promise.all([
 						this.createFeed(req, httpBasicCredentials)
 							.then(() => {
 								return { success: true, message: this.#config.feed_create.api_response.success_message };
@@ -109,6 +109,14 @@ export default class BlogPostController extends Controller implements Controller
 							.catch((): BlogPostResponse.TopicPost => {
 								this.logger.error('フィード生成失敗', requestQuery.id);
 								return { success: false, message: this.#config.feed_create.api_response.failure_message };
+							}),
+						this.createSitemap(req, httpBasicCredentials)
+							.then(() => {
+								return { success: true, message: this.#config.sitemap_create.api_response.success_message };
+							})
+							.catch((): BlogPostResponse.TopicPost => {
+								this.logger.error('サイトマップ生成失敗', requestQuery.id);
+								return { success: false, message: this.#config.sitemap_create.api_response.failure_message };
 							}),
 						this.createNewlyJson(req, httpBasicCredentials)
 							.then(() => {
@@ -127,9 +135,9 @@ export default class BlogPostController extends Controller implements Controller
 								return { success: false, message: this.#config.twitter.api_response.failure_message };
 							}),
 					]);
-					topicPostResults = [...topicPostResults, apiResult[0], apiResult[1], apiResult[2]];
+					topicPostResults = [...topicPostResults, apiResultFeed, apiResultSitemap, apiResultNewlyJson, apiResultSocial];
 				} else {
-					const apiResult = await Promise.all([
+					const [apiResultFeed, apiResultSitemap, apiResultNewlyJson] = await Promise.all([
 						this.createFeed(req, httpBasicCredentials)
 							.then(() => {
 								return { success: true, message: this.#config.feed_create.api_response.success_message };
@@ -137,6 +145,14 @@ export default class BlogPostController extends Controller implements Controller
 							.catch((): BlogPostResponse.TopicPost => {
 								this.logger.error('フィード生成失敗', requestQuery.id);
 								return { success: false, message: this.#config.feed_create.api_response.failure_message };
+							}),
+						this.createSitemap(req, httpBasicCredentials)
+							.then(() => {
+								return { success: true, message: this.#config.sitemap_create.api_response.success_message };
+							})
+							.catch((): BlogPostResponse.TopicPost => {
+								this.logger.error('サイトマップ生成失敗', requestQuery.id);
+								return { success: false, message: this.#config.sitemap_create.api_response.failure_message };
 							}),
 						this.createNewlyJson(req, httpBasicCredentials)
 							.then(() => {
@@ -147,7 +163,7 @@ export default class BlogPostController extends Controller implements Controller
 								return { success: false, message: this.#config.newly_json_create.api_response.failure_message };
 							}),
 					]);
-					topicPostResults = [...topicPostResults, apiResult[0], apiResult[1]];
+					topicPostResults = [...topicPostResults, apiResultFeed, apiResultSitemap, apiResultNewlyJson];
 				}
 			}
 		} else if (requestQuery.action_revise) {
@@ -178,7 +194,7 @@ export default class BlogPostController extends Controller implements Controller
 				this.logger.info('最終更新日時記録', requestQuery.id);
 				topicPostResults = [...topicPostResults, { success: true, message: this.#config.update_modified.success_message }];
 
-				const apiResult = await Promise.all([
+				const [apiResultFeed, apiResultSitemap, apiResultNewlyJson] = await Promise.all([
 					this.createFeed(req, httpBasicCredentials)
 						.then(() => {
 							return { success: true, message: this.#config.feed_create.api_response.success_message };
@@ -186,6 +202,14 @@ export default class BlogPostController extends Controller implements Controller
 						.catch((): BlogPostResponse.TopicPost => {
 							this.logger.error('フィード生成失敗', requestQuery.id);
 							return { success: false, message: this.#config.feed_create.api_response.failure_message };
+						}),
+					this.createSitemap(req, httpBasicCredentials)
+						.then(() => {
+							return { success: true, message: this.#config.sitemap_create.api_response.success_message };
+						})
+						.catch((): BlogPostResponse.TopicPost => {
+							this.logger.error('サイトマップ生成失敗', requestQuery.id);
+							return { success: false, message: this.#config.sitemap_create.api_response.failure_message };
 						}),
 					this.createNewlyJson(req, httpBasicCredentials)
 						.then(() => {
@@ -196,7 +220,7 @@ export default class BlogPostController extends Controller implements Controller
 							return { success: false, message: this.#config.newly_json_create.api_response.failure_message };
 						}),
 				]);
-				topicPostResults = [...topicPostResults, apiResult[0], apiResult[1]];
+				topicPostResults = [...topicPostResults, apiResultFeed, apiResultSitemap, apiResultNewlyJson];
 			}
 		} else if (requestQuery.action_revise_preview) {
 			/* 修正データ選択 */
@@ -267,6 +291,28 @@ export default class BlogPostController extends Controller implements Controller
 	 */
 	private async createFeed(req: Request, httpBasicCredentials: HttpBasicAuthCredentials): Promise<void> {
 		const url = req.hostname === 'localhost' ? this.#config.feed_create.url_dev : this.#config.feed_create.url;
+
+		this.logger.info('Fetch', url);
+
+		const response = await fetch(url, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Basic ${Buffer.from(`${httpBasicCredentials.username}:${httpBasicCredentials.password}`).toString('base64')}`,
+			},
+		});
+		if (!response.ok) {
+			this.logger.error('Fetch error', url);
+		}
+	}
+
+	/**
+	 * サイトマップファイルを生成する
+	 *
+	 * @param {Request} req - Request
+	 * @param {HttpBasicAuthCredentials | null} httpBasicCredentials - Basic 認証の資格情報
+	 */
+	private async createSitemap(req: Request, httpBasicCredentials: HttpBasicAuthCredentials): Promise<void> {
+		const url = req.hostname === 'localhost' ? this.#config.sitemap_create.url_dev : this.#config.sitemap_create.url;
 
 		this.logger.info('Fetch', url);
 

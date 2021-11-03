@@ -3,7 +3,7 @@
 	"$id": "https://w0s.jp/blog-post.json",
 	"type": "object",
 	"title": "富永日記帳・記事投稿",
-	"required": ["view", "validator", "insert", "update", "update_modified", "feed_create", "newly_json_create", "twitter", "media_upload"],
+	"required": ["view", "validator", "insert", "update", "update_modified", "feed_create", "sitemap_create", "newly_json_create", "twitter", "media_upload"],
 	"properties": {
 		"view": {
 			"type": "object",
@@ -76,6 +76,38 @@
 		"feed_create": {
 			"type": "object",
 			"title": "Feed ファイル生成",
+			"required": ["url", "url_dev", "api_response"],
+			"properties": {
+				"url": {
+					"type": "string",
+					"title": "URL (本番)"
+				},
+				"url_dev": {
+					"type": "string",
+					"title": "URL (local)"
+				},
+				"api_response": {
+					"type": "object",
+					"title": "API のレスポンス",
+					"required": ["success_message", "failure_message"],
+					"properties": {
+						"success_message": {
+							"type": "string",
+							"title": "成功時のメッセージ"
+						},
+						"failure_message": {
+							"type": "string",
+							"title": "失敗時のメッセージ"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
+		"sitemap_create": {
+			"type": "object",
+			"title": "サイトマップファイル生成",
 			"required": ["url", "url_dev", "api_response"],
 			"properties": {
 				"url": {
