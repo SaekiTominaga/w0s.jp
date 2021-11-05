@@ -81,7 +81,7 @@ new filelist.FileList().include(FEED_INFOS.map((value) => value.html_path)).map(
 		entries: entries,
 	});
 
-	const feedFormatedXml = xmlFormatter(feedXml, {
+	const feedXmlFormatted = xmlFormatter(feedXml, {
 		/* https://github.com/chrisbottin/xml-formatter#options */
 		indentation: '\t',
 		collapseContent: true,
@@ -90,6 +90,6 @@ new filelist.FileList().include(FEED_INFOS.map((value) => value.html_path)).map(
 
 	const feedPath = feedInfo.feed_path;
 
-	await fs.promises.writeFile(feedPath, feedFormatedXml);
+	await fs.promises.writeFile(feedPath, feedXmlFormatted);
 	consoleTimestamp.info(`Feed file created: ${feedPath}`);
 });

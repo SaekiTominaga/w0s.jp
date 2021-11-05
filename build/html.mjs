@@ -66,7 +66,7 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 		.replace(/ +/g, ' '); // description
 
 	/* EJS を解釈 */
-	let htmlStr = await ejs.renderFile(
+	let html = await ejs.renderFile(
 		path.resolve(filePath),
 		{
 			page: {
@@ -81,25 +81,25 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 	);
 
 	/* HTML コメント削除 */
-	htmlStr = htmlStr.replace(/<!--[\s\S]*?-->/g, '');
+	html = html.replace(/<!--[\s\S]*?-->/g, '');
 
 	/* リンクアンカーにドメイン情報を付与 */
 	try {
-		htmlStr = HtmlConvertAnchorHost.convert(htmlStr, { class: 'htmlbuild-domain', host_element: 'b', host_class: 'c-domain', host_parentheses: ['(', ')'] });
+		html = HtmlConvertAnchorHost.convert(html, { class: 'htmlbuild-domain', host_element: 'b', host_class: 'c-domain', host_parentheses: ['(', ')'] });
 	} catch (e) {
 		consoleTimestamp.error(e.message);
 	}
 
 	/* 日付文字列を <time datetime> 要素に変換 */
 	try {
-		htmlStr = HtmlConvertTimeJapanese.convert(htmlStr, { class: 'htmlbuild-datetime' });
+		html = HtmlConvertTimeJapanese.convert(html, { class: 'htmlbuild-datetime' });
 	} catch (e) {
 		consoleTimestamp.error(e.message);
 	}
 
 	/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
 	try {
-		htmlStr = htmlStr.replace(/<a([^>]*?)class="(.+? |)htmlbuild-amazon-associate( .+?|)"([^>]*?)>([\s\S]+?)<\/a[\s]*?>/g, (match, p1, p2, p3, p4, p5) => {
+		html = html.replace(/<a([^>]*?)class="(.+? |)htmlbuild-amazon-associate( .+?|)"([^>]*?)>([\s\S]+?)<\/a[\s]*?>/g, (match, p1, p2, p3, p4, p5) => {
 			const ASSOCIATE_ID = 'w0s.jp-22';
 
 			let attrsBefore = p1.trim(); // class 属性の前に存在する属性
@@ -154,7 +154,7 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 	 * ↓
 	 * <code data-language="xml">&lt;span&gt;Hello World!&lt;/span&gt;</code>
 	 */
-	htmlStr = htmlStr.replace(/<code([^>]*?)class="(.+? |)htmlbuild-highlight( .+?|)"([^>]*?)>([^]+?)<\/code[\s]*?>/g, (match, p1, p2, p3, p4, p5) => {
+	html = html.replace(/<code([^>]*?)class="(.+? |)htmlbuild-highlight( .+?|)"([^>]*?)>([^]+?)<\/code[\s]*?>/g, (match, p1, p2, p3, p4, p5) => {
 		const attrsBefore = p1.trim(); // class 属性の前に指定されている属性
 		const classValueBefore = p2.trim(); // htmlbuild-datetime の前方に指定された class 属性値
 		const classValueAfter = p3.trim(); // htmlbuild-datetime の後方に指定された class 属性値
@@ -186,9 +186,9 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 	});
 
 	/* 整形 */
-	let formatHTMLStr = '';
+	let htmlFormatted = html;
 	try {
-		formatHTMLStr = prettier.format(htmlStr, {
+		htmlFormatted = prettier.format(html, {
 			/* https://prettier.io/docs/en/options.html */
 			printWidth: 9999,
 			useTabs: true,
@@ -198,11 +198,10 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 		consoleTimestamp.info(`フォーマット処理（prettier）完了: ${filePath}`);
 	} catch (e) {
 		consoleTimestamp.error(`フォーマット処理（prettier）でエラー: ${filePath}`, e);
-		formatHTMLStr = htmlStr;
 	}
 
 	/* 出力 */
 	const formatHTMLPath = `public/${filePath.substring(filePath.replace(/\\/g, '/').indexOf('/') + 1)}`;
-	await fs.promises.writeFile(formatHTMLPath, formatHTMLStr);
+	await fs.promises.writeFile(formatHTMLPath, htmlFormatted);
 	consoleTimestamp.info(`HTML ファイル出力: ${formatHTMLPath}`);
 });
