@@ -1,4 +1,5 @@
 import CrawlerDao from './CrawlerDao.js';
+import DbUtil from '../util/DbUtil.js';
 
 interface NewsPage {
 	url: string;
@@ -116,8 +117,8 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				':priority': priority,
 				':browser': browser,
 				':selector_wrap': selectorWrap,
-				':selector_date': selectorDate,
-				':selector_content': selectorContent,
+				':selector_date': DbUtil.emptyToNull(selectorDate),
+				':selector_content': DbUtil.emptyToNull(selectorContent),
 			});
 			await sth.finalize();
 
@@ -174,8 +175,8 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				':priority': priority,
 				':browser': browser,
 				':selector_wrap': selectorWrap,
-				':selector_date': selectorDate,
-				':selector_content': selectorContent,
+				':selector_date': DbUtil.emptyToNull(selectorDate),
+				':selector_content': DbUtil.emptyToNull(selectorContent),
 				':url': url,
 			});
 			await sth.finalize();

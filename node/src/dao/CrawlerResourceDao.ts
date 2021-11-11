@@ -1,5 +1,6 @@
 import CrawlerDao from './CrawlerDao.js';
 import dayjs, { Dayjs } from 'dayjs';
+import DbUtil from '../util/DbUtil.js';
 
 interface ResourcePage {
 	url: string;
@@ -103,7 +104,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				':category': category,
 				':priority': priority,
 				':browser': browser,
-				':selector': selector,
+				':selector': DbUtil.emptyToNull(selector),
 			});
 			await sth.finalize();
 
@@ -146,7 +147,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				':category': category,
 				':priority': priority,
 				':browser': browser,
-				':selector': selector,
+				':selector': DbUtil.emptyToNull(selector),
 				':url': url,
 			});
 			await sth.finalize();
