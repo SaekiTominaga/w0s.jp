@@ -1,0 +1,129 @@
+{
+	"parser": {
+		".ejs$": "@markuplint/ejs-parser"
+	},
+	"rules": {
+		"attr-duplication": true,
+		"character-reference": false,
+		"deprecated-attr": true,
+		"deprecated-element": true,
+		"doctype": true,
+		"id-duplication": true,
+		"permitted-contents": true,
+		"required-attr": true,
+		"invalid-attr": true,
+		"landmark-roles": true,
+		"required-h1": false,
+		"wai-aria": true,
+		"class-naming": [
+			"/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/",
+			"/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/",
+			"/^(class|constant|function|language)_$/",
+			"/^js-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/",
+			"/^adsbygoogle$/"
+		],
+		"attr-equal-space-after": "never",
+		"attr-equal-space-before": "never",
+		"attr-spacing": true,
+		"attr-value-quotes": "double",
+		"case-sensitive-attr-name": "no-upper",
+		"case-sensitive-tag-name": "lower",
+		"indentation": false
+	},
+	"nodeRules": [
+		{
+			"tagName": "html",
+			"rules": {
+				"invalid-attr": {
+					"option": {
+						"ignoreAttrNamePrefix": [
+							"prefix"
+						]
+					}
+				}
+			}
+		},
+		{
+			"tagName": "meta",
+			"rules": {
+				"invalid-attr": {
+					"option": {
+						"ignoreAttrNamePrefix": [
+							"content",
+							"property"
+						]
+					}
+				}
+			}
+		},
+		{
+			"tagName": "nav",
+			"rules": {
+				"landmark-roles": false,
+				"wai-aria": {
+					"option": {
+						"disallowSetImplicitRole": false
+					}
+				}
+			}
+		},
+		{
+			"tagName": "aside",
+			"rules": {
+				"landmark-roles": false
+			}
+		},
+		{
+			"tagName": "header",
+			"rules": {
+				"landmark-roles": false,
+				"wai-aria": {
+					"option": {
+						"permittedAriaRoles": false,
+						"disallowSetImplicitRole": false
+					}
+				}
+			}
+		},
+		{
+			"tagName": "footer",
+			"rules": {
+				"landmark-roles": false,
+				"wai-aria": {
+					"option": {
+						"permittedAriaRoles": false,
+						"disallowSetImplicitRole": false
+					}
+				}
+			}
+		},
+		{
+			"tagName": "main",
+			"rules": {
+				"wai-aria": {
+					"option": {
+						"disallowSetImplicitRole": false
+					}
+				}
+			}
+		},
+		{
+			"tagName": "table",
+			"rules": {
+				"permitted-contents": false
+			}
+		},
+		{
+			"tagName": "colgroup",
+			"rules": {
+				"permitted-contents": false
+			}
+		},
+		{
+			"tagName": "th",
+			"rules": {
+				"wai-aria": false
+			}
+		}
+	]
+}

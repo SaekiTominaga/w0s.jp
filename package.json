@@ -19,7 +19,7 @@
 		"config:validate:tokyu-car-history": "ajv --spec=draft7 -s node/configure/schema/tokyu-car-history.json -d node/configure/tokyu-car-history.json",
 		"config:validate:kumeta-twitter": "ajv --spec=draft7 -s node/configure/schema/kumeta-twitter.json -d node/configure/kumeta-twitter.json",
 		"config:validate:madoka-official-news": "ajv --spec=draft7 -s node/configure/schema/madoka-official-news.json -d node/configure/madoka-official-news.json",
-		"ejs:markuplint": "markuplint views/*.ejs",
+		"markuplint": "markuplint errorpage/*.html public/*.html public/admin/*.html public/madoka/**/*.html public/tokyu/**/*.html",
 		"html-format": "prettier --config .prettierrc --write html/**/*.html",
 		"_html-watch:build": "onchange -f add -f change -v html/**/*.html -- node build/html.mjs {{file}}",
 		"_html-watch:compress": "onchange -f add -f change -v public/**/*.html --exclude public/styleguide/*.html -- brotlin compress {{file}} -m 1",
@@ -71,6 +71,7 @@
 		"twitter-text": "^3.1.0"
 	},
 	"devDependencies": {
+		"@markuplint/ejs-parser": "^1.0.3-beta.1",
 		"@prettier/plugin-xml": "^1.0.2",
 		"@types/basic-auth": "^1.1.3",
 		"@types/compression": "^1.7.2",
