@@ -1,6 +1,5 @@
 import * as sqlite from 'sqlite';
 import DbUtil from '../util/DbUtil.js';
-import path from 'path';
 import sqlite3 from 'sqlite3';
 import { W0SJp as Configure } from '../../configure/type/common';
 
@@ -238,9 +237,10 @@ export default class BlogPostDao {
 		let imageInternal = null;
 		let imageExternal = null;
 		if (imagePath !== null) {
-			if (path.isAbsolute(imagePath)) {
+			try {
+				new URL(imagePath); /* eslint-disable-line no-new */
 				imageExternal = imagePath;
-			} else {
+			} catch {
 				imageInternal = imagePath;
 			}
 		}
@@ -339,9 +339,10 @@ export default class BlogPostDao {
 		let imageInternal = null;
 		let imageExternal = null;
 		if (imagePath !== null) {
-			if (path.isAbsolute(imagePath)) {
+			try {
+				new URL(imagePath); /* eslint-disable-line no-new */
 				imageExternal = imagePath;
-			} else {
+			} catch {
 				imageInternal = imagePath;
 			}
 		}
@@ -382,7 +383,7 @@ export default class BlogPostDao {
 						title = :title,
 						description = :description,
 						message = :message,
-						image = :imageInternal,
+						image = :image_internal,
 						image_external = :image_external,
 						public = :public
 					WHERE
@@ -392,7 +393,7 @@ export default class BlogPostDao {
 					':title': title,
 					':description': DbUtil.emptyToNull(description),
 					':message': message,
-					':imageInternal': imageInternal,
+					':image_internal': imageInternal,
 					':image_external': imageExternal,
 					':public': publicFlag,
 					':topic_id': topicId,
