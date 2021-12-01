@@ -2,7 +2,6 @@ import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
 import fs from 'fs';
-import HttpResponse from '../util/HttpResponse.js';
 import MadokaOfficialNewsMonthDao from '../dao/MadokaOfficialNewsMonthDao.js';
 import { NoName as Configure } from '../../configure/type/madoka-official-news';
 import { Request, Response } from 'express';
@@ -31,15 +30,8 @@ export default class MadokaOfficialNewsMonthController extends Controller implem
 	 * @param {Response} res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
-		const httpResponse = new HttpResponse(req, res, this.#configCommon);
-
-		if (req.query.month !== undefined && typeof req.query.month === 'string') {
-			httpResponse.send301(req.query.month);
-			return;
-		}
-
 		const requestQuery: MadokaOfficialNewsMonthRequest.PageQuery = {
-			month: dayjs(new Date(Number(req.params.month.substring(0, 4)), Number(req.params.month.substring(5, 7)) - 1)),
+			month: dayjs(new Date(Number((<string>req.params.month).substring(0, 4)), Number((<string>req.params.month).substring(5, 7)) - 1)),
 		};
 
 		const dao = new MadokaOfficialNewsMonthDao(this.#configCommon);
