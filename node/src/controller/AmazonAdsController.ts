@@ -69,7 +69,7 @@ export default class AmazonAdsController extends Controller implements Controlle
 
 				this.logger.info('PA-API 接続（GetItems.ItemIds）', asin);
 
-				const paapiResponse = <GetItemsResponse>await amazonPaapi.GetItems(
+				const paapiResponse: GetItemsResponse = await amazonPaapi.GetItems(
 					{
 						PartnerTag: this.#configCommon.paapi.request.partner_tag,
 						PartnerType: 'Associates',
@@ -86,7 +86,6 @@ export default class AmazonAdsController extends Controller implements Controlle
 				);
 
 				const paapiResponseErrors = paapiResponse.Errors;
-
 				if (paapiResponseErrors !== undefined) {
 					for (const error of paapiResponseErrors) {
 						this.logger.error(`${error.Code} : ${error.Message}`);
@@ -96,6 +95,9 @@ export default class AmazonAdsController extends Controller implements Controlle
 				}
 
 				const item = paapiResponse.ItemsResult.Items[0];
+				if (item === undefined) {
+					throw new Error('PA-API Error');
+				}
 				this.logger.debug(item);
 
 				const apiDpUrl = item.DetailPageURL; // 詳細ページURL

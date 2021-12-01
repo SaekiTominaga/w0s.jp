@@ -95,7 +95,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 					if (searchCarsView.length === 0 || carData.series !== beforeSeries) {
 						searchCarsView.push([searchCarView]);
 					} else {
-						searchCarsView[searchCarsView.length - 1].push(searchCarView);
+						searchCarsView[searchCarsView.length - 1]?.push(searchCarView);
 					}
 
 					beforeSeries = carData.series;

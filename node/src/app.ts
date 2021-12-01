@@ -49,7 +49,7 @@ for (const redirect of config.redirect) {
 	});
 }
 
-const EXTENTIONS: { readonly [s: string]: string } = {
+const EXTENTIONS = {
 	brotli: '.br',
 	map: '.map',
 }; // 静的ファイル拡張子の定義
