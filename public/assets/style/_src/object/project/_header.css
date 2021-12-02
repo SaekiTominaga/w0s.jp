@@ -13,7 +13,7 @@
 .p-header-site__name {
 	margin-right: 0.5em;
 	color: #f00;
-	font: 700 2rem/var(--line-height--narrow) var(--font-mincho);
+	font: 700 2rem/var(--line-height-narrow) var(--font-mincho);
 	font-feature-settings: "palt";
 	text-shadow: 0.05em 0.05em 0.1em #ccc;
 
@@ -36,49 +36,7 @@
 	margin-top: 0.75em;
 	margin-bottom: 0.2em;
 	color: #666;
-	font-size: calc(1rem / var(--font-ratio-4));
-}
-
-/* ===== ナビゲーション ===== */
-.p-header-nav {
-}
-
-.p-header-nav__link {
-	--color: #000;
-	--bg-color: #fff;
-	--border-color: #999;
-
-	padding: 0.375em 0.5em;
-	border: 1px solid var(--border-color);
-	border-radius: 0.25em;
-	display: inline-block;
-	color: var(--color);
-	background: var(--bg-color);
-	font-size: calc(1rem * var(--font-ratio-1));
-	font-weight: bold;
-	line-height: var(--line-height--narrow);
-	text-decoration: none;
-	text-shadow: 1px 1px #fff;
-	outline-offset: 2px;
-
-	&:hover {
-		color: var(--color);
-		box-shadow: 0 0 1px #ffb211;
-	}
-
-	&.-feed {
-		--color: #444;
-		--bg-color: #fff4dd;
-		--border-color: #ffb211; /* darken(#fff4dd, 40%) */
-	}
-}
-
-.p-header-nav__link-icon {
-	margin-right: 0.25em;
-	display: inline-block;
-	height: 1.25em;
-	width: auto;
-	vertical-align: middle;
+	font-size: calc(1rem / var(--font-ratio-2));
 }
 
 /* ===== サイト内検索 ===== */
@@ -95,7 +53,7 @@
 
 	&:focus-within,
 	&:hover {
-		border-color: var(--focus-ring-color);
+		border-color: var(--outline-color);
 	}
 
 	&:focus-within {
@@ -179,11 +137,11 @@
 	width: 100%;
 	color: #444;
 	background: #eee;
-	font-size: clamp(1rem, 2.5vw, calc(1rem * var(--font-ratio-3)));
+	font-size: clamp(1rem, 2.5vw, calc(1rem * var(--font-ratio-2)));
 
 	@supports not (font-size: clamp(0px, 0px, 0px)) {
 		/* for Safari 13.0- */
-		font-size: max(1rem, min(2.5vw, calc(1rem * var(--font-ratio-3))));
+		font-size: max(1rem, min(2.5vw, calc(1rem * var(--font-ratio-2))));
 	}
 
 	text-align: center;
