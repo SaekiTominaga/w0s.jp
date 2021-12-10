@@ -1,24 +1,28 @@
+import StringConvert from '@saekitominaga/string-convert';
+import TableCellDitto from '@saekitominaga/htmltablecellelement-ditto';
+import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover';
+
 /**
  * 東急電車形態研究 - 車歴表
  */
-import FormCtrlConvert from '@saekitominaga/htmlformcontrolelement-convert';
-import TableCellDitto from '@saekitominaga/htmltablecellelement-ditto';
-import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover';
 
 /* 入力値を変換する */
 const numCtrlElement = <HTMLInputElement | null>document.querySelector('.js-convert-tokyu-car-histroy-num');
 if (numCtrlElement !== null) {
-	const formCtrlConvert = new FormCtrlConvert(numCtrlElement);
-	formCtrlConvert.convert(
-		{
-			trim: true,
-			toHankakuEisu: true,
-			toUpperCase: true,
+	numCtrlElement.addEventListener(
+		'change',
+		() => {
+			numCtrlElement.value = StringConvert.convert(numCtrlElement.value, {
+				trim: true,
+				toHankakuEisu: true,
+				toUpperCase: true,
+				table: {
+					'．': '.',
+					'＊': '*',
+				},
+			});
 		},
-		{
-			'．': '.',
-			'＊': '*',
-		}
+		{ passive: true }
 	);
 }
 

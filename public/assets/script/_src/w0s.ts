@@ -5,7 +5,6 @@ import ButtonMediaSamePlay from '@saekitominaga/customelements-button-media-same
 import DetailsAnimation from '@saekitominaga/customelements-details-animation';
 import DetailsAnimationContent from '@saekitominaga/customelements-details-animation-content';
 import FormBeforeUnloadConfirm from '@saekitominaga/htmlformelement-before-unload-confirm';
-import FormControlConvert from '@saekitominaga/htmlformcontrolelement-convert';
 import FormControlValidation from '@saekitominaga/htmlformcontrolelement-validation';
 import FormSubmitOverlay from '@saekitominaga/htmlformelement-submit-overlay';
 import GoogleAdsense from './unique/GoogleAdsense';
@@ -16,6 +15,7 @@ import InputSwitch from '@saekitominaga/customelements-input-switch';
 import ReportJsError from '@saekitominaga/report-js-error';
 import SidebarAmazonAd from './unique/SidebarAmazonAd';
 import SidebarBlogNewly from './unique/SidebarBlogNewly';
+import StringConvert from '@saekitominaga/string-convert';
 import StyleSheetPrint from './unique/StyleSheetPrint';
 import Tab from '@saekitominaga/customelements-tab';
 import TextareaAutoheight from '@saekitominaga/customelements-textarea-autoheight';
@@ -162,36 +162,32 @@ if (autoFocusElement !== null) {
 	autoFocusElement.focus();
 }
 
-if (document.querySelector('.js-convert-trim, .js-convert-trim-noblankline, .js-convert-search, .js-convert-isbn') !== null) {
+if (document.querySelector('.js-convert-trim, .js-convert-search') !== null) {
 	/* 入力値の変換 */
 	for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-trim')) {
-		const formControlConvert = new FormControlConvert(formCtrlElement);
-		formControlConvert.convert({
-			trim: true,
-		});
+		formCtrlElement.addEventListener(
+			'change',
+			() => {
+				formCtrlElement.value = StringConvert.convert(formCtrlElement.value, {
+					trim: true,
+				});
+			},
+			{ passive: true }
+		);
 	}
-	for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-trim-noblankline')) {
-		const formControlConvert = new FormControlConvert(formCtrlElement);
-		formControlConvert.convert({
-			trim: true,
-			noBlankLine: true,
-		});
-	}
-	for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-search')) {
-		const formControlConvert = new FormControlConvert(formCtrlElement);
-		formControlConvert.convert({
-			trim: true,
-			toHankakuSpace: true,
-			combineSpace: true,
-		});
-	}
-	for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-isbn')) {
-		const formControlConvert = new FormControlConvert(formCtrlElement);
-		formControlConvert.convert({
-			trim: true,
-			toHankakuEisu: true,
-			toUpperCase: true,
-		});
+
+	for (const formCtrlElement of <NodeListOf<HTMLInputElement>>document.querySelectorAll('.js-convert-search')) {
+		formCtrlElement.addEventListener(
+			'change',
+			() => {
+				formCtrlElement.value = StringConvert.convert(formCtrlElement.value, {
+					trim: true,
+					toHankakuSpace: true,
+					combineSpace: true,
+				});
+			},
+			{ passive: true }
+		);
 	}
 }
 
