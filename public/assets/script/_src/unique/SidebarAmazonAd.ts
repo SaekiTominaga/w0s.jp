@@ -107,8 +107,10 @@ export default class {
 				const dpDateElement = <HTMLElement>templateElementClone.querySelector(date.getTime() <= nowTime ? '.js-date-past' : '.js-date-future');
 
 				const dpTimeElement = dpDateElement.getElementsByTagName('time')[0];
-				dpTimeElement.dateTime = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-				dpTimeElement.textContent = year !== nowYear ? `${year}年${month}月${day}日` : `${month}月${day}日`;
+				if (dpTimeElement !== undefined) {
+					dpTimeElement.dateTime = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+					dpTimeElement.textContent = year !== nowYear ? `${year}年${month}月${day}日` : `${month}月${day}日`;
+				}
 
 				dpDateElement.hidden = false;
 			}

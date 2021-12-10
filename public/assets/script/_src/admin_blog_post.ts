@@ -24,7 +24,7 @@ const messageImage = async (
 	while (selectImageTemplateElement.nextElementSibling) {
 		const radioCheckedElements = <NodeListOf<HTMLInputElement>>selectImageTemplateElement.nextElementSibling.querySelectorAll('input[type="radio"]:checked');
 		if (radioCheckedElements.length === 1) {
-			radioCheckedValue = radioCheckedElements[0].value;
+			radioCheckedValue = (<HTMLInputElement>radioCheckedElements[0]).value;
 		}
 		selectImageTemplateElement.nextElementSibling.remove();
 	}
@@ -87,24 +87,24 @@ const messageImage = async (
 	messageCtrlElement.value.split('\n').forEach((value: string): void => {
 		const imageRegResult = /^\$(photo|image): ([^ ]+) (.+)/.exec(value);
 		if (imageRegResult !== null) {
-			imageUrlList.add(imageRegResult[2]);
+			imageUrlList.add(<string>imageRegResult[2]);
 		}
 
 		const twitterRegResult = /^\$tweet: ([ 0-9]+)/.exec(value);
 		if (twitterRegResult !== null) {
-			twitterRegResult[1].split(' ').forEach((tweetId) => {
+			(<string>twitterRegResult[1]).split(' ').forEach((tweetId) => {
 				tweetIdList.push(tweetId);
 			});
 		}
 
 		const youtubeRegResult = /^\$youtube: ([^ ]+) ([0-9]+)x([0-9]+) (.+)/.exec(value);
 		if (youtubeRegResult !== null) {
-			youtubeIdList.push(youtubeRegResult[1]);
+			youtubeIdList.push(<string>youtubeRegResult[1]);
 		}
 
 		const asinRegResult = /^\$amazon: ([ 0-9A-Z]+)/.exec(value);
 		if (asinRegResult !== null) {
-			asinRegResult[1].split(' ').forEach((asin) => {
+			(<string>asinRegResult[1]).split(' ').forEach((asin) => {
 				asinList.push(asin);
 			});
 		}
