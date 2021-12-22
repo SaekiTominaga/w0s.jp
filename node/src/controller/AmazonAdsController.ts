@@ -100,10 +100,13 @@ export default class AmazonAdsController extends Controller implements Controlle
 				}
 				this.logger.debug(item);
 
+				const itemInfo = item.ItemInfo;
+				const imagePrimaryLarge = item.Images?.Primary?.Large;
+
 				const apiDpUrl = item.DetailPageURL; // 詳細ページURL
-				const apiTitle = item.ItemInfo?.Title?.DisplayValue ?? ''; // 製品タイトル // TODO: API 的には null の可能性があるが、 DB のカラムは NOT NULL
-				const apiBinding = item.ItemInfo?.Classifications?.Binding?.DisplayValue ?? null; // 製品カテゴリ
-				const apiPublicationDateStr = item.ItemInfo?.ContentInfo?.PublicationDate?.DisplayValue ?? null; // 製品公開日
+				const apiTitle = itemInfo?.Title?.DisplayValue ?? ''; // 製品タイトル // TODO: API 的には null の可能性があるが、 DB のカラムは NOT NULL
+				const apiBinding = itemInfo?.Classifications?.Binding?.DisplayValue ?? null; // 製品カテゴリ
+				const apiPublicationDateStr = itemInfo?.ContentInfo?.PublicationDate?.DisplayValue ?? null; // 製品公開日
 				let apiPublicationDate: Date | null = null;
 				if (apiPublicationDateStr !== null) {
 					try {
@@ -112,10 +115,12 @@ export default class AmazonAdsController extends Controller implements Controlle
 						this.logger.error(e);
 					}
 				}
-				const apiImageUrl = item.Images?.Primary?.Large?.URL ?? null; // 画像URL
+				const apiImageUrl = imagePrimaryLarge?.URL ?? null; // 画像 URL
+				const apiImageWidth = imagePrimaryLarge?.Width !== undefined ? Number(imagePrimaryLarge?.Width) : null; // 画像幅
+				const apiImageHeight = imagePrimaryLarge?.Height !== undefined ? Number(imagePrimaryLarge?.Height) : null; // 画像高さ
 
 				await dao.delete(asin);
-				await dao.insert(asin, apiDpUrl, apiTitle, apiBinding, apiPublicationDate, apiImageUrl, <string[]>requestQuery.category);
+				await dao.insert(asin, apiDpUrl, apiTitle, apiBinding, apiPublicationDate, apiImageUrl, apiImageWidth, apiImageHeight, <string[]>requestQuery.category);
 
 				await this.createJson(req, dao, httpBasicCredentials);
 

@@ -16,6 +16,8 @@ interface DpData {
 	binding: string | null;
 	date: Date | null;
 	image_url: string | null;
+	image_width: number | null;
+	image_height: number | null;
 }
 
 /**
@@ -105,7 +107,9 @@ export default class AmazonAdsDao {
 				dp.title AS title,
 				dp.binding AS binding,
 				dp.date AS date,
-				dp.image_url AS image_url
+				dp.image_url AS image_url,
+				dp.image_width AS image_width,
+				dp.image_height AS image_height
 			FROM
 				d_dp dp,
 				d_category category,
@@ -131,6 +135,8 @@ export default class AmazonAdsDao {
 				binding: row.binding,
 				date: DbUtil.unixToDate(row.date),
 				image_url: row.image_url,
+				image_width: row.image_width,
+				image_height: row.image_height,
 			});
 		}
 
@@ -145,7 +151,9 @@ export default class AmazonAdsDao {
 	 * @param {string} title - タイトル
 	 * @param {string} binding - カテゴリ
 	 * @param {Date} date - 発売日
-	 * @param {string} imageUrl - 画像URL
+	 * @param {string} imageUrl - 画像 URL
+	 * @param {number} imageWidth - 画像幅
+	 * @param {number} imageHeight - 画像高さ
 	 * @param {string[]} categories - 対象カテゴリー ID
 	 */
 	async insert(
@@ -155,6 +163,8 @@ export default class AmazonAdsDao {
 		binding: string | null,
 		date: Date | null,
 		imageUrl: string | null,
+		imageWidth: number | null,
+		imageHeight: number | null,
 		categories: string[]
 	): Promise<void> {
 		const dbh = await this.getDbh();
@@ -163,9 +173,9 @@ export default class AmazonAdsDao {
 		try {
 			const dpSth = await dbh.prepare(`
 				INSERT INTO d_dp
-					(asin, url, title, binding, date, image_url)
+					(asin, url, title, binding, date, image_url, image_width, image_height)
 				VALUES
-					(:asin, :url, :title, :binding, :date, :image_url)
+					(:asin, :url, :title, :binding, :date, :image_url, :image_width, :image_height)
 			`);
 			await dpSth.run({
 				':asin': asin,
@@ -174,6 +184,8 @@ export default class AmazonAdsDao {
 				':binding': binding,
 				':date': DbUtil.dateToUnix(date),
 				':image_url': imageUrl,
+				':image_width': imageWidth,
+				':image_height': imageHeight,
 			});
 			await dpSth.finalize();
 
