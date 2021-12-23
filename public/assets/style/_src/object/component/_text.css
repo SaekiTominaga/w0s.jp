@@ -265,3 +265,66 @@ Styleguide 1.1.9
 	font-size: 85%;
 	font-weight: normal;
 }
+
+/*
+Amazon 商品カテゴリ
+
+Markup:
+<b class="c-amazon-binding"></b>
+
+.-bd - BD
+.-kindle - Kindle
+
+Styleguide 1.1.10
+*/
+.c-amazon-binding {
+	--_padding: 0.125em 0.5em;
+	--_border-color: var(--_color);
+	--_color: var(--color-gray);
+	--_bg-color: var(--color-white);
+
+	padding: 0.125em 0.5em;
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-large);
+	display: inline-block;
+	color: var(--_color);
+	background: var(--_bg-color);
+	font-size: calc(100% / var(--font-ratio-1));
+	font-weight: bold;
+	line-height: var(--line-height-narrow);
+	vertical-align: middle;
+
+	/* BD */
+	&.-bd {
+		--_border-color: #27b;
+		--_color: #27b;
+		--_bg-color: #f9f9ff;
+	}
+
+	/* Kindle */
+	&.-kindle {
+		--_border-color: var(--color-black);
+		--_color: #f90;
+		--_bg-color: var(--color-black);
+	}
+
+	@nest .entry-amazon & {
+		margin-left: 0.5em;
+	}
+}
+
+/*
+Amazon 商品が発売予定の場合の「予定」文字部分
+
+Markup:
+<em class="c-amazon-date-plan">予定</em>
+
+Styleguide 1.1.11
+*/
+.c-amazon-date-plan {
+	@nest .p-sidebar-amazon-link & {
+		--_color: hsl(0 100% 40%);
+
+		color: var(--_color);
+	}
+}

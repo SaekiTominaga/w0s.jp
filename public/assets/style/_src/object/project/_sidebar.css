@@ -4,19 +4,21 @@
 
 /* ===== プロフィール ===== */
 .p-sidebar-profile {
-	margin-top: 0.8em;
+	--_heading-offset: -0.75em;
+
 	padding: 0 10px 10px;
-	border: 1px solid #999;
-	border-radius: 0.3em;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
 }
 
 .p-sidebar-profile__hdg {
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
-	top: -0.8em;
+	top: var(--_heading-offset);
 	background: var(--page-bg-color);
 	font-weight: bold;
+	line-height: var(--line-height-narrow);
 }
 
 .p-sidebar-profile__info {
@@ -26,301 +28,226 @@
 
 .p-sidebar-profile__address {
 	font-weight: bold;
+	line-height: var(--line-height-nowrap);
 }
 
 /* アバター */
 .p-sidebar-profile__avatar {
-	margin-right: 0.5em;
+	margin-right: 10px;
 	float: left;
-	transition: box-shadow var(--link-hover-transition-delay);
 
 	@nest :any-link:hover & {
-		box-shadow: 0 0 5px #999;
+		box-shadow: 0 0 5px var(--color-lightgray);
 	}
 }
 
 /* BIO */
 .p-sidebar-profile__bio {
 	margin-top: 0.5em;
-	font-size: calc(1rem / var(--font-ratio-1));
+	font-size: calc(100% / var(--font-ratio-1));
 	text-align: justify;
 	overflow: hidden;
 }
 
 /* バナー */
-.p-sidebar-profile__banner {
+.p-sidebar-profile__banners {
 	margin-top: 1em;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(2, 1fr);
 	gap: 5px;
-}
-
-.p-sidebar-profile__banner-link {
-	--color: #333;
-	--background: #fff;
-	--border-color: #333;
-
-	padding: 0.6em 1px;
-	border: 1px solid var(--border-color);
-	border-radius: 0.25em;
-	display: flex;
-	justify-content: center;
-	color: var(--color);
-	background: var(--background);
-	font-size: calc(1rem / var(--font-ratio-1));
-	font-weight: bold;
-	line-height: var(--line-height-narrow);
-	text-align: center;
-	text-decoration: none;
-
-	&:any-link {
-		&:hover {
-			box-shadow: 0 0 1px 1px #ccc;
-		}
-	}
-
-	/* バナー・Twitter */
-	&.-twitter {
-		--color: #fff;
-		--background: #1da1f2;
-		--border-color: #2293dd;
-	}
-
-	/* バナー・GitHub */
-	&.-github {
-	}
-
-	/* バナー・Amazon */
-	&.-amazon {
-		--background: linear-gradient(#ffe8ab, #f5c747);
-		--border-color: #c2a24e;
-	}
-
-	/* バナー・YouTube */
-	&.-youtube {
-		--color: #c22;
-		--background: linear-gradient(#fff, #fee);
-		--border-color: #f33;
-	}
-}
-
-.p-sidebar-profile__banner-icon {
-	margin-right: 0.5em;
-	height: 1.25em;
-	width: auto;
+	font-size: calc(100% / var(--font-ratio-1));
 }
 
 /* ===== 日記記事リスト ===== */
-.p-sidebar-blog-topics {
-	margin-top: 1.8em;
-	border: 1px solid #999;
-	border-radius: 0.3em 0.3em 0 0;
+.p-sidebar-blog-entry {
+	--_heading-offset: -0.75em;
+
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal) var(--border-radius-normal) 0 0;
 }
 
-.p-sidebar-blog-topics__hdg {
-	margin-left: 10px;
+.p-sidebar-blog-entry__hdg {
+	margin: 0 10px;
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
-	top: -0.8em;
+	top: var(--_heading-offset);
 	background: var(--page-bg-color);
 	font-weight: bold;
+	line-height: var(--line-height-narrow);
 }
 
-.p-sidebar-blog-topics__list {
-	margin-top: -0.8em;
-	font-size: calc(1rem / var(--font-ratio-1));
-	line-height: var(--line-height-narrow);
+.p-sidebar-blog-entry__link {
+	margin-top: var(--_heading-offset);
+}
 
-	@media (--viewport-main-full) {
-		font-size: 1rem;
+/* ===== リンクリスト ===== */
+.p-sidebar-links {
+	& a {
+		--_padding-row: 0.5em;
+		--_padding-col: 0.5em;
+		--_bg-color: var(--color-bg-skyblue);
+
+		padding: var(--_padding-row) var(--_padding-col);
+		display: flex;
+		align-items: center;
+		position: relative;
+		font-size: calc(100% / var(--font-ratio-1));
+		background: var(--_bg-color);
+		line-height: var(--line-height-narrow);
+		outline-offset: 0;
+
+		&:any-link {
+			--_bg-color: var(--color-white);
+			--_icon-color: var(--color-lightgray); /* アイコンの色 */
+			--_icon-width: 0.67em; /* アイコンの幅 */
+			--_icon-height: 1em; /* アイコンの高さ */
+			--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
+
+			padding-right: calc(var(--_icon-gap) + var(--_icon-width) + var(--_padding-col));
+			text-decoration: none;
+
+			&::after {
+				content: "";
+				clip-path: var(--shape-link-arrow);
+				width: var(--_icon-width);
+				height: var(--_icon-height);
+				background: var(--_icon-color);
+				position: absolute;
+				top: calc(50% - var(--_icon-height) / 2);
+				right: var(--_padding-col);
+			}
+
+			&:is(:focus, :hover) {
+				--_bg-color: var(--color-bg-lightyellow);
+				--_icon-color: var(--color-gray);
+			}
+		}
 	}
 
 	& > li {
 		& + li {
-			border-top: 1px dotted #999;
-		}
-
-		& a {
-			--background: #dff;
-
-			padding: 0.5em;
-			display: flex;
-			align-items: center;
-			position: relative;
-			min-height: 2em;
-			background: var(--background);
-			outline-offset: 0;
-
-			&:any-link {
-				--background: #fff;
-				--icon-color: #999; /* アイコンの色 */
-				--icon-width: 0.67em; /* アイコンの幅 */
-				--icon-height: 1em; /* アイコンの高さ */
-				--icon-padding: 0.5em; /* アイコンとテキスト枠の間隔 */
-				--icon-gap: 0.75em; /* テキストとアイコンの間隔 */
-
-				padding-right: calc(var(--icon-gap) + var(--icon-width) + var(--icon-padding));
-				text-decoration: none;
-
-				&::after {
-					content: "";
-					clip-path: var(--shape-link-arrow);
-					width: var(--icon-width);
-					height: var(--icon-height);
-					background: var(--icon-color);
-					position: absolute;
-					top: calc(50% - var(--icon-height) / 2);
-					right: var(--icon-padding);
-				}
-
-				&:focus,
-				&:hover {
-					--background: #ffc;
-					--icon-color: #666;
-				}
-			}
+			border-top: 1px dotted var(--color-border-dark);
 		}
 
 		/* 奇数行 */
 		&:nth-child(2n + 1) {
-			& a:any-link {
-				--background: #f8f8f8;
+			& a {
+				&:any-link {
+					--_bg-color: var(--color-bg-verylight);
 
-				&:focus,
-				&:hover {
-					--background: #ffc;
+					&:is(:focus, :hover) {
+						--_bg-color: var(--color-bg-lightyellow);
+					}
 				}
 			}
 		}
 	}
-}
 
-/* ===== Amazon商品広告 ===== */
-.p-sidebar-amazon {
-	margin-top: 1.8em;
-	padding: 0 6px 12px;
-	border: 1px solid #999;
-	border-radius: 0.3em;
-
-	& a {
-		display: block;
-		text-decoration: none;
-		outline-offset: 2px;
+	/* カテゴリー */
+	&.-category {
+		& a {
+			--_padding-row: 0.25em;
+		}
 	}
-}
 
-.p-sidebar-amazon__hdg {
-	margin-left: 10px;
-	padding: 0 0.5em;
-	display: inline-block;
-	position: relative;
-	top: -0.8em;
-	background: var(--page-bg-color);
-	font-weight: bold;
-}
-
-.p-sidebar-amazon__list {
-	--gap-row: 10px;
-	--gap-column: 6px;
-
-	margin: -0.5em 0 0;
-	display: grid;
-	gap: var(--gap-row) var(--gap-column);
-	grid-template-columns: repeat(2, 1fr);
-
-	@media (--viewport-main-full) {
-		margin-right: calc(0 - var(--gap-column));
-		margin-bottom: calc(0 - var(--gap-row));
-		display: flex;
-		flex-flow: wrap;
-
-		& > li {
-			margin: 0 var(--gap-column) var(--gap-row) 0;
-			max-width: 130px;
+	/* 記事 */
+	&.-entry {
+		& a {
+			min-height: 2em;
 		}
 	}
 }
 
+.p-sidebar-links__icon {
+	margin-left: 1em;
+}
+
+/* ===== Amazon 商品広告 ===== */
+.p-sidebar-amazon {
+	--_heading-offset: -0.75em;
+
+	padding: 0 10px 10px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
+}
+
+.p-sidebar-amazon__hdg {
+	margin: 0 4px;
+	padding: 0 0.5em;
+	display: inline-block;
+	position: relative;
+	top: var(--_heading-offset);
+	background: var(--page-bg-color);
+	font-weight: bold;
+	line-height: var(--line-height-narrow);
+}
+
+.p-sidebar-amazon__link {
+	margin-top: calc(0.5em + var(--_heading-offset));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(90px, 100%), 1fr));
+	gap: 10px;
+}
+
+/* ===== Amazon 商品リンク ===== */
+.p-sidebar-amazon-link {
+	display: block;
+	text-decoration: none;
+	outline-offset: 0.125em;
+}
+
 /* 画像エリア */
-.p-sidebar-amazon__image-area {
+.p-sidebar-amazon-link__thumb {
 }
 
 /* 商品画像 */
-.p-sidebar-amazon__image {
-	margin: auto;
+.p-sidebar-amazon-link__image {
 	display: block;
-	max-width: 100%;
+	width: 100%;
 	height: auto;
 	transition: box-shadow var(--link-hover-transition-delay);
 
 	@nest :any-link:hover & {
-		box-shadow: 0 0 3px 3px #f92;
+		box-shadow: 0 0 3px 3px var(--color-amazon-box-shadow-hover);
 	}
 }
 
 /* テキストエリア */
-.p-sidebar-amazon__text-area {
+.p-sidebar-amazon-link__text {
+	--_color: var(--color-darkgray);
+	--_bg-color: var(--color-amazon-bg);
+
 	margin-top: 1px;
 	padding: 5px;
-	border-radius: 0.5em;
-	box-sizing: border-box;
-	color: #444;
-	background: #fdb;
+	border-radius: var(--border-radius-large);
+	color: var(--_color);
+	background: var(--_bg-color);
 	line-height: var(--line-height-narrow);
 	overflow-wrap: anywhere;
 	transition: color var(--link-hover-transition-delay), background-color var(--link-hover-transition-delay);
 
-	@nest :any-link:focus &, :any-link:hover & {
-		color: #333;
-		background-color: #ffca95; /* darken(#fdb, 7.5%) */
+	@nest :any-link:hover & {
+		--_bg-color: var(--color-amazon-bg-hover);
 	}
 }
 
 /* 商品タイトル */
-.p-sidebar-amazon__title {
-	font-size: calc(1rem / var(--font-ratio-1));
-}
+.p-sidebar-amazon-link__title {
+	font-size: calc(100% / var(--font-ratio-1));
 
-/* 商品カテゴリ */
-.p-sidebar-amazon__binding {
-	margin: 0.1em 0 0 0.2em;
-	padding: 0.1em 0.4em 0;
-	border: 1px solid;
-	border-radius: 0.5em;
-	display: inline-block;
-	color: #555;
-	background: #fff;
-	font-weight: bold;
-
-	/* BD */
-	&.-bd {
-		border-color: #27b;
-		color: #27b;
-		background-color: #f9f9ff;
-	}
-
-	/* Kindle */
-	&.-kindle {
-		border-color: #000;
-		color: #f90;
-		background-color: #000;
+	&:not([hidden]) {
+		display: block;
 	}
 }
 
 /* 発売日 */
-.p-sidebar-amazon__time {
-	margin-top: 1em;
-	font-size: calc(1rem / var(--font-ratio-2));
+.p-sidebar-amazon-link__date {
+	margin-top: 0.5em;
+	font-size: calc(100% / var(--font-ratio-2));
 	font-weight: bold;
-}
 
-/* 発売予定の場合の「予定」文字部分 */
-.p-sidebar-amazon__time-plan {
-	color: #c00;
-	white-space: nowrap;
-
-	@nest :any-link:focus &, :any-link:hover & {
-		color: #b00;
+	&:not([hidden]) {
+		display: block;
 	}
 }
