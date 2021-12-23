@@ -1,6 +1,7 @@
 /* ==============================
  *   ページレイアウト共通
  * ============================== */
+
 .l-page {
 	display: grid;
 }
@@ -10,7 +11,7 @@
 	grid-column: header;
 	padding: 20px 0 40px;
 	display: grid;
-	grid-template-columns: [full-start] calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) var(--page-col-padding) [content-start] 1fr [content-end] var(--page-col-padding) calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) [full-end];
+	grid-template-columns: [full-start] var(--page-col-margin) var(--page-col-padding) [content-start] 1fr [content-end] var(--page-col-padding) var(--page-col-margin) [full-end];
 }
 
 /* ヘッダーメイン */
@@ -19,11 +20,13 @@
 	display: grid;
 	gap: 20px;
 	grid-template-areas: "site nav";
+	grid-template-columns: 50% 1fr;
 
 	@media (max-width: 60em) {
 		grid-template-areas:
 			"site"
 			"nav";
+		grid-template-columns: auto;
 	}
 }
 
@@ -38,15 +41,8 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	gap: 10px 0;
-
-	& .p-header-nav {
-		margin-right: 20px; /* TODO: Safari が gap for Flexbox に対応するまでの暫定対応 */
-	}
-
-	@media (max-width: 60em) {
-		flex-wrap: wrap;
-	}
+	flex-wrap: wrap;
+	gap: 10px 20px;
 
 	@media (max-width: 36em) {
 		justify-content: flex-start;
@@ -103,12 +99,12 @@
 	background: var(--color-bg-superlight);
 }
 
-/* ===== サイト横断ナビゲーション ===== */
+/* サイト横断ナビゲーション */
 .l-footer__nav {
 	grid-column: content;
 }
 
-/* ===== アドセンス ===== */
+/* アドセンス */
 .l-footer__ads {
 	margin-top: 100px;
 	grid-column: content;
