@@ -5,13 +5,54 @@ Styleguide 1.2.
 */
 
 /*
+テキストリンク（ビュレットアイコン）
+
+Markup:
+<a href="/" class="c-link">他ページ</a>
+<a aria-current="page" class="c-link">現在ページ</a>
+
+Styleguide 1.2.1
+*/
+.c-link {
+	--_bullet-height: 0.75em;
+	--_bullet-width: calc(var(--_bullet-height) * 0.6);
+	--_bullet-color: var(--color-gray);
+	--_bullet-gap: 0.5em;
+
+	margin-left: calc(var(--_bullet-width) + var(--_bullet-gap));
+
+	& > a {
+		margin-left: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
+		outline-offset: 0.125em;
+
+		&::before {
+			margin-right: var(--_bullet-gap);
+			content: "";
+			display: inline-block;
+			clip-path: var(--shape-link-triangle);
+			width: var(--_bullet-width);
+			height: var(--_bullet-height);
+			background: var(--_bullet-color);
+		}
+
+		&:any-link {
+			--_bullet-color: var(--link-color-bullet);
+
+			&:hover {
+				--_bullet-color: var(--link-color-hover);
+			}
+		}
+	}
+}
+
+/*
 テキストリンク
 
 Markup:
 <a href="/" class="c-link-text">他ページへのリンク</a>
 <a href="#" class="c-link-text">ページ内リンク</a>
 
-Styleguide 1.2.1
+Styleguide 1.2.2
 */
 .c-link-text {
 	--bullet-width: 0.45em;
@@ -55,7 +96,7 @@ Styleguide 1.2.1
 Markup:
 <a href="/">リンク<img src="https://w0s.jp/assets/image/link_icon_image.svg" alt="(画像)" class="c-link-icon"></a>
 
-Styleguide 1.2.2
+Styleguide 1.2.3
 */
 .c-link-icon {
 	margin: 0 0.25em;

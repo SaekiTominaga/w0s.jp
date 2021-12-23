@@ -96,20 +96,16 @@
 	grid-column: footer;
 	margin-top: 80px;
 	padding: 40px 0;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+	border: solid var(--color-border-light);
+	border-width: 1px 0;
 	display: grid;
-	grid-template-columns: [full-start] calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) var(--page-col-padding) [content-start] 1fr [content-end] var(--page-col-padding) calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) [full-end];
-	background: #fcfcfc;
+	grid-template-columns: [full-start] var(--page-col-margin) var(--page-col-padding) [content-start] 1fr [content-end] var(--page-col-padding) var(--page-col-margin) [full-end];
+	background: var(--color-bg-superlight);
 }
 
 /* ===== サイト横断ナビゲーション ===== */
 .l-footer__nav {
 	grid-column: content;
-
-	&:not(:first-child) {
-		margin-top: 20px;
-	}
 }
 
 /* ===== アドセンス ===== */
