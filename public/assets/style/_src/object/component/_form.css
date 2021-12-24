@@ -6,7 +6,7 @@ Styleguide 1.4.
 
 /* プレースホルダー */
 ::placeholder {
-	color: #000;
+	color: var(--color-black);
 	opacity: 0.54;
 }
 
@@ -25,13 +25,13 @@ Styleguide 1.4.1
 .c-input {
 	padding: 0.5em;
 	border: 1px solid #999;
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	box-sizing: border-box;
 	display: inline-block;
 	max-width: 100%;
 	width: var(--input-width, auto);
-	color: #000;
-	background: linear-gradient(#f8f8f8, #fff);
+	color: var(--color-black);
+	background: linear-gradient(#f8f8f8, var(--color-white));
 	vertical-align: middle;
 	outline: none;
 	transition: border-color 0.5s;
@@ -79,7 +79,7 @@ Styleguide 1.4.2
 */
 .c-input-file {
 	padding: 0.5em 0;
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	display: inline-block;
 	background: transparent;
 	vertical-align: middle;
@@ -124,13 +124,13 @@ Styleguide 1.4.4
 .c-textarea {
 	padding: 0.5em;
 	border: 1px solid #999;
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	box-sizing: border-box;
 	display: inline-block;
 	min-height: var(--textarea-height, auto);
 	width: 100%;
-	color: #000;
-	background: #fff;
+	color: var(--color-black);
+	background: var(--color-white);
 	vertical-align: middle;
 	outline: none;
 	transition: border-color 0.5s;
@@ -181,18 +181,18 @@ Styleguide 1.4.6
 */
 .c-button-submit {
 	--padding: 0.6em 1em 0.5em;
-	--color: #fff;
+	--color: var(--color-white);
 	--bg-color: #007acc;
 	--bg-color-hover: #0069bb;
 	--border-color: var(--bg-color);
 	--font-size: calc(1rem * var(--font-ratio-2));
-	--ripple-effect-color: #fff;
+	--ripple-effect-color: var(--color-white);
 	--ripple-effect-opacity: 0.25;
 	--ripple-effect-transition-duration: 0.5s;
 
 	padding: var(--padding);
 	border: 1px solid var(--border-color);
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	display: inline-block;
 	color: var(--color);
 	background: var(--bg-color);
@@ -241,11 +241,11 @@ Styleguide 1.4.6
 	/* キャンセルボタン */
 	&.-cancel {
 		--color: #333;
-		--bg-color: #fff;
+		--bg-color: var(--color-white);
 		--bg-color-hover: #f8f8f8;
 		--border-color: var(--color);
 		--font-size: 1rem;
-		--ripple-effect-color: #000;
+		--ripple-effect-color: var(--color-black);
 	}
 }
 
@@ -328,7 +328,7 @@ Styleguide 1.4.8
 				}
 
 				@media print {
-					border-color: #000;
+					border-color: var(--color-black);
 				}
 			}
 		}
@@ -368,7 +368,7 @@ Styleguide 1.4.8
 	margin-left: -1em;
 	padding: 0.3em 0.3em 0.2em calc(0.3em + 1em + 0.4em);
 	border: 1px solid transparent;
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	background: no-repeat 0.3em 50%/1em;
 	transition: 0.5s;
 	transition-property: border-color, background-color;
@@ -403,13 +403,13 @@ Markup:
 Styleguide 1.4.9
 */
 .c-required {
-	--color: #fff;
+	--color: var(--color-white);
 	--bg-color: #666;
 
 	margin-left: 0.5em;
 	padding: 0.35em 0.5em;
 	border: 1px solid var(--bg-color);
-	border-radius: 0.5em;
+	border-radius: var(--border-radius-large);
 	display: inline-block;
 	color: var(--color);
 	background: var(--bg-color);
@@ -419,12 +419,12 @@ Styleguide 1.4.9
 	white-space: nowrap;
 
 	&.-optional {
-		--color: #fff;
+		--color: var(--color-white);
 		--bg-color: #008a00;
 	}
 
 	&.-required {
-		--color: #fff;
+		--color: var(--color-white);
 		--bg-color: #e00;
 	}
 }

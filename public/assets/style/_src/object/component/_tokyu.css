@@ -6,7 +6,7 @@
 .c-tokyu-train {
 	/* 普通 */
 	&.-local {
-		color: #000;
+		color: var(--color-black);
 	}
 
 	/* G各停、準急、伊豆急快速 */
@@ -66,12 +66,12 @@
 .c-tokyu-form-device {
 	/* 制御装置・抵抗制御 */
 	&.-ctr-r {
-		color: #000;
+		color: var(--color-black);
 	}
 
 	/* 制御装置・界磁チョッパ */
 	&.-ctr-ch {
-		color: #000;
+		color: var(--color-black);
 	}
 
 	/* 制御装置・GTO-VVVF */
@@ -145,10 +145,10 @@
 /* 車両形式 */
 .c-tokyu-localform-series {
 	padding: 0.1em;
-	border: 1px solid var(--bgcolor, #000);
+	border: 1px solid var(--bgcolor, var(--color-black));
 	display: block;
-	color: #000;
-	background: var(--bgcolor, #fff);
+	color: var(--color-black);
+	background: var(--bgcolor, var(--color-white));
 
 	/* 電動車（直流電動機） */
 	&.-m-dc {
@@ -275,13 +275,13 @@
 
 /* ===== 台車区分 ===== */
 .c-tokyu-truck-type {
-	--icon-color: #000;
-	--icon-bgcolor: #fff;
+	--icon-color: var(--color-black);
+	--icon-bgcolor: var(--color-white);
 
 	margin-left: 0.5em;
 	padding: 0.2em 0.3em 0.1em;
 	border: 1px solid var(--icon-color);
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	display: inline-block;
 	color: var(--icon-color);
 	background-color: var(--icon-bgcolor);
@@ -314,7 +314,7 @@
 	margin-left: 1em;
 	padding: 0.1em 0.5em;
 	border: 1px solid #666;
-	border-radius: 0.25em;
+	border-radius: var(--border-radius-normal);
 	display: inline-block;
 	background: #eee;
 	font-size: calc(1rem / var(--font-ratio-2));

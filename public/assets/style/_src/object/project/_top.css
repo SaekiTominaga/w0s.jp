@@ -37,7 +37,7 @@
 
 	& a {
 		border: 1px solid #ccc;
-		border-radius: 5px;
+		border-radius: var(--border-radius-normal);
 		box-shadow: 0 1px 2px #ccc;
 		flex: 1;
 		color: inherit;
@@ -56,7 +56,7 @@
 	margin: -1px -1px 0;
 
 	& img {
-		border-radius: 4px 4px 0 0;
+		border-radius: calc(var(--border-radius-normal) - 1px) calc(var(--border-radius-normal) - 1px) 0 0;
 		display: block;
 		width: 100%;
 		object-fit: cover;
@@ -104,7 +104,7 @@
 	}
 
 	@nest :any-link:focus &, :any-link:hover & {
-		--disclosure-color: #000;
+		--disclosure-color: var(--color-black);
 
 		text-shadow: 1px 1px 0 #ddd, 1px -1px 0 #ddd, -1px 1px 0 #ddd, -1px -1px 0 #ddd;
 	}
@@ -118,13 +118,11 @@
 .p-top-update {
 	margin-top: 5px;
 	border: 2px groove #ccc;
-	border-radius: 5px;
-	background: #fff;
+	border-radius: var(--border-radius-normal);
+	background: var(--color-white);
 
-	& > li {
-		& + li {
-			border-top: 1px dotted #ddd;
-		}
+	& > li:not(:first-child) {
+		border-top: 1px dotted #ddd;
 	}
 }
 
@@ -147,12 +145,12 @@
 }
 
 .p-top-update__icon {
-	--icon-color: #fff;
+	--icon-color: var(--color-white);
 	--icon-bgcolor: #767676;
 
 	padding: 0.15em 0.35em 0.1em;
 	border: 1px solid var(--icon-bgcolor);
-	border-radius: 0.4em;
+	border-radius: var(--border-radius-normal);
 	display: inline-block;
 	color: var(--icon-color);
 	background-color: var(--icon-bgcolor);
