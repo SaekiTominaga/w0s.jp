@@ -26,6 +26,7 @@ Styleguide 1.5.1
 	--_width: auto;
 	--_color: var(--color-black);
 	--_background: var(--color-white);
+	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
 	padding: var(--_padding-row) var(--_padding-col);
@@ -39,6 +40,7 @@ Styleguide 1.5.1
 	width: var(--_width);
 	color: var(--_color);
 	background: var(--_background);
+	font-size: var(--_font-size);
 	font-weight: bold;
 	line-height: var(--line-height-narrow);
 	text-decoration: none;
@@ -59,7 +61,8 @@ Styleguide 1.5.1
 
 	/* トップページの見出し横では小さく表示 */
 	@nest .p-top-hdg & {
-		font-size: calc(100% / var(--font-ratio-1));
+		--_padding-row: 0.35em;
+		--_font-size: calc(100% / var(--font-ratio-1));
 	}
 
 	/* Feed */
