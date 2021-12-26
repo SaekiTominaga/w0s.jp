@@ -60,43 +60,47 @@
 .p-header-gnav {
 	border: solid var(--color-border-light);
 	border-width: 1px 0;
+	display: flex;
+	justify-content: center;
 	background: var(--color-bg-verylight);
 }
 
 .p-header-gnav__links {
-	margin: 0 auto -1px;
-	border-left: 1px solid var(--color-border-light);
+	margin: -0.5px 0;
 	display: flex;
 	flex-flow: wrap;
-	max-width: var(--page-max-width);
+	width: min(100%, var(--page-max-width));
 
 	& > li {
-		border: solid var(--color-border-light);
-		border-width: 0 1px 1px 0;
+		margin: -0.5px;
+		border: 1px solid var(--color-border-light);
 		display: flex;
 		flex: auto;
 	}
 }
 
 .p-header-gnav__link {
+	--_color: var(--color-darkgray);
 	--_background: var(--color-bg-light);
 
 	padding: 0.5em 0.25em;
 	box-sizing: border-box;
 	width: 100%;
-	color: var(--color-darkgray);
+	color: var(--_color);
 	background: var(--_background);
 	font-size: clamp(1rem, 2.5vw, calc(1rem * var(--font-ratio-2)));
 	text-align: center;
 	text-decoration: none;
-	outline-offset: -1px;
 	outline-width: 2px;
+	outline-offset: -1.5px;
 
 	&:any-link {
 		--_background: linear-gradient(var(--color-white), var(--color-bg-light));
 
 		&:hover {
 			--_background: linear-gradient(var(--color-bg-light), var(--color-white));
+
+			color: var(--_color);
 		}
 	}
 
