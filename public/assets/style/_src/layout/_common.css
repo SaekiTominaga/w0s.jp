@@ -57,6 +57,9 @@
 
 /* ===== コンテンツエリア ===== */
 .l-content {
+	--_stack-margin-row: 0em;
+	--_stack-width: auto;
+
 	grid-column: content;
 
 	/* サイドバーがない場合は全幅で表示 */
@@ -66,6 +69,23 @@
 }
 
 .l-content__header {
+	--_line-height: var(--line-height-narrow);
+
+	line-height: var(--_line-height);
+
+	& > [class^="p-"] {
+		margin-left: auto;
+		margin-right: auto;
+		width: var(--_stack-width);
+
+		&:not(:first-child) {
+			margin-top: calc(var(--_stack-margin-row) * var(--_line-height));
+		}
+
+		&:not(:last-child) {
+			margin-bottom: calc(var(--_stack-margin-row) * var(--_line-height));
+		}
+	}
 }
 
 .l-content__main {
@@ -75,7 +95,20 @@
 }
 
 .l-content__footer {
+	--_line-height: var(--line-height-narrow);
+
 	margin-top: 60px;
+	line-height: var(--_line-height);
+
+	& > [class^="p-"] {
+		&:not(:first-child) {
+			margin-top: calc(var(--_stack-margin-row) * var(--_line-height));
+		}
+
+		&:not(:last-child) {
+			margin-bottom: calc(var(--_stack-margin-row) * var(--_line-height));
+		}
+	}
 }
 
 /* ===== サイドバー ===== */
