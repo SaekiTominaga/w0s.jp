@@ -120,13 +120,9 @@
 	grid-column: sidebar;
 	line-height: var(--_line-height);
 
-	& > [class^="p-"] {
-		&:not(:first-child) {
-			margin-top: calc(var(--_stack-margin-row) * var(--_line-height));
-		}
-
-		&:not(:last-child) {
-			margin-bottom: calc(var(--_stack-margin-row) * var(--_line-height));
+	& > [class^="p-"]:not([hidden]) {
+		& + [class^="p-"] {
+			margin-top: calc(var(--_stack-margin-top) * var(--_line-height));
 		}
 	}
 }
