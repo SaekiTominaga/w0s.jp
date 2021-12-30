@@ -58,7 +58,7 @@
 
 /* ===== コンテンツエリア ===== */
 .l-content {
-	--_stack-margin-row: 0em;
+	--_stack-margin-row: 1em;
 	--_stack-width: auto;
 
 	grid-column: content;
@@ -90,8 +90,22 @@
 }
 
 .l-content__main {
+	--_line-height: var(--line-height-normal);
+
+	line-height: var(--_line-height);
+
 	@nest .l-content__header + & {
-		margin-top: 30px;
+		margin-top: 60px;
+	}
+}
+
+:is(.l-content__main > [class^="p-"], .l-content__main .p-section > [class^="p-"]) {
+	&:not(:first-child) {
+		margin-top: calc(var(--_stack-margin-row) * var(--_line-height));
+	}
+
+	&:not(:last-child) {
+		margin-bottom: calc(var(--_stack-margin-row) * var(--_line-height));
 	}
 }
 
@@ -102,6 +116,10 @@
 	line-height: var(--_line-height);
 
 	& > [class^="p-"] {
+		margin-left: auto;
+		margin-right: auto;
+		width: var(--_stack-width);
+
 		&:not(:first-child) {
 			margin-top: calc(var(--_stack-margin-row) * var(--_line-height));
 		}

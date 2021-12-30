@@ -237,10 +237,6 @@
 
 /* ===== セクション ===== */
 .p-section {
-	--margin-start: var(--component-interval);
-
-	margin: calc(var(--margin-start) - 10px) -10px -10px;
-	padding: 10px;
 	border-radius: var(--border-radius-large);
 
 	&:target {
@@ -248,24 +244,15 @@
 	}
 
 	&.-hdg-a {
-		--margin-start: calc(var(--component-interval) * 3);
 	}
 
 	&.-hdg-b {
-		--margin-start: calc(var(--component-interval) * 2.5);
 	}
 
 	&.-hdg-c {
-		--margin-start: calc(var(--component-interval) * 2);
 	}
 
 	&.-hdg-d {
-		--margin-start: calc(var(--component-interval) * 1.5);
-	}
-
-	/* <section> + <hn> + <section> のケースでコンポーネント間隔が無駄に広い状態になるのを防ぐ */
-	@nest .p-hdg + &, .p-hdg + .p-tile > .p-tile__tile > & {
-		--margin-start: var(--component-interval);
 	}
 }
 

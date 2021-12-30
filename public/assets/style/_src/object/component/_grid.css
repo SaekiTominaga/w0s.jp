@@ -1,0 +1,53 @@
+/*
+グリッド
+
+Markup:
+<div class="c-grid {{modifier_class}}">
+<div class="c-grid__cell">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__cell">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__cell">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__cell">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__cell">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+</div>
+
+.-wide - 2カラム
+.-medium - 3カラム
+.-narrow - 4カラム
+
+Styleguide 1.5.
+*/
+.c-grid {
+	--_max-width: auto;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(var(--_max-width), 100%), 1fr));
+	gap: calc(3em * var(--_line-height)) 30px;
+
+	/* ===== 2カラム ===== */
+	&.-wide {
+		--_max-width: 330px;
+	}
+
+	/* ===== 3カラム ===== */
+	&.-medium {
+		--_max-width: 240px;
+	}
+
+	/* ===== 4カラム ===== */
+	&.-narrow {
+		--_max-width: 180px;
+	}
+}
+
+.c-grid__cell {
+}
