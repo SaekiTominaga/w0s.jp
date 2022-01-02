@@ -8,23 +8,18 @@ Styleguide 2.5.
 ブロック画像
 
 Markup:
-<div class="p-image">
-<div class="p-image__image-area">
+<div class="p-embedded">
 <img src="https://dummyimage.com/320x180/ccc/fff" alt="" class="c-image"/>
-</div>
 </div>
 
 Styleguide 2.5.1
 */
-.p-image {
-}
-
-.p-image__image-area {
-	--_expand-icon-padding: 4px;
-
+.p-embedded {
 	position: relative;
 
 	& > :any-link {
+		--_expand-icon-padding: 4px;
+
 		display: inline-block;
 		outline-width: 2px;
 		outline-offset: -1px;
@@ -36,9 +31,9 @@ Styleguide 2.5.1
 			top: 1px;
 			left: 1px;
 			content: "";
-			height: 24px;
-			width: 24px;
 			display: block;
+			width: 24px;
+			height: 24px;
 			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
 		}
 
@@ -46,45 +41,6 @@ Styleguide 2.5.1
 			--_expand-icon-padding: 3px;
 		}
 	}
-}
-
-/*
-動画
-
-Markup:
-<div class="p-video">
-<figure class="p-video__video-area">
-<video controls="" poster="https://dummyimage.com/320x180/ccc/fff" width="320" height="180">
-<source src="hoge.mp4" type="video/mp4"/>
-</video>
-</figure>
-</div>
-
-Styleguide 2.5.2
-*/
-.p-video {
-}
-
-.p-video__video-area {
-}
-
-/*
-音声
-
-Markup:
-<div class="p-audio">
-<figure class="p-audio__audio-area">
-<audio src="hoge.m4a" controls="" preload="none">
-</audio>
-</figure>
-</div>
-
-Styleguide 2.5.3
-*/
-.p-audio {
-}
-
-.p-audio__audio-area {
 }
 
 /*
@@ -106,7 +62,7 @@ Markup:
 .-medium - 画像サイズ中
 .-large - 画像サイズ大
 
-Styleguide 2.5.4
+Styleguide 2.5.2
 */
 .p-image-sbs {
 	display: flex;
@@ -234,7 +190,7 @@ Markup:
 	</div>
 </div>
 
-Styleguide 2.5.5
+Styleguide 2.5.3
 */
 .p-external {
 	@media (--breakpoint) {
