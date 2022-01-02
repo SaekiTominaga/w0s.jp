@@ -1,7 +1,7 @@
 /*
 埋め込みコンテンツ
 
-Styleguide 2.6.
+Styleguide 2.5.
 */
 
 /*
@@ -14,17 +14,23 @@ Markup:
 </div>
 </div>
 
-Styleguide 2.6.1
+Styleguide 2.5.1
 */
 .p-image {
 }
 
 .p-image__image-area {
+	--_expand-icon-padding: 4px;
+
 	position: relative;
 
-	& > a {
+	& > :any-link {
+		display: inline-block;
+		outline-width: 2px;
+		outline-offset: -1px;
+
 		&::before {
-			padding: 4px;
+			padding: var(--_expand-icon-padding);
 			box-sizing: border-box;
 			position: absolute;
 			top: 1px;
@@ -33,25 +39,11 @@ Styleguide 2.6.1
 			height: 24px;
 			width: 24px;
 			display: block;
-			background: rgba(0, 0, 0, 70%) var(--image-image-expand) center/contain no-repeat content-box border-box;
+			background: rgb(0 0 0/ 70%) var("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
 		}
 
-		& .c-image {
-			min-width: 25px;
-			min-height: 25px;
-		}
-
-		&:hover,
-		&:focus {
-			outline: var(--focus-ring-width) solid var(--focus-ring-color);
-
-			&::before {
-				padding: 3px;
-			}
-
-			& .c-image {
-				border-color: var(--focus-ring-color);
-			}
+		&:hover {
+			--_expand-icon-padding: 3px;
 		}
 	}
 }
@@ -68,7 +60,7 @@ Markup:
 </figure>
 </div>
 
-Styleguide 2.6.2
+Styleguide 2.5.2
 */
 .p-video {
 }
@@ -87,7 +79,7 @@ Markup:
 </figure>
 </div>
 
-Styleguide 2.6.3
+Styleguide 2.5.3
 */
 .p-audio {
 }
@@ -114,7 +106,7 @@ Markup:
 .-medium - 画像サイズ中
 .-large - 画像サイズ大
 
-Styleguide 2.6.4
+Styleguide 2.5.4
 */
 .p-image-sbs {
 	display: flex;
@@ -189,9 +181,6 @@ Styleguide 2.6.4
 }
 
 .p-image-sbs__text-area {
-	& > :first-child {
-		margin-top: 0;
-	}
 }
 
 .p-image-sbs__image-area {
@@ -209,7 +198,7 @@ Styleguide 2.6.4
 			height: 24px;
 			width: 24px;
 			display: block;
-			background: rgba(0, 0, 0, 70%) var(--image-image-expand) center/contain no-repeat content-box border-box;
+			background: rgb(0 0 0/ 70%) var("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
 		}
 
 		& .c-image {
@@ -230,4 +219,42 @@ Styleguide 2.6.4
 			}
 		}
 	}
+}
+
+/*
+外部サービス埋め込み
+
+Markup:
+<div class="p-external">
+	<div class="p-external__frame">
+		<iframe src="https://example.com/embed" title="埋め込みタイトル"></iframe>
+	</div>
+	<div class="p-external__meta">
+		リンクなど
+	</div>
+</div>
+
+Styleguide 2.5.5
+*/
+.p-external {
+	@media (--breakpoint) {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+}
+
+.p-external__frame {
+	& > iframe {
+		border: 1px solid;
+		box-sizing: border-box;
+		display: block;
+		width: 100%;
+		height: min(100vh, var(--height, 600px));
+	}
+}
+
+.p-external__meta {
+	margin-top: 0.5em;
+	font-size: calc(100% / var(--font-ratio-1));
+	text-align: right;
 }

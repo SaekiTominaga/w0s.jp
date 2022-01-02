@@ -1,0 +1,58 @@
+/*
+セクション
+
+Markup:
+<section class="c-section {{modifier_class}}">
+	<h2>セクション</h2>
+</section>
+
+.-hdg-a - 見出しA
+.-hdg-b - 見出しB
+.-hdg-c - 見出しC
+.-hdg-d - 見出しD
+
+Styleguide 2.1.
+*/
+@keyframes section-target {
+	0% {
+		background-color: #fdd;
+	}
+
+	50% {
+		background-color: #fdd;
+	}
+
+	100% {
+		background-color: transparent;
+	}
+}
+
+.c-section {
+	&:target {
+		animation: section-target 1s;
+	}
+}
+
+:not(.p-hdg) + .c-section {
+	--_margin-row: calc(1em * var(--_line-height));
+
+	&:not(:first-child) {
+		margin-top: var(--_margin-row);
+	}
+
+	&:not(:last-child) {
+		margin-bottom: var(--_margin-row);
+	}
+
+	&.-hdg-a {
+		--_margin-row: calc(3em * var(--_line-height));
+	}
+
+	&.-hdg-b {
+		--_margin-row: calc(2.5em * var(--_line-height));
+	}
+
+	&.-hdg-c {
+		--_margin-row: calc(2em * var(--_line-height));
+	}
+}

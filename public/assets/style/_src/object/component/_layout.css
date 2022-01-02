@@ -1,0 +1,131 @@
+/*
+レイアウト
+
+Styleguide 1.7.
+*/
+
+/*
+グリッド
+
+Markup:
+<div class="c-grid {{modifier_class}}">
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+</div>
+
+.-hdg-a - 見出しA
+.-hdg-b - 見出しB
+.-hdg-c - 見出しC
+.-hdg-d - 見出しD
+
+.-wide - 2カラム
+.-medium - 3カラム
+.-narrow - 4カラム
+
+Styleguide 1.7.1
+*/
+.c-grid {
+	--_gap-row-base: 1em;
+	--_max-width: auto;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(var(--_max-width), 100%), 1fr));
+	gap: calc(var(--_gap-row-base) * var(--_line-height)) 50px;
+
+	&.-hdg-a {
+		--_gap-row-base: 3em;
+	}
+
+	&.-hdg-b {
+		--_gap-row-base: 2.5em;
+	}
+
+	&.-hdg-c {
+		--_gap-row-base: 2em;
+	}
+
+	&.-hdg-d {
+		--_gap-row-base: 1.5em;
+	}
+
+	/* 2カラム */
+	&.-wide {
+		--_max-width: 330px;
+	}
+
+	/* 3カラム */
+	&.-medium {
+		--_max-width: 240px;
+	}
+
+	/* 4カラム */
+	&.-narrow {
+		--_max-width: 180px;
+	}
+}
+
+.c-grid__item {
+}
+
+/*
+フレックスボックス
+
+Markup:
+<div class="c-flex">
+<div class="c-flex__item">
+<p>フレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックス</p>
+</div>
+<div class="c-flex__item">
+<p>フレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックス</p>
+</div>
+<div class="c-flex__item">
+<p>フレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックス</p>
+</div>
+</div>
+
+.-hdg-a - 見出しA
+.-hdg-b - 見出しB
+.-hdg-c - 見出しC
+.-hdg-d - 見出しD
+
+Styleguide 1.7.2
+*/
+.c-flex {
+	--_gap-row-base: 1em;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: calc(var(--_gap-row-base) * var(--_line-height)) 50px;
+
+	&.-hdg-a {
+		--_gap-row-base: 3em;
+	}
+
+	&.-hdg-b {
+		--_gap-row-base: 2.5em;
+	}
+
+	&.-hdg-c {
+		--_gap-row-base: 2em;
+	}
+
+	&.-hdg-d {
+		--_gap-row-base: 1.5em;
+	}
+}
+
+.c-flex__item {
+}

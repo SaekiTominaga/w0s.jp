@@ -1,0 +1,107 @@
+/*
+表
+
+Styleguide 2.6.
+*/
+
+/*
+データ表
+
+Markup:
+<table class="p-table {{modifier_class}}">
+<caption>キャプション <small>（注釈）</small></caption>
+<thead>
+<tr>
+<th scope="col">見出し</th>
+<th scope="col">見出し</th>
+<th scope="col">見出し</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">見出し</th>
+<td>データ</td>
+<td>データ</td>
+</tr>
+<tr>
+<th scope="row">見出し</th>
+<td>データ</td>
+<td>データ</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<th scope="col">見出し</th>
+<th scope="col">見出し</th>
+<th scope="col">見出し</th>
+</tr>
+</tfoot>
+</table>
+
+.-full - 全幅
+.-font-small - 文字サイズを小さくする
+
+Styleguide 2.6.1
+*/
+.p-table {
+	--_color: var(--color-black);
+	--_bg-color: var(--color-white);
+	--_font-size-base: 100%;
+	--_font-weight: normal;
+
+	font-weight: var(--_font-weight);
+	line-height: var(--line-height-narrow);
+
+	/* 全幅 */
+	&.-full {
+		width: 100%;
+	}
+
+	/* 文字サイズを小さくする */
+	&.-font-small {
+		--_font-size-base: 80%;
+	}
+
+	& > caption {
+		--_font-weight: bold;
+
+		text-align: center;
+
+		& small {
+			--_font-weight: normal;
+
+			font-size: calc(100% / var(--font-ratio-1));
+		}
+	}
+
+	& :is(td, th) {
+		padding: 0.75em min(1vw, 10px);
+		border: 1px solid;
+		color: var(--_color);
+		background: var(--_bg-color);
+		font-size: clamp(calc(var(--_font-size-base) / var(--font-ratio-1)), 2vw, var(--_font-size-base));
+	}
+
+	& th {
+		--_bg-color: var(--color-bg-verylight);
+		--_font-weight: bold;
+	}
+
+	& > thead {
+		& th {
+			--_bg-color: var(--color-bg-light);
+
+			text-align: center;
+		}
+	}
+
+	& > :is(thead + tbody, tbody + tbody, tfoot) {
+		border-top: 2px solid;
+	}
+
+	& > tfoot {
+		& :is(td, th) {
+			--_bg-color: var(--color-bg-light);
+		}
+	}
+}

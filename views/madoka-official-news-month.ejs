@@ -42,21 +42,21 @@
 					<nav class="p-local-nav">
 						<ul class="p-local-nav__list">
 							<% if (nextMonth !== null) { %>
-							<li class="c-link">
-								<a href="/madoka/official/news/<%= nextMonth.format('YYYY-MM') %>" rel="prev">新しい月（<%= nextMonth.format('YYYY年M月') %>）</a>
+							<li>
+								<a href="/madoka/official/news/<%= nextMonth.format('YYYY-MM') %>" rel="prev" class="c-link">新しい月（<%= nextMonth.format('YYYY年M月') %>）</a>
 							</li>
 							<% } %> <% if (prevMonth !== null) { %>
-							<li class="c-link">
-								<a href="/madoka/official/news/<%= prevMonth.format('YYYY-MM') %>" rel="next">古い月（<%= prevMonth.format('YYYY年M月') %>）</a>
+							<li>
+								<a href="/madoka/official/news/<%= prevMonth.format('YYYY-MM') %>" rel="next" class="c-link">古い月（<%= prevMonth.format('YYYY年M月') %>）</a>
 							</li>
 							<% } %>
 						</ul>
 					</nav>
 				</div>
 				<main class="l-content__main">
-					<section class="p-section -hdg-a">
+					<section class="c-section -hdg-a">
 						<div class="p-hdg">
-							<h2 class="p-hdg__hdg"><%= page.query.month.format('YYYY年M月') %>のニュース一覧<span class="p-hdg__sub-hdg">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
+							<h2><%= page.query.month.format('YYYY年M月') %>のニュース一覧<span class="p-hdg__sub">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
 						</div>
 
 						<ul class="p-madoka-official-news">
@@ -117,20 +117,20 @@
 							<% } %>
 						</ul>
 					</section>
-					<section class="p-section -hdg-a">
+					<section class="c-section -hdg-a">
 						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">他の月を見る</h2>
+							<h2>他の月を見る</h2>
 						</div>
 
 						<div class="c-grid -narrow">
 							<% for (const [year, yearData] of monthDataList) { %>
-							<div class="c-grid__cell">
-								<section class="p-section -hdg-b">
+							<div class="c-grid__item">
+								<section class="c-section -hdg-b">
 									<div class="p-hdg">
-										<h3 class="p-hdg__hdg"><%= year %>年</h3>
+										<h3><%= year %>年</h3>
 									</div>
 
-									<ul class="p-links">
+									<ul class="p-link">
 										<% for (const [month, count] of yearData) { %>
 										<li>
 											<% if (page.query.month.format('YYYYM') !== `${String(year)}${String(month)}`) { %>

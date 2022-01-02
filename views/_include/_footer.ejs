@@ -2,11 +2,11 @@
 	<div class="l-footer__nav">
 		<ul class="p-footer-nav">
 			<% for (const [path, title] of new Map([ ['/info', '制作者'], ['/privacy', 'プライバシーポリシー'], ['/technology', '当サイトの Web 技術'], ['/contact', '問い合わせ'], ])) { %>
-			<li class="c-link">
+			<li>
 				<% if (page.path !== path) { %>
-				<a href="<%= path %>"><%= title %></a>
+				<a href="<%= path %>" class="c-link"><%= title %></a>
 				<% } else { %>
-				<a aria-current="page"><%= title %></a>
+				<a aria-current="page" class="c-link"><%= title %></a>
 				<% } %>
 			</li>
 			<% } %>

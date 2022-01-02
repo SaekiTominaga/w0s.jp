@@ -1,0 +1,75 @@
+/* M1, Tc2 などのユニット数字 */
+.u-tokyu-unit {
+	font-size: 65%;
+}
+
+/* 車体構造 */
+.u-tokyu-style {
+	/* 軽量車（8000系、8500系） */
+	&.-light {
+		text-decoration: underline double;
+	}
+}
+
+/* 更新 */
+.u-tokyu-renewal {
+	/* 車体更新 */
+	&.-body {
+		color: var(--color-blue);
+		text-decoration: underline wavy;
+	}
+
+	/* 室内更新 */
+	&.-room {
+		color: #e40000;
+		text-decoration: underline dashed;
+	}
+
+	/* 化粧板修繕 */
+	&.-board {
+		color: #070;
+		text-decoration: underline;
+	}
+
+	/* 新玉川線復旧（8000系） */
+	&.-shintama {
+		border: solid #dfd;
+		border-width: 1px 0;
+		background: #dfd;
+	}
+}
+
+/* ===== SIV 区分 ===== */
+.u-tokyu-siv {
+	font-weight: bold;
+	text-decoration: underline var(--_text-decoration-style);
+
+	@nest .p-table & {
+		background-color: var(--_bgcolor);
+		text-decoration-color: var(--_bgcolor);
+	}
+
+	/* BS-482 */
+	&.-bs482 {
+		--_bgcolor: #ff6;
+		--_text-decoration-style: double;
+	}
+
+	/* INV-008 */
+	&.-inv008 {
+		--_bgcolor: #fbc;
+		--_text-decoration-style: dotted;
+	}
+
+	/* INV-029 */
+	&.-inv029 {
+		--_bgcolor: #cfc;
+		--_text-decoration-style: dashed;
+	}
+
+	/* INV-095 */
+	&.-inv095 {
+		--_bgcolor: #0ff;
+		--_text-decoration-style: wavy;
+	}
+}

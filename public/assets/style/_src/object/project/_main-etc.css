@@ -26,7 +26,7 @@ Styleguide 2.99.1
 ボックス
 
 Markup:
-<div class="p-box {{modifier_class}}">
+<div class="p-box">
 <p>テキスト</p>
 </div>
 
@@ -34,13 +34,9 @@ Styleguide 2.99.2
 */
 .p-box {
 	padding: 1em;
-	border: 1px solid #666;
-	border-radius: var(--border-radius-large);
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
-
-	& > :first-child {
-		margin-top: 0;
-	}
 }
 
 /*
@@ -125,79 +121,73 @@ Styleguide 2.99.3
 トグル
 
 Markup:
-<ul class="p-toggle">
-<li>
-<details class="js-toggle">
+<details class="p-toggle">
 <summary>タイトル</summary>
-<div class="p-toggle__contents js-toggle-contents">
+<div class="p-toggle__contents">
 <p>テキスト</p>
 </div>
 </details>
-</li>
-<li>
-<details class="js-toggle">
-<summary>タイトル</summary>
-<div class="p-toggle__contents js-toggle-contents">
-<p>テキスト</p>
-</div>
-</details>
-</li>
-</ul>
 
 Styleguide 2.99.4
 */
 .p-toggle {
-	& > li {
-		& + li {
-			margin-top: 0.5em;
+	--_color: #009;
+	--_icon: polygon(0 42%, 42% 42%, 42% 0, 58% 0, 58% 42%, 100% 42%, 100% 58%, 58% 58%, 58% 100%, 42% 100%, 42% 58%, 0 58%);
+
+	& > summary {
+		padding: 0.75em 1.5%;
+		border: 1px solid var(--color-border-dark);
+		border-radius: var(--border-radius-small);
+		box-sizing: border-box;
+		color: var(--_color);
+		background: var(--color-bg-superlight);
+		font-size: calc(100% * var(--font-ratio-1));
+		line-height: var(--line-height-narrow);
+		cursor: default;
+		outline-width: 2px;
+		outline-offset: -1px;
+
+		&:hover {
+			box-shadow: 0 0 0.25em var(--color-border-light);
+		}
+
+		&:not(:focus-visible) {
+			outline: none;
+		}
+
+		& > :is(h2, h3, h4) {
+			display: inline-block;
 		}
 	}
 
-	& details {
+	&[data-pre-open] {
 		& > summary {
-			padding: 0.8em 2.5em 0.7em 1em;
-			border: 1px solid #999;
-			border-radius: var(--border-radius-small);
-			box-sizing: border-box;
-			display: block;
-			width: 100%;
-			color: #009;
-			background: #fcfcfc url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cmVjdCB4PSIwIiB5PSIxNSIgd2lkdGg9IjM2IiBoZWlnaHQ9IjYiIGZpbGw9IiMwMDkiLz48cmVjdCB4PSIxNSIgeT0iMCIgd2lkdGg9IjYiIGhlaWdodD0iMzYiIGZpbGw9IiMwMDkiLz48L3N2Zz4=") no-repeat right 0.5em top 50% / 1.5em;
-			font-size: calc(1rem * var(--font-ratio-1));
-			line-height: var(--line-height-narrow);
-			text-align: left;
-			cursor: default;
+			list-style: none;
 
-			&:focus,
-			&:hover {
-				box-shadow: 0 0 0.2em #ccc;
-			}
-
-			@media (max-width: 37.5em) {
-				padding-left: 0.5em;
+			&::before {
+				margin-right: 1.5%;
+				content: "";
+				display: inline-block;
+				clip-path: var(--_icon);
+				width: 1em;
+				height: 1em;
+				background: var(--_color);
+				vertical-align: calc((1 - var(--line-height-narrow)) * 0.5em);
 			}
 
 			&::-webkit-details-marker {
-				display: none;
+				display: none; /* for Safari */
 			}
 		}
+	}
 
-		&[data-pre-open="true"] {
-			margin-bottom: 3em;
-
-			& > summary {
-				background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cmVjdCB4PSIwIiB5PSIxNSIgd2lkdGg9IjM2IiBoZWlnaHQ9IjYiIGZpbGw9IiMwMDkiLz48L3N2Zz4=");
-			}
-		}
+	&[data-pre-open="true"] {
+		--_icon: polygon(0 42%, 100% 42%, 100% 58%, 0 58%);
 	}
 }
 
 .p-toggle__contents {
 	padding-top: 16px;
-
-	& > :first-child {
-		margin-top: 0;
-	}
 }
 
 /*
@@ -354,70 +344,6 @@ Styleguide 2.99.5
 .p-amazon__time {
 	margin: 0.5em 0 0 0.702em;
 	font-size: calc(1rem / var(--font-ratio-1));
-}
-
-/*
-外部サービスのフレーム埋め込み
-
-Markup:
-<div class="p-external-embed">
-<p class="p-external-embed__frame"><iframe src="https://example.com/embed" title="埋め込みタイトル"></iframe></p>
-<p class="p-external-embed__link"><a href="https://example.com/viewer">リンクテキスト</a></p>
-</div>
-
-Styleguide 2.99.6
-*/
-.p-external-embed {
-	@media (--breakpoint) {
-		margin-right: 20px;
-		margin-left: 10px;
-	}
-}
-
-.p-external-embed__frame {
-	& > iframe {
-		border: 1px solid;
-		box-sizing: border-box;
-		display: block;
-		height: var(--height, 600px);
-		width: 100%;
-
-		@media (--breakpoint) {
-			--height: 100vh;
-		}
-	}
-}
-
-.p-external-embed__link {
-	margin-top: 0.5em;
-	font-size: calc(1rem / var(--font-ratio-1));
-	text-align: right;
-
-	& :any-link {
-		--bullet-width: 0.45em;
-		--bullet-height: 0.75em;
-		--bullet-color: #0bb;
-		--bullet-gap: 0.5em;
-
-		padding-left: calc(var(--bullet-width) + var(--bullet-gap));
-		display: inline-block;
-		text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
-
-		&::before {
-			margin-right: var(--bullet-gap);
-			content: "";
-			display: inline-block;
-			clip-path: var(--shape-link-triangle);
-			width: var(--bullet-width);
-			height: var(--bullet-height);
-			background: var(--bullet-color);
-		}
-
-		&:focus,
-		&:hover {
-			--bullet-color: var(--link-color-hover);
-		}
-	}
 }
 
 /*

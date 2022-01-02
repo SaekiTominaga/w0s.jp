@@ -1,0 +1,187 @@
+/*
+リスト
+
+Styleguide 2.3.
+*/
+
+/*
+通常リスト
+
+Markup:
+<ul class="p-list">
+<li>リストテキスト</li>
+<li>リストテキスト
+<ul>
+<li>リストテキスト</li>
+</ul></li>
+</ul>
+
+Styleguide 2.3.1
+*/
+.p-list {
+	& > li,
+	& > li > :is(ol, ul) > li,
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		margin-left: 1em;
+	}
+
+	& > li + li,
+	& > li > :is(ol, ul) > li,
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		margin-top: 0.25em;
+	}
+
+	& > li {
+		list-style-type: disc;
+	}
+
+	& > li > :is(ol, ul) > li {
+		list-style-type: circle;
+	}
+
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		list-style-type: square;
+	}
+
+	& > li > :is(ol, ul) > li,
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		font-size: calc(100% / var(--font-ratio-1));
+	}
+}
+
+/*
+番号リスト
+
+Markup:
+<ul class="p-list-num">
+<li>リストテキスト</li>
+<li>リストテキスト</li>
+</ul>
+
+Styleguide 2.3.2
+*/
+.p-list-num {
+	& > li {
+		margin-left: 1.5em;
+		list-style: decimal;
+	}
+}
+
+/*
+記述リスト
+
+Markup:
+<dl class="p-list-description">
+<dt>タイトル</dt>
+<dd>テキスト</dd>
+<dt>タイトル</dt>
+<dd>テキスト</dd>
+</dl>
+
+Styleguide 2.3.3
+*/
+.p-list-description {
+	& > dt {
+		font-weight: bold;
+	}
+
+	& > dd + dt {
+		margin-top: 0.5em;
+	}
+
+	& > dd {
+		margin-left: 1em;
+	}
+}
+
+/*
+注釈リスト
+
+Markup:
+<ul class="p-note">
+<li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+</ul>
+
+Styleguide 2.3.4
+*/
+.p-note {
+	color: var(--color-darkgray);
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-narrow);
+
+	& > li {
+		margin-left: 1.25em;
+		list-style-type: "※ ";
+
+		& + li {
+			margin-top: 0.75em;
+		}
+	}
+}
+
+/*
+リンクリスト
+
+Markup:
+<ul class="p-link {{modifier_class}}">
+<li><a href="https://example.com/">リンク</a></li>
+<li><a href="https://example.com/">リンク</a>
+<p>テキストテキストテキスト</p></li>
+<li><a href="https://example.com/">リンク</a>
+	<ul>
+	<li><a href="https://example.com/">リンク</a></li>
+	</ul></li>
+</ul>
+
+Styleguide 2.3.5
+*/
+.p-link {
+	--_icon-clip-path: var(--shape-link-triangle);
+	--_icon-height: 0.75em;
+	--_icon-width: calc(var(--_icon-height) * 0.6);
+	--_icon-color: var(--color-gray);
+	--_icon-gap: 0.5em;
+
+	margin-left: calc(var(--_icon-width) + var(--_icon-gap));
+	font-size: calc(100% * var(--font-ratio-2));
+
+	& > li > ul {
+		--_icon-clip-path: polygon(55% 0, 55% 45%, 100% 45%, 100% 55%, 45% 55%, 45% 0);
+		--_icon-width: var(--_icon-height);
+		--_icon-color: var(--color-black);
+
+		margin-left: calc((var(--_icon-width) + var(--_icon-gap)) / 2);
+		font-size: calc(100% / var(--font-ratio-1));
+	}
+
+	& > li + li {
+		margin-top: 0.5em;
+	}
+
+	& > li > ul > li {
+		margin-top: 0.25em;
+	}
+
+	& > li > a,
+	& > li > ul > li > a {
+		margin-left: calc(0px - var(--_icon-width) - var(--_icon-gap));
+
+		&::before {
+			margin-right: var(--_icon-gap);
+			content: "";
+			display: inline-block;
+			clip-path: var(--_icon-clip-path);
+			width: var(--_icon-width);
+			height: var(--_icon-height);
+			background: var(--_icon-color);
+		}
+	}
+
+	& > li > :any-link {
+		--_icon-color: var(--link-color-bullet);
+
+		&:hover {
+			--_icon-color: var(--link-color-hover);
+		}
+	}
+}

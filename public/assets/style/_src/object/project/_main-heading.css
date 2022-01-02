@@ -1,0 +1,67 @@
+/*
+見出し
+
+Markup:
+<div class="p-hdg">
+	<h2>見出し <span class="p-hdg__sub">（サブ）</span></h2>
+</div>
+
+Styleguide 2.1.
+*/
+.p-hdg {
+	line-height: var(--line-height-narrow);
+
+	@nest .c-section.-hdg-a > & {
+		--_stack-margin-row: calc(1.5em * var(--_line-height));
+
+		padding: 0.25em 0;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid var(--color-border-dark);
+
+		& h2 {
+			font-size: calc(100% * var(--font-ratio-6));
+			font-weight: bold;
+
+			&::before {
+				margin-right: 0.5em;
+				border-radius: var(--border-radius-full);
+				content: "";
+				display: inline-block;
+				width: 0.25em;
+				height: 1em;
+				background: var(--color-gray);
+				vertical-align: calc(-0.1em * var(--line-height-narrow));
+			}
+		}
+	}
+
+	@nest .c-section.-hdg-b > & {
+		& h3 {
+			font-size: calc(100% * var(--font-ratio-4));
+			font-weight: bold;
+
+			&::before {
+				margin-right: 0.5em;
+				border-radius: var(--border-radius-full);
+				content: "";
+				display: inline-block;
+				width: 0.25em;
+				height: 1em;
+				background: var(--color-lightgray);
+				vertical-align: calc(-0.1em * var(--line-height-narrow));
+			}
+		}
+	}
+
+	@nest .c-section.-hdg-c > & {
+		& :is(h3, h4) {
+			font-size: calc(100% * var(--font-ratio-2));
+			font-weight: bold;
+		}
+	}
+}
+
+.p-hdg__sub {
+	font-size: calc(100% / var(--font-ratio-2));
+	font-weight: normal;
+}

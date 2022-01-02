@@ -22,10 +22,7 @@
 			<div id="content" class="l-content">
 				<div class="l-content__header">
 					<div class="p-topic-path">
-						<p itemprop="breadcrumb">
-							<a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/">公式データ</a
-							><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a>
-						</p>
+						<p itemprop="breadcrumb"><a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/">公式データ</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
 					</div>
 
 					<div class="p-title">
@@ -64,22 +61,14 @@
 						</figure>
 					</div>
 
-					<section class="p-section -hdg-a">
+					<section class="c-section -hdg-a">
 						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">全期間のニュース一覧<span class="p-hdg__sub-hdg">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
+							<h2>全期間のニュース一覧<span class="p-hdg__sub">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
 						</div>
 
-						<div class="p-note">
-							<p class="p-note__note">
-								<span class="p-note__mark">※</span>
-								<span class="p-note__text"
-									><time datetime="2021-01">2021年1月</time>をもって収集を停止したので、それ以降のデータは<a
-										href="https://www.madoka-magica.com/rebellion/news/"
-										>公式サイトのニュースページ</a
-									>を参照ください。</span
-								>
-							</p>
-						</div>
+						<ul class="p-note">
+							<li><time datetime="2021-01">2021年1月</time>をもって収集を停止したので、それ以降のデータは<a href="https://www.madoka-magica.com/rebellion/news/">公式サイトのニュースページ</a>を参照ください。</li>
+						</ul>
 
 						<ul class="p-madoka-official-news -compact">
 							<% for (const news of newsListMovie) { %>
@@ -103,20 +92,20 @@
 							<% } %>
 						</ul>
 					</section>
-					<section class="p-section -hdg-a">
+					<section class="c-section -hdg-a">
 						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">他の月を見る</h2>
+							<h2>他の月を見る</h2>
 						</div>
 
 						<div class="c-grid -narrow">
 							<% for (const [year, yearData] of monthDataList) { %>
-							<div class="c-grid__cell">
-								<section class="p-section -hdg-b">
+							<div class="c-grid__item">
+								<section class="c-section -hdg-b">
 									<div class="p-hdg">
-										<h3 class="p-hdg__hdg"><%= year %>年</h3>
+										<h3><%= year %>年</h3>
 									</div>
 
-									<ul class="p-links">
+									<ul class="p-link">
 										<% for (const [month, count] of yearData) { %>
 										<li>
 											<a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月 (<%= count %>件)</a>

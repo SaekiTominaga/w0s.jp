@@ -1,7 +1,7 @@
 /*
 リンク
 
-Styleguide 1.2.
+Styleguide 1.3.
 */
 
 /*
@@ -9,88 +9,43 @@ Styleguide 1.2.
 
 Markup:
 <a href="/" class="c-link">他ページ</a>
+<a href="#" class="c-link">同一ページ</a>
 <a aria-current="page" class="c-link">現在ページ</a>
 
-Styleguide 1.2.1
+Styleguide 1.3.1
 */
 .c-link {
-	--_bullet-height: 0.75em;
-	--_bullet-width: calc(var(--_bullet-height) * 0.6);
-	--_bullet-color: var(--color-gray);
-	--_bullet-gap: 0.5em;
-
-	margin-left: calc(var(--_bullet-width) + var(--_bullet-gap));
-
-	& > a {
-		margin-left: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
-		outline-offset: 0.125em;
-
-		@nest .p-local-nav & {
-			margin-left: 0;
-		}
-
-		&::before {
-			margin-right: var(--_bullet-gap);
-			content: "";
-			display: inline-block;
-			clip-path: var(--shape-link-triangle);
-			width: var(--_bullet-width);
-			height: var(--_bullet-height);
-			background: var(--_bullet-color);
-		}
-
-		&:any-link {
-			--_bullet-color: var(--link-color-bullet);
-
-			&:hover {
-				--_bullet-color: var(--link-color-hover);
-			}
-		}
-	}
-}
-
-/*
-テキストリンク
-
-Markup:
-<a href="/" class="c-link-text">他ページへのリンク</a>
-<a href="#" class="c-link-text">ページ内リンク</a>
-
-Styleguide 1.2.2
-*/
-.c-link-text {
-	--bullet-width: 0.45em;
-	--bullet-height: 0.75em;
-	--bullet-color: #0bb;
-	--bullet-gap: 0.5em;
-	--bullet-clip-path: var(--shape-link-triangle);
-
-	padding-left: calc(var(--bullet-width) + var(--bullet-gap));
-	display: inline-block;
-	font-size: calc(1rem * var(--font-ratio-1));
-	text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+	--_icon-clip-path: var(--shape-link-triangle);
+	--_icon-width: 0.45em;
+	--_icon-height: 0.75em;
+	--_icon-color: var(--color-gray);
 
 	&::before {
-		margin-right: var(--bullet-gap);
+		margin-right: 0.5em;
 		content: "";
 		display: inline-block;
-		clip-path: var(--bullet-clip-path);
-		width: var(--bullet-width);
-		height: var(--bullet-height);
-		background: var(--bullet-color);
-		transform: rotate(var(--bullet-transform-rotate));
+		clip-path: var(--_icon-clip-path);
+		width: var(--_icon-width);
+		height: var(--_icon-height);
+		background: var(--_icon-color);
 	}
 
-	&:focus,
-	&:hover {
-		--bullet-color: var(--link-color-hover);
-	}
+	&:any-link {
+		/* 他ページ */
+		&:not([href^="#"]) {
+			--_icon-color: var(--link-color-bullet);
+		}
 
-	/* ページ内リンク */
-	&[href^="#"] {
-		--bullet-width: 0.75em;
-		--bullet-height: 0.45em;
-		--bullet-clip-path: var(--shape-pagelink-triangle);
+		/* 同一ページ */
+		&[href^="#"] {
+			--_icon-clip-path: var(--shape-pagelink-triangle);
+			--_icon-width: 0.75em;
+			--_icon-height: 0.5625em;
+		}
+
+		&:hover {
+			--_icon-color: var(--link-color-hover);
+		}
 	}
 }
 
@@ -98,14 +53,14 @@ Styleguide 1.2.2
 リンクやボタンのアイコン
 
 Markup:
-<a href="/">リンク<img src="https://w0s.jp/assets/image/link_icon_image.svg" alt="(画像)" class="c-link-icon"></a>
+<a href="/">リンク<img src="icon.svg" alt="ALT" class="c-link-icon"></a>
 
-Styleguide 1.2.3
+Styleguide 1.3.2
 */
 .c-link-icon {
 	margin: 0 0.25em;
 	box-sizing: border-box;
-	height: 1.15em;
 	width: auto;
+	height: 1.15em;
 	vertical-align: -0.2em;
 }
