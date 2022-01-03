@@ -5,17 +5,17 @@ Styleguide 2.5.
 */
 
 /*
-ブロック画像
+埋め込みコンテンツ（画像、動画、 <iframe> など）
 
 Markup:
-<figure class="p-embedded">
-<img src="https://dummyimage.com/320x180/ccc/fff" alt="" class="c-image"/>
-<figcaption class="p-embedded__caption">キャプション</figcaption>
+<figure class="p-embed">
+<img src="https://dummyimage.com/320x180/ccc/fff" alt="" class="p-embed__image"/>
+<figcaption class="p-embed__caption">キャプション</figcaption>
 </figure>
 
 Styleguide 2.5.1
 */
-.p-embedded {
+.p-embed {
 	position: relative;
 
 	& > :any-link {
@@ -42,181 +42,97 @@ Styleguide 2.5.1
 			--_expand-icon-padding: 3px;
 		}
 	}
+
+	& > video {
+		outline-width: 2px;
+		outline-offset: -1px;
+	}
+
+	& > audio {
+		outline-width: 2px;
+		outline-offset: 0px;
+	}
 }
 
-.p-embedded__caption {
+.p-embed__image,
+.p-embed__video {
+	border: 1px solid var(--color-black);
+	box-sizing: border-box;
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	vertical-align: top;
+} /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
+
+.p-embed__frame {
+	--_margin-col: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
+
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid var(--color-black);
+	box-sizing: border-box;
+	display: block;
+	width: calc(100% - var(--_margin-col) * 2);
+	height: min(100vh, var(--height, 600px));
+	aspect-ratio: var(--aspect-ratio, auto);
+
+	@media (--breakpoint) {
+		--_margin-col: 15px;
+	}
+}
+
+.p-embed__caption {
 	margin-top: 0.5em;
 	color: var(--color-gray);
 }
 
 /*
-テキスト & 画像横並び
+テキスト & 埋め込みコンテンツ横並び
 
 Markup:
-<div class="p-image-sbs {{modifier_class}}">
-<div class="p-image-sbs__text-area">
+<div class="p-embed-sidebar {{modifier_class}}">
+<div class="p-embed-sidebar__text">
 <p>テキスト</p>
 </div>
-<div class="p-image-sbs__image-area">
+<div class="p-embed-sidebar__embed">
 <img src="https://dummyimage.com/320x180/ccc/fff" alt="" class="c-image"/>
 </div>
 </div>
 
-.-text-first - テキストが先（左）
-.-image-first - 画像が先（左）
+.-text-first - テキストエリアが先頭
+.-embed-first - 埋め込みエリアが先頭
 .-small - 画像サイズ小
 .-medium - 画像サイズ中
 .-large - 画像サイズ大
 
 Styleguide 2.5.2
 */
-.p-image-sbs {
+.p-embed-sidebar {
 	display: flex;
-	gap: 15px 20px;
+	flex-wrap: wrap;
+	gap: 15px 30px;
 
-	/* テキストエリアが先頭（左） */
+	/* テキストエリアが先頭 */
 	&.-text-first {
-		& .p-image-sbs__text-area {
-			order: 1;
-		}
-
-		& .p-image-sbs__image-area {
-			order: 2;
+		& .p-embed-sidebar__embed {
+			--_order: 1;
 		}
 	}
 
-	/* 画像エリアが先頭（左） */
-	&.-image-first {
-		& .p-image-sbs__text-area {
-			order: 2;
-		}
-
-		& .p-image-sbs__image-area {
-			order: 1;
-		}
-	}
-
-	&.-small {
-		@media (max-width: 30em) {
-			flex-flow: column;
-
-			& + .p-image-sbs {
-				margin-top: 30px;
-			}
-
-			& .p-image-sbs__text-area,
-			& .p-image-sbs__image-area {
-				order: 0;
-			}
-		}
-	}
-
-	&.-medium {
-		@media (max-width: 37.5em) {
-			flex-flow: column;
-
-			& + .p-image-sbs {
-				margin-top: 30px;
-			}
-
-			& .p-image-sbs__text-area,
-			& .p-image-sbs__image-area {
-				order: 0;
-			}
-		}
-	}
-
-	&.-large {
-		@media (--breakpoint) {
-			flex-flow: column;
-
-			& + .p-image-sbs {
-				margin-top: 30px;
-			}
-
-			& .p-image-sbs__text-area,
-			& .p-image-sbs__image-area {
-				order: 0;
-			}
+	/* 埋め込みエリアが先頭 */
+	&.-embed-first {
+		& .p-embed-sidebar__text {
+			--_order: 1;
 		}
 	}
 }
 
-.p-image-sbs__text-area {
+.p-embed-sidebar__text {
+	order: var(--_order, 0);
+	flex: 999 0px;
+	min-width: 50%;
 }
 
-.p-image-sbs__image-area {
-	flex-shrink: 0;
-	position: relative;
-
-	& > a {
-		&::before {
-			padding: 4px;
-			box-sizing: border-box;
-			position: absolute;
-			top: 1px;
-			left: 1px;
-			content: "";
-			height: 24px;
-			width: 24px;
-			display: block;
-			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
-		}
-
-		& .c-image {
-			min-width: 25px;
-			min-height: 25px;
-		}
-
-		&:hover,
-		&:focus {
-			outline: var(--focus-ring-width) solid var(--focus-ring-color);
-
-			&::before {
-				padding: 3px;
-			}
-
-			& .c-image {
-				border-color: var(--focus-ring-color);
-			}
-		}
-	}
-}
-
-/*
-外部サービス埋め込み
-
-Markup:
-<div class="p-external">
-	<div class="p-external__frame">
-		<iframe src="https://example.com/embed" title="埋め込みタイトル"></iframe>
-	</div>
-	<div class="p-external__meta">
-		リンクなど
-	</div>
-</div>
-
-Styleguide 2.5.3
-*/
-.p-external {
-	@media (--breakpoint) {
-		margin-right: 10px;
-		margin-left: 10px;
-	}
-}
-
-.p-external__frame {
-	& > iframe {
-		border: 1px solid;
-		box-sizing: border-box;
-		display: block;
-		width: 100%;
-		height: min(100vh, var(--height, 600px));
-	}
-}
-
-.p-external__meta {
-	margin-top: 0.5em;
-	font-size: calc(100% / var(--font-ratio-1));
-	text-align: right;
+.p-embed-sidebar__embed {
+	order: var(--_order, 0);
 }

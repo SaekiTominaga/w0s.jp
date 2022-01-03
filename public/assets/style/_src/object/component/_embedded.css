@@ -5,61 +5,6 @@ Styleguide 1.5.
 */
 
 /*
-画像
-
-Markup:
-<img src="https://dummyimage.com/320x180/ccc/fff" alt="" class="c-image"/>
-<a href="/"><img src="https://dummyimage.com/320x180/ccc/fff" alt="" class="c-image"/></a>
-
-Styleguide 1.5.1
-*/
-.c-image {
-	box-sizing: border-box;
-	display: inline-block;
-	max-width: 100%;
-	height: auto;
-	vertical-align: top;
-
-	@nest :any-link & {
-		border: 1px solid var(--color-black);
-	}
-}
-
-/*
-動画
-
-Markup:
-<video controls="" poster="https://dummyimage.com/320x180/ccc/fff" class="c-video">
-<source src="hoge.mp4" type="video/mp4"/>
-</video>
-
-Styleguide 1.5.2
-*/
-.c-video {
-	box-sizing: border-box;
-	display: inline-block;
-	max-width: 100%;
-	height: auto;
-	vertical-align: top;
-}
-
-/*
-音声
-
-Markup:
-<audio src="hoge.m4a" controls="" class="c-video"></audio>
-
-Styleguide 1.5.3
-*/
-.c-audio {
-	box-sizing: border-box;
-	display: inline-block;
-	max-width: 100%;
-	height: auto;
-	vertical-align: top;
-}
-
-/*
 キャプション
 
 Markup:
@@ -67,7 +12,7 @@ Markup:
 
 .-data - メタデータ
 
-Styleguide 1.5.4
+Styleguide 1.5.1
 */
 .c-embedded-caption {
 	display: flex;
@@ -77,6 +22,11 @@ Styleguide 1.5.4
 
 	/* メタデータ */
 	&.-meta {
+		justify-content: flex-end;
+	}
+
+	/* 外部サービス埋め込みの元ソースリンク */
+	&.-link {
 		justify-content: flex-end;
 	}
 }
