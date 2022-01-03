@@ -63,32 +63,20 @@ Styleguide 1.5.3
 キャプション
 
 Markup:
-<span class="c-embedded-caption {{modifier_class}}">キャプション</span>
+<figcaption class="c-embedded-caption {{modifier_class}}">キャプション</figcaption>
 
 .-data - メタデータ
 
 Styleguide 1.5.4
 */
 .c-embedded-caption {
-	margin-top: 0.5em;
-	display: block;
-	color: #666;
-	font-size: calc(1rem / var(--font-ratio-1));
+	display: flex;
+	font-size: calc(100% / var(--font-ratio-1));
 	font-weight: bold;
 	line-height: var(--line-height-narrow);
 
 	/* メタデータ */
-	&.-data {
-		text-align: end;
+	&.-meta {
+		justify-content: flex-end;
 	}
-}
-
-/* 図表番号（"写真1"、"図2" など） */
-.c-embedded-caption__num {
-	margin-right: 0.4em;
-	white-space: nowrap;
-}
-
-/* タイトル */
-.c-embedded-caption__title {
 }
