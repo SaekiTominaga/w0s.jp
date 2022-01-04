@@ -40,48 +40,42 @@ Styleguide 1.2.2
 }
 
 /*
-注釈
+注釈リンク
 
 Markup:
-<sup class="c-annotate"><a href="#fn1" id="r1">[1]</a></sup>
+<sup class="c-annotate"><a href="#fn1" id="nt1">[1]</a></sup>
 
 Styleguide 1.2.3
 */
 .c-annotate {
-	margin: 0 0.5em 0 0.25em;
-	font-size: 75%;
-	vertical-align: text-top;
+	font-size: calc(100% / var(--font-ratio-2));
+	vertical-align: super;
 
-	@supports (font-variant-position: super) and (text-underline-offset: 0) {
-		font-size: inherit;
-		font-variant-position: super;
-		text-underline-offset: 0;
-		vertical-align: baseline;
-	}
+	& > a {
+		--_border-color: transparent;
+		--_bg-color: transparent;
 
-	& :target {
-		padding: 0.2em;
-		border: 1px solid #f00;
-		border-radius: var(--border-radius-large);
-		background: #fee;
-		font-weight: bold;
-	}
+		padding: 0.25em;
+		border: 1px solid var(--_border-color);
+		background: var(--_bg-color);
+		text-decoration-skip-ink: none; /* JS 無効環境向け */
 
-	& :focus:not(:focus-visible) {
-		outline: none;
-	}
+		&:target {
+			--_border-color: #f00;
+			--_bg-color: #fee;
+		}
 
-	& :focus:not(:-moz-focusring) {
-		outline: none;
-	}
+		&[role="button"] {
+			/* JS 有効時のみ */
+			--_color: var(--link-color);
 
-	& a[role="button"] {
-		/* JS 有効時のみ */
-		cursor: default;
+			color: var(--_color);
+			text-decoration: none;
+			cursor: default;
 
-		&:focus,
-		&:hover {
-			color: revert;
+			&:focus:not(:focus-visible) {
+				outline: none;
+			}
 		}
 	}
 }
@@ -98,7 +92,7 @@ Styleguide 1.2.4
 	color: #444;
 	background: linear-gradient(transparent 0, transparent 70%, #ff9 85%, transparent 100%);
 	font-size: calc(1rem * var(--font-ratio-2));
-	font-weight: normal;
+	font-weight: var(--font-weight-normal);
 }
 
 /*
@@ -115,7 +109,7 @@ Styleguide 1.2.5
 	border-radius: var(--border-radius-normal);
 	color: #333;
 	background: #ff9;
-	font-weight: bold;
+	font-weight: var(--font-weight-bold);
 
 	@media print {
 		color: inherit;
@@ -135,7 +129,7 @@ Styleguide 1.2.6
 .c-ins {
 	color: #e00;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: var(--font-weight-bold);
 	text-decoration-line: underline;
 	text-decoration-style: dashed;
 }
@@ -151,7 +145,7 @@ Styleguide 1.2.7
 .c-del {
 	color: #666;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: var(--font-weight-bold);
 	text-decoration-line: line-through;
 }
 
@@ -167,7 +161,7 @@ Styleguide 1.2.8
 	margin: 0 0.25em;
 	color: #666;
 	font-size: 85%;
-	font-weight: normal;
+	font-weight: var(--font-weight-normal);
 }
 
 /*
@@ -189,7 +183,7 @@ Styleguide 1.2.9
 	&.-selector-tag,
 	&.-subst {
 		color: #333;
-		font-weight: bold;
+		font-weight: var(--font-weight-bold);
 	}
 
 	&.-number,
@@ -209,24 +203,24 @@ Styleguide 1.2.9
 	&.-section,
 	&.-selector-id {
 		color: #900;
-		font-weight: bold;
+		font-weight: var(--font-weight-bold);
 	}
 
 	&.-subst {
-		font-weight: normal;
+		font-weight: var(--font-weight-normal);
 	}
 
 	&.-type,
 	&.-class &.-title {
 		color: #458;
-		font-weight: bold;
+		font-weight: var(--font-weight-bold);
 	}
 
 	&.-tag,
 	&.-name,
 	&.-attribute {
 		color: #000080;
-		font-weight: normal;
+		font-weight: var(--font-weight-normal);
 	}
 
 	&.-regexp,
@@ -246,7 +240,7 @@ Styleguide 1.2.9
 
 	&.-meta {
 		color: #767676; /* original: #999 */
-		font-weight: bold;
+		font-weight: var(--font-weight-bold);
 	}
 
 	&.-deletion {
@@ -262,7 +256,7 @@ Styleguide 1.2.9
 	}
 
 	&.-strong {
-		font-weight: bold;
+		font-weight: var(--font-weight-bold);
 	}
 }
 
@@ -290,7 +284,7 @@ Styleguide 1.2.10
 	color: var(--_color);
 	background: var(--_bg-color);
 	font-size: calc(100% / var(--font-ratio-1));
-	font-weight: bold;
+	font-weight: var(--font-weight-bold);
 	line-height: var(--line-height-narrow);
 	vertical-align: middle;
 
@@ -351,7 +345,7 @@ Styleguide 1.2.12
 	color: var(--_color);
 	background: var(--_bgcolor);
 	font-size: calc(100% / var(--font-ratio-1));
-	font-weight: bold;
+	font-weight: var(--font-weight-bold);
 	line-height: var(--line-height-nowrap);
 	white-space: nowrap;
 

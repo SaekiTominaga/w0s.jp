@@ -9,7 +9,7 @@ Styleguide 2.4.
 
 Markup:
 <div class="p-item">
-<a href="https://example.com/" class="p-item__link {{modifier_class}}">
+<a href="https://example.com/">
 <img src="https://dummyimage.com/360x180/ccc/fff" alt="" class="p-item__image"/>
 <span class="p-item__title">タイトル</span>
 </a>
@@ -21,55 +21,50 @@ Markup:
 Styleguide 2.4.1
 */
 .p-item {
+	--_gap: 15px;
+	--_bullet-width: 0.45em;
+	--_bullet-height: 0.75em;
+	--_bullet-color: var(--link-color-bullet);
+	--_bullet-gap: 0.5em;
+
 	display: flow-root;
-}
-
-.p-item__link {
-	--bullet-width: 0.75em; /* ビュレットアイコンの幅 */
-	--bullet-height: 0.75em; /* ビュレットアイコンの高さ */
-
-	margin-left: calc(0em - var(--bullet-width));
-	margin-bottom: 0.5em;
-
-	&:any-link {
-		&:focus,
-		&:hover {
-			& .p-item__image {
-				box-shadow: 0 0 5px #999;
-			}
-		}
-	}
+	font-size: calc(100% * var(--font-ratio-2));
+	line-height: var(--line-height-narrow);
 }
 
 .p-item__image {
-	margin-right: calc(1em + var(--bullet-width));
+	margin-right: calc(var(--_gap) + var(--_bullet-width) + var(--_bullet-gap));
+	border: 1px solid var(--color-black);
 	float: left;
 	height: auto;
-	max-width: 40%;
+	max-width: 50%;
+
+	@nest :any-link:hover & {
+		box-shadow: 0 0 5px var(--color-border-dark);
+	}
 }
 
 .p-item__title {
-	--bullet-color: #0bb; /* アイコンの色 */
-
-	display: inline;
-	font-weight: bold;
+	margin-left: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
 
 	&::before {
+		margin-right: var(--_bullet-gap);
 		content: "";
 		display: inline-block;
-		-webkit-mask: var(--image-link-bullet) left/contain no-repeat;
-		mask: var(--image-link-bullet) left/contain no-repeat;
-		width: var(--bullet-width);
-		height: var(--bullet-height);
-		background: var(--bullet-color);
+		clip-path: var(--shape-link-triangle);
+		width: var(--_bullet-width);
+		height: var(--_bullet-height);
+		background: var(--_bullet-color);
 	}
 
-	@nest :any-link:focus &, :any-link:hover & {
-		--bullet-color: var(--link-color-hover);
+	@nest :any-link:hover & {
+		--_bullet-color: var(--link-color-hover);
 	}
 }
 
 .p-item__text {
 	margin-top: 0.5em;
+	font-size: calc(100% / var(--font-ratio-2));
+	line-height: var(--line-height-normal);
 	overflow: hidden;
 }
