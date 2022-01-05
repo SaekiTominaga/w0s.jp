@@ -61,6 +61,53 @@
 	}
 }
 
+/* ===== 自動放送フレーズ ===== */
+.c-tokyu-announce {
+	/* 放送開始時のチャイム */
+	&.-chime {
+	}
+
+	/* マナー */
+	&.-manners {
+		color: #080;
+	}
+
+	/* メニュー、非扱、その他注意 */
+	&:is(.-menu, .-door, .-attention) {
+		color: var(--color-red);
+	}
+
+	/* ワンマン */
+	&.-oneman {
+		color: var(--color-blue);
+	}
+
+	/* 乗換 */
+	&.-change {
+		color: #b0f;
+	}
+
+	/* 立客、宣伝 */
+	&:is(.-stand, .-cm) {
+		color: #06f;
+	}
+
+	/* 宣伝放送概略 */
+	&.-cmsummary {
+		padding: 0.125em 0.5em;
+		border: 1px solid;
+		color: #06f;
+		background: #fcfcff;
+		font-size: calc(100% / var(--font-ratio-1));
+		font-weight: var(--font-weight-normal);
+
+		&::before {
+			margin-inline-end: 0.125em;
+			content: "※";
+		}
+	}
+}
+
 /* ===== 設定機区分 ===== */
 .c-tokyu-set-type {
 	margin-left: 1em;
@@ -79,35 +126,4 @@
 .c-tokyu-set-same {
 	font-size: 90%;
 	font-weight: var(--font-weight-normal);
-}
-
-/* ===== 自動放送色分け ===== */
-.c-tokyu-announce {
-	/* マナー */
-	&.-manners {
-		color: #080;
-	}
-
-	/* メニュー、非扱、その他注意 */
-	&.-menu,
-	&.-door,
-	&.-attention {
-		color: var(--color-red);
-	}
-
-	/* ワンマン */
-	&.-oneman {
-		color: var(--color-blue);
-	}
-
-	/* 乗換 */
-	&.-change {
-		color: #b0f;
-	}
-
-	/* 立客、宣伝 */
-	&.-stand,
-	&.-cm {
-		color: #06f;
-	}
 }

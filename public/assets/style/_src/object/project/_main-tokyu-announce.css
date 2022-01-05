@@ -3,162 +3,198 @@
  * ============================== */
 
 /* ===== インデックスページの路線別見出し ===== */
-.p-tokyu-announce-index-hdg-line {
-	--line-color: #999;
+.p-tokyu-announce-index-hdg {
+	--_line-color: var(--color-lightgray);
 
-	margin-bottom: 1em;
 	line-height: var(--line-height-narrow);
 
 	&.-toyoko {
-		--line-color: var(--tokyu-color-toyoko);
+		--_line-color: var(--tokyu-color-toyoko);
 	}
 
 	&.-meguro {
-		--line-color: var(--tokyu-color-meguro);
+		--_line-color: var(--tokyu-color-meguro);
 	}
 
 	&.-dento {
-		--line-color: var(--tokyu-color-dento);
+		--_line-color: var(--tokyu-color-dento);
 	}
 
 	&.-oimachi {
-		--line-color: var(--tokyu-color-oimachi);
+		--_line-color: var(--tokyu-color-oimachi);
 	}
 
 	&.-ikegami {
-		--line-color: var(--tokyu-color-ikegami);
+		--_line-color: var(--tokyu-color-ikegami);
 	}
 
 	&.-tamagawa {
-		--line-color: var(--tokyu-color-tamagawa);
+		--_line-color: var(--tokyu-color-tamagawa);
 	}
 
 	&.-kodomo {
-		--line-color: var(--tokyu-color-kodomo);
+		--_line-color: var(--tokyu-color-kodomo);
 	}
 
 	&.-setagaya {
-		--line-color: var(--tokyu-color-setagaya);
+		--_line-color: var(--tokyu-color-setagaya);
 	}
 
 	&.-ttm {
-		--line-color: var(--tokyu-color-ttm);
+		--_line-color: var(--tokyu-color-ttm);
+	}
+
+	& > h3 {
+		font-size: calc(100% * var(--font-ratio-2));
+		font-weight: var(--font-weight-bold);
+
+		&::before {
+			margin-right: 0.5em;
+			border-radius: var(--border-radius-full);
+			content: "";
+			display: inline-block;
+			width: 0.25em;
+			height: 1em;
+			background: var(--_line-color);
+			vertical-align: calc(-0.1em * var(--line-height-narrow));
+		}
 	}
 }
 
-.p-tokyu-announce-index-hdg-line__hdg {
-	padding-left: 0.8em;
-	position: relative;
-	font-size: calc(1rem * var(--font-ratio-2));
-	font-weight: var(--font-weight-bold);
-
-	&::before {
-		border-radius: var(--border-radius-full);
-		content: "";
-		display: block;
-		height: 85%;
-		width: 0.3em;
-		position: absolute;
-		top: 0.025em;
-		left: 0;
-		background: var(--line-color);
-	}
-}
-
-.p-tokyu-announce-index-hdg-line__sub-hdg {
-	font-size: 1rem;
+.p-tokyu-announce-index-hdg__sub {
+	font-size: calc(100% / var(--font-ratio-2));
 	font-weight: var(--font-weight-normal);
 }
 
 /* ===== インデックスページの下層ページへのリンク ===== */
-.p-tokyu-announce-index-links {
-	margin-top: 1em;
-	display: flex;
-	flex-flow: row wrap;
-	gap: 0.5em 1.5em;
+.p-tokyu-announce-index-table {
+	color: var(--color-black);
+	background: var(--color-white);
+	font-size: clamp(100%, 4vw, calc(100% * var(--font-ratio-1)));
+	line-height: var(--line-height-narrow);
 
-	& :any-link {
-		--bullet-width: 0.45em;
-		--bullet-height: 0.75em;
-		--bullet-color: #0bb;
-		--bullet-gap: 0.5em;
+	& :is(td, th) {
+		padding: 0.5em min(1.5vw, 15px);
+		border: 1px solid var(--color-border-light);
+	}
 
-		padding-left: calc(var(--bullet-width) + var(--bullet-gap));
-		display: inline-block;
-		font-size: calc(1rem * var(--font-ratio-1));
-		text-indent: calc(0em - var(--bullet-width) - var(--bullet-gap));
+	& th {
+		font-weight: var(--font-weight-normal);
+	}
 
-		&::before {
-			margin-right: var(--bullet-gap);
-			content: "";
-			display: inline-block;
-			clip-path: var(--shape-link-triangle);
-			width: var(--bullet-width);
-			height: var(--bullet-height);
-			background: var(--bullet-color);
-		}
-
-		&:focus,
-		&:hover {
-			--bullet-color: var(--link-color-hover);
+	& > thead {
+		& th {
+			background-color: #efe;
+			text-align: center;
 		}
 	}
 }
 
-/* ===== 下層ページ ===== */
+.p-tokyu-announce-index-table__link {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+}
+
+/* ===== 自動放送 ===== */
 .p-tokyu-announce {
-	margin: 3em 0;
 }
 
 .p-tokyu-announce__header {
-	padding: 0.3em 1em 0.2em;
-	border: 1px solid #999;
-	background: #eee;
-	font-size: calc(1rem / var(--font-ratio-1));
-	text-align: center;
+	padding: 0.5em min(1.5vw, 15px);
+	border: 1px solid var(--color-border-dark);
+	background: var(--color-bg-light);
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-narrow);
+
+	& > [class^="p-"] {
+		margin-left: auto;
+		margin-right: auto;
+		width: fit-content;
+
+		&:not(:first-child) {
+			margin-top: 0.5em;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+	}
 }
 
 .p-tokyu-announce__main {
 }
 
 .p-tokyu-announce__footer {
-	margin-top: 2em;
-	text-align: center;
-}
+	margin-top: 3em;
 
-/* 行先 */
-.p-tokyu-announce__meta-train {
-	& .c-tokyu-train {
-		margin-right: 0.1em;
-		font-size: calc(1rem * var(--font-ratio-2));
-		font-weight: var(--font-weight-bold);
+	& > [class^="p-"] {
+		&:not(:first-child) {
+			margin-top: 1em;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 1em;
+		}
+	}
+
+	& > .p-tokyu-announce__data + [class^="p-"] {
+		margin-top: 4em;
 	}
 }
 
-.p-tokyu-announce__meta-train-note {
-	margin-left: 0.5em;
+/* メタ情報・行先 */
+.p-tokyu-announce__train {
+	font-size: calc(100% * var(--font-ratio-2));
+	font-weight: var(--font-weight-bold);
 }
 
-/* 期間 */
-.p-tokyu-announce__meta-period {
+/* メタ情報・車種 */
+.p-tokyu-announce__car {
+	&:first-child {
+		background: yellow;
+	}
 }
 
-/* 注釈 */
-.p-tokyu-announce__meta-note {
-	color: #666;
+/* メタ情報・期間 */
+.p-tokyu-announce__period {
+	&:first-child {
+		background: yellow;
+	}
+}
+
+/* メタ情報・オプション */
+.p-tokyu-announce__option {
+	color: var(--color-gray);
+
+	&:first-child {
+		background: yellow;
+	}
 }
 
 .p-tokyu-announce__station {
-	padding: 0.5em;
-	border-color: #999;
+	padding: 1em min(1.5vw, 15px);
+	border-color: var(--color-border-dark);
 	border-style: solid;
 	border-width: 0 1px 1px;
-	background: #fdfdfd;
-}
+	background: var(--color-white);
 
-.p-tokyu-announce__announce {
-	&:not(:first-child) {
+	& > section + section {
 		margin-top: 1em;
+	}
+
+	& h2 {
+		color: var(--color-gray);
+		font-size: calc(100% * var(--font-ratio-1));
+		font-weight: var(--font-weight-normal);
+
+		&::before {
+			content: "（";
+		}
+
+		&::after {
+			content: "）";
+		}
 	}
 
 	& p {
@@ -166,90 +202,35 @@
 	}
 }
 
-.p-tokyu-announce__hdg {
-	color: #666;
-	font-weight: var(--font-weight-normal);
-
-	&::before {
-		content: "\FF08";
-	}
-
-	&::after {
-		content: "\FF09";
-	}
-}
-
-/* 放送開始前のチャイム */
-.p-tokyu-announce__chime {
-	&::before {
-		content: "\266A"; /* ♪ */
-	}
-}
-
-/* 宣伝放送概略 */
-.p-tokyu-announce__cm-summary {
-	margin-left: 0.1em;
-	margin-right: 0.1em;
-	color: #06f;
-
-	& + .p-tokyu-announce__cm-summary {
-		margin-top: 0;
-	}
-
-	&::before {
-		content: "（";
-	}
-
-	&::after {
-		content: "）";
-	}
-
-	& b {
-		font-weight: var(--font-weight-normal);
-	}
-}
-
 /* 備考 */
 .p-tokyu-announce__note {
-	margin: 1em 0;
+	margin-top: 1em;
 	text-align: center;
 }
 
 /* 収録データ */
 .p-tokyu-announce__data {
-	padding: 0.2em 1em 0;
-	background-color: #fec;
-	border: 1px solid #666;
-	border-radius: var(--border-radius-large);
-	display: inline-flex;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0.5em 15px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
+	display: flex;
 	flex-flow: wrap;
+	justify-content: center;
+	gap: 1em 2em;
+	background-color: #fec;
+	width: fit-content;
+	line-height: var(--line-height-narrow);
 
 	& dt {
 		&::after {
 			content: ":";
-			padding: 0 0.2em;
+			margin: 0.25em;
 		}
 	}
 
-	& dd:not(:last-child) {
-		margin-right: 2em;
-	}
-
-	@media (max-width: 30em) {
+	& :is(dt, dd) {
 		display: inline-block;
-
-		& dt,
-		& dd {
-			display: inline;
-		}
-
-		& dd:not(:last-child) {
-			margin-right: 0;
-
-			&::after {
-				content: "\A";
-				white-space: pre;
-			}
-		}
 	}
 }
