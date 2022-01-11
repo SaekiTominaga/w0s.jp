@@ -5,12 +5,19 @@ Styleguide 1.4.
 */
 
 /*
-ボタンリンク
+ボタン
 
 Markup:
-<a href="/" class="c-button {{modifier_class}}">ボタン<small>（補足）</small></a>
+<a href="/" class="c-button {{modifier_class}}">
+  <img src="" alt="" class="c-button__icon"/>
+  <span class="c-button__text">リンク</span>
+</a>
 
-.-nowrap - 改行しない
+<button class="c-button {{modifier_class}}">
+  <img src="" alt="" class="c-button__icon"/>
+  <span class="c-button__text">ボタン</span>
+</button>
+
 .-feed - Feed
 .-twitter - Twitter
 .-github - GitHub
@@ -22,10 +29,10 @@ Styleguide 1.4.1
 .c-button {
 	--_padding-row: 0.5em;
 	--_padding-col: 0.75em;
-	--_border-color: var(--color-gray);
+	--_border-color: var(--color-border-dark);
 	--_width: auto;
 	--_color: var(--color-black);
-	--_background: var(--color-white);
+	--_background: linear-gradient(var(--color-white), var(--color-bg-dark));
 	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
@@ -44,19 +51,12 @@ Styleguide 1.4.1
 	font-weight: var(--font-weight-bold);
 	line-height: var(--line-height-narrow);
 	text-decoration: none;
-	outline-offset: 0.125em;
-
-	&:disabled {
-		display: none;
-	}
+	outline-width: 2px;
+	outline-offset: -1px;
 
 	&:hover {
 		color: var(--_color);
 		box-shadow: 0 0 2px var(--_border-color);
-	}
-
-	&.-nowrap {
-		white-space: nowrap;
 	}
 
 	/* トップページの見出し横では小さく表示 */
@@ -77,10 +77,14 @@ Styleguide 1.4.1
 		--_border-color: #2293dd;
 		--_color: var(--color-white);
 		--_background: #1da1f2;
+
+		outline-color: var(--color-black);
 	}
 
 	/* GitHub */
 	&.-github {
+		--_border-color: var(--color-black);
+		--_background: var(--color-white);
 	}
 
 	/* Amazon */

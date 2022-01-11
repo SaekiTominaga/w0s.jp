@@ -56,10 +56,11 @@ Styleguide 2.5.1
 
 .p-embed__image,
 .p-embed__video {
-	border: 1px solid var(--color-black);
-	box-sizing: border-box;
+	--_border-width: 1px;
+
+	border: var(--_border-width) solid var(--color-black);
 	display: inline-block;
-	max-width: 100%;
+	max-width: calc(100% - var(--_border-width) * 2);
 	height: auto;
 	vertical-align: top;
 } /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */

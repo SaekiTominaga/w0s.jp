@@ -198,24 +198,24 @@ Markup:
 <h2 class="p-amazon__hdg"><img src="/assets/image/amazon_buy.png" srcset="/assets/image/amazon_buy@2x.png 2x" alt="Amazonで買う"/></h2>
 <ul class="p-amazon__list">
 <li>
-<a href="https://example.com/" class="p-amazon__dp">
-<div class="p-amazon__image-area">
+<a href="https://example.com/" class="p-amazon__link">
+<div class="p-amazon__thumb">
 <img src="https://dummyimage.com/100x160/ccc/fff" srcset="https://dummyimage.com/200x320/ccc/fff 2x" alt="" class="p-amazon__image"/>
 </div>
-<div class="p-amazon__text-area">
+<div class="p-amazon__text">
 <p class="p-amazon__title">商品タイトル</p>
-<p class="p-amazon__time">2000年1月1日 発売</p>
+<p class="p-amazon__date">2000年1月1日 発売</p>
 </div>
 </a>
 </li>
 <li>
-<a href="https://example.com/" class="p-amazon__dp">
-<div class="p-amazon__image-area">
+<a href="https://example.com/" class="p-amazon__link">
+<div class="p-amazon__thumb">
 <img src="https://dummyimage.com/100x160/ccc/fff" srcset="https://dummyimage.com/200x320/ccc/fff 2x" alt="" class="p-amazon__image"/>
 </div>
-<div class="p-amazon__text-area">
+<div class="p-amazon__text">
 <p class="p-amazon__title">商品タイトル</p>
-<p class="p-amazon__time">2000年1月1日 発売</p>
+<p class="p-amazon__date">2000年1月1日 発売</p>
 </div>
 </a>
 </li>
@@ -228,122 +228,109 @@ Styleguide 2.99.5
 	padding: 15px;
 	border: 1px solid #cb4;
 	border-radius: var(--border-radius-large);
+	color: var(--color-black);
 	background: linear-gradient(#fed, var(--color-white));
 }
 
 .p-amazon__hdg {
-	margin: -16px 0 0 -16px;
+	margin-block-start: -16px;
+	margin-inline-start: -16px;
+
+	& > img {
+		display: block;
+	}
 }
 
 .p-amazon__list {
-	margin: calc(0.5em - 6px) -6px -6px;
-	display: flex;
-	flex-flow: wrap;
-
-	& > li {
-		margin: 6px;
-		width: calc(50% - 12px);
-
-		@media (max-width: 46em) {
-			width: calc(100% - 12px);
-		}
-	}
-
-	@supports (display: grid) {
-		margin: 0.5em 0 0;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-gap: 12px;
-
-		@media (max-width: 46em) {
-			grid-template-columns: 1fr;
-		}
-
-		& > li {
-			margin: 0;
-			width: auto;
-		}
-	}
+	margin-block-start: 15px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(22em, 100%), 1fr));
+	grid-gap: 12px;
 }
 
-.p-amazon__dp {
-	padding: 15px;
+.p-amazon__link {
+	--_bg-color: var(--color-amazon-bg);
+
+	padding: 14px;
+	border: 1px solid var(--_bg-color);
 	border-radius: var(--border-radius-large);
-	display: flex;
+	display: grid;
+	grid-template-areas: "image gap text";
+	grid-template-columns: min(40%, 160px) 15px 1fr;
+	background: var(--_bg-color);
 	line-height: var(--line-height-narrow);
 	text-decoration-line: none;
-	transition: color var(--link-hover-transition-delay), background-color var(--link-hover-transition-delay);
-	outline-offset: 0.1em;
+	outline-width: 2px;
+	outline-offset: -1px;
+	transition: border-color var(--link-hover-transition-duration), background-color var(--link-hover-transition-duration);
+
+	&:hover {
+		--_bg-color: var(--color-amazon-bg-hover);
+	}
 
 	&:any-link {
-		color: #444;
-		background: #fdb;
-
-		&:focus,
-		&:hover {
-			color: #333;
-			background-color: #ffd7ae; /* darken(#fdb, 2.5%) */
-		}
+		color: var(--color-darkgray);
 	}
 }
 
-.p-amazon__image-area {
-	margin-right: 1em;
-
-	/* min-height: 160px; */
-	width: 40%;
-}
-
-.p-amazon__text-area {
-	width: 60%;
+/* 画像エリア */
+.p-amazon__thumb {
+	grid-column: image;
 }
 
 /* 商品画像 */
 .p-amazon__image {
 	margin: auto;
 	display: block;
-	height: auto;
 	max-width: 100%;
-	transition: box-shadow var(--link-hover-transition-delay);
+	height: auto;
+	transition: box-shadow var(--link-hover-transition-duration);
 
-	@nest :any-link:focus &, :any-link:hover & {
-		box-shadow: 0 0 4px 3px #f92;
+	@nest :any-link:hover & {
+		box-shadow: 0 0 4px 3px var(--color-amazon-box-shadow-hover);
 	}
+}
+
+/* テキストエリア */
+.p-amazon__text {
+	--_bullet-height: 0.75em;
+	--_bullet-width: calc(var(--_bullet-height) * 0.6);
+	--_bullet-color: var(--link-color-bullet);
+	--_bullet-gap: 0.5em;
+
+	margin-inline-start: calc(var(--_bullet-width) + var(--_bullet-gap));
+	grid-column: text;
 }
 
 /* 商品タイトル */
 .p-amazon__title {
-	--bullet-color: #0bb; /* アイコンの色 */
-	--bullet-width: 0.75em; /* ビュレットアイコンの幅 */
-	--bullet-height: 0.75em; /* ビュレットアイコンの高さ */
-
-	padding-left: var(--bullet-width);
-	text-indent: calc(0em - var(--bullet-width));
-	display: inline-block;
-	font-weight: var(--font-weight-bold);
+	margin-inline-start: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
+	display: inline;
+	font-weight: bold;
 	text-decoration-line: underline;
+	transition: color var(--link-hover-transition-duration);
 
 	&::before {
+		margin-inline-end: var(--_bullet-gap);
 		content: "";
 		display: inline-block;
-		-webkit-mask: var(--image-link-bullet) left/contain no-repeat;
-		mask: var(--image-link-bullet) left/contain no-repeat;
-		width: var(--bullet-width);
-		height: var(--bullet-height);
-		background: var(--bullet-color);
+		clip-path: var(--shape-link-triangle);
+		width: var(--_bullet-width);
+		height: var(--_bullet-height);
+		background: var(--_bullet-color);
+		transition: background-color var(--link-hover-transition-duration);
 	}
 
-	@nest :any-link:focus &, :any-link:hover & {
-		--bullet-color: var(--link-color-hover);
+	@nest :any-link:hover & {
+		--_bullet-color: var(--link-color-hover);
 
 		color: var(--link-color-hover);
 	}
 }
 
 /* 発売日 */
-.p-amazon__time {
-	margin: 0.5em 0 0 0.702em;
-	font-size: calc(1rem / var(--font-ratio-1));
+.p-amazon__date {
+	margin-block-start: 0.5em;
 }
 
 /*
