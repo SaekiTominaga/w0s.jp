@@ -5,24 +5,6 @@ Styleguide 2.99.
 */
 
 /*
-汎用ブロック
-
-Markup:
-<div class="p-block {{modifier_class}}">
-<p>テキスト</p>
-</div>
-
--center - センタリング
-
-Styleguide 2.99.1
-*/
-.p-block {
-	&.-center {
-		text-align: center;
-	}
-}
-
-/*
 ボックス
 
 Markup:
@@ -359,7 +341,8 @@ Styleguide 2.99.7
 
 .p-code__box {
 	border: 1px solid #ccc;
-	display: flow-root;
+	contain: content;
+	display: flow-root; /* for Safari */
 	position: relative;
 	color: var(--color-black);
 	background: var(--color-white);

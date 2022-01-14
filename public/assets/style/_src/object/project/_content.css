@@ -205,12 +205,12 @@
 /* ===== 目次 ===== */
 .p-toc {
 	--_stack-margin-row: 3em;
-	--_icon-width: 0.75em;
-	--_icon-height: 0.5625em;
-	--_icon-color: var(--color-gray);
+	--_icon-width: 0.75em; /* アイコンの幅 */
+	--_icon-height: calc(var(--_icon-width) * 0.75); /* アイコンの高さ */
+	--_icon-color: var(--color-gray); /* アイコンの色 */
 	--_icon-gap: 0.5em; /* アイコンと後続テキストの間隔 */
 
-	padding: 1em;
+	padding: 1.25em min(1.25vw, 1.25em);
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-bg-verylight);
@@ -221,12 +221,13 @@
 		font-size: calc(100% * var(--font-ratio-1));
 
 		& + li {
-			margin-top: 0.5em;
+			margin-top: 0.75em; /* 平均的な文字分量の特性上、 blog.w0s.jp よりあえて広い値とする */
 		}
 	}
 
 	& :any-link {
 		margin-left: calc(0px - var(--_icon-width) - var(--_icon-gap));
+		outline-offset: var(--outline-offset-linkonly);
 
 		&::before {
 			margin-right: var(--_icon-gap);
