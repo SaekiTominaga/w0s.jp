@@ -31,6 +31,10 @@ Styleguide 2.4.1
 	display: flow-root; /* for Safari */
 	font-size: calc(100% * var(--font-ratio-2));
 	line-height: var(--line-height-narrow);
+
+	& > :any-link {
+		outline: none;
+	}
 }
 
 .p-item__image {
@@ -42,6 +46,11 @@ Styleguide 2.4.1
 
 	@nest :any-link:hover & {
 		box-shadow: 0 0 5px var(--color-border-dark);
+	}
+
+	@nest :focus & {
+		outline: 2px solid var(--outline-color);
+		outline-offset: -1px;
 	}
 }
 
@@ -60,6 +69,11 @@ Styleguide 2.4.1
 
 	@nest :any-link:hover & {
 		--_bullet-color: var(--link-color-hover);
+	}
+
+	@nest :focus & {
+		outline: 1px solid var(--outline-color);
+		outline-offset: var(--outline-offset-linkonly-mlines);
 	}
 }
 
