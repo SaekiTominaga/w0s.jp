@@ -1,0 +1,115 @@
+/* ===== トップページナビゲーション ===== */
+.p-library-index-nav {
+	border: 1px solid var(--color-black);
+	box-shadow: 0 2px 2px var(--color-border-light);
+	display: block;
+	color: inherit;
+	background: var(--color-bg-verylight);
+	outline-width: 2px;
+	outline-offset: -1px;
+
+	&:hover {
+		color: inherit;
+		background-color: var(--color-bg-light);
+	}
+}
+
+.p-library-index-nav__image {
+	padding: 40px;
+	background: var(--color-white);
+	display: flex;
+	justify-content: center;
+
+	& img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+.p-library-index-nav__title {
+	padding: 0.5em min(0.5vw, 0.5em);
+	display: block;
+	font-size: calc(100% * var(--font-ratio-5));
+	font-weight: var(--font-weight-bold);
+	line-height: var(--line-height-narrow);
+	text-align: center;
+
+	&::before {
+		margin-inline-end: 0.5em;
+		content: "";
+		display: inline-block;
+		width: 0.45em;
+		height: 0.75em;
+		clip-path: var(--shape-link-triangle);
+		background: var(--link-color-bullet);
+	}
+
+	&::after {
+		margin-inline-start: 0.5em;
+		content: "";
+		display: inline-block;
+		width: 0.45em;
+	}
+}
+
+/* ===== データ ===== */
+.p-library {
+	--_border-width: 1px;
+	--_border-radius-inner: calc(var(--border-radius-normal) - var(--_border-width));
+
+	border: var(--_border-width) solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
+	color: var(--color-black);
+	background: var(--color-white);
+}
+
+.p-library__header {
+	padding: 16px clamp(8px, 1.5vw, 16px);
+	border-start-start-radius: var(--_border-radius-inner);
+	border-start-end-radius: var(--_border-radius-inner);
+	background: #cfc;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.5em;
+	line-height: var(--line-height-narrow);
+
+	& > h2 {
+		font-size: calc(100% * var(--font-ratio-2));
+	}
+}
+
+.p-library__main {
+	padding: 24px clamp(8px, 1.5vw, 16px);
+}
+
+.p-library__title {
+}
+
+.p-library__release {
+	&::before {
+		content: "（";
+	}
+
+	&::after {
+		content: "）";
+	}
+}
+
+.p-library__isbn {
+	flex-basis: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.p-library__amazon {
+	font-size: calc(100% / var(--font-ratio-2));
+
+	& > img {
+		border: 1px solid var(--color-black);
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+}
