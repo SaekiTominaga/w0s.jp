@@ -5,12 +5,40 @@ Styleguide 1.2.
 */
 
 /*
+キャプション
+
+Markup:
+<figcaption class="c-caption {{modifier_class}}">キャプション</figcaption>
+
+.-meta - メタデータ
+.-link - 外部サービス埋め込みの元ソースリンク
+
+Styleguide 1.2.1
+*/
+.c-caption {
+	display: flex;
+	font-size: calc(100% / var(--font-ratio-1));
+	font-weight: var(--font-weight-bold);
+	line-height: var(--line-height-narrow);
+
+	/* メタデータ */
+	&.-meta {
+		justify-content: flex-end;
+	}
+
+	/* 外部サービス埋め込みの元ソースリンク */
+	&.-link {
+		justify-content: flex-end;
+	}
+}
+
+/*
 ルビ
 
 Markup:
 <ruby class="c-ruby-after">久米田 康治<rp>（</rp><rt>くめた こうじ</rt><rp>）</rp></ruby>
 
-Styleguide 1.2.1
+Styleguide 1.2.2
 */
 .c-ruby-after {
 	display: inline-flex;
@@ -29,131 +57,25 @@ Styleguide 1.2.1
 Markup:
 <code class="c-code">&lt;html&gt;</code>
 
-Styleguide 1.2.2
+Styleguide 1.2.3
 */
 .c-code {
 	padding: 0.25em;
 	border-radius: var(--border-radius-normal);
-	color: #666;
-	background: #f8f8f8;
-	font: bold 90% monospace;
+	color: var(--color-green);
+	background: var(--color-bg-superlightgreen);
+	font: var(--font-weight-bold) calc(100% / var(--font-ratio-1)) monospace;
 }
 
 /*
-注釈リンク
+コードハイライト
 
 Markup:
-<sup class="c-annotate"><a href="#fn1" id="nt1">[1]</a></sup>
-
-Styleguide 1.2.3
-*/
-.c-annotate {
-	font-size: calc(100% / var(--font-ratio-2));
-	vertical-align: super;
-
-	& > a {
-		--_border-color: transparent;
-		--_bg-color: transparent;
-
-		padding: 0.25em;
-		border: 1px solid var(--_border-color);
-		background: var(--_bg-color);
-		text-decoration-skip-ink: none; /* JS 無効環境向け */
-
-		&:target {
-			--_border-color: #f00;
-			--_bg-color: #fee;
-		}
-
-		&[role="button"] {
-			/* JS 有効時のみ */
-			--_color: var(--link-color);
-
-			color: var(--_color);
-			text-decoration: none;
-			cursor: default;
-
-			&:focus:not(:focus-visible) {
-				outline: none;
-			}
-		}
-	}
-}
-
-/*
-マーク
-
-Markup:
-<mark class="c-mark">マーク</mark>
+<pre><code>
+<span class="c-code-highlight {{modifier_class}}">&lt;<span class="c-code-highlight {{modifier_class}}">a</span>&gt;</span>
+</code></pre>
 
 Styleguide 1.2.4
-*/
-.c-mark {
-	border: 1px solid var(--color-bg-lightyellow);
-	border-radius: var(--border-radius-normal);
-	color: var(--color-darkgray);
-	background: var(--color-bg-lightyellow);
-	font-weight: var(--font-weight-bold);
-
-	@media print {
-		color: inherit;
-		border-color: currentcolor;
-	}
-}
-
-/*
-挿入
-
-Markup:
-<ins class="c-ins">テキスト</ins>
-
-Styleguide 1.2.5
-*/
-.c-ins {
-	color: #e00;
-	font-style: normal;
-	font-weight: var(--font-weight-bold);
-	text-decoration-line: underline;
-	text-decoration-style: dashed;
-}
-
-/*
-削除
-
-Markup:
-<del class="c-del">テキスト</del>
-
-Styleguide 1.2.6
-*/
-.c-del {
-	color: #666;
-	font-style: normal;
-	font-weight: var(--font-weight-bold);
-	text-decoration-line: line-through;
-}
-
-/*
-ドメイン表記
-
-Markup:
-<a href="https://example.com/">リンク</a><b class="c-domain">(example.com)</b>
-
-Styleguide 1.2.7
-*/
-.c-domain {
-	margin: 0 0.25em;
-	color: #666;
-	font-size: 85%;
-	font-weight: var(--font-weight-normal);
-}
-
-/*
-コード
-
-Markup:
-<code>&lt;span&gt;Hello World!&lt;/span&gt;</code>
-
-Styleguide 1.2.8
 */
 .c-code-highlight {
 	&.-comment,
@@ -244,6 +166,114 @@ Styleguide 1.2.8
 }
 
 /*
+注釈リンク
+
+Markup:
+<sup class="c-annotate"><a href="#fn1" id="nt1">[1]</a></sup>
+
+Styleguide 1.2.5
+*/
+.c-annotate {
+	font-size: calc(100% / var(--font-ratio-2));
+	vertical-align: super;
+
+	& > a {
+		--_border-color: transparent;
+		--_bg-color: transparent;
+
+		padding: 0.25em;
+		border: 1px solid var(--_border-color);
+		background: var(--_bg-color);
+		text-decoration-skip-ink: none; /* JS 無効環境向け */
+
+		&:target {
+			--_border-color: #f00;
+			--_bg-color: #fee;
+		}
+
+		&[role="button"] {
+			/* JS 有効時のみ */
+			--_color: var(--link-color);
+
+			color: var(--_color);
+			text-decoration: none;
+			cursor: default;
+
+			&:focus:not(:focus-visible) {
+				outline: none;
+			}
+		}
+	}
+}
+
+/*
+マーク
+
+Markup:
+<mark class="c-mark">マーク</mark>
+
+Styleguide 1.2.6
+*/
+.c-mark {
+	border: 1px solid var(--color-bg-lightyellow);
+	border-radius: var(--border-radius-normal);
+	color: var(--color-darkgray);
+	background: var(--color-bg-lightyellow);
+	font-weight: var(--font-weight-bold);
+
+	@media print {
+		color: inherit;
+		border-color: currentcolor;
+	}
+}
+
+/*
+挿入
+
+Markup:
+<ins class="c-ins">テキスト</ins>
+
+Styleguide 1.2.7
+*/
+.c-ins {
+	color: #e00;
+	font-style: normal;
+	font-weight: var(--font-weight-bold);
+	text-decoration-line: underline;
+	text-decoration-style: dashed;
+}
+
+/*
+削除
+
+Markup:
+<del class="c-del">テキスト</del>
+
+Styleguide 1.2.8
+*/
+.c-del {
+	color: #666;
+	font-style: normal;
+	font-weight: var(--font-weight-bold);
+	text-decoration-line: line-through;
+}
+
+/*
+ドメイン表記
+
+Markup:
+<a href="https://example.com/">リンク</a><b class="c-domain">(example.com)</b>
+
+Styleguide 1.2.9
+*/
+.c-domain {
+	margin: 0 0.25em;
+	color: #666;
+	font-size: 85%;
+	font-weight: var(--font-weight-normal);
+}
+
+/*
 Amazon 商品カテゴリ
 
 Markup:
@@ -252,7 +282,7 @@ Markup:
 .-bd - BD
 .-kindle - Kindle
 
-Styleguide 1.2.9
+Styleguide 1.2.10
 */
 .c-amazon-binding {
 	--_padding: 0.125em 0.5em;
@@ -296,7 +326,7 @@ Amazon 商品が発売予定の場合の「予定」文字部分
 Markup:
 <em class="c-amazon-date-plan">予定</em>
 
-Styleguide 1.2.10
+Styleguide 1.2.11
 */
 .c-amazon-date-plan {
 	@nest .p-sidebar-amazon-link & {
@@ -315,7 +345,7 @@ Markup:
 .-new - 新規
 .-renew - 更新
 
-Styleguide 1.2.11
+Styleguide 1.2.12
 */
 .c-update-icon {
 	--_color: var(--color-white);

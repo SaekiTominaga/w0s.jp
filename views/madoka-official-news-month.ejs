@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" prefix="og: http://ogp.me/ns#">
 	<head>
-		<title>『まどか☆マギカ』公式サイトニュース一覧（<%= page.query.month.format('YYYY年M月') %>）</title>
+		<title>『魔法少女まどか☆マギカ』公式サイト　ニュース一覧（<%= page.query.month.format('YYYY年M月') %>）</title>
 
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="w0s:sidebar:amazon" content="madoka" />
@@ -27,11 +27,11 @@
 			<div id="content" class="l-content">
 				<div class="l-content__header">
 					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/">公式データ</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/news/">『まどか☆マギカ』公式サイトニュース一覧</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
+						<p itemprop="breadcrumb"><a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/">公式データ</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/news/">公式サイトニュース一覧</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
 					</div>
 
 					<div class="p-title">
-						<h1 itemprop="name">『まどか☆マギカ』公式サイトニュース一覧<span class="p-title__sub-hdg">（<%= page.query.month.format('YYYY年M月') %>）</span></h1>
+						<h1 itemprop="name">公式サイト　<%= page.query.month.format('YYYY年M月') %>のニュース一覧<span class="p-title__sub-hdg">（<%= newsListMovie.length + newsListTv.length %>件）</span></h1>
 					</div>
 
 					<div class="p-description" itemprop="description">
@@ -54,99 +54,91 @@
 					</nav>
 				</div>
 				<main class="l-content__main">
+					<% for (const news of newsListMovie) { %>
 					<section class="c-section -hdg-a">
 						<div class="p-hdg">
-							<h2><%= page.query.month.format('YYYY年M月') %>のニュース一覧<span class="p-hdg__sub">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
+							<h2>
+								<%= news.title %><span class="p-hdg__sub">（<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</span>
+							</h2>
 						</div>
 
-						<ul class="p-madoka-official-news">
-							<% for (const news of newsListMovie) { %>
-							<li>
-								<p class="p-madoka-official-news__date">
-									<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>
-								</p>
-								<p class="p-madoka-official-news__title">
-									<a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>"><%= news.title %></a>
-								</p>
-								<div class="p-madoka-official-news__message">
-									<% if (news.message.length > 100) { %>
-									<p><%= news.message.substring(0, 100) %><span class="p-madoka-official-news__message-marker">...</span></p>
-									<% } else { %>
-									<p><%= news.message %></p>
-									<% } %>
-								</div>
-								<% if (news.image_file_name.length > 0) { %>
-								<div class="p-madoka-official-news__images">
-									<% for (const image of news.image_file_name) { %>
-									<picture>
-										<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=240;h=240;quality=30 2x" />
-										<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=240;h=240;quality=30 2x" />
-										<img src="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=jpeg;w=120;h=120;quality=60" alt="" />
-									</picture>
-									<% } %>
-								</div>
-								<% } %>
-							</li>
-							<% } %> <% for (const news of newsListTv) { %>
-							<li>
-								<p class="p-madoka-official-news__date">
-									<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>
-								</p>
-								<p class="p-madoka-official-news__title">
-									<a href="https://www.madoka-magica.com/tv/news/#n<%= news.id %>"><%= news.title %></a>
-								</p>
-								<div class="p-madoka-official-news__message">
-									<% if (news.description.length > 100) { %>
-									<p><%= news.description.substring(0, 100) %><span class="p-madoka-official-news__message-marker">...</span></p>
-									<% } else { %>
-									<p><%= news.description %></p>
-									<% } %>
-								</div>
-								<% if (news.image_file_name.length > 0) { %>
-								<div class="p-madoka-official-news__images">
-									<% for (const image of news.image_file_name) { %>
-									<picture>
-										<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=240;h=240;quality=30 2x" />
-										<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=240;h=240;quality=30 2x" />
-										<img src="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=jpeg;w=120;h=120;quality=60" alt="" />
-									</picture>
-									<% } %>
-								</div>
-								<% } %>
-							</li>
+						<p><a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>" class="c-link">公式サイトの記事ページ</a></p>
+
+						<div class="p-text">
+							<% if (news.message.length > 100) { %>
+							<p><%= news.message.substring(0, 100) %><span class="p-madoka-official-news__message-marker">...</span></p>
+							<% } else { %>
+							<p><%= news.message %></p>
 							<% } %>
-						</ul>
-					</section>
-					<section class="c-section -hdg-a">
-						<div class="p-hdg">
-							<h2>他の月を見る</h2>
 						</div>
 
-						<div class="c-grid -narrow">
-							<% for (const [year, yearData] of monthDataList) { %>
-							<div class="c-grid__item">
-								<section class="c-section -hdg-b">
-									<div class="p-hdg">
-										<h3><%= year %>年</h3>
-									</div>
-
-									<ul class="p-link">
-										<% for (const [month, count] of yearData) { %>
-										<li>
-											<% if (page.query.month.format('YYYYM') !== `${String(year)}${String(month)}`) { %>
-											<a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月 (<%= count %>件)</a>
-											<% } else { %>
-											<a aria-current="page"><%= year %>年<%= month %>月 (<%= count %>件)</a>
-											<% } %>
-										</li>
-										<% } %>
-									</ul>
-								</section>
+						<% if (news.image_file_name.length > 0) { %>
+						<div class="c-flex">
+							<% for (const image of news.image_file_name) { %>
+							<div class="c-flex__item">
+								<figure class="p-embed">
+									<picture>
+										<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=240;h=240;quality=30 2x" />
+										<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=240;h=240;quality=30 2x" />
+										<img src="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=jpeg;w=120;h=120;quality=60" alt="" />
+									</picture>
+								</figure>
 							</div>
 							<% } %>
 						</div>
+						<% } %>
 					</section>
+					<% } %> <% for (const news of newsListTv) { %>
+					<section class="c-section -hdg-a">
+						<div class="p-hdg">
+							<h2>
+								<%= news.title %><span class="p-hdg__sub">（<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</span>
+							</h2>
+						</div>
+
+						<p><a href="https://www.madoka-magica.com/tv/news/#n<%= news.id %>" class="c-link">公式サイトの記事ページ</a></p>
+
+						<div class="p-text">
+							<% if (news.description.length > 100) { %>
+							<p><%= news.description.substring(0, 100) %><span class="p-madoka-official-news__message-marker">...</span></p>
+							<% } else { %>
+							<p><%= news.description %></p>
+							<% } %>
+						</div>
+
+						<% if (news.image_file_name.length > 0) { %>
+						<div class="c-flex">
+							<% for (const image of news.image_file_name) { %>
+							<div class="c-flex__item">
+								<figure class="p-embed">
+									<picture>
+										<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=avif;w=240;h=240;quality=30 2x" />
+										<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=120;h=120;quality=60, https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=webp;w=240;h=240;quality=30 2x" />
+										<img src="https://media.w0s.jp/thumbimage/madoka/official/news/<%= image %>?type=jpeg;w=120;h=120;quality=60" alt="" />
+									</picture>
+								</figure>
+							</div>
+							<% } %>
+						</div>
+						<% } %>
+					</section>
+					<% } %>
 				</main>
+				<div class="l-content__footer">
+					<nav class="p-local-nav">
+						<ul class="p-local-nav__list">
+							<% if (nextMonth !== null) { %>
+							<li>
+								<a href="/madoka/official/news/<%= nextMonth.format('YYYY-MM') %>" rel="prev" class="c-link">新しい月（<%= nextMonth.format('YYYY年M月') %>）</a>
+							</li>
+							<% } %> <% if (prevMonth !== null) { %>
+							<li>
+								<a href="/madoka/official/news/<%= prevMonth.format('YYYY-MM') %>" rel="next" class="c-link">古い月（<%= prevMonth.format('YYYY年M月') %>）</a>
+							</li>
+							<% } %>
+						</ul>
+					</nav>
+				</div>
 			</div>
 
 			<%- include('./_include/_sidebar') %><%- include('./_include/_footer') %>
