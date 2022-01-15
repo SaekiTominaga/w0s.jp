@@ -222,20 +222,26 @@
 	line-height: var(--line-height-narrow);
 
 	& > li {
-		margin-left: calc(var(--_icon-width) + var(--_icon-gap));
+		margin-inline-start: calc(var(--_icon-width) + var(--_icon-gap));
 		font-size: calc(100% * var(--font-ratio-1));
 
 		& + li {
-			margin-top: 0.75em; /* 平均的な文字分量の特性上、 blog.w0s.jp よりあえて広い値とする */
+			margin-block-start: 0.75em; /* 平均的な文字分量の特性上、 blog.w0s.jp よりあえて広い値とする */
+		}
+
+		& > ol > li {
+			margin-block-start: 0.5em;
+			margin-inline-start: calc(var(--_icon-width) + var(--_icon-gap));
+			font-size: calc(100% / var(--font-ratio-1));
 		}
 	}
 
 	& :any-link {
-		margin-left: calc(0px - var(--_icon-width) - var(--_icon-gap));
+		margin-inline-start: calc(0px - var(--_icon-width) - var(--_icon-gap));
 		outline-offset: var(--outline-offset-linkonly);
 
 		&::before {
-			margin-right: var(--_icon-gap);
+			margin-inline-end: var(--_icon-gap);
 			content: "";
 			display: inline-block;
 			clip-path: var(--shape-pagelink-triangle);
