@@ -37,23 +37,23 @@ Markup:
 Styleguide 1.7.1
 */
 .c-grid {
-	--_gap-row-base: 1em;
+	--_gap-row: 1em;
 	--_max-width: auto;
 
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(min(var(--_max-width), 100%), 1fr));
-	gap: calc(var(--_gap-row-base) * var(--_line-height)) 50px;
+	gap: calc(var(--_gap-row) * var(--_line-height)) 50px;
 
 	&.-hdg-a {
-		--_gap-row-base: 3em;
+		--_gap-row: 3em;
 	}
 
 	&.-hdg-b {
-		--_gap-row-base: 2.5em;
+		--_gap-row: 2.5em;
 	}
 
 	&.-hdg-c {
-		--_gap-row-base: 2em;
+		--_gap-row: 2em;
 	}
 
 	/* 2カラム */
@@ -94,26 +94,33 @@ Markup:
 .-hdg-a - 見出しA
 .-hdg-b - 見出しB
 .-hdg-c - 見出しC
+.-buttons - ボタン並び
 
 Styleguide 1.7.2
 */
 .c-flex {
-	--_gap-row-base: 1em;
+	--_gap-row: 1em;
+	--_gap-col: 50px;
 
 	display: flex;
 	flex-wrap: wrap;
-	gap: calc(var(--_gap-row-base) * var(--_line-height)) 50px;
+	gap: var(--_gap-row) var(--_gap-col);
 
 	&.-hdg-a {
-		--_gap-row-base: 3em;
+		--_gap-row: 3em;
 	}
 
 	&.-hdg-b {
-		--_gap-row-base: 2.5em;
+		--_gap-row: 2.5em;
 	}
 
 	&.-hdg-c {
-		--_gap-row-base: 2em;
+		--_gap-row: 2em;
+	}
+
+	&.-buttons {
+		--_gap-row: 25px;
+		--_gap-col: 25px;
 	}
 }
 
