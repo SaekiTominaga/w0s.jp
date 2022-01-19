@@ -5,11 +5,14 @@
 /* ===== プロフィール ===== */
 .p-sidebar-profile {
 	--_heading-offset: calc(-0.5em * var(--line-height-narrow));
-	--_stack-margin-top: calc(20px - var(--_heading-offset));
 
 	padding: 0 10px 10px;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
+
+	&:first-child {
+		margin-block-start: calc(0px - var(--_heading-offset));
+	}
 }
 
 .p-sidebar-profile__hdg {
@@ -21,7 +24,7 @@
 }
 
 .p-sidebar-profile__info {
-	margin-top: calc(10px + var(--_heading-offset));
+	margin-block-start: calc(10px + var(--_heading-offset));
 	contain: layout;
 	display: flow-root; /* for Safari */
 }
@@ -37,7 +40,7 @@
 
 /* アバター */
 .p-sidebar-profile__avatar {
-	margin-right: 10px;
+	margin-inline-end: 10px;
 	float: left;
 
 	@nest :any-link:hover & {
@@ -47,7 +50,7 @@
 
 /* BIO */
 .p-sidebar-profile__bio {
-	margin-top: 0.5em;
+	margin-block-start: 0.5em;
 	font-size: calc(100% / var(--font-ratio-1));
 	text-align: justify;
 	overflow: hidden;
@@ -55,7 +58,7 @@
 
 /* バナー */
 .p-sidebar-profile__banners {
-	margin-top: 1em;
+	margin-block-start: 1em;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 5px;
@@ -65,7 +68,6 @@
 /* ===== 日記記事リスト ===== */
 .p-sidebar-blog-entry {
 	--_heading-offset: calc(-0.5em * var(--line-height-narrow));
-	--_stack-margin-top: calc(20px - var(--_heading-offset));
 
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal) var(--border-radius-normal) 0 0;
@@ -81,17 +83,17 @@
 }
 
 .p-sidebar-blog-entry__link {
-	margin-top: var(--_heading-offset);
+	margin-block-start: var(--_heading-offset);
 }
 
 /* ===== リンクリスト ===== */
 .p-sidebar-links {
 	& a {
-		--_padding-row: 0.5em;
-		--_padding-col: 0.5em;
+		--_padding-block: 0.5em;
+		--_padding-inline: 0.5em;
 		--_bg-color: var(--color-bg-skyblue);
 
-		padding: var(--_padding-row) var(--_padding-col);
+		padding: var(--_padding-block) var(--_padding-inline);
 		display: flex;
 		align-items: center;
 		contain: content;
@@ -108,7 +110,7 @@
 			--_icon-height: 1em; /* アイコンの高さ */
 			--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
 
-			padding-right: calc(var(--_icon-gap) + var(--_icon-width) + var(--_padding-col));
+			padding-inline-end: calc(var(--_icon-gap) + var(--_icon-width) + var(--_padding-inline));
 			text-decoration: none;
 
 			&::after {
@@ -119,7 +121,7 @@
 				background: var(--_icon-color);
 				position: absolute;
 				top: calc(50% - var(--_icon-height) / 2);
-				right: var(--_padding-col);
+				right: var(--_padding-inline);
 			}
 
 			&:hover {
@@ -131,7 +133,7 @@
 
 	& > li {
 		& + li {
-			border-top: 1px dotted var(--color-border-dark);
+			border-block-start: 1px dotted var(--color-border-dark);
 		}
 
 		/* 奇数行 */
@@ -157,13 +159,12 @@
 }
 
 .p-sidebar-links__icon {
-	margin-left: 1em;
+	margin-inline-start: 1em;
 }
 
 /* ===== Amazon 商品広告 ===== */
 .p-sidebar-amazon {
 	--_heading-offset: calc(-0.5em * var(--line-height-narrow));
-	--_stack-margin-top: calc(20px - var(--_heading-offset));
 
 	padding: 0 10px 10px;
 	border: 1px solid var(--color-border-dark);
@@ -180,7 +181,7 @@
 }
 
 .p-sidebar-amazon__link {
-	margin-top: calc(10px + var(--_heading-offset));
+	margin-block-start: calc(10px + var(--_heading-offset));
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(min(90px, 100%), 1fr));
 	gap: 10px;
@@ -215,7 +216,7 @@
 	--_color: var(--color-darkgray);
 	--_bg-color: var(--color-amazon-bg);
 
-	margin-top: 1px;
+	margin-block-start: 1px;
 	padding: 5px;
 	border-radius: var(--border-radius-large);
 	color: var(--_color);
@@ -239,7 +240,7 @@
 
 /* 発売日 */
 .p-sidebar-amazon-link__date {
-	margin-top: 0.5em;
+	margin-block-start: 0.5em;
 	font-size: calc(100% / var(--font-ratio-2));
 	font-weight: var(--font-weight-bold);
 

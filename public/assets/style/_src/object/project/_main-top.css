@@ -1,8 +1,21 @@
-/* ==============================
- *   トップページ
- * ============================== */
+/*
+トップページ
 
-/* 見出し */
+Styleguide 2.8.
+*/
+
+/*
+見出し
+
+Markup:
+<div class="p-top-hdg">
+<h2 class="p-top-hdg__hdg">見出し</h2>
+<div class="p-top-hdg__notice">
+</div>
+</div>
+
+Styleguide 2.8.1
+*/
 .p-top-hdg {
 	display: flex;
 	flex-flow: wrap;
@@ -18,14 +31,40 @@
 .p-top-hdg__notice {
 }
 
-/* 下層ページへのナビゲーション */
+/*
+下層ページへのナビゲーション
+
+Markup:
+<ul class="p-top-nav">
+<li class="p-top-nav__box">
+<a href="">
+<div class="p-top-nav__image">
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" />
+</div>
+<div class="p-top-nav__title">ページタイトル</div>
+<p class="p-top-nav__description">ページ説明</p>
+</a>
+</li>
+<li class="p-top-nav__box">
+<a href="">
+<div class="p-top-nav__image">
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" />
+</div>
+<div class="p-top-nav__title">ページタイトル</div>
+<p class="p-top-nav__description">ページ説明</p>
+</a>
+</li>
+</ul>
+
+Styleguide 2.8.2
+*/
 .p-top-nav {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(15.3em, 1fr));
 	grid-gap: 15px;
 
 	@nest .p-top-hdg + & {
-		margin-top: 0.5em;
+		margin-block-start: 0.5em;
 	}
 }
 
@@ -85,7 +124,7 @@
 	--_icon-height: 1em; /* アイコンの高さ */
 	--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
 
-	padding-right: calc(var(--_icon-gap) + var(--_icon-width));
+	padding-inline-end: calc(var(--_icon-gap) + var(--_icon-width));
 	contain: content;
 	position: relative; /* for Safari */
 
@@ -102,7 +141,7 @@
 
 	/* 画像がない場合 */
 	&:first-child {
-		margin-top: 16px;
+		margin-block-start: 16px;
 	}
 
 	@nest :any-link:hover & {
@@ -116,7 +155,29 @@
 	margin: 8px 16px 16px;
 }
 
-/* 更新履歴 */
+/*
+更新履歴
+
+Markup:
+<ul class="p-top-update">
+<li>
+<div class="p-top-update__date">日付</div>
+<div class="p-top-update__type">新規</div>
+<div class="p-top-update__info">
+<p>更新内容</p>
+</div>
+</li>
+<li>
+<div class="p-top-update__date">日付</div>
+<div class="p-top-update__type">更新</div>
+<div class="p-top-update__info">
+<p>更新内容</p>
+</div>
+</li>
+</ul>
+
+Styleguide 2.8.3
+*/
 .p-top-update {
 	--_border-width: 2px;
 
@@ -135,12 +196,12 @@
 		gap: 0 calc(var(--_padding) * 1.5);
 
 		&:not(:first-child) {
-			border-top: 1px dotted var(--color-border-light);
+			border-block-start: 1px dotted var(--color-border-light);
 		}
 	}
 
 	@nest .p-top-hdg + & {
-		margin-top: 0.5em;
+		margin-block-start: 0.5em;
 	}
 }
 

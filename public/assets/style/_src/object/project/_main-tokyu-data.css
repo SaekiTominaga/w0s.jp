@@ -4,48 +4,39 @@
 
 /* ===== 車歴表 ===== */
 .p-tokyu-history-table {
-	--_padding-row: 0.75em;
+	--_padding-block: 0.75em;
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
-	--_font-weight: var(--font-weight-normal);
+	--_text-align: start;
 
 	width: 100%;
 	font-weight: var(--_font-weight);
 	line-height: var(--line-height-narrow);
 
+	& > :is(thead + tbody, tbody + tbody) {
+		border-block-start: 2px solid;
+	}
+
 	& :is(td, th) {
-		padding: var(--_padding-row) min(1vw, 10px);
+		padding: var(--_padding-block) min(1vw, 10px);
 		border: 1px solid;
 		color: var(--_color);
 		background: var(--_bg-color);
 		font-size: clamp(calc(100% / var(--font-ratio-1)), 2vw, 100%);
+		text-align: var(--_text-align);
 	}
 
-	& td {
-		--_padding-row: 0.25em;
-	}
-
-	& th {
+	& > thead {
 		--_bg-color: var(--color-bg-light);
-		--_font-weight: var(--font-weight-bold);
-
-		text-align: center;
+		--_text-align: center;
 	}
 
-	& > :is(thead + tbody, tbody + tbody) {
-		& > tr:first-child {
-			& > td {
-				border-top-width: 2px;
-			}
-		}
+	& > tbody {
+		--_padding-block: 0.25em;
 	}
 
-	& tr {
-		&.-hover {
-			& td {
-				--_bg-color: var(--color-bg-lightpink);
-			}
-		}
+	& tr.-hover {
+		--_bg-color: var(--color-bg-lightpink);
 	}
 }
 
@@ -67,7 +58,7 @@
 
 		& th {
 			background: var(--color-bg-light);
-			text-align: left;
+			text-align: start;
 			white-space: nowrap;
 		}
 
@@ -83,7 +74,7 @@
 
 /* M, Mc, T などの区分 */
 .p-tokyu-form__type {
-	margin-top: 0.125em;
+	margin-block-start: 0.125em;
 	padding: 0.125em;
 	display: block;
 	font-weight: var(--font-weight-bold);
@@ -170,7 +161,7 @@
 /* ===== 編成表（譲渡車両） ===== */
 .p-tokyu-localform {
 	& > caption {
-		margin-bottom: 0.125em;
+		margin-block-end: 0.125em;
 	}
 
 	& :is(td, th) {
@@ -181,12 +172,12 @@
 	}
 
 	& :is(td + td, th + th) {
-		padding-left: 0.5em;
+		padding-inline-start: 0.5em;
 	}
 
 	& tbody {
 		& td {
-			padding-top: 0.75em;
+			padding-block-start: 0.75em;
 			vertical-align: top;
 		}
 	}
@@ -241,7 +232,7 @@
 
 /* 前所有者車号 */
 .p-tokyu-localform__oldnum {
-	margin-top: 0.15em;
+	margin-block-start: 0.15em;
 	display: block;
 	font-size: 75%;
 }

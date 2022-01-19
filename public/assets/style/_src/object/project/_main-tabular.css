@@ -47,7 +47,7 @@ Styleguide 2.6.1
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 	--_font-size-base: 100%;
-	--_font-weight: var(--font-weight-normal);
+	--_text-align: start;
 
 	line-height: var(--line-height-narrow);
 
@@ -58,18 +58,22 @@ Styleguide 2.6.1
 
 	/* 文字サイズを小さくする */
 	&.-font-small {
-		--_font-size-base: 80%;
+		--_font-size-base: calc(100% / var(--font-ratio-2));
 	}
 
 	& > caption {
-		margin-bottom: 0.25em;
+		margin-block-end: 0.25em;
 		font-weight: var(--font-weight-bold);
 		text-align: center;
 
-		& small {
+		& > small {
 			font-size: calc(100% / var(--font-ratio-1));
 			font-weight: var(--font-weight-normal);
 		}
+	}
+
+	& > :is(thead + tbody, tbody + tbody, tfoot) {
+		border-block-start: 2px solid;
 	}
 
 	& :is(td, th) {
@@ -78,28 +82,19 @@ Styleguide 2.6.1
 		color: var(--_color);
 		background: var(--_bg-color);
 		font-size: clamp(calc(var(--_font-size-base) / var(--font-ratio-1)), 2vw, var(--_font-size-base));
-	}
-
-	& th {
-		--_bg-color: var(--color-bg-verylight);
-		--_font-weight: var(--font-weight-bold);
+		text-align: var(--_text-align);
 	}
 
 	& > thead {
-		& th {
-			--_bg-color: var(--color-bg-light);
-
-			text-align: center;
-		}
+		--_bg-color: var(--color-bg-light);
+		--_text-align: center;
 	}
 
-	& > :is(thead + tbody, tbody + tbody, tfoot) {
-		border-top: 2px solid;
+	& > tbody th {
+		--_bg-color: var(--color-bg-verylight);
 	}
 
 	& > tfoot {
-		& :is(td, th) {
-			--_bg-color: var(--color-bg-light);
-		}
+		--_bg-color: var(--color-bg-light);
 	}
 }

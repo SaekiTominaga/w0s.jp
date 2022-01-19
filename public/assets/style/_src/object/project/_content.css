@@ -4,10 +4,9 @@
 
 /* ===== パンくず ===== */
 .p-topic-path {
-	--_stack-margin-row: 0.5em;
-	--_line-height: var(--line-height-narrow);
+	--stack-margin-block: 0.5em;
 
-	line-height: var(--_line-height);
+	line-height: var(--line-height-narrow);
 
 	& > p {
 		display: flex;
@@ -27,12 +26,11 @@
 
 /* ===== ページタイトル ===== */
 .p-title {
-	--_stack-margin-row: 0.75em;
-	--_line-height: var(--line-height-narrow);
+	--stack-margin-block: 0.75em;
 
-	line-height: var(--_line-height);
+	line-height: var(--line-height-narrow);
 
-	& h1 {
+	& > h1 {
 		padding: 0.75em 1.5%;
 		border: 1px solid var(--color-black);
 		border-radius: var(--border-radius-small);
@@ -49,17 +47,16 @@
 }
 
 .p-title__update {
-	margin-top: 0.5em;
-	text-align: right;
+	margin-block-start: 0.5em;
+	text-align: end;
 }
 
 /* ===== ローカルナビ ===== */
 .p-local-nav {
-	--_stack-margin-row: 3em;
-	--_stack-width: min(50em, 100%);
-	--_line-height: var(--line-height-narrow);
+	--stack-margin-block: 3em;
+	--stack-width: min(50em, 100%);
 
-	line-height: var(--_line-height);
+	line-height: var(--line-height-narrow);
 }
 
 .p-local-nav__list {
@@ -67,7 +64,7 @@
 	flex-flow: wrap;
 
 	&:not(:first-child) {
-		margin-top: 0.5em;
+		margin-block-start: 0.5em;
 	}
 
 	& > li {
@@ -104,7 +101,7 @@
 
 /* ===== 注意事項 ===== */
 .p-attention {
-	--_stack-margin-row: 2em;
+	--stack-margin-block: 2em;
 
 	padding: 1em 12px;
 	border: 1px solid #f00;
@@ -120,27 +117,26 @@
 }
 
 .p-attention__mark {
-	padding-right: 0.1em;
+	padding-inline-end: 0.1em;
 }
 
 /* ===== コンテンツ説明 ===== */
 .p-description {
-	--_stack-margin-row: 3em;
-	--_stack-width: min(50em, 90%);
+	--stack-margin-block: 3em;
+	--stack-width: min(50em, 90%);
 
 	& > p {
 		text-indent: 1em;
 
 		& + p {
-			margin-top: 0.5em;
+			margin-block-start: 0.5em;
 		}
 	}
 }
 
 /* ===== ステップ ===== */
 .p-step {
-	--_stack-margin-row: 2em;
-	--_line-height: var(--line-height-narrow);
+	--stack-margin-block: 2em;
 	--_step-arrow-color: var(--page-bg-color); /* 矢印の色 */
 	--_step-arrow-width: 2px; /* 矢印の幅 */
 	--_step-arrow-height: 1.15em; /* 矢印の高さ */
@@ -148,7 +144,7 @@
 
 	display: flex;
 	contain: content;
-	line-height: var(--_line-height);
+	line-height: var(--line-height-narrow);
 
 	& > li {
 		margin: var(--_step-arrow-width) var(--_step-arrow-width) var(--_step-arrow-width) 0;
@@ -159,15 +155,15 @@
 
 		&:not(:first-child) {
 			& .p-step__text {
-				padding-left: 1.5em;
+				padding-inline-start: 1.5em;
 			}
 		}
 
 		&:not(:last-child) {
 			&::after {
-				border-top: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-				border-bottom: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-				border-left: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
+				border-block-start: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+				border-block-end: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+				border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
 				content: "";
 				position: absolute;
 				top: calc(50% - var(--_step-arrow-height) - (var(--_step-arrow-width) / 2));
@@ -178,10 +174,10 @@
 
 			& .p-step__text {
 				&::after {
-					border-top: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-					border-bottom: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-					border-left: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid;
-					border-left-color: inherit;
+					border-block-start: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+					border-block-end: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+					border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid;
+					border-inline-start-color: inherit;
 					content: "";
 					position: absolute;
 					top: calc(50% - var(--_step-arrow-height) - (var(--_step-arrow-width) / 2));
@@ -209,7 +205,7 @@
 
 /* ===== 目次 ===== */
 .p-toc {
-	--_stack-margin-row: 3em;
+	--stack-margin-block: 3em;
 	--_icon-width: 0.75em; /* アイコンの幅 */
 	--_icon-height: calc(var(--_icon-width) * 0.75); /* アイコンの高さ */
 	--_icon-color: var(--color-gray); /* アイコンの色 */

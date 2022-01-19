@@ -49,7 +49,7 @@
 		font-weight: var(--font-weight-bold);
 
 		&::before {
-			margin-right: 0.5em;
+			margin-inline-end: 0.5em;
 			border-radius: var(--border-radius-full);
 			content: "";
 			display: inline-block;
@@ -78,16 +78,15 @@
 	line-height: var(--line-height-narrow);
 
 	& > [class^="p-"] {
-		margin-left: auto;
-		margin-right: auto;
+		margin-inline: auto;
 		width: fit-content;
 
 		&:not(:first-child) {
-			margin-top: 0.5em;
+			margin-block-start: 0.5em;
 		}
 
 		&:not(:last-child) {
-			margin-bottom: 0.5em;
+			margin-block-end: 0.5em;
 		}
 	}
 }
@@ -96,20 +95,20 @@
 }
 
 .p-tokyu-announce__footer {
-	margin-top: 3em;
+	margin-block-start: 3em;
 
 	& > [class^="p-"] {
 		&:not(:first-child) {
-			margin-top: 1em;
+			margin-block-start: 1em;
 		}
 
 		&:not(:last-child) {
-			margin-bottom: 1em;
+			margin-block-end: 1em;
 		}
 	}
 
 	& > .p-tokyu-announce__data + [class^="p-"] {
-		margin-top: 4em;
+		margin-block-start: 4em;
 	}
 }
 
@@ -140,7 +139,7 @@
 	background: var(--color-white);
 
 	& > section + section {
-		margin-top: 1em;
+		margin-block-start: 1em;
 	}
 
 	& h2 {
@@ -158,20 +157,19 @@
 	}
 
 	& p {
-		margin-top: 0.25em;
+		margin-block-start: 0.25em;
 	}
 }
 
 /* 備考 */
 .p-tokyu-announce__note {
-	margin-top: 1em;
+	margin-block-start: 1em;
 	text-align: center;
 }
 
 /* 収録データ */
 .p-tokyu-announce__data {
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
 	padding: 0.5em 15px;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);

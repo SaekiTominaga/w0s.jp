@@ -10,7 +10,7 @@ Styleguide 2.4.
 Markup:
 <div class="p-item">
 <a href="https://example.com/">
-<img src="https://dummyimage.com/360x180/ccc/fff" alt="" class="p-item__image"/>
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-item__image"/>
 <span class="p-item__title">タイトル</span>
 </a>
 <div class="p-item__text">
@@ -38,7 +38,7 @@ Styleguide 2.4.1
 }
 
 .p-item__image {
-	margin-right: calc(var(--_gap) + var(--_bullet-width) + var(--_bullet-gap));
+	margin-inline-end: calc(var(--_gap) + var(--_bullet-width) + var(--_bullet-gap));
 	border: 1px solid var(--color-black);
 	float: left;
 	height: auto;
@@ -55,10 +55,10 @@ Styleguide 2.4.1
 }
 
 .p-item__title {
-	margin-left: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
+	margin-inline-start: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
 
 	&::before {
-		margin-right: var(--_bullet-gap);
+		margin-inline-end: var(--_bullet-gap);
 		content: "";
 		display: inline-block;
 		clip-path: var(--shape-link-triangle);
@@ -78,7 +78,7 @@ Styleguide 2.4.1
 }
 
 .p-item__text {
-	margin-top: 0.5em;
+	margin-block-start: 0.5em;
 	font-size: calc(100% / var(--font-ratio-2));
 	line-height: var(--line-height-normal);
 	overflow: hidden;

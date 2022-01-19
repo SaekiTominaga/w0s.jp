@@ -59,16 +59,16 @@
 						<figcaption class="p-embed__caption c-caption">月ごとのニュース件数推移</figcaption>
 					</figure>
 
-					<section class="c-section -hdg-a">
-						<div class="p-hdg">
-							<h2>ニュースタイトル一覧<span class="p-hdg__sub">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
+					<section class="p-section -hdg-a">
+						<div class="p-section__hdg">
+							<h2>ニュースタイトル一覧<span class="p-section__subhdg">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
 						</div>
 
-						<ul class="p-note">
+						<ul class="c-note">
 							<li><time datetime="2021-01">2021年1月</time>をもって収集を停止したので、それ以降のデータは<a href="https://www.madoka-magica.com/rebellion/news/">公式サイトのニュースページ</a>を参照ください。</li>
 						</ul>
 
-						<ul class="p-link">
+						<ul class="p-links">
 							<% for (const news of newsListMovie) { %>
 							<li><a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>"><%= news.title %></a>（<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</li>
 							<% } %> <% for (const news of newsListTv) { %>
@@ -76,20 +76,20 @@
 							<% } %>
 						</ul>
 					</section>
-					<section class="c-section -hdg-a">
-						<div class="p-hdg">
+					<section class="p-section -hdg-a">
+						<div class="p-section__hdg">
 							<h2>月ごとのニュース</h2>
 						</div>
 
 						<div class="c-grid -narrow">
 							<% for (const [year, yearData] of monthDataList) { %>
 							<div class="c-grid__item">
-								<section class="c-section -hdg-b">
-									<div class="p-hdg">
+								<section class="p-section -hdg-b">
+									<div class="p-section__hdg">
 										<h3><%= year %>年</h3>
 									</div>
 
-									<ul class="p-link">
+									<ul class="p-links">
 										<% for (const [month, count] of yearData) { %>
 										<li>
 											<a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月</a>（<%= count %>件）

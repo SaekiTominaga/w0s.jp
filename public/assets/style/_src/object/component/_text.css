@@ -1,34 +1,51 @@
 /*
-テキスト
+テキストレベルセマンティックス
 
 Styleguide 1.2.
 */
 
 /*
-キャプション
+テキストリンク（ビュレットアイコン）
 
 Markup:
-<figcaption class="c-caption {{modifier_class}}">キャプション</figcaption>
-
-.-meta - メタデータ
-.-link - 外部サービス埋め込みの元ソースリンク
+<a href="/" class="c-link">他ページ</a>
+<a href="#" class="c-link">同一ページ</a>
+<a aria-current="page" class="c-link">現在ページ</a>
 
 Styleguide 1.2.1
 */
-.c-caption {
-	display: flex;
-	font-size: calc(100% / var(--font-ratio-1));
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-narrow);
+.c-link {
+	--_icon-clip-path: var(--shape-link-triangle);
+	--_icon-width: 0.45em;
+	--_icon-height: 0.75em;
+	--_icon-color: var(--color-gray);
 
-	/* メタデータ */
-	&.-meta {
-		justify-content: flex-end;
+	&::before {
+		margin-inline-end: 0.5em;
+		content: "";
+		display: inline-block;
+		clip-path: var(--_icon-clip-path);
+		width: var(--_icon-width);
+		height: var(--_icon-height);
+		background: var(--_icon-color);
 	}
 
-	/* 外部サービス埋め込みの元ソースリンク */
-	&.-link {
-		justify-content: flex-end;
+	&:any-link {
+		/* 他ページ */
+		&:not([href^="#"]) {
+			--_icon-color: var(--link-color-bullet);
+		}
+
+		/* 同一ページ */
+		&[href^="#"] {
+			--_icon-clip-path: var(--shape-pagelink-triangle);
+			--_icon-width: 0.75em;
+			--_icon-height: 0.5625em;
+		}
+
+		&:hover {
+			--_icon-color: var(--link-color-hover);
+		}
 	}
 }
 
@@ -36,16 +53,16 @@ Styleguide 1.2.1
 ルビ
 
 Markup:
-<ruby class="c-ruby-after">久米田 康治<rp>（</rp><rt>くめた こうじ</rt><rp>）</rp></ruby>
+<ruby class="c-ruby">久米田 康治<rp>（</rp><rt>くめた こうじ</rt><rp>）</rp></ruby>
 
 Styleguide 1.2.2
 */
-.c-ruby-after {
+.c-ruby {
 	display: inline-flex;
 	align-items: baseline;
 
-	& rt,
-	& rp {
+	& > rt,
+	& > rp {
 		display: inline;
 		font-size: calc(100% / var(--font-ratio-1));
 	}
@@ -71,9 +88,7 @@ Styleguide 1.2.3
 コードハイライト
 
 Markup:
-<pre><code>
 <span class="c-code-highlight {{modifier_class}}">&lt;<span class="c-code-highlight {{modifier_class}}">a</span>&gt;</span>
-</code></pre>
 
 Styleguide 1.2.4
 */
@@ -95,7 +110,8 @@ Styleguide 1.2.4
 	&.-literal,
 	&.-variable,
 	&.-template-variable,
-	&.-tag &.-attr {
+	&.-tag,
+	&.-attr {
 		color: #008080;
 	}
 
@@ -138,7 +154,9 @@ Styleguide 1.2.4
 		color: #990073;
 	}
 
+	/* stylelint-disable selector-class-pattern */
 	&.-built_in,
+	/* stylelint-enable selector-class-pattern */
 	&.-builtin-name {
 		color: #007eb3; /* original: #0086b3 */
 	}
@@ -193,9 +211,7 @@ Styleguide 1.2.5
 
 		&[role="button"] {
 			/* JS 有効時のみ */
-			--_color: var(--link-color);
-
-			color: var(--_color);
+			color: var(--link-color);
 			text-decoration: none;
 			cursor: default;
 
@@ -236,8 +252,7 @@ Markup:
 Styleguide 1.2.7
 */
 .c-ins {
-	color: #e00;
-	font-style: normal;
+	color: var(--color-red);
 	font-weight: var(--font-weight-bold);
 	text-decoration-line: underline;
 	text-decoration-style: dashed;
@@ -252,8 +267,7 @@ Markup:
 Styleguide 1.2.8
 */
 .c-del {
-	color: #666;
-	font-style: normal;
+	color: var(--color-gray);
 	font-weight: var(--font-weight-bold);
 	text-decoration-line: line-through;
 }
@@ -267,9 +281,9 @@ Markup:
 Styleguide 1.2.9
 */
 .c-domain {
-	margin: 0 0.25em;
-	color: #666;
-	font-size: 85%;
+	margin-inline: 0.25em;
+	color: var(--color-gray);
+	font-size: calc(100% / var(--font-ratio-1));
 	font-weight: var(--font-weight-normal);
 }
 
@@ -285,7 +299,6 @@ Markup:
 Styleguide 1.2.10
 */
 .c-amazon-binding {
-	--_padding: 0.125em 0.5em;
 	--_border-color: var(--_color);
 	--_color: var(--color-gray);
 	--_bg-color: var(--color-white);
@@ -314,26 +327,6 @@ Styleguide 1.2.10
 		--_color: #f90;
 		--_bg-color: var(--color-black);
 	}
-
-	@nest .entry-amazon & {
-		margin-left: 0.5em;
-	}
-}
-
-/*
-Amazon 商品が発売予定の場合の「予定」文字部分
-
-Markup:
-<em class="c-amazon-date-plan">予定</em>
-
-Styleguide 1.2.11
-*/
-.c-amazon-date-plan {
-	@nest .p-sidebar-amazon-link & {
-		--_color: hsl(0 100% 40%);
-
-		color: var(--_color);
-	}
 }
 
 /*
@@ -345,18 +338,18 @@ Markup:
 .-new - 新規
 .-renew - 更新
 
-Styleguide 1.2.12
+Styleguide 1.2.11
 */
 .c-update-icon {
 	--_color: var(--color-white);
-	--_bgcolor: #767676;
+	--_bg-color: #767676;
 
 	padding: 0.25em;
-	border: 1px solid var(--_bgcolor);
+	border: 1px solid var(--_bg-color);
 	border-radius: var(--border-radius-normal);
 	display: inline-block;
 	color: var(--_color);
-	background: var(--_bgcolor);
+	background: var(--_bg-color);
 	font-size: calc(100% / var(--font-ratio-1));
 	font-weight: var(--font-weight-bold);
 	line-height: var(--line-height-nowrap);
@@ -365,12 +358,12 @@ Styleguide 1.2.12
 	/* 新規 */
 	&.-new {
 		--_color: #90f;
-		--_bgcolor: #cf4;
+		--_bg-color: #cf4;
 	}
 
 	/* 更新 */
 	&.-renew {
 		--_color: #90f;
-		--_bgcolor: #9ff;
+		--_bg-color: #9ff;
 	}
 }

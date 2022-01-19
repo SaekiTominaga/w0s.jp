@@ -27,8 +27,8 @@ Markup:
 Styleguide 1.4.1
 */
 .c-button {
-	--_padding-row: 0.5em;
-	--_padding-col: 0.75em;
+	--_padding-block: 0.5em;
+	--_padding-inline: 0.75em;
 	--_border-color: var(--color-border-dark);
 	--_width: auto;
 	--_color: var(--color-black);
@@ -36,7 +36,7 @@ Styleguide 1.4.1
 	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
-	padding: var(--_padding-row) var(--_padding-col);
+	padding: var(--_padding-block) var(--_padding-inline);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	box-sizing: border-box;
@@ -61,7 +61,7 @@ Styleguide 1.4.1
 
 	/* トップページの見出し横では小さく表示 */
 	@nest .p-top-hdg & {
-		--_padding-row: 0.35em;
+		--_padding-block: 0.35em;
 		--_font-size: calc(100% / var(--font-ratio-1));
 	}
 
@@ -101,18 +101,15 @@ Styleguide 1.4.1
 	}
 
 	@nest .p-sidebar-profile__banners & {
-		--_padding-col: 1px;
+		--_padding-inline: 1px;
 		--_width: 100%;
 	}
 }
 
 .c-button__icon {
-	aspect-ratio: 1/1;
+	width: var(--_icon-size);
 	height: var(--_icon-size);
 }
 
 .c-button__text {
-	@nest .p-entry-footer-social & {
-		white-space: nowrap; /* for iPad Safari */
-	}
 }

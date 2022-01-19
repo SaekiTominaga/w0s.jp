@@ -22,13 +22,13 @@ Styleguide 2.3.1
 	& > li,
 	& > li > :is(ol, ul) > li,
 	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
-		margin-left: 1em;
+		margin-inline-start: 1em;
 	}
 
 	& > li + li,
 	& > li > :is(ol, ul) > li,
 	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
-		margin-top: 0.25em;
+		margin-block-start: 0.25em;
 	}
 
 	& > li {
@@ -62,11 +62,11 @@ Styleguide 2.3.2
 */
 .p-list-num {
 	& > li {
-		margin-left: 1.5em;
+		margin-inline-start: 1.5em;
 		list-style: decimal;
 
 		& + li {
-			margin-top: 0.25em;
+			margin-block-start: 0.25em;
 		}
 	}
 }
@@ -90,11 +90,11 @@ Styleguide 2.3.3
 	}
 
 	& > dd + dt {
-		margin-top: 0.5em;
+		margin-block-start: 0.5em;
 	}
 
 	& > dd {
-		margin-left: 1em;
+		margin-inline-start: 1em;
 	}
 }
 
@@ -102,22 +102,22 @@ Styleguide 2.3.3
 注釈リスト
 
 Markup:
-<ul class="p-note">
+<ul class="p-notes">
 <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
 </ul>
 
 Styleguide 2.3.4
 */
-.p-note {
+.p-notes {
 	color: var(--color-darkgray);
 	font-size: calc(100% / var(--font-ratio-1));
 
 	& > li {
-		margin-left: 1.25em;
+		margin-inline-start: 1.25em;
 		list-style-type: "※ ";
 
 		& + li {
-			margin-top: 0.75em;
+			margin-block-start: 0.75em;
 		}
 	}
 }
@@ -126,7 +126,7 @@ Styleguide 2.3.4
 リンクリスト
 
 Markup:
-<ul class="p-link {{modifier_class}}">
+<ul class="p-links">
 <li><a href="https://example.com/">リンク</a></li>
 <li><a href="https://example.com/">リンク</a>
 <p>テキストテキストテキスト</p></li>
@@ -138,7 +138,7 @@ Markup:
 
 Styleguide 2.3.5
 */
-.p-link {
+.p-links {
 	--_icon-clip-path: var(--shape-link-triangle);
 	--_icon-height: 0.75em;
 	--_icon-width: calc(var(--_icon-height) * 0.6);
@@ -146,10 +146,10 @@ Styleguide 2.3.5
 	--_icon-gap: 0.5em;
 
 	& > li {
-		margin-left: calc((var(--_icon-width) + var(--_icon-gap)) * var(--font-ratio-2));
+		margin-inline-start: calc((var(--_icon-width) + var(--_icon-gap)) * var(--font-ratio-2));
 
 		& + li {
-			margin-top: 0.5em;
+			margin-block-start: 0.5em;
 		}
 
 		& > ul {
@@ -158,17 +158,17 @@ Styleguide 2.3.5
 			--_icon-color: var(--color-black);
 
 			& > li {
-				margin-top: 0.25em;
-				margin-left: calc((var(--_icon-width) + var(--_icon-gap)) / 2 * var(--font-ratio-1));
+				margin-block-start: 0.25em;
+				margin-inline-start: calc((var(--_icon-width) + var(--_icon-gap)) / 2 * var(--font-ratio-1));
 			}
 		}
 
 		& > a,
 		& > ul > li > a {
-			margin-left: calc(0px - var(--_icon-width) - var(--_icon-gap));
+			margin-inline-start: calc(0px - var(--_icon-width) - var(--_icon-gap));
 
 			&::before {
-				margin-right: var(--_icon-gap);
+				margin-inline-end: var(--_icon-gap);
 				content: "";
 				display: inline-block;
 				clip-path: var(--_icon-clip-path);
@@ -196,4 +196,67 @@ Styleguide 2.3.5
 			font-size: calc(100% * var(--font-ratio-1));
 		}
 	}
+}
+
+/*
+脚注リスト
+
+Markup:
+<ul class="p-footnotes">
+<li>
+<span class="p-footnotes__no"><a href="#nt1">[1]</a></span>
+<span class="p-footnotes__text" id="fn1">テキストテキストテキスト</span>
+</li>
+<li>
+<span class="p-footnotes__no"><a href="#nt2">[2]</a></span>
+<span class="p-footnotes__text" id="fn2">テキストテキストテキスト</span>
+</li>
+</ul>
+
+Styleguide 2.2.8
+*/
+.p-footnotes {
+	padding: 1em;
+	border: 1px solid var(--color-bg-light);
+	border-radius: var(--border-radius-large);
+	box-sizing: border-box;
+	display: table;
+	width: 100%;
+	background: var(--color-bg-light);
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-normal);
+
+	& > li {
+		display: table-row;
+
+		&:not(:first-child) {
+			& > :is(.p-footnotes__no, .p-footnotes__text) {
+				border-block-start: 0.5em solid transparent;
+			}
+		}
+	}
+}
+
+.p-footnotes__no,
+.p-footnotes__text {
+	display: table-cell;
+	vertical-align: top;
+}
+
+.p-footnotes__no {
+	padding-inline-end: 0.25em;
+	font-weight: var(--font-weight-bold);
+	text-align: end;
+	white-space: nowrap;
+
+	& > a {
+		padding: 0.25em;
+		display: inline-block;
+		text-decoration-skip-ink: none;
+	}
+}
+
+.p-footnotes__text {
+	padding: 0.25em;
+	width: 100%;
 }
