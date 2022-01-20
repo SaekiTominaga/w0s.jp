@@ -31,7 +31,7 @@
 							<% if (validateErrors.length > 0) { %>
 							<div class="p-form-errors js-form-errors">
 								<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
-								<ul>
+								<ul class="p-list">
 									<% for (const validateError of validateErrors) { %>
 									<li><%= validateError.msg %></li>
 									<% } %>
@@ -42,21 +42,9 @@
 							<div class="p-form-grid">
 								<div class="p-form-grid__group">
 									<fieldset>
-										<legend class="p-form-grid__legend"><label for="fc-asin">ASIN</label></legend>
+										<legend class="p-form-grid__legend"><label for="fc-asin" class="c-label">ASIN</label></legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<input
-													class="c-input"
-													id="fc-asin"
-													name="asin"
-													value="<%= page.query.asin %>"
-													minlength="10"
-													maxlength="10"
-													required=""
-													pattern="[\dA-Z]{10}"
-													style="--input-width: 10em"
-												/>
-											</div>
+											<input class="c-input" id="fc-asin" name="asin" value="<%= page.query.asin %>" minlength="10" maxlength="10" required="" pattern="[\dA-Z]{10}" style="--width: 10em" />
 										</div>
 									</fieldset>
 								</div>
@@ -64,15 +52,15 @@
 									<fieldset>
 										<legend class="p-form-grid__legend">カテゴリー</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block -check">
+											<div class="c-form-controls -checkbox">
 												<% for (const category of categoryMaster) { %>
-												<label class="c-label-check -checkbox">
+												<label class="c-label -check">
 													<% if (page.query.category !== null && page.query.category.includes(category.id)) { %>
 													<input type="checkbox" name="category[]" value="<%= category.id %>" checked="" />
 													<% } else { %>
 													<input type="checkbox" name="category[]" value="<%= category.id %>" />
 													<% } %>
-													<span class="c-label-check__label"><%= category.name %></span>
+													<span class="c-label__text"><%= category.name %></span>
 												</label>
 												<% } %>
 											</div>
@@ -81,8 +69,8 @@
 								</div>
 							</div>
 
-							<div class="p-submit">
-								<span class="p-submit__button"><button class="c-button-submit" name="actionadd" value="1">新規追加</button></span>
+							<div class="c-form-controls -submit">
+								<p><button class="c-submit" name="actionadd" value="1">新規追加</button></p>
 							</div>
 						</form>
 					</section>

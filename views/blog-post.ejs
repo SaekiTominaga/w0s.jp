@@ -29,28 +29,14 @@
 						</div>
 
 						<form action="<%= page.path %>#post">
-							<div class="p-form-grid">
-								<div class="p-form-grid__group">
-									<fieldset>
-										<legend class="p-form-grid__legend"><label for="fc-idselect">記事 ID</label></legend>
-										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<input
-													type="number"
-													class="c-input"
-													id="fc-idselect"
-													name="id"
-													value="<%= page.query.id ?? latestId %>"
-													min="1"
-													max="<%= latestId %>"
-													required=""
-													style="--input-width: 4.5em"
-												/>
-												<button class="c-button-submit" name="actionrevpre" value="1">修正</button>
-											</div>
-										</div>
-									</fieldset>
-								</div>
+							<div class="c-form-controls">
+								<p>
+									<label class="c-label -input">
+										<span class="c-label__text">記事 ID</span>
+										<input type="number" class="c-input" id="fc-idselect" name="id" value="<%= page.query.id ?? latestId %>" min="1" max="<%= latestId %>" required="" style="--width: 4.5em"
+									/></label>
+								</p>
+								<p><button class="c-submit" name="actionrevpre" value="1">修正</button></p>
 							</div>
 						</form>
 					</section>
@@ -64,7 +50,7 @@
 							<% if (topicValidateErrors.length > 0) { %>
 							<div class="p-form-errors js-form-errors">
 								<p><strong><%= topicValidateErrors.length %>個のエラーがあります。</strong></p>
-								<ul>
+								<ul class="p-list">
 									<% for (const validateError of topicValidateErrors) { %>
 									<li><%= validateError.msg %></li>
 									<% } %>
@@ -73,13 +59,9 @@
 							<% } %> <% if (topicPostResults.length > 0) { %>
 							<ul class="p-form-results">
 								<% for (const result of topicPostResults) { %><% if (result.success) { %>
-								<li class="p-form-results__item -success">
-									<span class="p-form-results__mark">✔</span> <span class="p-form-results__message"><%= result.message %></span>
-								</li>
+								<li class="p-form-results__item -success"><span class="p-form-results__mark">✔</span> <span class="p-form-results__message"><%= result.message %></span></li>
 								<% } else { %>
-								<li class="p-form-results__item -error">
-									<span class="p-form-results__mark">⚠</span> <span class="p-form-results__message"><%= result.message %></span>
-								</li>
+								<li class="p-form-results__item -error"><span class="p-form-results__mark">⚠</span> <span class="p-form-results__message"><%= result.message %></span></li>
 								<% } %> <% } %>
 							</ul>
 							<% } %>
@@ -88,39 +70,33 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-title">題名 <strong class="c-required -required">必須</strong></label>
+											<label for="fc-title" class="c-label">題名 <strong class="c-label-icon -required">必須</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<input class="c-input -full js-convert-trim" name="title" value="<%= page.query.title %>" id="fc-title" required="" />
-											</div>
+											<input class="c-input -full js-convert-trim" name="title" value="<%= page.query.title %>" id="fc-title" required="" />
 										</div>
 									</fieldset>
 								</div>
 								<div class="p-form-grid__group">
 									<fieldset>
-										<legend class="p-form-grid__legend"><label for="fc-description">概要</label></legend>
+										<legend class="p-form-grid__legend"><label for="fc-description" class="c-label">概要</label></legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<input class="c-input -full js-convert-trim" name="description" value="<%= page.query.description %>" id="fc-description" />
-											</div>
+											<input class="c-input -full js-convert-trim" name="description" value="<%= page.query.description %>" id="fc-description" />
 										</div>
 									</fieldset>
 								</div>
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-message">本文 <strong class="c-required -required">必須</strong></label>
+											<label for="fc-message" class="c-label">本文 <strong class="c-label-icon -required">必須</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<textarea class="c-textarea js-convert-trim" name="message" id="fc-message" required="" style="--textarea-height: 15em">
-<%= page.query.message %></textarea
-												>
-											</div>
-											<div class="p-form-grid__contents-block">
+											<p>
+												<textarea class="c-textarea js-convert-trim" name="message" id="fc-message" required="" style="--height: 15em"><%= page.query.message %></textarea>
+											</p>
+											<p>
 												<iframe class="p-admin-blog-message-preview" name="message-preview" style="width: 100%; height: 75vh; resize: vertical"></iframe>
-											</div>
+											</p>
 										</div>
 									</fieldset>
 								</div>
@@ -129,15 +105,15 @@
 										<legend class="p-form-grid__legend">カテゴリ</legend>
 										<div class="p-form-grid__contents">
 											<% for (const [categoryGroupName, categories] of categoryMaster) { %>
-											<div class="p-form-grid__contents-block -check">
+											<div class="c-form-controls -checkbox">
 												<% for (const category of categories) { %>
-												<label class="c-label-check -checkbox">
+												<label class="c-label -check">
 													<% if (page.query.category !== null && page.query.category.includes(category.id)) { %>
 													<input type="checkbox" name="category[]" value="<%= category.id %>" checked="" />
 													<% } else { %>
 													<input type="checkbox" name="category[]" value="<%= category.id %>" />
 													<% } %>
-													<span class="c-label-check__label"><%= category.name %></span></label
+													<span class="c-label__text"><%= category.name %></span></label
 												>
 												<% } %>
 											</div>
@@ -149,7 +125,7 @@
 									<fieldset>
 										<legend class="p-form-grid__legend" id="label-image">画像</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block -check p-admin-blog-select-image" role="radiogroup" aria-labelledby="label-image">
+											<div class="c-form-controls -checkbox p-admin-blog-select-image" role="radiogroup" aria-labelledby="label-image">
 												<template id="select-image" data-selected="<%= page.query.image %>">
 													<label>
 														<input type="radio" name="image" value="" />
@@ -157,7 +133,7 @@
 													</label>
 												</template>
 											</div>
-											<div class="p-form-grid__contents-block">
+											<div class="c-form-controls">
 												<ul class="p-admin-blog-select-image-errors">
 													<template id="select-image-error">
 														<li></li>
@@ -169,20 +145,10 @@
 								</div>
 								<div class="p-form-grid__group">
 									<fieldset>
-										<legend class="p-form-grid__legend"><label for="fc-relation">関連記事</label></legend>
+										<legend class="p-form-grid__legend"><label for="fc-relation" class="c-label">関連記事</label></legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<input
-													id="fc-relation"
-													class="c-input js-convert-trim"
-													name="relation"
-													value="<%= page.query.relation %>"
-													maxlength="23"
-													pattern="[1-9]{1}[0-9]*(,[1-9]{1}[0-9]*)*"
-													style="--input-width: 15em"
-												/>
-												<span class="u-small">（カンマ区切り）</span>
-											</div>
+											<input id="fc-relation" class="c-input js-convert-trim" name="relation" value="<%= page.query.relation %>" maxlength="23" pattern="[1-9]{1}[0-9]*(,[1-9]{1}[0-9]*)*" style="--width: 15em" />
+											<span class="u-small">（カンマ区切り）</span>
 										</div>
 									</fieldset>
 								</div>
@@ -190,16 +156,14 @@
 									<fieldset>
 										<legend class="p-form-grid__legend">公開</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<label class="c-label-check -checkbox">
-													<% if (page.query.public) { %>
-													<input type="checkbox" name="public" value="1" checked="" />
-													<% } else { %>
-													<input type="checkbox" name="public" value="1" />
-													<% } %>
-													<span class="c-label-check__label">公開状態</span>
-												</label>
-											</div>
+											<label class="c-label -check">
+												<% if (page.query.public) { %>
+												<input type="checkbox" name="public" value="1" checked="" />
+												<% } else { %>
+												<input type="checkbox" name="public" value="1" />
+												<% } %>
+												<span class="c-label__text">公開状態</span>
+											</label>
 										</div>
 									</fieldset>
 								</div>
@@ -208,16 +172,14 @@
 									<fieldset>
 										<legend class="p-form-grid__legend">更新時の処理</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<label class="c-label-check -checkbox">
-													<% if (page.query.timestamp) { %>
-													<input type="checkbox" name="timestamp" value="1" checked="" />
-													<% } else { %>
-													<input type="checkbox" name="timestamp" value="1" />
-													<% } %>
-													<span class="c-label-check__label">更新日時を変更する</span>
-												</label>
-											</div>
+											<label class="c-label -check">
+												<% if (page.query.timestamp) { %>
+												<input type="checkbox" name="timestamp" value="1" checked="" />
+												<% } else { %>
+												<input type="checkbox" name="timestamp" value="1" />
+												<% } %>
+												<span class="c-label__text">更新日時を変更</span>
+											</label>
 										</div>
 									</fieldset>
 								</div>
@@ -226,27 +188,19 @@
 									<fieldset>
 										<legend class="p-form-grid__legend">外部サービス</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<label class="c-label-check -checkbox">
+											<p>
+												<label class="c-label -check">
 													<% if (page.query.social === 1) { %>
 													<input type="checkbox" name="social" value="1" checked="" />
 													<% } else { %>
 													<input type="checkbox" name="social" value="1" />
 													<% } %>
-													<span class="c-label-check__label">ソーシャルサービスへ投稿する</span>
+													<span class="c-label__text">ソーシャルサービスへ投稿する</span>
 												</label>
-											</div>
-											<div class="p-form-grid__contents-block">
-												<label class="c-label-input"
-													><span class="c-label-input__label">ハッシュタグ</span
-													><input
-														class="c-input js-convert-trim"
-														name="socialtag"
-														value="<%= page.query.socialtag %>"
-														pattern="[^,]+"
-														style="--input-width: 12em"
-												/></label>
-											</div>
+											</p>
+											<p>
+												<label class="c-label -input"><span class="c-label__text">ハッシュタグ</span><input class="c-input js-convert-trim" name="socialtag" value="<%= page.query.socialtag %>" pattern="[^,]+" style="--width: 12em" /></label>
+											</p>
 										</div>
 									</fieldset>
 								</div>
@@ -255,11 +209,11 @@
 
 							<p><input type="hidden" name="id" value="<%= targetId %>" /></p>
 
-							<div class="p-submit">
+							<div class="c-form-controls -submit">
 								<% if (updateMode) { %>
-								<span class="p-submit__button"><button class="c-button-submit" name="actionrev" value="1">修正実行</button></span>
+								<p><button class="c-submit" name="actionrev" value="1">修正実行</button></p>
 								<% } else { %>
-								<span class="p-submit__button"><button class="c-button-submit" name="actionadd" value="1">新規追加</button></span>
+								<p><button class="c-submit" name="actionadd" value="1">新規追加</button></p>
 								<% } %>
 							</div>
 						</form>
@@ -278,13 +232,9 @@
 							<% if (mediaUploadResults.length > 0) { %>
 							<ul class="p-form-results">
 								<% for (const result of mediaUploadResults) { %><% if (result.success) { %>
-								<li class="p-form-results__item -success">
-									<span class="p-form-results__mark">✔</span> <span class="p-form-results__message"><%= result.message %>: <%= result.filename %></span>
-								</li>
+								<li class="p-form-results__item -success"><span class="p-form-results__mark">✔</span> <span class="p-form-results__message"><%= result.message %>: <%= result.filename %></span></li>
 								<% } else { %>
-								<li class="p-form-results__item -error">
-									<span class="p-form-results__mark">⚠</span> <span class="p-form-results__message"><%= result.message %>: <%= result.filename %></span>
-								</li>
+								<li class="p-form-results__item -error"><span class="p-form-results__mark">⚠</span> <span class="p-form-results__message"><%= result.message %>: <%= result.filename %></span></li>
 								<% } %> <% } %>
 							</ul>
 							<% } %>
@@ -292,39 +242,24 @@
 							<div class="p-form-grid">
 								<div class="p-form-grid__group">
 									<fieldset>
-										<legend class="p-form-grid__legend"><label for="c-input-media">ファイル</label></legend>
+										<legend class="p-form-grid__legend"><label for="c-input-media" class="c-label">ファイル</label></legend>
 										<div class="p-form-grid__contents">
-											<div class="p-fc-sbs">
-												<div class="p-fc-sbs__fc">
-													<input
-														is="w0s-input-file-preview"
-														type="file"
-														class="c-input-file"
-														id="c-input-media"
-														name="media"
-														accept="image/*,video/*"
-														required=""
-														multiple=""
-														data-target-for="image-preview"
-														data-error-message='&lt;strong class="error">「&lt;span class="filename"&gt;${name}</span&gt;」（${size} byte）はプレビューできません。&lt;/strong&gt;'
-													/>
-												</div>
-												<div class="p-fc-sbs__fc">
-													<label class="c-label-check -checkbox"
-														><input type="checkbox" name="mediaoverwrite" value="1" /><span class="c-label-check__label">上書き許可</span></label
-													>
-												</div>
+											<div class="c-form-controls">
+												<p><input is="w0s-input-file-preview" type="file" class="c-input-file" id="c-input-media" name="media" accept="image/*,video/*" required="" multiple="" data-target-for="image-preview" data-error-message='&lt;strong class="error">「&lt;span class="filename"&gt;${name}</span&gt;」（${size} byte）はプレビューできません。&lt;/strong&gt;' /></p>
+												<p>
+													<label class="c-label -check"><input type="checkbox" name="mediaoverwrite" value="1" /><span class="c-label__text">上書き許可</span></label>
+												</p>
 											</div>
-											<div class="p-form-grid__contents-block">
-												<ul class="p-image-preview-list" id="image-preview"></ul>
+											<div class="c-form-controls">
+												<ul class="p-image-preview" id="image-preview"></ul>
 											</div>
 										</div>
 									</fieldset>
 								</div>
 							</div>
 
-							<div class="p-submit">
-								<span class="p-submit__button"><button class="c-button-submit" name="actionmedia" value="1">ファイル送信</button></span>
+							<div class="c-form-controls -submit">
+								<p><button class="c-submit" name="actionmedia" value="1">ファイル送信</button></p>
 							</div>
 						</form>
 					</section>
@@ -334,7 +269,7 @@
 							<h2>凡例</h2>
 						</div>
 
-						<table class="c-table">
+						<table class="p-table">
 							<tbody>
 								<tr>
 									<th>#<b style="color: #e00">␣</b></th>

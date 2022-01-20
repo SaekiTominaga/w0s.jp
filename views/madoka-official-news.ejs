@@ -36,8 +36,8 @@
 				</div>
 				<main class="l-content__main">
 					<form class="p-block">
-						<div class="p-fc-sbs -center">
-							<div class="p-fc-sbs__fc">
+						<div class="c-form-controls -center">
+							<p>
 								<select name="month" class="c-select">
 									<% for (const [year, yearData] of monthDataList) { %>
 									<optgroup label="<%= year %>年">
@@ -47,10 +47,10 @@
 									</optgroup>
 									<% } %>
 								</select>
-							</div>
-							<div class="p-fc-sbs__fc">
-								<button class="c-button-submit">移動</button>
-							</div>
+							</p>
+							<p>
+								<button class="c-submit">移動</button>
+							</p>
 						</div>
 					</form>
 
@@ -91,9 +91,7 @@
 
 									<ul class="p-links">
 										<% for (const [month, count] of yearData) { %>
-										<li>
-											<a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月</a>（<%= count %>件）
-										</li>
+										<li><a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月</a>（<%= count %>件）</li>
 										<% } %>
 									</ul>
 								</section>

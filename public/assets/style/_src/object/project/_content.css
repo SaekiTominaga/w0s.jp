@@ -81,8 +81,8 @@
 		flex: 100%;
 		background: var(--_bg-color);
 		text-align: center;
-		outline-width: 2px;
-		outline-offset: -1.5px;
+		outline-width: var(--outline-width-bold);
+		outline-offset: calc(var(--outline-width-bold) - 0.5px);
 
 		&:any-link {
 			&:hover {
@@ -92,7 +92,7 @@
 
 		/* 現在ページ */
 		&:not(:any-link) {
-			--_bg-color: var(--color-bg-lightpink);
+			--_bg-color: var(--color-bg-pink);
 
 			color: var(--color-darkgray);
 		}
@@ -150,7 +150,7 @@
 		margin: var(--_step-arrow-width) var(--_step-arrow-width) var(--_step-arrow-width) 0;
 		flex: auto;
 		position: relative;
-		font-size: calc(1rem * var(--font-ratio-1));
+		font-size: calc(100% * var(--font-ratio-1));
 		text-align: center;
 
 		&:not(:first-child) {

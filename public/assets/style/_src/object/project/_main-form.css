@@ -5,35 +5,18 @@ Styleguide 2.7.
 */
 
 /*
-フォームコントロールエリア（グリッド形式の整形）
+コントロールエリア（グリッド形式の整形）
 
 Markup:
 <div class="p-form-grid {{modifier_class}}">
-<div class="p-form-grid__group"><fieldset>
-<legend class="p-form-grid__legend"><label for="fc-1-1">入力欄1</label></legend>
+<div class="p-form-grid__group">
+<fieldset>
+<legend class="p-form-grid__legend">キャプション</legend>
 <div class="p-form-grid__contents">
-<div class="p-form-grid__contents-block">
-<input id="fc-1-1" class="c-input"/>
+<input />
 </div>
-</div>
-</fieldset></div>
-<div class="p-form-grid__group"><fieldset>
-<legend class="p-form-grid__legend">入力欄2</legend>
-<div class="p-form-grid__contents">
-<div class="p-form-grid__contents-block -check">
-<label class="c-label-check -checkbox"><input type="checkbox"/><span class="c-label-check__label">チェックボックス</span></label>
-</div>
-</div>
-</fieldset></div>
-<div class="p-form-grid__group"><fieldset>
-<legend class="p-form-grid__legend">入力欄3</legend>
-<div class="p-form-grid__contents">
-<fieldset class="p-form-grid__contents-block -fieldset">
-<legend>キャプション</legend>
-<p>テキスト</p>
 </fieldset>
 </div>
-</fieldset></div>
 </div>
 
 .-complex - 複雑なフォーム
@@ -41,71 +24,59 @@ Markup:
 Styleguide 2.7.1
 */
 .p-form-grid {
-	display: grid;
-	gap: 1em 1em;
-	grid-template-columns: [legend] auto [contents] 1fr;
+	--_gap-block: 1em;
+	--_gap-inline: 1em;
 
-	/* 複雑なフォーム */
-	&.-complex {
-		gap: 0 1em;
-	}
+	display: grid;
+	grid-template-areas: "legend contents";
+	grid-template-columns: auto 1fr;
+	gap: var(--_gap-block) var(--_gap-inline);
 }
 
 .p-form-grid__group {
 	display: grid;
-	grid-column: 1 / 3;
+	grid-column: legend / contents;
 	grid-template-columns: subgrid;
 
 	@supports not (grid-template-columns: subgrid) {
-		display: contents; /* for Firefox <= 70, Chrome, Safari, Edge */
+		display: contents; /* for Chrome, Safari, Edge */
 	}
 
-	/* 複雑なフォーム */
+	/* 複雑なフォームは区切り線を付ける */
 	@nest .p-form-grid.-complex & {
-		padding-block-end: 0.8em;
-		border-block-end: 1px solid #ccc;
-
-		&:not(:last-child) {
-			margin-block-end: 0.8em;
-		}
+		padding-block-end: var(--_gap-block);
+		border-block-end: 1px solid var(--color-border-light);
 	}
-}
 
-.p-form-grid__group > fieldset {
-	display: contents;
+	& > fieldset {
+		display: contents;
+	}
 }
 
 .p-form-grid__legend {
-	margin: 0.75em 0 0.55em;
+	margin-block-start: calc(0.5em + 1px);
 	grid-column: legend;
 	font-weight: var(--font-weight-bold);
 }
 
 .p-form-grid__contents {
 	grid-column: contents;
-}
 
-@supports not (grid-template-columns: subgrid) {
-	.p-form-grid.-complex {
-		& .p-form-grid__group:not(:last-child) {
-			& .p-form-grid__contents {
-				margin-block-end: 1em;
-			}
-		}
+	& > *:not(:first-child) {
+		margin-block-start: 0.5em;
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: 0.5em;
 	}
 }
 
-@media (max-width: 37.5em) {
+@media (max-width: 36em) {
 	.p-form-grid {
-		display: block;
-	}
-
-	.p-form-grid__group {
-		display: block;
-
-		&:not(:last-child) {
-			margin-block-end: 1em;
-		}
+		grid-template-areas:
+			"legend"
+			"contents";
+		grid-template-columns: auto;
 	}
 
 	.p-form-grid__legend {
@@ -113,108 +84,7 @@ Styleguide 2.7.1
 	}
 
 	.p-form-grid__contents {
-		margin-block-start: 0.5em;
-	}
-}
-
-.p-form-grid__contents-block {
-	margin: 0.5em 0 0;
-
-	&:first-child {
-		margin-block-start: 0.15em;
-	}
-
-	/* チェックボックス、ラジオボタン */
-	&.-check {
-		@supports (display: flex) {
-			/* IE 11 は表セルの中で Flexbox を使うと flex-flow: wrap が効かないので、 @supports を使って適用されないようにする */
-			display: flex;
-			flex-flow: wrap;
-			align-items: center;
-		}
-
-		&:first-child {
-			margin-block-start: 0.35em;
-		}
-	}
-
-	/* <fieldset> */
-	&.-fieldset {
-		margin: 0.75em 0 0;
-		padding: 0.25em 1em 0.75em;
-		border: 1px solid #ccc;
-		border-radius: var(--border-radius-normal);
-		background: #fcfcfc;
-
-		& > legend {
-			padding: 0 0.5em;
-			color: #333;
-			font-weight: var(--font-weight-bold);
-		}
-	}
-}
-
-/*
-送信ボタンエリア
-
-Markup:
-<div class="p-submit {{modifier_class}}">
-<span class="p-submit__button"><button class="c-button-submit">送信</button></span>
-<span class="p-submit__button"><button class="c-button-submit">送信</button></span>
-</div>
-
-.-center - センタリング
-
-Styleguide 2.7.2
-*/
-.p-submit {
-	margin-inline-start: -3em;
-	display: flex;
-	flex-flow: wrap;
-	align-items: center;
-
-	&.-center {
-		justify-content: center;
-	}
-}
-
-.p-submit__button {
-	margin: 0.5em 0 0 3em;
-}
-
-/*
-フォームコントロールエリア（横並び）
-
-Markup:
-<div class="p-fc-sbs {{modifier_class}}">
-<div class="p-fc-sbs__fc">
-<input class="c-input"/>
-</div>
-<div class="p-fc-sbs__fc">
-<button class="c-button-submit">送信</button>
-</div>
-</div>
-
-.-center - センタリング
-
-Styleguide 2.7.3
-*/
-.p-fc-sbs {
-	display: flex;
-	flex-flow: wrap;
-
-	&.-center {
-		justify-content: center;
-	}
-}
-
-.p-fc-sbs__fc {
-	&:not(:last-child) {
-		margin-inline-end: 0.5em;
-	}
-
-	&.-grow {
-		flex: 1;
+		margin-block-start: 0.25em;
 	}
 }
 
@@ -223,38 +93,35 @@ Styleguide 2.7.3
 
 Markup:
 <div class="p-form-errors">
-<p><strong>エラーがあります。</strong></p>
-<ul>
-<li>エラー文言</li>
-<li>エラー文言</li>
-</ul>
+<p><strong>エラー</strong></p>
 </div>
 
-Styleguide 2.7.4
+Styleguide 2.7.2
 */
 .p-form-errors {
 	padding: 1em;
-	border: 1px solid #f00;
+	border: 1px solid var(--color-border-red);
 	border-radius: var(--border-radius-large);
-	background: #fee;
+	background: var(--color-bg-red);
 	outline: none;
-
-	& li {
-		margin: 0.25em 0 0 1em;
-		list-style-type: disc;
-	}
 }
 
 /*
-エラー文言
+送信結果
 
 Markup:
 <ul class="p-form-results">
-<li class="p-form-results__item -success">エラー文言</li>
-<li class="p-form-results__item -error">エラー文言</li>
+<li class="p-form-results__item -success">
+<span class="p-form-results__mark">✔</span>
+<span class="p-form-results__message">テキストテキストテキスト</span>
+</li>
+<li class="p-form-results__item -error">
+<span class="p-form-results__mark">⚠</span>
+<span class="p-form-results__message">テキストテキストテキスト</span>
+</li>
 </ul>
 
-Styleguide 2.7.5
+Styleguide 2.7.3
 */
 .p-form-results {
 	padding: 1em;
@@ -270,11 +137,11 @@ Styleguide 2.7.5
 	color: var(--color);
 
 	&.-success {
-		--color: #090;
+		--color: var(--color-green);
 	}
 
 	&.-error {
-		--color: #e00;
+		--color: var(--color-red);
 	}
 }
 
@@ -288,147 +155,44 @@ Styleguide 2.7.5
 }
 
 /*
-プレビューエリア
-
-Markup:
-<div class="p-fc-preview">
-<div class="p-fc-preview__title">タイトル</div>
-<div class="p-fc-preview__contents">コンテンツ</div>
-</div>
-
-Styleguide 2.7.6
-*/
-.p-fc-preview {
-	margin: 0.5em 0;
-	padding: 0.5em 1em 1em;
-	border: 1px solid #eee;
-	color: #666;
-	background: #eee;
-}
-
-.p-fc-preview__title {
-	font-size: calc(1rem / var(--font-ratio-1));
-	font-weight: var(--font-weight-bold);
-}
-
-.p-fc-preview__contents {
-	margin-block-start: 0.25em;
-	padding: 0.5em 0.75em;
-	border-radius: var(--border-radius-large);
-	box-sizing: border-box;
-	min-height: 2em;
-	color: var(--color-black);
-	background: #efe;
-}
-
-/*
-入力欄ごとの注釈
-
-Markup:
-<div class="p-fc-note">
-<p>注釈</p>
-</div>
-
-Styleguide 2.7.7
-*/
-.p-fc-note {
-	margin: 0.5em 0 0;
-	color: #666;
-	font-size: calc(1rem / var(--font-ratio-1));
-}
-
-/*
-入力欄ごとのバリデートエラー文言
-
-Markup:
-<div class="p-fc-invalid">
-<p>エラー文言</p>
-</div>
-
-Styleguide 2.7.8
-*/
-.p-fc-invalid {
-	margin: 0.5em 0 0;
-	color: #e00;
-	font-size: calc(1rem / var(--font-ratio-1));
-
-	& > p::before {
-		margin-inline-end: 0.25em;
-		content: "⚠";
-	}
-}
-
-/*
-チェックボックス全選択/解除ボタン
-
-Markup:
-<span class="p-fc-allcheck">
-<button type="button" disabled="">全てを選択</button>
-<button type="button" disabled="">全ての選択を解除</button>
-</span>
-
-Styleguide 2.7.9
-*/
-.p-fc-allcheck {
-	margin-inline-start: 1em;
-	display: inline-flex;
-
-	& [type="button"] {
-		margin: 0 1px;
-		font-size: calc(1rem / var(--font-ratio-1));
-	}
-}
-
-/*
-<textarea>の入力データを整形したまま表示
-
-Markup:
-<pre class="p-form-pre">プレビュー</pre>
-
-Styleguide 2.7.10
-*/
-.p-form-pre {
-	font-family: inherit;
-	white-space: pre-wrap;
-}
-
-/*
 投稿画像プレビュー
 
 Markup:
-<ul class="p-image-preview-list"></ul>
+<ul class="p-image-preview">
+<li><img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" /></li>
+<li><strong class="error">「<span class="filename">foo.txt</span>」はプレビューできません。</strong></li>
+</ul>
 
-Styleguide 2.7.11
+Styleguide 2.7.4
 */
-.p-image-preview-list {
+.p-image-preview {
 	display: flex;
 	flex-flow: wrap;
-	font-size: calc(1rem / var(--font-ratio-1));
+	gap: 10px;
+	font-size: calc(100% / var(--font-ratio-1));
 
 	& > li {
-		margin: 10px 10px 0 0;
-		max-width: 120px;
+		width: 120px;
 	}
 
-	& img,
-	& canvas {
-		display: block;
-		max-width: 100%;
-		height: auto;
-		max-height: 141px;
-		width: auto;
+	& img {
+		object-fit: contain;
+		object-position: 0 0;
+		width: 100%;
+		height: 100%;
 	}
 
+	/* stylelint-disable selector-class-pattern */
 	& .error {
 		padding: 10px;
-		border: 1px solid #999;
+		border: 1px solid var(--color-border-dark);
 		display: block;
 		font-weight: var(--font-weight-normal);
 	}
 
 	& .filename {
-		margin-inline-end: 0.5em;
 		font-weight: var(--font-weight-bold);
 		overflow-wrap: break-word;
 	}
+	/* stylelint-enable selector-class-pattern */
 }
