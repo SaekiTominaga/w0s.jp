@@ -27,7 +27,7 @@
 							<h2>新規追加</h2>
 						</div>
 
-						<form action="<%= page.path %>" method="post">
+						<form action="<%= page.path %>" method="post" class="c-stack">
 							<% if (validateErrors.length > 0) { %>
 							<div class="p-form-errors js-form-errors">
 								<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
@@ -81,38 +81,46 @@
 							<h2><%= categoryName %></h2>
 						</div>
 
-						<ul class="p-admin-astore-list">
+						<ul class="c-grid -wide">
 							<% for (const dp of dpOfCategory) { %>
-							<li>
-								<form action="<%= page.path %>" method="post" class="p-admin-astore-list__ctrl">
-									<p><input type="hidden" name="asin" value="<%= dp.asin %>" /></p>
-									<p>
-										<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?">削除</button>
-										<span class="p-admin-astore-list__asin"><%= dp.asin %></span>
-									</p>
-								</form>
-								<div class="p-admin-astore-list__link">
-									<a href="https://www.amazon.co.jp/dp/<%= dp.asin %>">
-										<% if (dp.image_url !== null) { %>
-										<img src="<%= dp.image_url %>" srcset="<%= dp.image_url_2x %> 2x" alt="" class="p-admin-astore-list__image" />
-										<% } else { %>
-										<img src="/assets/image/amazon_noimage.svg" alt="" class="p-admin-astore-list__image" />
-										<% } %> <% if (dp.binding !== null) { %>
-										<span class="p-admin-astore-list__title"><%= dp.title %></span>
-										<% } else { %>
-										<span class="p-admin-astore-list__title"><%= dp.title %><b>[<%= dp.binding %>]</b></span>
+							<li class="c-grid__item">
+								<div class="p-box">
+									<form action="<%= page.path %>" method="post">
+										<p class="c-form-controls">
+											<input type="hidden" name="asin" value="<%= dp.asin %>" />
+											<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?">削除</button>
+											<span><%= dp.asin %></span>
+										</p>
+									</form>
+
+									<div class="p-item">
+										<a href="https://www.amazon.co.jp/dp/<%= dp.asin %>">
+											<% if (dp.image_url !== null) { %>
+											<img src="<%= dp.image_url %>" srcset="<%= dp.image_url_2x %> 2x" alt="" class="p-item__image" />
+											<% } else { %>
+											<img src="/assets/image/amazon_noimage.svg" alt="" class="p-item__image" />
+											<% } %> <% if (dp.binding !== null) { %>
+											<span class="p-item__title"><%= dp.title %></span>
+											<% } else { %>
+											<span class="p-item__title"><%= dp.title %><b>[<%= dp.binding %>]</b></span>
+											<% } %>
+										</a>
+										<% if (dp.date !== null) { %>
+										<div class="p-item__text">
+											<p><%= dp.date.format('YYYY年M月D日') %></p>
+										</div>
 										<% } %>
-									</a>
-									<% if (dp.date !== null) { %>
-									<span class="p-admin-astore-list__date"><%= dp.date.format('YYYY年M月D日') %></span>
-									<% } %>
+									</div>
+
+									<dl class="p-list-description">
+										<dt>商品ページ URL</dt>
+										<dd><%= dp.url %></dd>
+										<% if (dp.image_url !== null) { %>
+										<dt>画像 URL</dt>
+										<dd><%= dp.image_url %></dd>
+										<% } %>
+									</dl>
 								</div>
-								<ul class="p-admin-astore-list__code">
-									<li><%= dp.url %></li>
-									<% if (dp.image_url !== null) { %>
-									<li><%= dp.image_url %></li>
-									<% } %>
-								</ul>
 							</li>
 							<% } %>
 						</ul>

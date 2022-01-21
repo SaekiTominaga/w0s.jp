@@ -25,45 +25,43 @@
 				<main class="l-content__main">
 					<p class="p-text"><%= dpList.length %> 件の商品</p>
 
-					<form method="post">
-						<table class="p-table p-admin-blog-amazon-edit-table">
-							<thead>
-								<tr>
-									<th></th>
-									<th>ASIN</th>
-									<th>商品名</th>
-									<th colspan="2">カテゴリ</th>
-									<th>発売日</th>
-									<th>記事 ID</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% for (const dp of dpList) { %>
-								<tr>
-									<td>
+					<table class="p-table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>ASIN</th>
+								<th>商品名</th>
+								<th colspan="2">カテゴリ</th>
+								<th>発売日</th>
+								<th>記事 ID</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for (const dp of dpList) { %>
+							<tr>
+								<td>
+									<form method="post">
 										<% if (dp.topic_ids.length === 0) { %>
 										<button name="actiondel" value="<%= dp.asin %>" is="w0s-confirm-button" data-message="削除しますか?">削除</button>
 										<% } %>
-									</td>
-									<td><%= dp.asin %></td>
-									<td>
-										<a href="https://www.amazon.co.jp/dp/<%= dp.asin %>">
-											<% if (dp.image_url !== null) { %><img src="<%= dp.image_url %>" alt="" height="36" /> <% } %> <%= dp.title %></a
-										>
-									</td>
-									<td><%= dp.binding %></td>
-									<td><%= dp.product_group %></td>
-									<td><% if (dp.publication_date !== null) { %><%= dp.publication_date.format('YYYY-MM-DD') %><% } %></td>
-									<td>
-										<% for (const id of dp.topic_ids) { %>
-										<a href="https://blog.w0s.jp/<%= id %>"><%= id %></a>
-										<% } %>
-									</td>
-								</tr>
-								<% } %>
-							</tbody>
-						</table>
-					</form>
+									</form>
+								</td>
+								<td><%= dp.asin %></td>
+								<td>
+									<a href="https://www.amazon.co.jp/dp/<%= dp.asin %>"> <% if (dp.image_url !== null) { %><img src="<%= dp.image_url %>" alt="" height="36" /> <% } %> <%= dp.title %></a>
+								</td>
+								<td><%= dp.binding %></td>
+								<td><%= dp.product_group %></td>
+								<td><% if (dp.publication_date !== null) { %><%= dp.publication_date.format('YYYY-MM-DD') %><% } %></td>
+								<td>
+									<% for (const id of dp.topic_ids) { %>
+									<a href="https://blog.w0s.jp/<%= id %>"><%= id %></a>
+									<% } %>
+								</td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
 				</main>
 			</div>
 

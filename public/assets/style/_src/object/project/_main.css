@@ -12,91 +12,13 @@ Markup:
 <p>テキスト</p>
 </div>
 
-Styleguide 2.99.2
+Styleguide 2.99.1
 */
 .p-box {
 	padding: 1em;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
-}
-
-/*
-タブ
-
-Markup:
-<div class="p-tab {{modifier_class}} js-tab">
-<ul role="tablist" class="p-tab__tablist -header">
-<li role="tab" aria-selected="false" id="tab-タブ1-1"><a href="#タブ1-1">タブ1</a></li>
-<li role="tab" aria-selected="false" id="tab-タブ1-2"><a href="#タブ1-2">タブ2</a></li>
-</ul>
-<div class="p-tab__tabpanels js-tabpanels">
-<div role="tabpanel" aria-hidden="false" id="タブ1-1">
-<p>テキスト1</p>
-</div>
-<div role="tabpanel" aria-hidden="false" id="タブ1-2">
-<p>テキスト2</p>
-</div>
-</div>
-<ul role="tablist" class="p-tab__tablist -footer -full">
-<li role="tab" aria-selected="false"><a href="#タブ2-1">タブ1</a></li>
-<li role="tab" aria-selected="false"><a href="#タブ2-2">タブ2</a></li>
-</ul>
-</div>
-
-Styleguide 2.99.3
-*/
-.p-tab {
-	& [role="tabpanel"] {
-		padding: 20px;
-		border: 1px solid #999;
-
-		@media (max-width: 37.5em) {
-			padding-inline-start: 5px;
-			padding-inline-end: 5px;
-		}
-	}
-}
-
-/* タブリスト */
-.p-tab__item {
-	padding: 0.8em 0.5em;
-	border: 1px solid #999;
-	color: var(--color-black);
-	background: #f8f8f8;
-	line-height: var(--line-height-narrow);
-	text-align: center;
-	display: inline-block; /* Shadow DOM v1 未対応環境 */
-	text-decoration: none; /* Shadow DOM v1 未対応環境 */
-
-	&[role="tab"] {
-		cursor: default;
-	}
-
-	&:not(:first-child) {
-		margin-inline-start: -1px;
-	}
-
-	&:focus {
-		z-index: 0;
-	}
-
-	&:focus:not(:focus-visible) {
-		outline: none;
-	}
-
-	&:hover {
-		color: inherit; /* Shadow DOM v1 未対応環境 */
-		background-color: #eee;
-	}
-
-	&[aria-selected="true"] {
-		padding-block-start: 1em;
-		padding-block-end: 1em;
-		border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
-		font-weight: var(--font-weight-bold);
-		background-color: var(--color-white);
-	}
 }
 
 /*
@@ -110,7 +32,7 @@ Markup:
 </div>
 </details>
 
-Styleguide 2.99.4
+Styleguide 2.99.2
 */
 .p-toggle {
 	--_color: #009;
@@ -204,7 +126,7 @@ Markup:
 </ul>
 </aside>
 
-Styleguide 2.99.5
+Styleguide 2.99.3
 */
 .p-amazon {
 	padding: 15px;
@@ -322,14 +244,14 @@ Markup:
 <figure class="p-code">
 <figcaption class="p-code__caption">キャプション</figcaption>
 <div class="p-code__box">
-<pre><code>
+<pre class="p-code__code"><code>
 .code {
 }
 </code></pre>
 </div>
 </figure>
 
-Styleguide 2.99.7
+Styleguide 2.99.4
 */
 .p-code {
 }
@@ -356,7 +278,7 @@ Styleguide 2.99.7
 	--border-width: 1px;
 	--border-color: #eee;
 	--color: var(--color-black);
-	--bgcolor: #fcfcfc;
+	--bg-color: #fcfcfc;
 	--ripple-effect-color: var(--color-black);
 	--ripple-effect-opacity: 0.25;
 	--ripple-effect-transition-duration: 0.5s;
@@ -366,7 +288,7 @@ Styleguide 2.99.7
 	border: var(--border-width) solid var(--border-color);
 	border-radius: var(--border-radius-normal);
 	color: var(--color);
-	background-color: var(--bgcolor);
+	background-color: var(--bg-color);
 	outline: none;
 	contain: layout; /* for ripple effect */
 	position: relative; /* for ripple effect, for Safari */
@@ -374,7 +296,7 @@ Styleguide 2.99.7
 
 	&:focus,
 	&:hover {
-		--bgcolor: #f8f8f8;
+		--bg-color: #f8f8f8;
 	}
 
 	&:focus {
@@ -413,7 +335,6 @@ Styleguide 2.99.7
 .p-code__code {
 	padding: 1em;
 	line-height: var(--line-height-narrow);
-	white-space: pre-wrap;
 
 	& code {
 		font-family: monospace;
@@ -427,7 +348,7 @@ Markup:
 <dialog class="p-dialog-overlay">
 </dialog>
 
-Styleguide 2.99.8
+Styleguide 2.99.5
 */
 .p-dialog-overlay {
 	border: none;

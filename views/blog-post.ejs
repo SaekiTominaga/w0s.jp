@@ -28,7 +28,7 @@
 							<h2>記事選択</h2>
 						</div>
 
-						<form action="<%= page.path %>#post">
+						<form action="<%= page.path %>#post" class="c-stack">
 							<div class="c-form-controls">
 								<p>
 									<label class="c-label -input">
@@ -46,7 +46,7 @@
 							<h2>記事投稿</h2>
 						</div>
 
-						<form action="<%= page.path %>#post" method="post" class="js-form-beforeunload-confirm">
+						<form action="<%= page.path %>#post" method="post" class="c-stack js-form-beforeunload-confirm">
 							<% if (topicValidateErrors.length > 0) { %>
 							<div class="p-form-errors js-form-errors">
 								<p><strong><%= topicValidateErrors.length %>個のエラーがあります。</strong></p>
@@ -95,7 +95,7 @@
 												<textarea class="c-textarea js-convert-trim" name="message" id="fc-message" required="" style="--height: 15em"><%= page.query.message %></textarea>
 											</p>
 											<p>
-												<iframe class="p-admin-blog-message-preview" name="message-preview" style="width: 100%; height: 75vh; resize: vertical"></iframe>
+												<iframe class="p-admin-blog-entry-preview" name="message-preview" style="width: 100%; height: 75vh; resize: vertical"></iframe>
 											</p>
 										</div>
 									</fieldset>
@@ -125,16 +125,18 @@
 									<fieldset>
 										<legend class="p-form-grid__legend" id="label-image">画像</legend>
 										<div class="p-form-grid__contents">
-											<div class="c-form-controls -checkbox p-admin-blog-select-image" role="radiogroup" aria-labelledby="label-image">
+											<ul class="c-form-controls" role="radiogroup" aria-labelledby="label-image">
 												<template id="select-image" data-selected="<%= page.query.image %>">
-													<label>
-														<input type="radio" name="image" value="" />
-														<img src="" alt="" title="" />
-													</label>
+													<li class="p-admin-blog-entry-image">
+														<label>
+															<input type="radio" name="image" value="" />
+															<img src="" alt="" title="" width="240" height="240" />
+														</label>
+													</li>
 												</template>
-											</div>
+											</ul>
 											<div class="c-form-controls">
-												<ul class="p-admin-blog-select-image-errors">
+												<ul class="p-list">
 													<template id="select-image-error">
 														<li></li>
 													</template>
@@ -228,7 +230,7 @@
 							<h2>画像、動画登録</h2>
 						</div>
 
-						<form action="<%= page.path %>#media" method="post" enctype="multipart/form-data">
+						<form action="<%= page.path %>#media" method="post" enctype="multipart/form-data" class="c-stack">
 							<% if (mediaUploadResults.length > 0) { %>
 							<ul class="p-form-results">
 								<% for (const result of mediaUploadResults) { %><% if (result.success) { %>
