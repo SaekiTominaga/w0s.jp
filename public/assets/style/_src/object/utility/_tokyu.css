@@ -5,7 +5,7 @@ Styleguide 3.4.
 */
 
 /*
-M1, Tc2 などのユニット数字
+ユニット数字
 
 Markup:
 M<span class="u-tokyu-unit">1</span>
@@ -14,108 +14,4 @@ Styleguide 3.4.1
 */
 .u-tokyu-unit {
 	font-size: calc(100% / var(--font-ratio-4));
-}
-
-/*
-車体構造
-
-Markup:
-<span class="u-tokyu-style {{modifier_class}}">8001</span>
-
-.-light - 軽量車（8000系、8500系）
-
-Styleguide 3.4.2
-*/
-.u-tokyu-style {
-	/* 軽量車（8000系、8500系） */
-	&.-light {
-		text-decoration: underline double;
-	}
-}
-
-/*
-更新
-
-Markup:
-<span class="u-tokyu-renewal {{modifier_class}}">8001</span>
-
-.-body - 車体更新
-.-room - 室内更新
-.-board - 化粧板修繕
-.-shintama - 新玉川線復旧（8000系）
-
-Styleguide 3.4.3
-*/
-.u-tokyu-renewal {
-	/* 車体更新 */
-	&.-body {
-		color: var(--color-blue);
-		text-decoration: underline wavy;
-	}
-
-	/* 室内更新 */
-	&.-room {
-		color: #e40000;
-		text-decoration: underline dashed;
-	}
-
-	/* 化粧板修繕 */
-	&.-board {
-		color: #070;
-		text-decoration: underline;
-	}
-
-	/* 新玉川線復旧（8000系） */
-	&.-shintama {
-		border: solid #dfd;
-		border-width: 1px 0;
-		background: #dfd;
-	}
-}
-
-/*
-SIV 区分
-
-Markup:
-<span class="u-tokyu-siv {{modifier_class}}">SIV</span>
-
-.-bs482 - BS-482
-.-inv008 - INV-008
-.-inv029 - INV-029
-.-inv095 - INV-095
-
-Styleguide 3.4.4
-*/
-.u-tokyu-siv {
-	font-weight: var(--font-weight-bold);
-	text-decoration: underline var(--_text-decoration-style);
-
-	@nest .p-table & {
-		background-color: var(--_bg-color);
-		text-decoration-color: var(--_bg-color);
-	}
-
-	/* BS-482 */
-	&.-bs482 {
-		--_bg-color: #ff6;
-		--_text-decoration-style: double;
-	}
-
-	/* INV-008 */
-	&.-inv008 {
-		--_bg-color: #fbc;
-		--_text-decoration-style: dotted;
-	}
-
-	/* INV-029 */
-	&.-inv029 {
-		--_bg-color: #cfc;
-		--_text-decoration-style: dashed;
-	}
-
-	/* INV-095 */
-	&.-inv095 {
-		--_bg-color: #0ff;
-		--_text-decoration-style: wavy;
-	}
 }

@@ -50,12 +50,118 @@ Styleguide 1.2.1
 }
 
 /*
+ボタン、ボタン型リンク
+
+Markup:
+<button class="c-button {{modifier_class}}">
+  <!-- <button> 以外にも <a href> も可 -->
+  <img src="/assets/image/icon/feed.svg" alt="" class="c-button__icon"/>
+  <span class="c-button__text">ボタン</span>
+</button>
+
+.-feed - Feed
+.-twitter - Twitter
+.-github - GitHub
+.-amazon - Amazon
+.-youtube - YouTube
+
+Styleguide 1.2.2
+*/
+.c-button {
+	--_padding-block: 0.5em;
+	--_padding-inline: 0.75em;
+	--_border-color: var(--color-border-dark);
+	--_width: auto;
+	--_color: var(--color-black);
+	--_background: linear-gradient(var(--color-white), var(--color-bg-dark));
+	--_font-size: 100%;
+	--_icon-size: 1.25em;
+
+	padding: var(--_padding-block) var(--_padding-inline);
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-normal);
+	box-sizing: border-box;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5em;
+	width: var(--_width);
+	color: var(--_color);
+	background: var(--_background);
+	font-size: var(--_font-size);
+	font-weight: var(--font-weight-bold);
+	line-height: var(--line-height-narrow);
+	text-decoration: none;
+	outline-width: var(--outline-width-bold);
+	outline-offset: -1px;
+
+	&:hover {
+		color: var(--_color);
+		box-shadow: 0 0 2px var(--_border-color);
+	}
+
+	/* トップページの見出し横では小さく表示 */
+	@nest .p-top-hdg & {
+		--_padding-block: 0.35em;
+		--_font-size: calc(100% / var(--font-ratio-1));
+	}
+
+	/* Feed */
+	&.-feed {
+		--_border-color: hsl(41 100% 53%);
+		--_color: #454545;
+		--_background: hsl(41 100% 93%);
+	}
+
+	/* Twitter */
+	&.-twitter {
+		--_border-color: #2293dd;
+		--_color: var(--color-white);
+		--_background: #1da1f2;
+
+		outline-color: var(--color-black);
+	}
+
+	/* GitHub */
+	&.-github {
+		--_border-color: var(--color-black);
+		--_background: var(--color-white);
+	}
+
+	/* Amazon */
+	&.-amazon {
+		--_border-color: #c2a24e;
+		--_background: linear-gradient(#ffe8ab, #f5c747);
+	}
+
+	/* YouTube */
+	&.-youtube {
+		--_border-color: #f33;
+		--_color: #c22;
+		--_background: linear-gradient(var(--color-white), #fee);
+	}
+
+	@nest .p-sidebar-profile__banners & {
+		--_padding-inline: 1px;
+		--_width: 100%;
+	}
+}
+
+.c-button__icon {
+	width: var(--_icon-size);
+	height: var(--_icon-size);
+}
+
+.c-button__text {
+}
+
+/*
 ルビ
 
 Markup:
 <ruby class="c-ruby">久米田 康治<rp>（</rp><rt>くめた こうじ</rt><rp>）</rp></ruby>
 
-Styleguide 1.2.2
+Styleguide 1.2.3
 */
 .c-ruby {
 	display: inline-flex;
@@ -74,7 +180,7 @@ Styleguide 1.2.2
 Markup:
 <code class="c-code">&lt;html&gt;</code>
 
-Styleguide 1.2.3
+Styleguide 1.2.4
 */
 .c-code {
 	padding: 0.25em;
@@ -90,7 +196,7 @@ Styleguide 1.2.3
 Markup:
 <span class="c-code-highlight {{modifier_class}}">&lt;<span class="c-code-highlight {{modifier_class}}">a</span>&gt;</span>
 
-Styleguide 1.2.4
+Styleguide 1.2.5
 */
 .c-code-highlight {
 	&.-comment,
@@ -189,7 +295,7 @@ Styleguide 1.2.4
 Markup:
 <sup class="c-annotate"><a href="#fn1" id="nt1">[1]</a></sup>
 
-Styleguide 1.2.5
+Styleguide 1.2.6
 */
 .c-annotate {
 	font-size: calc(100% / var(--font-ratio-2));
@@ -223,31 +329,10 @@ Styleguide 1.2.5
 }
 
 /*
-マーク
-
-Markup:
-<mark class="c-mark">マーク</mark>
-
-Styleguide 1.2.6
-*/
-.c-mark {
-	border: 1px solid var(--color-bg-yellow);
-	border-radius: var(--border-radius-normal);
-	color: var(--color-darkgray);
-	background: var(--color-bg-yellow);
-	font-weight: var(--font-weight-bold);
-
-	@media print {
-		color: inherit;
-		border-color: currentcolor;
-	}
-}
-
-/*
 挿入
 
 Markup:
-<ins class="c-ins">テキスト</ins>
+<span class="c-ins">テキスト</span>
 
 Styleguide 1.2.7
 */
@@ -262,7 +347,7 @@ Styleguide 1.2.7
 削除
 
 Markup:
-<del class="c-del">テキスト</del>
+<span class="c-del">テキスト</span>
 
 Styleguide 1.2.8
 */
@@ -291,7 +376,7 @@ Styleguide 1.2.9
 Amazon 商品カテゴリ
 
 Markup:
-<b class="c-amazon-binding"></b>
+<b class="c-amazon-binding {{modifier_class}}">Blu-ray</b>
 
 .-bd - BD
 .-kindle - Kindle
@@ -333,7 +418,7 @@ Styleguide 1.2.10
 更新履歴アイコン
 
 Markup:
-<b class="c-update-icon">新規</b>
+<b class="c-update-icon {{modifier_class}}">新規</b>
 
 .-new - 新規
 .-renew - 更新
@@ -365,5 +450,41 @@ Styleguide 1.2.11
 	&.-renew {
 		--_color: #90f;
 		--_bg-color: #9ff;
+	}
+}
+
+/*
+在庫アイコン
+
+Markup:
+<span class="c-zaiko {{modifier_class}}">在庫あり</div>
+
+.-stock - 在庫あり
+.-none - 在庫なし
+
+Styleguide 1.2.12
+*/
+.c-zaiko {
+	--_icon-text: none;
+	--_icon-color: var(--color-black);
+
+	&::before {
+		margin-inline-end: 0.25em;
+		content: var(--_icon-text);
+		display: inline-block;
+		min-width: 1em;
+		color: var(--_icon-color);
+	}
+
+	/* 在庫あり */
+	&.-stock {
+		--_icon-text: "✔";
+		--_icon-color: #090;
+	}
+
+	/* 在庫なし */
+	&.-none {
+		--_icon-text: "✘";
+		--_icon-color: var(--color-red);
 	}
 }

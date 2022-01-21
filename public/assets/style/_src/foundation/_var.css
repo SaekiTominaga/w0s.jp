@@ -1,13 +1,9 @@
 :root {
-	/* ===== ページ全体 ===== */
-	--page-max-width: 1280px; /* ページの最大幅 */
-	--page-sidebar-width: 230px; /* サイドバーの幅 */
-	--page-content-sidebar-gap: 26px; /* コンテンツエリアとサイドバーの横間隔 */
-	--page-col-padding: 10px; /* ページの左右の余白 */
-	--page-col-margin: calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)); /* ページの左右の余白 */
-	--page-color: #000; /* ページ文字色 */
-	--page-bg-color: #fffff9; /* ページ背景色 */
-	--page-font-size: 100%; /* デフォルトのフォントサイズ 12px=75%, 13px=81.3%, 14px=87.5%, 15px=93.8%, 16px=100%, 17px=106.3%, 18px=112.5% */
+	/* ===== border ===== */
+	--border-radius-small: 0.125em;
+	--border-radius-normal: 0.25em;
+	--border-radius-large: 0.5em;
+	--border-radius-full: 1em;
 
 	/* ===== 色 ===== */
 	--color-white: #fff;
@@ -38,12 +34,6 @@
 	--color-amazon-bg-hover: hsl(30 100% 85%);
 	--color-amazon-box-shadow-hover: #f92;
 
-	/* ===== テキスト ===== */
-	--line-height-wide: 1.8; /* 広い行高さ（長い本文など） */
-	--line-height-normal: 1.5; /* 通常の行高さ */
-	--line-height-narrow: 1.25; /* 狭い行高さ（見出しやボタンなど） */
-	--line-height-nowrap: 1; /* 改行しない文の行高さ */
-
 	/* ===== フォント ===== */
 	--font-ratio-1: 1.12; /* 1.12 / 0.89 */
 	--font-ratio-2: calc(var(--font-ratio-1) * var(--font-ratio-1)); /* 1.25 / 0.80 */
@@ -57,11 +47,11 @@
 	--font-weight-normal: 500; /* Windows + 游ゴシック 対策で 400 より大きな値とする */
 	--font-weight-bold: 700;
 
-	/* ===== border ===== */
-	--border-radius-small: 0.125em;
-	--border-radius-normal: 0.25em;
-	--border-radius-large: 0.5em;
-	--border-radius-full: 1em;
+	/* ===== テキスト ===== */
+	--line-height-wide: 1.8; /* 広い行高さ（長い本文など） */
+	--line-height-normal: 1.5; /* 通常の行高さ */
+	--line-height-narrow: 1.25; /* 狭い行高さ（見出しやボタンなど） */
+	--line-height-nowrap: 1; /* 改行しない文の行高さ */
 
 	/* ===== リンク ===== */
 	--link-color: #00f; /* 未訪問リンクの文字色 */
@@ -75,12 +65,11 @@
 	--outline-width-bold: 2px;
 	--outline-color: #4d90fe;
 	--outline-offset: 1px;
-	--outline-offset-linkonly-mlines: 0.125em;
-	--outline-offset-linkonly: 0.25em;
+	--outline-offset-linkonly: 0.125em;
 
 	/* ===== フォーム ===== */
 	--form-control-padding-block: 0.5em;
-	--invalid-border-color: #e00;
+	--invalid-border-color: var(--color-border-red);
 
 	/* ===== Stack ===== */
 	--stack-margin-block: 1.5em;
@@ -90,4 +79,14 @@
 	--shape-link-triangle: polygon(0 0, 100% 50%, 0 100%); /* リンクアイコン ( ▶ ) */
 	--shape-pagelink-triangle: polygon(0 0, 100% 0, 50% 100%); /* リンクアイコン ( ▼ ) */
 	--shape-link-arrow: polygon(17.68% 0, 100% 50%, 17.68% 100%, 0 88.21%, 64.64% 50%, 0 11.79%); /* リンクアイコン ( > ) */
+
+	/* ===== ページ全体設定 ===== */
+	--page-max-width: 1280px; /* ページの最大幅 */
+	--page-sidebar-width: 230px; /* サイドバーの幅 */
+	--page-content-sidebar-gap: 26px; /* コンテンツエリアとサイドバーの横間隔 */
+	--page-padding-inline: 10px; /* ページの左右の余白 */
+	--page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline)); /* ページの左右の余白 */
+	--page-color: #000; /* ページ文字色 */
+	--page-bg-color: #fffff9; /* ページ背景色 */
+	--page-font-size: 100%; /* デフォルトのフォントサイズ 12px=75%, 13px=81.3%, 14px=87.5%, 15px=93.8%, 16px=100%, 17px=106.3%, 18px=112.5% */
 }

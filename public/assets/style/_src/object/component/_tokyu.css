@@ -5,6 +5,149 @@ Styleguide 1.6.
 */
 
 /*
+車体構造
+
+Markup:
+<span class="c-tokyu-style {{modifier_class}}">8001</span>
+
+.-light - 軽量車（8000系、8500系）
+
+Styleguide 1.6.1
+*/
+.c-tokyu-style {
+	/* 軽量車（8000系、8500系） */
+	&.-light {
+		text-decoration: underline double;
+	}
+}
+
+/*
+更新
+
+Markup:
+<span class="c-tokyu-renewal {{modifier_class}}">8001</span>
+
+.-body - 車体更新
+.-room - 室内更新
+.-board - 化粧板修繕
+.-shintama - 新玉川線復旧（8000系）
+
+Styleguide 1.6.2
+*/
+.c-tokyu-renewal {
+	/* 車体更新 */
+	&.-body {
+		color: var(--color-blue);
+		text-decoration: underline wavy;
+	}
+
+	/* 室内更新 */
+	&.-room {
+		color: #e40000;
+		text-decoration: underline dashed;
+	}
+
+	/* 化粧板修繕 */
+	&.-board {
+		color: #070;
+		text-decoration: underline;
+	}
+
+	/* 新玉川線復旧（8000系） */
+	&.-shintama {
+		border: solid #dfd;
+		border-width: 1px 0;
+		background: #dfd;
+	}
+}
+
+/*
+台車区分
+
+Markup:
+<span class="c-tokyu-truck {{modifier_class}}">台車</div>
+
+.-m - 動力台車
+.-t - 付随台車
+
+Styleguide 1.6.3
+*/
+.c-tokyu-truck {
+	--icon-color: var(--color-black);
+	--icon-bgcolor: var(--color-white);
+
+	padding: 0.25em;
+	border: 1px solid;
+	border-radius: var(--border-radius-normal);
+	display: inline-block;
+	color: var(--icon-color);
+	background: var(--icon-bgcolor);
+	font-size: max(calc(100% / var(--font-ratio-4)), calc(100% / var(--font-ratio-1)));
+	font-weight: var(--font-weight-normal);
+	line-height: var(--line-height-nowrap);
+	vertical-align: 0.125em;
+
+	/* 動力台車 */
+	&.-m {
+		--icon-color: var(--color-red);
+		--icon-bgcolor: #fff9f9;
+	}
+
+	/* 付随台車 */
+	&.-t {
+		--icon-color: var(--color-blue);
+		--icon-bgcolor: #eef;
+	}
+}
+
+/*
+SIV 区分
+
+Markup:
+<span class="c-tokyu-siv {{modifier_class}}">SIV</span>
+
+.-bs482 - BS-482
+.-inv008 - INV-008
+.-inv029 - INV-029
+.-inv095 - INV-095
+
+Styleguide 1.6.4
+*/
+.c-tokyu-siv {
+	font-weight: var(--font-weight-bold);
+	text-decoration: underline var(--_text-decoration-style);
+
+	@nest .p-table & {
+		background-color: var(--_bg-color);
+		text-decoration-color: var(--_bg-color);
+	}
+
+	/* BS-482 */
+	&.-bs482 {
+		--_bg-color: #ff6;
+		--_text-decoration-style: double;
+	}
+
+	/* INV-008 */
+	&.-inv008 {
+		--_bg-color: #fbc;
+		--_text-decoration-style: dotted;
+	}
+
+	/* INV-029 */
+	&.-inv029 {
+		--_bg-color: #cfc;
+		--_text-decoration-style: dashed;
+	}
+
+	/* INV-095 */
+	&.-inv095 {
+		--_bg-color: #0ff;
+		--_text-decoration-style: wavy;
+	}
+}
+
+/*
 列車種別カラー
 
 Markup:
@@ -22,7 +165,7 @@ Markup:
 .-oigawa-exp - 大井川急行
 .-hokutetsu-semiexp - 北鉄準急
 
-Styleguide 1.6.1
+Styleguide 1.6.5
 */
 .c-tokyu-train {
 	/* 普通 */
@@ -58,45 +201,6 @@ Styleguide 1.6.1
 }
 
 /*
-台車区分
-
-Markup:
-<span class="c-tokyu-truck {{modifier_class}}">台車</div>
-
-.-m - 動力台車
-.-t - 付随台車
-
-Styleguide 1.6.2
-*/
-.c-tokyu-truck {
-	--icon-color: var(--color-black);
-	--icon-bgcolor: var(--color-white);
-
-	padding: 0.25em;
-	border: 1px solid;
-	border-radius: var(--border-radius-normal);
-	display: inline-block;
-	color: var(--icon-color);
-	background: var(--icon-bgcolor);
-	font-size: max(calc(100% / var(--font-ratio-4)), calc(100% / var(--font-ratio-1)));
-	font-weight: var(--font-weight-normal);
-	line-height: var(--line-height-nowrap);
-	vertical-align: 0.125em;
-
-	/* 動力台車 */
-	&.-m {
-		--icon-color: var(--color-red);
-		--icon-bgcolor: #fff9f9;
-	}
-
-	/* 付随台車 */
-	&.-t {
-		--icon-color: var(--color-blue);
-		--icon-bgcolor: #eef;
-	}
-}
-
-/*
 自動放送フレーズ
 
 Markup:
@@ -113,7 +217,7 @@ Markup:
 .-cm - 宣伝
 .-cmsummary - 宣伝放送概略
 
-Styleguide 1.6.3
+Styleguide 1.6.6
 */
 .c-tokyu-announce {
 	/* 放送開始時のチャイム */
