@@ -8,10 +8,18 @@ Styleguide 2.5.
 埋め込みコンテンツ（画像、動画、 <iframe> など）
 
 Markup:
-<figure class="p-embed">
+<div class="p-embed">
 <img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/>
-<figcaption class="p-embed__caption">キャプション</figcaption>
-</figure>
+</div>
+<div class="p-embed">
+<a href="https://example.com/"><img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/></a>
+</div>
+<div class="p-embed">
+<video poster="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" class="p-embed__video"></video>
+</div>
+<div class="p-embed">
+<iframe src="https://example.com/" class="p-embed__frame"></iframe>
+</div>
 
 Styleguide 2.5.1
 */
@@ -44,47 +52,42 @@ Styleguide 2.5.1
 		}
 	}
 
-	& > video {
+	& img,
+	& video {
+		--_border-width: 1px;
+
+		border: var(--_border-width) solid var(--color-black);
+		display: inline-block;
+		max-width: calc(100% - var(--_border-width) * 2);
+		height: auto;
+		vertical-align: top;
+	} /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
+
+	& video {
 		outline-width: var(--outline-width-bold);
 		outline-offset: -1px;
 	}
 
-	& > audio {
+	& audio {
 		outline-width: var(--outline-width-bold);
 		outline-offset: 0;
 	}
-}
 
-.p-embed__image,
-.p-embed__video {
-	--_border-width: 1px;
+	& iframe {
+		--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
 
-	border: var(--_border-width) solid var(--color-black);
-	display: inline-block;
-	max-width: calc(100% - var(--_border-width) * 2);
-	height: auto;
-	vertical-align: top;
-} /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
+		margin-inline: auto;
+		border: 1px solid var(--color-black);
+		box-sizing: border-box;
+		display: block;
+		width: calc(100% - var(--_margin-inline) * 2);
+		height: min(100vh, var(--height, 600px));
+		aspect-ratio: var(--aspect-ratio, auto);
 
-.p-embed__frame {
-	--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
-
-	margin-inline: auto;
-	border: 1px solid var(--color-black);
-	box-sizing: border-box;
-	display: block;
-	width: calc(100% - var(--_margin-inline) * 2);
-	height: min(100vh, var(--height, 600px));
-	aspect-ratio: var(--aspect-ratio, auto);
-
-	@media (--breakpoint) {
-		--_margin-inline: 15px;
+		@media (--breakpoint) {
+			--_margin-inline: 15px;
+		}
 	}
-}
-
-.p-embed__caption {
-	margin-block-start: 0.5em;
-	color: var(--color-gray);
 }
 
 /*

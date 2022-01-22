@@ -80,14 +80,6 @@
 	& > [class^="p-"] {
 		margin-inline: auto;
 		width: fit-content;
-
-		&:not(:first-child) {
-			margin-block-start: 0.5em;
-		}
-
-		&:not(:last-child) {
-			margin-block-end: 0.5em;
-		}
 	}
 }
 
@@ -97,17 +89,7 @@
 .p-tokyu-announce__footer {
 	margin-block-start: 3em;
 
-	& > [class^="p-"] {
-		&:not(:first-child) {
-			margin-block-start: 1em;
-		}
-
-		&:not(:last-child) {
-			margin-block-end: 1em;
-		}
-	}
-
-	& > .p-tokyu-announce__data + [class^="p-"] {
+	& > .p-tokyu-announce__data + * {
 		margin-block-start: 4em;
 	}
 }
@@ -177,8 +159,8 @@
 	flex-flow: wrap;
 	justify-content: center;
 	gap: 1em 2em;
-	background-color: #fec;
 	width: fit-content;
+	background: var(--color-lightorange);
 	line-height: var(--line-height-narrow);
 
 	& dt {

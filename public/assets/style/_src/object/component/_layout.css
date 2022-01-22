@@ -9,13 +9,41 @@ Stack
 
 Markup:
 <div class="c-stack">
-<p>※スタイルガイドでは反映されない</p>
+<p>テキスト</p>
+<p>テキスト</p>
+<p>テキスト</p>
 </div>
 
 Styleguide 1.5.1
 */
-.c-stack {
-	/* ../layout/_common.css にて子要素のマージンを設定 */
+:is(.l-content__main, .l-content__footer, .c-stack, .p-section, .p-quote, .p-embed-sidebar__text, .p-box, .p-toggle__contents, .p-library__main, .p-tokyu-announce__footer, .p-madoka-video-compare__content) {
+	& > *:not(:first-child) {
+		margin-block-start: var(--stack-margin-base);
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: var(--stack-margin-base);
+	}
+}
+
+.l-content__header {
+	& > *:not(:first-child) {
+		margin-block-start: calc(var(--stack-margin-base) * 2);
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: calc(var(--stack-margin-base) * 2);
+	}
+}
+
+:is(.p-form-grid__contents, .p-tokyu-announce__header) {
+	& > *:not(:first-child) {
+		margin-block-start: calc(var(--stack-margin-base) / 3);
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: calc(var(--stack-margin-base) / 3);
+	}
 }
 
 /*

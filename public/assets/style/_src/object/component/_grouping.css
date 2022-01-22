@@ -19,7 +19,18 @@ Styleguide 1.1.1
 .c-caption {
 	width: fit-content;
 	font-size: calc(100% / var(--font-ratio-1));
-	line-height: var(--line-height-narrow);
+
+	@nest figure > &:first-child {
+		margin-block-end: 0.25em;
+	}
+
+	@nest figure > &:last-child {
+		margin-block-start: 0.25em;
+	}
+
+	@nest .p-embed + & {
+		color: var(--color-gray);
+	}
 
 	/* メタデータ */
 	&.-meta {

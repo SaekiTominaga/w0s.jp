@@ -129,16 +129,18 @@
 							<h2>HTML</h2>
 						</div>
 
-						<figure class="p-code">
-							<figcaption class="p-code__caption">HTML ファイルの構成図</figcaption>
-							<div class="p-code__box">
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">HTML ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
 								<pre class="p-code__code">
 ├─ html
-│  └─ *.html
+│	└─ *.html
 └─ w0s.jp /* DocumentRoot */
-    ├─ *.html
-    ├─ *.min.html
-    └─ *.min.html.br
+		├─ *.html
+		├─ *.min.html
+		└─ *.min.html.br
 </pre
 								>
 							</div>
@@ -266,18 +268,20 @@
 							<h2>スタイルシート（CSS）</h2>
 						</div>
 
-						<figure class="p-code">
-							<figcaption class="p-code__caption">CSS ファイルの構成図</figcaption>
-							<div class="p-code__box">
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">CSS ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
 								<pre class="p-code__code">
 └─ w0s.jp /* DocumentRoot */
-    └─ assets
-        ├─ _css
-        │  └─ *.css
-        └─ style
-            ├─ *.css
-            ├─ *.css.br
-            └─ *.css.map
+		└─ assets
+				├─ _css
+				│	└─ *.css
+				└─ style
+						├─ *.css
+						├─ *.css.br
+						└─ *.css.map
 </pre
 								>
 							</div>
@@ -359,25 +363,27 @@
 							<h2>スクリプト（JavaScript）</h2>
 						</div>
 
-						<figure class="p-code">
-							<figcaption class="p-code__caption">JavaScript ファイルの構成図</figcaption>
-							<div class="p-code__box">
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">JavaScript ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
 								<pre class="p-code__code">
 └─ w0s.jp /* DocumentRoot */
-    └─ assets
-        ├─ _js
-        │  ├─ *.js
-        │  ├─ *.mjs.js
-        ├─ _ts
-        │  ├─ *.ts
-        │  └─ *.mjs.ts
-        └─ script
-            ├─ *.js
-            ├─ *.js.br
-            ├─ *.js.map
-            ├─ *.mjs
-            ├─ *.mjs.br
-            └─ *.mjs.map
+		└─ assets
+				├─ _js
+				│	├─ *.js
+				│	├─ *.mjs.js
+				├─ _ts
+				│	├─ *.ts
+				│	└─ *.mjs.ts
+				└─ script
+						├─ *.js
+						├─ *.js.br
+						├─ *.js.map
+						├─ *.mjs
+						├─ *.mjs.br
+						└─ *.mjs.map
 </pre
 								>
 							</div>
@@ -416,35 +422,35 @@
 							<ul class="p-list">
 								<li>
 									<p>制作したスクリプト機能は Firefox, Chrome 最新版での軽い確認はしているが、きちんとしたテストは行っていない。その代わり、 error イベントを検知して管理者へ通知する機能を組み込んでいる。簡略化したコード例を下記に示す。</p>
-									<div class="p-code">
-										<div class="p-code__box">
+									<figure>
+										<div class="p-code">
 											<div class="p-code__clipboard">
 												<button type="button" is="w0s-clipboard" data-target-for="script-error-code" class="p-code__clipboard-button">
 													<img src="/assets/image/copy.svg" alt="コピー" />
 												</button>
 											</div>
 											<pre class="p-code__code"><code id="script-error-code" class="htmlbuild-highlight">window.addEventListener('error', (ev) => {
-  const formData = new FormData();
-  formData.append('location', location.toString());
-  formData.append('message', ev.message);
-  formData.append('filename', ev.filename);
-  formData.append('lineno', String(ev.lineno));
-  formData.append('colno', String(ev.colno));
+	const formData = new FormData();
+	formData.append('location', location.toString());
+	formData.append('message', ev.message);
+	formData.append('filename', ev.filename);
+	formData.append('lineno', String(ev.lineno));
+	formData.append('colno', String(ev.colno));
 
-  fetch(ENDPOINT, {
-    method: 'POST',
-    body: new URLSearchParams([...formData]),
-  });
+	fetch(ENDPOINT, {
+		method: 'POST',
+		body: new URLSearchParams([...formData]),
+	});
 });
 </code></pre>
 										</div>
-									</div>
+									</figure>
 								</li>
 								<li>
-									<p>これにより、事前のテストでは把握が難しい以下のようなケースも検知することができる。</p>
+									<p>これにより、事前確認が難しい以下のようなケースも後検知することができる。</p>
 									<ul>
 										<li>古いブラウザや検索エンジンのロボットで発生するエラー</li>
-										<li>ブラウザのアドオンが原因のエラー</li>
+										<li>ブラウザの設定やアドオンに起因するエラー</li>
 									</ul>
 								</li>
 							</ul>
@@ -465,17 +471,19 @@
 								<h3>ビットマップ画像（WebP, JPEG, PNG）</h3>
 							</div>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">ビットマップ画像ファイルの構成図</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">ビットマップ画像ファイルの構成図</span>
+								</figcaption>
+								<div class="p-code">
 									<pre class="p-code__code">
 ├─ thumbimage
-│  ├─ *.jpeg
-│  └─ *.webp
+│	├─ *.jpeg
+│	└─ *.webp
 └─ w0s.jp /* DocumentRoot */
-    ├─ *.jpg
-    ├─ *.png
-    └─ thumbimage.php
+		├─ *.jpg
+		├─ *.png
+		└─ thumbimage.php
 </pre
 									>
 								</div>
@@ -508,24 +516,24 @@
 												現在、自動生成の画像タイプは WebP と JPEG に対応している。そのため、
 												<code class="c-code">&lt;picture&gt;</code> 要素を使って下記のようなマークアップをすれば、手動で用意する画像ファイルは1つだけで WebP や高画素密度ディスプレイに対応した表示を行うことができる。将来的に AVIF など新しい画像フォーマットを追加する際も、 <code class="c-code">thumbimage.php</code> を改良すれば、マークアップは機械的な置換で済むだろう。
 											</p>
-											<div class="p-code">
-												<div class="p-code__box">
+											<figure>
+												<div class="p-code">
 													<div class="p-code__clipboard">
 														<button type="button" is="w0s-clipboard" data-target-for="image-thumbimage-code" class="p-code__clipboard-button">
 															<img src="/assets/image/copy.svg" alt="コピー" />
 														</button>
 													</div>
 													<pre class="p-code__code"><code id="image-thumbimage-code" class="htmlbuild-highlight">&lt;a href="/foo.jpg" type="image/jpeg"&gt; &lt;!-- この foo.jpg は Photoshop 等の画像編集ソフトで作成 --&gt;
-  &lt;picture&gt;
-    &lt;source type="image/webp"
-      srcset="/thumbimage/foo.jpg;webp;w360;q60, /thumbimage/foo.jpg;webp;w720;q30 2x"/&gt;
-    &lt;img src="/thumbimage/foo.jpg;jpeg;w360;q60"
-      srcset="/thumbimage/foo.jpg;jpeg;w720;q30 2x" alt=""/&gt;
-  &lt;/picture&gt;
+	&lt;picture&gt;
+		&lt;source type="image/webp"
+			srcset="/thumbimage/foo.jpg;webp;w360;q60, /thumbimage/foo.jpg;webp;w720;q30 2x"/&gt;
+		&lt;img src="/thumbimage/foo.jpg;jpeg;w360;q60"
+			srcset="/thumbimage/foo.jpg;jpeg;w720;q30 2x" alt=""/&gt;
+	&lt;/picture&gt;
 &lt;/a&gt;
 </code></pre>
 												</div>
-											</div>
+											</figure>
 										</li>
 										<li>
 											<p>
@@ -545,18 +553,20 @@
 								<h3>ベクター画像（SVG）</h3>
 							</div>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">SVG ファイルの構成図</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">SVG ファイルの構成図</span>
+								</figcaption>
+								<div class="p-code">
 									<pre class="p-code__code">
 ├─ svg
-│  ├─ _dataurl
-│  │  ├─ *.dataurl.txt
-│  │  └─ *.svg
-│  └─ *.svg
+│	├─ _dataurl
+│	│	├─ *.dataurl.txt
+│	│	└─ *.svg
+│	└─ *.svg
 └─ w0s.jp /* DocumentRoot */
-    ├─ *.svg
-    └─ *.svg.br
+		├─ *.svg
+		└─ *.svg.br
 </pre
 									>
 								</div>
@@ -707,9 +717,11 @@
 								</tbody>
 							</table>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">実際の設定値</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">実際の設定値</span>
+								</figcaption>
+								<div class="p-code">
 									<div class="p-code__clipboard">
 										<button type="button" is="w0s-clipboard" data-target-for="csp-enforce-output" class="p-code__clipboard-button">
 											<img src="/assets/image/copy.svg" alt="コピー" />
@@ -928,9 +940,11 @@
 								</tbody>
 							</table>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">実際の設定値</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">実際の設定値</span>
+								</figcaption>
+								<div class="p-code">
 									<div class="p-code__clipboard">
 										<button type="button" is="w0s-clipboard" data-target-for="csp-report-output" class="p-code__clipboard-button">
 											<img src="/assets/image/copy.svg" alt="コピー" />

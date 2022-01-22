@@ -18,7 +18,7 @@ Styleguide 1.2.1
 	--_icon-clip-path: var(--shape-link-triangle);
 	--_icon-width: 0.45em;
 	--_icon-height: 0.75em;
-	--_icon-color: var(--color-gray);
+	--_color: var(--color-gray);
 
 	&::before {
 		margin-inline-end: 0.5em;
@@ -27,13 +27,13 @@ Styleguide 1.2.1
 		clip-path: var(--_icon-clip-path);
 		width: var(--_icon-width);
 		height: var(--_icon-height);
-		background: var(--_icon-color);
+		background: var(--_color);
 	}
 
 	&:any-link {
 		/* 他ページ */
 		&:not([href^="#"]) {
-			--_icon-color: var(--link-color-bullet);
+			--_color: var(--link-color-bullet);
 		}
 
 		/* 同一ページ */
@@ -44,7 +44,7 @@ Styleguide 1.2.1
 		}
 
 		&:hover {
-			--_icon-color: var(--link-color-hover);
+			--_color: var(--link-color-hover);
 		}
 	}
 }
@@ -73,7 +73,7 @@ Styleguide 1.2.2
 	--_border-color: var(--color-border-dark);
 	--_width: auto;
 	--_color: var(--color-black);
-	--_background: linear-gradient(var(--color-white), var(--color-bg-dark));
+	--_background: linear-gradient(var(--color-white), var(--color-bg-light));
 	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
@@ -109,17 +109,17 @@ Styleguide 1.2.2
 	/* Feed */
 	&.-feed {
 		--_border-color: hsl(41 100% 53%);
-		--_color: #454545;
+		--_color: var(--color-darkgray);
 		--_background: hsl(41 100% 93%);
 	}
 
 	/* Twitter */
 	&.-twitter {
-		--_border-color: #2293dd;
+		--_border-color: hsl(204 88% 43%);
 		--_color: var(--color-white);
-		--_background: #1da1f2;
+		--_background: hsl(204 88% 53%);
 
-		outline-color: var(--color-black);
+		outline-color: hsl(204 88% 73%);
 	}
 
 	/* GitHub */
@@ -130,15 +130,15 @@ Styleguide 1.2.2
 
 	/* Amazon */
 	&.-amazon {
-		--_border-color: #c2a24e;
-		--_background: linear-gradient(#ffe8ab, #f5c747);
+		--_border-color: hsl(44 100% 52%);
+		--_background: linear-gradient(var(--color-amazon-bg), hsl(44 100% 62%));
 	}
 
 	/* YouTube */
 	&.-youtube {
-		--_border-color: #f33;
-		--_color: #c22;
-		--_background: linear-gradient(var(--color-white), #fee);
+		--_border-color: var(--color-red);
+		--_color: var(--color-darkred);
+		--_background: linear-gradient(var(--color-white), var(--color-lightred));
 	}
 
 	@nest .p-sidebar-profile__banners & {
@@ -185,13 +185,14 @@ Styleguide 1.2.4
 .c-code {
 	padding: 0.25em;
 	border-radius: var(--border-radius-normal);
-	color: #080;
-	background: var(--color-bg-green);
-	font: var(--font-weight-bold) calc(100% / var(--font-ratio-1)) monospace;
+	color: var(--color-green);
+	background: var(--color-varylightgreen);
+	font-weight: var(--font-weight-bold);
 }
 
 /*
 コードハイライト
+https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css
 
 Markup:
 <span class="c-code-highlight {{modifier_class}}">&lt;<span class="c-code-highlight {{modifier_class}}">a</span>&gt;</span>
@@ -199,94 +200,115 @@ Markup:
 Styleguide 1.2.5
 */
 .c-code-highlight {
-	&.-comment,
-	&.-quote {
-		color: #767676; /* original: #998 */
-		font-style: italic;
-	}
-
+	/* stylelint-disable selector-class-pattern */
+	&.-doctag,
 	&.-keyword,
-	&.-selector-tag,
-	&.-subst {
-		color: #333;
-		font-weight: var(--font-weight-bold);
-	}
-
-	&.-number,
-	&.-literal,
-	&.-variable,
+	&.-template-tag,
 	&.-template-variable,
-	&.-tag,
-	&.-attr {
-		color: #008080;
-	}
-
-	&.-string,
-	&.-doctag {
-		color: #d14;
+	&.-type,
+	&.-variable.language_ {
+		/* prettylights-syntax-keyword */
+		color: #d73a49;
 	}
 
 	&.-title,
-	&.-section,
+	&.-title.class_,
+	&.-title.class_.inherited__,
+	&.-title.function_ {
+		/* prettylights-syntax-entity */
+		color: #6f42c1;
+	}
+
+	&.-attr,
+	&.-attribute,
+	&.-literal,
+	&.-meta,
+	&.-number,
+	&.-operator,
+	&.-variable,
+	&.-selector-attr,
+	&.-selector-class,
 	&.-selector-id {
-		color: #900;
-		font-weight: var(--font-weight-bold);
-	}
-
-	&.-subst {
-		font-weight: var(--font-weight-normal);
-	}
-
-	&.-type,
-	&.-class &.-title {
-		color: #458;
-		font-weight: var(--font-weight-bold);
-	}
-
-	&.-tag,
-	&.-name,
-	&.-attribute {
-		color: #000080;
-		font-weight: var(--font-weight-normal);
+		/* prettylights-syntax-constant */
+		color: #005cc5;
 	}
 
 	&.-regexp,
-	&.-link {
-		color: #008a26; /* original: #009926 */
+	&.-string {
+		/* prettylights-syntax-string */
+		color: #032f62;
 	}
 
-	&.-symbol,
-	&.-bullet {
-		color: #990073;
-	}
-
-	/* stylelint-disable selector-class-pattern */
 	&.-built_in,
-	/* stylelint-enable selector-class-pattern */
-	&.-builtin-name {
-		color: #007eb3; /* original: #0086b3 */
+	&.-symbol {
+		/* prettylights-syntax-variable */
+		color: #e36209;
 	}
 
-	&.-meta {
-		color: #767676; /* original: #999 */
+	&.-comment,
+	&.-code,
+	&.-formula {
+		/* prettylights-syntax-comment */
+		color: #6a737d;
+	}
+
+	&.-name,
+	&.-quote,
+	&.-selector-tag,
+	&.-selector-pseudo {
+		/* prettylights-syntax-entity-tag */
+		color: #22863a;
+	}
+
+	&.-subst {
+		/* prettylights-syntax-storage-modifier-import */
+		color: #24292e;
+	}
+
+	&.-section {
+		/* prettylights-syntax-markup-heading */
+		color: #005cc5;
 		font-weight: var(--font-weight-bold);
 	}
 
-	&.-deletion {
-		background: #fdd;
-	}
-
-	&.-addition {
-		background: #dfd;
+	&.-bullet {
+		/* prettylights-syntax-markup-list */
+		color: #735c0f;
 	}
 
 	&.-emphasis {
+		/* prettylights-syntax-markup-italic */
+		color: #24292e;
 		font-style: italic;
 	}
 
 	&.-strong {
+		/* prettylights-syntax-markup-bold */
+		color: #24292e;
 		font-weight: var(--font-weight-bold);
 	}
+
+	&.-addition {
+		/* prettylights-syntax-markup-inserted */
+		color: #22863a;
+		background-color: #f0fff4;
+	}
+
+	&.-deletion {
+		/* prettylights-syntax-markup-deleted */
+		color: #b31d28;
+		background-color: #ffeef0;
+	}
+
+	&.-char.escape_,
+	&.-link,
+	&.-params,
+	&.-property,
+	&.-punctuation,
+	&.-tag {
+		/* purposely ignored */
+	}
+	/* stylelint-enable selector-class-pattern */
 }
 
 /*
@@ -311,8 +333,8 @@ Styleguide 1.2.6
 		text-decoration-skip-ink: none; /* JS 無効環境向け */
 
 		&:target {
-			--_border-color: #f00;
-			--_bg-color: #fee;
+			--_border-color: var(--color-red);
+			--_bg-color: var(--color-lightred);
 		}
 
 		&[role="button"] {
@@ -384,34 +406,16 @@ Markup:
 Styleguide 1.2.10
 */
 .c-amazon-binding {
-	--_border-color: var(--_color);
-	--_color: var(--color-gray);
-	--_bg-color: var(--color-white);
-
 	padding: 0.125em 0.5em;
-	border: 1px solid var(--_border-color);
+	border: 1px solid var(--color-gray);
 	border-radius: var(--border-radius-large);
 	display: inline-block;
-	color: var(--_color);
-	background: var(--_bg-color);
+	color: var(--color-gray);
+	background: var(--color-white);
 	font-size: calc(100% / var(--font-ratio-1));
 	font-weight: var(--font-weight-bold);
 	line-height: var(--line-height-narrow);
 	vertical-align: middle;
-
-	/* BD */
-	&.-bd {
-		--_border-color: #27b;
-		--_color: #27b;
-		--_bg-color: #f9f9ff;
-	}
-
-	/* Kindle */
-	&.-kindle {
-		--_border-color: var(--color-black);
-		--_color: #f90;
-		--_bg-color: var(--color-black);
-	}
 }
 
 /*
@@ -427,7 +431,7 @@ Styleguide 1.2.11
 */
 .c-update-icon {
 	--_color: var(--color-white);
-	--_bg-color: #767676;
+	--_bg-color: var(--color-gray);
 
 	padding: 0.25em;
 	border: 1px solid var(--_bg-color);
@@ -442,49 +446,47 @@ Styleguide 1.2.11
 
 	/* 新規 */
 	&.-new {
-		--_color: #90f;
-		--_bg-color: #cf4;
+		--_color: var(--color-purple);
+		--_bg-color: var(--color-yellowgreen);
 	}
 
 	/* 更新 */
 	&.-renew {
-		--_color: #90f;
-		--_bg-color: #9ff;
+		--_color: var(--color-purple);
+		--_bg-color: var(--color-lightblue);
 	}
 }
 
 /*
-在庫アイコン
+tick and cross
 
 Markup:
-<span class="c-zaiko {{modifier_class}}">在庫あり</div>
+<span class="c-tac {{modifier_class}}">テキスト</div>
 
-.-stock - 在庫あり
-.-none - 在庫なし
+.-tick - 肯定
+.-cross - 否定
 
 Styleguide 1.2.12
 */
-.c-zaiko {
-	--_icon-text: none;
-	--_icon-color: var(--color-black);
-
+.c-tac {
 	&::before {
 		margin-inline-end: 0.25em;
-		content: var(--_icon-text);
+		content: var(--_symbol, none);
 		display: inline-block;
 		min-width: 1em;
-		color: var(--_icon-color);
+		color: var(--_color, inherit);
+		text-align: center;
 	}
 
-	/* 在庫あり */
-	&.-stock {
-		--_icon-text: "✔";
-		--_icon-color: #090;
+	/* 肯定 */
+	&.-tick {
+		--_symbol: "✔";
+		--_color: var(--color-green);
 	}
 
-	/* 在庫なし */
-	&.-none {
-		--_icon-text: "✘";
-		--_icon-color: var(--color-red);
+	/* 否定 */
+	&.-cross {
+		--_symbol: "✘";
+		--_color: var(--color-red);
 	}
 }

@@ -4,9 +4,11 @@
 
 /* ===== パンくず ===== */
 .p-topic-path {
-	--stack-margin-block: 0.5em;
-
 	line-height: var(--line-height-narrow);
+
+	&:not(:last-child) {
+		margin-block-end: 0.75em;
+	}
 
 	& > p {
 		display: flex;
@@ -26,22 +28,24 @@
 
 /* ===== ページタイトル ===== */
 .p-title {
-	--stack-margin-block: 0.75em;
-
 	line-height: var(--line-height-narrow);
+
+	@nest .p-topic-path + & {
+		margin-block-start: 0.75em;
+	}
 
 	& > h1 {
 		padding: 0.75em 1.5%;
 		border: 1px solid var(--color-black);
 		border-radius: var(--border-radius-small);
-		background: linear-gradient(var(--color-white), var(--color-bg-verydark));
+		background: linear-gradient(var(--color-white), var(--color-bg-dark));
 		font-size: clamp(calc(100% * var(--font-ratio-1)), 7vw, calc(100% * var(--font-ratio-5)));
 		text-shadow: 1px 1px 1px var(--color-lightgray);
 	}
 }
 
 .p-title__sub-hdg {
-	font-size: 60%;
+	font-size: calc(100% / var(--font-ratio-4));
 	font-weight: var(--font-weight-normal);
 	text-shadow: none;
 }
@@ -53,18 +57,11 @@
 
 /* ===== ローカルナビ ===== */
 .p-local-nav {
-	--stack-margin-block: 3em;
-	--stack-width: min(50em, 100%);
-
-	line-height: var(--line-height-narrow);
-
-	& > :not(:first-child) {
-		margin-block-start: 0.5em;
-	}
-
-	& > :not(:last-child) {
-		margin-block-end: 0.5em;
-	}
+	margin-inline: auto;
+	width: min(50em, 100%);
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
 }
 
 .p-local-nav__list {
@@ -76,6 +73,7 @@
 		border: 1px solid var(--color-border-light);
 		display: flex;
 		flex: auto;
+		line-height: var(--line-height-narrow);
 	}
 
 	& a {
@@ -97,7 +95,7 @@
 
 		/* 現在ページ */
 		&:not(:any-link) {
-			--_bg-color: var(--color-bg-pink);
+			--_bg-color: var(--color-lightpink);
 
 			color: var(--color-darkgray);
 		}
@@ -106,29 +104,30 @@
 
 /* ===== 注意事項 ===== */
 .p-attention {
-	--stack-margin-block: 2em;
-
+	margin-inline: auto;
 	padding: 1em 12px;
-	border: 1px solid #f00;
-	color: #d00;
-	background: #fee;
+	border: 1px solid var(--color-red);
+	box-sizing: border-box;
+	width: min(50em, 90%);
+	color: var(--color-darkred);
+	background: var(--color-lightred);
+	font-weight: var(--font-weight-bold);
 }
 
 .p-attention__mark,
 .p-attention__text {
 	display: table-cell;
-	font-weight: var(--font-weight-bold);
 	vertical-align: top;
 }
 
 .p-attention__mark {
-	padding-inline-end: 0.1em;
+	padding-inline-end: 0.125em;
 }
 
 /* ===== コンテンツ説明 ===== */
 .p-description {
-	--stack-margin-block: 3em;
-	--stack-width: min(50em, 90%);
+	margin-inline: auto;
+	width: min(50em, 90%);
 
 	& > p {
 		text-indent: 1em;
@@ -141,7 +140,6 @@
 
 /* ===== ステップ ===== */
 .p-step {
-	--stack-margin-block: 2em;
 	--_step-arrow-color: var(--page-bg-color); /* 矢印の色 */
 	--_step-arrow-width: 2px; /* 矢印の幅 */
 	--_step-arrow-height: 1.15em; /* 矢印の高さ */
@@ -210,7 +208,6 @@
 
 /* ===== 目次 ===== */
 .p-toc {
-	--stack-margin-block: 3em;
 	--_icon-width: 0.75em; /* アイコンの幅 */
 	--_icon-height: calc(var(--_icon-width) * 0.75); /* アイコンの高さ */
 	--_icon-color: var(--color-gray); /* アイコンの色 */

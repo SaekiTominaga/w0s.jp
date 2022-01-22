@@ -43,13 +43,13 @@ Styleguide 1.6.2
 
 	/* 室内更新 */
 	&.-room {
-		color: #e40000;
+		color: #e40000; /* 新玉川線復旧車の背景色に対してコントラスト比 4.5:1 を満たす限界値 */
 		text-decoration: underline dashed;
 	}
 
 	/* 化粧板修繕 */
 	&.-board {
-		color: #070;
+		color: var(--color-green);
 		text-decoration: underline;
 	}
 
@@ -73,15 +73,12 @@ Markup:
 Styleguide 1.6.3
 */
 .c-tokyu-truck {
-	--icon-color: var(--color-black);
-	--icon-bgcolor: var(--color-white);
-
 	padding: 0.25em;
 	border: 1px solid;
 	border-radius: var(--border-radius-normal);
 	display: inline-block;
-	color: var(--icon-color);
-	background: var(--icon-bgcolor);
+	color: var(--_color, var(--color-black));
+	background: var(--_bg-color, var(--color-white));
 	font-size: max(calc(100% / var(--font-ratio-4)), calc(100% / var(--font-ratio-1)));
 	font-weight: var(--font-weight-normal);
 	line-height: var(--line-height-nowrap);
@@ -89,14 +86,14 @@ Styleguide 1.6.3
 
 	/* 動力台車 */
 	&.-m {
-		--icon-color: var(--color-red);
-		--icon-bgcolor: #fff9f9;
+		--_color: var(--color-red);
+		--_bg-color: var(--color-lightred);
 	}
 
 	/* 付随台車 */
 	&.-t {
-		--icon-color: var(--color-blue);
-		--icon-bgcolor: #eef;
+		--_color: var(--color-blue);
+		--_bg-color: var(--color-verylightblue);
 	}
 }
 
@@ -124,25 +121,25 @@ Styleguide 1.6.4
 
 	/* BS-482 */
 	&.-bs482 {
-		--_bg-color: #ff6;
+		--_bg-color: var(--color-yellow);
 		--_text-decoration-style: double;
 	}
 
 	/* INV-008 */
 	&.-inv008 {
-		--_bg-color: #fbc;
+		--_bg-color: var(--color-pink);
 		--_text-decoration-style: dotted;
 	}
 
 	/* INV-029 */
 	&.-inv029 {
-		--_bg-color: #cfc;
+		--_bg-color: var(--color-lightgreen);
 		--_text-decoration-style: dashed;
 	}
 
 	/* INV-095 */
 	&.-inv095 {
-		--_bg-color: #0ff;
+		--_bg-color: var(--color-lightblue);
 		--_text-decoration-style: wavy;
 	}
 }
@@ -177,7 +174,7 @@ Styleguide 1.6.5
 	&.-gkakutei,
 	&.-semiexp,
 	&.-ikk-rapid {
-		color: #007f00;
+		color: #007e00; /* --color-bg-light に対してコントラスト比 4.5:1 を満たす限界値 */
 	}
 
 	/* B各停、日比谷線直通 */
@@ -191,12 +188,12 @@ Styleguide 1.6.5
 	&.-kohnan-rapid,
 	&.-oigawa-exp,
 	&.-hokutetsu-semiexp {
-		color: #dc0000;
+		color: #db0000; /* --color-bg-light に対してコントラスト比 4.5:1 を満たす限界値 */
 	}
 
 	/* 特急 */
 	&.-ltd {
-		color: #ff4600;
+		color: #ff4200; /* --color-bg-light に対してコントラスト比 3:1 を満たす限界値 */
 	}
 }
 
@@ -226,7 +223,7 @@ Styleguide 1.6.6
 
 	/* マナー */
 	&.-manners {
-		color: #080;
+		color: var(--color-green);
 	}
 
 	/* メニュー、非扱、その他注意 */
@@ -241,20 +238,19 @@ Styleguide 1.6.6
 
 	/* 乗換 */
 	&.-change {
-		color: #b0f;
+		color: var(--color-lightpurple);
 	}
 
 	/* 立客、宣伝 */
 	&:is(.-stand, .-cm) {
-		color: #06f;
+		color: var(--color-skyblue);
 	}
 
 	/* 宣伝放送概略 */
 	&.-cmsummary {
 		padding: 0.125em 0.5em;
 		border: 1px solid;
-		color: #06f;
-		background: #fcfcff;
+		color: var(--color-skyblue);
 		font-size: calc(100% / var(--font-ratio-1));
 		font-weight: var(--font-weight-normal);
 
