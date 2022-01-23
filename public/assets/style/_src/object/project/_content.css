@@ -110,7 +110,7 @@
 	box-sizing: border-box;
 	width: min(50em, 90%);
 	color: var(--color-darkred);
-	background: var(--color-lightred);
+	background: var(--color-verylightred);
 	font-weight: var(--font-weight-bold);
 }
 
@@ -142,7 +142,7 @@
 .p-step {
 	--_step-arrow-color: var(--page-bg-color); /* 矢印の色 */
 	--_step-arrow-width: 2px; /* 矢印の幅 */
-	--_step-arrow-height: 1.15em; /* 矢印の高さ */
+	--_step-arrow-height: 1em; /* 矢印の高さ */
 	--_step-arrow-inclination: 0.6; /* 矢印の傾斜度（高さに対する割合、 1 = 45°） */
 
 	display: flex;
@@ -150,7 +150,7 @@
 	line-height: var(--line-height-narrow);
 
 	& > li {
-		margin: var(--_step-arrow-width) var(--_step-arrow-width) var(--_step-arrow-width) 0;
+		margin-inline-end: var(--_step-arrow-width);
 		flex: auto;
 		position: relative;
 		font-size: calc(100% * var(--font-ratio-1));
@@ -164,45 +164,44 @@
 
 		&:not(:last-child) {
 			&::after {
-				border-block-start: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-				border-block-end: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+				border-block: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
 				border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
 				content: "";
 				position: absolute;
-				inset-block-start: calc(50% - var(--_step-arrow-height) - (var(--_step-arrow-width) / 2));
+				inset-block-start: calc(50% - var(--_step-arrow-height) - var(--_step-arrow-width));
 				inset-inline-start: 100%;
 				transform: translateX(var(--_step-arrow-width));
 				z-index: 1;
-			}
-
-			& .p-step__text {
-				&::after {
-					border-block-start: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-					border-block-end: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
-					border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid;
-					border-inline-start-color: inherit;
-					content: "";
-					position: absolute;
-					inset-block-start: calc(50% - var(--_step-arrow-height) - (var(--_step-arrow-width) / 2));
-					inset-inline-start: 100%;
-					z-index: 2;
-				}
 			}
 		}
 	}
 }
 
 .p-step__text {
+	--_color: var(--color-black);
+	--_bg-color: var(--color-bg-dark);
+
 	padding: 0.5em;
-	border-color: var(--color-bg-dark);
 	display: block;
-	background: var(--color-bg-dark);
+	color: var(--_color);
+	background: var(--_bg-color);
 
 	&.-current {
-		border-color: #fdd;
-		color: var(--color-darkgray);
-		background-color: #fdd;
+		--_color: var(--color-darkgray);
+		--_bg-color: var(--color-lightred);
+
 		font-weight: var(--font-weight-bold);
+	}
+
+	@nest .p-step > li:not(:last-child) &::after {
+		border-block: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+		border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid;
+		border-inline-start-color: var(--_bg-color);
+		content: "";
+		position: absolute;
+		inset-block-start: calc(50% - var(--_step-arrow-height) - var(--_step-arrow-width));
+		inset-inline-start: 100%;
+		z-index: 2;
 	}
 }
 
