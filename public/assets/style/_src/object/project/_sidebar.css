@@ -19,7 +19,7 @@
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
-	top: var(--_heading-offset);
+	inset-block-start: var(--_heading-offset);
 	background: var(--page-bg-color);
 }
 
@@ -41,7 +41,7 @@
 /* アバター */
 .p-sidebar-profile__avatar {
 	margin-inline-end: 10px;
-	float: left;
+	float: inline-start;
 
 	@nest :any-link:hover & {
 		box-shadow: 0 0 5px var(--color-lightgray);
@@ -78,7 +78,7 @@
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
-	top: var(--_heading-offset);
+	inset-block-start: var(--_heading-offset);
 	background: var(--page-bg-color);
 }
 
@@ -120,8 +120,8 @@
 				height: var(--_icon-height);
 				background: var(--_icon-color);
 				position: absolute;
-				top: calc(50% - var(--_icon-height) / 2);
-				right: var(--_padding-inline);
+				inset-block-start: calc(50% - var(--_icon-height) / 2);
+				inset-inline-end: var(--_padding-inline);
 			}
 
 			&:hover {
@@ -140,7 +140,7 @@
 		&:nth-child(2n + 1) {
 			& a {
 				&:any-link {
-					--_bg-color: var(--color-bg-verylight);
+					--_bg-color: var(--color-bg-superlight);
 
 					&:hover {
 						--_bg-color: var(--color-lightyellow);
@@ -176,7 +176,7 @@
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
-	top: var(--_heading-offset);
+	inset-block-start: var(--_heading-offset);
 	background: var(--page-bg-color);
 }
 
@@ -207,14 +207,14 @@
 	transition: box-shadow var(--link-hover-transition-duration);
 
 	@nest :any-link:hover & {
-		box-shadow: 0 0 3px 3px var(--color-amazon-box-shadow-hover);
+		box-shadow: 0 0 3px 3px var(--color-amazon-verydark);
 	}
 }
 
 /* テキストエリア */
 .p-sidebar-amazon-link__text {
 	--_color: var(--color-darkgray);
-	--_bg-color: var(--color-amazon-bg);
+	--_bg-color: var(--color-amazon);
 
 	margin-block-start: 1px;
 	padding: 5px;
@@ -222,10 +222,10 @@
 	color: var(--_color);
 	background: var(--_bg-color);
 	overflow-wrap: anywhere;
-	transition: color var(--link-hover-transition-duration), background-color var(--link-hover-transition-duration);
+	transition: background-color var(--link-hover-transition-duration);
 
 	@nest :any-link:hover & {
-		--_bg-color: var(--color-amazon-bg-hover);
+		--_bg-color: var(--color-amazon-dark);
 	}
 }
 

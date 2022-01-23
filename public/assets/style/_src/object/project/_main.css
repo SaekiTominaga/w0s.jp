@@ -35,7 +35,6 @@ Markup:
 Styleguide 2.99.2
 */
 .p-toggle {
-	--_color: #009;
 	--_icon: polygon(0 42%, 42% 42%, 42% 0, 58% 0, 58% 42%, 100% 42%, 100% 58%, 58% 58%, 58% 100%, 42% 100%, 42% 58%, 0 58%);
 
 	& > summary {
@@ -43,7 +42,7 @@ Styleguide 2.99.2
 		border: 1px solid var(--color-border-dark);
 		border-radius: var(--border-radius-small);
 		box-sizing: border-box;
-		color: var(--_color);
+		color: var(--color-darkblue);
 		background: var(--color-white);
 		font-size: calc(100% * var(--font-ratio-1));
 		line-height: var(--line-height-narrow);
@@ -75,7 +74,7 @@ Styleguide 2.99.2
 				clip-path: var(--_icon);
 				width: 1em;
 				height: 1em;
-				background: var(--_color);
+				background: var(--color-darkblue);
 				vertical-align: calc((1 - var(--line-height-narrow)) * 0.5em);
 			}
 
@@ -130,10 +129,10 @@ Styleguide 2.99.3
 */
 .p-amazon {
 	padding: 15px;
-	border: 1px solid #cb4;
+	border: 1px solid var(--color-amazon-dark);
 	border-radius: var(--border-radius-large);
 	color: var(--color-black);
-	background: linear-gradient(#fed, var(--color-white));
+	background: linear-gradient(var(--color-amazon-light), var(--color-white));
 }
 
 .p-amazon__hdg {
@@ -153,7 +152,7 @@ Styleguide 2.99.3
 }
 
 .p-amazon__link {
-	--_bg-color: var(--color-amazon-bg);
+	--_bg-color: var(--color-amazon);
 
 	padding: 14px;
 	border: 1px solid var(--_bg-color);
@@ -169,7 +168,7 @@ Styleguide 2.99.3
 	transition: border-color var(--link-hover-transition-duration), background-color var(--link-hover-transition-duration);
 
 	&:hover {
-		--_bg-color: var(--color-amazon-bg-hover);
+		--_bg-color: var(--color-amazon-dark);
 	}
 
 	&:any-link {
@@ -191,7 +190,7 @@ Styleguide 2.99.3
 	transition: box-shadow var(--link-hover-transition-duration);
 
 	@nest :any-link:hover & {
-		box-shadow: 0 0 4px 3px var(--color-amazon-box-shadow-hover);
+		box-shadow: 0 0 4px 3px var(--color-amazon-verydark);
 	}
 }
 
@@ -212,7 +211,6 @@ Styleguide 2.99.3
 	display: inline;
 	font-weight: bold;
 	text-decoration-line: underline;
-	transition: color var(--link-hover-transition-duration);
 
 	&::before {
 		margin-inline-end: var(--_bullet-gap);
@@ -222,13 +220,6 @@ Styleguide 2.99.3
 		width: var(--_bullet-width);
 		height: var(--_bullet-height);
 		background: var(--_bullet-color);
-		transition: background-color var(--link-hover-transition-duration);
-	}
-
-	@nest :any-link:hover & {
-		--_bullet-color: var(--link-color-hover);
-
-		color: var(--link-color-hover);
 	}
 }
 
@@ -261,11 +252,11 @@ Styleguide 2.99.4
 
 .p-code__clipboard {
 	margin: 0.5em 0.5em 1em 1em;
-	float: right;
+	float: inline-end;
 }
 
 .p-code__clipboard-button {
-	--_bg-color: var(--color-bg-verylight);
+	--_bg-color: var(--color-bg-superlight);
 	--_ripple-color: var(--color-black);
 	--_ripple-opacity: 0.25;
 	--_ripple-transition-duration: 0.5s;
@@ -284,7 +275,7 @@ Styleguide 2.99.4
 	overflow: hidden;
 
 	&:hover {
-		--_bg-color: var(--color-bg-verylight);
+		--_bg-color: var(--color-bg-superlight);
 	}
 
 	/* ripple effect */
@@ -293,8 +284,7 @@ Styleguide 2.99.4
 		width: 100%;
 		height: 100%;
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset: 0;
 		background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
 		opacity: 0;
 		transform: scale(4);
@@ -345,31 +335,17 @@ Styleguide 2.99.5
 	background: transparent;
 	font-size: 1.2rem;
 
-	@supports not (inset: 0) {
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-	}
-
 	&[open] {
 		display: flex;
 	}
 
 	&::backdrop {
-		background: rgba(0, 0, 0, 80%);
+		background: rgb(0 0 0/ 80%);
 	}
 
 	& + .backdrop {
 		position: fixed;
 		inset: 0;
-		background: rgba(0, 0, 0, 80%);
-
-		@supports not (inset: 0) {
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-		}
+		background: rgb(0 0 0 / 80%);
 	}
 }
