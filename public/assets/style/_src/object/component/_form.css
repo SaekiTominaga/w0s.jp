@@ -210,16 +210,12 @@ Styleguide 1.4.5
 	line-height: var(--line-height-nowrap);
 	vertical-align: middle;
 	outline-width: var(--outline-width-bold);
-	outline-offset: -1px;
+	outline-offset: 1px;
 
 	/* ripple effect */
 	contain: layout;
 	position: relative; /* for Safari */
 	overflow: hidden;
-
-	&:not(.-cancel) {
-		outline-color: var(--color-black);
-	}
 
 	&:enabled {
 		&:hover {
@@ -291,15 +287,17 @@ Styleguide 1.4.6
 
 		margin-block: calc(var(--form-control-padding-block) / 2);
 		padding: calc(var(--form-control-padding-block) / 2) 0.25em;
-		border: 1px solid var(--_bg-color);
+		border: 1px solid var(--_border-color);
 		border-radius: var(--border-radius-normal);
 		background: var(--_bg-color);
 
 		&:hover {
-			--_bg-color: var(--color-lightyellow);
+			--_border-color: var(--color-verylightblue);
+			--_bg-color: var(--color-verylightblue);
 		}
 
 		&:focus-within {
+			--_border-color: var(--color-verylightblue);
 			--_bg-color: var(--color-verylightblue);
 
 			outline: var(--outline-width-bold) solid var(--outline-color);
@@ -310,12 +308,15 @@ Styleguide 1.4.6
 			width: 1em;
 			height: 1em;
 			outline: none;
+		}
 
-			&.-invalid {
-				& + .c-label__text {
-					border-color: var(--invalid-border-color);
-					background-color: var(--color-verylightred);
-				}
+		&:has(input.-invalid) {
+			--_border-color: var(--invalid-border-color);
+			--_bg-color: var(--color-verylightred);
+
+			&:hover {
+				--_border-color: var(--invalid-border-color);
+				--_bg-color: var(--color-verylightred);
 			}
 		}
 	}
