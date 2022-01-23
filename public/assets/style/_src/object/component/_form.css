@@ -185,11 +185,14 @@ Styleguide 1.4.4
 Markup:
 <button class="c-submit {{modifier_class}}">ボタン</button>
 
+.-cpmpact - コンパクトなボタン（表セルの中など）
 .-cancel - キャンセルボタン
 
 Styleguide 1.4.5
 */
 .c-submit {
+	--_padding-block: var(--form-control-padding-block);
+	--_padding-inline: 1em;
 	--_border-color: var(--_bg-color);
 	--_color: var(--color-white);
 	--_bg-color: hsl(204 100% 42%);
@@ -199,7 +202,7 @@ Styleguide 1.4.5
 	--_ripple-opacity: 0.25;
 	--_ripple-transition-duration: 0.5s;
 
-	padding: var(--form-control-padding-block) 1em;
+	padding: var(--_padding-block) var(--_padding-inline);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	display: inline-block;
@@ -246,6 +249,13 @@ Styleguide 1.4.5
 	&:disabled {
 		--_color: var(--color-gray);
 		--_bg-color: var(--color-bg-dark);
+	}
+
+	/* コンパクトなボタン */
+	&.-compact {
+		--_padding-block: 0.375em;
+		--_padding-inline: 0.375em;
+		--_font-size: 100%;
 	}
 
 	/* キャンセルボタン */
