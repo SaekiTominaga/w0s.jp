@@ -1,0 +1,262 @@
+/*
+リスト
+
+Styleguide 2.3.
+*/
+
+/*
+通常リスト
+
+Markup:
+<ul class="p-list">
+<li>リストテキスト</li>
+<li>リストテキスト
+<ul>
+<li>リストテキスト</li>
+</ul></li>
+</ul>
+
+Styleguide 2.3.1
+*/
+.p-list {
+	& > li,
+	& > li > :is(ol, ul) > li,
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		margin-inline-start: 1em;
+	}
+
+	& > li + li,
+	& > li > :is(ol, ul) > li,
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		margin-block-start: 0.25em;
+	}
+
+	& > li {
+		list-style-type: disc;
+	}
+
+	& > li > :is(ol, ul) > li {
+		list-style-type: circle;
+	}
+
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		list-style-type: square;
+	}
+
+	& > li > :is(ol, ul) > li,
+	& > li > :is(ol, ul) > li > :is(ol, ul) > li {
+		font-size: calc(100% / var(--font-ratio-1));
+	}
+}
+
+/*
+番号リスト
+
+Markup:
+<ul class="p-list-num">
+<li>リストテキスト</li>
+<li>リストテキスト</li>
+</ul>
+
+Styleguide 2.3.2
+*/
+.p-list-num {
+	& > li {
+		margin-inline-start: 1.5em;
+		list-style: decimal;
+
+		& + li {
+			margin-block-start: 0.25em;
+		}
+	}
+}
+
+/*
+記述リスト
+
+Markup:
+<dl class="p-list-description">
+<dt>タイトル</dt>
+<dd>テキスト</dd>
+<dt>タイトル</dt>
+<dd>テキスト</dd>
+</dl>
+
+Styleguide 2.3.3
+*/
+.p-list-description {
+	& > dt {
+		font-weight: var(--font-weight-bold);
+	}
+
+	& > dd + dt {
+		margin-block-start: 0.5em;
+	}
+
+	& > dd {
+		margin-inline-start: 1em;
+	}
+}
+
+/*
+注釈リスト
+
+Markup:
+<ul class="p-notes">
+<li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+</ul>
+
+Styleguide 2.3.4
+*/
+.p-notes {
+	color: var(--color-darkgray);
+	font-size: calc(100% / var(--font-ratio-1));
+
+	& > li {
+		margin-inline-start: 1.25em;
+		list-style-type: "※ ";
+
+		& + li {
+			margin-block-start: 0.75em;
+		}
+	}
+}
+
+/*
+リンクリスト
+
+Markup:
+<ul class="p-links">
+<li><a href="https://example.com/">リンク</a></li>
+<li><a href="https://example.com/">リンク</a>
+<p>テキストテキストテキスト</p></li>
+<li><a href="https://example.com/">リンク</a>
+	<ul>
+	<li><a href="https://example.com/">リンク</a></li>
+	</ul></li>
+</ul>
+
+Styleguide 2.3.5
+*/
+.p-links {
+	--_icon-clip-path: var(--shape-link-triangle);
+	--_icon-height: 0.75em;
+	--_icon-width: calc(var(--_icon-height) * 0.6);
+	--_icon-color: var(--color-gray);
+	--_icon-gap: 0.5em;
+
+	& > li {
+		margin-inline-start: calc((var(--_icon-width) + var(--_icon-gap)) * var(--font-ratio-2));
+
+		& + li {
+			margin-block-start: 0.5em;
+		}
+
+		& > ul {
+			--_icon-clip-path: polygon(55% 0, 55% 45%, 100% 45%, 100% 55%, 45% 55%, 45% 0);
+			--_icon-width: var(--_icon-height);
+			--_icon-color: var(--color-black);
+
+			& > li {
+				margin-block-start: 0.25em;
+				margin-inline-start: calc((var(--_icon-width) + var(--_icon-gap)) / 2 * var(--font-ratio-1));
+			}
+		}
+
+		& > a,
+		& > ul > li > a {
+			margin-inline-start: calc(0px - var(--_icon-width) - var(--_icon-gap));
+
+			&::before {
+				margin-inline-end: var(--_icon-gap);
+				content: "";
+				display: inline-block;
+				clip-path: var(--_icon-clip-path);
+				width: var(--_icon-width);
+				height: var(--_icon-height);
+				background: var(--_icon-color);
+			}
+		}
+
+		& > a {
+			font-size: calc(100% * var(--font-ratio-2));
+		}
+
+		& > :any-link {
+			--_icon-color: var(--link-color-bullet);
+
+			outline-offset: var(--outline-offset-linkonly);
+
+			&:hover {
+				--_icon-color: var(--link-color-hover);
+			}
+		}
+
+		& > ul > li > a {
+			font-size: calc(100% * var(--font-ratio-1));
+		}
+	}
+}
+
+/*
+脚注リスト
+
+Markup:
+<ul class="p-footnotes">
+<li>
+<span class="p-footnotes__no"><a href="#nt1">[1]</a></span>
+<span class="p-footnotes__text" id="fn1">テキストテキストテキスト</span>
+</li>
+<li>
+<span class="p-footnotes__no"><a href="#nt2">[2]</a></span>
+<span class="p-footnotes__text" id="fn2">テキストテキストテキスト</span>
+</li>
+</ul>
+
+Styleguide 2.2.8
+*/
+.p-footnotes {
+	padding: 1em;
+	border: 1px solid var(--color-bg-light);
+	border-radius: var(--border-radius-large);
+	box-sizing: border-box;
+	display: table;
+	width: 100%;
+	background: var(--color-bg-light);
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-normal);
+
+	& > li {
+		display: table-row;
+
+		&:not(:first-child) {
+			& > :is(.p-footnotes__no, .p-footnotes__text) {
+				border-block-start: 0.5em solid transparent;
+			}
+		}
+	}
+}
+
+.p-footnotes__no,
+.p-footnotes__text {
+	display: table-cell;
+	vertical-align: top;
+}
+
+.p-footnotes__no {
+	padding-inline-end: 0.25em;
+	font-weight: var(--font-weight-bold);
+	text-align: end;
+	white-space: nowrap;
+
+	& > a {
+		padding: 0.25em;
+		display: inline-block;
+		text-decoration-skip-ink: none;
+	}
+}
+
+.p-footnotes__text {
+	padding: 0.25em;
+	width: 100%;
+}

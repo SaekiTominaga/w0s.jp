@@ -15,27 +15,27 @@
 		<div class="l-page">
 			<%- include('./_include/_header') %>
 
-			<main id="main" class="l-main -nosidebar">
-				<div class="l-main__header">
-					<div class="p-page-title">
+			<div id="content" class="l-content -nosidebar">
+				<div class="l-content__header">
+					<div class="p-title">
 						<h1>ウェブ巡回（リソース）</h1>
 					</div>
 				</div>
-				<div class="l-main__main">
+				<main class="l-content__main">
 					<section class="p-section -hdg-a">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">データ登録</h2>
+						<div class="p-section__hdg">
+							<h2>データ登録</h2>
 						</div>
 
-						<form action="<%= page.path %>" method="post">
+						<form action="<%= page.path %>" method="post" class="c-stack">
 							<div class="p-form-grid">
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-url">URL <strong class="c-required -required">必須</strong></label>
+											<label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
+											<div class="c-form-controls">
 												<% if (page.query.action_revise_preview || page.query.action_revise) { %>
 												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" readonly="" />
 												<% } else { %>
@@ -48,10 +48,10 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-title">タイトル <strong class="c-required -required">必須</strong></label>
+											<label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
+											<div class="c-form-controls">
 												<input class="c-input -full js-convert-trim" id="fc-title" name="title" value="<%= page.query.title %>" required="" />
 											</div>
 										</div>
@@ -60,10 +60,10 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-category">カテゴリー <strong class="c-required -required">必須</strong></label>
+											<label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
+											<div class="c-form-controls">
 												<select class="c-select" id="fc-category" name="category">
 													<% for (const category of categoryMaster) { %> <% if (page.query.category === category.fk) { %>
 													<option value="<%= category.fk %>" selected=""><%= category.name %></option>
@@ -78,10 +78,10 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-priority">優先度 <strong class="c-required -required">必須</strong></label>
+											<label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
+											<div class="c-form-controls">
 												<select class="c-select" id="fc-priority" name="priority">
 													<% for (const priority of priorityMaster) { %> <% if (page.query.priority === priority.fk) { %>
 													<option value="<%= priority.fk %>" selected=""><%= priority.name %></option>
@@ -96,17 +96,17 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-class">ブラウザ</label>
+											<label for="fc-class" class="c-label">ブラウザ</label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
-												<label class="c-label-check -checkbox">
+											<div class="c-form-controls">
+												<label class="c-label -check">
 													<% if (page.query.browser) { %>
 													<input type="checkbox" name="browser" value="1" checked="" />
 													<% } else { %>
 													<input type="checkbox" name="browser" value="1" />
 													<% } %>
-													<span class="c-label-check__label">ウェブブラウザでアクセスするか</span></label
+													<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
 												>
 											</div>
 										</div>
@@ -115,10 +115,10 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="fc-selector">セレクター <strong class="c-required -optional">任意</strong></label>
+											<label for="fc-selector" class="c-label">セレクター <strong class="c-label-icon -optional">任意</strong></label>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="p-form-grid__contents-block">
+											<div class="c-form-controls">
 												<input class="c-input -full js-convert-trim" id="fc-selector" name="selector" value="<%= page.query.selector %>" />
 											</div>
 										</div>
@@ -126,11 +126,11 @@
 								</div>
 							</div>
 
-							<div class="p-submit">
+							<div class="c-form-controls -submit">
 								<% if (page.query.action_revise_preview || page.query.action_revise) { %>
-								<span class="p-submit__button"><button class="c-button-submit" name="actionrev" value="1">修正</button></span>
+								<p><button class="c-submit" name="actionrev" value="1">修正</button></p>
 								<% } else { %>
-								<span class="p-submit__button"><button class="c-button-submit" name="actionadd" value="1">登録</button></span>
+								<p><button class="c-submit" name="actionadd" value="1">登録</button></p>
 								<% } %>
 							</div>
 						</form>
@@ -138,11 +138,11 @@
 
 					<% for (const [categoryName, resourcePageOfCategory] of resourcePageList) { %>
 					<section class="p-section -hdg-a">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg"><%= categoryName %></h2>
+						<div class="p-section__hdg">
+							<h2><%= categoryName %></h2>
 						</div>
 
-						<table class="p-table-data">
+						<table class="p-table">
 							<thead>
 								<tr>
 									<th></th>
@@ -158,11 +158,11 @@
 								<% for (const resourcePage of resourcePageOfCategory) { %>
 								<tr>
 									<td>
-										<form action="<%= page.path %>" method="post" class="p-admin-crawler-table-ctrl">
+										<form action="<%= page.path %>" method="post" class="c-stack">
 											<p>
 												<input type="hidden" name="url" value="<%= resourcePage.url %>" />
-												<button name="actionrevpre" value="1" formmethod="get">修正</button>
-												<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?">削除</button>
+												<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">修正</button>
+												<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?" class="c-submit -compact">削除</button>
 											</p>
 											<p><a href="/admin/crawler-resource-log?dir=<%= resourcePage.url.hostname %><%= resourcePage.url.pathname.replace(/\/$/g, '') %>">差分チェック</a></p>
 										</form>
@@ -186,8 +186,8 @@
 						</table>
 					</section>
 					<% } %>
-				</div>
-			</main>
+				</main>
+			</div>
 
 			<%- include('./_include/_footer') %>
 		</div>

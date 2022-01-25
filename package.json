@@ -40,7 +40,6 @@
 		"_svg:build": "onchange -f add -f change -v image/**/*.svg -- node build/svg.mjs {{file}} svgo.config.cjs",
 		"_svg:compress": "onchange -f add -f change -v public/**/*.svg -- brotlin compress {{file}} -m 1",
 		"svg": "run-p _svg:*",
-		"svg:datauri": "onchange -f add -f change -v image/_dataurl/*.svg -- node build/svg_datauri.mjs {{file}} svgo.config.cjs",
 		"_feed:build": "node build/feed.mjs",
 		"_feed:compress": "onchange -f add -f change -v public/**/*.atom -- brotlin compress {{file}} -m 1",
 		"feed": "run-p _feed:*"

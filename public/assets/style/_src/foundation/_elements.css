@@ -1,31 +1,83 @@
-:focus {
-	outline: var(--outline-width) solid var(--outline-color);
-	outline-offset: var(--outline-offset);
-}
-
 :root {
-	color: var(--page-color);
-	background: var(--page-bg-color);
-	font: 500 var(--page-font-size)/var(--line-height-normal) sans-serif; /* weight=500 指定は Windows + 游ゴシック 対策 */
+	--_color: var(--page-color);
+	--_bg-color: var(--page-bg-color);
+
+	color: var(--_color);
+	background: var(--_bg-color);
+	font: var(--font-weight-normal) var(--page-font-size) / var(--line-height-normal) arial, sans-serif;
+
+	@media (prefers-reduced-motion: no-preference) {
+		scroll-behavior: smooth;
+	}
 
 	@media print {
-		--page-color: #000;
-		--page-bg-color: #fff;
+		--_color: var(--color-black);
+		--_bg-color: var(--color-white);
 	}
+}
+
+:focus {
+	outline: var(--outline-width) solid var(--outline-color);
+}
+
+body:focus {
+	outline: none;
+}
+
+:any-link {
+	text-decoration-thickness: from-font;
+	outline-offset: var(--outline-offset);
 }
 
 :link {
 	color: var(--link-color);
+
+	&:hover {
+		color: var(--link-color-hover);
+	}
 }
 
 :visited {
 	color: var(--link-color-visited);
+
+	&:hover {
+		color: var(--link-color-hover);
+	}
 }
 
-:any-link {
-	&:focus,
-	&:hover {
-		--link-color: var(--link-color-hover);
-		--link-color-visited: var(--link-color-hover);
+h1,
+h2,
+h3,
+h4,
+em,
+strong,
+cite,
+dfn,
+b,
+th {
+	font-weight: var(--font-weight-bold);
+}
+
+pre {
+	tab-size: 2;
+	font: inherit;
+	white-space: pre-wrap;
+}
+
+code {
+	font-family: monospace;
+}
+
+mark {
+	border: 1px solid var(--color-lightyellow);
+	background: var(--color-lightyellow);
+	font-weight: var(--font-weight-bold);
+
+	@media print {
+		border-color: currentcolor;
 	}
+}
+
+input {
+	accent-color: var(--color-skyblue);
 }

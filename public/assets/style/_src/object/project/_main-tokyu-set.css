@@ -1,0 +1,108 @@
+/* ==============================
+ *   東急電車形態研究・設定器
+ * ============================== */
+
+/* ===== 設定器 ===== */
+.p-tokyu-set {
+	width: fit-content;
+}
+
+/* 期間 */
+.p-tokyu-set__period {
+	margin-inline: auto;
+	width: fit-content;
+}
+
+.p-tokyu-set__panel {
+	margin-block-start: 1em;
+
+	/* ===== ダイヤル式 ===== */
+	&.-dial {
+		padding: 15px;
+		background: var(--color-lightyellow);
+	}
+
+	/* ===== ダイヤル式（8500系） ===== */
+	&.-dial-8500 {
+		padding: 15px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 15px;
+		background: var(--color-lightyellow);
+
+		@media (max-width: 30em) {
+			grid-template-columns: 1fr;
+			grid-gap: 30px;
+		}
+
+		& h2 {
+			margin-block-end: 10px;
+			padding-inline-start: 0.5em;
+			font-size: 18px;
+			font-weight: var(--font-weight-bold);
+			text-align: center;
+			letter-spacing: 0.5em;
+		}
+	}
+
+	/* ===== 押ボタン式 ===== */
+	&.-push {
+		& td {
+			border: 1px solid var(--color-black);
+			width: 5em;
+			min-height: 2em;
+			text-align: center;
+		}
+	}
+
+	/* ===== 押ボタン式（300系） ===== */
+	&.-push-300 {
+		& ul {
+			display: flex;
+			flex-wrap: wrap;
+
+			& > li {
+				margin: 0 2px 2px 0;
+				padding: 0.3em;
+				border: 1px solid var(--color-black);
+				width: 5em;
+				min-height: 2em;
+				line-height: 1;
+				text-align: center;
+			}
+		}
+	}
+
+	/* ===== 番号選択式（8090系） ===== */
+	&.-num-8090 {
+	}
+
+	/* ===== 番号選択式（長野電鉄8500系） ===== */
+	&.-num-ner8500 {
+		& td,
+		& th {
+			border: 1px solid var(--color-black);
+		}
+
+		& th {
+			font-weight: var(--font-weight-normal);
+			text-align: center;
+		}
+	}
+}
+
+.p-tokyu-set__image {
+	display: block;
+	height: auto;
+	max-width: 100%;
+
+	& section {
+		& + section {
+			margin-block-start: 1em;
+		}
+	}
+
+	& h2 {
+		font-weight: var(--font-weight-bold);
+	}
+}

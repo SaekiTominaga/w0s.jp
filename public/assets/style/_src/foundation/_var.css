@@ -1,12 +1,9 @@
 :root {
-	/* ===== ページ全体 ===== */
-	--page-max-width: 1280px; /* ページの最大幅 */
-	--page-sidebar-width: 230px; /* サイドバーの幅 */
-	--page-main-sidebar-gap: 26px; /* メインエリアとサイドバーの横間隔 */
-	--page-col-padding: 10px; /* ページの左右の余白 */
-	--page-color: #000; /* ページ文字色 */
-	--page-bg-color: #fffff9; /* ページ背景色 */
-	--page-font-size: 100%; /* デフォルトのフォントサイズ 12px=75%, 13px=81.3%, 14px=87.5%, 15px=93.8%, 16px=100%, 17px=106.3%, 18px=112.5% */
+	/* ===== border ===== */
+	--border-radius-small: 0.125em;
+	--border-radius-normal: 0.25em;
+	--border-radius-large: 0.5em;
+	--border-radius-full: 1em;
 
 	/* ===== 色 ===== */
 	--color-white: #fff;
@@ -14,14 +11,41 @@
 	--color-gray: #666;
 	--color-darkgray: #333;
 	--color-black: #000;
-	--color-border-dark: #999;
+	--color-verylightred: #fee;
+	--color-lightred: #fdd;
+	--color-red: #e00; /* --page-bg-color に対してコントラスト比 4.5:1 を満たす限界値 */
+	--color-darkred: #df0000; /* --color-verylightred に対してコントラスト比 4.5:1 を満たす限界値 */
+	--color-lightpink: #fef;
+	--color-pink: #fbc;
+	--color-lightpurple: #be00ff; /* --page-bg-color に対してコントラスト比 4.5:1 を満たす限界値 */
+	--color-purple: #90f;
+	--color-ultralightgreen: #f9fff9;
+	--color-superlightgreen: #efe;
+	--color-verylightgreen: #cfc;
+	--color-lightgreen: #90ee90;
+	--color-green: #008900; /* --page-bg-color, --color-ultralightgreen に対してコントラスト比 4.5:1 を満たす限界値 */
+	--color-darkgreen: #060;
+	--color-yellowgreen: #cf4;
+	--color-lightyellow: #ffc;
+	--color-yellow: #ff6;
+	--color-verylightblue: #eff;
+	--color-lightblue: #9ff;
+	--color-paleturquoise: #afeeee;
+	--color-skyblue: #006aff; /* --page-bg-color, --color-verylightblue に対してコントラスト比 4.5:1 を満たす限界値 */
+	--color-blue: #00f;
+	--color-darkblue: #00008b;
+	--color-lightorange: #fec;
+	--color-orange: #fb9;
 	--color-border-light: #ccc;
-
-	/* ===== テキスト ===== */
-	--line-height-wide: 1.8; /* 広い行高さ（長い本文など） */
-	--line-height-normal: 1.5; /* 通常の行高さ */
-	--line-height-narrow: 1.25; /* 狭い行高さ（見出しやボタンなど） */
-	--line-height-nowrap: 1; /* 改行しない文の行高さ */
+	--color-border-dark: #999;
+	--color-bg-superlight: #f9f9f9;
+	--color-bg-verylight: #f2f2f2;
+	--color-bg-light: #eee;
+	--color-bg-dark: #ccc;
+	--color-amazon: hsl(30 100% 87%); /* #FFDEBD */
+	--color-amazon-light: hsl(30 100% 92%); /* #FFEBD6 */
+	--color-amazon-dark: hsl(30 100% 84%); /* #FFD9B3 */
+	--color-amazon-verydark: hsl(30 100% 60%);
 
 	/* ===== フォント ===== */
 	--font-ratio-1: 1.12; /* 1.12 / 0.89 */
@@ -29,42 +53,52 @@
 	--font-ratio-3: calc(var(--font-ratio-2) * var(--font-ratio-1)); /* 1.40 / 0.71 */
 	--font-ratio-4: calc(var(--font-ratio-3) * var(--font-ratio-1)); /* 1.57 / 0.64 */
 	--font-ratio-5: calc(var(--font-ratio-4) * var(--font-ratio-1)); /* 1.76 / 0.57 */
+	--font-ratio-6: calc(var(--font-ratio-5) * var(--font-ratio-1)); /* 1.97 / 0.51 */
 	--font-yu-gothic: system-ui, -apple-system, YuGothic, "Yu Gothic", "Hiragino Sans", Meiryo, sans-serif; /* 遊ゴシック体（'-apple-system' は macOS, iOS の Firefox 向け） */
 	--font-kaku-gothic: system-ui, -apple-system, "Hiragino Sans", Meiryo, sans-serif; /* 角ゴシック体（'-apple-system' は macOS, iOS の Firefox 向け） */
 	--font-mincho: YuMincho, "Yu Mincho", serif; /* 明朝体 */
+	--font-weight-normal: 500; /* Windows + 游ゴシック 対策で 400 より大きな値とする */
+	--font-weight-bold: 700;
 
-	/* ===== border ===== */
-	--border-radius-small: 0.125em;
-	--border-radius-normal: 0.25em;
-	--border-radius-large: 0.5em;
+	/* ===== テキスト ===== */
+	--line-height-wide: 1.8; /* 広い行高さ（長い本文など） */
+	--line-height-normal: 1.5; /* 通常の行高さ */
+	--line-height-narrow: 1.25; /* 狭い行高さ（見出しやボタンなど） */
+	--line-height-nowrap: 1; /* 改行しない文の行高さ */
 
 	/* ===== リンク ===== */
 	--link-color: #00f; /* 未訪問リンクの文字色 */
 	--link-color-visited: #800080; /* 既訪問リンクの文字色 */
 	--link-color-bullet: #0bb; /* ビュレット色 */
 	--link-color-hover: #d00; /* マウスオーバー時の文字色 */
-	--link-hover-transition-delay: 0.2s; /* マウスオーバー時の変化時間 */
+	--link-hover-transition-duration: 0.2s; /* マウスオーバー時の変化時間 */
 
 	/* ===== フォーカスリング ===== */
 	--outline-width: 1px;
+	--outline-width-bold: 2px;
 	--outline-color: #4d90fe;
 	--outline-offset: 1px;
-
-	/* ===== Component ===== */
-	--component-interval: 24px; /* コンポーネント間の間隔 */
-	--component-interval-ratio: 1; /* コンポーネント間の間隔倍率 */
+	--outline-offset-linkonly: 0.125em;
 
 	/* ===== フォーム ===== */
-	--invalid-border-color: #e00;
+	--form-control-padding-block: 0.5em;
+	--invalid-border-color: var(--color-red);
+
+	/* ===== Stack ===== */
+	--stack-margin-base: 1.5em;
 
 	/* ===== 図形 ===== */
 	--shape-link-triangle: polygon(0 0, 100% 50%, 0 100%); /* リンクアイコン ( ▶ ) */
 	--shape-pagelink-triangle: polygon(0 0, 100% 0, 50% 100%); /* リンクアイコン ( ▼ ) */
 	--shape-link-arrow: polygon(17.68% 0, 100% 50%, 17.68% 100%, 0 88.21%, 64.64% 50%, 0 11.79%); /* リンクアイコン ( > ) */
 
-	/* ===== 画像 ===== */
-	--image-link-bullet: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDE4IDM2Ij48cG9seWdvbiBwb2ludHM9IjAsMCAxOCwxOCAwLDM2Ii8+PC9zdmc+"); /* リンク・ビュレットアイコン */
-	--image-link-bullet-hash: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDM2IDM2Ij48cG9seWdvbiBwb2ludHM9IjAsNSAzNiw1IDE4LDI5Ii8+PC9zdmc+"); /* リンク・ビュレットアイコン《ページ内リンク a[href^="#"] 》 */
-	--image-link-disclosure: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIzNiIgdmlld0JveD0iMCAwIDI0IDM2Ij48cG9seWxpbmUgcG9pbnRzPSIyLjIsMi4yIDE4LDE4IDIuMiwzMy44IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iNiIvPjwvc3ZnPg=="); /* リンク・Disclosureアイコン */
-	--image-image-expand: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHN0eWxlPnBhdGh7ZmlsbDojZmZmfTwvc3R5bGU+PHBhdGggZD0iTTQ5OS41MjMgNDM5LjMxM2wtNzkuNTQ3LTc5LjU2My02MC4yMTkgNjAuMjE5IDc5LjU0NyA3OS41NjNDNDQ3LjM1MiA1MDcuNTYzIDQ1OC4wMzkgNTEyIDQ2OS40MyA1MTJjMTEuMzU5IDAgMjIuMDQ3LTQuNDM4IDMwLjA5NC0xMi40NjkgOC4wNDctOC4wNDcgMTIuNDY5LTE4Ljc1IDEyLjQ2OS0zMC4xMjVzLTQuNDIzLTIyLjA2Mi0xMi40Ny0zMC4wOTN6TTM5OS4zOTggMzYyLjMxM2wtNDEuMzkxLTQxLjQwNmMuMDYzLS4wOTQuMDYzLS4xODguMTI1LS4yNSAyNi41NjMtMzQuNzE5IDQxLjE1Ni03Ny42ODggNDEuMTI1LTEyMS4wMzEuMDQ3LTUzLjI4MS0yMC43MTktMTAzLjQzOC01OC40NjktMTQxLjE1NkMzMDMuMTE3IDIwLjc2NiAyNTMuMDcgMCAxOTkuMzgzIDAgMTQ2LjE4IDAgOTYuMTQ4IDIwLjc2NiA1OC40NzcgNTguNDY5IDIwLjcxMSA5Ni4xODgtLjA1NSAxNDYuMzQ0LjAwOCAxOTkuNjQxYy0uMDQ3IDUzLjI5NyAyMC43MTkgMTAzLjQyMiA1OC40NTMgMTQxLjE0MSAzNy42ODggMzcuNzE5IDg3Ljc2NiA1OC40NjkgMTQxLjE4OCA1OC40NjloLjE4OGM0My4yMzQgMCA4Ni4xNDEtMTQuNTk0IDEyMC44MjgtNDEuMTI1YS44MzUuODM1IDAgMCAxIC4yMzQtLjEyNWw0MS40MDYgNDEuNDA2IDM3LjA5My0zNy4wOTR6bS0xMDQuNzAzLTY3LjYyNWMtMjUuMzkxIDI1LjM0NC01OS4xMjUgMzkuMzQ0LTk1LjA3OCAzOS40MDYtMzUuOTIyLS4wNjMtNjkuNjcyLTE0LjA2My05NS4wNDctMzkuNDA2LTI1LjM1OS0yNS4zNTktMzkuMzQ0LTU5LjEyNS0zOS4zOTEtOTUuMDYzLjA0Ny0zNS45MzggMTQuMDMxLTY5LjY4OCAzOS4zNzUtOTUuMDYzIDI1LjM3NS0yNS4zNDQgNTkuMTI1LTM5LjMxMyA5NS4wNjMtMzkuMzkxLjAxNi0uMDE2LjAzMSAwIC4wMzEgMCAzNS45MjIuMDc4IDY5LjY3MiAxNC4wNDcgOTUuMDQ3IDM5LjM5MSAyNS4zNDQgMjUuMzU5IDM5LjMyOCA1OS4xMjUgMzkuMzkxIDk1LjA5NC0uMDYzIDM1LjkyMi0xNC4wNDcgNjkuNjg4LTM5LjM5MSA5NS4wMzJ6Ii8+PHBhdGggZD0iTTI2Ni43ODkgMTgwLjAzMWgtNDcuNTYzdi00Ny41NjNjMC0xMC44MTMtOC43ODEtMTkuNTk0LTE5LjU5NC0xOS41OTRzLTE5LjU5NCA4Ljc4MS0xOS41OTQgMTkuNTk0djQ3LjU2M2gtNDcuNTQ3Yy0xMC44MjggMC0xOS41OTQgOC43ODEtMTkuNTk0IDE5LjU5NHM4Ljc2NiAxOS41OTQgMTkuNTk0IDE5LjU5NGg0Ny41NDd2NDcuNTYzYzAgMTAuODEzIDguNzgxIDE5LjU5NCAxOS41OTQgMTkuNTk0czE5LjU5NC04Ljc4MSAxOS41OTQtMTkuNTk0di00Ny41NjNoNDcuNTYzYzEwLjgxMyAwIDE5LjU5NC04Ljc4MSAxOS41OTQtMTkuNTk0cy04Ljc4MS0xOS41OTQtMTkuNTk0LTE5LjU5NHoiLz48L3N2Zz4="); /* http://icooon-mono.com/10824-%e6%8b%a1%e5%a4%a7%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b31/ */
+	/* ===== ページ全体設定 ===== */
+	--page-max-width: 1280px; /* ページの最大幅 */
+	--page-sidebar-width: 230px; /* サイドバーの幅 */
+	--page-content-sidebar-gap: 26px; /* コンテンツエリアとサイドバーの横間隔 */
+	--page-padding-inline: 10px; /* ページの左右の余白 */
+	--page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline)); /* ページの左右の余白 */
+	--page-color: #000; /* ページ文字色 */
+	--page-bg-color: #fffff9; /* ページ背景色 */
+	--page-font-size: 100%; /* デフォルトのフォントサイズ 12px=75%, 13px=81.3%, 14px=87.5%, 15px=93.8%, 16px=100%, 17px=106.3%, 18px=112.5% */
 }

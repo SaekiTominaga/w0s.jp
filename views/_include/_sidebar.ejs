@@ -8,7 +8,7 @@
 				<a href="/info">
 					<picture>
 						<source type="image/webp" srcset="/assets/image/sidebar/profile.webp, /assets/image/sidebar/profile@2x.webp 2x" />
-						<img src="/assets/image/sidebar/profile.jpg" alt="" class="p-sidebar-profile__avatar" />
+						<img src="/assets/image/sidebar/profile.jpg" alt="" width="72" height="72" class="p-sidebar-profile__avatar" />
 					</picture>
 					富永冴樹
 				</a>
@@ -18,7 +18,7 @@
 				<a aria-current="page">
 					<picture>
 						<source type="image/webp" srcset="/assets/image/sidebar/profile.webp, /assets/image/sidebar/profile@2x.webp 2x" />
-						<img src="/assets/image/sidebar/profile.jpg" alt="" class="p-sidebar-profile__avatar" />
+						<img src="/assets/image/sidebar/profile.jpg" alt="" width="72" height="72" class="p-sidebar-profile__avatar" />
 					</picture>
 					富永冴樹
 				</a>
@@ -28,56 +28,60 @@
 			<p class="p-sidebar-profile__bio">都内でウェブ制作の仕事をしていたりいなかったり。フロントエンド技術者のつもりです。</p>
 		</div>
 
-		<ul class="p-sidebar-profile__banner">
+		<ul class="p-sidebar-profile__banners">
 			<li>
-				<a href="https://twitter.com/SaekiTominaga" class="p-sidebar-profile__banner-link -twitter"
-					><img src="/assets/image/icon/twitter_white.svg" alt="" class="p-sidebar-profile__banner-icon" /> Twitter</a
-				>
+				<a href="https://twitter.com/SaekiTominaga" class="c-button -twitter">
+					<img src="/assets/image/icon/twitter_white.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">Twitter</span>
+				</a>
 			</li>
 			<li>
-				<a href="https://github.com/SaekiTominaga" class="p-sidebar-profile__banner-link -github"
-					><img src="/assets/image/icon/github.svg" alt="" class="p-sidebar-profile__banner-icon" /> GitHub</a
-				>
+				<a href="https://github.com/SaekiTominaga" class="c-button -github">
+					<img src="/assets/image/icon/github.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">GitHub</span>
+				</a>
 			</li>
 			<li>
-				<a
-					href="https://www.amazon.co.jp/-/e/B07FBRDDJN/?_encoding=UTF8&amp;camp=1207&amp;creative=8415&amp;linkCode=shr&amp;tag=w0s.jp-22"
-					class="p-sidebar-profile__banner-link -amazon"
-					><img src="/assets/image/icon/amazon.png" alt="" class="p-sidebar-profile__banner-icon" /> Amazon</a
-				>
+				<a href="https://www.amazon.co.jp/-/e/B07FBRDDJN/?_encoding=UTF8&amp;camp=1207&amp;creative=8415&amp;linkCode=shr&amp;tag=w0s.jp-22" class="c-button -amazon">
+					<img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">Amazon</span>
+				</a>
 			</li>
 			<li>
-				<a href="https://www.youtube.com/user/SaekiTominaga" class="p-sidebar-profile__banner-link -youtube"
-					><img src="/assets/image/icon/youtube.svg" alt="" class="p-sidebar-profile__banner-icon" /> YouTube</a
-				>
+				<a href="https://www.youtube.com/user/SaekiTominaga" class="c-button -youtube">
+					<img src="/assets/image/icon/youtube.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">YouTube</span>
+				</a>
 			</li>
 		</ul>
 	</section>
 
-	<aside class="p-sidebar-blog-topics" aria-labelledby="sidebar-blog-topics-heading" hidden="">
-		<h2 class="p-sidebar-blog-topics__hdg" id="sidebar-blog-topics-heading">最近の日記記事</h2>
+	<aside class="p-sidebar-blog-entry" aria-labelledby="sidebar-blog-entries-heading" hidden="">
+		<h2 class="p-sidebar-blog-entry__hdg" id="sidebar-blog-entries-heading">最近の日記記事</h2>
 
-		<ul class="p-sidebar-blog-topics__list">
-			<template id="sidebar-blog-newly-template">
-				<li><a href=""></a></li>
-			</template>
-		</ul>
+		<div class="p-sidebar-blog-entry__link">
+			<ul class="p-sidebar-links -entry">
+				<template id="sidebar-blog-newly-template">
+					<li><a href=""></a></li>
+				</template>
+			</ul>
+		</div>
 	</aside>
 
 	<aside class="p-sidebar-amazon" hidden="">
 		<h2 class="p-sidebar-amazon__hdg">おすすめ商品</h2>
 
-		<ul class="p-sidebar-amazon__list">
+		<ul class="p-sidebar-amazon__link">
 			<template id="sidebar-amazon-ad-template">
 				<li>
-					<a href="">
-						<div class="p-sidebar-amazon__image-area">
-							<img src="/assets/image/sidebar/amazon_noimage.svg" alt="" loading="lazy" class="p-sidebar-amazon__image js-image" />
+					<a href="" class="p-sidebar-amazon-link">
+						<div class="p-sidebar-amazon-link__thumb">
+							<img src="/assets/image/sidebar/amazon_noimage.svg" alt="" width="113" height="160" loading="lazy" class="p-sidebar-amazon-link__image js-image" />
 						</div>
-						<div class="p-sidebar-amazon__text-area">
-							<p class="p-sidebar-amazon__title js-title"><b class="p-sidebar-amazon__binding js-binding" hidden=""></b></p>
-							<p class="p-sidebar-amazon__time js-date-past" hidden=""><time datetime=""></time> 発売</p>
-							<p class="p-sidebar-amazon__time js-date-future" hidden=""><time datetime=""></time> 発売<em class="p-sidebar-amazon__time-plan">予定</em></p>
+						<div class="p-sidebar-amazon-link__text">
+							<span class="p-sidebar-amazon-link__title"><span class="js-title"></span> <b class="c-amazon-binding js-binding" hidden=""></b></span>
+							<span class="p-sidebar-amazon-link__date js-date-past" hidden=""><time datetime=""></time> 発売</span>
+							<span class="p-sidebar-amazon-link__date js-date-future" hidden=""><time datetime=""></time> 発売予定</span>
 						</div>
 					</a>
 				</li>

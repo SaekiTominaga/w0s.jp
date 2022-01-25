@@ -20,18 +20,18 @@
 		<div class="l-page">
 			<%- include('./_include/_header') %>
 
-			<main id="main" class="l-main">
-				<div class="l-main__header">
+			<div id="content" class="l-content">
+				<div class="l-content__header">
 					<div class="p-topic-path">
 						<p itemprop="breadcrumb"><a href="/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
 					</div>
 
-					<div class="p-page-title">
+					<div class="p-title">
 						<h1 itemprop="name">当サイトの Web 技術</h1>
-						<p class="p-page-title__update"><span itemprop="dateModified" class="htmlbuild-datetime">2021年4月21日</span>更新</p>
+						<p class="p-title__update"><span itemprop="dateModified" class="htmlbuild-datetime">2021年4月21日</span>更新</p>
 					</div>
 
-					<ol class="p-subtoc">
+					<ol class="p-toc" aria-label="目次">
 						<li><a href="#notice">おことわり</a></li>
 						<li><a href="#history">歴史</a></li>
 						<li><a href="#synthetic">全体</a></li>
@@ -43,10 +43,10 @@
 						<li><a href="#csp">CSP</a></li>
 					</ol>
 				</div>
-				<div class="l-main__main">
+				<main class="l-content__main">
 					<section class="p-section -hdg-a" id="notice">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">おことわり</h2>
+						<div class="p-section__hdg">
+							<h2>おことわり</h2>
 						</div>
 
 						<ul class="p-list">
@@ -63,8 +63,8 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="history">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">歴史</h2>
+						<div class="p-section__hdg">
+							<h2>歴史</h2>
 						</div>
 
 						<dl class="p-list-description">
@@ -97,7 +97,7 @@
 								<p>
 									NURS はドメインが全ユーザー共通であり（サブドメインで分ける方式ではなかった）、 Cookie の導入がセキュリティ上の理由で躊躇われることから
 									<a href="https://www.inetd.co.jp/" class="htmlbuild-domain">アイネットディー（inetd）</a>
-									に移転したうえで独自ドメインを取得。\270/月の格安サーバーにしては cron の制限が緩いのがありがたかった。
+									に移転したうえで独自ドメインを取得。月額 ¥270 の格安サーバーにしては cron の制限が緩いのがありがたかった。
 								</p>
 							</dd>
 							<dt>2017年1月</dt>
@@ -112,8 +112,8 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="synthetic">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">全体</h2>
+						<div class="p-section__hdg">
+							<h2>全体</h2>
 						</div>
 
 						<ul class="p-list">
@@ -125,20 +125,22 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="html">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">HTML</h2>
+						<div class="p-section__hdg">
+							<h2>HTML</h2>
 						</div>
 
-						<figure class="p-code">
-							<figcaption class="p-code__caption">HTML ファイルの構成図</figcaption>
-							<div class="p-code__box">
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">HTML ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
 								<pre class="p-code__code">
 ├─ html
-│  └─ *.html
+│	└─ *.html
 └─ w0s.jp /* DocumentRoot */
-    ├─ *.html
-    ├─ *.min.html
-    └─ *.min.html.br
+		├─ *.html
+		├─ *.min.html
+		└─ *.min.html.br
 </pre
 								>
 							</div>
@@ -185,8 +187,8 @@
 						</ul>
 
 						<section class="p-section -hdg-c" id="html-build">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">ビルド</h3>
+							<div class="p-section__hdg">
+								<h3>ビルド</h3>
 							</div>
 
 							<ul class="p-list">
@@ -223,8 +225,8 @@
 						</section>
 
 						<section class="p-section -hdg-c" id="html-errorpage">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">エラーページ</h3>
+							<div class="p-section__hdg">
+								<h3>エラーページ</h3>
 							</div>
 
 							<ul class="p-list">
@@ -262,22 +264,24 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="style">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">スタイルシート（CSS）</h2>
+						<div class="p-section__hdg">
+							<h2>スタイルシート（CSS）</h2>
 						</div>
 
-						<figure class="p-code">
-							<figcaption class="p-code__caption">CSS ファイルの構成図</figcaption>
-							<div class="p-code__box">
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">CSS ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
 								<pre class="p-code__code">
 └─ w0s.jp /* DocumentRoot */
-    └─ assets
-        ├─ _css
-        │  └─ *.css
-        └─ style
-            ├─ *.css
-            ├─ *.css.br
-            └─ *.css.map
+		└─ assets
+				├─ _css
+				│	└─ *.css
+				└─ style
+						├─ *.css
+						├─ *.css.br
+						└─ *.css.map
 </pre
 								>
 							</div>
@@ -290,7 +294,7 @@
 							<li>
 								<p>PostCSS の導入はブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるブラウザからの読み込みパフォーマンスの向上が目的であり、標準化の見込みのないプラグインは極力使わず、将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</p>
 								<p>現在使っているプラグインは以下の5つ。このうち postcss-apply は仕様策定が破棄されたのでいずれ廃止したい。</p>
-								<table class="p-table-data" style="--component-interval-ratio: 0.5">
+								<table class="p-table">
 									<thead>
 										<tr>
 											<th scope="col">プラグイン</th>
@@ -333,8 +337,8 @@
 						</ul>
 
 						<section class="p-section -hdg-c" id="style-print">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">印刷用スタイル</h3>
+							<div class="p-section__hdg">
+								<h3>印刷用スタイル</h3>
 							</div>
 
 							<ul class="p-list">
@@ -355,29 +359,31 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="script">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">スクリプト（JavaScript）</h2>
+						<div class="p-section__hdg">
+							<h2>スクリプト（JavaScript）</h2>
 						</div>
 
-						<figure class="p-code">
-							<figcaption class="p-code__caption">JavaScript ファイルの構成図</figcaption>
-							<div class="p-code__box">
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">JavaScript ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
 								<pre class="p-code__code">
 └─ w0s.jp /* DocumentRoot */
-    └─ assets
-        ├─ _js
-        │  ├─ *.js
-        │  ├─ *.mjs.js
-        ├─ _ts
-        │  ├─ *.ts
-        │  └─ *.mjs.ts
-        └─ script
-            ├─ *.js
-            ├─ *.js.br
-            ├─ *.js.map
-            ├─ *.mjs
-            ├─ *.mjs.br
-            └─ *.mjs.map
+		└─ assets
+				├─ _js
+				│	├─ *.js
+				│	├─ *.mjs.js
+				├─ _ts
+				│	├─ *.ts
+				│	└─ *.mjs.ts
+				└─ script
+						├─ *.js
+						├─ *.js.br
+						├─ *.js.map
+						├─ *.mjs
+						├─ *.mjs.br
+						└─ *.mjs.map
 </pre
 								>
 							</div>
@@ -409,42 +415,42 @@
 						</ul>
 
 						<section class="p-section -hdg-c" id="script-error">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">エラー検知</h3>
+							<div class="p-section__hdg">
+								<h3>エラー検知</h3>
 							</div>
 
 							<ul class="p-list">
 								<li>
 									<p>制作したスクリプト機能は Firefox, Chrome 最新版での軽い確認はしているが、きちんとしたテストは行っていない。その代わり、 error イベントを検知して管理者へ通知する機能を組み込んでいる。簡略化したコード例を下記に示す。</p>
-									<div class="p-code" style="--component-interval-ratio: 0">
-										<div class="p-code__box">
+									<figure>
+										<div class="p-code">
 											<div class="p-code__clipboard">
 												<button type="button" is="w0s-clipboard" data-target-for="script-error-code" class="p-code__clipboard-button">
 													<img src="/assets/image/copy.svg" alt="コピー" />
 												</button>
 											</div>
 											<pre class="p-code__code"><code id="script-error-code" class="htmlbuild-highlight">window.addEventListener('error', (ev) => {
-  const formData = new FormData();
-  formData.append('location', location.toString());
-  formData.append('message', ev.message);
-  formData.append('filename', ev.filename);
-  formData.append('lineno', String(ev.lineno));
-  formData.append('colno', String(ev.colno));
+	const formData = new FormData();
+	formData.append('location', location.toString());
+	formData.append('message', ev.message);
+	formData.append('filename', ev.filename);
+	formData.append('lineno', String(ev.lineno));
+	formData.append('colno', String(ev.colno));
 
-  fetch(ENDPOINT, {
-    method: 'POST',
-    body: new URLSearchParams([...formData]),
-  });
+	fetch(ENDPOINT, {
+		method: 'POST',
+		body: new URLSearchParams([...formData]),
+	});
 });
 </code></pre>
 										</div>
-									</div>
+									</figure>
 								</li>
 								<li>
-									<p>これにより、事前のテストでは把握が難しい以下のようなケースも検知することができる。</p>
+									<p>これにより、事前確認が難しい以下のようなケースも後検知することができる。</p>
 									<ul>
 										<li>古いブラウザや検索エンジンのロボットで発生するエラー</li>
-										<li>ブラウザのアドオンが原因のエラー</li>
+										<li>ブラウザの設定やアドオンに起因するエラー</li>
 									</ul>
 								</li>
 							</ul>
@@ -452,8 +458,8 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="image">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">画像</h2>
+						<div class="p-section__hdg">
+							<h2>画像</h2>
 						</div>
 
 						<div class="p-text">
@@ -461,21 +467,23 @@
 						</div>
 
 						<section class="p-section -hdg-c" id="image-bitmap">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">ビットマップ画像（WebP, JPEG, PNG）</h3>
+							<div class="p-section__hdg">
+								<h3>ビットマップ画像（WebP, JPEG, PNG）</h3>
 							</div>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">ビットマップ画像ファイルの構成図</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">ビットマップ画像ファイルの構成図</span>
+								</figcaption>
+								<div class="p-code">
 									<pre class="p-code__code">
 ├─ thumbimage
-│  ├─ *.jpeg
-│  └─ *.webp
+│	├─ *.jpeg
+│	└─ *.webp
 └─ w0s.jp /* DocumentRoot */
-    ├─ *.jpg
-    ├─ *.png
-    └─ thumbimage.php
+		├─ *.jpg
+		├─ *.png
+		└─ thumbimage.php
 </pre
 									>
 								</div>
@@ -508,24 +516,24 @@
 												現在、自動生成の画像タイプは WebP と JPEG に対応している。そのため、
 												<code class="c-code">&lt;picture&gt;</code> 要素を使って下記のようなマークアップをすれば、手動で用意する画像ファイルは1つだけで WebP や高画素密度ディスプレイに対応した表示を行うことができる。将来的に AVIF など新しい画像フォーマットを追加する際も、 <code class="c-code">thumbimage.php</code> を改良すれば、マークアップは機械的な置換で済むだろう。
 											</p>
-											<div class="p-code" style="--component-interval-ratio: 0">
-												<div class="p-code__box">
+											<figure>
+												<div class="p-code">
 													<div class="p-code__clipboard">
 														<button type="button" is="w0s-clipboard" data-target-for="image-thumbimage-code" class="p-code__clipboard-button">
 															<img src="/assets/image/copy.svg" alt="コピー" />
 														</button>
 													</div>
 													<pre class="p-code__code"><code id="image-thumbimage-code" class="htmlbuild-highlight">&lt;a href="/foo.jpg" type="image/jpeg"&gt; &lt;!-- この foo.jpg は Photoshop 等の画像編集ソフトで作成 --&gt;
-  &lt;picture&gt;
-    &lt;source type="image/webp"
-      srcset="/thumbimage/foo.jpg;webp;w360;q60, /thumbimage/foo.jpg;webp;w720;q30 2x"/&gt;
-    &lt;img src="/thumbimage/foo.jpg;jpeg;w360;q60"
-      srcset="/thumbimage/foo.jpg;jpeg;w720;q30 2x" alt=""/&gt;
-  &lt;/picture&gt;
+	&lt;picture&gt;
+		&lt;source type="image/webp"
+			srcset="/thumbimage/foo.jpg;webp;w360;q60, /thumbimage/foo.jpg;webp;w720;q30 2x"/&gt;
+		&lt;img src="/thumbimage/foo.jpg;jpeg;w360;q60"
+			srcset="/thumbimage/foo.jpg;jpeg;w720;q30 2x" alt=""/&gt;
+	&lt;/picture&gt;
 &lt;/a&gt;
 </code></pre>
 												</div>
-											</div>
+											</figure>
 										</li>
 										<li>
 											<p>
@@ -541,22 +549,24 @@
 						</section>
 
 						<section class="p-section -hdg-c" id="image-vector">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">ベクター画像（SVG）</h3>
+							<div class="p-section__hdg">
+								<h3>ベクター画像（SVG）</h3>
 							</div>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">SVG ファイルの構成図</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">SVG ファイルの構成図</span>
+								</figcaption>
+								<div class="p-code">
 									<pre class="p-code__code">
 ├─ svg
-│  ├─ _dataurl
-│  │  ├─ *.dataurl.txt
-│  │  └─ *.svg
-│  └─ *.svg
+│	├─ _dataurl
+│	│	├─ *.dataurl.txt
+│	│	└─ *.svg
+│	└─ *.svg
 └─ w0s.jp /* DocumentRoot */
-    ├─ *.svg
-    └─ *.svg.br
+		├─ *.svg
+		└─ *.svg.br
 </pre
 									>
 								</div>
@@ -585,8 +595,8 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="compress">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">圧縮（Brotli）</h2>
+						<div class="p-section__hdg">
+							<h2>圧縮（Brotli）</h2>
 						</div>
 
 						<ul class="p-list">
@@ -617,8 +627,8 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="csp">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">CSP</h2>
+						<div class="p-section__hdg">
+							<h2>CSP</h2>
 						</div>
 
 						<ul class="p-list">
@@ -648,11 +658,11 @@
 						</ul>
 
 						<section class="p-section -hdg-c" id="csp-enforce">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">Content-Security-Policy の設定値</h3>
+							<div class="p-section__hdg">
+								<h3>Content-Security-Policy の設定値</h3>
 							</div>
 
-							<table class="p-table-data" id="csp-enforce-table">
+							<table class="p-table" id="csp-enforce-table">
 								<thead>
 									<tr>
 										<th scope="col">ディレクティブ</th>
@@ -707,9 +717,11 @@
 								</tbody>
 							</table>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">実際の設定値</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">実際の設定値</span>
+								</figcaption>
+								<div class="p-code">
 									<div class="p-code__clipboard">
 										<button type="button" is="w0s-clipboard" data-target-for="csp-enforce-output" class="p-code__clipboard-button">
 											<img src="/assets/image/copy.svg" alt="コピー" />
@@ -721,11 +733,11 @@
 						</section>
 
 						<section class="p-section -hdg-c" id="csp-report">
-							<div class="p-hdg">
-								<h3 class="p-hdg__hdg">Content-Security-Policy-Report-Only の設定値</h3>
+							<div class="p-section__hdg">
+								<h3>Content-Security-Policy-Report-Only の設定値</h3>
 							</div>
 
-							<table class="p-table-data" id="csp-report-table">
+							<table class="p-table" id="csp-report-table">
 								<thead>
 									<tr>
 										<th scope="col">ディレクティブ</th>
@@ -928,9 +940,11 @@
 								</tbody>
 							</table>
 
-							<figure class="p-code">
-								<figcaption class="p-code__caption">実際の設定値</figcaption>
-								<div class="p-code__box">
+							<figure>
+								<figcaption class="c-caption">
+									<span class="c-caption__title">実際の設定値</span>
+								</figcaption>
+								<div class="p-code">
 									<div class="p-code__clipboard">
 										<button type="button" is="w0s-clipboard" data-target-for="csp-report-output" class="p-code__clipboard-button">
 											<img src="/assets/image/copy.svg" alt="コピー" />
@@ -941,8 +955,8 @@
 							</figure>
 						</section>
 					</section>
-				</div>
-			</main>
+				</main>
+			</div>
 
 			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
 		</div>

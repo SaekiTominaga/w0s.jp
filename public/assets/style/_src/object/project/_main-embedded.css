@@ -1,0 +1,144 @@
+/*
+埋め込みコンテンツ
+
+Styleguide 2.5.
+*/
+
+/*
+埋め込みコンテンツ（画像、動画、 <iframe> など）
+
+Markup:
+<div class="p-embed {{modifier_class}}">
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/>
+</div>
+<div class="p-embed {{modifier_class}}">
+<a href="https://example.com/"><img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/></a>
+</div>
+<div class="p-embed {{modifier_class}}">
+<video poster="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" class="p-embed__video"></video>
+</div>
+<div class="p-embed {{modifier_class}}">
+<iframe src="https://example.com/" class="p-embed__frame"></iframe>
+</div>
+
+.-border - 埋め込みコンテンツに枠線を表示
+
+Styleguide 2.5.1
+*/
+.p-embed {
+	--_border-width: 0px;
+
+	contain: layout;
+	position: relative; /* for Safari */
+
+	&.-border {
+		--_border-width: 1px;
+	}
+
+	& > :any-link {
+		--_expand-icon-padding: 4px;
+
+		display: inline-block;
+		outline-width: var(--outline-width-bold);
+		outline-offset: -1px;
+
+		&::before {
+			padding: var(--_expand-icon-padding);
+			box-sizing: border-box;
+			position: absolute;
+			inset: 1px;
+			content: "";
+			display: block;
+			width: 24px;
+			height: 24px;
+			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
+		}
+
+		&:hover {
+			--_expand-icon-padding: 3px;
+		}
+	}
+
+	& img,
+	& video {
+		border: var(--_border-width) solid var(--color-black);
+		display: inline-block;
+		max-width: calc(100% - var(--_border-width) * 2);
+		height: auto;
+		vertical-align: top;
+	} /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
+
+	& video {
+		outline-width: var(--outline-width-bold);
+		outline-offset: -1px;
+	}
+
+	& audio {
+		outline-width: var(--outline-width-bold);
+		outline-offset: 0;
+	}
+
+	& iframe {
+		--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
+
+		margin-inline: auto;
+		border: var(--_border-width) solid var(--color-black);
+		box-sizing: border-box;
+		display: block;
+		width: calc(100% - var(--_margin-inline) * 2);
+		height: min(100vh, var(--height, 600px));
+		aspect-ratio: var(--aspect-ratio, auto);
+
+		@media (--breakpoint) {
+			--_margin-inline: 15px;
+		}
+	}
+}
+
+/*
+テキスト & 埋め込みコンテンツ横並び
+
+Markup:
+<div class="p-embed-sidebar {{modifier_class}}">
+<div class="p-embed-sidebar__text">
+<p>テキスト</p>
+</div>
+<div class="p-embed-sidebar__embed">
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="c-image"/>
+</div>
+</div>
+
+.-text-first - テキストエリアが先頭
+.-embed-first - 埋め込みエリアが先頭
+
+Styleguide 2.5.2
+*/
+.p-embed-sidebar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px 30px;
+
+	/* テキストエリアが先頭 */
+	&.-text-first {
+		& .p-embed-sidebar__embed {
+			--_order: 1;
+		}
+	}
+
+	/* 埋め込みエリアが先頭 */
+	&.-embed-first {
+		& .p-embed-sidebar__text {
+			--_order: 1;
+		}
+	}
+}
+
+.p-embed-sidebar__text {
+	flex: 999 0px;
+	order: var(--_order, 0);
+	min-width: 50%;
+}
+
+.p-embed-sidebar__embed {
+	order: var(--_order, 0);
+}

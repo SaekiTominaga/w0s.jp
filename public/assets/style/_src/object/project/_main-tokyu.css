@@ -1,0 +1,34 @@
+/* ==============================
+ *   東急電車形態研究
+ * ============================== */
+
+/* ===== インデックスページの下層ページへのリンク ===== */
+.p-tokyu-index-table {
+	color: var(--color-black);
+	background: var(--color-white);
+	font-size: clamp(100%, 4vw, calc(100% * var(--font-ratio-1)));
+	line-height: var(--line-height-narrow);
+
+	& :is(td, th) {
+		padding: 0.5em min(1.5vw, 15px);
+		border: 1px solid var(--color-border-light);
+		line-break: strict; /* 「1000N′系」対策 */
+	}
+
+	& th {
+		font-weight: var(--font-weight-normal);
+	}
+
+	& > thead {
+		& th {
+			background-color: var(--color-superlightgreen);
+			text-align: center;
+		}
+	}
+}
+
+.p-tokyu-index-table__link {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+}

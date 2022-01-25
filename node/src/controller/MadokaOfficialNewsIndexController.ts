@@ -38,13 +38,16 @@ export default class MadokaOfficialNewsIndexController extends Controller implem
 
 		const dao = new MadokaOfficialNewsIndexDao(this.#configCommon);
 
-		/* ニュース記事一覧 */
-		const newsList = await Promise.all([dao.getNewsListMovie(), dao.getNewsListTv()]);
-		const newsListMovie = newsList[0];
-		const newsListTv = newsList[1];
+		const [newsListMovie, newsListTv, monthDataList] = await Promise.all([
+			/* ニュース記事一覧 */
+			dao.getNewsListMovie(),
+			dao.getNewsListTv(),
+
+			/* 月ごとのニュース件数 */
+			dao.getMonthData(),
+		]);
 
 		/* 月ごとのニュース件数 */
-		const monthDataList = await dao.getMonthData();
 		const monthDataView: Map<number, Map<number, number>> = new Map();
 		for (const monthData of monthDataList) {
 			const date = monthData.date;

@@ -1,0 +1,261 @@
+/* ==============================
+ *   東急電車形態研究・車両データ
+ * ============================== */
+
+/* ===== 車歴表 ===== */
+.p-tokyu-history-table {
+	--_padding-block: 0.75em;
+	--_color: var(--color-black);
+	--_bg-color: var(--color-white);
+	--_text-align: start;
+
+	width: 100%;
+	font-weight: var(--_font-weight);
+	line-height: var(--line-height-narrow);
+
+	& > :is(thead + tbody, tbody + tbody) {
+		border-block-start: 2px solid;
+	}
+
+	& :is(td, th) {
+		padding: var(--_padding-block) min(1vw, 5px);
+		border: 1px solid;
+		color: var(--_color);
+		background: var(--_bg-color);
+		font-size: clamp(calc(100% / var(--font-ratio-1)), 2vw, 100%);
+		text-align: var(--_text-align);
+	}
+
+	& > thead {
+		--_bg-color: var(--color-bg-light);
+		--_text-align: center;
+	}
+
+	& > tbody {
+		--_padding-block: 0.25em;
+	}
+
+	& tr.-hover {
+		--_bg-color: var(--color-lightpink);
+	}
+}
+
+/* ===== 編成表 ===== */
+.p-tokyu-form {
+	border-collapse: collapse;
+
+	& :is(td, th) {
+		padding: 0.25em;
+		font-weight: var(--font-weight-normal);
+		text-align: center;
+		line-height: var(--line-height-narrow);
+	}
+
+	& tbody {
+		& :is(td, th) {
+			border: 1px solid;
+		}
+
+		& th {
+			background: var(--color-bg-light);
+			text-align: start;
+			white-space: nowrap;
+		}
+
+		& td {
+			padding: 0.25em 0;
+			width: 8em;
+			color: var(--color-black);
+			background: var(--color-white);
+			font-size: calc(100% / var(--font-ratio-2));
+		}
+	}
+}
+
+/* M, Mc, T などの区分 */
+.p-tokyu-form__type {
+	margin-block-start: 0.125em;
+	padding: 0.125em;
+	display: block;
+	font-weight: var(--font-weight-bold);
+
+	/* 電動車（直流電動機） */
+	&.-m-dc {
+		background-color: var(--color-paleturquoise);
+	}
+
+	/* 電動車（交流電動機） */
+	&.-m-ac {
+		background-color: var(--color-orange);
+	}
+
+	/* 制御車、付随車 */
+	&:is(.-tc, .-t) {
+		background-color: var(--color-lightgreen);
+	}
+}
+
+/* 機器 */
+.p-tokyu-form__device {
+	/* 制御装置・抵抗制御 */
+	&.-ctr-r {
+		color: var(--color-black);
+	}
+
+	/* 制御装置・界磁チョッパ */
+	&.-ctr-ch {
+		color: var(--color-black);
+	}
+
+	/* 制御装置・GTO-VVVF */
+	&.-ctr-gto {
+		color: var(--color-blue);
+	}
+
+	/* 制御装置・IGBT-VVVF */
+	&.-ctr-igbt {
+		color: var(--color-red);
+	}
+
+	/* 制御装置・SIV一体型VVVF */
+	&.-ctr-siv {
+		color: var(--color-darkgreen);
+	}
+
+	/* 補助電源装置・大容量 */
+	&.-aps-much {
+		color: var(--color-blue);
+	}
+
+	/* 補助電源装置・小容量 */
+	&.-aps-few {
+		color: var(--color-red);
+	}
+
+	/* 空気圧縮機・直流駆動 */
+	&.-cp-dc {
+		color: var(--color-blue);
+	}
+
+	/* 空気圧縮機・交流駆動 */
+	&.-cp-ac {
+		color: var(--color-red);
+	}
+
+	/* 蓄電池・100V */
+	&.-bt-100 {
+		color: var(--color-blue);
+	}
+
+	/* 蓄電池・24V */
+	&.-bt-24 {
+		color: var(--color-red);
+	}
+
+	/* 蓄電池・100V/24V一体型 */
+	&.-bt-124 {
+		color: var(--color-darkgreen);
+	}
+}
+
+/* ===== 編成表（譲渡車両） ===== */
+.p-tokyu-localform {
+	& > caption {
+		margin-block-end: 0.125em;
+	}
+
+	& :is(td, th) {
+		min-width: 7em;
+		font-weight: var(--font-weight-normal);
+		text-align: center;
+		line-height: var(--line-height-narrow);
+	}
+
+	& :is(td + td, th + th) {
+		padding-inline-start: 0.5em;
+	}
+
+	& tbody {
+		& td {
+			padding-block-start: 0.75em;
+			vertical-align: top;
+		}
+	}
+}
+
+/* 編成表内の上下方向 */
+.p-tokyu-localform__dir {
+	display: flex;
+	justify-content: space-between;
+	font-size: 80%;
+}
+
+/* 駅名 */
+.p-tokyu-localform__station {
+}
+
+/* 車両形式 */
+.p-tokyu-localform__series {
+	padding: 0.125em;
+	border: 1px solid var(--bg-color, var(--color-black));
+	display: block;
+	color: var(--color-black);
+	background: var(--bg-color, var(--color-white));
+
+	/* 電動車（直流電動機） */
+	&.-m-dc {
+		--bg-color: var(--color-paleturquoise);
+	}
+
+	/* 電動車（交流電動機） */
+	&.-m-ac {
+		--bg-color: var(--color-orange);
+	}
+
+	/* 制御車、付随車 */
+	&:is(.-tc, .-t) {
+		--bg-color: var(--color-lightgreen);
+	}
+}
+
+/* M, Mc, T などの区分 */
+.p-tokyu-localform__type {
+	display: block;
+}
+
+/* 車号 */
+.p-tokyu-localform__num {
+	display: block;
+	font-size: 120%;
+	font-weight: var(--font-weight-bold);
+}
+
+/* 前所有者車号 */
+.p-tokyu-localform__oldnum {
+	margin-block-start: 0.15em;
+	display: block;
+	font-size: 75%;
+}
+
+/* 車両振り替えが行われた際、何代目かを示す（豊橋鉄道1800系） */
+.p-tokyu-localform__count {
+	font-size: 60%;
+	font-weight: var(--font-weight-normal);
+	vertical-align: middle;
+}
+
+/* 電装品（7000系、7200系） */
+.p-tokyu-localform__maker {
+	margin-inline-start: 0.25em;
+	font-size: 60%;
+	font-weight: var(--font-weight-normal);
+	vertical-align: middle;
+
+	/* 東洋電機製造 */
+	&.-toyo {
+	}
+
+	/* 日立製作所 */
+	&.-hitachi {
+	}
+}

@@ -8,49 +8,27 @@
 	flex-flow: column wrap;
 	justify-content: flex-start;
 	gap: 0.5em 0;
-	font-size: calc(var(--page-font-size) * var(--font-ratio-1));
+	font-size: calc(100% * var(--font-ratio-1));
 
-	@media screen and (min-width: 30em) {
+	& :any-link {
+		outline-offset: var(--outline-offset-linkonly);
+	}
+
+	@media (min-width: 30em) {
 		flex-direction: row;
 		justify-content: center;
 
 		& > li {
+			display: flex;
+			align-items: center;
+
 			&:not(:last-child)::after {
 				margin: 0 2em;
 				content: "";
-				display: inline-block;
 				width: 1px;
 				height: 0.8em;
 				background-color: var(--page-color);
-				vertical-align: middle;
 				transform: rotate(22.5deg);
-			}
-		}
-	}
-
-	& a {
-		--bullet-size: 0.75em;
-		--bullet-color: #999;
-
-		display: inline-block;
-		outline-offset: 2px;
-
-		&::before {
-			margin-right: 0.5em;
-			content: "";
-			display: inline-block;
-			clip-path: var(--shape-link-triangle);
-			width: calc(var(--bullet-size) * 0.6);
-			height: var(--bullet-size);
-			background: var(--bullet-color);
-		}
-
-		&:any-link {
-			--bullet-color: #0bb;
-
-			&:focus,
-			&:hover {
-				--bullet-color: var(--link-color-hover);
 			}
 		}
 	}
@@ -58,8 +36,8 @@
 
 /* ===== アドセンス ===== */
 .p-footer-ads {
-	margin: auto;
-	width: min(100%, 960px);
+	display: flex;
+	justify-content: center;
 
 	& .adsbygoogle {
 		display: block;

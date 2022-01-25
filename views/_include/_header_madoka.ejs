@@ -3,7 +3,7 @@
 		<div class="l-header__site">
 			<div class="p-header-site">
 				<% if (page.path === '/madoka/') { %>
-				<h1 class="p-header-site__name" itemprop="name">まどか資料館</h1>
+				<h1 class="p-header-site__name" itemprop="name"><a aria-current="page">まどか資料館</a></h1>
 				<p class="p-header-site__summary" itemprop="description">『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト</p>
 				<% } else { %>
 				<p class="p-header-site__name"><a href="/madoka/">まどか資料館</a></p>
@@ -12,21 +12,25 @@
 			</div>
 		</div>
 		<div class="l-header__nav">
+			<div class="p-header-nav">
+				<a href="/madoka/feed" type="application/atom+xml" class="c-button -nowrap -feed">
+					<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">フィード</span>
+				</a>
+			</div>
+
 			<form action="https://www.google.com/search" role="search" class="p-header-search" aria-label="サイト内検索">
-				<div class="p-header-search__ctrl">
-					<span class="p-header-search__ctrl-site">
+				<div class="c-search">
+					<span class="c-search__hidden">
 						<input type="hidden" name="as_sitesearch" value="w0s.jp/madoka/" />
 					</span>
-
-					<span class="p-header-search__ctrl-query">
-						<input type="search" name="q" required="" title="検索キーワード" />
+					<span class="c-search__query">
+						<input type="search" name="q" required="" title="キーワード" />
 					</span>
-
-					<span class="p-header-search__ctrl-submit">
+					<span class="c-search__submit">
 						<button>
 							<svg role="img" aria-labelledby="header-search-button">
 								<title id="header-search-button">検索</title>
-
 								<use xlink:href="/assets/image/icon/search.svg#icon"></use>
 							</svg>
 						</button>
@@ -39,8 +43,7 @@
 	<div class="l-header__gnav">
 		<nav class="p-header-gnav">
 			<ul class="p-header-gnav__links" itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
-				<% for (const [path, title] of new Map([ ['/madoka/video/', '映像'], ['/madoka/library/', '書籍'], ['/madoka/event/', 'イベント'],
-				['/madoka/yomoyama/', 'よもやま'], ['/madoka/official/', '公式データ'], ['/madoka/dojin/', '同人誌'] ])) { %>
+				<% for (const [path, title] of new Map([ ['/madoka/video/', '映像'], ['/madoka/library/', '書籍'], ['/madoka/event/', 'イベント'], ['/madoka/yomoyama/', 'よもやま'], ['/madoka/official/', '公式データ'], ['/madoka/dojin/', '同人誌'] ])) { %>
 				<li>
 					<% if (page.path === path) { %>
 					<a aria-current="page" class="p-header-gnav__link"><%= title %></a>

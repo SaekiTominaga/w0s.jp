@@ -1,0 +1,175 @@
+/* ==============================
+ *   東急電車形態研究・自動放送
+ * ============================== */
+
+/* ===== インデックスページの路線別見出し ===== */
+.p-tokyu-announce-index-hdg {
+	--_line-color: var(--color-lightgray);
+
+	line-height: var(--line-height-narrow);
+
+	&.-toyoko {
+		--_line-color: var(--tokyu-color-toyoko);
+	}
+
+	&.-meguro {
+		--_line-color: var(--tokyu-color-meguro);
+	}
+
+	&.-dento {
+		--_line-color: var(--tokyu-color-dento);
+	}
+
+	&.-oimachi {
+		--_line-color: var(--tokyu-color-oimachi);
+	}
+
+	&.-ikegami {
+		--_line-color: var(--tokyu-color-ikegami);
+	}
+
+	&.-tamagawa {
+		--_line-color: var(--tokyu-color-tamagawa);
+	}
+
+	&.-kodomo {
+		--_line-color: var(--tokyu-color-kodomo);
+	}
+
+	&.-setagaya {
+		--_line-color: var(--tokyu-color-setagaya);
+	}
+
+	&.-ttm {
+		--_line-color: var(--tokyu-color-ttm);
+	}
+
+	& > h3 {
+		font-size: calc(100% * var(--font-ratio-2));
+		font-weight: var(--font-weight-bold);
+
+		&::before {
+			margin-inline-end: 0.5em;
+			border-radius: var(--border-radius-full);
+			content: "";
+			display: inline-block;
+			width: 0.25em;
+			height: 1em;
+			background: var(--_line-color);
+			vertical-align: calc(-0.1em * var(--line-height-narrow));
+		}
+	}
+}
+
+.p-tokyu-announce-index-hdg__sub {
+	font-size: calc(100% / var(--font-ratio-2));
+	font-weight: var(--font-weight-normal);
+}
+
+/* ===== 自動放送 ===== */
+.p-tokyu-announce {
+}
+
+.p-tokyu-announce__header {
+	padding: 0.5em min(1.5vw, 15px);
+	border: 1px solid var(--color-border-dark);
+	background: var(--color-bg-light);
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-narrow);
+
+	& > [class^="p-"] {
+		margin-inline: auto;
+		width: fit-content;
+	}
+}
+
+.p-tokyu-announce__main {
+}
+
+.p-tokyu-announce__footer {
+	margin-block-start: 3em;
+
+	& > .p-tokyu-announce__data + * {
+		margin-block-start: 4em;
+	}
+}
+
+/* メタ情報・行先 */
+.p-tokyu-announce__train {
+	font-size: calc(100% * var(--font-ratio-2));
+	font-weight: var(--font-weight-bold);
+}
+
+/* メタ情報・車種 */
+.p-tokyu-announce__car {
+}
+
+/* メタ情報・期間 */
+.p-tokyu-announce__period {
+}
+
+/* メタ情報・オプション */
+.p-tokyu-announce__option {
+	color: var(--color-gray);
+}
+
+.p-tokyu-announce__station {
+	padding: 1em min(1.5vw, 15px);
+	border-color: var(--color-border-dark);
+	border-style: solid;
+	border-width: 0 1px 1px;
+	background: var(--color-white);
+
+	& > section + section {
+		margin-block-start: 1em;
+	}
+
+	& h2 {
+		color: var(--color-gray);
+		font-weight: var(--font-weight-normal);
+
+		&::before {
+			content: "（";
+		}
+
+		&::after {
+			content: "）";
+		}
+	}
+
+	& p {
+		margin-block-start: 0.25em;
+	}
+}
+
+/* 備考 */
+.p-tokyu-announce__note {
+	margin-block-start: 1em;
+	text-align: center;
+}
+
+/* 収録データ */
+.p-tokyu-announce__data {
+	margin-inline: auto;
+	padding: 0.5em 15px;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	gap: 1em 2em;
+	width: fit-content;
+	background: var(--color-lightorange);
+	line-height: var(--line-height-narrow);
+
+	& dt {
+		&::after {
+			content: ":";
+			margin: 0.25em;
+		}
+	}
+
+	& :is(dt, dd) {
+		display: inline-block;
+	}
+}

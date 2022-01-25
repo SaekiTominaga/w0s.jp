@@ -15,25 +15,25 @@
 		<div class="l-page">
 			<%- include('./_include/_header') %>
 
-			<main id="main" class="l-main -nosidebar">
-				<div class="l-main__header">
-					<div class="p-page-title">
+			<div id="content" class="l-content -nosidebar">
+				<div class="l-content__header">
+					<div class="p-title">
 						<h1>ウェブ巡回（ニュース）</h1>
 					</div>
 				</div>
-				<div class="l-main__main">
+				<main class="l-content__main">
 					<p class="p-text"><a href="/crawler-news" class="c-button -link">元に戻る</a></p>
 
 					<section class="p-section -hdg-a">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">新着データ</h2>
+						<div class="p-section__hdg">
+							<h2>新着データ</h2>
 						</div>
 
-						<p class="p-link">
-							<a href="<%= page.query.url %>" referrerpolicy="no-referrer"><%= page.query.url %></a>
-						</p>
+						<div class="p-text">
+							<p><a href="<%= page.query.url %>" referrerpolicy="no-referrer" class="c-link"><%= page.query.url %></a></p>
+						</div>
 
-						<table class="p-table-data p-admin-crawler-table">
+						<table class="p-table p-admin-crawler-table">
 							<thead>
 								<tr>
 									<th></th>
@@ -65,8 +65,8 @@
 							</tbody>
 						</table>
 					</section>
-				</div>
-			</main>
+				</main>
+			</div>
 
 			<%- include('./_include/_footer') %>
 		</div>

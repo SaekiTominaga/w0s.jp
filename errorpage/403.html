@@ -11,9 +11,13 @@
 	</head>
 	<body>
 		<div class="l-page">
-			<main id="main" class="l-main">
-				<h1 class="p-err-title"><span class="p-err-title__code">403 Forbidden</span> <span class="p-err-title__msg">このコンテンツにはアクセスできません</span></h1>
-
+			<header id="header" class="l-header">
+				<h1 class="p-err-title">
+					<span class="p-err-title__code">403 Forbidden</span>
+					<span class="p-err-title__msg">このコンテンツにはアクセスできません</span>
+				</h1>
+			</header>
+			<main id="content" class="l-content">
 				<div class="p-err-text">
 					<p id="parentpage-msg" hidden="">「<a id="parentpage-anchor"></a>」でお探しのコンテンツが見つかるかもしれませんし、見つからないかもしれません。</p>
 				</div>
@@ -22,21 +26,20 @@
 					<w0s-portal class="p-err-parentthumb__portal" id="parentpage-portal" hidden=""></w0s-portal>
 				</div>
 
-				<form action="https://www.google.com/search" class="p-err-search" role="search">
+				<form action="https://www.google.com/search" role="search" class="p-err-search">
 					<fieldset>
 						<legend class="p-err-search__legend">サイト内検索（Google 検索）</legend>
-						<div class="p-err-search__ctrl">
-							<span class="p-err-search__ctrl-site">
+						<div class="p-err-search__ctrl c-search">
+							<span class="c-search__hidden">
 								<input type="hidden" name="as_sitesearch" value="w0s.jp" />
 							</span>
-							<span class="p-err-search__ctrl-query">
-								<input type="search" name="q" required="" title="検索キーワード" />
+							<span class="c-search__query">
+								<input type="search" name="q" required="" title="キーワード" />
 							</span>
-							<span class="p-err-search__ctrl-submit">
+							<span class="c-search__submit">
 								<button>
 									<svg role="img" aria-labelledby="search-button">
 										<title id="search-button">検索</title>
-
 										<use xlink:href="/assets/image/icon/search.svg#icon"></use>
 									</svg>
 								</button>

@@ -1,6 +1,7 @@
 /* ==============================
  *   ページレイアウト共通
  * ============================== */
+
 .l-page {
 	display: grid;
 }
@@ -10,7 +11,8 @@
 	grid-column: header;
 	padding: 20px 0 40px;
 	display: grid;
-	grid-template-columns: [full-start] calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) var(--page-col-padding) [content-start] 1fr [content-end] var(--page-col-padding) calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) [full-end];
+	grid-template-columns: [full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline) [full-end];
+	line-height: var(--line-height-narrow);
 }
 
 /* ヘッダーメイン */
@@ -19,11 +21,13 @@
 	display: grid;
 	gap: 20px;
 	grid-template-areas: "site nav";
+	grid-template-columns: 50% 1fr;
 
-	@media screen and (max-width: 60em) {
+	@media (max-width: 60em) {
 		grid-template-areas:
 			"site"
 			"nav";
+		grid-template-columns: auto;
 	}
 }
 
@@ -38,82 +42,79 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	gap: 10px 0;
+	flex-wrap: wrap;
+	gap: 10px 20px;
 
-	& .p-header-nav {
-		margin-right: 20px; /* TODO: Safari が gap for Flexbox に対応するまでの暫定対応 */
-	}
-
-	@media screen and (max-width: 60em) {
-		flex-wrap: wrap;
-	}
-
-	@media screen and (max-width: 36em) {
+	@media (max-width: 36em) {
 		justify-content: flex-start;
 	}
 }
 
 /* ===== グローバルナビ ===== */
 .l-header__gnav {
-	margin-top: 20px;
+	margin-block-start: 20px;
 	grid-column: full;
 }
 
-/* ===== メインエリア ===== */
-.l-main {
-	grid-column: main;
+/* ===== コンテンツエリア ===== */
+.l-content {
+	grid-column: content;
 
 	/* サイドバーがない場合は全幅で表示 */
 	&.-nosidebar {
-		grid-column: main / sidebar;
+		grid-column: content / sidebar;
 	}
 }
 
-.l-main__header {
+.l-content__header {
+	line-height: var(--line-height-normal);
 }
 
-.l-main__main {
-	@nest .l-main__header + & {
-		margin-top: 30px;
+.l-content__main {
+	line-height: var(--line-height-normal);
+
+	@nest .l-content__header + & {
+		margin-block-start: 80px;
 	}
 }
 
-.l-main__footer {
-	margin-top: 60px;
+.l-content__footer {
+	margin-block-start: 120px;
+	line-height: var(--line-height-normal);
 }
 
 /* ===== サイドバー ===== */
 .l-sidebar {
 	grid-column: sidebar;
+	line-height: var(--line-height-narrow);
 
-	@media (--viewport-main-full) {
-		margin-top: 80px;
+	& > [class^="p-sidebar-"]:not([hidden]) {
+		& + [class^="p-sidebar-"] {
+			margin-block-start: 2em;
+		}
 	}
 }
 
 /* ===== ページフッター ===== */
 .l-footer {
 	grid-column: footer;
-	margin-top: 80px;
-	padding: 40px 0;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+	margin-block-start: 80px;
+	padding: 50px 0;
+	border: solid var(--color-border-light);
+	border-width: 1px 0;
 	display: grid;
-	grid-template-columns: [full-start] calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) var(--page-col-padding) [content-start] 1fr [content-end] var(--page-col-padding) calc((100% - var(--page-max-width)) / 2 - var(--page-col-padding)) [full-end];
-	background: #fcfcfc;
+	grid-template-columns: [full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline) [full-end];
+	background: var(--color-bg-superlight);
+	line-height: var(--line-height-narrow);
 }
 
-/* ===== サイト横断ナビゲーション ===== */
+/* サイト横断ナビゲーション */
 .l-footer__nav {
 	grid-column: content;
-
-	&:not(:first-child) {
-		margin-top: 20px;
-	}
 }
 
-/* ===== アドセンス ===== */
+/* アドセンス */
 .l-footer__ads {
-	margin-top: 100px;
+	margin-block-start: 100px;
 	grid-column: content;
 }

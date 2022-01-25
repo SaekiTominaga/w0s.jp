@@ -1,0 +1,169 @@
+/*
+レイアウト
+
+Styleguide 1.5.
+*/
+
+/*
+Stack
+
+Markup:
+<div class="c-stack">
+<p>テキスト</p>
+<p>テキスト</p>
+<p>テキスト</p>
+</div>
+
+Styleguide 1.5.1
+*/
+:is(.l-content__main, .l-content__footer, .c-stack, .p-section, .p-quote, .p-embed-sidebar__text, .p-box, .p-toggle__contents, .p-library__main, .p-tokyu-announce__footer, .p-madoka-video-compare__content) {
+	& > *:not(:first-child) {
+		margin-block-start: var(--stack-margin-base);
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: var(--stack-margin-base);
+	}
+}
+
+.l-content__header {
+	& > *:not(:first-child) {
+		margin-block-start: calc(var(--stack-margin-base) * 2);
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: calc(var(--stack-margin-base) * 2);
+	}
+}
+
+:is(.p-form-grid__contents, .p-tokyu-announce__header) {
+	& > *:not(:first-child) {
+		margin-block-start: calc(var(--stack-margin-base) / 3);
+	}
+
+	& > *:not(:last-child) {
+		margin-block-end: calc(var(--stack-margin-base) / 3);
+	}
+}
+
+/*
+グリッド
+
+Markup:
+<div class="c-grid {{modifier_class}}">
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+<div class="c-grid__item">
+<p>グリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッドグリッド</p>
+</div>
+</div>
+
+.-hdg-a - 見出しA
+.-hdg-b - 見出しB
+.-hdg-c - 見出しC
+.-wide - 2カラム
+.-medium - 3カラム
+.-narrow - 4カラム
+
+Styleguide 1.5.2
+*/
+.c-grid {
+	--_gap-row: 1em;
+	--_max-width: auto;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(var(--_max-width), 100%), 1fr));
+	gap: var(--_gap-row) 50px;
+
+	&.-hdg-a {
+		--_gap-row: 3em;
+	}
+
+	&.-hdg-b {
+		--_gap-row: 2.5em;
+	}
+
+	&.-hdg-c {
+		--_gap-row: 2em;
+	}
+
+	/* 2カラム */
+	&.-wide {
+		--_max-width: 330px;
+	}
+
+	/* 3カラム */
+	&.-medium {
+		--_max-width: 240px;
+	}
+
+	/* 4カラム */
+	&.-narrow {
+		--_max-width: 180px;
+	}
+}
+
+.c-grid__item {
+}
+
+/*
+フレックスボックス
+
+Markup:
+<div class="c-flex">
+<div class="c-flex__item">
+<p>フレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックス</p>
+</div>
+<div class="c-flex__item">
+<p>フレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックス</p>
+</div>
+<div class="c-flex__item">
+<p>フレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックスフレックス</p>
+</div>
+</div>
+
+.-hdg-a - 見出しA
+.-hdg-b - 見出しB
+.-hdg-c - 見出しC
+.-buttons - ボタン並び
+
+Styleguide 1.5.3
+*/
+.c-flex {
+	--_gap-row: 1em;
+	--_gap-col: 50px;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--_gap-row) var(--_gap-col);
+
+	&.-hdg-a {
+		--_gap-row: 3em;
+	}
+
+	&.-hdg-b {
+		--_gap-row: 2.5em;
+	}
+
+	&.-hdg-c {
+		--_gap-row: 2em;
+	}
+
+	&.-buttons {
+		--_gap-row: 25px;
+		--_gap-col: 25px;
+	}
+}
+
+.c-flex__item {
+}

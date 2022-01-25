@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" prefix="og: http://ogp.me/ns#">
 	<head>
-		<title>『まどか☆マギカ』公式サイトニュース一覧</title>
+		<title>『魔法少女まどか☆マギカ』公式サイト　ニュース一覧</title>
 
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="w0s:sidebar:amazon" content="madoka" />
@@ -19,17 +19,14 @@
 		<div class="l-page">
 			<%- include('./_include/_header_madoka') %>
 
-			<main id="main" class="l-main">
-				<div class="l-main__header">
+			<div id="content" class="l-content">
+				<div class="l-content__header">
 					<div class="p-topic-path">
-						<p itemprop="breadcrumb">
-							<a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/">公式データ</a
-							><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a>
-						</p>
+						<p itemprop="breadcrumb"><a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/official/">公式データ</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
 					</div>
 
-					<div class="p-page-title">
-						<h1 itemprop="name">『まどか☆マギカ』公式サイトニュース一覧</h1>
+					<div class="p-title">
+						<h1 itemprop="name">公式サイト　ニュース一覧</h1>
 					</div>
 
 					<div class="p-description" itemprop="description">
@@ -37,10 +34,10 @@
 						<p>こちらは<em>非公式のサービス</em>になりますので、正確なデータは各記事リンク先の公式ページを参照ください。</p>
 					</div>
 				</div>
-				<div class="l-main__main">
-					<form class="p-block">
-						<div class="p-fc-sbs -center">
-							<div class="p-fc-sbs__fc">
+				<main class="l-content__main">
+					<form>
+						<div class="c-form-controls -center">
+							<p>
 								<select name="month" class="c-select">
 									<% for (const [year, yearData] of monthDataList) { %>
 									<optgroup label="<%= year %>年">
@@ -50,77 +47,55 @@
 									</optgroup>
 									<% } %>
 								</select>
-							</div>
-							<div class="p-fc-sbs__fc">
-								<button class="c-button-submit">移動</button>
-							</div>
+							</p>
+							<p>
+								<button class="c-submit">移動</button>
+							</p>
 						</div>
 					</form>
 
-					<div class="p-image">
-						<figure class="p-image__image-area">
-							<img src="image/graph_month.svg" alt="" class="c-image" />
-							<figcaption class="c-embedded-caption">月ごとのニュース件数推移</figcaption>
-						</figure>
-					</div>
+					<figure>
+						<div class="p-embed">
+							<img src="image/graph_month.svg" alt="" />
+						</div>
+						<figcaption class="c-caption">
+							<span class="c-caption__title">月ごとのニュース件数推移</span>
+						</figcaption>
+					</figure>
 
 					<section class="p-section -hdg-a">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">全期間のニュース一覧<span class="p-hdg__sub-hdg">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
+						<div class="p-section__hdg">
+							<h2>ニュースタイトル一覧<span class="p-section__subhdg">（<%= newsListMovie.length + newsListTv.length %>件）</span></h2>
 						</div>
 
-						<div class="p-note">
-							<p class="p-note__note">
-								<span class="p-note__mark">※</span>
-								<span class="p-note__text"
-									><time datetime="2021-01">2021年1月</time>をもって収集を停止したので、それ以降のデータは<a
-										href="https://www.madoka-magica.com/rebellion/news/"
-										>公式サイトのニュースページ</a
-									>を参照ください。</span
-								>
-							</p>
-						</div>
+						<ul class="c-note">
+							<li><time datetime="2021-01">2021年1月</time>をもって収集を停止したので、それ以降のデータは<a href="https://www.madoka-magica.com/rebellion/news/">公式サイトのニュースページ</a>を参照ください。</li>
+						</ul>
 
-						<ul class="p-madoka-official-news -compact">
+						<ul class="p-links">
 							<% for (const news of newsListMovie) { %>
-							<li>
-								<p class="p-madoka-official-news__date">
-									<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>
-								</p>
-								<p class="p-madoka-official-news__title">
-									<a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>"><%= news.title %></a>
-								</p>
-							</li>
+							<li><a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>"><%= news.title %></a>（<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</li>
 							<% } %> <% for (const news of newsListTv) { %>
-							<li>
-								<p class="p-madoka-official-news__date">
-									<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>
-								</p>
-								<p class="p-madoka-official-news__title">
-									<a href="https://www.madoka-magica.com/tv/news/#n<%= news.id %>"><%= news.title %></a>
-								</p>
-							</li>
+							<li><a href="https://www.madoka-magica.com/tv/news/#n<%= news.id %>"><%= news.title %></a> （<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</li>
 							<% } %>
 						</ul>
 					</section>
 					<section class="p-section -hdg-a">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">他の月を見る</h2>
+						<div class="p-section__hdg">
+							<h2>月ごとのニュース</h2>
 						</div>
 
-						<div class="p-tile -narrow">
+						<div class="c-grid -narrow">
 							<% for (const [year, yearData] of monthDataList) { %>
-							<div class="p-tile__tile">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-b">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg"><%= year %>年</h3>
+									<div class="p-section__hdg">
+										<h3><%= year %>年</h3>
 									</div>
 
 									<ul class="p-links">
 										<% for (const [month, count] of yearData) { %>
-										<li>
-											<a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月 (<%= count %>件)</a>
-										</li>
+										<li><a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月</a>（<%= count %>件）</li>
 										<% } %>
 									</ul>
 								</section>
@@ -128,8 +103,8 @@
 							<% } %>
 						</div>
 					</section>
-				</div>
-			</main>
+				</main>
+			</div>
 
 			<%- include('./_include/_sidebar') %><%- include('./_include/_footer') %>
 		</div>

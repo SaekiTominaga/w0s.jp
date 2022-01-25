@@ -1,14 +1,14 @@
 /*
 表
 
-Styleguide 3.2.
+Styleguide 3.3.
 */
 
 /*
 表セル
 
 Markup:
-<table class="p-table-data">
+<table border="">
 <tbody>
 <tr>
 <td class="u-cell {{modifier_class}}">セル</td>
@@ -23,10 +23,8 @@ Markup:
 
 .-center - センタリング
 .-num - 金額
-.-nowrap - 改行禁止
-.-sum - 合計
 
-Styleguide 3.2.1
+Styleguide 3.3.1
 */
 .u-cell {
 	/* センタリング */
@@ -36,20 +34,6 @@ Styleguide 3.2.1
 
 	/* 金額 */
 	&.-num {
-		text-align: right;
-	}
-
-	/* 改行禁止 */
-	&.-nowrap {
-		white-space: nowrap;
-	}
-
-	/* 合計 */
-	&.-sum {
-		text-align: right;
-
-		@nest .p-table-data & {
-			background-color: #ffc;
-		}
+		text-align: end;
 	}
 }

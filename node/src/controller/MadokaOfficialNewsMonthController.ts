@@ -35,44 +35,16 @@ export default class MadokaOfficialNewsMonthController extends Controller implem
 		};
 
 		const dao = new MadokaOfficialNewsMonthDao(this.#configCommon);
-		const daoData = await Promise.all([
+
+		const [newsListMovie, newsListTv, prevMonth, nextMonth] = await Promise.all([
+			/* ニュース記事一覧 */
 			dao.getNewsListMovie(requestQuery.month),
 			dao.getNewsListTv(requestQuery.month),
+
+			/* 前後のニュース記事がある月 */
 			dao.getPrevMonthDate(requestQuery.month),
 			dao.getNextMonthDate(requestQuery.month),
-			dao.getMonthData(),
 		]);
-
-		/* ニュース記事一覧 */
-		const newsListMovie = daoData[0];
-		const newsListTv = daoData[1];
-
-		/* 前後のニュース記事がある月 */
-		const prevMonth = daoData[2];
-		const nextMonth = daoData[3];
-
-		/* 月ごとのニュース件数 */
-		const monthDataList = daoData[4];
-		const monthDataView: Map<number, Map<number, number>> = new Map();
-		for (const monthData of monthDataList) {
-			const date = monthData.date;
-			const year = date.getFullYear();
-			const month = date.getMonth() + 1;
-
-			const monthDataYear = monthDataView.get(year);
-			if (monthDataYear === undefined) {
-				monthDataView.set(year, new Map([[month, monthData.count]]));
-			} else {
-				const monthDataMonth = monthDataYear.get(month);
-				if (monthDataMonth === undefined) {
-					monthDataYear.set(month, monthData.count);
-				} else {
-					monthDataYear.set(month, monthDataMonth + monthData.count);
-				}
-
-				monthDataView.set(year, monthDataYear);
-			}
-		}
 
 		/* レンダリング */
 		res.render(this.#config.view.month, {
@@ -86,8 +58,6 @@ export default class MadokaOfficialNewsMonthController extends Controller implem
 
 			prevMonth: prevMonth,
 			nextMonth: nextMonth,
-
-			monthDataList: monthDataView, // 月ごとのニュース件数
 		});
 	}
 }

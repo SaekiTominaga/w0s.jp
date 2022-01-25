@@ -20,22 +20,22 @@
 		<div class="l-page">
 			<%- include('./_include/_header_tokyu') %>
 
-			<main id="main" class="l-main">
-				<div class="l-main__header">
+			<div id="content" class="l-content">
+				<div class="l-content__header">
 					<div class="p-topic-path">
 						<p itemprop="breadcrumb"><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/tokyu/sty/">東急電車の車両形態</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
 					</div>
 
-					<div class="p-page-title">
+					<div class="p-title">
 						<h1 itemprop="name">空気圧縮機</h1>
-						<p class="p-page-title__update"><span itemprop="dateModified" class="htmlbuild-datetime">2013年11月5日</span>更新</p>
+						<p class="p-title__update"><span itemprop="dateModified" class="htmlbuild-datetime">2013年11月5日</span>更新</p>
 					</div>
 
 					<nav class="p-local-nav">
 						<ul class="p-local-nav__list">
-							<li><a aria-current="page">現役の機器</a></li>
-							<li><a href="cp_old">消滅した機器</a></li>
-							<li><a href="cp_transfer">譲渡車両</a></li>
+							<li><a aria-current="page" class="c-link">現役の機器</a></li>
+							<li><a href="cp_old" class="c-link">消滅した機器</a></li>
+							<li><a href="cp_transfer" class="c-link">譲渡車両</a></li>
 						</ul>
 					</nav>
 
@@ -43,14 +43,14 @@
 						<p>東急電鉄の車両に搭載されている空気圧縮機のバリエーションを紹介します。</p>
 					</div>
 
-					<ol class="p-subtoc">
+					<ol class="p-toc" aria-label="目次">
 						<li><a href="#gum">可とう継手式</a></li>
 						<li><a href="#gum-frameless">可とう継手式（フレームレス）</a></li>
 						<li><a href="#spline">スプライン軸継手式</a></li>
 					</ol>
 				</div>
-				<div class="l-main__main">
-					<table class="p-table-data">
+				<main class="l-content__main">
+					<table class="p-table">
 						<colgroup span="3"></colgroup>
 						<colgroup span="2"></colgroup>
 						<colgroup></colgroup>
@@ -70,7 +70,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><a href="#hb2000" class="c-link-text">HB-2000</a></td>
+								<td><a href="#hb2000" class="c-link">HB-2000</a></td>
 								<td>水平対向4気筒</td>
 								<td>2000l/min</td>
 								<td>CM2015</td>
@@ -78,7 +78,7 @@
 								<td>8500系・8090系（17次車以前）</td>
 							</tr>
 							<tr>
-								<td><a href="#hs20g" class="c-link-text">HS-20（直流電動機）</a></td>
+								<td><a href="#hs20g" class="c-link">HS-20（直流電動機）</a></td>
 								<td>水平対向4気筒</td>
 								<td>2000l/min</td>
 								<td>D1215</td>
@@ -86,7 +86,7 @@
 								<td>7600系、7700系、8500系（18次車以降）、1000N系など</td>
 							</tr>
 							<tr>
-								<td><a href="#hs20-1" class="c-link-text">HS-20（誘導電動機）</a></td>
+								<td><a href="#hs20-1" class="c-link">HS-20（誘導電動機）</a></td>
 								<td>水平対向4気筒</td>
 								<td>2000l/min</td>
 								<td>A1544</td>
@@ -94,7 +94,7 @@
 								<td>9000系、1000系（N、N′除く）、2000系</td>
 							</tr>
 							<tr>
-								<td><a href="#hs10" class="c-link-text">HS-10</a></td>
+								<td><a href="#hs10" class="c-link">HS-10</a></td>
 								<td>水平対向4気筒</td>
 								<td>1000l/min</td>
 								<td>D6515</td>
@@ -102,7 +102,7 @@
 								<td>1000N′系</td>
 							</tr>
 							<tr>
-								<td><a href="#hs5" class="c-link-text">HS-5（直流電動機）</a></td>
+								<td><a href="#hs5" class="c-link">HS-5（直流電動機）</a></td>
 								<td>V型2気筒</td>
 								<td>600l/min</td>
 								<td>D3360</td>
@@ -110,7 +110,7 @@
 								<td><s>旧デハ70形</s>→300系</td>
 							</tr>
 							<tr>
-								<td><a href="#hs5-1" class="c-link-text">HS-5（誘導電動機）</a></td>
+								<td><a href="#hs5-1" class="c-link">HS-5（誘導電動機）</a></td>
 								<td>V型2気筒</td>
 								<td>610l/min</td>
 								<td>?</td>
@@ -118,7 +118,7 @@
 								<td>Y000系</td>
 							</tr>
 							<tr>
-								<td><a href="#c2500l" class="c-link-text">C2500</a></td>
+								<td><a href="#c2500l" class="c-link">C2500</a></td>
 								<td>水平直列3気筒</td>
 								<td>2500l/min</td>
 								<td>A1744</td>
@@ -129,31 +129,33 @@
 					</table>
 
 					<section class="p-section -hdg-a" id="gum">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">可とう継手式</h2>
+						<div class="p-section__hdg">
+							<h2>可とう継手式</h2>
 						</div>
 
-						<div class="p-tile -wide">
-							<div class="p-tile__tile">
+						<div class="c-grid -wide -hdg-c">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hb2000">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HB-2000</h3>
+									<div class="p-section__hdg">
+										<h3>HB-2000</h3>
+										<p class="p-section__hdg-note">DC1500V、容量約2000l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">DC1500V、容量約2000l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HB2000_CM2015.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_CM2015.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_CM2015.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_CM2015.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_CM2015.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_CM2015.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_CM2015.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2009-04-05 --></a
-											><span class="c-embedded-caption -data">デハ8879（15次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">デハ8879（15次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>電動機と圧縮機をゴム可とう継手で繋ぎ、高圧・低圧それぞれ2つのシリンダを対向に配しています。この基本構造は、7200系に搭載されていた<a href="cp_old#hb1500">HB-1500型</a>と同様ですが、容積や出力がアップされています。</p>
@@ -162,26 +164,28 @@
 									</div>
 								</section>
 							</div>
-							<div class="p-tile__tile">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hb2000-frame">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HB-2000<span class="p-hdg__sub-hdg">（吊枠のみ）</span></h3>
+									<div class="p-section__hdg">
+										<h3>HB-2000<span class="p-section__subhdg">（吊枠のみ）</span></h3>
+										<p class="p-section__hdg-note">DC1500V、容量約2000l/min（電動機搭載当時）</p>
 									</div>
 
-									<p class="p-tokyu-spec">DC1500V、容量約2000l/min（電動機搭載当時）</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HB2000_only-frame.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_only-frame.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_only-frame.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_only-frame.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_only-frame.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_only-frame.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HB2000_only-frame.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2009-05-22 --></a
-											><span class="c-embedded-caption -data">デハ8881（15次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">デハ8881（15次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>田園都市線8500系（10両編成）は、一部編成を除き6号車のCPを撤去して1編成あたりの台数を3機に抑えていますが、一部の撤去車は吊枠のみ残されています。また、CP撤去後に改めて吊枠を設置された車両も存在します。</p>
@@ -192,31 +196,33 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="gum-frameless">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">可とう継手式（フレームレス）</h2>
+						<div class="p-section__hdg">
+							<h2>可とう継手式（フレームレス）</h2>
 						</div>
 
-						<div class="p-tile -wide">
-							<div class="p-tile__tile">
+						<div class="c-grid -wide -hdg-c">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hs20g">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HS-20<span class="p-hdg__sub-hdg">（直流電動機）</span></h3>
+									<div class="p-section__hdg">
+										<h3>HS-20<span class="p-section__subhdg">（直流電動機）</span></h3>
+										<p class="p-section__hdg-note">DC1500V、容量約2000l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">DC1500V、容量約2000l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS20_D1215.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_D1215.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_D1215.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_D1215.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_D1215.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_D1215.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_D1215.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2008-12-29 --></a
-											><span class="c-embedded-caption -data">デハ8641（18-2次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">デハ8641（18-2次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>
@@ -227,56 +233,60 @@
 									</div>
 								</section>
 							</div>
-							<div class="p-tile__tile">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hs20-1">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HS-20<span class="p-hdg__sub-hdg">（誘導電動機）</span></h3>
+									<div class="p-section__hdg">
+										<h3>HS-20<span class="p-section__subhdg">（誘導電動機）</span></h3>
+										<p class="p-section__hdg-note">AC440V、容量約2000l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">AC440V、容量約2000l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS20_A1544.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_A1544.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_A1544.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_A1544.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_A1544.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_A1544.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS20_A1544.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2009-01-24 --></a
-											><span class="c-embedded-caption -data">クハ9101（1次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">クハ9101（1次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>
-											こちらは交流駆動の電動機を装備したタイプで、SIVから出力された三相交流が直接供給されます。隣接して<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS20_cm1.jpg" type="image/jpeg" title="リンク先写真はクハ9001海側"><!-- 撮影日: 2007-09-15 -->起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" class="c-link-icon" /></a>を備えますが、<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS20_cm2.jpg" type="image/jpeg" title="リンク先写真はクハ9014海側"><!-- 撮影日: 2007-09-11 -->9000系3次車以降の起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" class="c-link-icon" /></a>は小型化されています。
+											こちらは交流駆動の電動機を装備したタイプで、SIVから出力された三相交流が直接供給されます。隣接して<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS20_cm1.jpg" type="image/jpeg" title="リンク先写真はクハ9001海側"><!-- 撮影日: 2007-09-15 -->起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" width="16" height="16" class="c-link-icon" /></a>を備えますが、<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS20_cm2.jpg" type="image/jpeg" title="リンク先写真はクハ9014海側"><!-- 撮影日: 2007-09-11 -->9000系3次車以降の起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" width="16" height="16" class="c-link-icon" /></a>は小型化されています。
 										</p>
 										<p>搭載車は9000系、1000系（N、N′除く）および2000系で、改造当初は<a href="cp_old#hb1500">HB-1500型</a>を搭載していたクハ7915もこれに換装されました。</p>
 										<p>2013年まで、クハ9010には<a href="cp_old#hs20-1-sim">SIM電動機</a>のタイプが搭載されていました。</p>
 									</div>
 								</section>
 							</div>
-							<div class="p-tile__tile">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hs10">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HS-10</h3>
+									<div class="p-section__hdg">
+										<h3>HS-10</h3>
+										<p class="p-section__hdg-note">DC1500V、容量約1000l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">DC1500V、容量約1000l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS10.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS10.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS10.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS10.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS10.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS10.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS10.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2009-04-17 --></a
-											><span class="c-embedded-caption -data">デハ1223（4次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">デハ1223（4次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>HS-20型を元に開発された小容量タイプで、全体的にコンパクトになり、ちりこしが横向きに配されるなど印象も異なります。</p>
@@ -288,31 +298,33 @@
 					</section>
 
 					<section class="p-section -hdg-a" id="spline">
-						<div class="p-hdg">
-							<h2 class="p-hdg__hdg">スプライン軸継手式</h2>
+						<div class="p-section__hdg">
+							<h2>スプライン軸継手式</h2>
 						</div>
 
-						<div class="p-tile -wide">
-							<div class="p-tile__tile">
+						<div class="c-grid -wide -hdg-c">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hs5">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HS-5<span class="p-hdg__sub-hdg">（直流電動機）</span></h3>
+									<div class="p-section__hdg">
+										<h3>HS-5<span class="p-section__subhdg">（直流電動機）</span></h3>
+										<p class="p-section__hdg-note">DC600V、容量600l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">DC600V、容量600l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS5_D3360.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5_D3360.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5_D3360.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5_D3360.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5_D3360.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5_D3360.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5_D3360.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2009-02-22 --></a
-											><span class="c-embedded-caption -data">デハ310B（2次車）山側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">デハ310B（2次車）山側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>HS-20型、HS-10型に続き路面電車など小型車両用に開発されたもので、重量はHS-20型の半分以下となっています。</p>
@@ -320,62 +332,66 @@
 									</div>
 								</section>
 							</div>
-							<div class="p-tile__tile">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="hs5-1">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">HS-5<span class="p-hdg__sub-hdg">（誘導電動機）</span></h3>
+									<div class="p-section__hdg">
+										<h3>HS-5<span class="p-section__subhdg">（誘導電動機）</span></h3>
+										<p class="p-section__hdg-note">AC440V、容量610l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">AC440V、容量610l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/HS5-1.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5-1.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5-1.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5-1.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5-1.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5-1.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/HS5-1.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2009-03-22 --></a
-											><span class="c-embedded-caption -data">クハY002（2次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">クハY002（2次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>HS-5型の交流駆動タイプで、こどもの国線用のY000系に搭載されています。</p>
 										<p>本体は枕木方向に配されているため2気筒である様子がよく分かります。</p>
 										<p>
-											右隣に<a href="https://media.w0s.jp/image/tokyu/sty/cp/CM16.jpg" type="image/jpeg" title="リンク先写真はクハY003海側"><!-- 撮影日: 2009-03-22 -->起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" class="c-link-icon" /></a>を備えています。
+											右隣に<a href="https://media.w0s.jp/image/tokyu/sty/cp/CM16.jpg" type="image/jpeg" title="リンク先写真はクハY003海側"><!-- 撮影日: 2009-03-22 -->起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" width="16" height="16" class="c-link-icon" /></a>を備えています。
 										</p>
 									</div>
 								</section>
 							</div>
-							<div class="p-tile__tile">
+							<div class="c-grid__item">
 								<section class="p-section -hdg-c" id="c2500l">
-									<div class="p-hdg">
-										<h3 class="p-hdg__hdg">C2500</h3>
+									<div class="p-section__hdg">
+										<h3>C2500</h3>
+										<p class="p-section__hdg-note">AC440V、容量約2500l/min</p>
 									</div>
 
-									<p class="p-tokyu-spec">AC440V、容量約2500l/min</p>
-
-									<div class="p-image">
-										<div class="p-image__image-area">
+									<figure>
+										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/cp/C2500L.jpg" type="image/jpeg">
 												<picture>
 													<source type="image/avif" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/C2500L.jpg?type=avif;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/C2500L.jpg?type=avif;w=1000;quality=80 2x" />
 													<source type="image/webp" srcset="https://media.w0s.jp/thumbimage/tokyu/sty/cp/C2500L.jpg?type=webp;w=500;quality=90, https://media.w0s.jp/thumbimage/tokyu/sty/cp/C2500L.jpg?type=webp;w=1000;quality=80 2x" />
-													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/C2500L.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" class="c-image" />
+													<img src="https://media.w0s.jp/thumbimage/tokyu/sty/cp/C2500L.jpg?type=jpeg;w=500;quality=90" alt="写真拡大" />
 												</picture>
 												<!-- 撮影日: 2007-08-19 --></a
-											><span class="c-embedded-caption -data">サハ3510（2次車）海側</span>
+											>
 										</div>
-									</div>
+										<figcaption class="p-embed__caption c-caption -meta">
+											<p class="c-caption__title">サハ3510（2次車）海側</p>
+										</figcaption>
+									</figure>
 
 									<div class="p-text">
 										<p>新3000系に搭載。</p>
 										<p>シリンダがHS-20型などの対向4気筒から直列3気筒となり、ちりこしの右側に低圧2、高圧1が一列に並んだ形状が特徴です。</p>
 										<p>
-											左隣に<a href="https://media.w0s.jp/image/tokyu/sty/cp/CM15.jpg" type="image/jpeg" title="リンク先写真はサハ3510海側"><!-- 撮影日: 2007-08-19 -->起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" class="c-link-icon" /></a>を備えています。
+											左隣に<a href="https://media.w0s.jp/image/tokyu/sty/cp/CM15.jpg" type="image/jpeg" title="リンク先写真はサハ3510海側"><!-- 撮影日: 2007-08-19 -->起動装置<img src="/assets/image/icon/image.svg" alt="(写真)" width="16" height="16" class="c-link-icon" /></a>を備えています。
 										</p>
 									</div>
 								</section>
@@ -383,23 +399,23 @@
 						</div>
 					</section>
 
-					<ul class="p-footnote">
+					<ul class="p-footnotes">
 						<li>
-							<span class="p-footnote__no"><a href="#r1">[1]</a></span>
-							<span class="p-footnote__text" id="fn1">ナブコ技報No57（1984年1月号） 「低騒音空気圧縮機の開発」 小椋 聡</span>
+							<span class="p-footnotes__no"><a href="#r1">[1]</a></span>
+							<span class="p-footnotes__text" id="fn1">ナブコ技報No57（1984年1月号） 「低騒音空気圧縮機の開発」 小椋 聡</span>
 						</li>
 					</ul>
-				</div>
-				<div class="l-main__footer">
+				</main>
+				<div class="l-content__footer">
 					<nav class="p-local-nav">
 						<ul class="p-local-nav__list">
-							<li><a aria-current="page">現役の機器</a></li>
-							<li><a href="cp_old">消滅した機器</a></li>
-							<li><a href="cp_transfer">譲渡車両</a></li>
+							<li><a aria-current="page" class="c-link">現役の機器</a></li>
+							<li><a href="cp_old" class="c-link">消滅した機器</a></li>
+							<li><a href="cp_transfer" class="c-link">譲渡車両</a></li>
 						</ul>
 					</nav>
 				</div>
-			</main>
+			</div>
 
 			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
 		</div>
