@@ -79,10 +79,14 @@ Styleguide 1.6.3
 	display: inline-block;
 	color: var(--_color, var(--color-black));
 	background: var(--_bg-color, var(--color-white));
-	font-size: max(calc(100% / var(--font-ratio-4)), calc(100% / var(--font-ratio-1)));
+	font-size: min(1rem, calc(100% / var(--font-ratio-2)));
 	font-weight: var(--font-weight-normal);
 	line-height: var(--line-height-nowrap);
 	vertical-align: 0.125em;
+
+	@nest .p-section__hdg & {
+		margin-inline-start: 0.5em;
+	}
 
 	/* 動力台車 */
 	&.-m {

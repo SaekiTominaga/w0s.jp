@@ -8,24 +8,32 @@ Styleguide 2.5.
 埋め込みコンテンツ（画像、動画、 <iframe> など）
 
 Markup:
-<div class="p-embed">
+<div class="p-embed {{modifier_class}}">
 <img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/>
 </div>
-<div class="p-embed">
+<div class="p-embed {{modifier_class}}">
 <a href="https://example.com/"><img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/></a>
 </div>
-<div class="p-embed">
+<div class="p-embed {{modifier_class}}">
 <video poster="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" class="p-embed__video"></video>
 </div>
-<div class="p-embed">
+<div class="p-embed {{modifier_class}}">
 <iframe src="https://example.com/" class="p-embed__frame"></iframe>
 </div>
+
+.-border - 埋め込みコンテンツに枠線を表示
 
 Styleguide 2.5.1
 */
 .p-embed {
+	--_border-width: 0px;
+
 	contain: layout;
 	position: relative; /* for Safari */
+
+	&.-border {
+		--_border-width: 1px;
+	}
 
 	& > :any-link {
 		--_expand-icon-padding: 4px;
@@ -53,8 +61,6 @@ Styleguide 2.5.1
 
 	& img,
 	& video {
-		--_border-width: 1px;
-
 		border: var(--_border-width) solid var(--color-black);
 		display: inline-block;
 		max-width: calc(100% - var(--_border-width) * 2);
@@ -76,7 +82,7 @@ Styleguide 2.5.1
 		--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
 
 		margin-inline: auto;
-		border: 1px solid var(--color-black);
+		border: var(--_border-width) solid var(--color-black);
 		box-sizing: border-box;
 		display: block;
 		width: calc(100% - var(--_margin-inline) * 2);
