@@ -214,7 +214,6 @@ if (beforeunloadConfirmElements.length > 0) {
 }
 
 /* Google AdSense */
-for (const adsGoogleElement of <NodeListOf<HTMLElement>>document.querySelectorAll('.js-ads-google')) {
-	const googleAdSense = new GoogleAdsense(adsGoogleElement);
-	googleAdSense.connected();
+for (const adsGoogleElement of document.querySelectorAll('.js-ads-google')) {
+	new GoogleAdsense(adsGoogleElement).init('100px');
 }

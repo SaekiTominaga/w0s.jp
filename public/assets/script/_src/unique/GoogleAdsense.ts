@@ -1,6 +1,6 @@
 declare global {
 	interface Window {
-		adsbygoogle: any[];
+		adsbygoogle: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
 	}
 }
 
@@ -8,17 +8,22 @@ declare global {
  * Google AdSense
  */
 export default class {
-	#thisElement: HTMLElement;
+	#thisElement: Element;
 	#SCRIPT_ID = 'script-adsbygoogle'; // 埋め込む <script> 要素の ID
 
 	/**
-	 * @param {HTMLElement} thisElement - 広告を表示する要素
+	 * @param {object} thisElement - 広告を表示する要素
 	 */
-	constructor(thisElement: HTMLElement) {
+	constructor(thisElement: Element) {
 		this.#thisElement = thisElement;
 	}
 
-	connected(): void {
+	/**
+	 * 初期処理
+	 *
+	 * @param {string} rootMargin - ルート周りのマージン
+	 */
+	init(rootMargin = '0px'): void {
 		if (window.IntersectionObserver === undefined) {
 			/* Safari 11, iOS Safari 11-12.1 */
 			return;
@@ -40,7 +45,7 @@ export default class {
 				}
 			},
 			{
-				rootMargin: '100px',
+				rootMargin: rootMargin,
 			}
 		);
 
