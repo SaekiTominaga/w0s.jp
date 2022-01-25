@@ -10,13 +10,16 @@ export default class {
 	#templateElement: HTMLTemplateElement;
 
 	/**
-	 * @param {HTMLTemplateElement} templateElement - 挿入するページに存在する <tempalte> 要素
+	 * @param {object} templateElement - 挿入するページに存在する <tempalte> 要素
 	 */
 	constructor(templateElement: HTMLTemplateElement) {
 		this.#templateElement = templateElement;
 	}
 
-	async connected(): Promise<void> {
+	/**
+	 * 初期処理
+	 */
+	async init(): Promise<void> {
 		/* エンドポイントから JSON ファイルを取得する */
 		const dataList: BlogNewlyJson[] = await this._fetch();
 

@@ -9,7 +9,7 @@ export default class {
 	#windowAfterPrintEventListener: () => void;
 
 	/**
-	 * @param {HTMLLinkElement} printStyleSheetElement - 印刷用スタイルシートを指定した要素
+	 * @param {object} printStyleSheetElement - 印刷用スタイルシートを指定した要素
 	 */
 	constructor(printStyleSheetElement: HTMLLinkElement) {
 		this.#printStyleSheetElement = printStyleSheetElement;
@@ -18,7 +18,10 @@ export default class {
 		this.#windowAfterPrintEventListener = this._windowAfterPrintEvent.bind(this);
 	}
 
-	connected(): void {
+	/**
+	 * 初期処理
+	 */
+	init(): void {
 		if (this._canSelectAlternateStyleSheets()) {
 			return;
 		}

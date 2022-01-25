@@ -135,22 +135,22 @@ if (window.customElements !== undefined) {
 	}
 }
 
-const stylesheetPrintElement = <HTMLLinkElement | null>document.getElementById('stylesheet-print');
-if (stylesheetPrintElement !== null) {
-	const styleSheetPrint = new StyleSheetPrint(stylesheetPrintElement);
-	styleSheetPrint.connected();
-}
-
+/* 日記新着記事 */
 const sidebarBlogNewlyTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-blog-newly-template');
 if (sidebarBlogNewlyTemplateElement !== null) {
-	const sidebarBlogNewly = new SidebarBlogNewly(sidebarBlogNewlyTemplateElement);
-	sidebarBlogNewly.connected();
+	new SidebarBlogNewly(sidebarBlogNewlyTemplateElement).init();
 }
 
+/* Amazon 商品広告 */
 const sidebarAmazonAdTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-amazon-ad-template');
 if (sidebarAmazonAdTemplateElement !== null) {
-	const sidebarAmazonAd = new SidebarAmazonAd(sidebarAmazonAdTemplateElement);
-	sidebarAmazonAd.connected();
+	new SidebarAmazonAd(sidebarAmazonAdTemplateElement).init();
+}
+
+/* 印刷用スタイルシート */
+const stylesheetPrintElement = <HTMLLinkElement | null>document.getElementById('stylesheet-print');
+if (stylesheetPrintElement !== null) {
+	new StyleSheetPrint(stylesheetPrintElement).init();
 }
 
 const autoFocusElement = <HTMLElement | null>document.querySelector('.js-form-errors');
