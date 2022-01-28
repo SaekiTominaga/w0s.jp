@@ -74,7 +74,7 @@
 }
 
 .p-sidebar-blog-entry__hdg {
-	margin: 0 10px;
+	margin-inline: 10px;
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
@@ -88,16 +88,17 @@
 
 /* ===== リンクリスト ===== */
 .p-sidebar-links {
-	& a {
-		--_padding-block: 0.5em;
-		--_padding-inline: 0.5em;
-		--_bg-color: var(--color-bg-skyblue);
+	--_padding-block: 0.5em;
+	--_padding-inline: 0.5em;
+	--_bg-color: var(--color-verylightblue);
 
+	& a {
 		padding: var(--_padding-block) var(--_padding-inline);
 		display: flex;
 		align-items: center;
 		contain: content;
 		position: relative; /* for Safari */
+		min-height: var(--_min-height);
 		font-size: calc(100% / var(--font-ratio-1));
 		background: var(--_bg-color);
 		outline-width: var(--outline-width-bold);
@@ -152,9 +153,7 @@
 
 	/* 記事 */
 	&.-entry {
-		& a {
-			min-height: 2em;
-		}
+		--_min-height: 2em;
 	}
 }
 
@@ -172,7 +171,7 @@
 }
 
 .p-sidebar-amazon__hdg {
-	margin: 0 4px;
+	margin-inline: 4px;
 	padding: 0 0.5em;
 	display: inline-block;
 	position: relative;
