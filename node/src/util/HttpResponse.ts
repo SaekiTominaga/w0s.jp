@@ -1,5 +1,5 @@
 import path from 'path';
-import { W0SJp as Configure } from '../../configure/type/common';
+import { W0SJp as Configure } from '../../configure/type/common.js';
 import { Request, Response } from 'express';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
 
@@ -9,11 +9,11 @@ type HttpAuthType = 'Basic' | 'Bearer' | 'Digest' | 'HOBA' | 'Mutual' | 'Negotia
  * HttpResponse
  */
 export default class HttpResponse {
-	#req: Request;
-	#res: Response;
-	#config: Configure;
+	readonly #req: Request;
+	readonly #res: Response;
+	readonly #config: Configure;
 
-	readonly #MIME_HTML = 'text/html; charset=UTF-8';
+	readonly #MIME_HTML = 'text/html;charset=utf-8';
 
 	/**
 	 * @param {Request} req - Request
@@ -62,10 +62,7 @@ export default class HttpResponse {
 	send301(locationUrl: string): void {
 		const locationUrlEscapedHtml = StringEscapeHtml.escape(locationUrl);
 
-		this.#res
-			.status(301)
-			.setHeader('Content-Type', this.#MIME_HTML)
-			.location(locationUrl).send(`<!DOCTYPE html>
+		this.#res.status(301).setHeader('Content-Type', this.#MIME_HTML).location(locationUrl).send(`<!DOCTYPE html>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Moved Permanently</title>
 <h1>301 Moved Permanently</h1>
@@ -86,10 +83,7 @@ export default class HttpResponse {
 		const locationUrl = url ?? this.#req.path;
 		const locationUrlEscapedHtml = StringEscapeHtml.escape(locationUrl);
 
-		this.#res
-			.status(303)
-			.setHeader('Content-Type', this.#MIME_HTML)
-			.location(locationUrl).send(`<!DOCTYPE html>
+		this.#res.status(303).setHeader('Content-Type', this.#MIME_HTML).location(locationUrl).send(`<!DOCTYPE html>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>See Other</title>
 <h1>303 See Other</h1>
@@ -114,29 +108,20 @@ export default class HttpResponse {
 	 * 403 Forbidden
 	 */
 	send403(): void {
-		this.#res
-			.status(403)
-			.setHeader('Content-Type', this.#MIME_HTML)
-			.sendFile(path.resolve(this.#config.errorpage.path_403));
+		this.#res.status(403).setHeader('Content-Type', this.#MIME_HTML).sendFile(path.resolve(this.#config.errorpage.path_403));
 	}
 
 	/**
 	 * 404 Not Found
 	 */
 	send404(): void {
-		this.#res
-			.status(404)
-			.setHeader('Content-Type', this.#MIME_HTML)
-			.sendFile(path.resolve(this.#config.errorpage.path_404));
+		this.#res.status(404).setHeader('Content-Type', this.#MIME_HTML).sendFile(path.resolve(this.#config.errorpage.path_404));
 	}
 
 	/**
 	 * 500 Internal Server Error
 	 */
 	send500(): void {
-		this.#res
-			.status(500)
-			.setHeader('Content-Type', this.#MIME_HTML)
-			.sendFile(path.resolve(this.#config.errorpage.path_500));
+		this.#res.status(500).setHeader('Content-Type', this.#MIME_HTML).sendFile(path.resolve(this.#config.errorpage.path_500));
 	}
 }
