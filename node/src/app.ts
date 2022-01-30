@@ -119,7 +119,7 @@ app.use(
 );
 app.use(async (req, res, next) => {
 	/* Basic Authentication */
-	const basic = config.static.auth_basic.find((basic) => basic.directory.find((urlPath) => req.url.startsWith(urlPath)));
+	const basic = config.static.auth_basic?.find((basic) => basic.directory.find((urlPath) => req.url.startsWith(urlPath)));
 	if (basic !== undefined) {
 		const httpBasicAuth = new HttpBasicAuth(req);
 		if (!(await httpBasicAuth.htpasswd(basic.htpasswd))) {

@@ -120,7 +120,7 @@ export interface NoName3 {
   extensions?: NoName5;
   indexes?: NoName6;
   headers: NoName7;
-  auth_basic: BasicAuthentication;
+  auth_basic?: BasicAuthentication;
 }
 export interface NoName7 {
   mime: MIME;
