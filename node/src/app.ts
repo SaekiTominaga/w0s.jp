@@ -1,6 +1,4 @@
 import AmazonAdsController from './controller/AmazonAdsController.js';
-import BlogAmazonController from './controller/BlogAmazonController.js';
-import BlogPostController from './controller/BlogPostController.js';
 import compression from 'compression';
 import ContactCompletedController from './controller/ContactCompletedController.js';
 import ContactInputController from './controller/ContactInputController.js';
@@ -277,46 +275,6 @@ app
 	.post(async (req, res, next) => {
 		try {
 			await new AmazonAdsController(config).execute(req, res);
-		} catch (e) {
-			next(e);
-		}
-	});
-
-/**
- * 富永日記帳・記事投稿
- */
-app
-	.route('/admin/blog-post')
-	.get(async (req, res, next) => {
-		try {
-			await new BlogPostController(config).execute(req, res);
-		} catch (e) {
-			next(e);
-		}
-	})
-	.post(upload.array('media'), async (req, res, next) => {
-		try {
-			await new BlogPostController(config).execute(req, res);
-		} catch (e) {
-			next(e);
-		}
-	});
-
-/**
- * 富永日記帳・ Amazon 商品管理
- */
-app
-	.route('/admin/blog-amazon')
-	.get(async (req, res, next) => {
-		try {
-			await new BlogAmazonController(config).execute(req, res);
-		} catch (e) {
-			next(e);
-		}
-	})
-	.post(async (req, res, next) => {
-		try {
-			await new BlogAmazonController(config).execute(req, res);
 		} catch (e) {
 			next(e);
 		}

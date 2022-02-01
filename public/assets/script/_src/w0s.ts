@@ -9,8 +9,6 @@ import FormControlValidation from '@saekitominaga/htmlformcontrolelement-validat
 import FormSubmitOverlay from '@saekitominaga/htmlformelement-submit-overlay';
 import GoogleAdsense from './unique/GoogleAdsense';
 import InputDateToText from '@saekitominaga/customelements-input-date-totext';
-import InputFilePreview from '@saekitominaga/customelements-input-file-preview';
-import InputIsbn from '@saekitominaga/customelements-input-isbn';
 import InputSwitch from '@saekitominaga/customelements-input-switch';
 import ReportJsError from '@saekitominaga/report-js-error';
 import SidebarAmazonAd from './unique/SidebarAmazonAd';
@@ -103,20 +101,6 @@ if (window.customElements !== undefined) {
 		});
 	}
 
-	if (document.querySelector('input[is="w0s-input-isbn"]') !== null) {
-		/* ISBN の入力バリデーション */
-		customElements.define('w0s-input-isbn', InputIsbn, {
-			extends: 'input',
-		});
-	}
-
-	if (document.querySelector('input[is="w0s-input-file-preview"]') !== null) {
-		/* ファイルアップロードでプレビュー画像を表示 */
-		customElements.define('w0s-input-file-preview', InputFilePreview, {
-			extends: 'input',
-		});
-	}
-
 	if (document.querySelector('textarea[is="w0s-textarea-height-adjust"]') !== null) {
 		/* <textarea> 要素の高さを入力内容に応じて自動調整 */
 		customElements.define('w0s-textarea-height-adjust', TextareaAutoheight, {
@@ -128,8 +112,7 @@ if (window.customElements !== undefined) {
 		/* 送信ボタン2度押し防止 */
 		(async () => {
 			for (const formElement of <NodeListOf<HTMLFormElement>>document.querySelectorAll('.js-submit-overlay')) {
-				const formSubmitOverlay = new FormSubmitOverlay(formElement);
-				formSubmitOverlay.init();
+				new FormSubmitOverlay(formElement).init();
 			}
 		})();
 	}
@@ -162,55 +145,27 @@ if (autoFocusElement !== null) {
 	autoFocusElement.focus();
 }
 
-if (document.querySelector('.js-convert-trim, .js-convert-search') !== null) {
-	/* 入力値の変換 */
-	for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-trim')) {
-		formCtrlElement.addEventListener(
-			'change',
-			() => {
-				formCtrlElement.value = StringConvert.convert(formCtrlElement.value, {
-					trim: true,
-				});
-			},
-			{ passive: true }
-		);
-	}
-
-	for (const formCtrlElement of <NodeListOf<HTMLInputElement>>document.querySelectorAll('.js-convert-search')) {
-		formCtrlElement.addEventListener(
-			'change',
-			() => {
-				formCtrlElement.value = StringConvert.convert(formCtrlElement.value, {
-					trim: true,
-					toHankakuSpace: true,
-					combineSpace: true,
-				});
-			},
-			{ passive: true }
-		);
-	}
+/* 入力値の変換 */
+for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-trim')) {
+	formCtrlElement.addEventListener(
+		'change',
+		() => {
+			formCtrlElement.value = StringConvert.convert(formCtrlElement.value, {
+				trim: true,
+			});
+		},
+		{ passive: true }
+	);
 }
 
-const validationElements = <NodeListOf<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>document.querySelectorAll('.js-validation');
-if (validationElements.length > 0) {
-	/* 入力バリデーション（エラー時はメッセージを画面表示する） */
-	(async () => {
-		for (const validationElement of validationElements) {
-			const formControlValidation = new FormControlValidation(validationElement, '-invalid');
-			formControlValidation.init();
-		}
-	})();
+/* 入力バリデーション（エラー時はメッセージを画面表示する） */
+for (const validationElement of <NodeListOf<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>document.querySelectorAll('.js-validation')) {
+	new FormControlValidation(validationElement, '-invalid').init();
 }
 
-const beforeunloadConfirmElements = <NodeListOf<HTMLFormElement>>document.querySelectorAll('.js-form-beforeunload-confirm');
-if (beforeunloadConfirmElements.length > 0) {
-	/* フォーム入力中にページが閉じられようとしたら確認メッセージを表示 */
-	(async () => {
-		for (const beforeunloadConfirmElement of beforeunloadConfirmElements) {
-			const formBeforeUnloadConfirm = new FormBeforeUnloadConfirm(beforeunloadConfirmElement);
-			formBeforeUnloadConfirm.init();
-		}
-	})();
+/* フォーム入力中にページが閉じられようとしたら確認メッセージを表示 */
+for (const beforeunloadConfirmElement of <NodeListOf<HTMLFormElement>>document.querySelectorAll('.js-form-beforeunload-confirm')) {
+	new FormBeforeUnloadConfirm(beforeunloadConfirmElement).init();
 }
 
 /* Google AdSense */
