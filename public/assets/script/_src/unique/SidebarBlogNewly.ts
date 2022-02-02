@@ -39,7 +39,7 @@ export default class {
 	 * @returns {object[]} 日記エントリーのデータ
 	 */
 	private async _fetch(): Promise<BlogNewlyJson[]> {
-		const response = await fetch('https://data.w0s.jp/blog/newly.json');
+		const response = await fetch('https://blog.w0s.jp/json/newly.json');
 		if (!response.ok) {
 			throw new Error(`"${response.url}" is ${response.status} ${response.statusText}`);
 		}
