@@ -3,21 +3,8 @@ import DbUtil from '../util/DbUtil.js';
 import sqlite3 from 'sqlite3';
 import { W0SJp as Configure } from '../../configure/type/common';
 
-interface CategoryMaster {
-	id: string;
-	name: string;
-}
-
-interface DpData {
+interface DpData extends Amazon.DpData {
 	category_name: string;
-	asin: string;
-	url: string;
-	title: string;
-	binding: string | null;
-	date: Date | null;
-	image_url: string | null;
-	image_width: number | null;
-	image_height: number | null;
 }
 
 /**
@@ -62,15 +49,17 @@ export default class AmazonAdsDao {
 	/**
 	 * カテゴリー情報を取得
 	 *
-	 * @returns {CategoryMaster[]} カテゴリー情報
+	 * @returns {Set} カテゴリー情報
 	 */
-	public async getCategoryMaster(): Promise<CategoryMaster[]> {
+	async getCategoryMaster(): Promise<Set<Amazon.CategoryMaster>> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
 			SELECT
 				id,
-				name
+				name,
+				json_path AS json_name,
+				sort
 			FROM
 				m_category
 			ORDER BY
@@ -80,11 +69,13 @@ export default class AmazonAdsDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const categories: CategoryMaster[] = [];
+		const categories: Set<Amazon.CategoryMaster> = new Set();
 		for (const row of rows) {
-			categories.push({
+			categories.add({
 				id: row.id,
 				name: row.name,
+				json_name: row.json_name,
+				sort: row.sort,
 			});
 		}
 
@@ -94,9 +85,9 @@ export default class AmazonAdsDao {
 	/**
 	 * 商品情報を取得する
 	 *
-	 * @returns {DpData[]} 商品情報
+	 * @returns {Set} 商品情報
 	 */
-	public async getDpList(): Promise<DpData[]> {
+	async getDpList(): Promise<Set<DpData>> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -125,9 +116,9 @@ export default class AmazonAdsDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const dps: DpData[] = [];
+		const dps: Set<DpData> = new Set();
 		for (const row of rows) {
-			dps.push({
+			dps.add({
 				category_name: row.category_name,
 				asin: row.asin,
 				url: row.url,
@@ -252,14 +243,14 @@ export default class AmazonAdsDao {
 	/**
 	 * JSON ファイルに出力するデータを取得する
 	 *
-	 * @returns {string[]} JSON ファイルに出力するデータ
+	 * @returns {Set} JSON ファイル名
 	 */
-	async getJsonPaths(): Promise<string[]> {
+	async getJsonNames(): Promise<Set<string>> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
 			SELECT
-				json_path
+				json_path AS json_name
 			FROM
 				m_category
 		`);
@@ -267,11 +258,65 @@ export default class AmazonAdsDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const jsonPaths: string[] = [];
+		const jsonNames: Set<string> = new Set();
 		for (const row of rows) {
-			jsonPaths.push(row.json_path);
+			jsonNames.add(row.json_name);
 		}
 
-		return jsonPaths;
+		return jsonNames;
+	}
+
+	/**
+	 * 広告用データを取得
+	 *
+	 * @param {string} jsonName - JSON ファイル名
+	 *
+	 * @returns {Set} 広告用データ
+	 */
+	async getAdsData(jsonName: string): Promise<Set<Amazon.DpData>> {
+		const dbh = await this.getDbh();
+
+		const sth = await dbh.prepare(`
+			SELECT
+				dp.asin AS asin,
+				dp.url AS url,
+				dp.title AS title,
+				dp.binding AS binding,
+				dp.date AS date,
+				dp.image_url AS image_url,
+				dp.image_width AS image_width,
+				dp.image_height AS image_height
+			FROM
+				d_dp dp,
+				d_category cat,
+				m_category catmas
+			WHERE
+				dp.asin = cat.asin AND
+				cat.category_id = catmas.id AND
+				catmas.json_path = :json_name
+			ORDER BY
+				dp.date DESC
+		`);
+		await sth.bind({
+			':json_name': jsonName,
+		});
+		const rows = await sth.all();
+		await sth.finalize();
+
+		const dps: Set<Amazon.DpData> = new Set();
+		for (const row of rows) {
+			dps.add({
+				asin: row.asin,
+				url: row.url,
+				title: row.title,
+				binding: row.binding,
+				date: DbUtil.unixToDate(row.date),
+				image_url: row.image_url,
+				image_width: row.image_width,
+				image_height: row.image_height,
+			});
+		}
+
+		return dps;
 	}
 }

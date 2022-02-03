@@ -3,7 +3,7 @@
 	"$id": "https://w0s.jp/amazon-ads.json",
 	"type": "object",
 	"title": "Amazon 商品広告管理",
-	"required": ["view", "validator", "json_create"],
+	"required": ["view", "validator", "json"],
 	"properties": {
 		"view": {
 			"type": "object",
@@ -37,18 +37,14 @@
 			},
 			"additionalProperties": false
 		},
-		"json_create": {
+		"json": {
 			"type": "object",
 			"title": "JSON ファイル生成",
-			"required": ["url_base", "url_base_dev"],
+			"required": ["directory"],
 			"properties": {
-				"url_base": {
+				"directory": {
 					"type": "string",
-					"title": "JSON ファイルを生成する URL (本番)"
-				},
-				"url_base_dev": {
-					"type": "string",
-					"title": "JSON ファイルを生成する URL (local)"
+					"title": "保存ディレクトリ"
 				}
 			},
 			"additionalProperties": false

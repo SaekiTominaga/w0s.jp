@@ -6,13 +6,12 @@
  */
 
 export type NoName = string;
-export type JSONURL = string;
-export type JSONURLLocal = string;
+export type NoName3 = string;
 
 export interface Amazon {
   view: View;
   validator: NoName1;
-  json_create: JSON;
+  json: JSON;
 }
 export interface View {
   init: NoName;
@@ -27,6 +26,5 @@ export interface NoName2 {
   [k: string]: unknown;
 }
 export interface JSON {
-  url_base: JSONURL;
-  url_base_dev: JSONURLLocal;
+  directory: NoName3;
 }

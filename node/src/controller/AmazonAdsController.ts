@@ -2,20 +2,19 @@ import AmazonAdsDao from '../dao/AmazonAdsDao.js';
 import AmazonAdsValidator from '../validator/AmazonAdsValidator.js';
 // @ts-expect-error: ts(7016)
 import amazonPaapi from 'amazon-paapi';
-import HttpBasicAuth, { Credentials as HttpBasicAuthCredentials } from '../util/HttpBasicAuth.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
-import fetch from 'node-fetch';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
 import PaapiUtil from '../util/Paapi.js';
+import zlib from 'zlib';
 import { Amazon as Configure } from '../../configure/type/amazon-ads';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { GetItemsResponse } from 'paapi5-typescript-sdk';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * Amazon 商品広告管理
@@ -41,14 +40,6 @@ export default class AmazonAdsController extends Controller implements Controlle
 	async execute(req: Request, res: Response): Promise<void> {
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
-		/* Basic 認証 */
-		const httpBasicCredentials = new HttpBasicAuth(req).getCredentials();
-		if (httpBasicCredentials === null) {
-			this.logger.error('Basic 認証の認証情報が取得できない');
-			httpResponse.send500();
-			return;
-		}
-
 		const requestQuery: AmazonAdsRequest.InputQuery = {
 			asin: req.body.asin ?? null,
 			category: req.body.category ?? null,
@@ -60,6 +51,8 @@ export default class AmazonAdsController extends Controller implements Controlle
 		let validationResult: ValidationResult<ValidationError> | null = null;
 
 		const dao = new AmazonAdsDao(this.#configCommon);
+
+		const categoryMaster = await dao.getCategoryMaster(); // カテゴリー情報
 
 		if (requestQuery.action_add) {
 			/* 登録 */
@@ -122,7 +115,7 @@ export default class AmazonAdsController extends Controller implements Controlle
 				await dao.delete(asin);
 				await dao.insert(asin, apiDpUrl, apiTitle, apiBinding, apiPublicationDate, apiImageUrl, apiImageWidth, apiImageHeight, <string[]>requestQuery.category);
 
-				await this.createJson(req, dao, httpBasicCredentials);
+				await this.#createJson(categoryMaster);
 
 				httpResponse.send303(); // 初期画面に遷移
 				return;
@@ -137,18 +130,17 @@ export default class AmazonAdsController extends Controller implements Controlle
 
 			await dao.delete(requestQuery.asin);
 
-			await this.createJson(req, dao, httpBasicCredentials);
+			await this.#createJson(categoryMaster);
 
 			httpResponse.send303(); // 初期画面に遷移
 			return;
 		}
 
 		/* 初期表示 */
-		const categoryMaster = await dao.getCategoryMaster(); // カテゴリー情報
-		const dpList = await dao.getDpList(); // 商品情報
+		const dps = await dao.getDpList(); // 商品情報
 
 		const dpListView: Map<string, AmazonAdsView.Dp[]> = new Map();
-		for (const dp of dpList) {
+		for (const dp of dps) {
 			const categoryName = dp.category_name;
 
 			let imageUrl: string | null = null;
@@ -191,26 +183,61 @@ export default class AmazonAdsController extends Controller implements Controlle
 	/**
 	 * JSON ファイルを出力する
 	 *
-	 * @param {Request} req - Request
-	 * @param {AmazonAdsDao} dao - Dao
-	 * @param {HttpBasicAuthCredentials} httpBasicCredentials - Basic 認証の資格情報
+	 * @param {Set} categoryMaster - カテゴリー情報
 	 */
-	private async createJson(req: Request, dao: AmazonAdsDao, httpBasicCredentials: HttpBasicAuthCredentials): Promise<void> {
-		const urlBase = req.hostname === 'localhost' ? this.#config.json_create.url_base_dev : this.#config.json_create.url_base;
+	async #createJson(categoryMaster: Set<Amazon.CategoryMaster>): Promise<void> {
+		for (const category of categoryMaster) {
+			const fileName = category.json_name;
+			const filePath = `${this.#configCommon.static.root}/${this.#config.json.directory}/${fileName}`;
+			const brotliFilePath = `${filePath}.br`;
 
-		for (const jsonPath of await dao.getJsonPaths()) {
-			const url = `${urlBase}/${jsonPath}`;
-			this.logger.info('Fetch', url);
+			const dao = new AmazonAdsDao(this.#configCommon);
 
-			const response = await fetch(url, {
-				method: 'PUT',
-				headers: {
-					Authorization: `Basic ${Buffer.from(`${httpBasicCredentials.username}:${httpBasicCredentials.password}`).toString('base64')}`,
+			const ads = await dao.getAdsData(fileName);
+			if (ads.size === 0) {
+				this.logger.warn(`No data: ${fileName}`);
+				continue;
+			}
+
+			const jsonData: Set<AmazonAdsView.Json> = new Set();
+			for (const ad of ads) {
+				const jsonColumn: AmazonAdsView.Json = {
+					a: ad.asin,
+					t: ad.title,
+				};
+
+				if (ad.binding !== null) {
+					jsonColumn.b = ad.binding;
+				}
+				if (ad.date !== null) {
+					jsonColumn.d = ad.date.getTime();
+				}
+				if (ad.image_url !== null) {
+					jsonColumn.i = ad.image_url;
+				}
+				if (ad.image_width !== null) {
+					jsonColumn.w = ad.image_width;
+				}
+				if (ad.image_height !== null) {
+					jsonColumn.h = ad.image_height;
+				}
+
+				jsonData.add(jsonColumn);
+			}
+
+			const json = JSON.stringify(Array.from(jsonData));
+
+			const jsonBrotli = zlib.brotliCompressSync(json, {
+				params: {
+					[zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+					[zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
+					[zlib.constants.BROTLI_PARAM_SIZE_HINT]: json.length,
 				},
 			});
-			if (!response.ok) {
-				this.logger.error('Fetch error', url);
-			}
+
+			await Promise.all([fs.promises.writeFile(filePath, json), fs.promises.writeFile(brotliFilePath, jsonBrotli)]);
+			this.logger.info('JSON file created', filePath);
+			this.logger.info('JSON Brotli file created', brotliFilePath);
 		}
 	}
 }
