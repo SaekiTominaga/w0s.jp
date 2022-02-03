@@ -1,12 +1,12 @@
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import dayjs from 'dayjs';
 import fs from 'fs';
 import MadokaOfficialNewsMonthDao from '../dao/MadokaOfficialNewsMonthDao.js';
+import RequestUtil from '../util/RequestUtil.js';
+import { Dayjs } from 'dayjs';
 import { NoName as Configure } from '../../configure/type/madoka-official-news';
 import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common';
-import { MadokaOfficialNewsMonthRequest } from '../../@types/madoka-official-news.js';
 
 /**
  * まどか☆マギカ・公式サイトニュース 月ごとのページ
@@ -30,8 +30,8 @@ export default class MadokaOfficialNewsMonthController extends Controller implem
 	 * @param {Response} res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
-		const requestQuery: MadokaOfficialNewsMonthRequest.PageQuery = {
-			month: dayjs(new Date(Number((<string>req.params.month).substring(0, 4)), Number((<string>req.params.month).substring(5, 7)) - 1)),
+		const requestQuery: MadokaOfficialNewsMonthRequest.Month = {
+			month: <Dayjs>RequestUtil.dateYYYYMM(req.params.month),
 		};
 
 		const dao = new MadokaOfficialNewsMonthDao(this.#configCommon);

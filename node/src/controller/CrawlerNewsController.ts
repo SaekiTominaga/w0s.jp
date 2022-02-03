@@ -1,11 +1,12 @@
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import CrawlerNewsDao from '../dao/CrawlerNewsDao.js';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
+import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/crawler-news';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { Request, Response } from 'express';
-import CrawlerNewsDao from '../dao/CrawlerNewsDao.js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * ウェブ巡回（ニュース）
@@ -31,19 +32,19 @@ export default class CrawlerNewsController extends Controller implements Control
 	async execute(req: Request, res: Response): Promise<void> {
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
-		const requestQuery: CrawlerNewsRequest.PageQuery = {
-			url: req.query.url ?? req.body.url ?? null,
-			title: req.body.title ?? null,
-			category: req.body.category !== undefined ? Number(req.body.category) : null,
-			priority: req.body.priority !== undefined ? Number(req.body.priority) : null,
-			browser: Boolean(req.body.browser),
-			selector_wrap: req.body.selectorwrap ?? null,
-			selector_date: req.body.selectordate ?? null,
-			selector_content: req.body.selectorcontent ?? null,
-			action_add: Boolean(req.body.actionadd),
-			action_revise: Boolean(req.body.actionrev),
-			action_revise_preview: Boolean(req.query.actionrevpre),
-			action_delete: Boolean(req.body.actiondel),
+		const requestQuery: CrawlerNewsRequest.Index = {
+			url: RequestUtil.string(req.query.url ?? req.body.url),
+			title: RequestUtil.string(req.body.title),
+			category: RequestUtil.number(req.body.category),
+			priority: RequestUtil.number(req.body.priority),
+			browser: RequestUtil.boolean(req.body.browser),
+			selector_wrap: RequestUtil.string(req.body.selectorwrap),
+			selector_date: RequestUtil.string(req.body.selectordate),
+			selector_content: RequestUtil.string(req.body.selectorcontent),
+			action_add: RequestUtil.boolean(req.body.actionadd),
+			action_revise: RequestUtil.boolean(req.body.actionrev),
+			action_revise_preview: RequestUtil.boolean(req.query.actionrevpre),
+			action_delete: RequestUtil.boolean(req.body.actiondel),
 		};
 
 		const dao = new CrawlerNewsDao(this.#configCommon);

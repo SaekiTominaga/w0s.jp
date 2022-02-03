@@ -9,6 +9,7 @@ import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
 import PaapiUtil from '../util/Paapi.js';
+import RequestUtil from '../util/RequestUtil.js';
 import zlib from 'zlib';
 import { Amazon as Configure } from '../../configure/type/amazon-ads';
 import { GetItemsResponse } from 'paapi5-typescript-sdk';
@@ -40,11 +41,11 @@ export default class AmazonAdsController extends Controller implements Controlle
 	async execute(req: Request, res: Response): Promise<void> {
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
-		const requestQuery: AmazonAdsRequest.InputQuery = {
-			asin: req.body.asin ?? null,
-			category: req.body.category ?? null,
-			action_add: Boolean(req.body.actionadd),
-			action_delete: Boolean(req.body.actiondel),
+		const requestQuery: AmazonAdsRequest.Index = {
+			asin: RequestUtil.string(req.body.asin),
+			category: RequestUtil.strings(req.body.category),
+			action_add: RequestUtil.boolean(req.body.actionadd),
+			action_delete: RequestUtil.boolean(req.body.actiondel),
 		};
 
 		const validator = new AmazonAdsValidator(req, this.#config);

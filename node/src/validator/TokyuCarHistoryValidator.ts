@@ -24,20 +24,11 @@ export default class TokyuCarHistoryValidator {
 	 * @returns {Result<ValidationError>} 検証エラー
 	 */
 	async search(): Promise<Result<ValidationError>> {
-		await query('num')
-			.matches(new RegExp(this.#config.validator.number.regexp, 'i'))
-			.withMessage(this.#config.validator.number.message.format)
-			.run(this.#req);
-		await query('res')
-			.optional({ checkFalsy: true })
-			.isDate()
-			.withMessage(this.#config.validator.register_start.message.format)
-			.run(this.#req);
-		await query('ree')
-			.optional({ checkFalsy: true })
-			.isDate()
-			.withMessage(this.#config.validator.register_end.message.format)
-			.run(this.#req);
+		await Promise.all([
+			query('num').matches(new RegExp(this.#config.validator.number.regexp, 'i')).withMessage(this.#config.validator.number.message.format).run(this.#req),
+			query('res').optional({ checkFalsy: true }).isDate().withMessage(this.#config.validator.register_start.message.format).run(this.#req),
+			query('ree').optional({ checkFalsy: true }).isDate().withMessage(this.#config.validator.register_end.message.format).run(this.#req),
+		]);
 
 		return validationResult(this.#req);
 	}
