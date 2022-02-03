@@ -1,11 +1,12 @@
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import CrawlerNewsDataDao from '../dao/CrawlerNewsDataDao.js';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
+import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/crawler-news';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { Request, Response } from 'express';
-import CrawlerNewsDataDao from '../dao/CrawlerNewsDataDao.js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * ウェブ巡回（ニュース）
@@ -31,10 +32,10 @@ export default class CrawlerNewsDataController extends Controller implements Con
 	async execute(req: Request, res: Response): Promise<void> {
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
-		const requestQuery: CrawlerNewsRequest.DataQuery = {
-			url: req.query.url ?? req.body.url ?? null,
-			id: req.body.id ?? null,
-			action_delete: Boolean(req.body.actiondel),
+		const requestQuery: CrawlerNewsRequest.Data = {
+			url: RequestUtil.string(req.query.url ?? req.body.url),
+			id: RequestUtil.string(req.body.id),
+			action_delete: RequestUtil.boolean(req.body.actiondel),
 		};
 
 		const dao = new CrawlerNewsDataDao(this.#configCommon);

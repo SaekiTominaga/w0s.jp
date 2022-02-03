@@ -2,12 +2,13 @@ import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
 import fs from 'fs';
+import RequestUtil from '../util/RequestUtil.js';
 import TokyuCarHistoryDao from '../dao/TokyuCarHistoryDao.js';
 import TokyuCarHistoryValidator from '../validator/TokyuCarHistoryValidator.js';
 import { NoName as Configure } from '../../configure/type/tokyu-car-history';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * 東急電車形態研究・車歴表
@@ -31,15 +32,15 @@ export default class TokyuCarHistoryController extends Controller implements Con
 	 * @param {Response} res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
-		const requestQuery: TokyuCarHistoryRequest.Query = {
-			number: <string>req.query.num ?? null,
-			number_old: Boolean(req.query.old),
-			series: <string[]>req.query.ser ?? null,
-			register_start: <string>req.query.res ?? null,
-			register_end: <string>req.query.ree ?? null,
-			sort: <string>req.query.srt ?? null,
-			era: <string>req.query.era ?? null,
-			output: <string>req.query.out ?? null,
+		const requestQuery: TokyuCarHistoryRequest.Search = {
+			number: RequestUtil.string(req.query.num),
+			number_old: RequestUtil.boolean(req.query.old),
+			series: RequestUtil.strings(req.query.ser),
+			register_start: RequestUtil.string(req.query.res),
+			register_end: RequestUtil.string(req.query.ree),
+			sort: RequestUtil.string(req.query.srt),
+			era: RequestUtil.string(req.query.era),
+			output: RequestUtil.string(req.query.out),
 		};
 
 		const validator = new TokyuCarHistoryValidator(req, this.#config);
@@ -124,7 +125,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 	 *
 	 * @returns {string} 整形後の日付データ
 	 */
-	private dateFormat(date: Date, requestQuery: TokyuCarHistoryRequest.Query): string {
+	private dateFormat(date: Date, requestQuery: TokyuCarHistoryRequest.Search): string {
 		switch (requestQuery.era) {
 			case 'ja':
 				/* 和暦 */

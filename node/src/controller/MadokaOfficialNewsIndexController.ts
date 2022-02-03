@@ -3,9 +3,10 @@ import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import MadokaOfficialNewsIndexDao from '../dao/MadokaOfficialNewsIndexDao.js';
+import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/madoka-official-news';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { Request, Response } from 'express';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * まどか☆マギカ・公式サイトニュース index ページ
@@ -29,10 +30,14 @@ export default class MadokaOfficialNewsIndexController extends Controller implem
 	 * @param {Response} res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
+		const requestQuery: MadokaOfficialNewsMonthRequest.Index = {
+			month: RequestUtil.string(req.query.month),
+		};
+
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
-		if (req.query.month !== undefined && typeof req.query.month === 'string') {
-			httpResponse.send301(req.query.month);
+		if (requestQuery.month !== null) {
+			httpResponse.send301(requestQuery.month);
 			return;
 		}
 

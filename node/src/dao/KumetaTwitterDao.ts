@@ -1,26 +1,7 @@
 import * as sqlite from 'sqlite';
 import sqlite3 from 'sqlite3';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { W0SJp as Configure } from '../../configure/type/common';
-
-interface Account {
-	account: string;
-	name: string;
-	location: string | null;
-	description: string | null;
-	url: string | null;
-	created: Dayjs;
-}
-
-interface ProfileImage {
-	regist_date: Dayjs;
-	file_name: string | null;
-}
-
-interface Banner {
-	regist_date: Dayjs;
-	file_name: string | null;
-}
 
 /**
  * 久米田康治 Twitter
@@ -66,9 +47,9 @@ export default class KumetaTwitterDao {
 	 *
 	 * @param {string} id - Twitter ID
 	 *
-	 * @returns {Account | null} Twitter アカウント情報
+	 * @returns {Object} Twitter アカウント情報
 	 */
-	async getAccountData(id: string): Promise<Account | null> {
+	async getAccountData(id: string): Promise<KumetaTwitterView.Account | null> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -110,9 +91,9 @@ export default class KumetaTwitterDao {
 	 *
 	 * @param {string} id - Twitter ID
 	 *
-	 * @returns {ProfileImage[]} アイコン履歴情報
+	 * @returns {Object[]} アイコン履歴情報
 	 */
-	async getProfileImages(id: string): Promise<ProfileImage[]> {
+	async getProfileImages(id: string): Promise<KumetaTwitterView.ProfileImage[]> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -135,7 +116,7 @@ export default class KumetaTwitterDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const profileImages: ProfileImage[] = [];
+		const profileImages: KumetaTwitterView.ProfileImage[] = [];
 		for (const row of rows) {
 			profileImages.push({
 				regist_date: dayjs.unix(row.regist_date),
@@ -151,9 +132,9 @@ export default class KumetaTwitterDao {
 	 *
 	 * @param {string} id - Twitter ID
 	 *
-	 * @returns {Banner[]} バナー履歴情報
+	 * @returns {Object[]} バナー履歴情報
 	 */
-	async getBanners(id: string): Promise<Banner[]> {
+	async getBanners(id: string): Promise<KumetaTwitterView.Banner[]> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -176,7 +157,7 @@ export default class KumetaTwitterDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const banner: Banner[] = [];
+		const banner: KumetaTwitterView.Banner[] = [];
 		for (const row of rows) {
 			banner.push({
 				regist_date: dayjs.unix(row.regist_date),

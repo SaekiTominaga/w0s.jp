@@ -3,9 +3,10 @@ import ControllerInterface from '../ControllerInterface.js';
 import CrawlerResourceDao from '../dao/CrawlerResourceDao.js';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
+import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/crawler-resource';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { Request, Response } from 'express';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * ウェブ巡回（リソース）
@@ -31,17 +32,17 @@ export default class CrawlerResourceController extends Controller implements Con
 	async execute(req: Request, res: Response): Promise<void> {
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
-		const requestQuery: CrawlerResourceRequest.PageQuery = {
-			url: req.query.url ?? req.body.url ?? null,
-			title: req.body.title ?? null,
-			category: req.body.category !== undefined ? Number(req.body.category) : null,
-			priority: req.body.priority !== undefined ? Number(req.body.priority) : null,
-			browser: Boolean(req.body.browser),
-			selector: req.body.selector ?? null,
-			action_add: Boolean(req.body.actionadd),
-			action_revise: Boolean(req.body.actionrev),
-			action_revise_preview: Boolean(req.query.actionrevpre),
-			action_delete: Boolean(req.body.actiondel),
+		const requestQuery: CrawlerResourceRequest.Index = {
+			url: RequestUtil.string(req.query.url ?? req.body.url),
+			title: RequestUtil.string(req.body.title),
+			category: RequestUtil.number(req.body.category),
+			priority: RequestUtil.number(req.body.priority),
+			browser: RequestUtil.boolean(req.body.browser),
+			selector: RequestUtil.string(req.body.selector),
+			action_add: RequestUtil.boolean(req.body.actionadd),
+			action_revise: RequestUtil.boolean(req.body.actionrev),
+			action_revise_preview: RequestUtil.boolean(req.query.actionrevpre),
+			action_delete: RequestUtil.boolean(req.body.actiondel),
 		};
 
 		const dao = new CrawlerResourceDao(this.#configCommon);

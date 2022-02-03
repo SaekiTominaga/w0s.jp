@@ -4,6 +4,7 @@ import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
 import { NoName as Configure } from '../../configure/type/contact';
 import { Request, Response } from 'express';
+import RequestUtil from '../util/RequestUtil.js';
 
 /**
  * 問い合わせ・完了
@@ -22,8 +23,8 @@ export default class ContactCompletedController extends Controller implements Co
 	 * @param {Response} res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
-		const requestQuery: ContactRequest.CompletedQuery = {
-			referrer: <string>req.query.referrer ?? null,
+		const requestQuery: ContactRequest.Completed = {
+			referrer: RequestUtil.string(req.query.referrer),
 		};
 
 		const validator = new ContactValidator(req, this.#config);

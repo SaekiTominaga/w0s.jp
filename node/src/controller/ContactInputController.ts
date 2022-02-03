@@ -34,7 +34,7 @@ export default class ContactInputController extends Controller implements Contro
 			}
 		}
 
-		const requestQuery: ContactRequest.InputQuery = {
+		const requestQuery: ContactRequest.Input = {
 			name: null,
 			email: null,
 			reply: null,

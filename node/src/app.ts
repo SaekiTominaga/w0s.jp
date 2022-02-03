@@ -321,7 +321,7 @@ app.get('/madoka/official/news/', async (req, res, next) => {
 		next(e);
 	}
 });
-app.get('/madoka/official/news/:month', async (req, res, next) => {
+app.get('/madoka/official/news/:month(20\\d{2}-[0-1]\\d)', async (req, res, next) => {
 	try {
 		await new MadokaOfficialNewsMonthController(config).execute(req, res);
 	} catch (e) {

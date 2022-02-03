@@ -9,6 +9,7 @@ import { NoName as Configure } from '../../configure/type/contact';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
+import RequestUtil from '../util/RequestUtil.js';
 
 /**
  * 問い合わせ・送信
@@ -32,13 +33,13 @@ export default class ContactSendController extends Controller implements Control
 	 * @param {Response} res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
-		const requestQuery: ContactRequest.InputQuery = {
-			name: req.body.yourname ?? null,
-			email: req.body.email ?? null,
-			reply: req.body.reply ?? null,
-			body: req.body.body ?? null,
-			referrer: req.body.referrer ?? null,
-			action_send: Boolean(req.body.actionsend),
+		const requestQuery: ContactRequest.Input = {
+			name: RequestUtil.string(req.body.yourname),
+			email: RequestUtil.string(req.body.email),
+			reply: RequestUtil.string(req.body.reply),
+			body: RequestUtil.string(req.body.body),
+			referrer: RequestUtil.string(req.body.referrer),
+			action_send: RequestUtil.boolean(req.body.actionsend),
 		};
 
 		const validator = new ContactValidator(req, this.#config);
@@ -78,7 +79,7 @@ export default class ContactSendController extends Controller implements Control
 	 * @param {Request} req - Request
 	 * @param {object} requestQuery - URL クエリー情報
 	 */
-	private async sendMail(req: Request, requestQuery: ContactRequest.InputQuery): Promise<void> {
+	private async sendMail(req: Request, requestQuery: ContactRequest.Input): Promise<void> {
 		const html = await ejs.renderFile(`${this.#configCommon.views}/${this.#config.view.mail}`, {
 			page: {
 				query: requestQuery,

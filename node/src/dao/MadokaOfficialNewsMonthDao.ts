@@ -2,22 +2,6 @@ import DbUtil from '../util/DbUtil.js';
 import MadokaOfficialNewsDao from './MadokaOfficialNewsDao.js';
 import dayjs, { Dayjs } from 'dayjs';
 
-interface NewsMovie {
-	id: string;
-	date: Dayjs | null;
-	title: string;
-	message: string;
-	image_file_name: string[];
-}
-
-interface NewsTv {
-	id: string;
-	date: Dayjs | null;
-	title: string;
-	description: string;
-	image_file_name: string[];
-}
-
 /**
  * まどか☆マギカ・公式サイトニュース 月ごとのページ
  */
@@ -29,7 +13,7 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 	 *
 	 * @returns {NewsMovie[]} 指定された月のニュース記事
 	 */
-	async getNewsListMovie(month: Dayjs): Promise<NewsMovie[]> {
+	async getNewsListMovie(month: Dayjs): Promise<MadokaOfficialNewsView.NewsMovie[]> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -54,7 +38,7 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const newsList: NewsMovie[] = [];
+		const newsList: MadokaOfficialNewsView.NewsMovie[] = [];
 		for (const row of rows) {
 			newsList.push({
 				id: row.id,
@@ -75,7 +59,7 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 	 *
 	 * @returns {NewsTv[]} 指定された月のニュース記事
 	 */
-	async getNewsListTv(month: Dayjs): Promise<NewsTv[]> {
+	async getNewsListTv(month: Dayjs): Promise<MadokaOfficialNewsView.NewsTv[]> {
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -100,7 +84,7 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 		const rows = await sth.all();
 		await sth.finalize();
 
-		const newsList: NewsTv[] = [];
+		const newsList: MadokaOfficialNewsView.NewsTv[] = [];
 		for (const row of rows) {
 			newsList.push({
 				id: row.id,
