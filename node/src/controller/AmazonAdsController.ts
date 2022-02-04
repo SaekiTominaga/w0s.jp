@@ -189,7 +189,7 @@ export default class AmazonAdsController extends Controller implements Controlle
 	async #createJson(categoryMaster: Set<Amazon.CategoryMaster>): Promise<void> {
 		for (const category of categoryMaster) {
 			const fileName = category.json_name;
-			const filePath = `${this.#configCommon.static.root}/${this.#config.json.directory}/${fileName}`;
+			const filePath = `${this.#configCommon.static.root}/${this.#config.json.directory}/${fileName}.${this.#config.json.extension}`;
 			const brotliFilePath = `${filePath}.br`;
 
 			const dao = new AmazonAdsDao(this.#configCommon);
