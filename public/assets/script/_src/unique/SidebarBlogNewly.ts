@@ -20,11 +20,13 @@ export default class {
 	 * 初期処理
 	 */
 	async init(): Promise<void> {
+		const jsonName = (<HTMLMetaElement | null>document.querySelector('meta[name="w0s:blog:newly"]'))?.content;
+
 		/* エンドポイントから JSON ファイルを取得する */
-		const dataList: BlogNewlyJson[] = await this._fetch();
+		const dataList: BlogNewlyJson[] = await this.fetch(jsonName);
 
 		/* 取得したデータを HTML ページ内に挿入する */
-		this._insert(dataList);
+		this.insert(dataList);
 
 		/* 直近の祖先要素の hidden 状態を解除する */
 		const ancestorHiddenElement = <HTMLElement | null>this.#templateElement.closest('[hidden]');
@@ -36,10 +38,12 @@ export default class {
 	/**
 	 * エンドポイントから JSON ファイルを取得する
 	 *
+	 * @param {string} jsonName - 取得する JSON の名前
+	 *
 	 * @returns {object[]} 日記エントリーのデータ
 	 */
-	private async _fetch(): Promise<BlogNewlyJson[]> {
-		const response = await fetch('https://blog.w0s.jp/json/newly.json');
+	private async fetch(jsonName?: string): Promise<BlogNewlyJson[]> {
+		const response = await fetch(`https://blog.w0s.jp/json/newly${jsonName !== undefined ? `_${jsonName}` : ''}.json`);
 		if (!response.ok) {
 			throw new Error(`"${response.url}" is ${response.status} ${response.statusText}`);
 		}
@@ -52,7 +56,7 @@ export default class {
 	 *
 	 * @param {object[]} entryList - 日記エントリーのデータ
 	 */
-	private _insert(entryList: BlogNewlyJson[]): void {
+	private insert(entryList: BlogNewlyJson[]): void {
 		const fragment = document.createDocumentFragment();
 
 		for (const entry of entryList) {
