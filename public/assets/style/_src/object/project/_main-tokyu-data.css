@@ -10,7 +10,6 @@
 	--_text-align: start;
 
 	width: 100%;
-	font-weight: var(--_font-weight);
 	line-height: var(--line-height-narrow);
 
 	& > :is(thead + tbody, tbody + tbody) {
@@ -43,31 +42,38 @@
 /* ===== 編成表 ===== */
 .p-tokyu-form {
 	border-collapse: collapse;
+	line-height: var(--line-height-narrow);
 
 	& :is(td, th) {
-		padding: 0.25em;
 		font-weight: var(--font-weight-normal);
-		text-align: center;
-		line-height: var(--line-height-narrow);
 	}
 
-	& tbody {
+	& > thead {
+		& th {
+			padding: 0 0.25em 0.5em;
+			text-align: center;
+		}
+	}
+
+	& > tbody {
 		& :is(td, th) {
 			border: 1px solid;
 		}
 
 		& th {
+			padding: 0.5em 0.25em;
 			background: var(--color-bg-light);
 			text-align: start;
 			white-space: nowrap;
 		}
 
 		& td {
-			padding: 0.25em 0;
+			padding: 0.5em 0;
 			width: 8em;
 			color: var(--color-black);
 			background: var(--color-white);
 			font-size: calc(100% / var(--font-ratio-2));
+			text-align: center;
 		}
 	}
 }
