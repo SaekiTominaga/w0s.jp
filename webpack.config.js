@@ -10,7 +10,6 @@ export default {
 		'w0s.mjs': './public/assets/script/_src/w0s.ts',
 		'error.mjs': './public/assets/script/_src/error.ts',
 		'contact.mjs': './public/assets/script/_src/contact.ts',
-		'technology.mjs': './public/assets/script/_src/technology.ts',
 		'tokyu_car_history.mjs': './public/assets/script/_src/tokyu_car_history.ts',
 	},
 	mode: 'production',

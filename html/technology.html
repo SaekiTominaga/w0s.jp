@@ -12,7 +12,6 @@
 
 		<script src="/assets/script/trusted-types.js"></script>
 		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="/assets/script/technology.mjs" type="module"></script>
 		<script src="https://www.googletagmanager.com/gtag/js?id=G-SZYWFCF4JS" defer=""></script>
 		<script src="/assets/script/google-analytics.js" defer=""></script>
 	</head>
@@ -28,18 +27,19 @@
 
 					<div class="p-title">
 						<h1 itemprop="name">当サイトの Web 技術</h1>
-						<p class="p-title__update"><span itemprop="dateModified" class="htmlbuild-datetime">2021年4月21日</span>更新</p>
+						<p class="p-title__update"><span itemprop="dateModified" class="htmlbuild-datetime">2022年2月6日</span>更新</p>
 					</div>
 
 					<ol class="p-toc" aria-label="目次">
 						<li><a href="#notice">おことわり</a></li>
 						<li><a href="#history">歴史</a></li>
-						<li><a href="#synthetic">全体</a></li>
+						<li><a href="#server">サーバー構成</a></li>
 						<li><a href="#html">HTML</a></li>
 						<li><a href="#style">スタイルシート（CSS）</a></li>
 						<li><a href="#script">スクリプト（JavaScript）</a></li>
-						<li><a href="#image">画像</a></li>
-						<li><a href="#compress">圧縮（Brotli）</a></li>
+						<li><a href="#bitmap">ビットマップ画像（JPEG, PNG）</a></li>
+						<li><a href="#vector">ベクター画像（SVG）</a></li>
+						<li><a href="#compress">圧縮</a></li>
 						<li><a href="#csp">CSP</a></li>
 					</ol>
 				</div>
@@ -51,10 +51,7 @@
 
 						<ul class="p-list">
 							<li>
-								<p>
-									ここで記載していることはすべて
-									<code class="c-code">w0s.jp</code> ドメインで公開しているコンテンツに関することである。サブドメインのコンテンツは状況が異なる部分も多い。
-								</p>
+								<p>ここで記載していることは特記のない限り <code class="c-code">w0s.jp</code> ドメインで公開しているコンテンツに関する情報である。サブドメインは状況が異なる部分も多い。</p>
 							</li>
 							<li>
 								<p>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい変更は度々実施しているが、本ドキュメントはそれらに追従できるとは限らない。実際の状況と異なる部分もあるかもしれないが、細かい点はご容赦いただきたい。</p>
@@ -68,7 +65,7 @@
 						</div>
 
 						<dl class="p-list-description">
-							<dt>2001年2月</dt>
+							<dt><span class="htmlbuild-datetime">2001年2月</span></dt>
 							<dd>
 								<p>
 									前身のサイトを開設。
@@ -77,7 +74,9 @@
 									<code class="c-code">tokyo.cool.ne.jp</code>）。
 								</p>
 							</dd>
-							<dt>2001年6月<!-- 1日 --></dt>
+							<dt>
+								<span class="htmlbuild-datetime">2001年6月<!-- 1日 --></span>
+							</dt>
 							<dd>
 								<p>
 									掲載写真の増大により容量面で厳しくなり、
@@ -85,25 +84,30 @@
 									に移転（容量50MB）。 URL は <code class="c-code">http://users.goo.ne.jp/{userID}</code> だが、 IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。
 								</p>
 							</dd>
-							<dt>2002年3月<!-- 26日 --></dt>
+							<dt>
+								<span class="htmlbuild-datetime">2002年3月<!-- 26日 --></span>
+							</dt>
 							<dd>
 								<p>
-									<a href="http://www.nurs.or.jp/" class="htmlbuild-domain">ネットワーク利用技術研究会（NURS）</a>
+									<a href="http://www.nurs.or.jp/" class="htmlbuild-domain">ネットワーク利用技術研究会</a>
 									に移転。レンタルサーバーではなく研究・実験目的のサーバーであり、 telnet が制限なしに使えたので、 root 権限が必要なこと以外は割となんでもできた。
 								</p>
 							</dd>
-							<dt>2012年2月<!-- 12日 --></dt>
+							<dt>
+								<span class="htmlbuild-datetime">2012年2月<!-- 12日 --></span>
+							</dt>
 							<dd>
 								<p>
-									NURS はドメインが全ユーザー共通であり（サブドメインで分ける方式ではなかった）、 Cookie の導入がセキュリティ上の理由で躊躇われることから
-									<a href="https://www.inetd.co.jp/" class="htmlbuild-domain">アイネットディー（inetd）</a>
-									に移転したうえで独自ドメインを取得。月額 ¥270 の格安サーバーにしては cron の制限が緩いのがありがたかった。
+									NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、 Cookie の導入がセキュリティ上の理由<sup class="c-annotate"><a href="#fn1" id="nt1" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[1]</a></sup
+									>で躊躇われることから
+									<a href="https://www.inetd.co.jp/" class="htmlbuild-domain">アイネットディー</a>
+									に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては cron の制限が緩いのがありがたかった。
 								</p>
 							</dd>
-							<dt>2017年1月</dt>
+							<dt><span class="htmlbuild-datetime">2017年1月</span></dt>
 							<dd>
 								<p>
-									常時 TLS の波に乗り、 <a href="https://vps.sakura.ad.jp/" class="htmlbuild-domain">さくらのVPS</a> に移転。
+									常時 TLS の波に乗り<a href="https://vps.sakura.ad.jp/" class="htmlbuild-domain">さくらの VPS</a> に移転。
 									<a href="https://letsencrypt.org/" class="htmlbuild-domain">Let's Encrypt</a>
 									を利用して TLS 対応を行う。
 								</p>
@@ -111,16 +115,82 @@
 						</dl>
 					</section>
 
-					<section class="p-section -hdg-a" id="synthetic">
+					<section class="p-section -hdg-a" id="server">
 						<div class="p-section__hdg">
-							<h2>全体</h2>
+							<h2>サーバー構成</h2>
 						</div>
 
-						<ul class="p-list">
-							<li><p>HTML, CSS, JavaScript はエディターで手書き &amp; FTP ソフトでアップという昔ながらのやり方。</p></li>
-							<li>
-								<p>ファイル管理は Git を使っているが、外部サービスのシークレットキーなどが書かれたファイルも含まれているので、今のところ非公開リポジトリにしている。いずれ切り分けて、公開できるものは公開したい。</p>
-							</li>
+						<dl class="p-list-description">
+							<dt>サーバー</dt>
+							<dd><a href="https://httpd.apache.org/" class="htmlbuild-domain">Apache HTTP Server</a></dd>
+							<dt>アプリケーション</dt>
+							<dd><a href="https://nodejs.org/" class="htmlbuild-domain">Node.js</a></dd>
+							<dt>フレームワーク</dt>
+							<dd><a href="https://expressjs.com/" class="htmlbuild-domain">Express</a></dd>
+							<dt>プロセス・マネージャー</dt>
+							<dd><a href="https://pm2.keymetrics.io/" class="htmlbuild-domain">PM2</a></dd>
+							<dt>データベース (RDBMS)</dt>
+							<dd><a href="https://sqlite.org/" class="htmlbuild-domain">SQLite</a></dd>
+						</dl>
+
+						<table class="p-table">
+							<caption>
+								ドメイン一覧
+							</caption>
+							<thead>
+								<tr>
+									<th scope="col">ドメイン</th>
+									<th scope="col">用途</th>
+									<th scope="col">備考</th>
+									<th scope="col">ソースコード</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="https://w0s.jp/">w0s.jp</a></td>
+									<td>個人サイト</td>
+									<td></td>
+									<td class="u-cell -center">
+										<a href="https://github.com/SaekiTominaga/w0s.jp"><img src="/assets//image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+									</td>
+								</tr>
+								<tr>
+									<td><a href="https://blog.w0s.jp/">blog.w0s.jp</a></td>
+									<td>ブログ</td>
+									<td></td>
+									<td class="u-cell -center">
+										<a href="https://github.com/SaekiTominaga/blog.w0s.jp"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+									</td>
+								</tr>
+								<tr>
+									<td><a href="https://media.w0s.jp/" hreflang="en">media.w0s.jp</a></td>
+									<td>画像、動画、音声</td>
+									<td>画像は URL パラメーターによりサイズや画質を指定して動的生成可能</td>
+									<td class="u-cell -center">
+										<a href="https://github.com/SaekiTominaga/media.w0s.jp"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+									</td>
+								</tr>
+								<tr>
+									<td><a href="https://report.w0s.jp/" hreflang="en">report.w0s.jp</a></td>
+									<td>エラーレポートの収集</td>
+									<td></td>
+									<td class="u-cell -center">
+										<a href="https://github.com/SaekiTominaga/report.w0s.jp"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+									</td>
+								</tr>
+								<tr>
+									<td><a href="https://labs.w0s.jp/" hreflang="en">labs.w0s.jp</a></td>
+									<td>Web 技術の遊び場</td>
+									<td>HTTP でもアクセス可</td>
+									<td class="u-cell -center">
+										<a href="https://github.com/SaekiTominaga/labs.w0s.jp"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<ul class="p-notes">
+							<li>他に slide.w0s.jp もあるが、ほとんど活用していないのであえてリンクは張らない。</li>
 						</ul>
 					</section>
 
@@ -135,53 +205,32 @@
 							</figcaption>
 							<div class="p-code">
 								<pre class="p-code__code">
-├─ html
-│	└─ *.html
-└─ w0s.jp /* DocumentRoot */
-		├─ *.html
-		├─ *.min.html
-		└─ *.min.html.br
+├ html
+│└ *.html
+└ public /* DocumentRoot */
+	├ *.html
+	└ *.html.br
 </pre
 								>
 							</div>
 						</figure>
 
 						<ul class="p-list">
+							<li><p>静的コンテンツは HTML ファイルをエディターで編集している。</p></li>
 							<li>
-								<p><code class="c-code">html</code> ディレクトリ（非公開領域）内の HTML ファイルを自作の Node.js プログラムでビルドし、 DocumentRoot 以下に配置。ビルドの際はページヘッダー、サイドバーなど共通部分を結合した後、以下の3ファイルを出力している。</p>
+								<p><code class="c-code">html</code> ディレクトリ（非公開領域）内の HTML ファイルを自作の Node.js プログラムでビルドし、 DocumentRoot 以下に配置。ビルドの際はページヘッダー、サイドバーなど共通部分を結合した後、以下の2ファイルを出力している。</p>
 								<ul>
 									<li><a href="https://prettier.io/" class="htmlbuild-domain">Prettier</a> でフォーマットしたファイル（e.g. <code class="c-code">index.html</code>）</li>
-									<li><a href="https://github.com/kangax/html-minifier" hreflang="en" class="htmlbuild-domain">html-minifier</a> で最小化したファイル（e.g. <code class="c-code">index.min.html</code>）</li>
-									<li>最小化ファイルを Brotli 圧縮したファイル（e.g. <code class="c-code">index.min.html.br</code>）</li>
+									<li><a href="https://github.com/vajahath/brotlin" class="htmlbuild-domain">vajahath/brotlin</a>で Brotli 圧縮したファイル（e.g. <code class="c-code">index.html.br</code>）</li>
 								</ul>
 							</li>
 							<li>
-								<p>
-									ウェブページの URL に拡張子が含まれるのは好ましくないと考えているので、 Apcahe の設定で拡張子なしの URL でアクセスできるようにしており、その場合は
-									<code class="c-code">*.min.html</code> のファイルが読まれる。
-								</p>
-								<ul>
-									<li>
-										<p>Brotli に対応したブラウザ（Accept-Encoding リクエストヘッダーに <code class="c-code">br</code> が含まれる場合）は、 <code class="c-code">*.min.html.br</code> が読まれる。<a href="#compress">圧縮の詳細</a>については後述する。</p>
-									</li>
-									<li>
-										<p>
-											上記のとおり、最小化されていないファイルも公開領域にアップロードしているので、手動で URL 末尾に
-											<code class="c-code">.html</code> を付けると、人間が目で見やすいソースコードを見ることができる（隠し機能扱い）。
-										</p>
-									</li>
-									<li>
-										<p>ただし、ブログページなどサーバーサイドで動的にレスポンスを出力しているコンテンツは HTML ファイルが存在しないため、 URL に拡張子を付けても意味がなく、「404 Not Found」になる。</p>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<p>以前は <code class="c-code">application/xhtml+xml</code> で配信していたが、 Twitter の埋め込みウィジェット（widgets.js）が動かないなどの外部要因により、やむなく <code class="c-code">text/html</code> に変更している。それに伴い、最小化設定も属性値の引用符を削除するなど XML 構文としては well-formed でないものにしている。</p>
+								<p>MIME は <code class="c-code">text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code class="c-code">application/xhtml+xml</code> で配信していたが、 Google 翻訳（URL 指定）が対応していなかったり、 Twitter の埋め込みウィジェット（widgets.js）が動かなかったりといった外部要因によりデメリットの方が大きくなってきたため、やむなく変更した次第。</p>
 							</li>
 							<li>
 								<p>
-									編集用ファイルは引き続き XML 構文で作成している（e.g.
-									<code class="c-code">&lt;input readonly=""/&gt;</code>）。周辺状況が改善されれば配信ファイルも再び <code class="c-code">application/xhtml+xml</code> に戻すかもしれない（と思い続けて幾年月）。
+									ウェブページの URL に拡張子が含まれるのは好ましくないと考えているので<sup class="c-annotate"><a href="#fn2" id="nt2" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[2]</a></sup
+									>、拡張子なしの URL でアクセスできるようにしている。
 								</p>
 							</li>
 						</ul>
@@ -193,13 +242,14 @@
 
 							<ul class="p-list">
 								<li>
-									<p>ビルドの際、整形や最小化以外にも下記3つの処理を行っている。</p>
+									<p>ビルドの際、整形以外にも下記3つの処理を行っている。</p>
 									<ul>
-										<li>(1) ページヘッダー、サイドバーなど共通部分を結合</li>
-										<li>(2) リンクアンカー直後にドメイン情報を付与</li>
-										<li>(3) <code class="c-code">&lt;time&gt;</code> 要素の datetime 属性を生成</li>
+										<li>ページヘッダー、サイドバーなど共通部分を結合</li>
+										<li>リンクアンカー直後にドメイン情報を付与</li>
+										<li><code class="c-code">&lt;time&gt;</code> 要素の datetime 属性を生成</li>
 									</ul>
 								</li>
+								<li>共通部分の結合には <a href="https://ejs.co/" class="htmlbuild-domain">EJS</a>を使用している。</li>
 								<li>
 									<p>当サイトでは外部サイトへのハイパーリンクのアンカーに対してドメイン名（FQDN）を明記している。 URL から手動でドメイン部分を抜き出すのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-domain</code> を記した <code class="c-code">&lt;a&gt;</code> 要素の href 属性値を解析し、アンカー直後に自動挿入する。</p>
 									<ul>
@@ -209,9 +259,10 @@
 											<code class="c-code">&lt;a href="https://example.com/foo" class="c-anchor"&gt;Link&lt;/a&gt;&lt;b class="c-domain"&gt;(example.com)&lt;/b&gt;&lt;/p&gt;</code>
 										</li>
 									</ul>
+									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/htmlconvert-anchor-host" class="htmlbuild-domain">GitHub で公開</a>している。</p>
 								</li>
 								<li>
-									<p><code class="c-code">&lt;time&gt;</code> 要素の datetime 属性を手動でマークアップするのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-datetime</code> を記した <code class="c-code">&lt;span&gt;</code> 要素の中身（textContent）を解析し、 <code class="c-code">&lt;time&gt;</code> 要素に自動変換する。</p>
+									<p><code class="c-code">&lt;time&gt;</code> 要素の datetime 属性を手動でマークアップするのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-datetime</code> を記した要素の中身を解析し、 <code class="c-code">&lt;time&gt;</code> 要素に自動変換する。</p>
 									<ul>
 										<li>変換前: <code class="c-code">&lt;span class="htmlbuild-datetime c-date"&gt;2000年1月1日&lt;/span&gt;</code></li>
 										<li>変換後: <code class="c-code">&lt;time datetime="2000-01-01" class="c-date"&gt;2000年1月1日&lt;/time&gt;</code></li>
@@ -220,44 +271,47 @@
 										なお、 datetime 属性が不要なケースや、
 										<code class="c-code">&lt;time datetime="2019-05-01"&gt;令和最初の日&lt;/time&gt;</code> のように機械的な解析が困難なケースは <code class="c-code">&lt;time&gt;</code> 要素を直接マークアップする。
 									</p>
+									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/htmlconvert-time-japanese" class="htmlbuild-domain">GitHub で公開</a>している。</p>
 								</li>
 							</ul>
 						</section>
 
-						<section class="p-section -hdg-c" id="html-errorpage">
+						<section class="p-section -hdg-c" id="html-redirect">
 							<div class="p-section__hdg">
-								<h3>エラーページ</h3>
+								<h3>3xx リダイレクトページ</h3>
+							</div>
+
+							<div class="p-text">
+								<p>URL が変更になった場合は <code class="c-code">301 Moved Permanently</code>、フォームの POST 送信後には <code class="c-code">303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
+								<p>
+									<a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4" hreflang="en" class="htmlbuild-domain">RFC 7231 の 6.4. Redirection 3xx</a>では、ステータスコード 3xx で <code class="c-code">Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として、 <q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent MAY automatically redirect its request to the URI</q> と書かれており（あくまで <em>MAY</em> であることに注目）、実際ユーザーの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<sup class="c-annotate"><a href="#fn3" id="nt3" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[3]</a></sup
+									>。
+								</p>
+								<p>
+									当サイトで使用している Node.js フレームワークの Express では、 <a href="https://expressjs.com/en/4x/api.html#res.redirect" class="htmlbuild-domain"><code>res.redirect()</code></a> メソッドでリダイレクト設定が行われるが、この場合レスポンスボディは <code class="c-code">&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="{{path}}"&gt;{{path}}&lt;/a&gt;&lt;/p&gt;</code> のように、 DOCTYPE や <code class="c-code">&lt;title&gt;</code> 要素のない不正な HTML となってしまう。そのためこの機能は使わず、 <a href="https://expressjs.com/en/4x/api.html#res.send" class="htmlbuild-domain"><code>res.send()</code></a> メソッドにて独自の HTML を返すようにカスタマイズしている。
+								</p>
+							</div>
+						</section>
+
+						<section class="p-section -hdg-c" id="html-clienterror">
+							<div class="p-section__hdg">
+								<h3>4xx クライアントエラーページ</h3>
+							</div>
+
+							<div class="p-text">
+								<p><code class="c-code">403 Forbidden</code> および <code class="c-code">404 Not Found</code> のクライアントエラーページには JavaScript で以下の機能を組み込んでいる。</p>
 							</div>
 
 							<ul class="p-list">
 								<li>
-									<p>Apache がデフォルトで用意しているエラーページは味気ないので、下記に示すレスポンスコードの場合は独自のエラーページを用意している。（※下記リンク先は実際の応答までは再現していないので、いずれも 200 になる。）</p>
-									<ul>
-										<li><a href="/errorpage/401" referrerpolicy="no-referrer">401 Unauthorized</a></li>
-										<li><a href="/errorpage/403" referrerpolicy="no-referrer">403 Forbidden</a></li>
-										<li><a href="/errorpage/404" referrerpolicy="no-referrer">404 Not Found</a></li>
-										<li><a href="/errorpage/405" referrerpolicy="no-referrer">405 Method Not Allowed</a></li>
-										<li><a href="/errorpage/410" referrerpolicy="no-referrer">410 Gone</a></li>
-										<li><a href="/errorpage/500" referrerpolicy="no-referrer">500 Internal Server Error</a></li>
-										<li><a href="/errorpage/503" referrerpolicy="no-referrer">503 Service Unavailable</a></li>
-									</ul>
+									<p>同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが貼られている）は管理者へ通知する。</p>
+									<p>検知プログラムは <a href="https://github.com/SaekiTominaga/report-same-referrer" class="htmlbuild-domain">GitHub で公開</a>している。</p>
 								</li>
 								<li>
-									<p>403, 404, 410 のエラーページには JavaScript で以下の機能を組み込んでいる。</p>
-									<ul>
-										<li>
-											<p>
-												同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが貼られている）は管理者へ通知する。なお、上記リンクアンカーには
-												<code class="c-code">referrerpolicy="no-referrer"</code> を設定しており、例外的に通知は行われない。
-											</p>
-										</li>
-										<li>
-											<p>直近の有効な祖先ディレクトリへのリンクを提示する。（e.g. <code class="c-code">/foo/bar/baz</code> へのリクエストに対し、 <code class="c-code">/foo/bar/baz</code> のレスポンスコードが 404 で <code class="c-code">/foo/bar/</code> が 403、 <code class="c-code">/foo/</code> が 200 の場合、 <code class="c-code">/foo/</code> へのリンクアンカーを提示）</p>
-										</li>
-										<li>
-											<p><a href="https://wicg.github.io/portals/" hreflang="en" class="htmlbuild-domain">&lt;portal&gt; 要素</a>に対応した環境では祖先ディレクトリへの誘導をテキストリンクだけでなく、 <code class="c-code">&lt;portal&gt;</code> を利用した埋め込みも行うことで、遷移前にそのページのイメージが掴めるようにしている。（@see ブログ記事「<a href="https://blog.w0s.jp/588">404ページに &lt;portal&gt; 要素を導入</a>」）</p>
-										</li>
-									</ul>
+									<p>直近の有効な祖先ディレクトリへのリンクを提示する。（e.g. <code class="c-code">/foo/bar/baz</code> へのリクエストに対し、 <code class="c-code">/foo/bar/baz</code> のレスポンスコードが 404 で <code class="c-code">/foo/bar/</code> が 403、 <code class="c-code">/foo/</code> が 200 の場合、 <code class="c-code">/foo/</code> へのリンクアンカーを提示）</p>
+								</li>
+								<li>
+									<p><a href="https://wicg.github.io/portals/" hreflang="en" class="htmlbuild-domain">&lt;portal&gt; 要素</a>に対応した環境では祖先ディレクトリへの誘導をテキストリンクだけでなく、 <code class="c-code">&lt;portal&gt;</code> を利用した埋め込みも行うことで、遷移前にそのページのイメージが掴めるようにしている。（@see ブログ記事: <a href="https://blog.w0s.jp/588">404ページに &lt;portal&gt; 要素を導入</a>）</p>
 								</li>
 							</ul>
 						</section>
@@ -274,14 +328,14 @@
 							</figcaption>
 							<div class="p-code">
 								<pre class="p-code__code">
-└─ w0s.jp /* DocumentRoot */
-		└─ assets
-				├─ _css
-				│	└─ *.css
-				└─ style
-						├─ *.css
-						├─ *.css.br
-						└─ *.css.map
+└ public /* DocumentRoot */
+	└ assets
+		└ style
+			├ _src
+			│└ *.css
+			├ *.css
+			├ *.css.br
+			└ *.css.map
 </pre
 								>
 							</div>
@@ -289,42 +343,39 @@
 
 						<ul class="p-list">
 							<li>
-								<p><code class="c-code">w0s.jp/assets/_css</code> ディレクトリ内の CSS ファイルを <a href="https://postcss.org/" class="htmlbuild-domain">PostCSS</a>でビルドし、 <code class="c-code">w0s.jp/assets/style</code> に配置。ビルドの際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
+								<p><code class="c-code">public/assets/style/_src</code> ディレクトリ内の CSS ファイルを <a href="https://postcss.org/" class="htmlbuild-domain">PostCSS</a>でビルドし、 <code class="c-code">public/assets/style</code> に配置。ビルドの際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
 							</li>
 							<li>
-								<p>PostCSS の導入はブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるブラウザからの読み込みパフォーマンスの向上が目的であり、標準化の見込みのないプラグインは極力使わず、将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</p>
-								<p>現在使っているプラグインは以下の5つ。このうち postcss-apply は仕様策定が破棄されたのでいずれ廃止したい。</p>
+								<p>PostCSS の導入はブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるパフォーマンス向上が目的であり、標準化の見込みのないプラグインは極力使わず、将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</p>
 								<table class="p-table">
+									<caption>
+										使用しているプラグイン
+									</caption>
 									<thead>
 										<tr>
 											<th scope="col">プラグイン</th>
 											<th scope="col">CSS 仕様</th>
-											<th scope="col">W3C プロセス</th>
+											<th scope="col">W3C プロセス（2022年2月現在）</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td><a href="https://github.com/pascalduez/postcss-apply" hreflang="en">postcss-apply</a></td>
-											<td><a href="https://tabatkins.github.io/specs/css-apply-rule/" hreflang="en">CSS @apply Rule</a></td>
-											<td>Unofficial Proposal Draft</td>
+											<td><a href="https://github.com/postcss/postcss-custom-media">postcss-custom-media</a></td>
+											<td><a href="https://www.w3.org/TR/mediaqueries-5/#custom-mq" hreflang="en">Custom Media Queries (Media Queries Level 5)</a></td>
+											<td>Working Draft</td>
 										</tr>
 										<tr>
-											<td><a href="https://github.com/postcss/postcss-custom-media" hreflang="en">postcss-custom-media</a></td>
-											<td><a href="https://drafts.csswg.org/mediaqueries-5/#custom-mq" hreflang="en">Custom Media Queries (Media Queries Level 5)</a></td>
-											<td>Editor’s Draft</td>
-										</tr>
-										<tr>
-											<td><a href="https://github.com/postcss/postcss-import" hreflang="en">postcss-import</a></td>
+											<td><a href="https://github.com/postcss/postcss-import">postcss-import</a></td>
 											<td></td>
 											<td></td>
 										</tr>
 										<tr>
-											<td><a href="https://github.com/jonathantneal/postcss-nesting" hreflang="en">postcss-nesting</a></td>
-											<td><a href="https://drafts.csswg.org/css-nesting-1/" hreflang="en">CSS Nesting Module</a></td>
-											<td>Editor’s Draft</td>
+											<td><a href="https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting">postcss-nesting</a></td>
+											<td><a href="https://www.w3.org/TR/css-nesting-1/" hreflang="en">CSS Nesting Module</a></td>
+											<td>First Public Working Draft</td>
 										</tr>
 										<tr>
-											<td><a href="https://cssnano.co/" hreflang="en">CSSNANO</a></td>
+											<td><a href="https://cssnano.co/">CSSNANO</a></td>
 											<td></td>
 											<td></td>
 										</tr>
@@ -332,7 +383,7 @@
 								</table>
 							</li>
 							<li>
-								<p>ブラウザから読まれる CSS ファイルは上記のとおり <a href="https://cssnano.co/" hreflang="en" class="htmlbuild-domain">CSSNANO</a>を利用した minify 処理を行っているが、 <code class="c-code">SourceMap</code> ヘッダーでソースマップを出力しているため、ブラウザの開発者ツールを使えば元ファイルにアクセスできる。</p>
+								<p>ブラウザから読まれる CSS ファイルは上記のとおり <a href="https://cssnano.co/" class="htmlbuild-domain">CSSNANO</a>を利用した minify 処理を行っているが、 <code class="c-code">SourceMap</code> ヘッダーでソースマップを出力しているため、ブラウザの開発者ツールを使えば元ファイルにアクセスできる。ユーザーが元ファイルにアクセスすることでの不都合は生じないため、本番環境にも元ファイル、ソースマップをアップロードしている。</p>
 							</li>
 						</ul>
 
@@ -343,16 +394,22 @@
 
 							<ul class="p-list">
 								<li>
-									<p>
-										用紙やインクを節約するため、背景色を <code class="c-code">#ffffff</code>
-										にしたり、ヘッダーやフッターを非表示にしたりといった簡易な印刷用スタイルを作成している。
-									</p>
+									<p>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code class="c-code">@print</code> を使って完全な白（<code class="c-code">#ffffff</code>）に設定している。</p>
+								</li>
+							</ul>
+						</section>
+
+						<section class="p-section -hdg-c" id="style-reader">
+							<div class="p-section__hdg">
+								<h3>リーダーモード</h3>
+							</div>
+
+							<ul class="p-list">
+								<li>
+									<p>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダーモードを実装している。</p>
 								</li>
 								<li>
-									<p>以前は <code class="c-code">@print</code> を使っていたが、半強制的に画面表示時と異なる状態で印刷されることが混乱をもたらす可能性を考え、<a href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet" hreflang="en" class="htmlbuild-domain">代替スタイルシート</a>機構を使うようにした。 Firefox ではメニューバーの「表示」-「スタイルシート」から切り替え可能である。 Chrome や Vivaldi でも拡張機能が公開されている。</p>
-								</li>
-								<li>
-									<p>切替機構を持たないブラウザに対しては JavaScript を使って強制適用させるようにしている。（@see ブログ記事「<a href="https://blog.w0s.jp/612">印刷用スタイルを @media print から代替スタイルシートへ変更</a>」）</p>
+									<p>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<a href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet" hreflang="en" class="htmlbuild-domain">代替スタイルシート</a>で任意に適用可能な状態としている。 PC 版 Firefox ではメニューバーの「表示」-「スタイルシート」から切り替え可能である。 Chrome など他ブラウザでも拡張機能が公開されている。</p>
 								</li>
 							</ul>
 						</section>
@@ -369,21 +426,14 @@
 							</figcaption>
 							<div class="p-code">
 								<pre class="p-code__code">
-└─ w0s.jp /* DocumentRoot */
-		└─ assets
-				├─ _js
-				│	├─ *.js
-				│	├─ *.mjs.js
-				├─ _ts
-				│	├─ *.ts
-				│	└─ *.mjs.ts
-				└─ script
-						├─ *.js
-						├─ *.js.br
-						├─ *.js.map
-						├─ *.mjs
-						├─ *.mjs.br
-						└─ *.mjs.map
+└ public /* DocumentRoot */
+	└ assets
+		└ script
+			├ _src
+			│└ *.ts
+			├ *.mjs /* 一部は拡張子が `.js` */
+			├ *.mjs.br
+			└ *.mjs.map
 </pre
 								>
 							</div>
@@ -391,26 +441,17 @@
 
 						<ul class="p-list">
 							<li>
-								<p>ほとんどのスクリプトは module script であり、拡張子を <code class="c-code">*.mjs.ts</code> で作っている。これは最終的に <code class="c-code">*.mjs</code> に変換され、 <code class="c-code">*.js</code> ファイルと区別することができる。</p>
-							</li>
-							<li>
-								<p><code class="c-code">w0s.jp/assets/_ts</code> ディレクトリ内の TypeScript ファイルを <code class="c-code">tsc</code> コマンドで変換して <code class="c-code">w0s.jp/assets/_js</code> ディレクトリ内に生成。</p>
-								<ul>
-									<li><code class="c-code">*.ts</code> → <code class="c-code">*.js</code></li>
-									<li><code class="c-code">*.mjs.ts</code> → <code class="c-code">*.mjs.js</code></li>
-								</ul>
-								<p>その生成を検知して <a href="https://terser.org/" class="htmlbuild-domain">terser</a>で最小化したファイルを <code class="c-code">w0s.jp/assets/script</code> に配置。その際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
-							</li>
-							<li>
-								<p>Apache では拡張子と MIME types の紐付けは mime.types ファイルで定義されているが、 JavaScript 関係は .js のみで .mjs は含まれていない。どちらにせよ文字エンコーディングの指定を行う必要があるため、 .conf ファイルで以下の指定をしている。</p>
-								<p><code class="c-code">AddType "application/javascript; charset=utf-8" .js .mjs</code></p>
-							</li>
-							<li><p>CSS と異なり、ファイルの結合は行っていない。</p></li>
-							<li>
+								<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトが動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。</p>
 								<p>
-									ブラウザから読まれる JavaScript ファイルは上記のとおり minify 処理を行っているが、
-									<code class="c-code">SourceMap</code> ヘッダーでソースマップを出力しているため、ブラウザの開発者ツールを使えば元ファイルにアクセスできる。
+									昨今ではモバイルブラウザも含めてほとんどの閲覧環境が JavaScript に対応しているが、一方でユーザーの環境によって（有効設定であっても）スクリプトが動かないケースは往々にして存在する<sup class="c-annotate"><a href="#fn4" id="nt4" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[1]</a></sup
+									>。当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。
 								</p>
+							</li>
+							<li>
+								<p><code class="c-code">public/assets/script/_src</code> ディレクトリ内の TypeScript ファイルを <a href="https://webpack.js.org/" class="htmlbuild-domain">webpack</a> でビルドし、 <code class="c-code">public/assets/script</code> に配置。 CSS ファイルと同じくビルドの際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
+							</li>
+							<li>
+								<p>外部サービスに関係した機能など一部を除き ES modules で作成しており、本来であれば機能毎に別れたファイルを <code class="c-code">import</code> / <code class="c-code">export</code> を使ってそのままブラウザに読ませることができるが、一時期そのようにしてみたところ HTTP/2 通信下であっても画面描画への影響が体感できるほど大きかったため、現在ではビルド時にファイル結合を行うようにしている。</p>
 							</li>
 						</ul>
 
@@ -421,7 +462,7 @@
 
 							<ul class="p-list">
 								<li>
-									<p>制作したスクリプト機能は Firefox, Chrome 最新版での軽い確認はしているが、きちんとしたテストは行っていない。その代わり、 error イベントを検知して管理者へ通知する機能を組み込んでいる。簡略化したコード例を下記に示す。</p>
+									<p>制作したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、 Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、 <code class="c-code">error</code> イベントを検知し通知する機能を組み込んでいる。簡略化したコード例を下記に示す。</p>
 									<figure>
 										<div class="p-code">
 											<div class="p-code__clipboard">
@@ -445,183 +486,158 @@
 </code></pre>
 										</div>
 									</figure>
+									<p>実際の検知プログラムは <a href="https://github.com/SaekiTominaga/report-js-error" class="htmlbuild-domain">GitHub で公開</a>している。</p>
 								</li>
 								<li>
-									<p>これにより、事前確認が難しい以下のようなケースも後検知することができる。</p>
+									<p>これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。</p>
 									<ul>
-										<li>古いブラウザや検索エンジンのロボットで発生するエラー</li>
-										<li>ブラウザの設定やアドオンに起因するエラー</li>
+										<li>古いブラウザ</li>
+										<li>ブラウザの設定やアドオンに起因するもの</li>
+										<li>検索エンジンのロボットなどブラウザ以外の環境</li>
 									</ul>
 								</li>
 							</ul>
 						</section>
 					</section>
 
-					<section class="p-section -hdg-a" id="image">
+					<section class="p-section -hdg-a" id="bitmap">
 						<div class="p-section__hdg">
-							<h2>画像</h2>
-						</div>
-
-						<div class="p-text">
-							<p>ビットマップ画像とベクター画像で大きく異なるので分けて説明する。</p>
-						</div>
-
-						<section class="p-section -hdg-c" id="image-bitmap">
-							<div class="p-section__hdg">
-								<h3>ビットマップ画像（WebP, JPEG, PNG）</h3>
-							</div>
-
-							<figure>
-								<figcaption class="c-caption">
-									<span class="c-caption__title">ビットマップ画像ファイルの構成図</span>
-								</figcaption>
-								<div class="p-code">
-									<pre class="p-code__code">
-├─ thumbimage
-│	├─ *.jpeg
-│	└─ *.webp
-└─ w0s.jp /* DocumentRoot */
-		├─ *.jpg
-		├─ *.png
-		└─ thumbimage.php
-</pre
-									>
-								</div>
-							</figure>
-
-							<ul class="p-list">
-								<li><p>画像ファイルは Photoshop などの画像編集ソフト（GUI）を使って DocumentRoot 以下に配置。</p></li>
-								<li>
-									<p>
-										DocumentRoot 以下に配置する JPEG ファイルの拡張子は Photoshop のデフォルト動作に合わせて <code class="c-code">.jpg</code> にしている（<code class="c-code">.jpeg</code>
-										ではない）。
-									</p>
-								</li>
-								<li>
-									<p>一部のページを除き、サムネイル画像は自作の <code class="c-code">thumbimage.php</code> による自動生成を行っている。</p>
-									<ul>
-										<li>
-											<p><code class="c-code">/thumbimage/${path};${type};w${width};mh${max-height};q${quality}</code> 形式の URL を <code class="c-code">&lt;img src&gt;</code> 等で埋め込むことで、指定したパラメーターに則りサムネイル画像を生成し、 <code class="c-code">thumbimage</code> ディレクトリ配下に保存する。その際、ファイル名に <code class="c-code">width</code>, <code class="c-code">quality</code> の情報を含めることで（e.g. <code class="c-code">foo@w=360_q=30.webp</code>）、さまざまな横幅、画質のファイルを生成することができる。</p>
-										</li>
-										<li><p>既にサムネイル画像が保存されている場合は、改めての生成処理は行わず、保存済みのファイルを読み取る。</p></li>
-										<li>
-											<p>
-												ユーザーがブラウザのアドレスバーや <code class="c-code">wget</code> コマンド等で各種パラメーターを変更した URL を直接指定した際、本来不要なファイルが無駄に生成されてしまうことを避けるため、<em>画像生成時に限り</em>
-												<code class="c-code">Sec-Fetch-Site</code>
-												リクエストヘッダを参照することで、自サイトからの埋め込み / リンクであるかどうかを判定している。
-											</p>
-										</li>
-										<li>
-											<p>
-												現在、自動生成の画像タイプは WebP と JPEG に対応している。そのため、
-												<code class="c-code">&lt;picture&gt;</code> 要素を使って下記のようなマークアップをすれば、手動で用意する画像ファイルは1つだけで WebP や高画素密度ディスプレイに対応した表示を行うことができる。将来的に AVIF など新しい画像フォーマットを追加する際も、 <code class="c-code">thumbimage.php</code> を改良すれば、マークアップは機械的な置換で済むだろう。
-											</p>
-											<figure>
-												<div class="p-code">
-													<div class="p-code__clipboard">
-														<button type="button" is="w0s-clipboard" data-target-for="image-thumbimage-code" class="p-code__clipboard-button">
-															<img src="/assets/image/copy.svg" alt="コピー" />
-														</button>
-													</div>
-													<pre class="p-code__code"><code id="image-thumbimage-code" class="htmlbuild-highlight">&lt;a href="/foo.jpg" type="image/jpeg"&gt; &lt;!-- この foo.jpg は Photoshop 等の画像編集ソフトで作成 --&gt;
-	&lt;picture&gt;
-		&lt;source type="image/webp"
-			srcset="/thumbimage/foo.jpg;webp;w360;q60, /thumbimage/foo.jpg;webp;w720;q30 2x"/&gt;
-		&lt;img src="/thumbimage/foo.jpg;jpeg;w360;q60"
-			srcset="/thumbimage/foo.jpg;jpeg;w720;q30 2x" alt=""/&gt;
-	&lt;/picture&gt;
-&lt;/a&gt;
-</code></pre>
-												</div>
-											</figure>
-										</li>
-										<li>
-											<p>
-												一般論として GET リクエストでファイルを生成するという副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT を使うべきだろう。これについては
-												<a href="https://tools.ietf.org/html/rfc7231#section-4.2.1" hreflang="en" class="htmlbuild-domain">RFC 7231 の 4.2.1. Safe Methods</a>
-												では
-												<q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q>と書かれており、副作用を起こす実装が禁止されているものではないこと、アクセスログのように GET でサーバー内にファイルを追加・更新する機能は一般的に存在すること、そもそも本機能の要件は GET でないと実現できないといった理由からこのようにしている。
-											</p>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</section>
-
-						<section class="p-section -hdg-c" id="image-vector">
-							<div class="p-section__hdg">
-								<h3>ベクター画像（SVG）</h3>
-							</div>
-
-							<figure>
-								<figcaption class="c-caption">
-									<span class="c-caption__title">SVG ファイルの構成図</span>
-								</figcaption>
-								<div class="p-code">
-									<pre class="p-code__code">
-├─ svg
-│	├─ _dataurl
-│	│	├─ *.dataurl.txt
-│	│	└─ *.svg
-│	└─ *.svg
-└─ w0s.jp /* DocumentRoot */
-		├─ *.svg
-		└─ *.svg.br
-</pre
-									>
-								</div>
-							</figure>
-
-							<ul class="p-list">
-								<li>
-									<p>
-										簡単なものはエディターで手打ちするが、複雑な画像は Illustrator などの画像編集ソフト（GUI）で作成し、
-										<code class="c-code">svg</code> ディレクトリ以下に配置。
-									</p>
-								</li>
-								<li>
-									<p><code class="c-code">svg</code> ディレクトリ（非公開領域）内の SVG ファイルを <a href="https://github.com/svg/svgo" class="htmlbuild-domain">SVGO</a> で最適化し、 DocumentRoot 以下に配置。最適化の際、 Brotli 圧縮ファイルも同時に出力している。</p>
-								</li>
-								<li>
-									<p>
-										CSS ファイルなどに data: URLs で埋め込む用途の SVG 画像は
-										<code class="c-code">svg/_dataurl</code> ディレクトリ内に配置する。ここに置いたファイルは <a href="https://github.com/svg/svgo" class="htmlbuild-domain">SVGO</a> で最適化された後に Base64 でエンコードされ、同一ディレクトリに
-										<code class="c-code">*.dataurl.txt</code>
-										のテキストファイルが生成される。これらのファイルはページ制作の過程で素材として必要なものに過ぎないので、 DocumentRoot 以下には配置されない。
-									</p>
-								</li>
-							</ul>
-						</section>
-					</section>
-
-					<section class="p-section -hdg-a" id="compress">
-						<div class="p-section__hdg">
-							<h2>圧縮（Brotli）</h2>
+							<h2>ビットマップ画像（JPEG, PNG）</h2>
 						</div>
 
 						<ul class="p-list">
 							<li>
-								<p>
-									以下のレスポンスは Apache の機能により、リクエスト発生時に Brotli の圧縮を行う。圧縮品質の個別の調整は行わず、
-									<a href="https://httpd.apache.org/docs/2.4/en/mod/mod_brotli.html" hreflang="en" class="htmlbuild-domain">mod_brotli</a>
-									のデフォルト設定に従う。
-								</p>
+								<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下6種類の画像を <code class="c-code">&lt;a&gt;</code> 要素と <code class="c-code">&lt;picture&gt;</code> 要素を使って提示している。</p>
 								<ul>
-									<li>text/css</li>
-									<li>text/html</li>
-									<li>application/atom+xml</li>
-									<li>application/javascript</li>
-									<li>application/json</li>
-									<li>application/opensearchdescription+xml</li>
-									<li>application/xhtml+xml</li>
-									<li>image/svg+xml</li>
+									<li>大画像（JPEG ないし PNG）</li>
+									<li>サムネイル: AVIF</li>
+									<li>サムネイル: AVIF, @2x</li>
+									<li>サムネイル: WebP</li>
+									<li>サムネイル: WebP, @2x</li>
+									<li>サムネイル: JPEG （※ WebP 未対応環境は減少しているため、 JPEG の @2x 画像は用意しない）</li>
 								</ul>
+								<p>マークアップのイメージを下記に記す。なお、画像の説明は極力本文か <code class="c-code">&lt;figcaption&gt;</code> で行う方針のため <code class="c-code">alt</code> 属性値に長々とした文章を書くことはあまりなく、大抵は一律の短い文言である。</p>
+								<figure>
+									<div class="p-code">
+										<div class="p-code__clipboard">
+											<button type="button" is="w0s-clipboard" data-target-for="image-thumbimage-code" class="p-code__clipboard-button">
+												<img src="/assets/image/copy.svg" alt="コピー" />
+											</button>
+										</div>
+										<pre class="p-code__code"><code id="image-thumbimage-code" class="htmlbuild-highlight">&lt;a href="image.jpg" type="image/jpeg"&gt;
+	&lt;picture&gt;
+		&lt;source type="image/avif" srcset="thumb.avif, thumb@2x.avif 2x"/&gt;
+		&lt;source type="image/webp" srcset="thumb.webp, thumb@2x.webp 2x"/&gt;
+		&lt;img src="thumb.jpeg" alt="写真拡大"/&gt;
+	&lt;/picture&gt;
+&lt;/a&gt;
+</code></pre>
+									</div>
+								</figure>
 							</li>
 							<li>
-								<p>前述のとおり、 HTML, CSS, JavaScript, SVG は事前に静的な Brotli ファイル（<code class="c-code">*.br</code>）を生成する。これらは圧縮品質を最高にし、極力ファイルサイズが小さくなるようにしている。</p>
+								<p>大画像は Photoshop などの画像編集ソフトで生成する。大画像といっても、デジタルカメラの画像あるいはフィルム写真をスキャンした元素材そのままではなく Web 用に縮小をしているが、一般的な PC 用ディスプレイで全画面表示しても問題ない大きさとしている。</p>
+								<p>なお、 JPEG ファイルの拡張子は Photoshop のデフォルト動作に合わせて <code class="c-code">.jpg</code> としている（<code class="c-code">.jpeg</code> ではない）。</p>
+							</li>
+						</ul>
+
+						<section class="p-section -hdg-c" id="bitmap-thumbnail">
+							<div class="p-section__hdg">
+								<h3>サムネイル生成</h3>
+							</div>
+
+							<div class="p-text">
+								<p>サムネイル画像は大画像ファイルをソースとして自動生成しているが、以下に示す理由から事前に静的ファイルを生成する方式は運用が面倒になることが予想された。</p>
+							</div>
+
+							<ul class="p-list">
+								<li>使用するページによって表示する大きさが異なる</li>
+								<li>ページのリニューアルや CSS の調整で後から大きさが変わることもあり得る</li>
+							</ul>
+
+							<div class="p-text">
+								<p>そのためパフォーマンス面で不利な面はあるが、 <code class="c-code">/thumbimage/path/to/image.jpg?type=webp;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成する方式とした。詳細は画像を配置している <a href="https://media.w0s.jp/" hreflang="en">media.w0s.jp</a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて下記に述べる。</p>
+							</div>
+
+							<ul class="p-list">
+								<li>
+									<p>
+										URL パラメーターの区切り文字は一般的な <code class="c-code">&amp;</code> だけでなく <code class="c-code">;</code> にも対応しており、後者を利用する。これは HTML4 時代に <a href="https://www.w3.org/TR/2018/SPSD-html401-20180327/appendix/notes.html#h-B.2.2" hreflang="en" class="htmlbuild-domain">B.2.2 Ampersands in URI attribute values</a>で推奨されていたテクニックである。設定は Express の <a href="https://expressjs.com/en/4x/api.html#app.settings.table" class="htmlbuild-domain"><code>app.set('query parser', value)</code></a
+										>にカスタムクエリ文字列解析関数を指定することで実現している。
+									</p>
+								</li>
+								<li>
+									<p>画像生成は <a href="https://sharp.pixelplumbing.com/" class="htmlbuild-domain">sharp</a>を利用しているが、 AVIF の生成には時間が掛かるため、多数の画像を埋め込んだページでは画像がすべて表示されるまでに分単位の時間が掛かったり、タイムアウトしたりするケースが多発してしまった。</p>
+									<p>
+										そのため AVIF の初回リクエスト（サムネイルファイルが生成されていない状態でのリクエスト）に限っては代替として WebP を生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code class="c-code">&lt;source type="image/avif"&gt;</code> の画像をリクエストしたらレスポンスで <code class="c-code">image/webp</code> が返ってきた」という状態になる。一見違和感があるものの <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element" hreflang="en" class="htmlbuild-domain">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</a>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
+									</p>
+								</li>
+								<li>
+									<p>
+										一般論として GET リクエストでファイルを生成するという副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。これについては
+										<a href="https://tools.ietf.org/html/rfc7231#section-4.2.1" hreflang="en" class="htmlbuild-domain">RFC 7231 の 4.2.1. Safe Methods</a>
+										では
+										<q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q>と書かれており、
+									</p>
+									<ul>
+										<li>副作用を起こす実装が禁止されているものではないこと</li>
+										<li>アクセスログのように GET リクエストでサーバー内にファイルを追加・更新する機能は一般的に存在すること</li>
+										<li>そもそも本機能の要件は GET リクエストでないと実現できない</li>
+									</ul>
+									<p>といった理由から GET リクエストでファイル生成を行うようにしている。</p>
+								</li>
+							</ul>
+						</section>
+					</section>
+
+					<section class="p-section -hdg-a" id="vector">
+						<div class="p-section__hdg">
+							<h2>ベクター画像（SVG）</h2>
+						</div>
+
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">SVG ファイルの構成図</span>
+							</figcaption>
+							<div class="p-code">
+								<pre class="p-code__code">
+├ image
+│└ *.svg
+└ public /* DocumentRoot */
+	├ *.svg
+	└ *.svg.br
+</pre
+								>
+							</div>
+						</figure>
+
+						<ul class="p-list">
+							<li>
+								<p>
+									簡単なものはエディターで手打ちするが、複雑な画像は Illustrator などの画像編集ソフトで作成し、
+									<code class="c-code">image</code> ディレクトリ（非公開領域）に配置する。
+								</p>
 							</li>
 							<li>
-								<p>他に text/plain （e.g. <code class="c-code">ads.txt</code>, <code class="c-code">robots.txt</code>）や application/manifest+json （e.g. <code class="c-code">manifest.webmanifest</code>）で提供されるリソースも存在するが、いずれもファイルサイズが小さく、また用途も限定されているため、圧縮は行わない。</p>
+								<p><code class="c-code">image</code> ディレクトリ内の SVG ファイルを <a href="https://github.com/svg/svgo" class="htmlbuild-domain">SVGO</a>で最適化し、 DocumentRoot 以下に配置。最適化の際、 Brotli 圧縮ファイルも同時に出力している。</p>
+							</li>
+							<li>
+								<p>HTTP/1.1 時代は CSS ファイル内に data: URLs で埋め込む用途のビルドも別途行っていたが、 HTTP/2 になってからはリクエスト数を減らすメリットが少なくなったため廃止した。</p>
+							</li>
+						</ul>
+					</section>
+
+					<section class="p-section -hdg-a" id="compress">
+						<div class="p-section__hdg">
+							<h2>圧縮</h2>
+						</div>
+
+						<ul class="p-list">
+							<li>
+								<p>前述のとおり、事前に静的ファイルをビルドする HTML, CSS, JavaScript, SVG はビルド時に Brotli ファイル（<code class="c-code">*.br</code>）も生成している。これらは圧縮品質を最高にし、極力ファイルサイズが小さくなるようにしている。</p>
+							</li>
+							<li>
+								<p>それ以外の静的リソースは Express のミドルウェア <a href="https://github.com/expressjs/compression" class="htmlbuild-domain">expressjs/compression</a>により、リクエスト時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、 <code class="c-code">robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。</p>
 							</li>
 						</ul>
 					</section>
@@ -656,306 +672,28 @@
 								</ul>
 							</li>
 						</ul>
-
-						<section class="p-section -hdg-c" id="csp-enforce">
-							<div class="p-section__hdg">
-								<h3>Content-Security-Policy の設定値</h3>
-							</div>
-
-							<table class="p-table" id="csp-enforce-table">
-								<thead>
-									<tr>
-										<th scope="col">ディレクティブ</th>
-										<th scope="col">値</th>
-										<th scope="col">備考</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">base-uri</th>
-										<td>'none'</td>
-										<td></td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th scope="row" rowspan="4">form-action</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://blog.w0s.jp</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://www.google.com</td>
-										<td>ページヘッダーのサイト内検索</td>
-									</tr>
-									<tr>
-										<td>https://api.twitter.com</td>
-										<td>Twitter アカウントによるログイン機能（OAuth）</td>
-									</tr>
-									<tr>
-										<th scope="row">frame-ancestors</th>
-										<td>'self'</td>
-										<td>この設定により <code class="c-code">X-Frame-Options</code> を廃止</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th scope="row">block-all-mixed-content</th>
-										<td></td>
-										<td></td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th scope="row">report-uri</th>
-										<td>https://w0sjp.report-uri.com/r/d/csp/enforce</td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-
-							<figure>
-								<figcaption class="c-caption">
-									<span class="c-caption__title">実際の設定値</span>
-								</figcaption>
-								<div class="p-code">
-									<div class="p-code__clipboard">
-										<button type="button" is="w0s-clipboard" data-target-for="csp-enforce-output" class="p-code__clipboard-button">
-											<img src="/assets/image/copy.svg" alt="コピー" />
-										</button>
-									</div>
-									<pre class="p-code__code"><code id="csp-enforce-output"></code></pre>
-								</div>
-							</figure>
-						</section>
-
-						<section class="p-section -hdg-c" id="csp-report">
-							<div class="p-section__hdg">
-								<h3>Content-Security-Policy-Report-Only の設定値</h3>
-							</div>
-
-							<table class="p-table" id="csp-report-table">
-								<thead>
-									<tr>
-										<th scope="col">ディレクティブ</th>
-										<th scope="col">値</th>
-										<th scope="col">備考</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">default-src</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<th scope="row" rowspan="8">child-src</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://blog.w0s.jp</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://www.google.com</td>
-										<td>Google マップ埋め込み</td>
-									</tr>
-									<tr>
-										<td>https://googleads.g.doubleclick.net</td>
-										<td rowspan="3">Google AdSense</td>
-									</tr>
-									<tr>
-										<td>https://pagead2.googlesyndication.com</td>
-									</tr>
-									<tr>
-										<td>https://tpc.googlesyndication.com</td>
-									</tr>
-									<tr>
-										<td>https://platform.twitter.com</td>
-										<td>ツイート埋め込み</td>
-									</tr>
-									<tr>
-										<td>https://www.youtube-nocookie.com</td>
-										<td>YouTube 動画埋め込み</td>
-									</tr>
-									<tr>
-										<th scope="row" rowspan="9">connect-src</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://*.w0s.jp</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://adservice.google.com</td>
-										<td rowspan="3">Google AdSense</td>
-									</tr>
-									<tr>
-										<td>https://pagead2.googlesyndication.com</td>
-									</tr>
-									<tr>
-										<td>https://csi.gstatic.com</td>
-									</tr>
-									<tr>
-										<td>https://www.google-analytics.com</td>
-										<td>Google アナリティクス</td>
-									</tr>
-									<tr>
-										<td>https://fcmregistrations.googleapis.com</td>
-										<td rowspan="2">Google Firebase</td>
-									</tr>
-									<tr>
-										<td>https://firebaseinstallations.googleapis.com</td>
-									</tr>
-									<tr>
-										<td>https://validator.w3.org</td>
-										<td><a href="https://github.com/SaekiTominaga/HTMLValidator">検証用</a></td>
-									</tr>
-									<tr>
-										<th scope="row" rowspan="10">img-src</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>data:</td>
-										<td>ブラウザアドオンやユーザースタイルシート</td>
-									</tr>
-									<tr>
-										<td>https://media.w0s.jp</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>https://m.media-amazon.com</td>
-										<td>Amazon アソシエイトリンク</td>
-									</tr>
-									<tr>
-										<td>https://pagead2.googlesyndication.com</td>
-										<td>Google AdSense</td>
-									</tr>
-									<tr>
-										<td>https://www.google-analytics.com</td>
-										<td rowspan="2">Google アナリティクス</td>
-									</tr>
-									<tr>
-										<td>https://www.googletagmanager.com</td>
-									</tr>
-									<tr>
-										<td>https://*.twimg.com</td>
-										<td rowspan="2">ツイート埋め込み</td>
-									</tr>
-									<tr>
-										<td>https://syndication.twitter.com</td>
-									</tr>
-									<tr>
-										<td>https://*.ytimg.com</td>
-										<td>YouTube 動画のサムネイル画像</td>
-									</tr>
-									<tr>
-										<th scope="row" rowspan="12">script-src</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>'unsafe-inline'</td>
-										<td>ブラウザアドオン、ユーザースクリプト</td>
-									</tr>
-									<tr>
-										<td>https://adservice.google.co.jp</td>
-										<td rowspan="6">Google AdSense</td>
-									</tr>
-									<tr>
-										<td>https://adservice.google.com</td>
-									</tr>
-									<tr>
-										<td>https://partner.googleadservices.com</td>
-									</tr>
-									<tr>
-										<td>https://pagead2.googlesyndication.com</td>
-									</tr>
-									<tr>
-										<td>https://tpc.googlesyndication.com</td>
-									</tr>
-									<tr>
-										<td>https://www.googletagservices.com</td>
-									</tr>
-									<tr>
-										<td>https://www.google-analytics.com</td>
-										<td rowspan="2">Google アナリティクス</td>
-									</tr>
-									<tr>
-										<td>https://www.googletagmanager.com</td>
-									</tr>
-									<tr>
-										<td>https://w0s-jp.web.app</td>
-										<td>Google Firebase</td>
-									</tr>
-									<tr>
-										<td>https://platform.twitter.com</td>
-										<td>ツイート埋め込み</td>
-									</tr>
-									<tr>
-										<th scope="row" rowspan="2">style-src</th>
-										<td>'self'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>'unsafe-inline'</td>
-										<td>ブラウザアドオン、ユーザースタイルシート</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th scope="row" rowspan="4">trusted-types</th>
-										<td>default</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>goog#html</td>
-										<td rowspan="2">Google AdSense</td>
-									</tr>
-									<tr>
-										<td>google#safe</td>
-									</tr>
-									<tr>
-										<td>'allow-duplicates'</td>
-										<td></td>
-									</tr>
-									<tr>
-										<th scope="row">require-trusted-types-for</th>
-										<td>'script'</td>
-										<td></td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th scope="row">report-uri</th>
-										<td>https://w0sjp.report-uri.com/r/d/csp/reportOnly</td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-
-							<figure>
-								<figcaption class="c-caption">
-									<span class="c-caption__title">実際の設定値</span>
-								</figcaption>
-								<div class="p-code">
-									<div class="p-code__clipboard">
-										<button type="button" is="w0s-clipboard" data-target-for="csp-report-output" class="p-code__clipboard-button">
-											<img src="/assets/image/copy.svg" alt="コピー" />
-										</button>
-									</div>
-									<pre class="p-code__code"><code id="csp-report-output"></code></pre>
-								</div>
-							</figure>
-						</section>
 					</section>
 				</main>
+				<div class="l-content__footer">
+					<ul class="p-footnotes">
+						<li>
+							<span class="p-footnotes__no"><a href="#nt1">[1]</a></span>
+							<span class="p-footnotes__text" id="fn1"><a href="http://takagi-hiromitsu.jp/diary/20100501.html" class="htmlbuild-domain">高木浩光＠自宅の日記 - 共用SSLサーバの危険性が理解されていない</a>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</span>
+						</li>
+						<li>
+							<span class="p-footnotes__no"><a href="#nt2">[2]</a></span>
+							<span class="p-footnotes__text" id="fn2">Tim Berners-Lee による<a href="https://www.w3.org/Provider/Style/URI" hreflang="en" class="htmlbuild-domain">Cool URIs don't change</a>でも URL にファイル名拡張子を含めることは問題を引き起こすと言われている。</span>
+						</li>
+						<li>
+							<span class="p-footnotes__no"><a href="#nt3">[3]</a></span>
+							<span class="p-footnotes__text" id="fn3">Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、 Android Firefox 96 にて確認）</span>
+						</li>
+						<li>
+							<span class="p-footnotes__no"><a href="#nt4">[4]</a></span>
+							<span class="p-footnotes__text" id="fn4">具体的な事例をすべて挙げるとキリがないが、一例として JavaScript の URL に `<code>ads</code>` が含まれていると広告ブロッカーを適用した環境ではそのスクリプトがロードされず、結果的にスクリプト無効設定と同じ状況になるかもしれない。ここで考えるべきは「そのようなツールを使って不利益を被るのは自己責任」か、それとも「広告ブロッカーを含めブラウザをカスタマイズするのはユーザーの権利であり配慮が必要」かということだが、私は後者の考え方を持っている。一方で「URL に `<code>ads</code>` を含める」ことは JavaScript や HTTP はもとより Web の仕組み上なんら問題なく、特定のツールに対する配慮で URL を変更するのは避けたい。そもそもが小手先の対策をせずとも、スクリプト無効でコンテンツが閲覧できる状態さえ保っていれば、ユーザーのブラウザ上でスクリプトが想定どおり動くかどうかなど<em>気にする必要すらない</em>のであり、制作上のコストパフォーマンスの観点からもこれがもっとも簡単なのである。</span>
+						</li>
+					</ul>
+				</div>
 			</div>
 
 			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
