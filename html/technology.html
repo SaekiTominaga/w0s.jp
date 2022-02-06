@@ -556,7 +556,7 @@
 							</ul>
 
 							<div class="p-text">
-								<p>そのためパフォーマンス面で不利な面はあるが、 <code class="c-code">/thumbimage/path/to/image.jpg?type=webp;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成する方式とした。詳細は画像を配置している <a href="https://media.w0s.jp/" hreflang="en">media.w0s.jp</a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて下記に述べる。</p>
+								<p>そのためパフォーマンス的に不利な面はあるが、 <code class="c-code">/thumbimage/path/to/image.jpg?type=webp;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成する方式とした。詳細は画像を配置している <a href="https://media.w0s.jp/" hreflang="en">media.w0s.jp</a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて下記に述べる。</p>
 							</div>
 
 							<ul class="p-list">
@@ -567,7 +567,7 @@
 									</p>
 								</li>
 								<li>
-									<p>画像生成は <a href="https://sharp.pixelplumbing.com/" class="htmlbuild-domain">sharp</a>を利用しているが、 AVIF の生成には時間が掛かるため、多数の画像を埋め込んだページでは画像がすべて表示されるまでに分単位の時間が掛かったり、タイムアウトしたりするケースが多発してしまった。</p>
+									<p>画像生成は <a href="https://sharp.pixelplumbing.com/" class="htmlbuild-domain">sharp</a>を利用しているが、 AVIF への変換は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは画像がすべて表示されるまでに分単位の時間が掛かったり、タイムアウトしたりするケースが多発してしまった。</p>
 									<p>
 										そのため AVIF の初回リクエスト（サムネイルファイルが生成されていない状態でのリクエスト）に限っては代替として WebP を生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code class="c-code">&lt;source type="image/avif"&gt;</code> の画像をリクエストしたらレスポンスで <code class="c-code">image/webp</code> が返ってきた」という状態になる。一見違和感があるものの <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element" hreflang="en" class="htmlbuild-domain">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</a>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
 									</p>
@@ -580,8 +580,8 @@
 										<q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q>と書かれており、
 									</p>
 									<ul>
-										<li>副作用を起こす実装が禁止されているものではないこと</li>
-										<li>アクセスログのように GET リクエストでサーバー内にファイルを追加・更新する機能は一般的に存在すること</li>
+										<li>副作用を起こす実装が禁止されているものではない</li>
+										<li>アクセスログのように GET リクエストでサーバー内にファイルを追加・更新する機能は一般的に存在する</li>
 										<li>そもそも本機能の要件は GET リクエストでないと実現できない</li>
 									</ul>
 									<p>といった理由から GET リクエストでファイル生成を行うようにしている。</p>
@@ -637,7 +637,7 @@
 								<p>前述のとおり、事前に静的ファイルをビルドする HTML, CSS, JavaScript, SVG はビルド時に Brotli ファイル（<code class="c-code">*.br</code>）も生成している。これらは圧縮品質を最高にし、極力ファイルサイズが小さくなるようにしている。</p>
 							</li>
 							<li>
-								<p>それ以外の静的リソースは Express のミドルウェア <a href="https://github.com/expressjs/compression">expressjs/compression<img src="/assets/image/icon/github.svg" alt="(GitHub)" width="16" height="16" class="c-link-icon"></a>により、リクエスト時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、 <code class="c-code">robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。</p>
+								<p>それ以外の静的リソース、および動的ページ（リクエストがある毎にサーバーサイドで HTML を生成するページ）は Express のミドルウェア <a href="https://github.com/expressjs/compression">expressjs/compression<img src="/assets/image/icon/github.svg" alt="(GitHub)" width="16" height="16" class="c-link-icon"></a>により、レスポンス返却時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、 <code class="c-code">robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。</p>
 							</li>
 						</ul>
 					</section>
