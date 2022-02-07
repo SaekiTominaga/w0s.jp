@@ -36,7 +36,7 @@ Styleguide 2.1.1
 }
 
 .p-section {
-	--_margin-block: 1em;
+	--_margin-block: 1rem;
 
 	&:not(:first-child) {
 		@nest :not(.p-section__hdg) + & {
@@ -49,15 +49,15 @@ Styleguide 2.1.1
 	}
 
 	&.-hdg-a {
-		--_margin-block: 4.5em;
+		--_margin-block: 4.5rem;
 	}
 
 	&.-hdg-b {
-		--_margin-block: 3.75em;
+		--_margin-block: 3.75rem;
 	}
 
 	&.-hdg-c {
-		--_margin-block: 3em;
+		--_margin-block: 3rem;
 	}
 
 	&:target {
@@ -69,11 +69,13 @@ Styleguide 2.1.1
 	line-height: var(--line-height-narrow);
 
 	@nest .p-section.-hdg-a > & {
-		--stack-margin-base: 2em;
-
 		padding: 0.25em 0;
 		border-block-start: 1px solid transparent;
 		border-block-end: 1px solid var(--color-border-dark);
+
+		& + * {
+			margin-block-start: 2rem;
+		}
 
 		& > h2 {
 			--_stick-width: 0.25em;
