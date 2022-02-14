@@ -21,6 +21,7 @@
 		border: 1px solid;
 		color: var(--_color);
 		background: var(--_bg-color);
+		background-clip: padding-box; /* for Firefox, Safari (<thead> sticky) */
 		font-size: clamp(calc(100% / var(--font-ratio-1)), 2vw, 100%);
 		text-align: var(--_text-align);
 	}
@@ -28,6 +29,9 @@
 	& > thead {
 		--_bg-color: var(--color-bg-light);
 		--_text-align: center;
+
+		position: sticky;
+		inset-block-start: 0;
 	}
 
 	& > tbody {
