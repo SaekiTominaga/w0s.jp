@@ -3,16 +3,22 @@ import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
 import { NoName as Configure } from '../../configure/type/contact';
 import { Request, Response } from 'express';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * 問い合わせ・入力
  */
 export default class ContactInputController extends Controller implements ControllerInterface {
+	#configCommon: ConfigureCommon;
 	#config: Configure;
 
-	constructor() {
+	/**
+	 * @param {ConfigureCommon} configCommon - 共通設定
+	 */
+	constructor(configCommon: ConfigureCommon) {
 		super();
 
+		this.#configCommon = configCommon;
 		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/contact.json', 'utf8'));
 	}
 
@@ -44,6 +50,8 @@ export default class ContactInputController extends Controller implements Contro
 		};
 
 		/* 入力画面レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.input, {
 			page: {
 				path: req.path,

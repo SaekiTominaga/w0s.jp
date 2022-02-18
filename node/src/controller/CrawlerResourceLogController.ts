@@ -2,19 +2,25 @@ import * as Diff from 'diff';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
+import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/crawler-resource';
 import { Request, Response } from 'express';
-import RequestUtil from '../util/RequestUtil.js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
  * ウェブ巡回（リソース・ログ表示）
  */
 export default class CrawlerResourceLogController extends Controller implements ControllerInterface {
+	#configCommon: ConfigureCommon;
 	#config: Configure;
 
-	constructor() {
+	/**
+	 * @param {ConfigureCommon} configCommon - 共通設定
+	 */
+	constructor(configCommon: ConfigureCommon) {
 		super();
 
+		this.#configCommon = configCommon;
 		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/crawler-resource.json', 'utf8'));
 	}
 
@@ -73,6 +79,8 @@ export default class CrawlerResourceLogController extends Controller implements 
 		}
 
 		/* レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.log, {
 			page: {
 				path: req.path,

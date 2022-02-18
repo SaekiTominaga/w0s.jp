@@ -7,7 +7,7 @@ import CrawlerNewsController from './controller/CrawlerNewsController.js';
 import CrawlerNewsDataController from './controller/CrawlerNewsDataController.js';
 import CrawlerResourceController from './controller/CrawlerResourceController.js';
 import CrawlerResourceLogController from './controller/CrawlerResourceLogController.js';
-import Express, { NextFunction, Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import HttpBasicAuth from './util/HttpBasicAuth.js';
 import HttpResponse from './util/HttpResponse.js';
@@ -28,12 +28,7 @@ const config = <Configure>JSON.parse(fs.readFileSync('node/configure/common.json
 Log4js.configure(config.logger.path);
 const logger = Log4js.getLogger();
 
-const app = Express();
-
-const EXTENTIONS = {
-	brotli: '.br',
-	map: '.map',
-}; // 静的ファイル拡張子の定義
+const app = express();
 
 app.set('query parser', (query: string) => qs.parse(query, { delimiter: /[&;]/ }));
 app.set('trust proxy', true);
@@ -58,79 +53,78 @@ for (const redirect of config.redirect) {
 	});
 }
 
-app.use((req, res, next) => {
-	const requestPath = req.path;
+const EXTENTIONS = {
+	brotli: '.br',
+	map: '.map',
+}; // 静的ファイル拡張子の定義
 
-	let requestFilePath: string | undefined; // 実ファイルパス
-	if (requestPath.endsWith('/')) {
-		/* ディレクトリトップ（e.g. /foo/ ） */
-		const fileName = config.static.indexes?.find((name) => fs.existsSync(`${config.static.root}/${requestPath}${name}`));
-		if (fileName !== undefined) {
-			requestFilePath = `${requestPath}${fileName}`;
-		}
-	} else if (path.extname(requestPath) === '') {
-		/* 拡張子のない URL（e.g. /foo ） */
-		const extension = config.static.extensions?.find((ext) => fs.existsSync(`${config.static.root}/${requestPath}.${ext}`));
-		if (extension !== undefined) {
-			requestFilePath = `${requestPath}.${extension}`;
-		}
-	} else {
-		/* 拡張子のある URL（e.g. /foo.txt ） */
-		if (fs.existsSync(`${config.static.root}/${requestPath}`)) {
-			requestFilePath = requestPath;
-		}
-	}
-
-	/* Brotli */
-	if (requestFilePath !== undefined && req.method === 'GET' && req.acceptsEncodings('br') === 'br') {
-		const brotliFilePath = `${requestFilePath}${EXTENTIONS.brotli}`;
-		if (fs.existsSync(`${config.static.root}/${brotliFilePath}`)) {
-			req.url = brotliFilePath;
-			res.setHeader('Content-Encoding', 'br');
-		}
-	}
-
-	/* HSTS */
-	res.setHeader('Strict-Transport-Security', config.response.header.hsts);
-
-	/* CSP */
-	if (requestFilePath === undefined || ['.html', '.xhtml'].some((ext) => requestFilePath?.endsWith(ext))) {
-		res.setHeader('Content-Security-Policy', config.response.header.csp_html);
-		res.setHeader('Content-Security-Policy-Report-Only', config.response.header.cspro_html);
-	} else {
-		res.setHeader('Content-Security-Policy', config.response.header.csp);
-	}
-
-	/* MIME スニッフィング抑止 */
-	res.setHeader('X-Content-Type-Options', 'nosniff');
-
-	next();
-});
 app.use(
+	(req, res, next) => {
+		/* HSTS */
+		res.setHeader('Strict-Transport-Security', config.response.header.hsts);
+
+		/* CSP */
+		res.setHeader('Content-Security-Policy', config.response.header.csp);
+
+		/* MIME スニッフィング抑止 */
+		res.setHeader('X-Content-Type-Options', 'nosniff');
+
+		next();
+	},
 	compression({
 		threshold: config.response.compression.threshold,
-	})
-);
-app.use(
-	Express.urlencoded({
+	}),
+	express.urlencoded({
 		extended: true,
-	})
-);
-app.use(async (req, res, next) => {
-	/* Basic Authentication */
-	const basic = config.static.auth_basic?.find((basic) => basic.directory.find((urlPath) => req.url.startsWith(urlPath)));
-	if (basic !== undefined) {
-		const httpBasicAuth = new HttpBasicAuth(req);
-		if (!(await httpBasicAuth.htpasswd(basic.htpasswd))) {
-			new HttpResponse(req, res, config).send401('Basic', basic.realm);
-			return;
+	}),
+	async (req, res, next) => {
+		/* Basic Authentication */
+		const basic = config.static.auth_basic?.find((basic) => basic.directory.find((urlPath) => req.url.startsWith(urlPath)));
+		if (basic !== undefined) {
+			const httpBasicAuth = new HttpBasicAuth(req);
+			if (!(await httpBasicAuth.htpasswd(basic.htpasswd))) {
+				new HttpResponse(req, res, config).send401('Basic', basic.realm);
+				return;
+			}
 		}
-	}
 
-	next();
-});
-app.use(
-	Express.static(config.static.root, {
+		next();
+	},
+	(req, res, next) => {
+		const requestPath = req.path;
+
+		let requestFilePath: string | undefined; // 実ファイルパス
+		if (requestPath.endsWith('/')) {
+			/* ディレクトリトップ（e.g. /foo/ ） */
+			const fileName = config.static.indexes?.find((name) => fs.existsSync(`${config.static.root}/${requestPath}${name}`));
+			if (fileName !== undefined) {
+				requestFilePath = `${requestPath}${fileName}`;
+			}
+		} else if (path.extname(requestPath) === '') {
+			/* 拡張子のない URL（e.g. /foo ） */
+			const extension = config.static.extensions?.find((ext) => fs.existsSync(`${config.static.root}/${requestPath}.${ext}`));
+			if (extension !== undefined) {
+				requestFilePath = `${requestPath}.${extension}`;
+			}
+		} else {
+			/* 拡張子のある URL（e.g. /foo.txt ） */
+			if (fs.existsSync(`${config.static.root}/${requestPath}`)) {
+				requestFilePath = requestPath;
+			}
+		}
+
+		/* Brotli */
+		if (requestFilePath !== undefined && req.method === 'GET' && req.acceptsEncodings('br') === 'br') {
+			const brotliFilePath = `${requestFilePath}${EXTENTIONS.brotli}`;
+			if (fs.existsSync(`${config.static.root}/${brotliFilePath}`)) {
+				req.url = brotliFilePath;
+				res.setHeader('Content-Encoding', 'br');
+			}
+		}
+
+		next();
+	},
+	express.static(config.static.root, {
 		extensions: config.static.extensions,
 		index: config.static.indexes,
 		setHeaders: (res, localPath) => {
@@ -174,6 +168,12 @@ app.use(
 					res.setHeader('SourceMap', path.basename(mapFilePath));
 				}
 			}
+
+			/* CSP */
+			if (['.html', '.xhtml'].includes(extensionOrigin)) {
+				res.setHeader('Content-Security-Policy', config.response.header.csp_html);
+				res.setHeader('Content-Security-Policy-Report-Only', config.response.header.cspro_html);
+			}
 		},
 	})
 );
@@ -187,7 +187,7 @@ app
 	.route('/contact')
 	.get(async (req, res, next) => {
 		try {
-			await new ContactInputController().execute(req, res);
+			await new ContactInputController(config).execute(req, res);
 		} catch (e) {
 			next(e);
 		}
@@ -201,7 +201,7 @@ app
 	});
 app.get('/contact/completed', async (req, res, next) => {
 	try {
-		await new ContactCompletedController().execute(req, res);
+		await new ContactCompletedController(config).execute(req, res);
 	} catch (e) {
 		next(e);
 	}
@@ -264,7 +264,7 @@ app
 	});
 app.get('/admin/crawler-resource-log', async (req, res, next) => {
 	try {
-		await new CrawlerResourceLogController().execute(req, res);
+		await new CrawlerResourceLogController(config).execute(req, res);
 	} catch (e) {
 		next(e);
 	}

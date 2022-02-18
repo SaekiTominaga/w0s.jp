@@ -132,6 +132,8 @@ export default class CrawlerResourceController extends Controller implements Con
 		}
 
 		/* レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.init, {
 			page: {
 				path: req.path,

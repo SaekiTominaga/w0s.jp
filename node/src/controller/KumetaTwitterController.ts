@@ -42,6 +42,8 @@ export default class KumetaTwitterController extends Controller implements Contr
 		const banners = await dao.getBanners(targetId);
 
 		/* レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.init, {
 			page: {
 				path: req.path,
