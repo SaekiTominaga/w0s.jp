@@ -49,7 +49,7 @@ for (const redirect of config.redirect) {
 	app.get(fromUrl, (req, res) => {
 		let locationUrl = redirect.to;
 		if (typeof fromUrl !== 'string') {
-			(<RegExpExecArray>fromUrl.exec(req.path)).forEach((value, index) => {
+			fromUrl.exec(req.path)?.forEach((value, index) => {
 				locationUrl = locationUrl.replace(`$${index}`, value);
 			});
 		}
