@@ -30,6 +30,17 @@ const logger = Log4js.getLogger();
 
 const app = Express();
 
+const EXTENTIONS = {
+	brotli: '.br',
+	map: '.map',
+}; // 静的ファイル拡張子の定義
+
+app.set('query parser', (query: string) => qs.parse(query, { delimiter: /[&;]/ }));
+app.set('trust proxy', true);
+app.set('views', config.views);
+app.set('view engine', 'ejs');
+app.set('x-powered-by', false);
+
 /**
  * リダイレクト
  */
@@ -47,16 +58,6 @@ for (const redirect of config.redirect) {
 	});
 }
 
-const EXTENTIONS = {
-	brotli: '.br',
-	map: '.map',
-}; // 静的ファイル拡張子の定義
-
-app.set('query parser', (query: string) => qs.parse(query, { delimiter: /[&;]/ }));
-app.set('trust proxy', true);
-app.set('views', config.views);
-app.set('view engine', 'ejs');
-app.set('x-powered-by', false);
 app.use((req, res, next) => {
 	const requestPath = req.path;
 
