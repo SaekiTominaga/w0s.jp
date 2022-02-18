@@ -6,7 +6,7 @@ const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 export default {
 	entry: {
 		'trusted-types.js': './public/assets/script/_src/trusted-types.ts',
-		'google-analytics.js': './public/assets/script/_src/google-analytics.ts',
+		'analytics.js': './public/assets/script/_src/analytics.ts',
 		'w0s.mjs': './public/assets/script/_src/w0s.ts',
 		'error.mjs': './public/assets/script/_src/error.ts',
 		'contact.mjs': './public/assets/script/_src/contact.ts',
