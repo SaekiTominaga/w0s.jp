@@ -162,7 +162,7 @@ export default class TokyuCarHistoryDao {
 		if (seriesLength !== undefined && seriesLength >= 1) {
 			sql += ` AND s.fk IN (${new Array(seriesLength)
 				.fill('')
-				.map((value, index) => `:series_${index}`)
+				.map((_value, index) => `:series_${index}`)
 				.join(',')})`;
 		}
 		if (registerStart !== null && registerStart !== '') {
