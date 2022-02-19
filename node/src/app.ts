@@ -178,8 +178,6 @@ app.use(
 	})
 );
 
-const upload = multer({ dest: config.temp });
-
 /**
  * 問い合わせ
  */
