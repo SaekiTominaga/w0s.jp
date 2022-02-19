@@ -59,7 +59,7 @@ const EXTENTIONS = {
 }; // 静的ファイル拡張子の定義
 
 app.use(
-	(req, res, next) => {
+	(_req, res, next) => {
 		/* HSTS */
 		res.setHeader('Strict-Transport-Security', config.response.header.hsts);
 
@@ -337,7 +337,7 @@ app.use((req, res): void => {
 	logger.warn(`404 Not Found: ${req.method} ${req.url}`);
 	new HttpResponse(req, res, config).send404();
 });
-app.use((err: Error, req: Request, res: Response, next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
+app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
 	logger.fatal(`${req.method} ${req.url}`, err.stack);
 	new HttpResponse(req, res, config).send500();
 });
