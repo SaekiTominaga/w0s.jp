@@ -15,7 +15,6 @@ import KumetaTwitterController from './controller/KumetaTwitterController.js';
 import Log4js from 'log4js';
 import MadokaOfficialNewsIndexController from './controller/MadokaOfficialNewsIndexController.js';
 import MadokaOfficialNewsMonthController from './controller/MadokaOfficialNewsMonthController.js';
-import multer from 'multer';
 import path from 'path';
 import qs from 'qs';
 import TokyuCarHistoryController from './controller/TokyuCarHistoryController.js';
