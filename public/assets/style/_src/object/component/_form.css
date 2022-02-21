@@ -40,10 +40,6 @@ Styleguide 1.4.1
 		&:hover {
 			--_border-color: var(--outline-color);
 		}
-
-		&.-invalid {
-			--_border-color: var(--invalid-border-color);
-		}
 	}
 
 	&:disabled {
@@ -54,6 +50,10 @@ Styleguide 1.4.1
 	&:read-only {
 		--_color: var(--color-gray);
 		--_bg-color: var(--color-bg-verydark);
+	}
+
+	&:is(.-invalid, [aria-invalid="true"]) {
+		--_border-color: var(--invalid-border-color);
 	}
 }
 
@@ -156,10 +156,6 @@ Styleguide 1.4.4
 		&:hover {
 			--_border-color: var(--outline-color);
 		}
-
-		&.-invalid {
-			--_border-color: var(--invalid-border-color);
-		}
 	}
 
 	&:disabled {
@@ -170,6 +166,10 @@ Styleguide 1.4.4
 	&:read-only {
 		--_color: var(--color-gray);
 		--_bg-color: var(--color-bg-verydark);
+	}
+
+	&:is(.-invalid, [aria-invalid="true"]) {
+		--_border-color: var(--invalid-border-color);
 	}
 }
 
@@ -314,7 +314,7 @@ Styleguide 1.4.6
 			outline: none;
 		}
 
-		&:has(input.-invalid) {
+		@nest [aria-invalid="true"] > & {
 			--_border-color: var(--invalid-border-color);
 			--_bg-color: var(--color-verylightred);
 

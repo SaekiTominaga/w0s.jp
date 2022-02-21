@@ -76,9 +76,9 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<% if (page.query.email === null) { %>
-												<input type="email" class="c-input js-convert-trim js-validation" name="email" required="" autocomplete="email" id="input-email" style="--width: 24em" data-validation-message-for="input-validate-email" />
+												<input type="email" class="c-input js-convert-trim js-validation" name="email" required="" autocomplete="email" id="input-email" style="--width: 24em" aria-errormessage="input-validate-email" />
 												<% } else { %>
-												<input type="email" class="c-input js-convert-trim js-validation" name="email" value="<%= page.query.email %>" required="" autocomplete="email" id="input-email" style="--width: 24em" data-validation-message-for="input-validate-email" />
+												<input type="email" class="c-input js-convert-trim js-validation" name="email" value="<%= page.query.email %>" required="" autocomplete="email" id="input-email" style="--width: 24em" aria-errormessage="input-validate-email" />
 												<% } %>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-email"></p>
@@ -91,13 +91,13 @@
 											<span class="c-label">返信の有無 <strong class="c-label-icon -required">必須</strong></span>
 										</legend>
 										<div class="p-form-grid__contents">
-											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-reply">
+											<div class="c-form-controls -checkbox js-validation" role="radiogroup" aria-labelledby="label-reply" aria-errormessage="input-validate-reply">
 												<% for ([key, value] of Object.entries(reply)) { %>
 												<label class="c-label -check">
 													<% if (key !== page.query.reply) { %>
-													<input type="radio" class="js-validation" name="reply" value="<%= key %>" required="" data-validation-message-for="input-validate-reply" />
+													<input type="radio" name="reply" value="<%= key %>" required="" />
 													<% } else { %>
-													<input type="radio" class="js-validation" name="reply" value="<%= key %>" required="" checked="" data-validation-message-for="input-validate-reply" />
+													<input type="radio" name="reply" value="<%= key %>" required="" checked="" />
 													<% } %>
 													<span class="c-label__text"><%= value %></span>
 												</label>
@@ -115,7 +115,7 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<textarea is="w0s-textarea-height-adjust" class="c-textarea js-convert-trim js-validation" name="body" required="" id="input-body" style="--height: 16em" data-validation-message-for="input-validate-body"><%= page.query.body %></textarea>
+												<textarea is="w0s-textarea-height-adjust" class="c-textarea js-convert-trim js-validation" name="body" required="" id="input-body" style="--height: 16em" aria-errormessage="input-validate-body"><%= page.query.body %></textarea>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-body"></p>
 										</div>

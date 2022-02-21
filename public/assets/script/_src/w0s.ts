@@ -159,8 +159,8 @@ for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement
 }
 
 /* 入力バリデーション（エラー時はメッセージを画面表示する） */
-for (const validationElement of <NodeListOf<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>document.querySelectorAll('.js-validation')) {
-	new FormControlValidation(validationElement, '-invalid').init();
+for (const validationElement of <NodeListOf<HTMLElement>>document.querySelectorAll('.js-validation')) {
+	new FormControlValidation(validationElement).init();
 }
 
 /* フォーム入力中にページが閉じられようとしたら確認メッセージを表示 */

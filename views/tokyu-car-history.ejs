@@ -99,9 +99,9 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<% if (page.query.number === null || page.query.number === '') { %>
-												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--width: 4em" data-validation-message-for="input-validate-num" data-validation-message-pattern="該当する車両は存在しません。" />
+												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--width: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="該当する車両は存在しません。" />
 												<% } else { %>
-												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value="<%= page.query.number %>" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--width: 4em" data-validation-message-for="input-validate-num" data-validation-message-pattern="旧7000系～新3000系、300系で該当する車両は存在しません。" />
+												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value="<%= page.query.number %>" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--width: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="旧7000系～新3000系、300系で該当する車両は存在しません。" />
 												<% } %>
 												<label class="c-label -check">
 													<% if (page.query.number_old) { %>
@@ -148,17 +148,17 @@
 												<label class="c-label -input"
 													><span class="c-label__text">開始日</span>
 													<% if (page.query.register_start === null || page.query.register_start === '') { %>
-													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" min="1962-01-25" max="2001-03-24" style="--width: 8em" data-validation-message-for="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<% } else { %>
-													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value="<%= page.query.register_start %>" min="1962-01-25" max="2001-03-24" style="--width: 8em" data-validation-message-for="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value="<%= page.query.register_start %>" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<% } %>
 												</label>
 												<label class="c-label -input"
 													><span class="c-label__text">終了日</span>
 													<% if (page.query.register_end === null || page.query.register_end === '') { %>
-													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" min="1962-01-25" max="2001-03-24" style="--width: 8em" data-validation-message-for="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<% } else { %>
-													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value="<%= page.query.register_end %>" min="1962-01-25" max="2001-03-24" style="--width: 8em" data-validation-message-for="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value="<%= page.query.register_end %>" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系～新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系～新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<% } %>
 												</label>
 											</div>
