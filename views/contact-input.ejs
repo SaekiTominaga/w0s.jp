@@ -38,7 +38,7 @@
 					</ol>
 				</div>
 				<main class="l-content__main">
-					<form novalidate="" method="post" class="c-stack js-submit-overlay" id="contact-form" data-dialog-class="p-dialog-overlay" data-dialog-message="&lt;p&gt;&lt;img src='/assets/image/loading.svg' alt=''/&gt;&lt;/p&gt;&lt;p&gt;お待ちください&lt;/p&gt;">
+					<form novalidate="" method="post" class="c-stack js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
 						<% if (validateErrors.length > 0) { %>
 						<div class="p-form-errors js-form-errors">
 							<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
@@ -155,6 +155,11 @@
 							<p class="js-screen-confirm"><button name="actionsend" value="1" class="c-submit" id="js-send-button">送信</button></p>
 						</div>
 					</form>
+
+					<dialog class="p-dialog-overlay" id="form-submit-overlay">
+						<p><img src="/assets/image/loading.svg" alt="" /></p>
+						<p>お待ちください</p>
+					</dialog>
 				</main>
 			</div>
 
