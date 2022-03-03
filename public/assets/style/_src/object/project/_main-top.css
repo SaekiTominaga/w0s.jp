@@ -5,71 +5,75 @@ Styleguide 2.8.
 */
 
 /*
-見出し
+下層ページへのナビゲーションエリア
 
 Markup:
-<div class="p-top-hdg">
-<h2 class="p-top-hdg__hdg">見出し</h2>
-<div class="p-top-hdg__notice">
+<nav class="p-top-nav">
+<header class="p-top-nav__header">
+<div class="p-top-nav__hdg">
+<h2>サイトコンテンツ</h2>
 </div>
+<div class="p-top-nav__notice">
 </div>
+</header>
+<div class="p-top-nav__main">
+
+</div>
+</nav>
 
 Styleguide 2.8.1
 */
-.p-top-hdg {
-	display: flex;
-	flex-flow: wrap;
-	justify-content: space-between;
-	align-items: baseline;
-	gap: 0.25em 1em;
-
-	& + * {
-		margin-block-start: 0.25rem;
-	}
+.p-top-nav {
 }
 
-.p-top-hdg__hdg {
-	font-size: calc(100% * var(--font-ratio-2));
-	font-weight: var(--font-weight-bold);
+.p-top-nav__header {
 }
 
-.p-top-hdg__notice {
+.p-top-nav__hdg {
+	padding-block: 0.25em;
+	border-block-end: 1px solid var(--color-border-light);
+	font-size: calc(100% * var(--font-ratio-5));
+	line-height: var(--line-height-narrow);
+}
+
+.p-top-nav__main {
+	margin-block-start: 2.5em;
 }
 
 /*
-下層ページへのナビゲーション
+下層ページへのナビゲーション（カード型）
 
 Markup:
-<ul class="p-top-nav">
-<li class="p-top-nav__box">
+<ul class="p-top-nav-card">
+<li class="p-top-nav-card__box">
 <a href="">
-<div class="p-top-nav__image">
+<div class="p-top-nav-card__image">
 <img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" />
 </div>
-<div class="p-top-nav__title">ページタイトル</div>
-<p class="p-top-nav__description">ページ説明</p>
+<div class="p-top-nav-card__title">ページタイトル</div>
+<p class="p-top-nav-card__description">ページ説明</p>
 </a>
 </li>
-<li class="p-top-nav__box">
+<li class="p-top-nav-card__box">
 <a href="">
-<div class="p-top-nav__image">
+<div class="p-top-nav-card__image">
 <img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" />
 </div>
-<div class="p-top-nav__title">ページタイトル</div>
-<p class="p-top-nav__description">ページ説明</p>
+<div class="p-top-nav-card__title">ページタイトル</div>
+<p class="p-top-nav-card__description">ページ説明</p>
 </a>
 </li>
 </ul>
 
 Styleguide 2.8.2
 */
-.p-top-nav {
+.p-top-nav-card {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(15.3em, 1fr));
 	grid-gap: 15px;
 }
 
-.p-top-nav__box {
+.p-top-nav-card__box {
 	--_border-width: 1px;
 	--_border-radius: var(--border-radius-normal);
 	--_border-radius-inner: calc(var(--_border-radius) - var(--_border-width));
@@ -97,7 +101,7 @@ Styleguide 2.8.2
 	}
 }
 
-.p-top-nav__image {
+.p-top-nav-card__image {
 	& img {
 		border-radius: var(--_border-radius-inner) var(--_border-radius-inner) 0 0;
 		display: block;
@@ -115,7 +119,7 @@ Styleguide 2.8.2
 	}
 }
 
-.p-top-nav__title {
+.p-top-nav-card__title {
 	--_text-color: inherit;
 
 	margin: 8px 16px;
@@ -154,34 +158,74 @@ Styleguide 2.8.2
 	}
 }
 
-.p-top-nav__description {
+.p-top-nav-card__description {
 	margin: 8px 16px 16px;
+}
+
+/*
+更新履歴エリア
+
+Markup:
+<section class="p-top-update">
+<header class="p-top-update__header">
+<div class="p-top-update__hdg">
+<h2>更新履歴</h2>
+</div>
+<div class="p-top-update__notice">
+</div>
+</header>
+<div class="p-top-update__main">
+
+</div>
+</section>
+
+Styleguide 2.8.3
+*/
+.p-top-update {
+	margin-block-start: 5em;
+}
+
+.p-top-update__header {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 0.25em 1em;
+}
+
+.p-top-update__hdg {
+	font-size: calc(100% * var(--font-ratio-2));
+	line-height: var(--line-height-narrow);
+}
+
+.p-top-update__main {
+	margin-block-start: 0.125em;
 }
 
 /*
 更新履歴
 
 Markup:
-<ul class="p-top-update">
+<ul class="p-top-update-list">
 <li>
-<div class="p-top-update__date">日付</div>
-<div class="p-top-update__type">新規</div>
-<div class="p-top-update__info">
+<div class="p-top-update-list__date">日付</div>
+<div class="p-top-update-list__type">新規</div>
+<div class="p-top-update-list__info">
 <p>更新内容</p>
 </div>
 </li>
 <li>
-<div class="p-top-update__date">日付</div>
-<div class="p-top-update__type">更新</div>
-<div class="p-top-update__info">
+<div class="p-top-update-list__date">日付</div>
+<div class="p-top-update-list__type">更新</div>
+<div class="p-top-update-list__info">
 <p>更新内容</p>
 </div>
 </li>
 </ul>
 
-Styleguide 2.8.3
+Styleguide 2.8.4
 */
-.p-top-update {
+.p-top-update-list {
 	--_border-width: 2px;
 
 	border: var(--_border-width) solid var(--color-border-light);
@@ -189,14 +233,11 @@ Styleguide 2.8.3
 	background: var(--color-white);
 
 	& > li {
-		--_padding: 10px;
+		--_padding: 15px;
 
 		display: grid;
-		grid-template-areas:
-			"date date"
-			"type info";
-		grid-template-columns: auto 1fr;
-		gap: 0 calc(var(--_padding) * 1.5);
+		grid-template-areas: "date type info";
+		grid-template-columns: calc(7.5em + var(--_padding) * 2) auto 1fr;
 
 		&:not(:first-child) {
 			border-block-start: 1px dotted var(--color-border-light);
@@ -204,24 +245,51 @@ Styleguide 2.8.3
 	}
 }
 
-.p-top-update__date {
+.p-top-update-list__date {
 	grid-column: date;
-	padding: calc(var(--_padding) / 1.25) var(--_padding);
-	background: var(--color-bg-light);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-narrow);
+	padding: var(--_padding);
+	background: var(--color-bg-verylight);
+}
 
-	@nest .p-top-update > li:first-child & {
-		border-radius: calc(var(--border-radius-normal) - var(--_border-width)) calc(var(--border-radius-normal) - var(--_border-width)) 0 0;
+.p-top-update-list__type {
+	grid-column: type;
+	padding: var(--_padding);
+}
+
+.p-top-update-list__info {
+	grid-column: info;
+	padding: var(--_padding) var(--_padding) var(--_padding) 0;
+}
+
+@media (min-width: calc(40em + 1px)) {
+	.p-top-update-list__date {
+		@nest .p-top-update-list > li:first-child & {
+			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
+		}
+
+		@nest .p-top-update-list > li:last-child & {
+			border-end-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
+		}
 	}
 }
 
-.p-top-update__type {
-	grid-column: type;
-	padding: var(--_padding) 0 var(--_padding) var(--_padding);
-}
+@media (max-width: 40em) {
+	.p-top-update-list {
+		& > li {
+			grid-template-areas:
+				"date date"
+				"type info";
+			grid-template-columns: auto 1fr;
+		}
+	}
 
-.p-top-update__info {
-	grid-column: info;
-	padding: var(--_padding) var(--_padding) var(--_padding) 0;
+	.p-top-update-list__date {
+		padding-block: calc(var(--_padding) / 2);
+		font-weight: bold;
+
+		@nest .p-top-update-list > li:first-child & {
+			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
+			border-start-end-radius: calc(var(--border-radius-normal) - var(--_border-width));
+		}
+	}
 }

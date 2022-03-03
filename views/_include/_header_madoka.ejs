@@ -39,22 +39,4 @@
 			</form>
 		</div>
 	</div>
-
-	<div class="l-header__gnav">
-		<nav class="p-header-gnav">
-			<ul class="p-header-gnav__links" itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
-				<% for (const [path, title] of new Map([ ['/madoka/video/', '映像'], ['/madoka/library/', '書籍'], ['/madoka/event/', 'イベント'], ['/madoka/yomoyama/', 'よもやま'], ['/madoka/official/', '公式データ'], ['/madoka/dojin/', '同人誌'] ])) { %>
-				<li>
-					<% if (page.path === path) { %>
-					<a aria-current="page" class="p-header-gnav__link"><%= title %></a>
-					<% } else if (page.path.startsWith(path)) { %>
-					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link -my-category"><%= title %></a>
-					<% } else { %>
-					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link"><%= title %></a>
-					<% } %>
-				</li>
-				<% } %>
-			</ul>
-		</nav>
-	</div>
 </header>
