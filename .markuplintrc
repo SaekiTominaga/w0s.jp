@@ -26,13 +26,13 @@
 		"attr-equal-space-before": "never",
 		"attr-spacing": true,
 		"attr-value-quotes": "double",
-		"case-sensitive-attr-name": "no-upper",
+		"case-sensitive-attr-name": "lower",
 		"case-sensitive-tag-name": "lower",
 		"indentation": false
 	},
 	"nodeRules": [
 		{
-			"tagName": "html",
+			"selector": "html",
 			"rules": {
 				"invalid-attr": {
 					"option": {
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"tagName": "meta",
+			"selector": "meta",
 			"rules": {
 				"invalid-attr": {
 					"option": {
@@ -57,33 +57,57 @@
 			}
 		},
 		{
-			"tagName": "nav",
+			"selector": "meta[property]",
+			"rules": {
+				"required-attr": false
+			}
+		},
+		{
+			"selector": "nav",
 			"rules": {
 				"landmark-roles": false
 			}
 		},
 		{
-			"tagName": "aside",
+			"selector": "aside",
 			"rules": {
 				"landmark-roles": false
 			}
 		},
 		{
-			"tagName": "table",
+			"selector": "table",
 			"rules": {
 				"permitted-contents": false
 			}
 		},
 		{
-			"tagName": "colgroup",
+			"selector": "colgroup",
 			"rules": {
 				"permitted-contents": false
 			}
 		},
 		{
-			"tagName": "th",
+			"selector": "th[scope='col']",
 			"rules": {
 				"wai-aria": false
+			}
+		},
+		{
+			"selector": "template time",
+			"rules": {
+				"invalid-attr": {
+					"option": {
+						"ignoreAttrNamePrefix": [
+							"datetime"
+						]
+					}
+				}
+			}
+		},
+		{
+			"selector": "svg use",
+			"rules": {
+				"deprecated-attr": false
 			}
 		}
 	]
