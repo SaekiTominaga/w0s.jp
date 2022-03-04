@@ -14,17 +14,17 @@ import xpath from 'xpath';
 const FEED_INFOS = [
 	{
 		html_path: 'public/tokyu/index.html',
-		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update__entry"]',
-		xpath_date: './/*[@class="p-top-update__date"]/x:time/@datetime',
-		xpath_content: './/*[@class="p-top-update__info"]/*',
+		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
+		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
+		xpath_content: '*[@class="p-top-update-list__info"]/*',
 		feed_template: 'views/feed/tokyu.ejs',
 		feed_path: 'public/tokyu/feed.atom',
 	},
 	{
 		html_path: 'public/madoka/index.html',
-		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update__entry"]',
-		xpath_date: './/*[@class="p-top-update__date"]/x:time/@datetime',
-		xpath_content: './/*[@class="p-top-update__info"]/*',
+		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
+		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
+		xpath_content: '*[@class="p-top-update-list__info"]/*',
 		feed_template: 'views/feed/madoka.ejs',
 		feed_path: 'public/madoka/feed.atom',
 	},
