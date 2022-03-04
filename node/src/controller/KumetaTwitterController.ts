@@ -39,7 +39,7 @@ export default class KumetaTwitterController extends Controller implements Contr
 		const profileImages = await dao.getProfileImages(targetId);
 
 		/* バナー履歴情報 */
-		const banners = await dao.getBanners(targetId);
+		//const banners = await dao.getBanners(targetId);
 
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
@@ -50,7 +50,7 @@ export default class KumetaTwitterController extends Controller implements Contr
 			},
 			accountData: accountData, // アカウント情報
 			profileImages: profileImages.some((profileImage) => profileImage.file_name !== null) ? profileImages : null, // アイコン履歴
-			banners: banners.some((banner) => banner.file_name !== null) ? banners : null, // バナー履歴情報
+			//banners: banners.some((banner) => banner.file_name !== null) ? banners : null, // バナー履歴情報
 		});
 	}
 }

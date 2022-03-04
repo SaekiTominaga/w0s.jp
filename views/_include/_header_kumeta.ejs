@@ -1,0 +1,42 @@
+<header id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			<div class="p-header-site">
+				<%_ if (page.path === '/kumeta/') { _%>
+				<h1 class="p-header-site__name" itemprop="name"><a aria-current="page">久米田康治データベース</a></h1>
+				<p class="p-header-site__summary" itemprop="description">漫画家・久米田康治先生の作品データや周辺動向を紹介するサイト</p>
+				<%_ } else { _%>
+				<p class="p-header-site__name"><a href="/kumeta/">久米田康治データベース</a></p>
+				<p class="p-header-site__summary">漫画家・久米田康治先生の作品データや周辺動向を紹介するサイト</p>
+				<%_ } _%>
+			</div>
+		</div>
+		<div class="l-header__nav">
+			<div class="p-header-nav">
+				<a href="/kumeta/feed" type="application/atom+xml" class="c-button -feed">
+					<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">フィード</span>
+				</a>
+			</div>
+
+			<form action="https://www.google.com/search" role="search" class="p-header-search" aria-label="サイト内検索">
+				<div class="c-search">
+					<span class="c-search__hidden">
+						<input type="hidden" name="as_sitesearch" value="w0s.jp/kumeta/" />
+					</span>
+					<span class="c-search__query">
+						<input type="search" name="q" required="" title="キーワード" />
+					</span>
+					<span class="c-search__submit">
+						<button>
+							<svg role="img" aria-labelledby="header-search-button">
+								<title id="header-search-button">検索</title>
+								<use href="/assets/image/icon/search.svg#icon"></use>
+							</svg>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</div>
+</header>
