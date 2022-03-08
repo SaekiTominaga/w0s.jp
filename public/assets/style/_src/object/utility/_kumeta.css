@@ -1,0 +1,38 @@
+
+/*
+久米田康治データベース
+
+Styleguide 3.5.
+*/
+
+/*
+× 印での取り消し
+
+Markup:
+<s class="u-kumeta-text-decoration-times">取り消し</s>
+
+Styleguide 3.5.1
+*/
+.u-kumeta-text-decoration-times {
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+
+	&::before,
+	&::after {
+		--_weight: 5%;
+
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: currentColor;
+	}
+
+	&::before {
+		clip-path: polygon(0 var(--_weight), calc(100% - var(--_weight)) 100%, 100% calc(100% - var(--_weight)), var(--_weight) 0);
+	}
+
+	&::after {
+		clip-path: polygon(0 calc(100% - var(--_weight)), var(--_weight) 100%, 100% var(--_weight), calc(100% - var(--_weight)) 0);
+	}
+}
