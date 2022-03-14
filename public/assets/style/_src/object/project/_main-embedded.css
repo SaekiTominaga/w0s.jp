@@ -9,16 +9,16 @@ Styleguide 2.5.
 
 Markup:
 <div class="p-embed {{modifier_class}}">
-<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/>
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt=""/>
 </div>
 <div class="p-embed {{modifier_class}}">
-<a href="https://example.com/"><img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt="" class="p-embed__image"/></a>
+<a href="https://example.com/sample.jpg"><img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt=""/></a>
 </div>
 <div class="p-embed {{modifier_class}}">
-<video poster="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" class="p-embed__video"></video>
+<video poster="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30"></video>
 </div>
 <div class="p-embed {{modifier_class}}">
-<iframe src="https://example.com/" class="p-embed__frame"></iframe>
+<iframe src="https://example.com/"></iframe>
 </div>
 
 .-border - 埋め込みコンテンツに枠線を表示
@@ -96,6 +96,51 @@ Styleguide 2.5.1
 }
 
 /*
+埋め込みコンテンツのリンク
+
+Markup:
+<div class="p-embed-link">
+<a href="https://example.com/">
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt=""/>
+<span class="p-embed-link__title"></span>
+</a>
+</div>
+
+Styleguide 2.5.2
+*/
+.p-embed-link {
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-narrow);
+
+	& > :any-link {
+		outline: none;
+
+		&:focus {
+			& img {
+				outline: var(--outline-width-bold) solid var(--outline-color);
+				outline-offset: -1px;
+			}
+
+			& .p-embed-link__title {
+				outline: var(--outline-width) solid var(--outline-color);
+				outline-offset: var(--outline-offset);
+			}
+		}
+	}
+
+	& img {
+		border: 1px solid var(--color-black);
+	}
+}
+
+.p-embed-link__title {
+	&::before {
+		content: "";
+		display: block;
+	}
+}
+
+/*
 テキスト & 埋め込みコンテンツ横並び
 
 Markup:
@@ -111,7 +156,7 @@ Markup:
 .-text-first - テキストエリアが先頭
 .-embed-first - 埋め込みエリアが先頭
 
-Styleguide 2.5.2
+Styleguide 2.5.3
 */
 .p-embed-sidebar {
 	display: flex;
