@@ -9,9 +9,9 @@
 		"deprecated-element": true,
 		"doctype": true,
 		"id-duplication": true,
+		"invalid-attr": true,
 		"permitted-contents": true,
 		"required-attr": true,
-		"invalid-attr": true,
 		"landmark-roles": true,
 		"required-h1": false,
 		"wai-aria": true,
@@ -63,33 +63,31 @@
 			}
 		},
 		{
-			"selector": "nav",
+			"selector": "nav, aside",
 			"rules": {
 				"landmark-roles": false
 			}
 		},
 		{
-			"selector": "aside",
+			"selector": "div",
 			"rules": {
-				"landmark-roles": false
+				"required-attr": [
+					"class"
+				]
 			}
 		},
 		{
-			"selector": "table",
+			"selector": "dl > div, object > div",
 			"rules": {
-				"permitted-contents": false
+				"required-attr": false
 			}
 		},
 		{
-			"selector": "colgroup",
+			"selector": "img",
 			"rules": {
-				"permitted-contents": false
-			}
-		},
-		{
-			"selector": "th[scope='col']",
-			"rules": {
-				"wai-aria": false
+				"required-attr": [
+					"alt"
+				]
 			}
 		},
 		{
