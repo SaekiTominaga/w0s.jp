@@ -21,6 +21,14 @@ const FEED_INFOS = [
 		feed_path: 'public/tokyu/feed.atom',
 	},
 	{
+		html_path: 'public/kumeta/index.html',
+		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
+		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
+		xpath_content: '*[@class="p-top-update-list__info"]/*',
+		feed_template: 'views/feed/kumeta.ejs',
+		feed_path: 'public/kumeta/feed.atom',
+	},
+	{
 		html_path: 'public/madoka/index.html',
 		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
 		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
