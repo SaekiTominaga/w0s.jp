@@ -45,7 +45,7 @@
 		"_svg:compress": "onchange -f add -f change -v public/**/*.svg -- brotlin compress {{file}} -m 1",
 		"svg": "run-p _svg:*",
 		"_feed:build": "node build/feed.mjs",
-		"_feed:compress": "onchange -f add -f change -v public/**/*.atom -- brotlin compress {{file}} -m 1",
+		"_feed:compress": "brotlin compress public/**/*.atom -m 1",
 		"feed": "run-p _feed:*"
 	},
 	"dependencies": {
