@@ -76,6 +76,7 @@ Styleguide 2.6.1
 		border: 1px solid;
 		color: var(--_color);
 		background: var(--_bg-color);
+		background-clip: padding-box; /* for Firefox, Safari (<thead> sticky) */
 		font-size: clamp(calc(var(--_font-size-base) / var(--font-ratio-1)), 2vw, var(--_font-size-base));
 		text-align: var(--_text-align);
 	}
@@ -83,6 +84,9 @@ Styleguide 2.6.1
 	& > thead {
 		--_bg-color: var(--color-bg-light);
 		--_text-align: center;
+
+		position: sticky;
+		inset-block-start: 0;
 	}
 
 	& > tbody th {
