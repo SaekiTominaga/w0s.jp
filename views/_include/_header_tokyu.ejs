@@ -2,13 +2,13 @@
 	<div class="l-header__main">
 		<div class="l-header__site">
 			<div class="p-header-site">
-				<% if (page.path === '/tokyu/') { %>
+				<%_ if (page.path === '/tokyu/') { _%>
 				<h1 class="p-header-site__name" itemprop="name"><a aria-current="page">東急電車形態研究</a></h1>
 				<p class="p-header-site__summary" itemprop="description">東急電車の車両形態や自動放送を紹介するサイト</p>
-				<% } else { %>
+				<%_ } else { _%>
 				<p class="p-header-site__name"><a href="/tokyu/">東急電車形態研究</a></p>
 				<p class="p-header-site__summary">東急電車の車両形態や自動放送を紹介するサイト</p>
-				<% } %>
+				<%_ } _%>
 			</div>
 		</div>
 		<div class="l-header__nav">
@@ -43,17 +43,17 @@
 	<div class="l-header__gnav">
 		<nav class="p-header-gnav">
 			<ul class="p-header-gnav__links" itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
-				<% for (const [path, title] of new Map([ ['/tokyu/data/', '車両データ'], ['/tokyu/sty/', '車両形態'], ['/tokyu/yomoyama/', '車両よもやま'], ['/tokyu/an/', '自動放送'], ['/tokyu/set/', '設定器'], ['/tokyu/book/', '鉄道本執筆'] ])) { %>
+				<%_ for (const [path, title] of new Map([ ['/tokyu/data/', '車両データ'], ['/tokyu/sty/', '車両形態'], ['/tokyu/yomoyama/', '車両よもやま'], ['/tokyu/an/', '自動放送'], ['/tokyu/set/', '設定器'], ['/tokyu/book/', '鉄道本執筆'] ])) { _%>
 				<li>
-					<% if (page.path === path) { %>
+					<%_ if (page.path === path) { _%>
 					<a aria-current="page" class="p-header-gnav__link"><%= title %></a>
-					<% } else if (page.path.startsWith(path)) { %>
+					<%_ } else if (page.path.startsWith(path)) { _%>
 					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link -my-category"><%= title %></a>
-					<% } else { %>
+					<%_ } else { _%>
 					<a href="<%= path %>" itemprop="name url" class="p-header-gnav__link"><%= title %></a>
-					<% } %>
+					<%_ } _%>
 				</li>
-				<% } %>
+				<%_ } _%>
 			</ul>
 		</nav>
 	</div>

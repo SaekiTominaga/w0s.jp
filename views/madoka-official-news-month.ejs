@@ -5,11 +5,11 @@
 
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-		<% if (nextMonth !== null) { %>
+		<%_ if (nextMonth !== null) { _%>
 		<link rel="prev" href="/madoka/official/news/<%= nextMonth.format('YYYY-MM') %>" title="新しい月（<%= nextMonth.format('YYYY年M月') %>）" />
-		<% } %> <% if (prevMonth !== null) { %>
+		<%_ } _%> <%_ if (prevMonth !== null) { _%>
 		<link rel="next" href="/madoka/official/news/<%= prevMonth.format('YYYY-MM') %>" title="古い月（<%= prevMonth.format('YYYY年M月') %>）" />
-		<% } %>
+		<%_ } _%>
 		<link rel="stylesheet" href="/assets/style/madoka.css" />
 		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
 		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" id="stylesheet-print" />
@@ -40,20 +40,20 @@
 
 					<nav class="p-local-nav">
 						<ul class="p-local-nav__list">
-							<% if (nextMonth !== null) { %>
+							<%_ if (nextMonth !== null) { _%>
 							<li>
 								<a href="/madoka/official/news/<%= nextMonth.format('YYYY-MM') %>" rel="prev" class="c-link">新しい月（<%= nextMonth.format('YYYY年M月') %>）</a>
 							</li>
-							<% } %> <% if (prevMonth !== null) { %>
+							<%_ } _%> <%_ if (prevMonth !== null) { _%>
 							<li>
 								<a href="/madoka/official/news/<%= prevMonth.format('YYYY-MM') %>" rel="next" class="c-link">古い月（<%= prevMonth.format('YYYY年M月') %>）</a>
 							</li>
-							<% } %>
+							<%_ } _%>
 						</ul>
 					</nav>
 				</div>
 				<main class="l-content__main">
-					<% for (const news of newsListMovie) { %>
+					<%_ for (const news of newsListMovie) { _%>
 					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
 							<h2>
@@ -64,16 +64,16 @@
 						<p><a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>" class="c-link">公式サイトの記事ページ</a><b class="c-domain">(www.madoka-magica.com)</b></p>
 
 						<div class="p-text">
-							<% if (news.message.length > 100) { %>
+							<%_ if (news.message.length > 100) { _%>
 							<p><%= news.message.substring(0, 100) %><span class="p-madoka-official-news__message-marker">...</span></p>
-							<% } else { %>
+							<%_ } else { _%>
 							<p><%= news.message %></p>
-							<% } %>
+							<%_ } _%>
 						</div>
 
-						<% if (news.image_file_name.length > 0) { %>
+						<%_ if (news.image_file_name.length > 0) { _%>
 						<div class="c-flex">
-							<% for (const image of news.image_file_name) { %>
+							<%_ for (const image of news.image_file_name) { _%>
 							<div class="c-flex__item">
 								<figure>
 									<div class="p-embed -border">
@@ -85,11 +85,11 @@
 									</div>
 								</figure>
 							</div>
-							<% } %>
+							<%_ } _%>
 						</div>
-						<% } %>
+						<%_ } _%>
 					</section>
-					<% } %> <% for (const news of newsListTv) { %>
+					<%_ } _%> <%_ for (const news of newsListTv) { _%>
 					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
 							<h2>
@@ -100,16 +100,16 @@
 						<p><a href="https://www.madoka-magica.com/tv/news/#n<%= news.id %>" class="c-link">公式サイトの記事ページ</a><b class="c-domain">(www.madoka-magica.com)</b></p>
 
 						<div class="p-text">
-							<% if (news.description.length > 100) { %>
+							<%_ if (news.description.length > 100) { _%>
 							<p><%= news.description.substring(0, 100) %><span class="p-madoka-official-news__message-marker">...</span></p>
-							<% } else { %>
+							<%_ } else { _%>
 							<p><%= news.description %></p>
-							<% } %>
+							<%_ } _%>
 						</div>
 
-						<% if (news.image_file_name.length > 0) { %>
+						<%_ if (news.image_file_name.length > 0) { _%>
 						<div class="c-flex">
-							<% for (const image of news.image_file_name) { %>
+							<%_ for (const image of news.image_file_name) { _%>
 							<div class="c-flex__item">
 								<figure>
 									<div class="p-embed -border">
@@ -121,24 +121,24 @@
 									</div>
 								</figure>
 							</div>
-							<% } %>
+							<%_ } _%>
 						</div>
-						<% } %>
+						<%_ } _%>
 					</section>
-					<% } %>
+					<%_ } _%>
 				</main>
 				<div class="l-content__footer">
 					<nav class="p-local-nav">
 						<ul class="p-local-nav__list">
-							<% if (nextMonth !== null) { %>
+							<%_ if (nextMonth !== null) { _%>
 							<li>
 								<a href="/madoka/official/news/<%= nextMonth.format('YYYY-MM') %>" rel="prev" class="c-link">新しい月（<%= nextMonth.format('YYYY年M月') %>）</a>
 							</li>
-							<% } %> <% if (prevMonth !== null) { %>
+							<%_ } _%> <%_ if (prevMonth !== null) { _%>
 							<li>
 								<a href="/madoka/official/news/<%= prevMonth.format('YYYY-MM') %>" rel="next" class="c-link">古い月（<%= prevMonth.format('YYYY年M月') %>）</a>
 							</li>
-							<% } %>
+							<%_ } _%>
 						</ul>
 					</nav>
 				</div>

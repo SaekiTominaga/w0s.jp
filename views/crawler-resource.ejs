@@ -36,11 +36,11 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<% if (page.query.action_revise_preview || page.query.action_revise) { %>
+												<%_ if (page.query.action_revise_preview || page.query.action_revise) { _%>
 												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" readonly="" />
-												<% } else { %>
+												<%_ } else { _%>
 												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" />
-												<% } %>
+												<%_ } _%>
 											</div>
 										</div>
 									</fieldset>
@@ -65,11 +65,11 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<select class="c-select" id="fc-category" name="category">
-													<% for (const category of categoryMaster) { %> <% if (page.query.category === category.fk) { %>
+													<%_ for (const category of categoryMaster) { _%> <%_ if (page.query.category === category.fk) { _%>
 													<option value="<%= category.fk %>" selected=""><%= category.name %></option>
-													<% } else { %>
+													<%_ } else { _%>
 													<option value="<%= category.fk %>"><%= category.name %></option>
-													<% } %> <% } %>
+													<%_ } _%> <%_ } _%>
 												</select>
 											</div>
 										</div>
@@ -83,11 +83,11 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<select class="c-select" id="fc-priority" name="priority">
-													<% for (const priority of priorityMaster) { %> <% if (page.query.priority === priority.fk) { %>
+													<%_ for (const priority of priorityMaster) { _%> <%_ if (page.query.priority === priority.fk) { _%>
 													<option value="<%= priority.fk %>" selected=""><%= priority.name %></option>
-													<% } else { %>
+													<%_ } else { _%>
 													<option value="<%= priority.fk %>"><%= priority.name %></option>
-													<% } %> <% } %>
+													<%_ } _%> <%_ } _%>
 												</select>
 											</div>
 										</div>
@@ -101,11 +101,11 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<label class="c-label -check">
-													<% if (page.query.browser) { %>
+													<%_ if (page.query.browser) { _%>
 													<input type="checkbox" name="browser" value="1" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="checkbox" name="browser" value="1" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
 												>
 											</div>
@@ -127,16 +127,16 @@
 							</div>
 
 							<div class="c-form-controls -submit">
-								<% if (page.query.action_revise_preview || page.query.action_revise) { %>
+								<%_ if (page.query.action_revise_preview || page.query.action_revise) { _%>
 								<p><button class="c-submit" name="actionrev" value="1">修正</button></p>
-								<% } else { %>
+								<%_ } else { _%>
 								<p><button class="c-submit" name="actionadd" value="1">登録</button></p>
-								<% } %>
+								<%_ } _%>
 							</div>
 						</form>
 					</section>
 
-					<% for (const [categoryName, resourcePageOfCategory] of resourcePageList) { %>
+					<%_ for (const [categoryName, resourcePageOfCategory] of resourcePageList) { _%>
 					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
 							<h2><%= categoryName %></h2>
@@ -155,7 +155,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for (const resourcePage of resourcePageOfCategory) { %>
+								<%_ for (const resourcePage of resourcePageOfCategory) { _%>
 								<tr>
 									<td>
 										<form action="<%= page.path %>" method="post" class="c-stack">
@@ -172,20 +172,20 @@
 										<p class="u-small"><%= resourcePage.url %></p>
 									</td>
 									<td><%= resourcePage.priority %></td>
-									<td><% if (resourcePage.browser) { %>✔<% } %></td>
+									<td><%_ if (resourcePage.browser) { _%>✔<%_ } _%></td>
 									<td><%= resourcePage.selector %></td>
 									<td><%= resourcePage.content_length %></td>
-									<% if (resourcePage.last_modified !== null) { %>
+									<%_ if (resourcePage.last_modified !== null) { _%>
 									<td><%= resourcePage.last_modified.format('YYYY年M月D日 H時m分') %></td>
-									<% } else { %>
+									<%_ } else { _%>
 									<td></td>
-									<% } %>
+									<%_ } _%>
 								</tr>
-								<% } %>
+								<%_ } _%>
 							</tbody>
 						</table>
 					</section>
-					<% } %>
+					<%_ } _%>
 				</main>
 			</div>
 

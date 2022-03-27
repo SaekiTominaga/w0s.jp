@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				<main class="l-content__main">
-					<% if (page.query.output === null) { %>
+					<%_ if (page.query.output === null) { _%>
 					<div class="p-box">
 						<ul class="p-list">
 							<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
@@ -51,7 +51,7 @@
 							<li>入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。</li>
 						</ul>
 					</div>
-					<% } else { %>
+					<%_ } else { _%>
 					<details class="p-toggle" is="w0s-animation-details" data-summary-toggle="折りたたむ">
 						<summary>説明文を表示</summary>
 						<div class="p-toggle__contents">
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 					</details>
-					<% } %>
+					<%_ } _%>
 
 					<section class="p-section -hdg-a" id="form">
 						<div class="p-section__hdg">
@@ -81,16 +81,16 @@
 						</div>
 
 						<form action="#result" class="c-stack js-search-form">
-							<% if (validateErrors.length > 0) { %>
+							<%_ if (validateErrors.length > 0) { _%>
 							<div class="p-form-errors js-form-errors">
 								<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
 								<ul class="p-list">
-									<% for (const validateError of validateErrors) { %>
+									<%_ for (const validateError of validateErrors) { _%>
 									<li><%= validateError.msg %></li>
-									<% } %>
+									<%_ } _%>
 								</ul>
 							</div>
-							<% } %>
+							<%_ } _%>
 
 							<div class="p-form-grid -complex">
 								<div class="p-form-grid__group">
@@ -98,17 +98,17 @@
 										<legend class="p-form-grid__legend"><label for="fc-num" class="c-label">車号</label></legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<% if (page.query.number === null || page.query.number === '') { %>
+												<%_ if (page.query.number === null || page.query.number === '') { _%>
 												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--width: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="該当する車両は存在しません。" />
-												<% } else { %>
+												<%_ } else { _%>
 												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value="<%= page.query.number %>" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--width: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="旧7000系〜新3000系、300系で該当する車両は存在しません。" />
-												<% } %>
+												<%_ } _%>
 												<label class="c-label -check">
-													<% if (page.query.number_old) { %>
+													<%_ if (page.query.number_old) { _%>
 													<input type="checkbox" name="old" value="1" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="checkbox" name="old" value="1" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">旧車号を含む</span></label
 												>
 											</div>
@@ -121,17 +121,17 @@
 										<legend class="p-form-grid__legend">車種</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox">
-												<% for (const car of carSeries) { %>
+												<%_ for (const car of carSeries) { _%>
 												<label class="c-label -check">
-													<% if (page.query.series !== null && page.query.series.includes(car.id)) { %>
+													<%_ if (page.query.series !== null && page.query.series.includes(car.id)) { _%>
 													<input type="checkbox" name="ser[]" value="<%= car.id %>" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="checkbox" name="ser[]" value="<%= car.id %>" />
-													<% } %>
+													<%_ } _%>
 
 													<span class="c-label__text"><%= car.series %></span>
 												</label>
-												<% } %>
+												<%_ } _%>
 												<p>
 													<button type="button" is="w0s-checkbox-allcheck" data-course="check" data-targets-name="ser[]" class="c-button">全車種を選択</button>
 													<button type="button" is="w0s-checkbox-allcheck" data-course="uncheck" data-targets-name="ser[]" class="c-button">全ての選択を解除</button>
@@ -147,19 +147,19 @@
 											<div class="c-form-controls">
 												<label class="c-label -input"
 													><span class="c-label__text">開始日</span>
-													<% if (page.query.register_start === null || page.query.register_start === '') { %>
+													<%_ if (page.query.register_start === null || page.query.register_start === '') { _%>
 													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value="<%= page.query.register_start %>" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
-													<% } %>
+													<%_ } _%>
 												</label>
 												<label class="c-label -input"
 													><span class="c-label__text">終了日</span>
-													<% if (page.query.register_end === null || page.query.register_end === '') { %>
+													<%_ if (page.query.register_end === null || page.query.register_end === '') { _%>
 													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value="<%= page.query.register_end %>" min="1962-01-25" max="2001-03-24" style="--width: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
-													<% } %>
+													<%_ } _%>
 												</label>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-registarstart"></p>
@@ -173,43 +173,43 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-sort">
 												<label class="c-label -check">
-													<% if (page.query.sort === null || page.query.sort === 'snu') { %>
+													<%_ if (page.query.sort === null || page.query.sort === 'snu') { _%>
 													<input type="radio" name="srt" value="snu" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="srt" value="snu" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">車号（車種別）</span></label
 												>
 												<label class="c-label -check">
-													<% if (page.query.sort === 'num') { %>
+													<%_ if (page.query.sort === 'num') { _%>
 													<input type="radio" name="srt" value="num" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="srt" value="num" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">車号（車種混合）</span></label
 												>
 												<label class="c-label -check">
-													<% if (page.query.sort === 'typ') { %>
+													<%_ if (page.query.sort === 'typ') { _%>
 													<input type="radio" name="srt" value="typ" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="srt" value="typ" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">形式</span></label
 												>
 												<label class="c-label -check">
-													<% if (page.query.sort === 'ann') { %>
+													<%_ if (page.query.sort === 'ann') { _%>
 													<input type="radio" name="srt" value="ann" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="srt" value="ann" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">呼称</span></label
 												>
 												<label class="c-label -check">
-													<% if (page.query.sort === 'reg') { %>
+													<%_ if (page.query.sort === 'reg') { _%>
 													<input type="radio" name="srt" value="reg" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="srt" value="reg" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">入籍日</span></label
 												>
 											</div>
@@ -222,19 +222,19 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-era">
 												<label class="c-label -check">
-													<% if (page.query.era === null || page.query.era === 'ad') { %>
+													<%_ if (page.query.era === null || page.query.era === 'ad') { _%>
 													<input type="radio" name="era" value="ad" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="era" value="ad" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">西暦</span></label
 												>
 												<label class="c-label -check">
-													<% if (page.query.era === 'ja') { %>
+													<%_ if (page.query.era === 'ja') { _%>
 													<input type="radio" name="era" value="ja" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="era" value="ja" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">和暦</span></label
 												>
 											</div>
@@ -247,19 +247,19 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-output">
 												<label class="c-label -check">
-													<% if (page.query.output === null || page.query.output === 'nor') { %>
+													<%_ if (page.query.output === null || page.query.output === 'nor') { _%>
 													<input type="radio" name="out" value="nor" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="out" value="nor" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">全列表示</span></label
 												>
 												<label class="c-label -check">
-													<% if (page.query.output === 'mob') { %>
+													<%_ if (page.query.output === 'mob') { _%>
 													<input type="radio" name="out" value="mob" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="out" value="mob" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text">主要列表示（モバイル向け）</span></label
 												>
 											</div>
@@ -274,23 +274,23 @@
 						</form>
 					</section>
 
-					<% if (page.query.output !== null) { %>
+					<%_ if (page.query.output !== null) { _%>
 					<section class="p-section -hdg-a" id="result">
 						<div class="p-section__hdg">
 							<h2>検索結果</h2>
 						</div>
 
-						<% if (searchCount >= 1) { %>
+						<%_ if (searchCount >= 1) { _%>
 						<p><%= searchCount %>件ヒットしました。</p>
 
-						<% if (searchCount >= 2) { %>
+						<%_ if (searchCount >= 2) { _%>
 						<p>
 							<label class="c-label"><w0s-input-switch checked="" storage-key="tokyu-history-ditto" polyfill="hidden" class="js-button-ditto" data-ditto-for="result-table"></w0s-input-switch><span class="c-label__text">直上と同じ内容のセルを「〃」で表示する</span></label>
 						</p>
-						<% } %>
+						<%_ } _%>
 
 						<table class="p-tokyu-history-table js-result-table" id="result-table">
-							<% if (page.query.output === 'mob') { %>
+							<%_ if (page.query.output === 'mob') { _%>
 							<thead>
 								<tr>
 									<th scope="col">車号</th>
@@ -299,33 +299,33 @@
 									<th scope="col">旧車号</th>
 								</tr>
 							</thead>
-							<% for (const carOfSeries of searchCars) { %>
+							<%_ for (const carOfSeries of searchCars) { _%>
 							<tbody>
-								<% for (const car of carOfSeries) { %> <% const changeCount = car.change.length; // 改番回数 %> <% if (changeCount <= 1) { %>
+								<%_ for (const car of carOfSeries) { _%> <%_ const changeCount = car.change.length; // 改番回数 _%> <%_ if (changeCount <= 1) { _%>
 								<tr data-car-num="<%= car.number %>">
 									<td class="u-cell -center"><%= car.sign %><%= car.number %></td>
 									<td class="u-cell -center"><%= car.annual %></td>
 									<td class="u-cell -center"><%= car.register %></td>
-									<% if (changeCount === 0) { %>
+									<%_ if (changeCount === 0) { _%>
 									<td></td>
-									<% } else { %>
+									<%_ } else { _%>
 									<td class="u-cell -center"><%= car.change[0].sign %><%= car.change[0].number %></td>
-									<% } %>
+									<%_ } _%>
 								</tr>
-								<% } else { %>
+								<%_ } else { _%>
 								<tr data-car-num="<%= car.number %>">
 									<td rowspan="<%= changeCount %>" class="u-cell -center"><%= car.sign %><%= car.number %></td>
 									<td rowspan="<%= changeCount %>" class="u-cell -center"><%= car.annual %></td>
 									<td rowspan="<%= changeCount %>" class="u-cell -center"><%= car.register %></td>
 									<td class="u-cell -center"><%= car.change[0].sign %><%= car.change[0].number %></td>
 								</tr>
-								<% for (let i = 1; i < changeCount; i++) { %>
+								<%_ for (let i = 1; i < changeCount; i++) { _%>
 								<tr data-car-num="<%= car.number %>">
 									<td class="u-cell -center"><%= car.change[i].sign %><%= car.change[i].number %></td>
 								</tr>
-								<% } %> <% } %> <% } %>
+								<%_ } _%> <%_ } _%> <%_ } _%>
 							</tbody>
-							<% } %> <% } else { %>
+							<%_ } _%> <%_ } else { _%>
 							<thead>
 								<tr>
 									<th scope="col">車号</th>
@@ -340,27 +340,27 @@
 									<th scope="col">車齢</th>
 								</tr>
 							</thead>
-							<% for (const carOfSeries of searchCars) { %>
+							<%_ for (const carOfSeries of searchCars) { _%>
 							<tbody>
-								<% for (const car of carOfSeries) { %> <% const changeCount = car.change.length; // 改番回数 %> <% if (changeCount <= 1) { %>
+								<%_ for (const car of carOfSeries) { _%> <%_ const changeCount = car.change.length; // 改番回数 _%> <%_ if (changeCount <= 1) { _%>
 								<tr data-car-num="<%= car.number %>">
 									<td class="u-cell -center"><%= car.sign %><%= car.number %></td>
 									<td class="u-cell -center"><%= car.series %></td>
 									<td class="u-cell -center"><%= car.type %></td>
 									<td class="u-cell -center"><%= car.annual %></td>
 									<td class="u-cell -center"><%= car.register %></td>
-									<% if (changeCount === 0) { %>
+									<%_ if (changeCount === 0) { _%>
 									<td></td>
 									<td></td>
-									<% } else { %>
+									<%_ } else { _%>
 									<td class="u-cell -center"><%= car.change[0].sign %><%= car.change[0].number %></td>
 									<td class="u-cell -center"><%= car.change[0].date %></td>
-									<% } %>
+									<%_ } _%>
 									<td><%= car.renewal %></td>
 									<td><%= car.transfer %></td>
-									<td class="u-cell -center"><% if (car.scrap) { %>解体<% } else { %><%= car.age %>年<% } %></td>
+									<td class="u-cell -center"><%_ if (car.scrap) { _%>解体<%_ } else { _%><%= car.age %>年<%_ } _%></td>
 								</tr>
-								<% } else { %>
+								<%_ } else { _%>
 								<tr data-car-num="<%= car.number %>">
 									<td rowspan="<%= changeCount %>" class="u-cell -center"><%= car.sign %><%= car.number %></td>
 									<td rowspan="<%= changeCount %>" class="u-cell -center"><%= car.series %></td>
@@ -371,24 +371,24 @@
 									<td class="u-cell -center"><%= car.change[0].date %></td>
 									<td rowspan="<%= changeCount %>"><%= car.renewal %></td>
 									<td rowspan="<%= changeCount %>"><%= car.transfer %></td>
-									<td rowspan="<%= changeCount %>" class="u-cell -center"><% if (car.scrap) { %>解体<% } else { %><%= car.age %>年<% } %></td>
+									<td rowspan="<%= changeCount %>" class="u-cell -center"><%_ if (car.scrap) { _%>解体<%_ } else { _%><%= car.age %>年<%_ } _%></td>
 								</tr>
-								<% for (let i = 1; i < changeCount; i++) { %>
+								<%_ for (let i = 1; i < changeCount; i++) { _%>
 								<tr data-car-num="<%= car.number %>">
 									<td class="u-cell -center"><%= car.change[i].sign %><%= car.change[i].number %></td>
 									<td class="u-cell -center"><%= car.change[i].date %></td>
 								</tr>
-								<% } %> <% } %> <% } %>
+								<%_ } _%> <%_ } _%> <%_ } _%>
 							</tbody>
-							<% } %> <% } %>
+							<%_ } _%> <%_ } _%>
 						</table>
-						<% } else { %>
+						<%_ } else { _%>
 						<div class="p-box">
 							<p><strong>該当する車両が存在しないか、登録されていません。</strong></p>
 						</div>
-						<% } %>
+						<%_ } _%>
 					</section>
-					<% } %>
+					<%_ } _%>
 				</main>
 			</div>
 

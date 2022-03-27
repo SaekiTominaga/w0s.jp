@@ -39,13 +39,13 @@
 						<div class="c-form-controls -center">
 							<p>
 								<select name="month" class="c-select">
-									<% for (const [year, yearData] of monthDataList) { %>
+									<%_ for (const [year, yearData] of monthDataList) { _%>
 									<optgroup label="<%= year %>年">
-										<% for (const [month, count] of yearData) { %>
+										<%_ for (const [month, count] of yearData) { _%>
 										<option value="<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月（<%= count %>件）</option>
-										<% } %>
+										<%_ } _%>
 									</optgroup>
-									<% } %>
+									<%_ } _%>
 								</select>
 							</p>
 							<p>
@@ -73,11 +73,11 @@
 						</ul>
 
 						<ul class="p-links">
-							<% for (const news of newsListMovie) { %>
+							<%_ for (const news of newsListMovie) { _%>
 							<li><a href="https://www.madoka-magica.com/rebellion/news/?id=<%= news.id %>"><%= news.title %></a>（<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</li>
-							<% } %> <% for (const news of newsListTv) { %>
+							<%_ } _%> <%_ for (const news of newsListTv) { _%>
 							<li><a href="https://www.madoka-magica.com/tv/news/#n<%= news.id %>"><%= news.title %></a> （<time datetime="<%= news.date.format('YYYY-MM-DD') %>"><%= news.date.format('YYYY年M月D日') %></time>）</li>
-							<% } %>
+							<%_ } _%>
 						</ul>
 					</section>
 					<section class="p-section -hdg-a">
@@ -86,7 +86,7 @@
 						</div>
 
 						<div class="c-grid -narrow">
-							<% for (const [year, yearData] of monthDataList) { %>
+							<%_ for (const [year, yearData] of monthDataList) { _%>
 							<div class="c-grid__item">
 								<section class="p-section -hdg-b">
 									<div class="p-section__hdg">
@@ -94,13 +94,13 @@
 									</div>
 
 									<ul class="p-links">
-										<% for (const [month, count] of yearData) { %>
+										<%_ for (const [month, count] of yearData) { _%>
 										<li><a href="/madoka/official/news/<%= year %>-<%= String(month).padStart(2, '0') %>"><%= year %>年<%= month %>月</a>（<%= count %>件）</li>
-										<% } %>
+										<%_ } _%>
 									</ul>
 								</section>
 							</div>
-							<% } %>
+							<%_ } _%>
 						</div>
 					</section>
 				</main>

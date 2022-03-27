@@ -1,23 +1,23 @@
 <footer id="footer" class="l-footer">
 	<div class="l-footer__nav">
 		<ul class="p-footer-nav">
-			<% for (const [path, title] of new Map([ ['/info', '制作者'], ['/privacy', 'プライバシーポリシー'], ['/technology', '当サイトの Web 技術'], ['/contact', '問い合わせ'], ])) { %>
+			<%_ for (const [path, title] of new Map([ ['/info', '制作者'], ['/privacy', 'プライバシーポリシー'], ['/technology', '当サイトの Web 技術'], ['/contact', '問い合わせ'], ])) { _%>
 			<li>
-				<% if (page.path !== path) { %>
+				<%_ if (page.path !== path) { _%>
 				<a href="<%= path %>" class="c-link"><%= title %></a>
-				<% } else { %>
+				<%_ } else { _%>
 				<a aria-current="page" class="c-link"><%= title %></a>
-				<% } %>
+				<%_ } _%>
 			</li>
-			<% } %>
+			<%_ } _%>
 		</ul>
 	</div>
 
-	<% if (!['/contact'].includes(page.path) && !page.path.startsWith('/admin/')) { %>
+	<%_ if (!['/contact'].includes(page.path) && !page.path.startsWith('/admin/')) { _%>
 	<div class="l-footer__ads" aria-label="広告">
 		<div class="p-footer-ads">
 			<ins class="adsbygoogle js-ads-google" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3297715785193216" data-ad-slot="9399879773"></ins>
 		</div>
 	</div>
-	<% } %>
+	<%_ } _%>
 </footer>

@@ -28,16 +28,16 @@
 						</div>
 
 						<form action="<%= page.path %>" method="post" class="c-stack">
-							<% if (validateErrors.length > 0) { %>
+							<%_ if (validateErrors.length > 0) { _%>
 							<div class="p-form-errors js-form-errors">
 								<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
 								<ul class="p-list">
-									<% for (const validateError of validateErrors) { %>
+									<%_ for (const validateError of validateErrors) { _%>
 									<li><%= validateError.msg %></li>
-									<% } %>
+									<%_ } _%>
 								</ul>
 							</div>
-							<% } %>
+							<%_ } _%>
 
 							<div class="p-form-grid">
 								<div class="p-form-grid__group">
@@ -53,16 +53,16 @@
 										<legend class="p-form-grid__legend">カテゴリー</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox">
-												<% for (const category of categoryMaster) { %>
+												<%_ for (const category of categoryMaster) { _%>
 												<label class="c-label -check">
-													<% if (page.query.category !== null && page.query.category.includes(category.id)) { %>
+													<%_ if (page.query.category !== null && page.query.category.includes(category.id)) { _%>
 													<input type="checkbox" name="category[]" value="<%= category.id %>" checked="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="checkbox" name="category[]" value="<%= category.id %>" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text"><%= category.name %></span>
 												</label>
-												<% } %>
+												<%_ } _%>
 											</div>
 										</div>
 									</fieldset>
@@ -75,14 +75,14 @@
 						</form>
 					</section>
 
-					<% for (const [categoryName, dpOfCategory] of dpList) { %>
+					<%_ for (const [categoryName, dpOfCategory] of dpList) { _%>
 					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
 							<h2><%= categoryName %></h2>
 						</div>
 
 						<ul class="c-grid -wide">
-							<% for (const dp of dpOfCategory) { %>
+							<%_ for (const dp of dpOfCategory) { _%>
 							<li class="c-grid__item">
 								<div class="p-box">
 									<form action="<%= page.path %>" method="post">
@@ -95,37 +95,37 @@
 
 									<div class="p-item">
 										<a href="https://www.amazon.co.jp/dp/<%= dp.asin %>">
-											<% if (dp.image_url !== null) { %>
+											<%_ if (dp.image_url !== null) { _%>
 											<img src="<%= dp.image_url %>" srcset="<%= dp.image_url_2x %> 2x" alt="" class="p-item__image" />
-											<% } else { %>
+											<%_ } else { _%>
 											<img src="/assets/image/amazon_noimage.svg" alt="" class="p-item__image" />
-											<% } %> <% if (dp.binding !== null) { %>
+											<%_ } _%> <%_ if (dp.binding !== null) { _%>
 											<span class="p-item__title"><%= dp.title %></span>
-											<% } else { %>
+											<%_ } else { _%>
 											<span class="p-item__title"><%= dp.title %><b>[<%= dp.binding %>]</b></span>
-											<% } %>
+											<%_ } _%>
 										</a>
-										<% if (dp.date !== null) { %>
+										<%_ if (dp.date !== null) { _%>
 										<div class="p-item__text">
 											<p><%= dp.date.format('YYYY年M月D日') %></p>
 										</div>
-										<% } %>
+										<%_ } _%>
 									</div>
 
 									<dl class="p-list-description">
 										<dt>商品ページ URL</dt>
 										<dd><%= dp.url %></dd>
-										<% if (dp.image_url !== null) { %>
+										<%_ if (dp.image_url !== null) { _%>
 										<dt>画像 URL</dt>
 										<dd><%= dp.image_url %></dd>
-										<% } %>
+										<%_ } _%>
 									</dl>
 								</div>
 							</li>
-							<% } %>
+							<%_ } _%>
 						</ul>
 					</section>
-					<% } %>
+					<%_ } _%>
 				</main>
 			</div>
 

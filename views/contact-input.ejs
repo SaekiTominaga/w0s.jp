@@ -39,16 +39,16 @@
 				</div>
 				<main class="l-content__main">
 					<form novalidate="" method="post" class="c-stack js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
-						<% if (validateErrors.length > 0) { %>
+						<%_ if (validateErrors.length > 0) { _%>
 						<div class="p-form-errors js-form-errors">
 							<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
 							<ul class="p-list">
-								<% for (const validateError of validateErrors) { %>
+								<%_ for (const validateError of validateErrors) { _%>
 								<li><%= validateError.msg %></li>
-								<% } %>
+								<%_ } _%>
 							</ul>
 						</div>
-						<% } %>
+						<%_ } _%>
 
 						<div class="js-screen-input">
 							<div class="p-form-grid">
@@ -59,11 +59,11 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<% if (page.query.name === null) { %>
+												<%_ if (page.query.name === null) { _%>
 												<input class="c-input" name="yourname" id="input-name" style="--width: 24em" />
-												<% } else { %>
+												<%_ } else { _%>
 												<input class="c-input" name="yourname" value="<%= page.query.name %>" id="input-name" style="--width: 24em" />
-												<% } %>
+												<%_ } _%>
 											</div>
 										</div>
 									</fieldset>
@@ -75,11 +75,11 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<% if (page.query.email === null) { %>
+												<%_ if (page.query.email === null) { _%>
 												<input type="email" class="c-input js-convert-trim js-validation" name="email" required="" autocomplete="email" id="input-email" style="--width: 24em" aria-errormessage="input-validate-email" />
-												<% } else { %>
+												<%_ } else { _%>
 												<input type="email" class="c-input js-convert-trim js-validation" name="email" value="<%= page.query.email %>" required="" autocomplete="email" id="input-email" style="--width: 24em" aria-errormessage="input-validate-email" />
-												<% } %>
+												<%_ } _%>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-email"></p>
 										</div>
@@ -92,16 +92,16 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox js-validation" role="radiogroup" aria-labelledby="label-reply" aria-errormessage="input-validate-reply">
-												<% for ([key, value] of Object.entries(reply)) { %>
+												<%_ for ([key, value] of Object.entries(reply)) { _%>
 												<label class="c-label -check">
-													<% if (key !== page.query.reply) { %>
+													<%_ if (key !== page.query.reply) { _%>
 													<input type="radio" name="reply" value="<%= key %>" required="" />
-													<% } else { %>
+													<%_ } else { _%>
 													<input type="radio" name="reply" value="<%= key %>" required="" checked="" />
-													<% } %>
+													<%_ } _%>
 													<span class="c-label__text"><%= value %></span>
 												</label>
-												<% } %>
+												<%_ } _%>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-reply"></p>
 											<p class="c-fc-note">おことわり: 「必要」を選択された場合でも、内容によっては返信しかねる場合があります。</p>

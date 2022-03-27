@@ -22,56 +22,56 @@
 					</div>
 				</div>
 				<main class="l-content__main">
-					<% if (diff.length >= 1) { %>
+					<%_ if (diff.length >= 1) { _%>
 					<table class="p-admin-crawler-diff">
 						<tbody>
-							<% for (const part of diff) { %>
-							<tr class="p-admin-crawler-diff__line<% if (part.added) { %> -added<% } else if (part.removed) { %> -removed<% } %>">
-								<% if (part.added) { %>
+							<%_ for (const part of diff) { _%>
+							<tr class="p-admin-crawler-diff__line<%_ if (part.added) { _%> -added<%_ } else if (part.removed) { _%> -removed<%_ } _%>">
+								<%_ if (part.added) { _%>
 								<td class="p-admin-crawler-diff__type">+</td>
-								<% } else if (part.removed) { %>
+								<%_ } else if (part.removed) { _%>
 								<td class="p-admin-crawler-diff__type">-</td>
-								<% } else { %>
+								<%_ } else { _%>
 								<td class="p-admin-crawler-diff__type"></td>
-								<% } %> <% if (part.added) { %>
+								<%_ } _%> <%_ if (part.added) { _%>
 								<td>
 									<pre><code><%= part.value %></code></pre>
 								</td>
-								<% } else if (part.removed) { %>
+								<%_ } else if (part.removed) { _%>
 								<td>
 									<pre><code><%= part.value %></code></pre>
 								</td>
-								<% } else { %>
+								<%_ } else { _%>
 								<td>
 									<pre><code><%= part.value %></code></pre>
 								</td>
-								<% } %>
+								<%_ } _%>
 							</tr>
-							<% } %>
+							<%_ } _%>
 						</tbody>
 					</table>
-					<% } %> <% if (fileList.length >= 1) { %>
+					<%_ } _%> <%_ if (fileList.length >= 1) { _%>
 					<form class="c-stack">
 						<p><input type="hidden" name="dir" value="<%= page.query.dir %>" /></p>
 						<p><button class="c-submit">比較</button></p>
 						<ul>
-							<% for (const file of fileList) { %>
+							<%_ for (const file of fileList) { _%>
 							<li>
 								<label>
-									<% if (page.query.diff.includes(file)) { %>
+									<%_ if (page.query.diff.includes(file)) { _%>
 									<input type="checkbox" name="diff[]" value="<%= file %>" checked="" />
-									<% } else { %>
+									<%_ } else { _%>
 									<input type="checkbox" name="diff[]" value="<%= file %>" />
-									<% } %><%= file %></label
+									<%_ } _%><%= file _%></label
 								>
 								(<a href="/admin/crawler-resource-log/<%= page.query.dir %>/<%= file %>">ソースコード</a>)
 							</li>
-							<% } %>
+							<%_ } _%>
 						</ul>
 					</form>
-					<% } else { %>
+					<%_ } else { _%>
 					<p><strong>データがありません。</strong></p>
-					<% } %>
+					<%_ } _%>
 				</main>
 			</div>
 
