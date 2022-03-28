@@ -8,6 +8,7 @@
 export type NoName = string;
 export type NoName3 = string;
 export type NoName4 = string;
+export type NoName5 = string;
 
 export interface Amazon {
   view: View;
@@ -27,6 +28,7 @@ export interface NoName2 {
   [k: string]: unknown;
 }
 export interface JSON {
-  directory: NoName3;
-  extension: NoName4;
+  endpoint: NoName3;
+  directory: NoName4;
+  extension: NoName5;
 }

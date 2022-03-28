@@ -1,4 +1,5 @@
 import AmazonAdsController from './controller/AmazonAdsController.js';
+import AmazonAdsJsonController from './controller/api/AmazonAdsJsonController.js';
 import compression from 'compression';
 import ContactCompletedController from './controller/ContactCompletedController.js';
 import ContactInputController from './controller/ContactInputController.js';
@@ -286,6 +287,13 @@ app
 			next(e);
 		}
 	});
+app.route('/admin/amazon-ads/json').post(async (req, res, next) => {
+	try {
+		await new AmazonAdsJsonController(config).execute(req, res);
+	} catch (e) {
+		next(e);
+	}
+});
 
 /**
  * 東急電車形態研究・車歴表

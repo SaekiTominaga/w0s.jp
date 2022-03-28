@@ -5,12 +5,12 @@ import amazonPaapi from 'amazon-paapi';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
+import fetch from 'node-fetch';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
 import PaapiUtil from '../util/Paapi.js';
 import RequestUtil from '../util/RequestUtil.js';
-import zlib from 'zlib';
 import { Amazon as Configure } from '../../configure/type/amazon-ads';
 import { GetItemsResponse } from 'paapi5-typescript-sdk';
 import { Request, Response } from 'express';
@@ -116,7 +116,7 @@ export default class AmazonAdsController extends Controller implements Controlle
 				await dao.delete(asin);
 				await dao.insert(asin, apiDpUrl, apiTitle, apiBinding, apiPublicationDate, apiImageUrl, apiImageWidth, apiImageHeight, <string[]>requestQuery.category);
 
-				await this.#createJson(categoryMaster);
+				await this.#createJson(req);
 
 				httpResponse.send303(); // 初期画面に遷移
 				return;
@@ -131,7 +131,7 @@ export default class AmazonAdsController extends Controller implements Controlle
 
 			await dao.delete(requestQuery.asin);
 
-			await this.#createJson(categoryMaster);
+			await this.#createJson(req);
 
 			httpResponse.send303(); // 初期画面に遷移
 			return;
@@ -186,61 +186,34 @@ export default class AmazonAdsController extends Controller implements Controlle
 	/**
 	 * JSON ファイルを出力する
 	 *
-	 * @param {Set} categoryMaster - カテゴリー情報
+	 * @param {Request} req - Request
 	 */
-	async #createJson(categoryMaster: Set<Amazon.CategoryMaster>): Promise<void> {
-		for (const category of categoryMaster) {
-			const fileName = category.json_name;
-			const filePath = `${this.#configCommon.static.root}/${this.#config.json.directory}/${fileName}.${this.#config.json.extension}`;
-			const brotliFilePath = `${filePath}.br`;
+	async #createJson(req: Request): Promise<void> {
+		let endPoint = this.#config.json.endpoint;
+		if (endPoint.startsWith('/')) {
+			endPoint = `${req.get('Origin')}${endPoint}`;
+		}
 
-			const dao = new AmazonAdsDao(this.#configCommon);
+		const authorization = req.get('Authorization');
+		if (authorization === undefined) {
+			this.logger.error('`Authorization` header is not set');
+			return;
+		}
 
-			const ads = await dao.getAdsData(fileName);
-			if (ads.size === 0) {
-				this.logger.warn(`No data: ${fileName}`);
-				continue;
-			}
+		this.logger.info('Fetch', endPoint);
 
-			const jsonData: Set<AmazonAdsView.Json> = new Set();
-			for (const ad of ads) {
-				const jsonColumn: AmazonAdsView.Json = {
-					a: ad.asin,
-					t: ad.title,
-				};
-
-				if (ad.binding !== null) {
-					jsonColumn.b = ad.binding;
-				}
-				if (ad.date !== null) {
-					jsonColumn.d = ad.date.getTime();
-				}
-				if (ad.image_url !== null) {
-					jsonColumn.i = ad.image_url;
-				}
-				if (ad.image_width !== null) {
-					jsonColumn.w = ad.image_width;
-				}
-				if (ad.image_height !== null) {
-					jsonColumn.h = ad.image_height;
-				}
-
-				jsonData.add(jsonColumn);
-			}
-
-			const json = JSON.stringify(Array.from(jsonData));
-
-			const jsonBrotli = zlib.brotliCompressSync(json, {
-				params: {
-					[zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
-					[zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY,
-					[zlib.constants.BROTLI_PARAM_SIZE_HINT]: json.length,
+		try {
+			const response = await fetch(endPoint, {
+				method: 'post',
+				headers: {
+					Authorization: authorization,
 				},
 			});
-
-			await Promise.all([fs.promises.writeFile(filePath, json), fs.promises.writeFile(brotliFilePath, jsonBrotli)]);
-			this.logger.info('JSON file created', filePath);
-			this.logger.info('JSON Brotli file created', brotliFilePath);
+			if (!response.ok) {
+				this.logger.error('Fetch error', endPoint);
+			}
+		} catch (e) {
+			this.logger.error(e);
 		}
 	}
 }
