@@ -102,7 +102,7 @@ fileList.map(async (filePath) => {
 
 	/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
 	try {
-		html = html.replace(/<a([^>]*?)class="(.+? |)htmlbuild-amazon-associate( .+?|)"([^>]*?)>([\s\S]+?)<\/a[\s]*?>/g, (match, p1, p2, p3, p4, p5) => {
+		html = html.replace(/<a([^>]*?)class="(.+? |)htmlbuild-amazon-associate( .+?|)"([^>]*?)>([\s\S]+?)<\/a[\s]*?>/g, (_match, p1, p2, p3, p4, p5) => {
 			const ASSOCIATE_ID = 'w0s.jp-22';
 
 			let attrsBefore = p1.trim(); // class 属性の前に存在する属性
@@ -157,7 +157,7 @@ fileList.map(async (filePath) => {
 	 * ↓
 	 * <code data-language="xml">&lt;span&gt;Hello World!&lt;/span&gt;</code>
 	 */
-	html = html.replace(/<code([^>]*?)class="(.+? |)htmlbuild-highlight( .+?|)"([^>]*?)>([^]+?)<\/code[\s]*?>/g, (match, p1, p2, p3, p4, p5) => {
+	html = html.replace(/<code([^>]*?)class="(.+? |)htmlbuild-highlight( .+?|)"([^>]*?)>([^]+?)<\/code[\s]*?>/g, (_match, p1, p2, p3, p4, p5) => {
 		const attrsBefore = p1.trim(); // class 属性の前に指定されている属性
 		const classValueBefore = p2.trim(); // htmlbuild-datetime の前方に指定された class 属性値
 		const classValueAfter = p3.trim(); // htmlbuild-datetime の後方に指定された class 属性値
