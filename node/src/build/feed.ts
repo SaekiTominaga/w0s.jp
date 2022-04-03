@@ -1,15 +1,14 @@
 import crypto from 'crypto';
-import ConsoleLocaleTimestamp from 'console-locale-timestamp';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
+import parse5 from 'parse5';
 import prettier from 'prettier';
 import xmlFormatter from 'xml-formatter';
-import parse5 from 'parse5';
-import { DOMParser } from '@xmldom/xmldom';
 import xmlserializer from 'xmlserializer';
 import xpath from 'xpath';
+import { DOMParser } from '@xmldom/xmldom';
 
 const FEED_INFOS = [
 	{
@@ -38,12 +37,15 @@ const FEED_INFOS = [
 	},
 ];
 
-const consoleTimestamp = new ConsoleLocaleTimestamp();
-
-new filelist.FileList().include(FEED_INFOS.map((value) => value.html_path)).map(async (htmlPath) => {
+const fileList = new filelist.FileList();
+fileList.include(FEED_INFOS.map((value) => value.html_path));
+fileList.map(async (htmlPath) => {
 	const html = (await fs.promises.readFile(htmlPath)).toString();
 
 	const feedInfo = FEED_INFOS.find((value) => value.html_path === htmlPath);
+	if (feedInfo === undefined) {
+		return;
+	}
 
 	const document = new DOMParser().parseFromString(xmlserializer.serializeToString(parse5.parse(html)), 'text/html');
 	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
@@ -51,25 +53,26 @@ new filelist.FileList().include(FEED_INFOS.map((value) => value.html_path)).map(
 	/* HTML から必要なデータを取得 */
 	const entries = [];
 	for (const wrapElement of xpathSelect(feedInfo.xpath_wrap, document)) {
-		const title = String(xpathSelect(`string(${feedInfo.xpath_content})`, wrapElement)).trim();
-		const updatedTimeElementDatetime = new Date(xpathSelect(`string(${feedInfo.xpath_date})`, wrapElement).trim());
-		const links = xpathSelect('.//x:a/@href', wrapElement).map((value) => String(value.nodeValue).trim());
-		const content = xpathSelect(feedInfo.xpath_content, wrapElement).toString().replace(' xmlns="http://www.w3.org/1999/xhtml"', '');
+		const title = String(xpathSelect(`string(${feedInfo.xpath_content})`, <Node>wrapElement)).trim();
+		const updatedTimeElementDatetime = new Date(
+			xpathSelect(`string(${feedInfo.xpath_date})`, <Node>wrapElement)
+				.toString()
+				.trim()
+		);
+		const links = xpathSelect('.//x:a/@href', <Node>wrapElement).map((value) => String((<Node>value).nodeValue).trim());
+		const content = xpathSelect(feedInfo.xpath_content, <Node>wrapElement)
+			.toString()
+			.replace(' xmlns="http://www.w3.org/1999/xhtml"', '');
 
 		const updated = new Date(updatedTimeElementDatetime.getTime() + updatedTimeElementDatetime.getTimezoneOffset() * 60000);
-		let contentFormatted = '';
-		try {
-			contentFormatted = prettier
-				.format(content, {
-					/* https://prettier.io/docs/en/options.html */
-					printWidth: 9999,
-					parser: 'html',
-				})
-				.trim();
-		} catch (e) {
-			consoleTimestamp.error('Prettier failed', e);
-			contentFormatted = content;
-		}
+
+		const contentFormatted = prettier
+			.format(content, {
+				/* https://prettier.io/docs/en/options.html */
+				printWidth: 9999,
+				parser: 'html',
+			})
+			.trim();
 
 		const md5 = crypto.createHash('md5');
 		md5.update(`${updated.getTime() / 1000}${links.join('')}`);
@@ -83,7 +86,6 @@ new filelist.FileList().include(FEED_INFOS.map((value) => value.html_path)).map(
 			content: contentFormatted,
 		});
 	}
-	consoleTimestamp.debug(entries);
 
 	const feedXml = await ejs.renderFile(feedInfo.feed_template, {
 		entries: entries,
@@ -99,5 +101,5 @@ new filelist.FileList().include(FEED_INFOS.map((value) => value.html_path)).map(
 	const feedPath = feedInfo.feed_path;
 
 	await fs.promises.writeFile(feedPath, feedXmlFormatted);
-	consoleTimestamp.info(`Feed file created: ${feedPath}`);
+	console.info(`Feed file created: ${feedPath}`);
 });

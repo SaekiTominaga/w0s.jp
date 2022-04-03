@@ -1,24 +1,24 @@
-import ConsoleLocaleTimestamp from 'console-locale-timestamp';
+import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
 import hljs from 'highlight.js/lib/core';
-import hljsXml from 'highlight.js/lib/languages/xml';
 import hljsCss from 'highlight.js/lib/languages/css';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
+import hljsXml from 'highlight.js/lib/languages/xml';
 import HtmlConvertAnchorHost from '@saekitominaga/htmlconvert-anchor-host';
 import HtmlConvertTimeJapanese from '@saekitominaga/htmlconvert-time-japanese';
 import parse5 from 'parse5';
 import path from 'path';
-import ejs from 'ejs';
 import prettier from 'prettier';
-import { DOMParser } from '@xmldom/xmldom';
 import xmlserializer from 'xmlserializer';
 import xpath from 'xpath';
+import { DOMParser } from '@xmldom/xmldom';
 import { exit } from 'node:process';
 
-const consoleTimestamp = new ConsoleLocaleTimestamp();
-
 const filesPath = process.argv[2];
+if (filesPath === undefined) {
+	throw new Error('Missing parameter');
+}
 
 hljs.registerLanguage('xml', hljsXml);
 hljs.registerLanguage('css', hljsCss);
@@ -27,7 +27,10 @@ hljs.configure({
 	classPrefix: 'c-code-highlight -',
 });
 
-new filelist.FileList().include(filesPath).map(async (filePath) => {
+const fileList = new filelist.FileList();
+fileList.include(filesPath);
+
+fileList.map(async (filePath) => {
 	/* ファイル読み込み */
 	const fileData = fs.readFileSync(filePath).toString();
 
@@ -52,13 +55,13 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
 
 	/* HTML から必要なデータを取得 */
-	const pageTitle = xpathSelect('string(//x:title)', document); // ページタイトル
+	const pageTitle = xpathSelect('string(//x:title)', document).toString(); // ページタイトル
 	if (pageTitle === '') {
-		consoleTimestamp.error(`<title> 要素が存在しないか中身が空なため変換中止: ${filePath}`);
+		console.error(`<title> 要素が存在しないか中身が空なため変換中止: ${filePath}`);
 		exit();
 	}
 
-	const pageDescription = xpathSelect('string(//x:*[@itemprop="description"])', document)
+	const pageDescription = xpathSelect('string(//x:*[@itemprop="description"])', document).toString()
 		.trim()
 		.split('\n')
 		.map((value) => value.trim())
@@ -87,14 +90,14 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 	try {
 		html = HtmlConvertAnchorHost.convert(html, { class: 'htmlbuild-domain', host_element: 'b', host_class: 'c-domain', host_parentheses: ['(', ')'] });
 	} catch (e) {
-		consoleTimestamp.error(e.message);
+		console.error(e);
 	}
 
 	/* 日付文字列を <time datetime> 要素に変換 */
 	try {
 		html = HtmlConvertTimeJapanese.convert(html, { class: 'htmlbuild-datetime' });
 	} catch (e) {
-		consoleTimestamp.error(e.message);
+		console.error(e);
 	}
 
 	/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
@@ -144,7 +147,7 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 			return `<a${attr}>${textContent}</a>`;
 		});
 	} catch (e) {
-		consoleTimestamp.error(e.message);
+		console.error(e);
 	}
 
 	/**
@@ -195,13 +198,13 @@ new filelist.FileList().include(filesPath).map(async (filePath) => {
 			parser: 'html',
 		});
 
-		consoleTimestamp.info(`フォーマット処理（prettier）完了: ${filePath}`);
+		console.info(`フォーマット処理（prettier）完了: ${filePath}`);
 	} catch (e) {
-		consoleTimestamp.error(`フォーマット処理（prettier）でエラー: ${filePath}`, e);
+		console.error(`フォーマット処理（prettier）でエラー: ${filePath}`, e);
 	}
 
 	/* 出力 */
 	const formatHTMLPath = `public/${filePath.substring(filePath.replace(/\\/g, '/').indexOf('/') + 1)}`;
 	await fs.promises.writeFile(formatHTMLPath, htmlFormatted);
-	consoleTimestamp.info(`HTML ファイル出力: ${formatHTMLPath}`);
+	console.info(`HTML ファイル出力: ${formatHTMLPath}`);
 });
