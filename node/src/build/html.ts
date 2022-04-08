@@ -5,10 +5,12 @@ import hljs from 'highlight.js/lib/core';
 import hljsCss from 'highlight.js/lib/languages/css';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsXml from 'highlight.js/lib/languages/xml';
-import HtmlConvertAnchorHost from '@saekitominaga/htmlconvert-anchor-host';
-import HtmlConvertTimeJapanese from '@saekitominaga/htmlconvert-time-japanese';
 import parse5 from 'parse5';
 import path from 'path';
+import posthtml from 'posthtml';
+import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
+import posthtmlAnchorHost from 'posthtml-anchor-host';
+import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
 import xmlserializer from 'xmlserializer';
 import xpath from 'xpath';
@@ -61,7 +63,8 @@ fileList.map(async (filePath) => {
 		exit();
 	}
 
-	const pageDescription = xpathSelect('string(//x:*[@itemprop="description"])', document).toString()
+	const pageDescription = xpathSelect('string(//x:*[@itemprop="description"])', document)
+		.toString()
 		.trim()
 		.split('\n')
 		.map((value) => value.trim())
@@ -86,69 +89,27 @@ fileList.map(async (filePath) => {
 	/* HTML コメント削除 */
 	html = html.replace(/<!--[\s\S]*?-->/g, '');
 
-	/* リンクアンカーにドメイン情報を付与 */
-	try {
-		html = HtmlConvertAnchorHost.convert(html, { class: 'htmlbuild-domain', host_element: 'b', host_class: 'c-domain', host_parentheses: ['(', ')'] });
-	} catch (e) {
-		console.error(e);
-	}
+	html = (
+		await posthtml([
+			/* 日付文字列を <time datetime> 要素に変換 */
+			posthtmlTimeJapaneseDate({ element: 'span', class: 'htmlbuild-datetime' }),
 
-	/* 日付文字列を <time datetime> 要素に変換 */
-	try {
-		html = HtmlConvertTimeJapanese.convert(html, { class: 'htmlbuild-datetime' });
-	} catch (e) {
-		console.error(e);
-	}
+			/* リンクアンカーにドメイン情報を付与 */
+			posthtmlAnchorHost({
+				class: 'htmlbuild-domain',
+				host_element: 'b',
+				host_class: 'c-domain',
+				host_parentheses_before: '(',
+				host_parentheses_after: ')',
+			}),
 
-	/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
-	try {
-		html = html.replace(/<a([^>]*?)class="(.+? |)htmlbuild-amazon-associate( .+?|)"([^>]*?)>([\s\S]+?)<\/a[\s]*?>/g, (_match, p1, p2, p3, p4, p5) => {
-			const ASSOCIATE_ID = 'w0s.jp-22';
-
-			let attrsBefore = p1.trim(); // class 属性の前に存在する属性
-			const classValueBefore = p2.trim(); // 当該クラス名の前方に存在する class 属性値
-			const classValueAfter = p3.trim(); // 当該クラス名の後方に存在する class 属性値
-			let attrsAfter = p4.trim(); // class 属性の後に存在する属性（ホワイトスペースを含む）
-			const textContent = p5; // 要素の中身
-
-			const attrsBeforeHrefMatchResult = attrsBefore.match(/href="(?<href>[^"]+)"/);
-			const attrsAfterHrefMatchResult = attrsAfter.match(/href="(?<href>[^"]+)"/);
-
-			const anchorHref = attrsBeforeHrefMatchResult?.groups?.href ?? attrsAfterHrefMatchResult?.groups?.href;
-			if (anchorHref === undefined) {
-				throw new Error(`href 属性のない要素は処理対象外: ${textContent}`);
-			}
-
-			if (!anchorHref.match(/^https:\/\/www.amazon.co.jp\/dp\/([\dA-Z]{10})\/$/)) {
-				throw new Error(`Amazon 商品ページの URL が \`https://www.amazon.co.jp/dp/\${ASIN}/\` 形式ではない: ${textContent}`);
-			}
-
-			const associateUrl = `${anchorHref}ref=nosim?tag=${ASSOCIATE_ID}`; // https://affiliate.amazon.co.jp/help/node/topic/GP38PJ6EUR6PFBEC
-
-			if (attrsBeforeHrefMatchResult !== null) {
-				attrsBefore = attrsBefore.replace(/href="(?<href>[^"]+)"/, `href="${associateUrl}"`);
-			} else if (attrsAfterHrefMatchResult !== null) {
-				attrsAfter = attrsAfter.replace(/href="(?<href>[^"]+)"/, `href="${associateUrl}"`);
-			}
-
-			const newClassValue = `${classValueBefore} ${classValueAfter}`.trim();
-
-			let attr = '';
-			if (attrsBefore !== '') {
-				attr += ` ${attrsBefore}`;
-			}
-			if (newClassValue !== '') {
-				attr += ` class="${newClassValue}"`;
-			}
-			if (attrsAfter !== '') {
-				attr += ` ${attrsAfter}`;
-			}
-
-			return `<a${attr}>${textContent}</a>`;
-		});
-	} catch (e) {
-		console.error(e);
-	}
+			/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
+			posthtmlAnchorAmazonAssociate({
+				class: 'htmlbuild-amazon-associate',
+				associate_id: 'w0s.jp-22',
+			}),
+		]).process(html)
+	).html;
 
 	/**
 	 * hightlight.js
