@@ -2,12 +2,11 @@ import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
 import hljs from 'highlight.js/lib/core';
-import hljsCss from 'highlight.js/lib/languages/css';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsXml from 'highlight.js/lib/languages/xml';
 import parse5 from 'parse5';
 import path from 'path';
-import posthtml from 'posthtml';
+import posthtml, { Node } from 'posthtml';
 import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
 import posthtmlAnchorHost from 'posthtml-anchor-host';
 import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
@@ -21,13 +20,6 @@ const filesPath = process.argv[2];
 if (filesPath === undefined) {
 	throw new Error('Missing parameter');
 }
-
-hljs.registerLanguage('xml', hljsXml);
-hljs.registerLanguage('css', hljsCss);
-hljs.registerLanguage('javascript', hljsJavaScript);
-hljs.configure({
-	classPrefix: 'c-code-highlight -',
-});
 
 const fileList = new filelist.FileList();
 fileList.include(filesPath);
@@ -108,46 +100,84 @@ fileList.map(async (filePath) => {
 				class: 'htmlbuild-amazon-associate',
 				associate_id: 'w0s.jp-22',
 			}),
+
+			/* highlight.js */
+			(tree: Node): Node => {
+				hljs.registerLanguage('xml', hljsXml);
+				hljs.registerLanguage('javascript', hljsJavaScript);
+				hljs.configure({
+					classPrefix: 'c-code-highlight -',
+				});
+
+				const targetElementInfo = {
+					class: 'htmlbuild-highlight',
+				};
+
+				const highlightNode = (node: Node) => {
+					const content = node.content;
+					const attrs = node.attrs ?? {};
+
+					let newClass = attrs.class;
+					if (targetElementInfo.class !== undefined && targetElementInfo.class !== '') {
+						const CLASS_SEPARATOR = ' ';
+
+						const classList = attrs.class?.split(CLASS_SEPARATOR);
+						if (classList === undefined) {
+							/* class 属性なしの要素 */
+							return node;
+						}
+						if (!classList.includes(targetElementInfo.class)) {
+							/* 当該クラス名のない要素 */
+							return node;
+						}
+
+						/* 指定されたクラス名を除去した上で変換する */
+						const newClassList = classList.filter((className) => className !== targetElementInfo.class && className !== '');
+						newClass = newClassList.length >= 1 ? newClassList.join(CLASS_SEPARATOR) : undefined;
+					}
+
+					const languageName = attrs['data-language'];
+					let registLanguageName: string | undefined;
+					switch (languageName) {
+						case 'xml':
+						case 'html':
+						case 'svg': {
+							registLanguageName = 'xml';
+							break;
+						}
+						case 'javascript': {
+							registLanguageName = 'javascript';
+							break;
+						}
+						default: {
+							console.warn(`無効な言語名: \`${languageName}\``);
+						}
+					}
+
+					if (content?.length !== 1) {
+						/* TODO: 当該 <code> の中は Text ノードのみ（length === 1）の想定 */
+						return node;
+					}
+
+					const codeText = content.at(0)?.toString().replaceAll('&lt;', '<').replaceAll('&gt;', '>');
+					if (codeText === undefined) {
+						return node;
+					}
+
+					const highlighted = registLanguageName !== undefined ? hljs.highlight(codeText, { language: registLanguageName }) : hljs.highlightAuto(codeText);
+
+					node.content = [highlighted.value];
+					attrs.class = newClass;
+
+					return node;
+				};
+
+				tree.match({ tag: 'code' }, highlightNode);
+
+				return tree;
+			},
 		]).process(html)
 	).html;
-
-	/**
-	 * hightlight.js
-	 *
-	 * <code class="htmlbuild-highlight">&lt;span&gt;Hello World!&lt;/span&gt;</code>
-	 * ↓
-	 * <code data-language="xml">&lt;span&gt;Hello World!&lt;/span&gt;</code>
-	 */
-	html = html.replace(/<code([^>]*?)class="(.+? |)htmlbuild-highlight( .+?|)"([^>]*?)>([^]+?)<\/code[\s]*?>/g, (_match, p1, p2, p3, p4, p5) => {
-		const attrsBefore = p1.trim(); // class 属性の前に指定されている属性
-		const classValueBefore = p2.trim(); // htmlbuild-datetime の前方に指定された class 属性値
-		const classValueAfter = p3.trim(); // htmlbuild-datetime の後方に指定された class 属性値
-		const attrsAfter = p4.trim(); // class 属性の後に指定されている属性
-		const textContent = p5; // 要素の中身
-
-		const highlighted = hljs.highlightAuto(textContent.replaceAll('&lt;', '<').replaceAll('&gt;', '>'));
-
-		const newClassValue = `${classValueBefore} ${classValueAfter}`.trim();
-
-		let attr = '';
-		if (attrsBefore !== '') {
-			attr += ` ${attrsBefore}`;
-		}
-		if (newClassValue !== '') {
-			attr += ` class="${newClassValue}"`;
-		}
-		if (attrsAfter !== '') {
-			attr += ` ${attrsAfter}`;
-		}
-		if (attr === ' ') {
-			attr = '';
-		}
-		if (highlighted.language !== undefined) {
-			attr += ` data-language="${highlighted.language}"`;
-		}
-
-		return `<code${attr}>${highlighted.value}</code>`;
-	});
 
 	/* 整形 */
 	let htmlFormatted = html;
