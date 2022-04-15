@@ -2,30 +2,20 @@ import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
 import hljs from 'highlight.js/lib/core';
-import hljsCss from 'highlight.js/lib/languages/css';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsXml from 'highlight.js/lib/languages/xml';
-import HtmlConvertAnchorHost from '@saekitominaga/htmlconvert-anchor-host';
-import HtmlConvertTimeJapanese from '@saekitominaga/htmlconvert-time-japanese';
-import parse5 from 'parse5';
 import path from 'path';
+import posthtml from 'posthtml';
+import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
+import posthtmlAnchorHost from 'posthtml-anchor-host';
+import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
-import xmlserializer from 'xmlserializer';
-import xpath from 'xpath';
-import { DOMParser } from '@xmldom/xmldom';
-import { exit } from 'node:process';
+import { JSDOM } from 'jsdom';
 
 const filesPath = process.argv[2];
 if (filesPath === undefined) {
 	throw new Error('Missing parameter');
 }
-
-hljs.registerLanguage('xml', hljsXml);
-hljs.registerLanguage('css', hljsCss);
-hljs.registerLanguage('javascript', hljsJavaScript);
-hljs.configure({
-	classPrefix: 'c-code-highlight -',
-});
 
 const fileList = new filelist.FileList();
 fileList.include(filesPath);
@@ -51,22 +41,18 @@ fileList.map(async (filePath) => {
 		pagePath = parse.dir !== '/' ? `${parse.dir}/${parse.name}` : `/${parse.name}`;
 	}
 
-	const document = new DOMParser().parseFromString(xmlserializer.serializeToString(parse5.parse(fileData)), 'text/html');
-	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
+	const document = new JSDOM(fileData).window.document;
 
 	/* HTML から必要なデータを取得 */
-	const pageTitle = xpathSelect('string(//x:title)', document).toString(); // ページタイトル
-	if (pageTitle === '') {
-		console.error(`<title> 要素が存在しないか中身が空なため変換中止: ${filePath}`);
-		exit();
-	}
+	const pageTitle = document.querySelector('title')?.textContent?.trim() ?? ''; // ページタイトル
 
-	const pageDescription = xpathSelect('string(//x:*[@itemprop="description"])', document).toString()
-		.trim()
-		.split('\n')
-		.map((value) => value.trim())
-		.join(' ')
-		.replace(/ +/g, ' '); // description
+	const pageDescription =
+		document
+			.querySelector('[itemprop="description"]')
+			?.textContent?.trim()
+			.split('\n')
+			.map((value) => value.trim())
+			.join(' ') ?? undefined; // description
 
 	/* EJS を解釈 */
 	let html = await ejs.renderFile(
@@ -86,107 +72,117 @@ fileList.map(async (filePath) => {
 	/* HTML コメント削除 */
 	html = html.replace(/<!--[\s\S]*?-->/g, '');
 
-	/* リンクアンカーにドメイン情報を付与 */
-	try {
-		html = HtmlConvertAnchorHost.convert(html, { class: 'htmlbuild-domain', host_element: 'b', host_class: 'c-domain', host_parentheses: ['(', ')'] });
-	} catch (e) {
-		console.error(e);
-	}
+	html = (
+		await posthtml([
+			/* 日付文字列を <time datetime> 要素に変換 */
+			posthtmlTimeJapaneseDate({ element: 'span', class: 'htmlbuild-datetime' }),
 
-	/* 日付文字列を <time datetime> 要素に変換 */
-	try {
-		html = HtmlConvertTimeJapanese.convert(html, { class: 'htmlbuild-datetime' });
-	} catch (e) {
-		console.error(e);
-	}
+			/* リンクアンカーにドメイン情報を付与 */
+			posthtmlAnchorHost({
+				class: 'htmlbuild-domain',
+				host_element: 'b',
+				host_class: 'c-domain',
+				host_parentheses_before: '(',
+				host_parentheses_after: ')',
+			}),
 
-	/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
-	try {
-		html = html.replace(/<a([^>]*?)class="(.+? |)htmlbuild-amazon-associate( .+?|)"([^>]*?)>([\s\S]+?)<\/a[\s]*?>/g, (_match, p1, p2, p3, p4, p5) => {
-			const ASSOCIATE_ID = 'w0s.jp-22';
+			/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
+			posthtmlAnchorAmazonAssociate({
+				class: 'htmlbuild-amazon-associate',
+				associate_id: 'w0s.jp-22',
+			}),
 
-			let attrsBefore = p1.trim(); // class 属性の前に存在する属性
-			const classValueBefore = p2.trim(); // 当該クラス名の前方に存在する class 属性値
-			const classValueAfter = p3.trim(); // 当該クラス名の後方に存在する class 属性値
-			let attrsAfter = p4.trim(); // class 属性の後に存在する属性（ホワイトスペースを含む）
-			const textContent = p5; // 要素の中身
+			/* highlight.js */
+			(tree: posthtml.Node): posthtml.Node => {
+				hljs.registerLanguage('xml', hljsXml);
+				hljs.registerLanguage('javascript', hljsJavaScript);
+				hljs.configure({
+					classPrefix: 'c-code-highlight -',
+				});
 
-			const attrsBeforeHrefMatchResult = attrsBefore.match(/href="(?<href>[^"]+)"/);
-			const attrsAfterHrefMatchResult = attrsAfter.match(/href="(?<href>[^"]+)"/);
+				const targetElementInfo = {
+					class: 'htmlbuild-highlight',
+				};
 
-			const anchorHref = attrsBeforeHrefMatchResult?.groups?.href ?? attrsAfterHrefMatchResult?.groups?.href;
-			if (anchorHref === undefined) {
-				throw new Error(`href 属性のない要素は処理対象外: ${textContent}`);
-			}
+				/**
+				 * Narrowing by class name
+				 *
+				 * <p class="foo bar"> → <p class="foo bar"> (return false)
+				 * <p class="foo TARGET bar"> → <p class="foo bar"> (return true)
+				 *
+				 * @param {object} node - Target node
+				 * @param {string} targetClassName - Searches if the target node contains this class name
+				 *
+				 * @returns {boolean} Whether the target node contains the specified class name
+				 */
+				const narrowingClass = (node: posthtml.Node, targetClassName: string): boolean => {
+					const attrs = node.attrs;
 
-			if (!anchorHref.match(/^https:\/\/www.amazon.co.jp\/dp\/([\dA-Z]{10})\/$/)) {
-				throw new Error(`Amazon 商品ページの URL が \`https://www.amazon.co.jp/dp/\${ASIN}/\` 形式ではない: ${textContent}`);
-			}
+					if (attrs?.class === undefined) {
+						/* class 属性がない場合 */
+						return false;
+					}
 
-			const associateUrl = `${anchorHref}ref=nosim?tag=${ASSOCIATE_ID}`; // https://affiliate.amazon.co.jp/help/node/topic/GP38PJ6EUR6PFBEC
+					const classList = attrs.class.trim().split(/[\t\n\f\r ]+/g);
+					if (!classList.includes(targetClassName)) {
+						/* 当該クラス名がない場合 */
+						return false;
+					}
 
-			if (attrsBeforeHrefMatchResult !== null) {
-				attrsBefore = attrsBefore.replace(/href="(?<href>[^"]+)"/, `href="${associateUrl}"`);
-			} else if (attrsAfterHrefMatchResult !== null) {
-				attrsAfter = attrsAfter.replace(/href="(?<href>[^"]+)"/, `href="${associateUrl}"`);
-			}
+					/* 指定されたクラス名を除去した上で変換する */
+					const newClass = classList.filter((className) => className !== targetClassName && className !== '').join(' ');
+					attrs.class = newClass !== '' ? newClass : undefined;
 
-			const newClassValue = `${classValueBefore} ${classValueAfter}`.trim();
+					return true;
+				};
 
-			let attr = '';
-			if (attrsBefore !== '') {
-				attr += ` ${attrsBefore}`;
-			}
-			if (newClassValue !== '') {
-				attr += ` class="${newClassValue}"`;
-			}
-			if (attrsAfter !== '') {
-				attr += ` ${attrsAfter}`;
-			}
+				tree.match({ tag: 'code' }, (node: posthtml.Node) => {
+					const content = node.content;
+					const attrs = node.attrs ?? {};
 
-			return `<a${attr}>${textContent}</a>`;
-		});
-	} catch (e) {
-		console.error(e);
-	}
+					if (!narrowingClass(node, targetElementInfo.class)) {
+						return node;
+					}
 
-	/**
-	 * hightlight.js
-	 *
-	 * <code class="htmlbuild-highlight">&lt;span&gt;Hello World!&lt;/span&gt;</code>
-	 * ↓
-	 * <code data-language="xml">&lt;span&gt;Hello World!&lt;/span&gt;</code>
-	 */
-	html = html.replace(/<code([^>]*?)class="(.+? |)htmlbuild-highlight( .+?|)"([^>]*?)>([^]+?)<\/code[\s]*?>/g, (_match, p1, p2, p3, p4, p5) => {
-		const attrsBefore = p1.trim(); // class 属性の前に指定されている属性
-		const classValueBefore = p2.trim(); // htmlbuild-datetime の前方に指定された class 属性値
-		const classValueAfter = p3.trim(); // htmlbuild-datetime の後方に指定された class 属性値
-		const attrsAfter = p4.trim(); // class 属性の後に指定されている属性
-		const textContent = p5; // 要素の中身
+					const languageName = attrs['data-language'];
+					let registLanguageName: string | undefined;
+					switch (languageName) {
+						case 'xml':
+						case 'html':
+						case 'svg': {
+							registLanguageName = 'xml';
+							break;
+						}
+						case 'javascript': {
+							registLanguageName = 'javascript';
+							break;
+						}
+						default: {
+							console.warn(`無効な言語名: \`${languageName}\``);
+						}
+					}
 
-		const highlighted = hljs.highlightAuto(textContent.replaceAll('&lt;', '<').replaceAll('&gt;', '>'));
+					if (content?.length !== 1) {
+						/* TODO: 当該 <code> の中は Text ノードのみ（length === 1）の想定 */
+						return node;
+					}
 
-		const newClassValue = `${classValueBefore} ${classValueAfter}`.trim();
+					const codeText = content.at(0)?.toString().replaceAll('&lt;', '<').replaceAll('&gt;', '>');
+					if (codeText === undefined) {
+						return node;
+					}
 
-		let attr = '';
-		if (attrsBefore !== '') {
-			attr += ` ${attrsBefore}`;
-		}
-		if (newClassValue !== '') {
-			attr += ` class="${newClassValue}"`;
-		}
-		if (attrsAfter !== '') {
-			attr += ` ${attrsAfter}`;
-		}
-		if (attr === ' ') {
-			attr = '';
-		}
-		if (highlighted.language !== undefined) {
-			attr += ` data-language="${highlighted.language}"`;
-		}
+					const highlighted = registLanguageName !== undefined ? hljs.highlight(codeText, { language: registLanguageName }) : hljs.highlightAuto(codeText);
 
-		return `<code${attr}>${highlighted.value}</code>`;
-	});
+					node.content = [highlighted.value];
+
+					return node;
+				});
+
+				return tree;
+			},
+		]).process(html)
+	).html;
 
 	/* 整形 */
 	let htmlFormatted = html;
