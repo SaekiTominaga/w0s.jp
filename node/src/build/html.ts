@@ -4,16 +4,13 @@ import fs from 'fs';
 import hljs from 'highlight.js/lib/core';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsXml from 'highlight.js/lib/languages/xml';
-import parse5 from 'parse5';
 import path from 'path';
 import posthtml from 'posthtml';
 import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
 import posthtmlAnchorHost from 'posthtml-anchor-host';
 import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
-import xmlserializer from 'xmlserializer';
-import xpath from 'xpath';
-import { DOMParser } from '@xmldom/xmldom';
+import { JSDOM } from 'jsdom';
 import { exit } from 'node:process';
 
 const filesPath = process.argv[2];
@@ -45,23 +42,22 @@ fileList.map(async (filePath) => {
 		pagePath = parse.dir !== '/' ? `${parse.dir}/${parse.name}` : `/${parse.name}`;
 	}
 
-	const document = new DOMParser().parseFromString(xmlserializer.serializeToString(parse5.parse(fileData)), 'text/html');
-	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
+	const document = new JSDOM(fileData).window.document;
 
 	/* HTML から必要なデータを取得 */
-	const pageTitle = xpathSelect('string(//x:title)', document).toString(); // ページタイトル
-	if (pageTitle === '') {
+	const pageTitle = document.querySelector('title')?.textContent?.trim() ?? undefined; // ページタイトル
+	if (pageTitle === undefined || pageTitle === '') {
 		console.error(`<title> 要素が存在しないか中身が空なため変換中止: ${filePath}`);
 		exit();
 	}
 
-	const pageDescription = xpathSelect('string(//x:*[@itemprop="description"])', document)
-		.toString()
-		.trim()
-		.split('\n')
-		.map((value) => value.trim())
-		.join(' ')
-		.replace(/ +/g, ' '); // description
+	const pageDescription =
+		document
+			.querySelector('[itemprop="description"]')
+			?.textContent?.trim()
+			.split('\n')
+			.map((value) => value.trim())
+			.join(' ') ?? undefined; // description
 
 	/* EJS を解釈 */
 	let html = await ejs.renderFile(
