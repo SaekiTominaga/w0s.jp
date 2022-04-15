@@ -145,7 +145,7 @@ fileList.map(async (filePath) => {
 					return true;
 				};
 
-				const highlightNode = (node: posthtml.Node) => {
+				tree.match({ tag: 'code' }, (node: posthtml.Node) => {
 					const content = node.content;
 					const attrs = node.attrs ?? {};
 
@@ -186,9 +186,7 @@ fileList.map(async (filePath) => {
 					node.content = [highlighted.value];
 
 					return node;
-				};
-
-				tree.match({ tag: 'code' }, highlightNode);
+				});
 
 				return tree;
 			},
