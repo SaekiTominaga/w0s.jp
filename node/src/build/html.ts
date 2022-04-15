@@ -45,11 +45,7 @@ fileList.map(async (filePath) => {
 	const document = new JSDOM(fileData).window.document;
 
 	/* HTML から必要なデータを取得 */
-	const pageTitle = document.querySelector('title')?.textContent?.trim() ?? undefined; // ページタイトル
-	if (pageTitle === undefined || pageTitle === '') {
-		console.error(`<title> 要素が存在しないか中身が空なため変換中止: ${filePath}`);
-		exit();
-	}
+	const pageTitle = document.querySelector('title')?.textContent?.trim() ?? ''; // ページタイトル
 
 	const pageDescription =
 		document
