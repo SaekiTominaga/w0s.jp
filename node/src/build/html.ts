@@ -11,7 +11,6 @@ import posthtmlAnchorHost from 'posthtml-anchor-host';
 import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
-import { exit } from 'node:process';
 
 const filesPath = process.argv[2];
 if (filesPath === undefined) {
