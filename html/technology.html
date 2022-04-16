@@ -250,39 +250,54 @@
 
 							<ul class="p-list">
 								<li>
-									<p>ビルドの際、整形以外にも下記3つの処理を行っている。</p>
+									<p>ビルドに際しては <a href="https://ejs.co/" class="htmlbuild-domain">EJS</a>と <a href="https://posthtml.org/" class="htmlbuild-domain">PostHTML</a>を使用している。</p>
 									<ul>
-										<li>ページヘッダー、サイドバーなど共通部分を結合</li>
-										<li>リンクアンカー直後にドメイン情報を付与</li>
-										<li><code class="c-code">&lt;time&gt;</code> 要素の datetime 属性を生成</li>
+										<li>EJS はページヘッダー、サイドバーなど共通部分の結合に使用</li>
+										<li>
+											PostHTML は下記に記す変換のため
+											<ul>
+												<li>リンクアンカー直後にドメイン情報を付与</li>
+												<li>Amazon 商品ページへのリンクをアソシエイトリンクに変換</li>
+												<li><code>&lt;time&gt;</code> 要素の datetime 属性を生成</li>
+												<li>コードブロックのハイライト化（<a href="https://highlightjs.org/" class="htmlbuild-domain">highlight.js</a>を使用）</li>
+											</ul>
+										</li>
 									</ul>
 								</li>
-								<li>共通部分の結合には <a href="https://ejs.co/" class="htmlbuild-domain">EJS</a>を使用している。</li>
 								<li>
-									<p>当サイトでは外部サイトへのハイパーリンクのアンカーに対してドメイン名（FQDN）を明記している。 URL から手動でドメイン部分を抜き出すのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-domain</code> を記した <code class="c-code">&lt;a&gt;</code> 要素の href 属性値を解析し、アンカー直後に自動挿入する。</p>
+									<p>当サイトでは外部サイトへのハイパーリンクのアンカーに対してドメイン名（FQDN）を明記している。 URL から手動でドメイン部分を抜き出すのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-domain</code> を記した <code>&lt;a&gt;</code> 要素の href 属性値を解析し、アンカー直後に自動挿入する。</p>
 									<ul>
-										<li>変換前: <code class="c-code">&lt;a href="https://example.com/foo" class="htmlbuild-domain c-anchor"&gt;Link&lt;/a&gt;</code></li>
+										<li>変換前: <code class="c-code">&lt;a href="https://example.com/foo" class="htmlbuild-domain"&gt;Link&lt;/a&gt;</code></li>
 										<li>
 											変換後:
-											<code class="c-code">&lt;a href="https://example.com/foo" class="c-anchor"&gt;Link&lt;/a&gt;&lt;b class="c-domain"&gt;(example.com)&lt;/b&gt;&lt;/p&gt;</code>
+											<code class="c-code">&lt;a href="https://example.com/foo"&gt;Link&lt;/a&gt;&lt;b&gt;(example.com)&lt;/b&gt;</code>
 										</li>
 									</ul>
 									<p>
-										変換プログラムは <a href="https://github.com/SaekiTominaga/htmlconvert-anchor-host">GitHub で公開<img src="/assets/image/icon/github.svg" alt="" width="16" height="16" class="c-link-icon" /></a>している。
+										変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-host">GitHub で公開<img src="/assets/image/icon/github.svg" alt="" width="16" height="16" class="c-link-icon" /></a>している。
 									</p>
 								</li>
 								<li>
-									<p><code class="c-code">&lt;time&gt;</code> 要素の datetime 属性を手動でマークアップするのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-datetime</code> を記した要素の中身を解析し、 <code class="c-code">&lt;time&gt;</code> 要素に自動変換する。</p>
+									<p>主に本の紹介で Amazon 商品ページへのリンクを多数設定しているが、アソシエイトリンクにするにあたり、 URL 形式の変更に耐えうるようにするため、各種パラメーターやアソシエイト ID を自動付与する。</p>
 									<ul>
-										<li>変換前: <code class="c-code">&lt;span class="htmlbuild-datetime c-date"&gt;2000年1月1日&lt;/span&gt;</code></li>
-										<li>変換後: <code class="c-code">&lt;time datetime="2000-01-01" class="c-date"&gt;2000年1月1日&lt;/time&gt;</code></li>
+										<li>変換前: <code class="c-code">&lt;a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-associate"&gt;Link&lt;/a&gt;</code></li>
+										<li>
+											変換後:
+											<code class="c-code">&lt;a href="https://www.amazon.co.jp/dp/B01GRDKGZW/ref=nosim?tag=w0s.jp-22"&gt;Link&lt;/a&gt;</code>
+										</li>
 									</ul>
 									<p>
-										なお、 datetime 属性が不要なケースや、
-										<code class="c-code">&lt;time datetime="2019-05-01"&gt;令和最初の日&lt;/time&gt;</code> のように機械的な解析が困難なケースは <code class="c-code">&lt;time&gt;</code> 要素を直接マークアップする。
-									</p>
+										変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-amazon-associate">GitHub で公開<img src="/assets/image/icon/github.svg" alt="" width="16" height="16" class="c-link-icon" /></a>している。管理上の面だけを考えれば <code class="c-code">&lt;x-amazon asin="B01GRDKGZW"&gt;Link&lt;/x-amazon&gt;</code> のようなカスタム要素にした方がシンプルだが、何らかの理由でビルドに失敗してもリンク機能自体は有効な状態を維持するためにこのような方式とした。</p>
+								</li>
+								<li>
+									<p><code>&lt;time&gt;</code> 要素の <code>datetime</code> 属性を手動で書くのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-datetime</code> を記した要素の中身を解析し、自動変換する。</p>
+									<ul>
+										<li>変換前: <code class="c-code">&lt;span class="htmlbuild-datetime"&gt;2000年1月1日&lt;/span&gt;</code></li>
+										<li>変換後: <code class="c-code">&lt;time datetime="2000-01-01"&gt;2000年1月1日&lt;/time&gt;</code></li>
+									</ul>
+									<p>なお、 <code>datetime</code> 属性が不要なケースや、 <code class="c-code">&lt;time datetime="2019-05-01"&gt;令和最初の日&lt;/time&gt;</code> のように機械的な解析が困難なケースは <code>&lt;time&gt;</code> 要素を直接マークアップする。</p>
 									<p>
-										変換プログラムは <a href="https://github.com/SaekiTominaga/htmlconvert-time-japanese">GitHub で公開<img src="/assets/image/icon/github.svg" alt="" width="16" height="16" class="c-link-icon" /></a>している。
+										変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-time-japanese-date">GitHub で公開<img src="/assets/image/icon/github.svg" alt="" width="16" height="16" class="c-link-icon" /></a>している。
 									</p>
 								</li>
 							</ul>
@@ -300,7 +315,7 @@
 									>。
 								</p>
 								<p>
-									当サイトで使用している Node.js フレームワークの Express では、 <a href="https://expressjs.com/en/4x/api.html#res.redirect" class="htmlbuild-domain"><code>res.redirect()</code></a> メソッドでリダイレクト設定が行われるが、この場合レスポンスボディは <code class="c-code">&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="{{path}}"&gt;{{path}}&lt;/a&gt;&lt;/p&gt;</code> のように、 DOCTYPE や <code class="c-code">&lt;title&gt;</code> 要素のない不正な HTML となってしまう。そのためこの機能は使わず、 <a href="https://expressjs.com/en/4x/api.html#res.send" class="htmlbuild-domain"><code>res.send()</code></a> メソッドにて独自の HTML を返すようにカスタマイズしている。
+									当サイトで使用している Node.js フレームワークの Express では、 <a href="https://expressjs.com/en/4x/api.html#res.redirect" class="htmlbuild-domain"><code>res.redirect()</code></a> メソッドでリダイレクト設定が行われるが、この場合レスポンスボディは <code class="c-code">&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="{{path}}"&gt;{{path}}&lt;/a&gt;&lt;/p&gt;</code> のように、 DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。そのためこの機能は使わず、 <a href="https://expressjs.com/en/4x/api.html#res.send" class="htmlbuild-domain"><code>res.send()</code></a> メソッドにて独自の HTML を返すようにカスタマイズしている。
 								</p>
 							</div>
 						</section>
@@ -326,7 +341,7 @@
 								</li>
 								<li>
 									<p>
-										<a href="https://wicg.github.io/portals/" hreflang="en" class="htmlbuild-domain"><code>&lt;portal&gt;</code> 要素</a>に対応した環境では祖先ディレクトリへの誘導をテキストリンクだけでなく、 <code class="c-code">&lt;portal&gt;</code> を利用した埋め込みも行うことで、遷移前にそのページのイメージが掴めるようにしている。
+										<a href="https://wicg.github.io/portals/" hreflang="en" class="htmlbuild-domain"><code>&lt;portal&gt;</code> 要素</a>に対応した環境では祖先ディレクトリへの誘導をテキストリンクだけでなく、 <code>&lt;portal&gt;</code> 要素を利用した埋め込みも行うことで、遷移前にそのページのイメージが掴めるようにしている。
 									</p>
 								</li>
 							</ul>
@@ -410,7 +425,7 @@
 
 							<ul class="p-list">
 								<li>
-									<p>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code class="c-code">@print</code> を使って完全な白（<code class="c-code">#ffffff</code>）に設定している。</p>
+									<p>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code class="c-code">@print</code> を使って完全な白（<code>#ffffff</code>）に設定している。</p>
 								</li>
 							</ul>
 						</section>
@@ -478,7 +493,7 @@
 
 							<ul class="p-list">
 								<li>
-									<p>制作したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、 Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、 <code class="c-code">error</code> イベントを検知し通知する機能を組み込んでいる。簡略化したコード例を下記に示す。</p>
+									<p>制作したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、 Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、 <code>error</code> イベントを検知し通知する機能を組み込んでいる。簡略化したコード例を下記に示す。</p>
 									<figure>
 										<div class="p-code">
 											<div class="p-code__clipboard">
@@ -525,7 +540,7 @@
 
 						<ul class="p-list">
 							<li>
-								<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下6種類の画像を <code class="c-code">&lt;a&gt;</code> 要素と <code class="c-code">&lt;picture&gt;</code> 要素を使って提示している。</p>
+								<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下6種類の画像を <code>&lt;a&gt;</code> 要素と <code>&lt;picture&gt;</code> 要素を使って提示している。</p>
 								<ul>
 									<li>大画像（JPEG ないし PNG）</li>
 									<li>サムネイル: AVIF</li>
@@ -534,7 +549,7 @@
 									<li>サムネイル: WebP, @2x</li>
 									<li>サムネイル: JPEG （※ WebP 未対応環境は減少しているため、 JPEG の @2x 画像は用意しない）</li>
 								</ul>
-								<p>マークアップのイメージを下記に記す。なお、画像の説明は極力本文か <code class="c-code">&lt;figcaption&gt;</code> で行う方針のため <code class="c-code">alt</code> 属性値に長々とした文章を書くことはあまりなく、大抵は一律の短い文言である。</p>
+								<p>マークアップのイメージを下記に記す。なお、画像の説明は極力本文か <code>&lt;figcaption&gt;</code> 要素で行う方針のため、 <code>&lt;img&gt;</code> 要素の <code>alt</code> 属性値に長々とした文章を書くことはあまりなく、大抵は一律の短い文言である。</p>
 								<figure>
 									<div class="p-code">
 										<div class="p-code__clipboard">
