@@ -9,6 +9,7 @@ import posthtml from 'posthtml';
 import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
 import posthtmlAnchorHost from 'posthtml-anchor-host';
 import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
+import PosthtmlMatchClass from '@saekitominaga/posthtml-match-class';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
 
@@ -104,43 +105,13 @@ fileList.map(async (filePath) => {
 					class: 'htmlbuild-highlight',
 				};
 
-				/**
-				 * Narrowing by class name
-				 *
-				 * <p class="foo bar"> → <p class="foo bar"> (return false)
-				 * <p class="foo TARGET bar"> → <p class="foo bar"> (return true)
-				 *
-				 * @param {object} node - Target node
-				 * @param {string} targetClassName - Searches if the target node contains this class name
-				 *
-				 * @returns {boolean} Whether the target node contains the specified class name
-				 */
-				const narrowingClass = (node: posthtml.Node, targetClassName: string): boolean => {
-					const attrs = node.attrs;
-
-					if (attrs?.class === undefined) {
-						/* class 属性がない場合 */
-						return false;
-					}
-
-					const classList = attrs.class.trim().split(/[\t\n\f\r ]+/g);
-					if (!classList.includes(targetClassName)) {
-						/* 当該クラス名がない場合 */
-						return false;
-					}
-
-					/* 指定されたクラス名を除去した上で変換する */
-					const newClass = classList.filter((className) => className !== targetClassName && className !== '').join(' ');
-					attrs.class = newClass !== '' ? newClass : undefined;
-
-					return true;
-				};
-
 				tree.match({ tag: 'code' }, (node: posthtml.Node) => {
 					const content = node.content;
 					const attrs = node.attrs ?? {};
 
-					if (!narrowingClass(node, targetElementInfo.class)) {
+					const posthtmlMatchClass = new PosthtmlMatchClass(node);
+
+					if (!posthtmlMatchClass.refine(targetElementInfo.class)) {
 						return node;
 					}
 
