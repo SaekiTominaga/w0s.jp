@@ -8,8 +8,9 @@ import path from 'path';
 import posthtml from 'posthtml';
 import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
 import posthtmlAnchorHost from 'posthtml-anchor-host';
-import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
+import posthtmlImage from 'posthtml-w0s.jp-image';
 import PosthtmlMatchClass from '@saekitominaga/posthtml-match-class';
+import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
 
@@ -75,9 +76,6 @@ fileList.map(async (filePath) => {
 
 	html = (
 		await posthtml([
-			/* 日付文字列を <time datetime> 要素に変換 */
-			posthtmlTimeJapaneseDate({ element: 'span', class: 'htmlbuild-datetime' }),
-
 			/* リンクアンカーにドメイン情報を付与 */
 			posthtmlAnchorHost({
 				class: 'htmlbuild-domain',
@@ -92,6 +90,12 @@ fileList.map(async (filePath) => {
 				class: 'htmlbuild-amazon-associate',
 				associate_id: 'w0s.jp-22',
 			}),
+
+			/* 日付文字列を <time datetime> 要素に変換 */
+			posthtmlTimeJapaneseDate({ element: 'span', class: 'htmlbuild-datetime' }),
+
+			/* <picture> 要素を使って複数フォーマットの画像を提供する */
+			posthtmlImage({ class: 'htmlbuild-image' }),
 
 			/* highlight.js */
 			(tree: posthtml.Node): posthtml.Node => {
