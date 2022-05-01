@@ -8,6 +8,9 @@ import path from 'path';
 import posthtml from 'posthtml';
 import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
 import posthtmlAnchorHost from 'posthtml-anchor-host';
+import posthtmlAnchorIcon from 'posthtml-anchor-icon';
+import posthtmlImage from 'posthtml-w0s.jp-image';
+import PosthtmlMatchClass from '@saekitominaga/posthtml-match-class';
 import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
@@ -74,9 +77,6 @@ fileList.map(async (filePath) => {
 
 	html = (
 		await posthtml([
-			/* 日付文字列を <time datetime> 要素に変換 */
-			posthtmlTimeJapaneseDate({ element: 'span', class: 'htmlbuild-datetime' }),
-
 			/* リンクアンカーにドメイン情報を付与 */
 			posthtmlAnchorHost({
 				class: 'htmlbuild-domain',
@@ -86,11 +86,58 @@ fileList.map(async (filePath) => {
 				host_parentheses_after: ')',
 			}),
 
+			/* リンクアンカーにアイコンを付与 */
+			posthtmlAnchorIcon({
+				class: 'htmlbuild-icon',
+				host_info: [
+					{
+						host: 'github.com',
+						site_name: 'GitHub',
+						icon_src: '/assets/image/icon/github.svg',
+					},
+					{
+						host: 'twitter.com',
+						site_name: 'Twitter',
+						icon_src: '/assets/image/icon/twitter.svg',
+					},
+					{
+						host: 'www.youtube.com',
+						site_name: 'YouTube',
+						icon_src: '/assets/image/icon/youtube.svg',
+					},
+					{
+						host: 'www.amazon.co.jp',
+						site_name: 'Amazon',
+						icon_src: '/assets/image/icon/amazon.png',
+					},
+					{
+						host: 'iss.ndl.go.jp',
+						site_name: '国立国会図書館サーチ',
+						icon_src: '/assets/image/icon/ndl.png',
+					},
+					{
+						host: 'www.nicovideo.jp',
+						site_name: 'ニコニコ動画',
+						icon_src: '/assets/image/icon/nicovideo.png',
+					},
+				],
+				icon_class: 'c-link-icon',
+				icon_size: 16,
+				icon_parentheses_before: '(',
+				icon_parentheses_after: ')',
+			}),
+
 			/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
 			posthtmlAnchorAmazonAssociate({
 				class: 'htmlbuild-amazon-associate',
 				associate_id: 'w0s.jp-22',
 			}),
+
+			/* 日付文字列を <time datetime> 要素に変換 */
+			posthtmlTimeJapaneseDate({ element: 'span', class: 'htmlbuild-datetime' }),
+
+			/* <picture> 要素を使って複数フォーマットの画像を提供する */
+			posthtmlImage({ class: 'htmlbuild-image' }),
 
 			/* highlight.js */
 			(tree: posthtml.Node): posthtml.Node => {
@@ -104,43 +151,13 @@ fileList.map(async (filePath) => {
 					class: 'htmlbuild-highlight',
 				};
 
-				/**
-				 * Narrowing by class name
-				 *
-				 * <p class="foo bar"> → <p class="foo bar"> (return false)
-				 * <p class="foo TARGET bar"> → <p class="foo bar"> (return true)
-				 *
-				 * @param {object} node - Target node
-				 * @param {string} targetClassName - Searches if the target node contains this class name
-				 *
-				 * @returns {boolean} Whether the target node contains the specified class name
-				 */
-				const narrowingClass = (node: posthtml.Node, targetClassName: string): boolean => {
-					const attrs = node.attrs;
-
-					if (attrs?.class === undefined) {
-						/* class 属性がない場合 */
-						return false;
-					}
-
-					const classList = attrs.class.trim().split(/[\t\n\f\r ]+/g);
-					if (!classList.includes(targetClassName)) {
-						/* 当該クラス名がない場合 */
-						return false;
-					}
-
-					/* 指定されたクラス名を除去した上で変換する */
-					const newClass = classList.filter((className) => className !== targetClassName && className !== '').join(' ');
-					attrs.class = newClass !== '' ? newClass : undefined;
-
-					return true;
-				};
-
 				tree.match({ tag: 'code' }, (node: posthtml.Node) => {
 					const content = node.content;
 					const attrs = node.attrs ?? {};
 
-					if (!narrowingClass(node, targetElementInfo.class)) {
+					const posthtmlMatchClass = new PosthtmlMatchClass(node);
+
+					if (!posthtmlMatchClass.refine(targetElementInfo.class)) {
 						return node;
 					}
 
