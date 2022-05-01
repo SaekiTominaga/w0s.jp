@@ -8,6 +8,7 @@ import path from 'path';
 import posthtml from 'posthtml';
 import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
 import posthtmlAnchorHost from 'posthtml-anchor-host';
+import posthtmlAnchorIcon from 'posthtml-anchor-icon';
 import posthtmlImage from 'posthtml-w0s.jp-image';
 import PosthtmlMatchClass from '@saekitominaga/posthtml-match-class';
 import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
@@ -83,6 +84,47 @@ fileList.map(async (filePath) => {
 				host_class: 'c-domain',
 				host_parentheses_before: '(',
 				host_parentheses_after: ')',
+			}),
+
+			/* リンクアンカーにアイコンを付与 */
+			posthtmlAnchorIcon({
+				class: 'htmlbuild-icon',
+				host_info: [
+					{
+						host: 'github.com',
+						site_name: 'GitHub',
+						icon_src: '/assets/image/icon/github.svg',
+					},
+					{
+						host: 'twitter.com',
+						site_name: 'Twitter',
+						icon_src: '/assets/image/icon/twitter.svg',
+					},
+					{
+						host: 'www.youtube.com',
+						site_name: 'YouTube',
+						icon_src: '/assets/image/icon/youtube.svg',
+					},
+					{
+						host: 'www.amazon.co.jp',
+						site_name: 'Amazon',
+						icon_src: '/assets/image/icon/amazon.png',
+					},
+					{
+						host: 'iss.ndl.go.jp',
+						site_name: '国立国会図書館サーチ',
+						icon_src: '/assets/image/icon/ndl.png',
+					},
+					{
+						host: 'www.nicovideo.jp',
+						site_name: 'ニコニコ動画',
+						icon_src: '/assets/image/icon/nicovideo.png',
+					},
+				],
+				icon_class: 'c-link-icon',
+				icon_size: 16,
+				icon_parentheses_before: '(',
+				icon_parentheses_after: ')',
 			}),
 
 			/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
