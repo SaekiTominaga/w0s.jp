@@ -38,7 +38,9 @@ const FEED_INFOS = [
 ];
 
 const fileList = new filelist.FileList();
-fileList.include(FEED_INFOS.map((value) => value.html_path));
+for (const htmlPath of FEED_INFOS.map((value) => value.html_path)) {
+	fileList.include(htmlPath);
+}
 fileList.map(async (htmlPath) => {
 	const html = (await fs.promises.readFile(htmlPath)).toString();
 
