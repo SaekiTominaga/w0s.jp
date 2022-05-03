@@ -5,7 +5,6 @@ import amazonPaapi from 'amazon-paapi';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
-import fetch from 'node-fetch';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
