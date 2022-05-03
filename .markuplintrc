@@ -7,13 +7,29 @@
 		"character-reference": false,
 		"deprecated-attr": true,
 		"deprecated-element": true,
+		"disallowed-element": [
+			"base",
+			"style",
+			"h5",
+			"h6",
+			"hgroup",
+			"hr",
+			"i",
+			"u",
+			"embed",
+			"area",
+			"noscript"
+		],
 		"doctype": true,
 		"id-duplication": true,
+		"ineffective-attr": true,
 		"invalid-attr": true,
 		"permitted-contents": true,
 		"required-attr": true,
 		"landmark-roles": true,
-		"required-h1": false,
+		"no-refer-to-non-existent-id": true,
+		"require-accessible-name": true,
+		"required-h1": true,
 		"wai-aria": true,
 		"class-naming": [
 			"/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/",
@@ -22,13 +38,16 @@
 			"/^js-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/",
 			"/^adsbygoogle$/"
 		],
+		"no-use-event-handler-attr": true,
 		"attr-equal-space-after": "never",
 		"attr-equal-space-before": "never",
 		"attr-spacing": true,
 		"attr-value-quotes": "double",
 		"case-sensitive-attr-name": "lower",
 		"case-sensitive-tag-name": "lower",
-		"indentation": false
+		"end-tag": true,
+		"indentation": "tab",
+		"no-default-value": true
 	},
 	"nodeRules": [
 		{
@@ -91,6 +110,12 @@
 			}
 		},
 		{
+			"selector": "table, th, dialog, template a",
+			"rules": {
+				"require-accessible-name": false
+			}
+		},
+		{
 			"selector": "input",
 			"rules": {
 				"id-duplication": false
@@ -108,5 +133,28 @@
 				}
 			}
 		}
-	]
+	],
+	"overrides": {
+		"./public/**/*.html": {
+			"rules": {
+				"disallowed-element": false,
+				"ineffective-attr": false,
+				"no-refer-to-non-existent-id": false,
+				"require-accessible-name": false,
+				"no-use-event-handler-attr": false,
+				"indentation": false,
+				"no-default-value": false
+			}
+		},
+		"./public/technology.html": {
+			"rules": {
+				"indentation": false
+			}
+		},
+		"./views/amazon-ads.ejs": {
+			"rules": {
+				"end-tag": false
+			}
+		}
+	}
 }
