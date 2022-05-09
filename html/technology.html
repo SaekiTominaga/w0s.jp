@@ -227,9 +227,7 @@
 								<p><code class="c-code">html</code> ディレクトリ（非公開領域）内の HTML ファイルを自作の Node.js プログラムでビルドし、 DocumentRoot 以下に配置。ビルドの際はページヘッダー、サイドバーなど共通部分を結合した後、以下の2ファイルを出力している。</p>
 								<ul>
 									<li><a href="https://prettier.io/" class="htmlbuild-domain">Prettier</a> でフォーマットしたファイル（e.g. <code class="c-code">index.html</code>）</li>
-									<li>
-										<a href="https://github.com/vajahath/brotlin" class="htmlbuild-icon">vajahath/brotlin</a>で Brotli 圧縮したファイル（e.g. <code class="c-code">index.html.br</code>）
-									</li>
+									<li><a href="https://github.com/vajahath/brotlin" class="htmlbuild-icon">vajahath/brotlin</a>で Brotli 圧縮したファイル（e.g. <code class="c-code">index.html.br</code>）</li>
 								</ul>
 							</li>
 							<li>
@@ -273,9 +271,7 @@
 											<code class="c-code">&lt;a href="https://example.com/foo"&gt;Link&lt;/a&gt;&lt;b&gt;(example.com)&lt;/b&gt;</code>
 										</li>
 									</ul>
-									<p>
-										変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-host" class="htmlbuild-icon">GitHub で公開</a>している。
-									</p>
+									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-host" class="htmlbuild-icon">GitHub で公開</a>している。</p>
 								</li>
 								<li>
 									<p>主に本の紹介で Amazon 商品ページへのリンクを多数設定しているが、アソシエイトリンクにするにあたり、 URL 形式の変更に耐えうるようにするため、各種パラメーターやアソシエイト ID を自動付与する。</p>
@@ -286,8 +282,7 @@
 											<code class="c-code">&lt;a href="https://www.amazon.co.jp/dp/B01GRDKGZW/ref=nosim?tag=w0s.jp-22"&gt;Link&lt;/a&gt;</code>
 										</li>
 									</ul>
-									<p>
-										変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-amazon-associate" class="htmlbuild-icon">GitHub で公開</a>している。管理上の面だけを考えれば <code class="c-code">&lt;x-amazon asin="B01GRDKGZW"&gt;Link&lt;/x-amazon&gt;</code> のようなカスタム要素にした方がシンプルだが、何らかの理由でビルドに失敗してもリンク機能自体は有効な状態を維持するためにこのような方式とした。</p>
+									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-amazon-associate" class="htmlbuild-icon">GitHub で公開</a>している。管理上の面だけを考えれば <code class="c-code">&lt;x-amazon asin="B01GRDKGZW"&gt;Link&lt;/x-amazon&gt;</code> のようなカスタム要素にした方がシンプルだが、何らかの理由でビルドに失敗してもリンク機能自体は有効な状態を維持するためにこのような方式とした。</p>
 								</li>
 								<li>
 									<p><code>&lt;time&gt;</code> 要素の <code>datetime</code> 属性を手動で書くのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-datetime</code> を記した要素の中身を解析し、自動変換する。</p>
@@ -296,9 +291,7 @@
 										<li>変換後: <code class="c-code">&lt;time datetime="2000-01-01"&gt;2000年1月1日&lt;/time&gt;</code></li>
 									</ul>
 									<p>なお、 <code>datetime</code> 属性が不要なケースや、 <code class="c-code">&lt;time datetime="2019-05-01"&gt;令和最初の日&lt;/time&gt;</code> のように機械的な解析が困難なケースは <code>&lt;time&gt;</code> 要素を直接マークアップする。</p>
-									<p>
-										変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-time-japanese-date" class="htmlbuild-icon">GitHub で公開</a>している。
-									</p>
+									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-time-japanese-date" class="htmlbuild-icon">GitHub で公開</a>している。</p>
 								</li>
 							</ul>
 						</section>
@@ -332,9 +325,7 @@
 							<ul class="p-list">
 								<li>
 									<p>同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが張られている）は管理者へ通知する。</p>
-									<p>
-										検知プログラムは <a href="https://github.com/SaekiTominaga/report-same-referrer" class="htmlbuild-icon">GitHub で公開</a>している。
-									</p>
+									<p>検知プログラムは <a href="https://github.com/SaekiTominaga/report-same-referrer" class="htmlbuild-icon">GitHub で公開</a>している。</p>
 								</li>
 								<li>
 									<p>直近の有効な祖先ディレクトリへのリンクを提示する。（e.g. <code class="c-code">/foo/bar/baz</code> へのリクエストに対し、 <code class="c-code">/foo/bar/baz</code> のレスポンスコードが 404 で <code class="c-code">/foo/bar/</code> が 403、 <code class="c-code">/foo/</code> が 200 の場合、 <code class="c-code">/foo/</code> へのリンクアンカーを提示）</p>
@@ -517,9 +508,7 @@
 </code></pre>
 										</div>
 									</figure>
-									<p>
-										実際の検知プログラムは <a href="https://github.com/SaekiTominaga/report-js-error" class="htmlbuild-icon">GitHub で公開</a>している。
-									</p>
+									<p>実際の検知プログラムは <a href="https://github.com/SaekiTominaga/report-js-error" class="htmlbuild-icon">GitHub で公開</a>している。</p>
 								</li>
 								<li>
 									<p>これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。</p>
@@ -652,9 +641,7 @@
 								</p>
 							</li>
 							<li>
-								<p>
-									<code class="c-code">image</code> ディレクトリ内の SVG ファイルを <a href="https://github.com/svg/svgo" class="htmlbuild-icon">SVGO</a>で最適化し、 DocumentRoot 以下に配置。最適化の際、 Brotli 圧縮ファイルも同時に出力している。
-								</p>
+								<p><code class="c-code">image</code> ディレクトリ内の SVG ファイルを <a href="https://github.com/svg/svgo" class="htmlbuild-icon">SVGO</a>で最適化し、 DocumentRoot 以下に配置。最適化の際、 Brotli 圧縮ファイルも同時に出力している。</p>
 							</li>
 							<li>
 								<p>HTTP/1.1 時代は CSS ファイル内に data: URLs で埋め込む用途のビルドも別途行っていたが、 HTTP/2 設定にしてからはリクエスト数を減らすメリットが少なくなったため廃止した。</p>
@@ -672,9 +659,7 @@
 								<p>前述のとおり、事前に静的ファイルをビルドする HTML, CSS, JavaScript, SVG はビルド時に Brotli ファイル（<code class="c-code">*.br</code>）も生成している。これらは圧縮品質を最高にし、極力ファイルサイズが小さくなるようにしている。</p>
 							</li>
 							<li>
-								<p>
-									それ以外の静的リソース、および動的ページ（リクエストがある毎にサーバーサイドで HTML を生成するページ）は Express のミドルウェア <a href="https://github.com/expressjs/compression" class="htmlbuild-icon">expressjs/compression</a>により、レスポンス返却時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、 <code class="c-code">robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。
-								</p>
+								<p>それ以外の静的リソース、および動的ページ（リクエストがある毎にサーバーサイドで HTML を生成するページ）は Express のミドルウェア <a href="https://github.com/expressjs/compression" class="htmlbuild-icon">expressjs/compression</a>により、レスポンス返却時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、 <code class="c-code">robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。</p>
 							</li>
 						</ul>
 					</section>
