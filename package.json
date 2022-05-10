@@ -19,6 +19,7 @@
 		"config:validate:tokyu-car-history": "ajv --spec=draft7 -s node/configure/schema/tokyu-car-history.json -d node/configure/tokyu-car-history.json",
 		"config:validate:kumeta-twitter": "ajv --spec=draft7 -s node/configure/schema/kumeta-twitter.json -d node/configure/kumeta-twitter.json",
 		"config:validate:madoka-official-news": "ajv --spec=draft7 -s node/configure/schema/madoka-official-news.json -d node/configure/madoka-official-news.json",
+		"config:validate:build": "ajv --spec=draft7 -s node/configure/schema/build.json -d node/configure/build.json",
 		"html-format": "prettier --config .prettierrc --write html/**/*.html",
 		"_html-watch:build": "onchange -f add -f change -v html/**/*.html -- node node/dist/build/html.js {{file}}",
 		"_html-watch:compress": "onchange -f add -f change -v public/**/*.html --exclude public/styleguide/*.html -- brotlin compress {{file}} -m 1",

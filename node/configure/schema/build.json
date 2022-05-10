@@ -1,0 +1,183 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/build.json",
+	"type": "object",
+	"title": "ビルド",
+	"required": ["html", "feed"],
+	"properties": {
+		"html": {
+			"type": "object",
+			"required": ["anchor_host", "anchor_icon", "anchor_amazon_associate", "time", "image", "highlight"],
+			"properties": {
+				"anchor_host": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["class", "host_element", "host_class", "host_parentheses_before", "host_parentheses_after"],
+					"properties": {
+						"class": {
+							"type": "string"
+						},
+						"host_element": {
+							"type": "string"
+						},
+						"host_class": {
+							"type": "string"
+						},
+						"host_parentheses_before": {
+							"type": "string"
+						},
+						"host_parentheses_after": {
+							"type": "string"
+						}
+					}
+				},
+				"anchor_icon": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["class", "host_info", "icon_class", "icon_size", "icon_parentheses_before", "icon_parentheses_after"],
+					"properties": {
+						"class": {
+							"type": "string"
+						},
+						"host_info": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["host", "site_name", "icon_src"],
+								"properties": {
+									"host": {
+										"type": "string",
+										"title": "ホスト名"
+									},
+									"site_name": {
+										"type": "string",
+										"title": "サイト名"
+									},
+									"icon_src": {
+										"type": "string",
+										"title": "アイコンパス"
+									}
+								},
+								"additionalProperties": false
+							},
+							"uniqueItems": true,
+							"title": "ホスト情報"
+						},
+						"icon_class": {
+							"type": "string"
+						},
+						"icon_size": {
+							"type": "integer",
+							"minimum": 0
+						},
+						"icon_parentheses_before": {
+							"type": "string"
+						},
+						"icon_parentheses_after": {
+							"type": "string"
+						}
+					}
+				},
+				"anchor_amazon_associate": {
+					"type": "object",
+					"title": "Amazon アソシエイトリンク",
+					"required": ["class"],
+					"properties": {
+						"class": {
+							"type": "string"
+						}
+					}
+				},
+				"time": {
+					"type": "object",
+					"title": "time 要素",
+					"required": ["element", "class"],
+					"properties": {
+						"element": {
+							"type": "string"
+						},
+						"class": {
+							"type": "string"
+						}
+					}
+				},
+				"image": {
+					"type": "object",
+					"title": "picture 要素",
+					"required": ["class"],
+					"properties": {
+						"class": {
+							"type": "string"
+						}
+					}
+				},
+				"highlight": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["class", "htmlbuild_class_prefix"],
+					"properties": {
+						"class": {
+							"type": "string"
+						},
+						"htmlbuild_class_prefix": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"feed": {
+			"type": "object",
+			"required": ["info"],
+			"properties": {
+				"info": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": ["html_path", "xpath", "feed_template", "feed_path"],
+						"properties": {
+							"html_path": {
+								"type": "string",
+								"title": "HTML ファイルパス"
+							},
+							"xpath": {
+								"type": "object",
+								"title": "XPath",
+								"required": ["wrap", "date", "content"],
+								"properties": {
+									"wrap": {
+										"type": "string",
+										"title": "包括"
+									},
+									"date": {
+										"type": "string",
+										"title": "日付"
+									},
+									"content": {
+										"type": "string",
+										"title": "内容"
+									}
+								},
+								"additionalProperties": false
+							},
+							"feed_template": {
+								"type": "string",
+								"title": "Feed テンプレートパス"
+							},
+							"feed_path": {
+								"type": "string",
+								"title": "Feed 出力パス"
+							}
+						},
+						"additionalProperties": false
+					},
+					"uniqueItems": true,
+					"title": "フィード情報"
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}
