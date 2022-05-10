@@ -1,7 +1,6 @@
 import crypto from 'crypto';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import filelist from 'filelist';
 import fs from 'fs';
 import parse5 from 'parse5';
 import prettier from 'prettier';
@@ -9,60 +8,36 @@ import xmlFormatter from 'xml-formatter';
 import xmlserializer from 'xmlserializer';
 import xpath from 'xpath';
 import { DOMParser } from '@xmldom/xmldom';
+import { NoName as Configure } from '../../configure/type/build';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
-const FEED_INFOS = [
-	{
-		html_path: 'public/tokyu/index.html',
-		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
-		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
-		xpath_content: '*[@class="p-top-update-list__info"]/*',
-		feed_template: 'views/feed/tokyu.ejs',
-		feed_path: 'public/tokyu/feed.atom',
-	},
-	{
-		html_path: 'public/kumeta/index.html',
-		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
-		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
-		xpath_content: '*[@class="p-top-update-list__info"]/*',
-		feed_template: 'views/feed/kumeta.ejs',
-		feed_path: 'public/kumeta/feed.atom',
-	},
-	{
-		html_path: 'public/madoka/index.html',
-		xpath_wrap: '//*[@id="update"]//*[@class="p-top-update-list"]/x:li',
-		xpath_date: '*[@class="p-top-update-list__date"]/x:time/@datetime',
-		xpath_content: '*[@class="p-top-update-list__info"]/*',
-		feed_template: 'views/feed/madoka.ejs',
-		feed_path: 'public/madoka/feed.atom',
-	},
-];
+/* 設定ファイル読み込み */
+const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));
+const config = <Configure>JSON.parse(fs.readFileSync('node/configure/build.json', 'utf8'));
 
-const fileList = new filelist.FileList();
-for (const htmlPath of FEED_INFOS.map((value) => value.html_path)) {
-	fileList.include(htmlPath);
-}
-fileList.map(async (htmlPath) => {
-	const html = (await fs.promises.readFile(htmlPath)).toString();
-
-	const feedInfo = FEED_INFOS.find((value) => value.html_path === htmlPath);
-	if (feedInfo === undefined) {
-		return;
-	}
+config.feed.info.forEach(async (feedInfo) => {
+	const html = (await fs.promises.readFile(`${configCommon.static.root}/${feedInfo.html_path}`)).toString();
 
 	const document = new DOMParser().parseFromString(xmlserializer.serializeToString(parse5.parse(html)), 'text/html');
 	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
 
 	/* HTML から必要なデータを取得 */
-	const entries = [];
-	for (const wrapElement of xpathSelect(feedInfo.xpath_wrap, document)) {
-		const title = String(xpathSelect(`string(${feedInfo.xpath_content})`, <Node>wrapElement)).trim();
+	const entries: {
+		title: string;
+		unique: string;
+		last_updated: dayjs.Dayjs;
+		links: string[];
+		content: string;
+	}[] = [];
+	for (const wrapElement of xpathSelect(feedInfo.xpath.wrap, document)) {
+		const title = String(xpathSelect(`string(${feedInfo.xpath.content})`, <Node>wrapElement)).trim();
 		const updatedTimeElementDatetime = new Date(
-			xpathSelect(`string(${feedInfo.xpath_date})`, <Node>wrapElement)
+			xpathSelect(`string(${feedInfo.xpath.date})`, <Node>wrapElement)
 				.toString()
 				.trim()
 		);
 		const links = xpathSelect('.//x:a/@href', <Node>wrapElement).map((value) => String((<Node>value).nodeValue).trim());
-		const content = xpathSelect(feedInfo.xpath_content, <Node>wrapElement)
+		const content = xpathSelect(feedInfo.xpath.content, <Node>wrapElement)
 			.toString()
 			.replace(' xmlns="http://www.w3.org/1999/xhtml"', '');
 
@@ -89,19 +64,19 @@ fileList.map(async (htmlPath) => {
 		});
 	}
 
-	const feedXml = await ejs.renderFile(feedInfo.feed_template, {
+	const feed = await ejs.renderFile(`${configCommon.views}/${feedInfo.feed_template}`, {
 		entries: entries,
 	});
 
-	const feedXmlFormatted = xmlFormatter(feedXml, {
+	const feedFormatted = xmlFormatter(feed, {
 		/* https://github.com/chrisbottin/xml-formatter#options */
 		indentation: '\t',
 		collapseContent: true,
 		lineSeparator: '\n',
 	});
 
-	const feedPath = feedInfo.feed_path;
-
-	await fs.promises.writeFile(feedPath, feedXmlFormatted);
+	/* 出力 */
+	const feedPath = `${configCommon.static.root}/${feedInfo.feed_path}`;
+	await fs.promises.writeFile(feedPath, feedFormatted);
 	console.info(`Feed file created: ${feedPath}`);
 });
