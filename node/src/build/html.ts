@@ -50,12 +50,12 @@ fileList.map(async (filePath) => {
 		pagePath = parse.dir !== '/' ? `${parse.dir}/${parse.name}` : `/${parse.name}`;
 	}
 
-	const document = new JSDOM(fileData).window.document;
+	const documentEjs = new JSDOM(fileData).window.document;
 
 	/* HTML から必要なデータを取得 */
-	const pageTitle = document.querySelector('title')?.textContent ?? ''; // ページタイトル
+	const pageTitle = documentEjs.querySelector('title')?.textContent ?? ''; // ページタイトル
 
-	const pageDescription = document
+	const pageDescription = documentEjs
 		.querySelector('[itemprop="description"]')
 		?.textContent?.trim()
 		.split('\n')
@@ -79,6 +79,62 @@ fileList.map(async (filePath) => {
 
 	/* HTML コメント削除 */
 	html = html.replace(/<!--[\s\S]*?-->/g, '');
+
+	const dom = new JSDOM(html);
+	const document = dom.window.document;
+
+	const contentHeader = document.querySelector('.l-content__header');
+	const contentMain = document.querySelector('.l-content__main');
+	if (contentHeader !== null && contentMain !== null) {
+		let contentFooter = document.querySelector('.l-content__footer');
+
+		/* 目次自動生成 */
+		const toc = contentHeader.querySelector('.p-toc');
+		if (toc !== null) {
+			const data: Map<string, string> = new Map();
+			for (const section of contentMain.querySelectorAll('section[id]')) {
+				const str = section.querySelector('h2')?.textContent;
+				if (str === null || str === undefined) {
+					continue;
+				}
+
+				data.set(section.id, str);
+			}
+
+			if (data.size >= 2) {
+				toc.setAttribute('aria-label', '目次');
+				for (const [id, str] of data) {
+					const a = document.createElement('a');
+					a.href = `#${id}`;
+					a.textContent = str;
+
+					const li = document.createElement('li');
+					li.appendChild(a);
+
+					toc.appendChild(li);
+				}
+			} else {
+				console.info('見出しレベル 2 が 1 つなので目次は表示しない', data);
+				toc.remove();
+			}
+		}
+
+		/* ローカルナビはコンテンツヘッダーとコンテンツフッターの2か所に表示 */
+		const localNavHeader = contentHeader.querySelector('.p-local-nav');
+		if (localNavHeader !== null) {
+			if (contentFooter === null) {
+				contentFooter = document.createElement('div');
+				contentFooter.className = 'l-content__footer';
+				contentMain.insertAdjacentElement('afterend', contentFooter);
+			}
+
+			const localNavFooter = <Element>localNavHeader.cloneNode(true);
+			localNavFooter.removeAttribute('id');
+			contentFooter.insertAdjacentElement('beforeend', localNavFooter);
+		}
+	}
+
+	html = dom.serialize();
 
 	html = (
 		await posthtml([
