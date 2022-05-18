@@ -7,53 +7,54 @@
 	"properties": {
 		"html": {
 			"type": "object",
-			"required": ["anchor_host", "anchor_icon", "anchor_amazon_associate", "time", "image", "highlight"],
+			"required": ["anchor_host", "anchor_type", "anchor_amazon_associate", "time", "image", "highlight"],
 			"properties": {
 				"anchor_host": {
 					"type": "object",
 					"title": "アイコン",
-					"required": ["class", "host_element", "host_class", "host_parentheses_before", "host_parentheses_after"],
+					"required": ["target_class", "insert_position", "parentheses", "element", "class", "icon", "icon_size", "icon_class"],
 					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"insert_position": {
+							"type": "string",
+							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
+						},
+						"parentheses": {
+							"type": "object",
+							"required": ["before", "after"],
+							"properties": {
+								"before": {
+									"type": "string"
+								},
+								"after": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						},
+						"element": {
+							"type": "string"
+						},
 						"class": {
 							"type": "string"
 						},
-						"host_element": {
-							"type": "string"
-						},
-						"host_class": {
-							"type": "string"
-						},
-						"host_parentheses_before": {
-							"type": "string"
-						},
-						"host_parentheses_after": {
-							"type": "string"
-						}
-					}
-				},
-				"anchor_icon": {
-					"type": "object",
-					"title": "アイコン",
-					"required": ["class", "host_info", "icon_class", "icon_size", "icon_parentheses_before", "icon_parentheses_after"],
-					"properties": {
-						"class": {
-							"type": "string"
-						},
-						"host_info": {
+						"icon": {
 							"type": "array",
 							"items": {
 								"type": "object",
-								"required": ["host", "site_name", "icon_src"],
+								"required": ["host", "name", "src"],
 								"properties": {
 									"host": {
 										"type": "string",
 										"title": "ホスト名"
 									},
-									"site_name": {
+									"name": {
 										"type": "string",
 										"title": "サイト名"
 									},
-									"icon_src": {
+									"src": {
 										"type": "string",
 										"title": "アイコンパス"
 									}
@@ -61,68 +62,123 @@
 								"additionalProperties": false
 							},
 							"uniqueItems": true,
-							"title": "ホスト情報"
-						},
-						"icon_class": {
-							"type": "string"
+							"title": "ホストのアイコン情報"
 						},
 						"icon_size": {
 							"type": "integer",
 							"minimum": 0
 						},
-						"icon_parentheses_before": {
-							"type": "string"
-						},
-						"icon_parentheses_after": {
+						"icon_class": {
 							"type": "string"
 						}
-					}
+					},
+					"additionalProperties": false
+				},
+				"anchor_type": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["target_class", "insert_position", "parentheses", "icon", "icon_size", "icon_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"insert_position": {
+							"type": "string",
+							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
+						},
+						"parentheses": {
+							"type": "object",
+							"required": ["before", "after"],
+							"properties": {
+								"before": {
+									"type": "string"
+								},
+								"after": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						},
+						"icon": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["type", "name", "src"],
+								"properties": {
+									"type": {
+										"type": "string",
+										"title": "MIME タイプ"
+									},
+									"name": {
+										"type": "string",
+										"title": "リソースタイプ名"
+									},
+									"src": {
+										"type": "string",
+										"title": "アイコンパス"
+									}
+								},
+								"additionalProperties": false
+							},
+							"uniqueItems": true,
+							"title": "リソースタイプのアイコン情報"
+						},
+						"icon_size": {
+							"type": "integer",
+							"minimum": 0
+						},
+						"icon_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
 				},
 				"anchor_amazon_associate": {
 					"type": "object",
 					"title": "Amazon アソシエイトリンク",
-					"required": ["class"],
+					"required": ["target_class"],
 					"properties": {
-						"class": {
+						"target_class": {
 							"type": "string"
 						}
-					}
+					},
+					"additionalProperties": false
 				},
 				"time": {
 					"type": "object",
 					"title": "time 要素",
-					"required": ["element", "class"],
+					"required": ["target_class"],
 					"properties": {
-						"element": {
-							"type": "string"
-						},
-						"class": {
+						"target_class": {
 							"type": "string"
 						}
-					}
+					},
+					"additionalProperties": false
 				},
 				"image": {
 					"type": "object",
 					"title": "picture 要素",
-					"required": ["class"],
+					"required": ["target_class"],
 					"properties": {
-						"class": {
+						"target_class": {
 							"type": "string"
 						}
-					}
+					},
+					"additionalProperties": false
 				},
 				"highlight": {
 					"type": "object",
 					"title": "アイコン",
-					"required": ["class", "htmlbuild_class_prefix"],
+					"required": ["target_class", "class_prefix"],
 					"properties": {
-						"class": {
+						"target_class": {
 							"type": "string"
 						},
-						"htmlbuild_class_prefix": {
+						"class_prefix": {
 							"type": "string"
 						}
-					}
+					},
+					"additionalProperties": false
 				}
 			},
 			"additionalProperties": false
