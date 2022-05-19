@@ -1,17 +1,8 @@
+import Convert from './dom/Convert.js';
 import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
-import hljs from 'highlight.js/lib/core';
-import hljsJavaScript from 'highlight.js/lib/languages/javascript';
-import hljsXml from 'highlight.js/lib/languages/xml';
 import path from 'path';
-import posthtml from 'posthtml';
-import posthtmlAnchorAmazonAssociate from 'posthtml-anchor-amazon-associate';
-import posthtmlAnchorHost from 'posthtml-anchor-host';
-import posthtmlAnchorIcon from 'posthtml-anchor-icon';
-import posthtmlImage from 'posthtml-w0s.jp-image';
-import PosthtmlMatchClass from '@saekitominaga/posthtml-match-class';
-import posthtmlTimeJapaneseDate from 'posthtml-time-japanese-date';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
 import { NoName as Configure } from '../../configure/type/build';
@@ -134,102 +125,18 @@ fileList.map(async (filePath) => {
 		}
 	}
 
+	const convert = new Convert(document);
+	convert.anchorType(config.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
+	convert.anchorHost(config.html.anchor_host); // リンクアンカーにドメイン情報を付与
+	convert.anchorAmazonAssociate({
+		target_class: config.html.anchor_amazon_associate.target_class,
+		associate_id: configCommon.paapi.request.partner_tag,
+	}); // Amazon 商品ページのリンクにアソシエイトタグを追加
+	convert.timeJapaneseDate(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
+	convert.image(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
+	convert.highlight(config.html.highlight); // highlight.js
+
 	html = dom.serialize();
-
-	html = (
-		await posthtml([
-			/* リンクアンカーにドメイン情報を付与 */
-			posthtmlAnchorHost({
-				class: config.html.anchor_host.class,
-				host_element: config.html.anchor_host.host_element,
-				host_class: config.html.anchor_host.host_class,
-				host_parentheses_before: config.html.anchor_host.host_parentheses_before,
-				host_parentheses_after: config.html.anchor_host.host_parentheses_after,
-			}),
-
-			/* リンクアンカーにアイコンを付与 */
-			posthtmlAnchorIcon({
-				class: config.html.anchor_icon.class,
-				host_info: config.html.anchor_icon.host_info,
-				icon_class: config.html.anchor_icon.icon_class,
-				icon_size: config.html.anchor_icon.icon_size,
-				icon_parentheses_before: config.html.anchor_icon.icon_parentheses_before,
-				icon_parentheses_after: config.html.anchor_icon.icon_parentheses_after,
-			}),
-
-			/* Amazon 商品ページのリンクにアソシエイトタグを追加 */
-			posthtmlAnchorAmazonAssociate({
-				class: config.html.anchor_amazon_associate.class,
-				associate_id: configCommon.paapi.request.partner_tag,
-			}),
-
-			/* 日付文字列を <time datetime> 要素に変換 */
-			posthtmlTimeJapaneseDate({ element: config.html.time.element, class: config.html.time.class }),
-
-			/* <picture> 要素を使って複数フォーマットの画像を提供する */
-			posthtmlImage({ class: config.html.image.class }),
-
-			/* highlight.js */
-			(tree: posthtml.Node): posthtml.Node => {
-				hljs.registerLanguage('xml', hljsXml);
-				hljs.registerLanguage('javascript', hljsJavaScript);
-				hljs.configure({
-					classPrefix: config.html.highlight.htmlbuild_class_prefix,
-				});
-
-				const targetElementInfo = {
-					class: config.html.highlight.class,
-				};
-
-				tree.match({ tag: 'code' }, (node: posthtml.Node) => {
-					const content = node.content;
-					const attrs = node.attrs ?? {};
-
-					const posthtmlMatchClass = new PosthtmlMatchClass(node);
-
-					if (!posthtmlMatchClass.refine(targetElementInfo.class)) {
-						return node;
-					}
-
-					const languageName = attrs['data-language'];
-					let registLanguageName: string | undefined;
-					switch (languageName) {
-						case 'xml':
-						case 'html':
-						case 'svg': {
-							registLanguageName = 'xml';
-							break;
-						}
-						case 'javascript': {
-							registLanguageName = 'javascript';
-							break;
-						}
-						default: {
-							console.warn(`無効な言語名: \`${languageName}\``);
-						}
-					}
-
-					if (content?.length !== 1) {
-						/* TODO: 当該 <code> の中は Text ノードのみ（length === 1）の想定 */
-						return node;
-					}
-
-					const codeText = content.at(0)?.toString().replaceAll('&lt;', '<').replaceAll('&gt;', '>');
-					if (codeText === undefined) {
-						return node;
-					}
-
-					const highlighted = registLanguageName !== undefined ? hljs.highlight(codeText, { language: registLanguageName }) : hljs.highlightAuto(codeText);
-
-					node.content = [highlighted.value];
-
-					return node;
-				});
-
-				return tree;
-			},
-		]).process(html)
-	).html;
 
 	/* 整形 */
 	let htmlFormatted = html;
