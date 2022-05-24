@@ -46,7 +46,7 @@
 		"case-sensitive-attr-name": "lower",
 		"case-sensitive-tag-name": "lower",
 		"end-tag": true,
-		"indentation": "tab",
+		"indentation": false,
 		"no-default-value": true
 	},
 	"nodeRules": [
@@ -102,16 +102,6 @@
 			}
 		},
 		{
-			"selector": "img",
-			"rules": {
-				"required-attr": [
-					"alt",
-					"width",
-					"height"
-				]
-			}
-		},
-		{
 			"selector": "table, th, dialog, template a",
 			"rules": {
 				"require-accessible-name": false
@@ -135,40 +125,5 @@
 				}
 			}
 		}
-	],
-	"overrides": {
-		"./public/**/*.html": {
-			"rules": {
-				"disallowed-element": false,
-				"ineffective-attr": false,
-				"no-refer-to-non-existent-id": false,
-				"require-accessible-name": false,
-				"no-use-event-handler-attr": false,
-				"indentation": false,
-				"no-default-value": false
-			}
-		},
-		"./public/technology.html": {
-			"rules": {
-				"indentation": false
-			}
-		},
-		"./views/amazon-ads.ejs": {
-			"rules": {
-				"end-tag": false
-			}
-		},
-		"./views/madoka-official-news-month.ejs": {
-			"nodeRules": [
-				{
-					"selector": "img",
-					"rules": {
-						"required-attr": [
-							"alt"
-						]
-					}
-				}
-			]
-		}
-	}
+	]
 }
