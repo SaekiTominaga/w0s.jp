@@ -23,7 +23,21 @@
 		"doctype": true,
 		"id-duplication": true,
 		"ineffective-attr": true,
-		"invalid-attr": true,
+		"invalid-attr": {
+			"option": {
+				"attrs": {
+					"accesskey": {
+						"disallowed": true
+					},
+					"tabindex": {
+						"enum": [
+							"-1",
+							"0"
+						]
+					}
+				}
+			}
+		},
 		"permitted-contents": true,
 		"required-attr": true,
 		"landmark-roles": true,
@@ -59,7 +73,10 @@
 							"prefix"
 						]
 					}
-				}
+				},
+				"required-attr": [
+					"lang"
+				]
 			}
 		},
 		{
@@ -102,15 +119,71 @@
 			}
 		},
 		{
-			"selector": "table, th, dialog, template a",
+			"selector": "img",
+			"rules": {
+				"required-attr": [
+					"alt"
+				]
+			}
+		},
+		{
+			"selector": "iframe",
+			"rules": {
+				"required-attr": [
+					"title"
+				]
+			}
+		},
+		{
+			"selector": "table",
 			"rules": {
 				"require-accessible-name": false
+			}
+		},
+		{
+			"selector": "thead th",
+			"rules": {
+				"required-attr": [
+					{
+						"name": "scope",
+						"value": [
+							"col",
+							"colgroup"
+						]
+					}
+				]
+			}
+		},
+		{
+			"selector": "tbody th",
+			"rules": {
+				"required-attr": [
+					{
+						"name": "scope",
+						"value": [
+							"row",
+							"rowgroup"
+						]
+					}
+				]
 			}
 		},
 		{
 			"selector": "input",
 			"rules": {
 				"id-duplication": false
+			}
+		},
+		{
+			"selector": "dialog",
+			"rules": {
+				"require-accessible-name": false
+			}
+		},
+		{
+			"selector": "template *",
+			"rules": {
+				"require-accessible-name": false
 			}
 		},
 		{
