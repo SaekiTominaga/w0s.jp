@@ -1,6 +1,6 @@
 {
 	"parser": {
-		".ejs$": "@markuplint/ejs-parser"
+		"\\.ejs$": "@markuplint/ejs-parser"
 	},
 	"rules": {
 		"attr-duplication": true,
@@ -23,7 +23,21 @@
 		"doctype": true,
 		"id-duplication": true,
 		"ineffective-attr": true,
-		"invalid-attr": true,
+		"invalid-attr": {
+			"option": {
+				"attrs": {
+					"accesskey": {
+						"disallowed": true
+					},
+					"tabindex": {
+						"enum": [
+							"-1",
+							"0"
+						]
+					}
+				}
+			}
+		},
 		"permitted-contents": true,
 		"required-attr": true,
 		"landmark-roles": true,
@@ -46,7 +60,7 @@
 		"case-sensitive-attr-name": "lower",
 		"case-sensitive-tag-name": "lower",
 		"end-tag": true,
-		"indentation": "tab",
+		"indentation": false,
 		"no-default-value": true
 	},
 	"nodeRules": [
@@ -59,7 +73,10 @@
 							"prefix"
 						]
 					}
-				}
+				},
+				"required-attr": [
+					"lang"
+				]
 			}
 		},
 		{
@@ -105,22 +122,68 @@
 			"selector": "img",
 			"rules": {
 				"required-attr": [
-					"alt",
-					"width",
-					"height"
+					"alt"
 				]
 			}
 		},
 		{
-			"selector": "table, th, dialog, template a",
+			"selector": "iframe",
+			"rules": {
+				"required-attr": [
+					"title"
+				]
+			}
+		},
+		{
+			"selector": "table",
 			"rules": {
 				"require-accessible-name": false
+			}
+		},
+		{
+			"selector": "thead th",
+			"rules": {
+				"required-attr": [
+					{
+						"name": "scope",
+						"value": [
+							"col",
+							"colgroup"
+						]
+					}
+				]
+			}
+		},
+		{
+			"selector": "tbody th",
+			"rules": {
+				"required-attr": [
+					{
+						"name": "scope",
+						"value": [
+							"row",
+							"rowgroup"
+						]
+					}
+				]
 			}
 		},
 		{
 			"selector": "input",
 			"rules": {
 				"id-duplication": false
+			}
+		},
+		{
+			"selector": "dialog",
+			"rules": {
+				"require-accessible-name": false
+			}
+		},
+		{
+			"selector": "template *",
+			"rules": {
+				"require-accessible-name": false
 			}
 		},
 		{
@@ -135,40 +198,5 @@
 				}
 			}
 		}
-	],
-	"overrides": {
-		"./public/**/*.html": {
-			"rules": {
-				"disallowed-element": false,
-				"ineffective-attr": false,
-				"no-refer-to-non-existent-id": false,
-				"require-accessible-name": false,
-				"no-use-event-handler-attr": false,
-				"indentation": false,
-				"no-default-value": false
-			}
-		},
-		"./public/technology.html": {
-			"rules": {
-				"indentation": false
-			}
-		},
-		"./views/amazon-ads.ejs": {
-			"rules": {
-				"end-tag": false
-			}
-		},
-		"./views/madoka-official-news-month.ejs": {
-			"nodeRules": [
-				{
-					"selector": "img",
-					"rules": {
-						"required-attr": [
-							"alt"
-						]
-					}
-				}
-			]
-		}
-	}
+	]
 }

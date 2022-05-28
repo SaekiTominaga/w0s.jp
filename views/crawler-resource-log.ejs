@@ -26,7 +26,7 @@
 					<table class="p-admin-crawler-diff">
 						<tbody>
 							<%_ for (const part of diff) { _%>
-							<tr class="p-admin-crawler-diff__line<%_ if (part.added) { _%> -added<%_ } else if (part.removed) { _%> -removed<%_ } _%>">
+							<tr class="<%_ if (part.added) { _%>p-admin-crawler-diff__line -added<%_ } else if (part.removed) { _%>p-admin-crawler-diff__line -removed<%_ } else { _%>p-admin-crawler-diff__line<%_ } _%>">
 								<%_ if (part.added) { _%>
 								<td class="p-admin-crawler-diff__type">+</td>
 								<%_ } else if (part.removed) { _%>
