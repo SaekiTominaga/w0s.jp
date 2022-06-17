@@ -2,6 +2,7 @@ import Convert from './dom/Convert.js';
 import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
+import GithubSlugger from 'github-slugger';
 import path from 'path';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
@@ -76,52 +77,65 @@ fileList.map(async (filePath) => {
 
 	const contentHeader = document.querySelector('.l-content__header');
 	const contentMain = document.querySelector('.l-content__main');
-	if (contentHeader !== null && contentMain !== null) {
-		let contentFooter = document.querySelector('.l-content__footer');
+	let contentFooter = document.querySelector('.l-content__footer');
+	if (contentMain !== null) {
+		/* セクション ID 自動生成 */
+		const slugger = new GithubSlugger();
 
-		/* 目次自動生成 */
-		const toc = contentHeader.querySelector('.p-toc');
-		if (toc !== null) {
-			const data: Map<string, string> = new Map();
-			for (const section of contentMain.querySelectorAll('section[id]')) {
-				const str = section.querySelector('h2')?.textContent;
-				if (str === null || str === undefined) {
-					continue;
-				}
-
-				data.set(section.id, str);
+		for (const section of contentMain.querySelectorAll('section')) {
+			const str = section.querySelector('h2, h3, h4')?.textContent;
+			if (str === null || str === undefined) {
+				continue;
 			}
 
-			if (data.size >= 2) {
-				toc.setAttribute('aria-label', '目次');
-				for (const [id, str] of data) {
-					const a = document.createElement('a');
-					a.href = `#${id}`;
-					a.textContent = str;
-
-					const li = document.createElement('li');
-					li.appendChild(a);
-
-					toc.appendChild(li);
-				}
-			} else {
-				console.info('見出しレベル 2 が 1 つなので目次は表示しない', data);
-				toc.remove();
-			}
+			section.id = slugger.slug(section.id !== '' ? section.id : str);
 		}
 
-		/* ローカルナビはコンテンツヘッダーとコンテンツフッターの2か所に表示 */
-		const localNavHeader = contentHeader.querySelector('.p-local-nav');
-		if (localNavHeader !== null) {
-			if (contentFooter === null) {
-				contentFooter = document.createElement('div');
-				contentFooter.className = 'l-content__footer';
-				contentMain.insertAdjacentElement('afterend', contentFooter);
+		if (contentHeader !== null) {
+			/* 目次自動生成 */
+			const toc = contentHeader.querySelector('.p-toc');
+			if (toc !== null) {
+				const data: Map<string, string> = new Map();
+				for (const section of contentMain.querySelectorAll('section[id]')) {
+					const str = section.querySelector('h2')?.textContent;
+					if (str === null || str === undefined) {
+						continue;
+					}
+
+					data.set(section.id, str);
+				}
+
+				if (data.size >= 2) {
+					toc.setAttribute('aria-label', '目次');
+					for (const [id, str] of data) {
+						const a = document.createElement('a');
+						a.href = `#${id}`;
+						a.textContent = str;
+
+						const li = document.createElement('li');
+						li.appendChild(a);
+
+						toc.appendChild(li);
+					}
+				} else {
+					console.info('見出しレベル 2 が 1 つなので目次は表示しない', data);
+					toc.remove();
+				}
 			}
 
-			const localNavFooter = <Element>localNavHeader.cloneNode(true);
-			localNavFooter.removeAttribute('id');
-			contentFooter.insertAdjacentElement('beforeend', localNavFooter);
+			/* ローカルナビはコンテンツヘッダーとコンテンツフッターの2か所に表示 */
+			const localNavHeader = contentHeader.querySelector('.p-local-nav');
+			if (localNavHeader !== null) {
+				if (contentFooter === null) {
+					contentFooter = document.createElement('div');
+					contentFooter.className = 'l-content__footer';
+					contentMain.insertAdjacentElement('afterend', contentFooter);
+				}
+
+				const localNavFooter = <Element>localNavHeader.cloneNode(true);
+				localNavFooter.removeAttribute('id');
+				contentFooter.insertAdjacentElement('beforeend', localNavFooter);
+			}
 		}
 	}
 
