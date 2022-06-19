@@ -109,7 +109,7 @@ fileList.map(async (filePath) => {
 					toc.setAttribute('aria-label', '目次');
 					for (const [id, str] of data) {
 						const a = document.createElement('a');
-						a.href = `#${id}`;
+						a.href = `#${encodeURIComponent(id)}`;
 						a.textContent = str;
 
 						const li = document.createElement('li');
