@@ -45,18 +45,24 @@
 	}
 
 	& > h3 {
+		--_stick-width: 0.25em;
+		--_stick-height: 80%;
+
+		padding-inline-start: calc(var(--_stick-width) + 0.5em);
+		contain: content;
+		position: relative; /* for Safari */
 		font-size: calc(100% * var(--font-ratio-2));
-		font-weight: var(--font-weight-bold);
 
 		&::before {
-			margin-inline-end: 0.5em;
 			border-radius: var(--border-radius-full);
 			content: "";
-			display: inline-block;
-			width: 0.25em;
-			height: 1em;
+			display: block;
+			width: var(--_stick-width);
+			height: var(--_stick-height);
+			position: absolute;
+			inset-block-start: calc((100% - var(--_stick-height)) / 2);
+			inset-inline-start: 0;
 			background: var(--_line-color);
-			vertical-align: calc(-0.1em * var(--line-height-narrow));
 		}
 	}
 }
