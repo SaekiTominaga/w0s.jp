@@ -13,7 +13,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 /**
  * 赤松健セリフジェネレーター
  */
-export default class AkamatsuSdGenerator extends Controller implements ControllerInterface {
+export default class AkamatsuGenerator extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
 	#config: Configure;
 
@@ -67,7 +67,7 @@ export default class AkamatsuSdGenerator extends Controller implements Controlle
 
 			if (requestQuery.text_right1 !== null && requestQuery.text_right1 !== '') {
 				const svg = this.#getSvg(requestQuery.text_right1, requestQuery.color);
-				this.logger.debug('右テキスト1', svg);
+				this.logger.debug('右セリフ1', svg);
 
 				sharpOverlayOptions.push({
 					input: Buffer.from(svg),
@@ -82,7 +82,7 @@ export default class AkamatsuSdGenerator extends Controller implements Controlle
 			}
 			if (requestQuery.text_right2 !== null && requestQuery.text_right2 !== '') {
 				const svg = this.#getSvg(requestQuery.text_right2, requestQuery.color);
-				this.logger.debug('右テキスト2', svg);
+				this.logger.debug('右セリフ2', svg);
 
 				sharpOverlayOptions.push({
 					input: Buffer.from(svg),
@@ -98,7 +98,7 @@ export default class AkamatsuSdGenerator extends Controller implements Controlle
 
 			if (requestQuery.text_left1 !== null && requestQuery.text_left1 !== '') {
 				const svg = this.#getSvg(requestQuery.text_left1, requestQuery.color);
-				this.logger.debug('左テキスト1', svg);
+				this.logger.debug('左セリフ1', svg);
 
 				sharpOverlayOptions.push({
 					input: Buffer.from(svg),
@@ -113,7 +113,7 @@ export default class AkamatsuSdGenerator extends Controller implements Controlle
 			}
 			if (requestQuery.text_left2 !== null && requestQuery.text_left2 !== '') {
 				const svg = this.#getSvg(requestQuery.text_left2, requestQuery.color);
-				this.logger.debug('左テキスト2', svg);
+				this.logger.debug('左セリフ2', svg);
 
 				sharpOverlayOptions.push({
 					input: Buffer.from(svg),
@@ -130,7 +130,7 @@ export default class AkamatsuSdGenerator extends Controller implements Controlle
 			sharp.composite(sharpOverlayOptions);
 			generatedImage = (await sharp.toBuffer()).toString('base64');
 
-			this.logger.info('画像生成', generatedText.join(), requestQuery.color, requestQuery.bgcolor);
+			this.logger.info('画像生成', generatedText.join(), requestQuery.icon, requestQuery.color, requestQuery.bgcolor);
 		}
 
 		/* 初期表示 */
@@ -156,7 +156,7 @@ export default class AkamatsuSdGenerator extends Controller implements Controlle
 	/**
 	 * SVG データを取得する
 	 *
-	 * @param {string} text - テキスト情報
+	 * @param {string} text - セリフ情報
 	 * @param {string | null} color - 文字色
 	 *
 	 * @returns {string} SVG データ
