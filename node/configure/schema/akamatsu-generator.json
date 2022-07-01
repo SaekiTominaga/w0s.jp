@@ -3,7 +3,7 @@
 	"$id": "https://w0s.jp/akamatsu-generator.json",
 	"type": "object",
 	"title": "赤松健セリフジェネレーター",
-	"required": ["view", "icon", "icons"],
+	"required": ["view", "icon", "icons", "validator"],
 	"properties": {
 		"view": {
 			"type": "object",
@@ -72,6 +72,118 @@
 				"additionalProperties": false
 			},
 			"title": "アイコン"
+		},
+		"validator": {
+			"type": "object",
+			"title": "バリデーター",
+			"required": ["icon", "text_right1", "text_right2", "text_left1", "text_left2", "color", "bgcolor"],
+			"properties": {
+				"icon": {
+					"type": "object",
+					"title": "画像",
+					"required": ["message"],
+					"properties": {
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				},
+				"text_right1": {
+					"type": "object",
+					"title": "セリフ右側１列目",
+					"required": ["maxlength", "message"],
+					"properties": {
+						"maxlength": {
+							"type": "integer",
+							"minimum": 1,
+							"title": "最大文字長"
+						},
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				},
+				"text_right2": {
+					"type": "object",
+					"title": "セリフ右側２列目",
+					"required": ["maxlength", "message"],
+					"properties": {
+						"maxlength": {
+							"type": "integer",
+							"minimum": 1,
+							"title": "最大文字長"
+						},
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				},
+				"text_left1": {
+					"type": "object",
+					"title": "セリフ左側１列目",
+					"required": ["maxlength", "message"],
+					"properties": {
+						"maxlength": {
+							"type": "integer",
+							"minimum": 1,
+							"title": "最大文字長"
+						},
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				},
+				"text_left2": {
+					"type": "object",
+					"title": "セリフ左側２列目",
+					"required": ["maxlength", "message"],
+					"properties": {
+						"maxlength": {
+							"type": "integer",
+							"minimum": 1,
+							"title": "最大文字長"
+						},
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				},
+				"color": {
+					"type": "object",
+					"title": "文字色",
+					"required": ["message"],
+					"properties": {
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				},
+				"bgcolor": {
+					"type": "object",
+					"title": "背景色",
+					"required": ["message"],
+					"properties": {
+						"message": {
+							"type": "object",
+							"title": "メッセージ"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
 		}
 	},
 	"additionalProperties": false

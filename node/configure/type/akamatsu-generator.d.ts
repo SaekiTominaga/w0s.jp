@@ -18,11 +18,16 @@ export type NoName9 = {
   filename: NoName10;
   caption: NoName11;
 }[];
+export type NoName16 = number;
+export type NoName19 = number;
+export type NoName22 = number;
+export type NoName25 = number;
 
 export interface NoName {
   view: View;
   icon: NoName2;
   icons: NoName9;
+  validator: NoName12;
 }
 export interface View {
   init: NoName1;
@@ -34,4 +39,59 @@ export interface NoName2 {
   padding: NoName6;
   font_size: NoName7;
   line_height: NoName8;
+}
+export interface NoName12 {
+  icon: NoName13;
+  text_right1: NoName15;
+  text_right2: NoName18;
+  text_left1: NoName21;
+  text_left2: NoName24;
+  color: NoName27;
+  bgcolor: NoName29;
+}
+export interface NoName13 {
+  message: NoName14;
+}
+export interface NoName14 {
+  [k: string]: unknown;
+}
+export interface NoName15 {
+  maxlength: NoName16;
+  message: NoName17;
+}
+export interface NoName17 {
+  [k: string]: unknown;
+}
+export interface NoName18 {
+  maxlength: NoName19;
+  message: NoName20;
+}
+export interface NoName20 {
+  [k: string]: unknown;
+}
+export interface NoName21 {
+  maxlength: NoName22;
+  message: NoName23;
+}
+export interface NoName23 {
+  [k: string]: unknown;
+}
+export interface NoName24 {
+  maxlength: NoName25;
+  message: NoName26;
+}
+export interface NoName26 {
+  [k: string]: unknown;
+}
+export interface NoName27 {
+  message: NoName28;
+}
+export interface NoName28 {
+  [k: string]: unknown;
+}
+export interface NoName29 {
+  message: NoName30;
+}
+export interface NoName30 {
+  [k: string]: unknown;
 }

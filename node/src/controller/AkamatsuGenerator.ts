@@ -1,3 +1,4 @@
+import AkamatsuGeneratorValidator from '../validator/AkamatsuGeneratorValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
@@ -8,6 +9,7 @@ import Sharp from 'sharp';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
 import { NoName as Configure } from '../../configure/type/akamatsu-generator';
 import { Request, Response } from 'express';
+import { Result as ValidationResult, ValidationError } from 'express-validator';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common';
 
 /**
@@ -42,95 +44,102 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 			text_left2: RequestUtil.string(req.body.text_left2),
 		};
 
+		const validator = new AkamatsuGeneratorValidator(req, this.#config);
+		let validationResult: ValidationResult<ValidationError> | null = null;
+
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
 		let generatedImage: string | undefined;
 		const generatedText: string[] = [];
 		if (requestQuery.icon !== null) {
-			/* 生成実行 */
-			const filePath = path.resolve(`${this.#config.icon.dir}/${requestQuery.icon}`);
-			this.logger.debug(filePath);
+			validationResult = await validator.generate();
+			if (validationResult.isEmpty()) {
+				/* 生成実行 */
 
-			if (!fs.existsSync(filePath)) {
-				this.logger.error('ファイルが存在しない', filePath);
-				httpResponse.send500();
-				return;
+				const filePath = path.resolve(`${this.#config.icon.dir}/${requestQuery.icon}`);
+				this.logger.debug(filePath);
+
+				if (!fs.existsSync(filePath)) {
+					this.logger.error('ファイルが存在しない', filePath);
+					httpResponse.send500();
+					return;
+				}
+
+				/* sharp 設定 */
+				Sharp.cache(false);
+
+				const sharp = Sharp(filePath);
+				sharp.flatten({ background: requestQuery.bgcolor ?? '#ffffff' });
+
+				const sharpOverlayOptions: Sharp.OverlayOptions[] = [];
+
+				if (requestQuery.text_right1 !== null && requestQuery.text_right1 !== '') {
+					const svg = this.#getSvg(requestQuery.text_right1, requestQuery.color);
+					this.logger.debug('右セリフ1', svg);
+
+					sharpOverlayOptions.push({
+						input: Buffer.from(svg),
+						top: Math.round(this.#config.icon.padding),
+						left:
+							requestQuery.text_right2 !== null && requestQuery.text_right2 !== ''
+								? Math.round(this.#config.icon.width - this.#config.icon.font_size - this.#config.icon.padding)
+								: Math.round(this.#config.icon.width - this.#config.icon.font_size * (0.5 + this.#config.icon.line_height) - this.#config.icon.padding),
+					});
+
+					generatedText.push(requestQuery.text_right1);
+				}
+				if (requestQuery.text_right2 !== null && requestQuery.text_right2 !== '') {
+					const svg = this.#getSvg(requestQuery.text_right2, requestQuery.color);
+					this.logger.debug('右セリフ2', svg);
+
+					sharpOverlayOptions.push({
+						input: Buffer.from(svg),
+						top: Math.round(this.#config.icon.padding),
+						left:
+							requestQuery.text_right1 !== null && requestQuery.text_right1 !== ''
+								? Math.round(this.#config.icon.width - this.#config.icon.font_size * (1 + this.#config.icon.line_height) - this.#config.icon.padding)
+								: Math.round(this.#config.icon.width - this.#config.icon.font_size * (0.5 + this.#config.icon.line_height) - this.#config.icon.padding),
+					});
+
+					generatedText.push(requestQuery.text_right2);
+				}
+
+				if (requestQuery.text_left1 !== null && requestQuery.text_left1 !== '') {
+					const svg = this.#getSvg(requestQuery.text_left1, requestQuery.color);
+					this.logger.debug('左セリフ1', svg);
+
+					sharpOverlayOptions.push({
+						input: Buffer.from(svg),
+						top: Math.round(this.#config.icon.padding),
+						left:
+							requestQuery.text_left2 !== null && requestQuery.text_left2 !== ''
+								? Math.round(this.#config.icon.padding + this.#config.icon.font_size * this.#config.icon.line_height)
+								: Math.round(this.#config.icon.padding + this.#config.icon.font_size * (-0.5 + this.#config.icon.line_height)),
+					});
+
+					generatedText.push(requestQuery.text_left1);
+				}
+				if (requestQuery.text_left2 !== null && requestQuery.text_left2 !== '') {
+					const svg = this.#getSvg(requestQuery.text_left2, requestQuery.color);
+					this.logger.debug('左セリフ2', svg);
+
+					sharpOverlayOptions.push({
+						input: Buffer.from(svg),
+						top: Math.round(this.#config.icon.padding),
+						left:
+							requestQuery.text_left1 !== null && requestQuery.text_left1 !== ''
+								? Math.round(this.#config.icon.padding)
+								: Math.round(this.#config.icon.padding) + this.#config.icon.font_size * (-0.5 + this.#config.icon.line_height),
+					});
+
+					generatedText.push(requestQuery.text_left2);
+				}
+
+				sharp.composite(sharpOverlayOptions);
+				generatedImage = (await sharp.toBuffer()).toString('base64');
+
+				this.logger.info('画像生成', generatedText.join(), requestQuery.icon, requestQuery.color, requestQuery.bgcolor);
 			}
-
-			/* sharp 設定 */
-			Sharp.cache(false);
-
-			const sharp = Sharp(filePath);
-			sharp.flatten({ background: requestQuery.bgcolor ?? '#ffffff' });
-
-			const sharpOverlayOptions: Sharp.OverlayOptions[] = [];
-
-			if (requestQuery.text_right1 !== null && requestQuery.text_right1 !== '') {
-				const svg = this.#getSvg(requestQuery.text_right1, requestQuery.color);
-				this.logger.debug('右セリフ1', svg);
-
-				sharpOverlayOptions.push({
-					input: Buffer.from(svg),
-					top: Math.round(this.#config.icon.padding),
-					left:
-						requestQuery.text_right2 !== null && requestQuery.text_right2 !== ''
-							? Math.round(this.#config.icon.width - this.#config.icon.font_size - this.#config.icon.padding)
-							: Math.round(this.#config.icon.width - this.#config.icon.font_size * (0.5 + this.#config.icon.line_height) - this.#config.icon.padding),
-				});
-
-				generatedText.push(requestQuery.text_right1);
-			}
-			if (requestQuery.text_right2 !== null && requestQuery.text_right2 !== '') {
-				const svg = this.#getSvg(requestQuery.text_right2, requestQuery.color);
-				this.logger.debug('右セリフ2', svg);
-
-				sharpOverlayOptions.push({
-					input: Buffer.from(svg),
-					top: Math.round(this.#config.icon.padding),
-					left:
-						requestQuery.text_right1 !== null && requestQuery.text_right1 !== ''
-							? Math.round(this.#config.icon.width - this.#config.icon.font_size * (1 + this.#config.icon.line_height) - this.#config.icon.padding)
-							: Math.round(this.#config.icon.width - this.#config.icon.font_size * (0.5 + this.#config.icon.line_height) - this.#config.icon.padding),
-				});
-
-				generatedText.push(requestQuery.text_right2);
-			}
-
-			if (requestQuery.text_left1 !== null && requestQuery.text_left1 !== '') {
-				const svg = this.#getSvg(requestQuery.text_left1, requestQuery.color);
-				this.logger.debug('左セリフ1', svg);
-
-				sharpOverlayOptions.push({
-					input: Buffer.from(svg),
-					top: Math.round(this.#config.icon.padding),
-					left:
-						requestQuery.text_left2 !== null && requestQuery.text_left2 !== ''
-							? Math.round(this.#config.icon.padding + this.#config.icon.font_size * this.#config.icon.line_height)
-							: Math.round(this.#config.icon.padding + this.#config.icon.font_size * (-0.5 + this.#config.icon.line_height)),
-				});
-
-				generatedText.push(requestQuery.text_left1);
-			}
-			if (requestQuery.text_left2 !== null && requestQuery.text_left2 !== '') {
-				const svg = this.#getSvg(requestQuery.text_left2, requestQuery.color);
-				this.logger.debug('左セリフ2', svg);
-
-				sharpOverlayOptions.push({
-					input: Buffer.from(svg),
-					top: Math.round(this.#config.icon.padding),
-					left:
-						requestQuery.text_left1 !== null && requestQuery.text_left1 !== ''
-							? Math.round(this.#config.icon.padding)
-							: Math.round(this.#config.icon.padding) + this.#config.icon.font_size * (-0.5 + this.#config.icon.line_height),
-				});
-
-				generatedText.push(requestQuery.text_left2);
-			}
-
-			sharp.composite(sharpOverlayOptions);
-			generatedImage = (await sharp.toBuffer()).toString('base64');
-
-			this.logger.info('画像生成', generatedText.join(), requestQuery.icon, requestQuery.color, requestQuery.bgcolor);
 		}
 
 		/* 初期表示 */
@@ -147,6 +156,7 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 				path: req.path,
 				query: requestQuery,
 			},
+			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			icons: icons,
 			generatedImage: generatedImage,
 			generatedText: generatedText,
