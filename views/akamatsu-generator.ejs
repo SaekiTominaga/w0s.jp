@@ -42,7 +42,7 @@
 
 						<figure class="c-fit">
 							<div class="p-embed">
-								<picture><img src="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sample.png?type=png;w=320" srcset="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sample.png?type=png;w=640 2x" alt="赤松健: く、久米田の野郎〜　毎週毎週ラブひなネタ　やりやがって〜…" width="320" height="320" /></picture>
+								<picture><img src="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sample.png?type=png;w=240" srcset="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sample.png?type=png;w=480 2x" alt="赤松健: く、久米田の野郎〜　毎週毎週ラブひなネタやりやがって〜…" width="240" height="240" /></picture>
 							</div>
 							<figcaption class="c-caption">
 								<p class="c-caption__title">画像生成例</p>
@@ -81,56 +81,28 @@
 								</div>
 								<div class="p-form-grid__group">
 									<fieldset>
-										<legend class="p-form-grid__legend">
-											<label for="input-text-right1" class="c-label">右側1行目のテキスト</label>
-										</legend>
+										<legend class="p-form-grid__legend">セリフ</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<input class="c-input -full" name="text_right1" value="<%= page.query.text_right1 %>" maxlength="20" id="input-text-right1" />
+												<label class="c-label">右側1列目 <input class="c-input" name="text_right1" value="<%= page.query.text_right1 %>" maxlength="20" /></label>
 											</div>
+											<div class="c-form-controls">
+												<label class="c-label">右側2列目 <input class="c-input" name="text_right2" value="<%= page.query.text_right2 %>" maxlength="20" /></label>
+											</div>
+											<div class="c-form-controls">
+												<label class="c-label">左側1列目 <input class="c-input" name="text_left1" value="<%= page.query.text_left1 %>" maxlength="20" /></label>
+											</div>
+											<div class="c-form-controls">
+												<label class="c-label">左側2列目 <input class="c-input" name="text_left2" value="<%= page.query.text_left2 %>" maxlength="20" /></label>
+											</div>
+											<p class="c-fc-note">それぞれ最大20文字まで入力できますが、全角文字は10文字を超えると末尾が切れます。</p>
 										</div>
 									</fieldset>
 								</div>
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="input-text-right2" class="c-label">右側2行目のテキスト</label>
-										</legend>
-										<div class="p-form-grid__contents">
-											<div class="c-form-controls">
-												<input class="c-input -full" name="text_right2" value="<%= page.query.text_right2 %>" maxlength="20" id="input-text-right2" />
-											</div>
-										</div>
-									</fieldset>
-								</div>
-								<div class="p-form-grid__group">
-									<fieldset>
-										<legend class="p-form-grid__legend">
-											<label for="input-text-left1" class="c-label">左側1行目のテキスト</label>
-										</legend>
-										<div class="p-form-grid__contents">
-											<div class="c-form-controls">
-												<input class="c-input -full" name="text_left1" value="<%= page.query.text_left1 %>" maxlength="20" id="input-text-left1" />
-											</div>
-										</div>
-									</fieldset>
-								</div>
-								<div class="p-form-grid__group">
-									<fieldset>
-										<legend class="p-form-grid__legend">
-											<label for="input-text-left2" class="c-label">左側2行目のテキスト</label>
-										</legend>
-										<div class="p-form-grid__contents">
-											<div class="c-form-controls">
-												<input class="c-input -full" name="text_left2" value="<%= page.query.text_left2 %>" maxlength="20" id="input-text-left2" />
-											</div>
-										</div>
-									</fieldset>
-								</div>
-								<div class="p-form-grid__group">
-									<fieldset>
-										<legend class="p-form-grid__legend">
-											<label for="input-color" class="c-label">テキスト色</label>
+											<label for="input-color" class="c-label">文字色</label>
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
@@ -142,7 +114,7 @@
 								<div class="p-form-grid__group">
 									<fieldset>
 										<legend class="p-form-grid__legend">
-											<label for="input-bgcolor" class="c-label">画像背景色</label>
+											<label for="input-bgcolor" class="c-label">背景色</label>
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
@@ -162,7 +134,7 @@
 					<%_ if (generatedImage !== undefined) { _%>
 					<section class="p-section -hdg-a" id="generated">
 						<div class="p-section__hdg">
-							<h2>生成</h2>
+							<h2>セリフ付き画像</h2>
 						</div>
 
 						<figure class="c-fit">
@@ -187,7 +159,7 @@
 						</figure>
 
 						<ul class="p-notes">
-							<li>Web に画像を掲載する際には「代替テキスト」を設定しましょう。サービスによっては「画像の説明」「alt」などと呼ばれることもあります。</li>
+							<li>Web に画像を掲載する際には「代替テキスト」を設定しましょう<small class="u-small">（サービスによっては「画像の説明」「alt」などと呼ばれることもあります）</small>。</li>
 							<li>自動生成された上記の代替テキストはあくまで一例です。文脈に合わせて変更しても構いません。</li>
 							<li>Twitter で代替テキストを設定するやり方は公式ヘルプセンターの<a href="https://help.twitter.com/ja/using-twitter/add-image-descriptions">画像の説明を追加する方法</a><b class="c-domain">(help.twitter.com)</b>で解説されています。その他の SNS やブログサービスでの方法はそれぞれのヘルプを探してみてください。</li>
 						</ul>
