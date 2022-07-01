@@ -1,3 +1,4 @@
+import AkamatsuGenerator from './controller/AkamatsuGenerator.js';
 import AmazonAdsController from './controller/AmazonAdsController.js';
 import AmazonAdsJsonController from './controller/api/AmazonAdsJsonController.js';
 import compression from 'compression';
@@ -316,6 +317,26 @@ app.get('/kumeta/twitter', async (req, res, next) => {
 		next(e);
 	}
 });
+
+/**
+ * 赤松健セリフジェネレーター
+ */
+app
+	.route('/kumeta/akamatsu-generator')
+	.get(async (req, res, next) => {
+		try {
+			await new AkamatsuGenerator(config).execute(req, res);
+		} catch (e) {
+			next(e);
+		}
+	})
+	.post(async (req, res, next) => {
+		try {
+			await new AkamatsuGenerator(config).execute(req, res);
+		} catch (e) {
+			next(e);
+		}
+	});
 
 /**
  * まどか☆マギカ・公式サイトニュース

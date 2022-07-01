@@ -324,9 +324,51 @@ Styleguide 1.4.6
 			}
 		}
 	}
+
+	/* チェックボックス、ラジオボタン（画像） */
+	&.-image {
+		--_border-color: currentcolor;
+		--_outline-color: transparent;
+
+		contain: layout;
+		position: relative; /* for Safari */
+
+		& .c-label__image {
+			border: 1px solid var(--_border-color);
+			border-radius: var(--border-radius-normal);
+			outline: var(--outline-width-bold) solid var(--_outline-color);
+			outline-offset: -1px;
+
+			/* TODO: 近い将来は :has() に置き換えられる */
+			@nest :checked + & {
+				--_outline-color: var(--outline-color);
+			}
+
+			@nest :focus + & {
+				--_outline-color: var(--outline-color);
+			}
+		}
+
+		@nest [aria-invalid="true"] & {
+			--_border-color: var(--invalid-border-color);
+		}
+
+		& input {
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+		}
+	}
 }
 
 .c-label__text {
+}
+
+.c-label__image {
+	& img {
+		border-radius: var(--border-radius-normal);
+		display: block;
+	}
 }
 
 /*

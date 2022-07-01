@@ -1,0 +1,78 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/akamatsu-generator.json",
+	"type": "object",
+	"title": "赤松健セリフジェネレーター",
+	"required": ["view", "icon", "icons"],
+	"properties": {
+		"view": {
+			"type": "object",
+			"title": "view ファイル名",
+			"required": ["init"],
+			"properties": {
+				"init": {
+					"type": "string",
+					"title": "正常時"
+				}
+			},
+			"additionalProperties": false
+		},
+		"icon": {
+			"type": "object",
+			"title": "アイコン",
+			"required": ["dir", "width", "height", "padding", "font_size", "line_height"],
+			"properties": {
+				"dir": {
+					"type": "string",
+					"title": "アイコン格納ディレクトリ"
+				},
+				"width": {
+					"type": "integer",
+					"minimum": 1,
+					"title": "アイコン幅"
+				},
+				"height": {
+					"type": "integer",
+					"minimum": 1,
+					"title": "アイコン高さ"
+				},
+				"padding": {
+					"type": "integer",
+					"minimum": 1,
+					"title": "アイコン外周とテキストの余白"
+				},
+				"font_size": {
+					"type": "integer",
+					"minimum": 1,
+					"title": "フォントサイズ"
+				},
+				"line_height": {
+					"type": "number",
+					"minimum": 0,
+					"title": "行高さ"
+				}
+			},
+			"additionalProperties": false
+		},
+		"icons": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["filename", "caption"],
+				"properties": {
+					"filename": {
+						"type": "string",
+						"title": "ファイル名"
+					},
+					"caption": {
+						"type": "string",
+						"title": "キャプション"
+					}
+				},
+				"additionalProperties": false
+			},
+			"title": "アイコン"
+		}
+	},
+	"additionalProperties": false
+}

@@ -26,6 +26,18 @@ declare namespace TokyuCarHistoryRequest {
 	}
 }
 
+declare namespace AkamatsuGeneratorRequest {
+	interface Generate {
+		icon: string | null;
+		color: string | null;
+		bgcolor: string | null;
+		text_right1: string | null;
+		text_right2: string | null;
+		text_left1: string | null;
+		text_left2: string | null;
+	}
+}
+
 declare namespace MadokaOfficialNewsMonthRequest {
 	interface Index {
 		month: string | null;

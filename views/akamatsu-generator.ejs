@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+	<head>
+		<title>赤松健セリフジェネレーター</title>
+
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="w0s:blog:newly" content="kumeta" />
+		<meta name="w0s:amazon" content="kumeta" />
+
+		<link rel="stylesheet" href="/assets/style/kumeta.css" />
+		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
+		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" id="stylesheet-print" />
+
+		<script src="/assets/script/trusted-types.js"></script>
+		<script src="/assets/script/w0s.mjs" type="module"></script>
+		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
+		<script src="/assets/script/analytics.js" defer=""></script>
+	</head>
+	<body itemscope="" itemtype="http://schema.org/WebPage">
+		<div class="l-page">
+			<%- include('./_include/_header_kumeta') _%>
+
+			<div id="content" class="l-content">
+				<div class="l-content__header">
+					<div class="p-topic-path">
+						<p itemprop="breadcrumb"><a href="/kumeta/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
+					</div>
+
+					<div class="p-title">
+						<h1 itemprop="name">赤松健セリフジェネレーター</h1>
+					</div>
+				</div>
+				<main class="l-content__main">
+					<div class="p-box">
+						<ul class="p-list">
+							<li>漫画家・赤松健先生の自画像に任意のセリフを付けた画像を生成することができます。生成された画像はご自身のサイト、ブログ、SNS等でご自由にお使い下さい。</li>
+							<li>生成された画像をさらに加工していただいても構いません。</li>
+							<li><strong>誹謗中傷やそれに類する行為は禁止です。</strong><small class="u-small">（画像素材配布元でも誹謗中傷用途での使用は禁止されています）</small></li>
+							<li>赤松先生の自画像は<a href="https://kenakamatsu.jp/sns#downloads">赤松健とたまむす！素材ダウンロード</a><b class="c-domain">(kenakamatsu.jp)</b>で配布されているものを使用しています。</li>
+							<li>バグ報告、機能提案などは <a href="https://github.com/SaekiTominaga/w0s.jp/issues/new">Github Issue</a> にお寄せください。</li>
+						</ul>
+
+						<figure class="c-fit">
+							<div class="p-embed">
+								<picture><img src="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sample.png?type=png;w=320" srcset="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sample.png?type=png;w=640 2x" alt="赤松健: く、久米田の野郎〜　毎週毎週ラブひなネタ　やりやがって〜…" width="320" height="320" /></picture>
+							</div>
+							<figcaption class="c-caption">
+								<p class="c-caption__title">画像生成例</p>
+							</figcaption>
+						</figure>
+					</div>
+
+					<section class="p-section -hdg-a" id="form">
+						<div class="p-section__hdg">
+							<h2>画像生成</h2>
+						</div>
+
+						<form action="#generated" method="post" class="c-stack">
+							<div class="p-form-grid">
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend" id="label-reply">
+											<span class="c-label">画像</span>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls js-validation" role="radiogroup" aria-labelledby="label-reply" aria-errormessage="input-validate-icon">
+												<%_ for (const [fileName, caption] of icons) { _%>
+												<label class="c-label -image">
+													<%_ if (page.query.icon === fileName) { _%>
+													<input type="radio" name="icon" value="<%= fileName %>" required="" checked="" />
+													<%_ } else { _%>
+													<input type="radio" name="icon" value="<%= fileName %>" required="" />
+													<%_ } _%>
+													<span class="c-label__image"><img src="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sozai/<%= fileName %>?type=png;w=100" srcset="https://media.w0s.jp/thumbimage/kumeta/akamatsu-generator/sozai/<%= fileName %>?type=png;w=200 2x" alt="<%= caption %>" width="100" height="100" /></span>
+												</label>
+												<%_ } _%>
+											</div>
+											<p hidden="" class="c-fc-invalid" id="input-validate-icon"></p>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-text-right1" class="c-label">右側1行目のテキスト</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls">
+												<input class="c-input -full" name="text_right1" value="<%= page.query.text_right1 %>" maxlength="20" id="input-text-right1" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-text-right2" class="c-label">右側2行目のテキスト</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls">
+												<input class="c-input -full" name="text_right2" value="<%= page.query.text_right2 %>" maxlength="20" id="input-text-right2" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-text-left1" class="c-label">左側1行目のテキスト</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls">
+												<input class="c-input -full" name="text_left1" value="<%= page.query.text_left1 %>" maxlength="20" id="input-text-left1" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-text-left2" class="c-label">左側2行目のテキスト</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls">
+												<input class="c-input -full" name="text_left2" value="<%= page.query.text_left2 %>" maxlength="20" id="input-text-left2" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-color" class="c-label">テキスト色</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls">
+												<input type="color" name="color" value="<%= page.query.color ?? '#000000' %>" id="input-color" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div class="p-form-grid__group">
+									<fieldset>
+										<legend class="p-form-grid__legend">
+											<label for="input-bgcolor" class="c-label">画像背景色</label>
+										</legend>
+										<div class="p-form-grid__contents">
+											<div class="c-form-controls">
+												<input type="color" name="bgcolor" value="<%= page.query.bgcolor ?? '#ffffff' %>" id="input-bgcolor" />
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+
+							<div class="c-form-controls -submit -center">
+								<p><button class="c-submit">生成</button></p>
+							</div>
+						</form>
+					</section>
+
+					<%_ if (generatedImage !== undefined) { _%>
+					<section class="p-section -hdg-a" id="generated">
+						<div class="p-section__hdg">
+							<h2>生成</h2>
+						</div>
+
+						<figure class="c-fit">
+							<div class="p-embed">
+								<img src="data:image/png;base64,<%= generatedImage %>" alt="" width="900" height="900" />
+							</div>
+						</figure>
+
+						<%_ if (generatedText.length >= 1) { _%>
+						<figure>
+							<figcaption class="c-caption">
+								<span class="c-caption__title">代替テキスト</span>
+							</figcaption>
+							<div class="p-code">
+								<div class="p-code__clipboard">
+									<button type="button" is="w0s-clipboard" data-target-for="generated-text" class="p-code__clipboard-button">
+										<img src="/assets/image/copy.svg" alt="コピー" title="コピー" width="24" height="24" />
+									</button>
+								</div>
+								<p class="p-code__code" id="generated-text">赤松健: <%= generatedText.join('　') %></p>
+							</div>
+						</figure>
+
+						<ul class="p-notes">
+							<li>Web に画像を掲載する際には「代替テキスト」を設定しましょう。サービスによっては「画像の説明」「alt」などと呼ばれることもあります。</li>
+							<li>自動生成された上記の代替テキストはあくまで一例です。文脈に合わせて変更しても構いません。</li>
+							<li>Twitter で代替テキストを設定するやり方は公式ヘルプセンターの<a href="https://help.twitter.com/ja/using-twitter/add-image-descriptions">画像の説明を追加する方法</a><b class="c-domain">(help.twitter.com)</b>で解説されています。その他の SNS やブログサービスでの方法はそれぞれのヘルプを探してみてください。</li>
+						</ul>
+						<%_ } _%>
+					</section>
+					<%_ } _%>
+				</main>
+			</div>
+
+			<%- include('./_include/_sidebar') _%><%- include('./_include/_footer') _%>
+		</div>
+	</body>
+</html>
