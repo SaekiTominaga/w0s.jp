@@ -50,14 +50,14 @@
 						</figure>
 					</div>
 
-					<section class="p-section -hdg-a" id="form">
+					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
 							<h2>画像生成</h2>
 						</div>
 
-						<form action="#generated" method="post" class="c-stack">
+						<form method="post" class="c-stack">
 							<%_ if (validateErrors.length > 0) { _%>
-							<div class="p-form-errors js-form-errors">
+							<div class="p-form-errors js-autofocus">
 								<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
 								<ul class="p-list">
 									<%_ for (const validateError of validateErrors) { _%>
@@ -143,7 +143,7 @@
 					</section>
 
 					<%_ if (generatedImage !== undefined) { _%>
-					<section class="p-section -hdg-a" id="generated">
+					<section class="p-section -hdg-a js-autofocus">
 						<div class="p-section__hdg">
 							<h2>セリフ付き画像</h2>
 						</div>

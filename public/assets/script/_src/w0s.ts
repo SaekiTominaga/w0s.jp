@@ -136,7 +136,8 @@ if (stylesheetPrintElement !== null) {
 	new StyleSheetPrint(stylesheetPrintElement).init();
 }
 
-const autoFocusElement = <HTMLElement | null>document.querySelector('.js-form-errors');
+/* オートフォーカス TODO: フォームコントロール以外への `autofocus` 属性が全ブラウザ対応すれば JS 処理は不要になる <https://caniuse.com/mdn-html_global_attributes_autofocus> */
+const autoFocusElement = <HTMLElement | null>document.querySelector('.js-autofocus, .js-form-errors');
 if (autoFocusElement !== null) {
 	if (autoFocusElement.tabIndex === -1) {
 		// tabIndex IDL のデフォルト値は -1 <https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex>
