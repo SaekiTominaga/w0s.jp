@@ -27,7 +27,7 @@
 							<h2>新規追加</h2>
 						</div>
 
-						<form action="<%= page.path %>" method="post" class="c-stack">
+						<form method="post" class="c-stack">
 							<%_ if (validateErrors.length > 0) { _%>
 							<div class="p-form-errors js-autofocus">
 								<p><strong><%= validateErrors.length %>個のエラーがあります。</strong></p>
@@ -85,7 +85,7 @@
 							<%_ for (const dp of dpOfCategory) { _%>
 							<li class="c-grid__item">
 								<div class="p-box">
-									<form action="<%= page.path %>" method="post">
+									<form method="post">
 										<p class="c-form-controls">
 											<input type="hidden" name="asin" value="<%= dp.asin %>" />
 											<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?" class="c-submit -compact">削除</button>
