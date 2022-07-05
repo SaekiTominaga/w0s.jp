@@ -28,8 +28,8 @@ Styleguide 2.5.1
 .p-embed {
 	--_border-width: 0px;
 
-	contain: layout;
 	position: relative; /* for Safari */
+	contain: layout;
 
 	&.-border {
 		--_border-width: 1px;
@@ -43,15 +43,15 @@ Styleguide 2.5.1
 		outline-offset: -1px;
 
 		&::before {
-			padding: var(--_expand-icon-padding);
-			box-sizing: border-box;
-			position: absolute;
-			inset: 1px;
-			content: "";
 			display: block;
+			position: absolute;
+			box-sizing: border-box;
+			inset: 1px;
+			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
+			padding: var(--_expand-icon-padding);
 			width: 24px;
 			height: 24px;
-			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
+			content: "";
 		}
 
 		&:hover {
@@ -61,11 +61,11 @@ Styleguide 2.5.1
 
 	& img,
 	& video {
-		border: var(--_border-width) solid var(--color-black);
 		display: inline-block;
+		vertical-align: top;
+		border: var(--_border-width) solid var(--color-black);
 		max-width: calc(100% - var(--_border-width) * 2);
 		height: auto;
-		vertical-align: top;
 	} /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
 
 	& video {
@@ -81,13 +81,13 @@ Styleguide 2.5.1
 	& iframe {
 		--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
 
+		display: block;
+		box-sizing: border-box;
 		margin-inline: auto;
 		border: var(--_border-width) solid var(--color-black);
-		box-sizing: border-box;
-		display: block;
+		aspect-ratio: var(--aspect-ratio, auto);
 		width: calc(100% - var(--_margin-inline) * 2);
 		height: auto;
-		aspect-ratio: var(--aspect-ratio, auto);
 
 		@media (--breakpoint) {
 			--_margin-inline: 15px;
@@ -135,8 +135,8 @@ Styleguide 2.5.2
 
 .p-embed-link__title {
 	&::before {
-		content: "";
 		display: block;
+		content: "";
 	}
 }
 

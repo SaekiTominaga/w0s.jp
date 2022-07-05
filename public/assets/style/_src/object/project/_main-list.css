@@ -160,8 +160,8 @@ Styleguide 2.3.5
 			--_icon-color: var(--color-black);
 
 			& > li {
-				margin-block-start: 0.25em;
 				margin-inline-start: calc((var(--_icon-width) + var(--_icon-gap)) / 2 * var(--font-ratio-1));
+				margin-block-start: 0.25em;
 			}
 		}
 
@@ -170,13 +170,13 @@ Styleguide 2.3.5
 			margin-inline-start: calc(0px - var(--_icon-width) - var(--_icon-gap));
 
 			&::before {
-				margin-inline-end: var(--_icon-gap);
-				content: "";
 				display: inline-block;
 				clip-path: var(--_icon-clip-path);
+				margin-inline-end: var(--_icon-gap);
+				background: var(--_icon-color);
 				width: var(--_icon-width);
 				height: var(--_icon-height);
-				background: var(--_icon-color);
+				content: "";
 			}
 		}
 
@@ -217,8 +217,8 @@ Styleguide 2.2.8
 */
 .p-video-diff {
 	border: 1px solid;
-	color: var(--color-black);
 	background: var(--color-white);
+	color: var(--color-black);
 
 	& > div {
 		padding: 1em min(1vw, 1em);
@@ -228,8 +228,8 @@ Styleguide 2.2.8
 		}
 
 		& > dt {
-			font-size: calc(100% * var(--font-ratio-1));
 			font-weight: var(--font-weight-bold);
+			font-size: calc(100% * var(--font-ratio-1));
 		}
 
 		& > dd {
@@ -256,13 +256,13 @@ Markup:
 Styleguide 2.2.9
 */
 .p-footnotes {
-	padding: 1em;
+	display: table;
+	box-sizing: border-box;
 	border: 1px solid var(--color-bg-light);
 	border-radius: var(--border-radius-large);
-	box-sizing: border-box;
-	display: table;
-	width: 100%;
 	background: var(--color-bg-light);
+	padding: 1em;
+	width: 100%;
 	font-size: calc(100% / var(--font-ratio-1));
 
 	& > li {
@@ -289,8 +289,8 @@ Styleguide 2.2.9
 	white-space: nowrap;
 
 	& > a {
-		padding: 0.25em;
 		display: inline-block;
+		padding: 0.25em;
 		text-decoration-skip-ink: none;
 	}
 }

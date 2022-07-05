@@ -30,8 +30,8 @@ Styleguide 2.8.1
 }
 
 .p-top-nav__hdg {
-	padding-block: 0.25em;
 	border-block-end: 1px solid var(--color-border-light);
+	padding-block: 0.25em;
 	font-size: calc(100% * var(--font-ratio-5));
 	line-height: var(--line-height-narrow);
 }
@@ -79,19 +79,19 @@ Styleguide 2.8.2
 	--_border-radius-inner: calc(var(--_border-radius) - var(--_border-width));
 	--_bg-color: var(--color-bg-light);
 
+	display: flex; /* リンクのクリッカブルエリアを上下方向に伸ばすため */
+	box-shadow: 0 1px 2px var(--color-border-light);
 	border: var(--_border-width) solid var(--color-border-light);
 	border-radius: var(--_border-radius);
-	box-shadow: 0 1px 2px var(--color-border-light);
-	display: flex; /* リンクのクリッカブルエリアを上下方向に伸ばすため */
 
 	& > a {
-		border-radius: var(--_border-radius-inner);
 		flex: 1;
-		color: var(--color-darkgray);
-		background: var(--_bg-color);
-		text-decoration-line: none;
 		outline-width: var(--outline-width-bold);
 		outline-offset: 0;
+		border-radius: var(--_border-radius-inner);
+		background: var(--_bg-color);
+		color: var(--color-darkgray);
+		text-decoration-line: none;
 
 		&:hover {
 			--_bg-color: var(--color-bg-verylight);
@@ -102,9 +102,13 @@ Styleguide 2.8.2
 }
 
 .p-top-nav-card__image {
+	@nest :any-link:hover & {
+		opacity: 0.9;
+	}
+
 	& img {
-		border-radius: var(--_border-radius-inner) var(--_border-radius-inner) 0 0;
 		display: block;
+		border-radius: var(--_border-radius-inner) var(--_border-radius-inner) 0 0;
 		width: 100%;
 		object-fit: cover;
 		object-position: var(--object-position, center);
@@ -113,49 +117,43 @@ Styleguide 2.8.2
 			max-height: 15vh;
 		}
 	}
-
-	@nest :any-link:hover & {
-		opacity: 0.9;
-	}
 }
 
 .p-top-nav-card__title {
 	--_text-color: inherit;
-
-	margin: 16px;
-	font-size: 150%;
-	color: var(--_text-color);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-narrow);
-
 	--_icon-color: var(--color-gray); /* アイコンの色 */
 	--_icon-width: 0.5625em; /* アイコンの幅 */
 	--_icon-height: 1em; /* アイコンの高さ */
 	--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
 
-	padding-inline-end: calc(var(--_icon-gap) + var(--_icon-width));
-	contain: content;
 	position: relative; /* for Safari */
+	contain: content;
+	margin: 16px;
+	padding-inline-end: calc(var(--_icon-gap) + var(--_icon-width));
+	color: var(--_text-color);
+	font-weight: var(--font-weight-bold);
+	font-size: 150%;
+	line-height: var(--line-height-narrow);
+
+	@nest :any-link:hover & {
+		--_text-color: var(--color-black);
+		--_icon-color: var(--color-darkgray);
+	}
 
 	&::after {
-		content: "";
-		clip-path: var(--shape-link-arrow);
-		width: var(--_icon-width);
-		height: var(--_icon-height);
-		background: var(--_icon-color);
 		position: absolute;
+		clip-path: var(--shape-link-arrow);
 		inset-block-start: calc(50% - var(--_icon-height) / 2);
 		inset-inline-end: 0;
+		background: var(--_icon-color);
+		width: var(--_icon-width);
+		height: var(--_icon-height);
+		content: "";
 	}
 
 	/* 画像がない場合 */
 	&:first-child {
 		margin-block-start: 16px;
-	}
-
-	@nest :any-link:hover & {
-		--_text-color: var(--color-black);
-		--_icon-color: var(--color-darkgray);
 	}
 }
 
@@ -237,8 +235,8 @@ Styleguide 2.8.4
 		--_padding: 15px;
 
 		display: grid;
-		grid-template-areas: "date type info";
 		grid-template-columns: calc(7.5em + var(--_padding) * 2) auto 1fr;
+		grid-template-areas: "date type info";
 
 		&:not(:first-child) {
 			border-block-start: 1px dotted var(--color-border-light);
@@ -248,8 +246,8 @@ Styleguide 2.8.4
 
 .p-top-update-list__date {
 	grid-column: date;
-	padding: var(--_padding);
 	background: var(--color-bg-verylight);
+	padding: var(--_padding);
 }
 
 .p-top-update-list__type {
@@ -277,10 +275,10 @@ Styleguide 2.8.4
 @media (max-width: 40em) {
 	.p-top-update-list {
 		& > li {
+			grid-template-columns: auto 1fr;
 			grid-template-areas:
 				"date date"
 				"type info";
-			grid-template-columns: auto 1fr;
 		}
 	}
 

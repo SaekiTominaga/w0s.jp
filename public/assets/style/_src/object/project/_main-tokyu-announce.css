@@ -48,28 +48,28 @@
 		--_stick-width: 0.25em;
 		--_stick-height: 80%;
 
-		padding-inline-start: calc(var(--_stick-width) + 0.5em);
-		contain: content;
 		position: relative; /* for Safari */
+		contain: content;
+		padding-inline-start: calc(var(--_stick-width) + 0.5em);
 		font-size: calc(100% * var(--font-ratio-2));
 
 		&::before {
-			border-radius: var(--border-radius-full);
-			content: "";
 			display: block;
-			width: var(--_stick-width);
-			height: var(--_stick-height);
 			position: absolute;
 			inset-block-start: calc((100% - var(--_stick-height)) / 2);
 			inset-inline-start: 0;
+			border-radius: var(--border-radius-full);
 			background: var(--_line-color);
+			width: var(--_stick-width);
+			height: var(--_stick-height);
+			content: "";
 		}
 	}
 }
 
 .p-tokyu-announce-index-hdg__sub {
-	font-size: calc(100% / var(--font-ratio-2));
 	font-weight: var(--font-weight-normal);
+	font-size: calc(100% / var(--font-ratio-2));
 }
 
 /* ===== 自動放送 ===== */
@@ -77,9 +77,9 @@
 }
 
 .p-tokyu-announce__header {
-	padding: 0.5em min(1.5vw, 15px);
 	border: 1px solid var(--color-border-dark);
 	background: var(--color-bg-light);
+	padding: 0.5em min(1.5vw, 15px);
 	font-size: calc(100% / var(--font-ratio-1));
 	line-height: var(--line-height-narrow);
 
@@ -102,8 +102,8 @@
 
 /* メタ情報・行先 */
 .p-tokyu-announce__train {
-	font-size: calc(100% * var(--font-ratio-2));
 	font-weight: var(--font-weight-bold);
+	font-size: calc(100% * var(--font-ratio-2));
 }
 
 /* メタ情報・車種 */
@@ -120,11 +120,11 @@
 }
 
 .p-tokyu-announce__station {
-	padding: 1em min(1.5vw, 15px);
-	border-color: var(--color-border-dark);
-	border-style: solid;
 	border-width: 0 1px 1px;
+	border-style: solid;
+	border-color: var(--color-border-dark);
 	background: var(--color-white);
+	padding: 1em min(1.5vw, 15px);
 
 	& > section + section {
 		margin-block-start: 1em;
@@ -156,22 +156,22 @@
 
 /* 収録データ */
 .p-tokyu-announce__data {
-	margin-inline: auto;
-	padding: 0.5em 15px;
-	border: 1px solid var(--color-border-dark);
-	border-radius: var(--border-radius-normal);
 	display: flex;
 	flex-flow: wrap;
 	justify-content: center;
 	gap: 1em 2em;
-	width: fit-content;
+	margin-inline: auto;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
 	background: var(--color-lightorange);
+	padding: 0.5em 15px;
+	width: fit-content;
 	line-height: var(--line-height-narrow);
 
 	& dt {
 		&::after {
-			content: ":";
 			margin: 0.25em;
+			content: ":";
 		}
 	}
 

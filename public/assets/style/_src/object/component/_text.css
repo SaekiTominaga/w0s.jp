@@ -21,13 +21,13 @@ Styleguide 1.2.1
 	--_icon-color: var(--color-gray);
 
 	&::before {
-		margin-inline-end: 0.5em;
-		content: "";
 		display: inline-block;
 		clip-path: var(--_icon-clip-path);
+		margin-inline-end: 0.5em;
+		background: var(--_icon-color);
 		width: var(--_icon-width);
 		height: var(--_icon-height);
-		background: var(--_icon-color);
+		content: "";
 	}
 
 	&:any-link {
@@ -77,37 +77,42 @@ Styleguide 1.2.2
 	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
-	padding: var(--_padding-block) var(--_padding-inline);
-	border: 1px solid var(--_border-color);
-	border-radius: var(--border-radius-normal);
-	box-sizing: border-box;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	gap: 0.5em;
-	width: var(--_width);
-	color: var(--_color);
-	background: var(--_background);
-	font-size: var(--_font-size);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-narrow);
-	text-decoration: none;
+	box-sizing: border-box;
 	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-normal);
+	background: var(--_background);
+	padding: var(--_padding-block) var(--_padding-inline);
+	width: var(--_width);
+	color: var(--_color);
+	font-weight: var(--font-weight-bold);
+	font-size: var(--_font-size);
+	line-height: var(--line-height-narrow);
+	text-decoration: none;
 
 	@nest button[type="button"]&:focus:not(:focus-visible) {
 		outline: none;
-	}
-
-	&:hover {
-		color: var(--_color);
-		box-shadow: 0 0 2px var(--_border-color);
 	}
 
 	/* トップページの見出し横では小さく表示 */
 	@nest .p-top-update & {
 		--_padding-block: 0.35em;
 		--_font-size: calc(100% / var(--font-ratio-1));
+	}
+
+	@nest .p-sidebar-profile__banners & {
+		--_padding-inline: 1px;
+		--_width: 100%;
+	}
+
+	&:hover {
+		box-shadow: 0 0 2px var(--_border-color);
+		color: var(--_color);
 	}
 
 	/* Feed */
@@ -143,11 +148,6 @@ Styleguide 1.2.2
 		--_border-color: var(--color-red);
 		--_color: var(--color-darkred);
 		--_background: linear-gradient(var(--color-white), var(--color-verylightred));
-	}
-
-	@nest .p-sidebar-profile__banners & {
-		--_padding-inline: 1px;
-		--_width: 100%;
 	}
 }
 
@@ -187,10 +187,10 @@ Markup:
 Styleguide 1.2.4
 */
 .c-code {
-	padding: 0.25em;
 	border-radius: var(--border-radius-normal);
-	color: var(--color-green);
 	background: var(--color-ultralightgreen);
+	padding: 0.25em;
+	color: var(--color-green);
 	font-weight: var(--font-weight-bold);
 }
 
@@ -295,14 +295,14 @@ Styleguide 1.2.5
 
 	&.-addition {
 		/* prettylights-syntax-markup-inserted */
-		color: #22863a;
 		background-color: #f0fff4;
+		color: #22863a;
 	}
 
 	&.-deletion {
 		/* prettylights-syntax-markup-deleted */
-		color: #b31d28;
 		background-color: #ffeef0;
+		color: #b31d28;
 	}
 
 	&.-char.escape_,
@@ -325,16 +325,16 @@ Markup:
 Styleguide 1.2.6
 */
 .c-annotate {
-	font-size: calc(100% / var(--font-ratio-2));
 	vertical-align: super;
+	font-size: calc(100% / var(--font-ratio-2));
 
 	& > a {
 		--_border-color: transparent;
 		--_bg-color: transparent;
 
-		padding: 0.25em;
 		border: 1px solid var(--_border-color);
 		background: var(--_bg-color);
+		padding: 0.25em;
 		text-decoration-skip-ink: none; /* JS 無効環境向け */
 
 		&:target {
@@ -344,9 +344,9 @@ Styleguide 1.2.6
 
 		&[role="button"] {
 			/* JS 有効時のみ */
+			cursor: default;
 			color: var(--link-color);
 			text-decoration: none;
-			cursor: default;
 
 			&:focus:not(:focus-visible) {
 				outline: none;
@@ -395,8 +395,8 @@ Styleguide 1.2.9
 .c-domain {
 	margin-inline: 0.25em;
 	color: var(--color-gray);
-	font-size: calc(100% / var(--font-ratio-1));
 	font-weight: var(--font-weight-normal);
+	font-size: calc(100% / var(--font-ratio-1));
 }
 
 /*
@@ -411,16 +411,16 @@ Markup:
 Styleguide 1.2.10
 */
 .c-amazon-binding {
-	padding: 0.125em 0.5em;
+	display: inline-block;
+	vertical-align: middle;
 	border: 1px solid var(--color-gray);
 	border-radius: var(--border-radius-large);
-	display: inline-block;
-	color: var(--color-gray);
 	background: var(--color-white);
-	font-size: calc(100% / var(--font-ratio-1));
+	padding: 0.125em 0.5em;
+	color: var(--color-gray);
 	font-weight: var(--font-weight-bold);
+	font-size: calc(100% / var(--font-ratio-1));
 	line-height: var(--line-height-narrow);
-	vertical-align: middle;
 }
 
 /*
@@ -438,14 +438,14 @@ Styleguide 1.2.11
 	--_color: var(--color-white);
 	--_bg-color: var(--color-gray);
 
-	padding: 0.25em;
+	display: inline-block;
 	border: 1px solid var(--_bg-color);
 	border-radius: var(--border-radius-normal);
-	display: inline-block;
-	color: var(--_color);
 	background: var(--_bg-color);
-	font-size: calc(100% / var(--font-ratio-1));
+	padding: 0.25em;
+	color: var(--_color);
 	font-weight: var(--font-weight-bold);
+	font-size: calc(100% / var(--font-ratio-1));
 	line-height: var(--line-height-nowrap);
 	white-space: nowrap;
 
@@ -477,10 +477,10 @@ Styleguide 1.2.12
 	white-space: nowrap;
 
 	&::before {
-		margin-inline-end: 0.25em;
-		content: var(--_symbol, none);
 		display: inline-block;
+		margin-inline-end: 0.25em;
 		min-width: 1em;
+		content: var(--_symbol, none);
 		color: var(--_color, inherit);
 		text-align: center;
 		text-shadow: 0.5px 0.5px, 0.5px -0.5px, -0.5px 0.5px, -0.5px -0.5px;

@@ -20,13 +20,13 @@
 		--_padding: 0.05em;
 		--_text-shadow: 0.05em 0.05em 0.1em var(--color-border-light);
 
-		margin: calc(0px - var(--_padding));
-		padding: var(--_padding);
 		display: inline-block;
-		border-radius: var(--border-radius-small); /* outline を柔らかくする */
-		text-shadow: var(--_text-shadow);
+		margin: calc(0px - var(--_padding));
 		outline-width: var(--outline-width-bold);
 		outline-offset: 0;
+		border-radius: var(--border-radius-small); /* outline を柔らかくする */
+		padding: var(--_padding);
+		text-shadow: var(--_text-shadow);
 
 		&:any-link {
 			color: inherit;
@@ -58,24 +58,24 @@
 
 /* ===== グローバルナビ ===== */
 .p-header-gnav {
-	border: solid var(--color-border-light);
-	border-width: 1px 0;
 	display: flex;
 	justify-content: center;
+	border: solid var(--color-border-light);
+	border-width: 1px 0;
 	background: var(--color-bg-superlight);
 }
 
 .p-header-gnav__links {
-	margin: -0.5px 0.5px;
 	display: flex;
 	flex-flow: wrap;
+	margin: -0.5px 0.5px;
 	width: min(100%, var(--page-max-width));
 
 	& > li {
-		margin: -0.5px;
-		border: 1px solid var(--color-border-light);
 		display: flex;
 		flex: auto;
+		margin: -0.5px;
+		border: 1px solid var(--color-border-light);
 	}
 }
 
@@ -83,16 +83,16 @@
 	--_color: var(--color-darkgray);
 	--_background: var(--color-bg-light);
 
-	padding: 0.5em 0.25em;
 	flex: 100%;
 	contain: content;
-	color: var(--_color);
+	outline-width: var(--outline-width-bold);
+	outline-offset: calc(1px - var(--outline-width-bold));
 	background: var(--_background);
+	padding: 0.5em 0.25em;
+	color: var(--_color);
 	font-size: clamp(100%, 2.5vw, calc(100% * var(--font-ratio-2)));
 	text-align: center;
 	text-decoration: none;
-	outline-width: var(--outline-width-bold);
-	outline-offset: calc(1px - var(--outline-width-bold));
 
 	&:any-link {
 		--_background: linear-gradient(var(--color-white), var(--color-bg-light));

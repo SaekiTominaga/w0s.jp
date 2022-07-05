@@ -20,16 +20,16 @@ Styleguide 1.4.1
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 
-	padding: var(--form-control-padding-block);
+	box-sizing: border-box;
+	outline-width: var(--outline-width-bold);
+	outline-offset: -1px;
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
-	box-sizing: border-box;
+	background: var(--_bg-color);
+	padding: var(--form-control-padding-block);
 	width: var(--width, auto);
 	max-width: 100%;
 	color: var(--_color);
-	background: var(--_bg-color);
-	outline-width: var(--outline-width-bold);
-	outline-offset: -1px;
 
 	/* 全幅 */
 	&.-full {
@@ -70,13 +70,13 @@ Styleguide 1.4.2
 	--_color: var(--color-black);
 	--_bg-color: transparent;
 
-	padding: var(--form-control-padding-block) 0;
-	border: 1px solid var(--_border-color);
-	border-radius: var(--border-radius-normal);
-	color: var(--_color);
-	background: var(--_bg-color);
 	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-normal);
+	background: var(--_bg-color);
+	padding: var(--form-control-padding-block) 0;
+	color: var(--_color);
 
 	&:enabled {
 		&:hover {
@@ -106,13 +106,13 @@ Styleguide 1.4.3
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 
-	padding: calc(var(--form-control-padding-block) * 1.25) var(--form-control-padding-block);
-	border: 1px solid var(--_border-color);
-	border-radius: var(--border-radius-normal);
-	color: var(--_color);
-	background: var(--_bg-color);
 	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-normal);
+	background: var(--_bg-color);
+	padding: calc(var(--form-control-padding-block) * 1.25) var(--form-control-padding-block);
+	color: var(--_color);
 
 	&:enabled {
 		&:hover {
@@ -141,16 +141,16 @@ Styleguide 1.4.4
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 
-	padding: var(--form-control-padding-block);
+	box-sizing: border-box;
+	outline-width: var(--outline-width-bold);
+	outline-offset: -1px;
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
-	box-sizing: border-box;
+	background: var(--_bg-color);
+	padding: var(--form-control-padding-block);
 	width: 100%;
 	min-height: var(--height, auto);
 	color: var(--_color);
-	background: var(--_bg-color);
-	outline-width: var(--outline-width-bold);
-	outline-offset: -1px;
 
 	&:enabled:read-write {
 		&:hover {
@@ -196,24 +196,22 @@ Styleguide 1.4.5
 	--_ripple-opacity: 0.25;
 	--_ripple-transition-duration: 0.5s;
 
-	padding: var(--_padding-block) var(--_padding-inline);
-	border: 1px solid var(--_border-color);
-	border-radius: var(--border-radius-normal);
 	display: inline-block;
-	color: var(--_color);
-	background: var(--_bg-color);
-	font-size: var(--_font-size);
-	font-weight: var(--font-weight-bold);
-	line-height: var(--line-height-nowrap);
+	position: relative; /* ripple effect・for Safari */
 	vertical-align: middle;
-	white-space: nowrap;
+	contain: layout; /* ripple effect */
 	outline-width: var(--outline-width-bold);
 	outline-offset: 1px;
-
-	/* ripple effect */
-	contain: layout;
-	position: relative; /* for Safari */
-	overflow: hidden;
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-normal);
+	background: var(--_bg-color);
+	padding: var(--_padding-block) var(--_padding-inline);
+	overflow: hidden; /* ripple effect */
+	color: var(--_color);
+	font-weight: var(--font-weight-bold);
+	font-size: var(--_font-size);
+	line-height: var(--line-height-nowrap);
+	white-space: nowrap;
 
 	&:enabled {
 		&:hover {
@@ -222,21 +220,21 @@ Styleguide 1.4.5
 
 		/* ripple effect */
 		&::before {
-			content: "";
-			width: 100%;
-			height: 100%;
 			position: absolute;
+			transform: scale(4);
+			opacity: 0;
+			transition: var(--_ripple-transition-duration);
 			inset: 0;
 			background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
-			opacity: 0;
-			transform: scale(4);
-			transition: var(--_ripple-transition-duration);
+			width: 100%;
+			height: 100%;
+			content: "";
 		}
 
 		/* ripple effect */
 		&:active::before {
-			opacity: var(--_ripple-opacity);
 			transform: scale(0);
+			opacity: var(--_ripple-opacity);
 			transition: initial;
 		}
 	}
@@ -291,10 +289,20 @@ Styleguide 1.4.6
 		--_bg-color: transparent;
 
 		margin-block: calc(var(--form-control-padding-block) / 2);
-		padding: calc(var(--form-control-padding-block) / 2) 0.25em;
 		border: 1px solid var(--_border-color);
 		border-radius: var(--border-radius-normal);
 		background: var(--_bg-color);
+		padding: calc(var(--form-control-padding-block) / 2) 0.25em;
+
+		@nest [aria-invalid="true"] > & {
+			--_border-color: var(--invalid-border-color);
+			--_bg-color: var(--color-verylightred);
+
+			&:hover {
+				--_border-color: var(--invalid-border-color);
+				--_bg-color: var(--color-verylightred);
+			}
+		}
 
 		&:hover {
 			--_border-color: var(--color-superlightblue);
@@ -309,19 +317,9 @@ Styleguide 1.4.6
 		}
 
 		& input {
+			outline: none;
 			width: 1em;
 			height: 1em;
-			outline: none;
-		}
-
-		@nest [aria-invalid="true"] > & {
-			--_border-color: var(--invalid-border-color);
-			--_bg-color: var(--color-verylightred);
-
-			&:hover {
-				--_border-color: var(--invalid-border-color);
-				--_bg-color: var(--color-verylightred);
-			}
 		}
 	}
 
@@ -330,14 +328,18 @@ Styleguide 1.4.6
 		--_border-color: currentcolor;
 		--_outline-color: transparent;
 
-		contain: layout;
 		position: relative; /* for Safari */
+		contain: layout;
+
+		@nest [aria-invalid="true"] & {
+			--_border-color: var(--invalid-border-color);
+		}
 
 		& .c-label__image {
-			border: 1px solid var(--_border-color);
-			border-radius: var(--border-radius-normal);
 			outline: var(--outline-width-bold) solid var(--_outline-color);
 			outline-offset: -1px;
+			border: 1px solid var(--_border-color);
+			border-radius: var(--border-radius-normal);
 
 			/* TODO: 近い将来は :has() に置き換えられる */
 			@nest :checked + & {
@@ -349,14 +351,10 @@ Styleguide 1.4.6
 			}
 		}
 
-		@nest [aria-invalid="true"] & {
-			--_border-color: var(--invalid-border-color);
-		}
-
 		& input {
 			position: absolute;
-			inset: 0;
 			opacity: 0;
+			inset: 0;
 		}
 	}
 }
@@ -366,8 +364,8 @@ Styleguide 1.4.6
 
 .c-label__image {
 	& img {
-		border-radius: var(--border-radius-normal);
 		display: block;
+		border-radius: var(--border-radius-normal);
 	}
 }
 
@@ -386,12 +384,12 @@ Styleguide 1.4.7
 	--color: var(--color-white);
 	--bg-color: var(--color-gray);
 
-	padding: 0.375em 0.5em;
+	display: inline-block;
 	border: 1px solid var(--bg-color);
 	border-radius: var(--border-radius-large);
-	display: inline-block;
-	color: var(--color);
 	background: var(--bg-color);
+	padding: 0.375em 0.5em;
+	color: var(--color);
 	font-size: calc(100% / var(--font-ratio-3));
 	line-height: var(--line-height-nowrap);
 	white-space: nowrap;
@@ -502,13 +500,13 @@ Styleguide 1.4.11
 	--_border-color: var(--color-lightgray);
 	--_height: 2em;
 
-	border: 1px solid var(--_border-color);
-	border-radius: var(--border-radius-small);
 	display: flex;
 	align-items: center;
-	color: var(--color-darkgray);
-	background: var(--color-white);
 	outline-offset: -1px;
+	border: 1px solid var(--_border-color);
+	border-radius: var(--border-radius-small);
+	background: var(--color-white);
+	color: var(--color-darkgray);
 
 	&:focus-within {
 		outline: var(--outline-width-bold) solid var(--outline-color);
@@ -529,8 +527,8 @@ Styleguide 1.4.11
 
 	& > input {
 		all: initial;
-		padding: 0.25em;
 		box-sizing: border-box;
+		padding: 0.25em;
 		width: 100%;
 		height: var(--_height);
 		font: inherit;
@@ -543,10 +541,10 @@ Styleguide 1.4.11
 		--_color: hsl(220 70% 45%);
 
 		all: initial;
+		display: flex;
+		box-sizing: border-box;
 		margin: var(--outline-width-bold);
 		padding: 0.25em;
-		box-sizing: border-box;
-		display: flex;
 		width: var(--_height);
 		height: var(--_height);
 		color: var(--_color);

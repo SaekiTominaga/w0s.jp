@@ -15,10 +15,10 @@ Markup:
 Styleguide 2.99.1
 */
 .p-box {
-	padding: 1em;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
+	padding: 1em;
 }
 
 /*
@@ -38,17 +38,17 @@ Styleguide 2.99.2
 	--_icon: polygon(0 42%, 42% 42%, 42% 0, 58% 0, 58% 42%, 100% 42%, 100% 58%, 58% 58%, 58% 100%, 42% 100%, 42% 58%, 0 58%);
 
 	& > summary {
-		padding: 0.75em 1.5%;
-		border: 1px solid var(--color-border-dark);
-		border-radius: var(--border-radius-small);
-		box-sizing: border-box;
-		color: var(--color-darkblue);
-		background: var(--color-white);
-		font-size: calc(100% * var(--font-ratio-1));
-		line-height: var(--line-height-narrow);
 		cursor: default;
+		box-sizing: border-box;
 		outline-width: var(--outline-width-bold);
 		outline-offset: -1px;
+		border: 1px solid var(--color-border-dark);
+		border-radius: var(--border-radius-small);
+		background: var(--color-white);
+		padding: 0.75em 1.5%;
+		color: var(--color-darkblue);
+		font-size: calc(100% * var(--font-ratio-1));
+		line-height: var(--line-height-narrow);
 
 		&:hover {
 			box-shadow: 0 0 0.25em var(--color-border-light);
@@ -68,14 +68,14 @@ Styleguide 2.99.2
 			list-style: none;
 
 			&::before {
-				margin-inline-end: 1.5%;
-				content: "";
 				display: inline-block;
+				vertical-align: calc((1 - var(--line-height-narrow)) * 0.5em);
 				clip-path: var(--_icon);
+				margin-inline-end: 1.5%;
+				background: var(--color-darkblue);
 				width: 1em;
 				height: 1em;
-				background: var(--color-darkblue);
-				vertical-align: calc((1 - var(--line-height-narrow)) * 0.5em);
+				content: "";
 			}
 
 			&::-webkit-details-marker {
@@ -128,16 +128,16 @@ Markup:
 Styleguide 2.99.3
 */
 .p-amazon {
-	padding: 15px;
 	border: 1px solid var(--color-amazon-dark);
 	border-radius: var(--border-radius-large);
-	color: var(--color-black);
 	background: linear-gradient(var(--color-amazon-light), var(--color-white));
+	padding: 15px;
+	color: var(--color-black);
 }
 
 .p-amazon__hdg {
-	margin-block-start: -16px;
 	margin-inline-start: -16px;
+	margin-block-start: -16px;
 
 	& > img {
 		display: block;
@@ -145,27 +145,27 @@ Styleguide 2.99.3
 }
 
 .p-amazon__list {
-	margin-block-start: 15px;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(min(22em, 100%), 1fr));
-	grid-gap: 12px;
+	gap: 12px;
+	margin-block-start: 15px;
 }
 
 .p-amazon__link {
 	--_bg-color: var(--color-amazon);
 
-	padding: 14px;
-	border: 1px solid var(--_bg-color);
-	border-radius: var(--border-radius-large);
 	display: grid;
-	grid-template-areas: "image gap text";
 	grid-template-columns: min(40%, 160px) 15px 1fr;
-	background: var(--_bg-color);
-	line-height: var(--line-height-narrow);
-	text-decoration-line: none;
+	grid-template-areas: "image gap text";
+	transition: border-color var(--link-hover-transition-duration), background-color var(--link-hover-transition-duration);
 	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
-	transition: border-color var(--link-hover-transition-duration), background-color var(--link-hover-transition-duration);
+	border: 1px solid var(--_bg-color);
+	border-radius: var(--border-radius-large);
+	background: var(--_bg-color);
+	padding: 14px;
+	line-height: var(--line-height-narrow);
+	text-decoration-line: none;
 
 	&:hover {
 		--_bg-color: var(--color-amazon-dark);
@@ -183,11 +183,11 @@ Styleguide 2.99.3
 
 /* 商品画像 */
 .p-amazon__image {
-	margin: auto;
 	display: block;
+	transition: box-shadow var(--link-hover-transition-duration);
+	margin: auto;
 	max-width: 100%;
 	height: auto;
-	transition: box-shadow var(--link-hover-transition-duration);
 
 	@nest :any-link:hover & {
 		box-shadow: 0 0 4px 3px var(--color-amazon-verydark);
@@ -201,25 +201,25 @@ Styleguide 2.99.3
 	--_bullet-color: var(--link-color-bullet);
 	--_bullet-gap: 0.5em;
 
-	margin-inline-start: calc(var(--_bullet-width) + var(--_bullet-gap));
 	grid-column: text;
+	margin-inline-start: calc(var(--_bullet-width) + var(--_bullet-gap));
 }
 
 /* 商品タイトル */
 .p-amazon__title {
-	margin-inline-start: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
 	display: inline;
+	margin-inline-start: calc(0px - var(--_bullet-width) - var(--_bullet-gap));
 	font-weight: var(--font-weight-bold);
 	text-decoration-line: underline;
 
 	&::before {
-		margin-inline-end: var(--_bullet-gap);
-		content: "";
 		display: inline-block;
 		clip-path: var(--shape-link-triangle);
+		margin-inline-end: var(--_bullet-gap);
+		background: var(--_bullet-color);
 		width: var(--_bullet-width);
 		height: var(--_bullet-height);
-		background: var(--_bullet-color);
+		content: "";
 	}
 }
 
@@ -243,16 +243,16 @@ Markup:
 Styleguide 2.99.4
 */
 .p-code {
-	border: 1px solid var(--color-border-light);
-	contain: content;
 	display: flow-root; /* for Safari */
-	color: var(--color-black);
+	contain: content;
+	border: 1px solid var(--color-border-light);
 	background: var(--color-white);
+	color: var(--color-black);
 }
 
 .p-code__clipboard {
-	margin: 0.5em 0.5em 1em 1em;
 	float: right;
+	margin: 0.5em 0.5em 1em 1em;
 }
 
 .p-code__clipboard-button {
@@ -261,18 +261,16 @@ Styleguide 2.99.4
 	--_ripple-opacity: 0.25;
 	--_ripple-transition-duration: 0.5s;
 
-	padding: 0.5em;
-	border: 1px solid var(--color-border-light);
-	border-radius: var(--border-radius-normal);
-	color: var(--color-black);
-	background: var(--_bg-color);
+	position: relative; /* ripple effect・for Safari */
+	contain: layout; /* ripple effect */
 	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
-
-	/* ripple effect */
-	contain: layout;
-	position: relative; /* for Safari */
-	overflow: hidden;
+	border: 1px solid var(--color-border-light);
+	border-radius: var(--border-radius-normal);
+	background: var(--_bg-color);
+	padding: 0.5em;
+	overflow: hidden; /* ripple effect */
+	color: var(--color-black);
 
 	&:hover {
 		--_bg-color: var(--color-white);
@@ -280,21 +278,21 @@ Styleguide 2.99.4
 
 	/* ripple effect */
 	&::before {
-		content: "";
-		width: 100%;
-		height: 100%;
 		position: absolute;
+		transform: scale(4);
+		opacity: 0;
+		transition: var(--_ripple-transition-duration);
 		inset: 0;
 		background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
-		opacity: 0;
-		transform: scale(4);
-		transition: var(--_ripple-transition-duration);
+		width: 100%;
+		height: 100%;
+		content: "";
 	}
 
 	/* ripple effect */
 	&:active::before {
-		opacity: var(--_ripple-opacity);
 		transform: scale(0);
+		opacity: var(--_ripple-opacity);
 		transition: initial;
 	}
 
@@ -307,8 +305,8 @@ Styleguide 2.99.4
 
 .p-code__code {
 	padding: 1em;
-	font-family: monospace;
 	line-height: var(--line-height-narrow);
+	font-family: monospace;
 
 	& > code {
 		color: #24292e; /* https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css */
@@ -325,17 +323,17 @@ Markup:
 Styleguide 2.99.5
 */
 .p-dialog-overlay {
-	margin: 0;
-	padding: 1em;
+	position: fixed;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
+	margin: 0;
 	inset: 0;
+	background: transparent;
+	padding: 1em;
 	width: 100vw;
 	height: 100vh;
 	color: var(--color-white);
-	background: transparent;
 	font-size: 1.2rem;
 
 	&[open] {
