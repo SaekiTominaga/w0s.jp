@@ -99,6 +99,51 @@ Styleguide 2.3.3
 }
 
 /*
+記述リスト（表形式）
+
+Markup:
+<dl class="p-list-table">
+<div>
+<dt>タイトル</dt>
+<dd>テキスト</dd>
+</div>
+<div>
+<dt>タイトル</dt>
+<dd>テキスト</dd>
+</div>
+</dl>
+
+Styleguide 2.3.4
+*/
+.p-list-table {
+	--_color: var(--color-black);
+	--_bg-color: var(--color-white);
+
+	display: table;
+	border-collapse: collapse;
+	line-height: var(--line-height-narrow);
+
+	& > div {
+		display: table-row;
+	}
+
+	/* .p-table のスタイルに合わせる */
+	& :is(dt, dd) {
+		display: table-cell;
+		border: 1px solid;
+		background: var(--_bg-color);
+		padding: 0.75em min(1vw, 10px);
+		color: var(--_color);
+	}
+
+	& dt {
+		--_bg-color: var(--color-bg-superlight);
+
+		font-weight: var(--font-weight-bold);
+	}
+}
+
+/*
 注釈リスト
 
 Markup:
@@ -106,7 +151,7 @@ Markup:
 <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
 </ul>
 
-Styleguide 2.3.4
+Styleguide 2.3.5
 */
 .p-notes {
 	color: var(--color-darkgray);
@@ -136,7 +181,7 @@ Markup:
 	</ul></li>
 </ul>
 
-Styleguide 2.3.5
+Styleguide 2.3.6
 */
 .p-links {
 	--_icon-clip-path: var(--shape-link-triangle);
@@ -213,7 +258,7 @@ Markup:
 </div>
 </dl>
 
-Styleguide 2.2.8
+Styleguide 2.3.7
 */
 .p-video-diff {
 	border: 1px solid;
@@ -253,7 +298,7 @@ Markup:
 </li>
 </ul>
 
-Styleguide 2.2.9
+Styleguide 2.3.8
 */
 .p-footnotes {
 	display: table;
