@@ -1,32 +1,64 @@
-import Convert from '../../dist/build/dom/Convert.js';
+import HtmlComponent from '../../dist/build/component/Html.js';
+import HtmlComponentAnchorAmazonAssociate from '../../dist/build/component/HtmlAnchorAmazonAssociate.js';
+import HtmlComponentAnchorHost from '../../dist/build/component/HtmlAnchorHost.js';
+import HtmlComponentAnchorType from '../../dist/build/component/HtmlAnchorType.js';
+import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
+import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
+import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 import { describe, expect, test } from '@jest/globals';
 import { JSDOM } from 'jsdom';
 
-describe('#removeTargetClassName()', () => {
+describe('replaceElement()', () => {
 	test('クラス名のパターン', () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
-<a href="https://example.com/" class="build-host">Link</a>
-<a href="https://example.net/" class="foo build-host	bar">Link</a>
+<span></span>
+<span class="foo"></span>
 </body></html>`
 		);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorHost({
-			target_class: 'build-host',
-			insert_position: 'afterend',
-		});
+		const document = dom.window.document;
+		const htmlComponent = new HtmlComponent(document);
+
+		for (const targetElement of document.querySelectorAll('span')) {
+			htmlComponent.replaceElement(targetElement, 'foo');
+		}
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<a href="https://example.com/">Link</a><span>example.com</span>
-<a href="https://example.net/" class="foo bar">Link</a><span>example.net</span>
+<foo></foo>
+<foo class="foo"></foo>
 </body></html>`
 		);
 	});
 });
 
-describe('anchorHost()', () => {
+describe('removeClassName()', () => {
+	test('クラス名のパターン', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span class="build-host"></span>
+<span class="foo build-host	bar"></span>
+</body></html>`
+		);
+
+		const document = dom.window.document;
+		const htmlComponent = new HtmlComponent(document);
+
+		for (const targetElement of document.querySelectorAll('.build-host')) {
+			htmlComponent.removeClassName(targetElement, 'build-host');
+		}
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+<span class="foo bar"></span>
+</body></html>`
+		);
+	});
+});
+
+describe('AnchorHost', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
@@ -35,8 +67,7 @@ describe('anchorHost()', () => {
 </body></html>`
 		);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorHost({
+		new HtmlComponentAnchorHost(dom.window.document).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 			icon: [
@@ -63,8 +94,7 @@ describe('anchorHost()', () => {
 </body></html>`
 		);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorHost({
+		new HtmlComponentAnchorHost(dom.window.document).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 			parentheses: {
@@ -96,8 +126,7 @@ describe('anchorHost()', () => {
 <a class="build-host">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorHost({
+		new HtmlComponentAnchorHost(dom.window.document).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 		});
@@ -111,8 +140,7 @@ describe('anchorHost()', () => {
 <a href="/" class="build-host">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorHost({
+		new HtmlComponentAnchorHost(dom.window.document).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 		});
@@ -123,15 +151,14 @@ describe('anchorHost()', () => {
 	});
 });
 
-describe('anchorType()', () => {
+describe('AnchorType', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <a href="/" type="application/pdf" class="build-type">Link</a>
 <a href="/" type="image/png" class="build-type">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorType({
+		new HtmlComponentAnchorType(dom.window.document).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [
@@ -156,8 +183,7 @@ describe('anchorType()', () => {
 <a href="/" type="image/png" class="build-type">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorType({
+		new HtmlComponentAnchorType(dom.window.document).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			parentheses: {
@@ -187,8 +213,7 @@ describe('anchorType()', () => {
 <a type="application/pdf" class="build-type">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorType({
+		new HtmlComponentAnchorType(dom.window.document).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [],
@@ -203,8 +228,7 @@ describe('anchorType()', () => {
 <a href="/" class="build-type">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorType({
+		new HtmlComponentAnchorType(dom.window.document).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [],
@@ -216,14 +240,13 @@ describe('anchorType()', () => {
 	});
 });
 
-describe('anchorAmazonAssociate()', () => {
+describe('AnchorAmazonAssociate', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <a href="https://www.amazon.com/dp/B01GRDKGZW/" class="build-amazon">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorAmazonAssociate({
+		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -239,8 +262,7 @@ describe('anchorAmazonAssociate()', () => {
 <a class="build-amazon">Link</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorAmazonAssociate({
+		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -257,8 +279,7 @@ describe('anchorAmazonAssociate()', () => {
 <a href="/" class="build-amazon">相対パス</a>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.anchorAmazonAssociate({
+		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -272,7 +293,7 @@ describe('anchorAmazonAssociate()', () => {
 	});
 });
 
-describe('timeJapaneseDate()', () => {
+describe('TimeJapaneseDate', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <span class="build-date" lang="ja"><b>2022年</b>1月2日</span>
@@ -287,8 +308,7 @@ describe('timeJapaneseDate()', () => {
 <span class="build-date"> 2022 年 </span>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.timeJapaneseDate({
+		new HtmlComponentTimeJapaneseDate(dom.window.document).convert({
 			target_class: 'build-date',
 		});
 
@@ -314,8 +334,7 @@ describe('timeJapaneseDate()', () => {
 <span class="build-date" datetime="2022-12-31">2022年1月2日</span>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.timeJapaneseDate({
+		new HtmlComponentTimeJapaneseDate(dom.window.document).convert({
 			target_class: 'build-date',
 		});
 
@@ -327,7 +346,7 @@ describe('timeJapaneseDate()', () => {
 	});
 });
 
-describe('image()', () => {
+describe('Image', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <img src="https://media.w0s.jp/thumbimage/foo" class="build-image">
@@ -337,8 +356,7 @@ describe('image()', () => {
 <img src="https://media.w0s.jp/thumbimage/foo?w=360;h=360;quality=100" class="build-image">
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.image({
+		new HtmlComponentImage(dom.window.document).convert({
 			target_class: 'build-image',
 		});
 
@@ -357,8 +375,7 @@ describe('image()', () => {
 <img class="build-image">
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.image({
+		new HtmlComponentImage(dom.window.document).convert({
 			target_class: 'build-image',
 		});
 
@@ -373,8 +390,7 @@ describe('image()', () => {
 <img src="foo" class="build-image">
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.image({
+		new HtmlComponentImage(dom.window.document).convert({
 			target_class: 'build-image',
 		});
 
@@ -389,8 +405,7 @@ describe('image()', () => {
 <img src="https://image.example.com/" class="build-image">
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.image({
+		new HtmlComponentImage(dom.window.document).convert({
 			target_class: 'build-image',
 		});
 
@@ -405,8 +420,7 @@ describe('image()', () => {
 <img src="https://media.w0s.jp/foo" class="build-image">
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.image({
+		new HtmlComponentImage(dom.window.document).convert({
 			target_class: 'build-image',
 		});
 
@@ -418,37 +432,65 @@ describe('image()', () => {
 	});
 });
 
-describe('highlight()', () => {
+describe('Highlight', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<code class="build-highlight" data-language="xml">
+&lt;foo&gt;text&lt;/foo&gt;
+</code>
 <code class="build-highlight" data-language="html">
 &lt;em&gt;text&lt;/em&gt;
+</code>
+<code class="build-highlight" data-language="svg">
+&lt;g&gt;text&lt;/g&gt;
 </code>
 <code class="build-highlight" data-language="javascript">
 const foo = 'test';
 </code>
-<code class="build-highlight" data-language="foo">
+<code class="build-highlight" data-language="xxx">
 const foo = 'test';
 </code>
 </body></html>`);
 
-		const convert = new Convert(dom.window.document);
-		convert.highlight({
+		new HtmlComponentHighlight(dom.window.document).convert({
 			target_class: 'build-highlight',
 			class_prefix: 'foo-',
 		});
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
+<code data-language="xml">
+<span class="foo-tag">&lt;<span class="foo-name">foo</span>&gt;</span>text<span class="foo-tag">&lt;/<span class="foo-name">foo</span>&gt;</span>
+</code>
 <code data-language="html">
 <span class="foo-tag">&lt;<span class="foo-name">em</span>&gt;</span>text<span class="foo-tag">&lt;/<span class="foo-name">em</span>&gt;</span>
+</code>
+<code data-language="svg">
+<span class="foo-tag">&lt;<span class="foo-name">g</span>&gt;</span>text<span class="foo-tag">&lt;/<span class="foo-name">g</span>&gt;</span>
 </code>
 <code data-language="javascript">
 <span class="foo-keyword">const</span> foo = <span class="foo-string">'test'</span>;
 </code>
-<code data-language="foo">
+<code data-language="xxx">
 <span class="foo-keyword">const</span> foo = <span class="foo-string">'test'</span>;
 </code>
+</body></html>`
+		);
+	});
+
+	test('中身が空', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<code class="build-highlight" data-language="html"></code>
+</body></html>`);
+
+		new HtmlComponentHighlight(dom.window.document).convert({
+			target_class: 'build-highlight',
+			class_prefix: 'foo-',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<code data-language="html"></code>
 </body></html>`
 		);
 	});
