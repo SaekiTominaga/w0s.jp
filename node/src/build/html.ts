@@ -5,8 +5,10 @@ import GithubSlugger from 'github-slugger';
 import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAssociate.js';
 import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
+import HtmlComponentBook from './component/HtmlBook.js';
 import HtmlComponentHighlight from './component/HtmlHighlight.js';
 import HtmlComponentImage from './component/HtmlImage.js';
+import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import path from 'path';
 import prettier from 'prettier';
@@ -80,6 +82,18 @@ fileList.map(async (filePath) => {
 	const dom = new JSDOM(html);
 	const document = dom.window.document;
 
+	new HtmlComponentBook(document).convert(config.html.book); // 書籍
+	new HtmlComponentNewspaper(document).convert(config.html.newspaper); // 新聞
+	new HtmlComponentAnchorType(document).convert(config.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
+	new HtmlComponentAnchorHost(document).convert(config.html.anchor_host); // リンクアンカーにドメイン情報を付与
+	new HtmlComponentAnchorAmazonAssociate(document).convert({
+		target_class: config.html.anchor_amazon_associate.target_class,
+		associate_id: configCommon.paapi.request.partner_tag,
+	}); // Amazon 商品ページのリンクにアソシエイトタグを追加
+	new HtmlComponentTimeJapaneseDate(document).convert(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
+	new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
+	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
+
 	const contentHeader = document.querySelector('.l-content__header');
 	const contentMain = document.querySelector('.l-content__main');
 	let contentFooter = document.querySelector('.l-content__footer');
@@ -143,16 +157,6 @@ fileList.map(async (filePath) => {
 			}
 		}
 	}
-
-	new HtmlComponentAnchorType(document).convert(config.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
-	new HtmlComponentAnchorHost(document).convert(config.html.anchor_host); // リンクアンカーにドメイン情報を付与
-	new HtmlComponentAnchorAmazonAssociate(document).convert({
-		target_class: config.html.anchor_amazon_associate.target_class,
-		associate_id: configCommon.paapi.request.partner_tag,
-	}); // Amazon 商品ページのリンクにアソシエイトタグを追加
-	new HtmlComponentTimeJapaneseDate(document).convert(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
-	new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
-	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
 
 	html = dom.serialize();
 

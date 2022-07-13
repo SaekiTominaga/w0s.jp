@@ -7,7 +7,7 @@
 	"properties": {
 		"html": {
 			"type": "object",
-			"required": ["anchor_host", "anchor_type", "anchor_amazon_associate", "time", "image", "highlight"],
+			"required": ["anchor_host", "anchor_type", "anchor_amazon_associate", "time", "image", "highlight", "book", "newspaper"],
 			"properties": {
 				"anchor_host": {
 					"type": "object",
@@ -175,6 +175,28 @@
 							"type": "string"
 						},
 						"class_prefix": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"book": {
+					"type": "object",
+					"title": "書籍情報",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"newspaper": {
+					"type": "object",
+					"title": "書籍情報",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
 							"type": "string"
 						}
 					},

@@ -6,18 +6,38 @@ export default class Html {
 	}
 
 	/**
-	 * Remove class name from element
+	 * Replace existing element with new element
 	 *
 	 * @param {Element} element - Target Element
-	 * @param {string} newName - New element name
+	 * @param {string} newElementName - New element name
+	 *
+	 * @returns {Element} New element
 	 */
-	protected replaceElement(element: Element, newName: string): Element {
-		const newElement = this.document.createElement(newName);
+	protected replaceElement(element: Element, newElementName: string): Element {
+		const newElement = this.document.createElement(newElementName);
 
 		for (const attribute of element.attributes) {
 			newElement.setAttribute(attribute.name, attribute.value);
 		}
 		newElement.insertAdjacentHTML('afterbegin', element.innerHTML);
+
+		element.parentNode?.replaceChild(newElement, element);
+
+		return newElement;
+	}
+
+	/**
+	 * Replace existing element with new HTML
+	 *
+	 * @param {Element} element - Target Element
+	 * @param {string} newElementName - New element name
+	 * @param {string} newInnerHtml - New inner HTML
+	 *
+	 * @returns {Element} New element
+	 */
+	protected replaceHtml(element: Element, newElementName: string, newInnerHtml: string): Element {
+		const newElement = this.document.createElement(newElementName);
+		newElement.insertAdjacentHTML('afterbegin', newInnerHtml);
 
 		element.parentNode?.replaceChild(newElement, element);
 

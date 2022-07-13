@@ -4,6 +4,8 @@ import HtmlComponentAnchorHost from '../../dist/build/component/HtmlAnchorHost.j
 import HtmlComponentAnchorType from '../../dist/build/component/HtmlAnchorType.js';
 import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
 import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
+import HtmlComponentBook from '../../dist/build/component/HtmlBook.js';
+import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 import { describe, expect, test } from '@jest/globals';
 import { JSDOM } from 'jsdom';
@@ -491,6 +493,214 @@ const foo = 'test';
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <code data-language="html"></code>
+</body></html>`
+		);
+	});
+});
+
+describe('Book', () => {
+	test('最小属性', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<build-book name="書名">
+<p>解説文1</p>
+<p>解説文2</p>
+</build-book>
+</body></html>`);
+
+		new HtmlComponentBook(dom.window.document).convert({
+			target_element: 'build-book',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+</header>
+<div class="p-library__main">
+
+<p>解説文1</p>
+<p>解説文2</p>
+</div>
+</section>
+</body></html>`
+		);
+	});
+
+	test('全属性', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<build-book name="書名" release="2022-01-01" isbn="978-4-06-377485-6" asin="B01GRDKGZW" amazon-image="510waYsj0oL" amazon-image-width="120" amazon-image-height="160">
+<p>解説文1</p>
+<p>解説文2</p>
+</build-book>
+</body></html>`);
+
+		new HtmlComponentBook(dom.window.document).convert({
+			target_element: 'build-book',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
+		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
+</header>
+<div class="p-library__main">
+		<div class="p-embed-sidebar -embed-first">
+			<div class="p-embed-sidebar__embed">
+				<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="p-library__amazon htmlbuild-amazon-associate"><img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">Amazon 商品ページ</a>
+			</div>
+			<div class="p-embed-sidebar__text">
+<p>解説文1</p>
+<p>解説文2</p>
+</div>
+		</div>
+</div>
+</section>
+</body></html>`
+		);
+	});
+
+	test('日付パターン', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<build-book name="書名" release="2022-01-01"></build-book>
+<build-book name="書名" release="2022-01"></build-book>
+<build-book name="書名" release="2022"></build-book>
+<build-book name="書名" release="xxxx"></build-book>
+</body></html>`);
+
+		new HtmlComponentBook(dom.window.document).convert({
+			target_element: 'build-book',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
+</header>
+<div class="p-library__main">
+</div>
+</section>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
+</header>
+<div class="p-library__main">
+</div>
+</section>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
+</header>
+<div class="p-library__main">
+</div>
+</section>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
+</header>
+<div class="p-library__main">
+</div>
+</section>
+</body></html>`
+		);
+	});
+});
+
+describe('Newspaper', () => {
+	test('最小属性', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<build-newspaper name="書名">
+<p>解説文1</p>
+<p>解説文2</p>
+</build-newspaper>
+</body></html>`);
+
+		new HtmlComponentNewspaper(dom.window.document).convert({
+			target_element: 'build-newspaper',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<header class="p-library__header">
+	<h2 itemprop="name">書名</h2>
+</header>
+<div class="p-library__main">
+
+<p>解説文1</p>
+<p>解説文2</p>
+
+</div>
+</section>
+</body></html>`
+		);
+	});
+
+	test('全属性', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<build-newspaper name="書名" release="2022-01-01" npclass="朝刊">
+<p>解説文1</p>
+<p>解説文2</p>
+</build-newspaper>
+</body></html>`);
+
+		new HtmlComponentNewspaper(dom.window.document).convert({
+			target_element: 'build-newspaper',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<header class="p-library__header">
+	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
+</header>
+<div class="p-library__main">
+
+<p>解説文1</p>
+<p>解説文2</p>
+
+</div>
+</section>
+</body></html>`
+		);
+	});
+
+	test('日付パターン', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<build-newspaper name="書名" release="2022-01-01"></build-newspaper>
+<build-newspaper name="書名" release="xxxx"></build-newspaper>
+</body></html>`);
+
+		new HtmlComponentNewspaper(dom.window.document).convert({
+			target_element: 'build-newspaper',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<header class="p-library__header">
+	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
+</header>
+<div class="p-library__main">
+
+</div>
+</section>
+<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<header class="p-library__header">
+	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
+</header>
+<div class="p-library__main">
+
+</div>
+</section>
 </body></html>`
 		);
 	});

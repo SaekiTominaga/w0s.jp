@@ -22,12 +22,12 @@ export type NoName7 = {
   src: NoName9;
 }[];
 export type HTML = string;
-export type NoName12 = string;
-export type NoName13 = string;
 export type NoName14 = string;
+export type NoName15 = string;
+export type NoName16 = string;
 export type Feed = string;
 export type Feed1 = string;
-export type NoName11 = {
+export type NoName13 = {
   html_path: HTML;
   xpath: XPath;
   feed_template: Feed;
@@ -42,9 +42,11 @@ export interface NoName {
     time: Time;
     image: Picture;
     highlight: NoName10;
+    book: NoName11;
+    newspaper: NoName12;
   };
   feed: {
-    info: NoName11;
+    info: NoName13;
   };
 }
 export interface NoName1 {
@@ -84,8 +86,14 @@ export interface NoName10 {
   target_class: string;
   class_prefix: string;
 }
+export interface NoName11 {
+  target_element: string;
+}
+export interface NoName12 {
+  target_element: string;
+}
 export interface XPath {
-  wrap: NoName12;
-  date: NoName13;
-  content: NoName14;
+  wrap: NoName14;
+  date: NoName15;
+  content: NoName16;
 }
