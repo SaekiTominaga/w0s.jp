@@ -2,9 +2,10 @@ import HtmlComponent from '../../dist/build/component/Html.js';
 import HtmlComponentAnchorAmazonAssociate from '../../dist/build/component/HtmlAnchorAmazonAssociate.js';
 import HtmlComponentAnchorHost from '../../dist/build/component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from '../../dist/build/component/HtmlAnchorType.js';
+import HtmlComponentBook from '../../dist/build/component/HtmlBook.js';
+import HtmlComponentHeadingAnchor from '../../dist/build/component/HtmlHeadingAnchor.js';
 import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
 import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
-import HtmlComponentBook from '../../dist/build/component/HtmlBook.js';
 import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 import { describe, expect, test } from '@jest/globals';
@@ -295,6 +296,75 @@ describe('AnchorAmazonAssociate', () => {
 	});
 });
 
+describe('HeadingAnchor', () => {
+	test('最小パラメーター', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<section id="section-1" class="build-heading-anchor">
+	<h2>Heading</h2>
+</section>
+</body></html>`);
+
+		new HtmlComponentHeadingAnchor(dom.window.document).convert({
+			target_class: 'build-heading-anchor',
+			insert_position: 'beforeend',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section id="section-1">
+	<h2>Heading<a href="#section-1">§</a></h2>
+</section>
+</body></html>`
+		);
+	});
+	test('全パラメーター', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<section id="section-1" class="build-heading-anchor">
+	<h2>Heading</h2>
+</section>
+</body></html>`);
+
+		new HtmlComponentHeadingAnchor(dom.window.document).convert({
+			target_class: 'build-heading-anchor',
+			insert_position: 'beforeend',
+			anchor_class: 'self',
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section id="section-1">
+	<h2>Heading<a href="#section-1" class="self">§</a></h2>
+</section>
+</body></html>`
+		);
+	});
+	test('変換されないケース', () => {
+		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
+<section class="build-heading-anchor">
+	<h2>IDなし</h2>
+</section>
+<section id="section-2" class="build-heading-anchor">
+	<p>見出しなし</p>
+</section>
+</body></html>`);
+
+		new HtmlComponentHeadingAnchor(dom.window.document).convert({
+			target_class: 'build-heading-anchor',
+			insert_position: 'beforeend',
+			anchor_class: 'self',
+		});
+
+		expect(dom.serialize()).toBe(`<!DOCTYPE html><html><head></head><body>
+<section>
+	<h2>IDなし</h2>
+</section>
+<section id="section-2">
+	<p>見出しなし</p>
+</section>
+</body></html>`);
+	});
+});
+
 describe('TimeJapaneseDate', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
@@ -509,11 +579,11 @@ describe('Book', () => {
 
 		new HtmlComponentBook(dom.window.document).convert({
 			target_element: 'build-book',
-		});
+		}, 'build-heading-anchor');
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 </header>
@@ -537,11 +607,11 @@ describe('Book', () => {
 
 		new HtmlComponentBook(dom.window.document).convert({
 			target_element: 'build-book',
-		});
+		}, 'build-heading-anchor');
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
@@ -573,11 +643,11 @@ describe('Book', () => {
 
 		new HtmlComponentBook(dom.window.document).convert({
 			target_element: 'build-book',
-		});
+		}, 'build-heading-anchor');
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
@@ -585,7 +655,7 @@ describe('Book', () => {
 <div class="p-library__main">
 </div>
 </section>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
@@ -593,7 +663,7 @@ describe('Book', () => {
 <div class="p-library__main">
 </div>
 </section>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
@@ -601,7 +671,7 @@ describe('Book', () => {
 <div class="p-library__main">
 </div>
 </section>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
@@ -625,11 +695,11 @@ describe('Newspaper', () => {
 
 		new HtmlComponentNewspaper(dom.window.document).convert({
 			target_element: 'build-newspaper',
-		});
+		}, 'build-heading-anchor');
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
 	<h2 itemprop="name">書名</h2>
 </header>
@@ -654,11 +724,11 @@ describe('Newspaper', () => {
 
 		new HtmlComponentNewspaper(dom.window.document).convert({
 			target_element: 'build-newspaper',
-		});
+		}, 'build-heading-anchor');
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
 	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
 </header>
@@ -681,11 +751,11 @@ describe('Newspaper', () => {
 
 		new HtmlComponentNewspaper(dom.window.document).convert({
 			target_element: 'build-newspaper',
-		});
+		}, 'build-heading-anchor');
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
 	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
 </header>
@@ -693,7 +763,7 @@ describe('Newspaper', () => {
 
 </div>
 </section>
-<section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
+<section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
 	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
 </header>

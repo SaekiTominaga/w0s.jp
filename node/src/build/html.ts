@@ -6,6 +6,7 @@ import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAsso
 import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
 import HtmlComponentBook from './component/HtmlBook.js';
+import HtmlComponentHeadingAnchor from './component/HtmlHeadingAnchor.js';
 import HtmlComponentHighlight from './component/HtmlHighlight.js';
 import HtmlComponentImage from './component/HtmlImage.js';
 import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
@@ -82,79 +83,83 @@ fileList.map(async (filePath) => {
 	const dom = new JSDOM(html);
 	const document = dom.window.document;
 
-	new HtmlComponentBook(document).convert(config.html.book); // 書籍
-	new HtmlComponentNewspaper(document).convert(config.html.newspaper); // 新聞
+	const contentMain = document.querySelector('.l-content__main');
+
+	new HtmlComponentBook(document).convert(config.html.book, config.html.heading_anchor.target_class); // 書籍
+	new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_anchor.target_class); // 新聞
+
+	if (contentMain !== null) {
+		/* セクション ID 自動生成 */
+		const slugger = new GithubSlugger();
+
+		for (const section of contentMain.querySelectorAll('article, section')) {
+			const headingText = section.querySelector('h2, h3, h4')?.textContent;
+			if (headingText === null || headingText === undefined) {
+				continue;
+			}
+
+			section.id = slugger.slug(section.id !== '' ? section.id : headingText);
+		}
+	}
+
 	new HtmlComponentAnchorType(document).convert(config.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
 	new HtmlComponentAnchorHost(document).convert(config.html.anchor_host); // リンクアンカーにドメイン情報を付与
 	new HtmlComponentAnchorAmazonAssociate(document).convert({
 		target_class: config.html.anchor_amazon_associate.target_class,
 		associate_id: configCommon.paapi.request.partner_tag,
 	}); // Amazon 商品ページのリンクにアソシエイトタグを追加
+	new HtmlComponentHeadingAnchor(document).convert(config.html.heading_anchor); // 見出しにセルフリンクを挿入
 	new HtmlComponentTimeJapaneseDate(document).convert(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
 	new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
 	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
 
-	const contentHeader = document.querySelector('.l-content__header');
-	const contentMain = document.querySelector('.l-content__main');
-	let contentFooter = document.querySelector('.l-content__footer');
 	if (contentMain !== null) {
-		/* セクション ID 自動生成 */
-		const slugger = new GithubSlugger();
+		const contentHeader = document.querySelector('.l-content__header');
+		let contentFooter = document.querySelector('.l-content__footer');
 
-		for (const section of contentMain.querySelectorAll('section')) {
-			const str = section.querySelector('h2, h3, h4')?.textContent;
-			if (str === null || str === undefined) {
-				continue;
+		/* 目次自動生成 */
+		const toc = contentHeader?.querySelector('.p-toc');
+		if (toc !== null && toc !== undefined) {
+			const data: Map<string, string> = new Map();
+			for (const section of contentMain.querySelectorAll('section[id]')) {
+				const str = section.querySelector('h2')?.textContent;
+				if (str === null || str === undefined) {
+					continue;
+				}
+
+				data.set(section.id, str);
 			}
 
-			section.id = slugger.slug(section.id !== '' ? section.id : str);
+			if (data.size >= 2) {
+				toc.setAttribute('aria-label', '目次');
+				for (const [id, str] of data) {
+					const a = document.createElement('a');
+					a.href = `#${encodeURIComponent(id)}`;
+					a.textContent = str;
+
+					const li = document.createElement('li');
+					li.appendChild(a);
+
+					toc.appendChild(li);
+				}
+			} else {
+				console.info('見出しレベル 2 が 1 つなので目次は表示しない', data);
+				toc.remove();
+			}
 		}
 
-		if (contentHeader !== null) {
-			/* 目次自動生成 */
-			const toc = contentHeader.querySelector('.p-toc');
-			if (toc !== null) {
-				const data: Map<string, string> = new Map();
-				for (const section of contentMain.querySelectorAll('section[id]')) {
-					const str = section.querySelector('h2')?.textContent;
-					if (str === null || str === undefined) {
-						continue;
-					}
-
-					data.set(section.id, str);
-				}
-
-				if (data.size >= 2) {
-					toc.setAttribute('aria-label', '目次');
-					for (const [id, str] of data) {
-						const a = document.createElement('a');
-						a.href = `#${encodeURIComponent(id)}`;
-						a.textContent = str;
-
-						const li = document.createElement('li');
-						li.appendChild(a);
-
-						toc.appendChild(li);
-					}
-				} else {
-					console.info('見出しレベル 2 が 1 つなので目次は表示しない', data);
-					toc.remove();
-				}
+		/* ローカルナビはコンテンツヘッダーとコンテンツフッターの2か所に表示 */
+		const localNavHeader = contentHeader?.querySelector('.p-local-nav');
+		if (localNavHeader !== null && localNavHeader !== undefined) {
+			if (contentFooter === null) {
+				contentFooter = document.createElement('div');
+				contentFooter.className = 'l-content__footer';
+				contentMain.insertAdjacentElement('afterend', contentFooter);
 			}
 
-			/* ローカルナビはコンテンツヘッダーとコンテンツフッターの2か所に表示 */
-			const localNavHeader = contentHeader.querySelector('.p-local-nav');
-			if (localNavHeader !== null) {
-				if (contentFooter === null) {
-					contentFooter = document.createElement('div');
-					contentFooter.className = 'l-content__footer';
-					contentMain.insertAdjacentElement('afterend', contentFooter);
-				}
-
-				const localNavFooter = <Element>localNavHeader.cloneNode(true);
-				localNavFooter.removeAttribute('id');
-				contentFooter.insertAdjacentElement('beforeend', localNavFooter);
-			}
+			const localNavFooter = <Element>localNavHeader.cloneNode(true);
+			localNavFooter.removeAttribute('id');
+			contentFooter.insertAdjacentElement('beforeend', localNavFooter);
 		}
 	}
 

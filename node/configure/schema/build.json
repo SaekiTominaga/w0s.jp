@@ -7,7 +7,7 @@
 	"properties": {
 		"html": {
 			"type": "object",
-			"required": ["anchor_host", "anchor_type", "anchor_amazon_associate", "time", "image", "highlight", "book", "newspaper"],
+			"required": ["anchor_host", "anchor_type", "anchor_amazon_associate", "heading_anchor", "time", "image", "highlight", "book", "newspaper"],
 			"properties": {
 				"anchor_host": {
 					"type": "object",
@@ -139,6 +139,24 @@
 					"required": ["target_class"],
 					"properties": {
 						"target_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"heading_anchor": {
+					"type": "object",
+					"title": "見出しセルフリンク",
+					"required": ["target_class", "insert_position", "anchor_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"insert_position": {
+							"type": "string",
+							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
+						},
+						"anchor_class": {
 							"type": "string"
 						}
 					},
