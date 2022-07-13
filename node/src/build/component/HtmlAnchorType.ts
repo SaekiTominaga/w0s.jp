@@ -2,6 +2,10 @@ import Html from './Html.js';
 
 /**
  * リンクアンカーにリソースタイプアイコンを付与
+ *
+ * <a href="/" type="application/pdf" class="build-type">Link</a>
+ * ↓
+ * <a href="/" type="application/pdf">Link</a><img src="/icon/pdf.svg" alt="PDF">
  */
 export default class HtmlAnchorType extends Html {
 	/**

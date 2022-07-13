@@ -3,6 +3,14 @@ import URLSearchParamsCustomSeparator from '@saekitominaga/urlsearchparams-custo
 
 /**
  * `<picture>` 要素を使って複数フォーマットの画像を提供する
+ *
+ * <img src="https://media.w0s.jp/thumbimage/foo" class="build-image">
+ * ↓
+ * <picture>
+ *   <source type="image/avif" srcset="https://media.w0s.jp/thumbimage/foo?type=avif;quality=80, https://media.w0s.jp/thumbimage/foo?type=avif;quality=40 2x">
+ *   <source type="image/webp" srcset="https://media.w0s.jp/thumbimage/foo?type=webp;quality=80, https://media.w0s.jp/thumbimage/foo?type=webp;quality=40 2x">
+ *   <img src="https://media.w0s.jp/thumbimage/foo">
+ * </picture>
  */
 export default class HtmlImage extends Html {
 	/**

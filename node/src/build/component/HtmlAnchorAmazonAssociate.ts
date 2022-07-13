@@ -2,6 +2,10 @@ import Html from './Html.js';
 
 /**
  * Amazon 商品ページのリンクにアソシエイトタグを追加
+ *
+ * <a href="https://www.amazon.com/dp/B01GRDKGZW/" class="build-amazon">Link</a>
+ * ↓
+ * <a href="https://www.amazon.com/dp/B01GRDKGZW/ref=nosim?tag=xxx-20">Link</a>
  */
 export default class HtmlAnchorAmazonAssociate extends Html {
 	/**

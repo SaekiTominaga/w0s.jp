@@ -2,6 +2,10 @@ import Html from './Html.js';
 
 /**
  * 日付文字列を `<time datetime>` 要素に変換
+ *
+ * <span class="build-date">2022年1月1日</span>
+ * ↓
+ * <time datetime="2022-01-01">2022年1月1日</time>
  */
 export default class HtmlTimeJapaneseDate extends Html {
 	/**

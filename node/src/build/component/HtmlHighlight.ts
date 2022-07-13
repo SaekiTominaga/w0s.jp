@@ -5,6 +5,14 @@ import Html from './Html.js';
 
 /**
  * highlight.js
+ *
+ * <code class="build-highlight" data-language="xml">
+ *   &lt;foo&gt;text&lt;/foo&gt;
+ * </code>
+ * ↓
+ * <code data-language="xml">
+ *   <span class="foo-tag">&lt;<span class="foo-name">foo</span>&gt;</span>text<span class="foo-tag">&lt;/<span class="foo-name">foo</span>&gt;</span>
+ * </code>
  */
 export default class HtmlHighlight extends Html {
 	/**

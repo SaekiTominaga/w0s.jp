@@ -2,6 +2,10 @@ import Html from './Html.js';
 
 /**
  * リンクアンカーにホスト情報を付与
+ *
+ * <a href="https://example.com/" class="build-host">Link</a>
+ * ↓
+ * <a href="https://example.com/">Link</a><span>example.com</span>
  */
 export default class HtmlAnchorHost extends Html {
 	/**
