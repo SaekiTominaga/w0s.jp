@@ -11,8 +11,8 @@ import HtmlComponentImage from './component/HtmlImage.js';
 import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import HtmlComponentToc from './component/HtmlToc.js';
-import HtmlCpmponentSectionId from './component/HtmlSectionId.js';
 import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
+import HtmlCpmponentSectionId from './component/HtmlSectionId.js';
 import path from 'path';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
@@ -65,7 +65,7 @@ fileList.map(async (filePath) => {
 		.join(' '); // Description
 
 	/* EJS を解釈 */
-	let html = await ejs.renderFile(
+	const html = await ejs.renderFile(
 		path.resolve(filePath),
 		{
 			page: {
@@ -80,9 +80,9 @@ fileList.map(async (filePath) => {
 	);
 
 	/* HTML コメント削除 */
-	html = html.replace(/<!--[\s\S]*?-->/g, '');
+	const htmlCommentOmitted = html.replace(/<!--[\s\S]*?-->/g, '');
 
-	const dom = new JSDOM(html);
+	const dom = new JSDOM(htmlCommentOmitted);
 	const document = dom.window.document;
 
 	const contentMain = document.querySelector('.l-content__main');
@@ -123,12 +123,12 @@ fileList.map(async (filePath) => {
 	new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
 	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
 
-	html = dom.serialize();
+	const htmlBuilt = dom.serialize();
 
 	/* 整形 */
-	let htmlFormatted = html;
+	let htmlFormatted = htmlBuilt;
 	try {
-		htmlFormatted = prettier.format(html, {
+		htmlFormatted = prettier.format(htmlBuilt, {
 			/* https://prettier.io/docs/en/options.html */
 			printWidth: 9999,
 			useTabs: true,
