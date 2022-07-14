@@ -5,29 +5,29 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type NoName3 = string;
-export type NoName4 = string;
-export type NoName5 = string;
-export type NoName2 = {
-  host: NoName3;
-  name: NoName4;
-  src: NoName5;
+export type NoName6 = string;
+export type NoName7 = string;
+export type NoName8 = string;
+export type NoName5 = {
+  host: NoName6;
+  name: NoName7;
+  src: NoName8;
 }[];
 export type MIME = string;
-export type NoName8 = string;
-export type NoName9 = string;
-export type NoName7 = {
+export type NoName11 = string;
+export type NoName12 = string;
+export type NoName10 = {
   type: MIME;
-  name: NoName8;
-  src: NoName9;
+  name: NoName11;
+  src: NoName12;
 }[];
 export type HTML = string;
-export type NoName15 = string;
 export type NoName16 = string;
 export type NoName17 = string;
+export type NoName18 = string;
 export type Feed = string;
 export type Feed1 = string;
-export type NoName14 = {
+export type NoName15 = {
   html_path: HTML;
   xpath: XPath;
   feed_template: Feed;
@@ -36,21 +36,33 @@ export type NoName14 = {
 
 export interface NoName {
   html: {
-    anchor_host: NoName1;
-    anchor_type: NoName6;
+    book: NoName1;
+    newspaper: NoName2;
+    toc: NoName3;
+    anchor_host: NoName4;
+    anchor_type: NoName9;
     anchor_amazon_associate: Amazon;
-    heading_anchor: NoName10;
+    heading_anchor: NoName13;
     time: Time;
     image: Picture;
-    highlight: NoName11;
-    book: NoName12;
-    newspaper: NoName13;
+    highlight: NoName14;
   };
   feed: {
-    info: NoName14;
+    info: NoName15;
   };
 }
 export interface NoName1 {
+  target_element: string;
+}
+export interface NoName2 {
+  target_element: string;
+}
+export interface NoName3 {
+  target_element: string;
+  class?: string;
+  label?: string;
+}
+export interface NoName4 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   parentheses: {
@@ -59,28 +71,28 @@ export interface NoName1 {
   };
   element: string;
   class: string;
-  icon: NoName2;
+  icon: NoName5;
   icon_size: number;
   icon_class: string;
 }
-export interface NoName6 {
+export interface NoName9 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   parentheses: {
     before: string;
     after: string;
   };
-  icon: NoName7;
+  icon: NoName10;
   icon_size: number;
   icon_class: string;
 }
 export interface Amazon {
   target_class: string;
 }
-export interface NoName10 {
+export interface NoName13 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
-  anchor_class: string;
+  anchor_class?: string;
 }
 export interface Time {
   target_class: string;
@@ -88,18 +100,12 @@ export interface Time {
 export interface Picture {
   target_class: string;
 }
-export interface NoName11 {
+export interface NoName14 {
   target_class: string;
   class_prefix: string;
 }
-export interface NoName12 {
-  target_element: string;
-}
-export interface NoName13 {
-  target_element: string;
-}
 export interface XPath {
-  wrap: NoName15;
-  date: NoName16;
-  content: NoName17;
+  wrap: NoName16;
+  date: NoName17;
+  content: NoName18;
 }

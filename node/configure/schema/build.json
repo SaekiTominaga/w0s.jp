@@ -7,8 +7,47 @@
 	"properties": {
 		"html": {
 			"type": "object",
-			"required": ["anchor_host", "anchor_type", "anchor_amazon_associate", "heading_anchor", "time", "image", "highlight", "book", "newspaper"],
+			"required": ["book", "newspaper", "toc", "anchor_host", "anchor_type", "anchor_amazon_associate", "heading_anchor", "time", "image", "highlight"],
 			"properties": {
+				"book": {
+					"type": "object",
+					"title": "書籍",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"newspaper": {
+					"type": "object",
+					"title": "新聞",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"toc": {
+					"type": "object",
+					"title": "目次",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
+							"type": "string"
+						},
+						"class": {
+							"type": "string"
+						},
+						"label": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
 				"anchor_host": {
 					"type": "object",
 					"title": "アイコン",
@@ -147,7 +186,7 @@
 				"heading_anchor": {
 					"type": "object",
 					"title": "見出しセルフリンク",
-					"required": ["target_class", "insert_position", "anchor_class"],
+					"required": ["target_class", "insert_position"],
 					"properties": {
 						"target_class": {
 							"type": "string"
@@ -193,28 +232,6 @@
 							"type": "string"
 						},
 						"class_prefix": {
-							"type": "string"
-						}
-					},
-					"additionalProperties": false
-				},
-				"book": {
-					"type": "object",
-					"title": "書籍情報",
-					"required": ["target_element"],
-					"properties": {
-						"target_element": {
-							"type": "string"
-						}
-					},
-					"additionalProperties": false
-				},
-				"newspaper": {
-					"type": "object",
-					"title": "書籍情報",
-					"required": ["target_element"],
-					"properties": {
-						"target_element": {
 							"type": "string"
 						}
 					},
