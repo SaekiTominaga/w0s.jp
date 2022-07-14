@@ -35,7 +35,6 @@ export default class HtmlToc extends Html {
 			label: options.label,
 		};
 
-		/* 目次自動生成 */
 		const targetElements = this.document.querySelectorAll(targetElementName);
 		if (targetElements.length >= 1) {
 			const tocData: Map<string, string> = new Map();
