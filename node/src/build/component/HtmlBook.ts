@@ -15,7 +15,9 @@ import Html from './Html.js';
  *   amazon-image-width="120"
  *   amazon-image-height="160"
  * >
- *  <p>解説文</p>
+ *   <contents>
+ *     <p>解説文</p>
+ *   </contents>
  * </build-book>
  * ↓
  * <section class="p-library" itemscope="" itemtype="http://schema.org/Book">
@@ -57,28 +59,34 @@ export default class HtmlBook extends Html {
 			const template = ejs.compile(`
 <header class="p-library__header">
 	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %></span></h<%= headingLevel %>>
-	<%_ if (release !== null) { _%>
+	<%_ if (release !== undefined) { _%>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
 	<%_ } _%>
-	<%_ if (isbn !== null) { _%>
+	<%_ if (isbn !== undefined) { _%>
 		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <span itemprop="isbn"><%= isbn %></span></a></p>
 	<%_ } _%>
 </header>
 <div class="p-library__main">
-	<%_ if (asin !== null && amazonImage !== null && amazonImageWidth !== null && amazonImageHeight !== null) { _%>
+	<%_ if (asin !== undefined && amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined) { _%>
 		<div class="p-embed-sidebar -embed-first">
 			<div class="p-embed-sidebar__embed">
-				<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="p-library__amazon htmlbuild-amazon-associate"><img src="https://m.media-amazon.com/images/I/<%= amazonImage %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImage %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />Amazon 商品ページ</a>
+				<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="p-library__amazon htmlbuild-amazon-associate"><img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />Amazon 商品ページ</a>
 			</div>
-			<div class="p-embed-sidebar__text"><%- content %></div>
+			<div class="p-embed-sidebar__text"><%- contents %></div>
 		</div>
-	<%_ } else { _%><%- content %><%_ } _%>
+	<%_ } else { _%><%- contents %><%_ } _%>
 </div>
 `);
 
-			const release = targetElement.getAttribute('release');
-			let releaseDate: string | null = release;
-			if (release !== null) {
+			const nameElement = targetElement.querySelector('book-name');
+			const releaseElement = targetElement.querySelector('book-release');
+			const isbnElement = targetElement.querySelector('book-isbn');
+			const amazonElement = targetElement.querySelector('book-amazon');
+			const contentsElement = targetElement.querySelector('book-contents');
+
+			const release = releaseElement?.textContent ?? undefined;
+			let releaseDate: string | undefined = release;
+			if (release !== undefined) {
 				if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
 					releaseDate = dayjs(release).format('YYYY年M月D日');
 				} else if (/^[0-9]{4}-[0-9]{2}$/.test(release)) {
@@ -92,14 +100,14 @@ export default class HtmlBook extends Html {
 
 			const html = template({
 				headingLevel: targetElement.getAttribute('heading-level'),
-				name: targetElement.getAttribute('name'),
+				name: nameElement?.textContent ?? undefined,
 				release: releaseDate,
-				isbn: targetElement.getAttribute('isbn'),
-				asin: targetElement.getAttribute('asin'),
-				amazonImage: targetElement.getAttribute('amazon-image'),
-				amazonImageWidth: targetElement.getAttribute('amazon-image-width'),
-				amazonImageHeight: targetElement.getAttribute('amazon-image-height'),
-				content: targetElement.innerHTML,
+				isbn: isbnElement?.textContent ?? undefined,
+				asin: amazonElement?.getAttribute('asin') ?? undefined,
+				amazonImageId: amazonElement?.getAttribute('image-id') ?? undefined,
+				amazonImageWidth: amazonElement?.getAttribute('width') ?? undefined,
+				amazonImageHeight: amazonElement?.getAttribute('height') ?? undefined,
+				contents: contentsElement?.innerHTML,
 			});
 
 			const sectionElement = this.replaceHtml(targetElement, 'section', html);

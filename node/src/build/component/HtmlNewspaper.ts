@@ -11,7 +11,9 @@ import Html from './Html.js';
  *   release="2022-01-01"
  *   npclass="朝刊"
  * >
- *  <p>解説文</p>
+ *   <contents>
+ *     <p>解説文</p>
+ *   </contents>
  * </build-newspaper>
  * ↓
  * <section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
@@ -35,7 +37,7 @@ export default class HtmlNewspaper extends Html {
 		options: Readonly<{
 			target_element: string;
 		}>,
-		buildHeadingAnchorClassName:string
+		buildHeadingAnchorClassName: string
 	): void {
 		const targetElementName = options.target_element;
 
@@ -43,16 +45,21 @@ export default class HtmlNewspaper extends Html {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
 <header class="p-library__header">
-	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %><%_ if (release !== null) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== null) { _%>　<%= npclass %><%_ } _%></span></h<%= headingLevel %>>
+	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></span></h<%= headingLevel %>>
 </header>
 <div class="p-library__main">
-<%- content %>
+<%- contents %>
 </div>
 `);
 
-			const release = targetElement.getAttribute('release');
-			let releaseDate: string | null = release;
-			if (release !== null) {
+			const nameElement = targetElement.querySelector('newspaper-name');
+			const releaseElement = targetElement.querySelector('newspaper-release');
+			const classElement = targetElement.querySelector('newspaper-class');
+			const contentsElement = targetElement.querySelector('newspaper-contents');
+
+			const release = releaseElement?.textContent ?? undefined;
+			let releaseDate: string | undefined = release;
+			if (release !== undefined) {
 				if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
 					releaseDate = dayjs(release).format('YYYY年M月D日');
 				} else {
@@ -62,10 +69,10 @@ export default class HtmlNewspaper extends Html {
 
 			const html = template({
 				headingLevel: targetElement.getAttribute('heading-level'),
-				name: targetElement.getAttribute('name'),
+				name: nameElement?.textContent ?? undefined,
 				release: releaseDate,
-				npclass: targetElement.getAttribute('npclass'),
-				content: targetElement.innerHTML,
+				npclass: classElement?.textContent ?? undefined,
+				contents: contentsElement?.innerHTML,
 			});
 
 			const sectionElement = this.replaceHtml(targetElement, 'section', html);
