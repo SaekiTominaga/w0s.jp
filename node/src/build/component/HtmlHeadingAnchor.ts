@@ -49,7 +49,7 @@ export default class HtmlHeadingAnchor extends Html {
 			}
 
 			const anchorElement = this.document.createElement('a');
-			anchorElement.href = `#${id}`;
+			anchorElement.href = `#${encodeURIComponent(id)}`;
 			if (optionsIcon.anchor_class !== undefined) {
 				anchorElement.className = optionsIcon.anchor_class;
 			}
