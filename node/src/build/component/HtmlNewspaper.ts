@@ -6,6 +6,7 @@ import Html from './Html.js';
  * 新聞
  *
  * <build-newspaper
+ *   heading-level="2"
  *   name="誌名"
  *   release="2022-01-01"
  *   npclass="朝刊"
