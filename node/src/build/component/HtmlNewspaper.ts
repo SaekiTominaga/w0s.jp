@@ -42,7 +42,7 @@ export default class HtmlBook extends Html {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
 <header class="p-library__header">
-	<h2 itemprop="name"><%= name %><%_ if (release !== null) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== null) { _%>　<%= npclass %><%_ } _%></h2>
+	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %><%_ if (release !== null) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== null) { _%>　<%= npclass %><%_ } _%></span></h<%= headingLevel %>>
 </header>
 <div class="p-library__main">
 <%- content %>
@@ -60,6 +60,7 @@ export default class HtmlBook extends Html {
 			}
 
 			const html = template({
+				headingLevel: targetElement.getAttribute('heading-level'),
 				name: targetElement.getAttribute('name'),
 				release: releaseDate,
 				npclass: targetElement.getAttribute('npclass'),
