@@ -6,6 +6,7 @@ import Html from './Html.js';
  * 書籍
  *
  * <build-book
+ *   heading-level="2"
  *   name="書名"
  *   release="2022-01-01"
  *   isbn="978-4-06-377485-6"
@@ -41,11 +42,13 @@ export default class HtmlBook extends Html {
 	 *
 	 * @param {object} options - Options
 	 * @param {string} options.target_element - Element name
+	 * @param {string} buildHeadingAnchorClassName - 見出しセルフリンク用のビルドクラス名
 	 */
 	convert(
 		options: Readonly<{
 			target_element: string;
-		}>
+		}>,
+		buildHeadingAnchorClassName: string
 	): void {
 		const targetElementName = options.target_element;
 
@@ -53,7 +56,7 @@ export default class HtmlBook extends Html {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
 <header class="p-library__header">
-	<h2 itemprop="name"><%= name %></h2>
+	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %></span></h<%= headingLevel %>>
 	<%_ if (release !== null) { _%>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
 	<%_ } _%>
@@ -88,6 +91,7 @@ export default class HtmlBook extends Html {
 			}
 
 			const html = template({
+				headingLevel: targetElement.getAttribute('heading-level'),
 				name: targetElement.getAttribute('name'),
 				release: releaseDate,
 				isbn: targetElement.getAttribute('isbn'),
@@ -99,7 +103,7 @@ export default class HtmlBook extends Html {
 			});
 
 			const sectionElement = this.replaceHtml(targetElement, 'section', html);
-			sectionElement.className = 'p-library';
+			sectionElement.className = `p-library ${buildHeadingAnchorClassName}`;
 			sectionElement.setAttribute('itemscope', '');
 			sectionElement.setAttribute('itemtype', 'http://schema.org/Book');
 		}
