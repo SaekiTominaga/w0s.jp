@@ -23,7 +23,7 @@ import Html from './Html.js';
  *   </div>
  * </section>
  */
-export default class HtmlBook extends Html {
+export default class HtmlNewspaper extends Html {
 	/**
 	 * 変換実行
 	 *
