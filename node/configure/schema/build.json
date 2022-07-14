@@ -7,7 +7,20 @@
 	"properties": {
 		"html": {
 			"type": "object",
-			"required": ["book", "newspaper", "toc", "anchor_host", "anchor_type", "anchor_amazon_associate", "heading_anchor", "time", "image", "highlight"],
+			"required": [
+				"book",
+				"newspaper",
+				"section_id",
+				"toc",
+				"localnav",
+				"anchor_host",
+				"anchor_type",
+				"anchor_amazon_associate",
+				"heading_anchor",
+				"time",
+				"image",
+				"highlight"
+			],
 			"properties": {
 				"book": {
 					"type": "object",
@@ -31,9 +44,23 @@
 					},
 					"additionalProperties": false
 				},
+				"section_id": {
+					"type": "object",
+					"title": "セクション ID 自動生成",
+					"required": ["heading_levels"],
+					"properties": {
+						"heading_levels": {
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						}
+					},
+					"additionalProperties": false
+				},
 				"toc": {
 					"type": "object",
-					"title": "目次",
+					"title": "目次自動生成",
 					"required": ["target_element"],
 					"properties": {
 						"target_element": {
@@ -43,6 +70,17 @@
 							"type": "string"
 						},
 						"label": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"localnav": {
+					"type": "object",
+					"title": "ローカルナビ複製",
+					"required": ["target_class"],
+					"properties": {
+						"target_class": {
 							"type": "string"
 						}
 					},

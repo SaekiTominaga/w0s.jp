@@ -1,7 +1,6 @@
 import ejs from 'ejs';
 import filelist from 'filelist';
 import fs from 'fs';
-import GithubSlugger from 'github-slugger';
 import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAssociate.js';
 import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
@@ -12,6 +11,8 @@ import HtmlComponentImage from './component/HtmlImage.js';
 import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import HtmlComponentToc from './component/HtmlToc.js';
+import HtmlCpmponentSectionId from './component/HtmlSectionId.js';
+import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
 import path from 'path';
 import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
@@ -85,30 +86,30 @@ fileList.map(async (filePath) => {
 	const document = dom.window.document;
 
 	const contentMain = document.querySelector('.l-content__main');
+	const contentHeader = document.querySelector('.l-content__header');
+	const contentFooter = document.querySelector('.l-content__footer');
 
 	new HtmlComponentBook(document).convert(config.html.book, config.html.heading_anchor.target_class); // 書籍
 	new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_anchor.target_class); // 新聞
 
 	if (contentMain !== null) {
-		/* セクション ID 自動生成 */
-		const slugger = new GithubSlugger();
-
-		for (const section of contentMain.querySelectorAll('article, section')) {
-			const headingText = section.querySelector('h2, h3, h4')?.textContent;
-			if (headingText === null || headingText === undefined) {
-				continue;
-			}
-
-			section.id = slugger.slug(section.id !== '' ? section.id : headingText);
-		}
-
-		/* 目次自動生成 */
+		new HtmlCpmponentSectionId(document).convert({
+			section_area: contentMain,
+			heading_levels: config.html.section_id.heading_levels,
+		}); // セクション ID 自動生成
 		new HtmlComponentToc(document).convert({
 			target_element: config.html.toc.target_element,
 			section_area: contentMain,
 			class: config.html.toc.class,
 			label: config.html.toc.label,
-		});
+		}); // 目次自動生成
+	}
+	if (contentHeader !== null) {
+		new HtmlCpmponentLocalnav(document).convert({
+			target_class: config.html.localnav.target_class,
+			header_area: contentHeader,
+			footer_area: contentFooter,
+		}); // コンテンツヘッダーのローカルナビをコンテンツフッターにコピーする
 	}
 
 	new HtmlComponentAnchorType(document).convert(config.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
@@ -121,25 +122,6 @@ fileList.map(async (filePath) => {
 	new HtmlComponentTimeJapaneseDate(document).convert(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
 	new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
 	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
-
-	if (contentMain !== null) {
-		const contentHeader = document.querySelector('.l-content__header');
-		let contentFooter = document.querySelector('.l-content__footer');
-
-		/* ローカルナビはコンテンツヘッダーとコンテンツフッターの2か所に表示 */
-		const localNavHeader = contentHeader?.querySelector('.p-local-nav');
-		if (localNavHeader !== null && localNavHeader !== undefined) {
-			if (contentFooter === null) {
-				contentFooter = document.createElement('div');
-				contentFooter.className = 'l-content__footer';
-				contentMain.insertAdjacentElement('afterend', contentFooter);
-			}
-
-			const localNavFooter = <Element>localNavHeader.cloneNode(true);
-			localNavFooter.removeAttribute('id');
-			contentFooter.insertAdjacentElement('beforeend', localNavFooter);
-		}
-	}
 
 	html = dom.serialize();
 
