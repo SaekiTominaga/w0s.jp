@@ -28,7 +28,7 @@ export default class HtmlHeadingAnchor extends Html {
 		}>
 	): void {
 		const targetClassName = options.target_class;
-		const optionsIcon = {
+		const optionsAnchor = {
 			insert_position: options.insert_position,
 			anchor_class: options.anchor_class,
 		};
@@ -50,12 +50,15 @@ export default class HtmlHeadingAnchor extends Html {
 
 			const anchorElement = this.document.createElement('a');
 			anchorElement.href = `#${encodeURIComponent(id)}`;
-			if (optionsIcon.anchor_class !== undefined) {
-				anchorElement.className = optionsIcon.anchor_class;
+			if (optionsAnchor.anchor_class !== undefined) {
+				anchorElement.className = optionsAnchor.anchor_class;
 			}
 			anchorElement.textContent = '§';
 
-			headingElement.insertAdjacentElement(optionsIcon.insert_position, anchorElement);
+			if (optionsAnchor.insert_position === 'afterbegin' || optionsAnchor.insert_position === 'beforeend') {
+				headingElement.insertAdjacentText(optionsAnchor.insert_position, ' ');
+			}
+			headingElement.insertAdjacentElement(optionsAnchor.insert_position, anchorElement);
 		}
 	}
 }
