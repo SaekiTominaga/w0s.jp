@@ -55,6 +55,9 @@ export default class HtmlHeadingAnchor extends Html {
 			}
 			anchorElement.textContent = '§';
 
+			if (optionsAnchor.insert_position === 'afterbegin' || optionsAnchor.insert_position === 'beforeend') {
+				headingElement.insertAdjacentText(optionsAnchor.insert_position, ' ');
+			}
 			headingElement.insertAdjacentElement(optionsAnchor.insert_position, anchorElement);
 		}
 	}
