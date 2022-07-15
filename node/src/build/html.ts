@@ -18,6 +18,7 @@ import prettier from 'prettier';
 import { JSDOM } from 'jsdom';
 import { NoName as Configure } from '../../configure/type/build';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import HtmlComponentImageAmazon from './component/HtmlImageAmazon.js';
 
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));
@@ -121,9 +122,11 @@ fileList.map(async (filePath) => {
 	new HtmlComponentHeadingAnchor(document).convert(config.html.heading_anchor); // 見出しにセルフリンクを挿入
 	new HtmlComponentTimeJapaneseDate(document).convert(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
 	new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
+	new HtmlComponentImageAmazon(document).convert(config.html.image_amazon); // Amazon 商品画像
 	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
 
 	const htmlBuilt = dom.serialize();
+	console.info(`Build finished: ${filePath}`);
 
 	/* 整形 */
 	let htmlFormatted = htmlBuilt;

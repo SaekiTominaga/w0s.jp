@@ -22,12 +22,12 @@ export type NoName11 = {
   src: NoName13;
 }[];
 export type HTML = string;
-export type NoName17 = string;
 export type NoName18 = string;
 export type NoName19 = string;
+export type NoName20 = string;
 export type Feed = string;
 export type Feed1 = string;
-export type NoName16 = {
+export type NoName17 = {
   html_path: HTML;
   xpath: XPath;
   feed_template: Feed;
@@ -46,11 +46,12 @@ export interface NoName {
     anchor_amazon_associate: Amazon;
     heading_anchor: NoName14;
     time: Time;
-    image: Picture;
-    highlight: NoName15;
+    image: NoName15;
+    image_amazon: Amazon1;
+    highlight: NoName16;
   };
   feed: {
-    info: NoName16;
+    info: NoName17;
   };
 }
 export interface NoName1 {
@@ -105,15 +106,18 @@ export interface NoName14 {
 export interface Time {
   target_class: string;
 }
-export interface Picture {
+export interface NoName15 {
   target_class: string;
 }
-export interface NoName15 {
+export interface Amazon1 {
+  target_class: string;
+}
+export interface NoName16 {
   target_class: string;
   class_prefix: string;
 }
 export interface XPath {
-  wrap: NoName17;
-  date: NoName18;
-  content: NoName19;
+  wrap: NoName18;
+  date: NoName19;
+  content: NoName20;
 }
