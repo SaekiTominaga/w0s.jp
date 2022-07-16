@@ -67,6 +67,8 @@
 
 .p-library__header {
 	--_padding-block: 16px;
+	--_line-height: var(--line-height-narrow);
+	--_selflink-size: calc(1em * var(--_line-height));
 
 	display: flex;
 	position: relative; /* for Safari */
@@ -77,8 +79,8 @@
 	border-start-start-radius: var(--_border-radius-inner);
 	border-start-end-radius: var(--_border-radius-inner);
 	background: var(--color-verylightgreen);
-	padding: var(--_padding-block) var(--_padding-inline) var(--_padding-block) calc(var(--_padding-inline) + 1.5em);
-	line-height: var(--line-height-narrow);
+	padding: var(--_padding-block) var(--_padding-inline) var(--_padding-block) calc(var(--_padding-inline) + var(--_selflink-size) + 0.5em - (var(--_selflink-size) - 1em));
+	line-height: var(--_line-height);
 }
 
 .p-library__main {
@@ -88,11 +90,19 @@
 .p-library__title {
 	font-size: calc(100% * var(--font-ratio-2));
 
+	/* セルフリンク */
 	& > :any-link {
+		display: inline-flex;
 		position: absolute;
+		justify-content: center;
+		align-items: center;
 		inset-block-start: var(--_padding-block);
-		inset-inline-start: var(--_padding-inline);
+		inset-inline-start: calc(var(--_padding-inline) - (var(--_selflink-size) - 1em));
+		outline-width: var(--outline-width-bold);
+		width: var(--_selflink-size);
+		height: var(--_selflink-size);
 		color: var(--link-color);
+		font-weight: var(--font-weight-normal);
 		text-decoration: none;
 	}
 }
