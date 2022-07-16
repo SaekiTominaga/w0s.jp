@@ -70,7 +70,12 @@ export default class HtmlBook extends Html {
 	<%_ if (asin !== undefined && amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined) { _%>
 		<div class="p-embed-sidebar -embed-first">
 			<div class="p-embed-sidebar__embed">
-				<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="p-library__amazon htmlbuild-amazon-associate"><img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />Amazon 商品ページ</a>
+				<div class="p-embed-link">
+					<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="htmlbuild-amazon-associate">
+						<img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />
+						<span class="p-embed-link__title">Amazon 商品ページ</span>
+					</a>
+				</div>
 			</div>
 			<div class="p-embed-sidebar__text"><%- contents %></div>
 		</div>
