@@ -93,23 +93,15 @@
 										</p>
 									</form>
 
-									<div class="p-item">
+									<div class="p-embed-link">
 										<a href="https://www.amazon.co.jp/dp/<%= dp.asin %>">
 											<%_ if (dp.image_url !== null) { _%>
-											<img src="<%= dp.image_url %>" srcset="<%= dp.image_url_2x + ' 2x' %>" alt="" class="p-item__image" />
+											<img src="<%= dp.image_url %>" srcset="<%= dp.image_url_2x + ' 2x' %>" alt="" />
 											<%_ } else { _%>
-											<img src="/assets/image/amazon_noimage.svg" alt="" width="113" height="160" class="p-item__image" />
-											<%_ } _%> <%_ if (dp.binding !== null) { _%>
-											<span class="p-item__title"><%= dp.title %></span>
-											<%_ } else { _%>
-											<span class="p-item__title"><%= dp.title %><b>[<%= dp.binding %>]</b></span>
+											<img src="/assets/image/amazon_noimage.svg" alt="" width="113" height="160" />
 											<%_ } _%>
+											<span class="p-embed-link__title"><%= dp.title %><% if (dp.binding !== null) { %> <b>[<%= dp.binding %>]</b><% } %><% if (dp.date !== null) { %>（<time datetime="<%= dp.date.format('YYYY-MM-DD') %>"><%= dp.date.format('YYYY年M月D日') %></time>）<% } %></span>
 										</a>
-										<%_ if (dp.date !== null) { _%>
-										<div class="p-item__text">
-											<p><%= dp.date.format('YYYY年M月D日') %></p>
-										</div>
-										<%_ } _%>
 									</div>
 
 									<dl class="p-list-description">
