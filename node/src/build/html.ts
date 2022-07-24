@@ -30,14 +30,13 @@ if (filesPath === undefined) {
 }
 
 (async () => {
-	const fileList = await globby(filesPath);
+	const fileList = await globby(filesPath.replace(/\\/g, '/'));
 
 	fileList.map(async (filePath) => {
 		/* ファイル読み込み */
 		const fileData = (await fs.promises.readFile(filePath)).toString();
 
-		const filePathUrl = filePath.replace(/\\/g, '/');
-		const fileUrl = filePathUrl.substring(filePathUrl.indexOf('/'));
+		const fileUrl = filePath.substring(filePath.indexOf('/'));
 		const fileName = path.basename(filePath);
 
 		let pagePath = ''; // ページのルート相対パス
