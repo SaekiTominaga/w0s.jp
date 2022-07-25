@@ -32,7 +32,7 @@ if (filesPath === undefined) {
 (async () => {
 	const fileList = await globby(filesPath.replace(/\\/g, '/'));
 
-	fileList.map(async (filePath) => {
+	fileList.forEach(async (filePath) => {
 		/* ファイル読み込み */
 		const fileData = (await fs.promises.readFile(filePath)).toString();
 
