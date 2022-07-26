@@ -119,7 +119,9 @@ if (window.customElements !== undefined) {
 }
 
 /* <thead> の sticky スクロール量調整 */
-new TheadStickey('p-table').init();
+if (document.querySelector('.p-table [id]') !== null) {
+	new TheadStickey('p-table').init();
+}
 
 /* 日記新着記事 */
 const sidebarBlogNewlyTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-blog-newly-template');

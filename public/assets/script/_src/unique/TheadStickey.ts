@@ -19,11 +19,6 @@ export default class {
 	 * 初期処理
 	 */
 	init(): void {
-		if (document.querySelector(`.${this.#tableClassName} [id]`) === null) {
-			/* 当該 <table> 要素内に ID が設定された要素が存在しない場合は何もしない */
-			return;
-		}
-
 		const theadHeight = this.#getTheadHeight(location.hash);
 		if (theadHeight !== undefined) {
 			this.#scroll(theadHeight);
