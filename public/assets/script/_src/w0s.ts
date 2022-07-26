@@ -118,7 +118,7 @@ if (window.customElements !== undefined) {
 	}
 }
 
-/* <thead> の sticky */
+/* <thead> の sticky スクロール量調整 */
 new TheadStickey('p-table').init();
 
 /* 日記新着記事 */
