@@ -1,5 +1,5 @@
 /**
- *
+ * <thead> の sticky スクロール量調整
  */
 export default class {
 	readonly #tableClassName: string; // 対象 <table> 要素のクラス名
