@@ -16,6 +16,7 @@ import SidebarBlogNewly from './unique/SidebarBlogNewly';
 import StringConvert from '@saekitominaga/string-convert';
 import Tab from '@saekitominaga/customelements-tab';
 import TextareaAutoheight from '@saekitominaga/customelements-textarea-autoheight';
+import TheadStickey from './unique/TheadStickey';
 import Tooltip from '@saekitominaga/customelements-tooltip';
 import TooltipTrigger from '@saekitominaga/customelements-tooltip-trigger';
 
@@ -116,6 +117,9 @@ if (window.customElements !== undefined) {
 		})();
 	}
 }
+
+/* <thead> の sticky */
+new TheadStickey('p-table').init();
 
 /* 日記新着記事 */
 const sidebarBlogNewlyTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-blog-newly-template');
