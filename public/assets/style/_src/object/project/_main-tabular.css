@@ -44,6 +44,7 @@ Markup:
 Styleguide 2.6.1
 */
 .p-table {
+	--stickey-thead-height: 1em;
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 	--_font-size-base: 100%;
@@ -96,5 +97,9 @@ Styleguide 2.6.1
 
 	& > tfoot {
 		--_bg-color: var(--color-bg-light);
+	}
+
+	& > :is(tbody, tfoot) :target {
+		scroll-margin-block-start: var(--stickey-thead-height);
 	}
 }

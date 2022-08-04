@@ -15,8 +15,8 @@ import SidebarAmazonAd from './unique/SidebarAmazonAd';
 import SidebarBlogNewly from './unique/SidebarBlogNewly';
 import StringConvert from '@saekitominaga/string-convert';
 import Tab from '@saekitominaga/customelements-tab';
+import TableTheadStickey from './component/TableTheadStickey';
 import TextareaAutoheight from '@saekitominaga/customelements-textarea-autoheight';
-import TheadStickey from './unique/TheadStickey';
 import Tooltip from '@saekitominaga/customelements-tooltip';
 import TooltipTrigger from '@saekitominaga/customelements-tooltip-trigger';
 
@@ -119,8 +119,12 @@ if (window.customElements !== undefined) {
 }
 
 /* <thead> の sticky スクロール量調整 */
-if (document.querySelector('.p-table [id]') !== null) {
-	new TheadStickey('p-table').init();
+if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
+	for (const tableElement of <NodeListOf<HTMLTableElement>>document.querySelectorAll('.p-table')) {
+		if (tableElement.querySelector(':scope > :is(tbody, tfood) [id]') !== null) {
+			new TableTheadStickey(tableElement).init();
+		}
+	}
 }
 
 /* 日記新着記事 */
