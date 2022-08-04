@@ -56,16 +56,8 @@ export default class {
 		const targetElement = document.getElementById(hash.substring(1));
 
 		const tableElement = targetElement?.closest(`.${this.#tableClassName}`);
-		if (tableElement === undefined || tableElement === null) {
-			return undefined;
-		}
 
-		const theadElement = tableElement.querySelector('thead');
-		if (theadElement === null) {
-			return undefined;
-		}
-
-		return theadElement.scrollHeight;
+		return tableElement?.querySelector('thead')?.scrollHeight;
 	}
 
 	/**
