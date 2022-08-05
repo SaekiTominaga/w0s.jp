@@ -4,9 +4,6 @@
 export default class {
 	readonly #thisElement: HTMLTableElement; // 対象要素
 
-	readonly #theadElement: HTMLTableSectionElement | null; // <thead> 要素
-	#theadHeight?: number; // <thead> 要素の高さ
-
 	readonly #pageAnchorClickEventListener: (ev: Event) => void;
 
 	/**
@@ -14,7 +11,6 @@ export default class {
 	 */
 	constructor(thisElement: HTMLTableElement) {
 		this.#thisElement = thisElement;
-		this.#theadElement = thisElement.querySelector(':scope > thead');
 
 		this.#pageAnchorClickEventListener = this.#pageAnchorClickEvent.bind(this);
 	}
@@ -23,7 +19,6 @@ export default class {
 	 * 初期処理
 	 */
 	init(): void {
-		this.#calcTheadHeight();
 		this.#setScrollSnap();
 
 		for (const pageAnchorElement of document.querySelectorAll('a[href^="#"]')) {
@@ -32,23 +27,15 @@ export default class {
 	}
 
 	/**
-	 * <thead> 要素の高さを算出する
-	 *
-	 * @returns {number} <thead> 要素の高さ
-	 */
-	#calcTheadHeight(): void {
-		this.#theadHeight = this.#theadElement?.scrollHeight;
-	}
-
-	/**
 	 * スクロールスナップの設定を行う
 	 */
 	#setScrollSnap(): void {
-		if (this.#theadHeight === undefined) {
+		const theadElement = this.#thisElement.tHead;
+		if (theadElement === null) {
 			return;
 		}
 
-		this.#thisElement.style.setProperty('--stickey-thead-height', `${this.#theadHeight}px`);
+		this.#thisElement.style.setProperty('--stickey-thead-height', `${theadElement.scrollHeight}px`);
 	}
 
 	/**
@@ -57,9 +44,13 @@ export default class {
 	 * @param {Event} ev - Event
 	 */
 	#pageAnchorClickEvent(ev: Event): void {
-		const id = (<HTMLAnchorElement>ev.currentTarget).getAttribute('href')?.substring(1);
-		if (id !== undefined && this.#thisElement.contains(document.getElementById(id))) {
-			this.#calcTheadHeight();
+		const targetElement = ev.currentTarget;
+		if (!(targetElement instanceof HTMLAnchorElement)) {
+			throw new TypeError('Clicked element is not HTMLAnchorElement');
+		}
+
+		const id = new URL(targetElement.href).hash.substring(1);
+		if (id !== '' && this.#thisElement.contains(document.getElementById(id))) {
 			this.#setScrollSnap();
 		}
 	}
