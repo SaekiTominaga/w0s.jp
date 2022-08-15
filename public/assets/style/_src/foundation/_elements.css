@@ -60,7 +60,6 @@ h4,
 em,
 strong,
 cite,
-dfn,
 b,
 th {
 	font-weight: var(--font-weight-bold);
@@ -75,6 +74,16 @@ pre {
 s,
 del {
 	text-decoration-style: double;
+}
+
+dfn {
+	&::before {
+		content: "「";
+	}
+
+	&::after {
+		content: "」";
+	}
 }
 
 code {

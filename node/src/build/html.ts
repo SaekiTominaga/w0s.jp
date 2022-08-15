@@ -64,6 +64,13 @@ if (filesPath === undefined) {
 			.map((value) => value.trim())
 			.join(' '); // Description
 
+		let pageImage: string | undefined; // image
+		const schemaThumbnailUrl = documentEjs.querySelector('[itemprop="thumbnailUrl"]')?.getAttribute('src')?.trim();
+		if (schemaThumbnailUrl?.startsWith('https://media.w0s.jp/thumbimage/')) {
+			const url = new URL(schemaThumbnailUrl);
+			pageImage = `${url.origin}${url.pathname.replace(/^\/thumbimage\//, '/image/')}`;
+		}
+
 		/* EJS を解釈 */
 		const html = await ejs.renderFile(
 			path.resolve(filePath),
@@ -72,6 +79,7 @@ if (filesPath === undefined) {
 					path: pagePath,
 					title: pageTitle,
 					description: pageDescription,
+					image: pageImage,
 				},
 			},
 			{
