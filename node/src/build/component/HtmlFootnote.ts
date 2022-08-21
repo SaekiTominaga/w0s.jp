@@ -34,9 +34,9 @@ export default class HtmlFootnote extends Html {
 		options: Readonly<{
 			trigger: {
 				element: string;
-				class: string;
+				class?: string;
 				id_prefix: string;
-				attributes: {
+				attributes?: {
 					[key: string]: string;
 				};
 				parentheses_open?: string;
@@ -44,9 +44,9 @@ export default class HtmlFootnote extends Html {
 			};
 			footnotes: {
 				element: string;
-				class: string;
-				no_class: string;
-				text_class: string;
+				class?: string;
+				no_class?: string;
+				text_class?: string;
 				id_prefix: string;
 			};
 		}>
@@ -59,12 +59,6 @@ export default class HtmlFootnote extends Html {
 			return;
 		}
 
-		const footnotesElement = this.document.querySelector(footnotesOptions.element);
-		if (footnotesElement === null) {
-			console.error('注釈を表示する要素が未指定');
-			return;
-		}
-
 		const foortnotes = new Set<Element>();
 		targetElements.forEach((targetElement, index) => {
 			foortnotes.add(targetElement);
@@ -72,20 +66,32 @@ export default class HtmlFootnote extends Html {
 			const no = index + 1;
 
 			const footnoteTriggerReplacedElement = this.replaceHtml(targetElement, 'span');
-			footnoteTriggerReplacedElement.className = triggerOptions.class;
+			if (triggerOptions.class !== undefined) {
+				footnoteTriggerReplacedElement.className = triggerOptions.class;
+			}
 
 			const aElement = this.document.createElement('a');
 			aElement.href = `#${footnotesOptions.id_prefix}${no}`;
 			aElement.id = `${triggerOptions.id_prefix}${no}`;
-			for (const [name, value] of Object.entries(triggerOptions.attributes)) {
-				aElement.setAttribute(name, value);
+			if (triggerOptions.attributes !== undefined) {
+				for (const [name, value] of Object.entries(triggerOptions.attributes)) {
+					aElement.setAttribute(name, value);
+				}
 			}
 			aElement.textContent = `${triggerOptions.parentheses_open ?? ''}${no}${triggerOptions.parentheses_close ?? ''}`;
 			footnoteTriggerReplacedElement.appendChild(aElement);
 		});
 
+		const footnotesElement = this.document.querySelector(footnotesOptions.element);
+		if (footnotesElement === null) {
+			console.error('注釈を表示する要素が未指定');
+			return;
+		}
+
 		const footnotesReplacedElement = this.replaceHtml(footnotesElement, 'ul');
-		footnotesReplacedElement.className = footnotesOptions.class;
+		if (footnotesOptions.class !== undefined) {
+			footnotesReplacedElement.className = footnotesOptions.class;
+		}
 
 		Array.from(foortnotes).forEach((footnote, index) => {
 			const no = index + 1;
@@ -94,7 +100,9 @@ export default class HtmlFootnote extends Html {
 			footnotesReplacedElement.appendChild(liElement);
 
 			const noElement = this.document.createElement('span');
-			noElement.className = footnotesOptions.no_class;
+			if (footnotesOptions.no_class !== undefined) {
+				noElement.className = footnotesOptions.no_class;
+			}
 			liElement.appendChild(noElement);
 
 			const aElement = this.document.createElement('a');
@@ -103,7 +111,9 @@ export default class HtmlFootnote extends Html {
 			noElement.appendChild(aElement);
 
 			const textElement = this.document.createElement('span');
-			textElement.className = footnotesOptions.text_class;
+			if (footnotesOptions.text_class !== undefined) {
+				textElement.className = footnotesOptions.text_class;
+			}
 			textElement.id = `${footnotesOptions.id_prefix}${no}`;
 			textElement.insertAdjacentHTML('afterbegin', footnote.innerHTML);
 			liElement.appendChild(textElement);
