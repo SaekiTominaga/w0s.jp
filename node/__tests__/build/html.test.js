@@ -73,8 +73,11 @@ describe('SectionId', () => {
 <section id="hoge">
 <h2>Heading 2</h2>
 </section>
-<article>
+<section id="hoge">
 <h2>Heading 3</h2>
+</section>
+<article>
+<h2>hoge</h2>
 </article>
 <section>
 </section>
@@ -100,8 +103,11 @@ describe('SectionId', () => {
 <section id="hoge">
 <h2>Heading 2</h2>
 </section>
-<article id="heading-3">
+<section id="hoge">
 <h2>Heading 3</h2>
+</section>
+<article id="hoge-2">
+<h2>hoge</h2>
 </article>
 <section>
 </section>

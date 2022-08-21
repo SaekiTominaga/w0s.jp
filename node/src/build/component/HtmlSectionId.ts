@@ -33,7 +33,12 @@ export default class HtmlSectionId extends Html {
 					continue;
 				}
 
-				targetElement.id = slugger.slug(targetElement.id !== '' ? targetElement.id : headingText);
+				const nowId = targetElement.id;
+				const newId = slugger.slug(nowId !== '' ? nowId : headingText);
+
+				if (nowId === '') {
+					targetElement.id = newId;
+				}
 			}
 		}
 	}
