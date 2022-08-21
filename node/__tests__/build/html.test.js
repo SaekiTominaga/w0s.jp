@@ -317,6 +317,7 @@ describe('HeadingAnchor', () => {
 </body></html>`
 		);
 	});
+
 	test('全パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <section id="section-1" class="build-heading-anchor">
@@ -326,18 +327,19 @@ describe('HeadingAnchor', () => {
 
 		new HtmlComponentHeadingAnchor(dom.window.document).convert({
 			target_class: 'build-heading-anchor',
-			insert_position: 'beforeend',
+			insert_position: 'beforebegin',
 			anchor_class: 'self',
 		});
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<h2>Heading <a href="#section-1" class="self">§</a></h2>
+	<a href="#section-1" class="self">§</a><h2>Heading</h2>
 </section>
 </body></html>`
 		);
 	});
+
 	test('変換されないケース', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <section class="build-heading-anchor">
