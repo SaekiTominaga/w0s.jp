@@ -3,6 +3,7 @@ import HtmlComponentAnchorAmazonAssociate from '../../dist/build/component/HtmlA
 import HtmlComponentAnchorHost from '../../dist/build/component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from '../../dist/build/component/HtmlAnchorType.js';
 import HtmlComponentBook from '../../dist/build/component/HtmlBook.js';
+import HtmlComponentFootnote from '../../dist/build/component/HtmlFootnote.js';
 import HtmlComponentHeadingAnchor from '../../dist/build/component/HtmlHeadingAnchor.js';
 import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
 import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
@@ -56,6 +57,123 @@ describe('removeClassName()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
 <span class="foo bar"></span>
+</body></html>`
+		);
+	});
+});
+
+describe('Footnote', () => {
+	test('最小パラメーター', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<build-footnote>注釈1</build-footnote>
+<build-footnote>注釈2</build-footnote>
+<build-footnotes></build-footnotes>
+</body></html>`
+		);
+
+		new HtmlComponentFootnote(dom.window.document).convert({
+			trigger: {
+				element: 'build-footnote',
+				id_prefix: 'r',
+			},
+			footnotes: {
+				element: 'build-footnotes',
+				id_prefix: 'fn',
+			},
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<span><a href="#fn1" id="r1">1</a></span>
+<span><a href="#fn2" id="r2">2</a></span>
+<ul><li><span><a href="#r1">1</a></span><span id="fn1">注釈1</span></li><li><span><a href="#r2">2</a></span><span id="fn2">注釈2</span></li></ul>
+</body></html>`
+		);
+	});
+	test('全パラメーター', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<build-footnote>注釈1</build-footnote>
+<build-footnote>注釈2</build-footnote>
+<build-footnotes></build-footnotes>
+</body></html>`
+		);
+
+		new HtmlComponentFootnote(dom.window.document).convert({
+			trigger: {
+				element: 'build-footnote',
+				class: 'footnote',
+				id_prefix: 'r',
+				attributes: {
+					key1: 'value1',
+					key2: 'value2',
+				},
+				parentheses_open: '(',
+				parentheses_close: ')',
+			},
+			footnotes: {
+				element: 'build-footnotes',
+				class: 'footnotes',
+				no_class: 'no',
+				text_class: 'text',
+				id_prefix: 'fn',
+			},
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<span class="footnote"><a href="#fn1" id="r1" key1="value1" key2="value2">(1)</a></span>
+<span class="footnote"><a href="#fn2" id="r2" key1="value1" key2="value2">(2)</a></span>
+<ul class="footnotes"><li><span class="no"><a href="#r1">(1)</a></span><span class="text" id="fn1">注釈1</span></li><li><span class="no"><a href="#r2">(2)</a></span><span class="text" id="fn2">注釈2</span></li></ul>
+</body></html>`
+		);
+	});
+
+	test('トリガー要素なし', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+</body></html>`
+		);
+
+		new HtmlComponentFootnote(dom.window.document).convert({
+			trigger: {
+				element: 'build-footnote',
+				id_prefix: 'r',
+			},
+			footnotes: {
+				element: 'build-footnotes',
+				id_prefix: 'fn',
+			},
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+</body></html>`
+		);
+	});
+
+	test('注釈要素なし', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<build-footnote>注釈1</build-footnote>
+</body></html>`
+		);
+
+		new HtmlComponentFootnote(dom.window.document).convert({
+			trigger: {
+				element: 'build-footnote',
+				id_prefix: 'r',
+			},
+			footnotes: {
+				element: 'build-footnotes',
+				id_prefix: 'fn',
+			},
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<span><a href="#fn1" id="r1">1</a></span>
 </body></html>`
 		);
 	});
@@ -582,9 +700,12 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert({
-			target_element: 'build-book',
-		}, 'build-heading-anchor');
+		new HtmlComponentBook(dom.window.document).convert(
+			{
+				target_element: 'build-book',
+			},
+			'build-heading-anchor'
+		);
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
@@ -616,9 +737,12 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert({
-			target_element: 'build-book',
-		}, 'build-heading-anchor');
+		new HtmlComponentBook(dom.window.document).convert(
+			{
+				target_element: 'build-book',
+			},
+			'build-heading-anchor'
+		);
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
@@ -669,9 +793,12 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert({
-			target_element: 'build-book',
-		}, 'build-heading-anchor');
+		new HtmlComponentBook(dom.window.document).convert(
+			{
+				target_element: 'build-book',
+			},
+			'build-heading-anchor'
+		);
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
@@ -724,9 +851,12 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert({
-			target_element: 'build-newspaper',
-		}, 'build-heading-anchor');
+		new HtmlComponentNewspaper(dom.window.document).convert(
+			{
+				target_element: 'build-newspaper',
+			},
+			'build-heading-anchor'
+		);
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
@@ -758,9 +888,12 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert({
-			target_element: 'build-newspaper',
-		}, 'build-heading-anchor');
+		new HtmlComponentNewspaper(dom.window.document).convert(
+			{
+				target_element: 'build-newspaper',
+			},
+			'build-heading-anchor'
+		);
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
@@ -791,9 +924,12 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert({
-			target_element: 'build-newspaper',
-		}, 'build-heading-anchor');
+		new HtmlComponentNewspaper(dom.window.document).convert(
+			{
+				target_element: 'build-newspaper',
+			},
+			'build-heading-anchor'
+		);
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
