@@ -312,7 +312,7 @@ describe('HeadingAnchor', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<h2>Heading<a href="#section-1">§</a></h2>
+	<h2>Heading <a href="#section-1">§</a></h2>
 </section>
 </body></html>`
 		);
@@ -333,7 +333,7 @@ describe('HeadingAnchor', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<h2>Heading<a href="#section-1" class="self">§</a></h2>
+	<h2>Heading <a href="#section-1" class="self">§</a></h2>
 </section>
 </body></html>`
 		);
