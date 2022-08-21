@@ -35,9 +35,11 @@ export default class Html {
 	 *
 	 * @returns {Element} New element
 	 */
-	protected replaceHtml(element: Element, newElementName: string, newInnerHtml: string): Element {
+	protected replaceHtml(element: Element, newElementName: string, newInnerHtml?: string): Element {
 		const newElement = this.document.createElement(newElementName);
-		newElement.insertAdjacentHTML('afterbegin', newInnerHtml);
+		if (newInnerHtml !== undefined) {
+			newElement.insertAdjacentHTML('afterbegin', newInnerHtml);
+		}
 
 		element.parentNode?.replaceChild(newElement, element);
 

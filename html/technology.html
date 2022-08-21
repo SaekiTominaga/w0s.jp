@@ -88,8 +88,7 @@
 							</dt>
 							<dd>
 								<p>
-									NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、 Cookie の導入がセキュリティ上の理由<span class="c-annotate"><a href="#fn1" id="nt1" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[1]</a></span
-									>で躊躇われることから
+									NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、 Cookie の導入がセキュリティ上の理由<htmlbuild-footnote><a href="http://takagi-hiromitsu.jp/diary/20100501.html" class="htmlbuild-host">高木浩光＠自宅の日記 - 共用SSLサーバの危険性が理解されていない</a>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</htmlbuild-footnote>で躊躇われることから
 									<a href="https://www.inetd.co.jp/" class="htmlbuild-host">アイネットディー</a>
 									に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては cron の制限が緩いのがありがたかった。
 								</p>
@@ -225,8 +224,7 @@
 							</li>
 							<li>
 								<p>
-									ウェブページの URL に拡張子が含まれるのは好ましくないと考えているので<span class="c-annotate"><a href="#fn2" id="nt2" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[2]</a></span
-									>、拡張子なしの URL でアクセスできるようにしている。
+									ウェブページの URL に拡張子が含まれるのは好ましくないと考えているので<htmlbuild-footnote>Tim Berners-Lee による <a href="https://www.w3.org/Provider/Style/URI" hreflang="en" class="htmlbuild-host">Cool URIs don't change</a>でも URL にファイル名拡張子を含めることは問題を引き起こすと言われている。</htmlbuild-footnote>、拡張子なしの URL でアクセスできるようにしている。
 								</p>
 							</li>
 						</ul>
@@ -293,10 +291,7 @@
 
 							<div class="p-text">
 								<p>URL が変更になった場合は <code class="c-code">301 Moved Permanently</code>、フォームの POST 送信後には <code class="c-code">303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
-								<p>
-									<a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4" hreflang="en" class="htmlbuild-host">RFC 7231 の 6.4. Redirection 3xx</a>では、ステータスコード 3xx で <code class="c-code">Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として、 <q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent MAY automatically redirect its request to the URI</q> と書かれており（あくまで <em>MAY</em> であることに注目）、実際ユーザーの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<span class="c-annotate"><a href="#fn3" id="nt3" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[3]</a></span
-									>。
-								</p>
+								<p><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4" hreflang="en" class="htmlbuild-host">RFC 7231 の 6.4. Redirection 3xx</a>では、ステータスコード 3xx で <code class="c-code">Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として、 <q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent MAY automatically redirect its request to the URI</q> と書かれており（あくまで <em>MAY</em> であることに注目）、実際ユーザーの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<htmlbuild-footnote>Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、 Android Firefox 96 にて確認）</htmlbuild-footnote>。</p>
 								<p>
 									当サイトで使用している Node.js フレームワークの Express では、 <a href="https://expressjs.com/en/4x/api.html#res.redirect" class="htmlbuild-host"><code>res.redirect()</code></a> メソッドでリダイレクト設定が行われるが、この場合レスポンスボディは <code class="c-code">&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="{{path}}"&gt;{{path}}&lt;/a&gt;&lt;/p&gt;</code> のように、 DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。そのためこの機能は使わず、 <a href="https://expressjs.com/en/4x/api.html#res.send" class="htmlbuild-host"><code>res.send()</code></a> メソッドにて独自の HTML を返すようにカスタマイズしている。
 								</p>
@@ -454,10 +449,7 @@
 						<ul class="p-list">
 							<li>
 								<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトが動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。</p>
-								<p>
-									昨今ではモバイルブラウザも含めてほとんどの閲覧環境が JavaScript に対応しているが、一方でユーザーの環境によって（有効設定であっても）スクリプトが動かないケースは往々にして存在する<span class="c-annotate"><a href="#fn4" id="nt4" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[4]</a></span
-									>。当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。
-								</p>
+								<p>昨今ではモバイルブラウザも含めてほとんどの閲覧環境が JavaScript に対応しているが、一方でユーザーの環境によって（有効設定であっても）スクリプトが動かないケースは往々にして存在する<htmlbuild-footnote>具体的な事例をすべて挙げるとキリがないが、一例として JavaScript の URL に `<code>ads</code>` が含まれていると広告ブロッカーを適用した環境ではそのスクリプトがロードされず、結果的にスクリプト無効設定と同じ状況になるかもしれない。ここで考えるべきは「そのようなツールを使って不利益を被るのは自己責任」か、それとも「広告ブロッカーを含めブラウザをカスタマイズするのはユーザーの権利であり配慮が必要」かということだが、私は後者の考え方を持っている。一方で「URL に `<code>ads</code>` を含める」ことは JavaScript や HTTP はもとより Web の仕組み上なんら問題なく、特定のツールに対する配慮で URL を変更するのは避けたい。そもそもが小手先の対策をせずとも、スクリプト無効でコンテンツが閲覧できる状態さえ保っていれば、ユーザーのブラウザ上でスクリプトが想定どおり動くかどうかなど<em>気にする必要すらない</em>のであり、制作上のコストパフォーマンスの観点からもこれがもっとも簡単なのである。</htmlbuild-footnote>。当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
 							</li>
 							<li>
 								<p><code class="c-code">public/assets/script/_src</code> ディレクトリ内の TypeScript ファイルを <a href="https://webpack.js.org/" class="htmlbuild-host">webpack</a> でビルドし、 <code class="c-code">public/assets/script</code> に配置。 CSS ファイルと同じくビルドの際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
@@ -685,24 +677,7 @@
 						</ul>
 					</section>
 
-					<ul class="p-footnotes">
-						<li>
-							<span class="p-footnotes__no"><a href="#nt1">[1]</a></span>
-							<span class="p-footnotes__text" id="fn1"><a href="http://takagi-hiromitsu.jp/diary/20100501.html" class="htmlbuild-host">高木浩光＠自宅の日記 - 共用SSLサーバの危険性が理解されていない</a>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</span>
-						</li>
-						<li>
-							<span class="p-footnotes__no"><a href="#nt2">[2]</a></span>
-							<span class="p-footnotes__text" id="fn2">Tim Berners-Lee による <a href="https://www.w3.org/Provider/Style/URI" hreflang="en" class="htmlbuild-host">Cool URIs don't change</a>でも URL にファイル名拡張子を含めることは問題を引き起こすと言われている。</span>
-						</li>
-						<li>
-							<span class="p-footnotes__no"><a href="#nt3">[3]</a></span>
-							<span class="p-footnotes__text" id="fn3">Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、 Android Firefox 96 にて確認）</span>
-						</li>
-						<li>
-							<span class="p-footnotes__no"><a href="#nt4">[4]</a></span>
-							<span class="p-footnotes__text" id="fn4">具体的な事例をすべて挙げるとキリがないが、一例として JavaScript の URL に `<code>ads</code>` が含まれていると広告ブロッカーを適用した環境ではそのスクリプトがロードされず、結果的にスクリプト無効設定と同じ状況になるかもしれない。ここで考えるべきは「そのようなツールを使って不利益を被るのは自己責任」か、それとも「広告ブロッカーを含めブラウザをカスタマイズするのはユーザーの権利であり配慮が必要」かということだが、私は後者の考え方を持っている。一方で「URL に `<code>ads</code>` を含める」ことは JavaScript や HTTP はもとより Web の仕組み上なんら問題なく、特定のツールに対する配慮で URL を変更するのは避けたい。そもそもが小手先の対策をせずとも、スクリプト無効でコンテンツが閲覧できる状態さえ保っていれば、ユーザーのブラウザ上でスクリプトが想定どおり動くかどうかなど<em>気にする必要すらない</em>のであり、制作上のコストパフォーマンスの観点からもこれがもっとも簡単なのである。</span>
-						</li>
-					</ul>
+					<htmlbuild-footnotes></htmlbuild-footnotes>
 				</main>
 				<div class="l-content__footer"></div>
 			</div>

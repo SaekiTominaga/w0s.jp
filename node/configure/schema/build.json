@@ -13,8 +13,9 @@
 				"section_id",
 				"toc",
 				"localnav",
-				"anchor_host",
+				"footnote",
 				"anchor_type",
+				"anchor_host",
 				"anchor_amazon_associate",
 				"heading_anchor",
 				"time",
@@ -87,6 +88,125 @@
 					},
 					"additionalProperties": false
 				},
+				"footnote": {
+					"type": "object",
+					"title": "注釈",
+					"required": ["trigger", "footnotes"],
+					"properties": {
+						"trigger": {
+							"type": "object",
+							"required": ["element", "class", "id_prefix", "attributes"],
+							"properties": {
+								"element": {
+									"type": "string"
+								},
+								"class": {
+									"type": "string"
+								},
+								"id_prefix": {
+									"type": "string"
+								},
+								"attributes": {
+									"type": "object",
+									"patternProperties": {
+										".": {
+											"type": "string"
+										}
+									}
+								},
+								"parentheses_open": {
+									"type": "string"
+								},
+								"parentheses_close": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						},
+						"footnotes": {
+							"type": "object",
+							"required": ["element", "class", "no_class", "text_class", "id_prefix"],
+							"properties": {
+								"element": {
+									"type": "string"
+								},
+								"class": {
+									"type": "string"
+								},
+								"no_class": {
+									"type": "string"
+								},
+								"text_class": {
+									"type": "string"
+								},
+								"id_prefix": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"additionalProperties": false
+				},
+				"anchor_type": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["target_class", "insert_position", "parentheses", "icon", "icon_size", "icon_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"insert_position": {
+							"type": "string",
+							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
+						},
+						"parentheses": {
+							"type": "object",
+							"required": ["before", "after"],
+							"properties": {
+								"before": {
+									"type": "string"
+								},
+								"after": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						},
+						"icon": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["type", "name", "src"],
+								"properties": {
+									"type": {
+										"type": "string",
+										"title": "MIME タイプ"
+									},
+									"name": {
+										"type": "string",
+										"title": "リソースタイプ名"
+									},
+									"src": {
+										"type": "string",
+										"title": "アイコンパス"
+									}
+								},
+								"additionalProperties": false
+							},
+							"uniqueItems": true,
+							"title": "リソースタイプのアイコン情報"
+						},
+						"icon_size": {
+							"type": "integer",
+							"minimum": 0
+						},
+						"icon_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
 				"anchor_host": {
 					"type": "object",
 					"title": "アイコン",
@@ -141,65 +261,6 @@
 							},
 							"uniqueItems": true,
 							"title": "ホストのアイコン情報"
-						},
-						"icon_size": {
-							"type": "integer",
-							"minimum": 0
-						},
-						"icon_class": {
-							"type": "string"
-						}
-					},
-					"additionalProperties": false
-				},
-				"anchor_type": {
-					"type": "object",
-					"title": "アイコン",
-					"required": ["target_class", "insert_position", "parentheses", "icon", "icon_size", "icon_class"],
-					"properties": {
-						"target_class": {
-							"type": "string"
-						},
-						"insert_position": {
-							"type": "string",
-							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
-						},
-						"parentheses": {
-							"type": "object",
-							"required": ["before", "after"],
-							"properties": {
-								"before": {
-									"type": "string"
-								},
-								"after": {
-									"type": "string"
-								}
-							},
-							"additionalProperties": false
-						},
-						"icon": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"required": ["type", "name", "src"],
-								"properties": {
-									"type": {
-										"type": "string",
-										"title": "MIME タイプ"
-									},
-									"name": {
-										"type": "string",
-										"title": "リソースタイプ名"
-									},
-									"src": {
-										"type": "string",
-										"title": "アイコンパス"
-									}
-								},
-								"additionalProperties": false
-							},
-							"uniqueItems": true,
-							"title": "リソースタイプのアイコン情報"
 						},
 						"icon_size": {
 							"type": "integer",

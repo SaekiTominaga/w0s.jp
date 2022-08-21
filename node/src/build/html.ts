@@ -4,6 +4,7 @@ import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAsso
 import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
 import HtmlComponentBook from './component/HtmlBook.js';
+import HtmlComponentFootnote from './component/HtmlFootnote.js';
 import HtmlComponentHeadingAnchor from './component/HtmlHeadingAnchor.js';
 import HtmlComponentHighlight from './component/HtmlHighlight.js';
 import HtmlComponentImage from './component/HtmlImage.js';
@@ -120,6 +121,7 @@ if (filesPath === undefined) {
 			}); // コンテンツヘッダーのローカルナビをコンテンツフッターにコピーする
 		}
 
+		new HtmlComponentFootnote(document).convert(config.html.footnote); // 注釈
 		new HtmlComponentAnchorType(document).convert(config.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
 		new HtmlComponentAnchorHost(document).convert(config.html.anchor_host); // リンクアンカーにドメイン情報を付与
 		new HtmlComponentAnchorAmazonAssociate(document).convert({
