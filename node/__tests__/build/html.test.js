@@ -8,6 +8,7 @@ import HtmlComponentHeadingAnchor from '../../dist/build/component/HtmlHeadingAn
 import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
 import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
 import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js';
+import HtmlComponentSectionId from '../../dist/build/component/HtmlSectionId.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 import { describe, expect, test } from '@jest/globals';
 import { JSDOM } from 'jsdom';
@@ -57,6 +58,76 @@ describe('removeClassName()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
 <span class="foo bar"></span>
+</body></html>`
+		);
+	});
+});
+
+describe('SectionId', () => {
+	test('ID自動付与', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<section>
+<h2>Heading 1</h2>
+</section>
+<section id="hoge">
+<h2>Heading 2</h2>
+</section>
+<article>
+<h2>Heading 3</h2>
+</article>
+<section>
+</section>
+<section>
+<h2></h2>
+</section>
+<section>
+<h2></h2>
+</section>
+</body></html>`
+		);
+
+		new HtmlComponentSectionId(dom.window.document).convert({
+			section_area: dom.window.document.body,
+			heading_levels: [1, 2],
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<section id="heading-1">
+<h2>Heading 1</h2>
+</section>
+<section id="hoge">
+<h2>Heading 2</h2>
+</section>
+<article id="heading-3">
+<h2>Heading 3</h2>
+</article>
+<section>
+</section>
+<section id="">
+<h2></h2>
+</section>
+<section id="-1">
+<h2></h2>
+</section>
+</body></html>`
+		);
+	});
+
+	test('sectionなし', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+</body></html>`
+		);
+
+		new HtmlComponentSectionId(dom.window.document).convert({
+			section_area: dom.window.document.body,
+			heading_levels: [1, 2],
+		});
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
 </body></html>`
 		);
 	});
