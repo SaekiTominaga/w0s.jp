@@ -7,17 +7,14 @@ import Html from './Html.js';
  *
  * <build-book
  *   heading-level="2"
- *   name="書名"
- *   release="2022-01-01"
- *   isbn="978-4-06-377485-6"
- *   asin="B01GRDKGZW"
- *   amazon-image="510waYsj0oL"
- *   amazon-image-width="120"
- *   amazon-image-height="160"
  * >
- *   <contents>
+ *   <book-name>書名</book-name>
+ *   <book-release>2022-01-01</book-release>
+ *   <book-isbn>978-4-06-377485-6</book-isbn>
+ *   <book-amazon asin="B01GRDKGZW" image-id="510waYsj0oL" width="120" height="160"></book-amazon>
+ *   <book-contents>
  *     <p>解説文</p>
- *   </contents>
+ *   </book-contents>
  * </build-book>
  * ↓
  * <section class="p-library" itemscope="" itemtype="http://schema.org/Book">
@@ -105,7 +102,7 @@ export default class HtmlBook extends Html {
 
 			const html = template({
 				headingLevel: targetElement.getAttribute('heading-level'),
-				name: nameElement?.textContent ?? undefined,
+				name: nameElement?.textContent,
 				release: releaseDate,
 				isbn: isbnElement?.textContent ?? undefined,
 				asin: amazonElement?.getAttribute('asin') ?? undefined,

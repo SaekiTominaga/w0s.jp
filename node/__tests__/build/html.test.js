@@ -312,11 +312,12 @@ describe('HeadingAnchor', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<h2>Heading<a href="#section-1">§</a></h2>
+	<h2>Heading <a href="#section-1">§</a></h2>
 </section>
 </body></html>`
 		);
 	});
+
 	test('全パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <section id="section-1" class="build-heading-anchor">
@@ -326,18 +327,19 @@ describe('HeadingAnchor', () => {
 
 		new HtmlComponentHeadingAnchor(dom.window.document).convert({
 			target_class: 'build-heading-anchor',
-			insert_position: 'beforeend',
+			insert_position: 'beforebegin',
 			anchor_class: 'self',
 		});
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<h2>Heading<a href="#section-1" class="self">§</a></h2>
+	<a href="#section-1" class="self">§</a><h2>Heading</h2>
 </section>
 </body></html>`
 		);
 	});
+
 	test('変換されないケース', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <section class="build-heading-anchor">
@@ -571,9 +573,12 @@ const foo = 'test';
 describe('Book', () => {
 	test('最小属性', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
-<build-book name="書名">
+<build-book heading-level="2">
+<book-name>書名</book-name>
+<book-contents>
 <p>解説文1</p>
 <p>解説文2</p>
+</book-contents>
 </build-book>
 </body></html>`);
 
@@ -585,7 +590,7 @@ describe('Book', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
 </header>
 <div class="p-library__main">
 
@@ -599,9 +604,15 @@ describe('Book', () => {
 
 	test('全属性', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
-<build-book name="書名" release="2022-01-01" isbn="978-4-06-377485-6" asin="B01GRDKGZW" amazon-image="510waYsj0oL" amazon-image-width="120" amazon-image-height="160">
+<build-book heading-level="2">
+<book-name>書名</book-name>
+<book-release>2022-01-01</book-release>
+<book-isbn>978-4-06-377485-6</book-isbn>
+<book-amazon asin="B01GRDKGZW" image-id="510waYsj0oL" width="120" height="160"></book-amazon>
+<book-contents>
 <p>解説文1</p>
 <p>解説文2</p>
+</book-contents>
 </build-book>
 </body></html>`);
 
@@ -613,14 +624,19 @@ describe('Book', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
 		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
 </header>
 <div class="p-library__main">
 		<div class="p-embed-sidebar -embed-first">
 			<div class="p-embed-sidebar__embed">
-				<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="p-library__amazon htmlbuild-amazon-associate"><img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">Amazon 商品ページ</a>
+				<div class="p-embed-link">
+					<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-amazon-associate">
+						<img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">
+						<span class="p-embed-link__title">Amazon 商品ページ</span>
+					</a>
+				</div>
 			</div>
 			<div class="p-embed-sidebar__text">
 <p>解説文1</p>
@@ -635,10 +651,22 @@ describe('Book', () => {
 
 	test('日付パターン', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
-<build-book name="書名" release="2022-01-01"></build-book>
-<build-book name="書名" release="2022-01"></build-book>
-<build-book name="書名" release="2022"></build-book>
-<build-book name="書名" release="xxxx"></build-book>
+<build-book heading-level="2">
+<book-name>書名</book-name>
+<book-release>2022-01-01</book-release>
+</build-book>
+<build-book heading-level="2">
+<book-name>書名</book-name>
+<book-release>2022-01</book-release>
+</build-book>
+<build-book heading-level="2">
+<book-name>書名</book-name>
+<book-release>2022</book-release>
+</build-book>
+<build-book heading-level="2">
+<book-release>xxxx</book-release>
+<book-name>書名</book-name>
+</build-book>
 </body></html>`);
 
 		new HtmlComponentBook(dom.window.document).convert({
@@ -649,7 +677,7 @@ describe('Book', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -657,7 +685,7 @@ describe('Book', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -665,7 +693,7 @@ describe('Book', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -673,7 +701,7 @@ describe('Book', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -687,9 +715,12 @@ describe('Book', () => {
 describe('Newspaper', () => {
 	test('最小属性', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
-<build-newspaper name="書名">
+<build-newspaper heading-level="2">
+<newspaper-name>誌名</newspaper-name>
+<newspaper-contents>
 <p>解説文1</p>
 <p>解説文2</p>
+</newspaper-contents>
 </build-newspaper>
 </body></html>`);
 
@@ -701,7 +732,7 @@ describe('Newspaper', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 itemprop="name">書名</h2>
+	<h2 class="p-library__title"><span itemprop="name">誌名</span></h2>
 </header>
 <div class="p-library__main">
 
@@ -716,9 +747,14 @@ describe('Newspaper', () => {
 
 	test('全属性', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
-<build-newspaper name="書名" release="2022-01-01" npclass="朝刊">
+<build-newspaper heading-level="2">
+<newspaper-name>誌名</newspaper-name>
+<newspaper-release>2022-01-01</newspaper-release>
+<newspaper-class>朝刊</newspaper-class>
+<newspaper-contents>
 <p>解説文1</p>
 <p>解説文2</p>
+</newspaper-contents>
 </build-newspaper>
 </body></html>`);
 
@@ -730,7 +766,7 @@ describe('Newspaper', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
+	<h2 class="p-library__title"><span itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</span></h2>
 </header>
 <div class="p-library__main">
 
@@ -745,8 +781,14 @@ describe('Newspaper', () => {
 
 	test('日付パターン', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
-<build-newspaper name="書名" release="2022-01-01"></build-newspaper>
-<build-newspaper name="書名" release="xxxx"></build-newspaper>
+<build-newspaper heading-level="2">
+<newspaper-name>誌名</newspaper-name>
+<newspaper-release>2022-01-01</newspaper-release>
+</build-newspaper>
+<build-newspaper heading-level="2">
+<newspaper-name>誌名</newspaper-name>
+<newspaper-release>xxxx</newspaper-release>
+</build-newspaper>
 </body></html>`);
 
 		new HtmlComponentNewspaper(dom.window.document).convert({
@@ -757,7 +799,7 @@ describe('Newspaper', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
+	<h2 class="p-library__title"><span itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></span></h2>
 </header>
 <div class="p-library__main">
 
@@ -765,7 +807,7 @@ describe('Newspaper', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 itemprop="name">書名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
+	<h2 class="p-library__title"><span itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></span></h2>
 </header>
 <div class="p-library__main">
 

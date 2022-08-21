@@ -7,13 +7,13 @@ import Html from './Html.js';
  *
  * <build-newspaper
  *   heading-level="2"
- *   name="誌名"
- *   release="2022-01-01"
- *   npclass="朝刊"
  * >
- *   <contents>
+ *   <newspaper-name>新聞名</newspaper-name>
+ *   <newspaper-release>2022-01-01</newspaper-release>
+ *   <newspaper-class>朝刊</newspaper-class>
+ *   <newspaper-contents>
  *     <p>解説文</p>
- *   </contents>
+ *   </newspaper-contents>
  * </build-newspaper>
  * ↓
  * <section class="p-library" itemscope="" itemtype="http://schema.org/Newspaper">
@@ -69,7 +69,7 @@ export default class HtmlNewspaper extends Html {
 
 			const html = template({
 				headingLevel: targetElement.getAttribute('heading-level'),
-				name: nameElement?.textContent ?? undefined,
+				name: nameElement?.textContent,
 				release: releaseDate,
 				npclass: classElement?.textContent ?? undefined,
 				contents: contentsElement?.innerHTML,
