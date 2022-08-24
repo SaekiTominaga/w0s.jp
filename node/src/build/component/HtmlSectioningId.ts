@@ -4,26 +4,26 @@ import Html from './Html.js';
 /**
  * セクション ID 自動生成
  */
-export default class HtmlSectionId extends Html {
+export default class HtmlSectioningId extends Html {
 	/**
 	 * 変換実行
 	 *
 	 * @param {object} options - Options
 	 * @param {string} options.target_element - Element name
-	 * @param {Element} options.section_area - Areas containing `<article>` and `<section>`
+	 * @param {Element} options.sectioning_area - Areas containing Sectioning content (article, aside, nav, section)
 	 * @param {string} options.class - Table of Contents class name
 	 * @param {string} options.label - Table of Contents label (`aria-label` attribute value)
 	 */
 	convert(
 		options: Readonly<{
-			section_area: Element;
+			sectioning_area: Element;
 			heading_levels: number[];
 		}>
 	): void {
-		const sectionAreaElement = options.section_area;
+		const sectioningAreaElement = options.sectioning_area;
 		const headingSelectors = options.heading_levels.map((level) => `h${level}`).join(','); // Array(3) [1, 2, 3] => "h1,h2,h3"
 
-		const targetElements = sectionAreaElement.querySelectorAll('article, section');
+		const targetElements = sectioningAreaElement.querySelectorAll('article, section');
 		if (targetElements.length >= 1) {
 			const slugger = new GithubSlugger();
 

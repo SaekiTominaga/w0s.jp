@@ -13,7 +13,7 @@ import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import HtmlComponentToc from './component/HtmlToc.js';
 import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
-import HtmlCpmponentSectionId from './component/HtmlSectionId.js';
+import HtmlCpmponentSectionId from './component/HtmlSectioningId.js';
 import path from 'path';
 import prettier from 'prettier';
 import { globby } from 'globby';
@@ -103,12 +103,12 @@ if (filesPath === undefined) {
 
 		if (contentMain !== null) {
 			new HtmlCpmponentSectionId(document).convert({
-				section_area: contentMain,
+				sectioning_area: contentMain,
 				heading_levels: config.html.section_id.heading_levels,
 			}); // セクション ID 自動生成
 			new HtmlComponentToc(document).convert({
 				target_element: config.html.toc.target_element,
-				section_area: contentMain,
+				sectioning_area: contentMain,
 				class: config.html.toc.class,
 				label: config.html.toc.label,
 			}); // 目次自動生成
