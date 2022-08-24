@@ -68,7 +68,6 @@
 .p-library__header {
 	--_padding-block: 16px;
 	--_line-height: var(--line-height-narrow);
-	--_selflink-size: calc(1em * var(--_line-height));
 
 	display: flex;
 	position: relative; /* for Safari */
@@ -79,7 +78,7 @@
 	border-start-start-radius: var(--_border-radius-inner);
 	border-start-end-radius: var(--_border-radius-inner);
 	background: var(--color-verylightgreen);
-	padding: var(--_padding-block) var(--_padding-inline) var(--_padding-block) calc(var(--_padding-inline) + var(--_selflink-size) + 0.5em - (var(--_selflink-size) - 1em));
+	padding: var(--_padding-block) var(--_padding-inline) var(--_padding-block) calc(var(--_padding-inline) + var(--self-link-size));
 	line-height: var(--_line-height);
 }
 
@@ -90,19 +89,10 @@
 .p-library__title {
 	font-size: calc(100% * var(--font-ratio-2));
 
-	/* セルフリンク */
-	& > :any-link {
-		display: inline-flex;
+	& .c-self-link {
 		position: absolute;
-		justify-content: center;
-		align-items: center;
-		inset-block-start: var(--_padding-block);
-		inset-inline-start: calc(var(--_padding-inline) - (var(--_selflink-size) - 1em));
-		outline-width: var(--outline-width-bold);
-		width: var(--_selflink-size);
-		height: var(--_selflink-size);
-		color: var(--link-color);
-		text-decoration: none;
+		inset-block-start: calc(var(--_padding-block) + 0.15em * var(--font-ratio-1));
+		inset-inline-start: var(--_padding-inline);
 	}
 }
 
