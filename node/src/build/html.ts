@@ -98,8 +98,8 @@ if (filesPath === undefined) {
 		const contentHeader = document.querySelector('.l-content__header');
 		const contentFooter = document.querySelector('.l-content__footer');
 
-		new HtmlComponentBook(document).convert(config.html.book, config.html.heading_selflink.target_class); // 書籍
-		new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_selflink.target_class); // 新聞
+		new HtmlComponentBook(document).convert(config.html.book, config.html.heading_self_link.target_class); // 書籍
+		new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_self_link.target_class); // 新聞
 
 		if (contentMain !== null) {
 			new HtmlCpmponentSectioningId(document).convert({
