@@ -3,7 +3,7 @@ import Html from './Html.js';
 /**
  * 見出しにセルフリンクを挿入
  *
- * <section id="section-1" class="build-heading-anchor">
+ * <section id="section-1" class="build-heading-self-link">
  *   <h2>Heading</h2>
  * </section>
  * ↓
@@ -11,7 +11,7 @@ import Html from './Html.js';
  *   <h2>Heading<a href="#section-1">§</a></h2>
  * </section>
  */
-export default class HtmlHeadingAnchor extends Html {
+export default class HtmlHeadingSelfLink extends Html {
 	/**
 	 * 変換実行
 	 *

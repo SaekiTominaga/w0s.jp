@@ -45,7 +45,7 @@ export interface NoName {
     anchor_type: NoName6;
     anchor_host: NoName10;
     anchor_amazon_associate: Amazon;
-    heading_anchor: NoName15;
+    heading_self_link: NoName15;
     time: Time;
     image: NoName16;
     image_amazon: Amazon1;

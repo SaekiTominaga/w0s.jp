@@ -5,7 +5,7 @@ import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
 import HtmlComponentBook from './component/HtmlBook.js';
 import HtmlComponentFootnote from './component/HtmlFootnote.js';
-import HtmlComponentHeadingAnchor from './component/HtmlHeadingAnchor.js';
+import HtmlComponentHeadingSelfLink from './component/HtmlHeadingSelfLink.js';
 import HtmlComponentHighlight from './component/HtmlHighlight.js';
 import HtmlComponentImage from './component/HtmlImage.js';
 import HtmlComponentImageAmazon from './component/HtmlImageAmazon.js';
@@ -98,8 +98,8 @@ if (filesPath === undefined) {
 		const contentHeader = document.querySelector('.l-content__header');
 		const contentFooter = document.querySelector('.l-content__footer');
 
-		new HtmlComponentBook(document).convert(config.html.book, config.html.heading_anchor.target_class); // 書籍
-		new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_anchor.target_class); // 新聞
+		new HtmlComponentBook(document).convert(config.html.book, config.html.heading_selflink.target_class); // 書籍
+		new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_selflink.target_class); // 新聞
 
 		if (contentMain !== null) {
 			new HtmlCpmponentSectioningId(document).convert({
@@ -128,7 +128,7 @@ if (filesPath === undefined) {
 			target_class: config.html.anchor_amazon_associate.target_class,
 			associate_id: configCommon.paapi.request.partner_tag,
 		}); // Amazon 商品ページのリンクにアソシエイトタグを追加
-		new HtmlComponentHeadingAnchor(document).convert(config.html.heading_anchor); // 見出しにセルフリンクを挿入
+		new HtmlComponentHeadingSelfLink(document).convert(config.html.heading_self_link); // 見出しにセルフリンクを挿入
 		new HtmlComponentTimeJapaneseDate(document).convert(config.html.time); // 日付文字列を `<time datetime>` 要素に変換
 		new HtmlComponentImage(document).convert(config.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
 		new HtmlComponentImageAmazon(document).convert(config.html.image_amazon); // Amazon 商品画像
