@@ -13,7 +13,7 @@ import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import HtmlComponentToc from './component/HtmlToc.js';
 import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
-import HtmlCpmponentSectionId from './component/HtmlSectioningId.js';
+import HtmlCpmponentSectioningId from './component/HtmlSectioningId.js';
 import path from 'path';
 import prettier from 'prettier';
 import { globby } from 'globby';
@@ -102,7 +102,7 @@ if (filesPath === undefined) {
 		new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_anchor.target_class); // 新聞
 
 		if (contentMain !== null) {
-			new HtmlCpmponentSectionId(document).convert({
+			new HtmlCpmponentSectioningId(document).convert({
 				sectioning_area: contentMain,
 				heading_levels: config.html.section_id.heading_levels,
 			}); // セクション ID 自動生成
