@@ -45,7 +45,9 @@ export default class HtmlNewspaper extends Html {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
 <header class="p-library__header">
-	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></span></h<%= headingLevel %>>
+	<div class="p-library__title">
+		<h<%= headingLevel %> itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></h<%= headingLevel %>>
+	</div>
 </header>
 <div class="p-library__main">
 <%- contents %>

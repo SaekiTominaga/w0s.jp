@@ -55,7 +55,9 @@ export default class HtmlBook extends Html {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
 <header class="p-library__header">
-	<h<%= headingLevel %> class="p-library__title"><span itemprop="name"><%= name %></span></h<%= headingLevel %>>
+	<div class="p-library__title">
+		<h<%= headingLevel %> itemprop="name"><%= name %></h<%= headingLevel %>>
+	</div>
 	<%_ if (release !== undefined) { _%>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
 	<%_ } _%>
