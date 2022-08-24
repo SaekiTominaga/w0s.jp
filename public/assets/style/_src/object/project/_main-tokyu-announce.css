@@ -3,73 +3,45 @@
  * ============================== */
 
 /* ===== インデックスページの路線別見出し ===== */
-.p-tokyu-announce-index-hdg {
-	--_line-color: var(--color-lightgray);
 
-	line-height: var(--line-height-narrow);
+.p-section__hdg {
+	@nest .p-section.-hdg-b > & {
+		&.-tokyu-toyoko {
+			--_border-inline-color: var(--tokyu-color-toyoko);
+		}
 
-	&.-toyoko {
-		--_line-color: var(--tokyu-color-toyoko);
-	}
+		&.-tokyu-meguro {
+			--_border-inline-color: var(--tokyu-color-meguro);
+		}
 
-	&.-meguro {
-		--_line-color: var(--tokyu-color-meguro);
-	}
+		&.-tokyu-dento {
+			--_border-inline-color: var(--tokyu-color-dento);
+		}
 
-	&.-dento {
-		--_line-color: var(--tokyu-color-dento);
-	}
+		&.-tokyu-oimachi {
+			--_border-inline-color: var(--tokyu-color-oimachi);
+		}
 
-	&.-oimachi {
-		--_line-color: var(--tokyu-color-oimachi);
-	}
+		&.-tokyu-ikegami {
+			--_border-inline-color: var(--tokyu-color-ikegami);
+		}
 
-	&.-ikegami {
-		--_line-color: var(--tokyu-color-ikegami);
-	}
+		&.-tokyu-tamagawa {
+			--_border-inline-color: var(--tokyu-color-tamagawa);
+		}
 
-	&.-tamagawa {
-		--_line-color: var(--tokyu-color-tamagawa);
-	}
+		&.-tokyu-kodomo {
+			--_border-inline-color: var(--tokyu-color-kodomo);
+		}
 
-	&.-kodomo {
-		--_line-color: var(--tokyu-color-kodomo);
-	}
+		&.-tokyu-setagaya {
+			--_border-inline-color: var(--tokyu-color-setagaya);
+		}
 
-	&.-setagaya {
-		--_line-color: var(--tokyu-color-setagaya);
-	}
-
-	&.-ttm {
-		--_line-color: var(--tokyu-color-ttm);
-	}
-
-	& > h3 {
-		--_stick-width: 0.25em;
-		--_stick-height: 80%;
-
-		position: relative; /* for Safari */
-		contain: content;
-		padding-inline-start: calc(var(--_stick-width) + 0.5em);
-		font-size: calc(100% * var(--font-ratio-2));
-
-		&::before {
-			display: block;
-			position: absolute;
-			inset-block-start: calc((100% - var(--_stick-height)) / 2);
-			inset-inline-start: 0;
-			border-radius: var(--border-radius-full);
-			background: var(--_line-color);
-			width: var(--_stick-width);
-			height: var(--_stick-height);
-			content: "";
+		&.-tokyu-ttm {
+			--_border-inline-color: var(--tokyu-color-ttm);
 		}
 	}
-}
-
-.p-tokyu-announce-index-hdg__sub {
-	font-weight: var(--font-weight-normal);
-	font-size: calc(100% / var(--font-ratio-2));
 }
 
 /* ===== 自動放送 ===== */

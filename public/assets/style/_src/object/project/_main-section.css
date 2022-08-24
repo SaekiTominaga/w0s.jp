@@ -69,65 +69,75 @@ Styleguide 2.1.1
 	line-height: var(--line-height-narrow);
 
 	@nest .p-section.-hdg-a > & {
+		--_stick-width: 0.25em;
+		--_stick-height: calc(100% - 0.85em);
+		--_border-inline-color: var(--color-gray);
+
+		position: relative; /* for Safari */
+		contain: content;
 		border-block-start: 1px solid transparent;
 		border-block-end: 1px solid var(--color-border-dark);
-		padding: 0.25em 0;
+		padding-inline-start: calc(var(--_stick-width) + 0.5em);
+		padding-block: 0.25em;
+		font-size: calc(100% * var(--font-ratio-6));
+
+		&::before {
+			display: block;
+			position: absolute;
+			inset-block-start: calc((100% - var(--_stick-height)) / 2);
+			inset-inline-start: 0;
+			border-radius: var(--border-radius-full);
+			background: var(--_border-inline-color);
+			width: var(--_stick-width);
+			height: var(--_stick-height);
+			content: "";
+		}
 
 		& + * {
 			margin-block-start: 2rem;
 		}
-
-		& > h2 {
-			--_stick-width: 0.25em;
-			--_stick-height: 80%;
-
-			position: relative; /* for Safari */
-			contain: content;
-			padding-inline-start: calc(var(--_stick-width) + 0.5em);
-			font-size: calc(100% * var(--font-ratio-6));
-
-			&::before {
-				display: block;
-				position: absolute;
-				inset-block-start: calc((100% - var(--_stick-height)) / 2);
-				inset-inline-start: 0;
-				border-radius: var(--border-radius-full);
-				background: var(--color-gray);
-				width: var(--_stick-width);
-				height: var(--_stick-height);
-				content: "";
-			}
-		}
 	}
 
 	@nest .p-section.-hdg-b > & {
-		& > h3 {
-			--_stick-width: 0.25em;
-			--_stick-height: 80%;
+		--_stick-width: 0.25em;
+		--_stick-height: calc(100% - 0.35em);
+		--_border-inline-color: var(--color-lightgray);
 
-			position: relative; /* for Safari */
-			contain: content;
-			padding-inline-start: calc(var(--_stick-width) + 0.5em);
-			font-size: calc(100% * var(--font-ratio-4));
+		position: relative; /* for Safari */
+		contain: content;
+		padding-inline-start: calc(var(--_stick-width) + 0.5em);
+		font-size: calc(100% * var(--font-ratio-4));
 
-			&::before {
-				display: inline-block;
-				position: absolute;
-				inset-block-start: calc((100% - var(--_stick-height)) / 2);
-				inset-inline-start: 0;
-				border-radius: var(--border-radius-full);
-				background: var(--color-lightgray);
-				width: var(--_stick-width);
-				height: var(--_stick-height);
-				content: "";
-			}
+		&::before {
+			display: inline-block;
+			position: absolute;
+			inset-block-start: calc((100% - var(--_stick-height)) / 2);
+			inset-inline-start: 0;
+			border-radius: var(--border-radius-full);
+			background: var(--_border-inline-color);
+			width: var(--_stick-width);
+			height: var(--_stick-height);
+			content: "";
 		}
 	}
 
 	@nest .p-section.-hdg-c > & {
-		& > :is(h3, h4) {
-			font-size: calc(100% * var(--font-ratio-2));
-		}
+		font-size: calc(100% * var(--font-ratio-2));
+	}
+
+	& > :is(h2, h3, h4) {
+		display: inline;
+		vertical-align: middle;
+	}
+
+	/* セルフリンク */
+	& > :any-link {
+		vertical-align: middle;
+		margin-inline-start: 0.25em;
+		outline-width: var(--outline-width-bold);
+		color: var(--link-color);
+		font-size: calc(100% / var(--font-ratio-3));
+		text-decoration: none;
 	}
 }
 
@@ -141,5 +151,5 @@ Styleguide 2.1.1
 .p-section__hdg-note {
 	margin-block-start: 0.5em;
 	color: var(--color-gray);
-	font-size: calc(100% / var(--font-ratio-1));
+	font-size: calc(1rem / var(--font-ratio-1));
 }
