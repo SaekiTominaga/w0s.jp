@@ -18,20 +18,22 @@ Markup:
 Styleguide 2.2.1
 */
 .p-text {
+	--_margin-block-start: 0.5em;
+
 	& > p {
 		& + p {
-			margin-block-start: 0.5em;
+			margin-block-start: var(--_margin-block-start);
 		}
 	}
 
 	&.-col2 {
+		--_margin-block-start: 0;
+
 		column-gap: 3em;
 		columns: 24em;
 
 		& > p {
-			& + p {
-				margin-block-start: 1em;
-			}
+			text-indent: 1em;
 		}
 	}
 }
