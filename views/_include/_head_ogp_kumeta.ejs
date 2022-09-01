@@ -1,17 +1,17 @@
-<meta property="og:title" content="<%= page.title %>" />
-<meta property="og:type" content="<%_ if (page.path === '/kumeta/') { _%>website<%_ } else { _%>article<%_ } _%>" />
 <%_ if (page.image !== undefined) { _%>
-<meta property="og:image" content="<%= page.image %>" />
+<meta property="og:title" content="<%= page.title %>" />
+<%_ if (page.path === '/kumeta/') { _%>
+<meta property="og:type" content="website" />
 <%_ } else { _%>
-<meta property="og:image" content="https://w0s.jp/assets/image/site-icon.png" />
-<meta property="og:image:width" content="360" />
-<meta property="og:image:height" content="360" />
+<meta property="og:type" content="article" />
 <%_ } _%>
+<meta property="og:image" content="<%= page.image %>" />
 <meta property="og:url" content="https://w0s.jp<%= page.path %>" />
 <meta property="og:locale" content="ja_JP" />
 <meta property="og:site_name" content="久米田康治データベース" />
 <%_ if (page.description !== undefined) { _%>
 <meta property="og:description" content="<%= page.description %>" />
+<%_ } _%>
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@SaekiTominaga" />
 <%_ } _%>
