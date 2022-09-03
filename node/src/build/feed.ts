@@ -38,7 +38,7 @@ config.feed.info.forEach(async (feedInfo) => {
 		);
 		const links = xpathSelect('.//x:a/@href', <Node>wrapElement).map((value) => String((<Node>value).nodeValue).trim());
 		const content = xpathSelect(feedInfo.xpath.content, <Node>wrapElement)
-			.toString()
+			.join('')
 			.replace(' xmlns="http://www.w3.org/1999/xhtml"', '');
 
 		const updated = new Date(updatedTimeElementDatetime.getTime() + updatedTimeElementDatetime.getTimezoneOffset() * 60000);
