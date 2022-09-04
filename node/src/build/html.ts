@@ -98,6 +98,11 @@ if (filesPath === undefined) {
 		const contentHeader = document.querySelector('.l-content__header');
 		const contentFooter = document.querySelector('.l-content__footer');
 
+		/* OGP */
+		if (document.querySelector('meta[property^="og:"]') !== null) {
+			document.documentElement.setAttribute('prefix', 'og: http://ogp.me/ns#');
+		}
+
 		new HtmlComponentBook(document).convert(config.html.book, config.html.heading_self_link.target_class); // 書籍
 		new HtmlComponentNewspaper(document).convert(config.html.newspaper, config.html.heading_self_link.target_class); // 新聞
 
