@@ -47,7 +47,7 @@ export default class CrawlerResourceLogController extends Controller implements 
 						fs.promises.readFile(`${dir}/${requestQuery.diff[1]}`),
 					]);
 
-					diff = Diff.diffLines(Buffer.from(file1).toString(), Buffer.from(file2).toString(), { newlineIsToken: true });
+					diff = Diff.diffLines(Buffer.from(file2).toString(), Buffer.from(file1).toString(), { newlineIsToken: true });
 					diff.forEach((diffPart, index) => {
 						if (diffPart.count !== undefined && diffPart.count > this.#config.diff.max_line && !diffPart.added && !diffPart.removed) {
 							const lines = diffPart.value.split('\n');
