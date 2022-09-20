@@ -82,6 +82,7 @@ if (filesPath === undefined) {
 					description: pageDescription,
 					image: pageImage,
 				},
+				file: filePath,
 			},
 			{
 				views: [configCommon.views],
