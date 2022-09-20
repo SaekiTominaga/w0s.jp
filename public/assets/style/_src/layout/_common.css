@@ -80,6 +80,17 @@
 
 .l-content__footer {
 	margin-block-start: 120px;
+
+	&:not(:empty) {
+		&::before {
+			display: block;
+			margin: 60px auto;
+			background-image: linear-gradient(to right, transparent 0%, var(--color-lightgray) 50%, transparent 100%);
+			width: min(30em, 100%);
+			height: 1px;
+			content: "";
+		}
+	}
 }
 
 /* ===== サイドバー ===== */
