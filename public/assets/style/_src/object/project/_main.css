@@ -35,22 +35,28 @@ Markup:
 Styleguide 2.99.2
 */
 .p-toggle {
-	--_width: 100%;
+	--_summary-width: 100%;
+	--_summary-padding: 0.75em;
 	--_icon: polygon(0 42%, 42% 42%, 42% 0, 58% 0, 58% 42%, 100% 42%, 100% 58%, 58% 58%, 58% 100%, 42% 100%, 42% 58%, 0 58%);
+	--_icon-size: 1em;
+	--_icon-gap: 1em;
 
 	& > summary {
+		position: relative; /* for Safari */
 		cursor: default;
 		box-sizing: border-box;
+		contain: layout;
 		outline-width: var(--outline-width-bold);
 		outline-offset: -1px;
 		border: 1px solid var(--color-border-dark);
 		border-radius: var(--border-radius-small);
 		background: var(--color-white);
-		padding: 0.75em;
-		width: var(--_width);
+		padding: var(--_summary-padding) var(--_summary-padding) var(--_summary-padding) calc(var(--_summary-padding) + var(--_icon-size) + var(--_icon-gap));
+		width: var(--_summary-width);
 		color: var(--color-darkblue);
 		font-size: calc(100% * var(--font-ratio-1));
 		line-height: var(--line-height-narrow);
+		list-style: none;
 
 		&:hover {
 			box-shadow: 0 0 0.25em var(--color-border-light);
@@ -60,37 +66,28 @@ Styleguide 2.99.2
 			outline: none;
 		}
 
-		& > :is(h2, h3, h4) {
-			display: inline-block;
+		&::before {
+			position: absolute;
+			clip-path: var(--_icon);
+			inset-block: calc((100% - var(--_icon-size)) / 2);
+			inset-inline-start: var(--_summary-padding);
+			border-block-start: var(--_icon-size) solid var(--color-darkblue);
+			width: var(--_icon-size);
+			content: "";
+		}
+
+		&::-webkit-details-marker {
+			display: none; /* for Safari */
 		}
 	}
 
-	&[data-pre-open] {
-		& > summary {
-			list-style: none;
-
-			&::before {
-				display: inline-block;
-				vertical-align: calc((1 - var(--line-height-narrow)) * 0.5em);
-				clip-path: var(--_icon);
-				margin-inline-end: 1em;
-				border-block-start: 1em solid var(--color-darkblue);
-				width: 1em;
-				content: "";
-			}
-
-			&::-webkit-details-marker {
-				display: none; /* for Safari */
-			}
-		}
-	}
-
+	&[open],
 	&[data-pre-open="true"] {
 		--_icon: polygon(0 42%, 100% 42%, 100% 58%, 0 58%);
 	}
 
 	&.-fit {
-		--_width: fit-content;
+		--_summary-width: fit-content; /* TODO: Android Chrome で正しく fit されず2行になってしまう */
 	}
 }
 
