@@ -125,6 +125,7 @@ export interface Amazon {
 export interface NoName15 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+  anchor_wrap_class?: string;
   anchor_class?: string;
 }
 export interface Time {

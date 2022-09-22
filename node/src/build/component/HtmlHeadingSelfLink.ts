@@ -18,18 +18,21 @@ export default class HtmlHeadingSelfLink extends Html {
 	 * @param {object} options - Options
 	 * @param {string} options.target_class - Class name of the sectioning content (article, aside, nav, section) to process
 	 * @param {string} options.insert_position - Link insertion position
+	 * @param {string} options.anchor_wrap_class - Class name of the wrapping element for the `<a>` element
 	 * @param {string} options.anchor_class - Class name of the `<a>` element
 	 */
 	convert(
 		options: Readonly<{
 			target_class: string;
 			insert_position: InsertPosition;
+			anchor_wrap_class?: string;
 			anchor_class?: string;
 		}>
 	): void {
 		const targetClassName = options.target_class;
 		const optionsAnchor = {
 			insert_position: options.insert_position,
+			anchor_wrap_class: options.anchor_wrap_class,
 			anchor_class: options.anchor_class,
 		};
 
@@ -48,17 +51,20 @@ export default class HtmlHeadingSelfLink extends Html {
 				continue;
 			}
 
+			const anchorWrapElement = this.document.createElement('p');
+			if (optionsAnchor.anchor_wrap_class !== undefined) {
+				anchorWrapElement.className = optionsAnchor.anchor_wrap_class;
+			}
+
 			const anchorElement = this.document.createElement('a');
 			anchorElement.href = `#${encodeURIComponent(id)}`;
 			if (optionsAnchor.anchor_class !== undefined) {
 				anchorElement.className = optionsAnchor.anchor_class;
 			}
 			anchorElement.textContent = '§';
+			anchorWrapElement.appendChild(anchorElement);
 
-			if (optionsAnchor.insert_position === 'afterbegin' || optionsAnchor.insert_position === 'beforeend') {
-				headingElement.insertAdjacentText(optionsAnchor.insert_position, ' ');
-			}
-			headingElement.insertAdjacentElement(optionsAnchor.insert_position, anchorElement);
+			headingElement.insertAdjacentElement(optionsAnchor.insert_position, anchorWrapElement);
 		}
 	}
 }
