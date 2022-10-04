@@ -113,7 +113,7 @@ Styleguide 2.8.2
 		object-fit: cover;
 		object-position: var(--object-position, center);
 
-		@media (max-width: 36em) {
+		@media (width <= 36em) {
 			max-height: 15vh;
 		}
 	}
@@ -260,7 +260,7 @@ Styleguide 2.8.4
 	padding: var(--_padding) var(--_padding) var(--_padding) 0;
 }
 
-@media (min-width: calc(40em + 1px)) {
+@media not (width <= 40em) {
 	.p-top-update-list__date {
 		@nest .p-top-update-list > li:first-child & {
 			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
@@ -272,7 +272,7 @@ Styleguide 2.8.4
 	}
 }
 
-@media (max-width: 40em) {
+@media (width <= 40em) {
 	.p-top-update-list {
 		& > li {
 			grid-template-columns: auto 1fr;
