@@ -22,8 +22,6 @@ import qs from 'qs';
 import TokyuCarHistoryController from './controller/TokyuCarHistoryController.js';
 import { W0SJp as Configure } from '../configure/type/common';
 
-type Environment = 'production' | 'development';
-
 /* 設定ファイル読み込み */
 const config = <Configure>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));
 
@@ -32,7 +30,7 @@ Log4js.configure(config.logger.path);
 const logger = Log4js.getLogger();
 
 const app = express();
-const env: Environment = app.get('env');
+const env: Express.Env = app.get('env');
 
 app.set('query parser', (query: string) => qs.parse(query, { delimiter: /[&;]/ }));
 app.set('trust proxy', true);
