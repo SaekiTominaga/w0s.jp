@@ -16,46 +16,46 @@ export type NoName5 = string[];
 export type NoName6 = string[];
 export type NoName8 = string[];
 export type NoName9 = string[];
-export type NoName11 = string;
-export type NoName13 = string[];
-export type NoName14 = string;
-export type NoName12 = {
-  paths: NoName13;
-  value: NoName14;
+export type NoName12 = string;
+export type NoName14 = string[];
+export type NoName15 = string;
+export type NoName13 = {
+  paths: NoName14;
+  value: NoName15;
 }[];
-export type NoName16 = string[];
-export type NoName17 = string;
-export type NoName15 = {
-  extensions: NoName16;
-  value: NoName17;
+export type NoName17 = string[];
+export type NoName18 = string;
+export type NoName16 = {
+  extensions: NoName17;
+  value: NoName18;
 }[];
 export type CORS1 = string[];
-export type NoName18 = string[];
-export type NoName19 = string[];
+export type NoName20 = string[];
+export type NoName21 = string[];
 export type Directory = string[];
-export type NoName20 = string;
+export type NoName22 = string;
 export type Htpasswd = string;
 export type BasicAuthentication = {
   directory: Directory;
-  realm: NoName20;
+  realm: NoName22;
   htpasswd: Htpasswd;
 }[];
 export type FilepathFor401Unauthorized = string;
 export type FilepathFor403Forbidden = string;
 export type FilepathFor404NotFound = string;
 export type FilepathFor500InternalServerError = string;
-export type NoName22 = string;
-export type NoName23 = string;
+export type NoName24 = string;
 export type NoName25 = string;
-export type NoName26 = string;
+export type NoName27 = string;
+export type NoName28 = string;
 export type Or = string;
-export type NoName24 = {
-  from: NoName25;
-  to: NoName26;
+export type NoName26 = {
+  from: NoName27;
+  to: NoName28;
   type: Or;
   [k: string]: unknown;
 }[];
-export type NoName27 = string;
+export type NoName29 = string;
 export type AmazonAds = string;
 export type Crawler = string;
 export type Blog = string;
@@ -68,15 +68,15 @@ export type APIKey = string;
 export type APIKeySecret = string;
 export type AccessToken = string;
 export type AccessTokenSecret = string;
-export type NoName29 = string;
-/**
- * https://affiliate.amazon.co.jp/assoc_credentials/home
- */
-export type NoName30 = string;
-/**
- * https://affiliate.amazon.co.jp/assoc_credentials/home
- */
 export type NoName31 = string;
+/**
+ * https://affiliate.amazon.co.jp/assoc_credentials/home
+ */
+export type NoName32 = string;
+/**
+ * https://affiliate.amazon.co.jp/assoc_credentials/home
+ */
+export type NoName33 = string;
 /**
  * https://webservices.amazon.com/paapi5/documentation/locale-reference.html
  */
@@ -94,10 +94,10 @@ export interface W0SJp {
   port: HTTP;
   response: NoName;
   static: NoName3;
-  errorpage: NoName21;
-  views: NoName22;
-  temp: NoName23;
-  redirect: NoName24;
+  errorpage: NoName23;
+  views: NoName24;
+  temp: NoName25;
+  redirect: NoName26;
   logger: Logger;
   mail: EMail;
   sqlite: SQLite;
@@ -141,25 +141,34 @@ export interface MIME2 {
   [k: string]: NoName9;
 }
 export interface NoName10 {
-  default: NoName11;
-  path: NoName12;
-  extension: NoName15;
+  development: NoName11;
+  production: NoName19;
+}
+export interface NoName11 {
+  default: NoName12;
+  path?: NoName13;
+  extension?: NoName16;
+}
+export interface NoName19 {
+  default: NoName12;
+  path?: NoName13;
+  extension?: NoName16;
 }
 export interface CORS {
   directory: CORS1;
-  origin: NoName18;
+  origin: NoName20;
 }
 export interface SourceMap {
-  extensions?: NoName19;
+  extensions?: NoName21;
 }
-export interface NoName21 {
+export interface NoName23 {
   path_401: FilepathFor401Unauthorized;
   path_403: FilepathFor403Forbidden;
   path_404: FilepathFor404NotFound;
   path_500: FilepathFor500InternalServerError;
 }
 export interface Logger {
-  path: NoName27;
+  path: NoName29;
 }
 export interface EMail {
   smtp: string;
@@ -183,9 +192,9 @@ export interface DBNode {
   madoka_twitter: Madokatwitter;
 }
 export interface TwitterAPI {
-  dev: NoName28;
+  dev: NoName30;
 }
-export interface NoName28 {
+export interface NoName30 {
   consumer_key: APIKey;
   consumer_secret: APIKeySecret;
   access_token: AccessToken;
@@ -198,9 +207,9 @@ export interface AmazonProductAdvertisingAPI {
  * https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html
  */
 export interface CommonRequestParameters {
-  partner_tag: NoName29;
-  access_key: NoName30;
-  secret_key: NoName31;
+  partner_tag: NoName31;
+  access_key: NoName32;
+  secret_key: NoName33;
   marketplace: TargetAmazonLocale;
   host: TheHostValueOfTheTargetLocaleToWhichYouAreSendingRequests;
   region: TheAWSRegionOfTheTargetLocaleToWhichYouAreSendingRequests;
