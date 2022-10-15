@@ -97,6 +97,69 @@ Styleguide 2.99.2
 }
 
 /*
+ツールチップ
+
+Markup:
+<dialog class="p-tooltip">
+<p>テキスト</p>
+
+<form method="dialog">
+<button><img src="/assets/image/tooltip-close.svg" alt="閉じる"/></button>
+</form>
+</dialog>
+
+Styleguide 2.99.3
+*/
+.p-tooltip {
+	--_close-button-padding: 6px;
+	--_close-button-image-size: 24px;
+
+	box-shadow: 0 0 0.5em #ccc;
+	border: 1px solid #ccc;
+	border-radius: var(--border-radius-normal);
+	background: var(--color-white);
+	padding: 15px;
+	max-width: min(30em, 100%);
+	color: var(--color-black);
+	font-size: calc(100% / var(--font-ratio-1));
+
+	&::before {
+		display: block;
+		float: right;
+		width: calc(var(--_close-button-image-size) + var(--_close-button-padding) * 2);
+		height: calc(var(--_close-button-image-size) + var(--_close-button-padding) * 2);
+		content: "";
+	}
+
+	& > form[method="dialog"] {
+		position: absolute;
+		inset-block-start: 1px;
+		inset-inline-end: 1px;
+
+		& > button {
+			--_border-color: var(--color-white);
+			--_background-color: transparent;
+
+			border: 1px solid var(--_border-color);
+			border-radius: var(--border-radius-normal);
+			background: var(--_background-color);
+			padding: var(--_close-button-padding);
+
+			&:hover {
+				--_border-color: var(--color-bg-light);
+				--_background-color: var(--color-bg-superlight);
+			}
+
+			& > img {
+				display: block;
+				width: var(--_close-button-image-size);
+				height: var(--_close-button-image-size);
+			}
+		}
+	}
+}
+
+/*
 Amazon商品
 
 Markup:
@@ -128,7 +191,7 @@ Markup:
 </ul>
 </aside>
 
-Styleguide 2.99.3
+Styleguide 2.99.4
 */
 .p-amazon {
 	border: 1px solid var(--color-amazon-dark);
@@ -242,7 +305,7 @@ Markup:
 </pre>
 </div>
 
-Styleguide 2.99.4
+Styleguide 2.99.5
 */
 .p-code {
 	display: flow-root; /* for Safari */
@@ -322,7 +385,7 @@ Markup:
 <dialog class="p-dialog-overlay">
 </dialog>
 
-Styleguide 2.99.5
+Styleguide 2.99.6
 */
 .p-dialog-overlay {
 	position: fixed;
