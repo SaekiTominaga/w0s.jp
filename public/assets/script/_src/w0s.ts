@@ -17,7 +17,6 @@ import StringConvert from '@saekitominaga/string-convert';
 import Tab from '@saekitominaga/customelements-tab';
 import TableTheadStickey from './component/TableTheadStickey';
 import TextareaAutoheight from '@saekitominaga/customelements-textarea-autoheight';
-import Tooltip from '@saekitominaga/customelements-tooltip';
 import TooltipTrigger from '@saekitominaga/customelements-tooltip-trigger';
 
 /**
@@ -52,7 +51,6 @@ if (window.customElements !== undefined) {
 
 	if (document.querySelector('a[is="w0s-tooltip-trigger"]') !== null) {
 		/* ツールチップ */
-		customElements.define('w0s-tooltip', Tooltip);
 		customElements.define('w0s-tooltip-trigger', TooltipTrigger, {
 			extends: 'a',
 		});

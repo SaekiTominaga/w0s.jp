@@ -8,8 +8,8 @@ import Html from './Html.js';
  *
  * <build-footnotes></build-footnotes>
  * ↓
- * <span class="c-annotate"><a href="#fn1" id="r1" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[1]</a></span>
- * <span class="c-annotate"><a href="#fn2" id="r2" is="w0s-tooltip-trigger" data-tooltip-element="w0s-tooltip" data-tooltip-close-text="閉じる">[2]</a></span>
+ * <span class="c-annotate"><a href="#fn1" id="r1" is="w0s-tooltip-trigger">[1]</a></span>
+ * <span class="c-annotate"><a href="#fn2" id="r2" is="w0s-tooltip-trigger">[2]</a></span>
  *
  * <ul class="p-footnotes">
  *   <li>
