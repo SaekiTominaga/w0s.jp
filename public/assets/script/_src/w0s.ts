@@ -3,7 +3,6 @@ import ButtonClipboard from '@saekitominaga/customelements-button-clipboard';
 import ButtonConfirm from '@saekitominaga/customelements-button-confirm';
 import ButtonMediaSamePlay from '@saekitominaga/customelements-button-media-sameplay';
 import DetailsAnimation from '@saekitominaga/customelements-details-animation';
-import DetailsAnimationContent from '@saekitominaga/customelements-details-animation-content';
 import FormBeforeUnloadConfirm from '@saekitominaga/htmlformelement-before-unload-confirm';
 import FormControlValidation from '@saekitominaga/htmlformcontrolelement-validation';
 import FormSubmitOverlay from '@saekitominaga/htmlformelement-submit-overlay';
@@ -58,7 +57,6 @@ if (window.customElements !== undefined) {
 
 	if (document.querySelector('details[is="w0s-animation-details"]') !== null) {
 		/* アニメーション <details> */
-		customElements.define('w0s-animation-details-content', DetailsAnimationContent);
 		customElements.define('w0s-animation-details', DetailsAnimation, {
 			extends: 'details',
 		});
