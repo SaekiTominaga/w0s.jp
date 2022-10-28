@@ -8,8 +8,8 @@ import xmlFormatter from 'xml-formatter';
 import xmlserializer from 'xmlserializer';
 import xpath from 'xpath';
 import { DOMParser } from '@xmldom/xmldom';
-import { NoName as Configure } from '../../configure/type/build';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { NoName as Configure } from '../../configure/type/build.js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));

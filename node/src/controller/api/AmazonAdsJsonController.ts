@@ -4,9 +4,9 @@ import ControllerInterface from '../../ControllerInterface.js';
 import fs from 'fs';
 import HttpResponse from '../../util/HttpResponse.js';
 import zlib from 'zlib';
-import { Amazon as Configure } from '../../../configure/type/amazon-ads';
+import { Amazon as Configure } from '../../../configure/type/amazon-ads.js';
 import { Request, Response } from 'express';
-import { W0SJp as ConfigureCommon } from '../../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
 
 /**
  * Amazon 商品広告用 JSON ファイル生成

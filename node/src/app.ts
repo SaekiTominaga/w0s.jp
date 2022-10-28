@@ -20,7 +20,7 @@ import MadokaOfficialNewsMonthController from './controller/MadokaOfficialNewsMo
 import path from 'path';
 import qs from 'qs';
 import TokyuCarHistoryController from './controller/TokyuCarHistoryController.js';
-import { W0SJp as Configure } from '../configure/type/common';
+import { W0SJp as Configure } from '../configure/type/common.js';
 
 /* 設定ファイル読み込み */
 const config = <Configure>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));

@@ -1,5 +1,5 @@
 import path from 'path';
-import { W0SJp as Configure } from '../../configure/type/common';
+import { W0SJp as Configure } from '../../configure/type/common.js';
 import { Request, Response } from 'express';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
 

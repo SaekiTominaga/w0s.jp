@@ -1,7 +1,7 @@
 import * as sqlite from 'sqlite';
 import DbUtil from '../util/DbUtil.js';
 import sqlite3 from 'sqlite3';
-import { W0SJp as Configure } from '../../configure/type/common';
+import { W0SJp as Configure } from '../../configure/type/common.js';
 
 interface DpData extends Amazon.DpData {
 	category_name: string;

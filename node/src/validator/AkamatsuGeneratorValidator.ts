@@ -1,5 +1,5 @@
 import { body, Result, ValidationError, validationResult } from 'express-validator';
-import { NoName as Configure } from '../../configure/type/akamatsu-generator';
+import { NoName as Configure } from '../../configure/type/akamatsu-generator.js';
 import { Request } from 'express';
 
 /**
