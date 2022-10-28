@@ -24,7 +24,6 @@ const moduleConfigurations = moduleFiles.map((file) => {
 			sourcemap: 'hidden',
 			entryFileNames: '[name].mjs',
 		},
-		watch: { exclude: ['node/**', 'node_modules/**'], include: 'public/**' },
 	};
 });
 const jsConfigurations = jsFiles.map((file) => {
@@ -35,7 +34,6 @@ const jsConfigurations = jsFiles.map((file) => {
 			dir: outputDir,
 			sourcemap: 'hidden',
 		},
-		watch: { exclude: ['node/**', 'node_modules/**'], include: 'public/**' },
 	};
 });
 
