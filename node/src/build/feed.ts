@@ -2,12 +2,10 @@ import crypto from 'crypto';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import fs from 'fs';
-import parse5 from 'parse5';
+import jsdom from 'jsdom';
 import prettier from 'prettier';
 import xmlFormatter from 'xml-formatter';
-import xmlserializer from 'xmlserializer';
 import xpath from 'xpath';
-import { DOMParser } from '@xmldom/xmldom';
 import { NoName as Configure } from '../../configure/type/build.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
@@ -18,7 +16,8 @@ const config = <Configure>JSON.parse(fs.readFileSync('node/configure/build.json'
 config.feed.info.forEach(async (feedInfo) => {
 	const html = (await fs.promises.readFile(`${configCommon.static.root}/${feedInfo.html_path}`)).toString();
 
-	const document = new DOMParser().parseFromString(xmlserializer.serializeToString(parse5.parse(html)), 'text/html');
+	/* DOM 化 */
+	const document = new jsdom.JSDOM(html).window.document;
 	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
 
 	/* HTML から必要なデータを取得 */
