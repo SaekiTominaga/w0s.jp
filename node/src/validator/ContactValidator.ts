@@ -1,4 +1,4 @@
-import { NoName as Configure } from '../../configure/type/contact';
+import { NoName as Configure } from '../../configure/type/contact.js';
 import { body, query, Result, ValidationError, validationResult } from 'express-validator';
 import { Request } from 'express';
 

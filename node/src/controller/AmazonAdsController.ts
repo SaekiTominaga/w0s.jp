@@ -10,11 +10,11 @@ import HttpResponse from '../util/HttpResponse.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
 import PaapiUtil from '../util/Paapi.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { Amazon as Configure } from '../../configure/type/amazon-ads';
+import { Amazon as Configure } from '../../configure/type/amazon-ads.js';
 import { GetItemsResponse } from 'paapi5-typescript-sdk';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
  * Amazon 商品広告管理

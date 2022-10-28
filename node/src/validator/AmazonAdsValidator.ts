@@ -1,4 +1,4 @@
-import { Amazon as Configure } from '../../configure/type/amazon-ads';
+import { Amazon as Configure } from '../../configure/type/amazon-ads.js';
 import { body, Result, ValidationError, validationResult } from 'express-validator';
 import { Request } from 'express';
 

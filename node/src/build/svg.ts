@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { loadConfig, optimize } from 'svgo';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));

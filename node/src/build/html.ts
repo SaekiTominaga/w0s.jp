@@ -18,8 +18,8 @@ import path from 'path';
 import prettier from 'prettier';
 import { globby } from 'globby';
 import { JSDOM } from 'jsdom';
-import { NoName as Configure } from '../../configure/type/build';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { NoName as Configure } from '../../configure/type/build.js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));

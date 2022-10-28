@@ -4,9 +4,9 @@ import CrawlerResourceDao from '../dao/CrawlerResourceDao.js';
 import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { NoName as Configure } from '../../configure/type/crawler-resource';
+import { NoName as Configure } from '../../configure/type/crawler-resource.js';
 import { Request, Response } from 'express';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
  * ウェブ巡回（リソース）

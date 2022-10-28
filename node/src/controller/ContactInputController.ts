@@ -1,9 +1,9 @@
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
-import { NoName as Configure } from '../../configure/type/contact';
+import { NoName as Configure } from '../../configure/type/contact.js';
 import { Request, Response } from 'express';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
  * 問い合わせ・入力

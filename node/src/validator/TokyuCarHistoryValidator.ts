@@ -1,4 +1,4 @@
-import { NoName as Configure } from '../../configure/type/tokyu-car-history';
+import { NoName as Configure } from '../../configure/type/tokyu-car-history.js';
 import { query, Result, ValidationError, validationResult } from 'express-validator';
 import { Request } from 'express';
 

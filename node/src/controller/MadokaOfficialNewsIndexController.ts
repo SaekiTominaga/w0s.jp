@@ -4,9 +4,9 @@ import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import MadokaOfficialNewsIndexDao from '../dao/MadokaOfficialNewsIndexDao.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { NoName as Configure } from '../../configure/type/madoka-official-news';
+import { NoName as Configure } from '../../configure/type/madoka-official-news.js';
 import { Request, Response } from 'express';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
  * まどか☆マギカ・公式サイトニュース index ページ

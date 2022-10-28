@@ -1,7 +1,7 @@
 import * as sqlite from 'sqlite';
 import sqlite3 from 'sqlite3';
 import dayjs from 'dayjs';
-import { W0SJp as Configure } from '../../configure/type/common';
+import { W0SJp as Configure } from '../../configure/type/common.js';
 
 /**
  * 久米田康治 Twitter

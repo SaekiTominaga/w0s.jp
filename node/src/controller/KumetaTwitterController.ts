@@ -2,8 +2,8 @@ import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import fs from 'fs';
 import KumetaTwitterDao from '../dao/KumetaTwitterDao.js';
-import { Twitter as Configure } from '../../configure/type/kumeta-twitter';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { Twitter as Configure } from '../../configure/type/kumeta-twitter.js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 import { Request, Response } from 'express';
 
 /**

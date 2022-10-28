@@ -5,10 +5,10 @@ import fs from 'fs';
 import RequestUtil from '../util/RequestUtil.js';
 import TokyuCarHistoryDao from '../dao/TokyuCarHistoryDao.js';
 import TokyuCarHistoryValidator from '../validator/TokyuCarHistoryValidator.js';
-import { NoName as Configure } from '../../configure/type/tokyu-car-history';
+import { NoName as Configure } from '../../configure/type/tokyu-car-history.js';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
  * 東急電車形態研究・車歴表

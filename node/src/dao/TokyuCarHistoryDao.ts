@@ -1,7 +1,7 @@
 import * as sqlite from 'sqlite';
 import dayjs from 'dayjs';
 import sqlite3 from 'sqlite3';
-import { W0SJp as Configure } from '../../configure/type/common';
+import { W0SJp as Configure } from '../../configure/type/common.js';
 
 interface Series {
 	id: string;

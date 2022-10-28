@@ -7,10 +7,10 @@ import path from 'path';
 import RequestUtil from '../util/RequestUtil.js';
 import Sharp from 'sharp';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
-import { NoName as Configure } from '../../configure/type/akamatsu-generator';
+import { NoName as Configure } from '../../configure/type/akamatsu-generator.js';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
-import { W0SJp as ConfigureCommon } from '../../configure/type/common';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
  * 赤松健セリフジェネレーター
