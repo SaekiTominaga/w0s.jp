@@ -57,7 +57,7 @@
 	flex-direction: column;
 	gap: 1em;
 	margin-inline: auto;
-	width: min(50em, 100%);
+	inline-size: min(50em, 100%);
 	line-height: var(--line-height-narrow);
 }
 
@@ -105,7 +105,7 @@
 	border: 1px solid var(--color-red);
 	background: var(--color-verylightred);
 	padding: 1em 12px;
-	width: min(50em, 90%);
+	inline-size: min(50em, 90%);
 	color: var(--color-darkred);
 	font-weight: var(--font-weight-bold);
 }
@@ -123,7 +123,7 @@
 /* ===== コンテンツ説明 ===== */
 .p-description {
 	margin-inline: auto;
-	width: min(50em, 90%);
+	inline-size: min(50em, 90%);
 
 	& > p {
 		text-indent: 1em;
@@ -137,8 +137,8 @@
 /* ===== ステップ ===== */
 .p-step {
 	--_step-arrow-color: var(--page-bg-color); /* 矢印の色 */
-	--_step-arrow-width: 2px; /* 矢印の幅 */
-	--_step-arrow-height: 1em; /* 矢印の高さ */
+	--_step-arrow-inline-size: 2px; /* 矢印の幅 */
+	--_step-arrow-block-size: 1em; /* 矢印の高さ */
 	--_step-arrow-inclination: 0.6; /* 矢印の傾斜度（高さに対する割合、 1 = 45°） */
 
 	display: flex;
@@ -148,7 +148,7 @@
 	& > li {
 		position: relative;
 		flex: auto;
-		margin-inline-end: var(--_step-arrow-width);
+		margin-inline-end: var(--_step-arrow-inline-size);
 		font-size: calc(100% * var(--font-ratio-1));
 		text-align: center;
 
@@ -161,12 +161,12 @@
 		&:not(:last-child) {
 			&::after {
 				position: absolute;
-				transform: translateX(var(--_step-arrow-width));
+				transform: translateX(var(--_step-arrow-inline-size));
 				z-index: 1;
-				inset-block-start: calc(50% - var(--_step-arrow-height) - var(--_step-arrow-width));
+				inset-block-start: calc(50% - var(--_step-arrow-block-size) - var(--_step-arrow-inline-size));
 				inset-inline-start: 100%;
-				border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
-				border-block: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+				border-inline-start: calc(var(--_step-arrow-block-size) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
+				border-block: calc(var(--_step-arrow-block-size) + var(--_step-arrow-inline-size)) solid transparent;
 				content: "";
 			}
 		}
@@ -185,11 +185,11 @@
 	@nest .p-step > li:not(:last-child) &::after {
 		position: absolute;
 		z-index: 2;
-		inset-block-start: calc(50% - var(--_step-arrow-height) - var(--_step-arrow-width));
+		inset-block-start: calc(50% - var(--_step-arrow-block-size) - var(--_step-arrow-inline-size));
 		inset-inline-start: 100%;
-		border-inline-start: calc(var(--_step-arrow-height) * var(--_step-arrow-inclination)) solid;
+		border-inline-start: calc(var(--_step-arrow-block-size) * var(--_step-arrow-inclination)) solid;
 		border-inline-start-color: var(--_bg-color);
-		border-block: calc(var(--_step-arrow-height) + var(--_step-arrow-width)) solid transparent;
+		border-block: calc(var(--_step-arrow-block-size) + var(--_step-arrow-inline-size)) solid transparent;
 		content: "";
 	}
 
@@ -203,8 +203,8 @@
 
 /* ===== 目次 ===== */
 .p-toc {
-	--_icon-width: 0.75em; /* アイコンの幅 */
-	--_icon-height: calc(var(--_icon-width) * 0.75); /* アイコンの高さ */
+	--_icon-inline-size: 0.75em; /* アイコンの幅 */
+	--_icon-block-size: calc(var(--_icon-inline-size) * 0.75); /* アイコンの高さ */
 	--_icon-color: var(--color-gray); /* アイコンの色 */
 	--_icon-gap: 0.5em; /* アイコンと後続テキストの間隔 */
 
@@ -215,7 +215,7 @@
 	line-height: var(--line-height-narrow);
 
 	& > li {
-		margin-inline-start: calc(var(--_icon-width) + var(--_icon-gap));
+		margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
 		font-size: calc(100% * var(--font-ratio-1));
 
 		& + li {
@@ -223,22 +223,22 @@
 		}
 
 		& > ol > li {
-			margin-inline-start: calc(var(--_icon-width) + var(--_icon-gap));
+			margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
 			margin-block-start: 0.5em;
 			font-size: calc(100% / var(--font-ratio-1));
 		}
 	}
 
 	& :any-link {
-		margin-inline-start: calc(0px - var(--_icon-width) - var(--_icon-gap));
+		margin-inline-start: calc(0px - var(--_icon-inline-size) - var(--_icon-gap));
 		outline-offset: var(--outline-offset-linkonly);
 
 		&::before {
 			display: inline-block;
 			clip-path: var(--shape-pagelink-triangle);
 			margin-inline-end: var(--_icon-gap);
-			border-block-start: var(--_icon-height) solid var(--_icon-color);
-			width: var(--_icon-width);
+			border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+			inline-size: var(--_icon-inline-size);
 			content: "";
 		}
 

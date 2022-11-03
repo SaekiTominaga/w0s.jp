@@ -109,12 +109,12 @@ Styleguide 2.8.2
 	& img {
 		display: block;
 		border-radius: var(--_border-radius-inner) var(--_border-radius-inner) 0 0;
-		width: 100%;
+		inline-size: 100%;
 		object-fit: cover;
 		object-position: var(--object-position, center);
 
 		@media (width <= 36em) {
-			max-height: 15vh;
+			max-block-size: 15vh;
 		}
 	}
 }
@@ -122,14 +122,14 @@ Styleguide 2.8.2
 .p-top-nav-card__title {
 	--_text-color: inherit;
 	--_icon-color: var(--color-gray); /* アイコンの色 */
-	--_icon-width: 0.5625em; /* アイコンの幅 */
-	--_icon-height: 1em; /* アイコンの高さ */
+	--_icon-inline-size: 0.5625em; /* アイコンの幅 */
+	--_icon-block-size: 1em; /* アイコンの高さ */
 	--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
 
 	position: relative; /* for Safari */
 	contain: content;
 	margin: 16px;
-	padding-inline-end: calc(var(--_icon-gap) + var(--_icon-width));
+	padding-inline-end: calc(var(--_icon-gap) + var(--_icon-inline-size));
 	color: var(--_text-color);
 	font-weight: var(--font-weight-bold);
 	font-size: 150%;
@@ -143,10 +143,10 @@ Styleguide 2.8.2
 	&::after {
 		position: absolute;
 		clip-path: var(--shape-link-arrow);
-		inset-block-start: calc(50% - var(--_icon-height) / 2);
+		inset-block-start: calc(50% - var(--_icon-block-size) / 2);
 		inset-inline-end: 0;
-		border-block-start: var(--_icon-height) solid var(--_icon-color);
-		width: var(--_icon-width);
+		border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+		inline-size: var(--_icon-inline-size);
 		content: "";
 	}
 

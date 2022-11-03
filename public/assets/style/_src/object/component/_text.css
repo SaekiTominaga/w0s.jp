@@ -16,16 +16,16 @@ Styleguide 1.2.1
 */
 .c-link {
 	--_icon-clip-path: var(--shape-link-triangle);
-	--_icon-width: 0.45em;
-	--_icon-height: 0.75em;
+	--_icon-inline-size: 0.45em;
+	--_icon-block-size: 0.75em;
 	--_icon-color: var(--color-gray);
 
 	&::before {
 		display: inline-block;
 		clip-path: var(--_icon-clip-path);
 		margin-inline-end: 0.5em;
-		border-block-start: var(--_icon-height) solid var(--_icon-color);
-		width: var(--_icon-width);
+		border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+		inline-size: var(--_icon-inline-size);
 		content: "";
 	}
 
@@ -38,8 +38,8 @@ Styleguide 1.2.1
 		/* 同一ページ */
 		&[href^="#"] {
 			--_icon-clip-path: var(--shape-pagelink-triangle);
-			--_icon-width: 0.75em;
-			--_icon-height: 0.5625em;
+			--_icon-inline-size: 0.75em;
+			--_icon-block-size: 0.5625em;
 		}
 
 		&:hover {
@@ -61,8 +61,8 @@ Styleguide 1.2.2
 	justify-content: center;
 	align-items: center;
 	outline-width: var(--outline-width-bold);
-	min-width: var(--self-link-size);
-	min-height: var(--self-link-size);
+	min-inline-size: var(--self-link-size);
+	min-block-size: var(--self-link-size);
 	color: var(--link-color);
 	font-size: calc(100% / var(--font-ratio-3));
 	text-decoration: none;
@@ -90,7 +90,7 @@ Styleguide 1.2.3
 	--_padding-block: 0.5em;
 	--_padding-inline: 0.75em;
 	--_border-color: var(--color-border-dark);
-	--_width: auto;
+	--_inline-size: auto;
 	--_color: var(--color-black);
 	--_background: linear-gradient(var(--color-white), var(--color-bg-light));
 	--_font-size: 100%;
@@ -107,7 +107,7 @@ Styleguide 1.2.3
 	border-radius: var(--border-radius-normal);
 	background: var(--_background);
 	padding: var(--_padding-block) var(--_padding-inline);
-	width: var(--_width);
+	inline-size: var(--_inline-size);
 	color: var(--_color);
 	font-weight: var(--font-weight-bold);
 	font-size: var(--_font-size);
@@ -126,7 +126,7 @@ Styleguide 1.2.3
 
 	@nest .p-sidebar-profile__banners & {
 		--_padding-inline: 1px;
-		--_width: 100%;
+		--_inline-size: 100%;
 	}
 
 	&:hover {
@@ -171,8 +171,8 @@ Styleguide 1.2.3
 }
 
 .c-button__icon {
-	width: var(--_icon-size);
-	height: var(--_icon-size);
+	inline-size: var(--_icon-size);
+	block-size: var(--_icon-size);
 }
 
 .c-button__text {
@@ -498,7 +498,7 @@ Styleguide 1.2.13
 	&::before {
 		display: inline-block;
 		margin-inline-end: 0.25em;
-		min-width: 1em;
+		min-inline-size: 1em;
 		content: var(--_symbol, none);
 		color: var(--_color, inherit);
 		text-align: center;

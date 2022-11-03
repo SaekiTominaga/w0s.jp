@@ -49,8 +49,8 @@ Styleguide 2.5.1
 			inset: 1px;
 			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
 			padding: var(--_expand-icon-padding);
-			width: 24px;
-			height: 24px;
+			inline-size: 24px;
+			block-size: 24px;
 			content: "";
 		}
 
@@ -64,9 +64,9 @@ Styleguide 2.5.1
 		display: inline-block;
 		vertical-align: top;
 		border: var(--_border-width) solid var(--color-black);
-		max-width: calc(100% - var(--_border-width) * 2);
-		height: auto;
-	} /* <audio> については height: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
+		max-inline-size: calc(100% - var(--_border-width) * 2);
+		block-size: auto;
+	} /* <audio> については block-size: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
 
 	& video {
 		outline-width: var(--outline-width-bold);
@@ -86,8 +86,8 @@ Styleguide 2.5.1
 		margin-inline: auto;
 		border: var(--_border-width) solid var(--color-black);
 		aspect-ratio: var(--aspect-ratio, auto);
-		width: calc(100% - var(--_margin-inline) * 2);
-		height: auto;
+		inline-size: calc(100% - var(--_margin-inline) * 2);
+		block-size: auto;
 
 		@media (--breakpoint) {
 			--_margin-inline: 15px;
@@ -182,7 +182,7 @@ Styleguide 2.5.3
 .p-embed-sidebar__text {
 	flex: 999 0px;
 	order: var(--_order, 0);
-	min-width: 50%;
+	min-inline-size: 50%;
 }
 
 .p-embed-sidebar__embed {
