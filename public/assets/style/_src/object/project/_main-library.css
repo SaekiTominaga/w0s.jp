@@ -55,12 +55,36 @@
 	flex-wrap: wrap;
 	gap: 0.5em;
 
-	& > li {
+	& button {
+		--_bgcolor: var(--color-white);
+		--_color: var(--color-black);
+
 		border: 1px solid var(--color-black);
 		border-radius: var(--border-radius-large);
-		background-color: var(--color-white);
+		background-color: var(--_bgcolor);
 		padding: 0.25em;
+		color: var(--_color);
 		line-height: var(--line-height-nowrap);
+
+		&:disabled {
+			--_bgcolor: var(--color-bg-verydark);
+			--_color: var(--_color);
+
+			cursor: not-allowed;
+		}
+
+		&:focus-visible {
+			outline-width: var(--outline-width-bold);
+			outline-offset: -1px;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+
+		&:not(:disabled):hover {
+			--_bgcolor: var(--color-bg-verylight);
+		}
 	}
 }
 

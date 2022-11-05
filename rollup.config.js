@@ -6,7 +6,7 @@ const baseDir = 'public/assets/script';
 const inputDir = `${baseDir}/_src`;
 const outputDir = `${baseDir}`;
 
-const moduleFiles = ['w0s.ts', 'error.ts', 'contact.ts', 'tokyu_car_history.ts'];
+const moduleFiles = ['w0s.ts', 'error.ts', 'contact.ts', 'library-tag.ts', 'tokyu_car_history.ts'];
 const jsFiles = ['trusted-types.ts', 'analytics.ts'];
 
 const pluginTypeScript = typescript({
