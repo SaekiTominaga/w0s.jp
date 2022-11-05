@@ -61,6 +61,13 @@ export default class HtmlBook extends Html {
 	<%_ if (release !== undefined) { _%>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
 	<%_ } _%>
+	<%_ if (tags.length >= 1) { _%>
+		<ul class="p-library__tags">
+			<%_ for (tag of tags) { _%>
+			<li><%= tag %></li>
+			<%_ } _%>
+		</ul>
+	<%_ } _%>
 	<%_ if (isbn !== undefined) { _%>
 		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <span itemprop="isbn"><%= isbn %></span></a></p>
 	<%_ } _%>
@@ -84,6 +91,7 @@ export default class HtmlBook extends Html {
 
 			const nameElement = targetElement.querySelector('book-name');
 			const releaseElement = targetElement.querySelector('book-release');
+			const tagElements = targetElement.querySelectorAll('book-tag');
 			const isbnElement = targetElement.querySelector('book-isbn');
 			const amazonElement = targetElement.querySelector('book-amazon');
 			const contentsElement = targetElement.querySelector('book-contents');
@@ -106,6 +114,7 @@ export default class HtmlBook extends Html {
 				headingLevel: targetElement.getAttribute('heading-level'),
 				name: nameElement?.textContent,
 				release: releaseDate,
+				tags: Array.from(tagElements).map((element) => element.textContent),
 				isbn: isbnElement?.textContent ?? undefined,
 				asin: amazonElement?.getAttribute('asin') ?? undefined,
 				amazonImageId: amazonElement?.getAttribute('image-id') ?? undefined,

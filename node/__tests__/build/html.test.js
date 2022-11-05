@@ -809,6 +809,8 @@ describe('Book', () => {
 <book-release>2022-01-01</book-release>
 <book-isbn>978-4-06-377485-6</book-isbn>
 <book-amazon asin="B01GRDKGZW" image-id="510waYsj0oL" width="120" height="160"></book-amazon>
+<book-tag>タグ1</book-tag>
+<book-tag>タグ2</book-tag>
 <book-contents>
 <p>解説文1</p>
 <p>解説文2</p>
@@ -832,6 +834,10 @@ describe('Book', () => {
 	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
 		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
+		<ul class="p-library__tags">
+			<li>タグ1</li>
+			<li>タグ2</li>
+		</ul>
 </header>
 <div class="p-library__main">
 		<div class="p-embed-sidebar -embed-first">
