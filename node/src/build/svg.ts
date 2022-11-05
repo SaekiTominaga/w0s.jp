@@ -15,9 +15,6 @@ if (filePath === undefined || configFilePath === undefined) {
 	const svg = (await fs.promises.readFile(filePath)).toString();
 
 	const svgOptimized = optimize(svg.replace(/<svg version="([0-9.]+)"/, '<svg').replace(' id="レイヤー_1"', ''), await loadConfig(configFilePath));
-	if (svgOptimized.error !== undefined) {
-		throw new Error(svgOptimized.error);
-	}
 
 	/* 出力 */
 	const distPath = `${configCommon.static.root}/${filePath.substring(filePath.replace(/\\/g, '/').indexOf('/') + 1)}`;
