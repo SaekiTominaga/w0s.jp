@@ -91,7 +91,7 @@ describe('SectionId', () => {
 		);
 
 		new HtmlComponentSectionId(dom.window.document).convert({
-			section_area: dom.window.document.body,
+			sectioning_area: dom.window.document.body,
 			heading_levels: [1, 2],
 		});
 
@@ -128,7 +128,7 @@ describe('SectionId', () => {
 		);
 
 		new HtmlComponentSectionId(dom.window.document).convert({
-			section_area: dom.window.document.body,
+			sectioning_area: dom.window.document.body,
 			heading_levels: [1, 2],
 		});
 
@@ -788,7 +788,9 @@ describe('Book', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">書名</h2>
+	</div>
 </header>
 <div class="p-library__main">
 
@@ -825,7 +827,9 @@ describe('Book', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">書名</h2>
+	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
 		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
 </header>
@@ -881,7 +885,9 @@ describe('Book', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">書名</h2>
+	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -889,7 +895,9 @@ describe('Book', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">書名</h2>
+	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -897,7 +905,9 @@ describe('Book', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">書名</h2>
+	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -905,7 +915,9 @@ describe('Book', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">書名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">書名</h2>
+	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
 </header>
 <div class="p-library__main">
@@ -939,7 +951,9 @@ describe('Newspaper', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">誌名</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">誌名</h2>
+	</div>
 </header>
 <div class="p-library__main">
 
@@ -976,7 +990,9 @@ describe('Newspaper', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
+	</div>
 </header>
 <div class="p-library__main">
 
@@ -1012,7 +1028,9 @@ describe('Newspaper', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
+	</div>
 </header>
 <div class="p-library__main">
 
@@ -1020,7 +1038,9 @@ describe('Newspaper', () => {
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
 <header class="p-library__header">
-	<h2 class="p-library__title"><span itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></span></h2>
+	<div class="p-library__title">
+		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
+	</div>
 </header>
 <div class="p-library__main">
 
