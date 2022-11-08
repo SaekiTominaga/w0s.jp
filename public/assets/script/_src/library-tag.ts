@@ -15,23 +15,37 @@ const narrowDown = (tagName?: string): void => {
 	const libraryElements = Array.from(document.querySelectorAll<HTMLElement>('.p-library'));
 
 	/* いったんリセット */
-	librarySectionElements.forEach((element) => (element.hidden = false));
-	libraryElements.forEach((element) => (element.hidden = false));
-	tagButtonElements.forEach((element) => (element.disabled = false));
+	librarySectionElements.forEach((element) => {
+		element.hidden = false;
+	});
+	libraryElements.forEach((element) => {
+		element.hidden = false;
+	});
+	tagButtonElements.forEach((element) => {
+		element.disabled = false;
+	});
 
 	if (tagName !== undefined) {
 		/* 当該タグ以外の要素を非表示にする */
 		libraryElements
-			.filter((element) => Array.from(element.querySelectorAll('.p-library .p-library__tags > li')).every((element) => element.textContent !== tagName))
-			.forEach((element) => (element.hidden = true));
+			.filter((element) => Array.from(element.querySelectorAll('.p-library .p-library__tags > li')).every((liElement) => liElement.textContent !== tagName))
+			.forEach((element) => {
+				element.hidden = true;
+			});
 
 		/* セクション内の表示要素が0件になった場合はセクションごと非表示にする */
-		librarySectionElements.filter((element) => element.querySelectorAll('.p-library:not([hidden])').length === 0).forEach((element) => (element.hidden = true));
+		librarySectionElements
+			.filter((element) => element.querySelectorAll('.p-library:not([hidden])').length === 0)
+			.forEach((element) => {
+				element.hidden = true;
+			});
 
 		/* 当該タグボタンを非活性にする */
 		Array.from(tagButtonElements)
 			.filter((element) => element.textContent === tagName)
-			.forEach((element) => (element.disabled = true));
+			.forEach((element) => {
+				element.disabled = true;
+			});
 	}
 };
 
