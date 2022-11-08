@@ -51,7 +51,7 @@ export default class HtmlAnchorType extends Html {
 		};
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
 			const type = targetElement.getAttribute('type');
 			if (type !== null) {

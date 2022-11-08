@@ -1,12 +1,13 @@
 import { body, Result, ValidationError, validationResult } from 'express-validator';
-import { NoName as Configure } from '../../configure/type/akamatsu-generator.js';
 import { Request } from 'express';
+import { NoName as Configure } from '../../configure/type/akamatsu-generator.js';
 
 /**
  * 赤松健セリフジェネレーター
  */
 export default class AkamatsuGeneratorValidator {
 	#req: Request;
+
 	#config: Configure;
 
 	/**
@@ -41,8 +42,14 @@ export default class AkamatsuGeneratorValidator {
 				.isLength({ max: this.#config.validator.text_left2.maxlength })
 				.withMessage(this.#config.validator.text_left2.message.maxlength)
 				.run(this.#req),
-			body('color').matches(new RegExp('#[0-9A-F]{6}', 'i')).withMessage(this.#config.validator.color.message.format).run(this.#req),
-			body('bgcolor').matches(new RegExp('#[0-9A-F]{6}', 'i')).withMessage(this.#config.validator.bgcolor.message.format).run(this.#req),
+			body('color')
+				.matches(/#[0-9A-F]{6}/i)
+				.withMessage(this.#config.validator.color.message.format)
+				.run(this.#req),
+			body('bgcolor')
+				.matches(/#[0-9A-F]{6}/i)
+				.withMessage(this.#config.validator.bgcolor.message.format)
+				.run(this.#req),
 		]);
 
 		return validationResult(this.#req);

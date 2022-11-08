@@ -1,10 +1,10 @@
+import fs from 'fs';
+import { Request, Response } from 'express';
 import ContactValidator from '../validator/ContactValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import fs from 'fs';
 import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/contact.js';
-import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -12,6 +12,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class ContactCompletedController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**

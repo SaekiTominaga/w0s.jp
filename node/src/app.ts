@@ -1,7 +1,12 @@
+import compression from 'compression';
+import express, { NextFunction, Request, Response } from 'express';
+import fs from 'fs';
+import Log4js from 'log4js';
+import path from 'path';
+import qs from 'qs';
 import AkamatsuGenerator from './controller/AkamatsuGenerator.js';
 import AmazonAdsController from './controller/AmazonAdsController.js';
 import AmazonAdsJsonController from './controller/api/AmazonAdsJsonController.js';
-import compression from 'compression';
 import ContactCompletedController from './controller/ContactCompletedController.js';
 import ContactInputController from './controller/ContactInputController.js';
 import ContactSendController from './controller/ContactSendController.js';
@@ -9,16 +14,11 @@ import CrawlerNewsController from './controller/CrawlerNewsController.js';
 import CrawlerNewsDataController from './controller/CrawlerNewsDataController.js';
 import CrawlerResourceController from './controller/CrawlerResourceController.js';
 import CrawlerResourceLogController from './controller/CrawlerResourceLogController.js';
-import express, { NextFunction, Request, Response } from 'express';
-import fs from 'fs';
 import HttpBasicAuth from './util/HttpBasicAuth.js';
 import HttpResponse from './util/HttpResponse.js';
 import KumetaTwitterController from './controller/KumetaTwitterController.js';
-import Log4js from 'log4js';
 import MadokaOfficialNewsIndexController from './controller/MadokaOfficialNewsIndexController.js';
 import MadokaOfficialNewsMonthController from './controller/MadokaOfficialNewsMonthController.js';
-import path from 'path';
-import qs from 'qs';
 import TokyuCarHistoryController from './controller/TokyuCarHistoryController.js';
 import { W0SJp as Configure } from '../configure/type/common.js';
 
@@ -81,7 +81,7 @@ app.use(
 	}),
 	async (req, res, next) => {
 		/* Basic Authentication */
-		const basic = config.static.auth_basic?.find((basic) => basic.directory.find((urlPath) => req.url.startsWith(urlPath)));
+		const basic = config.static.auth_basic?.find((basicAuth) => basicAuth.directory.find((urlPath) => req.url.startsWith(urlPath)));
 		if (basic !== undefined) {
 			const httpBasicAuth = new HttpBasicAuth(req);
 			if (!(await httpBasicAuth.htpasswd(basic.htpasswd))) {
@@ -108,11 +108,9 @@ app.use(
 			if (extension !== undefined) {
 				requestFilePath = `${requestPath}.${extension}`;
 			}
-		} else {
+		} else if (fs.existsSync(`${config.static.root}/${requestPath}`)) {
 			/* 拡張子のある URL（e.g. /foo.txt ） */
-			if (fs.existsSync(`${config.static.root}/${requestPath}`)) {
-				requestFilePath = requestPath;
-			}
+			requestFilePath = requestPath;
 		}
 
 		/* Brotli */
@@ -149,8 +147,8 @@ app.use(
 				const cacheControlConfig = env === 'production' ? config.static.headers.cache_control.production : config.static.headers.cache_control.development;
 
 				const cacheControlValue =
-					cacheControlConfig.path?.find((path) => path.paths.includes(requestUrlOrigin))?.value ??
-					cacheControlConfig.extension?.find((ext) => ext.extensions.includes(extensionOrigin))?.value ??
+					cacheControlConfig.path?.find((ccPath) => ccPath.paths.includes(requestUrlOrigin))?.value ??
+					cacheControlConfig.extension?.find((ccExt) => ccExt.extensions.includes(extensionOrigin))?.value ??
 					cacheControlConfig.default;
 
 				res.setHeader('Cache-Control', cacheControlValue);

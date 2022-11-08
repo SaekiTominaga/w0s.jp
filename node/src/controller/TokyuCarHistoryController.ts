@@ -1,13 +1,13 @@
-import Controller from '../Controller.js';
-import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
 import fs from 'fs';
+import { Request, Response } from 'express';
+import { Result as ValidationResult, ValidationError } from 'express-validator';
+import Controller from '../Controller.js';
+import ControllerInterface from '../ControllerInterface.js';
 import RequestUtil from '../util/RequestUtil.js';
 import TokyuCarHistoryDao from '../dao/TokyuCarHistoryDao.js';
 import TokyuCarHistoryValidator from '../validator/TokyuCarHistoryValidator.js';
 import { NoName as Configure } from '../../configure/type/tokyu-car-history.js';
-import { Request, Response } from 'express';
-import { Result as ValidationResult, ValidationError } from 'express-validator';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -15,6 +15,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class TokyuCarHistoryController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**
@@ -74,7 +75,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 							changeView.push({
 								number: change.number,
 								sign: change.sign,
-								date: this.dateFormat(change.date, requestQuery),
+								date: TokyuCarHistoryController.#dateFormat(change.date, requestQuery),
 							});
 						}
 					}
@@ -85,7 +86,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 						series: carData.series,
 						type: carData.type,
 						annual: carData.annual,
-						register: this.dateFormat(carData.register, requestQuery),
+						register: TokyuCarHistoryController.#dateFormat(carData.register, requestQuery),
 						change: changeView,
 						renewal: carData.renewal,
 						age: dayjs().diff(dayjs(carData.register), 'y'), // https://day.js.org/docs/en/display/difference
@@ -127,11 +128,12 @@ export default class TokyuCarHistoryController extends Controller implements Con
 	 *
 	 * @returns {string} 整形後の日付データ
 	 */
-	private dateFormat(date: Date, requestQuery: TokyuCarHistoryRequest.Search): string {
+	static #dateFormat(date: Date, requestQuery: TokyuCarHistoryRequest.Search): string {
 		switch (requestQuery.era) {
 			case 'ja':
 				/* 和暦 */
 				return date.toLocaleDateString('ja-JP-u-ca-japanese', { dateStyle: 'short' }).replaceAll('/', '.');
+			default:
 		}
 
 		/* 西暦 */

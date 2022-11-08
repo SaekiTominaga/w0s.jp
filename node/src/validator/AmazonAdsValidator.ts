@@ -1,12 +1,13 @@
-import { Amazon as Configure } from '../../configure/type/amazon-ads.js';
 import { body, Result, ValidationError, validationResult } from 'express-validator';
 import { Request } from 'express';
+import { Amazon as Configure } from '../../configure/type/amazon-ads.js';
 
 /**
  * Amazon 商品広告管理
  */
 export default class AmazonAdsValidator {
 	#req: Request;
+
 	#config: Configure;
 
 	/**

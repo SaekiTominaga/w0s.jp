@@ -1,5 +1,9 @@
 import ejs from 'ejs';
 import fs from 'fs';
+import path from 'path';
+import prettier from 'prettier';
+import { globby } from 'globby';
+import { JSDOM } from 'jsdom';
 import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAssociate.js';
 import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
@@ -14,10 +18,6 @@ import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import HtmlComponentToc from './component/HtmlToc.js';
 import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
 import HtmlCpmponentSectioningId from './component/HtmlSectioningId.js';
-import path from 'path';
-import prettier from 'prettier';
-import { globby } from 'globby';
-import { JSDOM } from 'jsdom';
 import { NoName as Configure } from '../../configure/type/build.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
@@ -93,7 +93,7 @@ if (filesPath === undefined) {
 		const htmlCommentOmitted = html.replace(/<!--[\s\S]*?-->/g, '');
 
 		const dom = new JSDOM(htmlCommentOmitted);
-		const document = dom.window.document;
+		const { document } = dom.window;
 
 		const contentMain = document.querySelector('.l-content__main');
 		const contentHeader = document.querySelector('.l-content__header');

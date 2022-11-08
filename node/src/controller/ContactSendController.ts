@@ -1,14 +1,14 @@
+import ejs from 'ejs';
+import fs from 'fs';
+import nodemailer from 'nodemailer';
+import { Request, Response } from 'express';
+import { Result as ValidationResult, ValidationError } from 'express-validator';
 import ContactValidator from '../validator/ContactValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import ejs from 'ejs';
-import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
-import nodemailer from 'nodemailer';
 import { NoName as Configure } from '../../configure/type/contact.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
-import { Request, Response } from 'express';
-import { Result as ValidationResult, ValidationError } from 'express-validator';
 import RequestUtil from '../util/RequestUtil.js';
 
 /**
@@ -16,6 +16,7 @@ import RequestUtil from '../util/RequestUtil.js';
  */
 export default class ContactSendController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**

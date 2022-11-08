@@ -1,15 +1,15 @@
+import fs from 'fs';
+import path from 'path';
+import Sharp from 'sharp';
+import StringEscapeHtml from '@saekitominaga/string-escape-html';
+import { Request, Response } from 'express';
+import { Result as ValidationResult, ValidationError } from 'express-validator';
 import AkamatsuGeneratorValidator from '../validator/AkamatsuGeneratorValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
-import path from 'path';
 import RequestUtil from '../util/RequestUtil.js';
-import Sharp from 'sharp';
-import StringEscapeHtml from '@saekitominaga/string-escape-html';
 import { NoName as Configure } from '../../configure/type/akamatsu-generator.js';
-import { Request, Response } from 'express';
-import { Result as ValidationResult, ValidationError } from 'express-validator';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -17,6 +17,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class AkamatsuGenerator extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**
@@ -174,9 +175,11 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 	#getSvg(text: string, color: string | null): string {
 		return `
 <svg viewBox="0 0 ${this.#config.icon.width} ${this.#config.icon.height}">
-	<text x="${this.#config.icon.font_size / 2}" writing-mode="tb" fill="${StringEscapeHtml.escape(color ?? '#000000')}" font-size="${
-			this.#config.icon.font_size
-		}">${StringEscapeHtml.escape(text)}</text>
+	<text
+		x="${this.#config.icon.font_size / 2}"
+		writing-mode="tb" fill="${StringEscapeHtml.escape(color ?? '#000000')}"
+		font-size="${this.#config.icon.font_size}"
+	>${StringEscapeHtml.escape(text)}</text>
 </svg>
 `;
 	}

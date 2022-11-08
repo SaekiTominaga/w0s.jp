@@ -1,19 +1,19 @@
-import AmazonAdsDao from '../dao/AmazonAdsDao.js';
-import AmazonAdsValidator from '../validator/AmazonAdsValidator.js';
 // @ts-expect-error: ts(7016)
 import amazonPaapi from 'amazon-paapi';
-import Controller from '../Controller.js';
-import ControllerInterface from '../ControllerInterface.js';
 import dayjs from 'dayjs';
 import fs from 'fs';
-import HttpResponse from '../util/HttpResponse.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
-import PaapiUtil from '../util/Paapi.js';
-import RequestUtil from '../util/RequestUtil.js';
-import { Amazon as Configure } from '../../configure/type/amazon-ads.js';
 import { GetItemsResponse } from 'paapi5-typescript-sdk';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
+import AmazonAdsDao from '../dao/AmazonAdsDao.js';
+import AmazonAdsValidator from '../validator/AmazonAdsValidator.js';
+import Controller from '../Controller.js';
+import ControllerInterface from '../ControllerInterface.js';
+import HttpResponse from '../util/HttpResponse.js';
+import PaapiUtil from '../util/Paapi.js';
+import RequestUtil from '../util/RequestUtil.js';
+import { Amazon as Configure } from '../../configure/type/amazon-ads.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -21,6 +21,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class AmazonAdsController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**

@@ -37,9 +37,9 @@ export default class HtmlHeadingSelfLink extends Html {
 		};
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
-			const id = targetElement.id;
+			const { id } = targetElement;
 			if (id === '') {
 				console.warn(`<${targetElement.tagName}> 要素に ID が設定されていない`, targetElement.textContent?.substring(0, 10));
 				continue;

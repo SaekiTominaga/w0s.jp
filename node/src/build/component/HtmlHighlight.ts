@@ -39,7 +39,7 @@ export default class HtmlHighlight extends Html {
 		});
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
 			const content = targetElement.textContent;
 			if (content === null || content === '') {

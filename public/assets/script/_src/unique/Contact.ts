@@ -1,20 +1,25 @@
+/* eslint-disable lines-between-class-members */
 /**
  * 問い合わせフォーム
  */
-export default class {
+export default class Contact {
 	#bodyElement: HTMLBodyElement;
 
-	#FORM_ELEMENT_ID = 'contact-form'; // 問い合わせフォーム要素の ID
-	#formElement: HTMLFormElement; // 問い合わせフォーム要素
+	/* 問い合わせフォーム要素 */
+	#FORM_ELEMENT_ID = 'contact-form';
+	#formElement: HTMLFormElement;
 
-	#CONFIRM_BUTTON_ELEMENT_ID = 'js-confirm-button'; // 確認ボタン（確認画面へ進む）の ID
-	#confirmButtonElement: HTMLButtonElement; // 確認ボタン（確認画面へ進む）
+	/* 確認ボタン（確認画面へ進む） */
+	#CONFIRM_BUTTON_ELEMENT_ID = 'js-confirm-button';
+	#confirmButtonElement: HTMLButtonElement;
 
-	#CORRECT_BUTTON_ELEMENT_ID = 'js-correct-button'; // 修正ボタン（入力画面へ戻る）の ID
-	#correctButtonElement: HTMLButtonElement; // 修正ボタン（入力画面へ戻る）
+	/* 修正ボタン（入力画面へ戻る） */
+	#CORRECT_BUTTON_ELEMENT_ID = 'js-correct-button';
+	#correctButtonElement: HTMLButtonElement;
 
-	#SEND_BUTTON_ELEMENT_ID = 'js-send-button'; // 送信ボタン（完了画面へ進む）の ID
-	#sendButtonElement: HTMLButtonElement; // 送信ボタン（完了画面へ進む）
+	/* 送信ボタン（完了画面へ進む） */
+	#SEND_BUTTON_ELEMENT_ID = 'js-send-button';
+	#sendButtonElement: HTMLButtonElement;
 
 	#inputScreenElements: NodeListOf<HTMLElement>; // 入力画面で表示する要素
 	#confirmScreenElements: NodeListOf<HTMLElement>; // 確認画面で表示する要素
@@ -61,9 +66,9 @@ export default class {
 		this.#bodyElement.tabIndex = -1; // ボタン押下時にページ先頭へ focus() させるため
 		this.#confirmButtonElement.type = 'submit'; // HTMLInputElement.setCustomValidity() でツールチップを出すためにボタンは Submit Button 状態とする
 
-		this._stepChange();
+		this.#stepChange();
 		window.addEventListener('hashchange', (): void => {
-			this._stepChange();
+			this.#stepChange();
 		});
 
 		/* 入力画面にて確認ボタン押下（確認画面へ進む） */
@@ -71,20 +76,20 @@ export default class {
 			ev.preventDefault();
 
 			if (this.#formElement.checkValidity()) {
-				this._stepChangeButtonClick(this.#CONFIRM_HASH);
+				this.#stepChangeButtonClick(this.#CONFIRM_HASH);
 			}
 		});
 
 		/* 確認画面にて修正ボタン押下（入力画面へ戻る） */
 		this.#correctButtonElement.addEventListener('click', (): void => {
-			this._stepChangeButtonClick('');
+			this.#stepChangeButtonClick('');
 		});
 	}
 
 	/**
 	 * 画面状態変更時（入力画面→確認画面などの切り替え）の処理
 	 */
-	private _stepChange(): void {
+	#stepChange(): void {
 		switch (location.hash.substring(1)) {
 			/* 確認画面 */
 			case this.#CONFIRM_HASH:
@@ -111,13 +116,13 @@ export default class {
 						throw new Error(`name: ${formCtrlName} is none.`);
 					}
 
-					let value = formCtrls.value;
+					let { value } = formCtrls;
 
 					switch (Object.prototype.toString.call(formCtrls)) {
 						case '[object HTMLInputElement]':
 							if ((<HTMLInputElement>formCtrls).type === 'checkbox') {
 								/* 単体チェックボックス */
-								value = this._getLabelTextFormControl(<HTMLInputElement>formCtrls);
+								value = Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrls);
 							}
 
 							break;
@@ -125,18 +130,21 @@ export default class {
 							if (value === '') {
 								/* ラジオボタン（未選択時）またはチェックボックス群 */
 								const labelTextList: string[] = [];
-								for (const formCtrl of Array.from(<RadioNodeList>formCtrls).filter((formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).checked)) {
-									labelTextList.push(this._getLabelTextFormControl(<HTMLInputElement>formCtrl));
+								for (const formCtrlRlrmrnt of Array.from(<RadioNodeList>formCtrls).filter((formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).checked)) {
+									labelTextList.push(Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrlRlrmrnt));
 								}
 								value = labelTextList.join('、');
 							} else {
 								/* ラジオボタン（選択時） */
-								for (const formCtrl of Array.from(<RadioNodeList>formCtrls).filter((formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).value === value)) {
-									value = this._getLabelTextFormControl(<HTMLInputElement>formCtrl);
+								for (const formCtrlElement of Array.from(<RadioNodeList>formCtrls).filter(
+									(formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).value === value
+								)) {
+									value = Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrlElement);
 								}
 							}
 
 							break;
+						default:
 					}
 
 					confirmOutputElement.textContent = value;
@@ -161,12 +169,12 @@ export default class {
 	 *
 	 * @param {string} hash - URL のハッシュ値
 	 */
-	private _stepChangeButtonClick(hash: string): void {
+	#stepChangeButtonClick(hash: string): void {
 		history.pushState(null, '', hash === '' ? location.pathname : `#${hash}`);
 		window.scroll(0, 0);
 		this.#bodyElement.focus();
 
-		this._stepChange();
+		this.#stepChange();
 	}
 
 	/**
@@ -176,7 +184,7 @@ export default class {
 	 *
 	 * @returns {string} ラベルテキスト（ラベルが存在しない場合は value 属性値）
 	 */
-	private _getLabelTextFormControl(formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
+	static #getLabelTextFormControl(formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
 		const labelElements = <NodeListOf<HTMLLabelElement>>formCtrl.labels;
 		if (labelElements.length === 0) {
 			console.info('label does not exist', formCtrl);

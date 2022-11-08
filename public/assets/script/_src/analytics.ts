@@ -1,4 +1,7 @@
-/* eslint no-var: off, @typescript-eslint/ban-ts-comment: off */
+/* eslint-disable no-multi-assign */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-var */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 /**

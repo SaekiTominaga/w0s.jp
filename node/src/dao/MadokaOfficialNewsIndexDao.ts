@@ -8,7 +8,7 @@ export default class MadokaOfficialNewsIndexDao extends MadokaOfficialNewsDao {
 	/**
 	 * ニュース記事一覧（劇場版）を取得
 	 *
-	 * @returns {Object[]} ニュース記事一覧
+	 * @returns {object[]} ニュース記事一覧
 	 */
 	async getNewsListMovie(): Promise<MadokaOfficialNewsView.NewsIndex[]> {
 		const dbh = await this.getDbh();
@@ -43,7 +43,7 @@ export default class MadokaOfficialNewsIndexDao extends MadokaOfficialNewsDao {
 	/**
 	 * ニュース記事一覧（TVシリーズ）を取得
 	 *
-	 * @returns {Object[]} ニュース記事一覧
+	 * @returns {object[]} ニュース記事一覧
 	 */
 	async getNewsListTv(): Promise<MadokaOfficialNewsView.NewsIndex[]> {
 		const dbh = await this.getDbh();

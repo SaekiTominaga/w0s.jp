@@ -17,7 +17,7 @@ config.feed.info.forEach(async (feedInfo) => {
 	const html = (await fs.promises.readFile(`${configCommon.static.root}/${feedInfo.html_path}`)).toString();
 
 	/* DOM 化 */
-	const document = new jsdom.JSDOM(html).window.document;
+	const { document } = new jsdom.JSDOM(html).window;
 	const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
 
 	/* HTML から必要なデータを取得 */
@@ -35,6 +35,8 @@ config.feed.info.forEach(async (feedInfo) => {
 				.toString()
 				.trim()
 		);
+
+		// eslint-disable-next-line no-loop-func
 		const links = xpathSelect('.//x:a/@href', <Node>wrapElement).map((value) => String((<Node>value).nodeValue).trim());
 		const content = xpathSelect(feedInfo.xpath.content, <Node>wrapElement)
 			.join('')

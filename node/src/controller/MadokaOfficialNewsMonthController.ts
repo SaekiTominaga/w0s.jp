@@ -1,11 +1,11 @@
+import fs from 'fs';
+import { Dayjs } from 'dayjs';
+import { Request, Response } from 'express';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import fs from 'fs';
 import MadokaOfficialNewsMonthDao from '../dao/MadokaOfficialNewsMonthDao.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { Dayjs } from 'dayjs';
 import { NoName as Configure } from '../../configure/type/madoka-official-news.js';
-import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -13,6 +13,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class MadokaOfficialNewsMonthController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**

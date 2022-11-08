@@ -6,8 +6,10 @@ export default class Tweet {
 
 	/* 画像の添付最大数 */
 	readonly #IMAGE_LIMIT = 4;
+
 	/* API のアクセス取得間隔（ミリ秒） */
 	readonly #ACCESS_INTERVAL = 1000;
+
 	/* 最大文字数超過時の本文末尾に追加する文字列 */
 	readonly #POST_MARKER = '...';
 
@@ -33,11 +35,11 @@ export default class Tweet {
 
 		/* 本文を組み立てる */
 		let postText = text;
-		let postMessage = this.assembleTweetMessage(postText, url, hashtag);
+		let postMessage = Tweet.#assembleTweetMessage(postText, url, hashtag);
 
 		while (!TwitterText.parseTweet(postMessage).valid) {
 			postText = postText.substring(0, postText.length - 1);
-			postMessage = this.assembleTweetMessage(postText, url, hashtag, this.#POST_MARKER);
+			postMessage = Tweet.#assembleTweetMessage(postText, url, hashtag, this.#POST_MARKER);
 
 			if (postText.length === 0) {
 				throw new Error('The tweet will fail even if the length of the body is shortened to 0 characters.');
@@ -60,7 +62,7 @@ export default class Tweet {
 			requestParams.media_ids = Array.from(mediaIds).join(',');
 		}
 
-		await this.apiConnectPreprocessing();
+		await this.#apiConnectPreprocessing();
 
 		const response = await this.#twitter.post('statuses/update', requestParams); // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
 
@@ -79,7 +81,7 @@ export default class Tweet {
 	 * @returns {string} media_id
 	 */
 	async uploadMedia(media: Buffer): Promise<string> {
-		await this.apiConnectPreprocessing();
+		await this.#apiConnectPreprocessing();
 
 		const response = await this.#twitter.post('media/upload', {
 			media: media,
@@ -95,12 +97,14 @@ export default class Tweet {
 	/**
 	 * API 接続前に行う処理
 	 */
-	private async apiConnectPreprocessing(): Promise<void> {
+	async #apiConnectPreprocessing(): Promise<void> {
 		if (this.#requestCount > 0) {
 			/* 初回リクエスト時以外は一定間隔を空けてアクセス */
-			await new Promise((resolve) => setTimeout(resolve, this.#ACCESS_INTERVAL));
+			await new Promise((resolve): void => {
+				setTimeout(resolve, this.#ACCESS_INTERVAL);
+			});
 		}
-		this.#requestCount++;
+		this.#requestCount += 1;
 	}
 
 	/**
@@ -113,7 +117,7 @@ export default class Tweet {
 	 *
 	 * @returns {string} 組み立てたメッセージ
 	 */
-	private assembleTweetMessage(text: string, url?: string, hashtag?: string, trimMaker?: string): string {
+	static #assembleTweetMessage(text: string, url?: string, hashtag?: string, trimMaker?: string): string {
 		let message = text;
 		if (trimMaker !== undefined && trimMaker !== '') {
 			message += trimMaker;

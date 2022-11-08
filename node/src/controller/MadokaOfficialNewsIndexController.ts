@@ -1,11 +1,11 @@
+import fs from 'fs';
+import { Request, Response } from 'express';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import fs from 'fs';
 import HttpResponse from '../util/HttpResponse.js';
 import MadokaOfficialNewsIndexDao from '../dao/MadokaOfficialNewsIndexDao.js';
 import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/madoka-official-news.js';
-import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -13,6 +13,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class MadokaOfficialNewsIndexController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**
@@ -55,7 +56,7 @@ export default class MadokaOfficialNewsIndexController extends Controller implem
 		/* 月ごとのニュース件数 */
 		const monthDataView: Map<number, Map<number, number>> = new Map();
 		for (const monthData of monthDataList) {
-			const date = monthData.date;
+			const { date } = monthData;
 			const year = date.getFullYear();
 			const month = date.getMonth() + 1;
 

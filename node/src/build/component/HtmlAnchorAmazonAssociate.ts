@@ -27,7 +27,7 @@ export default class HtmlAnchorAmazonAssociate extends Html {
 		};
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
 			const href = targetElement.getAttribute('href');
 			if (href === null) {
