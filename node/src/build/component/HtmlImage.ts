@@ -1,5 +1,5 @@
-import Html from './Html.js';
 import URLSearchParamsCustomSeparator from '@saekitominaga/urlsearchparams-custom-separator';
+import Html from './Html.js';
 
 /**
  * `<picture>` 要素を使って複数フォーマットの画像を提供する
@@ -27,7 +27,7 @@ export default class HtmlImage extends Html {
 		const targetClassName = options.target_class;
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
 			const src = targetElement.getAttribute('src');
 			if (src === null) {
@@ -71,7 +71,7 @@ export default class HtmlImage extends Html {
 
 			const sourceAvifElement = this.document.createElement('source');
 			sourceAvifElement.type = 'image/avif';
-			sourceAvifElement.srcset = `${originAndPath}${this.#assembleUrlSearch('avif', width1x, height1x, quality1x)}, ${originAndPath}${this.#assembleUrlSearch(
+			sourceAvifElement.srcset = `${originAndPath}${HtmlImage.#assembleUrlSearch('avif', width1x, height1x, quality1x)}, ${originAndPath}${HtmlImage.#assembleUrlSearch(
 				'avif',
 				width2x,
 				height2x,
@@ -81,7 +81,7 @@ export default class HtmlImage extends Html {
 
 			const sourceWebpElement = this.document.createElement('source');
 			sourceWebpElement.type = 'image/webp';
-			sourceWebpElement.srcset = `${originAndPath}${this.#assembleUrlSearch('webp', width1x, height1x, quality1x)}, ${originAndPath}${this.#assembleUrlSearch(
+			sourceWebpElement.srcset = `${originAndPath}${HtmlImage.#assembleUrlSearch('webp', width1x, height1x, quality1x)}, ${originAndPath}${HtmlImage.#assembleUrlSearch(
 				'webp',
 				width2x,
 				height2x,
@@ -105,7 +105,7 @@ export default class HtmlImage extends Html {
 	 *
 	 * @returns {string} URL.search
 	 */
-	#assembleUrlSearch = (type: string, width: number | null, height: number | null, quality: number): string => {
+	static #assembleUrlSearch = (type: string, width: number | null, height: number | null, quality: number): string => {
 		let urlSearch = `?type=${type}`;
 
 		if (width !== null) {

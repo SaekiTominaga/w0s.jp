@@ -1,8 +1,8 @@
+import fs from 'fs';
+import { Request, Response } from 'express';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import fs from 'fs';
 import { NoName as Configure } from '../../configure/type/contact.js';
-import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -10,6 +10,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class ContactInputController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**

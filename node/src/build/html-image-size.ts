@@ -18,7 +18,7 @@ if (filesPath === undefined) {
 		console.info(filePath);
 		const fileData = (await fs.promises.readFile(filePath)).toString();
 
-		const document = new JSDOM(fileData).window.document;
+		const { document } = new JSDOM(fileData).window;
 
 		for (const imageElement of <NodeListOf<HTMLImageElement>>document.querySelectorAll('img[src^="https://"]')) {
 			const imageUrl = new URL(imageElement.src);
@@ -28,7 +28,9 @@ if (filesPath === undefined) {
 
 			if (fetchedHost.has(imageUrl.host)) {
 				/* 同一ホストへのアクセスは一定間隔を空ける */
-				await new Promise((resolve) => setTimeout(resolve, 1000));
+				await new Promise((resolve) => {
+					setTimeout(resolve, 1000);
+				});
 			} else {
 				fetchedHost.add(imageUrl.host);
 			}
@@ -64,8 +66,7 @@ if (filesPath === undefined) {
 			});
 
 			const size = sizeOf(buffer);
-			const width = size.width;
-			const height = size.height;
+			const { width, height } = size;
 			if (width === undefined || height === undefined) {
 				console.warn('<img> 要素で指定された画像のサイズが取得できない', filePath, imageUrl.toString());
 				continue;

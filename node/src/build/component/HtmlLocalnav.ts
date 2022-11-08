@@ -9,9 +9,10 @@ export default class HtmlLocalnav extends Html {
 	 *
 	 * @param {object} options - Options
 	 * @param {string} options.target_class - Class name
-	 * @param {Element} options.header_area - Contents header area
-	 * @param {Element} options.footer_area - Contents footer area
+	 * @param {object} options.header_area - Contents header area
+	 * @param {object} options.footer_area - Contents footer area
 	 */
+	// eslint-disable-next-line class-methods-use-this
 	convert(
 		options: Readonly<{
 			target_class: string;
@@ -25,10 +26,10 @@ export default class HtmlLocalnav extends Html {
 
 		const localNavHeader = headerAreaElement.querySelector(`.${targetClassName}`);
 		if (localNavHeader !== null) {
-			this.removeClassName(localNavHeader, targetClassName);
+			Html.removeClassName(localNavHeader, targetClassName);
 
 			if (footerAreaElement === null) {
-				console.warn('コンテンツフッターが存在しない')
+				console.warn('コンテンツフッターが存在しない');
 				return;
 			}
 

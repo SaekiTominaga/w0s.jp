@@ -1,17 +1,31 @@
+/* eslint-disable no-tabs */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default-member */
+import { describe, expect, test } from '@jest/globals';
+import { JSDOM } from 'jsdom';
 import HtmlComponent from '../../dist/build/component/Html.js';
 import HtmlComponentAnchorAmazonAssociate from '../../dist/build/component/HtmlAnchorAmazonAssociate.js';
 import HtmlComponentAnchorHost from '../../dist/build/component/HtmlAnchorHost.js';
 import HtmlComponentAnchorType from '../../dist/build/component/HtmlAnchorType.js';
 import HtmlComponentBook from '../../dist/build/component/HtmlBook.js';
 import HtmlComponentFootnote from '../../dist/build/component/HtmlFootnote.js';
-import HtmlComponentHeadingAnchor from '../../dist/build/component/HtmlHeadingAnchor.js';
+import HtmlComponentHeadingSelfLink from '../../dist/build/component/HtmlHeadingSelfLink.js';
 import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
 import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
 import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js';
 import HtmlComponentSectionId from '../../dist/build/component/HtmlSectionId.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
-import { describe, expect, test } from '@jest/globals';
-import { JSDOM } from 'jsdom';
+
+class HtmlTest extends HtmlComponent {
+	replaceElementTest(element, newElementName) {
+		this.replaceElement(element, newElementName);
+	}
+
+	static removeClassNameTest(element, className) {
+		HtmlComponent.removeClassName(element, className);
+	}
+}
 
 describe('replaceElement()', () => {
 	test('クラス名のパターン', () => {
@@ -22,11 +36,11 @@ describe('replaceElement()', () => {
 </body></html>`
 		);
 
-		const document = dom.window.document;
-		const htmlComponent = new HtmlComponent(document);
+		const { document } = dom.window;
 
+		const htmlTest = new HtmlTest(document);
 		for (const targetElement of document.querySelectorAll('span')) {
-			htmlComponent.replaceElement(targetElement, 'foo');
+			htmlTest.replaceElementTest(targetElement, 'foo');
 		}
 
 		expect(dom.serialize()).toBe(
@@ -47,11 +61,10 @@ describe('removeClassName()', () => {
 </body></html>`
 		);
 
-		const document = dom.window.document;
-		const htmlComponent = new HtmlComponent(document);
+		const { document } = dom.window;
 
 		for (const targetElement of document.querySelectorAll('.build-host')) {
-			htmlComponent.removeClassName(targetElement, 'build-host');
+			HtmlTest.removeClassNameTest(targetElement, 'build-host');
 		}
 
 		expect(dom.serialize()).toBe(
@@ -491,7 +504,7 @@ describe('AnchorAmazonAssociate', () => {
 	});
 });
 
-describe('HeadingAnchor', () => {
+describe('HeadingSelfLink', () => {
 	test('最小パラメーター', () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <section id="section-1" class="build-heading-anchor">
@@ -499,7 +512,7 @@ describe('HeadingAnchor', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingAnchor(dom.window.document).convert({
+		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforeend',
 		});
@@ -507,7 +520,7 @@ describe('HeadingAnchor', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<h2>Heading <a href="#section-1">§</a></h2>
+	<h2>Heading<p><a href="#section-1">§</a></p></h2>
 </section>
 </body></html>`
 		);
@@ -520,7 +533,7 @@ describe('HeadingAnchor', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingAnchor(dom.window.document).convert({
+		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforebegin',
 			anchor_class: 'self',
@@ -529,7 +542,7 @@ describe('HeadingAnchor', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section id="section-1">
-	<a href="#section-1" class="self">§</a><h2>Heading</h2>
+	<p><a href="#section-1" class="self">§</a></p><h2>Heading</h2>
 </section>
 </body></html>`
 		);
@@ -545,7 +558,7 @@ describe('HeadingAnchor', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingAnchor(dom.window.document).convert({
+		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforeend',
 			anchor_class: 'self',
@@ -807,10 +820,10 @@ describe('Book', () => {
 <build-book heading-level="2">
 <book-name>書名</book-name>
 <book-release>2022-01-01</book-release>
-<book-isbn>978-4-06-377485-6</book-isbn>
-<book-amazon asin="B01GRDKGZW" image-id="510waYsj0oL" width="120" height="160"></book-amazon>
 <book-tag>タグ1</book-tag>
 <book-tag>タグ2</book-tag>
+<book-isbn>978-4-06-377485-6</book-isbn>
+<book-amazon asin="B01GRDKGZW" image-id="510waYsj0oL" width="120" height="160"></book-amazon>
 <book-contents>
 <p>解説文1</p>
 <p>解説文2</p>
@@ -833,11 +846,11 @@ describe('Book', () => {
 		<h2 itemprop="name">書名</h2>
 	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
-		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
 		<ul class="p-library__tags">
-			<li>タグ1</li>
-			<li>タグ2</li>
+			<li><button type="button" class="js-library-tag">タグ1</button></li>
+			<li><button type="button" class="js-library-tag">タグ2</button></li>
 		</ul>
+		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
 </header>
 <div class="p-library__main">
 		<div class="p-embed-sidebar -embed-first">

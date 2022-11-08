@@ -1,6 +1,6 @@
 import * as sqlite from 'sqlite';
-import DbUtil from '../util/DbUtil.js';
 import sqlite3 from 'sqlite3';
+import DbUtil from '../util/DbUtil.js';
 import { W0SJp as Configure } from '../../configure/type/common.js';
 
 interface MonthData {
@@ -13,6 +13,7 @@ interface MonthData {
  */
 export default class MadokaOfficialNewsDao {
 	#dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement> | null = null;
+
 	#config: Configure;
 
 	/**

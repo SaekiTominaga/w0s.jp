@@ -1,5 +1,5 @@
-import Html from './Html.js';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
+import Html from './Html.js';
 
 /**
  * Amazon 商品画像
@@ -23,7 +23,7 @@ export default class HtmlAmazonImage extends Html {
 		const targetClassName = options.target_class;
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
 			const src = targetElement.getAttribute('src');
 			if (src === null) {

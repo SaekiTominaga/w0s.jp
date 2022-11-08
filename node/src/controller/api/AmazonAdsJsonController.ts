@@ -1,11 +1,11 @@
+import fs from 'fs';
+import zlib from 'zlib';
+import { Request, Response } from 'express';
 import AmazonAdsDao from '../../dao/AmazonAdsDao.js';
 import Controller from '../../Controller.js';
 import ControllerInterface from '../../ControllerInterface.js';
-import fs from 'fs';
 import HttpResponse from '../../util/HttpResponse.js';
-import zlib from 'zlib';
 import { Amazon as Configure } from '../../../configure/type/amazon-ads.js';
-import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
 
 /**
@@ -13,6 +13,7 @@ import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
  */
 export default class AmazonAdsJsonController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**
@@ -40,8 +41,6 @@ export default class AmazonAdsJsonController extends Controller implements Contr
 			const fileName = category.json_name;
 			const filePath = `${this.#configCommon.static.root}/${this.#config.json.directory}/${fileName}.${this.#config.json.extension}`;
 			const brotliFilePath = `${filePath}.br`;
-
-			const dao = new AmazonAdsDao(this.#configCommon);
 
 			const ads = await dao.getAdsData(fileName);
 			if (ads.size === 0) {

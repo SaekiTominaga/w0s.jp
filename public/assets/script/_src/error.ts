@@ -20,7 +20,7 @@ const reportJsError = new ReportJsError('https://report.w0s.jp/js', {
 });
 reportJsError.init();
 
-const portalHost = window.portalHost;
+const { portalHost } = window;
 if (portalHost === null || portalHost === undefined /* 未対応ブラウザ対策 */) {
 	const reportSameReferrer = new ReportSameReferrer('https://report.w0s.jp/referrer', {
 		fetchParam: {

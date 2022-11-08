@@ -16,7 +16,7 @@ export default class HtmlToc extends Html {
 	 *
 	 * @param {object} options - Options
 	 * @param {string} options.target_element - Element name
-	 * @param {Element} options.sectioning_area - Areas containing sectioning content (article, aside, nav, section)
+	 * @param {object} options.sectioning_area - Areas containing sectioning content (article, aside, nav, section)
 	 * @param {string} options.class - Table of Contents class name
 	 * @param {string} options.label - Table of Contents label (`aria-label` attribute value)
 	 */

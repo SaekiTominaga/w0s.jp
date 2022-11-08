@@ -1,12 +1,13 @@
-import { NoName as Configure } from '../../configure/type/contact.js';
 import { body, query, Result, ValidationError, validationResult } from 'express-validator';
 import { Request } from 'express';
+import { NoName as Configure } from '../../configure/type/contact.js';
 
 /**
  * 問い合わせ
  */
 export default class ContactValidator {
 	#req: Request;
+
 	#config: Configure;
 
 	/**

@@ -6,7 +6,7 @@ interface BlogNewlyJson {
 /**
  * 日記の新着情報を取得し、サイドバーに挿入する
  */
-export default class {
+export default class SidebarBlogNewly {
 	#templateElement: HTMLTemplateElement;
 
 	/**
@@ -23,15 +23,15 @@ export default class {
 		const jsonName = (<HTMLMetaElement | null>document.querySelector('meta[name="w0s:blog:newly"]'))?.content;
 
 		/* エンドポイントから JSON ファイルを取得する */
-		const dataList: BlogNewlyJson[] = await this.fetch(jsonName);
+		const dataList: BlogNewlyJson[] = await SidebarBlogNewly.#fetch(jsonName);
 
 		/* 取得したデータを HTML ページ内に挿入する */
-		this.insert(dataList);
+		this.#insert(dataList);
 
 		/* 直近の祖先要素の hidden 状態を解除する */
-		const ancestorHiddenElement = <HTMLElement | null>this.#templateElement.closest('[hidden]');
+		const ancestorHiddenElement = this.#templateElement.closest('[hidden]');
 		if (ancestorHiddenElement !== null) {
-			ancestorHiddenElement.hidden = false;
+			(<HTMLElement>ancestorHiddenElement).hidden = false;
 		}
 	}
 
@@ -42,13 +42,14 @@ export default class {
 	 *
 	 * @returns {object[]} 日記エントリーのデータ
 	 */
-	private async fetch(jsonName?: string): Promise<BlogNewlyJson[]> {
+	static async #fetch(jsonName?: string): Promise<BlogNewlyJson[]> {
 		const response = await fetch(`https://blog.w0s.jp/json/newly${jsonName !== undefined ? `_${jsonName}` : ''}.json`);
 		if (!response.ok) {
 			throw new Error(`"${response.url}" is ${response.status} ${response.statusText}`);
 		}
 
-		return await response.json();
+		const json = await response.json();
+		return json;
 	}
 
 	/**
@@ -56,15 +57,17 @@ export default class {
 	 *
 	 * @param {object[]} entryList - 日記エントリーのデータ
 	 */
-	private insert(entryList: BlogNewlyJson[]): void {
+	#insert(entryList: BlogNewlyJson[]): void {
 		const fragment = document.createDocumentFragment();
 
 		for (const entry of entryList) {
-			const templateElementClone = <DocumentFragment>this.#templateElement.content.cloneNode(true);
+			const templateElementClone = this.#templateElement.content.cloneNode(true);
 
-			const aElement = <HTMLAnchorElement>templateElementClone.querySelector('a');
-			aElement.href = `https://blog.w0s.jp/${String(entry.id)}`;
-			aElement.textContent = entry.title;
+			const aElement = (<DocumentFragment>templateElementClone).querySelector('a');
+			if (aElement !== null) {
+				aElement.href = `https://blog.w0s.jp/${String(entry.id)}`;
+				aElement.textContent = entry.title;
+			}
 
 			fragment.appendChild(templateElementClone);
 		}

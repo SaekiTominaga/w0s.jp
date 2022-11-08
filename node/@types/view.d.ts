@@ -1,4 +1,10 @@
 declare namespace TokyuCarHistoryView {
+	interface Change {
+		number: string;
+		sign: string;
+		date: string;
+	}
+
 	interface SearchCar {
 		number: string;
 		sign: string;
@@ -11,12 +17,6 @@ declare namespace TokyuCarHistoryView {
 		age: number;
 		scrap: boolean;
 		transfer: string;
-	}
-
-	interface Change {
-		number: string;
-		sign: string;
-		date: string;
 	}
 }
 

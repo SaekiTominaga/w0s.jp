@@ -8,6 +8,12 @@ interface Series {
 	series: string;
 }
 
+interface Change {
+	number: string;
+	sign: string;
+	date: Date;
+}
+
 interface Car {
 	number: string;
 	sign: string;
@@ -21,17 +27,12 @@ interface Car {
 	change: Change[] | null;
 }
 
-interface Change {
-	number: string;
-	sign: string;
-	date: Date;
-}
-
 /**
  * 東急電車形態研究・車歴表
  */
 export default class TokyuCarHistoryDao {
 	#dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement> | null = null;
+
 	#config: Configure;
 
 	/**
@@ -221,7 +222,7 @@ export default class TokyuCarHistoryDao {
 		await sth.finalize();
 
 		const carDataList: Car[] = [];
-		const changeDataList = await this.getCarChangeData(dbh);
+		const changeDataList = await TokyuCarHistoryDao.#getCarChangeData(dbh);
 
 		for (const row of rows) {
 			const registerStr = String(row.register);
@@ -252,7 +253,7 @@ export default class TokyuCarHistoryDao {
 	 *
 	 * @returns {Change[]} 改番情報
 	 */
-	private async getCarChangeData(dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement>): Promise<Map<string, Change[]>> {
+	static async #getCarChangeData(dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement>): Promise<Map<string, Change[]>> {
 		const sth = await dbh.prepare(`
 			SELECT
 				c.now_num AS now_num,
@@ -275,7 +276,7 @@ export default class TokyuCarHistoryDao {
 		const changeDataMap: Map<string, Change[]> = new Map();
 		for (const row of rows) {
 			const nowNumber: string = row.now_num;
-			const dateStr = String(row.date)
+			const dateStr = String(row.date);
 
 			const changeDataList = changeDataMap.get(nowNumber) ?? [];
 			changeDataList.push({

@@ -22,7 +22,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 		const targetClassName = options.target_class;
 
 		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
-			this.removeClassName(targetElement, targetClassName);
+			Html.removeClassName(targetElement, targetClassName);
 
 			const content = targetElement.textContent;
 			if (targetElement.getAttribute('datetime') !== null) {

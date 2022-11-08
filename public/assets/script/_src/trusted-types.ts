@@ -3,9 +3,7 @@
  */
 if (window.trustedTypes !== undefined) {
 	window.trustedTypes.createPolicy('default', {
-		createHTML: (inputText: string): string => {
-			return inputText;
-		},
+		createHTML: (inputText: string): string => inputText,
 		createURL: (inputUrl: string): string => {
 			if (new URL(inputUrl).origin !== new URL(location.href).origin) {
 				console.error(`[Trusted URL] URL with different origin are not allowed: ${inputUrl}`);

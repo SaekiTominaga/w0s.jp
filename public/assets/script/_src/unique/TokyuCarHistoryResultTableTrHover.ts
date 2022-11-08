@@ -1,10 +1,8 @@
 /**
  * 表の列をマウスオーバーしたとき、クラス名を付与してCSSでスタイルを設定できるようにする
  * （※rowspan 属性による行またがりがある場合、 :hover 疑似クラスでは意図したスタイルが設定できないため）
- *
- * @version 2.0.0
  */
-export default class {
+export default class TokyuCarHistoryResultTableTrHover {
 	#thisElement: HTMLTableRowElement; // 対象要素
 
 	#carNum: string | undefined; // 車号
@@ -12,6 +10,7 @@ export default class {
 	#hoverClassName: string; // マウスオーバー時に付与するクラス名
 
 	#mouseOverEventListener: () => void;
+
 	#mouseOutEventListener: () => void;
 
 	/**
@@ -23,15 +22,15 @@ export default class {
 
 		this.#hoverClassName = hoverClassName;
 
-		this.#mouseOverEventListener = this._mouseOverEvent.bind(this);
-		this.#mouseOutEventListener = this._mouseOutEvent.bind(this);
+		this.#mouseOverEventListener = this.#mouseOverEvent.bind(this);
+		this.#mouseOutEventListener = this.#mouseOutEvent.bind(this);
 	}
 
 	/**
 	 * 処理を実行する
 	 */
 	connected(): void {
-		const carNum = this.#thisElement.dataset.carNum;
+		const { carNum } = this.#thisElement.dataset;
 		if (carNum === undefined) {
 			throw new Error('Attribute: `data-car-num` is not set.');
 		}
@@ -44,38 +43,38 @@ export default class {
 	/**
 	 * mouseover 時の処理内容
 	 */
-	private _mouseOverEvent(): void {
+	#mouseOverEvent(): void {
 		this.#thisElement.classList.add(this.#hoverClassName);
 
-		let prevElement = <HTMLElement | null>this.#thisElement.previousElementSibling;
+		let prevElement = this.#thisElement.previousElementSibling as HTMLElement | null;
 		while (prevElement !== null && prevElement.dataset.carNum === this.#carNum) {
 			prevElement.classList.add(this.#hoverClassName);
-			prevElement = <HTMLElement | null>prevElement.previousElementSibling;
+			prevElement = prevElement.previousElementSibling as HTMLElement | null;
 		}
 
-		let nextElement = <HTMLElement | null>this.#thisElement.nextElementSibling;
+		let nextElement = this.#thisElement.nextElementSibling as HTMLElement | null;
 		while (nextElement !== null && nextElement.dataset.carNum === this.#carNum) {
 			nextElement.classList.add(this.#hoverClassName);
-			nextElement = <HTMLElement | null>nextElement.nextElementSibling;
+			nextElement = nextElement.nextElementSibling as HTMLElement | null;
 		}
 	}
 
 	/**
 	 * mouseout 時の処理内容
 	 */
-	private _mouseOutEvent(): void {
+	#mouseOutEvent(): void {
 		this.#thisElement.classList.remove(this.#hoverClassName);
 
-		let prevElement = <HTMLElement | null>this.#thisElement.previousElementSibling;
+		let prevElement = this.#thisElement.previousElementSibling as HTMLElement | null;
 		while (prevElement !== null && prevElement.dataset.carNum === this.#carNum) {
 			prevElement.classList.remove(this.#hoverClassName);
-			prevElement = <HTMLElement | null>prevElement.previousElementSibling;
+			prevElement = prevElement.previousElementSibling as HTMLElement | null;
 		}
 
-		let nextElement = <HTMLElement | null>this.#thisElement.nextElementSibling;
+		let nextElement = this.#thisElement.nextElementSibling as HTMLElement | null;
 		while (nextElement !== null && nextElement.dataset.carNum === this.#carNum) {
 			nextElement.classList.remove(this.#hoverClassName);
-			nextElement = <HTMLElement | null>nextElement.nextElementSibling;
+			nextElement = nextElement.nextElementSibling as HTMLElement | null;
 		}
 	}
 }

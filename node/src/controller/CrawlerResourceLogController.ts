@@ -1,10 +1,10 @@
+import fs from 'fs';
+import { Request, Response } from 'express';
 import * as Diff from 'diff';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
-import fs from 'fs';
 import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/crawler-resource.js';
-import { Request, Response } from 'express';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /**
@@ -12,6 +12,7 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
  */
 export default class CrawlerResourceLogController extends Controller implements ControllerInterface {
 	#configCommon: ConfigureCommon;
+
 	#config: Configure;
 
 	/**
@@ -59,13 +60,11 @@ export default class CrawlerResourceLogController extends Controller implements 
 									.join('\n');
 							} else if (index === diff.length - 1) {
 								diffPart.value = [this.#config.diff.omit].concat(lines.slice(0, this.#config.diff.max_line)).join('\n');
-							} else {
-								if (diffPart.count > this.#config.diff.max_line * 2) {
-									diffPart.value = lines
-										.slice(0, this.#config.diff.max_line)
-										.concat(this.#config.diff.omit, lines.slice(lines.length - this.#config.diff.max_line - 1))
-										.join('\n');
-								}
+							} else if (diffPart.count > this.#config.diff.max_line * 2) {
+								diffPart.value = lines
+									.slice(0, this.#config.diff.max_line)
+									.concat(this.#config.diff.omit, lines.slice(lines.length - this.#config.diff.max_line - 1))
+									.join('\n');
 							}
 						}
 					});

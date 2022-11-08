@@ -1,6 +1,6 @@
+import dayjs, { Dayjs } from 'dayjs';
 import DbUtil from '../util/DbUtil.js';
 import MadokaOfficialNewsDao from './MadokaOfficialNewsDao.js';
-import dayjs, { Dayjs } from 'dayjs';
 
 /**
  * まどか☆マギカ・公式サイトニュース 月ごとのページ
@@ -11,7 +11,7 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 	 *
 	 * @param {Dayjs} month - 対象月
 	 *
-	 * @returns {NewsMovie[]} 指定された月のニュース記事
+	 * @returns {object[]} 指定された月のニュース記事
 	 */
 	async getNewsListMovie(month: Dayjs): Promise<MadokaOfficialNewsView.NewsMovie[]> {
 		const dbh = await this.getDbh();
@@ -57,7 +57,7 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 	 *
 	 * @param {Dayjs} month - 対象月
 	 *
-	 * @returns {NewsTv[]} 指定された月のニュース記事
+	 * @returns {object[]} 指定された月のニュース記事
 	 */
 	async getNewsListTv(month: Dayjs): Promise<MadokaOfficialNewsView.NewsTv[]> {
 		const dbh = await this.getDbh();
@@ -128,27 +128,27 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 
 		if (rowMovie !== undefined) {
 			return dayjs.unix(rowMovie.month);
-		} else {
-			const sthTv = await dbh.prepare(`
-				SELECT
-					month
-				FROM
-					d_madoka_tv
-				WHERE
-					month < :month
-				ORDER BY
-					month DESC
-				LIMIT 1
-			`);
-			await sthTv.bind({
-				':month': DbUtil.dayjsToUnix(month),
-			});
-			const rowTv = await sthTv.get();
-			await sthTv.finalize();
+		}
 
-			if (rowTv !== undefined) {
-				return dayjs.unix(rowTv.month);
-			}
+		const sthTv = await dbh.prepare(`
+			SELECT
+				month
+			FROM
+				d_madoka_tv
+			WHERE
+				month < :month
+			ORDER BY
+				month DESC
+			LIMIT 1
+		`);
+		await sthTv.bind({
+			':month': DbUtil.dayjsToUnix(month),
+		});
+		const rowTv = await sthTv.get();
+		await sthTv.finalize();
+
+		if (rowTv !== undefined) {
+			return dayjs.unix(rowTv.month);
 		}
 
 		return null;
@@ -184,27 +184,27 @@ export default class MadokaOfficialNewsMonthDao extends MadokaOfficialNewsDao {
 
 		if (rowTv !== undefined) {
 			return dayjs.unix(rowTv.month);
-		} else {
-			const sthMovie = await dbh.prepare(`
-				SELECT
-					month
-				FROM
-					d_madoka
-				WHERE
-					month > :month
-				ORDER BY
-					month
-				LIMIT 1
-			`);
-			await sthMovie.bind({
-				':month': DbUtil.dayjsToUnix(month),
-			});
-			const rowMovie = await sthMovie.get();
-			await sthMovie.finalize();
+		}
 
-			if (rowMovie !== undefined) {
-				return dayjs.unix(rowMovie.month);
-			}
+		const sthMovie = await dbh.prepare(`
+			SELECT
+				month
+			FROM
+				d_madoka
+			WHERE
+				month > :month
+			ORDER BY
+				month
+			LIMIT 1
+		`);
+		await sthMovie.bind({
+			':month': DbUtil.dayjsToUnix(month),
+		});
+		const rowMovie = await sthMovie.get();
+		await sthMovie.finalize();
+
+		if (rowMovie !== undefined) {
+			return dayjs.unix(rowMovie.month);
 		}
 
 		return null;

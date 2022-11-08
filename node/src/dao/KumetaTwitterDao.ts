@@ -8,6 +8,7 @@ import { W0SJp as Configure } from '../../configure/type/common.js';
  */
 export default class KumetaTwitterDao {
 	#dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement> | null = null;
+
 	#config: Configure;
 
 	/**
@@ -47,7 +48,7 @@ export default class KumetaTwitterDao {
 	 *
 	 * @param {string} id - Twitter ID
 	 *
-	 * @returns {Object} Twitter アカウント情報
+	 * @returns {object} Twitter アカウント情報
 	 */
 	async getAccountData(id: string): Promise<KumetaTwitterView.Account | null> {
 		const dbh = await this.getDbh();
@@ -91,7 +92,7 @@ export default class KumetaTwitterDao {
 	 *
 	 * @param {string} id - Twitter ID
 	 *
-	 * @returns {Object[]} アイコン履歴情報
+	 * @returns {object[]} アイコン履歴情報
 	 */
 	async getProfileImages(id: string): Promise<KumetaTwitterView.ProfileImage[]> {
 		const dbh = await this.getDbh();
@@ -132,7 +133,7 @@ export default class KumetaTwitterDao {
 	 *
 	 * @param {string} id - Twitter ID
 	 *
-	 * @returns {Object[]} バナー履歴情報
+	 * @returns {object[]} バナー履歴情報
 	 */
 	async getBanners(id: string): Promise<KumetaTwitterView.Banner[]> {
 		const dbh = await this.getDbh();
