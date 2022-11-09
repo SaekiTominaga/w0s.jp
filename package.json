@@ -20,7 +20,7 @@
 		"feed": "run-p _feed:*",
 		"node-build-watch": "tsc --project node/tsconfig.json -w",
 		"node-build-all": "tsc --project node/tsconfig.json",
-		"node-lint": "eslint node/src/**/*.ts node/@types/*.d.ts",
+		"node-lint": "eslint node/src/**/*.ts node/__tests__/**/*.test.js node/@types/*.d.ts",
 		"node-test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
 		"node-config-convert": "json2ts -i node/configure/schema -o node/configure/type",
 		"node-config-validate": "run-p _node-config-validate:*",
