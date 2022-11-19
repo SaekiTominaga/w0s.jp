@@ -206,14 +206,12 @@ Markup:
 <ul class="p-top-update-list">
 <li>
 <div class="p-top-update-list__date">日付</div>
-<div class="p-top-update-list__type">新規</div>
 <div class="p-top-update-list__info">
 <p>更新内容</p>
 </div>
 </li>
 <li>
 <div class="p-top-update-list__date">日付</div>
-<div class="p-top-update-list__type">更新</div>
 <div class="p-top-update-list__info">
 <p>更新内容</p>
 </div>
@@ -233,8 +231,8 @@ Styleguide 2.8.4
 		--_padding: 15px;
 
 		display: grid;
-		grid-template-columns: calc(7.5em + var(--_padding) * 2) auto 1fr;
-		grid-template-areas: "date type info";
+		grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+		grid-template-areas: "date info";
 
 		&:not(:first-child) {
 			border-block-start: 1px dotted var(--color-border-light);
@@ -248,14 +246,9 @@ Styleguide 2.8.4
 	padding: var(--_padding);
 }
 
-.p-top-update-list__type {
-	grid-column: type;
-	padding: var(--_padding);
-}
-
 .p-top-update-list__info {
 	grid-column: info;
-	padding: var(--_padding) var(--_padding) var(--_padding) 0;
+	padding: var(--_padding);
 }
 
 @media not (width <= 40em) {
@@ -273,10 +266,10 @@ Styleguide 2.8.4
 @media (width <= 40em) {
 	.p-top-update-list {
 		& > li {
-			grid-template-columns: auto 1fr;
+			grid-template-columns: 1fr;
 			grid-template-areas:
-				"date date"
-				"type info";
+				"date"
+				"info";
 		}
 	}
 
