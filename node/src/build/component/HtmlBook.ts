@@ -64,7 +64,7 @@ export default class HtmlBook extends Html {
 	<%_ if (tags.length >= 1) { _%>
 		<ul class="p-library__tags">
 			<%_ for (tag of tags) { _%>
-			<li><button type="button" class="js-library-tag"><%= tag %></button></li>
+			<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
 			<%_ } _%>
 		</ul>
 	<%_ } _%>

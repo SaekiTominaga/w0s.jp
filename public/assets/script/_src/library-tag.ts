@@ -3,6 +3,8 @@
  */
 const URL_PARAM_TAG = 'tag'; // URL パラメーター・タグのキー
 
+const librarySectionElements = document.querySelectorAll<HTMLElement>('.l-content__main > section');
+const libraryElements = document.querySelectorAll<HTMLElement>('.p-library');
 const tagButtonElements = document.querySelectorAll<HTMLButtonElement>('.js-library-tag');
 
 /**
@@ -11,9 +13,6 @@ const tagButtonElements = document.querySelectorAll<HTMLButtonElement>('.js-libr
  * @param {string} tagName - タグ名
  */
 const narrowDown = (tagName?: string): void => {
-	const librarySectionElements = Array.from(document.querySelectorAll<HTMLElement>('.l-content__main > section'));
-	const libraryElements = Array.from(document.querySelectorAll<HTMLElement>('.p-library'));
-
 	/* いったんリセット */
 	librarySectionElements.forEach((element) => {
 		element.hidden = false;
@@ -27,14 +26,14 @@ const narrowDown = (tagName?: string): void => {
 
 	if (tagName !== undefined) {
 		/* 当該タグ以外の要素を非表示にする */
-		libraryElements
+		Array.from(libraryElements)
 			.filter((element) => Array.from(element.querySelectorAll('.p-library .p-library__tags > li')).every((liElement) => liElement.textContent !== tagName))
 			.forEach((element) => {
 				element.hidden = true;
 			});
 
 		/* セクション内の表示要素が0件になった場合はセクションごと非表示にする */
-		librarySectionElements
+		Array.from(librarySectionElements)
 			.filter((element) => element.querySelectorAll('.p-library:not([hidden])').length === 0)
 			.forEach((element) => {
 				element.hidden = true;
