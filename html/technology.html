@@ -253,10 +253,10 @@
 								<li>
 									<p>当サイトでは外部サイトへのハイパーリンクのアンカーに対してドメイン名（FQDN）を明記している。 URL から手動でドメイン部分を抜き出すのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-host</code> を記した <code>&lt;a&gt;</code> 要素の href 属性値を解析し、アンカー直後に自動挿入する。</p>
 									<ul>
-										<li>変換前: <code class="c-code">&lt;a href="https://example.com/foo" class="htmlbuild-host"&gt;Link&lt;/a&gt;</code></li>
+										<li>変換前: <code class="c-code">&lt;a href=&quot;https://example.com/foo&quot; class=&quot;htmlbuild-host&quot;&gt;Link&lt;/a&gt;</code></li>
 										<li>
 											変換後:
-											<code class="c-code">&lt;a href="https://example.com/foo"&gt;Link&lt;/a&gt;&lt;b&gt;(example.com)&lt;/b&gt;</code>
+											<code class="c-code">&lt;a href=&quot;https://example.com/foo&quot;&gt;Link&lt;/a&gt;&lt;b&gt;(example.com)&lt;/b&gt;</code>
 										</li>
 									</ul>
 									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-host" class="htmlbuild-host">GitHub で公開</a>している。</p>
@@ -264,21 +264,21 @@
 								<li>
 									<p>主に本の紹介で Amazon 商品ページへのリンクを多数設定しているが、アソシエイトリンクにするにあたり、 URL 形式の変更に耐えうるようにするため、各種パラメーターやアソシエイト ID を自動付与する。</p>
 									<ul>
-										<li>変換前: <code class="c-code">&lt;a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-associate"&gt;Link&lt;/a&gt;</code></li>
+										<li>変換前: <code class="c-code">&lt;a href=&quot;https://www.amazon.co.jp/dp/B01GRDKGZW/&quot; class=&quot;htmlbuild-associate&quot;&gt;Link&lt;/a&gt;</code></li>
 										<li>
 											変換後:
-											<code class="c-code">&lt;a href="https://www.amazon.co.jp/dp/B01GRDKGZW/ref=nosim?tag=w0s.jp-22"&gt;Link&lt;/a&gt;</code>
+											<code class="c-code">&lt;a href=&quot;https://www.amazon.co.jp/dp/B01GRDKGZW/ref=nosim?tag=w0s.jp-22&quot;&gt;Link&lt;/a&gt;</code>
 										</li>
 									</ul>
-									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-amazon-associate" class="htmlbuild-host">GitHub で公開</a>している。管理上の面だけを考えれば <code class="c-code">&lt;x-amazon asin="B01GRDKGZW"&gt;Link&lt;/x-amazon&gt;</code> のようなカスタム要素にした方がシンプルだが、何らかの理由でビルドに失敗してもリンク機能自体は有効な状態を維持するためにこのような方式とした。</p>
+									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-anchor-amazon-associate" class="htmlbuild-host">GitHub で公開</a>している。管理上の面だけを考えれば <code class="c-code">&lt;x-amazon asin=&quot;B01GRDKGZW&quot;&gt;Link&lt;/x-amazon&gt;</code> のようなカスタム要素にした方がシンプルだが、何らかの理由でビルドに失敗してもリンク機能自体は有効な状態を維持するためにこのような方式とした。</p>
 								</li>
 								<li>
 									<p><code>&lt;time&gt;</code> 要素の <code>datetime</code> 属性を手動で書くのはミスが起こりうるため、クラス名 <code class="c-code">htmlbuild-datetime</code> を記した要素の中身を解析し、自動変換する。</p>
 									<ul>
-										<li>変換前: <code class="c-code">&lt;span class="htmlbuild-datetime"&gt;2000年1月1日&lt;/span&gt;</code></li>
-										<li>変換後: <code class="c-code">&lt;time datetime="2000-01-01"&gt;2000年1月1日&lt;/time&gt;</code></li>
+										<li>変換前: <code class="c-code">&lt;span class=&quot;htmlbuild-datetime&quot;&gt;2000年1月1日&lt;/span&gt;</code></li>
+										<li>変換後: <code class="c-code">&lt;time datetime=&quot;2000-01-01&quot;&gt;2000年1月1日&lt;/time&gt;</code></li>
 									</ul>
-									<p>なお、 <code>datetime</code> 属性が不要なケースや、 <code class="c-code">&lt;time datetime="2019-05-01"&gt;令和最初の日&lt;/time&gt;</code> のように機械的な解析が困難なケースは <code>&lt;time&gt;</code> 要素を直接マークアップする。</p>
+									<p>なお、 <code>datetime</code> 属性が不要なケースや、 <code class="c-code">&lt;time datetime=&quot;2019-05-01&quot;&gt;令和最初の日&lt;/time&gt;</code> のように機械的な解析が困難なケースは <code>&lt;time&gt;</code> 要素を直接マークアップする。</p>
 									<p>変換プログラムは <a href="https://github.com/SaekiTominaga/posthtml-time-japanese-date" class="htmlbuild-host">GitHub で公開</a>している。</p>
 								</li>
 							</ul>
@@ -293,7 +293,7 @@
 								<p>URL が変更になった場合は <code class="c-code">301 Moved Permanently</code>、フォームの POST 送信後には <code class="c-code">303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
 								<p><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4" hreflang="en" class="htmlbuild-host">RFC 7231 の 6.4. Redirection 3xx</a>では、ステータスコード 3xx で <code class="c-code">Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として、 <q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent MAY automatically redirect its request to the URI</q> と書かれており（あくまで <em>MAY</em> であることに注目）、実際ユーザーの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<htmlbuild-footnote>Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、 Android Firefox 96 にて確認）</htmlbuild-footnote>。</p>
 								<p>
-									当サイトで使用している Node.js フレームワークの Express では、 <a href="https://expressjs.com/en/4x/api.html#res.redirect" class="htmlbuild-host"><code>res.redirect()</code></a> メソッドでリダイレクト設定が行われるが、この場合レスポンスボディは <code class="c-code">&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="{{path}}"&gt;{{path}}&lt;/a&gt;&lt;/p&gt;</code> のように、 DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。そのためこの機能は使わず、 <a href="https://expressjs.com/en/4x/api.html#res.send" class="htmlbuild-host"><code>res.send()</code></a> メソッドにて独自の HTML を返すようにカスタマイズしている。
+									当サイトで使用している Node.js フレームワークの Express では、 <a href="https://expressjs.com/en/4x/api.html#res.redirect" class="htmlbuild-host"><code>res.redirect()</code></a> メソッドでリダイレクト設定が行われるが、この場合レスポンスボディは <code class="c-code">&lt;p&gt;Moved Permanently. Redirecting to &lt;a href=&quot;{{path}}&quot;&gt;{{path}}&lt;/a&gt;&lt;/p&gt;</code> のように、 DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。そのためこの機能は使わず、 <a href="https://expressjs.com/en/4x/api.html#res.send" class="htmlbuild-host"><code>res.send()</code></a> メソッドにて独自の HTML を返すようにカスタマイズしている。
 								</p>
 							</div>
 						</section>
@@ -483,7 +483,7 @@
 													<img src="/assets/image/copy.svg" alt="コピー" width="24" height="24" />
 												</button>
 											</div>
-											<pre class="p-code__code"><code id="script-error-code" class="htmlbuild-highlight" data-language="javascript">window.addEventListener('error', (ev) => {
+											<pre class="p-code__code"><code id="script-error-code" class="htmlbuild-highlight" data-language="javascript">window.addEventListener('error', (ev) =&gt; {
 	const formData = new FormData();
 	formData.append('location', location.toString());
 	formData.append('message', ev.message);
@@ -537,11 +537,11 @@
 												<img src="/assets/image/copy.svg" alt="コピー" width="24" height="24" />
 											</button>
 										</div>
-										<pre class="p-code__code"><code id="image-thumbimage-code" class="htmlbuild-highlight" data-language="html">&lt;a href="image.jpg" type="image/jpeg"&gt;
+										<pre class="p-code__code"><code id="image-thumbimage-code" class="htmlbuild-highlight" data-language="html">&lt;a href=&quot;image.jpg&quot; type=&quot;image/jpeg&quot;&gt;
 	&lt;picture&gt;
-		&lt;source type="image/avif" srcset="thumb.avif, thumb@2x.avif 2x"/&gt;
-		&lt;source type="image/webp" srcset="thumb.webp, thumb@2x.webp 2x"/&gt;
-		&lt;img src="thumb.jpeg" alt="写真拡大"/&gt;
+		&lt;source type=&quot;image/avif&quot; srcset=&quot;thumb.avif, thumb@2x.avif 2x&quot;/&gt;
+		&lt;source type=&quot;image/webp&quot; srcset=&quot;thumb.webp, thumb@2x.webp 2x&quot;/&gt;
+		&lt;img src=&quot;thumb.jpeg&quot; alt=&quot;写真拡大&quot;/&gt;
 	&lt;/picture&gt;
 &lt;/a&gt;
 </code></pre>
@@ -582,7 +582,7 @@
 								<li>
 									<p>画像生成は <a href="https://sharp.pixelplumbing.com/" class="htmlbuild-host">sharp</a>を利用しているが、 AVIF への変換は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは画像がすべて表示されるまでに分単位の時間が掛かったり、タイムアウトしたりするケースが多発してしまった。</p>
 									<p>
-										そのため AVIF の初回リクエスト（サムネイルファイルが生成されていない状態でのリクエスト）に限っては代替として WebP を生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code class="c-code">&lt;source type="image/avif"&gt;</code> の画像をリクエストしたらレスポンスで <code class="c-code">image/webp</code> が返ってきた」という状態になる。一見違和感があるものの <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element" hreflang="en" class="htmlbuild-host">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</a>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
+										そのため AVIF の初回リクエスト（サムネイルファイルが生成されていない状態でのリクエスト）に限っては代替として WebP を生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code class="c-code">&lt;source type=&quot;image/avif&quot;&gt;</code> の画像をリクエストしたらレスポンスで <code class="c-code">image/webp</code> が返ってきた」という状態になる。一見違和感があるものの <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element" hreflang="en" class="htmlbuild-host">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</a>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
 									</p>
 								</li>
 								<li>
