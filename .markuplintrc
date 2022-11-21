@@ -1,4 +1,7 @@
 {
+	"extends": [
+		"./node_modules/markuplint-config-w0s/.markuplintrc"
+	],
 	"parser": {
 		"\\.ejs$": "@markuplint/ejs-parser",
 		"\\.html$": "@markuplint/ejs-parser"
@@ -11,10 +14,6 @@
 		"public/madoka/video/shinpen.html"
 	],
 	"rules": {
-		"attr-duplication": true,
-		"character-reference": false,
-		"deprecated-attr": true,
-		"deprecated-element": true,
 		"disallowed-element": [
 			"base",
 			"style",
@@ -28,33 +27,6 @@
 			"area",
 			"noscript"
 		],
-		"doctype": true,
-		"id-duplication": true,
-		"ineffective-attr": true,
-		"invalid-attr": {
-			"option": {
-				"attrs": {
-					"accesskey": {
-						"disallowed": true
-					},
-					"tabindex": {
-						"enum": [
-							"-1",
-							"0"
-						]
-					}
-				}
-			}
-		},
-		"permitted-contents": true,
-		"required-attr": true,
-		"required-element": false,
-		"landmark-roles": true,
-		"no-refer-to-non-existent-id": true,
-		"require-accessible-name": true,
-		"required-h1": true,
-		"use-list": false,
-		"wai-aria": true,
 		"class-naming": [
 			"/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/",
 			"/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/",
@@ -62,109 +34,13 @@
 			"/^js-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/",
 			"/^adsbygoogle$/",
 			"/^htmlbuild-([a-z0-9]+)(-[a-z0-9]+)*$/"
-		],
-		"no-hard-code-id": false,
-		"no-use-event-handler-attr": true,
-		"attr-equal-space-after": "never",
-		"attr-equal-space-before": "never",
-		"attr-spacing": true,
-		"attr-value-quotes": "double",
-		"case-sensitive-attr-name": "lower",
-		"case-sensitive-tag-name": "lower",
-		"end-tag": true,
-		"indentation": false,
-		"no-boolean-attr-value": false,
-		"no-default-value": true
+		]
 	},
 	"nodeRules": [
-		{
-			"selector": "html",
-			"rules": {
-				"invalid-attr": {
-					"option": {
-						"ignoreAttrNamePrefix": [
-							"prefix"
-						]
-					}
-				},
-				"required-attr": [
-					"lang"
-				]
-			}
-		},
-		{
-			"selector": "meta",
-			"rules": {
-				"invalid-attr": {
-					"option": {
-						"ignoreAttrNamePrefix": [
-							"content",
-							"property"
-						]
-					}
-				}
-			}
-		},
-		{
-			"selector": "meta[property]",
-			"rules": {
-				"required-attr": false
-			}
-		},
 		{
 			"selector": "nav, aside",
 			"rules": {
 				"landmark-roles": false
-			}
-		},
-		{
-			"selector": "div",
-			"rules": {
-				"required-attr": [
-					"class"
-				]
-			}
-		},
-		{
-			"selector": "dl > div, object > div",
-			"rules": {
-				"required-attr": false
-			}
-		},
-		{
-			"selector": "abbr",
-			"rules": {
-				"required-attr": [
-					"title"
-				]
-			}
-		},
-		{
-			"selector": "img",
-			"rules": {
-				"required-attr": [
-					"alt"
-				]
-			}
-		},
-		{
-			"selector": "iframe",
-			"rules": {
-				"required-attr": [
-					"title"
-				]
-			}
-		},
-		{
-			"selector": "object",
-			"rules": {
-				"required-attr": [
-					"type",
-					"width",
-					"height",
-					"role",
-					"aria-labelledby"
-				]
 			}
 		},
 		{
@@ -174,43 +50,9 @@
 			}
 		},
 		{
-			"selector": "thead th",
-			"rules": {
-				"required-attr": [
-					{
-						"name": "scope",
-						"value": [
-							"col",
-							"colgroup"
-						]
-					}
-				]
-			}
-		},
-		{
-			"selector": "tbody th",
-			"rules": {
-				"required-attr": [
-					{
-						"name": "scope",
-						"value": [
-							"row",
-							"rowgroup"
-						]
-					}
-				]
-			}
-		},
-		{
 			"selector": "input",
 			"rules": {
 				"id-duplication": false
-			}
-		},
-		{
-			"selector": "template *",
-			"rules": {
-				"require-accessible-name": false
 			}
 		},
 		{
