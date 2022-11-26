@@ -7,10 +7,15 @@
 		"\\.html$": "@markuplint/ejs-parser"
 	},
 	"excludeFiles": [
+		"html/kumeta/manga/comment.html",
 		"public/kumeta/manga/comment.html",
+		"html/kumeta/manga/subtitle.html",
 		"public/kumeta/manga/subtitle.html",
+		"html/madoka/library/magazine.html",
 		"public/madoka/library/magazine.html",
+		"html/madoka/yomoyama/namae.html",
 		"public/madoka/yomoyama/namae.html",
+		"html/madoka/video/shinpen.html",
 		"public/madoka/video/shinpen.html"
 	],
 	"rules": {
@@ -67,5 +72,12 @@
 				}
 			}
 		}
-	]
+	],
+	"overrides": {
+		"html/**/index.html": {
+			"rules": {
+				"required-h1": false
+			}
+		}
+	}
 }
