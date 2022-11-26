@@ -15,6 +15,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run node-build-all
-      - run: node node/dist/build/html.js html/**/*.html
-      - run: npm run html-lint
+      - run: npx markuplint html/**/*.html
