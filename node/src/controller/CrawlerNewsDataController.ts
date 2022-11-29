@@ -34,9 +34,9 @@ export default class CrawlerNewsDataController extends Controller implements Con
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
 		const requestQuery: CrawlerNewsRequest.Data = {
-			url: RequestUtil.string(req.query.url ?? req.body.url),
-			id: RequestUtil.string(req.body.id),
-			action_delete: RequestUtil.boolean(req.body.actiondel),
+			url: RequestUtil.string(req.query['url'] ?? req.body['url']),
+			id: RequestUtil.string(req.body['id']),
+			action_delete: RequestUtil.boolean(req.body['actiondel']),
 		};
 
 		const dao = new CrawlerNewsDataDao(this.#configCommon);

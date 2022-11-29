@@ -32,7 +32,7 @@ export default class MadokaOfficialNewsIndexController extends Controller implem
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: MadokaOfficialNewsMonthRequest.Index = {
-			month: RequestUtil.string(req.query.month),
+			month: RequestUtil.string(req.query['month']),
 		};
 
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);

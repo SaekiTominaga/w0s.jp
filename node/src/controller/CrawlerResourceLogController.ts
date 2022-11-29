@@ -31,8 +31,8 @@ export default class CrawlerResourceLogController extends Controller implements 
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: CrawlerResourceRequest.Log = {
-			dir: RequestUtil.string(req.query.dir),
-			diff: RequestUtil.strings(req.query.diff),
+			dir: RequestUtil.string(req.query['dir']),
+			diff: RequestUtil.strings(req.query['diff']),
 		};
 
 		let diff: Diff.Change[] = [];

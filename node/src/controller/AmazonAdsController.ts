@@ -42,10 +42,10 @@ export default class AmazonAdsController extends Controller implements Controlle
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
 		const requestQuery: AmazonAdsRequest.Index = {
-			asin: RequestUtil.string(req.body.asin),
-			category: RequestUtil.strings(req.body.category),
-			action_add: RequestUtil.boolean(req.body.actionadd),
-			action_delete: RequestUtil.boolean(req.body.actiondel),
+			asin: RequestUtil.string(req.body['asin']),
+			category: RequestUtil.strings(req.body['category']),
+			action_add: RequestUtil.boolean(req.body['actionadd']),
+			action_delete: RequestUtil.boolean(req.body['actiondel']),
 		};
 
 		const validator = new AmazonAdsValidator(req, this.#config);

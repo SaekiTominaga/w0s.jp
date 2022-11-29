@@ -24,8 +24,8 @@ export default class HtmlToc extends Html {
 		options: Readonly<{
 			target_element: string;
 			sectioning_area: Element;
-			class?: string;
-			label?: string;
+			class?: string | undefined;
+			label?: string | undefined;
 		}>
 	): void {
 		const targetElementName = options.target_element;

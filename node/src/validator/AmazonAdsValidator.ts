@@ -27,7 +27,7 @@ export default class AmazonAdsValidator {
 	async add(): Promise<Result<ValidationError>> {
 		await body('category')
 			.notEmpty()
-			.withMessage(this.#config.validator.category.message.required)
+			.withMessage(this.#config.validator.category.message['required'])
 			.run(this.#req);
 
 		return validationResult(this.#req);

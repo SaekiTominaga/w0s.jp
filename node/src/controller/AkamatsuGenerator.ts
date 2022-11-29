@@ -36,9 +36,9 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: AkamatsuGeneratorRequest.Generate = {
-			icon: RequestUtil.string(req.body.icon),
-			color: RequestUtil.string(req.body.color),
-			bgcolor: RequestUtil.string(req.body.bgcolor),
+			icon: RequestUtil.string(req.body['icon']),
+			color: RequestUtil.string(req.body['color']),
+			bgcolor: RequestUtil.string(req.body['bgcolor']),
 			text_right1: RequestUtil.string(req.body.text_right1),
 			text_right2: RequestUtil.string(req.body.text_right2),
 			text_left1: RequestUtil.string(req.body.text_left1),

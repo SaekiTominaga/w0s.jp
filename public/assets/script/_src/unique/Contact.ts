@@ -103,7 +103,7 @@ export default class Contact {
 
 				/* 入力内容を出力する */
 				for (const confirmOutputElement of this.#confirmOutputElements) {
-					const formCtrlName = confirmOutputElement.dataset.ctrlName;
+					const formCtrlName = confirmOutputElement.dataset['ctrlName'];
 					if (formCtrlName === undefined) {
 						throw new Error('Attribute: `data-ctrl-name` is not set.');
 					}

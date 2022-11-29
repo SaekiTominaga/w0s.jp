@@ -1,6 +1,6 @@
 import fs from 'fs';
-import sizeOf from 'image-size';
 import { globby } from 'globby';
+import { imageSize } from 'image-size';
 import { JSDOM } from 'jsdom';
 
 const filesPath = process.argv[2];
@@ -65,7 +65,7 @@ if (filesPath === undefined) {
 				}
 			});
 
-			const size = sizeOf(buffer);
+			const size = imageSize(buffer);
 			const { width, height } = size;
 			if (width === undefined || height === undefined) {
 				console.warn('<img> 要素で指定された画像のサイズが取得できない', filePath, imageUrl.toString());

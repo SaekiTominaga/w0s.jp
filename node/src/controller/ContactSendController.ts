@@ -35,12 +35,12 @@ export default class ContactSendController extends Controller implements Control
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: ContactRequest.Input = {
-			name: RequestUtil.string(req.body.yourname),
-			email: RequestUtil.string(req.body.email),
-			reply: RequestUtil.string(req.body.reply),
-			body: RequestUtil.string(req.body.body),
-			referrer: RequestUtil.string(req.body.referrer),
-			action_send: RequestUtil.boolean(req.body.actionsend),
+			name: RequestUtil.string(req.body['yourname']),
+			email: RequestUtil.string(req.body['email']),
+			reply: RequestUtil.string(req.body['reply']),
+			body: RequestUtil.string(req.body['body']),
+			referrer: RequestUtil.string(req.body['referrer']),
+			action_send: RequestUtil.boolean(req.body['actionsend']),
 		};
 
 		const validator = new ContactValidator(req, this.#config);
@@ -57,7 +57,7 @@ export default class ContactSendController extends Controller implements Control
 				httpResponse.send303(
 					requestQuery.referrer === null || requestQuery.referrer === ''
 						? this.#config.url.completed.pathname
-						: `${this.#config.url.completed.pathname}?${this.#config.url.completed.search.referrer}=${encodeURIComponent(requestQuery.referrer)}`
+						: `${this.#config.url.completed.pathname}?${this.#config.url.completed.search['referrer']}=${encodeURIComponent(requestQuery.referrer)}`
 				);
 				return;
 			}

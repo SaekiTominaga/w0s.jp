@@ -31,12 +31,12 @@ export default class ContactCompletedController extends Controller implements Co
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: ContactRequest.Completed = {
-			referrer: RequestUtil.string(req.query.referrer),
+			referrer: RequestUtil.string(req.query['referrer']),
 		};
 
 		const validator = new ContactValidator(req, this.#config);
 		const validationResult = await validator.completed();
-		if (validationResult.mapped().referrer !== undefined) {
+		if (validationResult.mapped()['referrer'] !== undefined) {
 			this.logger.warn('不正なリファラー', requestQuery.referrer);
 			requestQuery.referrer = null;
 		}
