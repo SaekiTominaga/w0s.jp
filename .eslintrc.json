@@ -6,5 +6,33 @@
 	"extends": ["@w0s/eslint-config"],
 	"parserOptions": {
 		"sourceType": "module"
-	}
+	},
+	"overrides": [
+		{
+			"files": ["node/src/*Interface.ts"],
+			"rules": {
+				"semi": "off"
+			}
+		},
+		{
+			"files": ["node/src/build/component/*.ts"],
+			"rules": {
+				"class-methods-use-this": "off"
+			}
+		},
+		{
+			"files": ["node/src/build/component/*.ts"],
+			"rules": {
+				"class-methods-use-this": "off"
+			}
+		},
+		{
+			"files": ["public/assets/script/_src/analytics.ts"],
+			"rules": {
+				"no-multi-assign": "off",
+				"no-underscore-dangle": "off",
+				"no-var": "off"
+			}
+		}
+	]
 }
