@@ -14,7 +14,6 @@ export default class HtmlSectioningId extends Html {
 	 * @param {string} options.class - Table of Contents class name
 	 * @param {string} options.label - Table of Contents label (`aria-label` attribute value)
 	 */
-	// eslint-disable-next-line class-methods-use-this
 	convert(
 		options: Readonly<{
 			sectioning_area: Element;
