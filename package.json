@@ -21,7 +21,7 @@
 		"node-build-watch": "tsc --project node/tsconfig.json -w",
 		"node-build-all": "tsc --project node/tsconfig.json",
 		"node-lint": "eslint node/src/**/*.ts node/__tests__/**/*.test.js node/@types/*.d.ts",
-		"node-test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+		"node-test": "npm run node-build-all && cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
 		"node-config-convert": "json2ts -i node/configure/schema -o node/configure/type",
 		"node-config-validate": "run-p _node-config-validate:*",
 		"_html-build-watch:build": "onchange -f add -f change -v html/**/*.html -- node node/dist/build/html.js {{file}}",
