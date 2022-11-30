@@ -847,8 +847,8 @@ describe('Book', () => {
 	</div>
 		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
 		<ul class="p-library__tags">
-			<li><button type="button" class="js-library-tag">タグ1</button></li>
-			<li><button type="button" class="js-library-tag">タグ2</button></li>
+			<li><button type="button" class="js-library-tag" disabled="">タグ1</button></li>
+			<li><button type="button" class="js-library-tag" disabled="">タグ2</button></li>
 		</ul>
 		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
 </header>
