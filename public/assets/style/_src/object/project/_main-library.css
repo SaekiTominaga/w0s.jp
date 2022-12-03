@@ -66,13 +66,6 @@
 		color: var(--_color);
 		line-height: var(--line-height-nowrap);
 
-		&:disabled {
-			--_bgcolor: var(--color-bg-verydark);
-			--_color: var(--_color);
-
-			cursor: not-allowed;
-		}
-
 		&:focus-visible {
 			outline-width: var(--outline-width-bold);
 			outline-offset: -1px;
@@ -84,6 +77,14 @@
 
 		&:not(:disabled):hover {
 			--_bgcolor: var(--color-bg-verylight);
+		}
+
+		&[aria-pressed="true"] {
+			--_bgcolor: var(--color-lightred);
+
+			&:hover {
+				--_bgcolor: var(--color-pink);
+			}
 		}
 	}
 }

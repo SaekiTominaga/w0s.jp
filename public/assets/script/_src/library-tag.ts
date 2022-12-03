@@ -21,7 +21,7 @@ const narrowDown = (tagName?: string): void => {
 		element.hidden = false;
 	});
 	tagButtonElements.forEach((element) => {
-		element.disabled = false;
+		element.setAttribute('aria-pressed', 'false');
 	});
 
 	if (tagName !== undefined) {
@@ -32,64 +32,74 @@ const narrowDown = (tagName?: string): void => {
 				element.hidden = true;
 			});
 
-		/* セクション内の表示要素が0件になった場合はセクションごと非表示にする */
+		/* セクション内の表示要素が 0 件になった場合はセクションごと非表示にする */
 		Array.from(librarySectionElements)
 			.filter((element) => element.querySelectorAll('.p-library:not([hidden])').length === 0)
 			.forEach((element) => {
 				element.hidden = true;
 			});
 
-		/* 当該タグボタンを非活性にする */
+		/* 当該タグボタンの状態を設定する */
 		Array.from(tagButtonElements)
 			.filter((element) => element.textContent === tagName)
 			.forEach((element) => {
-				element.disabled = true;
+				element.setAttribute('aria-pressed', 'true');
 			});
 	}
 };
 
-narrowDown(new URL(location.toString()).searchParams.get(URL_PARAM_TAG) ?? undefined);
+/**
+ * 初期処理
+ */
+const init = (): void => {
+	tagButtonElements.forEach((element) => {
+		element.disabled = false;
+	});
 
-tagButtonElements.forEach((tagButtonElement): void => {
-	tagButtonElement.addEventListener(
-		'click',
-		(): void => {
-			const tagName = tagButtonElement.textContent;
-			if (tagName === null) {
-				return;
-			}
+	const url = new URL(location.toString());
 
-			const url = new URL(location.toString());
-			url.searchParams.set(URL_PARAM_TAG, tagName);
+	const tagName = url.searchParams.get(URL_PARAM_TAG);
 
-			history.pushState({}, '', url);
+	narrowDown(tagName ?? undefined);
+};
 
-			narrowDown(tagName);
-		},
-		{ passive: true }
-	);
-});
+/**
+ * ボタン押下時の処理
+ *
+ * @param {Event} ev - イベント
+ */
+const click = (ev: Event): void => {
+	const tagButtonElement = ev.currentTarget as HTMLButtonElement;
 
-window.addEventListener(
-	'popstate',
-	(): void => {
-		narrowDown(new URL(location.toString()).searchParams.get(URL_PARAM_TAG) ?? undefined);
-	},
-	{ passive: true }
-);
+	const tagName = tagButtonElement.textContent;
+	if (tagName === null) {
+		return;
+	}
 
-window.addEventListener(
-	'hashchange',
-	(ev: HashChangeEvent): void => {
-		const url = new URL(ev.newURL);
+	const url = new URL(location.toString());
+
+	if (tagButtonElement.getAttribute('aria-pressed') === 'false') {
+		/* タグによる絞り込み実行 */
+		url.searchParams.set(URL_PARAM_TAG, tagName);
+
+		narrowDown(tagName);
+	} else {
+		/* 絞り込み解除 */
 		url.searchParams.delete(URL_PARAM_TAG);
 
-		history.replaceState({}, '', url);
-
 		narrowDown();
+	}
 
-		/* 当該要素までスクロールする */
-		document.getElementById(decodeURIComponent(url.hash.substring(1).replaceAll('+', ' ')))?.scrollIntoView();
-	},
-	{ passive: true }
-);
+	/* 押された当該ボタンのあるセクションまでスクロールする */
+	tagButtonElement.closest('.p-library')?.scrollIntoView();
+
+	/* URL の書き換え */
+	url.hash = '';
+	history.pushState({}, '', url);
+};
+
+document.addEventListener('DOMContentLoaded', init, { passive: true });
+window.addEventListener('popstate', init, { passive: true });
+tagButtonElements.forEach((tagButtonElement): void => {
+	tagButtonElement.addEventListener('click', click, { passive: true });
+});
