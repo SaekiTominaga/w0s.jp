@@ -5,6 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type HTML = string;
 export type MIME = string;
 export type NoName8 = string;
 export type NoName9 = string;
@@ -21,21 +22,25 @@ export type NoName11 = {
   name: NoName13;
   src: NoName14;
 }[];
-export type HTML = string;
+export type HTML1 = string;
 export type NoName19 = string;
 export type NoName20 = string;
 export type NoName21 = string;
 export type Feed = string;
 export type Feed1 = string;
 export type NoName18 = {
-  html_path: HTML;
+  html_path: HTML1;
   xpath: XPath;
   feed_template: Feed;
   feed_path: Feed1;
 }[];
+export type Glob = string[];
+export type NoName23 = string;
+export type NoName24 = string;
 
 export interface NoName {
   html: {
+    directory: HTML;
     book: NoName1;
     newspaper: NoName2;
     section_id: ID;
@@ -54,6 +59,7 @@ export interface NoName {
   feed: {
     info: NoName18;
   };
+  sitemap: NoName22;
 }
 export interface NoName1 {
   target_element: string;
@@ -145,4 +151,9 @@ export interface XPath {
   wrap: NoName19;
   date: NoName20;
   content: NoName21;
+}
+export interface NoName22 {
+  ignore: Glob;
+  template: NoName23;
+  path: NoName24;
 }
