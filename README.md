@@ -8,7 +8,6 @@
 
 [![js-lint status](https://github.com/SaekiTominaga/w0s.jp/actions/workflows/js-lint.yml/badge.svg)](https://github.com/SaekiTominaga/w0s.jp/actions/workflows/js-lint.yml)
 
-[![node-test status](https://github.com/SaekiTominaga/w0s.jp/actions/workflows/node-test.yml/badge.svg)](https://github.com/SaekiTominaga/w0s.jp/actions/workflows/node-test.yml)
 [![node-lint status](https://github.com/SaekiTominaga/w0s.jp/actions/workflows/node-lint.yml/badge.svg)](https://github.com/SaekiTominaga/w0s.jp/actions/workflows/node-lint.yml)
 
 - [w0s.jp](https://w0s.jp/)
