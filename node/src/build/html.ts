@@ -20,6 +20,7 @@ import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
 import HtmlCpmponentSectioningId from './component/HtmlSectioningId.js';
 import { NoName as Configure } from '../../configure/type/build.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
+import PageUrl from '../util/PageUrl.js';
 
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));
@@ -36,23 +37,6 @@ if (filesPath === undefined) {
 	fileList.forEach(async (filePath) => {
 		/* ファイル読み込み */
 		const fileData = (await fs.promises.readFile(filePath)).toString();
-
-		const fileUrl = filePath.substring(filePath.indexOf('/'));
-		const fileName = path.basename(filePath);
-
-		let pagePath = ''; // ページのルート相対パス
-		if (configCommon.static.indexes?.includes(fileName)) {
-			/* ファイル名が index.html の場合は省略する */
-			pagePath = path.dirname(fileUrl);
-			if (pagePath !== '/') {
-				pagePath += '/';
-			}
-		} else {
-			/* 拡張子を除去する */
-			const parse = path.parse(fileUrl);
-			pagePath = parse.dir !== '/' ? `${parse.dir}/${parse.name}` : `/${parse.name}`;
-		}
-
 		const documentEjs = new JSDOM(fileData).window.document;
 
 		/* HTML から必要なデータを取得 */
@@ -72,12 +56,22 @@ if (filesPath === undefined) {
 			pageImage = `${url.origin}${url.pathname.replace(/^\/thumbimage\//, '/image/')}`;
 		}
 
+		const publicFilePath = filePath.replaceAll(new RegExp(`^${config.html.directory}`, 'g'), configCommon.static.root);
+
+		const pageUrl = new PageUrl({
+			root: configCommon.static.root,
+			indexes: configCommon.static.indexes,
+			extensions: configCommon.static.extensions,
+		});
+
+		const urlPath = pageUrl.getUrl(publicFilePath);
+
 		/* EJS を解釈 */
 		const html = await ejs.renderFile(
 			path.resolve(filePath),
 			{
 				page: {
-					path: pagePath,
+					path: urlPath,
 					title: pageTitle,
 					description: pageDescription,
 					image: pageImage,

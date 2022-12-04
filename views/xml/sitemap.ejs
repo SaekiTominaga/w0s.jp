@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<%_ for (const entry of entries) { _%>
+	<url>
+		<loc>https://w0s.jp<%= entry.path %></loc>
+		<%_ if (entry.updated_at !== undefined) { _%>
+		<lastmod><%= entry.updated_at.format('YYYY-MM-DD') %></lastmod>
+		<%_ } _%>
+	</url>
+	<%_ } _%>
+</urlset>
