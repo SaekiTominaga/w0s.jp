@@ -18,7 +18,7 @@ if (filesPath === undefined) {
 }
 
 const fileList = await globby(filesPath, {
-	ignoreFiles: config.sitemap.ignore,
+	ignore: config.sitemap.ignore.map((filePath) => `${config.html.directory}/${filePath}`),
 });
 
 const entries = await Promise.all(
