@@ -22,7 +22,7 @@ export default class ContactCompletedController extends Controller implements Co
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/contact.json', 'utf8'));
+		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/contact.json', 'utf8'));
 	}
 
 	/**

@@ -23,7 +23,7 @@ export default class CrawlerNewsController extends Controller implements Control
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/crawler-news.json', 'utf8'));
+		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/crawler-news.json', 'utf8'));
 	}
 
 	/**

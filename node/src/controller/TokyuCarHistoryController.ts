@@ -25,7 +25,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/tokyu-car-history.json', 'utf8'));
+		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/tokyu-car-history.json', 'utf8'));
 	}
 
 	/**
