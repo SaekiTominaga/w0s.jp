@@ -34,18 +34,18 @@ export default class CrawlerNewsController extends Controller implements Control
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
 		const requestQuery: CrawlerNewsRequest.Index = {
-			url: RequestUtil.string(req.query.url ?? req.body.url),
-			title: RequestUtil.string(req.body.title),
-			category: RequestUtil.number(req.body.category),
-			priority: RequestUtil.number(req.body.priority),
-			browser: RequestUtil.boolean(req.body.browser),
-			selector_wrap: RequestUtil.string(req.body.selectorwrap),
-			selector_date: RequestUtil.string(req.body.selectordate),
-			selector_content: RequestUtil.string(req.body.selectorcontent),
-			action_add: RequestUtil.boolean(req.body.actionadd),
-			action_revise: RequestUtil.boolean(req.body.actionrev),
-			action_revise_preview: RequestUtil.boolean(req.query.actionrevpre),
-			action_delete: RequestUtil.boolean(req.body.actiondel),
+			url: RequestUtil.string(req.query['url'] ?? req.body['url']),
+			title: RequestUtil.string(req.body['title']),
+			category: RequestUtil.number(req.body['category']),
+			priority: RequestUtil.number(req.body['priority']),
+			browser: RequestUtil.boolean(req.body['browser']),
+			selector_wrap: RequestUtil.string(req.body['selectorwrap']),
+			selector_date: RequestUtil.string(req.body['selectordate']),
+			selector_content: RequestUtil.string(req.body['selectorcontent']),
+			action_add: RequestUtil.boolean(req.body['actionadd']),
+			action_revise: RequestUtil.boolean(req.body['actionrev']),
+			action_revise_preview: RequestUtil.boolean(req.query['actionrevpre']),
+			action_delete: RequestUtil.boolean(req.body['actiondel']),
 		};
 
 		const dao = new CrawlerNewsDao(this.#configCommon);

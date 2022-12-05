@@ -47,13 +47,13 @@ export default class TokyuCarHistoryResultTableTrHover {
 		this.#thisElement.classList.add(this.#hoverClassName);
 
 		let prevElement = this.#thisElement.previousElementSibling as HTMLElement | null;
-		while (prevElement !== null && prevElement.dataset.carNum === this.#carNum) {
+		while (prevElement !== null && prevElement.dataset['carNum'] === this.#carNum) {
 			prevElement.classList.add(this.#hoverClassName);
 			prevElement = prevElement.previousElementSibling as HTMLElement | null;
 		}
 
 		let nextElement = this.#thisElement.nextElementSibling as HTMLElement | null;
-		while (nextElement !== null && nextElement.dataset.carNum === this.#carNum) {
+		while (nextElement !== null && nextElement.dataset['carNum'] === this.#carNum) {
 			nextElement.classList.add(this.#hoverClassName);
 			nextElement = nextElement.nextElementSibling as HTMLElement | null;
 		}
@@ -66,13 +66,13 @@ export default class TokyuCarHistoryResultTableTrHover {
 		this.#thisElement.classList.remove(this.#hoverClassName);
 
 		let prevElement = this.#thisElement.previousElementSibling as HTMLElement | null;
-		while (prevElement !== null && prevElement.dataset.carNum === this.#carNum) {
+		while (prevElement !== null && prevElement.dataset['carNum'] === this.#carNum) {
 			prevElement.classList.remove(this.#hoverClassName);
 			prevElement = prevElement.previousElementSibling as HTMLElement | null;
 		}
 
 		let nextElement = this.#thisElement.nextElementSibling as HTMLElement | null;
-		while (nextElement !== null && nextElement.dataset.carNum === this.#carNum) {
+		while (nextElement !== null && nextElement.dataset['carNum'] === this.#carNum) {
 			nextElement.classList.remove(this.#hoverClassName);
 			nextElement = nextElement.nextElementSibling as HTMLElement | null;
 		}

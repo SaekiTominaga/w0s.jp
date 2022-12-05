@@ -34,16 +34,16 @@ export default class CrawlerResourceController extends Controller implements Con
 		const httpResponse = new HttpResponse(req, res, this.#configCommon);
 
 		const requestQuery: CrawlerResourceRequest.Index = {
-			url: RequestUtil.string(req.query.url ?? req.body.url),
-			title: RequestUtil.string(req.body.title),
-			category: RequestUtil.number(req.body.category),
-			priority: RequestUtil.number(req.body.priority),
-			browser: RequestUtil.boolean(req.body.browser),
-			selector: RequestUtil.string(req.body.selector),
-			action_add: RequestUtil.boolean(req.body.actionadd),
-			action_revise: RequestUtil.boolean(req.body.actionrev),
-			action_revise_preview: RequestUtil.boolean(req.query.actionrevpre),
-			action_delete: RequestUtil.boolean(req.body.actiondel),
+			url: RequestUtil.string(req.query['url'] ?? req.body['url']),
+			title: RequestUtil.string(req.body['title']),
+			category: RequestUtil.number(req.body['category']),
+			priority: RequestUtil.number(req.body['priority']),
+			browser: RequestUtil.boolean(req.body['browser']),
+			selector: RequestUtil.string(req.body['selector']),
+			action_add: RequestUtil.boolean(req.body['actionadd']),
+			action_revise: RequestUtil.boolean(req.body['actionrev']),
+			action_revise_preview: RequestUtil.boolean(req.query['actionrevpre']),
+			action_delete: RequestUtil.boolean(req.body['actiondel']),
 		};
 
 		const dao = new CrawlerResourceDao(this.#configCommon);

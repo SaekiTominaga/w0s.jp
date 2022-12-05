@@ -12,7 +12,6 @@ export default class HtmlLocalnav extends Html {
 	 * @param {object} options.header_area - Contents header area
 	 * @param {object} options.footer_area - Contents footer area
 	 */
-	// eslint-disable-next-line class-methods-use-this
 	convert(
 		options: Readonly<{
 			target_class: string;

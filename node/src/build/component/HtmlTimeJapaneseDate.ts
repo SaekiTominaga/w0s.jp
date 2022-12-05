@@ -38,7 +38,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 				const timeElement = this.replaceElement(targetElement, 'time');
 				timeElement.setAttribute(
 					'datetime',
-					`${patternMatchYMDgroups.year}-${patternMatchYMDgroups.month?.padStart(2, '0')}-${patternMatchYMDgroups.day?.padStart(2, '0')}`
+					`${patternMatchYMDgroups['year']}-${patternMatchYMDgroups['month']?.padStart(2, '0')}-${patternMatchYMDgroups['day']?.padStart(2, '0')}`
 				);
 				continue;
 			}
@@ -47,7 +47,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 			const patternMatchYMgroups = content?.match(/^(?:[\s]*?)(?<year>\d{4})(?:[\s]*?)年(?:[\s]*?)(?<month>\d{1,2})(?:[\s]*?)月(?:[\s]*?)$/)?.groups;
 			if (patternMatchYMgroups !== undefined) {
 				const timeElement = this.replaceElement(targetElement, 'time');
-				timeElement.setAttribute('datetime', `${patternMatchYMgroups.year}-${patternMatchYMgroups.month?.padStart(2, '0')}`);
+				timeElement.setAttribute('datetime', `${patternMatchYMgroups['year']}-${patternMatchYMgroups['month']?.padStart(2, '0')}`);
 				continue;
 			}
 
@@ -55,7 +55,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 			const patternMatchYgroups = content?.match(/^(?:[\s]*?)(?<year>\d{4})(?:[\s]*?)年(?:[\s]*?)$/)?.groups;
 			if (patternMatchYgroups !== undefined) {
 				const timeElement = this.replaceElement(targetElement, 'time');
-				timeElement.setAttribute('datetime', `${patternMatchYgroups.year}`);
+				timeElement.setAttribute('datetime', `${patternMatchYgroups['year']}`);
 				continue;
 			}
 

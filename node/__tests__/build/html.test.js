@@ -1,7 +1,3 @@
-/* eslint-disable no-tabs */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/no-named-as-default-member */
 import { describe, expect, test } from '@jest/globals';
 import { JSDOM } from 'jsdom';
 import HtmlComponent from '../../dist/build/component/Html.js';

@@ -46,7 +46,7 @@ export default class Tweet {
 			}
 		}
 
-		requestParams.status = postMessage;
+		requestParams['status'] = postMessage;
 
 		/* メディアをアップロードする */
 		if (medias !== undefined) {
@@ -59,14 +59,14 @@ export default class Tweet {
 				mediaIds.add(await this.uploadMedia(media));
 			}
 
-			requestParams.media_ids = Array.from(mediaIds).join(',');
+			requestParams['media_ids'] = Array.from(mediaIds).join(',');
 		}
 
 		await this.#apiConnectPreprocessing();
 
 		const response = await this.#twitter.post('statuses/update', requestParams); // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
 
-		if (response.text === undefined) {
+		if (response['text'] === undefined) {
 			throw new Error(`Tweet failure. ${response.toString()}`);
 		}
 
@@ -87,11 +87,11 @@ export default class Tweet {
 			media: media,
 		}); // https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload
 
-		if (response.media_id_string === undefined) {
+		if (response['media_id_string'] === undefined) {
 			throw new Error(`Media upload failure. ${response.toString()}`);
 		}
 
-		return response.media_id_string;
+		return response['media_id_string'];
 	}
 
 	/**

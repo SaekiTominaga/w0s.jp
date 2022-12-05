@@ -32,7 +32,7 @@ export default class MadokaOfficialNewsMonthController extends Controller implem
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: MadokaOfficialNewsMonthRequest.Month = {
-			month: <Dayjs>RequestUtil.dateYYYYMM(req.params.month),
+			month: <Dayjs>RequestUtil.dateYYYYMM(req.params['month']),
 		};
 
 		const dao = new MadokaOfficialNewsMonthDao(this.#configCommon);

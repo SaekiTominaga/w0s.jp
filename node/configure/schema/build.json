@@ -3,11 +3,12 @@
 	"$id": "https://w0s.jp/build.json",
 	"type": "object",
 	"title": "ビルド",
-	"required": ["html", "feed"],
+	"required": ["html", "feed", "sitemap"],
 	"properties": {
 		"html": {
 			"type": "object",
 			"required": [
+				"directory",
 				"book",
 				"newspaper",
 				"section_id",
@@ -24,6 +25,10 @@
 				"highlight"
 			],
 			"properties": {
+				"directory": {
+					"type": "string",
+					"title": "HTML ファイル格納ディレクトリ"
+				},
 				"book": {
 					"type": "object",
 					"title": "書籍",
@@ -401,6 +406,29 @@
 					},
 					"uniqueItems": true,
 					"title": "フィード情報"
+				}
+			},
+			"additionalProperties": false
+		},
+		"sitemap": {
+			"type": "object",
+			"title": "サイトマップ",
+			"required": ["ignore", "template", "path"],
+			"properties": {
+				"ignore": {
+					"type": "array",
+					"title": "除外するファイル（Glob パターン）",
+					"items": {
+						"type": "string"
+					}
+				},
+				"template": {
+					"type": "string",
+					"title": "テンプレートパス"
+				},
+				"path": {
+					"type": "string",
+					"title": "出力パス"
 				}
 			},
 			"additionalProperties": false
