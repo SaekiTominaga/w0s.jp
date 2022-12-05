@@ -10,8 +10,8 @@ import { NoName as Configure } from '../../configure/type/build.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 
 /* 設定ファイル読み込み */
-const configCommon = <ConfigureCommon>JSON.parse(fs.readFileSync('node/configure/common.json', 'utf8'));
-const config = <Configure>JSON.parse(fs.readFileSync('node/configure/build.json', 'utf8'));
+const configCommon = <ConfigureCommon>JSON.parse(await fs.promises.readFile('node/configure/common.json', 'utf8'));
+const config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/build.json', 'utf8'));
 
 config.feed.info.forEach(async (feedInfo) => {
 	const html = (await fs.promises.readFile(`${configCommon.static.root}/${feedInfo.html_path}`)).toString();

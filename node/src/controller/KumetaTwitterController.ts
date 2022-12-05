@@ -21,7 +21,7 @@ export default class KumetaTwitterController extends Controller implements Contr
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/kumeta-twitter.json', 'utf8'));
+		this.#config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/kumeta-twitter.json', 'utf8'));
 	}
 
 	/**
