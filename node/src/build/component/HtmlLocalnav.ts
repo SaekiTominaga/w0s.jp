@@ -28,7 +28,7 @@ export default class HtmlLocalnav extends Html {
 			Html.removeClassName(localNavHeader, targetClassName);
 
 			if (footerAreaElement === null) {
-				console.warn('コンテンツフッターが存在しない');
+				this.logger.warn('コンテンツフッターが存在しない');
 				return;
 			}
 

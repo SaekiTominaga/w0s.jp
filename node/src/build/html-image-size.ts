@@ -2,6 +2,15 @@ import fs from 'fs';
 import { globby } from 'globby';
 import { imageSize } from 'image-size';
 import { JSDOM } from 'jsdom';
+import Log4js from 'log4js';
+import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
+
+/* 設定ファイル読み込み */
+const configCommon = <ConfigureCommon>JSON.parse(await fs.promises.readFile('node/configure/common.json', 'utf8'));
+
+/* Logger 設定 */
+Log4js.configure(configCommon.logger.path);
+const logger = Log4js.getLogger();
 
 const filesPath = process.argv[2];
 if (filesPath === undefined) {
@@ -14,7 +23,7 @@ const fetchedHost = new Set<string>();
 
 fileList.forEach(async (filePath) => {
 	/* ファイル読み込み */
-	console.info(filePath);
+	logger.info(filePath);
 	const fileData = (await fs.promises.readFile(filePath)).toString();
 
 	const { document } = new JSDOM(fileData).window;
@@ -37,20 +46,20 @@ fileList.forEach(async (filePath) => {
 		const widthAttributeValue = imageElement.width;
 		const heightAttributeValue = imageElement.height;
 		if (widthAttributeValue === 0 || heightAttributeValue === 0) {
-			console.warn('<img> 要素に width 属性または height 属性が指定されていない', filePath, imageUrl.toString());
+			logger.warn('<img> 要素に width 属性または height 属性が指定されていない', filePath, imageUrl.toString());
 			continue;
 		}
 
-		console.info('fetch', imageUrl.toString());
+		logger.info('fetch', imageUrl.toString());
 		let response: Response;
 		try {
 			response = await fetch(imageUrl);
 			if (!response.ok) {
-				console.error('Fetch error', imageUrl);
+				logger.error('Fetch error', imageUrl);
 				continue;
 			}
 		} catch (e) {
-			console.error(e);
+			logger.error(e);
 			continue;
 		}
 
@@ -67,14 +76,14 @@ fileList.forEach(async (filePath) => {
 		const size = imageSize(buffer);
 		const { width, height } = size;
 		if (width === undefined || height === undefined) {
-			console.warn('<img> 要素で指定された画像のサイズが取得できない', filePath, imageUrl.toString());
+			logger.warn('<img> 要素で指定された画像のサイズが取得できない', filePath, imageUrl.toString());
 			continue;
 		}
 		if (width !== widthAttributeValue) {
-			console.warn(`<img> 要素の width 属性値<${widthAttributeValue}>が実際の値<${width}>と違う`, filePath, imageUrl.toString());
+			logger.warn(`<img> 要素の width 属性値<${widthAttributeValue}>が実際の値<${width}>と違う`, filePath, imageUrl.toString());
 		}
 		if (height !== heightAttributeValue) {
-			console.warn(`<img> 要素の height 属性値<${heightAttributeValue}>が実際の値<${height}>と違う`, filePath, imageUrl.toString());
+			logger.warn(`<img> 要素の height 属性値<${heightAttributeValue}>が実際の値<${height}>と違う`, filePath, imageUrl.toString());
 		}
 	}
 });

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import ejs from 'ejs';
 import fs from 'fs';
 import jsdom from 'jsdom';
+import Log4js from 'log4js';
 import prettier from 'prettier';
 import xmlFormatter from 'xml-formatter';
 import xpath from 'xpath';
@@ -12,6 +13,10 @@ import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(await fs.promises.readFile('node/configure/common.json', 'utf8'));
 const config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/build.json', 'utf8'));
+
+/* Logger 設定 */
+Log4js.configure(configCommon.logger.path);
+const logger = Log4js.getLogger();
 
 config.feed.info.forEach(async (feedInfo) => {
 	const html = (await fs.promises.readFile(`${configCommon.static.root}/${feedInfo.html_path}`)).toString();
@@ -79,5 +84,5 @@ config.feed.info.forEach(async (feedInfo) => {
 	/* 出力 */
 	const feedPath = `${configCommon.static.root}/${feedInfo.feed_path}`;
 	await fs.promises.writeFile(feedPath, feedFormatted);
-	console.info(`Feed file created: ${feedPath}`);
+	logger.info(`Feed file created: ${feedPath}`);
 });

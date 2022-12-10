@@ -26,7 +26,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 
 			const content = targetElement.textContent;
 			if (targetElement.getAttribute('datetime') !== null) {
-				console.warn('`datetime` attribute already exists', content);
+				this.logger.warn('`datetime` attribute already exists', content);
 				continue;
 			}
 
@@ -59,7 +59,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 				continue;
 			}
 
-			console.warn('Does not match the specified Japanese date string format', content);
+			this.logger.warn('Does not match the specified Japanese date string format', content);
 		}
 	}
 }

@@ -61,7 +61,7 @@ export default class HtmlAnchorHost extends Html {
 
 			const href = targetElement.getAttribute('href');
 			if (href === null) {
-				console.warn('No `href` attribute', targetElement.textContent);
+				this.logger.warn('No `href` attribute', targetElement.textContent);
 				continue;
 			}
 

@@ -60,7 +60,7 @@ export default class HtmlHighlight extends Html {
 					break;
 				}
 				default: {
-					console.warn('無効な言語名', languageName);
+					this.logger.warn('無効な言語名', languageName);
 				}
 			}
 
