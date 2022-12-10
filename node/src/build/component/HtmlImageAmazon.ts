@@ -27,7 +27,7 @@ export default class HtmlAmazonImage extends Html {
 
 			const src = targetElement.getAttribute('src');
 			if (src === null) {
-				console.warn('No `src` attribute');
+				this.logger.warn('No `src` attribute');
 				continue;
 			}
 
@@ -35,7 +35,7 @@ export default class HtmlAmazonImage extends Html {
 			try {
 				imageUrl = new URL(src);
 			} catch {
-				console.warn('`src` attribute value is not a valid URL', src);
+				this.logger.warn('`src` attribute value is not a valid URL', src);
 				continue;
 			}
 
@@ -45,7 +45,7 @@ export default class HtmlAmazonImage extends Html {
 				paapiItemImageUrlParser.setSizeMultiply(2);
 				imageUrl2x = paapiItemImageUrlParser.toString();
 			} catch (e) {
-				console.warn(e, src);
+				this.logger.warn(e, src);
 				continue;
 			}
 

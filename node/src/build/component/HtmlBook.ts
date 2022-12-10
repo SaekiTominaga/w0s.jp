@@ -110,7 +110,7 @@ export default class HtmlBook extends Html {
 				} else if (/^[0-9]{4}$/.test(release)) {
 					releaseDate = `${release}年`;
 				} else {
-					console.warn('不正な日付', release);
+					this.logger.warn('不正な日付', release);
 				}
 			}
 

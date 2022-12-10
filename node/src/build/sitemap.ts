@@ -3,6 +3,7 @@ import ejs from 'ejs';
 import fs from 'fs';
 import { globby } from 'globby';
 import { JSDOM } from 'jsdom';
+import Log4js from 'log4js';
 import xmlFormatter from 'xml-formatter';
 import { NoName as Configure } from '../../configure/type/build.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
@@ -11,6 +12,10 @@ import PageUrl from '../util/PageUrl.js';
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(await fs.promises.readFile('node/configure/common.json', 'utf8'));
 const config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/build.json', 'utf8'));
+
+/* Logger 設定 */
+Log4js.configure(configCommon.logger.path);
+const logger = Log4js.getLogger();
 
 const filesPath = process.argv[2];
 if (filesPath === undefined) {
@@ -87,4 +92,4 @@ const sitemapFormatted = xmlFormatter(sitemap, {
 /* 出力 */
 const sitemapPath = `${configCommon.static.root}/${config.sitemap.path}`;
 await fs.promises.writeFile(sitemapPath, sitemapFormatted);
-console.info(`Sitemap file created: ${sitemapPath}`);
+logger.info(`Sitemap file created: ${sitemapPath}`);

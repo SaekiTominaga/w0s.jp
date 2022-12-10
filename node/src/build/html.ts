@@ -1,5 +1,6 @@
 import ejs from 'ejs';
 import fs from 'fs';
+import Log4js from 'log4js';
 import path from 'path';
 import prettier from 'prettier';
 import { globby } from 'globby';
@@ -25,6 +26,10 @@ import PageUrl from '../util/PageUrl.js';
 /* 設定ファイル読み込み */
 const configCommon = <ConfigureCommon>JSON.parse(await fs.promises.readFile('node/configure/common.json', 'utf8'));
 const config = <Configure>JSON.parse(await fs.promises.readFile('node/configure/build.json', 'utf8'));
+
+/* Logger 設定 */
+Log4js.configure(configCommon.logger.path);
+const logger = Log4js.getLogger();
 
 const filesPath = process.argv[2];
 if (filesPath === undefined) {
@@ -134,7 +139,7 @@ fileList.forEach(async (filePath) => {
 	new HtmlComponentHighlight(document).convert(config.html.highlight); // highlight.js
 
 	const htmlBuilt = dom.serialize();
-	console.info(`Build finished: ${filePath}`);
+	logger.info(`Build finished: ${filePath}`);
 
 	/* 整形 */
 	let htmlFormatted = htmlBuilt;
@@ -146,13 +151,13 @@ fileList.forEach(async (filePath) => {
 			parser: 'html',
 		});
 
-		console.info(`Prettier finished: ${filePath}`);
+		logger.info(`Prettier finished: ${filePath}`);
 	} catch (e) {
-		console.error(`Prettier error: ${filePath}`, e);
+		logger.error(`Prettier error: ${filePath}`, e);
 	}
 
 	/* 出力 */
 	const distPath = `${configCommon.static.root}/${filePath.substring(filePath.replace(/\\/g, '/').indexOf('/') + 1)}`;
 	await fs.promises.writeFile(distPath, htmlFormatted);
-	console.info(`HTML file created: ${distPath}`);
+	logger.info(`HTML file created: ${distPath}`);
 });
