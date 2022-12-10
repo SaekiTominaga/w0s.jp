@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import ejs from 'ejs';
+import IsbnVerify from '@saekitominaga/isbn-verify';
 import Html from './Html.js';
 
 /**
@@ -112,6 +113,11 @@ export default class HtmlBook extends Html {
 				} else {
 					this.logger.warn('不正な日付', release);
 				}
+			}
+
+			const isbn = isbnElement?.textContent ?? undefined;
+			if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
+				this.logger.warn('不正な ISBN', isbn);
 			}
 
 			const html = template({
