@@ -106,17 +106,15 @@ if (window.customElements !== undefined) {
 
 	if (document.querySelector('.js-submit-overlay') !== null) {
 		/* 送信ボタン2度押し防止 */
-		(async () => {
-			for (const formElement of <NodeListOf<HTMLFormElement>>document.querySelectorAll('.js-submit-overlay')) {
-				new FormSubmitOverlay(formElement).init();
-			}
-		})();
+		for (const formElement of document.querySelectorAll<HTMLFormElement>('.js-submit-overlay')) {
+			new FormSubmitOverlay(formElement).init();
+		}
 	}
 }
 
 /* <thead> の sticky スクロール量調整 */
 if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
-	for (const tableElement of <NodeListOf<HTMLTableElement>>document.querySelectorAll('.p-table')) {
+	for (const tableElement of document.querySelectorAll<HTMLTableElement>('.p-table')) {
 		if (tableElement.querySelector(':scope > :is(tbody, tfood) [id]') !== null) {
 			new TableTheadStickey(tableElement).init();
 		}
@@ -146,7 +144,7 @@ if (autoFocusElement !== null) {
 }
 
 /* 入力値の変換 */
-for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement>>document.querySelectorAll('.js-convert-trim')) {
+for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim')) {
 	formCtrlElement.addEventListener(
 		'change',
 		() => {
@@ -159,12 +157,12 @@ for (const formCtrlElement of <NodeListOf<HTMLInputElement | HTMLTextAreaElement
 }
 
 /* 入力バリデーション（エラー時はメッセージを画面表示する） */
-for (const validationElement of <NodeListOf<HTMLElement>>document.querySelectorAll('.js-validation')) {
+for (const validationElement of document.querySelectorAll<HTMLElement>('.js-validation')) {
 	new FormControlValidation(validationElement).init();
 }
 
 /* フォーム入力中にページが閉じられようとしたら確認メッセージを表示 */
-for (const beforeunloadConfirmElement of <NodeListOf<HTMLFormElement>>document.querySelectorAll('.js-form-beforeunload-confirm')) {
+for (const beforeunloadConfirmElement of document.querySelectorAll<HTMLFormElement>('.js-form-beforeunload-confirm')) {
 	new FormBeforeUnloadConfirm(beforeunloadConfirmElement).init();
 }
 
