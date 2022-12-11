@@ -120,16 +120,36 @@ export default class HtmlBook extends Html {
 				this.logger.warn('不正な ISBN', isbn);
 			}
 
+			const asin = amazonElement?.getAttribute('asin') ?? undefined;
+			if (asin !== undefined && !/^[A-Z0-9]{10}$/.test(asin)) {
+				this.logger.warn('不正な ASIN', asin);
+			}
+
+			const amazonImageId = amazonElement?.getAttribute('image-id') ?? undefined;
+			if (amazonImageId !== undefined && !/^[-+a-zA-Z0-9]{11}$/.test(amazonImageId)) {
+				this.logger.warn('不正な Amazon 画像 ID', amazonImageId);
+			}
+
+			const amazonImageWidth = amazonElement?.getAttribute('width') ?? undefined;
+			if (amazonImageWidth !== undefined && !/^[1-9][0-9]|1[0-9]{2}$/.test(amazonImageWidth)) {
+				this.logger.warn('不正な Amazon 画像幅', amazonImageWidth);
+			}
+
+			const amazonImageHeight = amazonElement?.getAttribute('height') ?? undefined;
+			if (amazonImageHeight !== undefined && !/^[1-9][0-9]|1[0-9]{2}$/.test(amazonImageHeight)) {
+				this.logger.warn('不正な Amazon 画像高さ', amazonImageHeight);
+			}
+
 			const html = template({
 				headingLevel: targetElement.getAttribute('heading-level'),
 				name: nameElement?.textContent,
 				release: releaseDate,
 				tags: Array.from(tagElements).map((element) => element.textContent),
-				isbn: isbnElement?.textContent ?? undefined,
-				asin: amazonElement?.getAttribute('asin') ?? undefined,
-				amazonImageId: amazonElement?.getAttribute('image-id') ?? undefined,
-				amazonImageWidth: amazonElement?.getAttribute('width') ?? undefined,
-				amazonImageHeight: amazonElement?.getAttribute('height') ?? undefined,
+				isbn: isbn,
+				asin: asin,
+				amazonImageId: amazonImageId,
+				amazonImageWidth: amazonImageWidth,
+				amazonImageHeight: amazonImageHeight,
 				contents: contentsElement?.innerHTML,
 			});
 
