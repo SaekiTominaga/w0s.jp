@@ -69,7 +69,7 @@ export default class HtmlToc extends Html {
 					}
 				}
 			} else {
-				console.info('見出しレベル 2 が 1 つのみなので目次は表示しない', tocData);
+				this.logger.info('見出しレベル 2 が 1 つのみなので目次は表示しない', tocData);
 				for (const targetElement of targetElements) {
 					targetElement.remove();
 				}

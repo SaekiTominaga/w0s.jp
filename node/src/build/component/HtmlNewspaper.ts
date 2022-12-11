@@ -65,7 +65,7 @@ export default class HtmlNewspaper extends Html {
 				if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
 					releaseDate = dayjs(release).format('YYYY年M月D日');
 				} else {
-					console.warn('不正な日付', release);
+					this.logger.warn('不正な日付', release);
 				}
 			}
 

@@ -41,13 +41,13 @@ export default class HtmlHeadingSelfLink extends Html {
 
 			const { id } = targetElement;
 			if (id === '') {
-				console.warn(`<${targetElement.tagName}> 要素に ID が設定されていない`, targetElement.textContent?.substring(0, 10));
+				this.logger.warn(`<${targetElement.tagName}> 要素に ID が設定されていない`, targetElement.textContent?.substring(0, 10));
 				continue;
 			}
 
 			const headingElement = targetElement.querySelector('h1, h2, h3, h4, h5, h6');
 			if (headingElement === null) {
-				console.warn(`<${targetElement.tagName}> 要素に見出しが存在しない`, targetElement.textContent?.substring(0, 10));
+				this.logger.warn(`<${targetElement.tagName}> 要素に見出しが存在しない`, targetElement.textContent?.substring(0, 10));
 				continue;
 			}
 
