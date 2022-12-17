@@ -31,7 +31,7 @@ export default class HtmlImage extends Html {
 
 			const src = targetElement.getAttribute('src');
 			if (src === null) {
-				console.warn('No `src` attribute');
+				this.logger.warn('No `src` attribute');
 				continue;
 			}
 
@@ -39,16 +39,16 @@ export default class HtmlImage extends Html {
 			try {
 				url = new URL(src);
 			} catch {
-				console.warn('`src` attribute value is not a valid URL', src);
+				this.logger.warn('`src` attribute value is not a valid URL', src);
 				continue;
 			}
 
 			if (url.origin !== 'https://media.w0s.jp') {
-				console.warn('`src` attribute value is not a valid `media.w0s.jp` origin', src);
+				this.logger.warn('`src` attribute value is not a valid `media.w0s.jp` origin', src);
 				continue;
 			}
 			if (!url.pathname.startsWith('/thumbimage/')) {
-				console.warn('`src` attribute value is not a valid `media.w0s.jp` path', src);
+				this.logger.warn('`src` attribute value is not a valid `media.w0s.jp` path', src);
 				continue;
 			}
 

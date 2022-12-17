@@ -84,7 +84,7 @@ export default class HtmlFootnote extends Html {
 
 		const footnotesElement = this.document.querySelector(footnotesOptions.element);
 		if (footnotesElement === null) {
-			console.error('注釈を表示する要素が未指定');
+			this.logger.error('注釈を表示する要素が未指定');
 			return;
 		}
 

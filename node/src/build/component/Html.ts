@@ -1,7 +1,18 @@
-export default class Html {
-	protected document: Document;
+import Log4js from 'log4js';
 
+export default class Html {
+	protected readonly logger: Log4js.Logger; // Logger
+
+	protected readonly document: Document; // Document
+
+	/**
+	 * @param {object} document - Document
+	 */
 	constructor(document: Document) {
+		/* Logger */
+		this.logger = Log4js.getLogger(this.constructor.name);
+
+		/* Document */
 		this.document = document;
 	}
 

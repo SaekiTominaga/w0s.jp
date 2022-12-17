@@ -31,12 +31,12 @@ export default class HtmlAnchorAmazonAssociate extends Html {
 
 			const href = targetElement.getAttribute('href');
 			if (href === null) {
-				console.warn('No `href` attribute', targetElement.textContent);
+				this.logger.warn('No `href` attribute', targetElement.textContent);
 				continue;
 			}
 
 			if (!href.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([\dA-Z]{10})\/$/)) {
-				console.warn('URL is not from Amazon product page', targetElement.textContent);
+				this.logger.warn('URL is not from Amazon product page', targetElement.textContent);
 				continue;
 			}
 

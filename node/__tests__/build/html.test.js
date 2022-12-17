@@ -10,7 +10,7 @@ import HtmlComponentHeadingSelfLink from '../../dist/build/component/HtmlHeading
 import HtmlComponentHighlight from '../../dist/build/component/HtmlHighlight.js';
 import HtmlComponentImage from '../../dist/build/component/HtmlImage.js';
 import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js';
-import HtmlComponentSectionId from '../../dist/build/component/HtmlSectionId.js';
+import HtmlComponentSectioningId from '../../dist/build/component/HtmlSectioningId.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 
 class HtmlTest extends HtmlComponent {
@@ -99,7 +99,7 @@ describe('SectionId', () => {
 </body></html>`
 		);
 
-		new HtmlComponentSectionId(dom.window.document).convert({
+		new HtmlComponentSectioningId(dom.window.document).convert({
 			sectioning_area: dom.window.document.body,
 			heading_levels: [1, 2],
 		});
@@ -136,7 +136,7 @@ describe('SectionId', () => {
 </body></html>`
 		);
 
-		new HtmlComponentSectionId(dom.window.document).convert({
+		new HtmlComponentSectioningId(dom.window.document).convert({
 			sectioning_area: dom.window.document.body,
 			heading_levels: [1, 2],
 		});
