@@ -35,26 +35,8 @@
 					</div>
 				</div>
 				<main class="l-content__main">
-					<%_ if (page.query.output === null) { _%>
-					<div class="p-box">
-						<ul class="p-list">
-							<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
-							<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
-							<li>
-								「車号」では次に挙げる記号を使うことで特殊な検索ができます。
-								<ul>
-									<li>「.」（ピリオド）は任意の1文字に相当します。</li>
-									<li>「*」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
-									<li>たとえば、デハ8700形の全車両を表示するには、車種の「8500系」にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</li>
-								</ul>
-							</li>
-							<li>改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば、車号に『<kbd>7001</kbd>』と入力し、「旧車号を含む」にチェックを入れて検索しても、7700系化後の車号はヒットしません。</li>
-							<li>入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。</li>
-						</ul>
-					</div>
-					<%_ } else { _%>
-					<details class="p-toggle" is="w0s-animation-details" data-summary-toggle="折りたたむ">
-						<summary>説明文を表示</summary>
+					<details class="p-toggle" is="w0s-animation-details"<%_ if (page.query.output === null) { _%> open=""<%_ } _%>>
+						<summary>説明文</summary>
 						<div class="p-toggle__contents">
 							<div class="p-box">
 								<ul class="p-list">
@@ -74,7 +56,6 @@
 							</div>
 						</div>
 					</details>
-					<%_ } _%>
 
 					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
