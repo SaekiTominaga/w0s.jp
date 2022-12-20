@@ -23,7 +23,7 @@ export default class CrawlerResourceController extends Controller implements Con
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/crawler-resource.json', 'utf8'));
+		this.#config = JSON.parse(fs.readFileSync('node/configure/crawler-resource.json', 'utf8'));
 	}
 
 	/**
