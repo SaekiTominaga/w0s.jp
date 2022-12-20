@@ -26,7 +26,7 @@ export default class ContactSendController extends Controller implements Control
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/contact.json', 'utf8'));
+		this.#config = JSON.parse(fs.readFileSync('node/configure/contact.json', 'utf8'));
 	}
 
 	/**

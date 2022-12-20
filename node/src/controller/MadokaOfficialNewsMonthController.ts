@@ -23,7 +23,7 @@ export default class MadokaOfficialNewsMonthController extends Controller implem
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/madoka-official-news.json', 'utf8'));
+		this.#config = JSON.parse(fs.readFileSync('node/configure/madoka-official-news.json', 'utf8'));
 	}
 
 	/**
