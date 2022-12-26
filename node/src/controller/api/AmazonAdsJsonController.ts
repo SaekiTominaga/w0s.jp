@@ -23,7 +23,7 @@ export default class AmazonAdsJsonController extends Controller implements Contr
 		super();
 
 		this.#configCommon = configCommon;
-		this.#config = <Configure>JSON.parse(fs.readFileSync('node/configure/amazon-ads.json', 'utf8'));
+		this.#config = JSON.parse(fs.readFileSync('node/configure/amazon-ads.json', 'utf8'));
 	}
 
 	/**

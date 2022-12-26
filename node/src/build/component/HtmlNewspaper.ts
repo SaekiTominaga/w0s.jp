@@ -48,6 +48,13 @@ export default class HtmlNewspaper extends Html {
 	<div class="p-library__title">
 		<h<%= headingLevel %> itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></h<%= headingLevel %>>
 	</div>
+	<%_ if (tags.length >= 1) { _%>
+		<ul class="p-library__tags">
+			<%_ for (tag of tags) { _%>
+			<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
+			<%_ } _%>
+		</ul>
+	<%_ } _%>
 </header>
 <div class="p-library__main">
 <%- contents %>
@@ -57,6 +64,7 @@ export default class HtmlNewspaper extends Html {
 			const nameElement = targetElement.querySelector('newspaper-name');
 			const releaseElement = targetElement.querySelector('newspaper-release');
 			const classElement = targetElement.querySelector('newspaper-class');
+			const tagElements = targetElement.querySelectorAll('newspaper-tag');
 			const contentsElement = targetElement.querySelector('newspaper-contents');
 
 			const release = releaseElement?.textContent ?? undefined;
@@ -74,6 +82,7 @@ export default class HtmlNewspaper extends Html {
 				name: nameElement?.textContent,
 				release: releaseDate,
 				npclass: classElement?.textContent ?? undefined,
+				tags: Array.from(tagElements).map((element) => element.textContent),
 				contents: contentsElement?.innerHTML,
 			});
 
