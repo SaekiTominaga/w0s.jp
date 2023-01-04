@@ -113,7 +113,7 @@ Styleguide 2.8.2
 		object-fit: cover;
 		object-position: var(--object-position, center);
 
-		@media (width <= 36em) {
+		@media (height <= 36em) {
 			max-block-size: 15vh;
 		}
 	}
@@ -226,6 +226,7 @@ Styleguide 2.8.4
 	border: var(--_border-width) solid var(--color-border-light);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
+	container: top-update-list / inline-size;
 
 	& > li {
 		--_padding: 15px;
@@ -251,7 +252,7 @@ Styleguide 2.8.4
 	padding: var(--_padding);
 }
 
-@media not (width <= 40em) {
+@container top-update-list (inline-size > 40em) {
 	.p-top-update-list__date {
 		@nest .p-top-update-list > li:first-child & {
 			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
@@ -263,7 +264,7 @@ Styleguide 2.8.4
 	}
 }
 
-@media (width <= 40em) {
+@container top-update-list (inline-size <= 40em) {
 	.p-top-update-list {
 		& > li {
 			grid-template-columns: 1fr;
