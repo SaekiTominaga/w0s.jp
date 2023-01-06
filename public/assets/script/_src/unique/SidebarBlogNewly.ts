@@ -23,15 +23,15 @@ export default class SidebarBlogNewly {
 		const jsonName = (<HTMLMetaElement | null>document.querySelector('meta[name="w0s:blog:newly"]'))?.content;
 
 		/* エンドポイントから JSON ファイルを取得する */
-		const dataList: BlogNewlyJson[] = await SidebarBlogNewly.#fetch(jsonName);
+		const entries: BlogNewlyJson[] = await SidebarBlogNewly.#fetch(jsonName);
 
 		/* 取得したデータを HTML ページ内に挿入する */
-		this.#insert(dataList);
+		this.#insert(entries);
 
 		/* 直近の祖先要素の hidden 状態を解除する */
-		const ancestorHiddenElement = this.#templateElement.closest('[hidden]');
+		const ancestorHiddenElement = this.#templateElement.closest<HTMLElement>('[hidden]');
 		if (ancestorHiddenElement !== null) {
-			(<HTMLElement>ancestorHiddenElement).hidden = false;
+			ancestorHiddenElement.hidden = false;
 		}
 	}
 
@@ -55,18 +55,18 @@ export default class SidebarBlogNewly {
 	/**
 	 * 日記エントリーのデータを HTML ページ内に挿入する
 	 *
-	 * @param {object[]} entryList - 日記エントリーのデータ
+	 * @param {object[]} entries - 日記エントリーのデータ
 	 */
-	#insert(entryList: BlogNewlyJson[]): void {
+	#insert(entries: BlogNewlyJson[]): void {
 		const fragment = document.createDocumentFragment();
 
-		for (const entry of entryList) {
+		for (const entry of entries) {
 			const templateElementClone = this.#templateElement.content.cloneNode(true);
 
 			const aElement = (<DocumentFragment>templateElementClone).querySelector('a');
 			if (aElement !== null) {
 				aElement.href = `https://blog.w0s.jp/${String(entry.id)}`;
-				aElement.textContent = entry.title;
+				aElement.insertAdjacentHTML('afterbegin', entry.title);
 			}
 
 			fragment.appendChild(templateElementClone);
