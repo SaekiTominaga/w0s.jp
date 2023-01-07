@@ -28,6 +28,7 @@ if (portalHost === null || portalHost === undefined /* 未対応ブラウザ対�
 			referrer: 'referrer',
 		},
 		fetchContentType: 'application/json',
+		same: ['https://blog.w0s.jp'],
 	});
 	reportSameReferrer.init();
 
