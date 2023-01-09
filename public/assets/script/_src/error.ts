@@ -33,7 +33,11 @@ if (portalHost === null || portalHost === undefined /* <potal> 未対応ブラ�
 	}).init();
 
 	/* 祖先ページの埋め込み */
-	const closestHTMLPage = new ClosestHTMLPage(['text/html', 'application/xhtml+xml'], 6);
+	const closestHTMLPage = new ClosestHTMLPage({
+		maxFetchCount: 6,
+		fetchOptions: { redirect: 'manual' },
+		mimeTypes: ['text/html', 'application/xhtml+xml'],
+	});
 
 	await closestHTMLPage.fetch();
 	const url = closestHTMLPage.getUrl();
