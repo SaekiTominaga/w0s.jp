@@ -15,26 +15,22 @@ const pluginTypeScript = typescript({
 const pluginResolve = resolve();
 const pluginTerser = terser();
 
-const moduleConfigurations = moduleFiles.map((file) => {
-	return {
-		input: `${inputDir}/${file}`,
-		plugins: [pluginTypeScript, pluginResolve, pluginTerser],
-		output: {
-			dir: outputDir,
-			sourcemap: 'hidden',
-			entryFileNames: '[name].mjs',
-		},
-	};
-});
-const jsConfigurations = jsFiles.map((file) => {
-	return {
-		input: `${inputDir}/${file}`,
-		plugins: [pluginTypeScript, pluginTerser],
-		output: {
-			dir: outputDir,
-			sourcemap: 'hidden',
-		},
-	};
-});
+const moduleConfigurations = moduleFiles.map((file) => ({
+	input: `${inputDir}/${file}`,
+	plugins: [pluginTypeScript, pluginResolve, pluginTerser],
+	output: {
+		dir: outputDir,
+		sourcemap: 'hidden',
+		entryFileNames: '[name].mjs',
+	},
+}));
+const jsConfigurations = jsFiles.map((file) => ({
+	input: `${inputDir}/${file}`,
+	plugins: [pluginTypeScript, pluginTerser],
+	output: {
+		dir: outputDir,
+		sourcemap: 'hidden',
+	},
+}));
 
 export default moduleConfigurations.concat(jsConfigurations);
