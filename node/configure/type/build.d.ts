@@ -23,20 +23,20 @@ export type NoName11 = {
   src: NoName14;
 }[];
 export type HTML1 = string;
-export type NoName19 = string;
 export type NoName20 = string;
 export type NoName21 = string;
+export type NoName22 = string;
 export type Feed = string;
 export type Feed1 = string;
 export type NoName18 = {
   html_path: HTML1;
-  xpath: XPath;
+  selector: NoName19;
   feed_template: Feed;
   feed_path: Feed1;
 }[];
 export type Glob = string[];
-export type NoName23 = string;
 export type NoName24 = string;
+export type NoName25 = string;
 
 export interface NoName {
   html: {
@@ -59,7 +59,7 @@ export interface NoName {
   feed: {
     info: NoName18;
   };
-  sitemap: NoName22;
+  sitemap: NoName23;
 }
 export interface NoName1 {
   target_element: string;
@@ -147,13 +147,13 @@ export interface NoName17 {
   target_class: string;
   class_prefix: string;
 }
-export interface XPath {
-  wrap: NoName19;
-  date: NoName20;
-  content: NoName21;
+export interface NoName19 {
+  wrap: NoName20;
+  date: NoName21;
+  content: NoName22;
 }
-export interface NoName22 {
+export interface NoName23 {
   ignore: Glob;
-  template: NoName23;
-  path: NoName24;
+  template: NoName24;
+  path: NoName25;
 }

@@ -5,7 +5,6 @@ import fs from 'fs';
 import jsdom from 'jsdom';
 import prettier from 'prettier';
 import xmlFormatter from 'xml-formatter';
-import xpath from 'xpath';
 import BuildComponent from '../BuildComponent.js';
 import BuildComponentInterface from '../BuildComponentInterface.js';
 
@@ -19,7 +18,6 @@ export default class Feed extends BuildComponent implements BuildComponentInterf
 
 			/* DOM 化 */
 			const { document } = new jsdom.JSDOM(html).window;
-			const xpathSelect = xpath.useNamespaces({ x: 'http://www.w3.org/1999/xhtml' });
 
 			/* HTML から必要なデータを取得 */
 			const entries: {
@@ -29,21 +27,31 @@ export default class Feed extends BuildComponent implements BuildComponentInterf
 				links: string[];
 				content: string;
 			}[] = [];
-			for (const wrapElement of xpathSelect(feedInfo.xpath.wrap, document)) {
-				const title = String(xpathSelect(`string(${feedInfo.xpath.content})`, <Node>wrapElement)).trim();
-				const updatedTimeElementDatetime = new Date(
-					xpathSelect(`string(${feedInfo.xpath.date})`, <Node>wrapElement)
-						.toString()
-						.trim()
-				);
 
-				// eslint-disable-next-line no-loop-func
-				const links = xpathSelect('.//x:a/@href', <Node>wrapElement).map((value) => String((<Node>value).nodeValue).trim());
-				const content = xpathSelect(feedInfo.xpath.content, <Node>wrapElement)
-					.join('')
-					.replace(' xmlns="http://www.w3.org/1999/xhtml"', '');
+			document.querySelectorAll(feedInfo.selector.wrap).forEach((wrapElement) => {
+				const dateElement = wrapElement.querySelector<HTMLTimeElement>(feedInfo.selector.date);
+				if (dateElement === null) {
+					this.logger.warn('Date element does not exist');
+					return;
+				}
 
-				const updated = new Date(updatedTimeElementDatetime.getTime() + updatedTimeElementDatetime.getTimezoneOffset() * 60000);
+				const contentElement = wrapElement.querySelector<HTMLElement>(feedInfo.selector.content);
+				if (contentElement === null) {
+					this.logger.warn('Content element does not exist');
+					return;
+				}
+
+				const title = contentElement.textContent
+					?.split('\n')
+					.map((line) => line.trim())
+					.join('');
+				if (title === undefined || title === '') {
+					this.logger.warn('Content element is empty');
+					return;
+				}
+
+				const updated = new Date(`${dateElement.dateTime}T00:00`);
+				const content = contentElement.innerHTML;
 
 				const contentFormatted = prettier
 					.format(content, {
@@ -53,18 +61,20 @@ export default class Feed extends BuildComponent implements BuildComponentInterf
 					})
 					.trim();
 
+				const anchorElements = [...contentElement.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')].map((anchorElement) => anchorElement.href);
+
 				const md5 = crypto.createHash('md5');
-				md5.update(`${updated.getTime() / 1000}${links.join('')}`);
+				md5.update(`${updated.getTime() / 1000}${anchorElements.join('')}`);
 				const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
 				entries.push({
 					title: title,
 					unique: unique,
 					last_updated: dayjs(updated),
-					links: links,
+					links: anchorElements,
 					content: contentFormatted,
 				});
-			}
+			});
 
 			const feed = await ejs.renderFile(`${this.configCommon.views}/${feedInfo.feed_template}`, {
 				entries: entries,
