@@ -61,17 +61,17 @@ export default class Feed extends BuildComponent implements BuildComponentInterf
 					})
 					.trim();
 
-				const anchorElements = [...contentElement.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')].map((anchorElement) => anchorElement.href);
+				const internalLinkURLs = [...contentElement.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')].map((anchorElement) => anchorElement.href);
 
 				const md5 = crypto.createHash('md5');
-				md5.update(`${updated.getTime() / 1000}${anchorElements.join('')}`);
+				md5.update(`${updated.getTime() / 1000}${internalLinkURLs.join('')}`);
 				const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
 				entries.push({
 					title: title,
 					unique: unique,
 					last_updated: dayjs(updated),
-					links: anchorElements,
+					links: internalLinkURLs,
 					content: contentFormatted,
 				});
 			});
