@@ -114,7 +114,8 @@ Styleguide 2.8.2
 		object-fit: cover;
 		object-position: var(--object-position, center);
 
-		@container (inline-size <= calc(15.3em * 2 + 15px)) { /* 1列表示の時のみ画像高さを狭くする */
+		@container (inline-size <= calc(15.3em * 2 + 15px)) {
+			/* 1列表示の時のみ画像高さを狭くする */
 			max-block-size: 15vh;
 		}
 	}
@@ -224,7 +225,7 @@ Styleguide 2.8.4
 .p-top-update-list {
 	--_border-width: 2px;
 
-	container: top-update-list / inline-size;
+	container-type: inline-size;
 	border: var(--_border-width) solid var(--color-border-light);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
@@ -253,7 +254,7 @@ Styleguide 2.8.4
 	padding: var(--_padding);
 }
 
-@container top-update-list (inline-size > 40em) {
+@container (inline-size > 40em) {
 	.p-top-update-list__date {
 		@nest .p-top-update-list > li:first-child & {
 			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
@@ -265,7 +266,7 @@ Styleguide 2.8.4
 	}
 }
 
-@container top-update-list (inline-size <= 40em) {
+@container (inline-size <= 40em) {
 	.p-top-update-list {
 		& > li {
 			grid-template-columns: 1fr;
