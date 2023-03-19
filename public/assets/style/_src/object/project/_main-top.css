@@ -70,33 +70,32 @@ Styleguide 2.8.2
 .p-top-nav-card {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(15.3em, 1fr));
-	grid-gap: 15px;
+	gap: 15px;
+	container-type: inline-size;
 }
 
 .p-top-nav-card__box {
-	--_border-width: 1px;
-	--_border-radius: var(--border-radius-normal);
-	--_border-radius-inner: calc(var(--_border-radius) - var(--_border-width));
-	--_bg-color: var(--color-bg-light);
-
 	display: flex; /* リンクのクリッカブルエリアを上下方向に伸ばすため */
-	box-shadow: 0 1px 2px var(--color-border-light);
-	border: var(--_border-width) solid var(--color-border-light);
-	border-radius: var(--_border-radius);
 
 	& > a {
+		--_border-width: 1px;
+		--_bg-color: var(--color-bg-light);
+		--_color: var(--color-darkgray);
+
 		flex: 1;
 		outline-width: var(--outline-width-bold);
-		outline-offset: 0;
-		border-radius: var(--_border-radius-inner);
+		outline-offset: calc(0px - var(--_border-width));
+		box-shadow: 0 1px 2px var(--color-border-light);
+		border: var(--_border-width) solid var(--color-border-light);
+		border-radius: var(--border-radius-normal);
 		background: var(--_bg-color);
-		color: var(--color-darkgray);
+		overflow: hidden;
+		color: var(--_color);
 		text-decoration-line: none;
 
 		&:hover {
 			--_bg-color: var(--color-bg-verylight);
-
-			color: inherit;
+			--_color: inherit;
 		}
 	}
 }
@@ -108,12 +107,12 @@ Styleguide 2.8.2
 
 	& img {
 		display: block;
-		border-radius: var(--_border-radius-inner) var(--_border-radius-inner) 0 0;
 		inline-size: 100%;
 		object-fit: cover;
 		object-position: var(--object-position, center);
 
-		@media (width <= 36em) {
+		@container (inline-size <= calc(15.3em * 2 + 15px)) {
+			/* 1列表示の時のみ画像高さを狭くする */
 			max-block-size: 15vh;
 		}
 	}
@@ -221,11 +220,11 @@ Markup:
 Styleguide 2.8.4
 */
 .p-top-update-list {
-	--_border-width: 2px;
-
-	border: var(--_border-width) solid var(--color-border-light);
+	container-type: inline-size;
+	border: 2px solid var(--color-border-light);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
+	overflow: hidden;
 
 	& > li {
 		--_padding: 15px;
@@ -251,19 +250,7 @@ Styleguide 2.8.4
 	padding: var(--_padding);
 }
 
-@media not (width <= 40em) {
-	.p-top-update-list__date {
-		@nest .p-top-update-list > li:first-child & {
-			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
-		}
-
-		@nest .p-top-update-list > li:last-child & {
-			border-end-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
-		}
-	}
-}
-
-@media (width <= 40em) {
+@container (inline-size <= 40em) {
 	.p-top-update-list {
 		& > li {
 			grid-template-columns: 1fr;
@@ -276,10 +263,5 @@ Styleguide 2.8.4
 	.p-top-update-list__date {
 		padding-block: calc(var(--_padding) / 2);
 		font-weight: bold;
-
-		@nest .p-top-update-list > li:first-child & {
-			border-start-start-radius: calc(var(--border-radius-normal) - var(--_border-width));
-			border-start-end-radius: calc(var(--border-radius-normal) - var(--_border-width));
-		}
 	}
 }

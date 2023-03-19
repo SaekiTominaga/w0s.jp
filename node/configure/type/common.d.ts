@@ -64,19 +64,15 @@ export type Kumetatwitter = string;
 export type Madokalibrary = string;
 export type Madokawebarchive = string;
 export type Madokatwitter = string;
-export type APIKey = string;
-export type APIKeySecret = string;
-export type AccessToken = string;
-export type AccessTokenSecret = string;
+export type NoName30 = string;
+/**
+ * https://affiliate.amazon.co.jp/assoc_credentials/home
+ */
 export type NoName31 = string;
 /**
  * https://affiliate.amazon.co.jp/assoc_credentials/home
  */
 export type NoName32 = string;
-/**
- * https://affiliate.amazon.co.jp/assoc_credentials/home
- */
-export type NoName33 = string;
 /**
  * https://webservices.amazon.com/paapi5/documentation/locale-reference.html
  */
@@ -101,7 +97,6 @@ export interface W0SJp {
   logger: Logger;
   mail: EMail;
   sqlite: SQLite;
-  twitter: TwitterAPI;
   paapi: AmazonProductAdvertisingAPI;
 }
 export interface NoName {
@@ -191,15 +186,6 @@ export interface DBNode {
   madoka_web_archive: Madokawebarchive;
   madoka_twitter: Madokatwitter;
 }
-export interface TwitterAPI {
-  dev: NoName30;
-}
-export interface NoName30 {
-  consumer_key: APIKey;
-  consumer_secret: APIKeySecret;
-  access_token: AccessToken;
-  access_token_secret: AccessTokenSecret;
-}
 export interface AmazonProductAdvertisingAPI {
   request: CommonRequestParameters;
 }
@@ -207,9 +193,9 @@ export interface AmazonProductAdvertisingAPI {
  * https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html
  */
 export interface CommonRequestParameters {
-  partner_tag: NoName31;
-  access_key: NoName32;
-  secret_key: NoName33;
+  partner_tag: NoName30;
+  access_key: NoName31;
+  secret_key: NoName32;
   marketplace: TargetAmazonLocale;
   host: TheHostValueOfTheTargetLocaleToWhichYouAreSendingRequests;
   region: TheAWSRegionOfTheTargetLocaleToWhichYouAreSendingRequests;

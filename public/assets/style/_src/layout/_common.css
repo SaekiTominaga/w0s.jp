@@ -11,6 +11,7 @@
 	display: grid;
 	grid-template-columns: [full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline) [full-end];
 	grid-column: header;
+	container: header / inline-size;
 	padding: 10px 0 40px;
 	line-height: var(--line-height-narrow);
 }
@@ -22,8 +23,9 @@
 	grid-template-areas: "site nav";
 	grid-column: content;
 	gap: 20px;
+	container: header-main / inline-size;
 
-	@media (width <= 60em) {
+	@container header (inline-size <= 60em) {
 		grid-template-columns: auto;
 		grid-template-areas:
 			"site"
@@ -48,7 +50,7 @@
 	align-items: flex-end;
 	gap: 10px 20px;
 
-	@media (width <= 36em) {
+	@container header-main (inline-size <= 32em) {
 		--_justify-content: flex-start;
 	}
 }
@@ -62,6 +64,7 @@
 /* ===== コンテンツエリア ===== */
 .l-content {
 	grid-column: content;
+	container: content / inline-size;
 
 	/* サイドバーがない場合は全幅で表示 */
 	&.-nosidebar {
@@ -96,6 +99,7 @@
 /* ===== サイドバー ===== */
 .l-sidebar {
 	grid-column: sidebar;
+	container: sidebar / inline-size;
 	line-height: var(--line-height-narrow);
 
 	& > [class^="p-sidebar-"]:not([hidden]) {
@@ -110,6 +114,7 @@
 	display: grid;
 	grid-template-columns: [full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline) [full-end];
 	grid-column: footer;
+	container: footer / inline-size;
 	margin-block-start: 80px;
 	border: solid var(--color-border-light);
 	border-width: 1px 0;
@@ -121,10 +126,12 @@
 /* サイト横断ナビゲーション */
 .l-footer__nav {
 	grid-column: content;
+	container: footer-nav / inline-size;
 }
 
 /* アドセンス */
 .l-footer__ads {
 	grid-column: content;
+	container: footer-ads / inline-size;
 	margin-block-start: 100px;
 }
