@@ -13,16 +13,6 @@ import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js'
 import HtmlComponentSectioningId from '../../dist/build/component/HtmlSectioningId.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 
-class HtmlTest extends HtmlComponent {
-	replaceElementTest(element, newElementName) {
-		this.replaceElement(element, newElementName);
-	}
-
-	static removeClassNameTest(element, className) {
-		HtmlComponent.removeClassName(element, className);
-	}
-}
-
 describe('replaceElement()', () => {
 	test('クラス名のパターン', () => {
 		const dom = new JSDOM(
@@ -34,9 +24,9 @@ describe('replaceElement()', () => {
 
 		const { document } = dom.window;
 
-		const htmlTest = new HtmlTest(document);
+		const html = new HtmlComponent(document);
 		for (const targetElement of document.querySelectorAll('span')) {
-			htmlTest.replaceElementTest(targetElement, 'foo');
+			html.replaceElement(targetElement, 'foo');
 		}
 
 		expect(dom.serialize()).toBe(
@@ -45,6 +35,102 @@ describe('replaceElement()', () => {
 <foo class="foo"></foo>
 </body></html>`
 		);
+	});
+});
+
+describe('replaceHtml()', () => {
+	test('属性は削除される', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+<span class="foo"></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document);
+		for (const targetElement of document.querySelectorAll('span')) {
+			html.replaceHtml(targetElement, '<foo>');
+		}
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<foo></foo>
+<foo></foo>
+</body></html>`
+		);
+	});
+
+	test('属性は置き換えられる', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+<span class="foo"></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document);
+		for (const targetElement of document.querySelectorAll('span')) {
+			html.replaceHtml(targetElement, '<foo class="foo">');
+		}
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<foo class="foo"></foo>
+<foo class="foo"></foo>
+</body></html>`
+		);
+	});
+
+	test('第2引数に空文字', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document);
+
+		expect(() => {
+			html.replaceHtml(document.querySelector('span'), '');
+		}).toThrow('The HTML string to be replaced must have one element.');
+	});
+
+	test('第2引数に HTML として成立しない文字', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document);
+
+		expect(() => {
+			html.replaceHtml(document.querySelector('span'), 'foo');
+		}).toThrow('The HTML string to be replaced must have one element.');
+	});
+
+	test('第2引数に複数の要素', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document);
+
+		expect(() => {
+			html.replaceHtml(document.querySelector('span'), '<foo></foo><bar></bar>');
+		}).toThrow('The HTML string to be replaced must have one parent element.');
 	});
 });
 
@@ -60,7 +146,7 @@ describe('removeClassName()', () => {
 		const { document } = dom.window;
 
 		for (const targetElement of document.querySelectorAll('.build-host')) {
-			HtmlTest.removeClassNameTest(targetElement, 'build-host');
+			HtmlComponent.removeClassName(targetElement, 'build-host');
 		}
 
 		expect(dom.serialize()).toBe(
@@ -796,16 +882,16 @@ describe('Book', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
 <p>解説文1</p>
 <p>解説文2</p>
-</div>
+	</div>
 </section>
 </body></html>`
 		);
@@ -837,33 +923,33 @@ describe('Book', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
-	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
-		<ul class="p-library__tags">
-			<li><button type="button" class="js-library-tag" disabled="">タグ1</button></li>
-			<li><button type="button" class="js-library-tag" disabled="">タグ2</button></li>
-		</ul>
-		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
-</header>
-<div class="p-library__main">
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__embed">
-				<div class="p-embed-link">
-					<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-amazon-associate">
-						<img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">
-						<span class="p-embed-link__title">Amazon 商品ページ</span>
-					</a>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
+			<ul class="p-library__tags">
+				<li><button type="button" class="js-library-tag" disabled="">タグ1</button></li>
+				<li><button type="button" class="js-library-tag" disabled="">タグ2</button></li>
+			</ul>
+			<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
+	</header>
+	<div class="p-library__main">
+			<div class="p-embed-sidebar -embed-first">
+				<div class="p-embed-sidebar__embed">
+					<div class="p-embed-link">
+						<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-amazon-associate">
+							<img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">
+							<span class="p-embed-link__title">Amazon 商品ページ</span>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div class="p-embed-sidebar__text">
+				<div class="p-embed-sidebar__text">
 <p>解説文1</p>
 <p>解説文2</p>
 </div>
-		</div>
-</div>
+			</div>
+	</div>
 </section>
 </body></html>`
 		);
@@ -899,44 +985,44 @@ describe('Book', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 </body></html>`
 		);
@@ -965,17 +1051,17 @@ describe('Newspaper', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名</h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名</h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
 <p>解説文1</p>
 <p>解説文2</p>
 
-</div>
+	</div>
 </section>
 </body></html>`
 		);
@@ -1004,17 +1090,17 @@ describe('Newspaper', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
 <p>解説文1</p>
 <p>解説文2</p>
 
-</div>
+	</div>
 </section>
 </body></html>`
 		);
@@ -1042,24 +1128,24 @@ describe('Newspaper', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
-</div>
+	</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
-</div>
+	</div>
 </section>
 </body></html>`
 		);

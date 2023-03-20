@@ -55,43 +55,45 @@ export default class HtmlBook extends Html {
 		for (const targetElement of this.document.querySelectorAll(targetElementName)) {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h<%= headingLevel %> itemprop="name"><%= name %></h<%= headingLevel %>>
-	</div>
-	<%_ if (release !== undefined) { _%>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
-	<%_ } _%>
-	<%_ if (tags.length >= 1) { _%>
-		<ul class="p-library__tags">
-			<%_ for (tag of tags) { _%>
-			<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
-			<%_ } _%>
-		</ul>
-	<%_ } _%>
-	<%_ if (isbn !== undefined) { _%>
-		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <span itemprop="isbn"><%= isbn %></span></a></p>
-	<%_ } _%>
-</header>
-<div class="p-library__main">
-	<%_ if (asin !== undefined) { _%>
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__embed">
-				<div class="p-embed-link">
-					<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="htmlbuild-amazon-associate">
-						<%_ if (amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined) { _%>
-						<img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />
-						<%_ } else { _%>
-							<img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />
-						<%_ } _%>
-						<span class="p-embed-link__title">Amazon 商品ページ</span>
-					</a>
-				</div>
-			</div>
-			<div class="p-embed-sidebar__text"><%- contents %></div>
+<section class="p-library <%= buildHeadingAnchorClassName %>" itemscope="" itemtype="http://schema.org/Book">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h<%= headingLevel %> itemprop="name"><%= name %></h<%= headingLevel %>>
 		</div>
-	<%_ } else { _%><%- contents %><%_ } _%>
-</div>
+		<%_ if (release !== undefined) { _%>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
+		<%_ } _%>
+		<%_ if (tags.length >= 1) { _%>
+			<ul class="p-library__tags">
+				<%_ for (tag of tags) { _%>
+				<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
+				<%_ } _%>
+			</ul>
+		<%_ } _%>
+		<%_ if (isbn !== undefined) { _%>
+			<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <span itemprop="isbn"><%= isbn %></span></a></p>
+		<%_ } _%>
+	</header>
+	<div class="p-library__main">
+		<%_ if (asin !== undefined) { _%>
+			<div class="p-embed-sidebar -embed-first">
+				<div class="p-embed-sidebar__embed">
+					<div class="p-embed-link">
+						<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="htmlbuild-amazon-associate">
+							<%_ if (amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined) { _%>
+							<img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />
+							<%_ } else { _%>
+								<img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />
+							<%_ } _%>
+							<span class="p-embed-link__title">Amazon 商品ページ</span>
+						</a>
+					</div>
+				</div>
+				<div class="p-embed-sidebar__text"><%- contents %></div>
+			</div>
+		<%_ } else { _%><%- contents %><%_ } _%>
+	</div>
+</section>
 `);
 
 			const nameElement = targetElement.querySelector('book-name');
@@ -141,6 +143,7 @@ export default class HtmlBook extends Html {
 			}
 
 			const html = template({
+				buildHeadingAnchorClassName: buildHeadingAnchorClassName,
 				headingLevel: targetElement.getAttribute('heading-level'),
 				name: nameElement?.textContent,
 				release: releaseDate,
@@ -153,10 +156,7 @@ export default class HtmlBook extends Html {
 				contents: contentsElement?.innerHTML,
 			});
 
-			const sectionElement = this.replaceHtml(targetElement, 'section', html);
-			sectionElement.className = `p-library ${buildHeadingAnchorClassName}`;
-			sectionElement.setAttribute('itemscope', '');
-			sectionElement.setAttribute('itemtype', 'http://schema.org/Book');
+			this.replaceHtml(targetElement, html);
 		}
 	}
 }

@@ -41,18 +41,25 @@ export default class Html {
 	 * Replace existing element with new HTML
 	 *
 	 * @param {object} element - Target Element
-	 * @param {string} newElementName - New element name
-	 * @param {string} newInnerHtml - New inner HTML
+	 * @param {string} newHtml - New HTML
 	 *
 	 * @returns {object} New element
 	 */
-	protected replaceHtml(element: Element, newElementName: string, newInnerHtml?: string): Element {
-		const newElement = this.document.createElement(newElementName);
-		if (newInnerHtml !== undefined) {
-			newElement.insertAdjacentHTML('afterbegin', newInnerHtml);
+	protected replaceHtml(element: Element, newHtml: string): Element {
+		const newParentElement = this.document.createElement('div');
+		newParentElement.insertAdjacentHTML('afterbegin', newHtml);
+
+		const newParentElementChildren = newParentElement.children;
+		if (newParentElementChildren.length > 1) {
+			throw new Error('The HTML string to be replaced must have one parent element.');
 		}
 
-		element.parentNode?.replaceChild(newElement, element);
+		const newElement = newParentElementChildren.item(0);
+		if (newElement === null) {
+			throw new Error('The HTML string to be replaced must have one element.');
+		}
+
+		element.replaceWith(newElement);
 
 		return newElement;
 	}

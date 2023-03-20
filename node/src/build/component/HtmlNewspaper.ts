@@ -44,21 +44,23 @@ export default class HtmlNewspaper extends Html {
 		for (const targetElement of this.document.querySelectorAll(targetElementName)) {
 			/* EJS を解釈 */
 			const template = ejs.compile(`
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h<%= headingLevel %> itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></h<%= headingLevel %>>
-	</div>
-	<%_ if (tags.length >= 1) { _%>
-		<ul class="p-library__tags">
-			<%_ for (tag of tags) { _%>
-			<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
-			<%_ } _%>
-		</ul>
-	<%_ } _%>
-</header>
-<div class="p-library__main">
+<section class="p-library <%= buildHeadingAnchorClassName %>" itemscope="" itemtype="http://schema.org/Newspaper">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h<%= headingLevel %> itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></h<%= headingLevel %>>
+		</div>
+		<%_ if (tags.length >= 1) { _%>
+			<ul class="p-library__tags">
+				<%_ for (tag of tags) { _%>
+				<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
+				<%_ } _%>
+			</ul>
+		<%_ } _%>
+	</header>
+	<div class="p-library__main">
 <%- contents %>
-</div>
+	</div>
+</section>
 `);
 
 			const nameElement = targetElement.querySelector('newspaper-name');
@@ -78,6 +80,7 @@ export default class HtmlNewspaper extends Html {
 			}
 
 			const html = template({
+				buildHeadingAnchorClassName: buildHeadingAnchorClassName,
 				headingLevel: targetElement.getAttribute('heading-level'),
 				name: nameElement?.textContent,
 				release: releaseDate,
@@ -86,10 +89,7 @@ export default class HtmlNewspaper extends Html {
 				contents: contentsElement?.innerHTML,
 			});
 
-			const sectionElement = this.replaceHtml(targetElement, 'section', html);
-			sectionElement.className = `p-library ${buildHeadingAnchorClassName}`;
-			sectionElement.setAttribute('itemscope', '');
-			sectionElement.setAttribute('itemtype', 'http://schema.org/Newspaper');
+			this.replaceHtml(targetElement, html);
 		}
 	}
 }
