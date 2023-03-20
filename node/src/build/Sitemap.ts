@@ -24,17 +24,15 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 
 		const entries = await Promise.all(
 			fileList.map(async (filePath) => {
-				const publicFilePath = filePath.replaceAll(new RegExp(`^${this.configBuild.html.directory}`, 'g'), this.configCommon.static.root);
-
 				/* ファイル読み込み */
-				const publicFileData = (await fs.promises.readFile(publicFilePath)).toString();
-				const { document } = new JSDOM(publicFileData).window;
+				const fileData = (await fs.promises.readFile(filePath)).toString();
+				const { document } = new JSDOM(fileData).window;
 
 				let modified: dayjs.Dayjs | undefined;
-				const modifiedElement = document.querySelector<HTMLTimeElement>('time[itemprop="dateModified"]');
+				const modifiedElement = document.querySelector<HTMLMetaElement>('meta[itemprop="dateModified"]');
 				if (modifiedElement !== null) {
-					const modifiedDateTime = modifiedElement.dateTime !== '' ? modifiedElement.dateTime : modifiedElement.textContent;
-					if (modifiedDateTime === null || !/^([0-9]{4})-[0-9]{2}-[0-9]{2}$/.test(modifiedDateTime)) {
+					const modifiedDateTime = modifiedElement.content;
+					if (!/^([0-9]{4})-[0-9]{2}-[0-9]{2}$/.test(modifiedDateTime)) {
 						throw new Error(`\`<time itemprop="dateModified">\` の \`datetime\` 属性値が不正: ${modifiedDateTime}`);
 					}
 
@@ -47,6 +45,7 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 					extensions: this.configCommon.static.extensions,
 				});
 
+				const publicFilePath = filePath.replaceAll(new RegExp(`^${this.configBuild.html.directory}`, 'g'), this.configCommon.static.root);
 				const urlPath = pageUrl.getUrl(publicFilePath);
 
 				return {
