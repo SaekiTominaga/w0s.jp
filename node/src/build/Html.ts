@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
@@ -42,6 +43,9 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			/* HTML から必要なデータを取得 */
 			const pageTitle = documentEjs.querySelector('title')?.textContent ?? ''; // ページタイトル
 
+			const pageModifiedText = documentEjs.querySelector<HTMLMetaElement>('meta[itemprop="dateModified"]')?.content; // ページ更新日時
+			const pageModified = pageModifiedText !== undefined ? dayjs(pageModifiedText) : undefined; // ページ更新日時
+
 			const pageDescription = documentEjs
 				.querySelector('[itemprop="description"]')
 				?.textContent?.trim()
@@ -73,6 +77,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 					page: {
 						path: urlPath,
 						title: pageTitle,
+						modified: pageModified,
 						description: pageDescription,
 						image: pageImage,
 					},
