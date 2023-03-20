@@ -187,13 +187,15 @@ export default class AmazonAdsDao {
 				VALUES
 					(:asin, :category_id)
 			`);
-			for (const category of categories) {
-				await categorySth.run({
-					':asin': asin,
-					':category_id': category,
-				});
-				await categorySth.finalize();
-			}
+			Promise.all(
+				categories.map(async (category) => {
+					await categorySth.run({
+						':asin': asin,
+						':category_id': category,
+					});
+				})
+			);
+			await categorySth.finalize();
 
 			dbh.exec('COMMIT');
 		} catch (e) {
