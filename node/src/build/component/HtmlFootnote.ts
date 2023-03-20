@@ -65,7 +65,7 @@ export default class HtmlFootnote extends Html {
 
 			const no = index + 1;
 
-			const footnoteTriggerReplacedElement = this.replaceHtml(targetElement, 'span');
+			const footnoteTriggerReplacedElement = this.replaceHtml(targetElement, '<span></span>');
 			if (triggerOptions.class !== undefined) {
 				footnoteTriggerReplacedElement.className = triggerOptions.class;
 			}
@@ -88,7 +88,7 @@ export default class HtmlFootnote extends Html {
 			return;
 		}
 
-		const footnotesReplacedElement = this.replaceHtml(footnotesElement, 'ul');
+		const footnotesReplacedElement = this.replaceHtml(footnotesElement, '<ul></ul>');
 		if (footnotesOptions.class !== undefined) {
 			footnotesReplacedElement.className = footnotesOptions.class;
 		}

@@ -6,79 +6,81 @@
  */
 
 export type HTML = string;
+export type NoName1 = string;
 export type MIME = string;
-export type NoName8 = string;
 export type NoName9 = string;
-export type NoName7 = {
+export type NoName10 = string;
+export type NoName8 = {
   type: MIME;
-  name: NoName8;
-  src: NoName9;
+  name: NoName9;
+  src: NoName10;
 }[];
-export type NoName12 = string;
 export type NoName13 = string;
 export type NoName14 = string;
-export type NoName11 = {
-  host: NoName12;
-  name: NoName13;
-  src: NoName14;
+export type NoName15 = string;
+export type NoName12 = {
+  host: NoName13;
+  name: NoName14;
+  src: NoName15;
 }[];
 export type HTML1 = string;
-export type NoName20 = string;
 export type NoName21 = string;
 export type NoName22 = string;
+export type NoName23 = string;
 export type Feed = string;
 export type Feed1 = string;
-export type NoName18 = {
+export type NoName19 = {
   html_path: HTML1;
-  selector: NoName19;
+  selector: NoName20;
   feed_template: Feed;
   feed_path: Feed1;
 }[];
 export type Glob = string[];
-export type NoName24 = string;
 export type NoName25 = string;
+export type NoName26 = string;
 
 export interface NoName {
   html: {
     directory: HTML;
-    book: NoName1;
-    newspaper: NoName2;
+    views: NoName1;
+    book: NoName2;
+    newspaper: NoName3;
     section_id: ID;
-    toc: NoName3;
-    localnav: NoName4;
-    footnote: NoName5;
-    anchor_type: NoName6;
-    anchor_host: NoName10;
+    toc: NoName4;
+    localnav: NoName5;
+    footnote: NoName6;
+    anchor_type: NoName7;
+    anchor_host: NoName11;
     anchor_amazon_associate: Amazon;
-    heading_self_link: NoName15;
+    heading_self_link: NoName16;
     time: Time;
-    image: NoName16;
+    image: NoName17;
     image_amazon: Amazon1;
-    highlight: NoName17;
+    highlight: NoName18;
   };
   feed: {
-    info: NoName18;
+    info: NoName19;
   };
-  sitemap: NoName23;
-}
-export interface NoName1 {
-  target_element: string;
+  sitemap: NoName24;
 }
 export interface NoName2 {
+  target_element: string;
+}
+export interface NoName3 {
   target_element: string;
 }
 export interface ID {
   heading_levels: number[];
 }
-export interface NoName3 {
+export interface NoName4 {
   target_element: string;
   class?: string;
   label?: string;
 }
-export interface NoName4 {
+export interface NoName5 {
   target_class: string;
 }
-export interface NoName5 {
+export interface NoName6 {
   trigger: {
     element: string;
     class: string;
@@ -101,18 +103,18 @@ export interface NoName5 {
     id_prefix: string;
   };
 }
-export interface NoName6 {
+export interface NoName7 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   parentheses: {
     before: string;
     after: string;
   };
-  icon: NoName7;
+  icon: NoName8;
   icon_size: number;
   icon_class: string;
 }
-export interface NoName10 {
+export interface NoName11 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   parentheses: {
@@ -121,14 +123,14 @@ export interface NoName10 {
   };
   element: string;
   class: string;
-  icon: NoName11;
+  icon: NoName12;
   icon_size: number;
   icon_class: string;
 }
 export interface Amazon {
   target_class: string;
 }
-export interface NoName15 {
+export interface NoName16 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   anchor_wrap_class?: string;
@@ -137,23 +139,23 @@ export interface NoName15 {
 export interface Time {
   target_class: string;
 }
-export interface NoName16 {
+export interface NoName17 {
   target_class: string;
 }
 export interface Amazon1 {
   target_class: string;
 }
-export interface NoName17 {
+export interface NoName18 {
   target_class: string;
   class_prefix: string;
 }
-export interface NoName19 {
-  wrap: NoName20;
-  date: NoName21;
-  content: NoName22;
+export interface NoName20 {
+  wrap: NoName21;
+  date: NoName22;
+  content: NoName23;
 }
-export interface NoName23 {
+export interface NoName24 {
   ignore: Glob;
-  template: NoName24;
-  path: NoName25;
+  template: NoName25;
+  path: NoName26;
 }

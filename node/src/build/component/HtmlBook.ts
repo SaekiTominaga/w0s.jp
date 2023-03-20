@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import ejs from 'ejs';
 import IsbnVerify from '@saekitominaga/isbn-verify';
 import Html from './Html.js';
 
@@ -44,119 +43,79 @@ export default class HtmlBook extends Html {
 	 * @param {string} options.target_element - Element name
 	 * @param {string} buildHeadingAnchorClassName - 見出しセルフリンク用のビルドクラス名
 	 */
-	convert(
+	async convert(
 		options: Readonly<{
 			target_element: string;
 		}>,
 		buildHeadingAnchorClassName: string
-	): void {
+	): Promise<void> {
 		const targetElementName = options.target_element;
 
-		for (const targetElement of this.document.querySelectorAll(targetElementName)) {
-			/* EJS を解釈 */
-			const template = ejs.compile(`
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h<%= headingLevel %> itemprop="name"><%= name %></h<%= headingLevel %>>
-	</div>
-	<%_ if (release !== undefined) { _%>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
-	<%_ } _%>
-	<%_ if (tags.length >= 1) { _%>
-		<ul class="p-library__tags">
-			<%_ for (tag of tags) { _%>
-			<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
-			<%_ } _%>
-		</ul>
-	<%_ } _%>
-	<%_ if (isbn !== undefined) { _%>
-		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <span itemprop="isbn"><%= isbn %></span></a></p>
-	<%_ } _%>
-</header>
-<div class="p-library__main">
-	<%_ if (asin !== undefined) { _%>
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__embed">
-				<div class="p-embed-link">
-					<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="htmlbuild-amazon-associate">
-						<%_ if (amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined) { _%>
-						<img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />
-						<%_ } else { _%>
-							<img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />
-						<%_ } _%>
-						<span class="p-embed-link__title">Amazon 商品ページ</span>
-					</a>
-				</div>
-			</div>
-			<div class="p-embed-sidebar__text"><%- contents %></div>
-		</div>
-	<%_ } else { _%><%- contents %><%_ } _%>
-</div>
-`);
+		await Promise.all(
+			[...this.document.querySelectorAll(targetElementName)].map(async (targetElement) => {
+				const nameElement = targetElement.querySelector('book-name');
+				const releaseElement = targetElement.querySelector('book-release');
+				const tagElements = targetElement.querySelectorAll('book-tag');
+				const isbnElement = targetElement.querySelector('book-isbn');
+				const amazonElement = targetElement.querySelector('book-amazon');
+				const contentsElement = targetElement.querySelector('book-contents');
 
-			const nameElement = targetElement.querySelector('book-name');
-			const releaseElement = targetElement.querySelector('book-release');
-			const tagElements = targetElement.querySelectorAll('book-tag');
-			const isbnElement = targetElement.querySelector('book-isbn');
-			const amazonElement = targetElement.querySelector('book-amazon');
-			const contentsElement = targetElement.querySelector('book-contents');
-
-			const release = releaseElement?.textContent ?? undefined;
-			let releaseDate: string | undefined = release;
-			if (release !== undefined) {
-				if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
-					releaseDate = dayjs(release).format('YYYY年M月D日');
-				} else if (/^[0-9]{4}-[0-9]{2}$/.test(release)) {
-					releaseDate = dayjs(release).format('YYYY年M月');
-				} else if (/^[0-9]{4}$/.test(release)) {
-					releaseDate = `${release}年`;
-				} else {
-					this.logger.warn('不正な日付', release);
+				const release = releaseElement?.textContent ?? undefined;
+				let releaseDate: string | undefined = release;
+				if (release !== undefined) {
+					if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
+						releaseDate = dayjs(release).format('YYYY年M月D日');
+					} else if (/^[0-9]{4}-[0-9]{2}$/.test(release)) {
+						releaseDate = dayjs(release).format('YYYY年M月');
+					} else if (/^[0-9]{4}$/.test(release)) {
+						releaseDate = `${release}年`;
+					} else {
+						this.logger.warn('不正な日付', release);
+					}
 				}
-			}
 
-			const isbn = isbnElement?.textContent ?? undefined;
-			if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
-				this.logger.warn('不正な ISBN', isbn);
-			}
+				const isbn = isbnElement?.textContent ?? undefined;
+				if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
+					this.logger.warn('不正な ISBN', isbn);
+				}
 
-			const asin = amazonElement?.getAttribute('asin') ?? undefined;
-			if (asin !== undefined && !/^[A-Z0-9]{10}$/.test(asin)) {
-				this.logger.warn('不正な ASIN', asin);
-			}
+				const asin = amazonElement?.getAttribute('asin') ?? undefined;
+				if (asin !== undefined && !/^[A-Z0-9]{10}$/.test(asin)) {
+					this.logger.warn('不正な ASIN', asin);
+				}
 
-			const amazonImageId = amazonElement?.getAttribute('image-id') ?? undefined;
-			if (amazonImageId !== undefined && !/^[-+a-zA-Z0-9]{11}$/.test(amazonImageId)) {
-				this.logger.warn('不正な Amazon 画像 ID', amazonImageId);
-			}
+				const amazonImageId = amazonElement?.getAttribute('image-id') ?? undefined;
+				if (amazonImageId !== undefined && !/^[-+a-zA-Z0-9]{11}$/.test(amazonImageId)) {
+					this.logger.warn('不正な Amazon 画像 ID', amazonImageId);
+				}
 
-			const amazonImageWidth = amazonElement?.getAttribute('width') ?? undefined;
-			if (amazonImageWidth !== undefined && !/^[1-9][0-9]|1[0-9]{2}$/.test(amazonImageWidth)) {
-				this.logger.warn('不正な Amazon 画像幅', amazonImageWidth);
-			}
+				const amazonImageWidth = amazonElement?.getAttribute('width') ?? undefined;
+				if (amazonImageWidth !== undefined && !/^[1-9][0-9]|1[0-9]{2}$/.test(amazonImageWidth)) {
+					this.logger.warn('不正な Amazon 画像幅', amazonImageWidth);
+				}
 
-			const amazonImageHeight = amazonElement?.getAttribute('height') ?? undefined;
-			if (amazonImageHeight !== undefined && !/^[1-9][0-9]|1[0-9]{2}$/.test(amazonImageHeight)) {
-				this.logger.warn('不正な Amazon 画像高さ', amazonImageHeight);
-			}
+				const amazonImageHeight = amazonElement?.getAttribute('height') ?? undefined;
+				if (amazonImageHeight !== undefined && !/^[1-9][0-9]|1[0-9]{2}$/.test(amazonImageHeight)) {
+					this.logger.warn('不正な Amazon 画像高さ', amazonImageHeight);
+				}
 
-			const html = template({
-				headingLevel: targetElement.getAttribute('heading-level'),
-				name: nameElement?.textContent,
-				release: releaseDate,
-				tags: Array.from(tagElements).map((element) => element.textContent),
-				isbn: isbn,
-				asin: asin,
-				amazonImageId: amazonImageId,
-				amazonImageWidth: amazonImageWidth,
-				amazonImageHeight: amazonImageHeight,
-				contents: contentsElement?.innerHTML,
-			});
+				/* EJS を解釈 */
+				const html = await this.renderEjsFile({
+					buildHeadingAnchorClassName: buildHeadingAnchorClassName,
+					headingLevel: targetElement.getAttribute('heading-level'),
+					name: nameElement?.textContent,
+					release: releaseDate,
+					tags: Array.from(tagElements).map((element) => element.textContent),
+					isbn: isbn,
+					asin: asin,
+					amazonImageId: amazonImageId,
+					amazonImageWidth: amazonImageWidth,
+					amazonImageHeight: amazonImageHeight,
+					contents: contentsElement?.innerHTML,
+				});
 
-			const sectionElement = this.replaceHtml(targetElement, 'section', html);
-			sectionElement.className = `p-library ${buildHeadingAnchorClassName}`;
-			sectionElement.setAttribute('itemscope', '');
-			sectionElement.setAttribute('itemtype', 'http://schema.org/Book');
-		}
+				this.replaceHtml(targetElement, html);
+			})
+		);
 	}
 }

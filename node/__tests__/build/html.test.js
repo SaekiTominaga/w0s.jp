@@ -13,15 +13,7 @@ import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js'
 import HtmlComponentSectioningId from '../../dist/build/component/HtmlSectioningId.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 
-class HtmlTest extends HtmlComponent {
-	replaceElementTest(element, newElementName) {
-		this.replaceElement(element, newElementName);
-	}
-
-	static removeClassNameTest(element, className) {
-		HtmlComponent.removeClassName(element, className);
-	}
-}
+const views = 'views/_component';
 
 describe('replaceElement()', () => {
 	test('クラス名のパターン', () => {
@@ -34,9 +26,9 @@ describe('replaceElement()', () => {
 
 		const { document } = dom.window;
 
-		const htmlTest = new HtmlTest(document);
+		const html = new HtmlComponent(document, views);
 		for (const targetElement of document.querySelectorAll('span')) {
-			htmlTest.replaceElementTest(targetElement, 'foo');
+			html.replaceElement(targetElement, 'foo');
 		}
 
 		expect(dom.serialize()).toBe(
@@ -45,6 +37,102 @@ describe('replaceElement()', () => {
 <foo class="foo"></foo>
 </body></html>`
 		);
+	});
+});
+
+describe('replaceHtml()', () => {
+	test('属性は削除される', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+<span class="foo"></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document, views);
+		for (const targetElement of document.querySelectorAll('span')) {
+			html.replaceHtml(targetElement, '<foo>');
+		}
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<foo></foo>
+<foo></foo>
+</body></html>`
+		);
+	});
+
+	test('属性は置き換えられる', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+<span class="foo"></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document, views);
+		for (const targetElement of document.querySelectorAll('span')) {
+			html.replaceHtml(targetElement, '<foo class="foo">');
+		}
+
+		expect(dom.serialize()).toBe(
+			`<!DOCTYPE html><html><head></head><body>
+<foo class="foo"></foo>
+<foo class="foo"></foo>
+</body></html>`
+		);
+	});
+
+	test('第2引数に空文字', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document, views);
+
+		expect(() => {
+			html.replaceHtml(document.querySelector('span'), '');
+		}).toThrow('The HTML string to be replaced must have one element.');
+	});
+
+	test('第2引数に HTML として成立しない文字', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document, views);
+
+		expect(() => {
+			html.replaceHtml(document.querySelector('span'), 'foo');
+		}).toThrow('The HTML string to be replaced must have one element.');
+	});
+
+	test('第2引数に複数の要素', () => {
+		const dom = new JSDOM(
+			`<!DOCTYPE html><html><head></head><body>
+<span></span>
+</body></html>`
+		);
+
+		const { document } = dom.window;
+
+		const html = new HtmlComponent(document, views);
+
+		expect(() => {
+			html.replaceHtml(document.querySelector('span'), '<foo></foo><bar></bar>');
+		}).toThrow('The HTML string to be replaced must have one parent element.');
 	});
 });
 
@@ -60,7 +148,7 @@ describe('removeClassName()', () => {
 		const { document } = dom.window;
 
 		for (const targetElement of document.querySelectorAll('.build-host')) {
-			HtmlTest.removeClassNameTest(targetElement, 'build-host');
+			HtmlComponent.removeClassName(targetElement, 'build-host');
 		}
 
 		expect(dom.serialize()).toBe(
@@ -99,8 +187,10 @@ describe('SectionId', () => {
 </body></html>`
 		);
 
-		new HtmlComponentSectioningId(dom.window.document).convert({
-			sectioning_area: dom.window.document.body,
+		const { document } = dom.window;
+
+		new HtmlComponentSectioningId(document, views).convert({
+			sectioning_area: document.body,
 			heading_levels: [1, 2],
 		});
 
@@ -136,8 +226,10 @@ describe('SectionId', () => {
 </body></html>`
 		);
 
-		new HtmlComponentSectioningId(dom.window.document).convert({
-			sectioning_area: dom.window.document.body,
+		const { document } = dom.window;
+
+		new HtmlComponentSectioningId(document, views).convert({
+			sectioning_area: document.body,
 			heading_levels: [1, 2],
 		});
 
@@ -158,7 +250,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				id_prefix: 'r',
@@ -186,7 +280,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				class: 'footnote',
@@ -222,7 +318,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				id_prefix: 'r',
@@ -246,7 +344,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				id_prefix: 'r',
@@ -274,7 +374,9 @@ describe('AnchorHost', () => {
 </body></html>`
 		);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 			icon: [
@@ -301,7 +403,9 @@ describe('AnchorHost', () => {
 </body></html>`
 		);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 			parentheses: {
@@ -333,7 +437,9 @@ describe('AnchorHost', () => {
 <a class="build-host">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 		});
@@ -347,7 +453,9 @@ describe('AnchorHost', () => {
 <a href="/" class="build-host">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 		});
@@ -365,7 +473,9 @@ describe('AnchorType', () => {
 <a href="/" type="image/png" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [
@@ -390,7 +500,9 @@ describe('AnchorType', () => {
 <a href="/" type="image/png" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			parentheses: {
@@ -420,7 +532,9 @@ describe('AnchorType', () => {
 <a type="application/pdf" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [],
@@ -435,7 +549,9 @@ describe('AnchorType', () => {
 <a href="/" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [],
@@ -453,7 +569,9 @@ describe('AnchorAmazonAssociate', () => {
 <a href="https://www.amazon.com/dp/B01GRDKGZW/" class="build-amazon">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -469,7 +587,9 @@ describe('AnchorAmazonAssociate', () => {
 <a class="build-amazon">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -486,7 +606,9 @@ describe('AnchorAmazonAssociate', () => {
 <a href="/" class="build-amazon">相対パス</a>
 </body></html>`);
 
-		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -508,7 +630,9 @@ describe('HeadingSelfLink', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHeadingSelfLink(document, views).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforeend',
 		});
@@ -529,7 +653,9 @@ describe('HeadingSelfLink', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHeadingSelfLink(document, views).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforebegin',
 			anchor_class: 'self',
@@ -554,7 +680,9 @@ describe('HeadingSelfLink', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHeadingSelfLink(document, views).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforeend',
 			anchor_class: 'self',
@@ -586,7 +714,9 @@ describe('TimeJapaneseDate', () => {
 <span class="build-date"> 2022 年 </span>
 </body></html>`);
 
-		new HtmlComponentTimeJapaneseDate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentTimeJapaneseDate(document, views).convert({
 			target_class: 'build-date',
 		});
 
@@ -612,7 +742,9 @@ describe('TimeJapaneseDate', () => {
 <span class="build-date" datetime="2022-12-31">2022年1月2日</span>
 </body></html>`);
 
-		new HtmlComponentTimeJapaneseDate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentTimeJapaneseDate(document, views).convert({
 			target_class: 'build-date',
 		});
 
@@ -634,7 +766,9 @@ describe('Image', () => {
 <img src="https://media.w0s.jp/thumbimage/foo?w=360;h=360;quality=100" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -653,7 +787,9 @@ describe('Image', () => {
 <img class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -668,7 +804,9 @@ describe('Image', () => {
 <img src="foo" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -683,7 +821,9 @@ describe('Image', () => {
 <img src="https://image.example.com/" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -698,7 +838,9 @@ describe('Image', () => {
 <img src="https://media.w0s.jp/foo" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -730,7 +872,9 @@ const foo = 'test';
 </code>
 </body></html>`);
 
-		new HtmlComponentHighlight(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHighlight(document, views).convert({
 			target_class: 'build-highlight',
 			class_prefix: 'foo-',
 		});
@@ -761,7 +905,9 @@ const foo = 'test';
 <code class="build-highlight" data-language="html"></code>
 </body></html>`);
 
-		new HtmlComponentHighlight(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHighlight(document, views).convert({
 			target_class: 'build-highlight',
 			class_prefix: 'foo-',
 		});
@@ -775,7 +921,7 @@ const foo = 'test';
 });
 
 describe('Book', () => {
-	test('最小属性', () => {
+	test('最小属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-book heading-level="2">
 <book-name>書名</book-name>
@@ -786,7 +932,9 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentBook(document, views).convert(
 			{
 				target_element: 'build-book',
 			},
@@ -796,22 +944,22 @@ describe('Book', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
 <p>解説文1</p>
 <p>解説文2</p>
-</div>
+	</div>
 </section>
 </body></html>`
 		);
 	});
 
-	test('全属性', () => {
+	test('全属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-book heading-level="2">
 <book-name>書名</book-name>
@@ -827,7 +975,9 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentBook(document, views).convert(
 			{
 				target_element: 'build-book',
 			},
@@ -837,39 +987,39 @@ describe('Book', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
-	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
-		<ul class="p-library__tags">
-			<li><button type="button" class="js-library-tag" disabled="">タグ1</button></li>
-			<li><button type="button" class="js-library-tag" disabled="">タグ2</button></li>
-		</ul>
-		<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
-</header>
-<div class="p-library__main">
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__embed">
-				<div class="p-embed-link">
-					<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-amazon-associate">
-						<img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">
-						<span class="p-embed-link__title">Amazon 商品ページ</span>
-					</a>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
+			<ul class="p-library__tags">
+				<li><button type="button" class="js-library-tag" disabled="">タグ1</button></li>
+				<li><button type="button" class="js-library-tag" disabled="">タグ2</button></li>
+			</ul>
+			<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=978-4-06-377485-6" class="htmlbuild-host">ISBN: <span itemprop="isbn">978-4-06-377485-6</span></a></p>
+	</header>
+	<div class="p-library__main">
+			<div class="p-embed-sidebar -embed-first">
+				<div class="p-embed-sidebar__embed">
+					<div class="p-embed-link">
+						<a href="https://www.amazon.co.jp/dp/B01GRDKGZW/" class="htmlbuild-amazon-associate">
+							<img src="https://m.media-amazon.com/images/I/510waYsj0oL._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/510waYsj0oL._SL320_.jpg 2x" alt="" width="120" height="160" itemprop="image">
+							<span class="p-embed-link__title">Amazon 商品ページ</span>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div class="p-embed-sidebar__text">
+				<div class="p-embed-sidebar__text">
 <p>解説文1</p>
 <p>解説文2</p>
 </div>
-		</div>
-</div>
+			</div>
+	</div>
 </section>
 </body></html>`
 		);
 	});
 
-	test('日付パターン', () => {
+	test('日付パターン', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-book heading-level="2">
 <book-name>書名</book-name>
@@ -889,7 +1039,9 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentBook(document, views).convert(
 			{
 				target_element: 'build-book',
 			},
@@ -899,44 +1051,44 @@ describe('Book', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年1月</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">2022年</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Book">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">書名</h2>
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">書名</h2>
+		</div>
+			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
+	</header>
+	<div class="p-library__main">
 	</div>
-		<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span>発売</p>
-</header>
-<div class="p-library__main">
-</div>
 </section>
 </body></html>`
 		);
@@ -944,7 +1096,7 @@ describe('Book', () => {
 });
 
 describe('Newspaper', () => {
-	test('最小属性', () => {
+	test('最小属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-newspaper heading-level="2">
 <newspaper-name>誌名</newspaper-name>
@@ -955,7 +1107,9 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentNewspaper(document, views).convert(
 			{
 				target_element: 'build-newspaper',
 			},
@@ -965,23 +1119,23 @@ describe('Newspaper', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名</h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名</h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
 <p>解説文1</p>
 <p>解説文2</p>
 
-</div>
+	</div>
 </section>
 </body></html>`
 		);
 	});
 
-	test('全属性', () => {
+	test('全属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-newspaper heading-level="2">
 <newspaper-name>誌名</newspaper-name>
@@ -994,7 +1148,9 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentNewspaper(document, views).convert(
 			{
 				target_element: 'build-newspaper',
 			},
@@ -1004,23 +1160,23 @@ describe('Newspaper', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span>　朝刊</h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
 <p>解説文1</p>
 <p>解説文2</p>
 
-</div>
+	</div>
 </section>
 </body></html>`
 		);
 	});
 
-	test('日付パターン', () => {
+	test('日付パターン', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-newspaper heading-level="2">
 <newspaper-name>誌名</newspaper-name>
@@ -1032,7 +1188,9 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentNewspaper(document, views).convert(
 			{
 				target_element: 'build-newspaper',
 			},
@@ -1042,24 +1200,24 @@ describe('Newspaper', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">2022年1月1日</span></h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
-</div>
+	</div>
 </section>
 <section class="p-library build-heading-anchor" itemscope="" itemtype="http://schema.org/Newspaper">
-<header class="p-library__header">
-	<div class="p-library__title">
-		<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
-	</div>
-</header>
-<div class="p-library__main">
+	<header class="p-library__header">
+		<div class="p-library__title">
+			<h2 itemprop="name">誌名　<span class="htmlbuild-datetime" itemprop="datePublished">xxxx</span></h2>
+		</div>
+	</header>
+	<div class="p-library__main">
 
-</div>
+	</div>
 </section>
 </body></html>`
 		);
