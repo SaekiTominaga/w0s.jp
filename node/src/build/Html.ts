@@ -103,41 +103,51 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				document.documentElement.setAttribute('prefix', 'og: http://ogp.me/ns#');
 			}
 
-			new HtmlComponentBook(document).convert(this.configBuild.html.book, this.configBuild.html.heading_self_link.target_class); // 書籍
-			new HtmlComponentNewspaper(document).convert(this.configBuild.html.newspaper, this.configBuild.html.heading_self_link.target_class); // 新聞
+			const { views } = this.configBuild.html;
+
+			await Promise.all([
+				new HtmlComponentBook(document, views).convert(this.configBuild.html.book, this.configBuild.html.heading_self_link.target_class), // 書籍
+				new HtmlComponentNewspaper(document, views).convert(this.configBuild.html.newspaper, this.configBuild.html.heading_self_link.target_class), // 新聞
+			]);
 
 			if (contentMain !== null) {
-				new HtmlCpmponentSectioningId(document).convert({
-					sectioning_area: contentMain,
-					heading_levels: this.configBuild.html.section_id.heading_levels,
-				}); // セクション ID 自動生成
-				new HtmlComponentToc(document).convert({
-					target_element: this.configBuild.html.toc.target_element,
-					sectioning_area: contentMain,
-					class: this.configBuild.html.toc.class,
-					label: this.configBuild.html.toc.label,
-				}); // 目次自動生成
+				await Promise.all([
+					new HtmlCpmponentSectioningId(document, views).convert({
+						sectioning_area: contentMain,
+						heading_levels: this.configBuild.html.section_id.heading_levels,
+					}), // セクション ID 自動生成
+					new HtmlComponentToc(document, views).convert({
+						target_element: this.configBuild.html.toc.target_element,
+						sectioning_area: contentMain,
+						class: this.configBuild.html.toc.class,
+						label: this.configBuild.html.toc.label,
+					}), // 目次自動生成
+				]);
 			}
 			if (contentHeader !== null) {
-				new HtmlCpmponentLocalnav(document).convert({
-					target_class: this.configBuild.html.localnav.target_class,
-					header_area: contentHeader,
-					footer_area: contentFooter,
-				}); // コンテンツヘッダーのローカルナビをコンテンツフッターにコピーする
+				await Promise.all([
+					new HtmlCpmponentLocalnav(document, views).convert({
+						target_class: this.configBuild.html.localnav.target_class,
+						header_area: contentHeader,
+						footer_area: contentFooter,
+					}), // コンテンツヘッダーのローカルナビをコンテンツフッターにコピーする
+				]);
 			}
 
-			new HtmlComponentFootnote(document).convert(this.configBuild.html.footnote); // 注釈
-			new HtmlComponentAnchorType(document).convert(this.configBuild.html.anchor_type); // リンクアンカーにリソースタイプアイコンを付与
-			new HtmlComponentAnchorHost(document).convert(this.configBuild.html.anchor_host); // リンクアンカーにドメイン情報を付与
-			new HtmlComponentAnchorAmazonAssociate(document).convert({
-				target_class: this.configBuild.html.anchor_amazon_associate.target_class,
-				associate_id: this.configCommon.paapi.request.partner_tag,
-			}); // Amazon 商品ページのリンクにアソシエイトタグを追加
-			new HtmlComponentHeadingSelfLink(document).convert(this.configBuild.html.heading_self_link); // 見出しにセルフリンクを挿入
-			new HtmlComponentTimeJapaneseDate(document).convert(this.configBuild.html.time); // 日付文字列を `<time datetime>` 要素に変換
-			new HtmlComponentImage(document).convert(this.configBuild.html.image); // `<picture>` 要素を使って複数フォーマットの画像を提供する
-			new HtmlComponentImageAmazon(document).convert(this.configBuild.html.image_amazon); // Amazon 商品画像
-			new HtmlComponentHighlight(document).convert(this.configBuild.html.highlight); // highlight.js
+			await Promise.all([
+				new HtmlComponentFootnote(document, views).convert(this.configBuild.html.footnote), // 注釈
+				new HtmlComponentAnchorType(document, views).convert(this.configBuild.html.anchor_type), // リンクアンカーにリソースタイプアイコンを付与
+				new HtmlComponentAnchorHost(document, views).convert(this.configBuild.html.anchor_host), // リンクアンカーにドメイン情報を付与
+				new HtmlComponentAnchorAmazonAssociate(document, views).convert({
+					target_class: this.configBuild.html.anchor_amazon_associate.target_class,
+					associate_id: this.configCommon.paapi.request.partner_tag,
+				}), // Amazon 商品ページのリンクにアソシエイトタグを追加
+				new HtmlComponentHeadingSelfLink(document, views).convert(this.configBuild.html.heading_self_link), // 見出しにセルフリンクを挿入
+				new HtmlComponentTimeJapaneseDate(document, views).convert(this.configBuild.html.time), // 日付文字列を `<time datetime>` 要素に変換
+				new HtmlComponentImage(document, views).convert(this.configBuild.html.image), // `<picture>` 要素を使って複数フォーマットの画像を提供する
+				new HtmlComponentImageAmazon(document, views).convert(this.configBuild.html.image_amazon), // Amazon 商品画像
+				new HtmlComponentHighlight(document, views).convert(this.configBuild.html.highlight), // highlight.js
+			]);
 
 			const htmlBuilt = dom.serialize();
 			this.logger.info(`Build finished: ${filePath}`);

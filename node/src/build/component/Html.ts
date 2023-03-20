@@ -1,3 +1,5 @@
+import decamelize from 'decamelize';
+import ejs from 'ejs';
 import Log4js from 'log4js';
 
 export default class Html {
@@ -5,15 +7,21 @@ export default class Html {
 
 	protected readonly document: Document; // Document
 
+	protected readonly views: string | undefined; // Views directory
+
 	/**
 	 * @param {object} document - Document
+	 * @param {string} views - Views directory
 	 */
-	constructor(document: Document) {
+	constructor(document: Document, views: string) {
 		/* Logger */
 		this.logger = Log4js.getLogger(this.constructor.name);
 
 		/* Document */
 		this.document = document;
+
+		/* Views directory */
+		this.views = views;
 	}
 
 	/**
@@ -75,5 +83,20 @@ export default class Html {
 		if (element.classList.length === 0) {
 			element.removeAttribute('class');
 		}
+	}
+
+	/**
+	 * HTML rendering using EJS file
+	 *
+	 * @param {object} data - EJS data
+	 *
+	 * @returns {string} - HTML
+	 */
+	protected async renderEjsFile(data?: ejs.Data): Promise<string> {
+		const name = `${decamelize(this.constructor.name.replace(/^Html/, ''))}`; // HtmlFooBar.ts → foo-bar
+
+		const html = await ejs.renderFile(`${this.views}/_${name}.ejs`, data);
+
+		return html;
 	}
 }

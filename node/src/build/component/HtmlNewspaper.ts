@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import ejs from 'ejs';
 import Html from './Html.js';
 
 /**
@@ -33,63 +32,45 @@ export default class HtmlNewspaper extends Html {
 	 * @param {string} options.target_element - Element name
 	 * @param {string} buildHeadingAnchorClassName - 見出しセルフリンク用のビルドクラス名
 	 */
-	convert(
+	async convert(
 		options: Readonly<{
 			target_element: string;
 		}>,
 		buildHeadingAnchorClassName: string
-	): void {
+	): Promise<void> {
 		const targetElementName = options.target_element;
 
-		for (const targetElement of this.document.querySelectorAll(targetElementName)) {
-			/* EJS を解釈 */
-			const template = ejs.compile(`
-<section class="p-library <%= buildHeadingAnchorClassName %>" itemscope="" itemtype="http://schema.org/Newspaper">
-	<header class="p-library__header">
-		<div class="p-library__title">
-			<h<%= headingLevel %> itemprop="name"><%= name %><%_ if (release !== undefined) { _%>　<span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span><%_ } _%><%_ if (npclass !== undefined) { _%>　<%= npclass %><%_ } _%></h<%= headingLevel %>>
-		</div>
-		<%_ if (tags.length >= 1) { _%>
-			<ul class="p-library__tags">
-				<%_ for (tag of tags) { _%>
-				<li><button type="button" class="js-library-tag" disabled=""><%= tag %></button></li>
-				<%_ } _%>
-			</ul>
-		<%_ } _%>
-	</header>
-	<div class="p-library__main">
-<%- contents %>
-	</div>
-</section>
-`);
+		await Promise.all(
+			[...this.document.querySelectorAll(targetElementName)].map(async (targetElement) => {
+				const nameElement = targetElement.querySelector('newspaper-name');
+				const releaseElement = targetElement.querySelector('newspaper-release');
+				const classElement = targetElement.querySelector('newspaper-class');
+				const tagElements = targetElement.querySelectorAll('newspaper-tag');
+				const contentsElement = targetElement.querySelector('newspaper-contents');
 
-			const nameElement = targetElement.querySelector('newspaper-name');
-			const releaseElement = targetElement.querySelector('newspaper-release');
-			const classElement = targetElement.querySelector('newspaper-class');
-			const tagElements = targetElement.querySelectorAll('newspaper-tag');
-			const contentsElement = targetElement.querySelector('newspaper-contents');
-
-			const release = releaseElement?.textContent ?? undefined;
-			let releaseDate: string | undefined = release;
-			if (release !== undefined) {
-				if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
-					releaseDate = dayjs(release).format('YYYY年M月D日');
-				} else {
-					this.logger.warn('不正な日付', release);
+				const release = releaseElement?.textContent ?? undefined;
+				let releaseDate: string | undefined = release;
+				if (release !== undefined) {
+					if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(release)) {
+						releaseDate = dayjs(release).format('YYYY年M月D日');
+					} else {
+						this.logger.warn('不正な日付', release);
+					}
 				}
-			}
 
-			const html = template({
-				buildHeadingAnchorClassName: buildHeadingAnchorClassName,
-				headingLevel: targetElement.getAttribute('heading-level'),
-				name: nameElement?.textContent,
-				release: releaseDate,
-				npclass: classElement?.textContent ?? undefined,
-				tags: Array.from(tagElements).map((element) => element.textContent),
-				contents: contentsElement?.innerHTML,
-			});
+				/* EJS を解釈 */
+				const html = await this.renderEjsFile({
+					buildHeadingAnchorClassName: buildHeadingAnchorClassName,
+					headingLevel: targetElement.getAttribute('heading-level'),
+					name: nameElement?.textContent,
+					release: releaseDate,
+					npclass: classElement?.textContent ?? undefined,
+					tags: Array.from(tagElements).map((element) => element.textContent),
+					contents: contentsElement?.innerHTML,
+				});
 
-			this.replaceHtml(targetElement, html);
-		}
+				this.replaceHtml(targetElement, html);
+			})
+		);
 	}
 }

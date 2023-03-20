@@ -13,6 +13,8 @@ import HtmlComponentNewspaper from '../../dist/build/component/HtmlNewspaper.js'
 import HtmlComponentSectioningId from '../../dist/build/component/HtmlSectioningId.js';
 import HtmlComponentTimeJapaneseDate from '../../dist/build/component/HtmlTimeJapaneseDate.js';
 
+const views = 'views/_component';
+
 describe('replaceElement()', () => {
 	test('クラス名のパターン', () => {
 		const dom = new JSDOM(
@@ -24,7 +26,7 @@ describe('replaceElement()', () => {
 
 		const { document } = dom.window;
 
-		const html = new HtmlComponent(document);
+		const html = new HtmlComponent(document, views);
 		for (const targetElement of document.querySelectorAll('span')) {
 			html.replaceElement(targetElement, 'foo');
 		}
@@ -49,7 +51,7 @@ describe('replaceHtml()', () => {
 
 		const { document } = dom.window;
 
-		const html = new HtmlComponent(document);
+		const html = new HtmlComponent(document, views);
 		for (const targetElement of document.querySelectorAll('span')) {
 			html.replaceHtml(targetElement, '<foo>');
 		}
@@ -72,7 +74,7 @@ describe('replaceHtml()', () => {
 
 		const { document } = dom.window;
 
-		const html = new HtmlComponent(document);
+		const html = new HtmlComponent(document, views);
 		for (const targetElement of document.querySelectorAll('span')) {
 			html.replaceHtml(targetElement, '<foo class="foo">');
 		}
@@ -94,7 +96,7 @@ describe('replaceHtml()', () => {
 
 		const { document } = dom.window;
 
-		const html = new HtmlComponent(document);
+		const html = new HtmlComponent(document, views);
 
 		expect(() => {
 			html.replaceHtml(document.querySelector('span'), '');
@@ -110,7 +112,7 @@ describe('replaceHtml()', () => {
 
 		const { document } = dom.window;
 
-		const html = new HtmlComponent(document);
+		const html = new HtmlComponent(document, views);
 
 		expect(() => {
 			html.replaceHtml(document.querySelector('span'), 'foo');
@@ -126,7 +128,7 @@ describe('replaceHtml()', () => {
 
 		const { document } = dom.window;
 
-		const html = new HtmlComponent(document);
+		const html = new HtmlComponent(document, views);
 
 		expect(() => {
 			html.replaceHtml(document.querySelector('span'), '<foo></foo><bar></bar>');
@@ -185,8 +187,10 @@ describe('SectionId', () => {
 </body></html>`
 		);
 
-		new HtmlComponentSectioningId(dom.window.document).convert({
-			sectioning_area: dom.window.document.body,
+		const { document } = dom.window;
+
+		new HtmlComponentSectioningId(document, views).convert({
+			sectioning_area: document.body,
 			heading_levels: [1, 2],
 		});
 
@@ -222,8 +226,10 @@ describe('SectionId', () => {
 </body></html>`
 		);
 
-		new HtmlComponentSectioningId(dom.window.document).convert({
-			sectioning_area: dom.window.document.body,
+		const { document } = dom.window;
+
+		new HtmlComponentSectioningId(document, views).convert({
+			sectioning_area: document.body,
 			heading_levels: [1, 2],
 		});
 
@@ -244,7 +250,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				id_prefix: 'r',
@@ -272,7 +280,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				class: 'footnote',
@@ -308,7 +318,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				id_prefix: 'r',
@@ -332,7 +344,9 @@ describe('Footnote', () => {
 </body></html>`
 		);
 
-		new HtmlComponentFootnote(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentFootnote(document, views).convert({
 			trigger: {
 				element: 'build-footnote',
 				id_prefix: 'r',
@@ -360,7 +374,9 @@ describe('AnchorHost', () => {
 </body></html>`
 		);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 			icon: [
@@ -387,7 +403,9 @@ describe('AnchorHost', () => {
 </body></html>`
 		);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 			parentheses: {
@@ -419,7 +437,9 @@ describe('AnchorHost', () => {
 <a class="build-host">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 		});
@@ -433,7 +453,9 @@ describe('AnchorHost', () => {
 <a href="/" class="build-host">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorHost(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorHost(document, views).convert({
 			target_class: 'build-host',
 			insert_position: 'afterend',
 		});
@@ -451,7 +473,9 @@ describe('AnchorType', () => {
 <a href="/" type="image/png" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [
@@ -476,7 +500,9 @@ describe('AnchorType', () => {
 <a href="/" type="image/png" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			parentheses: {
@@ -506,7 +532,9 @@ describe('AnchorType', () => {
 <a type="application/pdf" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [],
@@ -521,7 +549,9 @@ describe('AnchorType', () => {
 <a href="/" class="build-type">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorType(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorType(document, views).convert({
 			target_class: 'build-type',
 			insert_position: 'afterend',
 			icon: [],
@@ -539,7 +569,9 @@ describe('AnchorAmazonAssociate', () => {
 <a href="https://www.amazon.com/dp/B01GRDKGZW/" class="build-amazon">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -555,7 +587,9 @@ describe('AnchorAmazonAssociate', () => {
 <a class="build-amazon">Link</a>
 </body></html>`);
 
-		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -572,7 +606,9 @@ describe('AnchorAmazonAssociate', () => {
 <a href="/" class="build-amazon">相対パス</a>
 </body></html>`);
 
-		new HtmlComponentAnchorAmazonAssociate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 			target_class: 'build-amazon',
 			associate_id: 'xxx-20',
 		});
@@ -594,7 +630,9 @@ describe('HeadingSelfLink', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHeadingSelfLink(document, views).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforeend',
 		});
@@ -615,7 +653,9 @@ describe('HeadingSelfLink', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHeadingSelfLink(document, views).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforebegin',
 			anchor_class: 'self',
@@ -640,7 +680,9 @@ describe('HeadingSelfLink', () => {
 </section>
 </body></html>`);
 
-		new HtmlComponentHeadingSelfLink(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHeadingSelfLink(document, views).convert({
 			target_class: 'build-heading-anchor',
 			insert_position: 'beforeend',
 			anchor_class: 'self',
@@ -672,7 +714,9 @@ describe('TimeJapaneseDate', () => {
 <span class="build-date"> 2022 年 </span>
 </body></html>`);
 
-		new HtmlComponentTimeJapaneseDate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentTimeJapaneseDate(document, views).convert({
 			target_class: 'build-date',
 		});
 
@@ -698,7 +742,9 @@ describe('TimeJapaneseDate', () => {
 <span class="build-date" datetime="2022-12-31">2022年1月2日</span>
 </body></html>`);
 
-		new HtmlComponentTimeJapaneseDate(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentTimeJapaneseDate(document, views).convert({
 			target_class: 'build-date',
 		});
 
@@ -720,7 +766,9 @@ describe('Image', () => {
 <img src="https://media.w0s.jp/thumbimage/foo?w=360;h=360;quality=100" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -739,7 +787,9 @@ describe('Image', () => {
 <img class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -754,7 +804,9 @@ describe('Image', () => {
 <img src="foo" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -769,7 +821,9 @@ describe('Image', () => {
 <img src="https://image.example.com/" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -784,7 +838,9 @@ describe('Image', () => {
 <img src="https://media.w0s.jp/foo" class="build-image">
 </body></html>`);
 
-		new HtmlComponentImage(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentImage(document, views).convert({
 			target_class: 'build-image',
 		});
 
@@ -816,7 +872,9 @@ const foo = 'test';
 </code>
 </body></html>`);
 
-		new HtmlComponentHighlight(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHighlight(document, views).convert({
 			target_class: 'build-highlight',
 			class_prefix: 'foo-',
 		});
@@ -847,7 +905,9 @@ const foo = 'test';
 <code class="build-highlight" data-language="html"></code>
 </body></html>`);
 
-		new HtmlComponentHighlight(dom.window.document).convert({
+		const { document } = dom.window;
+
+		new HtmlComponentHighlight(document, views).convert({
 			target_class: 'build-highlight',
 			class_prefix: 'foo-',
 		});
@@ -861,7 +921,7 @@ const foo = 'test';
 });
 
 describe('Book', () => {
-	test('最小属性', () => {
+	test('最小属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-book heading-level="2">
 <book-name>書名</book-name>
@@ -872,7 +932,9 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentBook(document, views).convert(
 			{
 				target_element: 'build-book',
 			},
@@ -897,7 +959,7 @@ describe('Book', () => {
 		);
 	});
 
-	test('全属性', () => {
+	test('全属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-book heading-level="2">
 <book-name>書名</book-name>
@@ -913,7 +975,9 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentBook(document, views).convert(
 			{
 				target_element: 'build-book',
 			},
@@ -955,7 +1019,7 @@ describe('Book', () => {
 		);
 	});
 
-	test('日付パターン', () => {
+	test('日付パターン', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-book heading-level="2">
 <book-name>書名</book-name>
@@ -975,7 +1039,9 @@ describe('Book', () => {
 </build-book>
 </body></html>`);
 
-		new HtmlComponentBook(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentBook(document, views).convert(
 			{
 				target_element: 'build-book',
 			},
@@ -1030,7 +1096,7 @@ describe('Book', () => {
 });
 
 describe('Newspaper', () => {
-	test('最小属性', () => {
+	test('最小属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-newspaper heading-level="2">
 <newspaper-name>誌名</newspaper-name>
@@ -1041,7 +1107,9 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentNewspaper(document, views).convert(
 			{
 				target_element: 'build-newspaper',
 			},
@@ -1067,7 +1135,7 @@ describe('Newspaper', () => {
 		);
 	});
 
-	test('全属性', () => {
+	test('全属性', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-newspaper heading-level="2">
 <newspaper-name>誌名</newspaper-name>
@@ -1080,7 +1148,9 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentNewspaper(document, views).convert(
 			{
 				target_element: 'build-newspaper',
 			},
@@ -1106,7 +1176,7 @@ describe('Newspaper', () => {
 		);
 	});
 
-	test('日付パターン', () => {
+	test('日付パターン', async () => {
 		const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>
 <build-newspaper heading-level="2">
 <newspaper-name>誌名</newspaper-name>
@@ -1118,7 +1188,9 @@ describe('Newspaper', () => {
 </build-newspaper>
 </body></html>`);
 
-		new HtmlComponentNewspaper(dom.window.document).convert(
+		const { document } = dom.window;
+
+		await new HtmlComponentNewspaper(document, views).convert(
 			{
 				target_element: 'build-newspaper',
 			},
