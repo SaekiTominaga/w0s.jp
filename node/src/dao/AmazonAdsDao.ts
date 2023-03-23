@@ -197,9 +197,9 @@ export default class AmazonAdsDao {
 			);
 			await categorySth.finalize();
 
-			dbh.exec('COMMIT');
+			await dbh.exec('COMMIT');
 		} catch (e) {
-			dbh.exec('ROLLBACK');
+			await dbh.exec('ROLLBACK');
 			throw e;
 		}
 	}
@@ -236,9 +236,9 @@ export default class AmazonAdsDao {
 			});
 			await categorySth.finalize();
 
-			dbh.exec('COMMIT');
+			await dbh.exec('COMMIT');
 		} catch (e) {
-			dbh.exec('ROLLBACK');
+			await dbh.exec('ROLLBACK');
 			throw e;
 		}
 	}
