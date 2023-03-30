@@ -38,16 +38,6 @@ declare namespace AkamatsuGeneratorRequest {
 	}
 }
 
-declare namespace MadokaOfficialNewsMonthRequest {
-	interface Index {
-		month: string | null;
-	}
-
-	interface Month {
-		month: import('dayjs').Dayjs;
-	}
-}
-
 declare namespace CrawlerNewsRequest {
 	interface Index {
 		url: string | null;
