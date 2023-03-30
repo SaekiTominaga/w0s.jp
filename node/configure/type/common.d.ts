@@ -61,9 +61,6 @@ export type Crawler = string;
 export type Blog = string;
 export type Tokyucarhistory = string;
 export type Kumetatwitter = string;
-export type Madokalibrary = string;
-export type Madokawebarchive = string;
-export type Madokatwitter = string;
 export type NoName30 = string;
 /**
  * https://affiliate.amazon.co.jp/assoc_credentials/home
@@ -182,9 +179,6 @@ export interface DBNode {
   blog: Blog;
   tokyu_car_history: Tokyucarhistory;
   kumeta_twitter: Kumetatwitter;
-  madoka_library: Madokalibrary;
-  madoka_web_archive: Madokawebarchive;
-  madoka_twitter: Madokatwitter;
 }
 export interface AmazonProductAdvertisingAPI {
   request: CommonRequestParameters;

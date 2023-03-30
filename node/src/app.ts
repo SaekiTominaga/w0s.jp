@@ -17,8 +17,6 @@ import CrawlerResourceLogController from './controller/CrawlerResourceLogControl
 import HttpBasicAuth from './util/HttpBasicAuth.js';
 import HttpResponse from './util/HttpResponse.js';
 import KumetaTwitterController from './controller/KumetaTwitterController.js';
-import MadokaOfficialNewsIndexController from './controller/MadokaOfficialNewsIndexController.js';
-import MadokaOfficialNewsMonthController from './controller/MadokaOfficialNewsMonthController.js';
 import TokyuCarHistoryController from './controller/TokyuCarHistoryController.js';
 import { W0SJp as Configure } from '../configure/type/common.js';
 
@@ -338,24 +336,6 @@ app
 			next(e);
 		}
 	});
-
-/**
- * まどか☆マギカ・公式サイトニュース
- */
-app.get('/madoka/official/news/', async (req, res, next) => {
-	try {
-		await new MadokaOfficialNewsIndexController(config).execute(req, res);
-	} catch (e) {
-		next(e);
-	}
-});
-app.get('/madoka/official/news/:month(20\\d{2}-[0-1]\\d)', async (req, res, next) => {
-	try {
-		await new MadokaOfficialNewsMonthController(config).execute(req, res);
-	} catch (e) {
-		next(e);
-	}
-});
 
 /**
  * エラー処理

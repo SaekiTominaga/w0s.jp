@@ -41,30 +41,6 @@ declare namespace KumetaTwitterView {
 	}
 }
 
-declare namespace MadokaOfficialNewsView {
-	interface NewsIndex {
-		id: string;
-		date: import('dayjs').Dayjs | null;
-		title: string;
-	}
-
-	interface NewsMovie {
-		id: string;
-		date: import('dayjs').Dayjs | null;
-		title: string;
-		message: string;
-		image_file_name: string[];
-	}
-
-	interface NewsTv {
-		id: string;
-		date: import('dayjs').Dayjs | null;
-		title: string;
-		description: string;
-		image_file_name: string[];
-	}
-}
-
 declare namespace CrawlerNewsView {
 	interface News {
 		url: string;
