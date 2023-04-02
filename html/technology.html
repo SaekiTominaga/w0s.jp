@@ -3,7 +3,7 @@
 	<head>
 		<title>当サイトの Web 技術</title>
 
-		<meta itemprop="dateModified" content="2022-10-04" />
+		<meta itemprop="dateModified" content="2023-04-02" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<%- include('./_include/_head_ogp') %>
 
@@ -171,7 +171,7 @@
 								<tr>
 									<td>analytics.w0s.jp</td>
 									<td>アクセス解析</td>
-									<td><a href="https://matomo.org/">Matomo Analytics</a> を利用</td>
+									<td><a href="https://matomo.org/" class="htmlbuild-host">Matomo Analytics</a> を利用</td>
 									<td class="u-cell -center">―</td>
 								</tr>
 								<tr>
@@ -363,36 +363,36 @@
 										<tr>
 											<th scope="col">プラグイン</th>
 											<th scope="col">CSS 仕様</th>
-											<th scope="col">W3C プロセス<small>（2022年10月現在）</small></th>
+											<th scope="col">W3C プロセス<small>（2023年4月現在）</small></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td><a href="https://github.com/postcss/postcss-media-minmax">postcss-media-minmax</a></td>
+											<td><a href="https://github.com/postcss/postcss-media-minmax" class="htmlbuild-host">postcss-media-minmax</a></td>
 											<td>
-												<a href="https://www.w3.org/TR/mediaqueries-4/#mq-range-context" hreflang="en">Range Context <small>(Media Queries Level 4)</small></a>
+												<a href="https://www.w3.org/TR/mediaqueries-4/#mq-range-context" hreflang="en" class="htmlbuild-host">Range Context <small>(Media Queries Level 4)</small></a>
 											</td>
 											<td>Candidate Recommendation Draft</td>
 										</tr>
 										<tr>
-											<td><a href="https://github.com/postcss/postcss-custom-media">postcss-custom-media</a></td>
+											<td><a href="https://github.com/postcss/postcss-custom-media" class="htmlbuild-host">postcss-custom-media</a></td>
 											<td>
-												<a href="https://www.w3.org/TR/mediaqueries-5/#custom-mq" hreflang="en">Custom Media Queries <small>(Media Queries Level 5)</small></a>
+												<a href="https://www.w3.org/TR/mediaqueries-5/#custom-mq" hreflang="en" class="htmlbuild-host">Custom Media Queries <small>(Media Queries Level 5)</small></a>
 											</td>
 											<td>Working Draft</td>
 										</tr>
 										<tr>
-											<td><a href="https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting">postcss-nesting</a></td>
-											<td><a href="https://www.w3.org/TR/css-nesting-1/" hreflang="en">CSS Nesting Module</a></td>
-											<td>First Public Working Draft</td>
+											<td><a href="https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting" class="htmlbuild-host">postcss-nesting</a></td>
+											<td><a href="https://www.w3.org/TR/css-nesting-1/" hreflang="en" class="htmlbuild-host">CSS Nesting Module</a></td>
+											<td>Working Draft</td>
 										</tr>
 										<tr>
-											<td><a href="https://github.com/postcss/postcss-import">postcss-import</a></td>
+											<td><a href="https://github.com/postcss/postcss-import" class="htmlbuild-host">postcss-import</a></td>
 											<td></td>
 											<td></td>
 										</tr>
 										<tr>
-											<td><a href="https://cssnano.co/">CSSNANO</a></td>
+											<td><a href="https://cssnano.co/" class="htmlbuild-host">CSSNANO</a></td>
 											<td></td>
 											<td></td>
 										</tr>
@@ -462,7 +462,7 @@
 								<p>昨今ではモバイルブラウザも含めてほとんどの閲覧環境が JavaScript に対応しているが、一方でユーザーの環境によって（有効設定であっても）スクリプトが動かないケースは往々にして存在する<htmlbuild-footnote>具体的な事例をすべて挙げるとキリがないが、一例として JavaScript の URL に `<code>ads</code>` が含まれていると広告ブロッカーを適用した環境ではそのスクリプトがロードされず、結果的にスクリプト無効設定と同じ状況になるかもしれない。ここで考えるべきは「そのようなツールを使って不利益を被るのは自己責任」か、それとも「広告ブロッカーを含めブラウザをカスタマイズするのはユーザーの権利であり配慮が必要」かということだが、私は後者の考え方を持っている。一方で「URL に `<code>ads</code>` を含める」ことは JavaScript や HTTP はもとより Web の仕組み上なんら問題なく、特定のツールに対する配慮で URL を変更するのは避けたい。そもそもが小手先の対策をせずとも、スクリプト無効でコンテンツが閲覧できる状態さえ保っていれば、ユーザーのブラウザ上でスクリプトが想定どおり動くかどうかなど<em>気にする必要すらない</em>のであり、制作上のコストパフォーマンスの観点からもこれがもっとも簡単なのである。</htmlbuild-footnote>。当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
 							</li>
 							<li>
-								<p><code class="c-code">public/assets/script/_src</code> ディレクトリ内の TypeScript ファイルを <a href="https://webpack.js.org/" class="htmlbuild-host">webpack</a> でビルドし、 <code class="c-code">public/assets/script</code> に配置。 CSS ファイルと同じくビルドの際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
+								<p><code class="c-code">public/assets/script/_src</code> ディレクトリ内の TypeScript ファイルを <a href="https://www.rollupjs.org/" class="htmlbuild-host">Rollup</a> でビルドし、 <code class="c-code">public/assets/script</code> に配置。 CSS ファイルと同じくビルドの際、ソースマップ、 Brotli 圧縮ファイルも同時に出力している。</p>
 							</li>
 							<li>
 								<p>外部サービスに関係した機能など一部を除き ES modules で作成しており、本来であれば機能毎に別れたファイルを <code class="c-code">import</code> / <code class="c-code">export</code> を使ってそのままブラウザに読ませることができるが、一時期そのようにしてみたところ HTTP/2 通信下であっても画面描画への影響が体感できるほど大きかったため、現在ではビルド時にファイル結合を行うようにしている。</p>
