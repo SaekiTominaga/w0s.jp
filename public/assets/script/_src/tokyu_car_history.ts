@@ -1,6 +1,6 @@
 import StringConvert from '@saekitominaga/string-convert';
 import TableCellDitto from '@saekitominaga/htmltablecellelement-ditto';
-import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover';
+import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover.js';
 
 /**
  * 東急電車形態研究 - 車歴表
