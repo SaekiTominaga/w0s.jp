@@ -1,4 +1,4 @@
-import Contact from './unique/Contact';
+import Contact from './unique/Contact.js';
 
 /**
  * 問い合わせフォーム

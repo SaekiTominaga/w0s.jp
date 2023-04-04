@@ -13,10 +13,10 @@ import StringConvert from '@saekitominaga/string-convert';
 import Tab from '@saekitominaga/customelements-tab';
 import TextareaAutoheight from '@saekitominaga/customelements-textarea-autoheight';
 import TooltipTrigger from '@saekitominaga/customelements-tooltip-trigger';
-import GoogleAdsense from './unique/GoogleAdsense';
-import SidebarAmazonAd from './unique/SidebarAmazonAd';
-import SidebarBlogNewly from './unique/SidebarBlogNewly';
-import TableTheadStickey from './component/TableTheadStickey';
+import GoogleAdsense from './unique/GoogleAdsense.js';
+import SidebarAmazonAd from './unique/SidebarAmazonAd.js';
+import SidebarBlogNewly from './unique/SidebarBlogNewly.js';
+import TableTheadStickey from './component/TableTheadStickey.js';
 
 /**
  * w0s.jp（エラーページを除く）
