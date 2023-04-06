@@ -114,17 +114,17 @@ Styleguide 1.2.3
 	line-height: var(--line-height-narrow);
 	text-decoration: none;
 
-	@nest button[type="button"]&:focus:not(:focus-visible) {
+	:where(button[type="button"]&):focus:not(:focus-visible) {
 		outline: none;
 	}
 
 	/* トップページの見出し横では小さく表示 */
-	@nest .p-top-update & {
+	.p-top-update & {
 		--_padding-block: 0.35em;
 		--_font-size: calc(100% / var(--font-ratio-1));
 	}
 
-	@nest .p-sidebar-profile__banners & {
+	.p-sidebar-profile__banners & {
 		--_padding-inline: 1px;
 		--_inline-size: 100%;
 	}
