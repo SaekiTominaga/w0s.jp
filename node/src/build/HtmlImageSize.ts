@@ -1,4 +1,5 @@
 import fs from 'fs';
+import slash from 'slash';
 import { globby } from 'globby';
 import { imageSize } from 'image-size';
 import { JSDOM } from 'jsdom';
@@ -10,10 +11,11 @@ import BuildComponentInterface from '../BuildComponentInterface.js';
  */
 export default class HtmlImageSize extends BuildComponent implements BuildComponentInterface {
 	async execute(args: string[]): Promise<void> {
-		const filesPath = args.at(0);
-		if (filesPath === undefined) {
+		const filesPathOs = args.at(0);
+		if (filesPathOs === undefined) {
 			throw new Error('Missing parameter');
 		}
+		const filesPath = slash(filesPathOs);
 
 		const fileList = await globby(filesPath);
 
