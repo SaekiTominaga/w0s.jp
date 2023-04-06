@@ -20,6 +20,8 @@ export default class Css extends BuildComponent implements BuildComponentInterfa
 
 		const prettierOptions: prettier.Options = JSON.parse((await fs.promises.readFile('.prettierrc')).toString());
 		prettierOptions.parser = 'css';
+		prettierOptions.printWidth = 9999;
+		prettierOptions.singleQuote = false;
 
 		fileList.forEach(async (filePath) => {
 			/* ファイル読み込み */
