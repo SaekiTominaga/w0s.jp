@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import fs from 'fs';
+import slash from 'slash';
 import { globby } from 'globby';
 import { JSDOM } from 'jsdom';
 import xmlFormatter from 'xml-formatter';
@@ -13,10 +14,11 @@ import PageUrl from '../util/PageUrl.js';
  */
 export default class Sitemap extends BuildComponent implements BuildComponentInterface {
 	async execute(args: string[]): Promise<void> {
-		const filesPath = args.at(0);
-		if (filesPath === undefined) {
+		const filesPathOs = args.at(0);
+		if (filesPathOs === undefined) {
 			throw new Error('Missing parameter');
 		}
+		const filesPath = slash(filesPathOs);
 
 		const fileList = await globby(filesPath, {
 			ignore: this.configBuild.sitemap.ignore.map((filePath) => `${this.configBuild.html.directory}/${filePath}`),

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import prettier from 'prettier';
+import slash from 'slash';
 import { globby } from 'globby';
 import BuildComponent from '../BuildComponent.js';
 import BuildComponentInterface from '../BuildComponentInterface.js';
@@ -10,13 +11,15 @@ import BuildComponentInterface from '../BuildComponentInterface.js';
  */
 export default class Css extends BuildComponent implements BuildComponentInterface {
 	async execute(args: string[]): Promise<void> {
-		const filesPath = args.at(0);
-		const distDirectory = args.at(1);
-		if (filesPath === undefined) {
+		const filesPathOs = args.at(0);
+		const distDirectoryOs = args.at(1);
+		if (filesPathOs === undefined) {
 			throw new Error('Missing parameter');
 		}
+		const filesPath = slash(filesPathOs);
+		const distDirectory = distDirectoryOs !== undefined ? slash(distDirectoryOs) : undefined;
 
-		const fileList = await globby(filesPath.replace(/\\/g, '/'));
+		const fileList = await globby(filesPath);
 
 		const prettierOptions: prettier.Options = JSON.parse((await fs.promises.readFile('.prettierrc')).toString());
 		prettierOptions.parser = 'css';

@@ -3,6 +3,7 @@ import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import prettier from 'prettier';
+import slash from 'slash';
 import { globby } from 'globby';
 import { JSDOM } from 'jsdom';
 import BuildComponent from '../BuildComponent.js';
@@ -28,12 +29,13 @@ import PageUrl from '../util/PageUrl.js';
  */
 export default class Html extends BuildComponent implements BuildComponentInterface {
 	async execute(args: string[]): Promise<void> {
-		const filesPath = args.at(0);
-		if (filesPath === undefined) {
+		const filesPathOs = args.at(0);
+		if (filesPathOs === undefined) {
 			throw new Error('Missing parameter');
 		}
+		const filesPath = slash(filesPathOs);
 
-		const fileList = await globby(filesPath.replace(/\\/g, '/'));
+		const fileList = await globby(filesPath);
 
 		fileList.forEach(async (filePath) => {
 			/* ファイル読み込み */
@@ -168,7 +170,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			}
 
 			/* 出力 */
-			const distPath = `${this.configCommon.static.root}/${filePath.substring(filePath.replace(/\\/g, '/').indexOf('/') + 1)}`;
+			const distPath = `${this.configCommon.static.root}/${filePath.substring(filePath.indexOf('/') + 1)}`;
 			await fs.promises.writeFile(distPath, htmlFormatted);
 			this.logger.info(`HTML file created: ${distPath}`);
 		});
