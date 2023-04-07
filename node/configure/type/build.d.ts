@@ -5,82 +5,87 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type HTML = string;
 export type NoName1 = string;
+export type HTML = string;
+export type NoName2 = string;
 export type MIME = string;
-export type NoName9 = string;
 export type NoName10 = string;
-export type NoName8 = {
+export type NoName11 = string;
+export type NoName9 = {
   type: MIME;
-  name: NoName9;
-  src: NoName10;
+  name: NoName10;
+  src: NoName11;
 }[];
-export type NoName13 = string;
 export type NoName14 = string;
 export type NoName15 = string;
-export type NoName12 = {
-  host: NoName13;
-  name: NoName14;
-  src: NoName15;
+export type NoName16 = string;
+export type NoName13 = {
+  host: NoName14;
+  name: NoName15;
+  src: NoName16;
 }[];
 export type HTML1 = string;
-export type NoName21 = string;
 export type NoName22 = string;
 export type NoName23 = string;
+export type NoName24 = string;
 export type Feed = string;
 export type Feed1 = string;
-export type NoName19 = {
+export type NoName20 = {
   html_path: HTML1;
-  selector: NoName20;
+  selector: NoName21;
   feed_template: Feed;
   feed_path: Feed1;
 }[];
 export type Glob = string[];
-export type NoName25 = string;
 export type NoName26 = string;
+export type NoName27 = string;
 
 export interface NoName {
+  prettier: Prettier;
   html: {
     directory: HTML;
-    views: NoName1;
-    book: NoName2;
-    newspaper: NoName3;
+    views: NoName2;
+    book: NoName3;
+    newspaper: NoName4;
     section_id: ID;
-    toc: NoName4;
-    localnav: NoName5;
-    footnote: NoName6;
-    anchor_type: NoName7;
-    anchor_host: NoName11;
+    toc: NoName5;
+    localnav: NoName6;
+    footnote: NoName7;
+    anchor_type: NoName8;
+    anchor_host: NoName12;
     anchor_amazon_associate: Amazon;
-    heading_self_link: NoName16;
+    heading_self_link: NoName17;
     time: Time;
-    image: NoName17;
+    image: NoName18;
     image_amazon: Amazon1;
-    highlight: NoName18;
+    highlight: NoName19;
   };
   feed: {
-    info: NoName19;
+    info: NoName20;
   };
-  sitemap: NoName24;
+  sitemap: NoName25;
 }
-export interface NoName2 {
-  target_element: string;
+export interface Prettier {
+  config: NoName1;
 }
 export interface NoName3 {
+  target_element: string;
+}
+export interface NoName4 {
   target_element: string;
 }
 export interface ID {
   heading_levels: number[];
 }
-export interface NoName4 {
+export interface NoName5 {
   target_element: string;
   class?: string;
   label?: string;
 }
-export interface NoName5 {
+export interface NoName6 {
   target_class: string;
 }
-export interface NoName6 {
+export interface NoName7 {
   trigger: {
     element: string;
     class: string;
@@ -103,18 +108,18 @@ export interface NoName6 {
     id_prefix: string;
   };
 }
-export interface NoName7 {
+export interface NoName8 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   parentheses: {
     before: string;
     after: string;
   };
-  icon: NoName8;
+  icon: NoName9;
   icon_size: number;
   icon_class: string;
 }
-export interface NoName11 {
+export interface NoName12 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   parentheses: {
@@ -123,14 +128,14 @@ export interface NoName11 {
   };
   element: string;
   class: string;
-  icon: NoName12;
+  icon: NoName13;
   icon_size: number;
   icon_class: string;
 }
 export interface Amazon {
   target_class: string;
 }
-export interface NoName16 {
+export interface NoName17 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
   anchor_wrap_class?: string;
@@ -139,23 +144,23 @@ export interface NoName16 {
 export interface Time {
   target_class: string;
 }
-export interface NoName17 {
+export interface NoName18 {
   target_class: string;
 }
 export interface Amazon1 {
   target_class: string;
 }
-export interface NoName18 {
+export interface NoName19 {
   target_class: string;
   class_prefix: string;
 }
-export interface NoName20 {
-  wrap: NoName21;
-  date: NoName22;
-  content: NoName23;
+export interface NoName21 {
+  wrap: NoName22;
+  date: NoName23;
+  content: NoName24;
 }
-export interface NoName24 {
+export interface NoName25 {
   ignore: Glob;
-  template: NoName25;
-  path: NoName26;
+  template: NoName26;
+  path: NoName27;
 }

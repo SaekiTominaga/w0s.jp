@@ -3,8 +3,20 @@
 	"$id": "https://w0s.jp/build.json",
 	"type": "object",
 	"title": "ビルド",
-	"required": ["html", "feed", "sitemap"],
+	"required": ["prettier", "html", "feed", "sitemap"],
 	"properties": {
+		"prettier": {
+			"type": "object",
+			"title": "Prettier",
+			"required": ["config"],
+			"properties": {
+				"config": {
+					"type": "string",
+					"title": "構成ファイルパス"
+				}
+			},
+			"additionalProperties": false
+		},
 		"html": {
 			"type": "object",
 			"required": [

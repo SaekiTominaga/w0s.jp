@@ -5,6 +5,7 @@ import slash from 'slash';
 import { globby } from 'globby';
 import BuildComponent from '../BuildComponent.js';
 import BuildComponentInterface from '../BuildComponentInterface.js';
+import PrettierUtil from '../util/PrettierUtil.js';
 
 /**
  * CSS 整形
@@ -21,10 +22,7 @@ export default class Css extends BuildComponent implements BuildComponentInterfa
 
 		const fileList = await globby(filesPath);
 
-		const prettierOptions: prettier.Options = JSON.parse((await fs.promises.readFile('.prettierrc')).toString());
-		prettierOptions.parser = 'css';
-		prettierOptions.printWidth = 9999;
-		prettierOptions.singleQuote = false;
+		const prettierOptions = await PrettierUtil.getOptions(this.configBuild.prettier.config, 'css', '*.css');
 
 		fileList.forEach(async (filePath) => {
 			/* ファイル読み込み */

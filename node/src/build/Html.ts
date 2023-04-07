@@ -23,6 +23,7 @@ import HtmlComponentToc from './component/HtmlToc.js';
 import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
 import HtmlCpmponentSectioningId from './component/HtmlSectioningId.js';
 import PageUrl from '../util/PageUrl.js';
+import PrettierUtil from '../util/PrettierUtil.js';
 
 /**
  * HTML ビルド
@@ -36,6 +37,8 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 		const filesPath = slash(filesPathOs);
 
 		const fileList = await globby(filesPath);
+
+		const prettierOptions = await PrettierUtil.getOptions(this.configBuild.prettier.config, 'html', '*.html');
 
 		fileList.forEach(async (filePath) => {
 			/* ファイル読み込み */
@@ -157,12 +160,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			/* 整形 */
 			let htmlFormatted = htmlBuilt;
 			try {
-				htmlFormatted = prettier.format(htmlBuilt, {
-					/* https://prettier.io/docs/en/options.html */
-					printWidth: 9999,
-					useTabs: true,
-					parser: 'html',
-				});
+				htmlFormatted = prettier.format(htmlBuilt, prettierOptions);
 
 				this.logger.info(`Prettier finished: ${filePath}`);
 			} catch (e) {
