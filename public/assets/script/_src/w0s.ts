@@ -35,8 +35,6 @@ const reportJsError = new ReportJsError('https://report.w0s.jp/js', {
 });
 reportJsError.init();
 
-document.documentElement.classList.add('js-enabled');
-
 if (window.customElements !== undefined) {
 	if (document.querySelector('w0s-tab') !== null) {
 		/* タブ */
