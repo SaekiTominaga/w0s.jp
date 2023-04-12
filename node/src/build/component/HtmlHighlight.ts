@@ -38,12 +38,12 @@ export default class HtmlHighlight extends Html {
 			classPrefix: optionsHightlight.class_prefix,
 		});
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const content = targetElement.textContent;
 			if (content === null || content === '') {
-				continue;
+				return;
 			}
 
 			const languageName = targetElement.getAttribute('data-language');
@@ -67,6 +67,6 @@ export default class HtmlHighlight extends Html {
 			const highlighted = registLanguageName !== undefined ? hljs.highlight(content, { language: registLanguageName }) : hljs.highlightAuto(content);
 
 			targetElement.innerHTML = highlighted.value;
-		}
+		});
 	}
 }

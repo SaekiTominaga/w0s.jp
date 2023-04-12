@@ -56,20 +56,20 @@ export default class HtmlAnchorHost extends Html {
 			icon_class: options.icon_class,
 		};
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const href = targetElement.getAttribute('href');
 			if (href === null) {
 				this.logger.warn('No `href` attribute', targetElement.textContent);
-				continue;
+				return;
 			}
 
 			let url: URL;
 			try {
 				url = new URL(href);
 			} catch {
-				continue;
+				return;
 			}
 
 			const hostIcon = optionsHost.icon?.find((icon) => icon.host === url.host);
@@ -96,6 +96,6 @@ export default class HtmlAnchorHost extends Html {
 
 				targetElement.insertAdjacentElement(optionsHost.insert_position, hostElement);
 			}
-		}
+		});
 	}
 }

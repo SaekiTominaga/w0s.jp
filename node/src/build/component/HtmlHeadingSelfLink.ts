@@ -36,19 +36,19 @@ export default class HtmlHeadingSelfLink extends Html {
 			anchor_class: options.anchor_class,
 		};
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const { id } = targetElement;
 			if (id === '') {
 				this.logger.warn(`<${targetElement.tagName}> 要素に ID が設定されていない`, targetElement.textContent?.substring(0, 10));
-				continue;
+				return;
 			}
 
 			const headingElement = targetElement.querySelector('h1, h2, h3, h4, h5, h6');
 			if (headingElement === null) {
 				this.logger.warn(`<${targetElement.tagName}> 要素に見出しが存在しない`, targetElement.textContent?.substring(0, 10));
-				continue;
+				return;
 			}
 
 			const anchorWrapElement = this.document.createElement('p');
@@ -65,6 +65,6 @@ export default class HtmlHeadingSelfLink extends Html {
 			anchorWrapElement.appendChild(anchorElement);
 
 			headingElement.insertAdjacentElement(optionsAnchor.insert_position, anchorWrapElement);
-		}
+		});
 	}
 }

@@ -38,14 +38,14 @@ export default class HtmlToc extends Html {
 		const targetElements = this.document.querySelectorAll(targetElementName);
 		if (targetElements.length >= 1) {
 			const tocData: Map<string, string> = new Map();
-			for (const sectioningElement of sectioningAreaElement.querySelectorAll('article[id], section[id]')) {
+			sectioningAreaElement.querySelectorAll('article[id], section[id]').forEach((sectioningElement) => {
 				const headingText = sectioningElement.querySelector('h2')?.textContent;
 				if (headingText === null || headingText === undefined) {
-					continue;
+					return;
 				}
 
 				tocData.set(sectioningElement.id, headingText);
-			}
+			});
 
 			if (tocData.size >= 2) {
 				for (const targetElement of targetElements) {
