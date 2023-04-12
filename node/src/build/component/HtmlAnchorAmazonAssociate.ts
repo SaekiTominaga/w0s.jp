@@ -26,21 +26,21 @@ export default class HtmlAnchorAmazonAssociate extends Html {
 			id: options.associate_id,
 		};
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const href = targetElement.getAttribute('href');
 			if (href === null) {
 				this.logger.warn('No `href` attribute', targetElement.textContent);
-				continue;
+				return;
 			}
 
 			if (!href.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([\dA-Z]{10})\/$/)) {
 				this.logger.warn('URL is not from Amazon product page', targetElement.textContent);
-				continue;
+				return;
 			}
 
 			targetElement.setAttribute('href', `${href}ref=nosim?tag=${optionsAssociate.id}`); // https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC
-		}
+		});
 	}
 }

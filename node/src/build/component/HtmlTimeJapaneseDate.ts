@@ -21,13 +21,13 @@ export default class HtmlTimeJapaneseDate extends Html {
 	): void {
 		const targetClassName = options.target_class;
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const content = targetElement.textContent;
 			if (targetElement.getAttribute('datetime') !== null) {
 				this.logger.warn('`datetime` attribute already exists', content);
-				continue;
+				return;
 			}
 
 			/* e.g. 2000年1月1日 */
@@ -40,7 +40,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 					'datetime',
 					`${patternMatchYMDgroups['year']}-${patternMatchYMDgroups['month']?.padStart(2, '0')}-${patternMatchYMDgroups['day']?.padStart(2, '0')}`
 				);
-				continue;
+				return;
 			}
 
 			/* e.g. 2000年1月 */
@@ -48,7 +48,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 			if (patternMatchYMgroups !== undefined) {
 				const timeElement = this.replaceElement(targetElement, 'time');
 				timeElement.setAttribute('datetime', `${patternMatchYMgroups['year']}-${patternMatchYMgroups['month']?.padStart(2, '0')}`);
-				continue;
+				return;
 			}
 
 			/* e.g. 2000年 */
@@ -56,10 +56,10 @@ export default class HtmlTimeJapaneseDate extends Html {
 			if (patternMatchYgroups !== undefined) {
 				const timeElement = this.replaceElement(targetElement, 'time');
 				timeElement.setAttribute('datetime', `${patternMatchYgroups['year']}`);
-				continue;
+				return;
 			}
 
 			this.logger.warn('Does not match the specified Japanese date string format', content);
-		}
+		});
 	}
 }

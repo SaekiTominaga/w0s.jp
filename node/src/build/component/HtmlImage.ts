@@ -26,13 +26,13 @@ export default class HtmlImage extends Html {
 	): void {
 		const targetClassName = options.target_class;
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const src = targetElement.getAttribute('src');
 			if (src === null) {
 				this.logger.warn('No `src` attribute');
-				continue;
+				return;
 			}
 
 			let url: URL;
@@ -40,16 +40,16 @@ export default class HtmlImage extends Html {
 				url = new URL(src);
 			} catch {
 				this.logger.warn('`src` attribute value is not a valid URL', src);
-				continue;
+				return;
 			}
 
 			if (url.origin !== 'https://media.w0s.jp') {
 				this.logger.warn('`src` attribute value is not a valid `media.w0s.jp` origin', src);
-				continue;
+				return;
 			}
 			if (!url.pathname.startsWith('/thumbimage/')) {
 				this.logger.warn('`src` attribute value is not a valid `media.w0s.jp` path', src);
-				continue;
+				return;
 			}
 
 			const urlSearchParamsCustomSeparator = new URLSearchParamsCustomSeparator(url.toString(), [';']);
@@ -71,28 +71,28 @@ export default class HtmlImage extends Html {
 
 			const sourceAvifElement = this.document.createElement('source');
 			sourceAvifElement.type = 'image/avif';
-			sourceAvifElement.srcset = `${originAndPath}${HtmlImage.#assembleUrlSearch('avif', width1x, height1x, quality1x)}, ${originAndPath}${HtmlImage.#assembleUrlSearch(
+			sourceAvifElement.srcset = `${originAndPath}${HtmlImage.#assembleUrlSearch(
 				'avif',
-				width2x,
-				height2x,
-				quality2x
-			)} 2x`;
+				width1x,
+				height1x,
+				quality1x
+			)}, ${originAndPath}${HtmlImage.#assembleUrlSearch('avif', width2x, height2x, quality2x)} 2x`;
 			pictureElement.appendChild(sourceAvifElement);
 
 			const sourceWebpElement = this.document.createElement('source');
 			sourceWebpElement.type = 'image/webp';
-			sourceWebpElement.srcset = `${originAndPath}${HtmlImage.#assembleUrlSearch('webp', width1x, height1x, quality1x)}, ${originAndPath}${HtmlImage.#assembleUrlSearch(
+			sourceWebpElement.srcset = `${originAndPath}${HtmlImage.#assembleUrlSearch(
 				'webp',
-				width2x,
-				height2x,
-				quality2x
-			)} 2x`;
+				width1x,
+				height1x,
+				quality1x
+			)}, ${originAndPath}${HtmlImage.#assembleUrlSearch('webp', width2x, height2x, quality2x)} 2x`;
 			pictureElement.appendChild(sourceWebpElement);
 
 			pictureElement.appendChild(targetElement.cloneNode());
 
 			targetElement.parentNode?.replaceChild(pictureElement, targetElement);
-		}
+		});
 	}
 
 	/**

@@ -27,10 +27,10 @@ export default class HtmlSectioningId extends Html {
 		if (targetElements.length >= 1) {
 			const slugger = new GithubSlugger();
 
-			for (const targetElement of targetElements) {
+			targetElements.forEach((targetElement) => {
 				const headingText = targetElement.querySelector(headingSelectors)?.textContent;
 				if (headingText === null || headingText === undefined) {
-					continue;
+					return;
 				}
 
 				const nowId = targetElement.id;
@@ -39,7 +39,7 @@ export default class HtmlSectioningId extends Html {
 				if (nowId === '') {
 					targetElement.id = newId;
 				}
-			}
+			});
 		}
 	}
 }

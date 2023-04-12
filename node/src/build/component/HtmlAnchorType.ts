@@ -50,7 +50,7 @@ export default class HtmlAnchorType extends Html {
 			icon_class: options.icon_class,
 		};
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const type = targetElement.getAttribute('type');
@@ -72,6 +72,6 @@ export default class HtmlAnchorType extends Html {
 					targetElement.insertAdjacentElement(optionsIcon.insert_position, iconElement);
 				}
 			}
-		}
+		});
 	}
 }

@@ -22,13 +22,13 @@ export default class HtmlAmazonImage extends Html {
 	): void {
 		const targetClassName = options.target_class;
 
-		for (const targetElement of this.document.querySelectorAll(`.${targetClassName}`)) {
+		this.document.querySelectorAll(`.${targetClassName}`).forEach((targetElement) => {
 			Html.removeClassName(targetElement, targetClassName);
 
 			const src = targetElement.getAttribute('src');
 			if (src === null) {
 				this.logger.warn('No `src` attribute');
-				continue;
+				return;
 			}
 
 			let imageUrl: URL;
@@ -36,7 +36,7 @@ export default class HtmlAmazonImage extends Html {
 				imageUrl = new URL(src);
 			} catch {
 				this.logger.warn('`src` attribute value is not a valid URL', src);
-				continue;
+				return;
 			}
 
 			let imageUrl2x: string;
@@ -46,10 +46,10 @@ export default class HtmlAmazonImage extends Html {
 				imageUrl2x = paapiItemImageUrlParser.toString();
 			} catch (e) {
 				this.logger.warn(e, src);
-				continue;
+				return;
 			}
 
 			targetElement.setAttribute('srcset', `${imageUrl2x} 2x`);
-		}
+		});
 	}
 }
