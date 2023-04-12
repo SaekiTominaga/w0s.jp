@@ -61,12 +61,6 @@
 			}
 		},
 		{
-			"selector": "table",
-			"rules": {
-				"require-accessible-name": false
-			}
-		},
-		{
 			"selector": "input",
 			"rules": {
 				"id-duplication": false
@@ -86,10 +80,19 @@
 		}
 	],
 	"overrides": {
-		"html/**/index.html": {
+		"*.html": {
 			"rules": {
-				"required-h1": false
-			}
+				"label-has-control": true,
+				"require-accessible-name": true
+			},
+			"nodeRules": [
+				{
+					"selector": "table",
+					"rules": {
+						"require-accessible-name": false
+					}
+				}
+			]
 		}
 	}
 }
