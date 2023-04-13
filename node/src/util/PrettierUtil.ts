@@ -8,26 +8,55 @@ export default class PrettierUtil {
 	/**
 	 * 構成ファイルの内容を取得する
 	 *
-	 * @param {string} configPath - Pritter 構成ファイルのパス
-	 * @param {string} parser - parser オプション値
-	 * @param {string} overrideFilePattern - `overrides` の `files` に指定されたパターン
+	 * @param {string} configPath - 構成ファイルのパス
 	 *
 	 * @returns {object} 構成内容
 	 */
-	static async getOptions(configPath: string, parser: prettier.BuiltInParserName, overrideFilePattern?: string): Promise<prettier.Options> {
-		const config: prettier.Config = JSON.parse((await fs.promises.readFile(configPath)).toString());
+	static async loadConfig(configPath: string): Promise<prettier.Config> {
+		return JSON.parse((await fs.promises.readFile(configPath)).toString());
+	}
 
-		/* overrides */
-		if (overrideFilePattern !== undefined) {
-			const overrideOptions = config.overrides?.find((override) => {
-				const files = typeof override.files === 'string' ? [override.files] : override.files;
-				return files.includes(overrideFilePattern);
-			})?.options;
+	/**
+	 * 構成ファイルの `overrides` に指定された内容を上書きする
+	 *
+	 * {
+	 *   "printWidth": 100,
+	 *   "overrides": [
+	 *     {
+	 *       "files": "*.foo",
+	 *       "options": {
+	 *         "printWidth": 200,
+	 *       }
+	 *     }
+	 *   ]
+	 * }
+	 *
+	 * ↓
+	 *
+	 * {
+	 *   "printWidth": 200
+	 * }
+	 *
+	 * @param {object} config - 構成内容
+	 * @param {string} overrideFilesPattern - `overrides` の `files` に指定されたパターン
+	 *
+	 * @returns {object} 構成内容
+	 */
+	static configOverrideAssign(config: prettier.Config, overrideFilesPattern: string): prettier.Options {
+		if (config.overrides === undefined) {
+			return config;
+		}
 
+		const overrideOptions = config.overrides.find((override) => {
+			const files = typeof override.files === 'string' ? [override.files] : override.files;
+			return files.includes(overrideFilesPattern);
+		})?.options;
+
+		if (overrideOptions !== undefined) {
 			Object.assign(config, overrideOptions);
 		}
 		delete config.overrides;
 
-		return Object.assign(config, { parser: parser });
+		return config;
 	}
 }

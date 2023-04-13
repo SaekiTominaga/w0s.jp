@@ -38,7 +38,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 
 		const fileList = await globby(filesPath);
 
-		const prettierOptions = await PrettierUtil.getOptions(this.configBuild.prettier.config, 'html', '*.html');
+		const prettierOptions = PrettierUtil.configOverrideAssign(await PrettierUtil.loadConfig(this.configBuild.prettier.config), '*.html');
 
 		fileList.forEach(async (filePath) => {
 			/* ファイル読み込み */
@@ -168,7 +168,8 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			}
 
 			/* 出力 */
-			const distPath = `${this.configCommon.static.root}/${filePath.substring(filePath.indexOf('/') + 1)}`;
+			const distPathParse = path.parse(`${this.configCommon.static.root}/${filePath.substring(filePath.indexOf('/') + 1)}`);
+			const distPath = `${distPathParse.dir}/${distPathParse.name}.html`;
 			await fs.promises.writeFile(distPath, htmlFormatted);
 			this.logger.info(`HTML file created: ${distPath}`);
 		});
