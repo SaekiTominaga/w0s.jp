@@ -35,45 +35,47 @@ export default class HtmlToc extends Html {
 			label: options.label,
 		};
 
-		const targetElements = this.document.querySelectorAll(targetElementName);
-		if (targetElements.length >= 1) {
-			const tocData: Map<string, string> = new Map();
-			sectioningAreaElement.querySelectorAll('article[id], section[id]').forEach((sectioningElement) => {
-				const headingText = sectioningElement.querySelector('h2')?.textContent;
-				if (headingText === null || headingText === undefined) {
-					return;
-				}
+		const targetElement = this.document.querySelector(targetElementName);
+		if (targetElement === null) {
+			return;
+		}
 
-				tocData.set(sectioningElement.id, headingText);
-			});
-
-			if (tocData.size >= 2) {
-				for (const targetElement of targetElements) {
-					const tocElement = this.replaceElement(targetElement, 'ol');
-					if (optionsToc.class !== undefined) {
-						tocElement.className = optionsToc.class;
-					}
-					if (optionsToc.label !== undefined) {
-						tocElement.setAttribute('aria-label', optionsToc.label);
-					}
-
-					for (const [id, str] of tocData) {
-						const aElement = this.document.createElement('a');
-						aElement.href = `#${encodeURIComponent(id)}`;
-						aElement.textContent = str;
-
-						const liElement = this.document.createElement('li');
-						liElement.appendChild(aElement);
-
-						tocElement.appendChild(liElement);
-					}
-				}
-			} else {
-				this.logger.info('見出しレベル 2 が 1 つのみなので目次は表示しない', tocData);
-				for (const targetElement of targetElements) {
-					targetElement.remove();
-				}
+		const tocData: Map<string, string> = new Map();
+		sectioningAreaElement.querySelectorAll('article[id], section[id]').forEach((sectioningElement) => {
+			const headingText = sectioningElement.querySelector('h2')?.textContent;
+			if (headingText === null || headingText === undefined) {
+				return;
 			}
+
+			tocData.set(sectioningElement.id, headingText);
+		});
+
+		const tocSize = tocData.size;
+		if (tocSize <= 1) {
+			if (tocSize === 1) {
+				this.logger.info('見出しレベル 2 が 1 つのみなので目次は表示しない', tocData);
+			}
+			targetElement.remove();
+			return;
+		}
+
+		const tocElement = this.replaceElement(targetElement, 'ol');
+		if (optionsToc.class !== undefined) {
+			tocElement.className = optionsToc.class;
+		}
+		if (optionsToc.label !== undefined) {
+			tocElement.setAttribute('aria-label', optionsToc.label);
+		}
+
+		for (const [id, headingText] of tocData) {
+			const aElement = this.document.createElement('a');
+			aElement.href = `#${encodeURIComponent(id)}`;
+			aElement.textContent = headingText;
+
+			const liElement = this.document.createElement('li');
+			liElement.appendChild(aElement);
+
+			tocElement.appendChild(liElement);
 		}
 	}
 }
