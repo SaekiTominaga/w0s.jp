@@ -1,47 +1,29 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>『魔法少女まどか☆マギカ』が新聞で紹介された例</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "『魔法少女まどか☆マギカ』の新聞での紹介例",
+				"headline": "メディア紹介 — 新聞",
+				"description": "新聞誌上において『魔法少女まどか☆マギカ』のインタビューや作品紹介などが掲載された事例をまとめました。",
+				"dateModified": "2019-01-19",
+				"breadcrumb": [{ "path": "/madoka/", "name": "ホーム" }],
+				"localNav": [
+					{ "path": "/madoka/library/book", "name": "図書" },
+					{ "path": "/madoka/library/magazine", "name": "雑誌" },
+					{ "path": "/madoka/library/newspaper", "name": "新聞" }
+				]
+			}
+		</script>
 
-		<meta itemprop="dateModified" content="2019-01-19" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<%- include('./_include/_head_ogp_madoka') %>
-
-		<link rel="stylesheet" href="/assets/style/madoka.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/_head_madoka') %>
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header_madoka') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">メディア紹介 — 新聞</h1>
-						<%- include('./_include/_contents_header_date') %>
-					</div>
-
-					<nav class="p-local-nav htmlbuild-localnav">
-						<ul class="p-local-nav__list">
-							<li><a href="/madoka/library/book" class="c-link">図書</a></li>
-							<li><a href="/madoka/library/magazine" class="c-link">雑誌</a></li>
-							<li><a aria-current="page" class="c-link">新聞</a></li>
-						</ul>
-					</nav>
-
-					<htmlbuild-toc></htmlbuild-toc>
-				</div>
+				<%- include('./_include/_content_header', { toc: true }) %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a htmlbuild-heading-self-link">
 						<div class="p-section__hdg">
@@ -1224,10 +1206,10 @@
 						</htmlbuild-newspaper>
 					</section>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/_sidebar') %><%- include('./_include/_footer') %>
 		</div>
 	</body>
 </html>

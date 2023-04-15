@@ -20,10 +20,44 @@ import HtmlComponentImageAmazon from './component/HtmlImageAmazon.js';
 import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
 import HtmlComponentToc from './component/HtmlToc.js';
-import HtmlCpmponentLocalnav from './component/HtmlLocalnav.js';
 import HtmlCpmponentSectioningId from './component/HtmlSectioningId.js';
 import PageUrl from '../util/PageUrl.js';
 import PrettierUtil from '../util/PrettierUtil.js';
+
+interface StructuredDataUrl {
+	path: string;
+	name: string;
+}
+
+interface StructuredData {
+	'@type': string;
+	title: string;
+	headline?: string;
+	subHeadline?: string;
+	dateModified?: string;
+	description?: string;
+	image?: string;
+	breadcrumb?: StructuredDataUrl[];
+	localNav?: StructuredDataUrl[];
+}
+
+interface StructuredDataView extends StructuredData {
+	dateModifiedDayjs?: dayjs.Dayjs;
+}
+
+interface SchemaOrgBreadcrumbListItem {
+	'@context'?: string;
+	'@type': string;
+	position: number;
+	name: string;
+	item?: string;
+} // https://schema.org/ListItem; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=ja#list-item
+
+interface SchemaOrgBreadcrumbList {
+	'@context'?: string;
+	'@type': string;
+	itemListElement: SchemaOrgBreadcrumbListItem[];
+} // https://schema.org/BreadcrumbList; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=ja#breadcrumb-list
 
 /**
  * HTML ビルド
@@ -43,50 +77,41 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 		fileList.forEach(async (filePath) => {
 			/* ファイル読み込み */
 			const fileData = (await fs.promises.readFile(filePath)).toString();
-			const documentEjs = new JSDOM(fileData).window.document;
 
 			/* HTML から必要なデータを取得 */
-			const pageTitle = documentEjs.querySelector('title')?.textContent ?? ''; // ページタイトル
-
-			const pageModifiedText = documentEjs.querySelector<HTMLMetaElement>('meta[itemprop="dateModified"]')?.content; // ページ更新日時
-			const pageModified = pageModifiedText !== undefined ? dayjs(pageModifiedText) : undefined; // ページ更新日時
-
-			const pageDescription = documentEjs
-				.querySelector('[itemprop="description"]')
-				?.textContent?.trim()
-				.split('\n')
-				.map((value) => value.trim())
-				.join(' '); // Description
-
-			let pageImage: string | undefined; // image
-			const schemaThumbnailUrl = documentEjs.querySelector('[itemprop="thumbnailUrl"]')?.getAttribute('src')?.trim();
-			if (schemaThumbnailUrl?.startsWith('https://media.w0s.jp/thumbimage/')) {
-				const url = new URL(schemaThumbnailUrl);
-				pageImage = `${url.origin}${url.pathname.replace(/^\/thumbimage\//, '/image/')}`;
+			const structuredElement = new JSDOM(fileData).window.document.getElementById('page-structured'); // 構造データ
+			const structuredText = structuredElement?.textContent;
+			if (structuredText === null || structuredText === undefined) {
+				this.logger.error(`Structured data is not defined: ${filePath}`);
+				return;
 			}
+			const structured: StructuredData = JSON.parse(structuredText);
 
 			const publicFilePath = filePath.replaceAll(new RegExp(`^${this.configBuild.html.directory}`, 'g'), this.configCommon.static.root);
 
 			const pageUrl = new PageUrl({
 				root: this.configCommon.static.root,
 				indexes: this.configCommon.static.indexes,
-				extensions: this.configCommon.static.extensions,
+				extensions: [path.extname(filePath).replace('.', '')],
 			});
-
-			const urlPath = pageUrl.getUrl(publicFilePath);
 
 			/* EJS を解釈 */
 			const html = await ejs.renderFile(
 				path.resolve(filePath),
 				{
-					page: {
-						path: urlPath,
-						title: pageTitle,
-						modified: pageModified,
-						description: pageDescription,
-						image: pageImage,
-					},
-					file: filePath,
+					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
+					filePath: filePath,
+					structuredData: {
+						title: structured.title,
+						headline: structured.headline,
+						subHeadline: structured.subHeadline,
+						dateModifiedDayjs: structured.dateModified !== undefined ? dayjs(structured.dateModified) : undefined,
+						description: structured.description,
+						image: structured.image,
+						breadcrumb: structured.breadcrumb,
+						localNav: structured.localNav,
+					} as StructuredDataView,
+					jsonLd: Html.getJsonLd(structured),
 				},
 				{
 					views: [this.configCommon.views],
@@ -99,9 +124,8 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			const dom = new JSDOM(htmlCommentOmitted);
 			const { document } = dom.window;
 
+			document.getElementById('page-structured')?.remove();
 			const contentMain = document.querySelector('.l-content__main');
-			const contentHeader = document.querySelector('.l-content__header');
-			const contentFooter = document.querySelector('.l-content__footer');
 
 			/* OGP */
 			if (document.querySelector('meta[property^="og:"]') !== null) {
@@ -127,15 +151,6 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 						class: this.configBuild.html.toc.class,
 						label: this.configBuild.html.toc.label,
 					}), // 目次自動生成
-				]);
-			}
-			if (contentHeader !== null) {
-				await Promise.all([
-					new HtmlCpmponentLocalnav(document, views).convert({
-						target_class: this.configBuild.html.localnav.target_class,
-						header_area: contentHeader,
-						footer_area: contentFooter,
-					}), // コンテンツヘッダーのローカルナビをコンテンツフッターにコピーする
 				]);
 			}
 
@@ -173,5 +188,41 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			await fs.promises.writeFile(distPath, htmlFormatted);
 			this.logger.info(`HTML file created: ${distPath}`);
 		});
+	}
+
+	/**
+	 * JSON-LD 用のデータを構築
+	 *
+	 * @param {object} structured - ページで指定された構造データ
+	 *
+	 * @returns {object} JSON-LD データ
+	 */
+	static getJsonLd(structured: StructuredData): SchemaOrgBreadcrumbList | undefined {
+		if (structured.breadcrumb === undefined) {
+			return undefined;
+		}
+
+		const jsonLdBreadcrumbItemList: SchemaOrgBreadcrumbListItem[] = structured.breadcrumb.map((item, index) => {
+			const listItem = {
+				'@type': 'ListItem',
+				position: index + 1,
+				name: item.name,
+				item: `https://w0s.jp${item.path}`,
+			};
+			return listItem;
+		});
+		jsonLdBreadcrumbItemList.push({
+			'@type': 'ListItem',
+			position: jsonLdBreadcrumbItemList.length + 1,
+			name: structured.title,
+		}); // 現在ページ
+
+		const jsonLd: SchemaOrgBreadcrumbList = {
+			'@context': 'https://schema.org/',
+			'@type': 'BreadcrumbList',
+			itemListElement: jsonLdBreadcrumbItemList,
+		};
+
+		return jsonLd;
 	}
 }

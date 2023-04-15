@@ -1,0 +1,44 @@
+<div class="l-content__header">
+	<%_ if (structuredData.breadcrumb !== undefined) { _%>
+	<div class="p-topic-path">
+		<p>
+			<%_ structuredData.breadcrumb.forEach((breadcrumbItem, index) => { _%><%_ if (index > 0) { _%>
+			<span class="p-topic-path__separator">&gt;</span>
+			<%_ } _%>
+			<a href="<%= breadcrumbItem.path %>"><%= breadcrumbItem.name %></a>
+			<%_ }); _%>
+			<span class="p-topic-path__separator">&gt;</span>
+			<a aria-current="page">現在のページ</a>
+		</p>
+	</div>
+	<%_ } _%>
+
+	<div class="p-title">
+		<h1>
+			<%= structuredData.headline ?? structuredData.title %><%_ if (structuredData.subHeadline !== undefined) { _%>
+			<span class="p-title__sub-hdg">（<%= structuredData.subHeadline %>）</span>
+			<%_ } _%>
+		</h1>
+		<%_ if (structuredData.dateModified !== undefined) { _%>
+		<p class="p-title__update"><time datetime="<%= structuredData.dateModified.format('YYYY-MM-DD') %>"><%= structuredData.dateModified.format('YYYY年M月D日') %></time>更新</p>
+		<%_ } _%>
+	</div>
+
+	<%_ if (structuredData.localNav !== undefined) { _%>
+	<nav class="p-local-nav">
+		<ul class="p-local-nav__list">
+			<%_ structuredData.localNav.forEach((localNavItem, index) => { _%><%_ if (localNavItem.path !== pagePathAbsoluteUrl) { _%>
+			<li><a href="<%= localNavItem.path %>" class="c-link"><%= localNavItem.name %></a></li>
+			<%_ } else { _%>
+			<li><a aria-current="page" class="c-link"><%= localNavItem.name %></a></li>
+			<%_ } _%><%_ }); _%>
+		</ul>
+	</nav>
+	<%_ } _%><%_ if (structuredData.description !== undefined) { _%>
+	<div class="p-description">
+		<p><%= structuredData.description %></p>
+	</div>
+	<%_ } _%><%_ if (toc) { _%>
+	<htmlbuild-toc></htmlbuild-toc>
+	<%_ } _%>
+</div>

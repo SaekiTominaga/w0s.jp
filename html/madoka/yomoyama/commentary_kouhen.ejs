@@ -1,48 +1,32 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>『劇場版 魔法少女まどか☆マギカ[後編]永遠の物語』オーディオコメンタリー</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "『劇場版 魔法少女まどか☆マギカ[後編]永遠の物語』オーディオコメンタリー",
+				"headline": "[後編]永遠の物語　オーディオコメンタリー",
+				"description": "『劇場版 魔法少女まどか☆マギカ[後編]永遠の物語』の Blu-ray / DVD に収録されているオーディオコメンタリーの要約をまとめました。",
+				"breadcrumb": [
+					{ "path": "/madoka/", "name": "ホーム" },
+					{ "path": "/madoka/yomoyama/commentary", "name": "オーディオコメンタリー" }
+				],
+				"localNav": [
+					{ "path": "/madoka/yomoyama/commentary_tv", "name": "TV シリーズ" },
+					{ "path": "/madoka/yomoyama/commentary_zenpen", "name": "劇場版　前編" },
+					{ "path": "/madoka/yomoyama/commentary_kouhen", "name": "劇場版　後編" },
+					{ "path": "/madoka/yomoyama/commentary_shinpen", "name": "劇場版　新編" }
+				]
+			}
+		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<%- include('./_include/_head_ogp_madoka') %>
-
-		<link rel="stylesheet" href="/assets/style/madoka.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/_head_madoka') %>
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header_madoka') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/madoka/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/madoka/yomoyama/commentary">オーディオコメンタリー</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">[後編]永遠の物語　オーディオコメンタリー</h1>
-					</div>
-
-					<nav class="p-local-nav htmlbuild-localnav">
-						<ul class="p-local-nav__list">
-							<li><a href="commentary_tv" class="c-link">TV シリーズ</a></li>
-							<li><a href="commentary_zenpen" rel="prev" class="c-link">前編</a></li>
-							<li><a aria-current="page" class="c-link">後編</a></li>
-							<li><a href="commentary_shinpen" rel="next" class="c-link">新編</a></li>
-						</ul>
-					</nav>
-
-					<div class="p-description" itemprop="description">
-						<p>『劇場版 魔法少女まどか☆マギカ[後編]永遠の物語』の Blu-ray / DVD に収録されているオーディオコメンタリーの要約をまとめました。</p>
-					</div>
-				</div>
+				<%- include('./_include/_content_header', { toc: true }) %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a htmlbuild-heading-self-link" id="chapter1">
 						<div class="p-section__hdg">
@@ -205,10 +189,10 @@
 						</ul>
 					</aside>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/_sidebar') %><%- include('./_include/_footer') %>
 		</div>
 	</body>
 </html>

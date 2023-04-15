@@ -1,425 +1,417 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>東急電車の補助電源装置</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "東急電車の補助電源装置",
+				"headline": "補助電源装置",
+				"dateModified": "2023-03-19",
+				"description": "東急電鉄の旧5000系から新3000系まで（旧性能車のデハ150形を除く）に搭載された補助電源装置を紹介します。",
+				"image": "https://media.w0s.jp/image/tokyu/sty/aps/INV020_9310.jpg",
+				"breadcrumb": [
+					{ "path": "/tokyu/", "name": "ホーム" },
+					{ "path": "/tokyu/sty/", "name": "東急電車の車両形態" }
+				]
+			}
+		</script>
 
-		<meta itemprop="dateModified" content="2023-03-19" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="railway" />
-		<meta name="w0s:amazon" content="railway" />
-		<%- include('./_include/_head_ogp_tokyu') %>
-
-		<link rel="stylesheet" href="/assets/style/tokyu.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/_head_tokyu') %>
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header_tokyu') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/tokyu/sty/">東急電車の車両形態</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">補助電源装置</h1>
-						<%- include('./_include/_contents_header_date') %>
-					</div>
-
-					<div class="p-description" itemprop="description">
-						<p>古くから制御回路や照明装置などの補助電源として、架線電圧を電動機に入力し同軸上の発電機を通すことで電力の変換を行う<dfn>電動発電機（MG）</dfn>が使われており、当初は直流出力が行われていましたが、1950年代には交流蛍光灯の導入が行われ、MG は交直出力が可能な複流タイプが主流になりました。さらに1960年代後半にはインバーターを定電圧・定周波数で制御する<dfn>静止形インバーター（SIV）</dfn>が登場し、東急電鉄では8000系から採用されています。</p>
-						<p>1971年には東横線にて冷房車が導入されましたが、この時点では冷房電源用の大容量かつ三相交流出力に対応した SIV は開発されていなかったため一時的に MG が復活、大容量 SIV の量産が開始されて以降は全面的に SIV となり現在に至ります。</p>
-						<p>ここでは旧5000系から新3000系まで（旧性能車のデハ150形を除く）に搭載された補助電源装置のバリエーションを紹介します。</p>
-					</div>
-
-					<htmlbuild-toc></htmlbuild-toc>
-				</div>
+				<%- include('./_include/_content_header', { toc: true }) %>
 				<main class="l-content__main">
-					<table class="p-table -full">
-						<caption>
-							小容量電源装置
-						</caption>
-						<thead>
-							<tr>
-								<th scope="col" rowspan="2">タイプ</th>
-								<th scope="col" rowspan="2">形式</th>
-								<th scope="col" rowspan="2">製造所</th>
-								<th scope="col" colspan="2">交流出力</th>
-								<th scope="col" rowspan="2">登場年</th>
-								<th scope="col" rowspan="2">主な搭載車両</th>
-							</tr>
-							<tr>
-								<th scope="col">容量</th>
-								<th scope="col">周波数</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="rowgroup" rowspan="11">小容量 MG</th>
-								<td><a href="#clg107" class="c-link">CLG107</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">2.5kVA</td>
-								<td class="u-cell -num">120Hz</td>
-								<td class="u-cell -center">1954年</td>
-								<td>5000系、デハ3700形、5200系、デハ3450形、デヤ3001</td>
-							</tr>
-							<tr>
-								<td><a href="#clg308" class="c-link">CLG308</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">1.5kVA</td>
-								<td class="u-cell -num">120Hz</td>
-								<td class="u-cell -center">1955年</td>
-								<td>デハ200形</td>
-							</tr>
-							<tr>
-								<td><a href="#clg316" class="c-link">CLG316</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">5kVA</td>
-								<td class="u-cell -num">60Hz</td>
-								<td class="u-cell -center">1958年</td>
-								<td>5200系<small>（サハ5250形）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#tdk381" class="c-link">TDK381</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -num">6kVA</td>
-								<td class="u-cell -num">400Hz</td>
-								<td class="u-cell -center">1960年</td>
-								<td>6000系<small>（A・C編成）</small>、7000系<small>（東洋車）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#clg320" class="c-link">CLG320</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">7kVA</td>
-								<td class="u-cell -num">120Hz</td>
-								<td class="u-cell -center">1960年</td>
-								<td>6000系<small>（B編成）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#hg533" class="c-link">HG533</a></td>
-								<td class="u-cell -center">日立</td>
-								<td class="u-cell -num">7.5kVA</td>
-								<td class="u-cell -num">400Hz</td>
-								<td class="u-cell -center">1963年</td>
-								<td>7000系<small>（日立車）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#clg339" class="c-link">CLG339</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">7.5kVA</td>
-								<td class="u-cell -num">400Hz</td>
-								<td class="u-cell -center">1967年</td>
-								<td>7200系</td>
-							</tr>
-							<tr>
-								<td><a href="#clg319" class="c-link">CLG319</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">5.5kVA</td>
-								<td class="u-cell -num">60Hz</td>
-								<td class="u-cell -center">1969年</td>
-								<td>万博モノレール → サハ3251、3360形、3370形、デヤ7290</td>
-							</tr>
-							<tr>
-								<td><a href="#clg333" class="c-link">CLG333</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">9kVA</td>
-								<td class="u-cell -num">120Hz</td>
-								<td class="u-cell -center">1964年</td>
-								<td>福島交通デハ5000形、熊本電気鉄道モハ5000形</td>
-							</tr>
-							<tr>
-								<td><a href="#tdk359" class="c-link">TDK359</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -num">9kVA</td>
-								<td class="u-cell -num">120Hz</td>
-								<td class="u-cell -center">1967年頃</td>
-								<td>熊本電気鉄道モハ5100形</td>
-							</tr>
-							<tr>
-								<td><a href="#tdk366" class="c-link">TDK366</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -num">5.5kVA</td>
-								<td class="u-cell -num">60Hz</td>
-								<td class="u-cell -center">?</td>
-								<td>北陸鉄道7000系</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr>
-								<th rowspan="2" scope="rowgroup">小容量 SIV</th>
-								<td><a href="#bs33" class="c-link">BS33</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">10kVA</td>
-								<td class="u-cell -num">60Hz</td>
-								<td class="u-cell -center">1969年</td>
-								<td>8000系、8500系、8090系</td>
-							</tr>
-							<tr>
-								<td><a href="#inv009" class="c-link">INV009</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">2kVA</td>
-								<td class="u-cell -center">?</td>
-								<td class="u-cell -center">1986年</td>
-								<td>デハ8638〜8641<small>（田玉・大井町線共通予備車）</small></td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr>
-								<th scope="rowgroup">扇風機電源装置</th>
-								<td><a href="#s11" class="c-link">S11</a></td>
-								<td class="u-cell -center">小糸</td>
-								<td class="u-cell -num">1kVA</td>
-								<td class="u-cell -num">60Hz</td>
-								<td>1980年代</td>
-								<td>7000系</td>
-							</tr>
-						</tbody>
-					</table>
+					<section class="p-section -hdg-a htmlbuild-heading-self-link" id="summary">
+						<div class="p-section__hdg">
+							<h2>概要</h2>
+						</div>
 
-					<table class="p-table -full">
-						<caption>
-							冷房電源に対応した大容量電源装置
-						</caption>
-						<thead>
-							<tr>
-								<th scope="col">タイプ</th>
-								<th scope="col">形式</th>
-								<th scope="col">製造所</th>
-								<th scope="col">出力容量</th>
-								<th scope="col">登場年</th>
-								<th scope="col">主な搭載車両</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="rowgroup" rowspan="3">大容量 MG</th>
-								<td><a href="#clg350" class="c-link">CLG350</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">140kVA</td>
-								<td class="u-cell -center">1971年</td>
-								<td>8000系<small>（2～5次車）</small>、8500系<small>（6次車）</small>、8090系<small>（12～13次車）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#hg554" class="c-link">HG554</a></td>
-								<td class="u-cell -center">日立</td>
-								<td class="u-cell -num">90kVA</td>
-								<td class="u-cell -center">1972年</td>
-								<td>クハ7560, 7552, 7554</td>
-							</tr>
-							<tr>
-								<td><a href="#tdk3725" class="c-link">TDK3725</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -num">75kVA</td>
-								<td class="u-cell -center">1970年頃</td>
-								<td>水間鉄道1000形</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr>
-								<th scope="rowgroup" rowspan="20">大容量 SIV</th>
-								<td>試作</td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">140kVA</td>
-								<td class="u-cell -center">1974年</td>
-								<td>クハ8029</td>
-							</tr>
-							<tr>
-								<td><a href="#bs443" class="c-link">BS443</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">170kVA</td>
-								<td class="u-cell -center">1976年</td>
-								<td>8500系<small>（7〜12次車）</small></td>
-							</tr>
-							<tr>
-								<td>試作<small>（GTO）</small></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">170kVA</td>
-								<td class="u-cell -center">1978年</td>
-								<td>サハ8915</td>
-							</tr>
-							<tr>
-								<td><a href="#bs477" class="c-link">BS477</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">50kVA</td>
-								<td class="u-cell -center">1980年</td>
-								<td>8090系<small>（12〜13次車）</small>、8000系<small>（8300形）</small>、7200系</td>
-							</tr>
-							<tr>
-								<td><a href="#bs482" class="c-link">BS482</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">170kVA</td>
-								<td class="u-cell -center">1982年</td>
-								<td>8500系<small>（13〜17次車）</small>、8090系<small>（16〜17次車）</small>、8000系<small>（1次車）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#inv003" class="c-link">INV003</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">120kVA</td>
-								<td class="u-cell -center">1986年</td>
-								<td>9000系<small>（1次車）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#inv006" class="c-link">INV006</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">90kVA</td>
-								<td class="u-cell -center">1986年</td>
-								<td>7200系、7600系</td>
-							</tr>
-							<tr>
-								<td><a href="#inv008" class="c-link">INV008</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">170kVA</td>
-								<td class="u-cell -center">1986年</td>
-								<td>8500系<small>（18〜19次車）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#inv020" class="c-link">INV020</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">120kVA</td>
-								<td class="u-cell -center">1987年</td>
-								<td>9000系、7700系、1000系</td>
-							</tr>
-							<tr>
-								<td><a href="#rg467" class="c-link">RG467</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -num">120kVA</td>
-								<td class="u-cell -center">1988年</td>
-								<td>クハ7910, 7914</td>
-							</tr>
-							<tr>
-								<td><a href="#inv029" class="c-link">INV029</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">170kVA</td>
-								<td class="u-cell -center">1988年</td>
-								<td>8000系、8500系<small>（7〜12次車の一部）</small>、8090系、2000系</td>
-							</tr>
-							<tr>
-								<td><a href="#inv095" class="c-link">INV095</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">170kVA</td>
-								<td class="u-cell -center">1993年</td>
-								<td>8500系<small>（9〜12次車の一部）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#inv127" class="c-link">INV127</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">210kVA</td>
-								<td class="u-cell -center">1999年</td>
-								<td>新3000系</td>
-							</tr>
-							<tr>
-								<td><a href="#inv104" class="c-link">INV104</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">100kVA</td>
-								<td class="u-cell -center">2000年</td>
-								<td>デハ8296, 8282</td>
-							</tr>
-							<tr>
-								<td><a href="#inv146" class="c-link">INV146</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">250kVA</td>
-								<td class="u-cell -center">2001年</td>
-								<td>クハ8031<small>（新5000系で本格採用）</small></td>
-							</tr>
-							<tr>
-								<td><a href="#inv153" class="c-link">INV153</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">100kVA</td>
-								<td class="u-cell -center">2005年</td>
-								<td>デハ8298, 8290</td>
-							</tr>
-							<tr>
-								<td><a href="#inv205" class="c-link">INV205</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">260kVA</td>
-								<td class="u-cell -center">2018年</td>
-								<td>2000系、9020系</td>
-							</tr>
-							<tr>
-								<td><a href="#cda021" class="c-link">CDA021</a></td>
-								<td class="u-cell -center">富士</td>
-								<td class="u-cell -num">30kVA</td>
-								<td class="u-cell -center">2002年</td>
-								<td>十和田観光電鉄7200系</td>
-							</tr>
-							<tr>
-								<td><a href="#bs483" class="c-link">BS483</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">90kVA</td>
-								<td class="u-cell -center">1983年</td>
-								<td>豊橋鉄道ク2807～2810</td>
-							</tr>
-							<tr>
-								<td><a href="#rg5096" class="c-link">RG5096</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -center">?</td>
-								<td class="u-cell -center">2020年</td>
-								<td>養老鉄道ク7901, 7914</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr>
-								<th rowspan="3" scope="rowgroup">VVVF 一体型</th>
-								<td><a href="#rg660" class="c-link">RG660</a></td>
-								<td class="u-cell -center">東洋</td>
-								<td class="u-cell -num">140kVA</td>
-								<td class="u-cell -center">1996年</td>
-								<td>デハ7715</td>
-							</tr>
-							<tr>
-								<td><a href="#svf041" class="c-link">SVF041</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">80kVA</td>
-								<td class="u-cell -center">1999年</td>
-								<td>Y000系、7500系</td>
-							</tr>
-							<tr>
-								<td><a href="#svf091" class="c-link">SVF091</a></td>
-								<td class="u-cell -center">東芝</td>
-								<td class="u-cell -num">150kVA</td>
-								<td class="u-cell -center">2014年</td>
-								<td>1000系1500番台</td>
-							</tr>
-						</tbody>
-						<tbody>
-							<tr>
-								<th scope="rowgroup">空調制御装置</th>
-								<td><a href="#da61t" class="c-link">DA61T</a></td>
-								<td class="u-cell -center">三菱</td>
-								<td class="u-cell -num">20kVA</td>
-								<td class="u-cell -center">1999年</td>
-								<td>300系</td>
-							</tr>
-						</tbody>
-					</table>
+						<div class="p-text">
+							<p>古くから制御回路や照明装置などの補助電源として、架線電圧を電動機に入力し同軸上の発電機を通すことで電力の変換を行う<dfn>電動発電機（MG）</dfn>が使われており、当初は直流出力が行われていましたが、1950年代には交流蛍光灯の導入が行われ、MG は交直出力が可能な複流タイプが主流になりました。さらに1960年代後半にはインバーターを定電圧・定周波数で制御する<dfn>静止形インバーター（SIV）</dfn>が登場し、東急電鉄では8000系から採用されています。</p>
+							<p>1971年には東横線にて冷房車が導入されましたが、この時点では冷房電源用の大容量かつ三相交流出力に対応した SIV は開発されていなかったため一時的に MG が復活、大容量 SIV の量産が開始されて以降は全面的に SIV となり現在に至ります。</p>
+						</div>
 
-					<ul class="p-notes">
-						<li><q>東芝</q>のうち1984年以前は東京芝浦電気の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略、<q>富士</q>は富士電機の略、<q>小糸</q>は小糸工業の略。</li>
-						<li>小糸工業の鉄道事業は2011年にコイト電工に移管された。</li>
-						<li>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。例えば CLG107 型は旧5000系がデビューした<q>1954年</q>としているが、CLG107 型自体は他事業者でも広く使われており、その数年前から導入されている。</li>
-						<li>
-							他事業者からの転用品を搭載したものの登場年は以下のデータから採っている。これらも機器の実際の製造初年とは限らないので注意されたい。
-							<ul>
-								<li>CLG319: 万博モノレールの車両搬入年（開業前年）</li>
-								<li>CLG333: 京阪神急行電鉄（現: 阪急電鉄）に CLG333 型が初めて納入された年</li>
-								<li>TDK359: 熊本電気鉄道モハ5100形の現車調査（搭載車のうちモハ5101A, 5102A のみ）</li>
-								<li>
-									TDK3725: 水間鉄道1000形の現車調査（搭載車のうちデハ1002<!-- 1970年 -->, 1008<!-- 1972年 -->
-									のみ）
-								</li>
-								<li>CDA021: 十和田観光電鉄7200系の現車調査（全2両）</li>
-								<li>BS483: 豊橋鉄道1800系の現車調査（搭載車全4両）</li>
-							</ul>
-						</li>
-					</ul>
+						<table class="p-table -full">
+							<caption>
+								小容量電源装置
+							</caption>
+							<thead>
+								<tr>
+									<th scope="col" rowspan="2">タイプ</th>
+									<th scope="col" rowspan="2">形式</th>
+									<th scope="col" rowspan="2">製造所</th>
+									<th scope="col" colspan="2">交流出力</th>
+									<th scope="col" rowspan="2">登場年</th>
+									<th scope="col" rowspan="2">主な搭載車両</th>
+								</tr>
+								<tr>
+									<th scope="col">容量</th>
+									<th scope="col">周波数</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="rowgroup" rowspan="11">小容量 MG</th>
+									<td><a href="#clg107" class="c-link">CLG107</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">2.5kVA</td>
+									<td class="u-cell -num">120Hz</td>
+									<td class="u-cell -center">1954年</td>
+									<td>5000系、デハ3700形、5200系、デハ3450形、デヤ3001</td>
+								</tr>
+								<tr>
+									<td><a href="#clg308" class="c-link">CLG308</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">1.5kVA</td>
+									<td class="u-cell -num">120Hz</td>
+									<td class="u-cell -center">1955年</td>
+									<td>デハ200形</td>
+								</tr>
+								<tr>
+									<td><a href="#clg316" class="c-link">CLG316</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">5kVA</td>
+									<td class="u-cell -num">60Hz</td>
+									<td class="u-cell -center">1958年</td>
+									<td>5200系<small>（サハ5250形）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#tdk381" class="c-link">TDK381</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -num">6kVA</td>
+									<td class="u-cell -num">400Hz</td>
+									<td class="u-cell -center">1960年</td>
+									<td>6000系<small>（A・C編成）</small>、7000系<small>（東洋車）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#clg320" class="c-link">CLG320</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">7kVA</td>
+									<td class="u-cell -num">120Hz</td>
+									<td class="u-cell -center">1960年</td>
+									<td>6000系<small>（B編成）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#hg533" class="c-link">HG533</a></td>
+									<td class="u-cell -center">日立</td>
+									<td class="u-cell -num">7.5kVA</td>
+									<td class="u-cell -num">400Hz</td>
+									<td class="u-cell -center">1963年</td>
+									<td>7000系<small>（日立車）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#clg339" class="c-link">CLG339</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">7.5kVA</td>
+									<td class="u-cell -num">400Hz</td>
+									<td class="u-cell -center">1967年</td>
+									<td>7200系</td>
+								</tr>
+								<tr>
+									<td><a href="#clg319" class="c-link">CLG319</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">5.5kVA</td>
+									<td class="u-cell -num">60Hz</td>
+									<td class="u-cell -center">1969年</td>
+									<td>万博モノレール → サハ3251、3360形、3370形、デヤ7290</td>
+								</tr>
+								<tr>
+									<td><a href="#clg333" class="c-link">CLG333</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">9kVA</td>
+									<td class="u-cell -num">120Hz</td>
+									<td class="u-cell -center">1964年</td>
+									<td>福島交通デハ5000形、熊本電気鉄道モハ5000形</td>
+								</tr>
+								<tr>
+									<td><a href="#tdk359" class="c-link">TDK359</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -num">9kVA</td>
+									<td class="u-cell -num">120Hz</td>
+									<td class="u-cell -center">1967年頃</td>
+									<td>熊本電気鉄道モハ5100形</td>
+								</tr>
+								<tr>
+									<td><a href="#tdk366" class="c-link">TDK366</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -num">5.5kVA</td>
+									<td class="u-cell -num">60Hz</td>
+									<td class="u-cell -center">?</td>
+									<td>北陸鉄道7000系</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th rowspan="2" scope="rowgroup">小容量 SIV</th>
+									<td><a href="#bs33" class="c-link">BS33</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">10kVA</td>
+									<td class="u-cell -num">60Hz</td>
+									<td class="u-cell -center">1969年</td>
+									<td>8000系、8500系、8090系</td>
+								</tr>
+								<tr>
+									<td><a href="#inv009" class="c-link">INV009</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">2kVA</td>
+									<td class="u-cell -center">?</td>
+									<td class="u-cell -center">1986年</td>
+									<td>デハ8638〜8641<small>（田玉・大井町線共通予備車）</small></td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th scope="rowgroup">扇風機電源装置</th>
+									<td><a href="#s11" class="c-link">S11</a></td>
+									<td class="u-cell -center">小糸</td>
+									<td class="u-cell -num">1kVA</td>
+									<td class="u-cell -num">60Hz</td>
+									<td>1980年代</td>
+									<td>7000系</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table class="p-table -full">
+							<caption>
+								冷房電源に対応した大容量電源装置
+							</caption>
+							<thead>
+								<tr>
+									<th scope="col">タイプ</th>
+									<th scope="col">形式</th>
+									<th scope="col">製造所</th>
+									<th scope="col">出力容量</th>
+									<th scope="col">登場年</th>
+									<th scope="col">主な搭載車両</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="rowgroup" rowspan="3">大容量 MG</th>
+									<td><a href="#clg350" class="c-link">CLG350</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">140kVA</td>
+									<td class="u-cell -center">1971年</td>
+									<td>8000系<small>（2～5次車）</small>、8500系<small>（6次車）</small>、8090系<small>（12～13次車）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#hg554" class="c-link">HG554</a></td>
+									<td class="u-cell -center">日立</td>
+									<td class="u-cell -num">90kVA</td>
+									<td class="u-cell -center">1972年</td>
+									<td>クハ7560, 7552, 7554</td>
+								</tr>
+								<tr>
+									<td><a href="#tdk3725" class="c-link">TDK3725</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -num">75kVA</td>
+									<td class="u-cell -center">1970年頃</td>
+									<td>水間鉄道1000形</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th scope="rowgroup" rowspan="20">大容量 SIV</th>
+									<td>試作</td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">140kVA</td>
+									<td class="u-cell -center">1974年</td>
+									<td>クハ8029</td>
+								</tr>
+								<tr>
+									<td><a href="#bs443" class="c-link">BS443</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">170kVA</td>
+									<td class="u-cell -center">1976年</td>
+									<td>8500系<small>（7〜12次車）</small></td>
+								</tr>
+								<tr>
+									<td>試作<small>（GTO）</small></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">170kVA</td>
+									<td class="u-cell -center">1978年</td>
+									<td>サハ8915</td>
+								</tr>
+								<tr>
+									<td><a href="#bs477" class="c-link">BS477</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">50kVA</td>
+									<td class="u-cell -center">1980年</td>
+									<td>8090系<small>（12〜13次車）</small>、8000系<small>（8300形）</small>、7200系</td>
+								</tr>
+								<tr>
+									<td><a href="#bs482" class="c-link">BS482</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">170kVA</td>
+									<td class="u-cell -center">1982年</td>
+									<td>8500系<small>（13〜17次車）</small>、8090系<small>（16〜17次車）</small>、8000系<small>（1次車）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#inv003" class="c-link">INV003</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">120kVA</td>
+									<td class="u-cell -center">1986年</td>
+									<td>9000系<small>（1次車）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#inv006" class="c-link">INV006</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">90kVA</td>
+									<td class="u-cell -center">1986年</td>
+									<td>7200系、7600系</td>
+								</tr>
+								<tr>
+									<td><a href="#inv008" class="c-link">INV008</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">170kVA</td>
+									<td class="u-cell -center">1986年</td>
+									<td>8500系<small>（18〜19次車）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#inv020" class="c-link">INV020</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">120kVA</td>
+									<td class="u-cell -center">1987年</td>
+									<td>9000系、7700系、1000系</td>
+								</tr>
+								<tr>
+									<td><a href="#rg467" class="c-link">RG467</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -num">120kVA</td>
+									<td class="u-cell -center">1988年</td>
+									<td>クハ7910, 7914</td>
+								</tr>
+								<tr>
+									<td><a href="#inv029" class="c-link">INV029</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">170kVA</td>
+									<td class="u-cell -center">1988年</td>
+									<td>8000系、8500系<small>（7〜12次車の一部）</small>、8090系、2000系</td>
+								</tr>
+								<tr>
+									<td><a href="#inv095" class="c-link">INV095</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">170kVA</td>
+									<td class="u-cell -center">1993年</td>
+									<td>8500系<small>（9〜12次車の一部）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#inv127" class="c-link">INV127</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">210kVA</td>
+									<td class="u-cell -center">1999年</td>
+									<td>新3000系</td>
+								</tr>
+								<tr>
+									<td><a href="#inv104" class="c-link">INV104</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">100kVA</td>
+									<td class="u-cell -center">2000年</td>
+									<td>デハ8296, 8282</td>
+								</tr>
+								<tr>
+									<td><a href="#inv146" class="c-link">INV146</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">250kVA</td>
+									<td class="u-cell -center">2001年</td>
+									<td>クハ8031<small>（新5000系で本格採用）</small></td>
+								</tr>
+								<tr>
+									<td><a href="#inv153" class="c-link">INV153</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">100kVA</td>
+									<td class="u-cell -center">2005年</td>
+									<td>デハ8298, 8290</td>
+								</tr>
+								<tr>
+									<td><a href="#inv205" class="c-link">INV205</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">260kVA</td>
+									<td class="u-cell -center">2018年</td>
+									<td>2000系、9020系</td>
+								</tr>
+								<tr>
+									<td><a href="#cda021" class="c-link">CDA021</a></td>
+									<td class="u-cell -center">富士</td>
+									<td class="u-cell -num">30kVA</td>
+									<td class="u-cell -center">2002年</td>
+									<td>十和田観光電鉄7200系</td>
+								</tr>
+								<tr>
+									<td><a href="#bs483" class="c-link">BS483</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">90kVA</td>
+									<td class="u-cell -center">1983年</td>
+									<td>豊橋鉄道ク2807～2810</td>
+								</tr>
+								<tr>
+									<td><a href="#rg5096" class="c-link">RG5096</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -center">?</td>
+									<td class="u-cell -center">2020年</td>
+									<td>養老鉄道ク7901, 7914</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th rowspan="3" scope="rowgroup">VVVF 一体型</th>
+									<td><a href="#rg660" class="c-link">RG660</a></td>
+									<td class="u-cell -center">東洋</td>
+									<td class="u-cell -num">140kVA</td>
+									<td class="u-cell -center">1996年</td>
+									<td>デハ7715</td>
+								</tr>
+								<tr>
+									<td><a href="#svf041" class="c-link">SVF041</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">80kVA</td>
+									<td class="u-cell -center">1999年</td>
+									<td>Y000系、7500系</td>
+								</tr>
+								<tr>
+									<td><a href="#svf091" class="c-link">SVF091</a></td>
+									<td class="u-cell -center">東芝</td>
+									<td class="u-cell -num">150kVA</td>
+									<td class="u-cell -center">2014年</td>
+									<td>1000系1500番台</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th scope="rowgroup">空調制御装置</th>
+									<td><a href="#da61t" class="c-link">DA61T</a></td>
+									<td class="u-cell -center">三菱</td>
+									<td class="u-cell -num">20kVA</td>
+									<td class="u-cell -center">1999年</td>
+									<td>300系</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<ul class="p-notes">
+							<li><q>東芝</q>のうち1984年以前は東京芝浦電気の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略、<q>富士</q>は富士電機の略、<q>小糸</q>は小糸工業の略。</li>
+							<li>小糸工業の鉄道事業は2011年にコイト電工に移管された。</li>
+							<li>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。例えば CLG107 型は旧5000系がデビューした<q>1954年</q>としているが、CLG107 型自体は他事業者でも広く使われており、その数年前から導入されている。</li>
+							<li>
+								他事業者からの転用品を搭載したものの登場年は以下のデータから採っている。これらも機器の実際の製造初年とは限らないので注意されたい。
+								<ul>
+									<li>CLG319: 万博モノレールの車両搬入年（開業前年）</li>
+									<li>CLG333: 京阪神急行電鉄（現: 阪急電鉄）に CLG333 型が初めて納入された年</li>
+									<li>TDK359: 熊本電気鉄道モハ5100形の現車調査（搭載車のうちモハ5101A, 5102A のみ）</li>
+									<li>
+										TDK3725: 水間鉄道1000形の現車調査（搭載車のうちデハ1002<!-- 1970年 -->, 1008<!-- 1972年 -->
+										のみ）
+									</li>
+									<li>CDA021: 十和田観光電鉄7200系の現車調査（全2両）</li>
+									<li>BS483: 豊橋鉄道1800系の現車調査（搭載車全4両）</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
 
 					<section class="p-section -hdg-a htmlbuild-heading-self-link" id="mg-few">
 						<div class="p-section__hdg">
@@ -1158,7 +1150,7 @@
 									<figure class="c-fit">
 										<div class="p-embed -border">
 											<a href="https://media.w0s.jp/image/tokyu/sty/aps/INV020_9310.jpg" type="image/jpeg">
-												<img src="https://media.w0s.jp/thumbimage/tokyu/sty/aps/INV020_9310.jpg?type=jpeg;w=485;quality=60" alt="写真拡大" width="485" height="243" class="htmlbuild-image" itemprop="thumbnailUrl" />
+												<img src="https://media.w0s.jp/thumbimage/tokyu/sty/aps/INV020_9310.jpg?type=jpeg;w=485;quality=60" alt="写真拡大" width="485" height="243" class="htmlbuild-image" />
 												<!-- 撮影日: 2009-03-08 -->
 											</a>
 										</div>
@@ -1663,10 +1655,10 @@
 
 					<htmlbuild-footnotes></htmlbuild-footnotes>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/_sidebar') %><%- include('./_include/_footer') %>
 		</div>
 	</body>
 </html>

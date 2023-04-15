@@ -28,7 +28,7 @@
 							<h2>データ登録</h2>
 						</div>
 
-						<form action="<%= page.path %>" method="post" class="c-stack">
+						<form action="<%= pagePathAbsoluteUrl %>" method="post" class="c-stack">
 							<div class="p-form-grid">
 								<div class="p-form-grid__group">
 									<fieldset>
@@ -181,7 +181,7 @@
 								<%_ for (const newsPage of newsPageOfCategory) { _%>
 								<tr>
 									<td>
-										<form action="<%= page.path %>" method="post">
+										<form action="<%= pagePathAbsoluteUrl %>" method="post">
 											<p><input type="hidden" name="url" value="<%= newsPage.url %>" /></p>
 											<p>
 												<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">修正</button>
@@ -190,7 +190,7 @@
 										</form>
 									</td>
 									<td>
-										<a href="<%= page.path %>/data?url=<%= newsPage.url %>"><%= newsPage.title %></a>
+										<a href="<%= pagePathAbsoluteUrl %>/data?url=<%= newsPage.url %>"><%= newsPage.title %></a>
 										<p style="margin-block-start: 0.5em; font-size: 80%">
 											<a href="<%= newsPage.url %>" referrerpolicy="no-referrer"><%= newsPage.url %></a>
 										</p>

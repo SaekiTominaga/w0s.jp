@@ -1,53 +1,32 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>冷房配置バリエーション（東急9000系）</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "冷房配置バリエーション（東急9000系）",
+				"headline": "冷房配置バリエーション",
+				"subHeadline": "9000系",
+				"dateModified": "2018-12-05",
+				"description": "1986年に登場した9000系の冷房装置は、それまでの8000系と比べて容量アップや薄形化を図った RPU-2214 型が搭載されました。2次車からはマイナーチェンジした RPU-2214A 型となり、側面のキセ開口部から本体形状の違いが確認できます。2001年より新型への更新が開始されましたが、一時期は編成ごとに多くの配置バリエーションが存在しました。ここでは2009年の大井町線転籍後のバリエーションを紹介します。",
+				"breadcrumb": [
+					{ "path": "/tokyu/", "name": "ホーム" },
+					{ "path": "/tokyu/data/", "name": "東急電車の車両データ" }
+				],
+				"localNav": [
+					{ "path": "/tokyu/data/acu_9000", "name": "9000系" },
+					{ "path": "/tokyu/data/acu_8500", "name": "8500系後期車" }
+				]
+			}
+		</script>
 
-		<meta itemprop="dateModified" content="2018-12-05" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="railway" />
-		<meta name="w0s:amazon" content="railway" />
-		<%- include('./_include/_head_ogp_tokyu') %>
-
-		<link rel="stylesheet" href="/assets/style/tokyu.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/_head_tokyu') %>
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header_tokyu') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/tokyu/data/">東急電車の車両データ</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">冷房配置バリエーション<span class="p-title__sub-hdg">（9000系）</span></h1>
-						<%- include('./_include/_contents_header_date') %>
-					</div>
-
-					<nav class="p-local-nav htmlbuild-localnav">
-						<ul class="p-local-nav__list">
-							<li><a aria-current="page" class="c-link">9000系</a></li>
-							<li><a href="acu_8500" class="c-link">8500系後期車</a></li>
-						</ul>
-					</nav>
-
-					<div class="p-description" itemprop="description">
-						<p>1986年に登場した9000系には、RPU-2214型冷房装置が搭載されました。これは8000系搭載のRPU-2204型クーラーと比べて容量アップや薄形化を図ったものです。2次車からはマイナーチェンジしたRPU-2214A型となり、側面のキセ開口部から本体形状の違いが確認できます。</p>
-						<p>2001年より新型への更新が行われており、東横線では一部の異端車を除き弱冷房車（当時は8両編成の6号車）以外の両端2基が更新というパターンでした。2009年より順次5両化のうえ大井町線への転籍が行われ、元からいた1編成とともに同線での最大勢力となっていますが、当初は編成ごとに多くのバリエーションが存在しました。転籍後の改修で順次配置統一が進められ、2018年にすべての編成の改修が完了しました。</p>
-					</div>
-
-					<htmlbuild-toc></htmlbuild-toc>
-				</div>
+				<%- include('./_include/_content_header', { toc: true }) %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a htmlbuild-heading-self-link" id="9001F">
 						<div class="p-section__hdg">
@@ -744,10 +723,10 @@
 						</div>
 					</section>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/_sidebar') %><%- include('./_include/_footer') %>
 		</div>
 	</body>
 </html>
