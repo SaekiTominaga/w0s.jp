@@ -25,6 +25,10 @@ describe('getUrl()', () => {
 		expect(pageUrl.getUrl('./public/path/to/foo.svg')).toBe('/path/to/foo.svg');
 	});
 
+	test('Windows path separator', () => {
+		expect(pageUrl.getUrl('.\\public\\path\\to\\foo.html')).toBe('/path/to/foo');
+	});
+
 	test('no root path', () => {
 		expect(() => {
 			pageUrl.getUrl('path/to/foo.svg');
