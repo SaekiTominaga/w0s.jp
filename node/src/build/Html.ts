@@ -86,15 +86,14 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			}
 			const structured: StructuredData = JSON.parse(structuredText);
 
-			const publicFilePath = filePath.replaceAll(new RegExp(`^${this.configBuild.html.directory}`, 'g'), this.configCommon.static.root);
+			const publicFileParse = path.parse(filePath.replace(new RegExp(`^${this.configBuild.html.directory}`), this.configCommon.static.root));
+			const publicFilePath = `${publicFileParse.dir}/${publicFileParse.name}.html`;
 
 			const pageUrl = new PageUrl({
 				root: this.configCommon.static.root,
 				indexes: this.configCommon.static.indexes,
 				extensions: [path.extname(filePath).replace('.', '')],
 			});
-
-			this.logger.debug(pageUrl.getUrl(publicFilePath));
 
 			/* EJS を解釈 */
 			const html = await ejs.renderFile(
@@ -188,10 +187,8 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			}
 
 			/* 出力 */
-			const distPathParse = path.parse(`${this.configCommon.static.root}/${filePath.substring(filePath.indexOf('/') + 1)}`);
-			const distPath = `${distPathParse.dir}/${distPathParse.name}.html`;
-			await fs.promises.writeFile(distPath, htmlFormatted);
-			this.logger.info(`HTML file created: ${distPath}`);
+			await fs.promises.writeFile(publicFilePath, htmlFormatted);
+			this.logger.info(`HTML file created: ${publicFilePath}`);
 		});
 	}
 
