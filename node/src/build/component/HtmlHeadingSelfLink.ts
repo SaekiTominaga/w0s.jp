@@ -18,8 +18,6 @@ export default class HtmlHeadingSelfLink extends Html {
 	 * @param {object} options - Options
 	 * @param {string} options.target_class - Class name of the sectioning content (article, aside, nav, section) to process
 	 * @param {string} options.insert_position - Link insertion position
-	 * @param {string} options.anchor_wrap_class - Class name of the wrapping element for the `<a>` element
-	 * @param {string} options.anchor_class - Class name of the `<a>` element
 	 */
 	async convert(
 		options: Readonly<{

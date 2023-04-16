@@ -35,7 +35,7 @@ export default class HtmlSectioningId extends Html {
 
 				const nowId = targetElement.id;
 				if (nowId === '') {
-					targetElement.id = slugger.slug(nowId !== '' ? nowId : headingText);
+					targetElement.id = slugger.slug(headingText);
 				}
 			});
 		}
