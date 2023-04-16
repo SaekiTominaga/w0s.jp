@@ -8,159 +8,126 @@
 export type NoName1 = string;
 export type HTML = string;
 export type NoName2 = string;
+export type NoName3 = string;
+export type NoName4 = string;
 export type MIME = string;
-export type NoName10 = string;
 export type NoName11 = string;
-export type NoName9 = {
+export type NoName12 = string;
+export type NoName10 = {
   type: MIME;
-  name: NoName10;
-  src: NoName11;
+  name: NoName11;
+  file_name: NoName12;
 }[];
-export type NoName14 = string;
 export type NoName15 = string;
 export type NoName16 = string;
-export type NoName13 = {
-  host: NoName14;
-  name: NoName15;
-  src: NoName16;
+export type NoName17 = string;
+export type NoName14 = {
+  host: NoName15;
+  name: NoName16;
+  file_name: NoName17;
 }[];
 export type HTML1 = string;
-export type NoName22 = string;
 export type NoName23 = string;
 export type NoName24 = string;
+export type NoName25 = string;
 export type Feed = string;
 export type Feed1 = string;
-export type NoName20 = {
+export type NoName21 = {
   html_path: HTML1;
-  selector: NoName21;
+  selector: NoName22;
   feed_template: Feed;
   feed_path: Feed1;
 }[];
 export type Glob = string[];
-export type NoName26 = string;
 export type NoName27 = string;
+export type NoName28 = string;
 
 export interface NoName {
   prettier: Prettier;
   html: {
     directory: HTML;
     views: NoName2;
-    book: NoName3;
-    newspaper: NoName4;
+    structured_selector: NoName3;
+    main_selector: NoName4;
+    book: NoName5;
+    newspaper: NoName6;
     section_id: ID;
-    toc: NoName5;
-    localnav: NoName6;
-    footnote: NoName7;
-    anchor_type: NoName8;
-    anchor_host: NoName12;
+    toc: NoName7;
+    footnote: NoName8;
+    anchor_type: NoName9;
+    anchor_host: NoName13;
     anchor_amazon_associate: Amazon;
-    heading_self_link: NoName17;
+    heading_self_link: NoName18;
     time: Time;
-    image: NoName18;
+    image: NoName19;
     image_amazon: Amazon1;
-    highlight: NoName19;
+    highlight: NoName20;
   };
   feed: {
-    info: NoName20;
+    info: NoName21;
   };
-  sitemap: NoName25;
+  sitemap: NoName26;
 }
 export interface Prettier {
   config: NoName1;
 }
-export interface NoName3 {
+export interface NoName5 {
   target_element: string;
 }
-export interface NoName4 {
+export interface NoName6 {
   target_element: string;
 }
 export interface ID {
   heading_levels: number[];
 }
-export interface NoName5 {
-  target_element: string;
-  class?: string;
-  label?: string;
-}
-export interface NoName6 {
-  target_class: string;
-}
 export interface NoName7 {
-  trigger: {
-    element: string;
-    class: string;
-    id_prefix: string;
-    attributes: {
-      /**
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` ".".
-       */
-      [k: string]: string;
-    };
-    parentheses_open?: string;
-    parentheses_close?: string;
-  };
-  footnotes: {
-    element: string;
-    class: string;
-    no_class: string;
-    text_class: string;
-    id_prefix: string;
-  };
+  target_element: string;
 }
 export interface NoName8 {
-  target_class: string;
-  insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
-  parentheses: {
-    before: string;
-    after: string;
+  trigger: {
+    element: string;
+    id_prefix: string;
   };
-  icon: NoName9;
-  icon_size: number;
-  icon_class: string;
+  footnote: {
+    element: string;
+    id_prefix: string;
+  };
 }
-export interface NoName12 {
+export interface NoName9 {
   target_class: string;
-  insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
-  parentheses: {
-    before: string;
-    after: string;
-  };
-  element: string;
-  class: string;
-  icon: NoName13;
-  icon_size: number;
-  icon_class: string;
+  icons: NoName10;
+}
+export interface NoName13 {
+  target_class: string;
+  icons?: NoName14;
 }
 export interface Amazon {
   target_class: string;
 }
-export interface NoName17 {
+export interface NoName18 {
   target_class: string;
   insert_position: "beforebegin" | "afterbegin" | "beforeend" | "afterend";
-  anchor_wrap_class?: string;
-  anchor_class?: string;
 }
 export interface Time {
   target_class: string;
 }
-export interface NoName18 {
+export interface NoName19 {
   target_class: string;
 }
 export interface Amazon1 {
   target_class: string;
 }
-export interface NoName19 {
+export interface NoName20 {
   target_class: string;
   class_prefix: string;
 }
-export interface NoName21 {
-  wrap: NoName22;
-  date: NoName23;
-  content: NoName24;
+export interface NoName22 {
+  wrap: NoName23;
+  date: NoName24;
+  content: NoName25;
 }
-export interface NoName25 {
+export interface NoName26 {
   ignore: Glob;
-  template: NoName26;
-  path: NoName27;
+  template: NoName27;
+  path: NoName28;
 }

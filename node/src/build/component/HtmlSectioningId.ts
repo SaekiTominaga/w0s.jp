@@ -27,17 +27,15 @@ export default class HtmlSectioningId extends Html {
 		if (targetElements.length >= 1) {
 			const slugger = new GithubSlugger();
 
-			targetElements.forEach((targetElement) => {
+			targetElements.forEach((targetElement): void => {
 				const headingText = targetElement.querySelector(headingSelectors)?.textContent;
 				if (headingText === null || headingText === undefined) {
 					return;
 				}
 
 				const nowId = targetElement.id;
-				const newId = slugger.slug(nowId !== '' ? nowId : headingText);
-
 				if (nowId === '') {
-					targetElement.id = newId;
+					targetElement.id = slugger.slug(nowId !== '' ? nowId : headingText);
 				}
 			});
 		}

@@ -20,20 +20,14 @@ export default class HtmlToc extends Html {
 	 * @param {string} options.class - Table of Contents class name
 	 * @param {string} options.label - Table of Contents label (`aria-label` attribute value)
 	 */
-	convert(
+	async convert(
 		options: Readonly<{
 			target_element: string;
 			sectioning_area: Element;
-			class?: string | undefined;
-			label?: string | undefined;
 		}>
-	): void {
+	): Promise<void> {
 		const targetElementName = options.target_element;
 		const sectioningAreaElement = options.sectioning_area;
-		const optionsToc = {
-			class: options.class,
-			label: options.label,
-		};
 
 		const targetElement = this.document.querySelector(targetElementName);
 		if (targetElement === null) {
@@ -59,23 +53,11 @@ export default class HtmlToc extends Html {
 			return;
 		}
 
-		const tocElement = this.replaceElement(targetElement, 'ol');
-		if (optionsToc.class !== undefined) {
-			tocElement.className = optionsToc.class;
-		}
-		if (optionsToc.label !== undefined) {
-			tocElement.setAttribute('aria-label', optionsToc.label);
-		}
+		/* EJS を解釈 */
+		const html = await this.renderEjsFile({
+			tocData: tocData,
+		});
 
-		for (const [id, headingText] of tocData) {
-			const aElement = this.document.createElement('a');
-			aElement.href = `#${encodeURIComponent(id)}`;
-			aElement.textContent = headingText;
-
-			const liElement = this.document.createElement('li');
-			liElement.appendChild(aElement);
-
-			tocElement.appendChild(liElement);
-		}
+		this.replaceHtml(targetElement, html);
 	}
 }

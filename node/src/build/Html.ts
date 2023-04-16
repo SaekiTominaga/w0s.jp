@@ -9,8 +9,7 @@ import { JSDOM } from 'jsdom';
 import BuildComponent from '../BuildComponent.js';
 import BuildComponentInterface from '../BuildComponentInterface.js';
 import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAssociate.js';
-import HtmlComponentAnchorHost from './component/HtmlAnchorHost.js';
-import HtmlComponentAnchorType from './component/HtmlAnchorType.js';
+import HtmlComponentAnchorIcon from './component/HtmlAnchorIcon.js';
 import HtmlComponentBook from './component/HtmlBook.js';
 import HtmlComponentFootnote from './component/HtmlFootnote.js';
 import HtmlComponentHeadingSelfLink from './component/HtmlHeadingSelfLink.js';
@@ -79,7 +78,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			const fileData = (await fs.promises.readFile(filePath)).toString();
 
 			/* HTML から必要なデータを取得 */
-			const structuredElement = new JSDOM(fileData).window.document.getElementById('page-structured'); // 構造データ
+			const structuredElement = new JSDOM(fileData).window.document.querySelector(this.configBuild.html.structured_selector); // 構造データ
 			const structuredText = structuredElement?.textContent;
 			if (structuredText === null || structuredText === undefined) {
 				this.logger.error(`Structured data is not defined: ${filePath}`);
@@ -94,6 +93,8 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				indexes: this.configCommon.static.indexes,
 				extensions: [path.extname(filePath).replace('.', '')],
 			});
+
+			this.logger.debug(pageUrl.getUrl(publicFilePath));
 
 			/* EJS を解釈 */
 			const html = await ejs.renderFile(
@@ -124,8 +125,12 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			const dom = new JSDOM(htmlCommentOmitted);
 			const { document } = dom.window;
 
-			document.getElementById('page-structured')?.remove();
-			const contentMain = document.querySelector('.l-content__main');
+			document.querySelector(this.configBuild.html.structured_selector)?.remove();
+			const contentMain = document.querySelector(this.configBuild.html.main_selector);
+			if (contentMain === null) {
+				this.logger.error(`Main area is not exist: ${filePath}`);
+				return;
+			}
 
 			/* OGP */
 			if (document.querySelector('meta[property^="og:"]') !== null) {
@@ -134,39 +139,39 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 
 			const { views } = this.configBuild.html;
 
+			/* ステップ1: セクショニングコンテンツや見出しを生成する処理 */
 			await Promise.all([
 				new HtmlComponentBook(document, views).convert(this.configBuild.html.book, this.configBuild.html.heading_self_link.target_class), // 書籍
 				new HtmlComponentNewspaper(document, views).convert(this.configBuild.html.newspaper, this.configBuild.html.heading_self_link.target_class), // 新聞
 			]);
 
-			if (contentMain !== null) {
-				await Promise.all([
-					new HtmlCpmponentSectioningId(document, views).convert({
-						sectioning_area: contentMain,
-						heading_levels: this.configBuild.html.section_id.heading_levels,
-					}), // セクション ID 自動生成
-					new HtmlComponentToc(document, views).convert({
-						target_element: this.configBuild.html.toc.target_element,
-						sectioning_area: contentMain,
-						class: this.configBuild.html.toc.class,
-						label: this.configBuild.html.toc.label,
-					}), // 目次自動生成
-				]);
-			}
+			/* ステップ2: セクショニングコンテンツや見出しを利用する処理 */
+			new HtmlCpmponentSectioningId(document, views).convert({
+				sectioning_area: contentMain,
+				heading_levels: this.configBuild.html.section_id.heading_levels,
+			}); // セクション ID 自動生成
 
+			/* ステップ3: その他の処理 */
 			await Promise.all([
+				new HtmlComponentAnchorIcon(document, views).convert({
+					type: this.configBuild.html.anchor_type,
+					host: this.configBuild.html.anchor_host,
+				}), // リンクアンカーに付随するアイコンを付与
 				new HtmlComponentFootnote(document, views).convert(this.configBuild.html.footnote), // 注釈
-				new HtmlComponentAnchorType(document, views).convert(this.configBuild.html.anchor_type), // リンクアンカーにリソースタイプアイコンを付与
-				new HtmlComponentAnchorHost(document, views).convert(this.configBuild.html.anchor_host), // リンクアンカーにドメイン情報を付与
+				new HtmlComponentHeadingSelfLink(document, views).convert(this.configBuild.html.heading_self_link), // 見出しにセルフリンクを挿入
+				new HtmlComponentToc(document, views).convert({
+					target_element: this.configBuild.html.toc.target_element,
+					sectioning_area: contentMain,
+				}), // 目次自動生成
+
 				new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 					target_class: this.configBuild.html.anchor_amazon_associate.target_class,
 					associate_id: this.configCommon.paapi.request.partner_tag,
 				}), // Amazon 商品ページのリンクにアソシエイトタグを追加
-				new HtmlComponentHeadingSelfLink(document, views).convert(this.configBuild.html.heading_self_link), // 見出しにセルフリンクを挿入
-				new HtmlComponentTimeJapaneseDate(document, views).convert(this.configBuild.html.time), // 日付文字列を `<time datetime>` 要素に変換
+				new HtmlComponentHighlight(document, views).convert(this.configBuild.html.highlight), // highlight.js
 				new HtmlComponentImage(document, views).convert(this.configBuild.html.image), // `<picture>` 要素を使って複数フォーマットの画像を提供する
 				new HtmlComponentImageAmazon(document, views).convert(this.configBuild.html.image_amazon), // Amazon 商品画像
-				new HtmlComponentHighlight(document, views).convert(this.configBuild.html.highlight), // highlight.js
+				new HtmlComponentTimeJapaneseDate(document, views).convert(this.configBuild.html.time), // 日付文字列を `<time datetime>` 要素に変換
 			]);
 
 			const htmlBuilt = dom.serialize();
@@ -207,7 +212,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				'@type': 'ListItem',
 				position: index + 1,
 				name: item.name,
-				item: `https://w0s.jp${item.path}`,
+				item: `https://w0s.jp${item.path}`, // 絶対 URL 化
 			};
 			return listItem;
 		});
@@ -215,7 +220,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			'@type': 'ListItem',
 			position: jsonLdBreadcrumbItemList.length + 1,
 			name: structured.title,
-		}); // 現在ページ
+		}); // 最後に現在ページを追加
 
 		const jsonLd: SchemaOrgBreadcrumbList = {
 			'@context': 'https://schema.org/',
