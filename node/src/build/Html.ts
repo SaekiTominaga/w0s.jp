@@ -92,7 +92,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			const pageUrl = new PageUrl({
 				root: this.configCommon.static.root,
 				indexes: this.configCommon.static.indexes,
-				extensions: [path.extname(filePath).replace('.', '')],
+				extensions: this.configCommon.static.extensions,
 			});
 
 			/* EJS を解釈 */
