@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import PageUrl from '../../dist/util/PageUrl.js';
 
-const pageUrl = new PageUrl({ root: ['public'], extensions: ['html'], indexes: ['index.html'] });
+const pageUrl = new PageUrl({ root: 'public', extensions: ['html'], indexes: ['index.html'] });
 
 describe('getUrl()', () => {
 	test('index page', () => {
