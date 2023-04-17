@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
 import CrawlerResourceDao from '../dao/CrawlerResourceDao.js';
+import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/crawler-resource.js';
@@ -132,14 +133,16 @@ export default class CrawlerResourceController extends Controller implements Con
 			resourcePageListView.set(categoryName, resourcePageOfCategoryView);
 		}
 
+		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.init, {
-			page: {
-				path: req.path,
-				query: requestQuery,
-			},
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+			requestQuery: requestQuery,
 			categoryMaster: categoryMaster,
 			priorityMaster: priorityMaster,
 			resourcePageList: resourcePageListView,

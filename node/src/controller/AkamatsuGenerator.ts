@@ -7,6 +7,7 @@ import { Result as ValidationResult, ValidationError } from 'express-validator';
 import AkamatsuGeneratorValidator from '../validator/AkamatsuGeneratorValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/akamatsu-generator.js';
@@ -149,14 +150,16 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 			icons.set(icon.filename, icon.caption);
 		}
 
+		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.init, {
-			page: {
-				path: req.path,
-				query: requestQuery,
-			},
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			icons: icons,
 			generatedImage: generatedImage,

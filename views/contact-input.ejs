@@ -1,35 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<title>問い合わせ</title>
-
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-		<link rel="stylesheet" href="/assets/style/w0s.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="/assets/script/contact.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/_head', { moduleScripts: ['contact.mjs']}) %>
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header') -%>
 
 			<div id="content" class="l-content -nosidebar">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p><a href="/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1>問い合わせ</h1>
-					</div>
-
+				<%- include('./_include/_content_header') %>
+				<main class="l-content__main">
 					<ol class="p-step">
 						<li class="js-screen-input"><em class="p-step__text -current">入力</em></li>
 						<li class="js-screen-confirm" hidden=""><span class="p-step__text">入力</span></li>
@@ -37,8 +17,7 @@
 						<li class="js-screen-confirm" hidden=""><em class="p-step__text -current">確認</em></li>
 						<li><span class="p-step__text">完了</span></li>
 					</ol>
-				</div>
-				<main class="l-content__main">
+
 					<form novalidate="" method="post" class="c-stack js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
 						<%_ if (validateErrors.length > 0) { _%>
 						<div class="p-form-errors js-autofocus">
@@ -60,10 +39,10 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<%_ if (page.query.name === null) { _%>
+												<%_ if (requestQuery.name === null) { _%>
 												<input class="c-input" name="yourname" id="input-name" style="--inline-size: 24em" />
 												<%_ } else { _%>
-												<input class="c-input" name="yourname" value="<%= page.query.name %>" id="input-name" style="--inline-size: 24em" />
+												<input class="c-input" name="yourname" value="<%= requestQuery.name %>" id="input-name" style="--inline-size: 24em" />
 												<%_ } _%>
 											</div>
 										</div>
@@ -76,10 +55,10 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<%_ if (page.query.email === null) { _%>
+												<%_ if (requestQuery.email === null) { _%>
 												<input type="email" class="c-input js-convert-trim js-validation" name="email" required="" autocomplete="email" id="input-email" style="--inline-size: 24em" aria-errormessage="input-validate-email" />
 												<%_ } else { _%>
-												<input type="email" class="c-input js-convert-trim js-validation" name="email" value="<%= page.query.email %>" required="" autocomplete="email" id="input-email" style="--inline-size: 24em" aria-errormessage="input-validate-email" />
+												<input type="email" class="c-input js-convert-trim js-validation" name="email" value="<%= requestQuery.email %>" required="" autocomplete="email" id="input-email" style="--inline-size: 24em" aria-errormessage="input-validate-email" />
 												<%_ } _%>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-email"></p>
@@ -95,7 +74,7 @@
 											<div class="c-form-controls -checkbox js-validation" role="radiogroup" aria-labelledby="label-reply" aria-errormessage="input-validate-reply">
 												<%_ for ([key, value] of Object.entries(reply)) { _%>
 												<label class="c-label -check">
-													<%_ if (key !== page.query.reply) { _%>
+													<%_ if (key !== requestQuery.reply) { _%>
 													<input type="radio" name="reply" value="<%= key %>" required="" />
 													<%_ } else { _%>
 													<input type="radio" name="reply" value="<%= key %>" required="" checked="" />
@@ -116,7 +95,7 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<textarea is="w0s-textarea-height-adjust" class="c-textarea js-convert-trim js-validation" name="body" required="" id="input-body" style="--block-size: 16em" aria-errormessage="input-validate-body"><%= page.query.body %></textarea>
+												<textarea is="w0s-textarea-height-adjust" class="c-textarea js-convert-trim js-validation" name="body" required="" id="input-body" style="--block-size: 16em" aria-errormessage="input-validate-body"><%= requestQuery.body %></textarea>
 											</div>
 											<p hidden="" class="c-fc-invalid" id="input-validate-body"></p>
 										</div>
@@ -124,7 +103,7 @@
 								</div>
 							</div>
 
-							<p><input type="hidden" name="referrer" value="<%= page.query.referrer %>" /></p>
+							<p><input type="hidden" name="referrer" value="<%= requestQuery.referrer %>" /></p>
 						</div>
 
 						<div class="js-screen-confirm" hidden="">
@@ -162,6 +141,7 @@
 						<p id="form-submit-overlay-message">送信中</p>
 					</dialog>
 				</main>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
 			<%- include('./_include/_footer') -%>

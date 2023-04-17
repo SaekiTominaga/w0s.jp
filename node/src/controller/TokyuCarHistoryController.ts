@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import RequestUtil from '../util/RequestUtil.js';
 import TokyuCarHistoryDao from '../dao/TokyuCarHistoryDao.js';
 import TokyuCarHistoryValidator from '../validator/TokyuCarHistoryValidator.js';
@@ -105,14 +106,16 @@ export default class TokyuCarHistoryController extends Controller implements Con
 			}
 		}
 
+		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.init, {
-			page: {
-				path: req.path,
-				query: requestQuery,
-			},
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			carSeries: await dao.getCarSeries(), // 車種情報
 			searchCount: searchCarsCount,

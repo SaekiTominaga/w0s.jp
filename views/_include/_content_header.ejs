@@ -14,13 +14,12 @@
 	<%_ } _%>
 
 	<div class="p-title">
-		<h1>
-			<%= structuredData.headline ?? structuredData.title %><%_ if (structuredData.subHeadline !== undefined) { _%>
-			<span class="p-title__sub-hdg">（<%= structuredData.subHeadline %>）</span>
-			<%_ } _%>
-		</h1>
-		<%_ if (structuredData.dateModifiedDayjs !== undefined) { _%>
-		<p class="p-title__update"><time datetime="<%= structuredData.dateModifiedDayjs.format('YYYY-MM-DD') %>"><%= structuredData.dateModifiedDayjs.format('YYYY年M月D日') %></time>更新</p>
+		<%_ if (structuredData.subHeadline === undefined) { _%>
+		<h1><%= structuredData.headline ?? structuredData.title %></h1>
+		<%_ } else { _%>
+		<h1><%= structuredData.headline ?? structuredData.title %><span class="p-title__sub-hdg">（<%= structuredData.subHeadline %>）</span></h1>
+		<%_ } _%><%_ if (structuredData.dateModified !== undefined) { _%>
+		<p class="p-title__update"><time datetime="<%= structuredData.dateModified.format('YYYY-MM-DD') %>"><%= structuredData.dateModified.format('YYYY年M月D日') %></time>更新</p>
 		<%_ } _%>
 	</div>
 

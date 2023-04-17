@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<title>ウェブ巡回（リソース）</title>
-
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-		<link rel="stylesheet" href="/assets/style/admin.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/w0s.mjs" type="module"></script>
+		<%- include('./_include/_head') %>
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header') -%>
 
 			<div id="content" class="l-content -nosidebar">
-				<div class="l-content__header">
-					<div class="p-title">
-						<h1>ウェブ巡回（リソース）</h1>
-					</div>
-				</div>
+				<%- include('./_include/_content_header') %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a">
 						<div class="p-section__hdg">
@@ -37,10 +24,10 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<%_ if (page.query.action_revise_preview || page.query.action_revise) { _%>
-												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" readonly="" />
+												<%_ if (requestQuery.action_revise_preview || requestQuery.action_revise) { _%>
+												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= requestQuery.url %>" required="" readonly="" />
 												<%_ } else { _%>
-												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= page.query.url %>" required="" />
+												<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value="<%= requestQuery.url %>" required="" />
 												<%_ } _%>
 											</div>
 										</div>
@@ -53,7 +40,7 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<input class="c-input -full js-convert-trim" id="fc-title" name="title" value="<%= page.query.title %>" required="" />
+												<input class="c-input -full js-convert-trim" id="fc-title" name="title" value="<%= requestQuery.title %>" required="" />
 											</div>
 										</div>
 									</fieldset>
@@ -66,7 +53,7 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<select class="c-select" id="fc-category" name="category">
-													<%_ for (const category of categoryMaster) { _%> <%_ if (page.query.category === category.fk) { _%>
+													<%_ for (const category of categoryMaster) { _%> <%_ if (requestQuery.category === category.fk) { _%>
 													<option value="<%= category.fk %>" selected=""><%= category.name %></option>
 													<%_ } else { _%>
 													<option value="<%= category.fk %>"><%= category.name %></option>
@@ -84,7 +71,7 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<select class="c-select" id="fc-priority" name="priority">
-													<%_ for (const priority of priorityMaster) { _%> <%_ if (page.query.priority === priority.fk) { _%>
+													<%_ for (const priority of priorityMaster) { _%> <%_ if (requestQuery.priority === priority.fk) { _%>
 													<option value="<%= priority.fk %>" selected=""><%= priority.name %></option>
 													<%_ } else { _%>
 													<option value="<%= priority.fk %>"><%= priority.name %></option>
@@ -100,7 +87,7 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
 												<label class="c-label -check">
-													<%_ if (page.query.browser) { _%>
+													<%_ if (requestQuery.browser) { _%>
 													<input type="checkbox" name="browser" value="1" checked="" />
 													<%_ } else { _%>
 													<input type="checkbox" name="browser" value="1" />
@@ -118,7 +105,7 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<input class="c-input -full js-convert-trim" id="fc-selector" name="selector" value="<%= page.query.selector %>" />
+												<input class="c-input -full js-convert-trim" id="fc-selector" name="selector" value="<%= requestQuery.selector %>" />
 											</div>
 										</div>
 									</fieldset>
@@ -126,7 +113,7 @@
 							</div>
 
 							<div class="c-form-controls -submit">
-								<%_ if (page.query.action_revise_preview || page.query.action_revise) { _%>
+								<%_ if (requestQuery.action_revise_preview || requestQuery.action_revise) { _%>
 								<p><button class="c-submit" name="actionrev" value="1">修正</button></p>
 								<%_ } else { _%>
 								<p><button class="c-submit" name="actionadd" value="1">登録</button></p>
@@ -186,6 +173,7 @@
 					</section>
 					<%_ } _%>
 				</main>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
 			<%- include('./_include/_footer') -%>

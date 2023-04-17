@@ -1,41 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<title>東急電車　車歴表</title>
-
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="railway" />
-		<meta name="w0s:amazon" content="railway" />
-
-		<link rel="stylesheet" href="/assets/style/tokyu.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-		<link rel="search" href="/tokyu/data/history/search" type="application/opensearchdescription+xml" title="東急電車 車歴検索" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="/assets/script/tokyu_car_history.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/_head_tokyu', { moduleScripts: ['tokyu_car_history.mjs']} ) %>
+		<link rel="search" href="/tokyu/data/history/search" type="application/opensearchdescription+xml" title="東急電車　車歴検索" />
 	</head>
 	<body>
 		<div class="l-page">
 			<%- include('./_include/_header_tokyu') -%>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/tokyu/data/">東急電車の車両データ</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1>東急電車　車歴表</h1>
-						<p class="p-title__update"><time datetime="2010-03-01">2010年3月</time>更新</p>
-					</div>
-				</div>
+				<%- include('./_include/_content_header') %>
 				<main class="l-content__main">
-					<%_ if (page.query.output === null) { _%>
+					<%_ if (requestQuery.output === null) { _%>
 					<details class="p-toggle" is="w0s-animation-details" open="">
 						<summary>説明文</summary>
 						<div class="p-toggle__contents">
@@ -104,13 +80,13 @@
 										<legend class="p-form-grid__legend"><label for="fc-num" class="c-label">車号</label></legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<%_ if (page.query.number === null || page.query.number === '') { _%>
+												<%_ if (requestQuery.number === null || requestQuery.number === '') { _%>
 												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--inline-size: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="該当する車両は存在しません。" />
 												<%_ } else { _%>
-												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value="<%= page.query.number %>" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--inline-size: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="旧7000系〜新3000系、300系で該当する車両は存在しません。" />
+												<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value="<%= requestQuery.number %>" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--inline-size: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="旧7000系〜新3000系、300系で該当する車両は存在しません。" />
 												<%_ } _%>
 												<label class="c-label -check">
-													<%_ if (page.query.number_old) { _%>
+													<%_ if (requestQuery.number_old) { _%>
 													<input type="checkbox" name="old" value="1" checked="" />
 													<%_ } else { _%>
 													<input type="checkbox" name="old" value="1" />
@@ -129,7 +105,7 @@
 											<div class="c-form-controls -checkbox">
 												<%_ for (const car of carSeries) { _%>
 												<label class="c-label -check">
-													<%_ if (page.query.series !== null && page.query.series.includes(car.id)) { _%>
+													<%_ if (requestQuery.series !== null && requestQuery.series.includes(car.id)) { _%>
 													<input type="checkbox" name="ser[]" value="<%= car.id %>" checked="" />
 													<%_ } else { _%>
 													<input type="checkbox" name="ser[]" value="<%= car.id %>" />
@@ -153,18 +129,18 @@
 											<div class="c-form-controls">
 												<label class="c-label -input"
 													><span class="c-label__text">開始日</span>
-													<%_ if (page.query.register_start === null || page.query.register_start === '') { _%>
+													<%_ if (requestQuery.register_start === null || requestQuery.register_start === '') { _%>
 													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<%_ } else { _%>
-													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value="<%= page.query.register_start %>" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value="<%= requestQuery.register_start %>" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<%_ } _%>
 												</label>
 												<label class="c-label -input"
 													><span class="c-label__text">終了日</span>
-													<%_ if (page.query.register_end === null || page.query.register_end === '') { _%>
+													<%_ if (requestQuery.register_end === null || requestQuery.register_end === '') { _%>
 													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<%_ } else { _%>
-													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value="<%= page.query.register_end %>" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+													<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value="<%= requestQuery.register_end %>" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 													<%_ } _%>
 												</label>
 											</div>
@@ -179,7 +155,7 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-sort">
 												<label class="c-label -check">
-													<%_ if (page.query.sort === null || page.query.sort === 'snu') { _%>
+													<%_ if (requestQuery.sort === null || requestQuery.sort === 'snu') { _%>
 													<input type="radio" name="srt" value="snu" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="srt" value="snu" />
@@ -187,7 +163,7 @@
 													<span class="c-label__text">車号（車種別）</span></label
 												>
 												<label class="c-label -check">
-													<%_ if (page.query.sort === 'num') { _%>
+													<%_ if (requestQuery.sort === 'num') { _%>
 													<input type="radio" name="srt" value="num" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="srt" value="num" />
@@ -195,7 +171,7 @@
 													<span class="c-label__text">車号（車種混合）</span></label
 												>
 												<label class="c-label -check">
-													<%_ if (page.query.sort === 'typ') { _%>
+													<%_ if (requestQuery.sort === 'typ') { _%>
 													<input type="radio" name="srt" value="typ" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="srt" value="typ" />
@@ -203,7 +179,7 @@
 													<span class="c-label__text">形式</span></label
 												>
 												<label class="c-label -check">
-													<%_ if (page.query.sort === 'ann') { _%>
+													<%_ if (requestQuery.sort === 'ann') { _%>
 													<input type="radio" name="srt" value="ann" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="srt" value="ann" />
@@ -211,7 +187,7 @@
 													<span class="c-label__text">呼称</span></label
 												>
 												<label class="c-label -check">
-													<%_ if (page.query.sort === 'reg') { _%>
+													<%_ if (requestQuery.sort === 'reg') { _%>
 													<input type="radio" name="srt" value="reg" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="srt" value="reg" />
@@ -228,7 +204,7 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-era">
 												<label class="c-label -check">
-													<%_ if (page.query.era === null || page.query.era === 'ad') { _%>
+													<%_ if (requestQuery.era === null || requestQuery.era === 'ad') { _%>
 													<input type="radio" name="era" value="ad" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="era" value="ad" />
@@ -236,7 +212,7 @@
 													<span class="c-label__text">西暦</span></label
 												>
 												<label class="c-label -check">
-													<%_ if (page.query.era === 'ja') { _%>
+													<%_ if (requestQuery.era === 'ja') { _%>
 													<input type="radio" name="era" value="ja" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="era" value="ja" />
@@ -253,7 +229,7 @@
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-output">
 												<label class="c-label -check">
-													<%_ if (page.query.output === null || page.query.output === 'nor') { _%>
+													<%_ if (requestQuery.output === null || requestQuery.output === 'nor') { _%>
 													<input type="radio" name="out" value="nor" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="out" value="nor" />
@@ -261,7 +237,7 @@
 													<span class="c-label__text">全列表示</span></label
 												>
 												<label class="c-label -check">
-													<%_ if (page.query.output === 'mob') { _%>
+													<%_ if (requestQuery.output === 'mob') { _%>
 													<input type="radio" name="out" value="mob" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="out" value="mob" />
@@ -280,7 +256,7 @@
 						</form>
 					</section>
 
-					<%_ if (page.query.output !== null) { _%>
+					<%_ if (requestQuery.output !== null) { _%>
 					<section class="p-section -hdg-a js-autofocus">
 						<div class="p-section__hdg">
 							<h2>検索結果</h2>
@@ -296,7 +272,7 @@
 						<%_ } _%>
 
 						<table class="p-tokyu-history-table js-result-table" id="result-table">
-							<%_ if (page.query.output === 'mob') { _%>
+							<%_ if (requestQuery.output === 'mob') { _%>
 							<thead>
 								<tr>
 									<th scope="col">車号</th>
@@ -396,6 +372,7 @@
 					</section>
 					<%_ } _%>
 				</main>
+				<%- include('./_include/_content_footer') %>
 			</div>
 
 			<%- include('./_include/_sidebar') -%><%- include('./_include/_footer') -%>
