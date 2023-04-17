@@ -96,13 +96,17 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				heading_levels: this.configBuild.html.section_id.heading_levels,
 			}); // セクション ID 自動生成
 
-			/* ステップ3: その他の処理 */
+			/* ステップ3: 要素の置換・移動などでその他の処理に影響を及ぼす処理 */
+			await Promise.all([
+				new HtmlComponentFootnote(document, views).convert(this.configBuild.html.footnote), // 注釈
+			]);
+
+			/* ステップ4: その他の処理 */
 			await Promise.all([
 				new HtmlComponentAnchorIcon(document, views).convert({
 					type: this.configBuild.html.anchor_type,
 					host: this.configBuild.html.anchor_host,
 				}), // リンクアンカーに付随するアイコンを付与
-				new HtmlComponentFootnote(document, views).convert(this.configBuild.html.footnote), // 注釈
 				new HtmlComponentHeadingSelfLink(document, views).convert(this.configBuild.html.heading_self_link), // 見出しにセルフリンクを挿入
 				new HtmlComponentToc(document, views).convert({
 					target_element: this.configBuild.html.toc.target_element,
