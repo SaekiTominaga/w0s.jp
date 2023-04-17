@@ -72,7 +72,6 @@ export default class ContactSendController extends Controller implements Control
 		res.render(this.#config.view.input, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
-			jsonLd: undefined,
 			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			reply: this.#config.reply,
