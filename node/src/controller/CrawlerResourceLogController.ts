@@ -86,7 +86,6 @@ export default class CrawlerResourceLogController extends Controller implements 
 		res.render(this.#config.view.log, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
-			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
 			requestQuery: requestQuery,
 			fileList: fileList,
 			diff: diff,

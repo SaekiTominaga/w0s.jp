@@ -74,7 +74,6 @@ export default class CrawlerNewsDataController extends Controller implements Con
 		res.render(this.#config.view.data, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
-			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
 			requestQuery: requestQuery,
 			newsDataList: newsDataList,
 		});

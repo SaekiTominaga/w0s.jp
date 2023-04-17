@@ -141,7 +141,6 @@ export default class CrawlerResourceController extends Controller implements Con
 		res.render(this.#config.view.init, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
-			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
 			requestQuery: requestQuery,
 			categoryMaster: categoryMaster,
 			priorityMaster: priorityMaster,
