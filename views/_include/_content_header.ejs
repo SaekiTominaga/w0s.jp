@@ -1,16 +1,14 @@
 <div class="l-content__header">
 	<%_ if (structuredData.breadcrumb !== undefined) { _%>
-	<div class="p-topic-path">
-		<p>
-			<%_ structuredData.breadcrumb.forEach((breadcrumbItem, index) => { _%><%_ if (index > 0) { _%>
-			<span class="p-topic-path__separator">&gt;</span>
-			<%_ } _%>
-			<a href="<%= breadcrumbItem.path %>"><%= breadcrumbItem.name %></a>
-			<%_ }); _%>
-			<span class="p-topic-path__separator">&gt;</span>
-			<a aria-current="page">現在のページ</a>
-		</p>
-	</div>
+	<p class="p-topic-path">
+		<%_ structuredData.breadcrumb.forEach((breadcrumbItem, index) => { _%><%_ if (index > 0) { _%>
+		<span class="p-topic-path__separator">&gt;</span>
+		<%_ } _%>
+		<a href="<%= breadcrumbItem.path %>"><%= breadcrumbItem.name %></a>
+		<%_ }); _%>
+		<span class="p-topic-path__separator">&gt;</span>
+		<a aria-current="page">現在のページ</a>
+	</p>
 	<%_ } _%>
 
 	<div class="p-title">
