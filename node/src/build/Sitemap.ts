@@ -38,8 +38,6 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 				const publicFileParse = path.parse(filePath.replace(new RegExp(`^${this.configBuild.html.directory}`), this.configCommon.static.root));
 				const publicFilePath = `${publicFileParse.dir}/${publicFileParse.name}.html`;
 
-				this.logger.debug(publicFilePath);
-
 				return {
 					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
 					modified_at: structuredData.dateModified,
