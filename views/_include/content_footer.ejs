@@ -1,13 +1,15 @@
-<%_ if (typeof filePath !== 'undefined' || structuredData.localNav !== undefined) { // :empty 疑似クラスがホワイトスペースの存在を許容するようになったらこの if 文は不要になる https://drafts.csswg.org/selectors-4/#the-empty-pseudo _%>
+<%_ if ((typeof contact === 'undefined' || contact) || structuredData.localNav !== undefined) { // :empty 疑似クラスがホワイトスペースの存在を許容するようになったらこの if 文は不要になる https://drafts.csswg.org/selectors-4/#the-empty-pseudo _%>
 <div class="l-content__footer">
-	<%_ if (typeof filePath !== 'undefined') { _%>
+	<%_ if (typeof contact === 'undefined' || contact) { _%>
 	<details class="p-toggle -fit" is="w0s-animation-details" data-duration="100">
-		<summary>本ページ内容の改善提案</summary>
+		<summary>本ページ内容の問い合わせ</summary>
 		<div class="p-toggle__contents">
 			<ul class="p-list">
-				<li>誤字訂正など軽微な修正は<a href="https://github.com/SaekiTominaga/w0s.jp/blob/main/<%= filePath %>" class="htmlbuild-host">ソースコード</a>を編集し、 Pull Request を送ってください。</li>
-				<li>コンテンツやデータの追加提案など議論が必要なケースは <a href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents" class="htmlbuild-host">Issue を立てる</a>こともできます。</li>
-				<li>GitHub アカウントをお持ちでない方は<a href="/contact">問い合わせフォーム</a>や <a href="https://twitter.com/SaekiTominaga" class="htmlbuild-host">Twitter</a>でも受け付けます。</li>
+				<li>コンテンツに関するご意見、ご質問などは当サイトの Github リポジトリに <a href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents">Issue</a><img src="/assets/image/icon/github.svg" alt="(GitHub)" class="c-link-icon" title="(GitHub)" width="16" height="16" />を立ててください。</li>
+				<%_ if (typeof filePath !== 'undefined') { _%>
+				<li>誤字訂正など軽微な修正は<a href="https://github.com/SaekiTominaga/w0s.jp/blob/main/<%= filePath %>">ソースコード</a><img src="/assets/image/icon/github.svg" alt="(GitHub)" class="c-link-icon" title="(GitHub)" width="16" height="16" />を編集し、Pull Request を送っていただいても構いません。</li>
+				<%_ } _%>
+				<li>非公開での連絡を希望される場合は<a href="/contact">問い合わせフォーム</a>からお寄せください。</li>
 			</ul>
 		</div>
 	</details>
