@@ -1,12 +1,13 @@
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import fs from 'fs';
+import path from 'path';
 import slash from 'slash';
 import { globby } from 'globby';
-import { JSDOM } from 'jsdom';
 import xmlFormatter from 'xml-formatter';
 import BuildComponent from '../BuildComponent.js';
 import BuildComponentInterface from '../BuildComponentInterface.js';
+import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import PageUrl from '../util/PageUrl.js';
 
 /**
@@ -25,21 +26,8 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 		});
 
 		const entries = await Promise.all(
-			fileList.map(async (filePath) => {
-				/* ファイル読み込み */
-				const fileData = (await fs.promises.readFile(filePath)).toString();
-				const { document } = new JSDOM(fileData).window;
-
-				let modified: dayjs.Dayjs | undefined;
-				const modifiedElement = document.querySelector<HTMLMetaElement>('meta[itemprop="dateModified"]');
-				if (modifiedElement !== null) {
-					const modifiedDateTime = modifiedElement.content;
-					if (!/^([0-9]{4})-[0-9]{2}-[0-9]{2}$/.test(modifiedDateTime)) {
-						throw new Error(`\`<time itemprop="dateModified">\` の \`datetime\` 属性値が不正: ${modifiedDateTime}`);
-					}
-
-					modified = dayjs(modifiedDateTime);
-				}
+			fileList.map(async (filePath): Promise<{ pagePathAbsoluteUrl: string; modified_at: dayjs.Dayjs | undefined }> => {
+				const structuredData = await HtmlStructuredData.getForHtml(filePath, this.configBuild.html.structured_selector); // 構造データ
 
 				const pageUrl = new PageUrl({
 					root: this.configCommon.static.root,
@@ -47,25 +35,27 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 					extensions: this.configCommon.static.extensions,
 				});
 
-				const publicFilePath = filePath.replaceAll(new RegExp(`^${this.configBuild.html.directory}`, 'g'), this.configCommon.static.root);
-				const urlPath = pageUrl.getUrl(publicFilePath);
+				const publicFileParse = path.parse(filePath.replace(new RegExp(`^${this.configBuild.html.directory}`), this.configCommon.static.root));
+				const publicFilePath = `${publicFileParse.dir}/${publicFileParse.name}.html`;
+
+				this.logger.debug(publicFilePath);
 
 				return {
-					path: urlPath,
-					updated_at: modified,
+					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
+					modified_at: structuredData.dateModified,
 				};
 			})
 		);
 
 		entries.sort((a, b) => {
-			const aDate = a.updated_at?.unix() ?? 0;
-			const bDate = b.updated_at?.unix() ?? 0;
+			const aDate = a.modified_at?.unix() ?? 0;
+			const bDate = b.modified_at?.unix() ?? 0;
 			if (aDate !== bDate) {
 				return bDate - aDate;
 			}
 
-			const aPath = a.path;
-			const bPath = b.path;
+			const aPath = a.pagePathAbsoluteUrl;
+			const bPath = b.pagePathAbsoluteUrl;
 			if (aPath < bPath) {
 				return -1;
 			} else if (aPath > bPath) {
