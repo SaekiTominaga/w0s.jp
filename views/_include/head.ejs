@@ -1,13 +1,11 @@
 <title><%= structuredData.title %></title>
 
+<%_ if (structuredData.description !== undefined) { _%><meta name="description" content="<%= structuredData.description %>" /><%_ } _%>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<%_ if (structuredData.image !== undefined) { _%>
+
+<%_ if (structuredData.type === undefined || structuredData.type !== 'website') { _%><%_ if (structuredData.image !== undefined) { _%>
 <meta property="og:title" content="<%= structuredData.title %>" />
-<%_ if (pagePathAbsoluteUrl === '/') { _%>
-<meta property="og:type" content="website" />
-<%_ } else { _%>
-<meta property="og:type" content="article" />
-<%_ } _%>
+<meta property="og:type" content="<%= structuredData.type ?? 'article' %>" />
 <meta property="og:image" content="<%= structuredData.image %>" />
 <meta property="og:url" content="https://w0s.jp<%= pagePathAbsoluteUrl %>" />
 <%_ if (structuredData.description !== undefined) { _%>
@@ -23,7 +21,7 @@
 <meta name="twitter:title" content="<%= structuredData.title %>" />
 <%_ if (structuredData.description !== undefined) { _%>
 <meta name="twitter:description" content="<%= structuredData.description %>" />
-<%_ } _%><%_ } _%>
+<%_ } _%><%_ } _%><%_ } _%>
 
 <link rel="stylesheet" href="/assets/style/w0s.css" />
 <link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />

@@ -9,7 +9,20 @@ interface StructuredDataUrl {
 }
 
 interface StructuredData {
-	readonly '@type'?: string; // 現状は使用していない
+	readonly type?: 'website' | 'article' /* default */ | 'profile'; // OGP: music, video, article, book, profile, website <https://ogp.me/#types>
+	readonly 'schema-type'?:
+		| 'WebPage' /* default */
+		| 'AboutPage'
+		| 'CheckoutPage'
+		| 'CollectionPage'
+		| 'ContactPage'
+		| 'FAQPage'
+		| 'ItemPage'
+		| 'MedicalWebPage'
+		| 'ProfilePage'
+		| 'QAPage'
+		| 'RealEstateListing'
+		| 'SearchResultsPage'; // https://schema.org/docs/full.html
 	readonly title: string;
 	readonly headline?: string;
 	readonly subHeadline?: string;
@@ -22,17 +35,17 @@ interface StructuredData {
 
 interface SchemaOrgBreadcrumbListItem {
 	readonly '@context'?: string;
-	readonly '@type': string;
+	readonly '@type': 'ListItem';
 	readonly position: number;
 	readonly name: string;
 	readonly item?: string;
-} // https://schema.org/ListItem; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=ja#list-item
+} // https://schema.org/ListItem; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#list-item
 
 interface SchemaOrgBreadcrumbList {
 	readonly '@context'?: string;
-	readonly '@type': string;
+	readonly '@type': 'BreadcrumbList';
 	readonly itemListElement: SchemaOrgBreadcrumbListItem[];
-} // https://schema.org/BreadcrumbList; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=ja#breadcrumb-list
+} // https://schema.org/BreadcrumbList; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#breadcrumb-list
 
 /**
  * HTML
@@ -98,32 +111,55 @@ export default class HtmlStructuredData {
 	 *
 	 * @returns {object} JSON-LD データ
 	 */
-	static getJsonLd(structuredData: StructuredData): SchemaOrgBreadcrumbList | undefined {
-		if (structuredData.breadcrumb === undefined) {
+	static getJsonLd(structuredData: StructuredData): object | undefined {
+		if (structuredData.breadcrumb === undefined && structuredData.description === undefined) {
+			/* パンくずも description もないページは JSON-LD を出力する意味合いが薄い */
 			return undefined;
 		}
 
-		const jsonLdBreadcrumbItemList: SchemaOrgBreadcrumbListItem[] = structuredData.breadcrumb.map((item, index) => {
-			const listItem = {
+		/* パンくず */
+		let breadcrumbList: SchemaOrgBreadcrumbList | undefined;
+		if (structuredData.breadcrumb !== undefined) {
+			const breadcrumbItemList = structuredData.breadcrumb.map((item, index) => {
+				const listItem: SchemaOrgBreadcrumbListItem = {
+					'@type': 'ListItem',
+					position: index + 1,
+					name: item.name,
+					item: `https://w0s.jp${item.path}`, // 絶対 URL 化
+				};
+				return listItem;
+			});
+			breadcrumbItemList.push({
 				'@type': 'ListItem',
-				position: index + 1,
-				name: item.name,
-				item: `https://w0s.jp${item.path}`, // 絶対 URL 化
+				position: breadcrumbItemList.length + 1,
+				name: structuredData.title,
+			}); // 最後に現在ページを追加
+
+			breadcrumbList = {
+				'@context': 'https://schema.org/',
+				'@type': 'BreadcrumbList',
+				itemListElement: breadcrumbItemList,
 			};
-			return listItem;
-		});
-		jsonLdBreadcrumbItemList.push({
-			'@type': 'ListItem',
-			position: jsonLdBreadcrumbItemList.length + 1,
-			name: structuredData.title,
-		}); // 最後に現在ページを追加
+		}
 
-		const jsonLd: SchemaOrgBreadcrumbList = {
-			'@context': 'https://schema.org/',
-			'@type': 'BreadcrumbList',
-			itemListElement: jsonLdBreadcrumbItemList,
-		};
+		const webPage: Map<string, string | string[] | object> = new Map([
+			['@context', 'https://schema.org/'],
+			['@type', structuredData['schema-type'] ?? 'WebPage'],
+		]);
+		if (breadcrumbList !== undefined) {
+			webPage.set('breadcrumb', breadcrumbList);
+		}
+		if (structuredData.dateModified !== undefined) {
+			webPage.set('dateModified', dayjs(structuredData.dateModified).format('YYYY-MM-DD'));
+		}
+		webPage.set('headline', structuredData.title);
+		if (structuredData.description !== undefined) {
+			webPage.set('description', structuredData.description);
+		}
+		if (structuredData.image !== undefined) {
+			webPage.set('image', structuredData.image);
+		}
 
-		return jsonLd;
+		return Object.fromEntries(webPage);
 	}
 }
