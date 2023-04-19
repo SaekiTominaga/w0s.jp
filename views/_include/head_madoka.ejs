@@ -16,7 +16,9 @@
 
 <title><%= structuredData.title %></title>
 
-<%_ if (structuredData.description !== undefined) { _%><meta name="description" content="<%= structuredData.description %>" /><%_ } _%> <%_ if (structuredData.type === undefined || structuredData.type !== 'website') { _%> <%_ if (structuredData.image !== undefined) { _%>
+<%_ if (structuredData.description !== undefined) { _%>
+<meta name="description" content="<%= structuredData.description %>" />
+<%_ } _%> <%_ if (structuredData.type === undefined || structuredData.type !== 'website') { _%> <%_ if (structuredData.image !== undefined) { _%>
 <meta property="og:title" content="<%= structuredData.title %>" />
 <meta property="og:type" content="<%= structuredData.type ?? 'article' %>" />
 <meta property="og:image" content="<%= structuredData.image %>" />
