@@ -24,8 +24,8 @@ interface StructuredData {
 		| 'RealEstateListing'
 		| 'SearchResultsPage'; // https://schema.org/docs/full.html
 	readonly title: string;
-	readonly headline?: string;
-	readonly subHeadline?: string;
+	readonly heading?: string;
+	readonly subHeading?: string;
 	dateModified?: import('dayjs').Dayjs;
 	readonly description?: string;
 	readonly image?: string;
