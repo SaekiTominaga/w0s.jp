@@ -1,5 +1,3 @@
-<title><%= structuredData.title %></title>
-
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <link rel="stylesheet" href="/assets/style/admin.css" />
@@ -9,6 +7,8 @@
 
 <script src="/assets/script/trusted-types.js"></script>
 <script src="/assets/script/w0s.mjs" type="module"></script>
-<%_ if (typeof moduleScripts !== 'undefined') { _%><%_ for (const fileName of moduleScripts) { _%>
+<%_ if (typeof moduleScripts !== 'undefined') { _%> <%_ for (const fileName of moduleScripts) { _%>
 <script src="/assets/script/<%= fileName %>" type="module"></script>
-<%_ } _%><%_ } _%>
+<%_ } _%> <%_ } _%>
+
+<title><%= structuredData.title %></title>
