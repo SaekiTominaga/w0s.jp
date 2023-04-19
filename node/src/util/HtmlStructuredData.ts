@@ -136,7 +136,6 @@ export default class HtmlStructuredData {
 			}); // 最後に現在ページを追加
 
 			breadcrumbList = {
-				'@context': 'https://schema.org/',
 				'@type': 'BreadcrumbList',
 				itemListElement: breadcrumbItemList,
 			};
