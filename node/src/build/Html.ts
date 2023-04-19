@@ -79,7 +79,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 
 			/* OGP */
 			if (document.querySelector('meta[property^="og:"]') !== null) {
-				document.documentElement.setAttribute('prefix', 'og: http://ogp.me/ns#');
+				document.documentElement.setAttribute('prefix', 'og: https://ogp.me/ns#');
 			}
 
 			const { views } = this.configBuild.html;
