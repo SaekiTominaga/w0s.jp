@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import PageUrl from '../../dist/util/PageUrl.js';
 
-const pageUrl = new PageUrl({ root: ['public'], extensions: ['html'], indexes: ['index.html'] });
+const pageUrl = new PageUrl({ root: 'public', extensions: ['html'], indexes: ['index.html'] });
 
 describe('getUrl()', () => {
 	test('index page', () => {
@@ -25,10 +25,14 @@ describe('getUrl()', () => {
 		expect(pageUrl.getUrl('./public/path/to/foo.svg')).toBe('/path/to/foo.svg');
 	});
 
+	test('Windows path separator', () => {
+		expect(pageUrl.getUrl('.\\public\\path\\to\\foo.html')).toBe('/path/to/foo');
+	});
+
 	test('no root path', () => {
 		expect(() => {
 			pageUrl.getUrl('path/to/foo.svg');
-		}).toThrow('XXX');
+		}).toThrow('Argument `filePath` must be under the root path.');
 	});
 });
 

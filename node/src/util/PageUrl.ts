@@ -8,8 +8,6 @@ interface Options {
 }
 
 export default class PageUrl {
-	readonly #urlSeparator = '/';
-
 	readonly #root: string;
 
 	readonly #extensions: string[] | undefined;
@@ -33,27 +31,26 @@ export default class PageUrl {
 	 * @returns {string} レスポンス URL のパス（ルート相対パス）
 	 */
 	getUrl(filePath: string): string {
-		const filePathNormalize = path.normalize(filePath);
+		const filePathNormalize = path.normalize(filePath).replaceAll(path.sep, '/');
 
-		if (!filePathNormalize.startsWith(`${this.#root}${path.sep}`)) {
-			throw new Error('XXX');
+		if (!filePathNormalize.startsWith(`${this.#root}/`)) {
+			throw new Error('Argument `filePath` must be under the root path.');
 		}
 
 		const parsed = path.parse(filePathNormalize);
-
-		const urlBaseDirectory = parsed.dir.substring(`${this.#root}`.length);
+		const urlBaseDirectory = parsed.dir.substring(this.#root.length);
 
 		if (this.#indexes?.includes(parsed.base)) {
 			/* インデックスファイルはファイル名を省略する */
-			return this.#unifyUrlSeparator(`${urlBaseDirectory}${this.#urlSeparator}`);
+			return `${urlBaseDirectory}/`;
 		}
 
 		if (this.#extensions?.includes(parsed.ext)) {
 			/* 指定された拡張子を除去する */
-			return this.#unifyUrlSeparator(`${urlBaseDirectory}${this.#urlSeparator}${parsed.name}`);
+			return `${urlBaseDirectory}/${parsed.name}`;
 		}
 
-		return this.#unifyUrlSeparator(`${urlBaseDirectory}${this.#urlSeparator}${parsed.name}${parsed.ext}`);
+		return `${urlBaseDirectory}/${parsed.name}${parsed.ext}`;
 	}
 
 	/**
@@ -64,7 +61,7 @@ export default class PageUrl {
 	 * @returns {string} 実ファイルパス
 	 */
 	getFilePath(requestPath: string): string | undefined {
-		if (!requestPath.startsWith(this.#urlSeparator)) {
+		if (!requestPath.startsWith('/')) {
 			throw new Error('The path must begin with a slash.');
 		}
 
@@ -73,34 +70,19 @@ export default class PageUrl {
 			/* ディレクトリトップ（e.g. /foo/ ） */
 			const fileName = this.#indexes?.find((name) => fs.existsSync(`${this.#root}${path.sep}${requestPath}${name}`));
 			if (fileName !== undefined) {
-				pagePath = `${this.#urlSeparator}${this.#root}${requestPath}${fileName}`;
+				pagePath = `/${this.#root}${requestPath}${fileName}`;
 			}
 		} else if (path.extname(requestPath) === '') {
 			/* 拡張子のない URL（e.g. /foo ） */
 			const extension = this.#extensions?.find((ext) => fs.existsSync(`${this.#root}${path.sep}${requestPath}${ext}`));
 			if (extension !== undefined) {
-				pagePath = `${this.#urlSeparator}${this.#root}${requestPath}${extension}`;
+				pagePath = `/${this.#root}${requestPath}${extension}`;
 			}
 		} else if (fs.existsSync(`${this.#root}${path.sep}${requestPath}`)) {
 			/* 拡張子のある URL（e.g. /foo.txt ） */
-			pagePath = `${this.#urlSeparator}${this.#root}${requestPath}`;
+			pagePath = `/${this.#root}${requestPath}`;
 		}
 
 		return pagePath;
-	}
-
-	/**
-	 * URL 用にパスの区切り文字を統一する
-	 *
-	 * @param {string} urlPath - ファイルパス (e.g. \path\to\foo)
-	 *
-	 * @returns {string} URL 用パス (e.g. /path/to/foo)
-	 */
-	#unifyUrlSeparator(urlPath: string): string {
-		if (path.sep !== this.#urlSeparator) {
-			return urlPath.replaceAll(path.sep, this.#urlSeparator);
-		}
-
-		return urlPath;
 	}
 }

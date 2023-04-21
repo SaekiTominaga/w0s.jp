@@ -1,54 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<title>問い合わせ（完了）</title>
-
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-		<link rel="stylesheet" href="/assets/style/w0s.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head') %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header') -%>
+			<%- include('./_include/header') -%>
 
 			<div id="content" class="l-content -nosidebar">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p><a href="/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1>問い合わせ</h1>
-					</div>
-
+				<%- include('./_include/content_header') %>
+				<main class="l-content__main">
 					<ol class="p-step">
 						<li><span class="p-step__text">入力</span></li>
 						<li><span class="p-step__text">確認</span></li>
 						<li><em class="p-step__text -current">完了</em></li>
 					</ol>
-				</div>
-				<main class="l-content__main">
+
 					<div class="p-text">
 						<p>問い合わせを受け付けました。</p>
 
-						<%_ if (page.query.referrer === null || page.query.referrer === '') { _%>
+						<%_ if (requestQuery.referrer === null || requestQuery.referrer === '') { _%>
 						<p><a href="/" class="c-link">トップページへ戻る</a></p>
 						<%_ } else { _%>
-						<p><a href="<%= page.query.referrer %>" class="c-link">元のページへ戻る</a></p>
+						<p><a href="<%= requestQuery.referrer %>" class="c-link">元のページへ戻る</a></p>
 						<%_ } _%>
 					</div>
 				</main>
+				<%- include('./_include/content_footer', { contact: false }) %>
 			</div>
 
-			<%- include('./_include/_footer') -%>
+			<%- include('./_include/footer') -%>
 		</div>
 	</body>
 </html>

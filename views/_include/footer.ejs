@@ -3,7 +3,7 @@
 		<ul class="p-footer-nav">
 			<%_ for (const [path, title] of new Map([ ['/info', '制作者'], ['/privacy', 'プライバシーポリシー'], ['/technology', '当サイトの Web 技術'], ['/contact', '問い合わせ'], ])) { _%>
 			<li>
-				<%_ if (page.path !== path) { _%>
+				<%_ if (pagePathAbsoluteUrl !== path) { _%>
 				<a href="<%= path %>" class="c-link"><%= title %></a>
 				<%_ } else { _%>
 				<a aria-current="page" class="c-link"><%= title %></a>
@@ -13,7 +13,7 @@
 		</ul>
 	</div>
 
-	<%_ if (!['/contact'].includes(page.path) && !page.path.startsWith('/admin/')) { _%>
+	<%_ if (!['/contact'].includes(pagePathAbsoluteUrl) && !pagePathAbsoluteUrl.startsWith('/admin/')) { _%>
 	<div class="l-footer__ads">
 		<section class="p-footer-ads" aria-label="広告">
 			<ins class="adsbygoogle js-ads-google" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3297715785193216" data-ad-slot="9399879773"></ins>

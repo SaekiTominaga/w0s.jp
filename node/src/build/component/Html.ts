@@ -86,16 +86,28 @@ export default class Html {
 	}
 
 	/**
+	 * Get EJS file path
+	 *
+	 * @param {string} fileName - EJS file name
+	 *
+	 * @returns {string} - EJS file path
+	 */
+	protected getEjsPath(fileName?: string): string {
+		const fixFileName = fileName === undefined ? `${decamelize(this.constructor.name.replace(/^Html/, ''), { separator: '-' })}` : fileName; // HtmlFooBar.ts → foo-bar
+
+		return `${this.views}/${fixFileName}.ejs`;
+	}
+
+	/**
 	 * HTML rendering using EJS file
 	 *
 	 * @param {object} data - EJS data
+	 * @param {string} fileName - EJS file name
 	 *
 	 * @returns {string} - HTML
 	 */
-	protected async renderEjsFile(data?: ejs.Data): Promise<string> {
-		const name = `${decamelize(this.constructor.name.replace(/^Html/, ''))}`; // HtmlFooBar.ts → foo-bar
-
-		const html = await ejs.renderFile(`${this.views}/_${name}.ejs`, data);
+	protected async renderEjsFile(data: ejs.Data, fileName?: string): Promise<string> {
+		const html = (await ejs.renderFile(this.getEjsPath(fileName), data)).trim();
 
 		return html;
 	}

@@ -1,88 +1,49 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>東急目黒線　下り普通の自動放送（新3000系、2020年）</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "自動放送　東急目黒線　下り普通（新3000系、2020年）",
+				"heading": "目黒線　下り普通",
+				"subHeading": "新3000系、2020年",
+				"dateModified": "2020-02-08",
+				"breadcrumb": [
+					{ "path": "/tokyu/", "name": "ホーム" },
+					{ "path": "/tokyu/an/", "name": "自動放送" }
+				],
+				"localNav": [
+					{ "path": "/tokyu/an/meguro_up_local_2006", "name": "上り 普通（2006年）" },
+					{ "path": "/tokyu/an/meguro_up_local_2009", "name": "上り 普通（2009年）" },
+					{ "path": "/tokyu/an/meguro_up_local_2020", "name": "上り 普通（2020年）" },
+					{ "path": "/tokyu/an/meguro_up_exp_2006", "name": "上り 急行（2006年）" },
+					{ "path": "/tokyu/an/meguro_up_exp_2008", "name": "上り 急行（2008年）" },
+					{ "path": "/tokyu/an/meguro_up_exp_2020", "name": "上り 急行（2020年）" },
+					{ "path": "/tokyu/an/meguro_down_local_2006", "name": "下り 普通（2006年）" },
+					{ "path": "/tokyu/an/meguro_down_local_2009", "name": "下り 普通（2009年）" },
+					{ "path": "/tokyu/an/meguro_down_local_2020", "name": "下り 普通（2020年）" },
+					{ "path": "/tokyu/an/meguro_down_exp_2006", "name": "下り 急行（2006年）" },
+					{ "path": "/tokyu/an/meguro_down_exp_2008", "name": "下り 急行（2008年）" },
+					{ "path": "/tokyu/an/meguro_down_exp_2020", "name": "下り 急行（2020年）" }
+				]
+			}
+		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="railway" />
-		<meta name="w0s:amazon" content="railway" />
-		<%- include('./_include/_head_ogp_tokyu') %>
-
-		<link rel="stylesheet" href="/assets/style/tokyu.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head_tokyu') %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header_tokyu') %>
+			<%- include('./_include/header_tokyu') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/tokyu/an/">東急電車の自動放送</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">目黒線　下り普通<span class="p-title__sub-hdg">（新3000系、2020年）</span></h1>
-					</div>
-
-					<nav class="p-local-nav htmlbuild-localnav">
-						<ul class="p-local-nav__list">
-							<li>
-								<a href="meguro_up_local_2006" class="c-link">上り 普通<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_local_2009" class="c-link">上り 普通<small>（2009年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_local_2020" class="c-link">上り 普通<small>（2020年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_exp_2006" class="c-link">上り 急行<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_exp_2008" class="c-link">上り 急行<small>（2008年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_exp_2020" class="c-link">上り 急行<small>（2020年）</small></a>
-							</li>
-						</ul>
-						<ul class="p-local-nav__list">
-							<li>
-								<a href="meguro_down_local_2006" class="c-link">下り 普通<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_local_2009" class="c-link">下り 普通<small>（2009年）</small></a>
-							</li>
-							<li>
-								<a aria-current="page" class="c-link">下り 普通<small>（2020年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_exp_2006" class="c-link">下り 急行<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_exp_2008" class="c-link">下り 急行<small>（2008年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_exp_2020" class="c-link">下り 急行<small>（2020年）</small></a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+				<%- include('./_include/content_header', { toc: false }) %>
 				<main class="l-content__main">
-					<div class="p-tokyu-announce">
-						<div class="p-tokyu-announce__header">
-							<p class="p-tokyu-announce__train"><span class="c-tokyu-train -local">普通ワンマン　日吉</span>行</p>
-							<p class="p-tokyu-announce__period">2018年頃から</p>
+					<div class="l-tokyu-announce">
+						<div class="l-tokyu-announce__header">
+							<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　日吉</span>行</p>
+							<p class="p-tokyu-announce-period">2018年頃から</p>
 						</div>
-						<div class="p-tokyu-announce__main">
-							<div class="p-tokyu-announce__station">
+						<div class="l-tokyu-announce__main">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>目黒発車</h2>
 									<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は大岡山、田園調布方面、各駅停車日吉行きです。この電車は武蔵小山で急行電車の待ち合わせをいたします。</p>
@@ -95,7 +56,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>不動前発車</h2>
 									<p>次は武蔵小山です。出口は右側です。この電車は武蔵小山で急行電車の待ち合わせをいたします。</p>
@@ -107,7 +68,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>武蔵小山到着後</h2>
 									<p>急行電車の待ち合わせをいたします。急行電車の停車駅は、大岡山、田園調布、多摩川、武蔵小杉です。発車までしばらくお待ちください。</p>
@@ -124,7 +85,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>西小山発車</h2>
 									<p>次は洗足です。お降りの際は、足元にご注意ください。出口は左側です。</p>
@@ -132,7 +93,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>洗足発車</h2>
 									<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車サイン音が鳴り終わりましたら、ドアが閉まりますので、無理なご乗車はお止めください。</span></p>
@@ -144,7 +105,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>大岡山発車</h2>
 									<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は各駅停車日吉行きです。</p>
@@ -157,7 +118,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>奥沢〜田園調布走行中</h2>
 									<p>次は田園調布です。<span class="c-tokyu-announce -change">東横線中目黒、渋谷方面はお乗り換えです。</span></p>
@@ -169,7 +130,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>田園調布発車</h2>
 									<p>次は多摩川です。<span class="c-tokyu-announce -change">東急多摩川線はお乗り換えです。</span>お降りの際は、足元にご注意ください。</p>
@@ -177,7 +138,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>多摩川発車</h2>
 									<p>次は新丸子です。</p>
@@ -185,7 +146,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>新丸子発車</h2>
 									<p>次は武蔵小杉です。<span class="c-tokyu-announce -change">JR線はお乗り換えです。</span></p>
@@ -193,7 +154,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>武蔵小杉発車</h2>
 									<p>次は元住吉です。</p>
@@ -201,7 +162,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>元住吉発車</h2>
 									<p>次は日吉、この電車の終点です。<span class="c-tokyu-announce -change">東横線、横浜市営地下鉄はお乗り換えです。</span>出口は左側です。本日も東急目黒線をご利用くださいまして、ありがとうございました。</p>
@@ -212,15 +173,15 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>日吉到着後</h2>
 									<p>ご乗車ありがとうございました。日吉、この電車の終点です。お忘れ物無さいませんように、ご注意ください。この電車は車庫に入ります。ご乗車にはなれませんので、ご注意ください。</p>
 								</section>
 							</div>
 						</div>
-						<div class="p-tokyu-announce__footer">
-							<dl class="p-tokyu-announce__data">
+						<div class="l-tokyu-announce__footer">
+							<dl class="p-tokyu-announce-data">
 								<div>
 									<dt>収録日</dt>
 									<dd><span class="htmlbuild-datetime">2020年2月8日</span></dd>
@@ -233,10 +194,10 @@
 						</div>
 					</div>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/sidebar') %><%- include('./_include/footer') %>
 		</div>
 	</body>
 </html>

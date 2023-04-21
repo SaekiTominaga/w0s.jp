@@ -6,10 +6,11 @@ import { Result as ValidationResult, ValidationError } from 'express-validator';
 import ContactValidator from '../validator/ContactValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import HttpResponse from '../util/HttpResponse.js';
+import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../configure/type/contact.js';
 import { W0SJp as ConfigureCommon } from '../../configure/type/common.js';
-import RequestUtil from '../util/RequestUtil.js';
 
 /**
  * 問い合わせ・送信
@@ -63,14 +64,15 @@ export default class ContactSendController extends Controller implements Control
 			}
 		}
 
+		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.input}`); // 構造データ
+
 		/* 入力画面レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.input, {
-			page: {
-				path: req.path,
-				query: requestQuery,
-			},
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			reply: this.#config.reply,
 		});
@@ -84,9 +86,7 @@ export default class ContactSendController extends Controller implements Control
 	 */
 	private async sendMail(req: Request, requestQuery: ContactRequest.Input): Promise<void> {
 		const html = await ejs.renderFile(`${this.#configCommon.views}/${this.#config.view.mail}`, {
-			page: {
-				query: requestQuery,
-			},
+			requestQuery: requestQuery,
 			reply: this.#config.reply,
 			ip: req.ip,
 			ua: req.get('User-Agent'),

@@ -1,36 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>赤松健セリフジェネレーター</title>
-
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="kumeta" />
-		<meta name="w0s:amazon" content="kumeta" />
-
-		<link rel="stylesheet" href="/assets/style/kumeta.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head_kumeta') %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header_kumeta') -%>
+			<%- include('./_include/header_kumeta') -%>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/kumeta/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">赤松健セリフジェネレーター</h1>
-					</div>
-				</div>
+				<%- include('./_include/content_header') %>
 				<main class="l-content__main">
 					<div class="p-box">
 						<ul class="p-list">
@@ -38,7 +16,6 @@
 							<li>生成された画像をさらに加工しても構いません。</li>
 							<li><strong>誹謗中傷やそれに類する行為は禁止です。</strong><small>（画像素材配布元でも誹謗中傷用途での使用は禁止されています）</small></li>
 							<li>赤松先生の自画像は<a href="https://kenakamatsu.jp/sns#downloads">赤松健とたまむす！素材ダウンロード</a><b class="c-domain">(kenakamatsu.jp)</b>で配布されているものを使用しています。</li>
-							<li>バグ報告、機能提案などは <a href="https://github.com/SaekiTominaga/w0s.jp/issues/new">Github Issue</a> にお寄せください。</li>
 						</ul>
 
 						<figure class="c-fit">
@@ -78,7 +55,7 @@
 											<div class="c-form-controls js-validation" role="radiogroup" aria-labelledby="label-reply" aria-errormessage="input-validate-icon">
 												<%_ for (const [fileName, caption] of icons) { _%>
 												<label class="c-label -image">
-													<%_ if (page.query.icon === fileName) { _%>
+													<%_ if (requestQuery.icon === fileName) { _%>
 													<input type="radio" name="icon" value="<%= fileName %>" required="" checked="" />
 													<%_ } else { _%>
 													<input type="radio" name="icon" value="<%= fileName %>" required="" />
@@ -96,16 +73,16 @@
 										<legend class="p-form-grid__legend">セリフ</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<label class="c-label">右側1列目 <input class="c-input" name="text_right1" value="<%= page.query.text_right1 %>" maxlength="20" /></label>
+												<label class="c-label">右側1列目 <input class="c-input" name="text_right1" value="<%= requestQuery.text_right1 %>" maxlength="20" /></label>
 											</div>
 											<div class="c-form-controls">
-												<label class="c-label">右側2列目 <input class="c-input" name="text_right2" value="<%= page.query.text_right2 %>" maxlength="20" /></label>
+												<label class="c-label">右側2列目 <input class="c-input" name="text_right2" value="<%= requestQuery.text_right2 %>" maxlength="20" /></label>
 											</div>
 											<div class="c-form-controls">
-												<label class="c-label">左側1列目 <input class="c-input" name="text_left1" value="<%= page.query.text_left1 %>" maxlength="20" /></label>
+												<label class="c-label">左側1列目 <input class="c-input" name="text_left1" value="<%= requestQuery.text_left1 %>" maxlength="20" /></label>
 											</div>
 											<div class="c-form-controls">
-												<label class="c-label">左側2列目 <input class="c-input" name="text_left2" value="<%= page.query.text_left2 %>" maxlength="20" /></label>
+												<label class="c-label">左側2列目 <input class="c-input" name="text_left2" value="<%= requestQuery.text_left2 %>" maxlength="20" /></label>
 											</div>
 											<p class="c-fc-note">それぞれ最大20文字まで入力できますが、全角文字は10文字を超えると末尾が切れます。</p>
 										</div>
@@ -118,7 +95,7 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<input type="color" name="color" value="<%= page.query.color ?? '#000000' %>" id="input-color" />
+												<input type="color" name="color" value="<%= requestQuery.color ?? '#000000' %>" id="input-color" />
 											</div>
 										</div>
 									</fieldset>
@@ -130,7 +107,7 @@
 										</legend>
 										<div class="p-form-grid__contents">
 											<div class="c-form-controls">
-												<input type="color" name="bgcolor" value="<%= page.query.bgcolor ?? '#dde0ff' %>" id="input-bgcolor" />
+												<input type="color" name="bgcolor" value="<%= requestQuery.bgcolor ?? '#dde0ff' %>" id="input-bgcolor" />
 											</div>
 										</div>
 									</fieldset>
@@ -179,9 +156,10 @@
 					</section>
 					<%_ } _%>
 				</main>
+				<%- include('./_include/content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') -%><%- include('./_include/_footer') -%>
+			<%- include('./_include/sidebar') -%><%- include('./_include/footer') -%>
 		</div>
 	</body>
 </html>

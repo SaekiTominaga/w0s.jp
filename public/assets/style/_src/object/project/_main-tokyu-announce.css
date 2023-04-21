@@ -2,96 +2,31 @@
  *   東急電車形態研究・自動放送
  * ============================== */
 
-/* ===== インデックスページの路線別見出し ===== */
-
-.p-section__hdg {
-	.p-section.-hdg-b > & {
-		&.-tokyu-toyoko {
-			--_border-inline-color: var(--tokyu-color-toyoko);
-		}
-
-		&.-tokyu-meguro {
-			--_border-inline-color: var(--tokyu-color-meguro);
-		}
-
-		&.-tokyu-dento {
-			--_border-inline-color: var(--tokyu-color-dento);
-		}
-
-		&.-tokyu-oimachi {
-			--_border-inline-color: var(--tokyu-color-oimachi);
-		}
-
-		&.-tokyu-ikegami {
-			--_border-inline-color: var(--tokyu-color-ikegami);
-		}
-
-		&.-tokyu-tamagawa {
-			--_border-inline-color: var(--tokyu-color-tamagawa);
-		}
-
-		&.-tokyu-kodomo {
-			--_border-inline-color: var(--tokyu-color-kodomo);
-		}
-
-		&.-tokyu-setagaya {
-			--_border-inline-color: var(--tokyu-color-setagaya);
-		}
-
-		&.-tokyu-ttm {
-			--_border-inline-color: var(--tokyu-color-ttm);
-		}
-	}
-}
-
-/* ===== 自動放送 ===== */
-.p-tokyu-announce {
-}
-
-.p-tokyu-announce__header {
-	border: 1px solid var(--color-border-dark);
-	background: var(--color-bg-light);
-	padding: 0.5em min(1.5vw, 15px);
-	font-size: calc(100% / var(--font-ratio-1));
-	line-height: var(--line-height-narrow);
-
-	& > [class^="p-"] {
-		margin-inline: auto;
-		inline-size: fit-content;
-	}
-}
-
-.p-tokyu-announce__main {
-}
-
-.p-tokyu-announce__footer {
-	margin-block-start: 3em;
-
-	& > .p-tokyu-announce__data + * {
-		margin-block-start: 4em;
-	}
-}
-
-/* メタ情報・行先 */
-.p-tokyu-announce__train {
+/* ===== メタ情報・行先 ===== */
+.p-tokyu-announce-train {
 	font-weight: var(--font-weight-bold);
 	font-size: calc(100% * var(--font-ratio-2));
 }
 
-/* メタ情報・車種 */
-.p-tokyu-announce__car {
+/* ===== メタ情報・車種 ===== */
+.p-tokyu-announce-car {
 }
 
-/* メタ情報・期間 */
-.p-tokyu-announce__period {
-}
-
-/* メタ情報・オプション */
-.p-tokyu-announce__option {
+/* ===== メタ情報・補足 ===== */
+.p-tokyu-announce-note {
 	color: var(--color-gray);
+
+	&::before {
+		content: "（";
+	}
+
+	&::after {
+		content: "）";
+	}
 }
 
-.p-tokyu-announce__station {
+/* ===== 駅ごとのまとまり ===== */
+.p-tokyu-announce-station {
 	border-width: 0 1px 1px;
 	border-style: solid;
 	border-color: var(--color-border-dark);
@@ -120,34 +55,33 @@
 	}
 }
 
-/* 備考 */
-.p-tokyu-announce__note {
+/* ===== 直通先の備考 ===== */
+.p-tokyu-announce-through-note {
 	margin-block-start: 1em;
 	text-align: center;
 }
 
-/* 収録データ */
-.p-tokyu-announce__data {
+/* ===== メタ情報・収録データ ===== */
+.p-tokyu-announce-data {
 	display: flex;
 	flex-flow: wrap;
 	justify-content: center;
-	gap: 1em 2em;
-	margin-inline: auto;
+	gap: 0.5em 2em;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-lightorange);
 	padding: 0.5em 15px;
-	inline-size: fit-content;
 	line-height: var(--line-height-narrow);
+
+	& > div {
+		display: flex;
+		flex-flow: wrap;
+	}
 
 	& dt {
 		&::after {
 			margin: 0.25em;
 			content: ":";
 		}
-	}
-
-	& :is(dt, dd) {
-		display: inline-block;
 	}
 }

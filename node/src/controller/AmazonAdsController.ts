@@ -10,6 +10,7 @@ import AmazonAdsDao from '../dao/AmazonAdsDao.js';
 import AmazonAdsValidator from '../validator/AmazonAdsValidator.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import HttpResponse from '../util/HttpResponse.js';
 import PaapiUtil from '../util/Paapi.js';
 import RequestUtil from '../util/RequestUtil.js';
@@ -169,14 +170,15 @@ export default class AmazonAdsController extends Controller implements Controlle
 			dpListView.set(categoryName, dpListOfCategoryView);
 		}
 
+		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
 		res.render(this.#config.view.init, {
-			page: {
-				path: req.path,
-				query: requestQuery,
-			},
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			categoryMaster: categoryMaster, // カテゴリー情報
 			dpList: dpListView, // 商品情報

@@ -1,37 +1,24 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/ProfilePage">
+<html lang="ja">
 	<head>
-		<title>制作者</title>
+		<script type="application/json" id="page-structured">
+			{
+				"schema-type": "ProfilePage",
+				"title": "制作者",
+				"dateModified": "2019-08-21",
+				"image": "https://media.w0s.jp/image/info_profile.jpg",
+				"breadcrumb": [{ "path": "/", "name": "ホーム" }]
+			}
+		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<%- include('./_include/_head_ogp') %>
-
-		<link rel="stylesheet" href="/assets/style/w0s.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head') %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header') %>
+			<%- include('./_include/header') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">制作者</h1>
-					</div>
-
-					<htmlbuild-toc></htmlbuild-toc>
-				</div>
+				<%- include('./_include/content_header') %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a htmlbuild-heading-self-link" id="profile">
 						<div class="p-section__hdg">
@@ -118,7 +105,7 @@
 							</li>
 							<li class="c-grid__item">
 								<div class="p-item">
-									<a href="/madoka/dojin/">
+									<a href="/madoka/#%E5%90%8C%E4%BA%BA%E8%AA%8C">
 										<img src="https://media.w0s.jp/thumbimage/madoka/dojin/pictorial11_cover.jpg?type=jpeg;w=160;h=160;quality=60" alt="" width="114" height="160" class="p-item__image htmlbuild-image" />
 										<span class="p-item__title">円環ピクトリアル</span>
 									</a>
@@ -132,10 +119,10 @@
 						</ul>
 					</section>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/sidebar') %><%- include('./_include/footer') %>
 		</div>
 	</body>
 </html>

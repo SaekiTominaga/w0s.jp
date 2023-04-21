@@ -1,88 +1,49 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>東急目黒線　上り急行の自動放送（新3000系、2020年）</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "自動放送　東急目黒線　上り急行（新3000系、2020年）",
+				"heading": "目黒線　上り急行",
+				"subHeading": "新3000系、2020年",
+				"dateModified": "2020-02-08",
+				"breadcrumb": [
+					{ "path": "/tokyu/", "name": "ホーム" },
+					{ "path": "/tokyu/an/", "name": "自動放送" }
+				],
+				"localNav": [
+					{ "path": "/tokyu/an/meguro_up_local_2006", "name": "上り 普通（2006年）" },
+					{ "path": "/tokyu/an/meguro_up_local_2009", "name": "上り 普通（2009年）" },
+					{ "path": "/tokyu/an/meguro_up_local_2020", "name": "上り 普通（2020年）" },
+					{ "path": "/tokyu/an/meguro_up_exp_2006", "name": "上り 急行（2006年）" },
+					{ "path": "/tokyu/an/meguro_up_exp_2008", "name": "上り 急行（2008年）" },
+					{ "path": "/tokyu/an/meguro_up_exp_2020", "name": "上り 急行（2020年）" },
+					{ "path": "/tokyu/an/meguro_down_local_2006", "name": "下り 普通（2006年）" },
+					{ "path": "/tokyu/an/meguro_down_local_2009", "name": "下り 普通（2009年）" },
+					{ "path": "/tokyu/an/meguro_down_local_2020", "name": "下り 普通（2020年）" },
+					{ "path": "/tokyu/an/meguro_down_exp_2006", "name": "下り 急行（2006年）" },
+					{ "path": "/tokyu/an/meguro_down_exp_2008", "name": "下り 急行（2008年）" },
+					{ "path": "/tokyu/an/meguro_down_exp_2020", "name": "下り 急行（2020年）" }
+				]
+			}
+		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="railway" />
-		<meta name="w0s:amazon" content="railway" />
-		<%- include('./_include/_head_ogp_tokyu') %>
-
-		<link rel="stylesheet" href="/assets/style/tokyu.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head_tokyu') %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header_tokyu') %>
+			<%- include('./_include/header_tokyu') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a href="/tokyu/an/">東急電車の自動放送</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">目黒線　上り急行<span class="p-title__sub-hdg">（新3000系、2020年）</span></h1>
-					</div>
-
-					<nav class="p-local-nav htmlbuild-localnav">
-						<ul class="p-local-nav__list">
-							<li>
-								<a href="meguro_up_local_2006" class="c-link">上り 普通<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_local_2009" class="c-link">上り 普通<small>（2009年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_local_2020" class="c-link">上り 普通<small>（2020年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_exp_2006" class="c-link">上り 急行<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_up_exp_2008" class="c-link">上り 急行<small>（2008年）</small></a>
-							</li>
-							<li>
-								<a aria-current="page" class="c-link">上り 急行<small>（2020年）</small></a>
-							</li>
-						</ul>
-						<ul class="p-local-nav__list">
-							<li>
-								<a href="meguro_down_local_2006" class="c-link">下り 普通<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_local_2009" class="c-link">下り 普通<small>（2009年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_local_2020" class="c-link">下り 普通<small>（2020年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_exp_2006" class="c-link">下り 急行<small>（2006年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_exp_2008" class="c-link">下り 急行<small>（2008年）</small></a>
-							</li>
-							<li>
-								<a href="meguro_down_exp_2020" class="c-link">下り 急行<small>（2020年）</small></a>
-							</li>
-						</ul>
-					</nav>
-				</div>
+				<%- include('./_include/content_header', { toc: false }) %>
 				<main class="l-content__main">
-					<div class="p-tokyu-announce">
-						<div class="p-tokyu-announce__header">
-							<p class="p-tokyu-announce__train"><span class="c-tokyu-train -exp">急行ワンマン　浦和美園</span>行</p>
-							<p class="p-tokyu-announce__period">2018年頃から</p>
+					<div class="l-tokyu-announce">
+						<div class="l-tokyu-announce__header">
+							<p class="p-tokyu-announce-train"><span class="c-tokyu-train -exp">急行ワンマン　浦和美園</span>行</p>
+							<p class="p-tokyu-announce-period">2018年頃から</p>
 						</div>
-						<div class="p-tokyu-announce__main">
-							<div class="p-tokyu-announce__station">
+						<div class="l-tokyu-announce__main">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>日吉停車中</h2>
 									<p>ご案内いたします。この電車は目黒方面、南北線、埼玉高速鉄道埼玉スタジアム線直通、急行浦和美園行きです。<span class="c-tokyu-announce -change">三田線ご利用のお客様は、白金高輪駅でお乗り換えください。</span>元住吉には停まりません。停まる駅は、武蔵小杉、多摩川、田園調布、大岡山、武蔵小山、目黒です。目黒から先は、各駅に停車いたします。発車までしばらくお待ちください。</p>
@@ -97,7 +58,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>武蔵小杉発車</h2>
 									<p>この電車は目黒方面、南北線、埼玉高速鉄道埼玉スタジアム線直通、急行浦和美園行きです。<span class="c-tokyu-announce -change">三田線ご利用のお客様は、白金高輪駅でお乗り換えください。</span></p>
@@ -111,7 +72,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>多摩川発車</h2>
 									<p>次は田園調布です。<span class="c-tokyu-announce -change">東横線自由が丘、中目黒、渋谷方面はお乗り換えです。</span>田園調布の次は大岡山に停まります。奥沢には停まりません。</p>
@@ -122,7 +83,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>田園調布発車</h2>
 									<p>次は大岡山です。<span class="c-tokyu-announce -cm">東急病院最寄り駅です。</span><span class="c-tokyu-announce -change">大井町線はお乗り換えです。</span>大岡山の次は武蔵小山に停まります。洗足、西小山には停まりません。出口は右側です。</p>
@@ -134,7 +95,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>大岡山発車</h2>
 									<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は目黒方面、南北線、埼玉高速鉄道埼玉スタジアム線直通、急行浦和美園行きです。目黒から先は、各駅に停車いたします。</p>
@@ -144,7 +105,7 @@
 								</section>
 							</div>
 
-							<div class="p-tokyu-announce__station">
+							<div class="p-tokyu-announce-station">
 								<section>
 									<h2>武蔵小山発車</h2>
 									<p>この電車は目黒方面、南北線、埼玉高速鉄道埼玉スタジアム線直通、急行浦和美園行きです。<span class="c-tokyu-announce -change">三田線ご利用のお客様は、白金高輪駅でお乗り換えください。</span>目黒から先は、各駅に停車いたします。</p>
@@ -161,10 +122,10 @@
 								</section>
 							</div>
 
-							<p class="p-tokyu-announce__note">（地下鉄南北線へ直通）</p>
+							<p class="p-tokyu-announce-through-note">（地下鉄南北線へ直通）</p>
 						</div>
-						<div class="p-tokyu-announce__footer">
-							<dl class="p-tokyu-announce__data">
+						<div class="l-tokyu-announce__footer">
+							<dl class="p-tokyu-announce-data">
 								<div>
 									<dt>収録日</dt>
 									<dd><span class="htmlbuild-datetime">2020年2月8日</span></dd>
@@ -177,10 +138,10 @@
 						</div>
 					</div>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/sidebar') %><%- include('./_include/footer') %>
 		</div>
 	</body>
 </html>

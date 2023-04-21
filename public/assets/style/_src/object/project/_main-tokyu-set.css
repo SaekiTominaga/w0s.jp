@@ -2,27 +2,30 @@
  *   東急電車形態研究・設定器
  * ============================== */
 
-/* ===== 設定器 ===== */
-.p-tokyu-set {
-	inline-size: fit-content;
+/* ===== メタ情報・設置期間 ===== */
+.p-tokyu-set-period {
 }
 
-/* 期間 */
-.p-tokyu-set__period {
-	margin-inline: auto;
-	inline-size: fit-content;
+/* ===== メタ情報・補足 ===== */
+.p-tokyu-set-note {
+	&::before {
+		content: "（";
+	}
+
+	&::after {
+		content: "）";
+	}
 }
 
-.p-tokyu-set__panel {
-	margin-block-start: 1em;
-
-	/* ===== ダイヤル式 ===== */
+/* ===== 設定器パネル ===== */
+.p-tokyu-set-panel {
+	/* ダイヤル式 */
 	&.-dial {
 		background: var(--color-lightyellow);
 		padding: 15px;
 	}
 
-	/* ===== ダイヤル式（8500系） ===== */
+	/* ダイヤル式（8500系） */
 	&.-dial-8500 {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -45,7 +48,7 @@
 		}
 	}
 
-	/* ===== 押ボタン式 ===== */
+	/* 押ボタン式 */
 	&.-push {
 		& td {
 			border: 1px solid var(--color-black);
@@ -55,7 +58,7 @@
 		}
 	}
 
-	/* ===== 押ボタン式（300系） ===== */
+	/* 押ボタン式（300系） */
 	&.-push-300 {
 		& ul {
 			display: flex;
@@ -73,11 +76,11 @@
 		}
 	}
 
-	/* ===== 番号選択式（8090系） ===== */
+	/* 番号選択式（8090系） */
 	&.-num-8090 {
 	}
 
-	/* ===== 番号選択式（長野電鉄8500系） ===== */
+	/* 番号選択式（長野電鉄8500系） */
 	&.-num-ner8500 {
 		& td,
 		& th {
@@ -91,7 +94,7 @@
 	}
 }
 
-.p-tokyu-set__image {
+.p-tokyu-set-panel__image {
 	display: block;
 	max-inline-size: 100%;
 	block-size: auto;
@@ -104,5 +107,30 @@
 
 	& h2 {
 		font-weight: var(--font-weight-bold);
+	}
+}
+
+/* ===== メタ情報・調査データ ===== */
+.p-tokyu-set-data {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+	gap: 0.5em 2em;
+	border: 1px solid var(--color-border-dark);
+	border-radius: var(--border-radius-normal);
+	background: var(--color-white);
+	padding: 0.5em 15px;
+	line-height: var(--line-height-narrow);
+
+	& > div {
+		display: flex;
+		flex-flow: wrap;
+	}
+
+	& dt {
+		&::after {
+			margin: 0.25em;
+			content: ":";
+		}
 	}
 }

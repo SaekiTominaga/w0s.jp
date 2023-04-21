@@ -1,41 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>東急電車よもやま話</title>
+		<script type="application/json" id="page-structured">
+			{
+				"type": "website",
+				"title": "東急電車よもやま話",
+				"heading": "よもやま話",
+				"dateModified": "2018-12-23",
+				"description": "東急電鉄の車両や車両機器に関するよもやま話です。",
+				"breadcrumb": [{ "path": "/tokyu/", "name": "ホーム" }]
+			}
+		</script>
 
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="railway" />
-		<meta name="w0s:amazon" content="railway" />
-		<%- include('./_include/_head_ogp_tokyu') %>
-
-		<link rel="stylesheet" href="/assets/style/tokyu.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head_tokyu') %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header_tokyu') %>
+			<%- include('./_include/header_tokyu') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/tokyu/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">東急電車よもやま話</h1>
-					</div>
-
-					<div class="p-description" itemprop="description">
-						<p>東急電鉄の車両や車両機器に関するよもやま話です。</p>
-					</div>
-				</div>
+				<%- include('./_include/content_header', { toc: false }) %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a htmlbuild-heading-self-link" id="yomoyama">
 						<div class="p-section__hdg">
@@ -47,7 +31,7 @@
 								<div class="p-item">
 									<a href="8637">
 										<img src="https://media.w0s.jp/thumbimage/tokyu/yomoyama/8637/1998_balloon.jpg?type=jpeg;w=180;quality=60" alt="" width="180" height="126" class="p-item__image htmlbuild-image" />
-										<span class="p-item__title">8637Fの装飾移り変わり</span>
+										<span class="p-item__title">8637F の装飾移り変わり</span>
 									</a>
 									<div class="p-item__text">
 										<p>装飾の変遷や編成替えの記録を紹介します。</p>
@@ -58,7 +42,7 @@
 								<div class="p-item">
 									<a href="echizen_mc1101">
 										<img src="https://media.w0s.jp/thumbimage/tokyu/yomoyama/echizen_mc1101/MC1102.jpg?type=jpeg;w=180;quality=60" alt="" width="180" height="126" class="p-item__image htmlbuild-image" />
-										<span class="p-item__title">えちぜん鉄道MC1101形の主制御器（MMC-H-10K）</span>
+										<span class="p-item__title">えちぜん鉄道MC1101形の主制御器<small>（MMC-H-10K 型）</small></span>
 									</a>
 									<div class="p-item__text">
 										<p>えちぜん鉄道MC1101形の主制御器は、元をたどれば東急・旧3000系グループで使われていたものです。</p>
@@ -77,7 +61,7 @@
 								<div class="p-item">
 									<a href="hsc">
 										<img src="https://media.w0s.jp/thumbimage/tokyu/yomoyama/hsc/sakusei.jpg?type=jpeg;w=180;quality=60" alt="" width="180" height="126" class="p-item__image htmlbuild-image" />
-										<span class="p-item__title">HSC電磁直通ブレーキ</span>
+										<span class="p-item__title">HSC 電磁直通ブレーキ</span>
 									</a>
 									<div class="p-item__text">
 										<p>東急では最後のHSCブレーキ搭載車となったデヤ7200、デヤ7290と、弘南鉄道黒石駅で平日朝に行われている増解結作業を紹介します。</p>
@@ -88,7 +72,7 @@
 								<div class="p-item">
 									<a href="ca105">
 										<img src="https://media.w0s.jp/thumbimage/tokyu/yomoyama/ca105/mizuma_7003.jpg?type=jpeg;w=180;quality=60" alt="" width="180" height="126" class="p-item__image htmlbuild-image" />
-										<span class="p-item__title">CA-105型 放送装置</span>
+										<span class="p-item__title">CA-105 型　放送装置</span>
 									</a>
 									<div class="p-item__text">
 										<p>水間鉄道と熊本電気鉄道に残るテープ式の放送装置を紹介します。</p>
@@ -117,10 +101,10 @@
 						</ul>
 					</section>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/sidebar') %><%- include('./_include/footer') %>
 		</div>
 	</body>
 </html>

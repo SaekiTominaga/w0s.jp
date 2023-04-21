@@ -1,55 +1,38 @@
 <!DOCTYPE html>
-<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage">
+<html lang="ja">
 	<head>
-		<title>久米田康治作品の図書、一般雑誌での紹介例</title>
+		<script type="application/json" id="page-structured">
+			{
+				"title": "久米田康治作品の図書、一般雑誌での紹介例",
+				"heading": "メディア紹介 — 図書、一般雑誌",
+				"dateModified": "2023-03-11",
+				"description": "本や雑誌（漫画雑誌を除く）において久米田先生のインタビューや描き下ろしイラストが掲載された事例、また久米田作品が紹介された事例のリストです。",
+				"breadcrumb": [{ "path": "/kumeta/", "name": "ホーム" }],
+				"localNav": [
+					{
+						"path": "/kumeta/library/manga",
+						"name": "漫画雑誌"
+					},
+					{
+						"path": "/kumeta/library/book",
+						"name": "図書、一般雑誌"
+					},
+					{
+						"path": "/kumeta/library/newspaper",
+						"name": "新聞"
+					}
+				]
+			}
+		</script>
 
-		<meta itemprop="dateModified" content="2023-03-11" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="w0s:blog:newly" content="kumeta" />
-		<meta name="w0s:amazon" content="kumeta" />
-		<%- include('./_include/_head_ogp_kumeta') %>
-
-		<link rel="stylesheet" href="/assets/style/kumeta.css" />
-		<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
-		<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
-		<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
-
-		<script src="/assets/script/trusted-types.js"></script>
-		<script src="/assets/script/w0s.mjs" type="module"></script>
-		<script src="/assets/script/library-tag.mjs" type="module"></script>
-		<script src="https://analytics.w0s.jp/matomo/matomo.js" async=""></script>
-		<script src="/assets/script/analytics.js" defer=""></script>
+		<%- include('./_include/head_kumeta', { moduleScripts: ["library-tag.mjs"] }) %>
 	</head>
 	<body>
 		<div class="l-page">
-			<%- include('./_include/_header_kumeta') %>
+			<%- include('./_include/header_kumeta') %>
 
 			<div id="content" class="l-content">
-				<div class="l-content__header">
-					<div class="p-topic-path">
-						<p itemprop="breadcrumb"><a href="/kumeta/">ホーム</a><span class="p-topic-path__separator">&gt;</span><a aria-current="page">現在のページ</a></p>
-					</div>
-
-					<div class="p-title">
-						<h1 itemprop="name">メディア紹介 — 図書、一般雑誌</h1>
-						<%- include('./_include/_contents_header_date') %>
-					</div>
-
-					<nav class="p-local-nav htmlbuild-localnav">
-						<ul class="p-local-nav__list">
-							<li><a href="manga" class="c-link">漫画雑誌</a></li>
-							<li><a aria-current="page" class="c-link">図書、一般雑誌</a></li>
-							<li><a href="newspaper" class="c-link">新聞</a></li>
-						</ul>
-					</nav>
-
-					<div class="p-description" itemprop="description">
-						<p>本や雑誌（漫画雑誌を除く）において久米田先生のインタビューや描き下ろしイラストが掲載された事例、また久米田作品が紹介された事例をまとめました。</p>
-						<p>なお、インタビューに関しては別途<a href="/kumeta/kumeta/interview">インタビュー</a>ページにも掲載しています。</p>
-					</div>
-
-					<htmlbuild-toc></htmlbuild-toc>
-				</div>
+				<%- include('./_include/content_header') %>
 				<main class="l-content__main">
 					<section class="p-section -hdg-a htmlbuild-heading-self-link">
 						<div class="p-section__hdg">
@@ -3570,10 +3553,10 @@
 						</ul>
 					</section>
 				</main>
-				<div class="l-content__footer"><%- include('./_include/_contents_footer_source') %></div>
+				<%- include('./_include/content_footer') %>
 			</div>
 
-			<%- include('./_include/_sidebar') %> <%- include('./_include/_footer') %>
+			<%- include('./_include/sidebar') %><%- include('./_include/footer') %>
 		</div>
 	</body>
 </html>

@@ -22,11 +22,12 @@
 			"required": [
 				"directory",
 				"views",
+				"structured_selector",
+				"main_selector",
 				"book",
 				"newspaper",
 				"section_id",
 				"toc",
-				"localnav",
 				"footnote",
 				"anchor_type",
 				"anchor_host",
@@ -45,6 +46,14 @@
 				"views": {
 					"type": "string",
 					"title": "テンプレートディレクトリ"
+				},
+				"structured_selector": {
+					"type": "string",
+					"title": "構造データ要素のセレクター"
+				},
+				"main_selector": {
+					"type": "string",
+					"title": "メインエリア要素のセレクター"
 				},
 				"book": {
 					"type": "object",
@@ -89,23 +98,6 @@
 					"properties": {
 						"target_element": {
 							"type": "string"
-						},
-						"class": {
-							"type": "string"
-						},
-						"label": {
-							"type": "string"
-						}
-					},
-					"additionalProperties": false
-				},
-				"localnav": {
-					"type": "object",
-					"title": "ローカルナビ複製",
-					"required": ["target_class"],
-					"properties": {
-						"target_class": {
-							"type": "string"
 						}
 					},
 					"additionalProperties": false
@@ -113,52 +105,26 @@
 				"footnote": {
 					"type": "object",
 					"title": "注釈",
-					"required": ["trigger", "footnotes"],
+					"required": ["trigger", "footnote"],
 					"properties": {
 						"trigger": {
 							"type": "object",
-							"required": ["element", "class", "id_prefix", "attributes"],
+							"required": ["element", "id_prefix"],
 							"properties": {
 								"element": {
 									"type": "string"
 								},
-								"class": {
-									"type": "string"
-								},
 								"id_prefix": {
-									"type": "string"
-								},
-								"attributes": {
-									"type": "object",
-									"patternProperties": {
-										".": {
-											"type": "string"
-										}
-									}
-								},
-								"parentheses_open": {
-									"type": "string"
-								},
-								"parentheses_close": {
 									"type": "string"
 								}
 							},
 							"additionalProperties": false
 						},
-						"footnotes": {
+						"footnote": {
 							"type": "object",
-							"required": ["element", "class", "no_class", "text_class", "id_prefix"],
+							"required": ["element", "id_prefix"],
 							"properties": {
 								"element": {
-									"type": "string"
-								},
-								"class": {
-									"type": "string"
-								},
-								"no_class": {
-									"type": "string"
-								},
-								"text_class": {
 									"type": "string"
 								},
 								"id_prefix": {
@@ -173,33 +139,16 @@
 				"anchor_type": {
 					"type": "object",
 					"title": "アイコン",
-					"required": ["target_class", "insert_position", "parentheses", "icon", "icon_size", "icon_class"],
+					"required": ["target_class", "icons"],
 					"properties": {
 						"target_class": {
 							"type": "string"
 						},
-						"insert_position": {
-							"type": "string",
-							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
-						},
-						"parentheses": {
-							"type": "object",
-							"required": ["before", "after"],
-							"properties": {
-								"before": {
-									"type": "string"
-								},
-								"after": {
-									"type": "string"
-								}
-							},
-							"additionalProperties": false
-						},
-						"icon": {
+						"icons": {
 							"type": "array",
 							"items": {
 								"type": "object",
-								"required": ["type", "name", "src"],
+								"required": ["type", "name", "file_name"],
 								"properties": {
 									"type": {
 										"type": "string",
@@ -209,22 +158,15 @@
 										"type": "string",
 										"title": "リソースタイプ名"
 									},
-									"src": {
+									"file_name": {
 										"type": "string",
-										"title": "アイコンパス"
+										"title": "アイコンのファイル名"
 									}
 								},
 								"additionalProperties": false
 							},
 							"uniqueItems": true,
 							"title": "リソースタイプのアイコン情報"
-						},
-						"icon_size": {
-							"type": "integer",
-							"minimum": 0
-						},
-						"icon_class": {
-							"type": "string"
 						}
 					},
 					"additionalProperties": false
@@ -232,39 +174,16 @@
 				"anchor_host": {
 					"type": "object",
 					"title": "アイコン",
-					"required": ["target_class", "insert_position", "parentheses", "element", "class", "icon", "icon_size", "icon_class"],
+					"required": ["target_class"],
 					"properties": {
 						"target_class": {
 							"type": "string"
 						},
-						"insert_position": {
-							"type": "string",
-							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
-						},
-						"parentheses": {
-							"type": "object",
-							"required": ["before", "after"],
-							"properties": {
-								"before": {
-									"type": "string"
-								},
-								"after": {
-									"type": "string"
-								}
-							},
-							"additionalProperties": false
-						},
-						"element": {
-							"type": "string"
-						},
-						"class": {
-							"type": "string"
-						},
-						"icon": {
+						"icons": {
 							"type": "array",
 							"items": {
 								"type": "object",
-								"required": ["host", "name", "src"],
+								"required": ["host", "name", "file_name"],
 								"properties": {
 									"host": {
 										"type": "string",
@@ -274,22 +193,15 @@
 										"type": "string",
 										"title": "サイト名"
 									},
-									"src": {
+									"file_name": {
 										"type": "string",
-										"title": "アイコンパス"
+										"title": "アイコンのファイル名"
 									}
 								},
 								"additionalProperties": false
 							},
 							"uniqueItems": true,
 							"title": "ホストのアイコン情報"
-						},
-						"icon_size": {
-							"type": "integer",
-							"minimum": 0
-						},
-						"icon_class": {
-							"type": "string"
 						}
 					},
 					"additionalProperties": false
@@ -316,12 +228,6 @@
 						"insert_position": {
 							"type": "string",
 							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
-						},
-						"anchor_wrap_class": {
-							"type": "string"
-						},
-						"anchor_class": {
-							"type": "string"
 						}
 					},
 					"additionalProperties": false

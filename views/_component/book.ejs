@@ -1,10 +1,10 @@
-<section class="p-library <%= buildHeadingAnchorClassName %>" itemscope="" itemtype="http://schema.org/Book">
+<section class="p-library <%= buildHeadingAnchorClassName %>">
 	<header class="p-library__header">
 		<div class="p-library__title">
-			<h<%= headingLevel %> itemprop="name"><%= name %></h<%= headingLevel %>>
+			<h<%= headingLevel %>><%= name %></h<%= headingLevel %>>
 		</div>
 		<%_ if (release !== undefined) { _%>
-			<p class="p-library__release"><span class="htmlbuild-datetime" itemprop="datePublished"><%= release %></span>発売</p>
+			<p class="p-library__release"><span class="htmlbuild-datetime"><%= release %></span>発売</p>
 		<%_ } _%>
 		<%_ if (tags.length >= 1) { _%>
 			<ul class="p-library__tags">
@@ -14,7 +14,7 @@
 			</ul>
 		<%_ } _%>
 		<%_ if (isbn !== undefined) { _%>
-			<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <span itemprop="isbn"><%= isbn %></span></a></p>
+			<p class="p-library__isbn"><a href="https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=<%= isbn %>" class="htmlbuild-host">ISBN: <data value="<%= isbn %>"><%= isbn %></data></a></p>
 		<%_ } _%>
 	</header>
 	<div class="p-library__main">
@@ -24,7 +24,7 @@
 					<div class="p-embed-link">
 						<a href="https://www.amazon.co.jp/dp/<%= asin %>/" class="htmlbuild-amazon-associate">
 							<%_ if (amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined) { _%>
-							<img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" itemprop="image" />
+							<img src="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL160_.jpg" srcset="https://m.media-amazon.com/images/I/<%= amazonImageId %>._SL320_.jpg 2x" alt="" width="<%= amazonImageWidth %>" height="<%= amazonImageHeight %>" />
 							<%_ } else { _%>
 								<img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />
 							<%_ } _%>
