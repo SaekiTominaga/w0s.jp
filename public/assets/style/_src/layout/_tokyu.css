@@ -2,6 +2,42 @@
  *   東急電車形態研究
  * ============================== */
 
+/* ===== 自動放送 ===== */
+.l-tokyu-announce {
+	&:not(:last-child) {
+		margin-block-end: 3em;
+	}
+}
+
+.l-tokyu-announce__header {
+	border: 1px solid var(--color-border-dark);
+	background: var(--color-bg-light);
+	padding: 0.5em min(1.5vw, 15px);
+	font-size: calc(100% / var(--font-ratio-1));
+	line-height: var(--line-height-narrow);
+
+	& > * {
+		margin-inline: auto;
+		inline-size: fit-content;
+
+		& + * {
+			margin-block-start: calc(var(--stack-margin-base) / 3);
+		}
+	}
+}
+
+.l-tokyu-announce__main {
+}
+
+.l-tokyu-announce__footer {
+	margin-block-start: 3em;
+
+	& > * {
+		margin-inline: auto;
+		inline-size: fit-content;
+	}
+}
+
 /* ===== 設定器 ===== */
 .l-tokyu-set {
 	inline-size: fit-content;
@@ -39,9 +75,5 @@
 	& > * {
 		margin-inline: auto;
 		inline-size: fit-content;
-
-		& + * {
-			margin-block-start: calc(var(--stack-margin-base) / 3);
-		}
 	}
 }
