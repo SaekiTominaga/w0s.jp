@@ -7,7 +7,8 @@ const inputDir = `${baseDir}/_src`;
 const outputDir = `${baseDir}`;
 
 const moduleFiles = ['w0s.ts', 'error.ts', 'contact.ts', 'library-tag.ts', 'tokyu_car_history.ts'];
-const jsFiles = ['trusted-types.ts', 'analytics.ts'];
+const jsFiles = ['trusted-types.ts'];
+const legacyFiles = ['analytics.ts'];
 
 const pluginTypeScript = typescript({
 	tsconfig: `${baseDir}/tsconfig.json`,
@@ -30,7 +31,16 @@ const jsConfigurations = jsFiles.map((file) => ({
 	output: {
 		dir: outputDir,
 		sourcemap: 'hidden',
+		format: 'iife',
+	},
+}));
+const legacyConfigurations = legacyFiles.map((file) => ({
+	input: `${inputDir}/${file}`,
+	plugins: [pluginTypeScript, pluginTerser],
+	output: {
+		dir: outputDir,
+		sourcemap: 'hidden',
 	},
 }));
 
-export default moduleConfigurations.concat(jsConfigurations);
+export default moduleConfigurations.concat(jsConfigurations).concat(legacyConfigurations);
