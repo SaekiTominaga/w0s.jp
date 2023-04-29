@@ -55,7 +55,7 @@ export default class ContactCompletedController extends Controller implements Co
 		/* 完了画面レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(`_template/${structuredData.template.name}`, {
+		res.render(structuredData.template.name, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
 			main: main,
