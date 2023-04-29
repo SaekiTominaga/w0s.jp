@@ -4,7 +4,7 @@ on:
     branches: 
       - main
     paths:
-      - 'html/**/*.ejs'
+      - 'html/**/*.html'
       - '.markuplintrc'
 
 jobs:
@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npx markuplint html/**/*.ejs # public/**/*.html は Git 管理していないため、ビルド元ファイルをチェックする
+      - run: npx markuplint html/**/*.html # public/**/*.html は Git 管理していないため、ビルド元ファイルをチェックする
