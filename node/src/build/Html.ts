@@ -47,24 +47,16 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				extensions: this.configCommon.static.extensions,
 			});
 
-			const fileData = (await fs.promises.readFile(filePath)).toString();
+			const [fileData, structuredData] = await Promise.all([
+				fs.promises.readFile(filePath), // HTML
+				HtmlStructuredData.getForJson(filePath), // 構造データ
+			]);
 
 			/* HTML コメント削除 */
-			const fileDataCommentOmitted = fileData.replace(/<!--[\s\S]*?-->/g, '');
+			const fileDataCommentOmitted = fileData.toString().replace(/<!--[\s\S]*?-->/g, '');
 
+			/* DOM 化 */
 			const { document } = new JSDOM(fileDataCommentOmitted).window;
-
-			const structuredDataText = document.querySelector(this.configBuild.html.structured_selector)?.textContent; // 構造データ
-			if (structuredDataText === null || structuredDataText === undefined) {
-				throw new Error(`Structured data is not defined: ${filePath}`);
-			}
-			const structuredData = HtmlStructuredData.getStructuredData(structuredDataText); // 構造データ
-
-			const main = document.querySelector(this.configBuild.html.main_selector); // 構造データ
-			if (main === null) {
-				this.logger.error(`Main area is not exist: ${filePath}`);
-				return;
-			}
 
 			const { views } = this.configBuild.html;
 
@@ -76,7 +68,6 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 
 			/* ステップ2: セクショニングコンテンツや見出しを利用する処理 */
 			new HtmlCpmponentSectioningId(document, views).convert({
-				sectioning_area: main,
 				heading_levels: this.configBuild.html.section_id.heading_levels,
 			}); // セクション ID 自動生成
 
@@ -106,7 +97,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			/* 目次自動生成 */
 			const toc: Map<string, string> = new Map();
 			if (structuredData.template.toc === undefined || structuredData.template.toc) {
-				main.querySelectorAll('article[id], section[id]').forEach((sectioningElement) => {
+				document.querySelectorAll('article[id], section[id]').forEach((sectioningElement) => {
 					const headingText = sectioningElement.querySelector('h2')?.textContent;
 					if (headingText === null || headingText === undefined) {
 						return;
@@ -122,20 +113,14 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			// }
 
 			/* EJS を解釈 */
-			const htmlBuilt = await ejs.renderFile(
-				`${this.configCommon.views}/_template/${structuredData.template.name}.ejs`,
-				{
-					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
-					filePath: filePath,
-					structuredData: structuredData,
-					jsonLd: HtmlStructuredData.getJsonLd(structuredData),
-					main: main.innerHTML,
-					toc: toc,
-				},
-				{
-					views: [this.configCommon.views],
-				}
-			);
+			const htmlBuilt = await ejs.renderFile(`${this.configCommon.views}/_template/${structuredData.template.name}.ejs`, {
+				pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
+				filePath: filePath,
+				structuredData: structuredData,
+				jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+				main: document.body.innerHTML,
+				toc: toc,
+			});
 			this.logger.info(`Build finished: ${filePath}`);
 
 			/* 整形 */
