@@ -17,7 +17,6 @@ import HtmlComponentImage from './component/HtmlImage.js';
 import HtmlComponentImageAmazon from './component/HtmlImageAmazon.js';
 import HtmlComponentNewspaper from './component/HtmlNewspaper.js';
 import HtmlComponentTimeJapaneseDate from './component/HtmlTimeJapaneseDate.js';
-import HtmlComponentToc from './component/HtmlToc.js';
 import HtmlCpmponentSectioningId from './component/HtmlSectioningId.js';
 import HtmlStructuredData from '../util/HtmlStructuredData.js';
 import PageUrl from '../util/PageUrl.js';
@@ -48,38 +47,23 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				extensions: this.configCommon.static.extensions,
 			});
 
-			const structuredData = await HtmlStructuredData.getForHtml(filePath, this.configBuild.html.structured_selector); // 構造データ
-
-			/* EJS を解釈 */
-			const html = await ejs.renderFile(
-				path.resolve(filePath),
-				{
-					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
-					filePath: filePath,
-					structuredData: structuredData,
-					jsonLd: HtmlStructuredData.getJsonLd(structuredData),
-				},
-				{
-					views: [this.configCommon.views],
-				}
-			);
+			const fileData = (await fs.promises.readFile(filePath)).toString();
 
 			/* HTML コメント削除 */
-			const htmlCommentOmitted = html.replace(/<!--[\s\S]*?-->/g, '');
+			const fileDataCommentOmitted = fileData.replace(/<!--[\s\S]*?-->/g, '');
 
-			const dom = new JSDOM(htmlCommentOmitted);
-			const { document } = dom.window;
+			const { document } = new JSDOM(fileDataCommentOmitted).window;
 
-			document.querySelector(this.configBuild.html.structured_selector)?.remove();
-			const contentMain = document.querySelector(this.configBuild.html.main_selector);
-			if (contentMain === null) {
+			const structuredDataText = document.querySelector(this.configBuild.html.structured_selector)?.textContent; // 構造データ
+			if (structuredDataText === null || structuredDataText === undefined) {
+				throw new Error(`Structured data is not defined: ${filePath}`);
+			}
+			const structuredData = HtmlStructuredData.getStructuredData(structuredDataText); // 構造データ
+
+			const main = document.querySelector(this.configBuild.html.main_selector); // 構造データ
+			if (main === null) {
 				this.logger.error(`Main area is not exist: ${filePath}`);
 				return;
-			}
-
-			/* OGP */
-			if (document.querySelector('meta[property^="og:"]') !== null) {
-				document.documentElement.setAttribute('prefix', 'og: https://ogp.me/ns#');
 			}
 
 			const { views } = this.configBuild.html;
@@ -92,7 +76,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 
 			/* ステップ2: セクショニングコンテンツや見出しを利用する処理 */
 			new HtmlCpmponentSectioningId(document, views).convert({
-				sectioning_area: contentMain,
+				sectioning_area: main,
 				heading_levels: this.configBuild.html.section_id.heading_levels,
 			}); // セクション ID 自動生成
 
@@ -108,10 +92,6 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 					host: this.configBuild.html.anchor_host,
 				}), // リンクアンカーに付随するアイコンを付与
 				new HtmlComponentHeadingSelfLink(document, views).convert(this.configBuild.html.heading_self_link), // 見出しにセルフリンクを挿入
-				new HtmlComponentToc(document, views).convert({
-					target_element: this.configBuild.html.toc.target_element,
-					sectioning_area: contentMain,
-				}), // 目次自動生成
 
 				new HtmlComponentAnchorAmazonAssociate(document, views).convert({
 					target_class: this.configBuild.html.anchor_amazon_associate.target_class,
@@ -123,7 +103,39 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				new HtmlComponentTimeJapaneseDate(document, views).convert(this.configBuild.html.time), // 日付文字列を `<time datetime>` 要素に変換
 			]);
 
-			const htmlBuilt = dom.serialize();
+			/* 目次自動生成 */
+			const toc: Map<string, string> = new Map();
+			if (structuredData.template.toc === undefined || structuredData.template.toc) {
+				main.querySelectorAll('article[id], section[id]').forEach((sectioningElement) => {
+					const headingText = sectioningElement.querySelector('h2')?.textContent;
+					if (headingText === null || headingText === undefined) {
+						return;
+					}
+
+					toc.set(sectioningElement.id, headingText);
+				});
+			}
+
+			/* OGP */
+			// TODO: if (document.querySelector('meta[property^="og:"]') !== null) {
+			// document.documentElement.setAttribute('prefix', 'og: https://ogp.me/ns#');
+			// }
+
+			/* EJS を解釈 */
+			const htmlBuilt = await ejs.renderFile(
+				`${this.configCommon.views}/_template/${structuredData.template.name}.ejs`,
+				{
+					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
+					filePath: filePath,
+					structuredData: structuredData,
+					jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+					main: main.innerHTML,
+					toc: toc,
+				},
+				{
+					views: [this.configCommon.views],
+				}
+			);
 			this.logger.info(`Build finished: ${filePath}`);
 
 			/* 整形 */

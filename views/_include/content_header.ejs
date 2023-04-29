@@ -1,7 +1,7 @@
 <div class="l-content__header">
 	<%_ if (structuredData.breadcrumb !== undefined) { _%>
 	<p class="p-topic-path">
-		<%_ structuredData.breadcrumb.forEach((breadcrumbItem, index) => { _%><%_ if (index > 0) { _%>
+		<%_ structuredData.breadcrumb.forEach((breadcrumbItem, index) => { _%> <%_ if (index > 0) { _%>
 		<span class="p-topic-path__separator">&gt;</span>
 		<%_ } _%>
 		<a href="<%= breadcrumbItem.path %>"><%= breadcrumbItem.name %></a>
@@ -16,7 +16,7 @@
 		<h1><%= structuredData.heading ?? structuredData.title %></h1>
 		<%_ } else { _%>
 		<h1><%= structuredData.heading ?? structuredData.title %><span class="p-title__sub-hdg">（<%= structuredData.subHeading %>）</span></h1>
-		<%_ } _%><%_ if (structuredData.dateModified !== undefined) { _%>
+		<%_ } _%> <%_ if (structuredData.dateModified !== undefined) { _%>
 		<p class="p-title__update"><time datetime="<%= structuredData.dateModified.format('YYYY-MM-DD') %>"><%= structuredData.dateModified.format('YYYY年M月D日') %></time>更新</p>
 		<%_ } _%>
 	</hgroup>
@@ -24,16 +24,20 @@
 	<%_ if (structuredData.localNav !== undefined) { _%>
 	<nav>
 		<ul class="p-local-nav">
-			<%_ structuredData.localNav.forEach((localNavItem, index) => { _%><%_ if (localNavItem.path !== pagePathAbsoluteUrl) { _%>
+			<%_ structuredData.localNav.forEach((localNavItem, index) => { _%> <%_ if (localNavItem.path !== pagePathAbsoluteUrl) { _%>
 			<li><a href="<%= localNavItem.path %>" class="c-link"><%= localNavItem.name %></a></li>
 			<%_ } else { _%>
 			<li><a aria-current="page" class="c-link"><%= localNavItem.name %></a></li>
-			<%_ } _%><%_ }); _%>
+			<%_ } _%> <%_ }); _%>
 		</ul>
 	</nav>
-	<%_ } _%><%_ if (structuredData.description !== undefined) { _%>
+	<%_ } _%> <%_ if (structuredData.description !== undefined) { _%>
 	<p class="p-description"><%= structuredData.description %></p>
-	<%_ } _%><%_ if (typeof toc === 'undefined' || toc) { _%>
-	<htmlbuild-toc></htmlbuild-toc>
+	<%_ } _%> <%_ if (typeof toc !== 'undefined' && toc.size >= 2) { _%>
+	<ol class="p-toc" aria-label="目次">
+		<%_ for (const [id, headingText] of toc) { _%>
+		<li><a href="#<%= encodeURIComponent(id) %>"><%= headingText %></a></li>
+		<%_ } _%>
+	</ol>
 	<%_ } _%>
 </div>
