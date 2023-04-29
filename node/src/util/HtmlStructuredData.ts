@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import dayjs from 'dayjs';
-import { JSDOM } from 'jsdom';
 
 interface StructuredDataTemplate {
 	readonly name: string;
@@ -59,25 +58,6 @@ interface SchemaOrgBreadcrumbList {
  * HTML
  */
 export default class HtmlStructuredData {
-	/**
-	 * HTML（EJS）ファイルからページの構造データを取得
-	 *
-	 * @param {string} htmlFilePath - HTML（EJS）ファイルパス
-	 * @param {string} selector - 構造データを定義した要素のセレクター
-	 *
-	 * @returns {object} 構造データ
-	 */
-	static async getForHtml(htmlFilePath: string, selector: string): Promise<StructuredData> {
-		const fileData = (await fs.promises.readFile(htmlFilePath)).toString();
-
-		const structuredDataText = new JSDOM(fileData).window.document.querySelector(selector)?.textContent; // 構造データ
-		if (structuredDataText === null || structuredDataText === undefined) {
-			throw new Error(`Structured data is not defined: ${htmlFilePath}`);
-		}
-
-		return HtmlStructuredData.getStructuredData(structuredDataText);
-	}
-
 	/**
 	 * JSON ファイルからページの構造データを取得
 	 *

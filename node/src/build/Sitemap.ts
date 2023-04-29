@@ -27,7 +27,7 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 
 		const entries = await Promise.all(
 			fileList.map(async (filePath): Promise<{ pagePathAbsoluteUrl: string; modified_at: dayjs.Dayjs | undefined }> => {
-				const structuredData = await HtmlStructuredData.getForHtml(filePath, this.configBuild.html.structured_selector); // 構造データ
+				const structuredData = await HtmlStructuredData.getForJson(filePath); // 構造データ
 
 				const pageUrl = new PageUrl({
 					root: this.configCommon.static.root,
