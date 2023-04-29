@@ -107,11 +107,6 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				});
 			}
 
-			/* OGP */
-			// TODO: if (document.querySelector('meta[property^="og:"]') !== null) {
-			// document.documentElement.setAttribute('prefix', 'og: https://ogp.me/ns#');
-			// }
-
 			/* EJS を解釈 */
 			const htmlBuilt = await ejs.renderFile(`${this.configCommon.views}/${structuredData.template.name}.ejs`, {
 				pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
