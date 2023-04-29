@@ -1,7 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import dayjs from 'dayjs';
-import { JSDOM } from 'jsdom';
+
+interface StructuredDataTemplate {
+	readonly name: string;
+	readonly toc?: boolean;
+}
 
 interface StructuredDataUrl {
 	readonly path: string;
@@ -9,6 +13,7 @@ interface StructuredDataUrl {
 }
 
 interface StructuredData {
+	readonly template: StructuredDataTemplate;
 	readonly type?: 'website' | 'article' /* default */ | 'profile'; // OGP: music, video, article, book, profile, website <https://ogp.me/#types>
 	readonly 'schema-type'?:
 		| 'WebPage' /* default */
@@ -31,6 +36,8 @@ interface StructuredData {
 	readonly image?: string;
 	readonly breadcrumb?: StructuredDataUrl[];
 	readonly localNav?: StructuredDataUrl[];
+	readonly moduleScripts: string[];
+	readonly opensearch: StructuredDataUrl;
 }
 
 interface SchemaOrgBreadcrumbListItem {
@@ -52,25 +59,6 @@ interface SchemaOrgBreadcrumbList {
  */
 export default class HtmlStructuredData {
 	/**
-	 * HTML（EJS）ファイルからページの構造データを取得
-	 *
-	 * @param {string} htmlFilePath - HTML（EJS）ファイルパス
-	 * @param {string} selector - 構造データを定義した要素のセレクター
-	 *
-	 * @returns {object} 構造データ
-	 */
-	static async getForHtml(htmlFilePath: string, selector: string): Promise<StructuredData> {
-		const fileData = (await fs.promises.readFile(htmlFilePath)).toString();
-
-		const structuredDataText = new JSDOM(fileData).window.document.querySelector(selector)?.textContent; // 構造データ
-		if (structuredDataText === null || structuredDataText === undefined) {
-			throw new Error(`Structured data is not defined: ${htmlFilePath}`);
-		}
-
-		return HtmlStructuredData.#getStructuredData(structuredDataText);
-	}
-
-	/**
 	 * JSON ファイルからページの構造データを取得
 	 *
 	 * @param {string} htmlFilePath - HTML（EJS）ファイルパス
@@ -83,7 +71,7 @@ export default class HtmlStructuredData {
 
 		const fileData = (await fs.promises.readFile(jsonFilePath)).toString(); // 同一ファイル名で拡張子 .json のファイルを読み込む
 
-		return HtmlStructuredData.#getStructuredData(fileData);
+		return HtmlStructuredData.getStructuredData(fileData);
 	}
 
 	/**
@@ -93,7 +81,7 @@ export default class HtmlStructuredData {
 	 *
 	 * @returns {object} 構造データ
 	 */
-	static #getStructuredData(fileData: string): StructuredData {
+	static getStructuredData(fileData: string): StructuredData {
 		const structuredData: StructuredData = JSON.parse(fileData);
 
 		/* 型変換 */

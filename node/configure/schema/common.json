@@ -3,7 +3,7 @@
 	"$id": "https://w0s.jp/common.json",
 	"type": "object",
 	"title": "w0s.jp",
-	"required": ["port", "response", "static", "errorpage", "views", "temp", "redirect", "logger", "mail", "sqlite", "paapi"],
+	"required": ["port", "response", "static", "html", "views", "errorpage", "temp", "redirect", "logger", "mail", "sqlite", "paapi"],
 	"properties": {
 		"port": {
 			"type": "integer",
@@ -258,6 +258,14 @@
 				}
 			}
 		},
+		"html": {
+			"type": "string",
+			"title": "HTML データディレクトリ"
+		},
+		"views": {
+			"type": "string",
+			"title": "テンプレートディレクトリ"
+		},
 		"errorpage": {
 			"type": "object",
 			"title": "エラーページ",
@@ -281,10 +289,6 @@
 				}
 			},
 			"additionalProperties": false
-		},
-		"views": {
-			"type": "string",
-			"title": "テンプレートディレクトリ"
 		},
 		"temp": {
 			"type": "string",

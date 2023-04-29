@@ -1,3 +1,4 @@
+import ejs from 'ejs';
 import fs from 'fs';
 import { Request, Response } from 'express';
 import Controller from '../Controller.js';
@@ -133,18 +134,26 @@ export default class CrawlerResourceController extends Controller implements Con
 			resourcePageListView.set(categoryName, resourcePageOfCategoryView);
 		}
 
-		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+		const htmlPath = `${this.#configCommon.html}/${this.#config.view.init}`;
 
-		/* レンダリング */
-		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
-		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(this.#config.view.init, {
+		const structuredData = await HtmlStructuredData.getForJson(htmlPath); // 構造データ
+
+		/* EJS を解釈 */
+		const main = await ejs.renderFile(htmlPath, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
-			structuredData: structuredData,
 			requestQuery: requestQuery,
 			categoryMaster: categoryMaster,
 			priorityMaster: priorityMaster,
 			resourcePageList: resourcePageListView,
+		});
+
+		/* レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
+		res.render(structuredData.template.name, {
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			main: main,
 		});
 	}
 }

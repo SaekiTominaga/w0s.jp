@@ -40,11 +40,12 @@ export type BasicAuthentication = {
   realm: NoName22;
   htpasswd: Htpasswd;
 }[];
+export type HTML = string;
+export type NoName23 = string;
 export type FilepathFor401Unauthorized = string;
 export type FilepathFor403Forbidden = string;
 export type FilepathFor404NotFound = string;
 export type FilepathFor500InternalServerError = string;
-export type NoName24 = string;
 export type NoName25 = string;
 export type NoName27 = string;
 export type NoName28 = string;
@@ -87,8 +88,9 @@ export interface W0SJp {
   port: HTTP;
   response: NoName;
   static: NoName3;
-  errorpage: NoName23;
-  views: NoName24;
+  html: HTML;
+  views: NoName23;
+  errorpage: NoName24;
   temp: NoName25;
   redirect: NoName26;
   logger: Logger;
@@ -153,7 +155,7 @@ export interface CORS {
 export interface SourceMap {
   extensions?: NoName21;
 }
-export interface NoName23 {
+export interface NoName24 {
   path_401: FilepathFor401Unauthorized;
   path_403: FilepathFor403Forbidden;
   path_404: FilepathFor404NotFound;

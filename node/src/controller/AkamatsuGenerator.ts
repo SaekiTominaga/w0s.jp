@@ -1,3 +1,4 @@
+import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import Sharp from 'sharp';
@@ -150,20 +151,27 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 			icons.set(icon.filename, icon.caption);
 		}
 
-		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+		const htmlPath = `${this.#configCommon.html}/${this.#config.view.init}`;
 
-		/* レンダリング */
-		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
-		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(this.#config.view.init, {
-			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
-			structuredData: structuredData,
-			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+		const structuredData = await HtmlStructuredData.getForJson(htmlPath); // 構造データ
+
+		/* EJS を解釈 */
+		const main = await ejs.renderFile(htmlPath, {
 			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			icons: icons,
 			generatedImage: generatedImage,
 			generatedText: generatedText,
+		});
+
+		/* レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
+		res.render(structuredData.template.name, {
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+			main: main,
 		});
 	}
 

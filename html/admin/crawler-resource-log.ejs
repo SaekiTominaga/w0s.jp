@@ -1,0 +1,50 @@
+<%_ if (diff.length >= 1) { _%>
+<table class="p-admin-crawler-diff">
+	<tbody>
+		<%_ for (const part of diff) { _%>
+		<tr class="<%_ if (part.added) { _%>p-admin-crawler-diff__line -added<%_ } else if (part.removed) { _%>p-admin-crawler-diff__line -removed<%_ } else { _%>p-admin-crawler-diff__line<%_ } _%>">
+			<%_ if (part.added) { _%>
+			<td class="p-admin-crawler-diff__type">+</td>
+			<%_ } else if (part.removed) { _%>
+			<td class="p-admin-crawler-diff__type">-</td>
+			<%_ } else { _%>
+			<td class="p-admin-crawler-diff__type"></td>
+			<%_ } _%> <%_ if (part.added) { _%>
+			<td>
+				<pre><code><%= part.value %></code></pre>
+			</td>
+			<%_ } else if (part.removed) { _%>
+			<td>
+				<pre><code><%= part.value %></code></pre>
+			</td>
+			<%_ } else { _%>
+			<td>
+				<pre><code><%= part.value %></code></pre>
+			</td>
+			<%_ } _%>
+		</tr>
+		<%_ } _%>
+	</tbody>
+</table>
+<%_ } _%> <%_ if (fileList.length >= 1) { _%>
+<form class="c-stack">
+	<p><input type="hidden" name="dir" value="<%= requestQuery.dir %>" /></p>
+	<p><button class="c-submit">比較</button></p>
+	<ul>
+		<%_ for (const file of fileList) { _%>
+		<li>
+			<label>
+				<%_ if (requestQuery.diff.includes(file)) { _%>
+				<input type="checkbox" name="diff[]" value="<%= file %>" checked="" />
+				<%_ } else { _%>
+				<input type="checkbox" name="diff[]" value="<%= file %>" />
+				<%_ } _%> <%= file %>
+			</label>
+			(<a href="/admin/crawler-resource-log/<%= requestQuery.dir %>/<%= file %>">ソースコード</a>)
+		</li>
+		<%_ } _%>
+	</ul>
+</form>
+<%_ } else { _%>
+<p><strong>データがありません。</strong></p>
+<%_ } _%>
