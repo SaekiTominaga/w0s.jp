@@ -1,3 +1,4 @@
+import ejs from 'ejs';
 import fs from 'fs';
 import { Request, Response } from 'express';
 import Controller from '../Controller.js';
@@ -66,16 +67,24 @@ export default class CrawlerNewsDataController extends Controller implements Con
 
 		const newsDataList = await dao.getNewsDataList(requestQuery.url); // 新着データ
 
-		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.data}`); // 構造データ
+		const htmlPath = `${this.#configCommon.html}/${this.#config.view.data}`;
+
+		const structuredData = await HtmlStructuredData.getForJson(htmlPath); // 構造データ
+
+		/* EJS を解釈 */
+		const main = await ejs.renderFile(htmlPath, {
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			requestQuery: requestQuery,
+			newsDataList: newsDataList,
+		});
 
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(this.#config.view.data, {
+		res.render(`_template/${structuredData.template.name}`, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
-			requestQuery: requestQuery,
-			newsDataList: newsDataList,
+			main: main,
 		});
 	}
 }

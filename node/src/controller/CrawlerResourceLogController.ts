@@ -1,3 +1,4 @@
+import ejs from 'ejs';
 import fs from 'fs';
 import { Request, Response } from 'express';
 import * as Diff from 'diff';
@@ -78,17 +79,24 @@ export default class CrawlerResourceLogController extends Controller implements 
 			}
 		}
 
-		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.log}`); // 構造データ
+		const htmlPath = `${this.#configCommon.html}/${this.#config.view.log}`;
+
+		const structuredData = await HtmlStructuredData.getForJson(htmlPath); // 構造データ
+
+		/* EJS を解釈 */
+		const main = await ejs.renderFile(htmlPath, {
+			requestQuery: requestQuery,
+			fileList: fileList,
+			diff: diff,
+		});
 
 		/* レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(this.#config.view.log, {
+		res.render(`_template/${structuredData.template.name}`, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
-			requestQuery: requestQuery,
-			fileList: fileList,
-			diff: diff,
+			main: main,
 		});
 	}
 }

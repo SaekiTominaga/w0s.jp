@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import ejs from 'ejs';
 import fs from 'fs';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
@@ -106,20 +107,27 @@ export default class TokyuCarHistoryController extends Controller implements Con
 			}
 		}
 
-		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.init}`); // 構造データ
+		const htmlPath = `${this.#configCommon.html}/${this.#config.view.init}`;
 
-		/* レンダリング */
-		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
-		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(this.#config.view.init, {
-			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
-			structuredData: structuredData,
-			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+		const structuredData = await HtmlStructuredData.getForJson(htmlPath); // 構造データ
+
+		/* EJS を解釈 */
+		const main = await ejs.renderFile(htmlPath, {
 			requestQuery: requestQuery,
 			validateErrors: validationResult?.array({ onlyFirstError: true }) ?? [],
 			carSeries: await dao.getCarSeries(), // 車種情報
 			searchCount: searchCarsCount,
 			searchCars: searchCarsView, // 検索結果のデータ
+		});
+
+		/* レンダリング */
+		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
+		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
+		res.render(`_template/${structuredData.template.name}`, {
+			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
+			structuredData: structuredData,
+			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
+			main: main,
 		});
 	}
 

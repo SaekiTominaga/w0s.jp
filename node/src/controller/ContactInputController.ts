@@ -1,3 +1,4 @@
+import ejs from 'ejs';
 import fs from 'fs';
 import { Request, Response } from 'express';
 import Controller from '../Controller.js';
@@ -51,18 +52,25 @@ export default class ContactInputController extends Controller implements Contro
 			action_send: false,
 		};
 
-		const structuredData = await HtmlStructuredData.getForJson(`${this.#configCommon.views}/${this.#config.view.input}`); // 構造データ
+		const htmlPath = `${this.#configCommon.html}/${this.#config.view.input}`;
+
+		const structuredData = await HtmlStructuredData.getForJson(htmlPath); // 構造データ
+
+		/* EJS を解釈 */
+		const main = await ejs.renderFile(htmlPath, {
+			requestQuery: requestQuery,
+			validateErrors: [],
+			reply: this.#config.reply,
+		});
 
 		/* 入力画面レンダリング */
 		res.setHeader('Content-Security-Policy', this.#configCommon.response.header.csp_html);
 		res.setHeader('Content-Security-Policy-Report-Only', this.#configCommon.response.header.cspro_html);
-		res.render(this.#config.view.input, {
+		res.render(`_template/${structuredData.template.name}`, {
 			pagePathAbsoluteUrl: req.path, // U+002F (/) から始まるパス絶対 URL
 			structuredData: structuredData,
 			jsonLd: HtmlStructuredData.getJsonLd(structuredData),
-			requestQuery: requestQuery,
-			validateErrors: [],
-			reply: this.#config.reply,
+			main: main,
 		});
 	}
 }
