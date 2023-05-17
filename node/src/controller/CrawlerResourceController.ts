@@ -1,5 +1,5 @@
+import fs from 'node:fs';
 import ejs from 'ejs';
-import fs from 'fs';
 import { Request, Response } from 'express';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';

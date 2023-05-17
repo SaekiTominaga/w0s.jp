@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import { loadConfig, optimize } from 'svgo';
 import BuildComponent from '../BuildComponent.js';
 import BuildComponentInterface from '../BuildComponentInterface.js';

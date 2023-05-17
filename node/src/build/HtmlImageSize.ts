@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import slash from 'slash';
 import { globby } from 'globby';
 import { imageSize } from 'image-size';

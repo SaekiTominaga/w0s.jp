@@ -1,7 +1,7 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import fs from 'fs';
-import path from 'path';
 import slash from 'slash';
 import { globby } from 'globby';
 import xmlFormatter from 'xml-formatter';
