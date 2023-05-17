@@ -1,8 +1,8 @@
+import fs from 'node:fs';
 // @ts-expect-error: ts(7016)
 import amazonPaapi from 'amazon-paapi';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import fs from 'fs';
 import PaapiItemImageUrlParser from '@saekitominaga/paapi-item-image-url-parser';
 import { GetItemsResponse } from 'paapi5-typescript-sdk';
 import { Request, Response } from 'express';

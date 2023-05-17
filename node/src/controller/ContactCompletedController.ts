@@ -1,5 +1,5 @@
+import fs from 'node:fs';
 import ejs from 'ejs';
-import fs from 'fs';
 import { Request, Response } from 'express';
 import ContactValidator from '../validator/ContactValidator.js';
 import Controller from '../Controller.js';

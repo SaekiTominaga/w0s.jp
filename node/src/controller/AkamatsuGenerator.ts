@@ -1,6 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import ejs from 'ejs';
-import fs from 'fs';
-import path from 'path';
 import Sharp from 'sharp';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
 import { Request, Response } from 'express';

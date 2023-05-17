@@ -1,6 +1,6 @@
+import fs from 'node:fs';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import fs from 'fs';
 import { Request, Response } from 'express';
 import { Result as ValidationResult, ValidationError } from 'express-validator';
 import Controller from '../Controller.js';

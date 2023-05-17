@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import Log4js from 'log4js';
 import { W0SJp as ConfigureCommon } from '../configure/type/common.js';
 import { NoName as ConfigureBuild } from '../configure/type/build.js';

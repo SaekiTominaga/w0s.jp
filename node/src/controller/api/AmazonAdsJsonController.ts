@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import zlib from 'zlib';
 import { Request, Response } from 'express';
 import AmazonAdsDao from '../../dao/AmazonAdsDao.js';
