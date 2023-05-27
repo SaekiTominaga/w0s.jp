@@ -28,27 +28,27 @@ export default class AkamatsuGeneratorValidator {
 		await Promise.all([
 			body('text_right1')
 				.isLength({ max: this.#config.validator.text_right1.maxlength })
-				.withMessage(this.#config.validator.text_right1.message['maxlength'])
+				.withMessage(this.#config.validator.text_right1.message.maxlength)
 				.run(this.#req),
 			body('text_right2')
 				.isLength({ max: this.#config.validator.text_right2.maxlength })
-				.withMessage(this.#config.validator.text_right2.message['maxlength'])
+				.withMessage(this.#config.validator.text_right2.message.maxlength)
 				.run(this.#req),
 			body('text_left1')
 				.isLength({ max: this.#config.validator.text_left1.maxlength })
-				.withMessage(this.#config.validator.text_left1.message['maxlength'])
+				.withMessage(this.#config.validator.text_left1.message.maxlength)
 				.run(this.#req),
 			body('text_left2')
 				.isLength({ max: this.#config.validator.text_left2.maxlength })
-				.withMessage(this.#config.validator.text_left2.message['maxlength'])
+				.withMessage(this.#config.validator.text_left2.message.maxlength)
 				.run(this.#req),
 			body('color')
 				.matches(/#[0-9A-F]{6}/i)
-				.withMessage(this.#config.validator.color.message['format'])
+				.withMessage(this.#config.validator.color.message.format)
 				.run(this.#req),
 			body('bgcolor')
 				.matches(/#[0-9A-F]{6}/i)
-				.withMessage(this.#config.validator.bgcolor.message['format'])
+				.withMessage(this.#config.validator.bgcolor.message.format)
 				.run(this.#req),
 		]);
 

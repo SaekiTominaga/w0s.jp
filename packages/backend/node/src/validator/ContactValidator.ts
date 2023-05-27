@@ -27,19 +27,19 @@ export default class ContactValidator {
 	async send(): Promise<Result<ValidationError>> {
 		await body('email')
 			.notEmpty()
-			.withMessage(this.#config.validator.email.message['required'])
+			.withMessage(this.#config.validator.email.message.required)
 			.isEmail()
-			.withMessage(this.#config.validator.email.message['format'])
+			.withMessage(this.#config.validator.email.message.format)
 			.run(this.#req);
 		await body('reply')
 			.notEmpty()
-			.withMessage(this.#config.validator.reply.message['required'])
+			.withMessage(this.#config.validator.reply.message.required)
 			.isIn(Object.keys(this.#config.reply))
-			.withMessage(this.#config.validator.reply.message['value'])
+			.withMessage(this.#config.validator.reply.message.value)
 			.run(this.#req);
 		await body('body')
 			.notEmpty()
-			.withMessage(this.#config.validator.body.message['required'])
+			.withMessage(this.#config.validator.body.message.required)
 			.run(this.#req);
 
 		return validationResult(this.#req);
