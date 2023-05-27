@@ -1,0 +1,452 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/build.json",
+	"type": "object",
+	"title": "ビルド",
+	"required": ["static", "views", "prettier", "paapi", "html", "feed", "image", "sitemap"],
+	"properties": {
+		"static": {
+			"type": "object",
+			"title": "静的ファイル",
+			"required": ["root"],
+			"properties": {
+				"root": {
+					"type": "string",
+					"title": "ルートディレクトリ"
+				},
+				"extensions": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"title": "ファイル拡張子のフォールバック（拡張子に . は付けない）"
+				},
+				"indexes": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"title": "ディレクトリのインデックスファイル名"
+				}
+			},
+			"additionalProperties": false,
+			"definitions": {
+				"cache_control": {
+					"type": "object",
+					"required": ["default"],
+					"title": "キャッシュ定義",
+					"properties": {
+						"default": {
+							"type": "string",
+							"title": "デフォルト値"
+						},
+						"path": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["paths", "value"],
+								"properties": {
+									"paths": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										},
+										"title": "拡張子"
+									},
+									"value": {
+										"type": "string",
+										"title": "値"
+									}
+								},
+								"additionalProperties": false
+							},
+							"title": "ファイルパスによるキャッシュ定義"
+						},
+						"extension": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["extensions", "value"],
+								"properties": {
+									"extensions": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										},
+										"title": "拡張子"
+									},
+									"value": {
+										"type": "string",
+										"title": "値"
+									}
+								},
+								"additionalProperties": false
+							},
+							"title": "拡張子によるキャッシュ定義"
+						}
+					},
+					"additionalProperties": false
+				}
+			}
+		},
+		"views": {
+			"type": "string",
+			"title": "テンプレートディレクトリ"
+		},
+		"prettier": {
+			"type": "object",
+			"title": "Prettier",
+			"required": ["config"],
+			"properties": {
+				"config": {
+					"type": "string",
+					"title": "構成ファイルパス"
+				}
+			},
+			"additionalProperties": false
+		},
+		"paapi": {
+			"type": "object",
+			"title": "Amazon - Product Advertising API",
+			"description": "https://webservices.amazon.com/paapi5/documentation/common-request-parameters.html",
+			"required": ["partner_tag"],
+			"properties": {
+				"partner_tag": {
+					"type": "string",
+					"title": "パートナーを一意に識別する英数字トークン",
+					"examples": ["store-22"]
+				}
+			},
+			"additionalProperties": false
+		},
+		"html": {
+			"type": "object",
+			"required": [
+				"directory",
+				"views",
+				"book",
+				"newspaper",
+				"section_id",
+				"footnote",
+				"anchor_type",
+				"anchor_host",
+				"anchor_amazon_associate",
+				"heading_self_link",
+				"time",
+				"image",
+				"image_amazon",
+				"highlight"
+			],
+			"properties": {
+				"directory": {
+					"type": "string",
+					"title": "HTML ファイル格納ディレクトリ"
+				},
+				"views": {
+					"type": "string",
+					"title": "テンプレートディレクトリ"
+				},
+				"book": {
+					"type": "object",
+					"title": "書籍",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"newspaper": {
+					"type": "object",
+					"title": "新聞",
+					"required": ["target_element"],
+					"properties": {
+						"target_element": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"section_id": {
+					"type": "object",
+					"title": "セクション ID 自動生成",
+					"required": ["heading_levels"],
+					"properties": {
+						"heading_levels": {
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				"footnote": {
+					"type": "object",
+					"title": "注釈",
+					"required": ["trigger", "footnote"],
+					"properties": {
+						"trigger": {
+							"type": "object",
+							"required": ["element", "id_prefix"],
+							"properties": {
+								"element": {
+									"type": "string"
+								},
+								"id_prefix": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						},
+						"footnote": {
+							"type": "object",
+							"required": ["element", "id_prefix"],
+							"properties": {
+								"element": {
+									"type": "string"
+								},
+								"id_prefix": {
+									"type": "string"
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"additionalProperties": false
+				},
+				"anchor_type": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["target_class", "icons"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"icons": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["type", "name", "file_name"],
+								"properties": {
+									"type": {
+										"type": "string",
+										"title": "MIME タイプ"
+									},
+									"name": {
+										"type": "string",
+										"title": "リソースタイプ名"
+									},
+									"file_name": {
+										"type": "string",
+										"title": "アイコンのファイル名"
+									}
+								},
+								"additionalProperties": false
+							},
+							"uniqueItems": true,
+							"title": "リソースタイプのアイコン情報"
+						}
+					},
+					"additionalProperties": false
+				},
+				"anchor_host": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["target_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"icons": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["host", "name", "file_name"],
+								"properties": {
+									"host": {
+										"type": "string",
+										"title": "ホスト名"
+									},
+									"name": {
+										"type": "string",
+										"title": "サイト名"
+									},
+									"file_name": {
+										"type": "string",
+										"title": "アイコンのファイル名"
+									}
+								},
+								"additionalProperties": false
+							},
+							"uniqueItems": true,
+							"title": "ホストのアイコン情報"
+						}
+					},
+					"additionalProperties": false
+				},
+				"anchor_amazon_associate": {
+					"type": "object",
+					"title": "Amazon アソシエイトリンク",
+					"required": ["target_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"heading_self_link": {
+					"type": "object",
+					"title": "見出しセルフリンク",
+					"required": ["target_class", "insert_position"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"insert_position": {
+							"type": "string",
+							"enum": ["beforebegin", "afterbegin", "beforeend", "afterend"]
+						}
+					},
+					"additionalProperties": false
+				},
+				"time": {
+					"type": "object",
+					"title": "time 要素",
+					"required": ["target_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"image": {
+					"type": "object",
+					"title": "画像",
+					"required": ["target_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"image_amazon": {
+					"type": "object",
+					"title": "Amazon 画像",
+					"required": ["target_class"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"highlight": {
+					"type": "object",
+					"title": "アイコン",
+					"required": ["target_class", "class_prefix"],
+					"properties": {
+						"target_class": {
+							"type": "string"
+						},
+						"class_prefix": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
+		"feed": {
+			"type": "object",
+			"required": ["info"],
+			"properties": {
+				"info": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": ["html_path", "selector", "feed_template", "feed_path"],
+						"properties": {
+							"html_path": {
+								"type": "string",
+								"title": "HTML ファイルパス"
+							},
+							"selector": {
+								"type": "object",
+								"title": "セレクター",
+								"required": ["wrap", "date", "content"],
+								"properties": {
+									"wrap": {
+										"type": "string",
+										"title": "包括"
+									},
+									"date": {
+										"type": "string",
+										"title": "日付"
+									},
+									"content": {
+										"type": "string",
+										"title": "内容"
+									}
+								},
+								"additionalProperties": false
+							},
+							"feed_template": {
+								"type": "string",
+								"title": "Feed テンプレートパス"
+							},
+							"feed_path": {
+								"type": "string",
+								"title": "Feed 出力パス"
+							}
+						},
+						"additionalProperties": false
+					},
+					"uniqueItems": true,
+					"title": "フィード情報"
+				}
+			},
+			"additionalProperties": false
+		},
+		"image": {
+			"type": "object",
+			"required": ["directory"],
+			"properties": {
+				"directory": {
+					"type": "string",
+					"title": "画像ファイル格納ディレクトリ"
+				}
+			},
+			"additionalProperties": false
+		},
+		"sitemap": {
+			"type": "object",
+			"title": "サイトマップ",
+			"required": ["ignore", "template", "path"],
+			"properties": {
+				"ignore": {
+					"type": "array",
+					"title": "除外するファイル（Glob パターン）",
+					"items": {
+						"type": "string"
+					}
+				},
+				"template": {
+					"type": "string",
+					"title": "テンプレートパス"
+				},
+				"path": {
+					"type": "string",
+					"title": "出力パス"
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}

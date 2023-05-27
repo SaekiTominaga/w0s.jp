@@ -1,0 +1,69 @@
+{
+	"root": true,
+	"env": {
+		"es2022": true
+	},
+	"extends": ["@w0s/eslint-config"],
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"ignorePatterns": ["backend/node/dist/**/*.js", "frontend/node/dist/**/*.js", "frontend/public/assets/script/*.js", "frontend/public/assets/script/*.mjs"],
+	"overrides": [
+		{
+			"files": ["frontend/node/src/**/*.ts"],
+			"rules": {
+				"no-console": "off"
+			}
+		},
+		{
+			"files": ["backend/node/src/*Interface.ts", "frontend/node/src/*Interface.ts"],
+			"rules": {
+				"semi": "off"
+			}
+		},
+		{
+			"files": ["frontend/node/src/build.ts"],
+			"rules": {
+				"new-cap": "off"
+			}
+		},
+		{
+			"files": ["frontend/node/src/build/*.ts"],
+			"rules": {
+				"class-methods-use-this": "off"
+			}
+		},
+		{
+			"files": ["frontend/public/assets/script/_src/**/*.ts"],
+			"env": {
+				"browser": true
+			},
+			"rules": {
+				"no-console": [
+					"warn",
+					{
+						"allow": ["info", "error"]
+					}
+				]
+			}
+		},
+		{
+			"files": ["frontend/public/assets/script/_src/trusted-types.ts"],
+			"parserOptions": {
+				"sourceType": "script"
+			}
+		},
+		{
+			"files": ["frontend/public/assets/script/_src/analytics.ts"],
+			"parserOptions": {
+				"sourceType": "script"
+			},
+			"rules": {
+				"no-multi-assign": "off",
+				"no-underscore-dangle": "off",
+				"no-var": "off",
+				"strict": "off"
+			}
+		}
+	]
+}
