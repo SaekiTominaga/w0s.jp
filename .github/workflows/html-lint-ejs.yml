@@ -1,6 +1,13 @@
 name: html-lint-ejs
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'html/**/*.ejs'
+      - 'views/_component/*.ejs'
+      - 'views/_include/*.ejs'
+      - '.markuplintrc'
   push:
     branches:
       - main
@@ -9,6 +16,7 @@ on:
       - 'views/_component/*.ejs'
       - 'views/_include/*.ejs'
       - '.markuplintrc'
+  workflow_dispatch:
 
 jobs:
   lint:

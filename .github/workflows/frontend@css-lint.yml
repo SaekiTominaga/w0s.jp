@@ -1,12 +1,18 @@
 name: frontend@css-lint
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/frontend/public/assets/style/_src/**/*.css'
+      - 'packages/frontend/.stylelintrc.json'
   push:
     branches:
       - main
     paths:
       - 'packages/frontend/public/assets/style/_src/**/*.css'
       - 'packages/frontend/.stylelintrc.json'
+  workflow_dispatch:
 
 jobs:
   lint:
