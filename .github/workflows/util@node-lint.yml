@@ -1,14 +1,14 @@
-name: css-lint
+name: util@node-lint
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
-      - 'public/assets/style/_src/**/*.css'
-      - '.stylelintrc.json'
+      - 'packages/util/src/*.ts'
+      - 'packages/.eslintrc.json'
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run css-lint
+      - run: npm run lint -w '@w0s.jp/util'

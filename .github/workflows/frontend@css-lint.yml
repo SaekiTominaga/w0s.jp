@@ -1,14 +1,14 @@
-name: html-lint-errorpage
+name: frontend@css-lint
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
-      - 'errorpage/*.html'
-      - '.markuplintrc'
+      - 'packages/frontend/public/assets/style/_src/**/*.css'
+      - 'packages/frontend/.stylelintrc.json'
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run html-lint-errorpage
+      - run: npm run css-lint -w '@w0s.jp/frontend'

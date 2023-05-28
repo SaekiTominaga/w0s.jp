@@ -1,14 +1,14 @@
-name: js-lint
+name: frontend@node-test
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
-      - 'public/assets/script/_src/**/*.ts'
-      - '.eslintrc.json'
+      - 'packages/frontend/node/src/**/*.ts'
+      - 'packages/frontend/node/__tests__/**/*.test.js'
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run js-lint
+      - run: npm run node-test -w '@w0s.jp/frontend'

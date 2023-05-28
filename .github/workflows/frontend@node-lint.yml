@@ -1,11 +1,12 @@
-name: html-lint
+name: frontend@node-lint
 on:
   push:
     branches:
       - main
     paths:
-      - 'html/**/*.html'
-      - '.markuplintrc'
+      - 'packages/frontend/node/src/**/*.ts'
+      - 'packages/frontend/node/__tests__/**/*.test.js'
+      - 'packages/.eslintrc.json'
 
 jobs:
   lint:
@@ -16,4 +17,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npx markuplint html/**/*.html # public/**/*.html は Git 管理していないため、ビルド元ファイルをチェックする
+      - run: npm run node-lint -w '@w0s.jp/frontend'

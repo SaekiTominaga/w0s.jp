@@ -1,16 +1,14 @@
-name: node-lint
+name: backend@errorpage-lint
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
-      - 'node/src/**/*.ts'
-      - 'node/__tests__/**/*.test.js'
-      - 'node/@types/*.d.ts'
-      - '.eslintrc.json'
+      - '@ackages/backend/errorpage/*.html'
+      - '.markuplintrc'
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,4 +16,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run node-lint
+      - run: npm run errorpage-lint -w '@w0s.jp/backend'
