@@ -35,29 +35,3 @@ describe('getUrl()', () => {
 		}).toThrow('\'path/to/foo.svg\' must be under the root path.');
 	});
 });
-
-describe('getFilePath()', () => {
-	test('index page', () => {
-		expect(pageUrl.getFilePath('/')).toBe('/public/index.html');
-	});
-
-	test('html file', () => {
-		expect(pageUrl.getFilePath('/info')).toBe('/public/info.html');
-	});
-
-	test('non html file', () => {
-		expect(pageUrl.getFilePath('/favicon.ico')).toBe('/public/favicon.ico');
-	});
-
-	test('404 not found', () => {
-		expect(pageUrl.getFilePath('/path/')).toBeUndefined();
-		expect(pageUrl.getFilePath('/path/to')).toBeUndefined();
-		expect(pageUrl.getFilePath('/path/to.txt')).toBeUndefined();
-	});
-
-	test('do not start with slash', () => {
-		expect(() => {
-			pageUrl.getFilePath('path/to/foo');
-		}).toThrow('The path must begin with a slash.');
-	});
-});

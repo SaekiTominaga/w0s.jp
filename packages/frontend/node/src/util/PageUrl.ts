@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import slash from 'slash';
 
@@ -52,38 +51,5 @@ export default class PageUrl {
 		}
 
 		return `${urlBaseDirectory}/${parsed.name}${parsed.ext}`;
-	}
-
-	/**
-	 * リクエスト URL のパスを元に実ファイルパスを取得する
-	 *
-	 * @param {string} requestPath - リクエスト URL のパス（ルート相対パス）
-	 *
-	 * @returns {string} 実ファイルパス
-	 */
-	getFilePath(requestPath: string): string | undefined {
-		if (!requestPath.startsWith('/')) {
-			throw new Error('The path must begin with a slash.');
-		}
-
-		let pagePath: string | undefined; // 実ファイルパス
-		if (requestPath.endsWith('/')) {
-			/* ディレクトリトップ（e.g. /foo/ ） */
-			const fileName = this.#indexes?.find((name) => fs.existsSync(`${this.#root}${path.sep}${requestPath}${name}`));
-			if (fileName !== undefined) {
-				pagePath = `/${this.#root}${requestPath}${fileName}`;
-			}
-		} else if (path.extname(requestPath) === '') {
-			/* 拡張子のない URL（e.g. /foo ） */
-			const extension = this.#extensions?.find((ext) => fs.existsSync(`${this.#root}${path.sep}${requestPath}${ext}`));
-			if (extension !== undefined) {
-				pagePath = `/${this.#root}${requestPath}${extension}`;
-			}
-		} else if (fs.existsSync(`${this.#root}${path.sep}${requestPath}`)) {
-			/* 拡張子のある URL（e.g. /foo.txt ） */
-			pagePath = `/${this.#root}${requestPath}`;
-		}
-
-		return pagePath;
 	}
 }
