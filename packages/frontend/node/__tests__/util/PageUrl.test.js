@@ -32,7 +32,7 @@ describe('getUrl()', () => {
 	test('no root path', () => {
 		expect(() => {
 			pageUrl.getUrl('path/to/foo.svg');
-		}).toThrow('Argument `filePath` must be under the root path.');
+		}).toThrow('\'path/to/foo.svg\' must be under the root path.');
 	});
 });
 
