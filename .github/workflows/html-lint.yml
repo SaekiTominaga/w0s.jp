@@ -1,14 +1,21 @@
 name: html-lint
 on:
-  push:
-    branches: 
+  pull_request:
+    branches:
       - main
     paths:
       - 'html/**/*.html'
       - '.markuplintrc'
+  push:
+    branches:
+      - main
+    paths:
+      - 'html/**/*.html'
+      - '.markuplintrc'
+  workflow_dispatch:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

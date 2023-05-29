@@ -1,20 +1,16 @@
-name: html-lint-ejs
+name: backend@errorpage-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
+      - 'packages/backend/errorpage/*.html'
       - '.markuplintrc'
   push:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
+      - 'packages/backend/errorpage/*.html'
       - '.markuplintrc'
   workflow_dispatch:
 
@@ -27,4 +23,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run html-lint-ejs
+      - run: npm run errorpage-lint -w '@w0s.jp/backend'

@@ -1,0 +1,138 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/contact.json",
+	"type": "object",
+	"title": "問い合わせフォーム",
+	"required": ["reply", "mail", "url", "view", "validator"],
+	"properties": {
+		"reply": {
+			"type": "object",
+			"title": "「返信の有無」のラジオボタンの内容（ value 属性値をキー、表示文字列を内容にしたオブジェクト）"
+		},
+		"mail": {
+			"type": "object",
+			"title": "メール通知",
+			"required": ["subject"],
+			"properties": {
+				"subject": {
+					"type": "string",
+					"title": "メールタイトル"
+				}
+			},
+			"additionalProperties": false
+		},
+		"url": {
+			"type": "object",
+			"title": "URL",
+			"required": ["completed"],
+			"properties": {
+				"completed": {
+					"type": "object",
+					"title": "完了画面",
+					"required": ["pathname", "search"],
+					"properties": {
+						"pathname": {
+							"type": "string",
+							"title": "パス"
+						},
+						"search": {
+							"type": "object",
+							"title": "引数"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
+		"view": {
+			"type": "object",
+			"title": "view ファイル名",
+			"required": ["input", "completed", "mail"],
+			"properties": {
+				"input": {
+					"type": "string",
+					"title": "初期画面"
+				},
+				"completed": {
+					"type": "string",
+					"title": "完了画面"
+				},
+				"mail": {
+					"type": "string",
+					"title": "HTML メール"
+				}
+			},
+			"additionalProperties": false
+		},
+		"validator": {
+			"type": "object",
+			"title": "バリデーター",
+			"required": ["email", "reply", "body"],
+			"properties": {
+				"email": {
+					"type": "object",
+					"title": "Eメールアドレス",
+					"required": ["message"],
+					"properties": {
+						"message": {
+							"type": "object",
+							"title": "メッセージ",
+							"required": ["format", "required"],
+							"properties": {
+								"format": {
+									"type": "string"
+								},
+								"required": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				"reply": {
+					"type": "object",
+					"title": "返信の有無",
+					"required": ["message"],
+					"properties": {
+						"message": {
+							"type": "object",
+							"title": "メッセージ",
+							"required": ["required", "value"],
+							"properties": {
+								"required": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				"body": {
+					"type": "object",
+					"title": "内容",
+					"required": ["message"],
+					"properties": {
+						"message": {
+							"type": "object",
+							"title": "メッセージ",
+							"required": ["required"],
+							"properties": {
+								"required": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}

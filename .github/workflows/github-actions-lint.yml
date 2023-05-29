@@ -1,21 +1,15 @@
-name: html-lint-ejs
+name: github-actions-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
-      - '.markuplintrc'
+      - '.github/workflows/*.yml'
   push:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
-      - '.markuplintrc'
+      - '.github/workflows/*.yml'
   workflow_dispatch:
 
 jobs:
@@ -27,4 +21,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run html-lint-ejs
+      - run: npm run github-actions-lint

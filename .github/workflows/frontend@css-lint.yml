@@ -1,21 +1,17 @@
-name: html-lint-ejs
+name: frontend@css-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
-      - '.markuplintrc'
+      - 'packages/frontend/public/assets/style/_src/**/*.css'
+      - 'packages/frontend/.stylelintrc.json'
   push:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
-      - '.markuplintrc'
+      - 'packages/frontend/public/assets/style/_src/**/*.css'
+      - 'packages/frontend/.stylelintrc.json'
   workflow_dispatch:
 
 jobs:
@@ -27,4 +23,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run html-lint-ejs
+      - run: npm run css-lint -w '@w0s.jp/frontend'
