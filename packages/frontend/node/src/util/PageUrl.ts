@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import slash from 'slash';
 
 interface Options {
 	root: string; // ルートディレクトリ
@@ -31,7 +32,7 @@ export default class PageUrl {
 	 * @returns {string} レスポンス URL のパス（ルート相対パス）
 	 */
 	getUrl(filePath: string): string {
-		const filePathNormalize = path.normalize(filePath).replaceAll(path.sep, '/');
+		const filePathNormalize = slash(path.normalize(filePath));
 
 		if (!filePathNormalize.startsWith(`${this.#root}/`)) {
 			throw new Error('Argument `filePath` must be under the root path.');
