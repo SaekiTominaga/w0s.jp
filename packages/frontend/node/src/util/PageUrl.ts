@@ -32,7 +32,7 @@ export default class PageUrl {
 	 * @returns {string} レスポンス URL のパス（ルート相対パス）
 	 */
 	getUrl(filePath: string): string {
-		const filePathNormalize = slash(path.normalize(filePath));
+		const filePathNormalize = slash(path.normalize(slash(filePath))); // Unix 環境で Windows 形式のパスのテストを通すために slash() を2回掛ける
 
 		if (!filePathNormalize.startsWith(`${this.#root}/`)) {
 			throw new Error(`'${filePathNormalize}' must be under the root path.`);
