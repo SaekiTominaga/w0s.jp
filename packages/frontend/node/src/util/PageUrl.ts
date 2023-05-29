@@ -35,7 +35,7 @@ export default class PageUrl {
 		const filePathNormalize = slash(path.normalize(filePath));
 
 		if (!filePathNormalize.startsWith(`${this.#root}/`)) {
-			throw new Error('Argument `filePath` must be under the root path.');
+			throw new Error(`'${filePathNormalize}' must be under the root path.`);
 		}
 
 		const parsed = path.parse(filePathNormalize);
