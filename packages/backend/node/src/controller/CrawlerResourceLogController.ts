@@ -5,6 +5,7 @@ import * as Diff from 'diff';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import Controller from '../Controller.js';
 import ControllerInterface from '../ControllerInterface.js';
+import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
 import { NoName as Configure } from '../../../configure/type/crawler-resource.js';
 import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
@@ -36,6 +37,13 @@ export default class CrawlerResourceLogController extends Controller implements 
 			dir: RequestUtil.string(req.query['dir']),
 			diff: RequestUtil.strings(req.query['diff']),
 		};
+
+		if (!fs.existsSync(this.#config.log_dir)) {
+			this.logger.error('ログファイル格納ディレクトリが存在しない', this.#config.log_dir);
+			const httpResponse = new HttpResponse(req, res, this.#configCommon);
+			httpResponse.send500();
+			return;
+		}
 
 		let diff: Diff.Change[] = [];
 		let fileList: string[] = [];
