@@ -14,7 +14,6 @@ import Tab from '@saekitominaga/customelements-tab';
 import TextareaAutoheight from '@saekitominaga/customelements-textarea-autoheight';
 import TooltipTrigger from '@saekitominaga/customelements-tooltip-trigger';
 import GoogleAdsense from './unique/GoogleAdsense.js';
-import SidebarAmazonAd from './unique/SidebarAmazonAd.js';
 import SidebarBlogNewly from './unique/SidebarBlogNewly.js';
 import TableTheadStickey from './component/TableTheadStickey.js';
 
@@ -123,12 +122,6 @@ if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
 const sidebarBlogNewlyTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-blog-newly-template');
 if (sidebarBlogNewlyTemplateElement !== null) {
 	new SidebarBlogNewly(sidebarBlogNewlyTemplateElement).init();
-}
-
-/* Amazon 商品広告 */
-const sidebarAmazonAdTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-amazon-ad-template');
-if (sidebarAmazonAdTemplateElement !== null) {
-	new SidebarAmazonAd(sidebarAmazonAdTemplateElement).init();
 }
 
 /* オートフォーカス TODO: フォームコントロール以外への `autofocus` 属性が全ブラウザ対応すれば JS 処理は不要になる <https://caniuse.com/mdn-html_global_attributes_autofocus> */
