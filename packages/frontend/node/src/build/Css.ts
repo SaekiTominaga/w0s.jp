@@ -39,13 +39,13 @@ export default class Css extends BuildComponent implements BuildComponentInterfa
 			/* 一時ファイル削除 */
 			if (distDirectory !== undefined) {
 				await fs.promises.unlink(filePath);
-				console.info(`[Prettier] Temp file deleted: ${filePath}`);
+				console.info(`Temp file deleted: ${filePath}`);
 			}
 
 			/* 出力 */
 			const distPath = distDirectory !== undefined ? `${distDirectory}/${path.basename(filePath)}` : filePath;
 			await fs.promises.writeFile(distPath, cssFormatted);
-			console.info(`[Prettier] File created: ${distPath}`);
+			console.info(`File created: ${distPath}`);
 		});
 	}
 }
