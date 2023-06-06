@@ -5,8 +5,6 @@ import express, { NextFunction, Request, Response } from 'express';
 import Log4js from 'log4js';
 import qs from 'qs';
 import AkamatsuGenerator from './controller/AkamatsuGenerator.js';
-import AmazonAdsController from './controller/AmazonAdsController.js';
-import AmazonAdsJsonController from './controller/api/AmazonAdsJsonController.js';
 import ContactCompletedController from './controller/ContactCompletedController.js';
 import ContactInputController from './controller/ContactInputController.js';
 import ContactSendController from './controller/ContactSendController.js';
@@ -263,33 +261,6 @@ app
 app.get('/admin/crawler-resource-log', async (req, res, next) => {
 	try {
 		await new CrawlerResourceLogController(config).execute(req, res);
-	} catch (e) {
-		next(e);
-	}
-});
-
-/**
- * Amazon 商品広告管理
- */
-app
-	.route('/admin/amazon-ads')
-	.get(async (req, res, next) => {
-		try {
-			await new AmazonAdsController(config).execute(req, res);
-		} catch (e) {
-			next(e);
-		}
-	})
-	.post(async (req, res, next) => {
-		try {
-			await new AmazonAdsController(config).execute(req, res);
-		} catch (e) {
-			next(e);
-		}
-	});
-app.route('/admin/amazon-ads/json').post(async (req, res, next) => {
-	try {
-		await new AmazonAdsJsonController(config).execute(req, res);
 	} catch (e) {
 		next(e);
 	}
