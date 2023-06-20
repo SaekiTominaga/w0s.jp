@@ -2,16 +2,15 @@ import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
-const baseDir = 'public/assets/script';
-const inputDir = `${baseDir}/_src`;
-const outputDir = `${baseDir}`;
+const inputDir = 'script';
+const outputDir = 'public/assets/script';
 
 const moduleFiles = ['w0s.ts', 'error.ts', 'contact.ts', 'library-tag.ts', 'tokyu-car-history.ts'];
 const jsFiles = ['trusted-types.ts'];
 const legacyFiles = ['analytics.ts'];
 
 const pluginTypeScript = typescript({
-	tsconfig: `${baseDir}/tsconfig.json`,
+	tsconfig: `${inputDir}/tsconfig.json`,
 });
 const pluginResolve = resolve();
 const pluginTerser = terser();
