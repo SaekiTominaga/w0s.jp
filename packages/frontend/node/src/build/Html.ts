@@ -110,7 +110,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 			/* EJS を解釈 */
 			const htmlBuilt = await ejs.renderFile(`${this.config.views}/${structuredData.template.name}.ejs`, {
 				pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
-				filePath: filePath,
+				filePath: path.normalize(`package/frontend/${filePath}`).replaceAll('\\', '/'),
 				structuredData: structuredData,
 				jsonLd: HtmlStructuredData.getJsonLd(structuredData),
 				main: document.body.innerHTML,
