@@ -1,14 +1,17 @@
 <header id="header" class="l-header">
 	<div class="l-header__main">
 		<div class="l-header__site">
-			<div class="p-header-site">
-				<%_ if (pagePathAbsoluteUrl === '/') { _%>
+			<%_ if (pagePathAbsoluteUrl === '/') { _%>
+			<hgroup class="p-header-site">
 				<h1 class="p-header-site__name"><a aria-current="page">w0s.jp</a></h1>
-				<%_ } else { _%>
-				<p class="p-header-site__name"><a href="/">w0s.jp</a></p>
-				<%_ } _%>
+				<p class="p-header-site__summary">富永冴樹の個人サイト</p>
+			</hgroup>
+			<%_ } else { _%>
+			<div class="p-header-site">
+				<div class="p-header-site__name"><a href="/">w0s.jp</a></div>
 				<p class="p-header-site__summary">富永冴樹の個人サイト</p>
 			</div>
+			<%_ } _%>
 		</div>
 		<div class="l-header__nav"><%- include('header_search') -%></div>
 	</div>
