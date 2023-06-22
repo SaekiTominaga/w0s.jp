@@ -11,16 +11,9 @@ import Html from './Html.js';
  * <span class="c-annotate"><a href="#fn1" id="r1" is="w0s-tooltip-trigger">[1]</a></span>
  * <span class="c-annotate"><a href="#fn2" id="r2" is="w0s-tooltip-trigger">[2]</a></span>
  *
- * <ul class="p-footnotes">
- *   <li>
- *     <span class="p-footnotes__no"><a href="#r1">[1]</a></span>
- *     <span class="p-footnotes__text" id="fn1">注釈<em>強調</em>注釈</span>
- *   </li>
- *   <li>
- *     <span class="p-footnotes__no"><a href="#r2">[2]</a></span>
- *     <span class="p-footnotes__text" id="fn2">注釈<em>強調</em>注釈</span>
- *   </li>
- * </ul>
+ * <div class="p-footnote">
+ *   ...
+ * </div>
  */
 export default class HtmlFootnote extends Html {
 	/**
