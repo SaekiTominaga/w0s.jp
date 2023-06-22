@@ -73,7 +73,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 
 			/* ステップ3: 要素の置換・移動などでその他の処理に影響を及ぼす処理 */
 			await Promise.all([
-				new HtmlComponentFootnote(document, views).convert(this.config.html.footnote), // 注釈
+				new HtmlComponentFootnote(document, views).convert(this.config.html.footnote), // 脚注
 			]);
 
 			/* ステップ4: その他の処理 */
