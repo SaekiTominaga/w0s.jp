@@ -49,7 +49,12 @@ export default class TokyuCarHistoryController extends Controller implements Con
 		const validator = new TokyuCarHistoryValidator(req, this.#config);
 		let validationResult: ValidationResult<ValidationError> | null = null;
 
-		const dao = new TokyuCarHistoryDao(this.#configCommon);
+		const dbFilePath = this.#configCommon.sqlite.db['tokyu_car_history'];
+		if (dbFilePath === undefined) {
+			throw new Error('共通設定ファイルに tokyu_car_history テーブルのパスが指定されていない。');
+		}
+
+		const dao = new TokyuCarHistoryDao(dbFilePath);
 
 		let searchCarsCount = 0;
 		const searchCarsView: TokyuCarHistoryView.SearchCar[][] = [];

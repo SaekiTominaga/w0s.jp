@@ -41,7 +41,12 @@ export default class CrawlerNewsDataController extends Controller implements Con
 			action_delete: RequestUtil.boolean(req.body['actiondel']),
 		};
 
-		const dao = new CrawlerNewsDataDao(this.#configCommon);
+		const dbFilePath = this.#configCommon.sqlite.db['crawler'];
+		if (dbFilePath === undefined) {
+			throw new Error('共通設定ファイルに crawler テーブルのパスが指定されていない。');
+		}
+
+		const dao = new CrawlerNewsDataDao(dbFilePath);
 
 		if (requestQuery.action_delete) {
 			/* 削除 */

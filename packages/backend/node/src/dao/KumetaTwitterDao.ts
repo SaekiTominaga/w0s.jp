@@ -1,7 +1,6 @@
 import * as sqlite from 'sqlite';
 import sqlite3 from 'sqlite3';
 import dayjs from 'dayjs';
-import { W0SJp as Configure } from '../../../configure/type/common.js';
 
 /**
  * 久米田康治 Twitter
@@ -9,14 +8,14 @@ import { W0SJp as Configure } from '../../../configure/type/common.js';
 export default class KumetaTwitterDao {
 	#dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement> | null = null;
 
-	#config: Configure;
+	readonly #filepath: string;
 
 	/**
-	 * @param {Configure} config - 共通設定
+	 * @param {string} filepath - DB ファイルパス
 	 * @param {sqlite.Database} dbh - DB 接続情報
 	 */
-	constructor(config: Configure, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
-		this.#config = config;
+	constructor(filepath: string, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
+		this.#filepath = filepath;
 
 		if (dbh !== undefined) {
 			this.#dbh = dbh;
@@ -34,7 +33,7 @@ export default class KumetaTwitterDao {
 		}
 
 		const dbh = await sqlite.open({
-			filename: this.#config.sqlite.db.kumeta_twitter,
+			filename: this.#filepath,
 			driver: sqlite3.Database,
 		});
 

@@ -1,6 +1,5 @@
 import * as sqlite from 'sqlite';
 import sqlite3 from 'sqlite3';
-import { W0SJp as Configure } from '../../../configure/type/common.js';
 
 interface CategoryMaster {
 	fk: number;
@@ -18,14 +17,14 @@ interface PriorityMaster {
 export default class CrawlerDao {
 	#dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement> | null = null;
 
-	#config: Configure;
+	readonly #filepath: string;
 
 	/**
-	 * @param {Configure} config - 共通設定
+	 * @param {string} filepath - DB ファイルパス
 	 * @param {sqlite.Database} dbh - DB 接続情報
 	 */
-	constructor(config: Configure, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
-		this.#config = config;
+	constructor(filepath: string, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
+		this.#filepath = filepath;
 
 		if (dbh !== undefined) {
 			this.#dbh = dbh;
@@ -43,7 +42,7 @@ export default class CrawlerDao {
 		}
 
 		const dbh = await sqlite.open({
-			filename: this.#config.sqlite.db.crawler,
+			filename: this.#filepath,
 			driver: sqlite3.Database,
 		});
 

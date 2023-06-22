@@ -33,7 +33,12 @@ export default class KumetaTwitterController extends Controller implements Contr
 	async execute(req: Request, res: Response): Promise<void> {
 		const targetId = this.#config.id;
 
-		const dao = new KumetaTwitterDao(this.#configCommon);
+		const dbFilePath = this.#configCommon.sqlite.db['kumeta_twitter'];
+		if (dbFilePath === undefined) {
+			throw new Error('共通設定ファイルに kumeta_twitter テーブルのパスが指定されていない。');
+		}
+
+		const dao = new KumetaTwitterDao(dbFilePath);
 
 		/* アカウント情報 */
 		const accountData = await dao.getAccountData(targetId);
