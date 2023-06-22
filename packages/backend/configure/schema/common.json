@@ -365,27 +365,11 @@
 			"properties": {
 				"db": {
 					"type": "object",
-					"title": "DB ファイルのパス（絶対パス、または `node` ディレクトリを基準にした相対パス）",
-					"required": ["crawler", "blog", "tokyu_car_history", "kumeta_twitter"],
-					"properties": {
-						"crawler": {
-							"type": "string",
-							"title": "crawler テーブル"
-						},
-						"blog": {
-							"type": "string",
-							"title": "blog テーブル"
-						},
-						"tokyu_car_history": {
-							"type": "string",
-							"title": "tokyucarhistory テーブル"
-						},
-						"kumeta_twitter": {
-							"type": "string",
-							"title": "kumetatwitter テーブル"
-						}
-					},
-					"additionalProperties": false
+					"title": "DB 情報",
+					"additionalProperties": {
+						"type": "string",
+						"title": "テーブルファイルパス（絶対パス、または `node` ディレクトリを基準にした相対パス）"
+					}
 				}
 			},
 			"additionalProperties": false

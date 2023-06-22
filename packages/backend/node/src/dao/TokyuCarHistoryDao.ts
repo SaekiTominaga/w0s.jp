@@ -1,7 +1,6 @@
 import * as sqlite from 'sqlite';
 import dayjs from 'dayjs';
 import sqlite3 from 'sqlite3';
-import { W0SJp as Configure } from '../../../configure/type/common.js';
 
 interface Series {
 	id: string;
@@ -33,14 +32,14 @@ interface Car {
 export default class TokyuCarHistoryDao {
 	#dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement> | null = null;
 
-	#config: Configure;
+	readonly #filepath: string;
 
 	/**
-	 * @param {Configure} config - 共通設定
+	 * @param {string} filepath - DB ファイルパス
 	 * @param {sqlite.Database} dbh - DB 接続情報
 	 */
-	constructor(config: Configure, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
-		this.#config = config;
+	constructor(filepath: string, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
+		this.#filepath = filepath;
 
 		if (dbh !== undefined) {
 			this.#dbh = dbh;
@@ -58,7 +57,7 @@ export default class TokyuCarHistoryDao {
 		}
 
 		const dbh = await sqlite.open({
-			filename: this.#config.sqlite.db.tokyu_car_history,
+			filename: this.#filepath,
 			driver: sqlite3.Database,
 		});
 
