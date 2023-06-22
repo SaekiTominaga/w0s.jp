@@ -1,6 +1,6 @@
 import * as sqlite from 'sqlite';
 import dayjs from 'dayjs';
-import * as sqlite3 from 'sqlite3';
+import sqlite3 from 'sqlite3';
 
 interface Series {
 	id: string;
