@@ -39,9 +39,9 @@ export default class HtmlBook extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {string} options.target_element - Element name
-	 * @param {string} buildHeadingAnchorClassName - 見出しセルフリンク用のビルドクラス名
+	 * @param options - Options
+	 * @param options.target_element - Element name
+	 * @param buildHeadingAnchorClassName - 見出しセルフリンク用のビルドクラス名
 	 */
 	async convert(
 		options: Readonly<{

@@ -21,7 +21,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 	#config: Configure;
 
 	/**
-	 * @param {ConfigureCommon} configCommon - 共通設定
+	 * @param configCommon - 共通設定
 	 */
 	constructor(configCommon: ConfigureCommon) {
 		super();
@@ -31,8 +31,8 @@ export default class TokyuCarHistoryController extends Controller implements Con
 	}
 
 	/**
-	 * @param {Request} req - Request
-	 * @param {Response} res - Response
+	 * @param req - Request
+	 * @param res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: TokyuCarHistoryRequest.Search = {
@@ -139,10 +139,10 @@ export default class TokyuCarHistoryController extends Controller implements Con
 	/**
 	 * 日付データを表示用に整形する
 	 *
-	 * @param {Date} date - 日付データ
-	 * @param {object} requestQuery - URL クエリー情報
+	 * @param date - 日付データ
+	 * @param requestQuery - URL クエリー情報
 	 *
-	 * @returns {string} 整形後の日付データ
+	 * @returns 整形後の日付データ
 	 */
 	static #dateFormat(date: Date, requestQuery: TokyuCarHistoryRequest.Search): string {
 		switch (requestQuery.era) {

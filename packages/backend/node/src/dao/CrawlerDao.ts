@@ -20,8 +20,8 @@ export default class CrawlerDao {
 	readonly #filepath: string;
 
 	/**
-	 * @param {string} filepath - DB ファイルパス
-	 * @param {sqlite.Database} dbh - DB 接続情報
+	 * @param filepath - DB ファイルパス
+	 * @param dbh - DB 接続情報
 	 */
 	constructor(filepath: string, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
 		this.#filepath = filepath;
@@ -34,7 +34,7 @@ export default class CrawlerDao {
 	/**
 	 * DB 接続情報を取得する
 	 *
-	 * @returns {sqlite.Database} DB 接続情報
+	 * @returns DB 接続情報
 	 */
 	async getDbh(): Promise<sqlite.Database<sqlite3.Database, sqlite3.Statement>> {
 		if (this.#dbh !== null) {
@@ -54,7 +54,7 @@ export default class CrawlerDao {
 	/**
 	 * カテゴリー情報を取得
 	 *
-	 * @returns {CategoryMaster[]} カテゴリー情報
+	 * @returns カテゴリー情報
 	 */
 	public async getCategoryMaster(): Promise<CategoryMaster[]> {
 		const dbh = await this.getDbh();
@@ -86,7 +86,7 @@ export default class CrawlerDao {
 	/**
 	 * 優先度情報を取得
 	 *
-	 * @returns {PriorityMaster[]} 優先度情報
+	 * @returns 優先度情報
 	 */
 	public async getPriorityMaster(): Promise<PriorityMaster[]> {
 		const dbh = await this.getDbh();

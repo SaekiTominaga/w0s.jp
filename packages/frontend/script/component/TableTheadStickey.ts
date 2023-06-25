@@ -7,7 +7,7 @@ export default class {
 	readonly #pageAnchorClickEventListener: (ev: Event) => void;
 
 	/**
-	 * @param {HTMLTableElement} thisElement - Target element
+	 * @param thisElement - Target element
 	 */
 	constructor(thisElement: HTMLTableElement) {
 		this.#thisElement = thisElement;
@@ -41,7 +41,7 @@ export default class {
 	/**
 	 * ページ内アンカーをクリックした時の処理
 	 *
-	 * @param {Event} ev - Event
+	 * @param ev - Event
 	 */
 	#pageAnchorClickEvent(ev: Event): void {
 		const targetElement = ev.currentTarget;

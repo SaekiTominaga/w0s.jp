@@ -10,7 +10,7 @@ export default class SidebarBlogNewly {
 	#templateElement: HTMLTemplateElement;
 
 	/**
-	 * @param {object} templateElement - 挿入するページに存在する <tempalte> 要素
+	 * @param templateElement - 挿入するページに存在する <tempalte> 要素
 	 */
 	constructor(templateElement: HTMLTemplateElement) {
 		this.#templateElement = templateElement;
@@ -38,9 +38,9 @@ export default class SidebarBlogNewly {
 	/**
 	 * エンドポイントから JSON ファイルを取得する
 	 *
-	 * @param {string} jsonName - 取得する JSON の名前
+	 * @param jsonName - 取得する JSON の名前
 	 *
-	 * @returns {object[]} 日記エントリーのデータ
+	 * @returns 日記エントリーのデータ
 	 */
 	static async #fetch(jsonName?: string): Promise<BlogNewlyJson[]> {
 		const response = await fetch(`https://blog.w0s.jp/json/newly${jsonName !== undefined ? `_${jsonName}` : ''}.json`);
@@ -55,7 +55,7 @@ export default class SidebarBlogNewly {
 	/**
 	 * 日記エントリーのデータを HTML ページ内に挿入する
 	 *
-	 * @param {object[]} entries - 日記エントリーのデータ
+	 * @param entries - 日記エントリーのデータ
 	 */
 	#insert(entries: BlogNewlyJson[]): void {
 		const fragment = document.createDocumentFragment();

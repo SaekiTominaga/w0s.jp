@@ -15,9 +15,9 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 	/**
 	 * 新着データを取得する
 	 *
-	 * @param {string} url - 対象データの URL
+	 * @param url - 対象データの URL
 	 *
-	 * @returns {NewsData[]} 新着データ
+	 * @returns 新着データ
 	 */
 	public async getNewsDataList(url: string): Promise<NewsData[]> {
 		const dbh = await this.getDbh();
@@ -58,7 +58,7 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 	/**
 	 * 新着データを削除する
 	 *
-	 * @param {string} id - 削除対象の ID
+	 * @param id - 削除対象の ID
 	 */
 	async delete(id: string): Promise<void> {
 		const dbh = await this.getDbh();

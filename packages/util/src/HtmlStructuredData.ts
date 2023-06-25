@@ -61,9 +61,9 @@ export default class HtmlStructuredData {
 	/**
 	 * JSON ファイルからページの構造データを取得
 	 *
-	 * @param {string} htmlFilePath - HTML（EJS）ファイルパス
+	 * @param htmlFilePath - HTML（EJS）ファイルパス
 	 *
-	 * @returns {object} 構造データ
+	 * @returns 構造データ
 	 */
 	static async getForJson(htmlFilePath: string): Promise<StructuredData> {
 		const parsed = path.parse(htmlFilePath);
@@ -77,9 +77,9 @@ export default class HtmlStructuredData {
 	/**
 	 * 構造データを取得する
 	 *
-	 * @param {string} fileData - ファイルから取得したデータ
+	 * @param fileData - ファイルから取得したデータ
 	 *
-	 * @returns {object} 構造データ
+	 * @returns 構造データ
 	 */
 	static getStructuredData(fileData: string): StructuredData {
 		const structuredData: StructuredData = JSON.parse(fileData);
@@ -95,9 +95,9 @@ export default class HtmlStructuredData {
 	/**
 	 * JSON-LD 用のデータを構築
 	 *
-	 * @param {object} structuredData - ページで指定された構造データ
+	 * @param structuredData - ページで指定された構造データ
 	 *
-	 * @returns {object} JSON-LD データ
+	 * @returns JSON-LD データ
 	 */
 	static getJsonLd(structuredData: StructuredData): object | undefined {
 		if (structuredData.breadcrumb === undefined && structuredData.description === undefined) {

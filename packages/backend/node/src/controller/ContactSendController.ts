@@ -21,7 +21,7 @@ export default class ContactSendController extends Controller implements Control
 	#config: Configure;
 
 	/**
-	 * @param {ConfigureCommon} configCommon - 共通設定
+	 * @param configCommon - 共通設定
 	 */
 	constructor(configCommon: ConfigureCommon) {
 		super();
@@ -31,8 +31,8 @@ export default class ContactSendController extends Controller implements Control
 	}
 
 	/**
-	 * @param {Request} req - Request
-	 * @param {Response} res - Response
+	 * @param req - Request
+	 * @param res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: ContactRequest.Input = {
@@ -88,8 +88,8 @@ export default class ContactSendController extends Controller implements Control
 	/**
 	 * メール送信
 	 *
-	 * @param {Request} req - Request
-	 * @param {object} requestQuery - URL クエリー情報
+	 * @param req - Request
+	 * @param requestQuery - URL クエリー情報
 	 */
 	private async sendMail(req: Request, requestQuery: ContactRequest.Input): Promise<void> {
 		const html = await ejs.renderFile(`${this.#configCommon.views}/${this.#config.view.mail}`, {
