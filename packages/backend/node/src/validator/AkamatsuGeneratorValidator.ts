@@ -11,8 +11,8 @@ export default class AkamatsuGeneratorValidator {
 	#config: Configure;
 
 	/**
-	 * @param {Request} req - Request
-	 * @param {Configure} config - 設定ファイル
+	 * @param req - Request
+	 * @param config - 設定ファイル
 	 */
 	constructor(req: Request, config: Configure) {
 		this.#req = req;
@@ -22,7 +22,7 @@ export default class AkamatsuGeneratorValidator {
 	/**
 	 * 生成実行
 	 *
-	 * @returns {Result<ValidationError>} 検証エラー
+	 * @returns 検証エラー
 	 */
 	async generate(): Promise<Result<ValidationError>> {
 		await Promise.all([

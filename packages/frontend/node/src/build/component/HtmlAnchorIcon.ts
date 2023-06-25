@@ -7,10 +7,10 @@ export default class HtmlAnchorIcon extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {string} options.type.target_class - Class name of the <a> element to process
-	 * @param {string} options.type.insert_position - Icon insertion position
-	 * @param {object[]} options.type.icons - Icon infomation
+	 * @param options - Options
+	 * @param options.type.target_class - Class name of the <a> element to process
+	 * @param options.type.insert_position - Icon insertion position
+	 * @param options.type.icons - Icon infomation
 	 */
 	async convert(
 		options: Readonly<{

@@ -10,7 +10,7 @@ const tagButtonElements = document.querySelectorAll<HTMLButtonElement>('.js-libr
 /**
  * 絞り込みを行う
  *
- * @param {string} tagName - タグ名
+ * @param tagName - タグ名
  */
 const narrowDown = (tagName?: string): void => {
 	/* いったんリセット */
@@ -66,7 +66,7 @@ const init = (): void => {
 /**
  * ボタン押下時の処理
  *
- * @param {Event} ev - イベント
+ * @param ev - イベント
  */
 const click = (ev: Event): void => {
 	const tagButtonElement = ev.currentTarget as HTMLButtonElement;

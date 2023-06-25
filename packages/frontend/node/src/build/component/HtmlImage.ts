@@ -16,8 +16,8 @@ export default class HtmlImage extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {string} options.target_class - Class name of the <img> element to process
+	 * @param options - Options
+	 * @param options.target_class - Class name of the <img> element to process
 	 */
 	convert(
 		options: Readonly<{
@@ -98,12 +98,12 @@ export default class HtmlImage extends Html {
 	/**
 	 * Assemble Url.search
 	 *
-	 * @param {string} type - Image type
-	 * @param {number} width - Image width
-	 * @param {number} height - Image Height
-	 * @param {number} quality - Image quality
+	 * @param type - Image type
+	 * @param width - Image width
+	 * @param height - Image Height
+	 * @param quality - Image quality
 	 *
-	 * @returns {string} URL.search
+	 * @returns URL.search
 	 */
 	static #assembleUrlSearch = (type: string, width: number | null, height: number | null, quality: number): string => {
 		let urlSearch = `?type=${type}`;

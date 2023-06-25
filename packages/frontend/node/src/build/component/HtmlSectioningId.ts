@@ -8,8 +8,8 @@ export default class HtmlSectioningId extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {string} options.heading_levels - 対象の見出しレベル
+	 * @param options - Options
+	 * @param options.heading_levels - 対象の見出しレベル
 	 */
 	convert(
 		options: Readonly<{

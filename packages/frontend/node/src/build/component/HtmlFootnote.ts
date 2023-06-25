@@ -19,9 +19,9 @@ export default class HtmlFootnote extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {object} options.reference - 脚注表示のトリガー要素
-	 * @param {object} options.footnote - 脚注を表示する要素
+	 * @param options - Options
+	 * @param options.reference - 脚注表示のトリガー要素
+	 * @param options.footnote - 脚注を表示する要素
 	 */
 	async convert(
 		options: Readonly<{

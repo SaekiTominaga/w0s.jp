@@ -167,7 +167,7 @@ export default class Contact {
 	/**
 	 * 画面状態を変更するボタン押下時の処理
 	 *
-	 * @param {string} hash - URL のハッシュ値
+	 * @param hash - URL のハッシュ値
 	 */
 	#stepChangeButtonClick(hash: string): void {
 		history.pushState(null, '', hash === '' ? location.pathname : `#${hash}`);
@@ -180,9 +180,9 @@ export default class Contact {
 	/**
 	 * フォームコントロール（<input> など）のラベルテキストを取得する
 	 *
-	 * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} formCtrl - フォームコントロール
+	 * @param formCtrl - フォームコントロール
 	 *
-	 * @returns {string} ラベルテキスト（ラベルが存在しない場合は value 属性値）
+	 * @returns ラベルテキスト（ラベルが存在しない場合は value 属性値）
 	 */
 	static #getLabelTextFormControl(formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
 		const labelElements = <NodeListOf<HTMLLabelElement>>formCtrl.labels;

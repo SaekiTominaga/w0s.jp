@@ -11,8 +11,8 @@ export default class ContactValidator {
 	#config: Configure;
 
 	/**
-	 * @param {Request} req - Request
-	 * @param {Configure} config - 設定ファイル
+	 * @param req - Request
+	 * @param config - 設定ファイル
 	 */
 	constructor(req: Request, config: Configure) {
 		this.#req = req;
@@ -22,7 +22,7 @@ export default class ContactValidator {
 	/**
 	 * 送信実行
 	 *
-	 * @returns {Result<ValidationError>} 検証エラー
+	 * @returns 検証エラー
 	 */
 	async send(): Promise<Result<ValidationError>> {
 		await body('email')
@@ -48,7 +48,7 @@ export default class ContactValidator {
 	/**
 	 * 完了
 	 *
-	 * @returns {Result<ValidationError>} 検証エラー
+	 * @returns 検証エラー
 	 */
 	async completed(): Promise<Result<ValidationError>> {
 		await query('referrer')

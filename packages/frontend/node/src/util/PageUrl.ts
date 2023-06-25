@@ -15,7 +15,7 @@ export default class PageUrl {
 	readonly #indexes: string[] | undefined;
 
 	/**
-	 * @param {Options} options - Options
+	 * @param options - Options
 	 */
 	constructor(options: Options) {
 		this.#root = options.root;
@@ -26,9 +26,9 @@ export default class PageUrl {
 	/**
 	 * 実ファイルパスを元にレスポンス URL のパスを取得する
 	 *
-	 * @param {string} filePath - 実ファイルパス
+	 * @param filePath - 実ファイルパス
 	 *
-	 * @returns {string} レスポンス URL のパス（ルート相対パス）
+	 * @returns レスポンス URL のパス（ルート相対パス）
 	 */
 	getUrl(filePath: string): string {
 		const filePathNormalize = slash(path.normalize(slash(filePath))); // Unix 環境で Windows 形式のパスのテストを通すために slash() を2回掛ける

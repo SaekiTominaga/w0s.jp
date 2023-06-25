@@ -11,9 +11,9 @@ export default class HtmlAnchorAmazonAssociate extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {string} options.target_class - Class name of the <a> element to process
-	 * @param {string} options.associate_id - Associate ID
+	 * @param options - Options
+	 * @param options.target_class - Class name of the <a> element to process
+	 * @param options.associate_id - Associate ID
 	 */
 	convert(
 		options: Readonly<{

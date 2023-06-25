@@ -30,7 +30,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを取得する
 	 *
-	 * @returns {NewsPage[]} 巡回ページデータ
+	 * @returns 巡回ページデータ
 	 */
 	public async getNewsPageList(): Promise<NewsPage[]> {
 		const dbh = await this.getDbh();
@@ -80,14 +80,14 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを登録する
 	 *
-	 * @param {string} url - URL
-	 * @param {string} title - タイトル
-	 * @param {number} category - カテゴリー
-	 * @param {number} priority - 優先度
-	 * @param {boolean} browser - ウェブブラウザでアクセスするか
-	 * @param {string} selectorWrap - セレクター文字列（包括要素）
-	 * @param {string} selectorDate - 包括要素からのセレクター文字列（日付）
-	 * @param {string} selectorContent - 包括要素からのセレクター文字列（内容）
+	 * @param url - URL
+	 * @param title - タイトル
+	 * @param category - カテゴリー
+	 * @param priority - 優先度
+	 * @param browser - ウェブブラウザでアクセスするか
+	 * @param selectorWrap - セレクター文字列（包括要素）
+	 * @param selectorDate - 包括要素からのセレクター文字列（日付）
+	 * @param selectorContent - 包括要素からのセレクター文字列（内容）
 	 */
 	async insert(
 		url: string,
@@ -132,14 +132,14 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを更新する
 	 *
-	 * @param {string} url - URL
-	 * @param {string} title - タイトル
-	 * @param {number} category - カテゴリー
-	 * @param {number} priority - 優先度
-	 * @param {boolean} browser - ウェブブラウザでアクセスするか
-	 * @param {string} selectorWrap - セレクター文字列（包括要素）
-	 * @param {string} selectorDate - 包括要素からのセレクター文字列（日付）
-	 * @param {string} selectorContent - 包括要素からのセレクター文字列（内容）
+	 * @param url - URL
+	 * @param title - タイトル
+	 * @param category - カテゴリー
+	 * @param priority - 優先度
+	 * @param browser - ウェブブラウザでアクセスするか
+	 * @param selectorWrap - セレクター文字列（包括要素）
+	 * @param selectorDate - 包括要素からのセレクター文字列（日付）
+	 * @param selectorContent - 包括要素からのセレクター文字列（内容）
 	 */
 	async update(
 		url: string,
@@ -191,7 +191,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを削除する
 	 *
-	 * @param {string} url - 削除対象の URL
+	 * @param url - 削除対象の URL
 	 */
 	async delete(url: string): Promise<void> {
 		const dbh = await this.getDbh();
@@ -230,9 +230,9 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 修正する巡回ページデータを取得する
 	 *
-	 * @param {string} url - 対象データの URL
+	 * @param url - 対象データの URL
 	 *
-	 * @returns {ReviseData} 巡回情報データ
+	 * @returns 巡回情報データ
 	 */
 	public async getReviseData(url: string): Promise<ReviseData | null> {
 		const dbh = await this.getDbh();

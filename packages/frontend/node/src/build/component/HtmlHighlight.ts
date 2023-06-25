@@ -18,8 +18,8 @@ export default class HtmlHighlight extends Html {
 	/**
 	 * 変換実行
 	 *
-	 * @param {object} options - Options
-	 * @param {string} options.target_class - Class name of the <img> element to process
+	 * @param options - Options
+	 * @param options.target_class - Class name of the <img> element to process
 	 */
 	convert(
 		options: Readonly<{

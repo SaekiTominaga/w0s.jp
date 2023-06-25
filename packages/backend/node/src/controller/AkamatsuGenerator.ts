@@ -23,7 +23,7 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 	#config: Configure;
 
 	/**
-	 * @param {ConfigureCommon} configCommon - 共通設定
+	 * @param configCommon - 共通設定
 	 */
 	constructor(configCommon: ConfigureCommon) {
 		super();
@@ -33,8 +33,8 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 	}
 
 	/**
-	 * @param {Request} req - Request
-	 * @param {Response} res - Response
+	 * @param req - Request
+	 * @param res - Response
 	 */
 	async execute(req: Request, res: Response): Promise<void> {
 		const requestQuery: AkamatsuGeneratorRequest.Generate = {
@@ -178,10 +178,10 @@ export default class AkamatsuGenerator extends Controller implements ControllerI
 	/**
 	 * SVG データを取得する
 	 *
-	 * @param {string} text - セリフ情報
-	 * @param {string | null} color - 文字色
+	 * @param text - セリフ情報
+	 * @param color - 文字色
 	 *
-	 * @returns {string} SVG データ
+	 * @returns SVG データ
 	 */
 	#getSvg(text: string, color: string | null): string {
 		return `

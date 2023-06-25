@@ -11,8 +11,8 @@ export default class KumetaTwitterDao {
 	readonly #filepath: string;
 
 	/**
-	 * @param {string} filepath - DB ファイルパス
-	 * @param {sqlite.Database} dbh - DB 接続情報
+	 * @param filepath - DB ファイルパス
+	 * @param dbh - DB 接続情報
 	 */
 	constructor(filepath: string, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
 		this.#filepath = filepath;
@@ -25,7 +25,7 @@ export default class KumetaTwitterDao {
 	/**
 	 * DB 接続情報を取得する
 	 *
-	 * @returns {sqlite.Database} DB 接続情報
+	 * @returns DB 接続情報
 	 */
 	async getDbh(): Promise<sqlite.Database<sqlite3.Database, sqlite3.Statement>> {
 		if (this.#dbh !== null) {
@@ -45,9 +45,9 @@ export default class KumetaTwitterDao {
 	/**
 	 * Twitter アカウント情報を取得
 	 *
-	 * @param {string} id - Twitter ID
+	 * @param id - Twitter ID
 	 *
-	 * @returns {object} Twitter アカウント情報
+	 * @returns Twitter アカウント情報
 	 */
 	async getAccountData(id: string): Promise<KumetaTwitterView.Account | null> {
 		const dbh = await this.getDbh();
@@ -89,9 +89,9 @@ export default class KumetaTwitterDao {
 	/**
 	 * アイコン履歴情報を取得
 	 *
-	 * @param {string} id - Twitter ID
+	 * @param id - Twitter ID
 	 *
-	 * @returns {object[]} アイコン履歴情報
+	 * @returns アイコン履歴情報
 	 */
 	async getProfileImages(id: string): Promise<KumetaTwitterView.ProfileImage[]> {
 		const dbh = await this.getDbh();
@@ -130,9 +130,9 @@ export default class KumetaTwitterDao {
 	/**
 	 * バナー履歴情報を取得
 	 *
-	 * @param {string} id - Twitter ID
+	 * @param id - Twitter ID
 	 *
-	 * @returns {object[]} バナー履歴情報
+	 * @returns バナー履歴情報
 	 */
 	async getBanners(id: string): Promise<KumetaTwitterView.Banner[]> {
 		const dbh = await this.getDbh();

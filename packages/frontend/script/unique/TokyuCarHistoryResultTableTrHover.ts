@@ -14,8 +14,8 @@ export default class TokyuCarHistoryResultTableTrHover {
 	#mouseOutEventListener: () => void;
 
 	/**
-	 * @param {HTMLTableRowElement} thisElement - 対象要素
-	 * @param {string} hoverClassName - マウスオーバー時に付与するクラス名
+	 * @param thisElement - 対象要素
+	 * @param hoverClassName - マウスオーバー時に付与するクラス名
 	 */
 	constructor(thisElement: HTMLTableRowElement, hoverClassName = '-hover') {
 		this.#thisElement = thisElement;

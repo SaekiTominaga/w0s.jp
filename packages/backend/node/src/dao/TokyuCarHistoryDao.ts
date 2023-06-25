@@ -35,8 +35,8 @@ export default class TokyuCarHistoryDao {
 	readonly #filepath: string;
 
 	/**
-	 * @param {string} filepath - DB ファイルパス
-	 * @param {sqlite.Database} dbh - DB 接続情報
+	 * @param filepath - DB ファイルパス
+	 * @param dbh - DB 接続情報
 	 */
 	constructor(filepath: string, dbh?: sqlite.Database<sqlite3.Database, sqlite3.Statement>) {
 		this.#filepath = filepath;
@@ -49,7 +49,7 @@ export default class TokyuCarHistoryDao {
 	/**
 	 * DB 接続情報を取得する
 	 *
-	 * @returns {sqlite.Database} DB 接続情報
+	 * @returns DB 接続情報
 	 */
 	async getDbh(): Promise<sqlite.Database<sqlite3.Database, sqlite3.Statement>> {
 		if (this.#dbh !== null) {
@@ -69,7 +69,7 @@ export default class TokyuCarHistoryDao {
 	/**
 	 * 車種情報を取得
 	 *
-	 * @returns {Series[]} 車種情報
+	 * @returns 車種情報
 	 */
 	async getCarSeries(): Promise<Series[]> {
 		const dbh = await this.getDbh();
@@ -101,14 +101,14 @@ export default class TokyuCarHistoryDao {
 	/**
 	 * 車両情報を取得する
 	 *
-	 * @param {string | null} number - 車号
-	 * @param {boolean} numberOld - 旧車号を含むか
-	 * @param {string[] | null} seriesList - 車種
-	 * @param {string | null} registerStart - 入籍日（開始日）
-	 * @param {string | null} registerEnd - 入籍日（終了日）
-	 * @param {string | null} sort - ソート
+	 * @param number - 車号
+	 * @param numberOld - 旧車号を含むか
+	 * @param seriesList - 車種
+	 * @param registerStart - 入籍日（開始日）
+	 * @param registerEnd - 入籍日（終了日）
+	 * @param sort - ソート
 	 *
-	 * @returns {Car[]} 車両情報
+	 * @returns 車両情報
 	 */
 	async getCarData(
 		number: string | null,
@@ -248,9 +248,9 @@ export default class TokyuCarHistoryDao {
 	/**
 	 * 改番情報を取得する
 	 *
-	 * @param {sqlite.Database} dbh - DB 接続情報
+	 * @param dbh - DB 接続情報
 	 *
-	 * @returns {Change[]} 改番情報
+	 * @returns 改番情報
 	 */
 	static async #getCarChangeData(dbh: sqlite.Database<sqlite3.Database, sqlite3.Statement>): Promise<Map<string, Change[]>> {
 		const sth = await dbh.prepare(`

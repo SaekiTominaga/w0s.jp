@@ -7,8 +7,8 @@ export default class Html {
 	protected readonly views: string | undefined; // Views directory
 
 	/**
-	 * @param {object} document - Document
-	 * @param {string} views - Views directory
+	 * @param document - Document
+	 * @param views - Views directory
 	 */
 	constructor(document: Document, views: string) {
 		/* Document */
@@ -21,10 +21,10 @@ export default class Html {
 	/**
 	 * Replace existing element with new element
 	 *
-	 * @param {object} element - Target Element
-	 * @param {string} newElementName - New element name
+	 * @param element - Target Element
+	 * @param newElementName - New element name
 	 *
-	 * @returns {object} New element
+	 * @returns New element
 	 */
 	protected replaceElement(element: Element, newElementName: string): Element {
 		const newElement = this.document.createElement(newElementName);
@@ -42,10 +42,10 @@ export default class Html {
 	/**
 	 * Replace existing element with new HTML
 	 *
-	 * @param {object} element - Target Element
-	 * @param {string} newHtml - New HTML
+	 * @param element - Target Element
+	 * @param newHtml - New HTML
 	 *
-	 * @returns {object} New element
+	 * @returns New element
 	 */
 	protected replaceHtml(element: Element, newHtml: string): Element {
 		const newParentElement = this.document.createElement('div');
@@ -69,8 +69,8 @@ export default class Html {
 	/**
 	 * Remove class name from element
 	 *
-	 * @param {object} element - Target Element
-	 * @param {string} className - Class name
+	 * @param element - Target Element
+	 * @param className - Class name
 	 */
 	protected static removeClassName(element: Element, className: string): void {
 		element.classList.remove(className);
@@ -82,9 +82,9 @@ export default class Html {
 	/**
 	 * Get EJS file path
 	 *
-	 * @param {string} fileName - EJS file name
+	 * @param fileName - EJS file name
 	 *
-	 * @returns {string} - EJS file path
+	 * @returns EJS file path
 	 */
 	protected getEjsPath(fileName?: string): string {
 		const fixFileName = fileName === undefined ? `${decamelize(this.constructor.name.replace(/^Html/, ''), { separator: '-' })}` : fileName; // HtmlFooBar.ts → foo-bar
@@ -95,10 +95,10 @@ export default class Html {
 	/**
 	 * HTML rendering using EJS file
 	 *
-	 * @param {object} data - EJS data
-	 * @param {string} fileName - EJS file name
+	 * @param data - EJS data
+	 * @param fileName - EJS file name
 	 *
-	 * @returns {string} - HTML
+	 * @returns HTML
 	 */
 	protected async renderEjsFile(data: ejs.Data, fileName?: string): Promise<string> {
 		const html = (await ejs.renderFile(this.getEjsPath(fileName), data)).trim();
