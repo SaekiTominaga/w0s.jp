@@ -57,7 +57,7 @@ pre {
 	tab-size: 2;
 }
 
-:where(em, cite) {
+:is(cite, em) {
 	&:lang(ja) {
 		font-weight: var(--font-weight-bold);
 	}
@@ -83,6 +83,20 @@ dfn {
 	}
 }
 
+code {
+	border-radius: var(--border-radius-normal);
+	background-color: var(--color-ultralightgreen);
+	padding-block: 0.25em;
+	color: var(--color-green);
+
+	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, a) & {
+		border-radius: 0;
+		background-color: transparent;
+		padding-block: 0;
+		color: inherit;
+	}
+}
+
 mark {
 	border: 1px solid var(--color-lightyellow);
 	background: var(--color-lightyellow);
@@ -93,10 +107,6 @@ mark {
 	}
 }
 
-input {
+input:is([type="radio" i], [type="checkbox" i]) {
 	accent-color: var(--color-skyblue);
-}
-
-summary {
-	inline-size: fit-content;
 }
