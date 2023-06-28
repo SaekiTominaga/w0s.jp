@@ -36,6 +36,7 @@ interface StructuredData {
 	readonly image?: string;
 	readonly breadcrumb?: StructuredDataUrl[];
 	readonly localNav?: StructuredDataUrl[];
+	readonly tocDirection?: 'column' | 'row';
 	readonly moduleScripts: string[];
 	readonly opensearch: StructuredDataUrl;
 }
