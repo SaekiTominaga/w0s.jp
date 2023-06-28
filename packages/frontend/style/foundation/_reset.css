@@ -14,7 +14,6 @@ body {
  */
 blockquote,
 figure,
-listing,
 p,
 pre {
 	margin-block: 0;
@@ -117,6 +116,12 @@ th {
   */
 
 /**
+  * 15.3.11 The hr element
+  *
+  * https://momdo.github.io/html/rendering.html#the-hr-element-2
+  */
+
+/**
   * 15.3.12 The fieldset and legend elements
   *
   * https://html.spec.whatwg.org/multipage/rendering.html#the-fieldset-and-legend-elements
@@ -155,7 +160,10 @@ button {
 	}
 }
 
-:is(input, select, button, textarea) {
+input,
+select,
+button,
+textarea {
 	font: inherit;
 }
 
@@ -165,4 +173,8 @@ button {
 
 optgroup {
 	font-style: inherit;
+}
+
+textarea {
+	margin-block: 0; /* for Firefox */
 }
