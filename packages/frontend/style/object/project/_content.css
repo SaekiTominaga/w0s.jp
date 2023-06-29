@@ -169,30 +169,28 @@
 
 /* ===== 目次 ===== */
 .p-toc {
+	--_direction: column;
 	--_icon-inline-size: 0.75em; /* アイコンの幅 */
 	--_icon-block-size: calc(var(--_icon-inline-size) * 0.75); /* アイコンの高さ */
 	--_icon-color: var(--color-gray); /* アイコンの色 */
 	--_icon-gap: 0.5em; /* アイコンと後続テキストの間隔 */
 
+	display: flex;
+	flex-flow: var(--_direction) wrap;
+	gap: 0.75em 1.5em;
 	border: 1px solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-bg-superlight);
 	padding: 1.25em min(1.25vw, 1.25em);
 	line-height: var(--line-height-narrow);
 
+	&.-row {
+		--_direction: row;
+	}
+
 	& > li {
 		margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
 		font-size: calc(100% * var(--font-ratio-1));
-
-		& + li {
-			margin-block-start: 0.75em;
-		}
-
-		& > ol > li {
-			margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
-			margin-block-start: 0.5em;
-			font-size: calc(100% / var(--font-ratio-1));
-		}
 	}
 
 	& :any-link {

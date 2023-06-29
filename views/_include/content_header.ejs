@@ -34,7 +34,7 @@
 	<%_ } _%> <%_ if (structuredData.description !== undefined) { _%>
 	<p class="p-description"><%= structuredData.description %></p>
 	<%_ } _%> <%_ if (typeof toc !== 'undefined' && toc.size >= 2) { _%>
-	<ol class="p-toc" aria-label="目次">
+	<ol class="p-toc<%= structuredData.tocDirection !== undefined ? ` -${structuredData.tocDirection}` : '' %>" aria-label="目次">
 		<%_ for (const [id, headingText] of toc) { _%>
 		<li><a href="#<%= encodeURIComponent(id) %>"><%= headingText %></a></li>
 		<%_ } _%>

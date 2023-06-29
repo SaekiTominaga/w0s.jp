@@ -179,41 +179,6 @@ Styleguide 1.2.3
 }
 
 /*
-ルビ
-
-Markup:
-<ruby class="c-ruby">久米田 康治<rp>（</rp><rt>くめた こうじ</rt><rp>）</rp></ruby>
-
-Styleguide 1.2.4
-*/
-.c-ruby {
-	display: inline-flex;
-	align-items: baseline;
-
-	& > rt,
-	& > rp {
-		display: inline;
-		font-size: calc(100% / var(--font-ratio-1));
-	}
-}
-
-/*
-コード断片
-
-Markup:
-<code class="c-code">&lt;html&gt;</code>
-
-Styleguide 1.2.5
-*/
-.c-code {
-	border-radius: var(--border-radius-normal);
-	background: var(--color-ultralightgreen);
-	padding: 0.25em;
-	color: var(--color-green);
-	font-weight: var(--font-weight-bold);
-}
-
-/*
 コードハイライト
 
 <a href="https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css">Style Sample (github.css)</a>
@@ -221,7 +186,7 @@ Styleguide 1.2.5
 Markup:
 <span class="c-code-highlight {{modifier_class}}">&lt;a href=&quot;https://example.com/&quot;&gt;Link&lt;/a&gt;</span>
 
-Styleguide 1.2.6
+Styleguide 1.2.4
 */
 .c-code-highlight {
 	/* stylelint-disable selector-class-pattern */
@@ -341,7 +306,7 @@ Styleguide 1.2.6
 Markup:
 <sup class="c-annotate"><a href="#fn1" id="nt1">[1]</a></sup>
 
-Styleguide 1.2.7
+Styleguide 1.2.5
 */
 .c-annotate {
 	vertical-align: super;
@@ -375,71 +340,18 @@ Styleguide 1.2.7
 }
 
 /*
-挿入
-
-Markup:
-<span class="c-ins">テキスト</span>
-
-Styleguide 1.2.8
-*/
-.c-ins {
-	color: var(--color-red);
-	font-weight: var(--font-weight-bold);
-	text-decoration-line: underline;
-	text-decoration-style: dashed;
-}
-
-/*
-削除
-
-Markup:
-<span class="c-del">テキスト</span>
-
-Styleguide 1.2.9
-*/
-.c-del {
-	color: var(--color-gray);
-	font-weight: var(--font-weight-bold);
-	text-decoration-line: line-through;
-}
-
-/*
 ドメイン表記
 
 Markup:
 <a href="https://example.com/">リンク</a><b class="c-domain">(example.com)</b>
 
-Styleguide 1.2.10
+Styleguide 1.2.6
 */
 .c-domain {
 	margin-inline: 0.25em;
 	color: var(--color-gray);
 	font-weight: var(--font-weight-normal);
 	font-size: calc(100% / var(--font-ratio-1));
-}
-
-/*
-Amazon 商品カテゴリ
-
-Markup:
-<b class="c-amazon-binding {{modifier_class}}">Blu-ray</b>
-
-.-bd - BD
-.-kindle - Kindle
-
-Styleguide 1.2.11
-*/
-.c-amazon-binding {
-	display: inline-block;
-	vertical-align: middle;
-	border: 1px solid var(--color-gray);
-	border-radius: var(--border-radius-large);
-	background: var(--color-white);
-	padding: 0.125em 0.5em;
-	color: var(--color-gray);
-	font-weight: var(--font-weight-bold);
-	font-size: calc(100% / var(--font-ratio-1));
-	line-height: var(--line-height-narrow);
 }
 
 /*
@@ -451,7 +363,7 @@ Markup:
 .-tick - 肯定
 .-cross - 否定
 
-Styleguide 1.2.12
+Styleguide 1.2.7
 */
 .c-tac {
 	white-space: nowrap;
@@ -477,17 +389,4 @@ Styleguide 1.2.12
 		--_symbol: "✗";
 		--_color: var(--color-red);
 	}
-}
-
-/*
-脚注の戻るリンク
-
-Markup:
-<a class="c-footnote-backref">戻る</a>
-
-Styleguide 1.2.13
-*/
-.c-footnote-backref {
-	padding: 0.25em;
-	font-size: calc(100% / var(--font-ratio-2));
 }
