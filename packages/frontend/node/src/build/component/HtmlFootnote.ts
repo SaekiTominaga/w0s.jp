@@ -3,17 +3,15 @@ import Html from './Html.js';
 /**
  * 脚注
  *
- * <build-footnote>脚注<em>強調</em>脚注</build-footnote>
- * <build-footnote>脚注<em>強調</em>脚注</build-footnote>
- *
- * <build-footnotes></build-footnotes>
+ * <build-footnote-reference>脚注<em>強調</em>脚注</build-footnote-reference>
+ * <build-footnote-reference>脚注<em>強調</em>脚注</build-footnote-reference>
  * ↓
  * <span class="c-annotate"><a href="#fn1" id="r1" is="w0s-tooltip-trigger">[1]</a></span>
  * <span class="c-annotate"><a href="#fn2" id="r2" is="w0s-tooltip-trigger">[2]</a></span>
  *
- * <div class="p-footnote">
+ * <section class="p-footnote">
  *   ...
- * </div>
+ * </section>
  */
 export default class HtmlFootnote extends Html {
 	/**
@@ -30,7 +28,6 @@ export default class HtmlFootnote extends Html {
 				id_prefix: string;
 			};
 			footnote: {
-				element: string;
 				id_prefix: string;
 			};
 		}>
@@ -43,10 +40,10 @@ export default class HtmlFootnote extends Html {
 			return;
 		}
 
-		const foortnotes: string[] = [];
+		const footnotes: string[] = [];
 		await Promise.all(
 			[...referenceElements].map(async (referenceElement, index) => {
-				foortnotes.push(referenceElement.innerHTML);
+				footnotes.push(referenceElement.innerHTML);
 
 				/* EJS を解釈 */
 				const referenceHtml = await this.renderEjsFile(
@@ -61,18 +58,15 @@ export default class HtmlFootnote extends Html {
 			})
 		);
 
-		const footnoteElement = this.document.querySelector(footnoteOptions.element);
-		if (footnoteElement === null) {
-			console.error('脚注を表示する要素が未指定');
-			return;
-		}
+		if (footnotes.length >= 1) {
+			/* EJS を解釈 */
+			const footnoteHtml = await this.renderEjsFile({
+				idPrefix: footnoteOptions.id_prefix,
+				referenceIdPrefix: referenceOptions.id_prefix,
+				foortnotes: footnotes,
+			});
 
-		/* EJS を解釈 */
-		const footnoteHtml = await this.renderEjsFile({
-			idPrefix: footnoteOptions.id_prefix,
-			referenceIdPrefix: referenceOptions.id_prefix,
-			foortnotes: foortnotes,
-		});
-		this.replaceHtml(footnoteElement, footnoteHtml);
+			this.document.body.insertAdjacentHTML('beforeend', footnoteHtml);
+		}
 	}
 }
