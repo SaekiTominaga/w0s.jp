@@ -719,8 +719,8 @@ describe('Footnote', () => {
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<span class="c-annotate"><a href="#fn-1" id="fnref-1" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[1]</a></span>
-<span class="c-annotate"><a href="#fn-2" id="fnref-2" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[2]</a></span>
+<span class="c-footnote-ref"><a href="#fn-1" id="fnref-1" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[1]</a></span>
+<span class="c-footnote-ref"><a href="#fn-2" id="fnref-2" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[2]</a></span>
 <section class="p-footnote">
 	<h2 class="p-footnote__hdg">脚注</h2>
 
