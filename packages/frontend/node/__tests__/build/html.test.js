@@ -697,12 +697,11 @@ describe('AnchorIcon', () => {
 });
 
 describe('Footnote', () => {
-	test('トリガー要素あり', async () => {
+	test('脚注', async () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
 <build-footnote-reference>脚注1</build-footnote-reference>
 <build-footnote-reference>脚注2</build-footnote-reference>
-<build-footnote></build-footnote>
 </body></html>`
 		);
 
@@ -714,86 +713,32 @@ describe('Footnote', () => {
 				id_prefix: 'fnref-',
 			},
 			footnote: {
-				element: 'build-footnote',
 				id_prefix: 'fn-',
 			},
 		});
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-<span class="c-annotate"><a href="#fn-1" id="fnref-1" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[1]</a></span>
-<span class="c-annotate"><a href="#fn-2" id="fnref-2" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[2]</a></span>
-<div class="p-footnote">
+<span class="c-footnote-ref"><a href="#fn-1" id="fnref-1" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[1]</a></span>
+<span class="c-footnote-ref"><a href="#fn-2" id="fnref-2" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[2]</a></span>
+<section class="p-footnote">
 	<h2 class="p-footnote__hdg">脚注</h2>
 
 	<ul class="p-footnote__list">
 		<li>
 			<span class="p-footnote__no">1.</span>
 			<p class="p-footnote__content">
-				<span id="fn-1">脚注1</span> <a href="#fnref-1" class="c-footnote-backref">↩ 戻る</a>
+				<span id="fn-1">脚注1</span> <a href="#fnref-1" class="p-footnote__backref">↩ 戻る</a>
 			</p>
 		</li>
 		<li>
 			<span class="p-footnote__no">2.</span>
 			<p class="p-footnote__content">
-				<span id="fn-2">脚注2</span> <a href="#fnref-2" class="c-footnote-backref">↩ 戻る</a>
+				<span id="fn-2">脚注2</span> <a href="#fnref-2" class="p-footnote__backref">↩ 戻る</a>
 			</p>
 		</li>
 	</ul>
-</div>
-</body></html>`
-		);
-	});
-
-	test('トリガー要素なし', async () => {
-		const dom = new JSDOM(
-			`<!DOCTYPE html><html><head></head><body>
-</body></html>`
-		);
-
-		const { document } = dom.window;
-
-		await new HtmlComponentFootnote(document, views).convert({
-			reference: {
-				element: 'build-footnote-reference',
-				id_prefix: 'fnref-',
-			},
-			footnote: {
-				element: 'build-footnote',
-				id_prefix: 'fn-',
-			},
-		});
-
-		expect(dom.serialize()).toBe(
-			`<!DOCTYPE html><html><head></head><body>
-</body></html>`
-		);
-	});
-
-	test('脚注要素なし', async () => {
-		const dom = new JSDOM(
-			`<!DOCTYPE html><html><head></head><body>
-<build-footnote-reference>脚注1</build-footnote-reference>
-</body></html>`
-		);
-
-		const { document } = dom.window;
-
-		await new HtmlComponentFootnote(document, views).convert({
-			reference: {
-				element: 'build-footnote-reference',
-				id_prefix: 'fnref-',
-			},
-			footnote: {
-				element: 'build-footnote',
-				id_prefix: 'fn-',
-			},
-		});
-
-		expect(dom.serialize()).toBe(
-			`<!DOCTYPE html><html><head></head><body>
-<span class="c-annotate"><a href="#fn-1" id="fnref-1" is="w0s-tooltip-trigger" data-tooltip-label="脚注" data-tooltip-class="p-tooltip" data-tooltip-close-text="閉じる" data-tooltip-close-image-src="/assets/image/tooltip-close.svg">[1]</a></span>
-</body></html>`
+</section></body></html>`
 		);
 	});
 });
