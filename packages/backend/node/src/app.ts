@@ -14,7 +14,6 @@ import CrawlerResourceController from './controller/CrawlerResourceController.js
 import CrawlerResourceLogController from './controller/CrawlerResourceLogController.js';
 import HttpBasicAuth from './util/HttpBasicAuth.js';
 import HttpResponse from './util/HttpResponse.js';
-import KumetaTwitterController from './controller/KumetaTwitterController.js';
 import TokyuCarHistoryController from './controller/TokyuCarHistoryController.js';
 import { W0SJp as Configure } from '../../configure/type/common.js';
 
@@ -272,17 +271,6 @@ app.get('/admin/crawler-resource-log', async (req, res, next) => {
 app.get('/tokyu/data/history/', async (req, res, next) => {
 	try {
 		await new TokyuCarHistoryController(config).execute(req, res);
-	} catch (e) {
-		next(e);
-	}
-});
-
-/**
- * 久米田康治・Twitter
- */
-app.get('/kumeta/twitter', async (req, res, next) => {
-	try {
-		await new KumetaTwitterController(config).execute(req, res);
 	} catch (e) {
 		next(e);
 	}
