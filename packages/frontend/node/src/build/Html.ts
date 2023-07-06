@@ -132,7 +132,7 @@ export default class Html extends BuildComponent implements BuildComponentInterf
 				/* 出力 */
 				await fs.promises.writeFile(publicFilePath, htmlFormatted);
 				console.info(`HTML file created: ${publicFilePath}`);
-			})
+			}),
 		);
 	}
 }

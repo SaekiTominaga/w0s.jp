@@ -137,7 +137,7 @@ export default class Contact {
 							} else {
 								/* ラジオボタン（選択時） */
 								for (const formCtrlElement of Array.from(<RadioNodeList>formCtrls).filter(
-									(formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).value === value
+									(formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).value === value,
 								)) {
 									value = Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrlElement);
 								}

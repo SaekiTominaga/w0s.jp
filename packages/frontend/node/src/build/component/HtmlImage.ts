@@ -22,7 +22,7 @@ export default class HtmlImage extends Html {
 	convert(
 		options: Readonly<{
 			target_class: string;
-		}>
+		}>,
 	): void {
 		const targetClassName = options.target_class;
 
@@ -75,7 +75,7 @@ export default class HtmlImage extends Html {
 				'avif',
 				width1x,
 				height1x,
-				quality1x
+				quality1x,
 			)}, ${originAndPath}${HtmlImage.#assembleUrlSearch('avif', width2x, height2x, quality2x)} 2x`;
 			pictureElement.appendChild(sourceAvifElement);
 
@@ -85,7 +85,7 @@ export default class HtmlImage extends Html {
 				'webp',
 				width1x,
 				height1x,
-				quality1x
+				quality1x,
 			)}, ${originAndPath}${HtmlImage.#assembleUrlSearch('webp', width2x, height2x, quality2x)} 2x`;
 			pictureElement.appendChild(sourceWebpElement);
 

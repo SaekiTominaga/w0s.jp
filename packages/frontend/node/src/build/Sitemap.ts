@@ -35,7 +35,7 @@ export default class Sitemap extends BuildComponent implements BuildComponentInt
 					pagePathAbsoluteUrl: pageUrl.getUrl(publicFilePath), // U+002F (/) から始まるパス絶対 URL
 					modified_at: structuredData.dateModified,
 				};
-			})
+			}),
 		);
 
 		entries.sort((a, b) => {

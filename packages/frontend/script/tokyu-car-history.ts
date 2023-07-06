@@ -22,7 +22,7 @@ if (numCtrlElement !== null) {
 				},
 			});
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 }
 
@@ -46,7 +46,7 @@ if (resultTableElement !== null) {
 					tableCellDitto.unConvert();
 				}
 			},
-			{ passive: true }
+			{ passive: true },
 		);
 	}
 

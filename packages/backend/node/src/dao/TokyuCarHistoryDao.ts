@@ -116,7 +116,7 @@ export default class TokyuCarHistoryDao {
 		seriesList: string[] | null,
 		registerStart: string | null,
 		registerEnd: string | null,
-		sort: string | null
+		sort: string | null,
 	): Promise<Car[]> {
 		const dbh = await this.getDbh();
 

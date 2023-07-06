@@ -25,7 +25,7 @@ export default class HtmlHighlight extends Html {
 		options: Readonly<{
 			target_class: string;
 			class_prefix: string;
-		}>
+		}>,
 	): void {
 		const targetClassName = options.target_class;
 		const optionsHightlight = {

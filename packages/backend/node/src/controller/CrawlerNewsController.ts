@@ -79,7 +79,7 @@ export default class CrawlerNewsController extends Controller implements Control
 				requestQuery.browser,
 				requestQuery.selector_wrap,
 				requestQuery.selector_date,
-				requestQuery.selector_content
+				requestQuery.selector_content,
 			);
 			this.logger.info('データ登録', requestQuery.url);
 
@@ -107,7 +107,7 @@ export default class CrawlerNewsController extends Controller implements Control
 				requestQuery.browser,
 				requestQuery.selector_wrap,
 				requestQuery.selector_date,
-				requestQuery.selector_content
+				requestQuery.selector_content,
 			);
 			this.logger.info('データ更新', requestQuery.url);
 

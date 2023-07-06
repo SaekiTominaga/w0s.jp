@@ -30,7 +30,7 @@ export default class HtmlFootnote extends Html {
 			footnote: {
 				id_prefix: string;
 			};
-		}>
+		}>,
 	): Promise<void> {
 		const referenceOptions = options.reference;
 		const footnoteOptions = options.footnote;
@@ -52,10 +52,10 @@ export default class HtmlFootnote extends Html {
 						idPrefix: referenceOptions.id_prefix,
 						footnoteIdPrefix: footnoteOptions.id_prefix,
 					},
-					'footnote-reference'
+					'footnote-reference',
 				);
 				this.replaceHtml(referenceElement, referenceHtml);
-			})
+			}),
 		);
 
 		if (footnotes.length >= 1) {

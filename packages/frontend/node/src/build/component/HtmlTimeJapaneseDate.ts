@@ -17,7 +17,7 @@ export default class HtmlTimeJapaneseDate extends Html {
 	convert(
 		options: Readonly<{
 			target_class: string;
-		}>
+		}>,
 	): void {
 		const targetClassName = options.target_class;
 
@@ -32,13 +32,13 @@ export default class HtmlTimeJapaneseDate extends Html {
 
 			/* e.g. 2000年1月1日 */
 			const patternMatchYMDgroups = content?.match(
-				/^(?:[\s]*?)(?<year>\d{4})(?:[\s]*?)年(?:[\s]*?)(?<month>\d{1,2})(?:[\s]*?)月(?:[\s]*?)(?<day>\d{1,2})(?:[\s]*?)日(?:[\s]*?)$/
+				/^(?:[\s]*?)(?<year>\d{4})(?:[\s]*?)年(?:[\s]*?)(?<month>\d{1,2})(?:[\s]*?)月(?:[\s]*?)(?<day>\d{1,2})(?:[\s]*?)日(?:[\s]*?)$/,
 			)?.groups;
 			if (patternMatchYMDgroups !== undefined) {
 				const timeElement = this.replaceElement(targetElement, 'time');
 				timeElement.setAttribute(
 					'datetime',
-					`${patternMatchYMDgroups['year']}-${patternMatchYMDgroups['month']?.padStart(2, '0')}-${patternMatchYMDgroups['day']?.padStart(2, '0')}`
+					`${patternMatchYMDgroups['year']}-${patternMatchYMDgroups['month']?.padStart(2, '0')}-${patternMatchYMDgroups['day']?.padStart(2, '0')}`,
 				);
 				return;
 			}
