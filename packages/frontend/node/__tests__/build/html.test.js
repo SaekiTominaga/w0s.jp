@@ -727,15 +727,11 @@ describe('Footnote', () => {
 	<ul class="p-footnote__list">
 		<li>
 			<span class="p-footnote__no">1.</span>
-			<p class="p-footnote__content">
-				<span id="fn-1">脚注1</span> <a href="#fnref-1" class="p-footnote__backref">↩ 戻る</a>
-			</p>
+			<p class="p-footnote__content"><span id="fn-1">脚注1</span> <a href="#fnref-1" class="p-footnote__backref">↩ 戻る</a></p>
 		</li>
 		<li>
 			<span class="p-footnote__no">2.</span>
-			<p class="p-footnote__content">
-				<span id="fn-2">脚注2</span> <a href="#fnref-2" class="p-footnote__backref">↩ 戻る</a>
-			</p>
+			<p class="p-footnote__content"><span id="fn-2">脚注2</span> <a href="#fnref-2" class="p-footnote__backref">↩ 戻る</a></p>
 		</li>
 	</ul>
 </section></body></html>`,
