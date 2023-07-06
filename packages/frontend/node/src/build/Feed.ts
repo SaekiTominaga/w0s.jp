@@ -32,47 +32,49 @@ export default class Feed extends BuildComponent implements BuildComponentInterf
 				content: string;
 			}[] = [];
 
-			document.querySelectorAll(feedInfo.selector.wrap).forEach((wrapElement) => {
-				const dateElement = wrapElement.querySelector<HTMLTimeElement>(feedInfo.selector.date);
-				if (dateElement === null) {
-					console.warn('Date element does not exist');
-					return;
-				}
+			await Promise.all(
+				[...document.querySelectorAll(feedInfo.selector.wrap)].map(async (wrapElement) => {
+					const dateElement = wrapElement.querySelector<HTMLTimeElement>(feedInfo.selector.date);
+					if (dateElement === null) {
+						console.warn('Date element does not exist');
+						return;
+					}
 
-				const contentElement = wrapElement.querySelector<HTMLElement>(feedInfo.selector.content);
-				if (contentElement === null) {
-					console.warn('Content element does not exist');
-					return;
-				}
+					const contentElement = wrapElement.querySelector<HTMLElement>(feedInfo.selector.content);
+					if (contentElement === null) {
+						console.warn('Content element does not exist');
+						return;
+					}
 
-				const title = contentElement.textContent
-					?.split('\n')
-					.map((line) => line.trim())
-					.join('');
-				if (title === undefined || title === '') {
-					console.warn('Content element is empty');
-					return;
-				}
+					const title = contentElement.textContent
+						?.split('\n')
+						.map((line) => line.trim())
+						.join('');
+					if (title === undefined || title === '') {
+						console.warn('Content element is empty');
+						return;
+					}
 
-				const updated = new Date(`${dateElement.dateTime}T00:00`);
-				const content = contentElement.innerHTML;
+					const updated = new Date(`${dateElement.dateTime}T00:00`);
+					const content = contentElement.innerHTML;
 
-				const contentFormatted = prettier.format(content, prettierOptionsHtml).trim();
+					const contentFormatted = (await prettier.format(content, prettierOptionsHtml)).trim();
 
-				const internalLinkURLs = [...contentElement.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')].map((anchorElement) => anchorElement.href);
+					const internalLinkURLs = [...contentElement.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')].map((anchorElement) => anchorElement.href);
 
-				const md5 = crypto.createHash('md5');
-				md5.update(`${updated.getTime() / 1000}${internalLinkURLs.join('')}`);
-				const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
+					const md5 = crypto.createHash('md5');
+					md5.update(`${updated.getTime() / 1000}${internalLinkURLs.join('')}`);
+					const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
-				entries.push({
-					title: title,
-					unique: unique,
-					last_updated: dayjs(updated),
-					links: internalLinkURLs,
-					content: contentFormatted,
-				});
-			});
+					entries.push({
+						title: title,
+						unique: unique,
+						last_updated: dayjs(updated),
+						links: internalLinkURLs,
+						content: contentFormatted,
+					});
+				}),
+			);
 
 			const feed = await ejs.renderFile(`${this.config.views}/${feedInfo.feed_template}`, {
 				entries: entries,
