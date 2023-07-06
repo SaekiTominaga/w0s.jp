@@ -20,7 +20,7 @@ describe('replaceElement()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
 <span class="foo"></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -34,7 +34,7 @@ describe('replaceElement()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <foo></foo>
 <foo class="foo"></foo>
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -45,7 +45,7 @@ describe('replaceHtml()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
 <span class="foo"></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -59,7 +59,7 @@ describe('replaceHtml()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <foo></foo>
 <foo></foo>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -68,7 +68,7 @@ describe('replaceHtml()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
 <span class="foo"></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -82,7 +82,7 @@ describe('replaceHtml()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <foo class="foo"></foo>
 <foo class="foo"></foo>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -90,7 +90,7 @@ describe('replaceHtml()', () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -106,7 +106,7 @@ describe('replaceHtml()', () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -122,7 +122,7 @@ describe('replaceHtml()', () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -141,7 +141,7 @@ describe('removeClassName()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span class="build-host"></span>
 <span class="foo build-host	bar"></span>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -154,7 +154,7 @@ describe('removeClassName()', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <span></span>
 <span class="foo bar"></span>
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -177,7 +177,7 @@ describe('Book', () => {
 			{
 				target_element: 'build-book',
 			},
-			'build-heading-anchor'
+			'build-heading-anchor',
 		);
 
 		expect(dom.serialize()).toBe(
@@ -194,7 +194,7 @@ describe('Book', () => {
 <p>解説文2</p>
 	</div>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -220,7 +220,7 @@ describe('Book', () => {
 			{
 				target_element: 'build-book',
 			},
-			'build-heading-anchor'
+			'build-heading-anchor',
 		);
 
 		expect(dom.serialize()).toBe(
@@ -254,7 +254,7 @@ describe('Book', () => {
 			</div>
 	</div>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -284,7 +284,7 @@ describe('Book', () => {
 			{
 				target_element: 'build-book',
 			},
-			'build-heading-anchor'
+			'build-heading-anchor',
 		);
 
 		expect(dom.serialize()).toBe(
@@ -329,7 +329,7 @@ describe('Book', () => {
 	<div class="p-library__main">
 	</div>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -352,7 +352,7 @@ describe('Newspaper', () => {
 			{
 				target_element: 'build-newspaper',
 			},
-			'build-heading-anchor'
+			'build-heading-anchor',
 		);
 
 		expect(dom.serialize()).toBe(
@@ -370,7 +370,7 @@ describe('Newspaper', () => {
 
 	</div>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -393,7 +393,7 @@ describe('Newspaper', () => {
 			{
 				target_element: 'build-newspaper',
 			},
-			'build-heading-anchor'
+			'build-heading-anchor',
 		);
 
 		expect(dom.serialize()).toBe(
@@ -411,7 +411,7 @@ describe('Newspaper', () => {
 
 	</div>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -433,7 +433,7 @@ describe('Newspaper', () => {
 			{
 				target_element: 'build-newspaper',
 			},
-			'build-heading-anchor'
+			'build-heading-anchor',
 		);
 
 		expect(dom.serialize()).toBe(
@@ -458,7 +458,7 @@ describe('Newspaper', () => {
 
 	</div>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -487,7 +487,7 @@ describe('SectionId', () => {
 <section>
 <h2></h2>
 </section>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -519,14 +519,14 @@ describe('SectionId', () => {
 <section id="-1">
 <h2></h2>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 
 	test('sectionなし', () => {
 		const dom = new JSDOM(
 			`<!DOCTYPE html><html><head></head><body>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -538,7 +538,7 @@ describe('SectionId', () => {
 
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -572,7 +572,7 @@ describe('AnchorIcon', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <a href="/" type="application/pdf">Link</a><img src="/assets/image/icon/pdf.svg" alt="(PDF)" width="16" height="16" class="c-link-icon">
 <a href="/" type="image/png">Link</a>
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('type; href 属性なし', async () => {
@@ -623,7 +623,7 @@ describe('AnchorIcon', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <a href="https://example.com/" class="build-host">Link</a>
 <a href="https://example.net/" class="build-host">Link</a>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -649,7 +649,7 @@ describe('AnchorIcon', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <a href="https://example.com/">Link</a><img src="/assets/image/icon/com_example.svg" alt="(Example)" width="16" height="16" class="c-link-icon">
 <a href="https://example.net/">Link</a><b class="c-domain">(example.net)</b>
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('host; href 属性なし', async () => {
@@ -702,7 +702,7 @@ describe('Footnote', () => {
 			`<!DOCTYPE html><html><head></head><body>
 <build-footnote-reference>脚注1</build-footnote-reference>
 <build-footnote-reference>脚注2</build-footnote-reference>
-</body></html>`
+</body></html>`,
 		);
 
 		const { document } = dom.window;
@@ -738,7 +738,7 @@ describe('Footnote', () => {
 			</p>
 		</li>
 	</ul>
-</section></body></html>`
+</section></body></html>`,
 		);
 	});
 });
@@ -763,7 +763,7 @@ describe('HeadingSelfLink', () => {
 <section id="section-1">
 	<h2>Heading<p class="p-section__self-link"><a href="#section-1" class="c-self-link">§</a></p></h2>
 </section>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -812,7 +812,7 @@ describe('AnchorAmazonAssociate', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <a href="https://www.amazon.com/dp/B01GRDKGZW/ref=nosim?tag=xxx-20">Link</a>
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('href 属性なし', () => {
@@ -899,7 +899,7 @@ const foo = 'test';
 <code data-language="xxx">
 <span class="foo-keyword">const</span> foo = <span class="foo-string">'test'</span>;
 </code>
-</body></html>`
+</body></html>`,
 		);
 	});
 
@@ -918,7 +918,7 @@ const foo = 'test';
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <code data-language="html"></code>
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -946,7 +946,7 @@ describe('Image', () => {
 <picture><source type="image/avif" srcset="https://media.w0s.jp/thumbimage/foo?type=avif;h=360;quality=80, https://media.w0s.jp/thumbimage/foo?type=avif;h=720;quality=40 2x"><source type="image/webp" srcset="https://media.w0s.jp/thumbimage/foo?type=webp;h=360;quality=80, https://media.w0s.jp/thumbimage/foo?type=webp;h=720;quality=40 2x"><img src="https://media.w0s.jp/thumbimage/foo?h=360"></picture>
 <picture><source type="image/avif" srcset="https://media.w0s.jp/thumbimage/foo?type=avif;quality=100, https://media.w0s.jp/thumbimage/foo?type=avif;quality=50 2x"><source type="image/webp" srcset="https://media.w0s.jp/thumbimage/foo?type=webp;quality=100, https://media.w0s.jp/thumbimage/foo?type=webp;quality=50 2x"><img src="https://media.w0s.jp/thumbimage/foo?quality=100"></picture>
 <picture><source type="image/avif" srcset="https://media.w0s.jp/thumbimage/foo?type=avif;w=360;h=360;quality=100, https://media.w0s.jp/thumbimage/foo?type=avif;w=720;h=720;quality=50 2x"><source type="image/webp" srcset="https://media.w0s.jp/thumbimage/foo?type=webp;w=360;h=360;quality=100, https://media.w0s.jp/thumbimage/foo?type=webp;w=720;h=720;quality=50 2x"><img src="https://media.w0s.jp/thumbimage/foo?w=360;h=360;quality=100"></picture>
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('src 属性なし', () => {
@@ -963,7 +963,7 @@ describe('Image', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <img>
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('src 属性値が絶対パスではない', () => {
@@ -980,7 +980,7 @@ describe('Image', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <img src="foo">
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('src 属性値の origin が異なる', () => {
@@ -997,7 +997,7 @@ describe('Image', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <img src="https://image.example.com/">
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('src 属性値の pathname が異なる', () => {
@@ -1014,7 +1014,7 @@ describe('Image', () => {
 		expect(dom.serialize()).toBe(
 			`<!DOCTYPE html><html><head></head><body>
 <img src="https://media.w0s.jp/foo">
-</body></html>`
+</body></html>`,
 		);
 	});
 });
@@ -1052,7 +1052,7 @@ describe('TimeJapaneseDate', () => {
 <time datetime="2022-10"> 2022 年 10 月 </time>
 <time datetime="2022">2022年</time>
 <time datetime="2022"> 2022 年 </time>
-</body></html>`
+</body></html>`,
 		);
 	});
 	test('変換されないケース', () => {
