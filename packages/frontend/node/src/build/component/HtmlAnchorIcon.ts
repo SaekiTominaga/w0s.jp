@@ -30,7 +30,7 @@ export default class HtmlAnchorIcon extends Html {
 					file_name: string;
 				}>[];
 			};
-		}>
+		}>,
 	): Promise<void> {
 		const typeTargetClassName = options.type.target_class;
 		const typeIcons = options.type.icons;
@@ -58,10 +58,10 @@ export default class HtmlAnchorIcon extends Html {
 					{
 						icon: typeIcon,
 					},
-					'anchor-type'
+					'anchor-type',
 				);
 				targetElement.insertAdjacentHTML('afterend', html);
-			})
+			}),
 		);
 
 		/* リンクアンカーにホスト情報を付与 */
@@ -90,10 +90,10 @@ export default class HtmlAnchorIcon extends Html {
 						icon: hostIcon,
 						url: url,
 					},
-					'anchor-host'
+					'anchor-host',
 				);
 				targetElement.insertAdjacentHTML('afterend', html);
-			})
+			}),
 		);
 	}
 }

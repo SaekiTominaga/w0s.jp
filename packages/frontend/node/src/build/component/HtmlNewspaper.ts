@@ -36,7 +36,7 @@ export default class HtmlNewspaper extends Html {
 		options: Readonly<{
 			target_element: string;
 		}>,
-		buildHeadingAnchorClassName: string
+		buildHeadingAnchorClassName: string,
 	): Promise<void> {
 		const targetElementName = options.target_element;
 
@@ -70,7 +70,7 @@ export default class HtmlNewspaper extends Html {
 				});
 
 				this.replaceHtml(targetElement, html);
-			})
+			}),
 		);
 	}
 }

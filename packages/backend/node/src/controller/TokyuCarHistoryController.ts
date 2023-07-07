@@ -69,7 +69,7 @@ export default class TokyuCarHistoryController extends Controller implements Con
 					requestQuery.series,
 					requestQuery.register_start,
 					requestQuery.register_end,
-					requestQuery.sort
+					requestQuery.sort,
 				);
 
 				searchCarsCount = carDataList.length;

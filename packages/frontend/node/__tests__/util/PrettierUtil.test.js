@@ -4,7 +4,8 @@ import PrettierUtil from '../../dist/util/PrettierUtil.js';
 describe('configOverrideAssign()', () => {
 	test('files - string', () => {
 		expect(
-			PrettierUtil.configOverrideAssign(JSON.parse(`
+			PrettierUtil.configOverrideAssign(
+				JSON.parse(`
 {
 	"printWidth": 100,
 	"overrides": [
@@ -22,17 +23,22 @@ describe('configOverrideAssign()', () => {
 		}
 	]
 }
-`), '*.css')
-		).toStrictEqual(JSON.parse(`
+`),
+				'*.css',
+			),
+		).toStrictEqual(
+			JSON.parse(`
 {
 	"printWidth": 300
 }
-`));
+`),
+		);
 	});
 
 	test('files - array', () => {
 		expect(
-			PrettierUtil.configOverrideAssign(JSON.parse(`
+			PrettierUtil.configOverrideAssign(
+				JSON.parse(`
 {
 	"printWidth": 100,
 	"overrides": [
@@ -50,17 +56,22 @@ describe('configOverrideAssign()', () => {
 		}
 	]
 }
-`), '*.html')
-		).toStrictEqual(JSON.parse(`
+`),
+				'*.html',
+			),
+		).toStrictEqual(
+			JSON.parse(`
 {
 	"printWidth": 200
 }
-`));
+`),
+		);
 	});
 
 	test('unmatch overrides', () => {
 		expect(
-			PrettierUtil.configOverrideAssign(JSON.parse(`
+			PrettierUtil.configOverrideAssign(
+				JSON.parse(`
 {
 	"printWidth": 100,
 	"overrides": [
@@ -72,25 +83,34 @@ describe('configOverrideAssign()', () => {
 		}
 	]
 }
-`), '*.foo')
-		).toStrictEqual(JSON.parse(`
+`),
+				'*.foo',
+			),
+		).toStrictEqual(
+			JSON.parse(`
 {
 	"printWidth": 100
 }
-`));
+`),
+		);
 	});
 
 	test('no overrides', () => {
 		expect(
-			PrettierUtil.configOverrideAssign(JSON.parse(`
+			PrettierUtil.configOverrideAssign(
+				JSON.parse(`
 {
 	"printWidth": 100
 }
-`), '*.css')
-		).toStrictEqual(JSON.parse(`
+`),
+				'*.css',
+			),
+		).toStrictEqual(
+			JSON.parse(`
 {
 	"printWidth": 100
 }
-`));
+`),
+		);
 	});
 });

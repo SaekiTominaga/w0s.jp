@@ -97,7 +97,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 		browser: boolean,
 		selectorWrap: string,
 		selectorDate: string | null,
-		selectorContent: string | null
+		selectorContent: string | null,
 	): Promise<void> {
 		const dbh = await this.getDbh();
 
@@ -149,7 +149,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 		browser: boolean,
 		selectorWrap: string,
 		selectorDate: string | null,
-		selectorContent: string | null
+		selectorContent: string | null,
 	): Promise<void> {
 		const dbh = await this.getDbh();
 

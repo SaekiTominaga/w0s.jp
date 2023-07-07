@@ -18,7 +18,7 @@ export default class HtmlAmazonImage extends Html {
 	convert(
 		options: Readonly<{
 			target_class: string;
-		}>
+		}>,
 	): void {
 		const targetClassName = options.target_class;
 

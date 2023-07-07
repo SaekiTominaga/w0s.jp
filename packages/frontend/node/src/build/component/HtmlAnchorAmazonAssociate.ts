@@ -19,7 +19,7 @@ export default class HtmlAnchorAmazonAssociate extends Html {
 		options: Readonly<{
 			target_class: string;
 			associate_id: string;
-		}>
+		}>,
 	): void {
 		const targetClassName = options.target_class;
 		const optionsAssociate = {

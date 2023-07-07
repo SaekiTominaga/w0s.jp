@@ -86,7 +86,7 @@ export default class HtmlImageSize extends BuildComponent implements BuildCompon
 					if (height !== heightAttributeValue) {
 						console.warn(`<img> 要素の height 属性値<${heightAttributeValue}>が実際の値<${height}>と違う`, filePath, imageUrl.toString());
 					}
-				})
+				}),
 			);
 		});
 	}

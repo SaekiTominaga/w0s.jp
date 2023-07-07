@@ -172,7 +172,7 @@ app.use(
 				res.setHeader('Content-Security-Policy-Report-Only', config.response.header.cspro_html);
 			}
 		},
-	})
+	}),
 );
 
 /**

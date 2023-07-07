@@ -14,7 +14,7 @@ export default class HtmlSectioningId extends Html {
 	convert(
 		options: Readonly<{
 			heading_levels: number[];
-		}>
+		}>,
 	): void {
 		const headingSelectors = options.heading_levels.map((level) => `h${level}`).join(','); // Array(3) [1, 2, 3] => "h1,h2,h3"
 

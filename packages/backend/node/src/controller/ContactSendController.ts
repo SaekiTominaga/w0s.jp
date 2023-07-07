@@ -58,7 +58,7 @@ export default class ContactSendController extends Controller implements Control
 				httpResponse.send303(
 					requestQuery.referrer === null || requestQuery.referrer === ''
 						? this.#config.url.completed.pathname
-						: `${this.#config.url.completed.pathname}?${this.#config.url.completed.search['referrer']}=${encodeURIComponent(requestQuery.referrer)}`
+						: `${this.#config.url.completed.pathname}?${this.#config.url.completed.search['referrer']}=${encodeURIComponent(requestQuery.referrer)}`,
 				);
 				return;
 			}

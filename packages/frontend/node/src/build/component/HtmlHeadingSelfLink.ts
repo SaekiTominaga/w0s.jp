@@ -23,7 +23,7 @@ export default class HtmlHeadingSelfLink extends Html {
 		options: Readonly<{
 			target_class: string;
 			insert_position: InsertPosition;
-		}>
+		}>,
 	): Promise<void> {
 		const targetClassName = options.target_class;
 		const optionsAnchor = {
@@ -51,7 +51,7 @@ export default class HtmlHeadingSelfLink extends Html {
 					id: id,
 				});
 				headingElement.insertAdjacentHTML(optionsAnchor.insert_position, html);
-			})
+			}),
 		);
 	}
 }
