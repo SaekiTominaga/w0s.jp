@@ -131,7 +131,7 @@
 		<tbody>
 			<%_ for (const resourcePage of resourcePageOfCategory) { _%>
 			<tr>
-				<td>
+				<td class="u-cell -wrap-no">
 					<form action="<%= pagePathAbsoluteUrl %>" method="post" class="c-stack">
 						<p>
 							<input type="hidden" name="url" value="<%= resourcePage.url %>" />
@@ -147,7 +147,7 @@
 				</td>
 				<td><%= resourcePage.priority %></td>
 				<td><%_ if (resourcePage.browser) { _%>✔<%_ } _%></td>
-				<td><%= resourcePage.selector %></td>
+				<td class="u-cell -wrap-anywhere"><%= resourcePage.selector %></td>
 				<td><%= resourcePage.content_length %></td>
 				<%_ if (resourcePage.last_modified !== null) { _%>
 				<td><%= resourcePage.last_modified.format('YYYY年M月D日 H時m分') %></td>
