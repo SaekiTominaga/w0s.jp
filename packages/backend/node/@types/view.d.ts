@@ -60,8 +60,8 @@ declare namespace CrawlerResourceView {
 		priority: string;
 		browser: boolean;
 		selector: string | null;
-		content_length: number;
-		last_modified: import('dayjs').Dayjs | null;
+		content_hash: string;
+		error: boolean;
 	}
 }
 

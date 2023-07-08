@@ -1,4 +1,3 @@
-import dayjs, { Dayjs } from 'dayjs';
 import CrawlerDao from './CrawlerDao.js';
 import DbUtil from '../util/DbUtil.js';
 
@@ -9,8 +8,8 @@ interface ResourcePage {
 	priority: string;
 	browser: boolean;
 	selector: string | null;
-	content_length: number;
-	last_modified: Dayjs | null;
+	content_hash: string;
+	error: boolean;
 }
 
 interface ReviseData {
@@ -42,14 +41,14 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				p.name AS priority,
 				r.browser AS browser,
 				r.selector AS selector,
-				r.content_length AS content_length,
-				r.last_modified AS last_modified
+				r.content_hash AS content_hash,
+				r.error AS error
 			FROM
 				d_resource r,
 				m_class c,
 				m_priority p
 			WHERE
-				r.class = c.fk AND
+				r.category = c.fk AND
 				r.priority = p.fk
 			ORDER BY
 				c.sort,
@@ -68,8 +67,8 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				priority: row.priority,
 				browser: Boolean(row.browser),
 				selector: row.selector,
-				content_length: row.content_length,
-				last_modified: row.last_modified !== null ? dayjs.unix(row.last_modified) : null,
+				content_hash: row.content_hash,
+				error: Boolean(row.error),
 			});
 		}
 
@@ -94,7 +93,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 			const sth = await dbh.prepare(`
 				INSERT INTO
 					d_resource
-					(url, title, class, priority, browser, selector)
+					(url, title, category, priority, browser, selector)
 				VALUES
 					(:url, :title, :category, :priority, :browser, :selector)
 			`);
@@ -135,7 +134,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 					d_resource
 				SET
 					title = :title,
-					class = :category,
+					category = :category,
 					priority = :priority,
 					browser = :browser,
 					selector = :selector
@@ -200,7 +199,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 		const sth = await dbh.prepare(`
 			SELECT
 				title,
-				class AS category,
+				category,
 				priority,
 				browser,
 				selector

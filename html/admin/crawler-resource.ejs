@@ -124,8 +124,8 @@
 				<th scope="col">優先</th>
 				<th scope="col">🌐</th>
 				<th scope="col">セレクター</th>
-				<th scope="col">サイズ</th>
-				<th scope="col">更新日時</th>
+				<th scope="col">ハッシュ値</th>
+				<th scope="col">エラー</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -145,15 +145,11 @@
 					<a href="<%= resourcePage.url %>" referrerpolicy="no-referrer"><%= resourcePage.title %></a>
 					<p style="margin-block-start: 0.5em; font-size: 80%"><%= resourcePage.url %></p>
 				</td>
-				<td><%= resourcePage.priority %></td>
-				<td><%_ if (resourcePage.browser) { _%>✔<%_ } _%></td>
+				<td class="u-cell -center"><%= resourcePage.priority %></td>
+				<td class="u-cell -center"><%_ if (resourcePage.browser) { _%>✔<%_ } _%></td>
 				<td class="u-cell -wrap-anywhere"><%= resourcePage.selector %></td>
-				<td><%= resourcePage.content_length %></td>
-				<%_ if (resourcePage.last_modified !== null) { _%>
-				<td><%= resourcePage.last_modified.format('YYYY年M月D日 H時m分') %></td>
-				<%_ } else { _%>
-				<td></td>
-				<%_ } _%>
+				<td><%= resourcePage.content_hash %></td>
+				<td class="u-cell -center"><%_ if (resourcePage.error) { _%><strong style="color: red">✗</strong><%_ } _%></td>
 			</tr>
 			<%_ } _%>
 		</tbody>
