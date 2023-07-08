@@ -9,6 +9,7 @@ interface ResourcePage {
 	browser: boolean;
 	selector: string | null;
 	content_hash: string;
+	error: boolean;
 }
 
 interface ReviseData {
@@ -40,7 +41,8 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				p.name AS priority,
 				r.browser AS browser,
 				r.selector AS selector,
-				r.content_hash AS content_hash
+				r.content_hash AS content_hash,
+				r.error AS error
 			FROM
 				d_resource r,
 				m_class c,
@@ -66,6 +68,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				browser: Boolean(row.browser),
 				selector: row.selector,
 				content_hash: row.content_hash,
+				error: Boolean(row.error),
 			});
 		}
 

@@ -133,6 +133,7 @@ export default class CrawlerResourceController extends Controller implements Con
 				browser: resoursePage.browser,
 				selector: resoursePage.selector,
 				content_hash: resoursePage.content_hash,
+				error: resoursePage.error,
 			});
 
 			resourcePageListView.set(categoryName, resourcePageOfCategoryView);

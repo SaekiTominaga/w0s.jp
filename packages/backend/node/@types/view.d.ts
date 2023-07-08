@@ -61,6 +61,7 @@ declare namespace CrawlerResourceView {
 		browser: boolean;
 		selector: string | null;
 		content_hash: string;
+		error: boolean;
 	}
 }
 
