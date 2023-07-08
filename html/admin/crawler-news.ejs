@@ -155,7 +155,7 @@
 		<tbody>
 			<%_ for (const newsPage of newsPageOfCategory) { _%>
 			<tr>
-				<td>
+				<td class="u-cell -wrap-no">
 					<form action="<%= pagePathAbsoluteUrl %>" method="post">
 						<p><input type="hidden" name="url" value="<%= newsPage.url %>" /></p>
 						<p>
@@ -172,9 +172,9 @@
 				</td>
 				<td><%= newsPage.priority %></td>
 				<td><%_ if (newsPage.browser) { _%>✔<%_ } _%></td>
-				<td><%= newsPage.selector_wrap %></td>
-				<td><%= newsPage.selector_date %></td>
-				<td><%= newsPage.selector_content %></td>
+				<td class="u-cell -wrap-anywhere"><%= newsPage.selector_wrap %></td>
+				<td class="u-cell -wrap-anywhere"><%= newsPage.selector_date %></td>
+				<td class="u-cell -wrap-anywhere"><%= newsPage.selector_content %></td>
 			</tr>
 			<%_ } _%>
 		</tbody>
