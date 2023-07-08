@@ -1,4 +1,3 @@
-import dayjs, { Dayjs } from 'dayjs';
 import CrawlerDao from './CrawlerDao.js';
 import DbUtil from '../util/DbUtil.js';
 
@@ -9,8 +8,7 @@ interface ResourcePage {
 	priority: string;
 	browser: boolean;
 	selector: string | null;
-	content_length: number;
-	last_modified: Dayjs | null;
+	content_hash: string;
 }
 
 interface ReviseData {
@@ -42,8 +40,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				p.name AS priority,
 				r.browser AS browser,
 				r.selector AS selector,
-				r.content_length AS content_length,
-				r.last_modified AS last_modified
+				r.content_hash AS content_hash
 			FROM
 				d_resource r,
 				m_class c,
@@ -68,8 +65,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				priority: row.priority,
 				browser: Boolean(row.browser),
 				selector: row.selector,
-				content_length: row.content_length,
-				last_modified: row.last_modified !== null ? dayjs.unix(row.last_modified) : null,
+				content_hash: row.content_hash,
 			});
 		}
 
