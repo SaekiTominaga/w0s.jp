@@ -46,7 +46,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				m_class c,
 				m_priority p
 			WHERE
-				r.class = c.fk AND
+				r.category = c.fk AND
 				r.priority = p.fk
 			ORDER BY
 				c.sort,
@@ -90,7 +90,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 			const sth = await dbh.prepare(`
 				INSERT INTO
 					d_resource
-					(url, title, class, priority, browser, selector)
+					(url, title, category, priority, browser, selector)
 				VALUES
 					(:url, :title, :category, :priority, :browser, :selector)
 			`);
@@ -131,7 +131,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 					d_resource
 				SET
 					title = :title,
-					class = :category,
+					category = :category,
 					priority = :priority,
 					browser = :browser,
 					selector = :selector
@@ -196,7 +196,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 		const sth = await dbh.prepare(`
 			SELECT
 				title,
-				class AS category,
+				category,
 				priority,
 				browser,
 				selector
