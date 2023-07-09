@@ -1,6 +1,6 @@
-import { body, Result, ValidationError, validationResult } from 'express-validator';
-import { Request } from 'express';
-import { NoName as Configure } from '../../../configure/type/akamatsu-generator.js';
+import { body, Result, type ValidationError, validationResult } from 'express-validator';
+import type { Request } from 'express';
+import type { NoName as Configure } from '../../../configure/type/akamatsu-generator.js';
 
 /**
  * 赤松健セリフジェネレーター

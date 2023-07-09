@@ -1,6 +1,6 @@
-import { query, Result, ValidationError, validationResult } from 'express-validator';
-import { Request } from 'express';
-import { NoName as Configure } from '../../../configure/type/tokyu-car-history.js';
+import { query, Result, type ValidationError, validationResult } from 'express-validator';
+import type { Request } from 'express';
+import type { NoName as Configure } from '../../../configure/type/tokyu-car-history.js';
 
 /**
  * 東急電車形態研究・車歴表

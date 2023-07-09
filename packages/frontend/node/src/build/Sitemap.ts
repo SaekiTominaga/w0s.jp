@@ -6,7 +6,7 @@ import { globby } from 'globby';
 import xmlFormat from 'xml-formatter';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import BuildComponent from '../BuildComponent.js';
-import BuildComponentInterface from '../BuildComponentInterface.js';
+import type BuildComponentInterface from '../BuildComponentInterface.js';
 import PageUrl from '../util/PageUrl.js';
 
 /**

@@ -1,16 +1,16 @@
 import fs from 'node:fs';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { Request, Response } from 'express';
-import { Result as ValidationResult, ValidationError } from 'express-validator';
+import type { Request, Response } from 'express';
+import type { Result as ValidationResult, ValidationError } from 'express-validator';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import Controller from '../Controller.js';
-import ControllerInterface from '../ControllerInterface.js';
+import type ControllerInterface from '../ControllerInterface.js';
 import RequestUtil from '../util/RequestUtil.js';
 import TokyuCarHistoryDao from '../dao/TokyuCarHistoryDao.js';
 import TokyuCarHistoryValidator from '../validator/TokyuCarHistoryValidator.js';
-import { NoName as Configure } from '../../../configure/type/tokyu-car-history.js';
-import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
+import type { NoName as Configure } from '../../../configure/type/tokyu-car-history.js';
+import type { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
 
 /**
  * 東急電車形態研究・車歴表
