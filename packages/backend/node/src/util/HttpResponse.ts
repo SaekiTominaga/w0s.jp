@@ -1,7 +1,7 @@
 import path from 'node:path';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
-import { W0SJp as Configure } from '../../../configure/type/common.js';
+import type { W0SJp as Configure } from '../../../configure/type/common.js';
 
 type HttpAuthType = 'Basic' | 'Bearer' | 'Digest' | 'HOBA' | 'Mutual' | 'Negotiate' | 'OAuth' | 'SCRAM-SHA-1' | 'SCRAM-SHA-256' | 'vapid';
 

@@ -4,7 +4,7 @@ import prettier from 'prettier';
 import slash from 'slash';
 import { globby } from 'globby';
 import BuildComponent from '../BuildComponent.js';
-import BuildComponentInterface from '../BuildComponentInterface.js';
+import type BuildComponentInterface from '../BuildComponentInterface.js';
 import PrettierUtil from '../util/PrettierUtil.js';
 
 /**

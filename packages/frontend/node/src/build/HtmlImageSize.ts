@@ -4,7 +4,7 @@ import { globby } from 'globby';
 import { imageSize } from 'image-size';
 import { JSDOM } from 'jsdom';
 import BuildComponent from '../BuildComponent.js';
-import BuildComponentInterface from '../BuildComponentInterface.js';
+import type BuildComponentInterface from '../BuildComponentInterface.js';
 
 /**
  * HTML 中の <img> 要素の width, height 属性値が実際の画像サイズと一致しているかどうかチェックする

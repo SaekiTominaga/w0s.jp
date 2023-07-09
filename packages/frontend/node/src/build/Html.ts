@@ -7,7 +7,7 @@ import { globby } from 'globby';
 import { JSDOM } from 'jsdom';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import BuildComponent from '../BuildComponent.js';
-import BuildComponentInterface from '../BuildComponentInterface.js';
+import type BuildComponentInterface from '../BuildComponentInterface.js';
 import HtmlComponentAnchorAmazonAssociate from './component/HtmlAnchorAmazonAssociate.js';
 import HtmlComponentAnchorIcon from './component/HtmlAnchorIcon.js';
 import HtmlComponentBook from './component/HtmlBook.js';

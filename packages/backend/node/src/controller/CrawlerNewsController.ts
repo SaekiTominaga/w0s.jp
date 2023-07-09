@@ -1,14 +1,14 @@
 import fs from 'node:fs';
 import ejs from 'ejs';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import Controller from '../Controller.js';
-import ControllerInterface from '../ControllerInterface.js';
+import type ControllerInterface from '../ControllerInterface.js';
 import CrawlerNewsDao from '../dao/CrawlerNewsDao.js';
 import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { NoName as Configure } from '../../../configure/type/crawler-news.js';
-import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
+import type { NoName as Configure } from '../../../configure/type/crawler-news.js';
+import type { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
 
 /**
  * ウェブ巡回（ニュース）

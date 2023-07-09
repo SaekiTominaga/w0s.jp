@@ -1,16 +1,16 @@
 import fs from 'node:fs';
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
-import { Request, Response } from 'express';
-import { Result as ValidationResult, ValidationError } from 'express-validator';
+import type { Request, Response } from 'express';
+import type { Result as ValidationResult, ValidationError } from 'express-validator';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import ContactValidator from '../validator/ContactValidator.js';
 import Controller from '../Controller.js';
-import ControllerInterface from '../ControllerInterface.js';
+import type ControllerInterface from '../ControllerInterface.js';
 import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { NoName as Configure } from '../../../configure/type/contact.js';
-import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
+import type { NoName as Configure } from '../../../configure/type/contact.js';
+import type { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
 
 /**
  * 問い合わせ・送信

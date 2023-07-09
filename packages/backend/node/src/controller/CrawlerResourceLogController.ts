@@ -1,14 +1,14 @@
 import fs from 'node:fs';
 import ejs from 'ejs';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import * as Diff from 'diff';
 import HtmlStructuredData from '@w0s.jp/util/dist/HtmlStructuredData.js';
 import Controller from '../Controller.js';
-import ControllerInterface from '../ControllerInterface.js';
+import type ControllerInterface from '../ControllerInterface.js';
 import HttpResponse from '../util/HttpResponse.js';
 import RequestUtil from '../util/RequestUtil.js';
-import { NoName as Configure } from '../../../configure/type/crawler-resource.js';
-import { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
+import type { NoName as Configure } from '../../../configure/type/crawler-resource.js';
+import type { W0SJp as ConfigureCommon } from '../../../configure/type/common.js';
 
 /**
  * ウェブ巡回（リソース・ログ表示）
