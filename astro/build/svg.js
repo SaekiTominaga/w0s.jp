@@ -31,10 +31,22 @@ const argsParsedValues = parseArgs({
 	},
 }).values;
 
-const filesPath = slash(argsParsedValues['file']);
-const inputDirectory = slash(argsParsedValues['input']);
-const outputDirectory = slash(argsParsedValues['output']);
-const configFilePath = slash(argsParsedValues['config']);
+if (argsParsedValues.file === undefined) {
+	throw new Error('Argument `file` not specified');
+}
+if (argsParsedValues.input === undefined) {
+	throw new Error('Argument `input` not specified');
+}
+if (argsParsedValues.output === undefined) {
+	throw new Error('Argument `output` not specified');
+}
+if (argsParsedValues.config === undefined) {
+	throw new Error('Argument `config` not specified');
+}
+const filesPath = slash(argsParsedValues.file);
+const inputDirectory = slash(argsParsedValues.input);
+const outputDirectory = slash(argsParsedValues.output);
+const configFilePath = slash(argsParsedValues.config);
 
 const config = await loadConfig(configFilePath);
 

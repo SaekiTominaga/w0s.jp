@@ -23,8 +23,11 @@ const argsParsedValues = parseArgs({
 	},
 }).values;
 
-const filesPath = slash(argsParsedValues['file']);
-const distDirectory = argsParsedValues['output'] !== undefined ? slash(argsParsedValues['output']) : undefined;
+if (argsParsedValues.file === undefined) {
+	throw new Error('Argument `file` not specified');
+}
+const filesPath = slash(argsParsedValues.file);
+const distDirectory = argsParsedValues.output !== undefined ? slash(argsParsedValues.output) : undefined;
 
 const fileList = await globby(filesPath);
 
