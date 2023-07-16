@@ -1,0 +1,57 @@
+---
+import type GithubSlugger from 'github-slugger';
+
+interface Props {
+	slugger?: GithubSlugger;
+	id?: string;
+	depth?: number;
+	heading: string;
+	headingNote?: string;
+	headingType?: string;
+}
+
+const { slugger, id, depth = 1, heading, headingNote, headingType = 'a' } = Astro.props;
+
+let linkId = '';
+if (id !== undefined) {
+	linkId = id;
+} else {
+	if (slugger !== undefined) {
+		linkId = slugger.slug(heading);
+	} else {
+		console.warn('The `slugger` property is not specified.', heading);
+	}
+}
+---
+
+<section class={`p-section -hdg-${headingType}`} id={id}>
+	<div class="p-section__hdg">
+		{
+			depth === 1 && (
+				<h2>
+					{heading}
+					{headingNote !== undefined && <small>（{headingNote}）</small>}
+				</h2>
+			)
+		}
+		{
+			depth === 2 && (
+				<h3>
+					{heading}
+					{headingNote !== undefined && <small>（{headingNote}）</small>}
+				</h3>
+			)
+		}
+		{
+			depth === 3 && (
+				<h4>
+					{heading}
+					{headingNote !== undefined && <small>（{headingNote}）</small>}
+				</h4>
+			)
+		}
+		<p class="p-section__self-link"><a href={`#${encodeURIComponent(linkId)}`} class="c-self-link">§</a></p>
+	</div>
+
+	<slot />
+</section>

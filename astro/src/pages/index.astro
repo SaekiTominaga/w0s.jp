@@ -1,0 +1,56 @@
+---
+import Layout from '@layouts/W0sTop.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '../types/types.js';
+
+const structuredData: StructuredData = {
+	type: 'website',
+	title: 'w0s.jp',
+	description: '富永冴樹の個人サイト',
+};
+---
+
+<Layout structuredData={structuredData}>
+	<nav>
+		<ul class="p-top-nav-card">
+			<li class="p-top-nav-card__box">
+				<a href="https://blog.w0s.jp/">
+					<div class="p-top-nav-card__image">
+						<Image path="index_nav_blog.png" width={360} height={180} style="--object-position: 0" />
+					</div>
+					<div class="p-top-nav-card__title">富永日記帳</div>
+					<p class="p-top-nav-card__description">ウェブ技術や東急電車、久米田康治作品の話を中心としたブログ</p>
+				</a>
+			</li>
+			<li class="p-top-nav-card__box">
+				<a href="/tokyu/">
+					<div class="p-top-nav-card__image">
+						<Image path="index_nav_tokyu.jpg" width={360} height={180} quality={60} style="--object-position: 80% 45%" />
+					</div>
+					<div class="p-top-nav-card__title">東急電車形態研究</div>
+					<p class="p-top-nav-card__description">東急電車の車両形態や自動放送を紹介するサイト</p>
+				</a>
+			</li>
+			<li class="p-top-nav-card__box">
+				<a href="/kumeta/">
+					<div class="p-top-nav-card__image">
+						<Image path="index_nav_kumeta.jpg" width={360} height={180} quality={60} />
+						<!-- 2021-07-07 IMG_4978 -->
+					</div>
+					<div class="p-top-nav-card__title">久米田康治データベース</div>
+					<p class="p-top-nav-card__description">漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト</p>
+				</a>
+			</li>
+			<li class="p-top-nav-card__box">
+				<a href="/madoka/">
+					<div class="p-top-nav-card__image">
+						<Image path="index_nav_madoka.jpg" width={360} height={180} quality={60} style="--object-position: 30%" />
+						<!-- 2014-05-18 057C7491 -->
+					</div>
+					<div class="p-top-nav-card__title">まどか資料館</div>
+					<p class="p-top-nav-card__description">『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト</p>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</Layout>

@@ -1,0 +1,34 @@
+---
+interface Props {
+	html?: string;
+	footnoteData?: Map<number, string | undefined>;
+}
+
+const { html, footnoteData } = Astro.props;
+---
+
+<main class="l-content__main">
+	<div set:html={html} />
+
+	{
+		footnoteData !== undefined && footnoteData.size > 0 && (
+			<section class="p-footnote">
+				<h2 class="p-footnote__hdg">脚注</h2>
+
+				<ul class="p-footnote__list">
+					{[...footnoteData].map(([no, html]) => (
+						<li>
+							<span class="p-footnote__no">{no}.</span>
+							<p class="p-footnote__content">
+								<span id={`fn-${no}`} set:html={html} />
+								<a href={`#fnref-${no}`} class="p-footnote__backref">
+									↩ 戻る
+								</a>
+							</p>
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
+</main>

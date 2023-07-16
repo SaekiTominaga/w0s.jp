@@ -1,0 +1,97 @@
+---
+interface Props {
+	href: string;
+	type?: string;
+}
+
+interface TypeIcon {
+	type: string;
+	name: string;
+	file_name: string;
+}
+
+interface HostIcon {
+	host: string;
+	name: string;
+	file_name: string;
+}
+
+const TYPE_ICONS: TypeIcon[] = [
+	{
+		type: 'application/pdf',
+		name: 'PDF',
+		file_name: 'pdf.png',
+	},
+	{
+		type: 'image/jpeg',
+		name: '写真',
+		file_name: 'image.svg',
+	},
+];
+
+const HOST_ICONS: HostIcon[] = [
+	{
+		host: 'github.com',
+		name: 'GitHub',
+		file_name: 'github.svg',
+	},
+	{
+		host: 'twitter.com',
+		name: 'Twitter',
+		file_name: 'twitter.svg',
+	},
+	{
+		host: 'www.youtube.com',
+		name: 'YouTube',
+		file_name: 'youtube.svg',
+	},
+	{
+		host: 'www.amazon.co.jp',
+		name: 'Amazon',
+		file_name: 'amazon.png',
+	},
+	{
+		host: 'iss.ndl.go.jp',
+		name: '国立国会図書館サーチ',
+		file_name: 'ndl.png',
+	},
+	{
+		host: 'www.nicovideo.jp',
+		name: 'ニコニコ動画',
+		file_name: 'nicovideo.png',
+	},
+	{
+		host: 'www.w3.org',
+		name: 'W3C',
+		file_name: 'w3c.png',
+	},
+	{
+		host: 'html.spec.whatwg.org',
+		name: 'WHATWG',
+		file_name: 'whatwg.svg',
+	},
+];
+
+const { href, type } = Astro.props;
+
+const typeIcon = type !== undefined ? TYPE_ICONS.find((icon) => icon.type === type) : undefined;
+
+let urlStr = href;
+if (href.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([A-Z0-9]{10})\/$/)) {
+	urlStr = `${href}ref=nosim?tag=w0s.jp-22`;
+}
+
+let url: URL;
+let hostIcon: HostIcon | undefined;
+
+try {
+	url = new URL(urlStr);
+} catch {
+	console.warn('`href` attribute value is not a valid URL:', href);
+	return;
+}
+
+hostIcon = HOST_ICONS.find((icon) => icon.host === url.host);
+---
+
+<a href={url.toString()}><slot /></a>{typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{hostIcon !== undefined && <img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" class="c-link-icon" />}{hostIcon === undefined && url !== undefined && <b class="c-domain">({url.host})</b>}

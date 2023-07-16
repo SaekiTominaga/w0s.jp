@@ -1,0 +1,95 @@
+---
+import type { StructuredData } from '../../types/types.js';
+
+interface Props {
+	structuredData: StructuredData;
+	tocData: Map<string, string>;
+}
+
+const pagePath = Astro.url.pathname;
+const { structuredData, tocData } = Astro.props;
+---
+
+<div class="l-content__header">
+	{
+		structuredData.breadcrumb !== undefined && (
+			<p class="p-topic-path">
+				{structuredData.breadcrumb.map((breadcrumbItem, index) => (
+					<>
+						{index > 0 && <span class="p-topic-path__separator">&gt;</span>}
+						<a href={breadcrumbItem.path}>{breadcrumbItem.name}</a>
+					</>
+				))}
+				<span class="p-topic-path__separator">&gt;</span>
+				<a aria-current="page">現在のページ</a>
+			</p>
+		)
+	}
+
+	<hgroup class="p-title">
+		{structuredData.subHeading === undefined && <h1>{structuredData.heading ?? structuredData.title}</h1>}
+		{
+			structuredData.subHeading !== undefined && (
+				<h1>
+					{structuredData.heading ?? structuredData.title}
+					<span class="p-title__sub-hdg">（{structuredData.subHeading}）</span>
+				</h1>
+			)
+		}
+		{
+			structuredData.dateModified !== undefined && (
+				<p class="p-title__update">
+					<time datetime={structuredData.dateModified.format('YYYY-MM-DD')}>{structuredData.dateModified.format('YYYY年M月D日')}</time>更新
+				</p>
+			)
+		}
+	</hgroup>
+
+	{
+		structuredData.localNav !== undefined && (
+			<nav>
+				<ul class="p-local-nav">
+					{structuredData.localNav.map((localNavItem) => (
+						<li>
+							{localNavItem.path !== pagePath && (
+								<a href="<%= localNavItem.path %>" class="c-link">
+									{localNavItem.name}
+								</a>
+							)}
+							{localNavItem.path === pagePath && (
+								<a aria-current="page" class="c-link">
+									{localNavItem.name}
+								</a>
+							)}
+						</li>
+					))}
+				</ul>
+			</nav>
+		)
+	}
+
+	{structuredData.description !== undefined && <p class="p-description">{structuredData.description}</p>}
+
+	{
+		tocData !== undefined && tocData.size >= 2 && structuredData.tocDirection === undefined && (
+			<ol class="p-toc" aria-label="目次">
+				{[...tocData].map(([id, headingText]) => (
+					<li>
+						<a href={`#${encodeURIComponent(id)}`}>{headingText}</a>
+					</li>
+				))}
+			</ol>
+		)
+	}
+	{
+		tocData !== undefined && tocData.size >= 2 && structuredData.tocDirection !== undefined && (
+			<ol class={`p-toc -${structuredData.tocDirection}`} aria-label="目次">
+				{[...tocData].map(([id, headingText]) => (
+					<li>
+						<a href={`#${encodeURIComponent(id)}`}>{headingText}</a>
+					</li>
+				))}
+			</ol>
+		)
+	}
+</div>
