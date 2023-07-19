@@ -1,0 +1,62 @@
+---
+import Layout from '@layouts/W0s.astro';
+import RequestUtil from '../utils/Request.js';
+import SsrUtil from '../utils/Ssr.js';
+import type { StructuredData } from '../types/types.js';
+
+interface RequestQuery {
+	referrer: string | null;
+}
+
+export const prerender = false;
+const { logger } = await SsrUtil.init(Astro.url.pathname);
+
+const structuredData: StructuredData = {
+	title: '問い合わせ（完了）',
+	breadcrumb: [{ path: '/', name: 'ホーム' }],
+};
+
+const requestUrl = new URL(Astro.request.url);
+const requestSearchParams = requestUrl.searchParams;
+
+const requestQuery: RequestQuery = {
+	referrer: RequestUtil.string(requestSearchParams.get('referrer')),
+};
+
+if (requestQuery.referrer !== null && requestQuery.referrer !== '') {
+	if (!requestQuery.referrer.startsWith('/')) {
+		logger.warn(`Invalid referrer value <${requestQuery.referrer}>`);
+		requestQuery.referrer = null;
+	}
+}
+---
+
+<Layout structuredData={structuredData}>
+	<ol class="p-step">
+		<li><span class="p-step__text">入力</span></li>
+		<li><span class="p-step__text">確認</span></li>
+		<li><em class="p-step__text -current">完了</em></li>
+	</ol>
+	<div class="p-text">
+		<p>問い合わせを受け付けました。</p>
+
+		{
+			requestQuery.referrer !== null && requestQuery.referrer !== '' && (
+				<p>
+					<a href={requestQuery.referrer} class="c-link">
+						元のページへ戻る
+					</a>
+				</p>
+			)
+		}
+		{
+			(requestQuery.referrer === null || requestQuery.referrer === '') && (
+				<p>
+					<a href="/" class="c-link">
+						トップページへ戻る
+					</a>
+				</p>
+			)
+		}
+	</div>
+</Layout>

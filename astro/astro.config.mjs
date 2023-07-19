@@ -12,8 +12,10 @@ export default defineConfig({
 		mode: 'middleware',
 	}),
 	output: 'hybrid',
+	build: {
+		format: 'file',
+	},
 	server: {
-		headers: {
-		},
+		headers: {},
 	},
 });

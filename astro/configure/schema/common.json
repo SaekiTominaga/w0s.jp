@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/astro/common.json",
+	"type": "object",
+	"title": "w0s.jp",
+	"required": ["mail", "sqlite"],
+	"properties": {
+		"mail": {
+			"type": "object",
+			"title": "E-mail",
+			"required": ["smtp", "user", "password", "port", "from", "to"],
+			"properties": {
+				"smtp": {
+					"type": "string"
+				},
+				"user": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"port": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"from": {
+					"type": "string"
+				},
+				"to": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
+		"sqlite": {
+			"type": "object",
+			"title": "SQLite",
+			"additionalProperties": {
+				"type": "string",
+				"title": "テーブルファイルパス"
+			}
+		}
+	},
+	"additionalProperties": false
+}

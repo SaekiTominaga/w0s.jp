@@ -1,0 +1,236 @@
+---
+import ejs from 'ejs';
+import nodemailer from 'nodemailer';
+import Layout from '@layouts/W0s.astro';
+import HttpResponseUtil from '../utils/HttpResponse.js';
+import RequestUtil from '../utils/Request.js';
+import SsrUtil from '../utils/Ssr.js';
+import type { StructuredData } from '../types/types.js';
+
+interface RequestQuery {
+	name: string | null;
+	email: string | null;
+	reply: string | null;
+	body: string | null;
+	referrer: string | null;
+	action_send: boolean;
+}
+
+export const prerender = false;
+const { configure, logger } = await SsrUtil.init(Astro.url.pathname);
+
+const structuredData: StructuredData = {
+	'schema-type': 'ContactPage',
+	title: '問い合わせ',
+	breadcrumb: [{ path: '/', name: 'ホーム' }],
+	moduleScripts: ['contact.mjs'],
+};
+
+let requestQuery: RequestQuery | undefined = undefined;
+
+if (Astro.request.method === 'POST') {
+	const requestBody = await Astro.request.formData();
+
+	requestQuery = {
+		name: RequestUtil.string(requestBody.get('yourname')),
+		email: RequestUtil.string(requestBody.get('email')),
+		reply: RequestUtil.string(requestBody.get('reply')),
+		body: RequestUtil.string(requestBody.get('body')),
+		referrer: RequestUtil.string(requestBody.get('referrer')),
+		action_send: RequestUtil.boolean(requestBody.get('actionsend')),
+	};
+
+	if (requestQuery.action_send) {
+		/**
+		 * メール送信
+		 *
+		 * @param requestQuery - URL クエリー情報
+		 */
+		const sendMail = async (requestQuery: RequestQuery): Promise<void> => {
+			const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
+				requestQuery: requestQuery,
+				ip: Astro.clientAddress,
+				ua: Astro.request.headers.get('User-Agent'),
+			});
+
+			const transporter = nodemailer.createTransport({
+				host: configure.mail.smtp,
+				port: configure.mail.port,
+				auth: {
+					user: configure.mail.user,
+					pass: configure.mail.password,
+				},
+			});
+
+			const info = await transporter.sendMail({
+				from: configure.mail.from,
+				to: configure.mail.to,
+				subject: 'w0s.jp 問い合わせ',
+				html: html,
+			});
+
+			logger.info('Message sent: %s', info.messageId);
+		};
+
+		await sendMail(requestQuery);
+
+		const httpResponse = new HttpResponseUtil(Astro.request);
+		return httpResponse.response303(`/contact_completed?referrer=${requestQuery.referrer}`);
+	}
+}
+
+let referrerRootRelativePath = ''; // リファラーのいわゆるルート相対パス部分
+const referrer = Astro.request.headers.get('Referer');
+if (referrer !== null) {
+	try {
+		const referrerUrl = new URL(referrer);
+		if (Astro.url.hostname === referrerUrl.hostname) {
+			referrerRootRelativePath = `${referrerUrl.pathname}${referrerUrl.search}`;
+		}
+	} catch {
+		logger.warn(`Invalid referrer value <${referrer}>`);
+	}
+}
+---
+
+<Layout structuredData={structuredData}>
+	<ol class="p-step">
+		<li class="js-screen-input">
+			<em class="p-step__text -current">入力</em>
+		</li>
+		<li class="js-screen-confirm" hidden="">
+			<span class="p-step__text">入力</span>
+		</li>
+		<li class="js-screen-input" hidden="">
+			<span class="p-step__text">確認</span>
+		</li>
+		<li class="js-screen-confirm" hidden="">
+			<em class="p-step__text -current">確認</em>
+		</li>
+		<li>
+			<span class="p-step__text">完了</span>
+		</li>
+	</ol>
+
+	<form method="post" novalidate="" class="c-stack js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
+		<div class="js-screen-input">
+			<div class="p-form-grid">
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="input-name" class="c-label">
+								名前 <strong class="c-label-icon -optional">任意</strong>
+							</label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<input class="c-input" name="yourname" id="input-name" style="--inline-size: 24em" />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="input-email" class="c-label">
+								Eメールアドレス <strong class="c-label-icon -required">必須</strong>
+							</label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<input type="email" class="c-input js-convert-trim js-validation" name="email" required="" autocomplete="email" id="input-email" style="--inline-size: 24em" aria-errormessage="input-validate-email" />
+							</div>
+							<p hidden="" class="c-fc-invalid" id="input-validate-email"></p>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend" id="label-reply">
+							<span class="c-label">
+								返信の有無 <strong class="c-label-icon -required">必須</strong>
+							</span>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls -checkbox js-validation" role="radiogroup" aria-labelledby="label-reply" aria-errormessage="input-validate-reply">
+								<label class="c-label -check">
+									<input type="radio" name="reply" value="yes" required="" />
+									<span class="c-label__text">必要</span>
+								</label>
+								<label class="c-label -check">
+									<input type="radio" name="reply" value="no" required="" />
+									<span class="c-label__text">不要</span>
+								</label>
+							</div>
+							<p hidden="" class="c-fc-invalid" id="input-validate-reply"></p>
+							<p class="c-fc-note">おことわり: 「必要」を選択された場合でも、内容によっては返信しかねる場合があります。</p>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="input-body" class="c-label">
+								内容 <strong class="c-label-icon -required">必須</strong>
+							</label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<textarea is="w0s-textarea-height-adjust" class="c-textarea js-convert-trim js-validation" name="body" required="" id="input-body" style="--block-size: 16em" aria-errormessage="input-validate-body"></textarea>
+							</div>
+							<p hidden="" class="c-fc-invalid" id="input-validate-body"></p>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+			<p>
+				<input type="hidden" name="referrer" value={referrerRootRelativePath} />
+			</p>
+		</div>
+
+		<div class="js-screen-confirm" hidden="">
+			<table class="p-table -full">
+				<tbody>
+					<tr>
+						<th scope="row">名前</th>
+						<td class="js-confirm-output" data-ctrl-name="yourname"></td>
+					</tr>
+					<tr>
+						<th scope="row">Eメールアドレス</th>
+						<td class="js-confirm-output" data-ctrl-name="email"></td>
+					</tr>
+					<tr>
+						<th scope="row">返信の有無</th>
+						<td class="js-confirm-output" data-ctrl-name="reply"></td>
+					</tr>
+					<tr>
+						<th scope="row">内容</th>
+						<td>
+							<pre class="js-confirm-output" data-ctrl-name="body"></pre>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="c-form-controls -submit -center">
+			<p class="js-screen-input" hidden="">
+				<button class="c-submit" id="js-confirm-button"> 入力内容を確認</button>
+			</p>
+			<p class="js-screen-confirm" hidden="">
+				<button type="button" class="c-submit -cancel" id="js-correct-button"> 修正</button>
+			</p>
+			<p class="js-screen-confirm">
+				<button name="actionsend" value="1" class="c-submit" id="js-send-button"> 送信</button>
+			</p>
+		</div>
+	</form>
+
+	<dialog class="p-dialog-overlay" id="form-submit-overlay" aria-labelledby="form-submit-overlay-message" aria-describedby="form-submit-overlay-message">
+		<p>
+			<img src="/assets/image/loading.svg" alt="" width="38" height="38" />
+		</p>
+		<p id="form-submit-overlay-message">送信中</p>
+	</dialog>
+</Layout>
