@@ -1,7 +1,7 @@
 import Log4js from 'log4js';
-import configure from '../../configure/common.json';
 import log4jsConfigure from '../../log4js.json';
-import type { W0SJp as Configure } from '../../configure/type/common.js';
+import configure from '../../../configure/astro.json';
+import type { Astro as Configure } from '../../../configure/type/astro.d.js';
 
 export default class SsrUtil {
 	/**
