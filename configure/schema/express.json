@@ -1,0 +1,237 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/express.json",
+	"type": "object",
+	"title": "Express",
+	"required": ["port", "response", "static"],
+	"properties": {
+		"port": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 65535,
+			"title": "HTTP サーバーのポート番号"
+		},
+		"response": {
+			"type": "object",
+			"title": "レスポンス",
+			"required": ["header", "compression"],
+			"properties": {
+				"header": {
+					"type": "object",
+					"title": "レスポンスヘッダー",
+					"required": ["hsts", "csp", "csp_html", "cspro_html"],
+					"properties": {
+						"hsts": {
+							"type": "string",
+							"title": "Strict-Transport-Security"
+						},
+						"csp": {
+							"type": "string",
+							"title": "Content-Security-Policy (HTML 以外)"
+						},
+						"csp_html": {
+							"type": "string",
+							"title": "Content-Security-Policy (HTML)"
+						},
+						"cspro_html": {
+							"type": "string",
+							"title": "Content-Security-Policy-Report-Only (HTML)"
+						}
+					},
+					"additionalProperties": false
+				},
+				"compression": {
+					"type": "object",
+					"title": "圧縮",
+					"required": ["threshold"],
+					"properties": {
+						"threshold": {
+							"type": "string",
+							"title": "Threshold"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
+		"static": {
+			"type": "object",
+			"title": "静的ファイル",
+			"required": ["root", "headers"],
+			"properties": {
+				"root": {
+					"type": "string",
+					"title": "ルートディレクトリ"
+				},
+				"extensions": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"title": "ファイル拡張子のフォールバック"
+				},
+				"indexes": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"title": "ディレクトリのインデックスファイル名"
+				},
+				"headers": {
+					"type": "object",
+					"title": "レスポンスヘッダー関連",
+					"required": ["mime_type"],
+					"properties": {
+						"mime_type": {
+							"type": "object",
+							"required": ["path", "extension"],
+							"title": "MIME タイプ定義",
+							"properties": {
+								"path": {
+									"type": "object",
+									"title": "MIME タイプとファイルパスの紐付け",
+									"additionalProperties": {
+										"type": "string",
+										"title": "ファイルパス（e.g. index.html）"
+									}
+								},
+								"extension": {
+									"type": "object",
+									"title": "MIME タイプと拡張子の紐付け",
+									"additionalProperties": {
+										"type": "string",
+										"title": "拡張子（e.g. .html）"
+									}
+								}
+							},
+							"additionalProperties": false
+						},
+						"cache_control": {
+							"type": "object",
+							"title": "キャッシュ定義",
+							"required": ["default"],
+							"properties": {
+								"default": {
+									"type": "string",
+									"title": "デフォルト値"
+								},
+								"path": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"required": ["paths", "value"],
+										"properties": {
+											"paths": {
+												"type": "array",
+												"items": {
+													"type": "string"
+												},
+												"title": "拡張子"
+											},
+											"value": {
+												"type": "string",
+												"title": "値"
+											}
+										},
+										"additionalProperties": false
+									},
+									"title": "ファイルパスによるキャッシュ定義"
+								},
+								"extension": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"required": ["extensions", "value"],
+										"properties": {
+											"extensions": {
+												"type": "array",
+												"items": {
+													"type": "string"
+												},
+												"title": "拡張子"
+											},
+											"value": {
+												"type": "string",
+												"title": "値"
+											}
+										},
+										"additionalProperties": false
+									},
+									"title": "拡張子によるキャッシュ定義"
+								}
+							},
+							"additionalProperties": false
+						},
+						"cors": {
+							"type": "object",
+							"title": "CORS",
+							"required": ["directory", "origin"],
+							"properties": {
+								"directory": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									},
+									"title": "CORS を設定する対象ディレクトリ"
+								},
+								"origin": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									},
+									"title": "許可するオリジン"
+								}
+							},
+							"additionalProperties": false
+						},
+						"source_map": {
+							"type": "object",
+							"title": "SourceMap 定義",
+							"properties": {
+								"extensions": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									},
+									"title": "拡張子"
+								}
+							},
+							"additionalProperties": false
+						}
+					},
+					"additionalProperties": false
+				},
+				"auth_basic": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": ["directory", "realm", "htpasswd"],
+						"properties": {
+							"directory": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								},
+								"title": "directory"
+							},
+							"realm": {
+								"type": "string",
+								"title": "保護領域の説明文"
+							},
+							"htpasswd": {
+								"type": "string",
+								"title": "htpasswd ファイルのパス"
+							}
+						},
+						"additionalProperties": false
+					},
+					"uniqueItems": true,
+					"title": "Basic Authentication"
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}
