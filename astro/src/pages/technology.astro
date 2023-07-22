@@ -449,7 +449,7 @@ const structuredData: StructuredData = {
 			<li>
 				<LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装を発端とする歴史的な経緯</LinkExternal>により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> で提供することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる。このため以下の特別な処理を行っている。
 				<ul>
-					<li>ファビコン用 SVG ファイルの生成は<LinkExternal href="#vector">他の SVG 画像</LinkExternal>と同様に、<a href="https://github.com/svg/svgo">SVGO</a>による最適化や Brotli 圧縮ファイルの同時生成を行っているが、ビルド処理の際に拡張子を <code>favicon.svg</code> → <code>favicon.ico</code> に変更する。</li>
+					<li>ファビコン用 SVG ファイルの生成は<a href="#vector">他の SVG 画像</a>と同様に、<LinkExternal href="https://github.com/svg/svgo">SVGO</LinkExternal>による最適化や Brotli 圧縮ファイルの同時生成を行っているが、ビルド処理の際に拡張子を <code>favicon.svg</code> → <code>favicon.ico</code> に変更する。</li>
 					<li>通常、<code>Content-Type</code> レスポンスヘッダー（MIME タイプ）はファイル拡張子によって決定されるが、<code>/favicon.ico</code> に限ってはファイルパスで判断し、<code>image/svg+xml</code> を返す。</li>
 				</ul>
 				 詳細はブログ記事「<a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>」（2021年10月）にまとめている。

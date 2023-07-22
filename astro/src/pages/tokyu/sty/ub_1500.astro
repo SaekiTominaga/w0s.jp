@@ -1,0 +1,217 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急1000系1500番台　床下機器配置',
+	heading: '1000系1500番台　床下機器配置',
+	dateModified: dayjs('2019-07-25'),
+	description: '東急池上線、多摩川線で活躍する1000系1500番台の床下機器配置を写真で紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/ub/1600_sea.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+	localNav: [
+		{ path: '/tokyu/sty/ub_7600', name: '7600系' },
+		{ path: '/tokyu/sty/ub_7700', name: '7700系' },
+		{ path: '/tokyu/sty/ub_7700n', name: '7915F' },
+		{ path: '/tokyu/sty/ub_1000n', name: '1000N系池多' },
+		{ path: '/tokyu/sty/ub_1000n2', name: '1000N′系' },
+		{ path: '/tokyu/sty/ub_1500', name: '1000系1500番台' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	<Section slugger={slugger} id="mc-1500" heading="デハ1500形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="mc-1500-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1500_sea.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1500_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1501海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、蓄電池、定位置停止支援装置（TASC）、共通機器箱、空気圧縮機（HS-20型）、CP起動装置、主幹指令装置、情報伝送装置です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="mc-1500-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1500_mount.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1500_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1501山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、冷房制御装置、整流装置、元空気だめ、ブレーキ制御装置です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="m-1600" heading="デハ1600形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="m-1600-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1600_sea.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1600_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1601海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、VVVF主制御器、VVVFフィルタリアクトル、VVVF断流器、接地開閉器です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="m-1600-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1600_mount.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1600_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1601山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、冷房制御装置、VVVFトランスリアクトル、VVVFフィルタリアクトル、ブレーキ制御装置、高速度遮断器です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="mc-1700" heading="デハ1700形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="mc-1700-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1724_sea.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1724_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1724海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、冷房制御装置、蓄電池、定位置停止支援装置（TASC）、接地開閉器、主幹指令装置です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="mc-1700-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1724_mount.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1724_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1724山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、整流装置、ブレーキ制御装置です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="tc-1500" heading="クハ1500形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-1500-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1524_sea.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1524_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ1524海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、蓄電池、冷房制御装置、空気圧縮機（HS-10型・2台）、接地開閉器、定位置停止支援装置（TASC）です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-1500-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1524_mount.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1524_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ1524山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、元空気だめ、整流装置、元空気だめ、ブレーキ制御装置、情報伝送装置です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="tc-1700" heading="クハ1700形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-1700-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1700_sea.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1700_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ1701海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、定位置停止支援装置（TASC）、共通機器箱、空気圧縮機（HS-20型）、CP起動装置、蓄電池です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-1700-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/1700_mount.jpg" type="image/jpeg"> <Image path="tokyu/sty/ub/1700_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} /></a><!-- 2019-04-29 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ1701山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、冷房制御装置、整流装置、元空気だめ、ブレーキ制御装置です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>

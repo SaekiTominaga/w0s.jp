@@ -2,6 +2,8 @@
 interface Props {
 	href: string;
 	type?: string;
+	icon?: boolean;
+	class?: string;
 }
 
 interface TypeIcon {
@@ -21,11 +23,6 @@ const TYPE_ICONS: TypeIcon[] = [
 		type: 'application/pdf',
 		name: 'PDF',
 		file_name: 'pdf.png',
-	},
-	{
-		type: 'image/jpeg',
-		name: '写真',
-		file_name: 'image.svg',
 	},
 ];
 
@@ -72,9 +69,7 @@ const HOST_ICONS: HostIcon[] = [
 	},
 ];
 
-const { href, type } = Astro.props;
-
-const typeIcon = type !== undefined ? TYPE_ICONS.find((icon) => icon.type === type) : undefined;
+const { href, type, class: className, icon = true } = Astro.props;
 
 let urlStr = href;
 if (href.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([A-Z0-9]{10})\/$/)) {
@@ -82,8 +77,6 @@ if (href.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([A-Z0-9]{10})\/$
 }
 
 let url: URL;
-let hostIcon: HostIcon | undefined;
-
 try {
 	url = new URL(urlStr);
 } catch {
@@ -91,7 +84,8 @@ try {
 	return;
 }
 
-hostIcon = HOST_ICONS.find((icon) => icon.host === url.host);
+const typeIcon = type !== undefined ? TYPE_ICONS.find((typeIcon) => typeIcon.type === type) : undefined;
+const hostIcon = HOST_ICONS.find((hostIcon) => hostIcon.host === url.host);
 ---
 
-<a href={url.toString()}><slot /></a>{typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{hostIcon !== undefined && <img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" class="c-link-icon" />}{hostIcon === undefined && url !== undefined && <b class="c-domain">({url.host})</b>}
+<a href={url.toString()} class={className}><slot /></a>{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon !== undefined && <img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon === undefined && <b class="c-domain">({url.host})</b>}

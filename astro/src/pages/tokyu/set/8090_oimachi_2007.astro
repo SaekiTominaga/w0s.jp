@@ -1,0 +1,96 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '設定器配列　東急大井町線　8090系（2007年〜2009年）',
+	heading: '大井町線　8090系',
+	subHeading: '2007年〜2009年',
+	dateModified: dayjs('2008-02-02'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/set/', name: '設定器配列' },
+	],
+	localNav: [
+		{ path: '/tokyu/set/8000_oimachi_2000', name: '2000年〜2008年' },
+		{ path: '/tokyu/set/8090_oimachi_2006', name: '2006年〜2008年' },
+		{ path: '/tokyu/set/8090_oimachi_2007', name: '2007年〜2009年' },
+		{ path: '/tokyu/set/8090_oimachi_2009', name: '2009年〜2013年' },
+	],
+};
+---
+
+<Layout structuredData={structuredData}>
+	<div class="l-tokyu-set">
+		<div class="l-tokyu-set__header">
+			<p class="p-tokyu-set-period">2007年<!-- 9月 -->より始まった表示器 LED 化から、2009年<!-- 7月 -->の溝の口延伸まで</p>
+			<p class="p-tokyu-set-note">上り方先頭車に設置</p>
+		</div>
+		<div class="l-tokyu-set__main">
+			<div class="p-tokyu-set-panel -num-8090">
+				<object data="/tokyu/set/image/8090_oimachi_2007.svg" type="image/svg+xml" width="480" height="975" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
+					<div id="set-image-alt1">
+						<section>
+							<h2>種別対照表</h2>
+							<ul>
+								<li>0: (空欄)</li>
+								<li>1: (空欄)</li>
+								<li>2: (空欄)</li>
+								<li>3: (空欄)</li>
+								<li>4: (空欄)</li>
+								<li>5: 急行</li>
+								<li>6: 各停</li>
+								<li>7: (空欄)</li>
+								<li>8: (空欄)</li>
+								<li>9: (空欄)</li>
+							</ul>
+						</section>
+
+						<section>
+							<h2>行先対照表</h2>
+							<ul>
+								<li>01: 試運転</li>
+								<li>02: 回送</li>
+								<li>03: 臨時</li>
+								<li>04: (空欄)</li>
+								<li>05: (空欄)</li>
+								<li>06: (空欄)</li>
+								<li>07: (空欄)</li>
+								<li>08: (空欄)</li>
+								<li>09: (空欄)</li>
+								<li>10: 鷺沼</li>
+								<li>11: 長津田</li>
+								<li>12: 大井町</li>
+								<li>13: 中央林間</li>
+								<li>14: 二子玉川</li>
+								<li>15: 自由が丘</li>
+								<li>16: 大岡山</li>
+								<li>17: 溝の口</li>
+								<li>18: 梶が谷</li>
+								<li>19: あざみ野</li>
+								<li>20: (空欄)</li>
+							</ul>
+						</section>
+					</div>
+				</object>
+			</div>
+		</div>
+		<div class="l-tokyu-set__footer">
+			<dl class="p-tokyu-set-data">
+				<div>
+					<dt>調査日</dt>
+					<dd>2008年2月2日</dd>
+				</div>
+				<div>
+					<dt>調査車両</dt>
+					<dd>クハ8095</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<ul class="p-notes">
+		<li>クハ8091, 8095, 8097 以外の7両は行先対照表の #17〜#19 が空欄。</li>
+	</ul>
+</Layout>

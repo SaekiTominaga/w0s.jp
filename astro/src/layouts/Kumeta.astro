@@ -1,0 +1,46 @@
+---
+import { JSDOM } from 'jsdom';
+import FootnoteUtil from '@utils/Footnote.js';
+import TocUtil from '@utils/Toc.js';
+import Head from './include/HeadKumeta.astro';
+import PageHeader from './include/PageHeaderKumeta.astro';
+import PageSidebar from './include/PageSidebar.astro';
+import PageFooter from './include/PageFooter.astro';
+import ContentHeader from './include/ContentHeader.astro';
+import ContentMain from './include/ContentMain.astro';
+import ContentFooter from './include/ContentFooter.astro';
+import type { StructuredData } from '../types/types.js';
+
+interface Props {
+	structuredData: StructuredData;
+}
+
+const { structuredData } = Astro.props;
+
+let mainHtml = await Astro.slots.render('default');
+const dom = new JSDOM(mainHtml);
+const { document } = dom.window;
+
+const tocData = TocUtil.getData(document);
+const footnoteData = FootnoteUtil.getData(document);
+
+mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	<Head structuredData={structuredData} />
+	<body>
+		<div class="l-page">
+			<PageHeader />
+			<div id="content" class="l-content">
+				<ContentHeader structuredData={structuredData} tocData={tocData} />
+				<ContentMain html={mainHtml} footnoteData={footnoteData} />
+				<ContentFooter structuredData={structuredData} />
+			</div>
+
+			<PageSidebar />
+			<PageFooter />
+		</div>
+	</body>
+</html>

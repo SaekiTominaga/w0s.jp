@@ -1,0 +1,109 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '設定器配列　東急大井町線　8500系（2003年〜2009年）',
+	heading: '大井町線　8500系',
+	subHeading: '2003年〜2009年',
+	dateModified: dayjs('2009-04-14'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/set/', name: '設定器配列' },
+	],
+	localNav: [
+		{ path: '/tokyu/set/8500_oimachi_2003', name: '2003年〜2009年' },
+		{ path: '/tokyu/set/8500_oimachi_2009-05', name: '2009年暫定' },
+		{ path: '/tokyu/set/8500_oimachi_2009-07', name: '2009年〜' },
+	],
+};
+---
+
+<Layout structuredData={structuredData}>
+	<div class="l-tokyu-set">
+		<div class="l-tokyu-set__header">
+			<p class="p-tokyu-set-period">2003年<!-- 3月〜5月 -->の大井町線転籍から、2009年<!-- 5月 -->まで</p>
+			<p class="p-tokyu-set-note">下り方先頭車に設置</p>
+		</div>
+		<div class="l-tokyu-set__main">
+			<div class="p-tokyu-set-panel -dial-8500">
+				<section>
+					<h2>種別</h2>
+					<object data="/tokyu/set/image/8500_oimachi_2003_train.png" type="image/png" width="460" height="460" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
+						<ul id="set-image-alt1">
+							<li>1: 試運転</li>
+							<li>2: 回送</li>
+							<li>3: 普通</li>
+							<li>4: 急行</li>
+							<li>5: 快速</li>
+							<li>6: 臨時</li>
+							<li>7: (空欄)</li>
+							<li>8: (空欄)</li>
+							<li>9: (空欄)</li>
+							<li>10: (空欄)</li>
+						</ul>
+					</object>
+				</section>
+
+				<section>
+					<h2>行先</h2>
+					<object data="/tokyu/set/image/8500_oimachi_2003_to.png" type="image/png" width="460" height="460" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt2">
+						<ul id="set-image-alt2">
+							<li>1: (空欄)</li>
+							<li>2: (空欄)</li>
+							<li>3: (空欄)</li>
+							<li>4: 中央林間</li>
+							<li>5: こどもの国</li>
+							<li>6: 長津田</li>
+							<li>7: 鷺沼</li>
+							<li>8: 梶が谷</li>
+							<li>9: 二子玉川</li>
+							<li>10: 渋谷</li>
+							<li>11: 青山一丁目</li>
+							<li>12: 永田町</li>
+							<li>13: 半蔵門</li>
+							<li>14: 九段下</li>
+							<li>15: 神保町</li>
+							<li>16: 三越前</li>
+							<li>17: 水天宮前</li>
+							<li>18: (空欄)</li>
+							<li>19: (空欄)</li>
+							<li>20: 二子玉川</li>
+							<li>21: 大井町</li>
+							<li>22: 大岡山</li>
+							<li>23: 自由が丘</li>
+							<li>24: (空欄)</li>
+							<li>25: 渋谷</li>
+							<li>26: 田園調布</li>
+							<li>27: 元住吉</li>
+							<li>28: 日吉</li>
+							<li>29: 菊名</li>
+							<li>30: 桜木町</li>
+						</ul>
+					</object>
+				</section>
+			</div>
+		</div>
+		<div class="l-tokyu-set__footer">
+			<dl class="p-tokyu-set-data">
+				<div>
+					<dt>調査日</dt>
+					<dd>2006年1月4日</dd>
+				</div>
+				<div>
+					<dt>調査車両</dt>
+					<dd>デハ8541</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<ul class="p-notes">
+		<li>行先の #24 のシール貼りの下は<q>二子玉川園</q>。</li>
+		<li>デハ8538 は種別&amp;行先ダイヤルとも下部の東芝表記が1984年制定の新ロゴであり、行先の #9 が全面シール貼り、#14〜#17 が直印刷（2006年3月1日確認）。</li>
+		<li>デハ8539 も行先の #9 が全面シール貼り（2006年1月4日確認）。</li>
+		<li>デハ8540 は行先の #17 のシール貼りがなく空欄（2006年1月5日確認）。</li>
+		<li>上記掲載のデハ8541 も後年、行先の #9 が全面シール貼りに変更された（2009年4月14日確認）。</li>
+	</ul>
+</Layout>

@@ -1,0 +1,139 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '設定器配列　東急田園都市線　8590系（2006年〜2007年）',
+	heading: '田園都市線　8590系',
+	subHeading: '2006年〜2007年',
+	dateModified: dayjs('2013-04-28'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/set/', name: '設定器配列' },
+	],
+	localNav: [
+		{ path: '/tokyu/set/8590_denentoshi_2000', name: '2000年〜2003年' },
+		{ path: '/tokyu/set/8590_denentoshi_2006', name: '2006年〜2007年' },
+	],
+};
+---
+
+<Layout structuredData={structuredData}>
+	<div class="l-tokyu-set">
+		<div class="l-tokyu-set__header">
+			<p class="p-tokyu-set-period">2006年<!-- 10月 -->の田園都市線再転籍から、2007年<!-- 4月 -->の準急新設まで</p>
+		</div>
+		<div class="l-tokyu-set__main">
+			<div class="p-tokyu-set-panel -push">
+				<object data="/tokyu/set/image/8590_denentoshi_2006.svg" type="image/svg+xml" width="528" height="1170" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
+					<div id="set-image-alt1">
+						<section>
+							<h2>始発駅</h2>
+							<table>
+								<tbody>
+									<tr>
+										<td>中央林間</td>
+										<td>長津田</td>
+										<td>鷺沼</td>
+										<td>二子玉川</td>
+										<td>渋谷</td>
+										<td>半蔵門</td>
+									</tr>
+									<tr>
+										<td>用賀</td>
+										<td>水天宮前</td>
+										<td>清澄白河</td>
+										<td>住吉</td>
+										<td>錦糸町</td>
+										<td>押上</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+
+						<section>
+							<h2>種別</h2>
+							<table>
+								<tbody>
+									<tr>
+										<td>普通</td>
+										<td>急行</td>
+										<td>快速</td>
+										<td></td>
+										<td>試運転</td>
+										<td>回送</td>
+										<td>臨時</td>
+										<td>急行南停</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+
+						<section>
+							<h2>行先</h2>
+							<table>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>中央林間</td>
+										<td>こどもの国</td>
+										<td>長津田</td>
+										<td>鷺沼</td>
+										<td>梶が谷</td>
+									</tr>
+									<tr>
+										<td>二子玉川</td>
+										<td>渋谷</td>
+										<td>青山一丁目</td>
+										<td>永田町</td>
+										<td>半蔵門</td>
+										<td>九段下</td>
+										<td>神保町</td>
+										<td>三越前</td>
+									</tr>
+									<tr>
+										<td>水天宮前</td>
+										<td>あざみ野</td>
+										<td>用賀</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>溝の口</td>
+										<td>清澄白河</td>
+									</tr>
+									<tr>
+										<td>住吉</td>
+										<td>錦糸町</td>
+										<td>押上</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+					</div>
+				</object>
+			</div>
+		</div>
+	</div>
+
+	<ul class="p-notes">
+		<li>準急新設後は種別の<q>快速</q>が<q>準急</q>（黒文字）に変更された。<small>（2013年4月28日、デハ8595 にて確認）</small></li>
+	</ul>
+</Layout>

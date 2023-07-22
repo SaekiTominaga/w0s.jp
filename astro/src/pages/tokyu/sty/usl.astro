@@ -1,0 +1,138 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import Image from '@components/Image.astro';
+import LinkPhoto from '@components/LinkPhoto.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急電車の床下灯',
+	heading: '床下灯',
+	dateModified: dayjs('2008-02-01'),
+	description: '鉄道車両の車体側面には戸閉め知らせ等のほかに機器の異常を知らせる表示灯が設けられることが多いですが、床下に付いているケースもあります。ここでは7200系から2000系までに設置されている床下設置タイプの表示灯を紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/usl/9000_side-lamp-4.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	<Section slugger={slugger} id="olr" heading="7200系、7600系の過負荷灯">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} heading="オリジナルタイプ" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/usl/7200_OLR1.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} />
+								<!-- 撮影日: 2006-09-16 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7662（2次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主制御器のある車両に取り付けられている過負荷灯は床下にあり、昔ながらの独立タイプです。7600系化された車両は非常通報灯を車体側面に増設しましたが、過負荷灯は床下のままとなっています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} heading="新型タイプ" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/usl/7200_OLR2.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} />
+								<!-- 撮影日: 2006-09-07 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デヤ7200（2次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>デハ7653、デハ7681、デハ7682、デヤ7200は異なる形状をしています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="series8000" heading="8000系グループ、7600系、7700系等の床下灯">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} heading="3灯タイプ" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/usl/8500_side-lamp.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} />
+								<!-- 撮影日: 2006-08-13 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ8591（20次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>
+							8000系で車体側面に設けられた<LinkPhoto href="https://media.w0s.jp/image/tokyu/sty/usl/8000_bcl.jpg" title="デハ8408"><!-- 撮影日: 2005-08-10 -->BC不緩解灯</LinkPhoto>は、8500系では床下設置となりました。以降、8090系を除くすべての新造・改造形式は、車体にBC不緩解灯を持ちません。
+						</p>
+						<p>床下灯は3灯で、上から「不緩解」「保安動作」「不足」です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="series9000" heading="9000系、2000系等の床下灯">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} heading="4灯タイプ" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/usl/9000_side-lamp-4.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} />
+								<!-- 撮影日: 2006-10-21 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1218（4次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>2000系までのVVVF新造車、および8500系VVVF車ではブレーキ装置に横付けされており、主制御器のある電動車と先頭車が4灯（「指令器異常」が追加）となりました。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} heading="3灯タイプ" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/usl/9000_side-lamp-3.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} />
+								<!-- 撮影日: 2006-08-19 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ9706（2次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主制御器のない電動車と付随車は3灯です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>

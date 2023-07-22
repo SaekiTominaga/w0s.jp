@@ -1,0 +1,124 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Kumeta.astro';
+import Section from '@components/Section.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: 'アニメ『さよなら絶望先生』公式サイトのアーカイブ',
+	dateModified: dayjs('2022-03-27'),
+	description: 'アニメ『さよなら絶望先生』の Web サイトは Flash を多用していたため、裏ページなどいくつかのコンテンツは通常の方法では閲覧できなくなってしまいました。ここではブラウザ画面を録画したアーカイブを紹介します。',
+	image: 'https://i1.ytimg.com/vi/J3J4b_wuxsM/hqdefault.jpg',
+	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	<Section slugger={slugger} heading="公式サイト一覧">
+		<table class="p-table">
+			<thead>
+				<tr>
+					<th scope="col">Web サイト</th>
+					<th scope="col">入口ページ</th>
+					<th scope="col">トップページ</th>
+					<th scope="col">Flash 使用コンテンツ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>さよなら絶望先生シリーズ</td>
+					<td colspan="2"><a href="http://king-cr.jp/special/zetsubou_series/">index.html</a></td>
+					<td>なし</td>
+				</tr>
+				<tr>
+					<td>さよなら絶望先生</td>
+					<td><a href="http://king-cr.jp/special/zetsubou/">index.html</a></td>
+					<td><a href="http://king-cr.jp/special/zetsubou/top.html">top.html</a></td>
+					<td>入口ページ、裏ページ</td>
+				</tr>
+				<tr>
+					<td>俗・さよなら絶望先生</td>
+					<td><a href="http://king-cr.jp/special/zetsubou2/">index.html</a></td>
+					<td><a href="http://king-cr.jp/special/zetsubou2/top.html">top.html</a></td>
+					<td>入口ページ、裏ページ</td>
+				</tr>
+				<tr>
+					<td>獄・さよなら絶望先生</td>
+					<td colspan="2"><a href="http://king-cr.jp/special/zetsubou_oad/">index.html</a></td>
+					<td>なし</td>
+				</tr>
+				<tr>
+					<td>懺・さよなら絶望先生</td>
+					<td><a href="http://king-cr.jp/special/zetsubou3/">index.html</a></td>
+					<td><a href="http://king-cr.jp/special/zetsubou3/top.html">top.html</a></td>
+					<td>入口ページ、トップページのメニュー部分、裏ページ</td>
+				</tr>
+				<tr>
+					<td>さよなら絶望先生 Blu-ray BOX</td>
+					<td colspan="2"><a href="http://king-cr.jp/special/zetsubou_bd/">index.html</a></td>
+					<td>「メビウス荒野〜絶望伝説エピソード1」動画</td>
+				</tr>
+				<tr>
+					<td>大槻ケンヂと絶望少女達</td>
+					<td colspan="2"><a href="http://king-cr.jp/artist/otsuki/">index.html</a></td>
+					<td>なし</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<ul class="p-notes">
+			<li>『さよなら絶望先生』の<a href="http://king-cr.jp/special/zetsubou/arasuji.html">各話あらすじ</a>は Flash とは無関係のサーバー設定不具合により話数選択プルダウンが表示できなくなっていますが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です（<a href="http://king-cr.jp/special/zetsubou/arasuji/01.html">一話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/02.html">二話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/03.html">三話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/04.html">四話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/05.html">五話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/06.html">六話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/07.html">七話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/08.html">八話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/09.html">九話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/10.html">十話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/11.html">十一話</a>、<a href="http://king-cr.jp/special/zetsubou/arasuji/12.html">十二話</a>）。</li>
+			<li>『俗・さよなら絶望先生』の<a href="http://king-cr.jp/special/zetsubou2/arasuji.html">各話あらすじ</a>は Flash とは無関係のサーバー設定不具合により話数選択プルダウンが表示できなくなっていますが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です（<a href="http://king-cr.jp/special/zetsubou2/arasuji/01.html">一話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/02.html">二話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/03.html">三話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/04.html">四話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/05.html">五話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/06.html">六話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/07.html">七話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/08.html">八話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/09.html">九話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/10.html">十話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/11.html">十一話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/12.html">十二話</a>、<a href="http://king-cr.jp/special/zetsubou2/arasuji/13.html">十三話</a>）。</li>
+			<li>『懺・さよなら絶望先生』はトップページのメニュー部分も Flash によるものなので、現在はリンクを辿ることはできませんが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です（<a href="http://king-cr.jp/special/zetsubou3/news.html">ニュース</a>、<a href="http://king-cr.jp/special/zetsubou3/staff.html">スタッフ&amp;キャスト</a>、<a href="http://king-cr.jp/special/zetsubou3/sch.html">放送日時</a>、<a href="http://king-cr.jp/special/zetsubou3/release.html">リリース情報</a>、<a href="http://king-cr.jp/special/zetsubou3/gallery.html">ギャラリー</a>、<a href="http://king-cr.jp/special/zetsubou3/chara.html">キャラクター</a>、<a href="http://king-cr.jp/special/zetsubou3/arasuji.html">各話あらすじ</a>、<a href="http://king-cr.jp/special/zetsubou3/story.html">懺・さよなら絶望先生とは? （ストーリー）</a>）。</li>
+		</ul>
+	</Section>
+	<Section slugger={slugger} heading="さよなら絶望先生">
+		<figure>
+			<div class="p-embed -border">
+				<iframe src="https://www.youtube-nocookie.com/embed/J3J4b_wuxsM" allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width="560" height="315" style="--aspect-ratio: 560/315"></iframe>
+			</div>
+			<figcaption class="c-caption -meta">
+				<LinkExternal href="https://www.youtube.com/watch?v=J3J4b_wuxsM" class="c-caption__title">『さよなら絶望先生』公式サイト閲覧の様子</LinkExternal>
+			</figcaption>
+		</figure>
+	</Section>
+	<Section slugger={slugger} heading="俗・さよなら絶望先生">
+		<figure>
+			<div class="p-embed -border">
+				<iframe src="https://www.youtube-nocookie.com/embed/kDSBb4UD5CQ" allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width="560" height="315" style="--aspect-ratio: 560/315"></iframe>
+			</div>
+			<figcaption class="c-caption -meta">
+				<LinkExternal href="https://www.youtube.com/watch?v=kDSBb4UD5CQ" class="c-caption__title">『俗・さよなら絶望先生』公式サイト閲覧の様子</LinkExternal>
+			</figcaption>
+		</figure>
+
+		<ul class="p-notes">
+			<li>裏ページ内の神谷浩史コメント動画は直接<a href="http://king-cr.jp/special/zetsubou2/ura/kamiya_com.flv" download="kamiya_com.flv">動画ファイル（Flash Video 形式）をダウンロード</a>して閲覧ください。</li>
+		</ul>
+	</Section>
+	<Section slugger={slugger} heading="懺・さよなら絶望先生">
+		<figure>
+			<div class="p-embed -border">
+				<iframe src="https://www.youtube-nocookie.com/embed/t4j7jg8_GZQ" allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width="560" height="315" style="--aspect-ratio: 560/315"></iframe>
+			</div>
+			<figcaption class="c-caption -meta">
+				<LinkExternal href="https://www.youtube.com/watch?v=t4j7jg8_GZQ" class="c-caption__title">『懺・さよなら絶望先生』公式サイト閲覧の様子</LinkExternal>
+			</figcaption>
+		</figure>
+
+		<ul class="p-notes">
+			<li>
+				裏ページ内の動画コンテンツはそれぞれ以下の URL から直接動画ファイル（Flash Video 形式）をダウンロードして閲覧ください。
+				<ul>
+					<li><a href="http://king-cr.jp/special/zetsubou3/ura/01_op.flv" download="01_op.flv">オープニング　ムービー</a></li>
+					<li><a href="http://king-cr.jp/special/zetsubou3/ura/02_ed.flv" download="02_ed.flv">エンディング　ムービー</a></li>
+					<li><a href="http://king-cr.jp/special/zetsubou3/ura/05_otsuki.flv" download="05_otsuki.flv">大槻ケンヂ　コメント</a></li>
+				</ul>
+			</li>
+		</ul>
+	</Section>
+</Layout>

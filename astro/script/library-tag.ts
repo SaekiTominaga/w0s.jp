@@ -27,7 +27,9 @@ const narrowDown = (tagName?: string): void => {
 	if (tagName !== undefined) {
 		/* 当該タグ以外の要素を非表示にする */
 		Array.from(libraryElements)
-			.filter((element) => Array.from(element.querySelectorAll('.p-library .p-library__tags > li')).every((liElement) => liElement.textContent !== tagName))
+			.filter((element) =>
+				Array.from(element.querySelectorAll('.p-library .p-library__tags > li')).every((liElement) => liElement.textContent?.trim() !== tagName),
+			)
 			.forEach((element) => {
 				element.hidden = true;
 			});
@@ -41,7 +43,7 @@ const narrowDown = (tagName?: string): void => {
 
 		/* 当該タグボタンの状態を設定する */
 		Array.from(tagButtonElements)
-			.filter((element) => element.textContent === tagName)
+			.filter((element) => element.textContent?.trim() === tagName)
 			.forEach((element) => {
 				element.setAttribute('aria-pressed', 'true');
 			});
@@ -71,8 +73,8 @@ const init = (): void => {
 const click = (ev: Event): void => {
 	const tagButtonElement = ev.currentTarget as HTMLButtonElement;
 
-	const tagName = tagButtonElement.textContent;
-	if (tagName === null) {
+	const tagName = tagButtonElement.textContent?.trim();
+	if (tagName === undefined) {
 		return;
 	}
 

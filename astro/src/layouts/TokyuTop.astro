@@ -1,0 +1,31 @@
+---
+import Head from './include/HeadTokyu.astro';
+import PageHeader from './include/PageHeaderTokyu.astro';
+import PageSidebar from './include/PageSidebar.astro';
+import PageFooter from './include/PageFooter.astro';
+import type { StructuredData } from '../types/types.js';
+
+interface Props {
+	structuredData: StructuredData;
+}
+
+const { structuredData } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	<Head structuredData={structuredData} />
+	<body>
+		<div class="l-page">
+			<PageHeader />
+			<div id="content" class="l-content">
+				<main class="l-content__main">
+					<slot />
+				</main>
+			</div>
+
+			<PageSidebar />
+			<PageFooter />
+		</div>
+	</body>
+</html>

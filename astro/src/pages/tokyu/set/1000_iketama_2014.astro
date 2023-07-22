@@ -1,0 +1,102 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '設定器配列　東急池上、多摩川線　1000N系、1000N′系（2014年〜）',
+	heading: '池上、多摩川線　1000N系、1000N′系',
+	subHeading: '2014年〜',
+	dateModified: dayjs('2018-12-28'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/set/', name: '設定器配列' },
+	],
+	localNav: [
+		{ path: '/tokyu/set/7600_iketama_2000', name: '2000年〜2018年' },
+		{ path: '/tokyu/set/1000_iketama_2014', name: '2014年〜（1000N系、1000N′系）' },
+		{ path: '/tokyu/set/1500_iketama_2014', name: '2014年〜（1000系1500番台）' },
+	],
+};
+---
+
+<Layout structuredData={structuredData}>
+	<div class="l-tokyu-set">
+		<div class="l-tokyu-set__header">
+			<p class="p-tokyu-set-period">2014年の機器更新から</p>
+		</div>
+		<div class="l-tokyu-set__main">
+			<div class="p-tokyu-set-panel -push">
+				<div class="p-tokyu-set-panel__image">
+					<object data="/tokyu/set/image/1000_iketama_2014.svg" type="image/svg+xml" width="528" height="1170" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
+						<div id="set-image-alt1">
+							<section>
+								<h2>始発駅</h2>
+								<table>
+									<tbody>
+										<tr>
+											<td>多摩川</td>
+											<td>蒲田</td>
+											<td>雪が谷大塚</td>
+											<td>五反田</td>
+										</tr>
+									</tbody>
+								</table>
+							</section>
+
+							<section>
+								<h2>種別</h2>
+								<table>
+									<tbody>
+										<tr>
+											<td>各停</td>
+											<td>試運転</td>
+											<td>回送</td>
+											<td>臨時</td>
+										</tr>
+									</tbody>
+								</table>
+							</section>
+
+							<section>
+								<h2>行先</h2>
+								<table>
+									<tbody>
+										<tr>
+											<td>蒲田</td>
+											<td>五反田</td>
+											<td>多摩川</td>
+											<td>雪が谷大塚</td>
+										</tr>
+										<tr>
+											<td>蒲田→雪が谷大塚</td>
+											<td>蒲田→五反田</td>
+											<td>蒲田→多摩川</td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</section>
+						</div>
+					</object>
+				</div>
+			</div>
+		</div>
+		<div class="l-tokyu-set__footer">
+			<dl class="p-tokyu-set-data">
+				<div>
+					<dt>調査日</dt>
+					<dd>2014年5月19日</dd>
+				</div>
+				<div>
+					<dt>調査車両</dt>
+					<dd>デハ1322</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<ul class="p-notes">
+		<li>2018年12月28日、デハ1319 にて変更がないことを確認。</li>
+	</ul>
+</Layout>

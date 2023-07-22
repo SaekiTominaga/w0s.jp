@@ -75,7 +75,7 @@ if (Astro.request.method === 'POST') {
 		await sendMail(requestQuery);
 
 		const httpResponse = new HttpResponseUtil(Astro.request);
-		return httpResponse.response303(`/contact_completed?referrer=${requestQuery.referrer}`);
+		return httpResponse.response303(`/contact_completed?referrer=${requestQuery.referrer}`); // TODO: https://github.com/withastro/language-tools/issues/476
 	}
 }
 

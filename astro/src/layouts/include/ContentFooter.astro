@@ -12,9 +12,29 @@ const { structuredData } = Astro.props;
 ---
 
 {
-	(((structuredData.type === undefined || structuredData.type !== 'website') && structuredData['schema-type'] !== 'ContactPage') ||
-		structuredData.localNav !== undefined) && (
+	(((structuredData.type === undefined || structuredData.type !== 'website') && structuredData['schema-type'] !== 'ContactPage') || structuredData.localNav !== undefined) && (
 		<div class="l-content__footer">
+			{structuredData.localNav !== undefined && (
+				<nav>
+					<ul class="p-local-nav">
+						{structuredData.localNav.map((localNavItem) => (
+							<li>
+								{localNavItem.path !== pagePath && (
+									<a href={localNavItem.path} class="c-link">
+										{localNavItem.name}
+									</a>
+								)}
+								{localNavItem.path === pagePath && (
+									<a aria-current="page" class="c-link">
+										{localNavItem.name}
+									</a>
+								)}
+							</li>
+						))}
+					</ul>
+				</nav>
+			)}
+
 			{(structuredData.type === undefined || structuredData.type !== 'website') && structuredData['schema-type'] !== 'ContactPage' && (
 				<details class="p-toggle -fit" is="w0s-animation-details" data-duration="100">
 					<summary>本ページ内容の問い合わせ</summary>
@@ -34,27 +54,6 @@ const { structuredData } = Astro.props;
 						</ul>
 					</div>
 				</details>
-			)}
-
-			{structuredData.localNav !== undefined && (
-				<nav>
-					<ul class="p-local-nav">
-						{structuredData.localNav.map((localNavItem) => (
-							<li>
-								{localNavItem.path !== pagePath && (
-									<a href="<%= localNavItem.path %>" class="c-link">
-										{localNavItem.name}
-									</a>
-								)}
-								{localNavItem.path === pagePath && (
-									<a aria-current="page" class="c-link">
-										{localNavItem.name}
-									</a>
-								)}
-							</li>
-						))}
-					</ul>
-				</nav>
 			)}
 		</div>
 	)

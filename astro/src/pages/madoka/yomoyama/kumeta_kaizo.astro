@@ -1,0 +1,182 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Madoka.astro';
+import Amazon from '@components/Amazon.astro';
+import AmazonItem from '@components/AmazonItem.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '『かってに改蔵』における『魔法少女まどか☆マギカ』ネタ',
+	dateModified: dayjs('2017-04-25'),
+	description: '久米田康治先生の『かってに改蔵』の作中で描かれた『魔法少女まどか☆マギカ』ネタをまとめました。',
+	breadcrumb: [
+		{ path: '/madoka/', name: 'ホーム' },
+		{ path: '/madoka/yomoyama/kumeta', name: '久米田作品における『まどか☆マギカ』ネタ' },
+	],
+	localNav: [
+		{ path: '/madoka/yomoyama/kumeta_kaizo', name: 'かってに改蔵' },
+		{ path: '/madoka/yomoyama/kumeta_zetsubou', name: 'さよなら絶望先生' },
+		{ path: '/madoka/yomoyama/kumeta_joshiraku', name: 'じょしらく' },
+		{ path: '/madoka/yomoyama/kumeta_sekadoro', name: 'せっかち伯爵と時間どろぼう' },
+		{ path: '/madoka/yomoyama/kumeta_kakushigoto', name: 'かくしごと' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	<Section slugger={slugger} id="introduction" heading="作品概要">
+		<div class="p-text">
+			<p>「週刊少年サンデー」において1998年〜2004年に連載された作品であり、連載終了から7年経ってまさかのアニメ化（OVA）を果たしました。このアニメは『さよなら絶望先生』と同じくシャフト制作で、総監督は新房昭之、メインキャストとして喜多村英梨、斎藤千和など、『魔法少女まどか☆マギカ』と共通する関係者も多いです。</p>
+			<p>アニメの発売時期が2011年ということもあり、当時アニメイトTVで配信されたウェブラジオでは何度か『まどか☆マギカ』に言及されたほか、同時期に「週刊少年マガジン」に掲載された特別番外編では、『かってに改蔵』の漫画としては唯一『魔法少女まどか☆マギカ』ネタが仕込まれています。</p>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="manga" heading="漫画">
+		<Section slugger={slugger} depth={2} heading="特別番外編　損して得とれない" headingType="b">
+			<div class="p-text">
+				<p>2011年4月27日　「週刊少年マガジン2011年22・23合併号」掲載</p>
+				<p>10ページ目（「かってに研究しやがれBOOK 追補版」p.47）</p>
+			</div>
+
+			<div class="p-box">
+				<ul class="p-list">
+					<li>誰も得をしない例として、女性に暁美ほむらのフィギュア（眼鏡ほむら魔法少女服）を贈る例が描かれている。</li>
+					<li>フィギュアケースの表記は「ホム」。</li>
+					<li>原形師の机の棚には「ホムホム」という本と「CHiwA」と書かれたティッシュボックス。</li>
+				</ul>
+			</div>
+
+			<ul class="p-notes">
+				<li>なお、これらのことは「かってに研究しやがれBOOK 追補版」p.51 の「改蔵辞典 番外編」でもしっかり解説されている。</li>
+			</ul>
+
+			<Amazon headingLevel={4}>
+				<AmazonItem asin="4091791255" title="かってに改蔵公式ファンブック かってに研究しやがれBOOK 完全版セット" date="2011-08-18" imageId="51tHpg2lsqL" imageWidth={160} imageHeight={110} />
+			</Amazon>
+		</Section>
+	</Section>
+
+	<Section slugger={slugger} id="radio" heading="ラジオ" headingNote="かってに改蔵ラジオしてもいいぜ">
+		<div class="p-text">
+			<p>全12回配信 + DJCD1枚。パーソナリティは斎藤千和（坪内地丹 役）で、初回と最終回を除きゲストを迎えた2名体制で送られた。</p>
+		</div>
+
+		<Section slugger={slugger} depth={2} heading="第4回　いつかギリギリトークする日…!?" headingType="b">
+			<div class="p-text">
+				<p>2011年7月27日配信</p>
+				<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
+			</div>
+
+			<Section slugger={slugger} depth={3} heading="コーナー「水を差す人がいます」" headingType="c">
+				<div class="p-box">
+					<ul class="p-list">
+						<li>（喜多村英梨）……ものは言いようで、アニメとか見てて、あ、このキャラクター超かっこいいみたいな、「ほむほむ!」みたいな感じで、って時に、でも千和ちゃんだもんなーみたいな。</li>
+					</ul>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} heading="コーナー「とらうま高校だれとく部」" headingType="c">
+				<div class="p-box">
+					<ul class="p-list">
+						<li>（喜多村英梨）……で、またそのトリッキーなところから、ま地丹君ていう男性、下ネタ寄りの……。</li>
+						<li>（斎藤千和）そうだよね、それと同時期にだってさ、『まどか』もやってたからさ。（アハハ）なんかさ、超シリアスなやつと地丹とやってて、なんか分裂していく気がするってね。</li>
+					</ul>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} heading="Webサイト掲載の次回予告" headingType="c">
+				<div class="p-box">
+					<div class="p-text">
+						<p>「かってに次回予告」、地丹と羽美がアイツと契約して魔法少女に!?次回、『かってに魔法少女ラジオ』放送開始！(しません！)</p>
+					</div>
+				</div>
+			</Section>
+		</Section>
+
+		<Section slugger={slugger} depth={2} heading="第8回　結局はオレの出番だよ。" headingType="b">
+			<div class="p-text">
+				<p>2011年9月21日配信</p>
+				<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
+			</div>
+
+			<Section slugger={slugger} depth={3} heading="コーナー「理論上は可能なんです!」" headingType="c">
+				<div class="p-box">
+					<ul class="p-list">
+						<li>（櫻井孝宏）理論上、ひたぎ8万プラスほむほむ8万マイナス地丹4千で、斎藤千和には15万6千人のファンが居るはずなんです。</li>
+					</ul>
+				</div>
+			</Section>
+		</Section>
+
+		<Section slugger={slugger} depth={2} heading="第11回　スレスレ★サービス" headingType="b">
+			<div class="p-text">
+				<p>2011年11月2日配信</p>
+				<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
+			</div>
+
+			<Section slugger={slugger} depth={3} heading="Webサイト掲載の次回予告" headingType="c">
+				<div class="p-box">
+					<div class="p-text">
+						<p>「とらうま高校だれとく部」、羽美はあの魔法少女たちにも勝てるほど危険な存在!?そんな羽美の○○ソングが聴けるのはこの番組だけ！</p>
+						<p><em>【中略】</em></p>
+						<p>「かってに次回予告」、とらうま町にワルプ○ギスの夜が出現！しかし、その正体はヤンデレの域を超えた羽美の真の姿だった？次回、「魔法少女？ちたん☆マギカ」を…(絶対に放送しません！絶対に!!!)</p>
+					</div>
+				</div>
+			</Section>
+		</Section>
+
+		<Section slugger={slugger} depth={2} heading="DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜" headingType="b">
+			<div class="p-text">
+				<p>2011年10月26日発売</p>
+				<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
+			</div>
+
+			<Section slugger={slugger} depth={3} heading="コーナー「とらうま高校だれとく部（前半）」" headingType="c">
+				<div class="p-box">
+					<ul class="p-list">
+						<li>（斎藤千和）『かってに改蔵』は新房監督×シャフト作品の中で、斎藤千和さんが参加された作品のちょうど10作目に当たるようです。</li>
+						<li>（櫻井孝宏）うっわすっげ、お前そんな出てんの?</li>
+						<li>（斎藤千和）そんな?</li>
+						<li>（斎藤千和）『月詠』、『ぱにぽにだっしゅ!』……。</li>
+						<li>（櫻井孝宏）ああ、一緒だったね。</li>
+						<li>（斎藤千和）ね、これ両方とも一緒でしたね。あと『ネギま!?』、『ひだまりスケッチ』、『さよなら絶望先生』、『化物語』……。</li>
+						<li>（櫻井孝宏）あ、化(ばけ)。</li>
+						<li>（斎藤千和）これも一緒でしたね。</li>
+						<li>（櫻井孝宏）『ダンス イン ザ ヴァンパイアバンド』、『荒川アンダー ザ ブリッジ』、『魔法少女まどか☆マギカ』、『かってに改蔵』。</li>
+						<li><em>【中略】</em></li>
+						<li>（斎藤千和）前にね、櫻井さんがゲストに来てくださった時話したけど、やっぱ私はシャフトさんって怖いから……。</li>
+						<li>（櫻井孝宏）ハハハ。</li>
+						<li>（斎藤千和）ハハハ。</li>
+						<li>（斎藤千和）ん、なんか、いついかなる時に「ん、斎藤さん、そうですね、この程度だったんですね」って言われてしまうんじゃないかなって。</li>
+						<li>（櫻井孝宏）もういっかなって。</li>
+						<li>（斎藤千和）「あ、それ見たことあるぅー」って、「『化物語』で見た」とか、ね「『まどか☆マギカ』でそれ見た」とかって言われちゃったらもうお終いですからね。</li>
+					</ul>
+
+					<ul class="p-list">
+						<li>（斎藤千和）OVA中巻の千和さんの地丹の演技がすごすぎてちょっと引きました。</li>
+						<li>（櫻井孝宏）あっはっは、引かれた引かれた(笑)。</li>
+						<li>（斎藤千和）引かれた(笑)。</li>
+						<li>（斎藤千和）あ、もちろんいい意味です。えーと、ボクはぱにぽにの頃からの千和さんのファンなんですが、最初は千和さんの演技「おもしろいな」から始まって、千和さんの演技「いいな」から、さらに「すごいな」と進み、最近の『化(ばけ)』や『まどマギ』などいろんなアニメを見てると「怖いな」とすら感じることがあります。なんというか凄みがあるんです。</li>
+					</ul>
+				</div>
+			</Section>
+			<Section slugger={slugger} depth={3} heading="コーナー「とらうま高校だれとく部（後半）」" headingType="c">
+				<div class="p-box">
+					<ul class="p-list">
+						<li>（櫻井孝宏）そうですね、皆さん、その軌跡をずっと見てていてください……見守っててください。</li>
+						<li>（斎藤千和）見守っていてください。もう何も恐くない。</li>
+						<li>（櫻井孝宏）ハハハ(笑)。</li>
+					</ul>
+				</div>
+			</Section>
+
+			<Amazon headingLevel={4}>
+				<AmazonItem asin="B005I065V0" title="DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜" date="2011-10-26" imageId="51nMnYna85L" imageWidth={160} imageHeight={160} />
+			</Amazon>
+		</Section>
+	</Section>
+</Layout>

@@ -1,0 +1,43 @@
+---
+import PageHeaderSearch from './PageHeaderSearch.astro';
+
+const pagePath = Astro.url.pathname;
+const topPage = pagePath === '/madoka/';
+---
+
+<header id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			{
+				topPage && (
+					<hgroup class="p-header-site">
+						<h1 class="p-header-site__name">
+							<a aria-current="page">まどか資料館</a>
+						</h1>
+						<p class="p-header-site__summary">『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト</p>
+					</hgroup>
+				)
+			}
+			{
+				!topPage && (
+					<div class="p-header-site">
+						<div class="p-header-site__name">
+							<a href="/madoka/">まどか資料館</a>
+						</div>
+						<p class="p-header-site__summary">『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト</p>
+					</div>
+				)
+			}
+		</div>
+		<div class="l-header__nav">
+			<div class="p-header-nav">
+				<a href="/madoka/feed" type="application/atom+xml" class="c-button -feed">
+					<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">フィード</span>
+				</a>
+			</div>
+
+			<PageHeaderSearch />
+		</div>
+	</div>
+</header>

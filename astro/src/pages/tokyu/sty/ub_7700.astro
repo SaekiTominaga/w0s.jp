@@ -1,0 +1,270 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急7700系　床下機器配置',
+	heading: '7700系　床下機器配置',
+	dateModified: dayjs('2008-02-01'),
+	description: '東急池上線、多摩川線で活躍した7700系の床下機器配置を写真で紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/ub/7700m.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+	localNav: [
+		{ path: '/tokyu/sty/ub_7600', name: '7600系' },
+		{ path: '/tokyu/sty/ub_7700', name: '7700系' },
+		{ path: '/tokyu/sty/ub_7700n', name: '7915F' },
+		{ path: '/tokyu/sty/ub_1000n', name: '1000N系池多' },
+		{ path: '/tokyu/sty/ub_1000n2', name: '1000N′系' },
+		{ path: '/tokyu/sty/ub_1500', name: '1000系1500番台' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	<Section slugger={slugger} id="mc-7700" heading="デハ7700形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="mc-7700-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7700s.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7700s.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7710海側（3次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、24V整流装置、定位置停止支援装置（TASC）、VVVF断流器、VVVF継電器、接地開閉器、VVVFフィルタトランス、ブレーキ受量器、100V蓄電池です。</p>
+						<p>3両化時に、海側に定位置停止支援装置（TASC）が新設されました。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="mc-7700-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7700m.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7700m.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7706山側（2次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、24V蓄電池、VVVF主制御器（RG617-A-M型）、VVVFフィルタトランス、ブレーキ制御装置です。</p>
+						<p>3両化時に、山側に24V蓄電池が新設されました。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="m-7800" heading="デハ7800形（台車間）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="m-7800-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7800s.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7800s.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7806海側（3次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、100V蓄電池、VVVF断流器、VVVF継電器、接地開閉器、VVVFフィルタトランス、ブレーキ受量器、空気圧縮機（HS-20型）です。</p>
+						<p>3両化時に、100V蓄電池を更新・設置位置を下り方に変更の上、その撤去跡に空気圧縮機が設置されました。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="m-7800-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7800m.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7800m.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7810山側（3次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、VVVF主制御器（RG617-A-M型）、元空気だめとその奥にVVVFフィルタトランス、ブレーキ制御装置です。</p>
+						<p>3両化時に、元空気だめが設置されました。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="tc-7900" heading="クハ7900形（台車間、東芝SIV搭載車）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-7900-sea" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7900s.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7900s.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7906海側（2次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、SIV起動装置、軌条塗油器、定位置停止支援装置（TASC）、SIVフィルタトランス、接地開閉器、空気圧縮機（HS-20型）です。</p>
+						<p>3両化時に、海側に定位置停止支援装置（TASC）が新設されたほか、接触器の移設などが行われています。</p>
+						<p>写真は軌条塗油器搭載車で、SIV起動装置の右隣に塗油器が設置されています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-7900-mount" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7900m.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7900m.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7906山側（2次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、整流装置、静止形インバータ（INV-020型）、ブレーキ制御装置、元空気だめ、情報伝送装置です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="tc-7900-tdk" heading="クハ7900形（台車間、東洋SIV搭載車）">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-7900-tdk-s" depth={2} heading="海側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7900TDKs.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7900TDKs.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7910海側（3次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、SIV起動装置、定位置停止支援装置（TASC）、SIVフィルタトランス、接地開閉器、空気圧縮機（HS-20型）です。</p>
+						<p>クハ7910、クハ7914は東洋製の補助電源装置を積んでおり、SIV本体、起動装置、フィルタトランス、整流装置などに差異がみられます。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="tc-7900-tdk-m" depth={2} heading="山側" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7900TDKm.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7900TDKm.jpg" alt="写真拡大" width={485} height={152} quality={60} />
+								<!-- 撮影日: 2008-01-20 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7910山側（3次車）</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、整流装置、静止形インバータ（SVH-120型）、ブレーキ制御装置、元空気だめ、情報伝送装置です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="couple" heading="連結部">
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="couple7700" depth={2} heading="デハ7700形 ｰ デハ7800形間" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7700-7800_sea.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7700-7800_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} />
+								<!-- 撮影日: 2008-02-16 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7701 ｰ デハ7801海側</span>
+						</figcaption>
+					</figure>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7800-7700_mount.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7800-7700_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} />
+								<!-- 撮影日: 2008-02-09 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7807 ｰ デハ7707山側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} id="couple7800" depth={2} heading="デハ7800形 ｰ クハ7900形間" headingType="c">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7800-7900_sea.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7800-7900_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} />
+								<!-- 撮影日: 2008-02-02 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7806 ｰ クハ7906海側</span>
+						</figcaption>
+					</figure>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<a href="https://media.w0s.jp/image/tokyu/sty/ub/7900-7800_mount.jpg" type="image/jpeg">
+								<Image path="tokyu/sty/ub/7900-7800_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} />
+								<!-- 撮影日: 2008-02-02 --></a
+							>
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7906 ｰ デハ7806山側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>

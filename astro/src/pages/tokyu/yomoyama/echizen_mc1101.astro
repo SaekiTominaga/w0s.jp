@@ -1,0 +1,365 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: 'えちぜん鉄道MC1101形の主制御器（MMC-H-10K 型）',
+	heading: 'えちぜん鉄道MC1101形の主制御器',
+	subHeading: 'MMC-H-10K 型',
+	dateModified: dayjs('2012-11-23'),
+	description: '東急電鉄の旧3000系グループに搭載されていた主制御器は、いくつかの変遷を経て末期は日立製の電動カム軸式 MMC-H-10 型に統一されていました。えちぜん鉄道に在籍するMC1101形の主制御器は、元をたどれば東急電鉄で使われていたもので、唯一稼働状態にある貴重な存在となっています。',
+	image: 'https://media.w0s.jp/image/tokyu/yomoyama/echizen_mc1101/MC1102.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	<Section slugger={slugger} id="echizen-1101" heading="えちぜん鉄道MC1101形について">
+		<div class="p-text">
+			<p>えちぜん鉄道は2002年に京福電気鉄道の福井鉄道部を引き継いで誕生した鉄道で、福井駅と勝山駅を結ぶ勝山永平寺線と、三国港駅までの三国芦原線の2路線から成ります。旅客車両は京福から引き継いだ4車種と、愛知環状鉄道から譲渡されたMC6001形、MC6101形が在籍しています。前者の中には全国でも希少となった吊り掛け駆動車も含まれており、平日ラッシュ時を中心に活躍しています。</p>
+			<p>車両によって走り装置の更新や冷房搭載など各種の改造が行われていますが、今回注目するのはMC1101形という車両で、1981年に阪神電鉄で廃車になった車両の車体を譲り受け、各種機器は在来車のものを流用して2両が竣工したものとのことです。</p>
+		</div>
+
+		<div class="c-grid -wide">
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<a href="https://media.w0s.jp/image/tokyu/yomoyama/echizen_mc1101/MC1102.jpg" type="image/jpeg"> <Image path="tokyu/yomoyama/echizen_mc1101/MC1102.jpg" alt="写真拡大" width={500} height={333} quality={60} /><!-- 撮影日: 2009-07-20 --></a>
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">えちぜん鉄道MC1102</span>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>この車種は竣工当初は吊り掛け駆動式だったようですが、京福時代の1998年にカルダン駆動化が行われており、同時に主制御器は MMC-H-10K に換装されました。</p>
+			<p>新性能化に関する話は、鉄道ピクトリアルの特集「北陸地方のローカル私鉄」にある京福電鉄の記事が詳しく、次のように書かれています。</p>
+		</div>
+
+		<figure>
+			<blockquote class="p-quote">
+				<p>車両近代化の一環として，1500V昇圧によって廃車となった豊橋鉄道モハ1900形から発生したDT-21中空カルダン式台車と，クーラー3基（合計10,500Kcal）を利用して新性能化が計画され，2000年(平成12年)4月11日深夜に川崎重工へ陸送．改造工事終了後の同年7月2日早朝に福井へ帰着した．</p>
+			</blockquote>
+			<figcaption class="c-caption -meta">
+				<cite>【現有私鉄概説】京福電気鉄道福井鉄道部</cite>（岡本英志）<br />
+				 鉄道ピクトリアルNo.701・2001年5月臨時増刊号
+			</figcaption>
+		</figure>
+
+		<ul class="p-notes">
+			<li>管理者注: 改造時期が2000年と書かれていますが、1998年の誤記でしょう。</li>
+		</ul>
+
+		<div class="p-text">
+			<p>この記事では主制御器に関しては触れられていませんが、同じく鉄道ピクトリアルの「新車年鑑1999年版」にはこんな記述があります。</p>
+		</div>
+
+		<figure>
+			<blockquote class="p-quote">
+				<p>新製・廃車はないが，改造ではモハ1101形1101・1102の冷房化，高性能化が施工され1998年7月17日に竣功している．これに伴い台車は日車D-18から川車DT-21に，電動機はTDK-528/9-HMから東洋MT-46Aに，制御器は東洋ES-519Bから日立MMC-H-10Kに変更された．</p>
+			</blockquote>
+			<figcaption class="c-caption -meta">
+				<cite>各社別車両情勢</cite>（藤井信夫・大幡哲海・岸上明彦）<br />
+				 鉄道ピクトリアルNo.676・1999年10月臨時増刊号
+			</figcaption>
+		</figure>
+
+		<div class="p-text">
+			<p>豊橋鉄道で使われていたというこの主制御器のルーツを遡ってみます。</p>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="toyohashi-1900" heading="豊橋鉄道 旧1900系について">
+		<div class="p-text">
+			<p>豊橋鉄道の旧1900系は、名鉄5200系の車体と他所から集めた走り装置などを組み合わせて1986年に登場した車両で、モ1950形―モ1900形の組成で2連6本が製造されました。登場時の紹介記事を見てみましょう。</p>
+		</div>
+
+		<figure>
+			<blockquote class="p-quote">
+				<p>この車は，本年3月に新車5300系に台車・モータを譲って廃車になった名鉄モ5205・5206の車体を購入し，自社高師工場で国鉄101系の台車・モータ（DT21・MT42），名鉄3880系〔元東急3600系〕の制御器・パンタグラフ（MMC-H-10・PT42）と南海の600V時代のMG，他予備品の床下機器に三菱電機製の架線電源（DC600V）を，三相交流（AC200V）に変えるインバータとクーラを組み合わせた，DA空調システムにより，冷房車化したものである．</p>
+			</blockquote>
+			<figcaption class="c-caption -meta">
+				<cite>豊橋鉄道に冷房車登場</cite>（神沢順）<br />
+				 鉄道ファンNo.307・1986年11月号
+			</figcaption>
+		</figure>
+
+		<ul class="p-notes">
+			<li>管理者注: 名鉄3880系の前身が東急3600系と書かれていますが、東急3700形の誤記でしょう。</li>
+		</ul>
+
+		<figure>
+			<blockquote class="p-quote">
+				<p>制御装置は従来の釣掛車との総括制御を考慮し，名鉄3880系（元東急3700系）に使用されていた電動カム軸式MMC-H-10Gが採用されている。</p>
+			</blockquote>
+			<figcaption class="c-caption -meta">
+				<cite>豊橋鉄道1900系</cite>（鉄道ピクトリアル編集部）<br />
+				 鉄道ピクトリアルNo.480・1987年5月臨時増刊号
+			</figcaption>
+		</figure>
+
+		<div class="p-text">
+			<p>これらに書かれているように、第1編成は名鉄3880系で使用されていた主制御器を流用したようです。これはそのまま東急デハ3700形由来のものと思われますが、同じ MMC-H-10 でもえち鉄MC1101形とはタイプが異なります。</p>
+		</div>
+
+		<div class="c-grid -wide">
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<Image path="tokyu/yomoyama/echizen_mc1101/toyohashi_1956.jpg" width={500} height={356} quality={60} />
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">豊橋鉄道モ1956</span>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<ul class="p-notes">
+			<li>豊橋鉄道モ1956の写真は<LinkExternal href="http://js3vxw.cocolog-nifty.com/photos/toyohashi__600v/">JS3VXWの鉄道管理局</LinkExternal>より許可を得て転載。</li>
+		</ul>
+	</Section>
+
+	<Section slugger={slugger} id="mmc-h-10" heading="MMC-H-10主制御器のバリエーション">
+		<div class="p-text">
+			<p>MMC-H-10は、東急ではD型、G型、K型の3種類が使われていました。D型とG型は外観がよく似た3室構造ですが、後期に登場したK型は2室で、蓋形状も曲線がなく角張っているなどの違いがあります。</p>
+		</div>
+
+		<div class="c-grid -wide">
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<a href="https://media.w0s.jp/image/tokyu/yomoyama/echizen_mc1101/ttm_MMC-H-10G.jpg" type="image/jpeg"> <Image path="tokyu/yomoyama/echizen_mc1101/ttm_MMC-H-10G.jpg" alt="写真拡大" width={500} height={333} quality={60} /><!-- 撮影日: 2006-04-23 --></a>
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">MMC-H-10G （電車とバスの博物館展示品）</span>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<a href="https://media.w0s.jp/image/tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K.jpg" type="image/jpeg"> <Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K.jpg" alt="写真拡大" width={500} height={333} quality={60} /><!-- 撮影日: 2009-07-20 --></a>
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">MMC-H-10K （えちぜん鉄道MC1102）</span>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>デハ3700形は東急末期にはG型となっていたようで、鉄道ピクトリアルの東急特集号にこんな記述があります。</p>
+		</div>
+
+		<figure>
+			<blockquote class="p-quote">
+				<p>主制御器はMMC-H-10G化，電動発電機もCLG-107形となって活躍したが，昭50〜55に全車両を名古屋鉄道へ譲渡した．</p>
+			</blockquote>
+			<figcaption class="c-caption -meta">
+				<cite>私鉄車両めぐり〔127〕</cite>（荻原俊夫）<br />
+				 鉄道ピクトリアルNo.442・1985年1月臨時増刊号
+			</figcaption>
+		</figure>
+
+		<div class="p-text">
+			<p>一方、K型は1960年代から旧式のMMC-H-200を置き換える形でデハ3450形やデハ3500形、デハ3650形などに搭載されました。</p>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="toyohashi-1900-cont" heading="豊橋鉄道 旧1900系の主制御器一覧">
+		<div class="p-text">
+			<p>豊橋鉄道の旧1900系は、増備途中で台車がDT-21のB型になるなどの変更があったようですが、1991年に全車両の主要機器を調べていた方がおりまして、調査データを提供いただきました。主制御器について、東急電鉄に関係していそうな部分のみ抜粋します。</p>
+		</div>
+
+		<table class="p-table">
+			<caption>
+				豊橋鉄道渥美線のMMC-H-10系 主制御器一覧<small>（調査日: 1991年）</small>
+			</caption>
+			<thead>
+				<tr>
+					<th scope="col">車号</th>
+					<th scope="col">前歴</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造番号</th>
+					<th scope="col">製造年月</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モ1731</th>
+					<td>東急デハ3550形</td>
+					<td>MMC LH-10D1</td>
+					<td>896977-2</td>
+					<td>昭和32年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1751</th>
+					<td>名鉄モ3730形</td>
+					<td>MMC H-10G1</td>
+					<td>896701-14</td>
+					<td>昭和32年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1811</th>
+					<td>長野モハ1100形</td>
+					<td>MMC H-10D</td>
+					<td>894647-4</td>
+					<td>昭和29年1月</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1901</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10G</td>
+					<td>896000-3</td>
+					<td>昭和31年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1951</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10G</td>
+					<td>896000-2</td>
+					<td>昭和31年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1902</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10G1</td>
+					<td>896971-1</td>
+					<td>昭和32年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1952</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10G1</td>
+					<td>896971-12</td>
+					<td>昭和32年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1903</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC LH-10D1</td>
+					<td>896977-3</td>
+					<td>昭和32年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1953</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10G</td>
+					<td>895867-2</td>
+					<td>昭和31年</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1904</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10K1</td>
+					<td>830241-5</td>
+					<td>昭和46年4月</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1954</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10K1</td>
+					<td>830241-4</td>
+					<td>昭和46年4月</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1905</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10K1</td>
+					<td>831481-3</td>
+					<td>昭和49年11月</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1955</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10D</td>
+					<td>894647-7</td>
+					<td>昭和29年2月</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1906</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10K</td>
+					<td>924032-2</td>
+					<td>昭和45年4月</td>
+				</tr>
+				<tr>
+					<th scope="row">モ1956</th>
+					<td>名鉄モ5200形</td>
+					<td>MMC H-10K1</td>
+					<td>830241-2</td>
+					<td>昭和49年11月<FootnoteReference>モ1956の製造年月はおそらく記録ミスで、モ1904やモ1954の番号と比較するに実際は1971(昭和46)年製と思われます。</FootnoteReference></td>
+				</tr>
+			</tbody>
+		</table>
+	</Section>
+
+	<Section slugger={slugger} id="tokyu-3509" heading="主制御器の出自を推測する">
+		<div class="p-text">
+			<p>えちぜん鉄道MC1102号の主制御器を2012年に調べたところ、 形式: MMC H-10K1、製造番号: 830241-2、製造年月: 昭和46年3月 でした。製造番号を照らし合わせると、豊橋モ1956と同じ事が分かります。</p>
+			<p>さらに前面蓋の向かって右側、MCOS部分にはうっすら「3509」という車番らしき数字が残っていました。豊橋鉄道渥美線とえちぜん鉄道（京福電鉄）には、3500番台の車両は存在しません。名古屋鉄道にはモ3500形という車両が居たようですが、主制御器はMMC系ではなく、そもそもモ3509は東急譲渡車が入線するずっと前に制御車化されており、可能性はないでしょう。そう考えると東急デハ3509のものでしょうか。</p>
+		</div>
+
+		<div class="c-grid -wide">
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<a href="https://media.w0s.jp/image/tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K_magnify.jpg" type="image/jpeg"> <Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K_magnify.jpg" alt="写真拡大" width={500} height={375} quality={60} /><!-- 撮影日: 2009-07-20 --></a>
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">MC1102の主制御器、MCOS蓋拡大</span>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>1939年に東京横浜電鉄モハ1000形として登場した東急デハ3500形の主制御器は、当初はMC-200、MMC-H-200でしたが、1969年よりMMC-H-10Kに更新されたようです。</p>
+		</div>
+
+		<figure>
+			<blockquote cite="urn:ISBN:4-938343-92-4" class="p-quote">
+				<p>1968・69(昭43・44)年にATS装置取り付け、42芯連結栓化、1969年から車軸を平軸受からコロ軸受に改造、主制御器を新しいMMC-H-10K形に交換、1972(昭47)年からMGを撤去し、中間に組み込まれた付随車の補助電源装置から給電する方式とした。</p>
+			</blockquote>
+			<figcaption class="c-caption -meta"><cite>東急電車形式集.2</cite>（高間恒雄）</figcaption>
+		</figure>
+
+		<div class="p-text">
+			<p>また、鉄道ピクトリアルNo.269（1972年9月号）に掲載されている「東京急行電鉄旅客車一覧表」によると、1972年5月末の時点で22両中デハ3509を含む14両が更新済みとなっています。これらの記述が正しければ、デハ3509の主制御機交換は1969年から1972年の間に行われたこととなり、MC1102号に搭載されている機器の製造時期（1971年）と辻褄が合います。また、東急での廃車が1989年3月、豊橋モ1956の竣工が同年7月という時期からしても、廃車後に機器を豊橋に譲渡したと考えて不自然ではありません。</p>
+		</div>
+	</Section>
+
+	<Section slugger={slugger} id="settle" heading="まとめ">
+		<div class="p-text">
+			<p>決定的な証拠こそ掴んだわけではありませんが、</p>
+		</div>
+
+		<ul class="p-list">
+			<li>えちぜん鉄道MC1102と豊橋鉄道モ1956の製造番号が一致する</li>
+			<li>前面蓋に「3509」という数字が残っていた</li>
+			<li>東急デハ3509の主制御器交換時期、車両の廃車時期とも矛盾はない</li>
+		</ul>
+
+		<div class="p-text">
+			<p>といったことから、<em>「えちぜん鉄道MC1102号の主制御器は東急電鉄デハ3509に搭載されていたものが豊橋鉄道モ1956を経由して京福電鉄に再譲渡され、えちぜん鉄道となった今も使用されている」</em>と断定して間違いないと思います。そうであれば、<a href="d2n">熊本電気鉄道に残るD-2-N型空気圧縮機</a>とともに「今なお現役」な旧性能車の忘れ形見ということになり、貴重な存在といえるでしょう。</p>
+		</div>
+
+		<ul class="p-notes">
+			<li>その後、MC1102号は2014年10月に運転を終了した模様です。</li>
+		</ul>
+	</Section>
+</Layout>

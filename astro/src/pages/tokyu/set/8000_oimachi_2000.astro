@@ -1,0 +1,85 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '../../../types/types.js';
+
+const structuredData: StructuredData = {
+	title: '設定器配列　東急大井町線　8000系、8090系（2000年〜2008年）',
+	heading: '大井町線　8000系、8090系',
+	subHeading: '2000年〜2008年',
+	dateModified: dayjs('2006-04-09'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/set/', name: '設定器配列' },
+	],
+	localNav: [
+		{ path: '/tokyu/set/8000_oimachi_2000', name: '2000年〜2008年' },
+		{ path: '/tokyu/set/8090_oimachi_2006', name: '2006年〜2008年' },
+		{ path: '/tokyu/set/8090_oimachi_2007', name: '2007年〜2009年' },
+		{ path: '/tokyu/set/8090_oimachi_2009', name: '2009年〜2013年' },
+	],
+};
+---
+
+<Layout structuredData={structuredData}>
+	<div class="l-tokyu-set">
+		<div class="l-tokyu-set__header">
+			<p class="p-tokyu-set-period">2000年<!-- 8月 -->の二子玉川駅名改称から、2008年<!-- 2月 -->の引退（8000系）・表示器LED化（8090系）まで</p>
+			<p class="p-tokyu-set-note">上り方先頭車に設置</p>
+		</div>
+		<div class="l-tokyu-set__main">
+			<div class="p-tokyu-set-panel -dial">
+				<object data="/tokyu/set/image/8000_oimachi_2000.png" type="image/png" width="640" height="640" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
+					<ul id="set-image-alt1">
+						<li>1: 試運転</li>
+						<li>2: 回送</li>
+						<li>3: 臨時</li>
+						<li>4: 渋谷</li>
+						<li>5: 桜木町</li>
+						<li>6: 元住吉</li>
+						<li>7: 日吉</li>
+						<li>8: 菊名</li>
+						<li>9: 急行 渋谷</li>
+						<li>10: 急行 桜木町</li>
+						<li>11: 急行 元住吉</li>
+						<li>12: 急行 日吉</li>
+						<li>13: 急行 菊名</li>
+						<li>14: 大井町</li>
+						<li>15: (空欄)</li>
+						<li>16: 自由が丘</li>
+						<li>17: 梶が谷</li>
+						<li>18: 鷺沼</li>
+						<li>19: 長津田</li>
+						<li>20: こどもの国</li>
+						<li>21: 二子玉川</li>
+						<li>22: (空欄)</li>
+						<li>23: (空欄)</li>
+						<li>24: (空欄)</li>
+						<li>25: (空欄)</li>
+						<li>26: (空欄)</li>
+						<li>27: (空欄)</li>
+						<li>28: (空欄)</li>
+						<li>29: (空欄)</li>
+						<li>30: (空欄)</li>
+					</ul>
+				</object>
+			</div>
+		</div>
+		<div class="l-tokyu-set__footer">
+			<dl class="p-tokyu-set-data">
+				<div>
+					<dt>調査日</dt>
+					<dd>2005年10月24日</dd>
+				</div>
+				<div>
+					<dt>調査車両</dt>
+					<dd>クハ8003</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<ul class="p-notes">
+		<li>2006年4月9日、クハ8001 にて変更がないことを確認。</li>
+	</ul>
+</Layout>

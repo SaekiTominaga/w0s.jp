@@ -12,19 +12,19 @@ interface Props {
 
 const { slugger, id, depth = 1, heading, headingNote, headingType = 'a' } = Astro.props;
 
-let linkId = '';
+let sectionId = '';
 if (id !== undefined) {
-	linkId = id;
+	sectionId = id;
 } else {
 	if (slugger !== undefined) {
-		linkId = slugger.slug(heading);
+		sectionId = slugger.slug(heading);
 	} else {
 		console.warn('The `slugger` property is not specified.', heading);
 	}
 }
 ---
 
-<section class={`p-section -hdg-${headingType}`} id={id}>
+<section class={`p-section -hdg-${headingType}`} id={sectionId}>
 	<div class="p-section__hdg">
 		{
 			depth === 1 && (
@@ -50,7 +50,7 @@ if (id !== undefined) {
 				</h4>
 			)
 		}
-		<p class="p-section__self-link"><a href={`#${encodeURIComponent(linkId)}`} class="c-self-link">§</a></p>
+		<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
 	</div>
 
 	<slot />
