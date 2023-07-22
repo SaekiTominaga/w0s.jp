@@ -30,7 +30,7 @@ const structuredData: StructuredData = {
 			</dd>
 			<dt>2001年6月<!-- 1日 --></dt>
 			<dd>
-				<p>掲載写真の増大により容量面で厳しくなり、<LinkExternal href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/">goo フリーホームページ</LinkExternal>に移転（容量50MB）。URL は <code>http://users.goo.ne.jp/${'{'}userId}</code> だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
+				<p>掲載写真の増大により容量面で厳しくなり、<LinkExternal href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/">goo フリーホームページ</LinkExternal>に移転（容量50MB）。URL は <code is:raw>http://users.goo.ne.jp/${userId}</code> だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
 			</dd>
 			<dt>2002年3月<!-- 26日 --></dt>
 			<dd>
@@ -198,7 +198,7 @@ const structuredData: StructuredData = {
 				<p>URL が変更になった場合は <code>301 Moved Permanently</code>、フォームの POST 送信後には <code>303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
 				<p><LinkExternal href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の 6.4. Redirection 3xx</LinkExternal>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際ユーザーの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<FootnoteReference>Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、Android Firefox 96 にて確認）</FootnoteReference>。</p>
 				<p>
-					当サイトで使用している Node.js フレームワークの Express では、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code></LinkExternal> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${'{'}path}"&gt;${'{'}path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <LinkExternal href="https://github.com/expressjs/express/issues/5058">Issue を上げており</LinkExternal>、それに対する <LinkExternal href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</LinkExternal>が、2023年6月現在マージはされていない。そのためこの機能は使わず、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.send"><code>res.send()</code></LinkExternal> メソッドにて独自の HTML を返すようにカスタマイズしている。
+					当サイトで使用している Node.js フレームワークの Express では、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code></LinkExternal> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code is:raw>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${path}"&gt;${path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <LinkExternal href="https://github.com/expressjs/express/issues/5058">Issue を上げており</LinkExternal>、それに対する <LinkExternal href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</LinkExternal>が、2023年6月現在マージはされていない。そのためこの機能は使わず、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.send"><code>res.send()</code></LinkExternal> メソッドにて独自の HTML を返すようにカスタマイズしている。
 				</p>
 			</div>
 		</Section>
