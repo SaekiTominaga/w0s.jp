@@ -17,14 +17,14 @@ interface Props {
 
 const { structuredData } = Astro.props;
 
-let mainHtml = await Astro.slots.render('default');
-const dom = new JSDOM(mainHtml);
+const rendered = await Astro.slots.render('default');
+const dom = new JSDOM(rendered);
 const { document } = dom.window;
 
 const tocData = TocUtil.getData(document);
 const footnoteData = FootnoteUtil.getData(document);
 
-mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
+const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 ---
 
 <!DOCTYPE html>
