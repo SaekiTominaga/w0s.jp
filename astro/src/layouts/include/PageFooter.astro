@@ -1,4 +1,6 @@
 ---
+import LinkBullet from '@components/LinkBullet.astro';
+
 const pagePath = Astro.url.pathname;
 ---
 
@@ -13,16 +15,8 @@ const pagePath = Astro.url.pathname;
 					{ path: '/contact', name: '問い合わせ' },
 				].map((page) => (
 					<li>
-						{page.path === pagePath && (
-							<a aria-current="page" class="c-link">
-								{page.name}
-							</a>
-						)}
-						{page.path !== pagePath && (
-							<a href={page.path} class="c-link">
-								{page.name}
-							</a>
-						)}
+						{page.path === pagePath && <LinkBullet>{page.name}</LinkBullet>}
+						{page.path !== pagePath && <LinkBullet href={page.path}>{page.name}</LinkBullet>}
 					</li>
 				))
 			}
@@ -35,13 +29,7 @@ const pagePath = Astro.url.pathname;
 				<section class="p-footer-ads">
 					<h2 class="p-footer-ads__hdg">広告</h2>
 
-					<ins
-						class="adsbygoogle js-ads-google"
-						data-ad-layout="in-article"
-						data-ad-format="fluid"
-						data-ad-client="ca-pub-3297715785193216"
-						data-ad-slot="9399879773"
-					/>
+					<ins class="adsbygoogle js-ads-google" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3297715785193216" data-ad-slot="9399879773" />
 				</section>
 			</div>
 		)

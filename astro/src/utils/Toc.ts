@@ -15,7 +15,7 @@ export default class TocUtil {
 				return;
 			}
 
-			tocData.set(sectioningElement.id, headingText);
+			tocData.set(sectioningElement.id, headingText.trim());
 		});
 
 		return tocData;
