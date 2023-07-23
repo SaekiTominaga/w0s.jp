@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
+import sitemap from '@astrojs/sitemap';
 
 // https://docs.astro.build/en/reference/configuration-reference/
 export default defineConfig({
@@ -18,4 +19,9 @@ export default defineConfig({
 	server: {
 		headers: {},
 	},
+	integrations: [
+		sitemap({
+			filter: (page) => !page.startsWith('https://w0s.jp/admin/') && !['https://w0s.jp/contact', 'https://w0s.jp/contact_completed'].includes(page),
+		}),
+	],
 });
