@@ -31,7 +31,7 @@ const fileList = await globby(`${directory}/**/*.html`);
  * @param {string} filePath - ファイルパス
  */
 const removeMetaCharset = async (filePath) => {
-	const data = await fs.promises.readFile(filePath, { encoding: 'utf8' });
+	const data = (await fs.promises.readFile(filePath)).toString();
 
 	const replaced = data.replace('<meta charset="utf-8">', '');
 

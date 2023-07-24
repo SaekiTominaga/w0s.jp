@@ -4,7 +4,7 @@ import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import { globby } from 'globby';
-import jsdom from 'jsdom';
+import { JSDOM } from 'jsdom';
 import slash from 'slash';
 import xmlFormat from 'xml-formatter';
 
@@ -77,10 +77,10 @@ const getPageUrl = (filePath) => {
 
 const entries = await Promise.all(
 	fileList.map(async (filePath) => {
-		const html = await fs.promises.readFile(filePath);
+		const html = (await fs.promises.readFile(filePath)).toString();
 
 		/* DOM 化 */
-		const { document } = new jsdom.JSDOM(html).window;
+		const { document } = new JSDOM(html).window;
 
 		const modifiedAt = document.querySelector('.p-title time')?.dateTime;
 
