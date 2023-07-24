@@ -9,15 +9,15 @@
 		<name>富永冴樹</name>
 	</author>
 	<icon>/assets/image/feed-icon.png</icon>
-	<updated><%= entries[0].last_updated.format('YYYY-MM-DDTHH:mm:ssZ') %></updated>
+	<updated><%= entries[0].updated.format('YYYY-MM-DDTHH:mm:ssZ') %></updated>
 	<%_ for (entry of entries) { _%>
 	<entry>
 		<title><%= entry.title %></title>
-		<id>tag:w0s.jp,<%= entry.last_updated.format('YYYY-MM-DD') %>:<%= entry.unique %></id>
+		<id>tag:w0s.jp,<%= entry.updated.format('YYYY-MM-DD') %>:<%= entry.unique %></id>
 		<%_ for (link of entry.links) { _%>
 		<link href="<%= link %>" />
 		<%_ } _%>
-		<updated><%= entry.last_updated.format('YYYY-MM-DDTHH:mm:ssZ') %></updated>
+		<updated><%= entry.updated.format('YYYY-MM-DDTHH:mm:ssZ') %></updated>
 		<content type="html"><%= entry.content %></content>
 	</entry>
 	<%_ } _%>
