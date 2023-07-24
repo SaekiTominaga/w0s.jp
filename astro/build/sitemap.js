@@ -48,7 +48,7 @@ const outputPath = slash(argsParsedValues.output) ?? 'sitemap.xml';
 const filesPath = `${directory}/**/*.html`;
 
 const fileList = await globby(filesPath, {
-	ignoreFiles: ignores?.map((filePath) => `${directory}/${filePath}`),
+	ignore: ignores?.map((filePath) => `${directory}/${filePath}`),
 });
 
 /**
@@ -60,19 +60,19 @@ const fileList = await globby(filesPath, {
  */
 const getPageUrl = (filePath) => {
 	const parsed = path.parse(filePath);
-	const urlBaseDirectory = parsed.dir === '/' ? '' : parsed.dir;
+	const dir = parsed.dir === '/' ? '' : parsed.dir;
 
 	if (['index.html'].includes(parsed.base)) {
 		/* インデックスファイルはファイル名を省略する */
-		return `${urlBaseDirectory}/`;
+		return `${dir}/`;
 	}
 
 	if (['.html'].includes(parsed.ext)) {
 		/* 指定された拡張子を除去する */
-		return `${urlBaseDirectory}/${parsed.name}`;
+		return `${dir}/${parsed.name}`;
 	}
 
-	return `${urlBaseDirectory}/${parsed.name}${parsed.ext}`;
+	return `${dir}/${parsed.name}${parsed.ext}`;
 };
 
 const entries = await Promise.all(
