@@ -46,11 +46,12 @@ const removeMetaCharset = async (filePath) => {
  */
 const rename = async (filePath) => {
 	const parsed = path.parse(filePath);
+	const dir = parsed.dir === '/' ? '' : parsed.dir;
 
-	const naturallyDirectory = `${parsed.dir}/${parsed.name}`;
+	const naturallyDirectory = `${dir}/${parsed.name}`;
 
 	try {
-		await fs.promises.access(naturallyDirectory);
+		await fs.promises.access(`${naturallyDirectory}/`);
 	} catch {
 		return;
 	}

@@ -1,8 +1,5 @@
 import dayjs, { type Dayjs } from 'dayjs';
 
-/**
- * Request Utility
- */
 export default class RequestUtil {
 	/**
 	 * Convert to string type
