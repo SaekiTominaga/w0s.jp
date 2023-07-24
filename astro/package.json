@@ -16,7 +16,7 @@
 		"svg-build-all": "run-s _svg-build-all:*",
 		"_astro-build:check": "astro check",
 		"_astro-build:tsc": "tsc --noEmit",
-		"_astro-build:build": "astro build",
+		"_astro-build:build": "astro build && node build/html.js -d dist/client",
 		"_astro-build:format": "prettier --config ../prettier.config.cjs -w dist/client/**/*.html",
 		"_astro-build:compress": "brotlin compress dist/client/**/*.html -m 1",
 		"_css-build-watch:build": "postcss style/*.css --base style -d style/.temp -w",
