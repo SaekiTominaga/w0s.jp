@@ -12,7 +12,7 @@ import { loadConfig, optimize } from 'svgo';
 /* 引数処理 */
 const argsParsedValues = parseArgs({
 	options: {
-		file: {
+		files: {
 			type: 'string',
 			short: 'f',
 		},
@@ -31,8 +31,8 @@ const argsParsedValues = parseArgs({
 	},
 }).values;
 
-if (argsParsedValues.file === undefined) {
-	throw new Error('Argument `file` not specified');
+if (argsParsedValues.files === undefined) {
+	throw new Error('Argument `files` not specified');
 }
 if (argsParsedValues.input === undefined) {
 	throw new Error('Argument `input` not specified');
@@ -43,7 +43,7 @@ if (argsParsedValues.output === undefined) {
 if (argsParsedValues.config === undefined) {
 	throw new Error('Argument `config` not specified');
 }
-const filesPath = slash(argsParsedValues.file);
+const filesPath = slash(argsParsedValues.files);
 const inputDirectory = slash(argsParsedValues.input);
 const outputDirectory = slash(argsParsedValues.output);
 const configFilePath = slash(argsParsedValues.config);

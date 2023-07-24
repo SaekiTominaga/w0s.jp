@@ -12,7 +12,7 @@ import { globby } from 'globby';
 /* 引数処理 */
 const argsParsedValues = parseArgs({
 	options: {
-		file: {
+		files: {
 			type: 'string',
 			short: 'f',
 		},
@@ -23,10 +23,10 @@ const argsParsedValues = parseArgs({
 	},
 }).values;
 
-if (argsParsedValues.file === undefined) {
-	throw new Error('Argument `file` not specified');
+if (argsParsedValues.files === undefined) {
+	throw new Error('Argument `files` not specified');
 }
-const filesPath = slash(argsParsedValues.file);
+const filesPath = slash(argsParsedValues.files);
 const distDirectory = argsParsedValues.output !== undefined ? slash(argsParsedValues.output) : undefined;
 
 const fileList = await globby(filesPath);
