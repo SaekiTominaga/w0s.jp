@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import compression from 'compression';
-import express from 'express';
+import express, { type NextFunction, type Request, type Response } from 'express';
 import qs from 'qs';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
@@ -132,6 +132,19 @@ app.use(
  */
 app.use((req, res, next) => {
 	ssrHandler(req, res, next);
+});
+
+/**
+ * エラー処理
+ */
+app.use((req, res): void => {
+	console.warn(`404 Not Found: ${req.method} ${req.url}`);
+
+	res.status(404).setHeader('Content-Type', 'text/html;charset=utf-8').sendFile(path.resolve(`${config.static.root}error/404.html`));
+});
+app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
+	console.error(`${req.method} ${req.url}`, err.stack);
+	res.status(500).setHeader('Content-Type', 'text/html;charset=utf-8').sendFile(path.resolve(`${config.static.root}error/500.html`));
 });
 
 /**
