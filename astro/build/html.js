@@ -21,9 +21,9 @@ const argsParsedValues = parseArgs({
 if (argsParsedValues.directory === undefined) {
 	throw new Error('Argument `directory` not specified');
 }
-const filesPath = `${slash(argsParsedValues.directory)}/**/*.html`;
+const directory = slash(argsParsedValues.directory);
 
-const fileList = await globby(filesPath);
+const fileList = await globby(`${directory}/**/*.html`);
 
 /**
  * `<meta charset="utf-8">` は本番環境では不要
@@ -47,16 +47,16 @@ const removeMetaCharset = async (filePath) => {
 const rename = async (filePath) => {
 	const parsed = path.parse(filePath);
 
-	const directory = `${parsed.dir}/${parsed.name}`;
+	const naturallyDirectory = `${parsed.dir}/${parsed.name}`;
 
 	try {
-		await fs.promises.access(directory);
+		await fs.promises.access(naturallyDirectory);
 	} catch {
 		return;
 	}
 
-	const newPath = `${directory}/index.html`;
-	fs.promises.rename(filePath, newPath);
+	const newPath = `${naturallyDirectory}/index.html`;
+	await fs.promises.rename(filePath, newPath);
 	console.info(`File renamed: ${newPath}`);
 };
 
