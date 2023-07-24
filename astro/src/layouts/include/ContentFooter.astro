@@ -1,4 +1,5 @@
 ---
+import LinkBullet from '@components/LinkBullet.astro';
 import SsrUtil from '@utils/Ssr.js';
 import type { StructuredData } from '../../types/types.js';
 
@@ -20,16 +21,8 @@ const { structuredData } = Astro.props;
 					<ul class="p-local-nav">
 						{structuredData.localNav.map((localNavItem) => (
 							<li>
-								{localNavItem.path !== pagePath && (
-									<a href={localNavItem.path} class="c-link">
-										{localNavItem.name}
-									</a>
-								)}
-								{localNavItem.path === pagePath && (
-									<a aria-current="page" class="c-link">
-										{localNavItem.name}
-									</a>
-								)}
+								{localNavItem.path !== pagePath && <LinkBullet href={localNavItem.path}>{localNavItem.name}</LinkBullet>}
+								{localNavItem.path === pagePath && <LinkBullet>{localNavItem.name}</LinkBullet>}
 							</li>
 						))}
 					</ul>
