@@ -19,6 +19,7 @@
 		"_astro-build:build": "astro build && node build/html.js -d dist/client",
 		"_astro-build:format": "prettier --config ../prettier.config.cjs -w dist/client/**/*.html",
 		"_astro-build:compress": "brotlin compress dist/client/**/*.html -m 1",
+		"_astro-build:sitemap": "node build/sitemap.js -d dist/client --ignore admin -t template/xml/sitemap.ejs -o sitemap.xml",
 		"_css-build-watch:build": "postcss style/*.css --base style -d style/.temp -w",
 		"_css-build-watch:format": "onchange -f add -f change style/.temp/*.css -- node build/css.js -f {{file}} -o public/assets/style",
 		"_css-build-watch:compress": "onchange -f add -f change public/assets/style/*.css -- brotlin compress {{file}} -m 1",
@@ -37,7 +38,6 @@
 	},
 	"dependencies": {
 		"@astrojs/node": "^5.3.0",
-		"@astrojs/sitemap": "^2.0.1",
 		"@log4js-node/smtp": "^2.0.8",
 		"@saekitominaga/closest-html-page": "^2.0.1",
 		"@saekitominaga/customelements-button-checkboxes-ctrl": "^1.2.0",
@@ -62,6 +62,7 @@
 		"@saekitominaga/string-escape-html": "^2.0.1",
 		"astro": "^2.9.1",
 		"dayjs": "^1.11.9",
+		"ejs": "^3.1.9",
 		"github-slugger": "^2.0.0",
 		"globby": "^13.2.2",
 		"highlight.js": "^11.8.0",
@@ -70,6 +71,7 @@
 		"md5": "^2.3.0",
 		"prettier": "^3.0.0",
 		"slash": "^5.1.0",
-		"svgo": "^3.0.2"
+		"svgo": "^3.0.2",
+		"xml-formatter": "^2.6.1"
 	}
 }
