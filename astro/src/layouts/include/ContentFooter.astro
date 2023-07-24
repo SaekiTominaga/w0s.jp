@@ -1,11 +1,12 @@
 ---
+import SsrUtil from '@utils/Ssr.js';
 import type { StructuredData } from '../../types/types.js';
 
 interface Props {
 	structuredData: StructuredData;
 }
 
-const pagePath = Astro.url.pathname;
+const pagePath = await SsrUtil.getPageUrl(Astro.url);
 const { structuredData } = Astro.props;
 
 // :empty 疑似クラスがホワイトスペースの存在を許容するようになったら最初の if 文は不要になる https://drafts.csswg.org/selectors-4/#the-empty-pseudo

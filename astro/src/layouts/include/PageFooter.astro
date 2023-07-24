@@ -1,7 +1,8 @@
 ---
+import SsrUtil from '@utils/Ssr.js';
 import LinkBullet from '@components/LinkBullet.astro';
 
-const pagePath = Astro.url.pathname;
+const pagePath = await SsrUtil.getPageUrl(Astro.url);
 ---
 
 <footer id="footer" class="l-footer">

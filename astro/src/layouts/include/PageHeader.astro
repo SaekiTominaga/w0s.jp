@@ -1,7 +1,8 @@
 ---
+import SsrUtil from '@utils/Ssr.js';
 import PageHeaderSearch from './PageHeaderSearch.astro';
 
-const pagePath = Astro.url.pathname;
+const pagePath = await SsrUtil.getPageUrl(Astro.url);
 const topPage = pagePath === '/';
 ---
 

@@ -1,4 +1,5 @@
 ---
+import SsrUtil from '@utils/Ssr.js';
 import StructuredDataUtil from '@utils/StructuredData.js';
 import type { StructuredData } from '../../types/types.js';
 
@@ -8,6 +9,7 @@ interface Props {
 
 const { structuredData } = Astro.props;
 
+const pagePath = await SsrUtil.getPageUrl(Astro.url);
 const jsonLd = StructuredDataUtil.getJsonLd(structuredData);
 ---
 
@@ -31,13 +33,25 @@ const jsonLd = StructuredDataUtil.getJsonLd(structuredData);
 	{structuredData.description !== undefined && <meta name="description" content={structuredData.description} />}
 
 	{
-		structuredData.type !== undefined && structuredData.type !== 'website' && structuredData.image !== undefined && (
+		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && structuredData.description !== undefined && (
 			<>
 				<meta property="og:title" content={structuredData.title} />
 				<meta property="og:type" content={structuredData.type ?? 'article'} />
 				<meta property="og:image" content={structuredData.image} />
-				<meta property="og:url" content={`${Astro.site}${Astro.url.pathname.substring(1)}`} />
+				<meta property="og:url" content={`${Astro.site}${pagePath.substring(1)}`} />
 				<meta property="og:description" content={structuredData.description} />
+				<meta property="og:locale" content="ja_JP" />
+				<meta property="og:site_name" content="まどか資料館" />
+			</>
+		)
+	}
+	{
+		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && structuredData.description === undefined && (
+			<>
+				<meta property="og:title" content={structuredData.title} />
+				<meta property="og:type" content={structuredData.type ?? 'article'} />
+				<meta property="og:image" content={structuredData.image} />
+				<meta property="og:url" content={`${Astro.site}${pagePath.substring(1)}`} />
 				<meta property="og:locale" content="ja_JP" />
 				<meta property="og:site_name" content="まどか資料館" />
 			</>

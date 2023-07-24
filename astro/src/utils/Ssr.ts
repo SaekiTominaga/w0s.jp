@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import Log4js from 'log4js';
 import log4jsConfigure from '../../log4js.json';
 import configure from '../../../configure/astro.json';
@@ -27,5 +29,34 @@ export default class SsrUtil {
 			configure: configure,
 			logger: logger,
 		};
+	};
+
+	/**
+	 * Astro.url を元にページ URL を組み立てる
+	 *
+	 * @param astroUrl - Astro.url <https://docs.astro.build/en/reference/api-reference/#astrourl>
+	 *
+	 * @returns ページ URL
+	 */
+	static getPageUrl = async (astroUrl: URL): Promise<string> => {
+		const astroPathname = astroUrl.pathname;
+
+		const parsed = path.parse(astroPathname);
+		if (parsed.ext === '') {
+			/* 拡張子がない場合（開発環境ないしトップページ） */
+			return astroPathname;
+		}
+
+		const dir = parsed.dir === '/' ? '' : parsed.dir;
+
+		/* 拡張子を除去する */
+		const urlExclusionExt = `${dir}/${parsed.name}`;
+
+		try {
+			await fs.promises.access(`${urlExclusionExt}/`);
+			return `${urlExclusionExt}/`;
+		} catch {}
+
+		return urlExclusionExt;
 	};
 }
