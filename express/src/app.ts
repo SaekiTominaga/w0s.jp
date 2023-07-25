@@ -1,7 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import basicAuth from 'basic-auth';
 import compression from 'compression';
 import express, { type NextFunction, type Request, type Response } from 'express';
+// @ts-expect-error: ts(7016)
+import htpasswd from 'htpasswd-js';
 import qs from 'qs';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
@@ -37,6 +40,31 @@ app.use(
 	compression({
 		threshold: config.response.compression.threshold,
 	}),
+	async (req, res, next) => {
+		/* Basic Authentication */
+		const basic = config.static.auth_basic?.find((auth) => auth.directory.find((urlPath) => req.url.startsWith(urlPath)));
+		if (basic !== undefined) {
+			const credentials = basicAuth(req);
+
+			const result = (await htpasswd.authenticate({
+				username: credentials?.name,
+				password: credentials?.pass,
+				file: basic.htpasswd,
+			})) as boolean;
+
+			if (!result) {
+				res
+					.set('WWW-Authenticate', `Basic realm="${basic.realm}"`)
+					.status(401)
+					.setHeader('Content-Type', 'text/html;charset=utf-8')
+					.sendFile(path.resolve(`${config.static.root}/error/401.html`));
+
+				return;
+			}
+		}
+
+		next();
+	},
 	(req, res, next) => {
 		const requestPath = req.path;
 
@@ -140,11 +168,17 @@ app.use((req, res, next) => {
 app.use((req, res): void => {
 	console.warn(`404 Not Found: ${req.method} ${req.url}`);
 
-	res.status(404).setHeader('Content-Type', 'text/html;charset=utf-8').sendFile(path.resolve(`${config.static.root}error/404.html`));
+	res
+		.status(404)
+		.setHeader('Content-Type', 'text/html;charset=utf-8')
+		.sendFile(path.resolve(`${config.static.root}/error/404.html`));
 });
 app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
 	console.error(`${req.method} ${req.url}`, err.stack);
-	res.status(500).setHeader('Content-Type', 'text/html;charset=utf-8').sendFile(path.resolve(`${config.static.root}error/500.html`));
+	res
+		.status(500)
+		.setHeader('Content-Type', 'text/html;charset=utf-8')
+		.sendFile(path.resolve(`${config.static.root}/error/500.html`));
 });
 
 /**
