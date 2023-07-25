@@ -6,7 +6,6 @@ export default defineConfig({
 	srcDir: './src',
 	publicDir: './public',
 	outDir: './dist',
-	redirects: {},
 	site: 'https://w0s.jp',
 	adapter: node({
 		mode: 'middleware',
@@ -14,8 +13,5 @@ export default defineConfig({
 	output: 'hybrid',
 	build: {
 		format: 'file',
-	},
-	server: {
-		headers: {},
 	},
 });
