@@ -6,6 +6,7 @@ import express, { type NextFunction, type Request, type Response } from 'express
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
 import qs from 'qs';
+import StringEscapeHtml from '@saekitominaga/string-escape-html';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import type { Express as Configure } from '../../configure/type/express.js';
@@ -23,6 +24,29 @@ const app = express();
 app.set('query parser', (query: string) => qs.parse(query, { delimiter: /[&;]/ }));
 app.set('trust proxy', true);
 app.set('x-powered-by', false);
+
+/**
+ * リダイレクト
+ */
+config.redirect.forEach((redirect) => {
+	const fromUrl = redirect.type === 'regexp' ? new RegExp(`^${redirect.from}$`) : redirect.from;
+	app.get(fromUrl, (req, res) => {
+		let locationUrl = redirect.to;
+		if (typeof fromUrl !== 'string') {
+			fromUrl.exec(req.path)?.forEach((value, index) => {
+				locationUrl = locationUrl.replace(`$${index}`, value);
+			});
+		}
+
+		const locationUrlEscapedHtml = StringEscapeHtml.escape(locationUrl);
+
+		res.status(301).setHeader('Content-Type', 'text/html;charset=utf-8').location(locationUrl).send(`<!doctype html>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Moved Permanently</title>
+<h1>301 Moved Permanently</h1>
+<p><a href="${locationUrlEscapedHtml}">${locationUrlEscapedHtml}</a>`);
+	});
+});
 
 app.use(
 	(_req, res, next) => {

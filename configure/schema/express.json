@@ -3,7 +3,7 @@
 	"$id": "https://w0s.jp/express.json",
 	"type": "object",
 	"title": "Express",
-	"required": ["port", "response", "static"],
+	"required": ["port", "response", "static", "redirect"],
 	"properties": {
 		"port": {
 			"type": "integer",
@@ -231,6 +231,31 @@
 				}
 			},
 			"additionalProperties": false
+		},
+		"redirect": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["from", "to", "type"],
+				"properties": {
+					"from": {
+						"type": "string",
+						"pattern": "^/",
+						"title": "リダイレクト元のパス"
+					},
+					"to": {
+						"type": "string",
+						"title": "リダイレクト先のパス"
+					},
+					"type": {
+						"type": "string",
+						"pattern": "^string|regexp$",
+						"title": "文字列 or 正規表現"
+					}
+				}
+			},
+			"uniqueItems": true,
+			"title": "リダイレクト設定"
 		}
 	},
 	"additionalProperties": false
