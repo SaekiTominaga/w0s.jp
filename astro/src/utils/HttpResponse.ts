@@ -3,8 +3,6 @@ import StringEscapeHtml from '@saekitominaga/string-escape-html';
 export default class HttpResponseUtil {
 	readonly #request: Request;
 
-	readonly #MIME_TYPE_HTML = 'text/html;charset=utf-8';
-
 	/**
 	 * @param request - Request
 	 */
@@ -37,7 +35,7 @@ export default class HttpResponseUtil {
 			{
 				status: 303,
 				headers: {
-					'Content-Type': this.#MIME_TYPE_HTML,
+					'Content-Type': 'text/html;charset=utf-8',
 					Location: locationUrl,
 				},
 			},
