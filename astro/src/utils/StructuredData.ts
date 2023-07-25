@@ -1,14 +1,20 @@
 import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem } from '../types/types.js';
 
+interface Options {
+	site: string;
+}
+
 export default class StructuredDataUtil {
 	/**
 	 * JSON-LD 用のデータを構築
 	 *
 	 * @param structuredData - ページで指定された構造データ
+	 * @param options - オプション
+	 * @param options.site - `import.meta.env.SITE` <https://docs.astro.build/en/guides/environment-variables/#default-environment-variables>
 	 *
 	 * @returns JSON-LD データ
 	 */
-	static getJsonLd = (structuredData: StructuredData): object | undefined => {
+	static getJsonLd = (structuredData: StructuredData, options: Options): object | undefined => {
 		if (structuredData.breadcrumb === undefined && structuredData.description === undefined) {
 			/* パンくずも description もないページは JSON-LD を出力する意味合いが薄い */
 			return undefined;
@@ -22,7 +28,7 @@ export default class StructuredDataUtil {
 					'@type': 'ListItem',
 					position: index + 1,
 					name: item.name,
-					item: `https://w0s.jp${item.path}`, // 絶対 URL 化
+					item: `${options.site}${item.path}`, // 絶対 URL 化
 				};
 				return listItem;
 			});
