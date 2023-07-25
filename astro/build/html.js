@@ -26,20 +26,6 @@ const directory = slash(argsParsedValues.directory);
 const fileList = await globby(`${directory}/**/*.html`);
 
 /**
- * `<meta charset="utf-8">` は本番環境では不要
- *
- * @param {string} filePath - ファイルパス
- */
-const removeMetaCharset = async (filePath) => {
-	const data = (await fs.promises.readFile(filePath)).toString();
-
-	const replaced = data.replace('<meta charset="utf-8">', '');
-
-	await fs.promises.writeFile(filePath, replaced);
-	console.info(`Removed \`<meta charset>\`: ${filePath}`);
-};
-
-/**
  * `build: { format: 'file' }` の設定では `dir/index.astro` が `dir.html` に出力されてしまうので、`dir/index.html` にリネームする
  *
  * @param {string} filePath - ファイルパス
@@ -63,7 +49,6 @@ const rename = async (filePath) => {
 
 await Promise.all(
 	fileList.map(async (filePath) => {
-		await removeMetaCharset(filePath);
 		await rename(filePath);
 	}),
 );
