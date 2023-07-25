@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Log4js from 'log4js';
-import log4jsConfigure from '../../log4js.json';
+import log4jsConfigure from '../../log4js.config.json';
 import configure from '../../../configure/astro.json';
 import type { Astro as Configure } from '../../../configure/type/astro.d.js';
 
