@@ -16,7 +16,7 @@ const EXTENTIONS = {
 }; // 静的ファイル拡張子の定義
 
 /* 設定ファイル読み込み */
-const config = <Configure>JSON.parse(await fs.promises.readFile('../configure/express.json', 'utf8'));
+const config = JSON.parse((await fs.promises.readFile('../configure/express.json')).toString()) as Configure;
 
 const app = express();
 
@@ -57,7 +57,7 @@ app.use(
 					.set('WWW-Authenticate', `Basic realm="${basic.realm}"`)
 					.status(401)
 					.setHeader('Content-Type', 'text/html;charset=utf-8')
-					.sendFile(path.resolve(`${config.static.root}/error/401.html`));
+					.sendFile(path.resolve(`${config.static.root}/401.html`));
 
 				return;
 			}
@@ -171,14 +171,14 @@ app.use((req, res): void => {
 	res
 		.status(404)
 		.setHeader('Content-Type', 'text/html;charset=utf-8')
-		.sendFile(path.resolve(`${config.static.root}/error/404.html`));
+		.sendFile(path.resolve(`${config.static.root}/404.html`));
 });
 app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
 	console.error(`${req.method} ${req.url}`, err.stack);
 	res
 		.status(500)
 		.setHeader('Content-Type', 'text/html;charset=utf-8')
-		.sendFile(path.resolve(`${config.static.root}/error/500.html`));
+		.sendFile(path.resolve(`${config.static.root}/500.html`));
 });
 
 /**
