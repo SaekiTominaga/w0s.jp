@@ -44,9 +44,9 @@ if (portalHost === null || portalHost === undefined /* <potal> 未対応ブラ�
 	const title = closestHTMLPage.getTitle();
 
 	if (url !== null && title !== null) {
-		const messageElement = <HTMLElement | null>document.getElementById('parentpage-msg');
-		const anchorElement = <HTMLAnchorElement | null>document.getElementById('parentpage-anchor');
-		const portalElement = <HTMLPortalElement | null>document.getElementById('parentpage-portal');
+		const messageElement = document.getElementById('parentpage-msg');
+		const anchorElement = document.getElementById('parentpage-anchor') as HTMLAnchorElement | null;
+		const portalElement = document.getElementById('parentpage-portal') as HTMLPortalElement | null;
 
 		if (messageElement !== null && anchorElement !== null) {
 			messageElement.hidden = false;

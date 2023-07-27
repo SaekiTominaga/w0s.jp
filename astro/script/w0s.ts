@@ -119,13 +119,13 @@ if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
 }
 
 /* 日記新着記事 */
-const sidebarBlogNewlyTemplateElement = <HTMLTemplateElement | null>document.getElementById('sidebar-blog-newly-template');
+const sidebarBlogNewlyTemplateElement = document.getElementById('sidebar-blog-newly-template') as HTMLTemplateElement | null;
 if (sidebarBlogNewlyTemplateElement !== null) {
-	new SidebarBlogNewly(sidebarBlogNewlyTemplateElement).init();
+	await new SidebarBlogNewly(sidebarBlogNewlyTemplateElement).init();
 }
 
 /* オートフォーカス TODO: フォームコントロール以外への `autofocus` 属性が全ブラウザ対応すれば JS 処理は不要になる <https://caniuse.com/mdn-html_global_attributes_autofocus> */
-const autoFocusElement = <HTMLElement | null>document.querySelector('.js-autofocus');
+const autoFocusElement = document.querySelector<HTMLElement>('.js-autofocus');
 if (autoFocusElement !== null) {
 	if (autoFocusElement.tabIndex === -1) {
 		// tabIndex IDL のデフォルト値は -1 <https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex>

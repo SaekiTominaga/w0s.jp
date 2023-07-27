@@ -4,7 +4,7 @@
 		"es2022": true
 	},
 	"extends": ["@w0s/eslint-config"],
-	"ignorePatterns": ["dist/**/*.mjs", "public/assets/script/*.js", "public/assets/script/*.mjs"],
+	"ignorePatterns": ["dist/**/*.mjs", "src/env.d.ts", "public/assets/script/*.js", "public/assets/script/*.mjs"],
 	"overrides": [
 		{
 			"files": ["build/*.js"],
@@ -29,7 +29,9 @@
 					{
 						"allow": ["info", "error"]
 					}
-				]
+				],
+				"@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
+				"@typescript-eslint/no-unnecessary-condition": "off"
 			}
 		},
 		{

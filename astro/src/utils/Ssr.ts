@@ -14,12 +14,12 @@ export default class SsrUtil {
 	 *
 	 * @returns 共通で使用されるデータ
 	 */
-	static init = async (
+	static init = (
 		Astro: AstroGlobal,
-	): Promise<{
+	): {
 		configure: Configure;
 		logger: Log4js.Logger;
-	}> => {
+	} => {
 		Astro.response.headers.set('Content-Type', 'text/html;charset=utf-8');
 
 		/* Log4js */

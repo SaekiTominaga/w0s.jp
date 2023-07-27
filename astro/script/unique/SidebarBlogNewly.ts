@@ -20,7 +20,7 @@ export default class SidebarBlogNewly {
 	 * 初期処理
 	 */
 	async init(): Promise<void> {
-		const jsonName = (<HTMLMetaElement | null>document.querySelector('meta[name="w0s:blog:newly"]'))?.content;
+		const jsonName = document.querySelector<HTMLMetaElement>('meta[name="w0s:blog:newly"]')?.content;
 
 		/* エンドポイントから JSON ファイルを取得する */
 		const entries: BlogNewlyJson[] = await SidebarBlogNewly.#fetch(jsonName);
@@ -61,9 +61,9 @@ export default class SidebarBlogNewly {
 		const fragment = document.createDocumentFragment();
 
 		for (const entry of entries) {
-			const templateElementClone = this.#templateElement.content.cloneNode(true);
+			const templateElementClone = this.#templateElement.content.cloneNode(true) as DocumentFragment;
 
-			const aElement = (<DocumentFragment>templateElementClone).querySelector('a');
+			const aElement = templateElementClone.querySelector('a');
 			if (aElement !== null) {
 				aElement.href = `https://blog.w0s.jp/${String(entry.id)}`;
 				aElement.insertAdjacentHTML('afterbegin', entry.title);

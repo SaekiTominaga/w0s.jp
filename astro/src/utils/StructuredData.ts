@@ -44,7 +44,7 @@ export default class StructuredDataUtil {
 			};
 		}
 
-		const webPage: Map<string, string | string[] | object> = new Map([
+		const webPage = new Map<string, string | string[] | object>([
 			['@context', 'https://schema.org/'],
 			['@type', structuredData['schema-type'] ?? 'WebPage'],
 		]);

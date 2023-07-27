@@ -7,7 +7,7 @@ import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTab
  */
 
 /* 入力値を変換する */
-const numCtrlElement = <HTMLInputElement | null>document.querySelector('.js-convert-tokyu-car-histroy-num');
+const numCtrlElement = document.querySelector<HTMLInputElement>('.js-convert-tokyu-car-histroy-num');
 if (numCtrlElement !== null) {
 	numCtrlElement.addEventListener(
 		'change',
@@ -26,10 +26,10 @@ if (numCtrlElement !== null) {
 	);
 }
 
-const resultTableElement = <HTMLTableElement | null>document.querySelector('.js-result-table');
+const resultTableElement = document.querySelector<HTMLTableElement>('.js-result-table');
 if (resultTableElement !== null) {
 	/* 直上と同じ内容のセルを「〃」で表示する */
-	const dittoButtonElement = <HTMLInputElement | null>document.querySelector('.js-button-ditto');
+	const dittoButtonElement = document.querySelector<HTMLInputElement>('.js-button-ditto');
 	if (dittoButtonElement !== null) {
 		const tableCellDitto = new TableCellDitto(resultTableElement);
 
@@ -51,7 +51,7 @@ if (resultTableElement !== null) {
 	}
 
 	/* 表の列をマウスオーバーしたとき、クラス名を付与してCSSでスタイルを設定できるようにする */
-	for (const trElement of <NodeListOf<HTMLTableRowElement>>resultTableElement.querySelectorAll('tbody > tr')) {
+	for (const trElement of resultTableElement.querySelectorAll<HTMLTableRowElement>('tbody > tr')) {
 		const resultTableTrHover = new TokyuCarHistoryResultTableTrHover(trElement);
 		resultTableTrHover.connected();
 	}

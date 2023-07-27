@@ -28,27 +28,27 @@ export default class Contact {
 	#CONFIRM_HASH = 'confirm'; // 確認画面の URL に使用するハッシュ値
 
 	constructor() {
-		this.#bodyElement = <HTMLBodyElement>document.body; // <body> 要素
+		this.#bodyElement = document.body as HTMLBodyElement; // <body> 要素
 
-		const formElement = <HTMLFormElement | null>document.getElementById(this.#FORM_ELEMENT_ID); // 問い合わせフォーム要素
+		const formElement = document.getElementById(this.#FORM_ELEMENT_ID) as HTMLFormElement | null; // 問い合わせフォーム要素
 		if (formElement === null) {
 			throw new Error(`Element: #${this.#FORM_ELEMENT_ID} can not found.`);
 		}
 		this.#formElement = formElement;
 
-		const confirmButtonElement = <HTMLButtonElement | null>document.getElementById(this.#CONFIRM_BUTTON_ELEMENT_ID); // 確認ボタン（確認画面へ進む）
+		const confirmButtonElement = document.getElementById(this.#CONFIRM_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 確認ボタン（確認画面へ進む）
 		if (confirmButtonElement === null) {
 			throw new Error(`Element: #${this.#CONFIRM_BUTTON_ELEMENT_ID} can not found.`);
 		}
 		this.#confirmButtonElement = confirmButtonElement;
 
-		const correctButtonElement = <HTMLButtonElement | null>document.getElementById(this.#CORRECT_BUTTON_ELEMENT_ID); // 修正ボタン（入力画面へ戻る）
+		const correctButtonElement = document.getElementById(this.#CORRECT_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 修正ボタン（入力画面へ戻る）
 		if (correctButtonElement === null) {
 			throw new Error(`Element: #${this.#CORRECT_BUTTON_ELEMENT_ID} can not found.`);
 		}
 		this.#correctButtonElement = correctButtonElement;
 
-		const sendButtonElement = <HTMLButtonElement | null>document.getElementById(this.#SEND_BUTTON_ELEMENT_ID); // 送信ボタン（完了画面へ進む）
+		const sendButtonElement = document.getElementById(this.#SEND_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 送信ボタン（完了画面へ進む）
 		if (sendButtonElement === null) {
 			throw new Error(`Element: #${this.#SEND_BUTTON_ELEMENT_ID} can not found.`);
 		}
@@ -108,9 +108,12 @@ export default class Contact {
 						throw new Error('Attribute: `data-ctrl-name` is not set.');
 					}
 
-					const formCtrls = <HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | RadioNodeList | undefined>(
-						this.#formElement.elements.namedItem(formCtrlName)
-					);
+					const formCtrls = this.#formElement.elements.namedItem(formCtrlName) as
+						| HTMLInputElement
+						| HTMLSelectElement
+						| HTMLTextAreaElement
+						| RadioNodeList
+						| undefined;
 
 					if (formCtrls === undefined) {
 						throw new Error(`name: ${formCtrlName} is none.`);
@@ -120,9 +123,9 @@ export default class Contact {
 
 					switch (Object.prototype.toString.call(formCtrls)) {
 						case '[object HTMLInputElement]':
-							if ((<HTMLInputElement>formCtrls).type === 'checkbox') {
+							if ((formCtrls as HTMLInputElement).type === 'checkbox') {
 								/* 単体チェックボックス */
-								value = Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrls);
+								value = Contact.#getLabelTextFormControl(formCtrls as HTMLInputElement);
 							}
 
 							break;
@@ -130,16 +133,18 @@ export default class Contact {
 							if (value === '') {
 								/* ラジオボタン（未選択時）またはチェックボックス群 */
 								const labelTextList: string[] = [];
-								for (const formCtrlRlrmrnt of Array.from(<RadioNodeList>formCtrls).filter((formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).checked)) {
-									labelTextList.push(Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrlRlrmrnt));
+								for (const formCtrlRlrmrnt of Array.from(formCtrls as RadioNodeList).filter(
+									(formCtrl: Node): boolean => (formCtrl as HTMLInputElement).checked,
+								)) {
+									labelTextList.push(Contact.#getLabelTextFormControl(formCtrlRlrmrnt as HTMLInputElement));
 								}
 								value = labelTextList.join('、');
 							} else {
 								/* ラジオボタン（選択時） */
-								for (const formCtrlElement of Array.from(<RadioNodeList>formCtrls).filter(
-									(formCtrl: Node): boolean => (<HTMLInputElement>formCtrl).value === value,
+								for (const formCtrlElement of Array.from(formCtrls as RadioNodeList).filter(
+									(formCtrl: Node): boolean => (formCtrl as HTMLInputElement).value === value,
 								)) {
-									value = Contact.#getLabelTextFormControl(<HTMLInputElement>formCtrlElement);
+									value = Contact.#getLabelTextFormControl(formCtrlElement as HTMLInputElement);
 								}
 							}
 
@@ -185,7 +190,7 @@ export default class Contact {
 	 * @returns ラベルテキスト（ラベルが存在しない場合は value 属性値）
 	 */
 	static #getLabelTextFormControl(formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
-		const labelElements = <NodeListOf<HTMLLabelElement>>formCtrl.labels;
+		const labelElements = formCtrl.labels!;
 		if (labelElements.length === 0) {
 			console.info('label does not exist', formCtrl);
 			return formCtrl.value;

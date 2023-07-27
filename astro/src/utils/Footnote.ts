@@ -12,7 +12,7 @@ export default class FootnoteUtil {
 		document.querySelectorAll<HTMLTemplateElement>('.astro-footnote-reference').forEach((footnoteReferenceTemplate, index) => {
 			const no = index + 1;
 
-			const templateElementClone = <DocumentFragment>footnoteReferenceTemplate.content.cloneNode(true);
+			const templateElementClone = footnoteReferenceTemplate.content.cloneNode(true) as DocumentFragment;
 
 			const slotElement = templateElementClone.querySelector('.slot');
 			footnoteData.set(no, slotElement?.innerHTML);
