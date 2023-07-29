@@ -40,7 +40,7 @@ interface ViewCar {
 }
 
 export const prerender = false;
-const { configure, logger } = SsrUtil.init(Astro);
+const { configure } = SsrUtil.init(Astro);
 
 const structuredData: StructuredData = {
 	title: '東急電車　車歴表',
@@ -55,6 +55,8 @@ const structuredData: StructuredData = {
 	opensearch: { path: '/tokyu/data/history/search', name: '東急電車　車歴検索' },
 };
 
+const slugger = new GithubSlugger();
+
 const requestParams = Astro.url.searchParams;
 
 const requestQuery: RequestQuery = {
@@ -68,14 +70,9 @@ const requestQuery: RequestQuery = {
 	output: RequestUtil.string(requestParams.get('out')),
 };
 
-const validateErrors: { msg: string }[] = [];
-
 const dao = new TokyuCarHistoryDao(configure.sqlite.tokyu_car_history);
 
 const carSeries = await dao.getCarSeries();
-
-const cars: ViewCar[][] = [];
-let searchCount = 0; // 検索条件にマッチした車両数
 
 /**
  * 日付データを表示用に整形する
@@ -93,6 +90,9 @@ const dateFormat = (date: Date): string => {
 
 	return dayjs(date).format('YYYY-MM-DD');
 };
+
+const cars: ViewCar[][] = [];
+let searchCount = 0; // 検索条件にマッチした車両数
 
 if (requestQuery.output !== null) {
 	const carsDto = await dao.getCarData(requestQuery.number?.replaceAll('.', '_').replaceAll('*', '%') ?? null, requestQuery.number_old, requestQuery.series, requestQuery.register_start, requestQuery.register_end, requestQuery.sort);
@@ -135,8 +135,6 @@ if (requestQuery.output !== null) {
 		beforeSeries = car.series;
 	}
 }
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout structuredData={structuredData}>
@@ -205,21 +203,6 @@ const slugger = new GithubSlugger();
 
 	<Section slugger={slugger} heading="検索条件入力">
 		<form class="c-stack">
-			{
-				validateErrors.length > 0 && (
-					<div class="p-form-errors js-autofocus">
-						<p>
-							<strong>{validateErrors.length}個のエラーがあります。</strong>
-						</p>
-						<ul class="p-list">
-							{validateErrors.map((validateError) => (
-								<li>{validateError.msg}</li>
-							))}
-						</ul>
-					</div>
-				)
-			}
-
 			<div class="p-form-grid -complex">
 				<div class="p-form-grid__group">
 					<fieldset>
