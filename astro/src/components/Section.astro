@@ -8,9 +8,10 @@ interface Props {
 	heading: string;
 	headingNote?: string;
 	headingType?: string;
+	class?: string;
 }
 
-const { slugger, id, depth = 1, heading, headingNote, headingType = 'a' } = Astro.props;
+const { slugger, id, depth = 1, heading, headingNote, headingType = 'a', class: className } = Astro.props;
 
 let sectionId = '';
 if (id !== undefined) {
@@ -24,7 +25,7 @@ if (id !== undefined) {
 }
 ---
 
-<section class={`p-section -hdg-${headingType}`} id={sectionId}>
+<section class:list={['p-section', `-hdg-${headingType}`, className]} id={sectionId}>
 	<div class="p-section__hdg">
 		{
 			depth === 1 && (

@@ -1,0 +1,550 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import Section from '@components/Section.astro';
+import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
+import RequestUtil from '@utils/Request.js';
+import SsrUtil from '@utils/Ssr.js';
+import type { StructuredData } from '../../../../types/types.js';
+
+interface RequestQuery {
+	number: string | null;
+	number_old: boolean;
+	series: string[] | null;
+	register_start: string | null;
+	register_end: string | null;
+	sort: string | null;
+	era: string | null;
+	output: string | null;
+}
+
+interface ViewChange {
+	number: string;
+	sign: string;
+	date: string;
+}
+
+interface ViewCar {
+	number: string;
+	sign: string;
+	series: string;
+	type: string;
+	annual: string;
+	register: string;
+	changes: ViewChange[];
+	renewal: string;
+	age: number;
+	scrap: boolean;
+	transfer: string;
+}
+
+export const prerender = false;
+const { configure, logger } = SsrUtil.init(Astro);
+
+const structuredData: StructuredData = {
+	title: '東急電車　車歴表',
+	heading: '車歴表',
+	description: '旧7000系から新3000系までの入籍日、改造履歴などを検索できるシステムです。',
+	dateModified: dayjs('2010-03-31'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/data/', name: '車両データ' },
+	],
+	moduleScripts: ['tokyu-car-history.mjs'],
+	opensearch: { path: '/tokyu/data/history/search', name: '東急電車　車歴検索' },
+};
+
+const requestParams = Astro.url.searchParams;
+
+const requestQuery: RequestQuery = {
+	number: RequestUtil.string(requestParams.get('num')),
+	number_old: RequestUtil.boolean(requestParams.get('old')),
+	series: RequestUtil.strings(requestParams.getAll('ser[]')),
+	register_start: RequestUtil.string(requestParams.get('res')),
+	register_end: RequestUtil.string(requestParams.get('ree')),
+	sort: RequestUtil.string(requestParams.get('srt')),
+	era: RequestUtil.string(requestParams.get('era')),
+	output: RequestUtil.string(requestParams.get('out')),
+};
+
+const validateErrors: { msg: string }[] = [];
+
+const dao = new TokyuCarHistoryDao(configure.sqlite.tokyu_car_history);
+
+const carSeries = await dao.getCarSeries();
+
+const cars: ViewCar[][] = [];
+let searchCount = 0; // 検索条件にマッチした車両数
+
+/**
+ * 日付データを表示用に整形する
+ *
+ * @param date - 日付データ
+ *
+ * @returns 整形後の日付データ
+ */
+const dateFormat = (date: Date): string => {
+	switch (requestQuery.era) {
+		case 'ja':
+			return date.toLocaleDateString('ja-JP-u-ca-japanese', { dateStyle: 'short' }).replaceAll('/', '.');
+		default:
+	}
+
+	return dayjs(date).format('YYYY-MM-DD');
+};
+
+if (requestQuery.output !== null) {
+	const carsDto = await dao.getCarData(requestQuery.number?.replaceAll('.', '_').replaceAll('*', '%') ?? null, requestQuery.number_old, requestQuery.series, requestQuery.register_start, requestQuery.register_end, requestQuery.sort);
+
+	searchCount = carsDto.length;
+
+	let beforeSeries = '';
+	for (const car of carsDto) {
+		const changes: ViewChange[] = [];
+		if (car.change !== null) {
+			for (const change of car.change) {
+				changes.push({
+					number: change.number,
+					sign: change.sign,
+					date: dateFormat(change.date),
+				});
+			}
+		}
+
+		const searchCarView: ViewCar = {
+			number: car.number,
+			sign: car.sign,
+			series: car.series,
+			type: car.type,
+			annual: car.annual,
+			register: dateFormat(car.register),
+			changes: changes,
+			renewal: car.renewal,
+			age: dayjs().diff(dayjs(car.register), 'y'), // https://day.js.org/docs/en/display/difference
+			scrap: car.scrap,
+			transfer: car.transfer,
+		};
+
+		if (cars.length === 0 || car.series !== beforeSeries) {
+			cars.push([searchCarView]);
+		} else {
+			cars[cars.length - 1]?.push(searchCarView);
+		}
+
+		beforeSeries = car.series;
+	}
+}
+
+const slugger = new GithubSlugger();
+---
+
+<Layout structuredData={structuredData}>
+	{
+		requestQuery.output === null && (
+			<details class="p-toggle" is="w0s-animation-details" open="">
+				<summary>説明文</summary>
+				<div class="p-toggle__contents">
+					<div class="p-box">
+						<ul class="p-list">
+							<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
+							<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
+							<li>
+								「車号」では次に挙げる記号を使うことで特殊な検索ができます。
+								<ul>
+									<li>「.」（ピリオド）は任意の1文字に相当します。</li>
+									<li>「*」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
+									<li>
+										たとえば、デハ8700形の全車両を表示するには、車種の「8500系」にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。
+									</li>
+								</ul>
+							</li>
+							<li>
+								改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば、車号に『<kbd>7001</kbd>』と入力し、「旧車号を含む」にチェックを入れて検索しても、7700系化後の車号はヒットしません。
+							</li>
+							<li>
+								入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
+							</li>
+						</ul>
+					</div>
+				</div>
+			</details>
+		)
+	}
+	{
+		requestQuery.output !== null && (
+			<details class="p-toggle" is="w0s-animation-details">
+				<summary>説明文</summary>
+				<div class="p-toggle__contents">
+					<div class="p-box">
+						<ul class="p-list">
+							<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
+							<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
+							<li>
+								「車号」では次に挙げる記号を使うことで特殊な検索ができます。
+								<ul>
+									<li>「.」（ピリオド）は任意の1文字に相当します。</li>
+									<li>「*」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
+									<li>
+										たとえば、デハ8700形の全車両を表示するには、車種の「8500系」にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。
+									</li>
+								</ul>
+							</li>
+							<li>
+								改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば、車号に『<kbd>7001</kbd>』と入力し、「旧車号を含む」にチェックを入れて検索しても、7700系化後の車号はヒットしません。
+							</li>
+							<li>
+								入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
+							</li>
+						</ul>
+					</div>
+				</div>
+			</details>
+		)
+	}
+
+	<Section slugger={slugger} heading="検索条件入力">
+		<form class="c-stack">
+			{
+				validateErrors.length > 0 && (
+					<div class="p-form-errors js-autofocus">
+						<p>
+							<strong>{validateErrors.length}個のエラーがあります。</strong>
+						</p>
+						<ul class="p-list">
+							{validateErrors.map((validateError) => (
+								<li>{validateError.msg}</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+
+			<div class="p-form-grid -complex">
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend"><label for="fc-num" class="c-label">車号</label></legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								{(requestQuery.number === null || requestQuery.number === '') && <input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--inline-size: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="該当する車両は存在しません。" />}
+								{requestQuery.number !== null && requestQuery.number !== '' && <input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value={requestQuery.number} maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--inline-size: 4em" aria-errormessage="input-validate-num" data-validation-message-pattern="旧7000系〜新3000系、300系で該当する車両は存在しません。" />}
+								<label class="c-label -check">
+									{requestQuery.number_old && <input type="checkbox" name="old" value="1" checked="" />}
+									{!requestQuery.number_old && <input type="checkbox" name="old" value="1" />}
+									<span class="c-label__text">旧車号を含む</span></label
+								>
+							</div>
+							<p hidden="" class="c-fc-invalid" id="input-validate-num"></p>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">車種</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls -checkbox">
+								{
+									carSeries.map((car) => (
+										<label class="c-label -check">
+											{requestQuery.series !== null && requestQuery.series.includes(car.id) && <input type="checkbox" name="ser[]" value={car.id} checked="" />}
+											{(requestQuery.series === null || !requestQuery.series.includes(car.id)) && <input type="checkbox" name="ser[]" value={car.id} />}
+
+											<span class="c-label__text">{car.series}</span>
+										</label>
+									))
+								}
+								<p>
+									<button type="button" is="w0s-checkbox-allcheck" data-course="check" data-targets-name="ser[]" class="c-button">全車種を選択</button>
+									<button type="button" is="w0s-checkbox-allcheck" data-course="uncheck" data-targets-name="ser[]" class="c-button">全ての選択を解除</button>
+								</p>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">入籍日</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<label class="c-label -input"
+									><span class="c-label__text">開始日</span>
+									{(requestQuery.register_start === null || requestQuery.register_start === '') && <input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />}
+									{requestQuery.register_start !== null && requestQuery.register_start !== '' && <input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value={requestQuery.register_start} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />}
+								</label>
+								<label class="c-label -input"
+									><span class="c-label__text">終了日</span>
+									{(requestQuery.register_end === null || requestQuery.register_end === '') && <input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />}
+									{requestQuery.register_end !== null && requestQuery.register_end !== '' && <input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value={requestQuery.register_end} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />}
+								</label>
+							</div>
+							<p hidden="" class="c-fc-invalid" id="input-validate-registarstart"></p>
+							<p hidden="" class="c-fc-invalid" id="input-validate-registarend"></p>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend" id="label-sort">ソート</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-sort">
+								<label class="c-label -check">
+									{(requestQuery.sort === null || requestQuery.sort === 'snu') && <input type="radio" name="srt" value="snu" checked="" />}
+									{requestQuery.sort !== null && requestQuery.sort !== 'snu' && <input type="radio" name="srt" value="snu" />}
+									<span class="c-label__text">車号（車種別）</span></label
+								>
+								<label class="c-label -check">
+									{requestQuery.sort === 'num' && <input type="radio" name="srt" value="num" checked="" />}
+									{requestQuery.sort !== 'num' && <input type="radio" name="srt" value="num" />}
+									<span class="c-label__text">車号（車種混合）</span></label
+								>
+								<label class="c-label -check">
+									{requestQuery.sort === 'typ' && <input type="radio" name="srt" value="typ" checked="" />}
+									{requestQuery.sort !== 'typ' && <input type="radio" name="srt" value="typ" />}
+									<span class="c-label__text">形式</span></label
+								>
+								<label class="c-label -check">
+									{requestQuery.sort === 'ann' && <input type="radio" name="srt" value="ann" checked="" />}
+									{requestQuery.sort !== 'ann' && <input type="radio" name="srt" value="ann" />}
+									<span class="c-label__text">呼称</span></label
+								>
+								<label class="c-label -check">
+									{requestQuery.sort === 'reg' && <input type="radio" name="srt" value="reg" checked="" />}
+									{requestQuery.sort !== 'reg' && <input type="radio" name="srt" value="reg" />}
+									<span class="c-label__text">入籍日</span></label
+								>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend" id="label-era">年表記</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-era">
+								<label class="c-label -check">
+									{(requestQuery.era === null || requestQuery.era === 'ad') && <input type="radio" name="era" value="ad" checked="" />}
+									{requestQuery.era !== null && requestQuery.era !== 'ad' && <input type="radio" name="era" value="ad" />}
+									<span class="c-label__text">西暦</span></label
+								>
+								<label class="c-label -check">
+									{requestQuery.era === 'ja' && <input type="radio" name="era" value="ja" checked="" />}
+									{requestQuery.era !== 'ja' && <input type="radio" name="era" value="ja" />}
+									<span class="c-label__text">和暦</span></label
+								>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend" id="label-output">出力</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls -checkbox" role="radiogroup" aria-labelledby="label-output">
+								<label class="c-label -check">
+									{(requestQuery.output === null || requestQuery.output === 'nor') && <input type="radio" name="out" value="nor" checked="" />}
+									{requestQuery.output !== null && requestQuery.output !== 'nor' && <input type="radio" name="out" value="nor" />}
+									<span class="c-label__text">全列表示</span></label
+								>
+								<label class="c-label -check">
+									{requestQuery.output === 'mob' && <input type="radio" name="out" value="mob" checked="" />}
+									{requestQuery.output !== 'mob' && <input type="radio" name="out" value="mob" />}
+									<span class="c-label__text">主要列表示（モバイル向け）</span></label
+								>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+			<div class="c-form-controls -submit -center">
+				<p><button type="submit" class="c-submit">検索</button></p>
+			</div>
+		</form>
+	</Section>
+
+	{
+		requestQuery.output !== null && (
+			<Section slugger={slugger} heading="検索結果" class="js-autofocus">
+				{searchCount >= 1 && (
+					<>
+						<p>{searchCount}件ヒットしました。</p>
+
+						{searchCount >= 2 && (
+							<p>
+								<label class="c-label">
+									<w0s-input-switch checked="" storage-key="tokyu-history-ditto" class="js-button-ditto" data-ditto-for="result-table" />
+									<span class="c-label__text">直上と同じ内容のセルを「〃」で表示する</span>
+								</label>
+							</p>
+						)}
+
+						<table class="p-tokyu-history-table js-result-table" id="result-table">
+							{requestQuery.output !== 'mob' && (
+								<>
+									<thead>
+										<tr>
+											<th scope="col">車号</th>
+											<th scope="col">車種</th>
+											<th scope="col">形式</th>
+											<th scope="col">呼称</th>
+											<th scope="col">入籍日</th>
+											<th scope="col">旧車号</th>
+											<th scope="col">改番日</th>
+											<th scope="col">更新</th>
+											<th scope="col">新車号、譲渡車号</th>
+											<th scope="col">車齢</th>
+										</tr>
+									</thead>
+									{cars.map((carOfSeries) => (
+										<tbody>
+											{carOfSeries.map((car) => (
+												<>
+													{car.changes.length <= 1 && (
+														<tr data-car-num={car.number}>
+															{/* prettier-ignore */}
+															<td class="u-cell -center">{car.sign}{car.number}</td>
+															<td class="u-cell -center">{car.series}</td>
+															<td class="u-cell -center">{car.type}</td>
+															<td class="u-cell -center">{car.annual}</td>
+															<td class="u-cell -center">{car.register}</td>
+															{car.changes.length === 0 && (
+																<>
+																	<td />
+																	<td />
+																</>
+															)}
+															{car.changes.length >= 1 && (
+																<>
+																	{/* prettier-ignore */}
+																	<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
+																	<td class="u-cell -center">{car.changes[0].date}</td>
+																</>
+															)}
+															<td>{car.renewal}</td>
+															<td>{car.transfer}</td>
+															{/* prettier-ignore */}
+															<td class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
+														</tr>
+													)}
+
+													{car.changes.length >= 2 && (
+														<>
+															{car.changes.map((change, index) => (
+																<>
+																	{index === 0 && (
+																		<tr data-car-num={car.number}>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.series}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.type}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.annual}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.register}</td>
+																			{/* prettier-ignore */}
+																			<td class="u-cell -center">{change.sign}{change.number}</td>
+																			<td class="u-cell -center">{change.date}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.renewal}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.transfer}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
+																		</tr>
+																	)}
+																	{index >= 1 && (
+																		<tr data-car-num={car.number}>
+																			{/* prettier-ignore */}
+																			<td class="u-cell -center">{change.sign}{change.number}</td>
+																			<td class="u-cell -center">{change.date}</td>
+																		</tr>
+																	)}
+																</>
+															))}
+														</>
+													)}
+												</>
+											))}
+										</tbody>
+									))}
+								</>
+							)}
+							{requestQuery.output === 'mob' && (
+								<>
+									<thead>
+										<tr>
+											<th scope="col">車号</th>
+											<th scope="col">呼称</th>
+											<th scope="col">入籍日</th>
+											<th scope="col">旧車号</th>
+										</tr>
+									</thead>
+									{cars.map((carOfSeries) => (
+										<tbody>
+											{carOfSeries.map((car) => (
+												<>
+													{car.changes.length <= 1 && (
+														<tr data-car-num={car.number}>
+															{/* prettier-ignore */}
+															<td class="u-cell -center">{car.sign}{car.number}</td>
+															<td class="u-cell -center">{car.annual}</td>
+															<td class="u-cell -center">{car.register}</td>
+															{car.changes.length === 0 && <td />}
+															{car.changes.length >= 1 && (
+																<>
+																	{/* prettier-ignore */}
+																	<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
+																</>
+															)}
+														</tr>
+													)}
+
+													{car.changes.length >= 2 && (
+														<>
+															{car.changes.map((change, index) => (
+																<>
+																	{index === 0 && (
+																		<tr data-car-num={car.number}>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.annual}</td>
+																			{/* prettier-ignore */}
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.register}</td>
+																			{/* prettier-ignore */}
+																			<td class="u-cell -center">{change.sign}{change.number}</td>
+																		</tr>
+																	)}
+																	{index >= 1 && (
+																		<tr data-car-num={car.number}>
+																			{/* prettier-ignore */}
+																			<td class="u-cell -center">{car.sign}{car.number}</td>
+																		</tr>
+																	)}
+																</>
+															))}
+														</>
+													)}
+												</>
+											))}
+										</tbody>
+									))}
+								</>
+							)}
+						</table>
+					</>
+				)}
+
+				{searchCount === 0 && (
+					<div class="p-box">
+						<p>
+							<strong>該当する車両が存在しないか、登録されていません。</strong>
+						</p>
+					</div>
+				)}
+			</Section>
+		)
+	}
+</Layout>
