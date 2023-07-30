@@ -22,6 +22,7 @@ const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
 	<body>
 		<div class="l-page">
 			<PageHeader pagePath={pagePath} top={true} />
+
 			<div id="content" class="l-content">
 				<main class="l-content__main">
 					<slot />
@@ -29,6 +30,7 @@ const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
 			</div>
 
 			<PageSidebar />
+
 			<PageFooter pagePath={pagePath} />
 		</div>
 	</body>

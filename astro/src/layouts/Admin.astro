@@ -38,14 +38,13 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 	<body>
 		<div class="l-page">
 			<PageHeader />
-			<div id="content" class="l-content">
+
+			<div id="content" class="l-content -nosidebar">
 				<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
 				<ContentMain html={mainHtml} footnoteData={footnoteData} />
-				<ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />
 			</div>
 
-			<PageSidebar />
-			<PageFooter pagePath={pagePath} />
+			<PageFooter pagePath={pagePath} ad={false} />
 		</div>
 	</body>
 </html>

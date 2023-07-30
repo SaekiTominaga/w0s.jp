@@ -17,7 +17,7 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 ---
 
 {
-	(((structuredData.type === undefined || structuredData.type !== 'website') && structuredData['schema-type'] !== 'ContactPage') || structuredData.localNav !== undefined) && (
+	(structuredData.type === undefined || structuredData.type !== 'website' || structuredData.localNav !== undefined) && (
 		<div class="l-content__footer">
 			{structuredData.localNav !== undefined && (
 				<nav>
@@ -32,7 +32,7 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 				</nav>
 			)}
 
-			{(structuredData.type === undefined || structuredData.type !== 'website') && structuredData['schema-type'] !== 'ContactPage' && (
+			{(structuredData.type === undefined || structuredData.type !== 'website') && (
 				<details class="p-toggle -fit" is="w0s-animation-details" data-duration="100">
 					<summary>本ページ内容の問い合わせ</summary>
 					<div class="p-toggle__contents">

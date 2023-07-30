@@ -16,9 +16,12 @@ interface Props {
 	pagePath?: string;
 	astroFilePath: string | undefined;
 	structuredData: StructuredData;
+	contentFooter?: boolean;
+	pageSidebar?: boolean;
+	ad?: boolean;
 }
 
-const { pagePath: pagePathTemp, astroFilePath, structuredData } = Astro.props;
+const { pagePath: pagePathTemp, astroFilePath, structuredData, contentFooter = true, pageSidebar = true, ad = true } = Astro.props;
 
 const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
 
@@ -38,14 +41,31 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 	<body>
 		<div class="l-page">
 			<PageHeader pagePath={pagePath} />
-			<div id="content" class="l-content">
-				<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
-				<ContentMain html={mainHtml} footnoteData={footnoteData} />
-				<ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />
-			</div>
 
-			<PageSidebar />
-			<PageFooter pagePath={pagePath} />
+			{
+				pageSidebar && (
+					<>
+						<div id="content" class="l-content">
+							<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
+							<ContentMain html={mainHtml} footnoteData={footnoteData} />
+							{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
+						</div>
+
+						<PageSidebar />
+					</>
+				)
+			}
+			{
+				!pageSidebar && (
+					<div id="content" class="l-content -nosidebar">
+						<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
+						<ContentMain html={mainHtml} footnoteData={footnoteData} />
+						{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
+					</div>
+				)
+			}
+
+			<PageFooter pagePath={pagePath} ad={ad} />
 		</div>
 	</body>
 </html>
