@@ -3,7 +3,7 @@
 	"$id": "https://w0s.jp/astro.json",
 	"type": "object",
 	"title": "Astro",
-	"required": ["mail", "sqlite"],
+	"required": ["mail", "sqlite", "crawler_resource"],
 	"properties": {
 		"mail": {
 			"type": "object",
@@ -38,6 +38,34 @@
 			"additionalProperties": {
 				"type": "string",
 				"title": "テーブルファイルパス"
+			}
+		},
+		"crawler_resource": {
+			"type": "object",
+			"title": "ウェブ巡回・リソース",
+			"required": ["log_dir", "diff"],
+			"properties": {
+				"log_dir": {
+					"type": "string",
+					"title": "ログ格納ディレクトリ"
+				},
+				"diff": {
+					"type": "object",
+					"title": "差分表示",
+					"required": ["max_line", "omit"],
+					"properties": {
+						"max_line": {
+							"type": "integer",
+							"minimum": 1,
+							"title": "差分のない行の最大表示行数"
+						},
+						"omit": {
+							"type": "string",
+							"title": "省略文字"
+						}
+					},
+					"additionalProperties": false
+				}
 			}
 		}
 	},
