@@ -29,22 +29,8 @@ const jsonLd = StructuredDataUtil.getJsonLd(structuredData, { site: import.meta.
 	<title>{structuredData.title}</title>
 
 	{structuredData.description !== undefined && <meta name="description" content={structuredData.description} />}
-
 	{
-		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && structuredData.description !== undefined && (
-			<>
-				<meta property="og:title" content={structuredData.title} />
-				<meta property="og:type" content={structuredData.type ?? 'article'} />
-				<meta property="og:image" content={structuredData.image} />
-				<meta property="og:url" content={`${Astro.site}${pagePath.substring(1)}`} />
-				<meta property="og:description" content={structuredData.description} />
-				<meta property="og:locale" content="ja_JP" />
-				<meta property="og:site_name" content="w0s.jp" />
-			</>
-		)
-	}
-	{
-		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && structuredData.description === undefined && (
+		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && (
 			<>
 				<meta property="og:title" content={structuredData.title} />
 				<meta property="og:type" content={structuredData.type ?? 'article'} />
@@ -52,6 +38,7 @@ const jsonLd = StructuredDataUtil.getJsonLd(structuredData, { site: import.meta.
 				<meta property="og:url" content={`${Astro.site}${pagePath.substring(1)}`} />
 				<meta property="og:locale" content="ja_JP" />
 				<meta property="og:site_name" content="w0s.jp" />
+				{structuredData.description !== undefined && <meta property="og:description" content={structuredData.description} />}
 			</>
 		)
 	}
