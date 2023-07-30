@@ -1,21 +1,17 @@
-name: html-lint-ejs
+name: astro@html-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
-      - '.markuplintrc'
+      - 'astro/src/**/*.astro'
+      - 'astro/.markuplintrc'
   push:
     branches:
       - main
     paths:
-      - 'html/**/*.ejs'
-      - 'views/_component/*.ejs'
-      - 'views/_include/*.ejs'
-      - '.markuplintrc'
+      - 'astro/src/**/*.astro'
+      - 'astro/.markuplintrc'
   workflow_dispatch:
 
 jobs:
@@ -27,4 +23,5 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run html-lint-ejs
+      - run: npm run build -w '@w0s.jp/astro'
+      - run: npm run html-lint -w '@w0s.jp/astro'

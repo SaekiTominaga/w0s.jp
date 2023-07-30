@@ -1,17 +1,17 @@
-name: backend@errorpage-lint
+name: astro@js-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'packages/backend/errorpage/*.html'
-      - '.markuplintrc'
+      - 'astro/script/**/*.ts'
+      - 'astro/.eslintrc.json'
   push:
     branches:
       - main
     paths:
-      - 'packages/backend/errorpage/*.html'
-      - '.markuplintrc'
+      - 'astro/script/**/*.ts'
+      - 'astro/.eslintrc.json'
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run errorpage-lint -w '@w0s.jp/backend'
+      - run: npm run js-lint -w '@w0s.jp/astro'

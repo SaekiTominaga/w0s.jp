@@ -1,17 +1,17 @@
-name: frontend@js-lint
+name: express@lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'packages/frontend/script/**/*.ts'
-      - 'packages/frontend/.eslintrc.json'
+      - 'express/src/**/*.ts'
+      - 'express/.eslintrc.json'
   push:
     branches:
       - main
     paths:
-      - 'packages/frontend/script/**/*.ts'
-      - 'packages/frontend/.eslintrc.json'
+      - 'express/src/**/*.ts'
+      - 'express/.eslintrc.json'
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run js-lint -w '@w0s.jp/frontend'
+      - run: npm run lint -w '@w0s.jp/express'

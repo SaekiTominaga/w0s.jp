@@ -1,17 +1,17 @@
-name: frontend@css-lint
+name: astro@node-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'packages/frontend/style/**/*.css'
-      - 'packages/frontend/.stylelintrc.json'
+      - 'astro/src/**/*.ts'
+      - 'astro/.eslintrc.json'
   push:
     branches:
       - main
     paths:
-      - 'packages/frontend/style/**/*.css'
-      - 'packages/frontend/.stylelintrc.json'
+      - 'astro/src/**/*.ts'
+      - 'astro/eslintrc.json'
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run css-lint -w '@w0s.jp/frontend'
+      - run: npm run node-lint -w '@w0s.jp/astro'

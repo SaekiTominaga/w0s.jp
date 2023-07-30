@@ -1,17 +1,17 @@
-name: html-lint
+name: astro@css-lint
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'html/**/*.html'
-      - '.markuplintrc'
+      - 'astro/style/**/*.css'
+      - 'astro/.stylelintrc.json'
   push:
     branches:
       - main
     paths:
-      - 'html/**/*.html'
-      - '.markuplintrc'
+      - 'astro/style/**/*.css'
+      - 'astro/.stylelintrc.json'
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npx markuplint html/**/*.html # public/**/*.html は Git 管理していないため、ビルド元ファイルをチェックする
+      - run: npm run css-lint -w '@w0s.jp/astro'
