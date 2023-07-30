@@ -42,10 +42,16 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 	<header class="p-library__header">
 		<div class="p-library__title">
 			{headingLevel === 3 && <h3>{title}</h3>}
-
 			<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
 		</div>
-		<p class="p-library__release"><time datetime={release}>{releaseDisplay}</time>発売</p>
+		{
+			release !== undefined && (
+				<>
+					{/* prettier-ignore */}
+					<p class="p-library__release"><time datetime={release}>{releaseDisplay}</time>発売</p>
+				</>
+			)
+		}
 		{
 			tags !== undefined && tags.length >= 1 && (
 				<ul class="p-library__tags">
