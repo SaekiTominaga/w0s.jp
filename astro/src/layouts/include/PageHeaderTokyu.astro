@@ -2,15 +2,20 @@
 import SsrUtil from '@util/Ssr.js';
 import PageHeaderSearch from './PageHeaderSearch.astro';
 
+interface Props {
+	top?: boolean;
+}
+
+const { top = false } = Astro.props;
+
 const pagePath = await SsrUtil.getPageUrl(Astro.url);
-const topPage = pagePath === '/tokyu/';
 ---
 
 <header id="header" class="l-header">
 	<div class="l-header__main">
 		<div class="l-header__site">
 			{
-				topPage && (
+				top && (
 					<hgroup class="p-header-site">
 						<h1 class="p-header-site__name">
 							<a aria-current="page">東急電車形態研究</a>
@@ -20,7 +25,7 @@ const topPage = pagePath === '/tokyu/';
 				)
 			}
 			{
-				!topPage && (
+				!top && (
 					<div class="p-header-site">
 						<div class="p-header-site__name">
 							<a href="/tokyu/">東急電車形態研究</a>
