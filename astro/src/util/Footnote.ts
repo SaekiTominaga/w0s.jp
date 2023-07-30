@@ -14,7 +14,7 @@ export default class FootnoteUtil {
 
 			const templateElementClone = footnoteReferenceTemplate.content.cloneNode(true) as DocumentFragment;
 
-			const slotElement = templateElementClone.querySelector('.slot');
+			const slotElement = templateElementClone.querySelector('.build-slot');
 			footnoteData.set(no, slotElement?.innerHTML);
 			slotElement?.remove();
 
@@ -24,10 +24,8 @@ export default class FootnoteUtil {
 				aElement.id = `fnref-${no}`;
 			}
 
-			const numberElement = templateElementClone.querySelector('.number');
-			if (numberElement !== null) {
-				numberElement.textContent = String(no);
-			}
+			const numberElement = templateElementClone.querySelector('.build-number');
+			numberElement?.replaceWith(document.createTextNode(String(no)));
 
 			footnoteReferenceTemplate.parentNode?.appendChild(templateElementClone);
 			footnoteReferenceTemplate.remove();
