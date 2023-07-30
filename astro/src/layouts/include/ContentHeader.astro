@@ -1,15 +1,14 @@
 ---
 import LinkBullet from '@components/LinkBullet.astro';
-import SsrUtil from '@util/Ssr.js';
 import type { StructuredData } from '../../types/types.js';
 
 interface Props {
+	pagePath: string;
 	structuredData: StructuredData;
 	tocData: Map<string, string>;
 }
 
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
-const { structuredData, tocData } = Astro.props;
+const { pagePath, structuredData, tocData } = Astro.props;
 ---
 
 <div class="l-content__header">

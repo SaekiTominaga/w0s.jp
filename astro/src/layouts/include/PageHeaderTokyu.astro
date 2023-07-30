@@ -1,14 +1,12 @@
 ---
-import SsrUtil from '@util/Ssr.js';
 import PageHeaderSearch from './PageHeaderSearch.astro';
 
 interface Props {
+	pagePath: string;
 	top?: boolean;
 }
 
-const { top = false } = Astro.props;
-
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
+const { pagePath, top = false } = Astro.props;
 ---
 
 <header id="header" class="l-header">

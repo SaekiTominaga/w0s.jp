@@ -1,14 +1,13 @@
 ---
 import LinkBullet from '@components/LinkBullet.astro';
-import SsrUtil from '@util/Ssr.js';
 import type { StructuredData } from '../../types/types.js';
 
 interface Props {
+	pagePath: string;
 	structuredData: StructuredData;
 }
 
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
-const { structuredData } = Astro.props;
+const { pagePath, structuredData } = Astro.props;
 
 // :empty 疑似クラスがホワイトスペースの存在を許容するようになったら最初の if 文は不要になる https://drafts.csswg.org/selectors-4/#the-empty-pseudo
 ---

@@ -127,7 +127,7 @@ for (const resoursePage of resourcePageListDto) {
 }
 ---
 
-<Layout structuredData={structuredData}>
+<Layout pagePath={pagePath} structuredData={structuredData}>
 	<Section slugger={slugger} heading="データ登録">
 		<form action={pagePath} method="post" class="c-stack">
 			<div class="p-form-grid">
@@ -287,7 +287,7 @@ for (const resoursePage of resourcePageListDto) {
 											</button>
 										</p>
 										<p>
-											<a href={`${pagePath}log?dir=${resourcePage.url.hostname}${resourcePage.url.pathname.replace(/\/[^/]*$/g, '')}`}>差分チェック</a>
+											<a href={`/admin/crawler-resource/log?dir=${resourcePage.url.hostname}${resourcePage.url.pathname.replace(/\/[^/]*$/g, '')}`}>差分チェック</a>
 										</p>
 									</form>
 								</td>

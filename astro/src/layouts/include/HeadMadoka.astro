@@ -1,15 +1,14 @@
 ---
-import SsrUtil from '@util/Ssr.js';
 import StructuredDataUtil from '@util/StructuredData.js';
 import type { StructuredData } from '../../types/types.js';
 
 interface Props {
+	pagePath: string;
 	structuredData: StructuredData;
 }
 
-const { structuredData } = Astro.props;
+const { pagePath, structuredData } = Astro.props;
 
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
 const jsonLd = StructuredDataUtil.getJsonLd(structuredData, { site: import.meta.env.SITE });
 ---
 

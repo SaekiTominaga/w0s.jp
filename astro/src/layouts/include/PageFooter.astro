@@ -1,8 +1,11 @@
 ---
 import LinkBullet from '@components/LinkBullet.astro';
-import SsrUtil from '@util/Ssr.js';
 
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
+interface Props {
+	pagePath: string;
+}
+
+const { pagePath } = Astro.props;
 ---
 
 <footer id="footer" class="l-footer">

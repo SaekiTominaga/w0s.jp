@@ -135,7 +135,7 @@ for (const newsPage of newsPageListDto) {
 }
 ---
 
-<Layout structuredData={structuredData}>
+<Layout pagePath={pagePath} structuredData={structuredData}>
 	<Section slugger={slugger} heading="データ登録">
 		<form action={pagePath} method="post" class="c-stack">
 			<div class="p-form-grid">
@@ -323,7 +323,7 @@ for (const newsPage of newsPageListDto) {
 									</form>
 								</td>
 								<td>
-									<a href={`${pagePath}data?url=${newsPage.url}`}>{newsPage.title}</a>
+									<a href={`/admin/crawler-news/data?url=${newsPage.url}`}>{newsPage.title}</a>
 									<p style="margin-block-start: 0.5em; font-size: 80%">
 										<a href={newsPage.url} referrerpolicy="no-referrer">
 											{newsPage.url}

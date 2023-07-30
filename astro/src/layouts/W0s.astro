@@ -1,6 +1,7 @@
 ---
 import { JSDOM } from 'jsdom';
 import FootnoteUtil from '@util/Footnote.js';
+import SsrUtil from '@util/Ssr.js';
 import TocUtil from '@util/Toc.js';
 import Head from './include/Head.astro';
 import PageHeader from './include/PageHeader.astro';
@@ -12,10 +13,13 @@ import ContentFooter from './include/ContentFooter.astro';
 import type { StructuredData } from '../types/types.js';
 
 interface Props {
+	pagePath?: string;
 	structuredData: StructuredData;
 }
 
-const { structuredData } = Astro.props;
+const { pagePath: pagePathTemp, structuredData } = Astro.props;
+
+const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
 
 const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);
@@ -29,18 +33,18 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 
 <!DOCTYPE html>
 <html lang="ja">
-	<Head structuredData={structuredData} />
+	<Head pagePath={pagePath} structuredData={structuredData} />
 	<body>
 		<div class="l-page">
 			<PageHeader />
 			<div id="content" class="l-content">
-				<ContentHeader structuredData={structuredData} tocData={tocData} />
+				<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
 				<ContentMain html={mainHtml} footnoteData={footnoteData} />
-				<ContentFooter structuredData={structuredData} />
+				<ContentFooter pagePath={pagePath} structuredData={structuredData} />
 			</div>
 
 			<PageSidebar />
-			<PageFooter />
+			<PageFooter pagePath={pagePath} />
 		</div>
 	</body>
 </html>
