@@ -24,7 +24,7 @@ const structuredData: StructuredData = {
 const slugger = new GithubSlugger();
 ---
 
-<Layout structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger} id="introduction" heading="概要">
 		<div class="p-text">
 			<p>古くから制御回路や照明装置などの補助電源として、架線電圧を電動機に入力し同軸上の発電機を通すことで電力の変換を行う<dfn>電動発電機（MG）</dfn>が使われており、当初は直流出力が行われていましたが、1950年代には交流蛍光灯の導入が行われ、MG は交直出力が可能な複流タイプが主流になりました。さらに1960年代後半にはインバーターを定電圧・定周波数で制御する<dfn>静止形インバーター（SIV）</dfn>が登場し、東急電鉄では8000系から採用されています。</p>

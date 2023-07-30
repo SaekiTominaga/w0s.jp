@@ -15,7 +15,7 @@ const structuredData: StructuredData = {
 const slugger = new GithubSlugger();
 ---
 
-<Layout structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger} id="rule" heading="統計ルール">
 		<ul class="p-list">
 			<li>対面あるいはテレパシーでの会話のみを抽出しているため、独りごとや、AとBの会話でCの名前が出てくるようなケースは対象外としています。</li>

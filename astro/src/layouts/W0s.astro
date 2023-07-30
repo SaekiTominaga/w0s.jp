@@ -14,10 +14,11 @@ import type { StructuredData } from '../types/types.js';
 
 interface Props {
 	pagePath?: string;
+	astroFilePath: string | undefined;
 	structuredData: StructuredData;
 }
 
-const { pagePath: pagePathTemp, structuredData } = Astro.props;
+const { pagePath: pagePathTemp, astroFilePath, structuredData } = Astro.props;
 
 const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
 
@@ -40,7 +41,7 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 			<div id="content" class="l-content">
 				<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
 				<ContentMain html={mainHtml} footnoteData={footnoteData} />
-				<ContentFooter pagePath={pagePath} structuredData={structuredData} />
+				<ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />
 			</div>
 
 			<PageSidebar />
