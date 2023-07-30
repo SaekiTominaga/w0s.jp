@@ -51,7 +51,7 @@ if (requestQuery.action_delete) {
 const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
 ---
 
-<Layout astroFilePath={Astro.self.moduleId} pagePath={pagePath} structuredData={structuredData}>
+<Layout pagePath={pagePath} structuredData={structuredData}>
 	<p><a href={requestQuery.url} referrerpolicy="no-referrer" class="c-link">{requestQuery.url}</a></p>
 
 	<table class="p-table p-admin-crawler-table">
