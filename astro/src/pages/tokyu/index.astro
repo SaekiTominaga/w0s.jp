@@ -1,5 +1,5 @@
 ---
-import Layout from '@layouts/TokyuTop.astro';
+import Layout from '@layouts/Tokyu.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import type { StructuredData } from '../../types/types.js';
@@ -11,7 +11,7 @@ const structuredData: StructuredData = {
 };
 ---
 
-<Layout structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
 	<nav id="contents">
 		<h2>サイトコンテンツ</h2>
 

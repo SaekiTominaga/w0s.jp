@@ -1,6 +1,6 @@
 ---
 import GithubSlugger from 'github-slugger';
-import Layout from '@layouts/MadokaTop.astro';
+import Layout from '@layouts/Madoka.astro';
 import Section from '@components/Section.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import type { StructuredData } from '../../types/types.js';
@@ -14,7 +14,7 @@ const structuredData: StructuredData = {
 const slugger = new GithubSlugger();
 ---
 
-<Layout structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
 	<nav class="p-top-nav" id="contents">
 		<header class="p-top-nav__header">
 			<div class="p-top-nav__hdg">
