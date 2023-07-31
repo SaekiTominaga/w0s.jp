@@ -1,11 +1,11 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -21,8 +21,6 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/video/shinpen', name: '新編' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -34,7 +32,9 @@ const slugger = new GithubSlugger();
 		<li>本文中の「テレビ東京特番」とは、公開直後の2013年11月4日にテレビ東京で放送された<LinkExternal href="https://www.tv-tokyo.co.jp/anime/madoka-magica/">「2時間でわかる! 魔法少女まどか☆マギカ」</LinkExternal>内で冒頭3分間が流されたものを指します。この番組は一部を修正のうえ、 Blu-ray 限定版にも収録されていますが、映像ソースは劇場で上映されたものと同一と思われます。</li>
 	</ul>
 
-	<Section slugger={slugger} id="chapter1" heading="Chapter 1">
+	<Section id="chapter1">
+		<H slot="heading">Chapter 1</H>
+
 		<dl class="p-video-diff">
 			<div id="time0m19s">
 				<dt>0′19″ 〜 1′24″</dt>
@@ -222,7 +222,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter2" heading="Chapter 2">
+	<Section id="chapter2">
+		<H slot="heading">Chapter 2</H>
+
 		<dl class="p-video-diff">
 			<div id="time7m20s">
 				<dt>7′20″ 〜</dt>
@@ -259,7 +261,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter3" heading="Chapter 3" headingNote="オープニング">
+	<Section id="chapter3">
+		<H slot="heading">Chapter 3<small>（オープニング）</small></H>
+
 		<dl class="p-video-diff">
 			<div id="time7m40s">
 				<dt>7′40″</dt>
@@ -283,7 +287,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter4" heading="Chapter 4">
+	<Section id="chapter4">
+		<H slot="heading">Chapter 4</H>
+
 		<dl class="p-video-diff">
 			<div id="time9m13s">
 				<dt>9′13″</dt>
@@ -334,7 +340,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter5" heading="Chapter 5">
+	<Section id="chapter5">
+		<H slot="heading">Chapter 5</H>
+
 		<dl class="p-video-diff">
 			<div id="time13m42s">
 				<dt>13′42″</dt>
@@ -358,7 +366,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter6" heading="Chapter 6">
+	<Section id="chapter6">
+		<H slot="heading">Chapter 6</H>
+
 		<dl class="p-video-diff">
 			<div id="time16m52s">
 				<dt>16′52″</dt>
@@ -481,7 +491,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter7" heading="Chapter 7">
+	<Section id="chapter7">
+		<H slot="heading">Chapter 7</H>
+
 		<dl class="p-video-diff">
 			<div id="time22m00s">
 				<dt>22′0″</dt>
@@ -619,7 +631,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter8" heading="Chapter 8">
+	<Section id="chapter8">
+		<H slot="heading">Chapter 8</H>
+
 		<dl class="p-video-diff">
 			<div id="time28m47s">
 				<dt>28′47″</dt>
@@ -662,7 +676,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter9" heading="Chapter 9">
+	<Section id="chapter9">
+		<H slot="heading">Chapter 9</H>
+
 		<dl class="p-video-diff">
 			<div id="time30m55s">
 				<dt>30′55″</dt>
@@ -724,7 +740,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter10" heading="Chapter 10">
+	<Section id="chapter10">
+		<H slot="heading">Chapter 10</H>
+
 		<dl class="p-video-diff">
 			<div id="time34m20s">
 				<dt>34′20″</dt>
@@ -751,7 +769,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter11" heading="Chapter 11">
+	<Section id="chapter11">
+		<H slot="heading">Chapter 11</H>
+
 		<dl class="p-video-diff">
 			<div id="time38m02s">
 				<dt>38′2″ 〜 38′14″</dt>
@@ -775,7 +795,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter12" heading="Chapter 12">
+	<Section id="chapter12">
+		<H slot="heading">Chapter 12</H>
+
 		<dl class="p-video-diff">
 			<div id="time40m45s">
 				<dt>40′45″</dt>
@@ -799,7 +821,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter13" heading="Chapter 13">
+	<Section id="chapter13">
+		<H slot="heading">Chapter 13</H>
+
 		<dl class="p-video-diff">
 			<div id="time41m44s">
 				<dt>41′44″ほか</dt>
@@ -941,7 +965,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter14" heading="Chapter 14">
+	<Section id="chapter14">
+		<H slot="heading">Chapter 14</H>
+
 		<dl class="p-video-diff">
 			<div id="time46m08s">
 				<dt>46′8″、46′20″</dt>
@@ -984,7 +1010,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter17" heading="Chapter 17">
+	<Section id="chapter17">
+		<H slot="heading">Chapter 17</H>
+
 		<dl class="p-video-diff">
 			<div id="time59m57s">
 				<dt>59′57″</dt>
@@ -1008,7 +1036,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter18" heading="Chapter 18">
+	<Section id="chapter18">
+		<H slot="heading">Chapter 18</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h00m27s">
 				<dt>1h 0′27″</dt>
@@ -1051,7 +1081,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter20" heading="Chapter 20">
+	<Section id="chapter20">
+		<H slot="heading">Chapter 20</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h07m45s">
 				<dt>1h 7′45″ 〜 1h 8′20″</dt>
@@ -1218,7 +1250,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter21" heading="Chapter 21">
+	<Section id="chapter21">
+		<H slot="heading">Chapter 21</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h12m32s">
 				<dt>1h 12′32″ 〜 1h 20′55″</dt>
@@ -1500,7 +1534,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter22" heading="Chapter 22">
+	<Section id="chapter22">
+		<H slot="heading">Chapter 22</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h18m25s">
 				<dt>1h 18′25″</dt>
@@ -1642,7 +1678,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter23" heading="Chapter 23">
+	<Section id="chapter23">
+		<H slot="heading">Chapter 23</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h23m59s">
 				<dt>1h 23′59″</dt>
@@ -1716,7 +1754,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter24" heading="Chapter 24">
+	<Section id="chapter24">
+		<H slot="heading">Chapter 24</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h25m54s">
 				<dt>1h 25′54″</dt>
@@ -2092,7 +2132,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter25" heading="Chapter 25">
+	<Section id="chapter25">
+		<H slot="heading">Chapter 25</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h33m23s">
 				<dt>1h 33′23″</dt>
@@ -2116,7 +2158,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter26" heading="Chapter 26">
+	<Section id="chapter26">
+		<H slot="heading">Chapter 26</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h33m51s">
 				<dt>1h 33′51″</dt>
@@ -2266,7 +2310,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter27" heading="Chapter 27">
+	<Section id="chapter27">
+		<H slot="heading">Chapter 27</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h40m56s">
 				<dt>1h 40′56″</dt>
@@ -2461,7 +2507,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter28" heading="Chapter 28">
+	<Section id="chapter28">
+		<H slot="heading">Chapter 28</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h45m11s">
 				<dt>1h 45′11″</dt>
@@ -2795,7 +2843,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter29" heading="Chapter 29" headingNote="エンディング">
+	<Section id="chapter29">
+		<H slot="heading">Chapter 29<small>（エンディング）</small></H>
+
 		<dl class="p-video-diff">
 			<div id="time1h50m05s">
 				<dt>1h 50′5″ 〜</dt>
@@ -2819,7 +2869,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter30" heading="Chapter 30">
+	<Section id="chapter30">
+		<H slot="heading">Chapter 30</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h55m29s">
 				<dt>1h 55′29″</dt>
@@ -2863,7 +2915,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="references" heading="参考文献">
+	<Section id="references">
+		<H slot="heading">参考文献</H>
+
 		<ul class="p-links">
 			<li><LinkExternal href="http://roadream1029.jugem.jp/?eid=237">田所リゲ介さんの比較一覧</LinkExternal></li>
 			<li>

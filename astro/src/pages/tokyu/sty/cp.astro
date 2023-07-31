@@ -5,8 +5,9 @@ import Layout from '@layouts/Tokyu.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -145,7 +146,9 @@ const slugger = new GithubSlugger();
 		<li>圧縮機変位容積で注釈番号のないものは現車調査による。</li>
 	</ul>
 
-	<Section slugger={slugger} id="d2n" heading="D2N">
+	<Section id="d2n">
+		<H slot="heading">D2N</H>
+
 		<div class="c-flex">
 			<div class="c-flex__item">
 				<figure class="c-fit">
@@ -178,7 +181,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="3ys" heading="3YS">
+	<Section id="3ys">
+		<H slot="heading">3YS</H>
+
 		<div class="c-flex">
 			<div class="c-flex__item">
 				<figure class="c-fit">
@@ -215,7 +220,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="c1000" heading="C1000">
+	<Section id="c1000">
+		<H slot="heading">C1000</H>
+
 		<div class="c-flex">
 			<div class="c-flex__item">
 				<figure class="c-fit">
@@ -236,7 +243,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="hb1500" heading="HB1500">
+	<Section id="hb1500">
+		<H slot="heading">HB1500</H>
+
 		<div class="c-flex">
 			<div class="c-flex__item">
 				<figure class="c-fit">
@@ -281,7 +290,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="hb2000" heading="HB2000">
+	<Section id="hb2000">
+		<H slot="heading">HB2000</H>
+
 		<div class="c-flex">
 			<div class="c-flex__item">
 				<figure class="c-fit">
@@ -337,8 +348,12 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="hs20" heading="HS20">
-		<Section slugger={slugger} depth={2} heading="誘導電動機" headingNote="HS20-1" headingType="b">
+	<Section id="hs20">
+		<H slot="heading">HS20</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">誘導電動機<small>（HS20-1）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -376,7 +391,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="直流電動機" headingNote="HS20G" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">直流電動機<small>（HS20G）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -398,8 +415,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="hs10" heading="HS10">
-		<Section slugger={slugger} depth={2} heading="直流電動機" headingType="b">
+	<Section id="hs10">
+		<H slot="heading">HS10</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">直流電動機</H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -432,7 +453,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="誘導電動機" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">誘導電動機</H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -453,8 +476,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="hs5" heading="HS5">
-		<Section slugger={slugger} depth={2} heading="直流電動機" headingNote="HS5" headingType="b">
+	<Section id="hs5">
+		<H slot="heading">HS5</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">直流電動機<small>（HS5）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -475,7 +502,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="誘導電動機" headingNote="HS5-1" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">誘導電動機<small>（HS5-1）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -510,7 +539,9 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="c2500" heading="C2500L">
+	<Section id="c2500">
+		<H slot="heading">C2500L</H>
+
 		<figure class="c-fit">
 			<div class="p-embed -border">
 				<Image path="tokyu/sty/cp/C2500L_3510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -529,7 +560,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="c2000m" heading="C2000M">
+	<Section id="c2000m">
+		<H slot="heading">C2000M</H>
+
 		<div class="c-flex">
 			<div class="c-flex__item">
 				<figure class="c-fit">

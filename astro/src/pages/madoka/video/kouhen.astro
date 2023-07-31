@@ -1,11 +1,11 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -21,8 +21,6 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/video/shinpen', name: '新編' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -30,7 +28,9 @@ const slugger = new GithubSlugger();
 		<AmazonItem asin="B00C3EDY68" title="劇場版 魔法少女まどか☆マギカ [前編] 始まりの物語/[後編] 永遠の物語【通常版】 [Blu-ray]" date="2013-07-24" imageId="51IOl9Ky54L" imageWidth={135} imageHeight={160} />
 	</Amazon>
 
-	<Section slugger={slugger} id="chapter1" heading="Chapter 1">
+	<Section id="chapter1">
+		<H slot="heading">Chapter 1</H>
+
 		<dl class="p-video-diff">
 			<div id="time0m37s">
 				<dt>0′37″ 〜 2′13″</dt>
@@ -52,7 +52,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter2" heading="Chapter 2" headingNote="オープニング">
+	<Section id="chapter2">
+		<H slot="heading">Chapter 2<small>（オープニング）</small></H>
+
 		<dl class="p-video-diff">
 			<div id="time4m27s">
 				<dt>4′27″</dt>
@@ -85,7 +87,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter4" heading="Chapter 4">
+	<Section id="chapter4">
+		<H slot="heading">Chapter 4</H>
+
 		<dl class="p-video-diff">
 			<div id="time12m46s">
 				<dt>12′46″</dt>
@@ -106,7 +110,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter5" heading="Chapter 5">
+	<Section id="chapter5">
+		<H slot="heading">Chapter 5</H>
+
 		<dl class="p-video-diff">
 			<div id="time14m55s">
 				<dt>14′55″</dt>
@@ -136,7 +142,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter6" heading="Chapter 6">
+	<Section id="chapter6">
+		<H slot="heading">Chapter 6</H>
+
 		<dl class="p-video-diff">
 			<div id="time18m53s">
 				<dt>18′53″</dt>
@@ -204,7 +212,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter8" heading="Chapter 8">
+	<Section id="chapter8">
+		<H slot="heading">Chapter 8</H>
+
 		<dl class="p-video-diff">
 			<div id="time30m36s">
 				<dt>30′36″</dt>
@@ -244,7 +254,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter15" heading="Chapter 15">
+	<Section id="chapter15">
+		<H slot="heading">Chapter 15</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h02m46s">
 				<dt>1h 2′46″</dt>
@@ -257,7 +269,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter21" heading="Chapter 21">
+	<Section id="chapter21">
+		<H slot="heading">Chapter 21</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h29m28s">
 				<dt>1h 29′28″</dt>
@@ -294,7 +308,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter22" heading="Chapter 22">
+	<Section id="chapter22">
+		<H slot="heading">Chapter 22</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h32m46s">
 				<dt>1h 32′46″</dt>
@@ -307,7 +323,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter25" heading="Chapter 25">
+	<Section id="chapter25">
+		<H slot="heading">Chapter 25</H>
+
 		<dl class="p-video-diff">
 			<div id="time1h41m52s">
 				<dt>1h 41′52″</dt>
@@ -333,7 +351,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter27" heading="Chapter 27" headingNote="エンディング">
+	<Section id="chapter27">
+		<H slot="heading">Chapter 27<small>（エンディング）</small></H>
+
 		<dl class="p-video-diff">
 			<div id="time1h45m50s">
 				<dt>1h 45′50″</dt>
@@ -346,7 +366,9 @@ const slugger = new GithubSlugger();
 		</dl>
 	</Section>
 
-	<Section slugger={slugger} id="chapter28" heading="Chapter 28" headingNote="新編予告">
+	<Section id="chapter28">
+		<H slot="heading">Chapter 28<small>（新編予告）</small></H>
+
 		<dl class="p-video-diff">
 			<div id="time1h50m01s">
 				<dt>1h 50′1″</dt>

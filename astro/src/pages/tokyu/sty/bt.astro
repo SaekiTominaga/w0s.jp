@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -22,10 +23,14 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="series7200" heading="7200系">
+	<Section id="series7200">
+		<H slot="heading">7200系</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="7200系" headingNote="100V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7200系<small>（100V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/7200_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -40,10 +45,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series8000" heading="8000系グループ、7600系、7700系">
+	<Section id="series8000">
+		<H slot="heading">8000系グループ、7600系、7700系</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="8000系" headingNote="100V・20Ah、100V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8000系<small>（100V・20Ah、100V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/8000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -56,7 +65,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="8500系、8090系、7600系、7700系" headingNote="100V・40Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系、8090系、7600系、7700系<small>（100V・40Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/8500_100V-40Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -69,7 +80,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="7700系" headingNote="100V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7700系<small>（100V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/7800_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -82,7 +95,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="8500系、8090系" headingNote="24V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系、8090系<small>（24V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/8500_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -95,7 +110,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="7600系、7700系" headingNote="24V・20Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7600系、7700系<small>（24V・20Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/7600_24V-20Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -110,10 +127,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series9000" heading="9000系">
+	<Section id="series9000">
+		<H slot="heading">9000系</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="9000系" headingNote="100V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9000系<small>（100V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/9000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -126,7 +147,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="9000系" headingNote="100V・30Ah / 24V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9000系<small>（100V・30Ah / 24V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/9000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -141,10 +164,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series1000" heading="1000系、2000系">
+	<Section id="series1000">
+		<H slot="heading">1000系、2000系</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="1000系、2000系" headingNote="100V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000系、2000系<small>（100V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/1000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -157,7 +184,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="1000系、2000系" headingNote="100V・30Ah / 24V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000系、2000系<small>（100V・30Ah / 24V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/1000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -172,10 +201,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series3000" heading="新3000系、Y000系">
+	<Section id="series3000">
+		<H slot="heading">新3000系、Y000系</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="新3000系、Y000系" headingNote="100V・60Ah / 24V・30Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">新3000系、Y000系<small>（100V・60Ah / 24V・30Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/3000_100V-60Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -190,10 +223,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series300" heading="300系">
+	<Section id="series300">
+		<H slot="heading">300系</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="300系" headingNote="100V・20Ah / 24V・80Ah" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">300系<small>（100V・20Ah / 24V・80Ah）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bt/300_100V-20Ah_24V-80Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />

@@ -1,12 +1,12 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -20,12 +20,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>古くから制御回路や照明装置などの補助電源として、架線電圧を電動機に入力し同軸上の発電機を通すことで電力の変換を行う<dfn>電動発電機（MG）</dfn>が使われており、当初は直流出力が行われていましたが、1950年代には交流蛍光灯の導入が行われ、MG は交直出力が可能な複流タイプが主流になりました。さらに1960年代後半にはインバーターを定電圧・定周波数で制御する<dfn>静止形インバーター（SIV）</dfn>が登場し、東急電鉄では8000系から採用されています。</p>
 			<p>1971年には東横線にて冷房車が導入されましたが、この時点では冷房電源用の大容量かつ三相交流出力に対応した SIV は開発されていなかったため一時的に MG が復活、大容量 SIV の量産が開始されて以降は全面的に SIV となり現在に至ります。</p>
@@ -406,8 +406,12 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="mg-few" heading="小容量 MG">
-		<Section slugger={slugger} id="clg107" depth={2} heading="CLG107" headingNote="東京芝浦電気、2.5kVA" headingType="b">
+	<Section id="mg-few">
+		<H slot="heading">小容量 MG</H>
+
+		<Section id="clg107" depth={2} headingType="b">
+			<H slot="heading">CLG107<small>（東京芝浦電気、2.5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -443,7 +447,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="clg308" depth={2} heading="CLG308" headingNote="東京芝浦電気、1.5kVA" headingType="b">
+		<Section id="clg308" depth={2} headingType="b">
+			<H slot="heading">CLG308<small>（東京芝浦電気、1.5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -461,7 +467,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="clg316" depth={2} heading="CLG316" headingNote="東京芝浦電気、5kVA" headingType="b">
+		<Section id="clg316" depth={2} headingType="b">
+			<H slot="heading">CLG316<small>（東京芝浦電気、5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -477,7 +485,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="tdk381" depth={2} heading="TDK381" headingNote="東洋電機製造、6kVA" headingType="b">
+		<Section id="tdk381" depth={2} headingType="b">
+			<H slot="heading">TDK381<small>（東洋電機製造、6kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -499,7 +509,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="clg320" depth={2} heading="CLG320" headingNote="東京芝浦電気、7kVA" headingType="b">
+		<Section id="clg320" depth={2} headingType="b">
+			<H slot="heading">CLG320<small>（東京芝浦電気、7kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -518,7 +530,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="hg533" depth={2} heading="HG533" headingNote="日立製作所、7.5kVA" headingType="b">
+		<Section id="hg533" depth={2} headingType="b">
+			<H slot="heading">HG533<small>（日立製作所、7.5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -539,7 +553,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="clg339" depth={2} heading="CLG339" headingNote="東京芝浦電気、7.5kVA" headingType="b">
+		<Section id="clg339" depth={2} headingType="b">
+			<H slot="heading">CLG339<small>（東京芝浦電気、7.5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -576,7 +592,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="clg319" depth={2} heading="CLG319" headingNote="東京芝浦電気、5.5kVA" headingType="b">
+		<Section id="clg319" depth={2} headingType="b">
+			<H slot="heading">CLG319<small>（東京芝浦電気、5.5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -601,7 +619,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="clg333" depth={2} heading="CLG333" headingNote="東京芝浦電気、9kVA" headingType="b">
+		<Section id="clg333" depth={2} headingType="b">
+			<H slot="heading">CLG333<small>（東京芝浦電気、9kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -623,7 +643,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="tdk359" depth={2} heading="TDK359" headingNote="東洋電機製造、9kVA" headingType="b">
+		<Section id="tdk359" depth={2} headingType="b">
+			<H slot="heading">TDK359<small>（東洋電機製造、9kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -645,7 +667,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="tdk366" depth={2} heading="TDK366" headingNote="東洋電機製造、5.5kVA" headingType="b">
+		<Section id="tdk366" depth={2} headingType="b">
+			<H slot="heading">TDK366<small>（東洋電機製造、5.5kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -669,8 +693,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="siv-few" heading="小容量 SIV">
-		<Section slugger={slugger} id="bs33" depth={2} heading="BS33" headingNote="東京芝浦電気、10kVA" headingType="b">
+	<Section id="siv-few">
+		<H slot="heading">小容量 SIV</H>
+
+		<Section id="bs33" depth={2} headingType="b">
+			<H slot="heading">BS33<small>（東京芝浦電気、10kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -699,7 +727,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv009" depth={2} heading="INV009" headingNote="東芝、2kVA" headingType="b">
+		<Section id="inv009" depth={2} headingType="b">
+			<H slot="heading">INV009<small>（東芝、2kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -722,8 +752,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="fan-power" heading="扇風機電源装置">
-		<Section slugger={slugger} id="s11" depth={2} heading="S11" headingNote="小糸工業、1kVA" headingType="b">
+	<Section id="fan-power">
+		<H slot="heading">扇風機電源装置</H>
+
+		<Section id="s11" depth={2} headingType="b">
+			<H slot="heading">S11<small>（小糸工業、1kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -746,8 +780,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="mg-much" heading="大容量 MG">
-		<Section slugger={slugger} id="clg350" depth={2} heading="CLG350" headingNote="東京芝浦電気、140kVA" headingType="b">
+	<Section id="mg-much">
+		<H slot="heading">大容量 MG</H>
+
+		<Section id="clg350" depth={2} headingType="b">
+			<H slot="heading">CLG350<small>（東京芝浦電気、140kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -769,7 +807,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="hg554" depth={2} heading="HG554" headingNote="日立製作所、90kVA" headingType="b">
+		<Section id="hg554" depth={2} headingType="b">
+			<H slot="heading">HG554<small>（日立製作所、90kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -790,7 +830,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="tdk3725" depth={2} heading="TDK3725" headingNote="東洋電機製造、75kVA" headingType="b">
+		<Section id="tdk3725" depth={2} headingType="b">
+			<H slot="heading">TDK3725<small>（東洋電機製造、75kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -813,8 +855,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="siv-much" heading="大容量 SIV">
-		<Section slugger={slugger} id="bs443" depth={2} heading="BS443" headingNote="東京芝浦電気、170kVA" headingType="b">
+	<Section id="siv-much">
+		<H slot="heading">大容量 SIV</H>
+
+		<Section id="bs443" depth={2} headingType="b">
+			<H slot="heading">BS443<small>（東京芝浦電気、170kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -834,7 +880,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="bs477" depth={2} heading="BS477" headingNote="東京芝浦電気、50kVA" headingType="b">
+		<Section id="bs477" depth={2} headingType="b">
+			<H slot="heading">BS477<small>（東京芝浦電気、50kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -873,7 +921,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="bs482" depth={2} heading="BS482" headingNote="東京芝浦電気、170kVA" headingType="b">
+		<Section id="bs482" depth={2} headingType="b">
+			<H slot="heading">BS482<small>（東京芝浦電気、170kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -896,7 +946,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv003" depth={2} heading="INV003" headingNote="東芝、120kVA" headingType="b">
+		<Section id="inv003" depth={2} headingType="b">
+			<H slot="heading">INV003<small>（東芝、120kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -914,7 +966,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv006" depth={2} heading="INV006" headingNote="東芝、90kVA" headingType="b">
+		<Section id="inv006" depth={2} headingType="b">
+			<H slot="heading">INV006<small>（東芝、90kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -947,7 +1001,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv008" depth={2} heading="INV008" headingNote="東芝、170kVA" headingType="b">
+		<Section id="inv008" depth={2} headingType="b">
+			<H slot="heading">INV008<small>（東芝、170kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -968,7 +1024,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv020" depth={2} heading="INV020" headingNote="東芝、120kVA" headingType="b">
+		<Section id="inv020" depth={2} headingType="b">
+			<H slot="heading">INV020<small>（東芝、120kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -989,7 +1047,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="rg467" depth={2} heading="RG467 (SVH120-467)" headingNote="東洋電機製造、120kVA" headingType="b">
+		<Section id="rg467" depth={2} headingType="b">
+			<H slot="heading">RG467 (SVH120-467)<small>（東洋電機製造、120kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1014,7 +1074,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv029" depth={2} heading="INV029" headingNote="東芝、170kVA" headingType="b">
+		<Section id="inv029" depth={2} headingType="b">
+			<H slot="heading">INV029<small>（東芝、170kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1049,7 +1111,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv095" depth={2} heading="INV095" headingNote="東芝、170kVA" headingType="b">
+		<Section id="inv095" depth={2} headingType="b">
+			<H slot="heading">INV095<small>（東芝、170kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1070,7 +1134,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv127" depth={2} heading="INV127" headingNote="東芝、210kVA" headingType="b">
+		<Section id="inv127" depth={2} headingType="b">
+			<H slot="heading">INV127<small>（東芝、210kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1091,7 +1157,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv104" depth={2} heading="INV104" headingNote="東芝、100kVA" headingType="b">
+		<Section id="inv104" depth={2} headingType="b">
+			<H slot="heading">INV104<small>（東芝、100kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1112,7 +1180,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv146" depth={2} heading="INV146" headingNote="東芝、250kVA" headingType="b">
+		<Section id="inv146" depth={2} headingType="b">
+			<H slot="heading">INV146<small>（東芝、250kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1133,7 +1203,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv153" depth={2} heading="INV153" headingNote="東芝、100kVA" headingType="b">
+		<Section id="inv153" depth={2} headingType="b">
+			<H slot="heading">INV153<small>（東芝、100kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1155,7 +1227,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="inv205" depth={2} heading="INV205" headingNote="東芝、260kVA" headingType="b">
+		<Section id="inv205" depth={2} headingType="b">
+			<H slot="heading">INV205<small>（東芝、260kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1188,7 +1262,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="cda021" depth={2} heading="CDA021" headingNote="富士電機、30kVA" headingType="b">
+		<Section id="cda021" depth={2} headingType="b">
+			<H slot="heading">CDA021<small>（富士電機、30kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1210,7 +1286,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="bs483" depth={2} heading="BS483" headingNote="東京芝浦電気、90kVA" headingType="b">
+		<Section id="bs483" depth={2} headingType="b">
+			<H slot="heading">BS483<small>（東京芝浦電気、90kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1231,7 +1309,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="rg5096" depth={2} heading="RG5096" headingNote="東洋電機製造" headingType="b">
+		<Section id="rg5096" depth={2} headingType="b">
+			<H slot="heading">RG5096<small>（東洋電機製造）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1281,8 +1361,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="vvvf" heading="VVVF 主制御器 / SIV 一体型">
-		<Section slugger={slugger} id="rg660" depth={2} heading="RG660" headingNote="東洋電機製造、140kVA" headingType="b">
+	<Section id="vvvf">
+		<H slot="heading">VVVF 主制御器 / SIV 一体型</H>
+
+		<Section id="rg660" depth={2} headingType="b">
+			<H slot="heading">RG660<small>（東洋電機製造、140kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1304,7 +1388,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="svf041" depth={2} heading="SVF041" headingNote="東芝、80kVA" headingType="b">
+		<Section id="svf041" depth={2} headingType="b">
+			<H slot="heading">SVF041<small>（東芝、80kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1325,7 +1411,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="svf091" depth={2} heading="SVF091" headingNote="東芝、150kVA" headingType="b">
+		<Section id="svf091" depth={2} headingType="b">
+			<H slot="heading">SVF091<small>（東芝、150kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">
@@ -1347,8 +1435,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="series300" heading="空調制御装置">
-		<Section slugger={slugger} id="da61t" depth={2} heading="DA61T" headingNote="三菱電機、20kVA" headingType="b">
+	<Section id="series300">
+		<H slot="heading">空調制御装置</H>
+
+		<Section id="da61t" depth={2} headingType="b">
+			<H slot="heading">DA61T<small>（三菱電機、20kVA）</small></H>
+
 			<div class="c-flex">
 				<div class="c-flex__item">
 					<figure class="c-fit">

@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,12 +26,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/truck_etc', name: '総合車両製以外' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>1962年に登場した旧7000系は日本初のオールステンレスカーとして有名ですが、台車は米国バッド社との技術提携により完成した「パイオニアⅢ」が採用され、軸ばねを廃した簡素な構造と外側ディスクブレーキでユニークなものとなりました。</p>
 			<p>東急の鉄道線では続く7200系と8000系5次車までの制御車でも、ブレーキディスクが内側になった TS-707 型、TS-708 型が採用されました。</p>
@@ -88,8 +88,12 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="ts701" heading="TS-701 型" headingNote="PⅢ-701 型">
-		<Section slugger={slugger} id="ts701-m" depth={2} heading="TS-701" headingNote="動力台車" headingType="b">
+	<Section id="ts701">
+		<H slot="heading">TS-701 型<small>（PⅢ-701 型）</small></H>
+
+		<Section id="ts701-m" depth={2} headingType="b">
+			<H slot="heading">TS-701<small>（動力台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS701_mizuma7003.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -109,7 +113,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="ts701-t" depth={2} heading="TS-701" headingNote="付随台車" headingType="b">
+		<Section id="ts701-t" depth={2} headingType="b">
+			<H slot="heading">TS-701<small>（付随台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS701_fukushima7315.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -125,8 +131,12 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="ts708" heading="TS-708 型" headingNote="PⅢ-708 型">
-			<Section slugger={slugger} id="ts708-t" depth={2} heading="TS-708" headingNote="付随台車" headingType="b">
+		<Section id="ts708">
+			<H slot="heading">TS-708 型<small>（PⅢ-708 型）</small></H>
+
+			<Section id="ts708-t" depth={2} headingType="b">
+				<H slot="heading">TS-708<small>（付随台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/TS708_ueda7551.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />

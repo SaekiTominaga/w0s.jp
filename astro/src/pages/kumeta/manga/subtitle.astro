@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -14,12 +14,12 @@ const structuredData: StructuredData = {
 	description: '連載作品のサブタイトルのリストです。特別編や番外編は漫画雑誌への掲載かつ巻末目次に作者名が載った事例のみを収録しています。',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="nangoku" heading="行け!!南国アイスホッケー部">
+	<Section id="nangoku">
+		<H slot="heading">行け!!南国アイスホッケー部</H>
+
 		<p>すべて「週刊少年サンデー」掲載。</p>
 
 		<ul class="p-notes">
@@ -1714,7 +1714,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="rootp" heading="√P ルートパラダイス">
+	<Section id="rootp">
+		<H slot="heading">√P ルートパラダイス</H>
+
 		<p>すべて「ヤングサンデー」掲載。</p>
 
 		<ul class="p-notes">
@@ -1916,7 +1918,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="darling" heading="育ってダーリン!!">
+	<Section id="darling">
+		<H slot="heading">育ってダーリン!!</H>
+
 		<p>特記のないものは「週刊少年サンデー超」掲載（ただし1994年以前は名称が「週刊少年サンデー増刊号」）。</p>
 
 		<ul class="p-notes">
@@ -2126,7 +2130,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="pokapoka" heading="太陽の戦士ポカポカ">
+	<Section id="pokapoka">
+		<H slot="heading">太陽の戦士ポカポカ</H>
+
 		<p>すべて「週刊少年サンデー」掲載。</p>
 
 		<table class="p-table">
@@ -2463,7 +2469,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="kaizo" heading="かってに改蔵">
+	<Section id="kaizo">
+		<H slot="heading">かってに改蔵</H>
+
 		<p>すべて「週刊少年サンデー」掲載。</p>
 
 		<ul class="p-notes">
@@ -4748,7 +4756,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="zetsubou" heading="さよなら絶望先生">
+	<Section id="zetsubou">
+		<H slot="heading">さよなら絶望先生</H>
+
 		<p>特記のないものは「週刊少年マガジン」掲載。</p>
 
 		<table class="p-table">
@@ -7073,7 +7083,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="jyoshiraku" heading="じょしらく">
+	<Section id="jyoshiraku">
+		<H slot="heading">じょしらく</H>
+
 		<p>特記のないものは「別冊少年マガジン」掲載。</p>
 
 		<table class="p-table">
@@ -7500,7 +7512,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="sekadoro" heading="せっかち伯爵と時間どろぼう">
+	<Section id="sekadoro">
+		<H slot="heading">せっかち伯爵と時間どろぼう</H>
+
 		<p>特記のないものは「週刊少年マガジン」掲載。</p>
 
 		<table class="p-table">
@@ -7870,7 +7884,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="pulp" heading="スタジオパルプ">
+	<Section id="pulp">
+		<H slot="heading">スタジオパルプ</H>
+
 		<p>すべて「楽園 Le Paradis」掲載。</p>
 
 		<ul class="p-notes">
@@ -7994,7 +8010,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="kakushigoto" heading="かくしごと">
+	<Section id="kakushigoto">
+		<H slot="heading">かくしごと</H>
+
 		<p>特記のないものは「月刊少年マガジン」掲載。</p>
 
 		<ul class="p-notes">
@@ -9326,7 +9344,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="nankuru" heading="なんくる姉さん">
+	<Section id="nankuru">
+		<H slot="heading">なんくる姉さん</H>
+
 		<p>すべて「ヤングマガジンサード」掲載。</p>
 
 		<table class="p-table">
@@ -9588,7 +9608,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="shibuya" heading="シブヤニアファミリー">
+	<Section id="shibuya">
+		<H slot="heading">シブヤニアファミリー</H>
+
 		<p>すべて「週刊少年サンデー」掲載。</p>
 
 		<table class="p-table">

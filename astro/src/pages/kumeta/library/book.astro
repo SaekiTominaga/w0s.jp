@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import LibraryItemBook from '@components/LibraryItemBook.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -26,7 +27,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="1993年">
+	<Section slugger={slugger}>
+		<H slot="heading">1993年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ぱふ 1993年4月号" release="1993-03">
 			<div class="p-text">
 				<p>p.74: 「まんが家121人大アンケート1993」に回答</p>
@@ -39,21 +42,27 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="1996年">
+	<Section slugger={slugger}>
+		<H slot="heading">1996年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="モダンリビング 1996年11月号（No.109）" release="1996-10-07">
 			<div class="p-text">
 				<p>pp.170–172: 「住まいのデザインリフォーム相談シリーズ⑮」で西新宿の仕事場紹介</p>
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="1998年">
+	<Section slugger={slugger}>
+		<H slot="heading">1998年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="コミッカーズ 1998年8月号" release="1996-12">
 			<div class="p-text">
 				<p>p.20: 「カラーリング大研究」に Macintosh での着彩に関するコメント、『太陽の戦士ポカポカ』カラーイラスト掲載</p>
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2000年">
+	<Section slugger={slugger}>
+		<H slot="heading">2000年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="コミック・ファン 2000年8号" release="2000-03-15" tags={['インタビュー']}>
 			<div class="p-text">
 				<p>pp.76–79: 「このまんがで笑え!!」久米田康治インタビューで『かってに改蔵』のネタ出しなどの話題</p>
@@ -66,7 +75,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2003年">
+	<Section slugger={slugger}>
+		<H slot="heading">2003年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ガンダムグッズエース（ガンダムエース2003年9月号増刊）" release="2003-07-15" tags={['インタビュー']} amazonAsin="B00X65OCO6" amazonImageId="21nkU7WtY+L" amazonImageWidth={119} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.6–7: 久米田康治インタビュー（『機動戦士ガンダム』に関するコメント）、カラーイラスト</p>
@@ -85,7 +96,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2004年">
+	<Section slugger={slugger}>
+		<H slot="heading">2004年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="サイゾー 2004年3月号" release="2004-02-18">
 			<div class="p-text">
 				<p>pp.72–73: 「メガヒットのカラクリ」特集で『かってに改蔵』紹介、久米田先生の電話インタビュー</p>
@@ -100,7 +113,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2005年">
+	<Section slugger={slugger}>
+		<H slot="heading">2005年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ぱふ 2005年6月号" release="2005-04-30" tags={['畑健二郎']} amazonAsin="B0009H7OQW" amazonImageId="61ZTCSDFS6L" amazonImageWidth={117} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.35: 畑健二郎インタビューの中でアシスタント時代の話が挙がる</p>
@@ -114,7 +129,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2006年">
+	<Section slugger={slugger}>
+		<H slot="heading">2006年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="『ハヤテのごとく!』5巻" release="2006-01-14" tags={['畑健二郎']} isbn="4-09-120030-3" amazonAsin="B010F9NK2K" amazonImageId="51asAezAGcL" amazonImageWidth={102} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.189: 本巻の購入理由アンケート項目に<q>クメタ先生の漫画と間違えて</q>（前月に発売された『さよなら絶望先生』二集「今集のアンケート」Q5 を受けてのものと思われる）</p>
@@ -151,7 +168,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2007年">
+	<Section slugger={slugger}>
+		<H slot="heading">2007年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="季刊エス 18号（2007年春号）" release="2007-03-15" tags={['インタビュー']} amazonAsin="B000NQRURM" amazonImageId="61AGdzNgJiL" amazonImageWidth={117} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.62–67: 『さよなら絶望先生』久米田康治インタビュー</p>
@@ -343,7 +362,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2008年">
+	<Section slugger={slugger}>
+		<H slot="heading">2008年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="マンガ・エロティクス・エフ Vol.49" release="2008-01-09" tags={['描き下ろし']} isbn="978-4-7783-2052-2" amazonAsin="4778320522" amazonImageId="51Lc-T6DdEL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>自転車にまたがった女学生（内ももに湿布）のピンナップ</p>
@@ -687,7 +708,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2009年">
+	<Section slugger={slugger}>
+		<H slot="heading">2009年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="『もう、しませんから。』8巻" release="2009-03-17" isbn="978-4-06-384116-9" amazonAsin="B00LIN3UTQ" amazonImageId="510zWwPwDrL" amazonImageWidth={107} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.137–148: 『魔画尽町殺人事件（前編）』（原作: 西本英雄、漫画: 週刊少年マガジン全連載作家）に糸色望登場、ハシラに久米田先生コメント掲載（週刊少年マガジン 2008年17号に掲載）</p>
@@ -970,7 +993,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2010年">
+	<Section slugger={slugger}>
+		<H slot="heading">2010年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="プリンスアニメージュ 2010年winter" release="2010-02-02" tags={['アニメ']} isbn="978-4-19-720293-5" amazonAsin="4197202938" amazonImageId="61L5V29tIqL" amazonImageWidth={127} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.40–41: 「No Communication, <s>No</s> Life　非コミュニケーション男子」で糸色望が紹介、神谷浩史によるQ&amp;A</p>
@@ -1052,7 +1077,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2011年">
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="エースの系譜" release="2011-03-18" tags={['描き下ろし']} isbn="978-4-06-216794-9" amazonAsin="B00JIMMVLC" amazonImageId="51yYO-AmYwL" amazonImageWidth={112} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>装画を担当</p>
@@ -1155,7 +1182,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2012年">
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="プリキュア　シンドローム!" release="2012-03-09" isbn="978-4-344-02146-4" amazonAsin="4344021460" amazonImageId="61FzpKU91LL" amazonImageWidth={108} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.319–320: 「第四章　演じるプリキュア　声優　三瓶由布子、竹内順子、伊瀬茉莉也、永野愛、前田愛、仙台エリに聞く」で『さよなら絶望先生』におけるプリキュアネタに触れられる。</p>
@@ -1273,7 +1302,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2013年">
+	<Section slugger={slugger}>
+		<H slot="heading">2013年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="アニメスタイル 003（2013.03）" release="2013-03-27" tags={['アニメ']} isbn="978-4-89610-543-8" amazonAsin="4896105435" amazonImageId="51mamzDin2L" amazonImageWidth={114} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.63–64: 「新房昭之3万文字インタビュー」内で劇場版『かってに改蔵×さよなら絶望先生』の話題（p.58 にも劇中カットが掲載）</p>
@@ -1355,7 +1386,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2014年">
+	<Section slugger={slugger}>
+		<H slot="heading">2014年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="りぽぐら!" release="2014-01-06" tags={['描き下ろし']} isbn="978-4-06-182897-1" amazonAsin="4061828975" amazonImageId="51gDfTzdCbL" amazonImageWidth={98} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.177: 「LV.3 倫理社会」の扉イラストを担当（表紙右上にも掲載）</p>
@@ -1395,7 +1428,9 @@ const slugger = new GithubSlugger();
 		</LibraryItemBook>
 	</Section>
 
-	<Section slugger={slugger} heading="2015年">
+	<Section slugger={slugger}>
+		<H slot="heading">2015年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="少年サンデー '90セレクション　前期" release="2015-04-24" tags={['インタビュー']} isbn="978-4-09-119762-7" amazonAsin="4091197620" amazonImageId="61daM9GirgL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.429–438: 「超特別企画　'90年代作家同窓会【前編】」久米田康治×皆川亮二×七月鏡一×藤原芳秀×村枝賢一×河合克敏×藤田和日郎の座談会</p>
@@ -1489,7 +1524,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2016年">
+	<Section slugger={slugger}>
+		<H slot="heading">2016年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="アニメ監獄学園を創った男たち" release="2016-03-04" isbn="978-4-06-382749-1" amazonAsin="B01C5ETJPU" amazonImageId="617efKhBgaL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>第2話「なんでもいい男」で『じょしらく』アニメ化時のエピソードに言及、久米田先生がアニメ放送を観ての発言が紹介</p>
@@ -1564,7 +1601,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2017年">
+	<Section slugger={slugger}>
+		<H slot="heading">2017年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="spoon.2Di Vol.24" release="2017-03-31" tags={['アニメ']} isbn="978-4-04-898298-6" amazonAsin="4048982982" amazonImageId="61tR8oRlcwL" amazonImageWidth={126} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.39: アニメ『有頂天家族2』放送情報、キャラクター紹介</p>
@@ -1609,7 +1648,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2018年">
+	<Section slugger={slugger}>
+		<H slot="heading">2018年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="佐倉綾音写真集「さくらのおと」" release="2018-01-29" tags={['描き下ろし']} isbn="978-4-06-511169-7" amazonAsin="4065111692" amazonImageId="41ke-WT5XDL" amazonImageWidth={120} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>ワンピースを着た佐倉綾音のカラーイラストを寄稿</p>
@@ -1622,14 +1663,18 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2019年">
+	<Section slugger={slugger}>
+		<H slot="heading">2019年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="新房昭之×シャフト　クロニクル" release="2019-11-23" tags={['インタビュー']} isbn="978-4-8354-5701-7" amazonAsin="4835457013" amazonImageId="510waYsj0oL" amazonImageWidth={119} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>「季刊エス」に掲載された『さよなら絶望先生』『俗・さよなら絶望先生』『懺・さよなら絶望先生』『かってに改蔵』に関するインタビューや座談会が収録（再録）</p>
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2020年">
+	<Section slugger={slugger}>
+		<H slot="heading">2020年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ニュータイプ 2020年4月号" release="2020-03-10" tags={['アニメ', '版権イラスト']} amazonAsin="B084Z4K32C" amazonImageId="61l7I7Gbr7L" amazonImageWidth={127} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.92–93: 「プロフェッショナル? 〜仕事探訪〜」TVアニメ『かくしごと』ペン入れをする後藤可久士のイラスト（あおのゆか）、神谷浩史インタビュー</p>
@@ -1704,7 +1749,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2021年">
+	<Section slugger={slugger}>
+		<H slot="heading">2021年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="Manga Day To Day(下)" release="2021-03-25" tags={['描き下ろし']} isbn="978-4-06-522020-7" amazonAsin="B08Z3K8RD1" amazonImageId="51IAR1045vL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.325–332: 『ちょみっツ』掲載</p>
@@ -1765,7 +1812,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2022年">
+	<Section slugger={slugger}>
+		<H slot="heading">2022年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="『トニカクカワイイ』19巻" release="2022-02-18" tags={['畑健二郎']} isbn="978-4-09-850871-6" amazonAsin="B09RMKMKCV" amazonImageId="51yZco5sB5L" amazonImageWidth={102} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.157–174: 第168話「ハヤテのごとく! 2」（畑先生のアシスタント時代の思い出話）</p>
@@ -1787,7 +1836,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="調査中">
+	<Section slugger={slugger}>
+		<H slot="heading">調査中</H>
+
 		<ul class="p-list">
 			<li>
 				1990年代後半の雑誌でパソコンにおける漫画執筆の特集があり、久米田先生が登場しているらしい<small>（<LinkExternal href="https://twitter.com/1970Chione/status/1447166381024178182">目撃情報</LinkExternal>）</small>。同じ特集に内田美奈子先生も出ていらしたとのことで、<LinkExternal href="https://web.archive.org/web/19990204002252/http://home.impress.co.jp/magazine/pcdeco/cont_02/DECONT.HTM">PC DECO 1997年2月号</LinkExternal>の「特集2 パソコンでマンガはもっと面白くなる?!」の可能性があるが、国会図書館にも収蔵がなく現物を確認できていない。

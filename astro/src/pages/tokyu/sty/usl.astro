@@ -4,6 +4,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Image from '@components/Image.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -23,10 +24,14 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="olr" heading="7200系、7600系の過負荷灯">
+	<Section id="olr">
+		<H slot="heading">7200系、7600系の過負荷灯</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="オリジナルタイプ" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">オリジナルタイプ</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -43,7 +48,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="新型タイプ" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">新型タイプ</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -62,10 +69,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series8000" heading="8000系グループ、7600系、7700系等の床下灯">
+	<Section id="series8000">
+		<H slot="heading">8000系グループ、7600系、7700系等の床下灯</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="3灯タイプ" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">3灯タイプ</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -87,10 +98,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="series9000" heading="9000系、2000系等の床下灯">
+	<Section id="series9000">
+		<H slot="heading">9000系、2000系等の床下灯</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="4灯タイプ" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">4灯タイプ</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -107,7 +122,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="3灯タイプ" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">3灯タイプ</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />

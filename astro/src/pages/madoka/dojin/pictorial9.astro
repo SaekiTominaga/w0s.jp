@@ -1,8 +1,8 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -26,12 +26,12 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>首都圏をはじめ100か所を超える範囲に展開された、『マギアレコード』の美樹さやか駅ポスターの全容を写真で紹介します。</p>
 			<p>また、マギレコの最初の告知（2016年9月）からリリース、そして現在に至るまでに美樹さやかが関わったイベントも振り返ってみました。</p>
@@ -64,7 +64,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="buy" heading="購入">
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
 		<div class="c-flex -buttons">
 			<div class="c-flex__item">
 				<a href="pdf/pictorial9_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
@@ -93,7 +95,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="toc" heading="目次">
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
 		<ol class="p-list">
 			<li>マギアレコードと美樹さやか</li>
 			<li>秋葉原駅</li>
@@ -126,7 +130,9 @@ const slugger = new GithubSlugger();
 		</ol>
 	</Section>
 
-	<Section slugger={slugger} id="errata" heading="正誤情報">
+	<Section id="errata">
+		<H slot="heading">正誤情報</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -145,7 +151,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="add" heading="追加情報">
+	<Section id="add">
+		<H slot="heading">追加情報</H>
+
 		<div class="p-text">
 			<p>序章「マギアレコードと美樹さやか」の2018年7月1日〜8月10日の出来事です。 p.10 に挿入される想定でお読みください。</p>
 		</div>

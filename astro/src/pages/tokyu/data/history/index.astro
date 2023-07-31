@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
 import RequestUtil from '@util/Request.js';
@@ -201,7 +202,9 @@ if (requestQuery.output !== null) {
 		)
 	}
 
-	<Section slugger={slugger} heading="検索条件入力">
+	<Section slugger={slugger}>
+		<H slot="heading">検索条件入力</H>
+
 		<form class="c-stack">
 			<div class="p-form-grid -complex">
 				<div class="p-form-grid__group">
@@ -347,7 +350,9 @@ if (requestQuery.output !== null) {
 
 	{
 		requestQuery.output !== null && (
-			<Section slugger={slugger} heading="検索結果" class="js-autofocus">
+			<Section slugger={slugger} class="js-autofocus">
+				<H slot="heading">検索結果</H>
+
 				{searchCount >= 1 && (
 					<>
 						<p>{searchCount}件ヒットしました。</p>

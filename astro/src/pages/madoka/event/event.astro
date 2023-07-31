@@ -1,6 +1,6 @@
 ---
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -9,12 +9,12 @@ const structuredData: StructuredData = {
 	description: '2011年〜2014年に行われた「魔法少女まどか☆マギカ展」の開催情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="event" heading="魔法少女まどか☆マギカ展">
+	<Section id="event">
+		<H slot="heading">魔法少女まどか☆マギカ展</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -75,7 +75,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="event-shinpen" heading="劇場版　魔法少女まどか☆マギカ展（新編）">
+	<Section id="event-shinpen">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ展（新編）</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

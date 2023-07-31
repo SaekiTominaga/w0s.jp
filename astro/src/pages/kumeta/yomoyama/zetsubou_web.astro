@@ -2,8 +2,9 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -18,7 +19,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="公式サイト一覧">
+	<Section slugger={slugger}>
+		<H slot="heading">公式サイト一覧</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -76,7 +79,9 @@ const slugger = new GithubSlugger();
 			<li>『懺・さよなら絶望先生』はトップページのメニュー部分も Flash によるものなので、現在はリンクを辿ることはできませんが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です（<a href="http://king-cr.jp/special/zetsubou3/news.html">ニュース</a>、<a href="http://king-cr.jp/special/zetsubou3/staff.html">スタッフ&amp;キャスト</a>、<a href="http://king-cr.jp/special/zetsubou3/sch.html">放送日時</a>、<a href="http://king-cr.jp/special/zetsubou3/release.html">リリース情報</a>、<a href="http://king-cr.jp/special/zetsubou3/gallery.html">ギャラリー</a>、<a href="http://king-cr.jp/special/zetsubou3/chara.html">キャラクター</a>、<a href="http://king-cr.jp/special/zetsubou3/arasuji.html">各話あらすじ</a>、<a href="http://king-cr.jp/special/zetsubou3/story.html">懺・さよなら絶望先生とは? （ストーリー）</a>）。</li>
 		</ul>
 	</Section>
-	<Section slugger={slugger} heading="さよなら絶望先生">
+	<Section slugger={slugger}>
+		<H slot="heading">さよなら絶望先生</H>
+
 		<figure>
 			<div class="p-embed -border">
 				<iframe src="https://www.youtube-nocookie.com/embed/J3J4b_wuxsM" allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width="560" height="315" style="--aspect-ratio: 560/315"></iframe>
@@ -86,7 +91,9 @@ const slugger = new GithubSlugger();
 			</figcaption>
 		</figure>
 	</Section>
-	<Section slugger={slugger} heading="俗・さよなら絶望先生">
+	<Section slugger={slugger}>
+		<H slot="heading">俗・さよなら絶望先生</H>
+
 		<figure>
 			<div class="p-embed -border">
 				<iframe src="https://www.youtube-nocookie.com/embed/kDSBb4UD5CQ" allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width="560" height="315" style="--aspect-ratio: 560/315"></iframe>
@@ -100,7 +107,9 @@ const slugger = new GithubSlugger();
 			<li>裏ページ内の神谷浩史コメント動画は直接<a href="http://king-cr.jp/special/zetsubou2/ura/kamiya_com.flv" download="kamiya_com.flv">動画ファイル（Flash Video 形式）をダウンロード</a>して閲覧ください。</li>
 		</ul>
 	</Section>
-	<Section slugger={slugger} heading="懺・さよなら絶望先生">
+	<Section slugger={slugger}>
+		<H slot="heading">懺・さよなら絶望先生</H>
+
 		<figure>
 			<div class="p-embed -border">
 				<iframe src="https://www.youtube-nocookie.com/embed/t4j7jg8_GZQ" allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width="560" height="315" style="--aspect-ratio: 560/315"></iframe>

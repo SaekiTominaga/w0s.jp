@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -13,8 +13,6 @@ const structuredData: StructuredData = {
 	description: '紙の本にはあるものの、電子書籍に収録されていないコンテンツをまとめました。作品によって背表紙やカバーそでのデータまで収録される事例もある一方、巻末おまけや読者投稿コーナーなどのコンテンツすら割愛されるケースもあります。',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -187,7 +185,9 @@ const slugger = new GithubSlugger();
 		</li>
 	</ul>
 
-	<Section slugger={slugger} id="kaizo-omake" heading="『かってに改蔵』巻末おまけ">
+	<Section id="kaizo-omake">
+		<H slot="heading">『かってに改蔵』巻末おまけ</H>
+
 		<p>『かってに改蔵』の巻末おまけコンテンツは巻によって電子書籍への収録有無が異なります。</p>
 
 		<table class="p-table">

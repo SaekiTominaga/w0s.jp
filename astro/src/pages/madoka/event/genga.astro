@@ -1,6 +1,6 @@
 ---
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -9,12 +9,12 @@ const structuredData: StructuredData = {
 	description: '2013年に行われた「魔法少女まどか☆マギカ複製原画展」の開催情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="genga-zenkouhen" heading="劇場版　魔法少女まどか☆マギカ複製原画展（前後編）">
+	<Section id="genga-zenkouhen">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ複製原画展（前後編）</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

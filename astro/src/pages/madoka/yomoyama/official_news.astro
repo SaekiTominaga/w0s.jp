@@ -2,8 +2,9 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -18,7 +19,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="TV シリーズ">
+	<Section slugger={slugger}>
+		<H slot="heading">TV シリーズ</H>
+
 		<ul class="p-links">
 			<li><a href="https://www.madoka-magica.com/tv/news/#n234575">発売中の『ニュータイプ5月号』『アニメージュ5月号』『アニメディア5月号』に情報掲載中</a> （2011年4月11日）</li>
 			<li><a href="https://www.madoka-magica.com/tv/news/#n234594">発売中の『オトナアニメvol.20』大特集中</a> （2011年4月11日）</li>
@@ -101,7 +104,9 @@ const slugger = new GithubSlugger();
 			<li><a href="https://www.madoka-magica.com/tv/news/#n263559">『魔法少女まどか☆マギカ オンライン』みんなでテスト参加者募集開始!</a> （2012年6月4日）</li>
 		</ul>
 	</Section>
-	<Section slugger={slugger} heading="劇場版">
+	<Section slugger={slugger}>
+		<H slot="heading">劇場版</H>
+
 		<ul class="p-links">
 			<li><a href="https://www.madoka-magica.com/rebellion/news/?id=14354">【限定特典付き】 劇場窓口販売前売券第1弾7月7日(土)発売</a>（2012年6月8日）</li>
 			<li><a href="https://www.madoka-magica.com/rebellion/news/?id=14355">前編＆後編公開日決定！！</a>（2012年6月8日）</li>

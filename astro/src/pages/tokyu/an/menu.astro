@@ -2,6 +2,7 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -19,17 +20,23 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="portable" heading="携帯電話" headingNote="通常時">
+	<Section id="portable">
+		<H slot="heading">携帯電話<small>（通常時）</small></H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="池上、多摩川線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">池上、多摩川線</H>
+
 					<div class="p-box">
 						<p>お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</p>
 					</div>
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="目黒線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">目黒線</H>
+
 					<div class="p-box">
 						<p><b>池上、多摩川線と同内容</b></p>
 					</div>
@@ -38,17 +45,23 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="trans" heading="全国交通安全運動" headingNote="例年4月上旬、9月下旬">
+	<Section id="trans">
+		<H slot="heading">全国交通安全運動<small>（例年4月上旬、9月下旬）</small></H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="池上、多摩川線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">池上、多摩川線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま全国交通安全運動を実施しております。交通ルールを守り、事故を防止しましょう。</p>
 					</div>
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="目黒線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">目黒線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま全国交通安全運動を実施しております。線路への置き石、電車への投石など、列車妨害行為の防止に、ご協力ください。</p>
 					</div>
@@ -57,17 +70,23 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="summer" heading="夏季の輸送対策と安全運動" headingNote="例年7月下旬">
+	<Section id="summer">
+		<H slot="heading">夏季の輸送対策と安全運動<small>（例年7月下旬）</small></H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="池上、多摩川線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">池上、多摩川線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま夏季の輸送対策と安全運動を実施しております。踏切の無理な横断はお止めください。皆様方のご理解とご協力をお願い申し上げます。</p>
 					</div>
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="目黒線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">目黒線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま夏季の輸送対策と安全運動を実施しております。車内や駅構内で不審なものを発見されましたら、乗務員または駅係員までお知らせください。</p>
 					</div>
@@ -76,17 +95,23 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="fire" heading="全国火災予防運動" headingNote="例年11月中旬、3月上旬">
+	<Section id="fire">
+		<H slot="heading">全国火災予防運動<small>（例年11月中旬、3月上旬）</small></H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="池上、多摩川線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">池上、多摩川線</H>
+
 					<div class="p-box">
 						<p><b>設定なし</b>（通常時の放送が流れる）</p>
 					</div>
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="目黒線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">目黒線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま全国火災予防運動を実施しております。危険品の車内持ち込みや車内でのお煙草は、事故の元になるばかりでなく、ほかのお客様のご迷惑となりますので、固くお断りいたします。</p>
 					</div>
@@ -95,17 +120,23 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="year" heading="年末年始輸送安全総点検" headingNote="例年12月下旬〜1月上旬">
+	<Section id="year">
+		<H slot="heading">年末年始輸送安全総点検<small>（例年12月下旬〜1月上旬）</small></H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="池上、多摩川線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">池上、多摩川線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま年末年始輸送安全総点検を実施しております。危険物の車内持ち込みや、駆け込み乗車はお止めくださるよう、お願い申し上げます。</p>
 					</div>
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="目黒線" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">目黒線</H>
+
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま年末年始輸送安全総点検を実施しております。危険品の車内持ち込みや、駆け込み乗車はお止めください。お客様のご協力をお願いいたします。</p>
 					</div>
@@ -118,7 +149,9 @@ const slugger = new GithubSlugger();
 		<li>ここで紹介した以外に、世田谷線300系車両にもメニュー放送が用意されていますが、通常は乗務員によるマイク放送で案内されるので割愛します。</li>
 	</ul>
 
-	<Section slugger={slugger} id="link" heading="参考リンク">
+	<Section id="link">
+		<H slot="heading">参考リンク</H>
+
 		<ul class="p-links">
 			<li><LinkExternal href="http://www.mlit.go.jp/list/anzen_04.html">国土交通省／政策分野別情報／安全４</LinkExternal></li>
 			<li><LinkExternal href="http://www.fdma.go.jp/">総務省消防庁</LinkExternal></li>

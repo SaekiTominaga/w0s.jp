@@ -1,6 +1,7 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Admin.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import HttpResponseUtil from '@util/HttpResponse.js';
@@ -136,7 +137,9 @@ for (const newsPage of newsPageListDto) {
 ---
 
 <Layout pagePath={pagePath} structuredData={structuredData}>
-	<Section slugger={slugger} heading="データ登録">
+	<Section slugger={slugger}>
+		<H slot="heading">データ登録</H>
+
 		<form action={pagePath} method="post" class="c-stack">
 			<div class="p-form-grid">
 				<div class="p-form-grid__group">
@@ -291,7 +294,9 @@ for (const newsPage of newsPageListDto) {
 
 	{
 		[...newsPageList].map(([categoryName, newsPageOfCategory]) => (
-			<Section slugger={slugger} heading={categoryName}>
+			<Section slugger={slugger}>
+				<H slot="heading">{categoryName}</H>
+
 				<table class="p-table p-admin-crawler-table">
 					<thead>
 						<tr>

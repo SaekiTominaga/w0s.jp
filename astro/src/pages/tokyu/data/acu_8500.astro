@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -24,15 +25,21 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>8000系グループのうち、9000系デビュー以降に編成単位で製造された車両（8637F〜8642F）は冷房装置が RPU-2204 型になりました。9000系と同じくマイナーチェンジした RPU-2214A 型も存在します。</p>
 			<p>東横線9000系に引き続き、田園都市線所属の8500系も2005年に一部が新型（RPU-4018 型）へ置き換えられました。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="8637F" heading="8637F">
-		<Section slugger={slugger} depth={2} heading="2010年時点" headingType="c">
+	<Section id="8637F">
+		<H slot="heading">8637F</H>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2010年時点</H>
+
 			<figure class="c-fit">
 				<div class="p-embed">
 					<img src="/tokyu/data/image/acu/denentoshi_8637_2010.svg" alt="8637: もっとも上り方のみ新型、その他3基はRPU-2214型、8797: 4基ともRPU-2214型、8973: もっとも下り方のみ新型、その他3基はRPU-2214型、0801: 中央2基はRPU-2214型、両端は新型、8798: 中央2基はRPU-2214型、両端は新型、0808: もっとも上り方のみ新型、下り方から2基目はRPU-2214A型、その他2基はRPU-2214型、0711: 中央2基はRPU-2214型、両端は新型、8980: 中央2基はRPU-2214A型、両端は新型、0803: 4基ともRPU-2214型、8537: もっとも下り方のみ新型、その他3基はRPU-2214型" width="946" height="49" style="min-width: 640px" />
@@ -40,7 +47,9 @@ const slugger = new GithubSlugger();
 			</figure>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="2019年時点" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2019年時点</H>
+
 			<!-- 2018-12-03, 2019-01-10, 2019-07-19 -->
 
 			<figure class="c-fit">
@@ -50,7 +59,9 @@ const slugger = new GithubSlugger();
 			</figure>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="2022年時点" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2022年時点</H>
+
 			<!-- 2022-07-29 -->
 
 			<figure class="c-fit">
@@ -67,8 +78,12 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="8638F" heading="8638F" headingNote="2019年運用離脱">
-		<Section slugger={slugger} depth={2} heading="2010年時点" headingType="c">
+	<Section id="8638F">
+		<H slot="heading">8638F<small>（2019年運用離脱）</small></H>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2010年時点</H>
+
 			<figure class="c-fit">
 				<div class="p-embed">
 					<img src="/tokyu/data/image/acu/oimachi_8638_2010.svg" alt="8638: 4基ともRPU-2214型、0700: 4基ともRPU-2214型、8975: 4基ともRPU-2214型、0804: 4基ともRPU-2214型、8538: 4基ともRPU-2214型" width="471" height="39" />
@@ -76,7 +91,9 @@ const slugger = new GithubSlugger();
 			</figure>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="2019年時点" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2019年時点</H>
+
 			<!-- 2018-12-03, 2019-01-10 -->
 
 			<figure class="c-fit">
@@ -92,8 +109,12 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="8639F" heading="8639F" headingNote="2018年運用離脱">
-		<Section slugger={slugger} depth={2} heading="2010年時点" headingType="c">
+	<Section id="8639F">
+		<H slot="heading">8639F<small>（2018年運用離脱）</small></H>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2010年時点</H>
+
 			<figure class="c-fit">
 				<div class="p-embed">
 					<img src="/tokyu/data/image/acu/oimachi_8639_2010.svg" alt="8639: 4基ともRPU-2214型、0701: 4基ともRPU-2214型、8976: 4基ともRPU-2214型、0805: 4基ともRPU-2214型、8539: 4基ともRPU-2214型" width="471" height="39" />
@@ -106,8 +127,12 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="8640F" heading="8640F" headingNote="2019年運用離脱">
-		<Section slugger={slugger} depth={2} heading="2010年時点、2019年時点" headingType="c">
+	<Section id="8640F">
+		<H slot="heading">8640F<small>（2019年運用離脱）</small></H>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2010年時点、2019年時点</H>
+
 			<!-- 2019-01-10 -->
 
 			<figure class="c-fit">
@@ -122,8 +147,12 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="8641F" heading="8641F" headingNote="2019年運用離脱">
-		<Section slugger={slugger} depth={2} heading="2010年時点、2019年時点" headingType="c">
+	<Section id="8641F">
+		<H slot="heading">8641F<small>（2019年運用離脱）</small></H>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2010年時点、2019年時点</H>
+
 			<!-- 2018-12-05, 2019-01-10 -->
 
 			<figure class="c-fit">
@@ -138,8 +167,12 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="8642F" heading="8642F" headingNote="2019年運用離脱">
-		<Section slugger={slugger} depth={2} heading="2010年時点" headingType="c">
+	<Section id="8642F">
+		<H slot="heading">8642F<small>（2019年運用離脱）</small></H>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2010年時点</H>
+
 			<figure class="c-fit">
 				<div class="p-embed">
 					<img src="/tokyu/data/image/acu/denentoshi_8642_2010.svg" alt="8642: もっとも上り方のみ新型、その他3基はRPU-2214A型、0710: 4基ともRPU-2214A型、8979: もっとも下り方のみ新型、その他3基はRPU-2214A型、0818: 中央2基はRPU-2214A型、両端は新型、0718: 中央2基はRPU-2214A型、両端は新型、0802: もっとも上り方のみ新型、その他3基はRPU-2214A型、8799: 中央2基はRPU-2214A型、両端は新型、8974: 中央2基はRPU-2214型、両端は新型、0809: 4基ともRPU-2214A型、8542: もっとも下り方のみ新型、その他3基はRPU-2214A型" width="946" height="49" style="min-width: 640px" />
@@ -147,7 +180,9 @@ const slugger = new GithubSlugger();
 			</figure>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="2018年時点" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2018年時点</H>
+
 			<!-- 2018-12-03 -->
 
 			<figure class="c-fit">
@@ -157,7 +192,9 @@ const slugger = new GithubSlugger();
 			</figure>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="2019年時点" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">2019年時点</H>
+
 			<!-- 2019-07-18 -->
 
 			<figure class="c-fit">

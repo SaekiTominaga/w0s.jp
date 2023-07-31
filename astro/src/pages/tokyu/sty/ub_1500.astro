@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -25,15 +25,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/ub_1500', name: '1000系1500番台' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="mc-1500" heading="デハ1500形（台車間）">
+	<Section id="mc-1500">
+		<H slot="heading">デハ1500形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-1500-sea" depth={2} heading="海側" headingType="c">
+				<Section id="mc-1500-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1500_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -50,7 +52,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-1500-mount" depth={2} heading="山側" headingType="c">
+				<Section id="mc-1500-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1500_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -69,10 +73,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m-1600" heading="デハ1600形（台車間）">
+	<Section id="m-1600">
+		<H slot="heading">デハ1600形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m-1600-sea" depth={2} heading="海側" headingType="c">
+				<Section id="m-1600-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1600_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -89,7 +97,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m-1600-mount" depth={2} heading="山側" headingType="c">
+				<Section id="m-1600-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1600_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -108,10 +118,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="mc-1700" heading="デハ1700形（台車間）">
+	<Section id="mc-1700">
+		<H slot="heading">デハ1700形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-1700-sea" depth={2} heading="海側" headingType="c">
+				<Section id="mc-1700-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1724_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -128,7 +142,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-1700-mount" depth={2} heading="山側" headingType="c">
+				<Section id="mc-1700-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1724_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -147,10 +163,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="tc-1500" heading="クハ1500形（台車間）">
+	<Section id="tc-1500">
+		<H slot="heading">クハ1500形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-1500-sea" depth={2} heading="海側" headingType="c">
+				<Section id="tc-1500-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1524_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -167,7 +187,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-1500-mount" depth={2} heading="山側" headingType="c">
+				<Section id="tc-1500-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1524_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -186,10 +208,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="tc-1700" heading="クハ1700形（台車間）">
+	<Section id="tc-1700">
+		<H slot="heading">クハ1700形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-1700-sea" depth={2} heading="海側" headingType="c">
+				<Section id="tc-1700-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1700_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -206,7 +232,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-1700-mount" depth={2} heading="山側" headingType="c">
+				<Section id="tc-1700-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/1700_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />

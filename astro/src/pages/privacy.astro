@@ -1,8 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/W0s.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -15,7 +16,9 @@ const structuredData: StructuredData = {
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<p>本ページでは <a href="https://w0s.jp/">w0s.jp</a> および <a href="https://blog.w0s.jp/">blog.w0s.jp</a> 内のコンテンツにおいて、外部サービスの Cookie を使用している箇所、および Cookie を使っておらずともプライバシー上重要な点について説明します。</p>
 
-	<Section heading="Google AdSense" headingNote="コンテンツ連動型広告" id="ads">
+	<Section id="ads">
+		<H slot="heading">Google AdSense<small>（コンテンツ連動型広告）</small></H>
+
 		<p>本ページを含む多くのページで下部のフッターに広告を掲示しています。</p>
 
 		<ul class="p-list">
@@ -28,7 +31,9 @@ const structuredData: StructuredData = {
 		</ul>
 	</Section>
 
-	<Section heading="YouTube 動画" id="youtube">
+	<Section id="youtube">
+		<H slot="heading">YouTube 動画</H>
+
 		<p>一部のページでは YouTube 動画を埋め込んでいます。</p>
 
 		<ul class="p-list">
@@ -39,7 +44,9 @@ const structuredData: StructuredData = {
 		</ul>
 	</Section>
 
-	<Section heading="Amazon アソシエイト" id="amazon">
+	<Section id="amazon">
+		<H slot="heading">Amazon アソシエイト</H>
+
 		<p>一部のページでは Amazon 商品へのリンクがあります。</p>
 
 		<ul class="p-list">

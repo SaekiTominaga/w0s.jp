@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -25,15 +25,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/ub_1500', name: '1000系1500番台' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="mc-7650" heading="デハ7650形（台車間）">
+	<Section id="mc-7650">
+		<H slot="heading">デハ7650形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7650-sea" depth={2} heading="海側" headingType="c">
+				<Section id="mc-7650-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7650s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -50,7 +52,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7650-mount" depth={2} heading="山側" headingType="c">
+				<Section id="mc-7650-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7650m.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -69,10 +73,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m-7670" heading="デハ7670形（台車間）">
+	<Section id="m-7670">
+		<H slot="heading">デハ7670形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m-7670-sea" depth={2} heading="海側" headingType="c">
+				<Section id="m-7670-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7670s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -89,7 +97,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m-7670-mount" depth={2} heading="山側" headingType="c">
+				<Section id="m-7670-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7670m.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -108,10 +118,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="tc-7600" heading="クハ7600形（台車間）">
+	<Section id="tc-7600">
+		<H slot="heading">クハ7600形（台車間）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7600-sea" depth={2} heading="海側" headingType="c">
+				<Section id="tc-7600-sea" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7600s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -128,7 +142,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7600-mount" depth={2} heading="山側" headingType="c">
+				<Section id="tc-7600-mount" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7600m.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -147,10 +163,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="couple" heading="連結部">
+	<Section id="couple">
+		<H slot="heading">連結部</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="couple7601" depth={2} heading="クハ7600形 ｰ デハ7670形間" headingNote="7601F, 7602F" headingType="c">
+				<Section id="couple7601" depth={2} headingType="c">
+					<H slot="heading">クハ7600形 ｰ デハ7670形間<small>（7601F, 7602F）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7670-7600_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -173,7 +193,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="couple7603" depth={2} heading="クハ7600形 ｰ デハ7670形間" headingNote="7603F" headingType="c">
+				<Section id="couple7603" depth={2} headingType="c">
+					<H slot="heading">クハ7600形 ｰ デハ7670形間<small>（7603F）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7673-7603_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -196,7 +218,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="couple7661" depth={2} heading="デハ7650形 ｰ デハ7670形間" headingNote="7601F, 7602F" headingType="c">
+				<Section id="couple7661" depth={2} headingType="c">
+					<H slot="heading">デハ7650形 ｰ デハ7670形間<small>（7601F, 7602F）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7650-7670_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -218,7 +242,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="couple7653" depth={2} heading="デハ7650形 ｰ デハ7670形間" headingNote="7603F" headingType="c">
+				<Section id="couple7653" depth={2} headingType="c">
+					<H slot="heading">デハ7650形 ｰ デハ7670形間<small>（7603F）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/7653-7673_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />

@@ -4,6 +4,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -28,15 +29,21 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="作品概要">
+	<Section id="introduction">
+		<H slot="heading">作品概要</H>
+
 		<div class="p-text">
 			<p>「週刊少年サンデー」において1998年〜2004年に連載された作品であり、連載終了から7年経ってまさかのアニメ化（OVA）を果たしました。このアニメは『さよなら絶望先生』と同じくシャフト制作で、総監督は新房昭之、メインキャストとして喜多村英梨、斎藤千和など、『魔法少女まどか☆マギカ』と共通する関係者も多いです。</p>
 			<p>アニメの発売時期が2011年ということもあり、当時アニメイトTVで配信されたウェブラジオでは何度か『まどか☆マギカ』に言及されたほか、同時期に「週刊少年マガジン」に掲載された特別番外編では、『かってに改蔵』の漫画としては唯一『魔法少女まどか☆マギカ』ネタが仕込まれています。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="manga" heading="漫画">
-		<Section slugger={slugger} depth={2} heading="特別番外編　損して得とれない" headingType="b">
+	<Section id="manga">
+		<H slot="heading">漫画</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">特別番外編　損して得とれない</H>
+
 			<div class="p-text">
 				<p>2011年4月27日　「週刊少年マガジン2011年22・23合併号」掲載</p>
 				<p>10ページ目（「かってに研究しやがれBOOK 追補版」p.47）</p>
@@ -60,18 +67,24 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="radio" heading="ラジオ" headingNote="かってに改蔵ラジオしてもいいぜ">
+	<Section id="radio">
+		<H slot="heading">ラジオ<small>（かってに改蔵ラジオしてもいいぜ）</small></H>
+
 		<div class="p-text">
 			<p>全12回配信 + DJCD1枚。パーソナリティは斎藤千和（坪内地丹 役）で、初回と最終回を除きゲストを迎えた2名体制で送られた。</p>
 		</div>
 
-		<Section slugger={slugger} depth={2} heading="第4回　いつかギリギリトークする日…!?" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">第4回　いつかギリギリトークする日…!?</H>
+
 			<div class="p-text">
 				<p>2011年7月27日配信</p>
 				<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
 			</div>
 
-			<Section slugger={slugger} depth={3} heading="コーナー「水を差す人がいます」" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">コーナー「水を差す人がいます」</H>
+
 				<div class="p-box">
 					<ul class="p-list">
 						<li>（喜多村英梨）……ものは言いようで、アニメとか見てて、あ、このキャラクター超かっこいいみたいな、「ほむほむ!」みたいな感じで、って時に、でも千和ちゃんだもんなーみたいな。</li>
@@ -79,7 +92,9 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 
-			<Section slugger={slugger} depth={3} heading="コーナー「とらうま高校だれとく部」" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">コーナー「とらうま高校だれとく部」</H>
+
 				<div class="p-box">
 					<ul class="p-list">
 						<li>（喜多村英梨）……で、またそのトリッキーなところから、ま地丹君ていう男性、下ネタ寄りの……。</li>
@@ -88,7 +103,9 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 
-			<Section slugger={slugger} depth={3} heading="Webサイト掲載の次回予告" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">Webサイト掲載の次回予告</H>
+
 				<div class="p-box">
 					<div class="p-text">
 						<p>「かってに次回予告」、地丹と羽美がアイツと契約して魔法少女に!?次回、『かってに魔法少女ラジオ』放送開始！(しません！)</p>
@@ -97,13 +114,17 @@ const slugger = new GithubSlugger();
 			</Section>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第8回　結局はオレの出番だよ。" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">第8回　結局はオレの出番だよ。</H>
+
 			<div class="p-text">
 				<p>2011年9月21日配信</p>
 				<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
 			</div>
 
-			<Section slugger={slugger} depth={3} heading="コーナー「理論上は可能なんです!」" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">コーナー「理論上は可能なんです!」</H>
+
 				<div class="p-box">
 					<ul class="p-list">
 						<li>（櫻井孝宏）理論上、ひたぎ8万プラスほむほむ8万マイナス地丹4千で、斎藤千和には15万6千人のファンが居るはずなんです。</li>
@@ -112,13 +133,17 @@ const slugger = new GithubSlugger();
 			</Section>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第11回　スレスレ★サービス" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">第11回　スレスレ★サービス</H>
+
 			<div class="p-text">
 				<p>2011年11月2日配信</p>
 				<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
 			</div>
 
-			<Section slugger={slugger} depth={3} heading="Webサイト掲載の次回予告" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">Webサイト掲載の次回予告</H>
+
 				<div class="p-box">
 					<div class="p-text">
 						<p>「とらうま高校だれとく部」、羽美はあの魔法少女たちにも勝てるほど危険な存在!?そんな羽美の○○ソングが聴けるのはこの番組だけ！</p>
@@ -129,13 +154,17 @@ const slugger = new GithubSlugger();
 			</Section>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜</H>
+
 			<div class="p-text">
 				<p>2011年10月26日発売</p>
 				<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
 			</div>
 
-			<Section slugger={slugger} depth={3} heading="コーナー「とらうま高校だれとく部（前半）」" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">コーナー「とらうま高校だれとく部（前半）」</H>
+
 				<div class="p-box">
 					<ul class="p-list">
 						<li>（斎藤千和）『かってに改蔵』は新房監督×シャフト作品の中で、斎藤千和さんが参加された作品のちょうど10作目に当たるようです。</li>
@@ -164,7 +193,9 @@ const slugger = new GithubSlugger();
 					</ul>
 				</div>
 			</Section>
-			<Section slugger={slugger} depth={3} heading="コーナー「とらうま高校だれとく部（後半）」" headingType="c">
+			<Section slugger={slugger} depth={3} headingType="c">
+				<H slot="heading">コーナー「とらうま高校だれとく部（後半）」</H>
+
 				<div class="p-box">
 					<ul class="p-list">
 						<li>（櫻井孝宏）そうですね、皆さん、その軌跡をずっと見てていてください……見守っててください。</li>

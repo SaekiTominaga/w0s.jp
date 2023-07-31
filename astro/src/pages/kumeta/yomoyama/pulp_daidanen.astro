@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -17,7 +18,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="大団円イラスト">
+	<Section slugger={slugger}>
+		<H slot="heading">大団円イラスト</H>
+
 		<details class="p-toggle" is="w0s-animation-details">
 			<summary>イラストを見る<small>（※最終話ネタバレ注意）</small></summary>
 
@@ -31,8 +34,12 @@ const slugger = new GithubSlugger();
 			</div>
 		</details>
 	</Section>
-	<Section slugger={slugger} heading="登場キャラクター一覧">
-		<Section slugger={slugger} depth={2} heading="行け!!南国アイスホッケー部" headingType="b">
+	<Section slugger={slugger}>
+		<H slot="heading">登場キャラクター一覧</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">行け!!南国アイスホッケー部</H>
+
 			<ul class="p-list">
 				<li>蘭堂月斗</li>
 				<li>岡本そあら</li>
@@ -45,14 +52,18 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="育ってダーリン!!" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">育ってダーリン!!</H>
+
 			<ul class="p-list">
 				<li>羽留うらら</li>
 				<li>坂本冬馬</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="太陽の戦士ポカポカ" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">太陽の戦士ポカポカ</H>
+
 			<ul class="p-list">
 				<li>ポカポカ</li>
 				<li>ピューピュー</li>
@@ -60,7 +71,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="かってに改蔵" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">かってに改蔵</H>
+
 			<ul class="p-list">
 				<li>勝改蔵</li>
 				<li>名取羽美</li>
@@ -95,7 +108,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="さよなら絶望先生" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">さよなら絶望先生</H>
+
 			<ul class="p-list">
 				<li>糸色望</li>
 				<li>臼井影郎</li>
@@ -139,7 +154,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="せっかち伯爵と時間どろぼう" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">せっかち伯爵と時間どろぼう</H>
+
 			<ul class="p-list">
 				<li>サンジェルマン伯爵</li>
 				<li>ミチル</li>
@@ -152,7 +169,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="スタジオパルプ" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">スタジオパルプ</H>
+
 			<ul class="p-list">
 				<li>役者丸ひろ子</li>
 				<li>三流漫画家像【Act1.】</li>
@@ -160,7 +179,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="かくしごと" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">かくしごと</H>
+
 			<ul class="p-list">
 				<li>後藤可久士</li>
 				<li>後藤姫</li>

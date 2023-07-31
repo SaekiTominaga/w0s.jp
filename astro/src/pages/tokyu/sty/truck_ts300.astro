@@ -1,10 +1,10 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,12 +26,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/truck_etc', name: '総合車両製以外' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>1954年に登場した旧5000系では従来の吊り掛け式に代わり、初の本格的カルダン台車として TS-301 型が開発されました。続いて超低床路面電車用の TS-302 型、1電動機2軸駆動方式の TS-311 型 &amp; TS-312 型 &amp; TS-315 型など、高性能電車の黎明期らしく意欲的な作品が多いのが特徴です。</p>
 			<p>これら TS-300 系の番台は、後に TS-800 系や TS-1000 系に分類されない電車用台車として使用されるようになり、箱根登山鉄道や阪堺電気軌道で採用実績があります。東急電鉄では世田谷線の台車更新のほか、軌道検測車の台車に使用されています。</p>
@@ -153,8 +153,12 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="ts301" heading="TS-301 型">
-		<Section slugger={slugger} id="ts301-m" depth={2} heading="TS-301" headingNote="動力台車" headingType="b">
+	<Section id="ts301">
+		<H slot="heading">TS-301 型</H>
+
+		<Section id="ts301-m" depth={2} headingType="b">
+			<H slot="heading">TS-301<small>（動力台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS301_kumamoto5102A.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -196,7 +200,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="ts301-t" depth={2} heading="TS-301" headingNote="付随台車" headingType="b">
+		<Section id="ts301-t" depth={2} headingType="b">
+			<H slot="heading">TS-301<small>（付随台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS301_ueda5251.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -262,8 +268,12 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</table>
 
-		<Section slugger={slugger} id="ts302" heading="TS-302 型">
-			<Section slugger={slugger} id="ts302-m" depth={2} heading="TS-302" headingNote="動力台車" headingType="b">
+		<Section id="ts302">
+			<H slot="heading">TS-302 型</H>
+
+			<Section id="ts302-m" depth={2} headingType="b">
+				<H slot="heading">TS-302<small>（動力台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/TS302_204.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -284,8 +294,12 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 
-			<Section slugger={slugger} id="ts315" heading="TS-315 型">
-				<Section slugger={slugger} id="ts315-m" depth={2} heading="TS-315" headingNote="動力台車" headingType="b">
+			<Section id="ts315">
+				<H slot="heading">TS-315 型</H>
+
+				<Section id="ts315-m" depth={2} headingType="b">
+					<H slot="heading">TS-315<small>（動力台車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/truck/TS315_konan6007_motor.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -311,8 +325,12 @@ const slugger = new GithubSlugger();
 					</div>
 				</Section>
 
-				<Section slugger={slugger} id="ts332" heading="TS-332 型">
-					<Section slugger={slugger} id="ts332-m" depth={2} heading="TS-332" headingNote="動力台車" headingType="b">
+				<Section id="ts332">
+					<H slot="heading">TS-332 型</H>
+
+					<Section id="ts332-m" depth={2} headingType="b">
+						<H slot="heading">TS-332<small>（動力台車）</small></H>
+
 						<figure class="c-fit">
 							<div class="p-embed -border">
 								<Image path="tokyu/sty/truck/TS332_307B.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -332,7 +350,9 @@ const slugger = new GithubSlugger();
 						</div>
 					</Section>
 
-					<Section slugger={slugger} id="ts332t" depth={2} heading="TS-332T" headingNote="付随台車" headingType="b">
+					<Section id="ts332t" depth={2} headingType="b">
+						<H slot="heading">TS-332T<small>（付随台車）</small></H>
+
 						<figure class="c-fit">
 							<div class="p-embed -border">
 								<Image path="tokyu/sty/truck/TS332T_305.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -353,8 +373,12 @@ const slugger = new GithubSlugger();
 							</p>
 						</div>
 
-						<Section slugger={slugger} id="ts333" heading="TS-333 型">
-							<Section slugger={slugger} id="ts333-t" depth={2} heading="TS-333" headingNote="付随台車" headingType="b">
+						<Section id="ts333">
+							<H slot="heading">TS-333 型</H>
+
+							<Section id="ts333-t" depth={2} headingType="b">
+								<H slot="heading">TS-333<small>（付随台車）</small></H>
+
 								<figure class="c-fit">
 									<div class="p-embed -border">
 										<Image path="tokyu/sty/truck/TS333_7590.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -371,8 +395,12 @@ const slugger = new GithubSlugger();
 								</div>
 							</Section>
 
-							<Section slugger={slugger} id="ts334" heading="TS-334 型">
-								<Section slugger={slugger} id="ts334-t" depth={2} heading="TS-334" headingNote="中間台車" headingType="b">
+							<Section id="ts334">
+								<H slot="heading">TS-334 型</H>
+
+								<Section id="ts334-t" depth={2} headingType="b">
+									<H slot="heading">TS-334<small>（中間台車）</small></H>
+
 									<figure class="c-fit">
 										<div class="p-embed -border">
 											<Image path="tokyu/sty/truck/TS334_7590.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />

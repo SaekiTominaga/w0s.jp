@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -13,13 +13,15 @@ const structuredData: StructuredData = {
 	description: '東急電鉄の車両の乗務員室に設置されている行先設定器のダイヤル、ボタン配列を紹介します。',
 	breadcrumb: [{ path: '/tokyu/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="tokyu" heading="東急電鉄">
-		<Section slugger={slugger} id="series7600" depth={2} heading="7600系、7700系" headingType="b">
+	<Section id="tokyu">
+		<H slot="heading">東急電鉄</H>
+
+		<Section id="series7600" depth={2} headingType="b">
+			<H slot="heading">7600系、7700系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -42,7 +44,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series8000" depth={2} heading="8000系" headingType="b">
+		<Section id="series8000" depth={2} headingType="b">
+			<H slot="heading">8000系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -74,7 +78,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series8090" depth={2} heading="8090系" headingType="b">
+		<Section id="series8090" depth={2} headingType="b">
+			<H slot="heading">8090系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -129,7 +135,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series8500" depth={2} heading="8500系" headingType="b">
+		<Section id="series8500" depth={2} headingType="b">
+			<H slot="heading">8500系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -205,7 +213,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series8590" depth={2} heading="8590系" headingType="b">
+		<Section id="series8590" depth={2} headingType="b">
+			<H slot="heading">8590系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -264,7 +274,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series9000" depth={2} heading="9000系" headingType="b">
+		<Section id="series9000" depth={2} headingType="b">
+			<H slot="heading">9000系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -334,7 +346,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series1000" depth={2} heading="1000系" headingType="b">
+		<Section id="series1000" depth={2} headingType="b">
+			<H slot="heading">1000系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -390,7 +404,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series2000" depth={2} heading="2000系" headingType="b">
+		<Section id="series2000" depth={2} headingType="b">
+			<H slot="heading">2000系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -411,7 +427,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series3000" depth={2} heading="新3000系" headingType="b">
+		<Section id="series3000" depth={2} headingType="b">
+			<H slot="heading">新3000系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -430,7 +448,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="series300" depth={2} heading="300系" headingType="b">
+		<Section id="series300" depth={2} headingType="b">
+			<H slot="heading">300系</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -454,8 +474,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="transfer" heading="譲渡車両">
-		<Section slugger={slugger} id="ner" depth={2} heading="長野電鉄" headingType="b">
+	<Section id="transfer">
+		<H slot="heading">譲渡車両</H>
+
+		<Section id="ner" depth={2} headingType="b">
+			<H slot="heading">長野電鉄</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -474,7 +498,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="ueda" depth={2} heading="上田電鉄" headingType="b">
+		<Section id="ueda" depth={2} headingType="b">
+			<H slot="heading">上田電鉄</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -495,7 +521,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="ikk" depth={2} heading="伊豆急行" headingType="b">
+		<Section id="ikk" depth={2} headingType="b">
+			<H slot="heading">伊豆急行</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -521,7 +549,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="toyohashi" depth={2} heading="豊橋鉄道" headingType="b">
+		<Section id="toyohashi" depth={2} headingType="b">
+			<H slot="heading">豊橋鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -544,7 +574,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="toyama" depth={2} heading="富山地方鉄道" headingType="b">
+		<Section id="toyama" depth={2} headingType="b">
+			<H slot="heading">富山地方鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -577,7 +609,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} id="yoro" depth={2} heading="養老鉄道" headingType="b">
+		<Section id="yoro" depth={2} headingType="b">
+			<H slot="heading">養老鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>

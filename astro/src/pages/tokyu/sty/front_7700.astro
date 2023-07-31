@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -17,8 +17,6 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -489,10 +487,14 @@ const slugger = new GithubSlugger();
 		</tbody>
 	</table>
 
-	<Section slugger={slugger} id="mc-7700" heading="デハ7700形">
+	<Section id="mc-7700">
+		<H slot="heading">デハ7700形</H>
+
 		<div class="c-grid -narrow -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7701" depth={2} heading="デハ7701" headingNote="1次車" headingType="c">
+				<Section id="mc-7701" depth={2} headingType="c">
+					<H slot="heading">デハ7701<small>（1次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7701.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -506,7 +508,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7702" depth={2} heading="デハ7702" headingNote="1次車" headingType="c">
+				<Section id="mc-7702" depth={2} headingType="c">
+					<H slot="heading">デハ7702<small>（1次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7702.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -520,7 +524,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7703" depth={2} heading="デハ7703" headingNote="2次車" headingType="c">
+				<Section id="mc-7703" depth={2} headingType="c">
+					<H slot="heading">デハ7703<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7703.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -534,7 +540,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7705" depth={2} heading="デハ7705" headingNote="2次車" headingType="c">
+				<Section id="mc-7705" depth={2} headingType="c">
+					<H slot="heading">デハ7705<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7705.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -548,7 +556,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7706" depth={2} heading="デハ7706" headingNote="2次車" headingType="c">
+				<Section id="mc-7706" depth={2} headingType="c">
+					<H slot="heading">デハ7706<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7706.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -562,7 +572,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7707" depth={2} heading="デハ7707" headingNote="3次車" headingType="c">
+				<Section id="mc-7707" depth={2} headingType="c">
+					<H slot="heading">デハ7707<small>（3次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7707.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -576,7 +588,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7708" depth={2} heading="デハ7708" headingNote="2次車" headingType="c">
+				<Section id="mc-7708" depth={2} headingType="c">
+					<H slot="heading">デハ7708<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7708.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -590,7 +604,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7710" depth={2} heading="デハ7710" headingNote="3次車" headingType="c">
+				<Section id="mc-7710" depth={2} headingType="c">
+					<H slot="heading">デハ7710<small>（3次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7710.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -604,7 +620,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7712" depth={2} heading="デハ7712" headingNote="4次車" headingType="c">
+				<Section id="mc-7712" depth={2} headingType="c">
+					<H slot="heading">デハ7712<small>（4次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7712.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -618,7 +636,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7713" depth={2} heading="デハ7713" headingNote="5次車" headingType="c">
+				<Section id="mc-7713" depth={2} headingType="c">
+					<H slot="heading">デハ7713<small>（5次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7713.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -632,7 +652,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7714" depth={2} heading="デハ7714" headingNote="5次車" headingType="c">
+				<Section id="mc-7714" depth={2} headingType="c">
+					<H slot="heading">デハ7714<small>（5次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7714.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -646,7 +668,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7715" depth={2} heading="デハ7715" headingNote="5次車" headingType="c">
+				<Section id="mc-7715" depth={2} headingType="c">
+					<H slot="heading">デハ7715<small>（5次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7715.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -666,10 +690,14 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="tc-7900" heading="クハ7900形">
+	<Section id="tc-7900">
+		<H slot="heading">クハ7900形</H>
+
 		<div class="c-grid -narrow -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7901" depth={2} heading="クハ7901" headingNote="1次車" headingType="c">
+				<Section id="tc-7901" depth={2} headingType="c">
+					<H slot="heading">クハ7901<small>（1次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7901.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -683,7 +711,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7902" depth={2} heading="クハ7902" headingNote="1次車" headingType="c">
+				<Section id="tc-7902" depth={2} headingType="c">
+					<H slot="heading">クハ7902<small>（1次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7902.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -697,7 +727,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7903" depth={2} heading="クハ7903" headingNote="2次車" headingType="c">
+				<Section id="tc-7903" depth={2} headingType="c">
+					<H slot="heading">クハ7903<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7903.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -711,7 +743,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7905" depth={2} heading="クハ7905" headingNote="2次車" headingType="c">
+				<Section id="tc-7905" depth={2} headingType="c">
+					<H slot="heading">クハ7905<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7905.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -725,7 +759,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7906" depth={2} heading="クハ7906" headingNote="2次車" headingType="c">
+				<Section id="tc-7906" depth={2} headingType="c">
+					<H slot="heading">クハ7906<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7906.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -739,7 +775,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7907" depth={2} heading="クハ7907" headingNote="3次車" headingType="c">
+				<Section id="tc-7907" depth={2} headingType="c">
+					<H slot="heading">クハ7907<small>（3次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7907.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -753,7 +791,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7908" depth={2} heading="クハ7908" headingNote="2次車" headingType="c">
+				<Section id="tc-7908" depth={2} headingType="c">
+					<H slot="heading">クハ7908<small>（2次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7908.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -768,7 +808,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7910" depth={2} heading="クハ7910" headingNote="3次車" headingType="c">
+				<Section id="tc-7910" depth={2} headingType="c">
+					<H slot="heading">クハ7910<small>（3次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7910.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -782,7 +824,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7912" depth={2} heading="クハ7912" headingNote="4次車" headingType="c">
+				<Section id="tc-7912" depth={2} headingType="c">
+					<H slot="heading">クハ7912<small>（4次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7912.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -797,7 +841,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7913" depth={2} heading="クハ7913" headingNote="5次車" headingType="c">
+				<Section id="tc-7913" depth={2} headingType="c">
+					<H slot="heading">クハ7913<small>（5次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7913.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -811,7 +857,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7914" depth={2} heading="クハ7914" headingNote="5次車" headingType="c">
+				<Section id="tc-7914" depth={2} headingType="c">
+					<H slot="heading">クハ7914<small>（5次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7914.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -825,7 +873,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7915" depth={2} heading="クハ7915" headingNote="5次車" headingType="c">
+				<Section id="tc-7915" depth={2} headingType="c">
+					<H slot="heading">クハ7915<small>（5次車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/7915.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -845,10 +895,14 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="mc-7700-towada" heading="十和田観光電鉄 モハ7700形">
+	<Section id="mc-7700-towada">
+		<H slot="heading">十和田観光電鉄 モハ7700形</H>
+
 		<div class="c-grid -narrow -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-towada7701" depth={2} heading="モハ7701" headingType="c">
+				<Section id="mc-towada7701" depth={2} headingType="c">
+					<H slot="heading">モハ7701</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/towada_7701.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -862,7 +916,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-towada7702" depth={2} heading="モハ7702" headingType="c">
+				<Section id="mc-towada7702" depth={2} headingType="c">
+					<H slot="heading">モハ7702</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/towada_7702.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -877,7 +933,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-towada7703" depth={2} heading="モハ7703" headingType="c">
+				<Section id="mc-towada7703" depth={2} headingType="c">
+					<H slot="heading">モハ7703</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/towada_7703.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -898,10 +956,14 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="tc-7900-towada" heading="十和田観光電鉄 クハ7900形">
+	<Section id="tc-7900-towada">
+		<H slot="heading">十和田観光電鉄 クハ7900形</H>
+
 		<div class="c-grid -narrow -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-towada7901" depth={2} heading="クハ7901" headingType="c">
+				<Section id="tc-towada7901" depth={2} headingType="c">
+					<H slot="heading">クハ7901</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/towada_7901.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -915,7 +977,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-towada7902" depth={2} heading="クハ7902" headingType="c">
+				<Section id="tc-towada7902" depth={2} headingType="c">
+					<H slot="heading">クハ7902</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/towada_7902.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />
@@ -930,7 +994,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-towada7903" depth={2} heading="クハ7903" headingType="c">
+				<Section id="tc-towada7903" depth={2} headingType="c">
+					<H slot="heading">クハ7903</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/front/towada_7903.jpg" alt="写真拡大" width={216} height={270} quality={60} link={true} />

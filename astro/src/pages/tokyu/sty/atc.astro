@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -18,15 +18,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="dento" heading="田園都市線、こどもの国線">
+	<Section id="dento">
+		<H slot="heading">田園都市線、こどもの国線</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="dento-2" depth={2} heading="8590系、2000系" headingNote="三菱電機" headingType="c">
+				<Section id="dento-2" depth={2} headingType="c">
+					<H slot="heading">8590系、2000系<small>（三菱電機）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/CMR-DC-129.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />
@@ -44,7 +46,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="kodomo-2" depth={2} heading="Y000系" headingNote="日立製作所" headingType="c">
+				<Section id="kodomo-2" depth={2} headingType="c">
+					<H slot="heading">Y000系<small>（日立製作所）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/AT-CS21TK16.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />
@@ -63,10 +67,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="toyoko" heading="東横線">
+	<Section id="toyoko">
+		<H slot="heading">東横線</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="toyoko-1" depth={2} heading="8000系（一部）" headingNote="日立製作所" headingType="c">
+				<Section id="toyoko-1" depth={2} headingType="c">
+					<H slot="heading">8000系（一部）<small>（日立製作所）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/toyoko_ATS-P_1.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />
@@ -84,7 +92,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="toyoko-2" depth={2} heading="8000系、9000系、1000系" headingNote="日立製作所" headingType="c">
+				<Section id="toyoko-2" depth={2} headingType="c">
+					<H slot="heading">8000系、9000系、1000系<small>（日立製作所）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/AT-CS21TK11.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />
@@ -103,10 +113,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="meguro" heading="目黒線">
+	<Section id="meguro">
+		<H slot="heading">目黒線</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="meguro-1" depth={2} heading="新3000系" headingNote="三菱電機" headingType="c">
+				<Section id="meguro-1" depth={2} headingType="c">
+					<H slot="heading">新3000系<small>（三菱電機）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/CMR-DC-117.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />
@@ -127,10 +141,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="oimachi-ats" heading="大井町線（ATS時代）">
+	<Section id="oimachi-ats">
+		<H slot="heading">大井町線（ATS時代）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="dento-1" depth={2} heading="8000系、8090系、9000系" headingNote="日立製作所" headingType="c">
+				<Section id="dento-1" depth={2} headingType="c">
+					<H slot="heading">8000系、8090系、9000系<small>（日立製作所）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/AT-CS21TK5.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />
@@ -150,10 +168,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="oimachi-atc" heading="大井町線（ATC-P化）">
+	<Section id="oimachi-atc">
+		<H slot="heading">大井町線（ATC-P化）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="oimachi-1" depth={2} heading="8090系（一部）、9000系（一部）" headingNote="日立製作所" headingType="c">
+				<Section id="oimachi-1" depth={2} headingType="c">
+					<H slot="heading">8090系（一部）、9000系（一部）<small>（日立製作所）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/atc/AT-CS21TK17.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} />

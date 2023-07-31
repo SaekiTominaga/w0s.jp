@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import LibraryItemNewspaper from '@components/LibraryItemNewspaper.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,7 +26,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="2011年">
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="毎日新聞" release="2011-01-21">
 			<div class="p-text">
 				<p>2面（特集ワイド）: 「まんたんプレス」で1月期の深夜アニメ紹介。『まどか☆マギカ』については「事前情報がほとんどないのも話題になっている」と紹介。</p>
@@ -181,7 +184,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2012年">
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2012-03-16" class="朝刊">
 			<div class="p-text">
 				<p>29面（全面広告）: <em>「新時代の「魔法少女」に託すアニメーションの可能性」</em>、新房昭之インタビュー。震災後の一挙放送は、本音としては1話ずつ見せたかったことなど。下部は「まどか☆マギカ展」名古屋会場広告。</p>
@@ -255,7 +260,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2013年">
+	<Section slugger={slugger}>
+		<H slot="heading">2013年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞（名古屋）" release="2013-03-27" class="朝刊">
 			<div class="p-text">
 				<p>30面: <em>SQフィギュア〜佐倉杏子〜の全面広告</em>（カラー）。</p>
@@ -320,7 +327,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2014年">
+	<Section slugger={slugger}>
+		<H slot="heading">2014年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2014-02-21" class="朝刊">
 			<div class="p-text">
 				<p>32面（地域）: 「アニメの画像歩いてゲット」東京都杉並区で行われている<LinkExternal href="https://web.archive.org/web/20140313184014/http://www.chuosen-rr.com/aniwalk.html">アニ×ウォーク</LinkExternal>の記事。</p>
@@ -393,7 +402,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2015年">
+	<Section slugger={slugger}>
+		<H slot="heading">2015年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="産経新聞（東京）" release="2015-01-08" class="朝刊">
 			<div class="p-text">
 				<p>19面（特集）: 「産経新聞社 2015 主な文化事業」に蒼樹うめ展（上野の森美術館）情報。『きらきらころころ』イラスト掲載。</p>
@@ -454,7 +465,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2016年">
+	<Section slugger={slugger}>
+		<H slot="heading">2016年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="Frankfurter Allgemeine" release="2016-01-15">
 			<div class="p-text">
 				<p>Feuilleton 11面: 「Eine Mädchentragödie」ドイツでのDVD発売に伴う『まどか☆マギカ』作品紹介。新編の場面ショット掲載（カラー）。</p>
@@ -595,7 +608,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2017年">
+	<Section slugger={slugger}>
+		<H slot="heading">2017年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="fumufumu J（新潟日報社のこども新聞）" release="2017-02-12" class="vol.43">
 			<div class="p-text">
 				<p>5面: 『ひだまりスケッチ』の紹介と共に「蒼樹うめ展 in 新潟」の告知。</p>
@@ -656,7 +671,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2018年">
+	<Section slugger={slugger}>
+		<H slot="heading">2018年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2018-10-29" class="朝刊">
 			<div class="p-text">
 				<p>27面（広告）: <em>「――明かされる百江なぎさの過去」</em>マギアレコード、なぎさ全面広告（カラー）</p>
@@ -677,7 +694,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2019年">
+	<Section slugger={slugger}>
+		<H slot="heading">2019年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日刊スポーツ" release="2019-01-19">
 			<div class="p-text">
 				<p>8面: 「メドベ&amp;ザギトワ日本CMでコラボ」21日から放送されるマギレコCM出演について。本文は<LinkExternal href="https://www.nikkansports.com/sports/news/201901180000877.html">ウェブ記事</LinkExternal>より多少削減されている。</p>

@@ -4,6 +4,7 @@ import Layout from '@layouts/W0s.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -15,14 +16,18 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section heading="おことわり" id="notice">
+	<Section id="notice">
+		<H slot="heading">おことわり</H>
+
 		<ul class="p-list">
 			<li>ここで記載していることは特記のない限り <code>w0s.jp</code> ドメインで公開しているコンテンツに関する情報である。サブドメインは状況が異なる部分も多い。</li>
 			<li>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい改修は度々実施しているが、本ドキュメントは常に追従できるとは限らない。</li>
 		</ul>
 	</Section>
 
-	<Section heading="歴史" id="history">
+	<Section id="history">
+		<H slot="heading">歴史</H>
+
 		<dl class="p-list-description">
 			<dt>2001年2月</dt>
 			<dd>
@@ -50,7 +55,9 @@ const structuredData: StructuredData = {
 		</dl>
 	</Section>
 
-	<Section heading="サーバー構成" id="server">
+	<Section id="server">
+		<H slot="heading">サーバー構成</H>
+
 		<dl class="p-list-description">
 			<dt>サーバー</dt>
 			<dd><LinkExternal href="https://httpd.apache.org/">Apache HTTP Server</LinkExternal></dd>
@@ -129,7 +136,9 @@ const structuredData: StructuredData = {
 		</ul>
 	</Section>
 
-	<Section heading="HTML" id="html">
+	<Section id="html">
+		<H slot="heading">HTML</H>
+
 		<CodeBlock
 			code={`└packages
 	├ html
@@ -193,7 +202,9 @@ const structuredData: StructuredData = {
 			</li>
 		</ul>
 
-		<Section depth={2} heading="3xx リダイレクトページ" headingType="c" id="html-redirect">
+		<Section id="html-redirect" depth={2} headingType="c">
+			<H slot="heading">3xx リダイレクトページ</H>
+
 			<div class="p-text">
 				<p>URL が変更になった場合は <code>301 Moved Permanently</code>、フォームの POST 送信後には <code>303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
 				<p><LinkExternal href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の 6.4. Redirection 3xx</LinkExternal>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際ユーザーの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<FootnoteReference>Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、Android Firefox 96 にて確認）</FootnoteReference>。</p>
@@ -203,7 +214,9 @@ const structuredData: StructuredData = {
 			</div>
 		</Section>
 
-		<Section depth={2} heading="4xx クライアントエラーページ" headingType="c" id="html-clienterror">
+		<Section id="html-clienterror" depth={2} headingType="c">
+			<H slot="heading">4xx クライアントエラーページ</H>
+
 			<div class="p-text">
 				<p><code>403 Forbidden</code> および <code>404 Not Found</code> のクライアントエラーページには JavaScript で以下の機能を組み込んでいる。</p>
 			</div>
@@ -218,7 +231,9 @@ const structuredData: StructuredData = {
 		</Section>
 	</Section>
 
-	<Section heading="スタイルシート" headingNote="CSS" id="style">
+	<Section id="style">
+		<H slot="heading">スタイルシート<small>（CSS）</small></H>
+
 		<CodeBlock
 			code={`└packages
 	└frontend
@@ -284,13 +299,17 @@ const structuredData: StructuredData = {
 			<li>ブラウザから読まれる CSS ファイルは上記のとおり <LinkExternal href="https://cssnano.co/">CSSNANO</LinkExternal>を適用しているが、minify 処理が目的ではなくコメントの除去など最小限の最適化のみを行っている。以前は minify 処理も行っていたが、これを止めた理由はブログ記事「<a href="https://blog.w0s.jp/674">CSS ファイルの最小化を止めた</a>」（2022年6月）にまとめている。</li>
 		</ul>
 
-		<Section depth={2} heading="印刷用スタイル" headingType="c" id="style-print">
+		<Section id="style-print" depth={2} headingType="c">
+			<H slot="heading">印刷用スタイル</H>
+
 			<ul class="p-list">
 				<li>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code>@print</code> を使って完全な白（<code>#ffffff</code>）に設定している。</li>
 			</ul>
 		</Section>
 
-		<Section depth={2} heading="リーダーモード" headingType="c" id="style-reader">
+		<Section id="style-reader" depth={2} headingType="c">
+			<H slot="heading">リーダーモード</H>
+
 			<ul class="p-list">
 				<li>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダーモードを実装している。</li>
 				<li>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<LinkExternal href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</LinkExternal>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。Chrome など他ブラウザでも拡張機能が公開されている。</li>
@@ -298,7 +317,9 @@ const structuredData: StructuredData = {
 		</Section>
 	</Section>
 
-	<Section heading="スクリプト" headingNote="JavaScript" id="script">
+	<Section id="script">
+		<H slot="heading">スクリプト<small>（JavaScript）</small></H>
+
 		<CodeBlock
 			code={`└packages
 	└frontend
@@ -321,7 +342,9 @@ const structuredData: StructuredData = {
 			<li>外部サービスに関係した機能など一部を除き ES modules で作成しており、本来であれば機能毎に別れたファイルを <code>import</code> / <code>export</code> を使ってそのままブラウザに読ませることができるが、一時期そのようにしてみたところ HTTP/2 通信下であっても画面描画への影響が体感できるほど大きかったため、現在ではビルド時にファイル結合を行うようにしている。</li>
 		</ul>
 
-		<Section depth={2} heading="エラー検知" headingType="c" id="script-error">
+		<Section id="script-error" depth={2} headingType="c">
+			<H slot="heading">エラー検知</H>
+
 			<ul class="p-list">
 				<li>
 					制作したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、<code>error</code> イベントを検知し通知する機能を組み込んでいる。簡略化したコード例を下記に示す。
@@ -357,7 +380,9 @@ const structuredData: StructuredData = {
 		</Section>
 	</Section>
 
-	<Section heading="ビットマップ画像" headingNote="JPEG, PNG" id="bitmap">
+	<Section id="bitmap">
+		<H slot="heading">ビットマップ画像<small>（JPEG, PNG）</small></H>
+
 		<ul class="p-list">
 			<li>
 				昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下6種類の画像を <code>&lt;a&gt;</code> 要素と <code>&lt;picture&gt;</code> 要素を使って提示している。
@@ -384,7 +409,9 @@ const structuredData: StructuredData = {
 			<li>大画像（上記コード例でいえば <code>image.jpg</code>）は Photoshop などの画像編集ソフトで生成する。大画像といっても、デジタルカメラの画像あるいはフィルム写真をスキャンした元素材そのままではなく Web 用に縮小をしているが、一般的な PC 用ディスプレイで全画面表示しても問題ない大きさとしている。なお、JPEG ファイルの拡張子は Photoshop のデフォルト動作に合わせて <code>.jpg</code> としている（<code>.jpeg</code> ではない）。</li>
 		</ul>
 
-		<Section depth={2} heading="サムネイル生成" headingType="c" id="bitmap-thumbnail">
+		<Section id="bitmap-thumbnail" depth={2} headingType="c">
+			<H slot="heading">サムネイル生成</H>
+
 			<div class="p-text">
 				<p>サムネイル画像は大画像ファイルをソースとして自動生成しているが、以下に示す理由から事前に静的ファイルを生成する方式は運用が面倒になることが予想された。</p>
 			</div>
@@ -421,7 +448,9 @@ const structuredData: StructuredData = {
 		</Section>
 	</Section>
 
-	<Section heading="ベクター画像" headingNote="SVG" id="vector">
+	<Section id="vector">
+		<H slot="heading">ベクター画像<small>（SVG）</small></H>
+
 		<CodeBlock
 			code={`└packages
 	└frontend
@@ -443,7 +472,9 @@ const structuredData: StructuredData = {
 		</ul>
 	</Section>
 
-	<Section heading="ファビコン" headingNote="favicon.ico" id="favicon">
+	<Section id="favicon">
+		<H slot="heading">ファビコン<small>（favicon.ico）</small></H>
+
 		<ul class="p-list">
 			<li>ファビコンは SVG 形式で提供している。</li>
 			<li>
@@ -457,14 +488,18 @@ const structuredData: StructuredData = {
 		</ul>
 	</Section>
 
-	<Section heading="圧縮" id="compress">
+	<Section id="compress">
+		<H slot="heading">圧縮</H>
+
 		<ul class="p-list">
 			<li>前述のとおり、事前に静的ファイルをビルドする HTML, CSS, JavaScript, SVG はビルド時に Brotli ファイル（<code>*.br</code>）も生成している。これらは圧縮品質を最高にし、極力ファイルサイズが小さくなるようにしている。</li>
 			<li>それ以外の静的リソース、および動的ページ（リクエストがある毎にサーバーサイドで HTML を生成するページ）は Express のミドルウェア <LinkExternal href="https://github.com/expressjs/compression">expressjs/compression</LinkExternal>により、レスポンス返却時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、<code>robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。</li>
 		</ul>
 	</Section>
 
-	<Section heading="CSP" id="csp">
+	<Section id="csp">
+		<H slot="heading">CSP</H>
+
 		<ul class="p-list">
 			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシート、ユーザースクリプトによるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
 			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定。</li>

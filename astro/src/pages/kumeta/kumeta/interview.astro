@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -20,7 +21,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="書籍">
+	<Section slugger={slugger}>
+		<H slot="heading">書籍</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -732,7 +735,9 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</table>
 	</Section>
-	<Section slugger={slugger} heading="Web">
+	<Section slugger={slugger}>
+		<H slot="heading">Web</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -803,7 +808,9 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</table>
 	</Section>
-	<Section slugger={slugger} heading="新聞">
+	<Section slugger={slugger}>
+		<H slot="heading">新聞</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -829,7 +836,9 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</table>
 	</Section>
-	<Section slugger={slugger} heading="冊子">
+	<Section slugger={slugger}>
+		<H slot="heading">冊子</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

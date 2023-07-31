@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -24,12 +24,12 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>大学で『魔法少女まどか☆マギカ』の映像比較について登壇した講義録です。</p>
 			<p>前半はスライドを用いての解説、後半は担当教員との対談を行いましたが、その様子をテキストにまとめました。</p>
@@ -62,7 +62,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="buy" heading="購入">
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
 		<ul class="p-notes">
 			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
 		</ul>
@@ -84,7 +86,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="toc" heading="目次">
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
 		<ol class="p-list">
 			<li>挨拶</li>
 			<li>自己紹介</li>
@@ -105,7 +109,9 @@ const slugger = new GithubSlugger();
 		</ol>
 	</Section>
 
-	<Section slugger={slugger} id="slide" heading="スライド">
+	<Section id="slide">
+		<H slot="heading">スライド</H>
+
 		<div class="p-text">
 			<p>当日、講義で使用したスライドです。</p>
 			<p><a href="https://slide.w0s.jp/20171128_madoka_compare/" class="c-link">まどか☆マギカ映像比較</a></p>

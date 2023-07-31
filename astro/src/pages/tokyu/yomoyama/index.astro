@@ -1,8 +1,8 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -14,12 +14,12 @@ const structuredData: StructuredData = {
 	description: '東急電鉄の車両や車両機器に関するよもやま話です。',
 	breadcrumb: [{ path: '/tokyu/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="yomoyama" heading="車両よもやま">
+	<Section id="yomoyama">
+		<H slot="heading">車両よもやま</H>
+
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
 				<div class="p-item">
@@ -45,7 +45,9 @@ const slugger = new GithubSlugger();
 			</li>
 		</ul>
 	</Section>
-	<Section slugger={slugger} id="imanao" heading="“今なお現役” 的なもの">
+	<Section id="imanao">
+		<H slot="heading">“今なお現役” 的なもの</H>
+
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
 				<div class="p-item">
@@ -71,7 +73,9 @@ const slugger = new GithubSlugger();
 			</li>
 		</ul>
 	</Section>
-	<Section slugger={slugger} id="preserve" heading="保存車">
+	<Section id="preserve">
+		<H slot="heading">保存車</H>
+
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
 				<div class="p-item">

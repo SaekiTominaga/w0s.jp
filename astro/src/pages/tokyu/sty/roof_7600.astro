@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -24,15 +24,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/roof_1000n', name: '1000N系（池多摩線）、1000N′系' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="tc-7600" heading="クハ7600形">
+	<Section id="tc-7600">
+		<H slot="heading">クハ7600形</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="tc-7601" depth={2} heading="クハ7601〜7603" headingType="c">
+				<Section id="tc-7601" depth={2} headingType="c">
+					<H slot="heading">クハ7601〜7603</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/roof/7600.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -52,10 +54,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="mc-7650" heading="デハ7650形">
+	<Section id="mc-7650">
+		<H slot="heading">デハ7650形</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7653" depth={2} heading="デハ7653" headingType="c">
+				<Section id="mc-7653" depth={2} headingType="c">
+					<H slot="heading">デハ7653</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/roof/7653.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -74,7 +80,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="mc-7661" depth={2} heading="デハ7661〜7662" headingType="c">
+				<Section id="mc-7661" depth={2} headingType="c">
+					<H slot="heading">デハ7661〜7662</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/roof/7650.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -94,10 +102,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m-7670" heading="デハ7670形">
+	<Section id="m-7670">
+		<H slot="heading">デハ7670形</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m-7673" depth={2} heading="デハ7673" headingType="c">
+				<Section id="m-7673" depth={2} headingType="c">
+					<H slot="heading">デハ7673</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/roof/7673.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -115,7 +127,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m-7681" depth={2} heading="デハ7681〜7682" headingType="c">
+				<Section id="m-7681" depth={2} headingType="c">
+					<H slot="heading">デハ7681〜7682</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/roof/7670.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />

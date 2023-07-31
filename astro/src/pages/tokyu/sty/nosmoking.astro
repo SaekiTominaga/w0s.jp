@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -17,15 +17,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="string" heading="文字のみのタイプ">
+	<Section id="string">
+		<H slot="heading">文字のみのタイプ</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="bold-purple" depth={2} heading="太フォント、英文紺字" headingType="c">
+				<Section id="bold-purple" depth={2} headingType="c">
+					<H slot="heading">太フォント、英文紺字</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/bold_purple.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -42,7 +44,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="bold-black" depth={2} heading="太フォント、英文黒字" headingType="c">
+				<Section id="bold-black" depth={2} headingType="c">
+					<H slot="heading">太フォント、英文黒字</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/bold_black.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -59,7 +63,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="bold-blue" depth={2} heading="太フォント、英文青字" headingType="c">
+				<Section id="bold-blue" depth={2} headingType="c">
+					<H slot="heading">太フォント、英文青字</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/bold_blue.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -76,7 +82,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="thin-black" depth={2} heading="細フォント、英文黒字" headingType="c">
+				<Section id="thin-black" depth={2} headingType="c">
+					<H slot="heading">細フォント、英文黒字</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/thin_black.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -95,10 +103,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="pictogram1" heading="ピクトグラム（旧）">
+	<Section id="pictogram1">
+		<H slot="heading">ピクトグラム（旧）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pic-str" depth={2} heading="ピクトグラム + 文字" headingType="c">
+				<Section id="pic-str" depth={2} headingType="c">
+					<H slot="heading">ピクトグラム + 文字</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/pic_str.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -115,7 +127,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pic-only" depth={2} heading="ピクトグラムのみ" headingType="c">
+				<Section id="pic-only" depth={2} headingType="c">
+					<H slot="heading">ピクトグラムのみ</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/pic_only.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -134,10 +148,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="pictogram2" heading="ピクトグラム（新）">
+	<Section id="pictogram2">
+		<H slot="heading">ピクトグラム（新）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="3000" depth={2} heading="新3000系" headingType="c">
+				<Section id="3000" depth={2} headingType="c">
+					<H slot="heading">新3000系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/3000.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -154,7 +172,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="y000" depth={2} heading="Y000系" headingType="c">
+				<Section id="y000" depth={2} headingType="c">
+					<H slot="heading">Y000系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/Y000.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -171,7 +191,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="300" depth={2} heading="300系" headingType="c">
+				<Section id="300" depth={2} headingType="c">
+					<H slot="heading">300系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/300.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -188,7 +210,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="9000-renewal" depth={2} heading="9000系化粧板修繕車" headingType="c">
+				<Section id="9000-renewal" depth={2} headingType="c">
+					<H slot="heading">9000系化粧板修繕車</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/nosmoking/9000_renewal.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />

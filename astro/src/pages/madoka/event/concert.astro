@@ -1,8 +1,8 @@
 ---
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -11,12 +11,12 @@ const structuredData: StructuredData = {
 	description: '2013年〜2015年に行われた「オーケストラ・コンサート」の開催情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="zenkouhen" heading="劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（前後編）">
+	<Section id="zenkouhen">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（前後編）</H>
+
 		<div class="p-text">
 			<p><LinkExternal href="https://web.archive.org/web/*/www.aim-vil.com/sponsor/madoka-concert/" class="c-link">公式ページ（アーカイブ）</LinkExternal></p>
 		</div>
@@ -71,7 +71,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="zenkouhen-encore" heading="劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（前後編・凱旋追加公演）">
+	<Section id="zenkouhen-encore">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（前後編・凱旋追加公演）</H>
+
 		<div class="p-text">
 			<p><LinkExternal href="https://web.archive.org/web/*/www.aim-vil.com/sponsor/madoka-concert-encore/" class="c-link">公式ページ（アーカイブ）</LinkExternal></p>
 		</div>
@@ -102,7 +104,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="shinpen" heading="劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（新編）">
+	<Section id="shinpen">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（新編）</H>
+
 		<div class="p-text">
 			<p><LinkExternal href="https://web.archive.org/web/*/www.aim-vil.com/sponsor/madoka-concert-rebellion/" class="c-link">公式ページ（アーカイブ）</LinkExternal></p>
 		</div>
@@ -143,7 +147,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="sapporo" heading="劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（札幌）">
+	<Section id="sapporo">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（札幌）</H>
+
 		<div class="p-text">
 			<p><LinkExternal href="https://web.archive.org/web/*/www.aim-vil.com/sponsor/madoka-concert-sapporo/" class="c-link">公式ページ（アーカイブ）</LinkExternal></p>
 		</div>
@@ -175,7 +181,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="last" heading="劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（最終公演）">
+	<Section id="last">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカ オーケストラ・コンサート（最終公演）</H>
+
 		<div class="p-text">
 			<p><LinkExternal href="https://web.archive.org/web/*/www.aim-vil.com/sponsor/madoka-concert-finale/" class="c-link">公式ページ（アーカイブ）</LinkExternal></p>
 		</div>

@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -17,12 +17,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="ca105" heading="CA-105型放送装置">
+	<Section id="ca105">
+		<H slot="heading">CA-105型放送装置</H>
+
 		<div class="p-text">
 			<p>熊本電気鉄道と水間鉄道の車両に残るクラリオン製のCA-105型放送装置。水間鉄道のテープ式搭載車7000系は、現在では基本的に営業運転に就くことはなく、実質これが稼働している譲渡車両は熊本電気鉄道モハ5100形のみとなっています。</p>
 		</div>
@@ -53,7 +53,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="mizuma-7000" heading="水間鉄道7000系">
+	<Section id="mizuma-7000">
+		<H slot="heading">水間鉄道7000系</H>
+
 		<div class="p-text">
 			<p>水間鉄道では2006年より7000系のリニューアル工事が行われ、放送装置も更新されましたが、デハ7003、デハ7103の2両が未改造で残っています。</p>
 			<p>デハ7003は2007年にデハ7052（現在のデハ1007）との客ドア交換が成され、東急時代に室内更新工事を受けた車両でありながら、Hゴム支持窓の側引戸を持つアンバランスな形態となっています。</p>

@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -13,8 +13,6 @@ const structuredData: StructuredData = {
 	description: '2015年〜2016年に開催された「MADOGATARI展」の会場で流された『コンセプトムービー』の映像について、タイプ A とタイプ B の違いなどの情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -338,13 +336,17 @@ const slugger = new GithubSlugger();
 		</tbody>
 	</table>
 
-	<Section slugger={slugger} id="theater" heading="シャフトシアターの流れ">
+	<Section id="theater">
+		<H slot="heading">シャフトシアターの流れ</H>
+
 		<div class="p-text">
 			<p>札幌会場以降は「シャフトシアター」として3面スクリーン上映が行われ、他作品も含めた10分前後の映像となりました。</p>
 			<p>金沢の「MADOGATARI GALLERY」は通常のスクリーンでしたが、様々な作品の映像が22分に渡って流れるものとなりました。</p>
 		</div>
 
-		<Section slugger={slugger} id="theater-sapporo" depth={2} heading="札幌会場" headingNote="2016年2月" headingType="b">
+		<Section id="theater-sapporo" depth={2} headingType="b">
+			<H slot="heading">札幌会場<small>（2016年2月）</small></H>
+
 			<ol class="p-list-num">
 				<li>『〈物語〉シリーズ』振り返り映像</li>
 				<li>
@@ -355,7 +357,9 @@ const slugger = new GithubSlugger();
 				<li>コンセプトムービー</li>
 			</ol>
 		</Section>
-		<Section slugger={slugger} id="theater-nagoya" depth={2} heading="名古屋会場" headingNote="2016年5月" headingType="b">
+		<Section id="theater-nagoya" depth={2} headingType="b">
+			<H slot="heading">名古屋会場<small>（2016年5月）</small></H>
+
 			<ol class="p-list-num">
 				<li>『〈物語〉シリーズ』振り返り映像</li>
 				<li>
@@ -365,7 +369,9 @@ const slugger = new GithubSlugger();
 				<li>コンセプトムービー</li>
 			</ol>
 		</Section>
-		<Section slugger={slugger} id="theater-tokyo-encore" depth={2} heading="東京アンコール会場" headingNote="2016年9月" headingType="b">
+		<Section id="theater-tokyo-encore" depth={2} headingType="b">
+			<H slot="heading">東京アンコール会場<small>（2016年9月）</small></H>
+
 			<ol class="p-list-num">
 				<li>『〈物語〉シリーズ』振り返り映像</li>
 				<li>『傷物語Ⅲ 冷血篇』予告</li>
@@ -379,7 +385,9 @@ const slugger = new GithubSlugger();
 				</li>
 			</ol>
 		</Section>
-		<Section slugger={slugger} id="theater-kanazawa" depth={2} heading="金沢会場（MADOGATARI GALLERY）" headingNote="2016年12月" headingType="b">
+		<Section id="theater-kanazawa" depth={2} headingType="b">
+			<H slot="heading">金沢会場（MADOGATARI GALLERY）<small>（2016年12月）</small></H>
+
 			<ol class="p-list-num">
 				<li>『暦ヒストリー』&lt;MADOGATARI展用特別映像&gt; 3:40</li>
 				<li>『惑語 魔法少女ものが☆モドカ』&lt;MADOGATARI展用特別映像&gt; 3:40</li>
@@ -406,7 +414,9 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="majyomoji" heading="魔女文字">
+	<Section id="majyomoji">
+		<H slot="heading">魔女文字</H>
+
 		<div class="p-text">
 			<p>映像で読めるのは一行のみですが、MADOGATARI展大阪会場以降の劇団イヌカレーボードにあった展示物では続きを確認することができ、以下のようになっていました。</p>
 			<p class="u-madoka-font-witch">
@@ -422,7 +432,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="report" heading="他の参加者のレポート">
+	<Section id="report">
+		<H slot="heading">他の参加者のレポート</H>
+
 		<ul class="p-links">
 			<li>
 				<LinkExternal href="https://1hatahata.blogspot.jp/2016/01/madogatari.html">個人ブログ「取り残されたオタク亭」の全体的なレポート（東京、大阪会場）</LinkExternal>

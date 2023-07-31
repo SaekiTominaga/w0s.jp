@@ -1,12 +1,12 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -20,8 +20,6 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/book/', name: '鉄道本執筆' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -29,14 +27,18 @@ const slugger = new GithubSlugger();
 		<AmazonItem asin="B0055D79J2" title="鉄道ピクトリアル 2011年8月号 【特集】地方私鉄の現状" date="2011-06-21" imageId="51AmFnfy6TL" imageWidth={114} imageHeight={160} />
 	</Amazon>
 
-	<Section slugger={slugger} id="prologue" heading="はじめに">
+	<Section id="prologue">
+		<H slot="heading">はじめに</H>
+
 		<div class="p-text -col2">
 			<p>東京急行電鉄は昔から車両譲渡に積極的な事業者のひとつであるが、近年は8000系グループの廃車が進み、伊豆急行や長野電鉄をはじめ海外にも進出、またVVVF制御車である7700系や1000系の譲渡も進んでいる。一方、20年ほど前に各地へ散った7000系もその多くが現役である。</p>
 			<p>本稿では国内の現役車両に的を絞り、路線毎の特徴を見ていきたいと思う。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="towada" heading="十和田観光電鉄">
+	<Section id="towada">
+		<H slot="heading">十和田観光電鉄</H>
+
 		<div class="p-text -col2">
 			<p>2002(平成14)年に7700系6両と7200系2両が譲渡された。これにより従来の吊掛車を置き換えたが、モハ3603と自社発注のモハ3401は廃車を免れ、七百の車庫に置かれている。</p>
 			<p>7700系は連結面に転落防止装置を設置、クハ7900形の空気圧縮機をHS-20形から旧式のHB-1500形へ交換、モハ7700形車端部に車椅子スペース設置など小規模な改造のみである。</p>
@@ -44,7 +46,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="konan" heading="弘南鉄道">
+	<Section id="konan">
+		<H slot="heading">弘南鉄道</H>
+
 		<div class="p-text -col2">
 			<p>1988(昭和63)年から翌年にかけて7000系8両と6000系4両が大鰐線用に譲渡された。7000系には電機品が東洋電機製造製と日立製作所製の2種類があるが、大鰐線に行ったのは日立車で、モーター出力が東洋車の60kWに対して70kWと高く、制御方式も8台の複巻電動機を2群に分け、直並列制御するものである<FootnoteReference>今泉藤麿、樋口徹、神谷清「東京急行電鉄株式会社納7000形電車用停車用電力回生ブレーキ付電気品」日立評論No.520（1965年5月号）</FootnoteReference>（東洋車は8台直列）。</p>
 			<p>1989(平成元)年には弘南線にも7000系東洋車が導入され、翌年にかけて16両が譲渡された。このうち10両は中間車のデハ7100形を先頭車化したもので、車号は7100番台とされ、正面は非常扉を設けず、東急9000系のように運転台側の窓が大きい非対称3枚窓の切妻となった。</p>
@@ -56,7 +60,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="fukushima" heading="福島交通">
+	<Section id="fukushima">
+		<H slot="heading">福島交通</H>
+
 		<div class="p-text -col2">
 			<p>1991(平成3)年に7000系16両が譲渡され、車両の総取替と1500V昇圧が行われた。</p>
 			<p>すべて中間車からの改造で、先頭部は水間鉄道の先頭化改造車に似た顔であるが、尾灯が円形から長方形に変更されている。また、方向幕は水間鉄道より小型のものであり、フォントにバリエーションが見られる。2両は電装を解除した中間車サハ7300形とされ、デハ7100形とデハ7200形に挟まれた3両編成<FootnoteReference>7111-7316-7212、7113-7315-7214と書かれた文献が多いが、実際にはときどき編成替えが行われており、7315と7316が逆になったり、他の編成に組み込まれることもある。</FootnoteReference>で平日ラッシュ時に活躍している。また、全車が東洋車であるが、7109・7111・7113、7210・7212・7214は主幹制御器が日立製となっている。</p>
@@ -69,7 +75,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="chichibu" heading="秩父鉄道">
+	<Section id="chichibu">
+		<H slot="heading">秩父鉄道</H>
+
 		<div class="p-text -col2">
 			<p>2009(平成21)年より8500系、8090系が譲渡されており、形式はそれぞれ7000系、7500系となっている。</p>
 			<p>7000系の集電装置は菱形だが、剛体架線に対応した短舟のPT4309S形から長舟のPT4304形へ換装され、またデハ7200形にも冷房装置を一機撤去のうえ搭載された。</p>
@@ -79,7 +87,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="nagano" heading="長野電鉄">
+	<Section id="nagano">
+		<H slot="heading">長野電鉄</H>
+
 		<div class="p-text -col2">
 			<p>2005(平成17)年から8500系が譲渡されており、3連6本が長野―信州中野間で活躍している。</p>
 			<p>
@@ -92,7 +102,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="ueda" heading="上田電鉄">
+	<Section id="ueda">
+		<H slot="heading">上田電鉄</H>
+
 		<div class="p-text -col2">
 			<p>1993(平成5)年に7200系10両が譲渡された。</p>
 			<p>東洋車が大半であり、クハ7554のみ日立車だが、主幹制御器は東洋製にされていたため、他車との差異はジャンパ栓受程度であった。</p>
@@ -103,7 +115,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="izukyu" heading="伊豆急行">
+	<Section id="izukyu">
+		<H slot="heading">伊豆急行</H>
+
 		<div class="p-text -col2">
 			<p>2005(平成17)年から8000系、8500系45両が譲渡された。当初は基本4連と付属2連の組み合わせであり、2連、4連、6連、また多客時など4+4の8連で運用されたこともあった。</p>
 			<p>主な改造内容は、先頭車正面の密着自動連結器を電連付き密着式に交換、伊豆急とJR伊東線乗り入れ用の保安装置を搭載、正面スカートの設置などである。4連のうち、上り方から2両目のモハ8200形(M2)は東急デハ8100形(M1)からの改造車で、集電装置はそのままに床下機器が交換されている。2連のうち下田方のクモハ8150形は、デハ8100形またはデハ8700形に運転台を取り付けたものである。</p>
@@ -118,7 +132,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="toyotetsu" heading="豊橋鉄道（渥美線）">
+	<Section id="toyotetsu">
+		<H slot="heading">豊橋鉄道（渥美線）</H>
+
 		<div class="p-text -col2">
 			<p>2000(平成12)年に7200系30両が譲渡され、2代目1800系となった。</p>
 			<p>部品車3両を除いて3連9本が組成され、うち6本は日立車、3本は東洋車の編成とされた。</p>
@@ -134,7 +150,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="hokutetsu" heading="北陸鉄道（石川線）">
+	<Section id="hokutetsu">
+		<H slot="heading">北陸鉄道（石川線）</H>
+
 		<div class="p-text -col2">
 			<p>1990(平成2)年に7000系10両が譲渡された。4両は中間車からの改造車で、車号は7200番台とされ、弘南鉄道と同じく切妻顔となっている。</p>
 			<p>他の7000系譲渡車と異なり、活用されたのは車体など一部のみで、床下機器や集電装置は交換されている。台車は電動台車が住友金属製のFS342形、付随台車はDT21T形、TR64形、DT21B形の3種類の存在を確認している。主制御器はCS20形、MGはTDK-366形、CPも交換されたが再交換によって今はHB-1500形を搭載している<FootnoteReference>山本宏之「現有私鉄概説 北陸鉄道」 鉄道ピクトリアルNo.701（2001年5月号臨時増刊）</FootnoteReference>。主幹制御器は東急旧3000形の発生品を使用していたが、これも交換を行っている。</p>
@@ -142,7 +160,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="iga" heading="伊賀鉄道">
+	<Section id="iga">
+		<H slot="heading">伊賀鉄道</H>
+
 		<div class="p-text -col2">
 			<p>2009(平成21)年より1000系が譲渡され、200系として編成ごとに忍者やマスコットキャラクターなどのラッピングを行っている。</p>
 			<p>最初の2編成は、東横線所属ながら分割して目蒲線でも使用できるよう4+4の組成にした1000N系を改造したもので、中間組込先頭車だった102、202は正面扉が中央にある。103、203は他車とは逆向きに入線しており、床下機器や冷房装置の配置が逆になっている。</p>
@@ -151,7 +171,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="mizuma" heading="水間鉄道">
+	<Section id="mizuma">
+		<H slot="heading">水間鉄道</H>
+
 		<div class="p-text -col2">
 			<p>1990(平成2)年に7000系10両が譲渡された。</p>
 			<p>4両は中間車からの改造車で車号は50番台とされ、弘南鉄道や北陸鉄道と同じく切妻顔であるが、上部に方向幕が設置された。当初はこの4両のみ冷房が搭載されたが、屋根上に本体を設置した本格的な冷房車で、電源装置は東急8000系グループから転用した50kVA-SIVをデハ7150形に搭載した。1991年には7001、7101も現地で冷改されている<FootnoteReference>渡辺健太郎、高嶋修一「現有私鉄概説 水間鉄道」 鉄道ピクトリアルNo.685（2000年5月号臨時増刊）</FootnoteReference>。</p>
@@ -162,7 +184,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="kumamoto" heading="熊本電気鉄道">
+	<Section id="kumamoto">
+		<H slot="heading">熊本電気鉄道</H>
+
 		<div class="p-text -col2">
 			<p>1981(昭和56)年に5000系2両（5043・5044）が譲渡された。架線電圧が600Vであるため、CPやMGの交換が行われたが、主制御器はオリジナルの東芝製PE-11形を引き続き使用した。</p>
 			<p>CPはギヤ式のD-2-N形に交換された。これはデハ3450形など吊掛車に搭載されていたもので、東急線が600Vだった時代、将来の1500V昇圧を見込んで複電圧対応として造られた。東急では1993(平成5)年にデハ3499とデヤ3001が引退するまで現役であった<FootnoteReference>熊本電気鉄道が所有する個体を予備品も含めて調査したところ、銘板が残るものについては昭和20年代の製造とあり、さすがに初期の個体ではなかったが、いずれにしても骨董品である。</FootnoteReference>。</p>
@@ -176,7 +200,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="annnounce" heading="自動放送">
+	<Section id="annnounce">
+		<H slot="heading">自動放送</H>
+
 		<div class="p-text -col2">
 			<p>ワンマン運転を行う車両の多くには自動放送が搭載されている。東急の譲渡車も豊橋鉄道渥美線以外の各路線で導入されており、機器や放送フレーズにさまざまなバリエーションが存在する。アナウンスは女性声によるものが多数派だが、上田電鉄の7200系下り列車と熊本電気鉄道は男性声である<FootnoteReference>上田電鉄7200系上り列車でも、平日朝ラッシュ時の一部区間のみ男性声の放送が行われる。</FootnoteReference>。</p>
 			<p>放送機器は、数年前まで8トラテープ式が主流であったが、音声合成装置が普及した現在では熊本電気鉄道のみテープ式で残る。これによりきめ細かな案内が容易となり、時間帯によって放送内容を変えたり、交通運動など時期限定の案内を流す例が増えている。</p>
@@ -188,15 +214,23 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="epilogue" heading="おわりに">
+	<Section id="epilogue">
+		<H slot="heading">おわりに</H>
+
 		<div class="p-text -col2">
 			<p>以上、駆け足ではあるが、国内の東急譲渡車を紹介させていただいた。本稿ではとくに基本的な事項のみを取り扱っており、物足りない思いをした方もおられるかと思うが、より詳しい解説や最新動向は随時ウェブでフォローしてゆくつもりである。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="errata" heading="正誤データ">
-		<Section slugger={slugger} id="errata-ueda" depth={2} heading="上田電鉄" headingType="b">
-			<Section slugger={slugger} id="errata-ueda-moquette" depth={3} heading="7200系「まるまどりーむ号」の座席モケット" headingType="c">
+	<Section id="errata">
+		<H slot="heading">正誤データ</H>
+
+		<Section id="errata-ueda" depth={2} headingType="b">
+			<H slot="heading">上田電鉄</H>
+
+			<Section id="errata-ueda-moquette" depth={3} headingType="c">
+				<H slot="heading">7200系「まるまどりーむ号」の座席モケット</H>
+
 				<div class="p-box">
 					<p>(誤) 2005(平成17)年には7253-7553と7255-7555が「まるまどりーむ号」となり、<b>（中略）</b>、室内も化粧板や座席モケットが替えられた。</p>
 					<p>(正) 2005(平成17)年には7253-7553と7255-7555が「まるまどりーむ号」となり、<b>（中略）</b>、室内も化粧板や座席モケットが替えられた<ins>（7255-7555の座席モケットは後に交換）</ins>。</p>

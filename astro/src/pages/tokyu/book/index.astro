@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
 import type { StructuredData } from '@type/types.js';
@@ -15,12 +15,12 @@ const structuredData: StructuredData = {
 	description: '鉄道関係で執筆に関わった本の紹介、および補足を行っています。',
 	breadcrumb: [{ path: '/tokyu/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="book" heading="図書">
+	<Section id="book">
+		<H slot="heading">図書</H>
+
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
 				<div class="p-item">
@@ -55,7 +55,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="tetsupic" heading="鉄道ピクトリアル">
+	<Section id="tetsupic">
+		<H slot="heading">鉄道ピクトリアル</H>
+
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
 				<div class="p-item">

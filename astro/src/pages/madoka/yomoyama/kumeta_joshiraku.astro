@@ -4,6 +4,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -28,15 +29,21 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="作品概要">
+	<Section id="introduction">
+		<H slot="heading">作品概要</H>
+
 		<div class="p-text">
 			<p>「別冊少年マガジン」において2009年〜2013年に連載された作品で、久米田先生は原作として関わっており、作画はヤス先生によるものです。</p>
 			<p>2012年にはアニメ化、およびウェブラジオ配信がなされました。『魔法少女まどか☆マギカ』と関わりの深いキャストとしては悠木碧（覆面 役）、新谷良子（宇座亭ウザンヌ 役）がおり、ラジオでネタにされたこともあります。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="manga" heading="漫画">
-		<Section slugger={slugger} depth={2} heading="特別編　壱／権利衛狸" headingType="b">
+	<Section id="manga">
+		<H slot="heading">漫画</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">特別編　壱／権利衛狸</H>
+
 			<div class="p-text">
 				<p>2013年2月8日　単行本「第伍巻」発売</p>
 				<p>6ページ目（第伍巻の110ページ）</p>
@@ -55,8 +62,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="anime" heading="アニメ">
-		<Section slugger={slugger} depth={2} heading="第十席" headingType="b">
+	<Section id="anime">
+		<H slot="heading">アニメ</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">第十席</H>
+
 			<div class="p-text">
 				<p><time datetime="2012-09-07">2012年9月6日深夜</time>　MBS放送</p>
 				<p>A パート　唐茄子屋楽団</p>
@@ -73,7 +84,9 @@ const slugger = new GithubSlugger();
 			</Amazon>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="OAD" headingNote="単行本第伍巻・限定版付属" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">OAD<small>（単行本第伍巻・限定版付属）</small></H>
+
 			<div class="p-text">
 				<p>2013年2月8日発売</p>
 				<p>B パート 三軒本屋</p>
@@ -96,7 +109,9 @@ const slugger = new GithubSlugger();
 				<AmazonItem asin="4063584151" title="単行本 第伍巻（限定版）" date="2013-02-08" imageId="51MFgzd%2Bx%2BL" imageWidth={113} imageHeight={160} />
 			</Amazon>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="Blu-ray / DVD　第壱巻　特典CD" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">Blu-ray / DVD　第壱巻　特典CD</H>
+
 			<div class="p-text">
 				<p>二次限無 Girl's Side</p>
 			</div>
@@ -117,8 +132,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="radio" heading="ラジオ" headingNote="【ガールズ落語ラジオ】じょしらじ">
-		<Section slugger={slugger} depth={2} heading="第9回　くされ講釈" headingType="b">
+	<Section id="radio">
+		<H slot="heading">ラジオ<small>（【ガールズ落語ラジオ】じょしらじ）</small></H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">第9回　くされ講釈</H>
+
 			<div class="p-text">
 				<p>2012年9月12日配信</p>
 				<p>パーソナリティ: 佐倉綾音、後藤沙緒里</p>
@@ -135,7 +154,9 @@ const slugger = new GithubSlugger();
 				<li>覆面キャラの声は悠木碧さん。アニメでは第一席から登場しているが、セリフがあったのは第八席が初。</li>
 			</ul>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="第20回　小別れ" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">第20回　小別れ</H>
+
 			<div class="p-text">
 				<p>2012年12月26日配信</p>
 				<p>パーソナリティ: 佐倉綾音、後藤沙緒里、南條愛乃、小岩井ことり、山本希望</p>
@@ -149,7 +170,9 @@ const slugger = new GithubSlugger();
 				</ul>
 			</div>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="DJCD　ガールズ落語ラジオ　じょしらじ　其之壱" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">DJCD　ガールズ落語ラジオ　じょしらじ　其之壱</H>
+
 			<div class="p-text">
 				<p>2012年10月19日発売</p>
 				<p>パーソナリティ: 佐倉綾音、小岩井ことり、山本希望</p>

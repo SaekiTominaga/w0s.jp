@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -18,15 +18,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="hsc" heading="電磁直通ブレーキ">
+	<Section id="hsc">
+		<H slot="heading">電磁直通ブレーキ</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="hd23" depth={2} heading="7200系" headingType="c">
+				<Section id="hd23" depth={2} headingType="c">
+					<H slot="heading">7200系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bce/HD23.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -46,10 +48,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="electric" heading="電気指令式ブレーキ">
+	<Section id="electric">
+		<H slot="heading">電気指令式ブレーキ</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="e6" depth={2} heading="8000系グループ、サヤ7590" headingType="c">
+				<Section id="e6" depth={2} headingType="c">
+					<H slot="heading">8000系グループ、サヤ7590</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bce/E6-M.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -69,7 +75,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="e30" depth={2} heading="9000系、1000系、2000系" headingType="c">
+				<Section id="e30" depth={2} headingType="c">
+					<H slot="heading">9000系、1000系、2000系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bce/E30-A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -90,7 +98,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="e53" depth={2} heading="7600系、7700系" headingType="c">
+				<Section id="e53" depth={2} headingType="c">
+					<H slot="heading">7600系、7700系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bce/E53.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -110,7 +120,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="e78" depth={2} heading="新3000系" headingType="c">
+				<Section id="e78" depth={2} headingType="c">
+					<H slot="heading">新3000系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bce/E78-M1.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
@@ -130,7 +142,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="e80" depth={2} heading="300系" headingType="c">
+				<Section id="e80" depth={2} headingType="c">
+					<H slot="heading">300系</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/bce/E80.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />

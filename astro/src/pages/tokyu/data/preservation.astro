@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -15,12 +15,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/data/', name: '車両データ' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="list" heading="保存車リスト">
+	<Section id="list">
+		<H slot="heading">保存車リスト</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -291,7 +291,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="map" heading="保存車マップ">
+	<Section id="map">
+		<H slot="heading">保存車マップ</H>
+
 		<figure>
 			<div class="p-embed -border">
 				<iframe src="https://www.google.com/maps/d/embed?mid=1wcErO5GFrxTDWgFmFvooaScjytnyRnSy&hl=ja" title="保存車両マップ" style="height: min(100vh, 720px)"></iframe>

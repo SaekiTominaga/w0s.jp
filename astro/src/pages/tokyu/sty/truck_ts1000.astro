@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,12 +26,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/truck_etc', name: '総合車両製以外' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>東急車輛製造では1970年代にボルスタレス台車の開発に着手し、軸梁式の TS-1001 型とペデスタル式の TS-1002 型を製作。さらに TS-1002 型を基に、基礎ブレーキ装置をユニットブレーキから当時電動車で一般的だった踏面式に変更した TS-1003 型を製作し、デハ6202 に履かせて各種試験を行いました。</p>
 			<p>これらの試験ののち、1986年の9000系にて量産台車が採用され、以降の鉄道線車両の標準となっています。</p>
@@ -155,8 +155,12 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="ts1004" heading="TS-1004 型">
-		<Section slugger={slugger} id="ts1004-m" depth={2} heading="TS-1004" headingNote="動力台車" headingType="b">
+	<Section id="ts1004">
+		<H slot="heading">TS-1004 型</H>
+
+		<Section id="ts1004-m" depth={2} headingType="b">
+			<H slot="heading">TS-1004<small>（動力台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS1004_9208.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -178,8 +182,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="ts1005" heading="TS-1005 型">
-		<Section slugger={slugger} id="ts1005-t" depth={2} heading="TS-1005" headingNote="付随台車" headingType="b">
+	<Section id="ts1005">
+		<H slot="heading">TS-1005 型</H>
+
+		<Section id="ts1005-t" depth={2} headingType="b">
+			<H slot="heading">TS-1005<small>（付随台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS1005_9007.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -208,8 +216,12 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="ts1006" heading="TS-1006 型">
-			<Section slugger={slugger} id="ts1006-m" depth={2} heading="TS-1006" headingNote="動力台車" headingType="b">
+		<Section id="ts1006">
+			<H slot="heading">TS-1006 型</H>
+
+			<Section id="ts1006-m" depth={2} headingType="b">
+				<H slot="heading">TS-1006<small>（動力台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/TS1006_1223.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -225,7 +237,9 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 
-			<Section slugger={slugger} id="ts1006a" depth={2} heading="TS-1006A" headingNote="動力台車" headingType="b">
+			<Section id="ts1006a" depth={2} headingType="b">
+				<H slot="heading">TS-1006A<small>（動力台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/TS1006A_1362.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -240,8 +254,12 @@ const slugger = new GithubSlugger();
 					<p>2003年の東横線 1010F 組替えに伴い、長らく営業を外れていたデハ1362、デハ1363 が復帰しましたが、このうちデハ1362 の台車は TS-1006A 型とされ、復帰当初は側梁の向かって右側に改造銘板が設置されていました。</p>
 				</div>
 
-				<Section slugger={slugger} id="ts1007" heading="TS-1007 型">
-					<Section slugger={slugger} id="ts1007-t" depth={2} heading="TS-1007" headingNote="付随台車" headingType="b">
+				<Section id="ts1007">
+					<H slot="heading">TS-1007 型</H>
+
+					<Section id="ts1007-t" depth={2} headingType="b">
+						<H slot="heading">TS-1007<small>（付随台車）</small></H>
+
 						<figure class="c-fit">
 							<div class="p-embed -border">
 								<Image path="tokyu/sty/truck/TS1007_1101.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -270,8 +288,12 @@ const slugger = new GithubSlugger();
 						</div>
 					</Section>
 
-					<Section slugger={slugger} id="ts1010" heading="TS-1010 型">
-						<Section slugger={slugger} id="ts1010-m" depth={2} heading="TS-1010" headingNote="動力台車" headingType="b">
+					<Section id="ts1010">
+						<H slot="heading">TS-1010 型</H>
+
+						<Section id="ts1010-m" depth={2} headingType="b">
+							<H slot="heading">TS-1010<small>（動力台車）</small></H>
+
 							<figure class="c-fit">
 								<div class="p-embed -border">
 									<Image path="tokyu/sty/truck/TS1010_2453.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -289,8 +311,12 @@ const slugger = new GithubSlugger();
 							</div>
 						</Section>
 
-						<Section slugger={slugger} id="ts1011" heading="TS-1011 型">
-							<Section slugger={slugger} id="ts1011-t" depth={2} heading="TS-1011" headingNote="付随台車" headingType="b">
+						<Section id="ts1011">
+							<H slot="heading">TS-1011 型</H>
+
+							<Section id="ts1011-t" depth={2} headingType="b">
+								<H slot="heading">TS-1011<small>（付随台車）</small></H>
+
 								<figure class="c-fit">
 									<div class="p-embed -border">
 										<Image path="tokyu/sty/truck/TS1011_2101.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -318,8 +344,12 @@ const slugger = new GithubSlugger();
 								</div>
 							</Section>
 
-							<Section slugger={slugger} id="ts1019" heading="TS-1019 型">
-								<Section slugger={slugger} id="ts1019-m" depth={2} heading="TS-1019" headingNote="動力台車" headingType="b">
+							<Section id="ts1019">
+								<H slot="heading">TS-1019 型</H>
+
+								<Section id="ts1019-m" depth={2} headingType="b">
+									<H slot="heading">TS-1019<small>（動力台車）</small></H>
+
 									<figure class="c-fit">
 										<div class="p-embed -border">
 											<Image path="tokyu/sty/truck/TS1019_3404.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -340,8 +370,12 @@ const slugger = new GithubSlugger();
 									</div>
 								</Section>
 
-								<Section slugger={slugger} id="ts1020" heading="TS-1020 型">
-									<Section slugger={slugger} id="ts1020-t" depth={2} heading="TS-1020" headingNote="付随台車" headingType="b">
+								<Section id="ts1020">
+									<H slot="heading">TS-1020 型</H>
+
+									<Section id="ts1020-t" depth={2} headingType="b">
+										<H slot="heading">TS-1020<small>（付随台車）</small></H>
+
 										<figure class="c-fit">
 											<div class="p-embed -border">
 												<Image path="tokyu/sty/truck/TS1020_3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />

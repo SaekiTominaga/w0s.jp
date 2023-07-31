@@ -1,10 +1,10 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
 import Image from '@components/Image.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,12 +26,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/truck_etc', name: '総合車両製以外' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>現在、東急電鉄の旅客車両はすべて総合車両製作所ないし前身の東急車輛製造製の台車を履いていますが、吊り掛け車時代は他メーカーの台車も存在しました。また、譲渡車両では台車を履き替えた例も存在します。</p>
 			<p>ここでは譲渡車両や保存車両で現存する台車、あるいは近年まで見られた台車の一部を紹介します。</p>
@@ -149,7 +149,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="nsk-a1" heading="A-1 型" headingNote="動力台車">
+	<Section id="nsk-a1">
+		<H slot="heading">A-1 型<small>（動力台車）</small></H>
+
 		<figure class="c-fit">
 			<div class="p-embed -border">
 				<Image path="tokyu/sty/truck/nsk-A1_hossyoji203.jpg" alt="写真拡大" width={1022} height={409} quality={80} link={true} />
@@ -167,7 +169,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="3100" heading="東京横浜電鉄／目黒蒲田電鉄　デハ100形用台車" headingNote="付随台車">
+	<Section id="3100">
+		<H slot="heading">東京横浜電鉄／目黒蒲田電鉄　デハ100形用台車<small>（付随台車）</small></H>
+
 		<figure class="c-fit">
 			<div class="p-embed -border">
 				<Image path="tokyu/sty/truck/3100_kaya3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -190,7 +194,9 @@ const slugger = new GithubSlugger();
 			</p>
 		</div>
 
-		<Section slugger={slugger} id="ks33" heading="KS-33L 型 → KS-33E 型" headingNote="付随台車">
+		<Section id="ks33">
+			<H slot="heading">KS-33L 型 → KS-33E 型<small>（付随台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/KS33E_oigawa821.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -208,7 +214,9 @@ const slugger = new GithubSlugger();
 				<p>一方、大井川鐵道では1990年代に座敷客車ナロ80形（2両）、展望客車スイテ82形（1両）、および「しらさぎ」の愛称を持つアルミ電車クハ6061 の台車が KS-33 型に履き替えられました。これら計4両の台車は枕ばねがオイルダンパ式になっている特徴があり、その他の部品も含めた台車全体の形状、一部の台車に残る製造銘板の刻印、台車交換時期からして名鉄の廃車発生品を利用したものと判断できます。クハ6061 は廃車後に石川県・山中温泉へ里帰りし静態保存、一方のナロ80形、スイテ82形は現在でも不定期に「かわね路号」などに連結されて活躍中です。</p>
 			</div>
 
-			<Section slugger={slugger} id="dt21" heading="DT-21T 型、TR-64 型、DT-21B 型" headingNote="付随台車">
+			<Section id="dt21">
+				<H slot="heading">DT-21T 型、TR-64 型、DT-21B 型<small>（付随台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/DT21B_hokuriku7112.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -224,7 +232,9 @@ const slugger = new GithubSlugger();
 					<p>石川線電車のクハで使われているのは DT-21T 型、 TR-64 型、 DT-21B 型の3種であり、 DT-21T は電装準備が成されている形式、 TR-64 は当初から制御車、付随車専用として作られた形式、 DT-21B は国鉄401系、421系電車等向けに一部設計変更された形式となってます。</p>
 				</div>
 
-				<Section slugger={slugger} id="fs342" heading="FS-342 型" headingNote="動力台車">
+				<Section id="fs342">
+					<H slot="heading">FS-342 型<small>（動力台車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/truck/FS342_hokuriku7102.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -239,7 +249,9 @@ const slugger = new GithubSlugger();
 						<p>北陸鉄道7000系の電動車が履く FS-342 型は、 DT-21 型台車を元に住友金属工業（現：日本製鉄）が西武鉄道向け（後に上信電鉄も）に製作したもので、構造は DT-21 型の量産タイプと同じです。</p>
 					</div>
 
-					<Section slugger={slugger} id="fs097" heading="FS-097 型" headingNote="付随台車">
+					<Section id="fs097">
+						<H slot="heading">FS-097 型<small>（付随台車）</small></H>
+
 						<figure class="c-fit">
 							<div class="p-embed -border">
 								<Image path="tokyu/sty/truck/FS097_iyotetsu502.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -257,7 +269,9 @@ const slugger = new GithubSlugger();
 							<p>営業運転から撤退した後も、固定編成を組んでいたデハ303、デハ304 とともに長らく古町車庫で姿を留めていましたが、2008年に解体され現存しません。</p>
 						</div>
 
-						<Section slugger={slugger} id="tr230" heading="TR-230C 型" headingNote="付随台車">
+						<Section id="tr230">
+							<H slot="heading">TR-230C 型<small>（付随台車）</small></H>
+
 							<figure class="c-fit">
 								<div class="p-embed -border">
 									<Image path="tokyu/sty/truck/TR230_mani50-2186.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />

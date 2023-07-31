@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -25,10 +26,14 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="toyoko" heading="東横線">
+	<Section id="toyoko">
+		<H slot="heading">東横線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="9000系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9000系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -94,7 +99,9 @@ const slugger = new GithubSlugger();
 			</div>
 
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="1000系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -161,10 +168,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="meguro" heading="目黒線">
+	<Section id="meguro">
+		<H slot="heading">目黒線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="3000系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">3000系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -221,10 +232,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="dento" heading="田園都市線">
+	<Section id="dento">
+		<H slot="heading">田園都市線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8500系（CP3台編成）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系（CP3台編成）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -303,7 +318,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8500系（CP4台編成・8637F）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系（CP4台編成・8637F）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -378,7 +395,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8500系（VVVF車組込・8642F）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系（VVVF車組込・8642F）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -453,7 +472,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8090系（先頭車が8590系）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8090系（先頭車が8590系）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -528,7 +549,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="2000系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">2000系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -605,10 +628,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="oimachi" heading="大井町線">
+	<Section id="oimachi">
+		<H slot="heading">大井町線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8090系（先頭車が12〜13次車）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8090系（先頭車が12〜13次車）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -662,7 +689,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8090系（先頭車が16〜17次車）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8090系（先頭車が16〜17次車）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -716,7 +745,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8090系（先頭車が8590系）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8090系（先頭車が8590系）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -766,7 +797,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="8500系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -816,7 +849,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="9000系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9000系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -869,7 +904,9 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="デヤ7200形" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">デヤ7200形</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -899,7 +936,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="デヤ7290形" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">デヤ7290形</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -929,7 +968,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="サヤ7590形" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">サヤ7590形</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -961,10 +1002,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="iketama" heading="池上、多摩川線">
+	<Section id="iketama">
+		<H slot="heading">池上、多摩川線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="7600系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7600系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -1004,7 +1049,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="7700系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7700系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -1044,7 +1091,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="7700系（7915F）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7700系（7915F）</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -1083,7 +1132,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="1000N′系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000N′系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -1123,7 +1174,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="1000N系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000N系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -1165,10 +1218,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="kodomo" heading="こどもの国線">
+	<Section id="kodomo">
+		<H slot="heading">こどもの国線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="横浜高速鉄道Y000系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">横浜高速鉄道Y000系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>
@@ -1204,10 +1261,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="setagaya" heading="世田谷線">
+	<Section id="setagaya">
+		<H slot="heading">世田谷線</H>
+
 		<div class="c-flex -hdg-c">
 			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} heading="300系" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">300系</H>
+
 					<table class="p-tokyu-form">
 						<thead>
 							<tr>

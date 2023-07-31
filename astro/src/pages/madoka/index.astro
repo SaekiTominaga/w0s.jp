@@ -1,6 +1,7 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import type { StructuredData } from '@type/types.js';
@@ -24,7 +25,9 @@ const slugger = new GithubSlugger();
 		<div class="p-top-nav__main">
 			<div class="c-grid -top-nav">
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="映像" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">映像</H>
+
 						<ul class="p-links">
 							<li><a href="/madoka/video/connect">「コネクト」映像バリエーション</a></li>
 							<li><a href="/madoka/video/zenpen">[前編] 始まりの物語　上映版とパッケージ版の比較</a></li>
@@ -35,7 +38,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="メディア紹介" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">メディア紹介</H>
+
 						<ul class="p-links">
 							<li><a href="/madoka/library/book">図書</a></li>
 							<li><a href="/madoka/library/magazine">雑誌</a></li>
@@ -44,7 +49,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="イベント" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">イベント</H>
+
 						<ul class="p-links">
 							<li>
 								<a href="/madoka/event/event">まどか☆マギカ展<small>（2011年〜2014年）</small></a>
@@ -70,7 +77,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="よもやま" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">よもやま</H>
+
 						<ul class="p-links">
 							<li><a href="/madoka/yomoyama/official_news">公式サイトニュース一覧</a></li>
 							<li><a href="/madoka/yomoyama/commentary">オーディオコメンタリー</a></li>
@@ -83,7 +92,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="同人誌" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">同人誌</H>
+
 						<ul class="p-links">
 							<li><a href="/madoka/dojin/pictorial6">[新編]叛逆の物語　上映版とパッケージ版の比較</a></li>
 							<li><a href="/madoka/dojin/pictorial7">TVシリーズ　放送版とパッケージ版の比較</a></li>

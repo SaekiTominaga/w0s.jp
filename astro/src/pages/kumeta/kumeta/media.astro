@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -21,7 +22,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="ラジオ">
+	<Section slugger={slugger}>
+		<H slot="heading">ラジオ</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -86,7 +89,9 @@ const slugger = new GithubSlugger();
 		<p>さて、『さよなら絶望放送』では久米田先生のゲスト出演は最後までありませんでしたが、最終回を目前にした<LinkExternal href="https://web.archive.org/web/20110811003749/http://www.animate.tv/radio/details.php?id=szbh#player">第200回</LinkExternal>では放送開始当初にカセットテープに録音していた（という体の）音声が公開され、生前葬のビデオメッセージなどでお馴染みの<q>みなさんがこのテープを聞いているということは……</q>の挨拶で笑いを誘いました。この時のメッセージはひじょうに短く、そのこと自体がツッコミ待ちの感があるものでしたが、<LinkExternal href="https://web.archive.org/web/20110902021239/http://www.animate.tv/radio/details.php?id=szbh#player">最終回</LinkExternal>ではその続きが流され、パーソナリティーへの絶望的な労いの言葉で長きにわたる番組を締めるものとなりました。</p>
 	</Section>
 
-	<Section slugger={slugger} heading="テレビ">
+	<Section slugger={slugger}>
+		<H slot="heading">テレビ</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -149,7 +154,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} id="movie" heading="DVD, Blu-ray, Web">
+	<Section id="movie">
+		<H slot="heading">DVD, Blu-ray, Web</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

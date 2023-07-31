@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -25,12 +25,12 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>マギレコ中国版、繁中版、北米版のゲーム概要、イベントレポート、街頭広告の掲出例などを紹介します。</p>
 		</div>
@@ -62,7 +62,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="buy" heading="購入">
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
 		<div class="c-flex -buttons">
 			<div class="c-flex__item">
 				<a href="pdf/pictorial11_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
@@ -80,7 +82,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="toc" heading="目次">
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
 		<ol class="p-list">
 			<li>
 				中国版『魔法纪录 魔法少女小圆外传』
@@ -112,7 +116,9 @@ const slugger = new GithubSlugger();
 		</ol>
 	</Section>
 
-	<Section slugger={slugger} id="errata" heading="正誤情報">
+	<Section id="errata">
+		<H slot="heading">正誤情報</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

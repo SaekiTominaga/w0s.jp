@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -17,22 +17,26 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>大井町線の8090系（5両編成）は3号車に 10kVA の小容量 SIV が搭載されていますが、いずれも1970年代の製造であり、老朽化および予備品確保のためか、100kVA の大容量タイプに更新し二電源化を実現する工事が一部編成で行われました。</p>
 			<p>この工事は2000年と2005年の2回に分けて行われ、それぞれ異なる機器が搭載されました。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m2-8290-bs33" heading="10kVA SIV 搭載車">
+	<Section id="m2-8290-bs33">
+		<H slot="heading">10kVA SIV 搭載車</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-bs33-s" depth={2} heading="海側" headingType="c">
+				<Section id="m2-8290-bs33-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/8290s-BS33.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -49,7 +53,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-bs33-m" depth={2} heading="山側" headingType="c">
+				<Section id="m2-8290-bs33-m" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/8290m-BS33.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -66,7 +72,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-bs33-j" depth={2} heading="山側連結部" headingType="c">
+				<Section id="m2-8290-bs33-j" depth={2} headingType="c">
+					<H slot="heading">山側連結部</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/IC3C.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -85,10 +93,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m2-8290-inv104" heading="100kVA SIV（INV-104 型）搭載車">
+	<Section id="m2-8290-inv104">
+		<H slot="heading">100kVA SIV（INV-104 型）搭載車</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-inv104-s" depth={2} heading="海側" headingType="c">
+				<Section id="m2-8290-inv104-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/8290s-INV104.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -105,7 +117,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-inv104-m" depth={2} heading="山側" headingType="c">
+				<Section id="m2-8290-inv104-m" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/8290m-INV104.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -122,7 +136,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-inv104-j" depth={2} heading="山側連結部" headingType="c">
+				<Section id="m2-8290-inv104-j" depth={2} headingType="c">
+					<H slot="heading">山側連結部</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/IC3C-fo.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -141,10 +157,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m2-8290-inv153" heading="100kVA SIV（INV-153 型）搭載車">
+	<Section id="m2-8290-inv153">
+		<H slot="heading">100kVA SIV（INV-153 型）搭載車</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-inv153-s" depth={2} heading="海側" headingType="c">
+				<Section id="m2-8290-inv153-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/8290s-INV153.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
@@ -162,7 +182,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-8290-inv153-j" depth={2} heading="山側連結部" headingType="c">
+				<Section id="m2-8290-inv153-j" depth={2} headingType="c">
+					<H slot="heading">山側連結部</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/IC3C-rem.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -177,10 +199,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="m2-8200" heading="（参考）10kVA SIV 搭載車・デハ8200形">
+	<Section id="m2-8200">
+		<H slot="heading">（参考）10kVA SIV 搭載車・デハ8200形</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="m2-820-s" depth={2} heading="海側" headingType="c">
+				<Section id="m2-820-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/ub/8200s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />

@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -18,15 +18,17 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="pantograph" heading="菱形パンタグラフ">
+	<Section id="pantograph">
+		<H slot="heading">菱形パンタグラフ</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pt43" depth={2} heading="PT43" headingType="c">
+				<Section id="pt43" depth={2} headingType="c">
+					<H slot="heading">PT43</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/pt/PT43.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
@@ -54,7 +56,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pt44" depth={2} heading="PT44" headingType="c">
+				<Section id="pt44" depth={2} headingType="c">
+					<H slot="heading">PT44</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/pt/PT44.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
@@ -87,7 +91,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pt44s-c" depth={2} heading="PT44S（C型）" headingType="c">
+				<Section id="pt44s-c" depth={2} headingType="c">
+					<H slot="heading">PT44S（C型）</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/pt/PT44S-C.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
@@ -118,7 +124,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pt44s" depth={2} heading="PT44S（D型、E型）" headingType="c">
+				<Section id="pt44s" depth={2} headingType="c">
+					<H slot="heading">PT44S（D型、E型）</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/pt/PT44S.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
@@ -145,7 +153,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pt4309" depth={2} heading="PT4309（架線検測車・測定用）" headingType="c">
+				<Section id="pt4309" depth={2} headingType="c">
+					<H slot="heading">PT4309（架線検測車・測定用）</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/pt/PT4309.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
@@ -173,10 +183,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="single-arm" heading="シングルアーム形パンタグラフ">
+	<Section id="single-arm">
+		<H slot="heading">シングルアーム形パンタグラフ</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} id="pt7108" depth={2} heading="PT7108" headingType="c">
+				<Section id="pt7108" depth={2} headingType="c">
+					<H slot="heading">PT7108</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/pt/PT7108-A.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />

@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -29,7 +30,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>『魔法少女まどか☆マギカ』 TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめました。一部は放送時期による違い、 Blu-ray 版と DVD 版の違いにも言及しています。</p>
 		</div>
@@ -61,7 +64,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="buy" heading="購入">
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
 		<div class="c-flex -buttons">
 			<div class="c-flex__item">
 				<a href="pdf/pictorial7_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
@@ -82,7 +87,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="toc" heading="目次">
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
 		<ol class="p-list">
 			<li>第1話 夢の中で逢った、ような……</li>
 			<li>第2話 それはとっても嬉しいなって</li>
@@ -103,7 +110,9 @@ const slugger = new GithubSlugger();
 		</ol>
 	</Section>
 
-	<Section slugger={slugger} id="errata" heading="正誤情報">
+	<Section id="errata">
+		<H slot="heading">正誤情報</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -137,12 +146,16 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="add" heading="追加情報">
+	<Section id="add">
+		<H slot="heading">追加情報</H>
+
 		<div class="p-text">
 			<p>本の発行後に判明した差分データです。</p>
 		</div>
 
-		<Section slugger={slugger} depth={2} heading="第1話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第1話</H>
+
 			<ul class="p-list">
 				<li>14m59s: 仁美のトレーにあるカップの影の付き方が変更。</li>
 				<li>15m23s: 仁美のトレーにあるカップの影の付き方が変更。<small>（14m59sと同じ変化）</small></li>
@@ -150,13 +163,17 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第3話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第3話</H>
+
 			<ul class="p-list">
 				<li>20m52s: 放送版ではほむらを食べようとCharlotteが大口を開けるカットで1コマだけ舌の塗り忘れがあったが、パッケージ版で修正された。</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第6話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第6話</H>
+
 			<ul class="p-list">
 				<li>4m47s: キュゥべえのセリフが修正。放送版は「余分な<em>ソウルジェム</em>があれば魔法を出し惜しみせずに無駄遣いすることだってできる。それが杏子の強みだ。」と言っていたが、パッケージ版では「余分な<em>グリーフシード</em>があれば……」に修正された。</li>
 				<li>11m13s: 眠るまどかが作画修正。目の表現が細くなるなどの変化。</li>
@@ -164,7 +181,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第7話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第7話</H>
+
 			<ul class="p-list">
 				<li>8m03s: 杏子が投げたリンゴが宙を舞うカットで天井のステンドグラスの模様が変わり、全体的に明るくなった。また、リンゴの舞い方も変更された。</li>
 				<li>8m05s: さやかがリンゴをキャッチするカットで、放送版は画面手前からリンゴが放物線を描いてさやかの手元に向かっていったが、パッケージ版では前半部が省略され、その分 8m03s〜 のリンゴが舞うカットが長くなった。</li>
@@ -183,7 +202,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第8話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第8話</H>
+
 			<ul class="p-list">
 				<li>4m57s: バス停の枠の影が追加。</li>
 				<li>9m35s: ベンチに立て掛けられた恭介の松葉杖が高くなった。</li>
@@ -209,7 +230,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第9話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第9話</H>
+
 			<ul class="p-list">
 				<li>0m02s<ins>〜0m13s</ins>: <ins>ロングのカットで</ins>さやかが椅子に対してまっすぐ座るようにな<del>った</del><ins>り、杏子も描き直された</ins>。<small>（8話の20m21s〜21m45sと同じ変化）</small></li>
 				<li>0m02s〜0m13s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。<small>（8話の20m21s〜21m54sと同じ変化）</small></li>
@@ -220,7 +243,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第10話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第10話</H>
+
 			<ul class="p-list">
 				<li>11m45s: TBS版でほむらの髪が揺れるようになった。</li>
 				<li>11m50s: ほむらの盾の回転方向がMBS版と配信版は時計回りだったが、TBS版で反時計回りになった。</li>
@@ -244,7 +269,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第11話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第11話</H>
+
 			<ul class="p-list">
 				<li>4m57s: キュゥべえの目が小さくなった。</li>
 				<li>19m03s: まどか作画修正。</li>
@@ -253,7 +280,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="第12話" headingType="c">
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第12話</H>
+
 			<ul class="p-list">
 				<li>4m39s: 矢を射るまどかに白いエフェクトが掛かるようになった。</li>
 				<li>5m10s: まどかの顔の輪郭線（二重線の内側）の表現が変更。</li>
@@ -265,7 +294,9 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="etc" heading="小ネタ">
+	<Section id="etc">
+		<H slot="heading">小ネタ</H>
+
 		<div class="p-text">
 			<p>メガミマガジン2011年5月号に付属の「魔法少女まどか☆マギカ スペシャルブック」のスタッフコメントで、シリーズディレクターの宮本幸裕氏より<q>キュゥべえの提供バック絵を選んでいる</q>という発言がある。</p>
 		</div>

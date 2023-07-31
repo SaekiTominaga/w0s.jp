@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import LibraryItemNewspaper from '@components/LibraryItemNewspaper.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -26,7 +27,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="2006年">
+	<Section slugger={slugger}>
+		<H slot="heading">2006年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2006-04-16" class="朝刊">
 			<div class="p-text">
 				<p>
@@ -35,7 +38,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2007年">
+	<Section slugger={slugger}>
+		<H slot="heading">2007年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2007-01-31" class="夕刊">
 			<div class="p-text">
 				<p>
@@ -71,7 +76,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2008年">
+	<Section slugger={slugger}>
+		<H slot="heading">2008年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-02" class="Vol.49 2008年新年号" tags={['アニメ']}>
 			<div class="p-text">
 				<p>12–13面: 『俗・さよなら絶望先生』広告</p>
@@ -109,7 +116,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2009年">
+	<Section slugger={slugger}>
+		<H slot="heading">2009年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01">
 			<div class="p-text">
 				<p>第4部3面: 「マンガ週刊誌　半世紀」のすごろくで2005年のコマに『さよなら絶望先生』『最強! 都立あおい坂高校野球部』の作品名が掲載</p>
@@ -122,14 +131,18 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2010年">
+	<Section slugger={slugger}>
+		<H slot="heading">2010年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2010-04-28" class="Vol.43" tags={['ラジオ']}>
 			<div class="p-text">
 				<p>「神谷浩史のオールナイトニッポンR」特集</p>
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2011年">
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2011-06-01" class="Vol.129" tags={['アニメ']}>
 			<div class="p-text">
 				<p>OVA『かってに改蔵』特集、櫻井孝宏5000字インタビュー</p>
@@ -142,7 +155,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2012年">
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2012-06-20" class="Vol.109 2012年7月号" tags={['アニメ']}>
 			<div class="p-text">
 				<p>23面: 『じょしらく』水島努インタビュー</p>
@@ -155,7 +170,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2015年">
+	<Section slugger={slugger}>
+		<H slot="heading">2015年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="熊本日日新聞" release="2015-11-11">
 			<div class="p-text">
 				<p>14面（県内総合）: 「コスプレの世界　満喫」ゆのまえ漫画フェスタの記事、写真に糸色望コスプレの職員（サイン会で久米田先生のサポートをされた方）が写り込み</p>
@@ -173,7 +190,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2020年">
+	<Section slugger={slugger}>
+		<H slot="heading">2020年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2020-04-19" class="夕刊" tags={['インタビュー']}>
 			<div class="p-text">
 				<p>3面: 「作家100人　コロナ禍切り取る」Day to Day の紹介記事で久米田先生の顔写真とコメント掲載</p>
@@ -200,7 +219,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2021年">
+	<Section slugger={slugger}>
+		<H slot="heading">2021年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-03-21" tags={['音楽']}>
 			<div class="p-text">
 				<p>30面: 「A LONG VACATION」広告（コラボポスターがカラーで掲載）</p>
@@ -237,7 +258,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="2023年">
+	<Section slugger={slugger}>
+		<H slot="heading">2023年</H>
+
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2023-03-28" class="夕刊">
 			<div class="p-text">
 				<p>
@@ -246,7 +269,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
-	<Section slugger={slugger} heading="調査中">
+	<Section slugger={slugger}>
+		<H slot="heading">調査中</H>
+
 		<ul class="p-list">
 			<li>
 				2011年4月28日の新聞に『さよなら絶望先生』記事? <small>（<LinkExternal href="https://twitter.com/yaeee212/status/63502934339616768">目撃情報</LinkExternal>）</small>

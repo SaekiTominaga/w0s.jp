@@ -5,52 +5,33 @@ interface Props {
 	slugger?: GithubSlugger;
 	id?: string;
 	depth?: number;
-	heading: string;
-	headingNote?: string;
 	headingType?: string;
 	class?: string;
 }
 
-const { slugger, id, depth = 1, heading, headingNote, headingType = 'a', class: className } = Astro.props;
+const { slugger, id, depth = 1, headingType = 'a', class: className } = Astro.props;
+
+const headingHtml = await Astro.slots.render('heading');
 
 let sectionId = '';
 if (id !== undefined) {
 	sectionId = id;
 } else {
+	const headingText = headingHtml.replaceAll(/<.+?>/g, '');
+
 	if (slugger !== undefined) {
-		sectionId = slugger.slug(heading);
+		sectionId = slugger.slug(headingText);
 	} else {
-		console.warn('The `slugger` property is not specified.', heading);
+		console.warn('The `slugger` property is not specified.', headingText);
 	}
 }
 ---
 
 <section class:list={['p-section', `-hdg-${headingType}`, className]} id={sectionId}>
 	<div class="p-section__hdg">
-		{
-			depth === 1 && (
-				<h2>
-					{heading}
-					{headingNote !== undefined && <small>（{headingNote}）</small>}
-				</h2>
-			)
-		}
-		{
-			depth === 2 && (
-				<h3>
-					{heading}
-					{headingNote !== undefined && <small>（{headingNote}）</small>}
-				</h3>
-			)
-		}
-		{
-			depth === 3 && (
-				<h4>
-					{heading}
-					{headingNote !== undefined && <small>（{headingNote}）</small>}
-				</h4>
-			)
-		}
+		{depth === 1 && <h2 set:html={headingHtml} />}
+		{depth === 2 && <h3 set:html={headingHtml} />}
+		{depth === 3 && <h4 set:html={headingHtml} />}
 		<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
 	</div>
 

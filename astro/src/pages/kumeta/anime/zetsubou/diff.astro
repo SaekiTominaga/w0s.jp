@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -15,26 +15,34 @@ const structuredData: StructuredData = {
 	image: 'https://media.w0s.jp/image/kumeta/anime/zetsubou/diff/tv1_tv_00-02-46.jpg',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="1" heading="第1期『さよなら絶望先生』">
-		<Section slugger={slugger} id="1-1" depth={2} heading="一話『さよなら絶望先生』" headingType="b">
+	<Section id="1">
+		<H slot="heading">第1期『さよなら絶望先生』</H>
+
+		<Section id="1-1" depth={2} headingType="b">
+			<H slot="heading">一話『さよなら絶望先生』</H>
+
 			<ul class="p-notes">
 				<li><LinkExternal href="https://www.amazon.co.jp/dp/B000T6FGA4/">DVD 第一集</LinkExternal>には映像特典として「前田君オンエアver.」が収録されていますが、実際の放送時の映像とは異なり、パッケージ用に変更されたバージョンに対して前田君のハメコミ部分のみを再現したものとなります。</li>
 			</ul>
 
-			<Section slugger={slugger} id="1-1-avan" depth={3} heading="アバン" headingType="c">
+			<Section id="1-1-avan" depth={3} headingType="c">
+				<H slot="heading">アバン</H>
+
 				<p>変更点なし</p>
 			</Section>
 
-			<Section slugger={slugger} id="1-1-op" depth={3} heading="オープニング" headingType="c">
+			<Section id="1-1-op" depth={3} headingType="c">
+				<H slot="heading">オープニング</H>
+
 				<p>変更点なし</p>
 			</Section>
 
-			<Section slugger={slugger} id="1-1-a" depth={3} heading="A パート" headingType="c">
+			<Section id="1-1-a" depth={3} headingType="c">
+				<H slot="heading">A パート</H>
+
 				<dl class="p-video-diff">
 					<div>
 						<dt>2′46″</dt>
@@ -268,7 +276,9 @@ const slugger = new GithubSlugger();
 				</dl>
 			</Section>
 
-			<Section slugger={slugger} id="1-1-b" depth={3} heading="B パート" headingType="c">
+			<Section id="1-1-b" depth={3} headingType="c">
+				<H slot="heading">B パート</H>
+
 				<dl class="p-video-diff">
 					<div>
 						<dt>11′28″</dt>
@@ -704,7 +714,9 @@ const slugger = new GithubSlugger();
 				</dl>
 			</Section>
 
-			<Section slugger={slugger} id="1-1-ed" depth={3} heading="エンディング" headingType="c">
+			<Section id="1-1-ed" depth={3} headingType="c">
+				<H slot="heading">エンディング</H>
+
 				<dl class="p-video-diff">
 					<div>
 						<dt>22′19″</dt>

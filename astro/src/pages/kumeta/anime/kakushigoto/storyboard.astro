@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -14,12 +14,12 @@ const structuredData: StructuredData = {
 	image: 'https://media.w0s.jp/image/kumeta/anime/kakushigoto/storyboard/movie_bd_00-07-54.jpg',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="first-half" heading="前半パート">
+	<Section id="first-half">
+		<H slot="heading">前半パート</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -960,7 +960,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="latter-half" heading="後半パート">
+	<Section id="latter-half">
+		<H slot="heading">後半パート</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

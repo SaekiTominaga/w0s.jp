@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -23,7 +24,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="red" heading="赤帯時代" headingNote="1986年〜1987年">
+	<Section id="red">
+		<H slot="heading">赤帯時代<small>（1986年〜1987年）</small></H>
+
 		<div class="p-text">
 			<p>1986年に8500系の37番目の編成として製造された8637Fは、同年にデビューした9000系に合わせて補助電源装置（SIV）は交流出力440Vタイプ、冷房装置は容量10,000kcal/台タイプとなり、内装も化粧版がソリッドパターンで座席の仕切りも変更されるなど、従来の8500系とは一線を画すものとなりました。</p>
 			<p>デビュー直後はほかの8500系と同じく、装飾は正面の赤帯のみとなっていましたが、この姿が見られたのは半年ほどの期間だったようです。</p>
@@ -37,7 +40,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} id="catv1" heading="CATV号" headingNote="1987年〜1991年">
+	<Section id="catv1">
+		<H slot="heading">CATV号<small>（1987年〜1991年）</small></H>
+
 		<div class="p-text">
 			<p>デビュー翌年には東急ケーブルテレビジョンの統一広告車となり、正面帯を青色に変更、側面にも青帯が巻かれたほか、「TOKYU CABLE TV」ステッカーが貼られました。</p>
 		</div>
@@ -82,7 +87,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} id="catv2" heading="CATV号・しゃぼん玉装飾" headingNote="1991年〜1998年">
+	<Section id="catv2">
+		<H slot="heading">CATV号・しゃぼん玉装飾<small>（1991年〜1998年）</small></H>
+
 		<div class="p-text">
 			<p>1991年3月には、両先頭車のみ正面と側面にしゃぼん玉の装飾が貼付されました。</p>
 		</div>
@@ -94,7 +101,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} id="catv3" heading="CATV号・しゃぼん玉装飾（帯貼替え）" headingNote="1998年〜2001年">
+	<Section id="catv3">
+		<H slot="heading">CATV号・しゃぼん玉装飾（帯貼替え）<small>（1998年〜2001年）</small></H>
+
 		<div class="p-text">
 			<p>1998年10月には帯の貼り替えが行われました。貼り替え前と比較すると、貫通扉枠部分の帯の有無や、しゃぼん玉の配置に変化がみられます。</p>
 		</div>
@@ -125,7 +134,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} id="itscom" heading="iTSCOM号" headingNote="2001年〜2002年">
+	<Section id="itscom">
+		<H slot="heading">iTSCOM号<small>（2001年〜2002年）</small></H>
+
 		<div class="p-text">
 			<p>2001年7月、東急ケーブルテレビジョンの社名変更により、ステッカーが「iTSCOM」のものに変更されましたが、この装飾での活躍期間は9か月足らずでした。</p>
 			<p>写真は2002年3月に急行停車駅に加えられたばかりのあざみ野駅に停車中の様子で、翌4月から急行灯の点灯が中止されたため、わずかな期間だけ見られた貴重なシーンとなりました。</p>
@@ -150,7 +161,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} id="blue" heading="広告なし" headingNote="2002年〜2008年">
+	<Section id="blue">
+		<H slot="heading">広告なし<small>（2002年〜2008年）</small></H>
+
 		<div class="p-text">
 			<p>2002年4月にはiTSCOMの外板広告が剥がされ、青帯と先頭車のしゃぼん玉装飾のみとなりました。</p>
 			<p>写真は、2003年春に多摩田園都市開発50周年を記念して正面、側面に「東急多摩田園都市50周年」のステッカーが貼られていた時の姿です。</p>
@@ -167,7 +180,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="balloon" heading="しゃぼん玉装飾撤去" headingNote="2008年〜">
+	<Section id="balloon">
+		<H slot="heading">しゃぼん玉装飾撤去<small>（2008年〜）</small></H>
+
 		<div class="p-text">
 			<p>2008年には側面のしゃぼん玉装飾が剥がされました。同時期にTOQ-BOX号などほかの装飾車両も側面ステッカーを撤去されています。</p>
 			<p>つづけて2010年には正面のしゃぼん玉装飾も撤去され、青帯のみの姿となって現在に至ります。</p>
@@ -180,7 +195,9 @@ const slugger = new GithubSlugger();
 		</figure>
 	</Section>
 
-	<Section slugger={slugger} heading="写真提供者">
+	<Section slugger={slugger}>
+		<H slot="heading">写真提供者</H>
+
 		<dl class="p-list-description">
 			<dt>kazuma さん</dt>
 			<dd><LinkExternal href="https://itreni.net/">I TRENI〜失われし鉄道車両を求めて</LinkExternal></dd>

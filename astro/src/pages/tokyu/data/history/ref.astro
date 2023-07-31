@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -16,13 +16,15 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/data/history/', name: '車歴表' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="source" heading="入籍日、改番日の出典">
-		<Section slugger={slugger} id="source-tetsupic442" depth={2} heading="鉄道ピクトリアル1985年1月臨時増刊号（No.442）" headingNote="東京急行電鉄特集" headingType="b">
+	<Section id="source">
+		<H slot="heading">入籍日、改番日の出典</H>
+
+		<Section id="source-tetsupic442" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル1985年1月臨時増刊号（No.442）<small>（東京急行電鉄特集）</small></H>
+
 			<ul class="p-list">
 				<li>7001–7014, 7019–7064, 7101–7170</li>
 				<li>7201–7212, 7251–7260, 7301–7302, 7351, 7401–7402, 7451–7452, 7501–7512, 7551–7560</li>
@@ -32,25 +34,33 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic496" depth={2} heading="鉄道ピクトリアル1988年5月臨時増刊号（No.496）" headingNote="新車年鑑1988年版" headingType="b">
+		<Section id="source-tetsupic496" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル1988年5月臨時増刊号（No.496）<small>（新車年鑑1988年版）</small></H>
+
 			<ul class="p-list">
 				<li>8979–8980</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic534" depth={2} heading="鉄道ピクトリアル1990年10月臨時増刊号（No.534）" headingNote="新車年鑑1990年版" headingType="b">
+		<Section id="source-tetsupic534" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル1990年10月臨時増刊号（No.534）<small>（新車年鑑1990年版）</small></H>
+
 			<ul class="p-list">
 				<li>1010–1011, 1210–1211, 1310–1311, 1360–1361</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic550" depth={2} heading="鉄道ピクトリアル1991年10月臨時増刊号（No.550）" headingNote="新車年鑑1991年版" headingType="b">
+		<Section id="source-tetsupic550" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル1991年10月臨時増刊号（No.550）<small>（新車年鑑1991年版）</small></H>
+
 			<ul class="p-list">
 				<li>7603</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic600" depth={2} heading="鉄道ピクトリアル1994年12月臨時増刊号（No.600）" headingNote="東京急行電鉄特集" headingType="b">
+		<Section id="source-tetsupic600" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル1994年12月臨時増刊号（No.600）<small>（東京急行電鉄特集）</small></H>
+
 			<ul class="p-list">
 				<li>7015–7018</li>
 				<li>7200, 7290</li>
@@ -65,19 +75,25 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic692" depth={2} heading="鉄道ピクトリアル2000年10月臨時増刊号（No.692）" headingNote="新車年鑑2000年版" headingType="b">
+		<Section id="source-tetsupic692" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル2000年10月臨時増刊号（No.692）<small>（新車年鑑2000年版）</small></H>
+
 			<ul class="p-list">
 				<li>Y001–Y003, Y011–Y013</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic708" depth={2} heading="鉄道ピクトリアル2001年10月臨時増刊号（No.708）" headingNote="新車年鑑2001年版" headingType="b">
+		<Section id="source-tetsupic708" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル2001年10月臨時増刊号（No.708）<small>（新車年鑑2001年版）</small></H>
+
 			<ul class="p-list">
 				<li>3013, 3113, 3213, 3261, 3413, 3513</li>
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-tetsupic749" depth={2} heading="鉄道ピクトリアル2004年7月臨時増刊号（No.749）" headingNote="東京急行電鉄特集" headingType="b">
+		<Section id="source-tetsupic749" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル2004年7月臨時増刊号（No.749）<small>（東京急行電鉄特集）</small></H>
+
 			<ul class="p-list">
 				<li>7590</li>
 				<li>7673（入籍日のみ）, 7681–7682</li>
@@ -88,14 +104,18 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="source-form1995" depth={2} heading="私鉄車両編成表 ’95年版" headingType="b">
+		<Section id="source-form1995" depth={2} headingType="b">
+			<H slot="heading">私鉄車両編成表 ’95年版</H>
+
 			<ul class="p-list">
 				<li>7673（改番日のみ）</li>
 			</ul>
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="refer" heading="参考文献">
+	<Section id="refer">
+		<H slot="heading">参考文献</H>
+
 		<div class="p-text">
 			<p>直接の出典ではないものの、ほかの資料と照らし合わせて正確性の向上に役立てたものとなります。なお、次に挙げる3件は誤りが多いため、あえて参考にしていません。</p>
 		</div>
@@ -106,7 +126,9 @@ const slugger = new GithubSlugger();
 			<li>鉄道ピクトリアル1986年5月臨時増刊号（No.464）「民鉄車両 竣功月日表」</li>
 		</ul>
 
-		<Section slugger={slugger} id="referer-form" depth={2} heading="私鉄車両編成表（ジェー・アール・アール）" headingType="b">
+		<Section id="referer-form" depth={2} headingType="b">
+			<H slot="heading">私鉄車両編成表（ジェー・アール・アール）</H>
+
 			<ul class="p-list">
 				<li>私鉄車両編成表 都市私鉄編</li>
 				<li>私鉄車両編成表－都市私鉄編－’80年版</li>
@@ -140,7 +162,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="referer-rj" depth={2} heading="鉄道ジャーナル（私鉄車両のうごき）" headingType="b">
+		<Section id="referer-rj" depth={2} headingType="b">
+			<H slot="heading">鉄道ジャーナル（私鉄車両のうごき）</H>
+
 			<ul class="p-list">
 				<li>1980年4月号（No.158） 昭和54年度上半期 私鉄車両のうごき</li>
 				<li>1980年10月号（No.164） 昭和54年度下半期 私鉄車両のうごき</li>
@@ -190,7 +214,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="referer-tetsupic" depth={2} heading="鉄道ピクトリアル（新車年鑑、鉄道車両年鑑）" headingType="b">
+		<Section id="referer-tetsupic" depth={2} headingType="b">
+			<H slot="heading">鉄道ピクトリアル（新車年鑑、鉄道車両年鑑）</H>
+
 			<ul class="p-list">
 				<li>1984年10月増刊号（No.438）</li>
 				<li>1985年5月増刊号（No.448）</li>
@@ -217,7 +243,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="referer-dj" depth={2} heading="鉄道ダイヤ情報（私鉄DATA FILE 私鉄車両のうごき）" headingType="b">
+		<Section id="referer-dj" depth={2} headingType="b">
+			<H slot="heading">鉄道ダイヤ情報（私鉄DATA FILE 私鉄車両のうごき）</H>
+
 			<ul class="p-list">
 				<li>1984年冬号（No.21） 私鉄DATA FILE 私鉄車両のうごき58年7月1日〜9月30日</li>
 				<li>1984年春号（No.22） 私鉄DATA FILE 私鉄車両のうごき58年10月1日〜12月31日</li>
@@ -287,7 +315,9 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 
-		<Section slugger={slugger} id="referer-etc" depth={2} heading="その他" headingType="b">
+		<Section id="referer-etc" depth={2} headingType="b">
+			<H slot="heading">その他</H>
+
 			<ul class="p-list">
 				<li>私鉄の車両4 東京急行電鉄（飯島巌、宮田道一、井上広和） （ISBN: 4-586-53204-1）</li>
 				<li>鉄道ピクトリアル 1985年1月増刊号（No.442）（東京急行電鉄特集） 車両入籍，改造，廃車一覧表</li>

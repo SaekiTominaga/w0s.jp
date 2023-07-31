@@ -1,8 +1,8 @@
 ---
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -10,12 +10,12 @@ const structuredData: StructuredData = {
 	description: '2012年から行われている「魔法少女まどか☆マギカショップ」の開催情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="shop" heading="魔法少女まどか☆マギカショップ">
+	<Section id="shop">
+		<H slot="heading">魔法少女まどか☆マギカショップ</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -86,7 +86,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="shop-zenkouhen" heading="劇場版　魔法少女まどか☆マギカショップ（前後編）">
+	<Section id="shop-zenkouhen">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカショップ（前後編）</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -221,7 +223,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="shop-shinpen" heading="劇場版　魔法少女まどか☆マギカショップ（新編）">
+	<Section id="shop-shinpen">
+		<H slot="heading">劇場版　魔法少女まどか☆マギカショップ（新編）</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -332,7 +336,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="shop-map" heading="地図で見る開催地">
+	<Section id="shop-map">
+		<H slot="heading">地図で見る開催地</H>
+
 		<figure class="c-fit">
 			<div class="p-embed">
 				<img src="image/shop-map.svg" alt="都道府県ごとの開催回別に色分けされた日本白地図（札幌: 1回、青森: 1回、仙台: 3回、宇都宮: 1回、印西: 1回、吉祥寺: 2回、八景島: 1回、静岡: 1回、名古屋: 2回、山陽（姫路）: 1回、広島: 1回、福岡: 3回、熊本: 2回、鹿児島: 1回）" width="720" height="794" />

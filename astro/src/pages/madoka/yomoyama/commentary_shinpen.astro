@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -23,12 +23,12 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/yomoyama/commentary_shinpen', name: '劇場版　新編' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="chapter1" heading="Chapter 1">
+	<Section id="chapter1">
+		<H slot="heading">Chapter 1</H>
+
 		<p>コメンテーター: 悠木碧、斎藤千和</p>
 
 		<ul class="p-list">
@@ -39,7 +39,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter4" heading="Chapter 4">
+	<Section id="chapter4">
+		<H slot="heading">Chapter 4</H>
+
 		<p>コメンテーター: 悠木碧、斎藤千和、水橋かおり</p>
 
 		<ul class="p-list">
@@ -49,7 +51,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter14" heading="Chapter 14">
+	<Section id="chapter14">
+		<H slot="heading">Chapter 14</H>
+
 		<p>コメンテーター: 悠木碧、斎藤千和、水橋かおり、野中藍</p>
 
 		<ul class="p-list">
@@ -62,7 +66,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter17" heading="Chapter 17">
+	<Section id="chapter17">
+		<H slot="heading">Chapter 17</H>
+
 		<p>コメンテーター: 喜多村英梨</p>
 
 		<ul class="p-list">
@@ -72,7 +78,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter20" heading="Chapter 20">
+	<Section id="chapter20">
+		<H slot="heading">Chapter 20</H>
+
 		<p>コメンテーター: 喜多村英梨</p>
 
 		<ul class="p-list">
@@ -82,7 +90,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter21" heading="Chapter 21">
+	<Section id="chapter21">
+		<H slot="heading">Chapter 21</H>
+
 		<p>コメンテーター: 悠木碧、斎藤千和、加藤英美里</p>
 
 		<ul class="p-list">
@@ -94,7 +104,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter26" heading="Chapter 26">
+	<Section id="chapter26">
+		<H slot="heading">Chapter 26</H>
+
 		<p>コメンテーター: 悠木碧、斎藤千和、加藤英美里</p>
 
 		<ul class="p-list">
@@ -105,7 +117,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="chapter28" heading="Chapter 28">
+	<Section id="chapter28">
+		<H slot="heading">Chapter 28</H>
+
 		<p>コメンテーター: 悠木碧、斎藤千和、加藤英美里</p>
 
 		<ul class="p-list">

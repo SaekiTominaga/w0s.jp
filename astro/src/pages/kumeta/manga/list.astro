@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -13,12 +13,12 @@ const structuredData: StructuredData = {
 	description: '連載作品から読み切り、企画作品まで、漫画形態で制作された作品のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="rensai" heading="連載作品">
+	<Section id="rensai">
+		<H slot="heading">連載作品</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -134,8 +134,12 @@ const slugger = new GithubSlugger();
 			<li>連載開始日は予告編を含まず、読み切り掲載分を含みます。</li>
 		</ul>
 
-		<Section slugger={slugger} id="rensai-special" depth={2} heading="連載作品の特別編、予告など" headingType="b">
-			<Section slugger={slugger} id="rensai-special-nangoku" depth={3} heading="行け!!南国アイスホッケー部" headingType="c">
+		<Section id="rensai-special" depth={2} headingType="b">
+			<H slot="heading">連載作品の特別編、予告など</H>
+
+			<Section id="rensai-special-nangoku" depth={3} headingType="c">
+				<H slot="heading">行け!!南国アイスホッケー部</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -165,7 +169,9 @@ const slugger = new GithubSlugger();
 				</table>
 			</Section>
 
-			<Section slugger={slugger} id="rensai-special-kaizo" depth={3} heading="かってに改蔵" headingType="c">
+			<Section id="rensai-special-kaizo" depth={3} headingType="c">
+				<H slot="heading">かってに改蔵</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -236,7 +242,9 @@ const slugger = new GithubSlugger();
 				</table>
 			</Section>
 
-			<Section slugger={slugger} id="rensai-special-zetsubou" depth={3} heading="さよなら絶望先生" headingType="c">
+			<Section id="rensai-special-zetsubou" depth={3} headingType="c">
+				<H slot="heading">さよなら絶望先生</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -344,7 +352,9 @@ const slugger = new GithubSlugger();
 				</table>
 			</Section>
 
-			<Section slugger={slugger} id="rensai-special-jyoshiraku" depth={3} heading="じょしらく" headingType="c">
+			<Section id="rensai-special-jyoshiraku" depth={3} headingType="c">
+				<H slot="heading">じょしらく</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -403,7 +413,9 @@ const slugger = new GithubSlugger();
 				</table>
 			</Section>
 
-			<Section slugger={slugger} id="rensai-special-sekadoro" depth={3} heading="せっかち伯爵と時間どろぼう" headingType="c">
+			<Section id="rensai-special-sekadoro" depth={3} headingType="c">
+				<H slot="heading">せっかち伯爵と時間どろぼう</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -437,7 +449,9 @@ const slugger = new GithubSlugger();
 				</table>
 			</Section>
 
-			<Section slugger={slugger} id="rensai-special-kakushigoto" depth={3} heading="かくしごと" headingType="c">
+			<Section id="rensai-special-kakushigoto" depth={3} headingType="c">
+				<H slot="heading">かくしごと</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -510,7 +524,9 @@ const slugger = new GithubSlugger();
 				</table>
 			</Section>
 
-			<Section slugger={slugger} id="rensai-special-shibuya" depth={3} heading="シブヤニアファミリー" headingType="c">
+			<Section id="rensai-special-shibuya" depth={3} headingType="c">
+				<H slot="heading">シブヤニアファミリー</H>
+
 				<table class="p-table">
 					<thead>
 						<tr>
@@ -537,7 +553,9 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="yomikiri" heading="読み切り作品">
+	<Section id="yomikiri">
+		<H slot="heading">読み切り作品</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -639,7 +657,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="contribute" heading="デビュー前の投稿作品">
+	<Section id="contribute">
+		<H slot="heading">デビュー前の投稿作品</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -680,7 +700,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="etc" heading="その他の企画作品">
+	<Section id="etc">
+		<H slot="heading">その他の企画作品</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -763,7 +785,9 @@ const slugger = new GithubSlugger();
 		</table>
 	</Section>
 
-	<Section slugger={slugger} id="another-writer" heading="他作家による久米田先生関連作品">
+	<Section id="another-writer">
+		<H slot="heading">他作家による久米田先生関連作品</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

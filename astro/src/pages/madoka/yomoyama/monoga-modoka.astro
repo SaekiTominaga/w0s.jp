@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -13,12 +13,12 @@ const structuredData: StructuredData = {
 	description: 'MADOGATARI 展で流された『惑語　魔法少女ものが☆モドカ』の情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="chara" heading="各魔法少女の特性">
+	<Section id="chara">
+		<H slot="heading">各魔法少女の特性</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>
@@ -80,7 +80,9 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="reading" heading="朗読内容">
+	<Section id="reading">
+		<H slot="heading">朗読内容</H>
+
 		<div class="p-box">
 			<div class="p-text">
 				<p>
@@ -88,38 +90,50 @@ const slugger = new GithubSlugger();
 				</p>
 			</div>
 
-			<Section slugger={slugger} id="reading-hitagi" depth={2} heading="戦場ヶ原ひたぎ" headingNote="重力の魔法少女" headingType="c">
+			<Section id="reading-hitagi" depth={2} headingType="c">
+				<H slot="heading">戦場ヶ原ひたぎ<small>（重力の魔法少女）</small></H>
+
 				<div class="p-text">
 					<p>質量という概念から解放されたこの魔法少女は、攻撃した物体の重さを奪うんだ。奪えば奪うほどハンマーは重さを増し強化される。魔法を失った時、持ち主は押し潰される宿命ってわけだね。</p>
 					<p>ハンマーにはサイコメトリーの機能もあるんだけれど、残念ながら使いこなせていないみたいだよ。</p>
 				</div>
 			</Section>
-			<Section slugger={slugger} id="reading-mayoi" depth={2} heading="八九寺真宵" headingNote="迷宮の魔法少女" headingType="c">
+			<Section id="reading-mayoi" depth={2} headingType="c">
+				<H slot="heading">八九寺真宵<small>（迷宮の魔法少女）</small></H>
+
 				<div class="p-text">
 					<p>防御力に秀でた魔法少女だ。あらゆる攻撃が道に迷ったように彼女を避ける。ただし、こちらからの攻撃も当たらなくなるので注意が必要だ。</p>
 					<p>なので手にしたドリルは攻撃用ではなく、道なき道を造るための道路工事用のアイテムだよ。それだって魔女結界の逃走経路を作る役にしか立たないけどね。</p>
 				</div>
 			</Section>
-			<Section slugger={slugger} id="reading-suruga" depth={2} heading="神原駿河" headingNote="先駆の魔法少女" headingType="c">
+			<Section id="reading-suruga" depth={2} headingType="c">
+				<H slot="heading">神原駿河<small>（先駆の魔法少女）</small></H>
+
 				<div class="p-text">
 					<p>バイクと一体化した魔法少女に変身したのは、普段自転車に乗れない彼女のコンプレックスの表れかもね。願いの純度が高すぎて、もしも誰かに追い抜かれたらその瞬間に魔女化する。</p>
 					<p>いくらスピードが欲しいからって、そんなことまで最速で達成しなくてもいいのにな。わけが分からないよ。</p>
 				</div>
 			</Section>
-			<Section slugger={slugger} id="reading-nadeko" depth={2} heading="千石撫子" headingNote="俯伏の魔法少女" headingType="c">
+			<Section id="reading-nadeko" depth={2} headingType="c">
+				<H slot="heading">千石撫子<small>（俯伏の魔法少女）</small></H>
+
 				<div class="p-text">
 					<p>世にも珍しい地を這う姿の魔法少女だ。</p>
 					<p>人見知りという性格がそのまま反映されているのは、さながらほふく前進のような移動手段のみならず、彼女の周囲に敷き詰められた地雷という武器においてもまた然りだ。うっかり自分で踏んじゃうことも多々あるのが興味深い。</p>
 				</div>
 			</Section>
-			<Section slugger={slugger} id="reading-tsubasa" depth={2} heading="羽川翼" headingNote="記憶の魔法少女" headingType="c">
+			<Section id="reading-tsubasa" depth={2} headingType="c">
+				<H slot="heading">羽川翼<small>（記憶の魔法少女）</small></H>
+
 				<div class="p-text">
 					<p>重力の魔法少女のサイコメトリーとは逆で、この魔法少女は何かを燃やすたびに自身の記憶を失う。</p>
 					<p>すべてを失えば魔女化するだろうけれど、失った部分に新しい想いをどんどん追加するので先は長そうだ。詰め込み教育の弊害をまざまざと見せつけられている気分だよ。</p>
 					<p>とはいえ、魔法少女のままで世界を燃やし尽くしてくれるなら、そのおぞましいまでの熱量はこちらとしても望ましいまでなんだ。</p>
 				</div>
 			</Section>
-			<Section slugger={slugger} id="reading-shinobu" depth={2} heading="忍野忍" headingNote="不死の魔法少女" headingType="c">
+			<Section id="reading-shinobu" depth={2} headingType="c">
+				<H slot="heading">忍野忍<small>（不死の魔法少女）</small></H>
+
 				<div class="p-text">
 					<p>彼女の願いは残念ながら叶わなかった。代わりに不死身の化け物を大量虐殺できる力を手に入れたよ。殺した化物はそのまま魔法少女の養分となる。結果ますます長生きすることになったのはなんとも皮肉だよ。まあそもそも600歳だからこの吸血鬼、別に思春期の女の子でも何でもないしね。</p>
 				</div>
@@ -131,14 +145,20 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="tenji" heading="MADOGATARI展会場ごとの展示の様子">
-		<Section slugger={slugger} id="tenji-tokyo-encore" depth={2} heading="東京アンコール会場" headingNote="2016年9月" headingType="b">
+	<Section id="tenji">
+		<H slot="heading">MADOGATARI展会場ごとの展示の様子</H>
+
+		<Section id="tenji-tokyo-encore" depth={2} headingType="b">
+			<H slot="heading">東京アンコール会場<small>（2016年9月）</small></H>
+
 			<div class="p-text">
 				<p>『〈物語〉シリーズ』ゾーンの最後の方に巨大なディスプレイがあり、エンドレスで映像が放映されました。</p>
 				<p>神原駿河を除く5人の写真がスポーツ報知の記事<LinkExternal href="https://web.archive.org/web/20160922044103/http://www.hochi.co.jp/entertainment/20160922-OHT1T50082.html">「ＭＡＤＯＧＡＴＡＲＩ展」東京アンコール展が開幕…「名セリフ投票」も実施</LinkExternal>に掲載されています。</p>
 			</div>
 		</Section>
-		<Section slugger={slugger} id="tenji-kanazawa" depth={2} heading="金沢会場（MADOGATARI GALLERY）" headingNote="2016年12月" headingType="b">
+		<Section id="tenji-kanazawa" depth={2} headingType="b">
+			<H slot="heading">金沢会場（MADOGATARI GALLERY）<small>（2016年12月）</small></H>
+
 			<div class="p-text">
 				<p>展示エリア内の「シャフトシアター」にて、他作品と一緒に上映されました。上映リストは以下のとおりです。</p>
 			</div>

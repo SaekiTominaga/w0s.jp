@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -23,7 +24,9 @@ const slugger = new GithubSlugger();
 		<li><LinkExternal href="https://twitter.com/3doO4OZ07IlQnOo">久米田先生の Twitter アカウント</LinkExternal></li>
 	</ul>
 
-	<Section slugger={slugger} heading="アイコン履歴" headingNote="新しい順">
+	<Section slugger={slugger}>
+		<H slot="heading">アイコン履歴<small>（新しい順）</small></H>
+
 		<ul class="p-kumeta-twitter-images -icon">
 			<li>
 				<figure class="p-embed -border">

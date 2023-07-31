@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
@@ -22,10 +23,14 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="trumpet-1" heading="トランペット型（1〜5次車）">
+	<Section id="trumpet-1">
+		<H slot="heading">トランペット型（1〜5次車）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="1次車（一部を除く）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1次車（一部を除く）</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-1_1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -43,7 +48,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="1次車（一部）" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1次車（一部）</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-1_2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -60,7 +67,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="5次車" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">5次車</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -79,10 +88,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="trumpet-6" heading="トランペット型（6〜15次車）">
+	<Section id="trumpet-6">
+		<H slot="heading">トランペット型（6〜15次車）</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="6〜8次車" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">6〜8次車</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-6.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -99,7 +112,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="9次車" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9次車</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-9.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -116,7 +131,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="10次車" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">10次車</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-10.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -133,7 +150,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="11〜14次車など" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">11〜14次車など</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-11.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -152,10 +171,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="cone" heading="コーン型">
+	<Section id="cone">
+		<H slot="heading">コーン型</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="15〜20次車と8090系全車両" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">15〜20次車と8090系全車両</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-15.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -172,7 +195,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="21次車と8945, 8946" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">21次車と8945, 8946</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-21.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -191,10 +216,14 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="renewal" heading="更新工事">
+	<Section id="renewal">
+		<H slot="heading">更新工事</H>
+
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="田園都市線6〜11次車" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">田園都市線6〜11次車</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8500-ir.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
@@ -211,7 +240,9 @@ const slugger = new GithubSlugger();
 				</Section>
 			</div>
 			<div class="c-grid__item">
-				<Section slugger={slugger} depth={2} heading="田園都市線12〜14次車など" headingType="c">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">田園都市線12〜14次車など</H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/amp/8000-tr.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />

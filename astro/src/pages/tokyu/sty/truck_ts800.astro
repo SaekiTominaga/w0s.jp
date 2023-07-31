@@ -1,10 +1,10 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,12 +26,12 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/truck_etc', name: '総合車両製以外' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>1967年に登場した TS-800 系台車の初作品は京王井の頭線3000系向けで、東急電鉄では同年に7200系の電動車で TS-802 型が採用されました。続く8000系グループの大量増備と、パイオニアⅢ台車の置き換えで20年以上にわたり製造され、東急電車の代表的な台車として1990年代には在籍車両の7割以上に普及するまでに至りました。</p>
 			<p>東急電車に採用された TS-800 系台車は大きく分けて7形式あり、いずれも軸箱守はペデスタル摺動式、枕ばねはダイヤフラム形空気ばねの組み合わせで似たような形態ですが、側梁の仕上げ方など改良を重ねており、細かく見るとバリエーション豊かなことが分かります。</p>
@@ -201,8 +201,12 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 
-	<Section slugger={slugger} id="ts802" heading="TS-802 型">
-		<Section slugger={slugger} id="ts802-m" depth={2} heading="TS-802" headingNote="動力台車" headingType="b">
+	<Section id="ts802">
+		<H slot="heading">TS-802 型</H>
+
+		<Section id="ts802-m" depth={2} headingType="b">
+			<H slot="heading">TS-802<small>（動力台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS802_7200.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -231,7 +235,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 
-		<Section slugger={slugger} id="ts802a" depth={2} heading="TS-802A" headingNote="動力台車" headingType="b">
+		<Section id="ts802a" depth={2} headingType="b">
+			<H slot="heading">TS-802A<small>（動力台車）</small></H>
+
 			<figure class="c-fit">
 				<div class="p-embed -border">
 					<Image path="tokyu/sty/truck/TS802A_7290.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -456,8 +462,12 @@ const slugger = new GithubSlugger();
 			<li>現車調査期間が長期にわたっているため、必ずしも最新状況と一致しない可能性があります。</li>
 		</ul>
 
-		<Section slugger={slugger} id="ts807" heading="TS-807 型">
-			<Section slugger={slugger} id="ts807-m" depth={2} heading="TS-807, TS-807M" headingNote="動力台車" headingType="b">
+		<Section id="ts807">
+			<H slot="heading">TS-807 型</H>
+
+			<Section id="ts807-m" depth={2} headingType="b">
+				<H slot="heading">TS-807, TS-807M<small>（動力台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/TS807M_8728.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -474,7 +484,9 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 
-			<Section slugger={slugger} id="ts807a" depth={2} heading="TS-807A, TS-807C" headingNote="動力台車" headingType="b">
+			<Section id="ts807a" depth={2} headingType="b">
+				<H slot="heading">TS-807A, TS-807C<small>（動力台車）</small></H>
+
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="tokyu/sty/truck/TS807A_8791.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -491,7 +503,9 @@ const slugger = new GithubSlugger();
 					<p>VVVF 車として新造された最終増備の21次車（デハ0718, 0818）は9000系と同じタイプの TKM-86 型主電動機を搭載しており、台車も C 型に変更されました。</p>
 				</div>
 
-				<Section slugger={slugger} id="ts807b" depth={2} heading="TS-807B" headingNote="動力台車" headingType="b">
+				<Section id="ts807b" depth={2} headingType="b">
+					<H slot="heading">TS-807B<small>（動力台車）</small></H>
+
 					<figure class="c-fit">
 						<div class="p-embed -border">
 							<Image path="tokyu/sty/truck/TS807B_8492.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -509,8 +523,12 @@ const slugger = new GithubSlugger();
 						</p>
 					</div>
 
-					<Section slugger={slugger} id="ts815" heading="TS-815 型">
-						<Section slugger={slugger} id="ts815m" depth={2} heading="<small>（TS-815M →）</small>TS-815C" headingNote="付随台車" headingType="b">
+					<Section id="ts815">
+						<H slot="heading">TS-815 型</H>
+
+						<Section id="ts815m" depth={2} headingType="b">
+							<H slot="heading"><small>（TS-815M →）</small>TS-815C<small>（付随台車）</small></H>
+
 							<figure class="c-fit">
 								<div class="p-embed -border">
 									<Image path="tokyu/sty/truck/TS815C-M_8918.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -538,7 +556,9 @@ const slugger = new GithubSlugger();
 							</div>
 						</Section>
 
-						<Section slugger={slugger} id="ts815a" depth={2} heading="<small>（TS-815A →）</small>TS-815C" headingNote="付随台車" headingType="b">
+						<Section id="ts815a" depth={2} headingType="b">
+							<H slot="heading"><small>（TS-815A →）</small>TS-815C<small>（付随台車）</small></H>
+
 							<figure class="c-fit">
 								<div class="p-embed -border">
 									<Image path="tokyu/sty/truck/TS815C-A_8935.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -554,7 +574,9 @@ const slugger = new GithubSlugger();
 								<p>この台車を履いていた車両のうちサハ8300形（サハ8301〜8308 の8両）は1985年に電装化改造を受けましたが、その際台車は改めて新製され、それまで履いていた TS-815A 型は当時の新造車両へ流用されました。</p>
 							</div>
 
-							<Section slugger={slugger} id="ts815b" depth={2} heading="<small>（TS-815B →）</small>TS-815E" headingNote="付随台車" headingType="b">
+							<Section id="ts815b" depth={2} headingType="b">
+								<H slot="heading"><small>（TS-815B →）</small>TS-815E<small>（付随台車）</small></H>
+
 								<figure class="c-fit">
 									<div class="p-embed -border">
 										<Image path="tokyu/sty/truck/TS815E_8093.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -569,7 +591,9 @@ const slugger = new GithubSlugger();
 									<p>8090系用の付随台車は B 型で、動力台車（<a href="#ts807a">TS-807B 型</a>）と同じくブレーキシリンダ径の変更などが行われていますが、踏面清掃装置の設置はないためペデスタル部のボルト留め機構は存在しません。この形式もディスクブレーキ化を受けて E 型に変更されました。</p>
 								</div>
 
-								<Section slugger={slugger} id="ts815c" depth={2} heading="TS-815C<small>（オリジナル）</small>" headingNote="付随台車" headingType="b">
+								<Section id="ts815c" depth={2} headingType="b">
+									<H slot="heading">TS-815C<small>（（オリジナル）</small><small>付随台車）</small></H>
+
 									<figure class="c-fit">
 										<div class="p-embed -border">
 											<Image path="tokyu/sty/truck/TS815C_8978.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -585,7 +609,9 @@ const slugger = new GithubSlugger();
 										<p>多くの個体がペデスタル部のボルト留め機構を持っていますが、17次車のうちサハ8971, 8972の2両のみは非設置でした。1985年に行われたサハ8300形の電装化に伴う <a href="#ts815a">TS-815A型</a>発生品を流用していたものと思われます。</p>
 									</div>
 
-									<Section slugger={slugger} id="ts815d" depth={2} heading="TS-815D" headingNote="付随台車" headingType="b">
+									<Section id="ts815d" depth={2} headingType="b">
+										<H slot="heading">TS-815D<small>（付随台車）</small></H>
+
 										<figure class="c-fit">
 											<div class="p-embed -border">
 												<Image path="tokyu/sty/truck/TS815D_8097.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -603,7 +629,9 @@ const slugger = new GithubSlugger();
 											</p>
 										</div>
 
-										<Section slugger={slugger} id="ts815f" depth={2} heading="TS-815F, <small>（TS-815F →）</small>TS-815T, <small>（TS-835 → TS-839 →）</small>TS-815T" headingNote="付随台車" headingType="b">
+										<Section id="ts815f" depth={2} headingType="b">
+											<H slot="heading">TS-815F, <small>（（TS-815F →）</small>TS-815T, <small>（TS-835 → TS-839 →）</small>TS-815T<small>付随台車）</small></H>
+
 											<figure class="c-fit">
 												<div class="p-embed -border">
 													<Image path="tokyu/sty/truck/TS815F_8020.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -620,8 +648,12 @@ const slugger = new GithubSlugger();
 												<p>また、譲渡車両の一部<FootnoteReference>豊橋鉄道ク2802, 2804, 2807、伊豆急行クハ8001, 8003, 8011, 8013 の7両。</FootnoteReference>にはセラジェットが追設されましたが、台車形態の違いにより <a href="#ts802">TS-802 型</a>とは異なる取付方となっています。</p>
 											</div>
 
-											<Section slugger={slugger} id="ts831" heading="TS-831 型">
-												<Section slugger={slugger} id="ts831-m" depth={2} heading="TS-831" headingNote="動力台車" headingType="b">
+											<Section id="ts831">
+												<H slot="heading">TS-831 型</H>
+
+												<Section id="ts831-m" depth={2} headingType="b">
+													<H slot="heading">TS-831<small>（動力台車）</small></H>
+
 													<figure class="c-fit">
 														<div class="p-embed -border">
 															<Image path="tokyu/sty/truck/TS831_7681.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -648,8 +680,12 @@ const slugger = new GithubSlugger();
 													</div>
 												</Section>
 
-												<Section slugger={slugger} id="ts832" heading="TS-832 型">
-													<Section slugger={slugger} id="ts832-m" depth={2} heading="TS-832" headingNote="動力台車" headingType="b">
+												<Section id="ts832">
+													<H slot="heading">TS-832 型</H>
+
+													<Section id="ts832-m" depth={2} headingType="b">
+														<H slot="heading">TS-832<small>（動力台車）</small></H>
+
 														<figure class="c-fit">
 															<div class="p-embed -border">
 																<Image path="tokyu/sty/truck/TS832_7810.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -679,8 +715,12 @@ const slugger = new GithubSlugger();
 														</div>
 													</Section>
 
-													<Section slugger={slugger} id="ts835" heading="TS-835 型">
-														<Section slugger={slugger} id="ts835-t" depth={2} heading="TS-835" headingNote="付随台車" headingType="b">
+													<Section id="ts835">
+														<H slot="heading">TS-835 型</H>
+
+														<Section id="ts835-t" depth={2} headingType="b">
+															<H slot="heading">TS-835<small>（付随台車）</small></H>
+
 															<figure class="c-fit">
 																<div class="p-embed -border">
 																	<Image path="tokyu/sty/truck/TS835_7907.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
@@ -712,8 +752,12 @@ const slugger = new GithubSlugger();
 															</div>
 														</Section>
 
-														<Section slugger={slugger} id="ts839" heading="TS-839 型">
-															<Section slugger={slugger} id="ts839-t" depth={2} heading="TS-839" headingNote="付随台車" headingType="b">
+														<Section id="ts839">
+															<H slot="heading">TS-839 型</H>
+
+															<Section id="ts839-t" depth={2} headingType="b">
+																<H slot="heading">TS-839<small>（付随台車）</small></H>
+
 																<figure class="c-fit">
 																	<div class="p-embed -border">
 																		<Image path="tokyu/sty/truck/TS839_7601.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />

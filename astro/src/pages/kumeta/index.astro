@@ -1,6 +1,7 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import type { StructuredData } from '@type/types.js';
@@ -24,7 +25,9 @@ const slugger = new GithubSlugger();
 		<div class="p-top-nav__main">
 			<div class="c-grid -top-nav">
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="漫画" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">漫画</H>
+
 						<ul class="p-links">
 							<li><a href="/kumeta/manga/list">作品リスト</a><small>（1988年〜）</small></li>
 							<li><a href="/kumeta/manga/subtitle">連載作品サブタイトル</a><small>（1991年〜）</small></li>
@@ -36,7 +39,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="メディア紹介" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">メディア紹介</H>
+
 						<ul class="p-links">
 							<li><a href="/kumeta/library/manga">漫画雑誌</a><small>（1988年〜）</small></li>
 							<li><a href="/kumeta/library/book">図書、一般雑誌</a><small>（1993年〜）</small></li>
@@ -46,7 +51,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="アニメ" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">アニメ</H>
+
 						<ul class="p-links">
 							<li><a href="/kumeta/anime/zetsubou/diff">『さよなら絶望先生』放送版とパッケージ版の比較</a></li>
 							<li><a>『かくしごと』放送版とパッケージ版の比較</a></li>
@@ -55,7 +62,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="久米田先生" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">久米田先生</H>
+
 						<ul class="p-links">
 							<li><a>年表</a><small>（1988年〜）</small></li>
 							<li><a>イベント登壇、サイン会</a><small>（1992年〜）</small></li>
@@ -66,7 +75,9 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} heading="よもやま" headingType="b">
+					<Section slugger={slugger} depth={2} headingType="b">
+						<H slot="heading">よもやま</H>
+
 						<ul class="p-links">
 							<li><a href="/kumeta/yomoyama/mangaka">“近所の売れないまんが家” 登場履歴</a><small>（1991年〜）</small></li>
 							<li><a href="/kumeta/yomoyama/pulp_daidanen">『スタジオパルプ』最終話　大団円イラストキャラ</a></li>

@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -18,8 +18,6 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/book/', name: '鉄道本執筆' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -59,7 +57,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</div>
 
-	<Section slugger={slugger} id="buy" heading="購入">
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
 		<div class="c-flex -buttons">
 			<div class="c-flex__item">
 				<a href="pdf/sample_7700.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
@@ -76,7 +76,9 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="toc" heading="目次">
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
 		<ol class="p-list">
 			<li>はじめに</li>
 			<li>車両一覧</li>
@@ -301,7 +303,9 @@ const slugger = new GithubSlugger();
 		</ol>
 	</Section>
 
-	<Section slugger={slugger} id="errata" heading="正誤情報">
+	<Section id="errata">
+		<H slot="heading">正誤情報</H>
+
 		<table class="p-table">
 			<thead>
 				<tr>

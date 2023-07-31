@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import LibraryItemBook from '@components/LibraryItemBook.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,7 +26,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="2011年">
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="@2.5" release="2011-03-31" isbn="978-4-04-894080-1" amazonAsin="4048940805" amazonImageId="51+ojV0aDoL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.34–41: <em>「『魔法少女まどか☆マギカ』」</em>岩上敦宏インタビュー。脚本制作時の話など。</p>
@@ -94,7 +97,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2012年">
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="平成23年度[第15回]文化庁メディア芸術祭受賞作品集" release="2012-02-01">
 			<div class="p-text"><p>pp.18–21: アニメーション部門大賞の贈賞理由、作品概要。作中カット13点のほか、TVシリーズのキービジュアルと蒼樹うめによるアルティメットまどか、リボンほむらのイラスト（「ニュータイプ」2011年12月号表紙）も掲載。</p></div>
 		</LibraryItemBook>
@@ -189,7 +194,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2013年">
+	<Section slugger={slugger}>
+		<H slot="heading">2013年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="魔法少女まどか☆マギカ　KEY ANIMATION NOTE extra 始まりの物語／永遠の物語" release="2013-02-28" amazonAsin="4896106768" amazonImageId="51X1+Ul732L" amazonImageWidth={111} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>原画集（劇場版[前編][後編]）</p>
@@ -254,7 +261,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2014年">
+	<Section slugger={slugger}>
+		<H slot="heading">2014年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="劇場版魔法少女まどか☆マギカ [新編]叛逆の物語　公式ガイドブック　only you." release="2014-04-12" isbn="978-4-8322-4429-0" amazonAsin="4832244299" amazonImageId="61oIrxBA5xL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>公式ガイドブック（劇場版[新編]）</p>
@@ -293,7 +302,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2015年">
+	<Section slugger={slugger}>
+		<H slot="heading">2015年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="いま、幸福について語ろう　宮台真司「幸福学」対談集" release="2015-02-25" isbn="978-4-86436-599-4" amazonAsin="4864365997" amazonImageId="51Gd9zGrLpL" amazonImageWidth={107} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.21–83: 著者の宮台真司と虚淵玄との対談（2013年3月、2014年1月収録）。</p>
@@ -332,7 +343,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2016年">
+	<Section slugger={slugger}>
+		<H slot="heading">2016年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="「MADOGATARI展」図録" release="2016-09-22" amazonAsin="B01LZLCCFB" amazonImageId="51jKmWdTPXL" amazonImageWidth={112} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>東京、大阪、札幌、名古屋会場の様子、会場で展示された原画、コンセプトムービー原画&amp;絵コンテ、物販アイテム一覧などを掲載。</p>
@@ -352,7 +365,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2017年">
+	<Section slugger={slugger}>
+		<H slot="heading">2017年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="PRO-VISION English Communication Ⅰ NEW EDITION" release="2017-02-25" isbn="978-4-342-04122-8" amazonAsin="4342041227" amazonImageId="510muQzSkYL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.18–19: LESSON 2「Oh Bento!」にて「How about a piece of karaage?」などのセリフ。[新編] の屋上で弁当を食べるシーンのキャプチャー画像3枚掲載。</p>
@@ -367,7 +382,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2018年">
+	<Section slugger={slugger}>
+		<H slot="heading">2018年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ホビージャパン フィギュアJAPANマニアックス（ホビージャパンムック 857）" release="2018-04-03" isbn="978-4-7986-1667-4" amazonAsin="4798616672" amazonImageId="51eIq9wMQYL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.48: 「アニプレックス」の紹介記事で会社入口のショーケース写真（Ultimate Best や各種フィギュアが展示）、環いろはのフィギュア写真掲載。</p>
@@ -406,7 +423,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2019年">
+	<Section slugger={slugger}>
+		<H slot="heading">2019年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="谷口淳一郎　アニメーション画集" release="2019-01-19" isbn="978-4-902948-25-7" amazonAsin="4902948257" amazonImageId="511cGO68yuL" amazonImageWidth={118} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>表紙: まどか、ほむら。</p>

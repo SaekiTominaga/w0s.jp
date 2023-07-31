@@ -3,8 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import LibraryItemBook from '@components/LibraryItemBook.astro';
-import Section from '@components/Section.astro';
+import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,7 +26,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} heading="2010年">
+	<Section slugger={slugger}>
+		<H slot="heading">2010年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="メガミマガジン　2010年12月号" release="2010-10-30" amazonAsin="B00474KL90" amazonImageId="61XR55tA6hL" amazonImageWidth={124} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.115: <em>「1大プロジェクト始動! 魔法少女まどか★マギカ」</em>岩上敦宏プロデューサーインタビュー、蒼樹うめ原案の魔法少女（鹿目まどか）のシルエット掲載。</p>
@@ -117,7 +120,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2011年">
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="オトナアニメ　Vol.19" release="2011-01-08" isbn="978-4-86248-679-0" amazonAsin="4862486797" amazonImageId="61nmwSf8AWL" amazonImageWidth={115} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.110–114: <em>「シャフト☆ワークス 2010-2011」</em>の記事内で蒼樹うめ、虚淵玄のインタビュー。企画立ち上げ時の話、キャラクターについてなど。</p>
@@ -669,7 +674,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2012年">
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="アニメディア　2012年2月号" release="2012-01-10" amazonAsin="B006OAKCHG" amazonImageId="61QI+eiV6NL" amazonImageWidth={125} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>別冊付録: まどか、ほむら、マミ、さやか、杏子の版権イラスト（2012年1月号記事）のクリアファイル。</p>
@@ -1220,7 +1227,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2013年">
+	<Section slugger={slugger}>
+		<H slot="heading">2013年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ニュータイプ　2013年2月号" release="2013-01-10" amazonAsin="B00ARJ2ESK" amazonImageId="51IfYsvmWUL" amazonImageWidth={124} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>付録: アルティメットまどか&amp;まどか&amp;ほむら&amp;マミ&amp;さやか&amp;杏子のB3ポスター（寺尾洋之）。</p>
@@ -1655,7 +1664,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2014年">
+	<Section slugger={slugger}>
+		<H slot="heading">2014年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ニュータイプ　2014年2月号" release="2014-01-10" amazonAsin="B00HFD3P0M" amazonImageId="61t0wA+LD3L" amazonImageWidth={124} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.150: 「新房昭之の恐縮ですが……」で『まどか☆マギカ』のシナリオが放送よりずいぶん前にできあがっていた話。</p>
@@ -1785,7 +1796,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2015年">
+	<Section slugger={slugger}>
+		<H slot="heading">2015年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.18　2015年3月号" release="2015-02-10" amazonAsin="B00S9X6I88" amazonImageId="61FGoVstVoL" amazonImageWidth={111} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>表紙: リボンほむら（悪魔）（イラスト: 得能正太郎）</p>
@@ -1894,7 +1907,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2016年">
+	<Section slugger={slugger}>
+		<H slot="heading">2016年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ゲームラボ　2016年2月号" release="2016-01-16" amazonAsin="B000DZID9C" amazonImageId="616KMBlvFNL" amazonImageWidth={114} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.99: 「発売&amp;放送禁止アニメ大全」で、災害を連想させる作品としてTV版11話で体育館に避難している鹿目家のキャプチャーが掲載（本放送では放送されず、パッケージ版に収録されたカット）。</p>
@@ -1978,7 +1993,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2017年">
+	<Section slugger={slugger}>
+		<H slot="heading">2017年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.30　2017年3月号" release="2017-02-09" amazonAsin="B01N382U5A" amazonImageId="51ouabljNLL" amazonImageWidth={112} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>表紙: まどか、ほむら（イラスト: 蒼樹うめ）</p>
@@ -2061,7 +2078,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2018年">
+	<Section slugger={slugger}>
+		<H slot="heading">2018年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="コンプティーク　2018年2月号" release="2018-01-10" amazonAsin="B0788XQ6WR" amazonImageId="61AhnR30wkL" amazonImageWidth={112} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.114–117: マギアレコードの紹介記事。鶴乃★5解放「魔法少女の新たな力が解放される!」、<LinkExternal href="http://www.bpnavi.jp/kuji/item/2281">一番くじマギレコ第2弾</LinkExternal>の情報、メモリア紹介。</p>
@@ -2123,7 +2142,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2019年">
+	<Section slugger={slugger}>
+		<H slot="heading">2019年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ニュータイプ　2019年4月号" release="2019-03-09" amazonAsin="B07NRF18Y5" amazonImageId="510BJziYb7L" amazonImageWidth={127} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>p.123: 「新房昭之のあの人とヒミツの話」で岩上敦宏との対談。新作に向けての打ち合わせは続いていること、TVシリーズ制作時の回想話。</p>
@@ -2173,7 +2194,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2020年">
+	<Section slugger={slugger}>
+		<H slot="heading">2020年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ニュータイプ　2020年2月号" release="2020-01-10" amazonAsin="B082PPJCM6" amazonImageId="51Ginn8ofbL" amazonImageWidth={127} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.44–45: 「秘々解明」TVアニメ・マギアレコードの紹介記事。いろは&amp;うい&amp;みたま&amp;小さいキュゥべえのイラスト（<LinkExternal href="https://twitter.com/shaft_official/status/1215575061479821312">原画: 高野晃久</LinkExternal>）、麻倉もものコメント。</p>
@@ -2277,7 +2300,9 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemBook>
 	</Section>
-	<Section slugger={slugger} heading="2021年">
+	<Section slugger={slugger}>
+		<H slot="heading">2021年</H>
+
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="リスアニ!　Vol.43.1「ClariS音楽大全“クラリスアニ！”」" release="2021-02-17" isbn="978-4-7897-7320-1" amazonAsin="4789773205" amazonImageId="515eM01TpCL" amazonImageWidth={113} amazonImageHeight={160}>
 			<div class="p-text">
 				<p>pp.116–119: 湯浅篤インタビュー。あえて『まどマギ』を観ていない、「カラフル」制作時も予告編しか観ていない。</p>

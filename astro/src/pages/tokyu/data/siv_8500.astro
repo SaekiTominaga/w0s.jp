@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -15,19 +15,21 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/data/', name: '車両データ' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="introduction" heading="概要">
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
 		<div class="p-text">
 			<p>8500系の冷房電源は当初MGでしたが、7-2次車で逆導通サイリスタを使用した大容量SIVが搭載され、13次車からはGTOサイリスタ式のBS-482形、18次車からは出力電圧を440Vに上げたINV-008形となりました。</p>
 			<p>1990年より初期SIVの更新工事が開始されINV-029形に換装、1993年からは主回路素子にIGBTを使用したINV-095形となり、1996年までに置き換えが完了しました。</p>
 		</div>
 	</Section>
 
-	<Section slugger={slugger} id="table" heading="SIV形式一覧表">
+	<Section id="table">
+		<H slot="heading">SIV形式一覧表</H>
+
 		<table class="p-table">
 			<colgroup></colgroup>
 			<colgroup span="2"></colgroup>

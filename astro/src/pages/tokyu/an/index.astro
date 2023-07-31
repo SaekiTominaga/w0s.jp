@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -18,8 +19,12 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger} id="tokyu" heading="東急電鉄">
-		<Section slugger={slugger} depth={2} heading="東横線" headingType="b">
+	<Section id="tokyu">
+		<H slot="heading">東急電鉄</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">東横線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -65,7 +70,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="目黒線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">目黒線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -113,7 +120,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="田園都市線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">田園都市線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -150,7 +159,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="大井町線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">大井町線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -190,7 +201,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="池上線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">池上線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -226,7 +239,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="東急多摩川線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">東急多摩川線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -258,7 +273,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="こどもの国線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">こどもの国線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -283,7 +300,9 @@ const slugger = new GithubSlugger();
 			</table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} heading="世田谷線" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">世田谷線</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -323,8 +342,12 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="transfer" heading="譲渡車両">
-		<Section slugger={slugger} depth={2} heading="十和田観光電鉄" headingNote="2012年廃線" headingType="b">
+	<Section id="transfer">
+		<H slot="heading">譲渡車両</H>
+
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">十和田観光電鉄<small>（2012年廃線）</small></H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -348,7 +371,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="弘南鉄道（弘南線）" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">弘南鉄道（弘南線）</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -390,7 +415,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="弘南鉄道（大鰐線）" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">弘南鉄道（大鰐線）</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -434,7 +461,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="福島交通" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">福島交通</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -500,7 +529,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="秩父鉄道" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">秩父鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -527,7 +558,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="富山地方鉄道" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">富山地方鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -573,7 +606,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="北陸鉄道（石川線）" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">北陸鉄道（石川線）</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -607,7 +642,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="上田電鉄" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">上田電鉄</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -649,7 +686,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="長野電鉄" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">長野電鉄</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -676,7 +715,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="伊豆急行" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">伊豆急行</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -708,7 +749,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="大井川鐵道（大井川本線）" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">大井川鐵道（大井川本線）</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -742,7 +785,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="養老鉄道" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">養老鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -776,7 +821,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="伊賀鉄道" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">伊賀鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -800,7 +847,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="水間鉄道" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">水間鉄道</H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -859,7 +908,9 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</Section>
-		<Section slugger={slugger} depth={2} heading="熊本電気鉄道（菊池線）" headingNote="2016年東急譲渡車引退" headingType="b">
+		<Section slugger={slugger} depth={2} headingType="b">
+			<H slot="heading">熊本電気鉄道（菊池線）<small>（2016年東急譲渡車引退）</small></H>
+
 			<table class="p-tokyu-index-table">
 				<thead>
 					<tr>
@@ -894,7 +945,9 @@ const slugger = new GithubSlugger();
 		</Section>
 	</Section>
 
-	<Section slugger={slugger} id="etc" heading="その他の自動放送関連コンテンツ">
+	<Section id="etc">
+		<H slot="heading">その他の自動放送関連コンテンツ</H>
+
 		<ul class="p-links">
 			<li><a href="menu">メニュー放送一覧</a></li>
 			<li><a href="iketama_compare">池上、多摩川線 車種別放送内容比較</a></li>

@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
-import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -13,14 +13,14 @@ const structuredData: StructuredData = {
 	description: '東急電鉄の車両の台車や床下・屋根上機器などを写真と文章で紹介します。',
 	breadcrumb: [{ path: '/tokyu/', name: 'ホーム' }],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<div class="c-grid -hdg-a -wide">
 		<div class="c-grid__item">
-			<Section slugger={slugger} id="truck" heading="台車">
+			<Section id="truck">
+				<H slot="heading">台車</H>
+
 				<ul class="p-links">
 					<li><a href="truck_ts300">TS-300 系台車</a></li>
 					<li><a href="truck_ts700">TS-700 系台車（パイオニアⅢ）</a></li>
@@ -31,7 +31,9 @@ const slugger = new GithubSlugger();
 			</Section>
 		</div>
 		<div class="c-grid__item">
-			<Section slugger={slugger} id="sty" heading="車両機器">
+			<Section id="sty">
+				<H slot="heading">車両機器</H>
+
 				<ul class="p-links">
 					<li><a href="aps">補助電源装置</a></li>
 					<li><a href="cp">空気圧縮機</a></li>
@@ -47,7 +49,9 @@ const slugger = new GithubSlugger();
 			</Section>
 		</div>
 		<div class="c-grid__item">
-			<Section slugger={slugger} id="ub" heading="床下機器配置">
+			<Section id="ub">
+				<H slot="heading">床下機器配置</H>
+
 				<ul class="p-links">
 					<li><a href="ub_7600">7600系</a></li>
 					<li><a href="ub_7700">7700系</a></li>
@@ -62,7 +66,9 @@ const slugger = new GithubSlugger();
 			</Section>
 		</div>
 		<div class="c-grid__item">
-			<Section slugger={slugger} id="roof" heading="屋根上機器配置">
+			<Section id="roof">
+				<H slot="heading">屋根上機器配置</H>
+
 				<ul class="p-links">
 					<li><a href="roof_7200">7200系（デヤ7200、デヤ7290、サヤ7590）</a></li>
 					<li><a href="roof_7600">7600系</a></li>
@@ -73,14 +79,18 @@ const slugger = new GithubSlugger();
 			</Section>
 		</div>
 		<div class="c-grid__item">
-			<Section slugger={slugger} id="etc" heading="室外その他">
+			<Section id="etc">
+				<H slot="heading">室外その他</H>
+
 				<ul class="p-links">
 					<li><a href="front_7700">7700系　先頭車正面バリエーション</a></li>
 				</ul>
 			</Section>
 		</div>
 		<div class="c-grid__item">
-			<Section slugger={slugger} id="indoors" heading="室内">
+			<Section id="indoors">
+				<H slot="heading">室内</H>
+
 				<ul class="p-links">
 					<li><a href="nosmoking">禁煙標記</a></li>
 					<li><a href="amp_8000">8000系グループ　客室内スピーカ</a></li>
