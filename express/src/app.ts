@@ -182,7 +182,7 @@ app.use(
 /**
  * SSR
  */
-app.use((req, res, next) => {
+app.use((req, res, next): void => {
 	ssrHandler(req, res, next);
 });
 
@@ -199,6 +199,7 @@ app.use((req, res): void => {
 });
 app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
 	console.error(`${req.method} ${req.url}`, err.stack);
+
 	res
 		.status(500)
 		.setHeader('Content-Type', 'text/html;charset=utf-8')
