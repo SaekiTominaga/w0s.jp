@@ -4,13 +4,13 @@ on:
     branches:
       - main
     paths:
-      - 'astro/src/**/*.astro'
+      - 'astro/src/**/*.{astro|ts}'
       - 'astro/.markuplintrc'
   push:
     branches:
       - main
     paths:
-      - 'astro/src/**/*.astro'
+      - 'astro/src/**/*.{astro|ts}'
       - 'astro/.markuplintrc'
   workflow_dispatch:
 
@@ -23,5 +23,8 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run build -w '@w0s.jp/astro'
+      - run: cd astro
+      - run: npx astro check
+      - run: npx tsc --noEmit
+      - run: npx astro build
       - run: npm run html-lint -w '@w0s.jp/astro'
