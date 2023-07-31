@@ -7,20 +7,24 @@ interface Props {
 	width?: number;
 	height?: number;
 	quality?: number;
+	link?: boolean;
 	class?: string;
 	style?: string;
 }
 
-const { path: filePath, alt = '', width, height, quality = 80, class: className, style } = Astro.props;
+const { path: filePath, alt = '', width, height, quality = 80, link = false, class: className, style } = Astro.props;
 
+let mimeType = undefined;
 let type = '';
 switch (path.extname(filePath)) {
 	case '.jpg':
 	case '.jpeg': {
+		mimeType = 'image/jpeg';
 		type = 'jpeg';
 		break;
 	}
 	case '.png': {
+		mimeType = 'image/png';
 		type = 'png';
 		break;
 	}
@@ -61,8 +65,23 @@ const paramAvif = assembleUrlSearch('avif', width, height, quality);
 const paramAvif2x = assembleUrlSearch('avif', width2x, height2x, quality2x);
 ---
 
-<picture>
-	<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
-	<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
-	<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class={className} style={style} />
-</picture>
+{
+	link && (
+		<a href={`https://media.w0s.jp/image/${filePath}`} type={mimeType}>
+			<picture>
+				<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
+				<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
+				<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class={className} style={style} />
+			</picture>
+		</a>
+	)
+}
+{
+	!link && (
+		<picture>
+			<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
+			<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
+			<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class={className} style={style} />
+		</picture>
+	)
+}
