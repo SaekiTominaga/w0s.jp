@@ -1,0 +1,67 @@
+---
+import type { StructuredDataErrorPage } from '../types/types.js';
+
+interface Props {
+	structuredData: StructuredDataErrorPage;
+	search?: boolean;
+}
+
+const { structuredData, search = false } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		{import.meta.env.DEV && <meta charset="utf-8" />}
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+		<link rel="stylesheet" href="/assets/style/error.css" />
+
+		{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" />)}
+
+		<title>w0s.jp</title>
+	</head>
+	<body>
+		<div class="l-page">
+			<header id="header" class="l-header">
+				<hgroup class="p-err-title">
+					<h1>{structuredData.heading}</h1>
+					<p class="p-err-title__code">{structuredData.headingCode}</p>
+				</hgroup>
+			</header>
+			<main id="content" class="l-content">
+				<slot />
+
+				{
+					search && (
+						<search role="search">
+							<form action="https://www.google.com/search" class="p-err-search">
+								<fieldset>
+									<legend class="p-err-search__legend">
+										サイト内検索<small>（Google 検索）</small>
+									</legend>
+									<div class="p-err-search__ctrl c-search">
+										<span class="c-search__hidden">
+											<input type="hidden" name="as_sitesearch" value="w0s.jp" />
+										</span>
+										<span class="c-search__query">
+											<input type="search" name="q" required="" title="キーワード" />
+										</span>
+										<span class="c-search__submit">
+											<button>
+												<svg role="img" aria-labelledby="search-button">
+													<title id="search-button">検索</title>
+													<use href="/assets/image/icon/search.svg#icon" />
+												</svg>
+											</button>
+										</span>
+									</div>
+								</fieldset>
+							</form>
+						</search>
+					)
+				}
+			</main>
+		</div>
+	</body>
+</html>

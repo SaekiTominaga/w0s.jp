@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		{import.meta.env.DEV && <meta charset="utf-8" />}
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
+---
+import Layout from '@layouts/Error.astro';
+import type { StructuredDataErrorPage } from '../types/types.js';
 
-		<link rel="stylesheet" href="/assets/style/error.css" />
+const structuredData: StructuredDataErrorPage = {
+	heading: '認証に失敗しました',
+	headingCode: '401 Unauthorized',
+};
+---
 
-		<title>w0s.jp</title>
-	</head>
-	<body>
-		<div class="l-page">
-			<header id="header" class="l-header">
-				<hgroup class="p-err-title">
-					<h1>認証に失敗しました</h1>
-					<p class="p-err-title__code">401 Unauthorized</p>
-				</hgroup>
-			</header>
-			<main id="content" class="l-content">
-				<div class="p-err-text">
-					<p>ユーザー名、パスワードが未入力か、正しくありません。</p>
-				</div>
-			</main>
-		</div>
-	</body>
-</html>
+<Layout structuredData={structuredData}>
+	<p>ユーザー名、パスワードが未入力か、正しくありません。</p>
+</Layout>

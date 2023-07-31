@@ -1,56 +1,18 @@
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		{import.meta.env.DEV && <meta charset="utf-8" />}
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
+---
+import Layout from '@layouts/Error.astro';
+import type { StructuredDataErrorPage } from '../types/types.js';
 
-		<link rel="stylesheet" href="/assets/style/error.css" />
+const structuredData: StructuredDataErrorPage = {
+	heading: 'コンテンツが存在しません',
+	headingCode: '404 Not Found',
+	moduleScripts: ['error.mjs'],
+};
+---
 
-		<script src="/assets/script/error.mjs" type="module"></script>
+<Layout structuredData={structuredData} search={true}>
+	<p id="parentpage-msg" hidden="">「<a id="parentpage-anchor"></a>」でお探しのコンテンツが見つかるかもしれませんし、見つからないかもしれません。</p>
 
-		<title>w0s.jp</title>
-	</head>
-	<body>
-		<div class="l-page">
-			<header id="header" class="l-header">
-				<hgroup class="p-err-title">
-					<h1>コンテンツが存在しません</h1>
-					<p class="p-err-title__code">404 Not Found</p>
-				</hgroup>
-			</header>
-			<main id="content" class="l-content">
-				<div class="p-err-text">
-					<p id="parentpage-msg" hidden="">「<a id="parentpage-anchor"></a>」でお探しのコンテンツが見つかるかもしれませんし、見つからないかもしれません。</p>
-				</div>
-
-				<div class="p-err-parentthumb">
-					<w0s-portal class="p-err-parentthumb__portal" id="parentpage-portal" hidden=""></w0s-portal>
-				</div>
-
-				<search role="search">
-					<form action="https://www.google.com/search" class="p-err-search">
-						<fieldset>
-							<legend class="p-err-search__legend">サイト内検索（Google 検索）</legend>
-							<div class="p-err-search__ctrl c-search">
-								<span class="c-search__hidden">
-									<input type="hidden" name="as_sitesearch" value="w0s.jp" />
-								</span>
-								<span class="c-search__query">
-									<input type="search" name="q" required="" title="キーワード" />
-								</span>
-								<span class="c-search__submit">
-									<button>
-										<svg role="img" aria-labelledby="search-button">
-											<title id="search-button">検索</title>
-											<use href="/assets/image/icon/search.svg#icon"></use>
-										</svg>
-									</button>
-								</span>
-							</div>
-						</fieldset>
-					</form>
-				</search>
-			</main>
-		</div>
-	</body>
-</html>
+	<div class="p-err-parentthumb">
+		<w0s-portal class="p-err-parentthumb__portal" id="parentpage-portal" hidden=""></w0s-portal>
+	</div>
+</Layout>

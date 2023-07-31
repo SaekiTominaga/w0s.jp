@@ -31,6 +31,12 @@ export interface StructuredData {
 	readonly opensearch?: StructuredDataUrl;
 }
 
+export interface StructuredDataErrorPage {
+	readonly heading: string;
+	readonly headingCode: string;
+	readonly moduleScripts?: string[];
+}
+
 export interface SchemaOrgBreadcrumbListItem {
 	readonly '@context'?: string;
 	readonly '@type': 'ListItem';
