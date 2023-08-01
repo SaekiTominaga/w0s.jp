@@ -17,12 +17,13 @@ interface Props {
 	astroFilePath: string | undefined;
 	structuredData: StructuredData;
 	top?: boolean;
+	toc?: boolean;
 	contentFooter?: boolean;
 	pageSidebar?: boolean;
 	ad?: boolean;
 }
 
-const { pagePath: pagePathTemp, astroFilePath, structuredData, top, contentFooter = true, pageSidebar = true, ad = true } = Astro.props;
+const { pagePath: pagePathTemp, astroFilePath, structuredData, top = false, toc = true, contentFooter = true, pageSidebar = true, ad = true } = Astro.props;
 
 const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
 
@@ -30,7 +31,7 @@ const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);
 const { document } = dom.window;
 
-const tocData = TocUtil.getData(document);
+const tocData = toc ? TocUtil.getData(document) : undefined;
 const footnoteData = FootnoteUtil.getData(document);
 
 const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
