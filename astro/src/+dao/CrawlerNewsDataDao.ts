@@ -1,5 +1,5 @@
 import dayjs, { type Dayjs } from 'dayjs';
-import CrawlerDao from './CrawlerDao.js';
+import CrawlerDao from '@dao/CrawlerDao.js';
 
 interface NewsData {
 	id: string;

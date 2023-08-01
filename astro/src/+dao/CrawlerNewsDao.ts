@@ -1,5 +1,5 @@
+import CrawlerDao from '@dao/CrawlerDao.js';
 import DbUtil from '@util/Db.js';
-import CrawlerDao from './CrawlerDao.js';
 
 interface NewsPage {
 	url: string;

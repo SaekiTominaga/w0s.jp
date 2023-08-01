@@ -1,5 +1,5 @@
 import DbUtil from '@util/Db.js';
-import CrawlerDao from './CrawlerDao.js';
+import CrawlerDao from '@dao/CrawlerDao.js';
 
 interface ResourcePage {
 	url: string;
