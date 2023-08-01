@@ -1,4 +1,7 @@
-module.exports = {
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+const config = {
 	endOfLine: 'lf',
 	printWidth: 160,
 	singleQuote: true,
@@ -30,3 +33,4 @@ module.exports = {
 		},
 	],
 };
+export default config;
