@@ -25,9 +25,9 @@ try {
 	paapiItemImageUrlParser.setSizeMultiply(2);
 	imageUrl2x = paapiItemImageUrlParser.toString();
 } catch (e) {
-	console.warn(e, src);
+	console.warn(e.message, src);
 	return;
 }
 ---
 
-<img src={src} srcset={`${imageUrl2x} 2x`} alt={alt} width={width} height={height} class={className} />
+<img src={src} srcset={`${imageUrl2x} 2x`} alt={alt} width={width} height={height} class:list={className} />

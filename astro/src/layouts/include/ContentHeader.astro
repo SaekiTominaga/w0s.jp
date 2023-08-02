@@ -76,7 +76,7 @@ const { pagePath, structuredData, tocData } = Astro.props;
 	}
 	{
 		tocData !== undefined && tocData.size >= 2 && structuredData.tocDirection !== undefined && (
-			<ol class={`p-toc -${structuredData.tocDirection}`} aria-label="目次">
+			<ol class:list={['p-toc', `-${structuredData.tocDirection}`]} aria-label="目次">
 				{[...tocData].map(([id, headingText]) => (
 					<li>
 						<a href={`#${encodeURIComponent(id)}`}>{headingText}</a>

@@ -3,19 +3,31 @@
 	"env": {
 		"es2022": true
 	},
-	"extends": ["@w0s/eslint-config"],
-	"ignorePatterns": ["dist/**/*.mjs", "src/env.d.ts", "public/assets/script/*.js", "public/assets/script/*.mjs"],
+	"extends": ["@w0s/eslint-config", "plugin:astro/recommended"],
+	"ignorePatterns": ["dist/**/*.mjs", "src/env.d.ts", "src/pages/kumeta/manga/subtitle.astro", "public/assets/script/*.js", "public/assets/script/*.mjs"],
 	"overrides": [
+		{
+			"files": ["*.astro"],
+			"parser": "astro-eslint-parser",
+			"parserOptions": {
+				"parser": "@typescript-eslint/parser",
+				"extraFileExtensions": [".astro"]
+			},
+			"rules": {
+				"consistent-return": "off",
+				"no-console": "off",
+				"no-irregular-whitespace": "off",
+				"no-useless-return": "off",
+				"import/prefer-default-export": "off",
+				"jsdoc/require-param-type": "off",
+				"jsdoc/require-property-type": "off",
+				"jsdoc/require-returns-type": "off"
+			}
+		},
 		{
 			"files": ["build/*.js"],
 			"rules": {
 				"no-console": "off"
-			}
-		},
-		{
-			"files": ["src/+util/Ssr.ts"],
-			"rules": {
-				"import/no-relative-packages": "off"
 			}
 		},
 		{
@@ -50,6 +62,24 @@
 				"no-underscore-dangle": "off",
 				"no-var": "off",
 				"strict": "off"
+			}
+		},
+		{
+			"files": ["src/+util/Ssr.ts"],
+			"rules": {
+				"import/no-relative-packages": "off"
+			}
+		},
+		{
+			"files": ["src/components/*.astro"],
+			"rules": {
+				"no-console": "off"
+			}
+		},
+		{
+			"files": ["src/pages/technology.astro"],
+			"rules": {
+				"no-undef": "off"
 			}
 		},
 		{

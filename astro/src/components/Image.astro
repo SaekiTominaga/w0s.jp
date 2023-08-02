@@ -14,7 +14,7 @@ interface Props {
 
 const { path: filePath, alt = '', width, height, quality = 80, link = false, class: className, style } = Astro.props;
 
-let mimeType = undefined;
+let mimeType: string;
 let type = '';
 switch (path.extname(filePath)) {
 	case '.jpg':
@@ -28,6 +28,7 @@ switch (path.extname(filePath)) {
 		type = 'png';
 		break;
 	}
+	default:
 }
 
 const width2x = width !== undefined ? width * 2 : undefined;
@@ -37,23 +38,23 @@ const quality2x = quality / 2;
 /**
  * Assemble Url.search
  *
- * @param type - Image type
- * @param width - Image width
- * @param height - Image Height
- * @param quality - Image quality
+ * @param typeValue - Image type
+ * @param widthValue - Image width
+ * @param heightValue - Image height
+ * @param qualityValue - Image quality
  *
  * @returns URL.search
  */
-const assembleUrlSearch = (type: string, width: number | undefined, height: number | undefined, quality: number): string => {
-	let urlSearch = `?type=${type}`;
+const assembleUrlSearch = (typeValue: string, widthValue: number | undefined, heightValue: number | undefined, qualityValue: number): string => {
+	let urlSearch = `?type=${typeValue}`;
 
 	if (width !== undefined) {
-		urlSearch += `;w=${width}`;
+		urlSearch += `;w=${widthValue}`;
 	}
 	if (height !== undefined) {
-		urlSearch += `;h=${height}`;
+		urlSearch += `;h=${heightValue}`;
 	}
-	urlSearch += `;quality=${quality}`;
+	urlSearch += `;quality=${qualityValue}`;
 
 	return urlSearch;
 };
@@ -71,7 +72,7 @@ const paramAvif2x = assembleUrlSearch('avif', width2x, height2x, quality2x);
 			<picture>
 				<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
 				<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
-				<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class={className} style={style} />
+				<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class:list={className} style={style} />
 			</picture>
 		</a>
 	)
@@ -81,7 +82,7 @@ const paramAvif2x = assembleUrlSearch('avif', width2x, height2x, quality2x);
 		<picture>
 			<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
 			<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
-			<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class={className} style={style} />
+			<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class:list={className} style={style} />
 		</picture>
 	)
 }

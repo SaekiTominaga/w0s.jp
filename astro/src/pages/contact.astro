@@ -26,12 +26,10 @@ const structuredData: StructuredData = {
 	moduleScripts: ['contact.mjs'],
 };
 
-let requestQuery: RequestQuery | undefined = undefined;
-
 if (Astro.request.method === 'POST') {
 	const requestBody = await Astro.request.formData();
 
-	requestQuery = {
+	const requestQuery: RequestQuery = {
 		name: RequestUtil.string(requestBody.get('yourname')),
 		email: RequestUtil.string(requestBody.get('email')),
 		reply: RequestUtil.string(requestBody.get('reply')),
@@ -43,10 +41,8 @@ if (Astro.request.method === 'POST') {
 	if (requestQuery.action_send) {
 		/**
 		 * メール送信
-		 *
-		 * @param requestQuery - URL クエリー情報
 		 */
-		const sendMail = async (requestQuery: RequestQuery): Promise<void> => {
+		const sendMail = async (): Promise<void> => {
 			const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
 				requestQuery: requestQuery,
 				ip: Astro.clientAddress,
@@ -72,7 +68,7 @@ if (Astro.request.method === 'POST') {
 			logger.info('Message sent: %s', info.messageId);
 		};
 
-		await sendMail(requestQuery);
+		await sendMail();
 
 		const httpResponse = new HttpResponseUtil(Astro.request);
 		return httpResponse.response303(`/contact_completed?referrer=${requestQuery.referrer}`); // TODO: https://github.com/withastro/language-tools/issues/476

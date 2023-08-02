@@ -44,8 +44,7 @@ const structuredData: StructuredData = {
 			<dt>2012年2月<!-- 12日 --></dt>
 			<dd>
 				<p>
-					NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<FootnoteReference><LinkExternal href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - 共用SSLサーバの危険性が理解されていない</LinkExternal>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</FootnoteReference>で躊躇われることから<LinkExternal href="https://www.inetd.co.jp/">アイネットディー</LinkExternal>
-					 に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。
+					NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<FootnoteReference><LinkExternal href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - 共用SSLサーバの危険性が理解されていない</LinkExternal>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</FootnoteReference>で躊躇われることから<LinkExternal href="https://www.inetd.co.jp/">アイネットディー</LinkExternal>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。
 				</p>
 			</dd>
 			<dt>2017年1月</dt>
@@ -366,7 +365,7 @@ const structuredData: StructuredData = {
 						language="javascript"
 					/>
 
-					 実際の検知プログラムは <LinkExternal href="https://github.com/SaekiTominaga/report-js-error">GitHub で公開</LinkExternal>している。
+					<>実際の検知プログラムは <LinkExternal href="https://github.com/SaekiTominaga/report-js-error">GitHub で公開</LinkExternal>している。</>
 				</li>
 				<li>
 					これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。
@@ -394,7 +393,7 @@ const structuredData: StructuredData = {
 					<li>サムネイル: WebP, @2x</li>
 					<li>サムネイル: JPEG （※ WebP 未対応環境は減少しているため、JPEG の @2x 画像は用意しない）</li>
 				</ul>
-				 マークアップのイメージを下記に記す。なお、画像の説明は極力本文か <code>&lt;figcaption&gt;</code> 要素で行う方針のため、<code>&lt;img&gt;</code> 要素の <code>alt</code> 属性値に長々とした文章を書くことはあまりなく、大抵は一律の短い文言である。
+				<>マークアップのイメージを下記に記す。なお、画像の説明は極力本文か <code>&lt;figcaption&gt;</code> 要素で行う方針のため、<code>&lt;img&gt;</code> 要素の <code>alt</code> 属性値に長々とした文章を書くことはあまりなく、大抵は一律の短い文言である。</>
 				<CodeBlock
 					code={`<a href="image.jpg" type="image/jpeg">
 	<picture>
@@ -433,16 +432,13 @@ const structuredData: StructuredData = {
 					画像生成は <LinkExternal href="https://sharp.pixelplumbing.com/">sharp</LinkExternal>を利用しているが、AVIF への変換は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは画像がすべて表示されるまでに多大な時間が掛かったり、タイムアウトしたりするケースが多発してしまった。 そのため AVIF の初回リクエスト（サムネイルファイルが生成されていない状態でのリクエスト）に限っては代替として WebP を生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたらレスポンスで <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの <LinkExternal href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</LinkExternal>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
 				</li>
 				<li>
-					一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。これについては
-					<LinkExternal href="https://tools.ietf.org/html/rfc7231#section-4.2.1">RFC 7231 の 4.2.1. Safe Methods</LinkExternal>
-					 では
-					<q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q>と書かれており、
+					一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。これについては <LinkExternal href="https://tools.ietf.org/html/rfc7231#section-4.2.1">RFC 7231 の 4.2.1. Safe Methods</LinkExternal>では <q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
 					<ul>
 						<li>副作用を起こす実装が禁止されているものではない</li>
 						<li>アクセスログのように GET リクエストでサーバー内にファイルを追加・更新する機能は一般的に存在する</li>
 						<li>そもそも本機能の要件は GET リクエストでないと実現できない</li>
 					</ul>
-					 といった理由から GET リクエストでファイル生成を行うようにしている。
+					<>といった理由から GET リクエストでファイル生成を行うようにしている。</>
 				</li>
 			</ul>
 		</Section>
@@ -483,7 +479,7 @@ const structuredData: StructuredData = {
 					<li>ファビコン用 SVG ファイルの生成は<a href="#vector">他の SVG 画像</a>と同様に、<LinkExternal href="https://github.com/svg/svgo">SVGO</LinkExternal>による最適化や Brotli 圧縮ファイルの同時生成を行っているが、ビルド処理の際に拡張子を <code>favicon.svg</code> → <code>favicon.ico</code> に変更する。</li>
 					<li>通常、<code>Content-Type</code> レスポンスヘッダー（MIME タイプ）はファイル拡張子によって決定されるが、<code>/favicon.ico</code> に限ってはファイルパスで判断し、<code>image/svg+xml</code> を返す。</li>
 				</ul>
-				 詳細はブログ記事「<a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>」（2021年10月）にまとめている。
+				<>詳細はブログ記事「<a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>」（2021年10月）にまとめている。</>
 			</li>
 		</ul>
 	</Section>

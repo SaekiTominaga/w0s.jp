@@ -84,8 +84,8 @@ try {
 	return;
 }
 
-const typeIcon = type !== undefined ? TYPE_ICONS.find((typeIcon) => typeIcon.type === type) : undefined;
-const hostIcon = HOST_ICONS.find((hostIcon) => hostIcon.host === url.host);
+const typeIcon = type !== undefined ? TYPE_ICONS.find((data) => data.type === type) : undefined;
+const hostIcon = HOST_ICONS.find((data) => data.host === url.host);
 ---
 
-<a href={url.toString()} class={className}><slot /></a>{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon !== undefined && <img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon === undefined && <b class="c-domain">({url.host})</b>}
+<a href={url.toString()} class:list={className}><slot /></a>{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon !== undefined && <img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon === undefined && <b class="c-domain">({url.host})</b>}
