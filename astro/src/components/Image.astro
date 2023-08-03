@@ -14,7 +14,7 @@ interface Props {
 
 const { path: filePath, alt = '', width, height, quality = 80, link = false, class: className, style } = Astro.props;
 
-let mimeType: string;
+let mimeType: string | undefined = undefined;
 let type = '';
 switch (path.extname(filePath)) {
 	case '.jpg':

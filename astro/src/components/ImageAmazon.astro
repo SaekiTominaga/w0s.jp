@@ -25,7 +25,11 @@ try {
 	paapiItemImageUrlParser.setSizeMultiply(2);
 	imageUrl2x = paapiItemImageUrlParser.toString();
 } catch (e) {
-	console.warn(e.message, src);
+	if (e instanceof SyntaxError) {
+		console.warn(e.message, src);
+	} else {
+		console.error(e, src);
+	}
 	return;
 }
 ---
