@@ -5,7 +5,6 @@ import compression from 'compression';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
-import qs from 'qs';
 import StringEscapeHtml from '@saekitominaga/string-escape-html';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
@@ -21,7 +20,6 @@ const config = JSON.parse((await fs.promises.readFile('../configure/express.json
 
 const app = express();
 
-app.set('query parser', (query: string) => qs.parse(query, { delimiter: /[&;]/ }));
 app.set('trust proxy', true);
 app.set('x-powered-by', false);
 

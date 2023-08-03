@@ -58,7 +58,7 @@ const structuredData: StructuredData = {
 
 const slugger = new GithubSlugger();
 
-const requestParams = Astro.url.searchParams;
+const requestParams = RequestUtil.getParams(Astro.url);
 
 const requestQuery: RequestQuery = {
 	number: RequestUtil.string(requestParams.get('num')),

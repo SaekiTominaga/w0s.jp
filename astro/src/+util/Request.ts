@@ -1,6 +1,18 @@
 import dayjs, { type Dayjs } from 'dayjs';
+import URLSearchParamsCustomSeparator from '@saekitominaga/urlsearchparams-custom-separator';
 
 export default class RequestUtil {
+	/**
+	 * Obtaining GET method parameters
+	 *
+	 * @param url - URL
+	 *
+	 * @returns URLSearchParams
+	 */
+	static getParams(url: URL): URLSearchParams {
+		return new URLSearchParamsCustomSeparator(url, [';']).searchParams;
+	}
+
 	/**
 	 * Convert to string type
 	 *

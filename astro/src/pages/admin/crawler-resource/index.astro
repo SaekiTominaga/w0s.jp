@@ -34,7 +34,7 @@ const pagePath = await SsrUtil.getPageUrl(Astro.url);
 
 const slugger = new GithubSlugger();
 
-const requestParams = Astro.url.searchParams;
+const requestParams = RequestUtil.getParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
 
 const requestQuery: RequestQuery = {

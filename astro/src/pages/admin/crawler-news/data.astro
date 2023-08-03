@@ -25,7 +25,7 @@ const structuredData: StructuredData = {
 
 const pagePath = await SsrUtil.getPageUrl(Astro.url);
 
-const requestParams = Astro.url.searchParams;
+const requestParams = RequestUtil.getParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
 
 const requestQuery: RequestQuery = {

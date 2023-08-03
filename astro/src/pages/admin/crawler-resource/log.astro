@@ -22,7 +22,7 @@ const structuredData: StructuredData = {
 	],
 };
 
-const requestParams = Astro.url.searchParams;
+const requestParams = RequestUtil.getParams(Astro.url);
 
 const requestQuery: RequestQuery = {
 	dir: RequestUtil.string(requestParams.get('dir')),
