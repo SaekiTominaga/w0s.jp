@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { AstroGlobal } from 'astro';
 import Log4js from 'log4js';
-import configure from '../../../configure/astro.json';
 import type { Astro as Configure } from '../../../configure/type/astro.js';
 
 interface Options {
@@ -19,18 +18,21 @@ export default class SsrUtil {
 	 *
 	 * @returns 共通で使用されるデータ
 	 */
-	static init = (
+	static init = async (
 		Astro: AstroGlobal,
 		options: Options,
-	): {
+	): Promise<{
 		configure: Configure;
 		logger: Log4js.Logger;
-	} => {
+	}> => {
 		Astro.response.headers.set('Content-Type', 'text/html;charset=utf-8');
 
 		/* Log4js */
 		Log4js.configure(options.dev ? 'log4js.dev.config.json' : '../astro/log4js.prod.config.json');
 		const logger = Log4js.getLogger(Astro.url.pathname);
+
+		/* Configure */
+		const configure = JSON.parse((await fs.promises.readFile('../configure/astro.json')).toString()) as Configure;
 
 		return {
 			configure: configure,
