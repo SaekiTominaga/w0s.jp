@@ -20,7 +20,6 @@ const config = JSON.parse((await fs.promises.readFile('../configure/express.json
 
 const app = express();
 
-app.set('trust proxy', true);
 app.set('x-powered-by', false);
 
 /**
