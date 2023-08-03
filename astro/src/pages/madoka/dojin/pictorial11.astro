@@ -1,0 +1,139 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '『魔法少女まどか☆マギカ』同人誌「マギアレコード海外版動向」',
+	heading: '円環ピクトリアル No.11',
+	subHeading: '【特集】マギアレコード海外版動向',
+	dateModified: dayjs('2019-08-12'),
+	description: 'マギレコ中国版、繁中版、北米版のゲーム概要、イベントレポート、街頭広告の掲出例などをまとめた同人誌の紹介です。',
+	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial11_cover.jpg',
+	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
+	localNav: [
+		{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
+		{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
+		{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
+		{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
+		{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
+		{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
+		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>マギレコ中国版、繁中版、北米版のゲーム概要、イベントレポート、街頭広告の掲出例などを紹介します。</p>
+		</div>
+
+		<div class="p-embed-sidebar -embed-first">
+			<div class="p-embed-sidebar__text">
+				<dl class="p-list-table">
+					<div>
+						<dt>発行日</dt>
+						<dd>2019年8月12日</dd>
+					</div>
+					<div>
+						<dt>ページ数</dt>
+						<dd>フルカラー 34ページ</dd>
+					</div>
+					<div>
+						<dt>冊子価格</dt>
+						<dd>2,000円</dd>
+					</div>
+				</dl>
+			</div>
+			<div class="p-embed-sidebar__embed">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="madoka/dojin/pictorial11_cover.jpg" alt="表紙画像: 複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} quality={60} />
+					</div>
+				</figure>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
+		<div class="c-flex -buttons">
+			<div class="c-flex__item">
+				<a href="pdf/pictorial11_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
+			</div>
+			<div class="c-flex__item">
+				<a href="https://w0s.booth.pm/items/2649174" class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">冊子版（BOOTH）</span></a>
+			</div>
+			<div class="c-flex__item">
+				<LinkExternal href="https://www.amazon.co.jp/dp/B07W4WBBBR/" icon={false} class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></LinkExternal>
+			</div>
+		</div>
+
+		<ul class="p-notes">
+			<li>Kindle 版は画像形式による「固定レイアウト型」</li>
+		</ul>
+	</Section>
+
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
+		<ol class="p-list">
+			<li>
+				中国版『魔法纪录 魔法少女小圆外传』
+				<ol>
+					<li>中国向けスマートフォンゲーム『魔法少女小圆』</li>
+					<li>告知イベント（2018年8月）</li>
+				</ol>
+			</li>
+			<li>
+				繁中版『魔法紀錄 魔法少女小圆外傳』
+				<ol>
+					<li>繁中版概要</li>
+					<li>リリース会見（2018年12月）</li>
+					<li>香港の駅広告（2018年12月〜2019年1月）</li>
+					<li>2019 台北國際電玩展（2019年1月）</li>
+					<li>C3AFA HONG KONG 2019（2019年2月）</li>
+					<li>台北のバス、タクシー広告（2019年4月〜）</li>
+					<li>第20屆漫畫博覽會（2019年8月）<b>【増ページとして挿入】</b></li>
+					<li>マギレコ紹介雑誌</li>
+				</ol>
+			</li>
+			<li>
+				北米版『Magia Record -PUELLA MAGI MADOKA MAGICA Side Story-』
+				<ol>
+					<li>北米版概要</li>
+					<li>Anime Expo 2019（2019年7月）</li>
+				</ol>
+			</li>
+		</ol>
+	</Section>
+
+	<Section id="errata">
+		<H slot="heading">正誤情報</H>
+
+		<table class="p-table">
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.22</td>
+					<td>バス、タクシーのラッピング広告期間について<q>2019年4月下旬から6月頃まで台湾の台北でバス、タクシーのラッピング広告が行われた。</q>となっているが、実際は7月下旬頃まで行われていた模様。</td>
+					<td><span class="c-tac -tick">済み</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</Section>
+</Layout>

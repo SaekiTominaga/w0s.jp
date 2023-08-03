@@ -1,0 +1,26 @@
+name: astro@js-lint
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'astro/build/*.js'
+      - 'astro/.eslintrc.json'
+  push:
+    branches:
+      - main
+    paths:
+      - 'astro/build/*.js'
+      - 'astro/.eslintrc.json'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run node-lint -w '@w0s.jp/astro'

@@ -1,0 +1,11 @@
+---
+interface Props {
+	href?: string;
+}
+
+const { href } = Astro.props;
+
+const current = href === undefined ? 'page' : undefined;
+---
+
+<a href={href} aria-current={current} class="c-link"><slot /></a>

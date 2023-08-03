@@ -1,0 +1,141 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/W0s.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import ImageAmazon from '@components/ImageAmazon.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	'schema-type': 'ProfilePage',
+	title: '制作者',
+	dateModified: dayjs('2023-07-02'),
+	image: 'https://media.w0s.jp/image/info_profile.jpg',
+	breadcrumb: [{ path: '/', name: 'ホーム' }],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="profile">
+		<H slot="heading">制作者</H>
+
+		<figure>
+			<div class="p-embed -border">
+				<Image path="info_profile.jpg" alt="正方形のアイコン画像: 下っぱスーツでテンパる坪内地丹の顔が描かれたデザインカプチーノ" width={120} height={120} quality={60} />
+			</div>
+		</figure>
+
+		<dl class="p-list-description">
+			<dt>名前</dt>
+			<dd>
+				<ruby>富永 冴樹<rp>（</rp><rt>とみなが さえき</rt><rp>）</rp></ruby> / トミー
+			</dd>
+			<dt>興味</dt>
+			<dd>Web (HTML, Accessibility, etc.)</dd>
+			<dd>東急電車</dd>
+			<dd>久米田康治作品</dd>
+			<dt>利用サービス</dt>
+			<dd>
+				<img src="/assets/image/icon/github.svg" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://github.com/SaekiTominaga">GitHub</a>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/amazon.png" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://www.amazon.co.jp/~/e/B07FBRDDJN">Amazon（著者ページ）</a>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/mastodon.png" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://fedibird.com/@SaekiTominaga">Mastodon</a>
+				<small>(<data value="@SaekiTominaga@fedibird.com">@SaekiTominaga@fedibird.com</data>)</small>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/threads.png" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://www.threads.net/@saekitominaga">Threads</a>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/instagram.png" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://www.instagram.com/saekitominaga/">Instagram</a>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/youtube.svg" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://www.youtube.com/@SaekiTominaga">YouTube</a>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/twitter.svg" alt="" class="c-link-icon" width="16" height="16" />
+				<a href="https://twitter.com/SaekiTominaga">Twitter</a>
+			</dd>
+			<dd>
+				<img src="/assets/image/icon/discord.png" alt="" class="c-link-icon" width="16" height="16" /> Discord: <data value="saekitominaga">saekitominaga</data> / <data value="626995344202268672">626995344202268672</data>
+			</dd>
+		</dl>
+	</Section>
+
+	<Section id="write">
+		<H slot="heading">執筆</H>
+
+		<div class="p-text">
+			<p>ときどき本や雑誌で記事を書いています。</p>
+		</div>
+
+		<ul class="c-grid -wide">
+			<li class="c-grid__item">
+				<div class="p-item">
+					<a href="/tokyu/book/7700">
+						<Image path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
+						<span class="p-item__title">東急7700系形態分類</span>
+					</a>
+
+					<div class="p-item__text">
+						<p>
+							<b>自費出版、2019年8月発売</b>
+						</p>
+						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しています。</p>
+					</div>
+				</div>
+			</li>
+			<li class="c-grid__item">
+				<div class="p-item">
+					<LinkExternal href="https://www.amazon.co.jp/dp/480220695X/">
+						<ImageAmazon src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" width={111} height={160} class="p-item__image" />
+						<span class="p-item__title">東急電鉄 1989-2019</span>
+					</LinkExternal>
+
+					<div class="p-item__text">
+						<p>
+							<b>イカロス・ムック、2019年8月発売</b>
+						</p>
+						<p>平成時代の東急電車の動向をまとめた本です。「現役車両ガイド」の一部の本文解説を担当しました。</p>
+					</div>
+				</div>
+			</li>
+			<li class="c-grid__item">
+				<div class="p-item">
+					<a href="/tokyu/book/#tetsupic">
+						<Image path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
+						<span class="p-item__title">鉄道ピクトリアル</span>
+					</a>
+
+					<div class="p-item__text">
+						<p><b>商業雑誌</b></p>
+						<p>東急電車や譲渡車両に関する記事を書いています。</p>
+					</div>
+				</div>
+			</li>
+			<li class="c-grid__item">
+				<div class="p-item">
+					<a href="/madoka/#%E5%90%8C%E4%BA%BA%E8%AA%8C">
+						<Image path="madoka/dojin/pictorial11_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
+						<span class="p-item__title">円環ピクトリアル</span>
+					</a>
+
+					<div class="p-item__text">
+						<p><b>自費出版</b></p>
+						<p>アニメ『魔法少女まどか☆マギカ』の映像研究やイベントレポートなど。</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</Section>
+</Layout>

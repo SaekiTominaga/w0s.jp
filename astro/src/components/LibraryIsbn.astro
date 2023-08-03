@@ -1,0 +1,9 @@
+---
+interface Props {
+	isbn: string;
+}
+
+const { isbn } = Astro.props;
+---
+
+<p class="p-library__isbn"><a href=`https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=${isbn}`>ISBN: <data value={isbn}>{isbn}</data></a><img src="/assets/image/icon/ndl.png" alt="(国立国会図書館サーチ)" width="16" height="16" class="c-link-icon" /></p>

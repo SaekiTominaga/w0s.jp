@@ -1,0 +1,134 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Madoka.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '『魔法少女まどか☆マギカ』同人誌「円環ピクトリアル」在庫状況',
+	heading: '同人誌「円環ピクトリアル」在庫状況',
+	dateModified: dayjs('2021-01-02'),
+	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial10_cover.jpg',
+	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
+	localNav: [
+		{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
+		{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
+		{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
+		{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
+		{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
+		{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
+		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<table class="p-table">
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2">通巻</th>
+				<th scope="col" rowspan="2">特集名</th>
+				<th scope="col" rowspan="2">発行月</th>
+				<th scope="col" colspan="2">冊子</th>
+				<th scope="col" rowspan="2">電子書籍</th>
+			</tr>
+			<tr>
+				<th scope="col">BOOTH</th>
+				<th scope="col">国会図書館</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>No.11</td>
+				<td>
+					<Image path="madoka/dojin/pictorial11_cover.jpg" width={57} height={80} quality={60} />
+					<a href="pictorial11">マギアレコード海外版動向</a>
+				</td>
+				<td>2019年8月</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://w0s.booth.pm/items/2649174">販売中</a></span>
+				</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://id.ndl.go.jp/bib/030076781">収蔵</a></span>
+				</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><LinkExternal href="https://www.amazon.co.jp/dp/B07W4WBBBR/" icon={false}>Kindle</LinkExternal></span>
+				</td>
+			</tr>
+			<tr>
+				<td>No.10</td>
+				<td>
+					<Image path="madoka/dojin/pictorial10_cover.jpg" width={57} height={80} quality={60} />
+					<a href="pictorial10">『劇場版　魔法少女まどか☆マギカ』韓国上映</a>
+				</td>
+				<td>2018年8月</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://w0s.booth.pm/items/2649161">販売中</a></span>
+				</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://id.ndl.go.jp/bib/029555895">収蔵</a></span>
+				</td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+			</tr>
+			<tr>
+				<td>No.9</td>
+				<td>
+					<Image path="madoka/dojin/pictorial9_cover.jpg" width={57} height={80} quality={60} />
+					<a href="pictorial9">美樹さやか駅ポスターめぐり</a>
+				</td>
+				<td>2018年8月</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://w0s.booth.pm/items/2649148">販売中</a></span>
+				</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://id.ndl.go.jp/bib/029555890">収蔵</a></span>
+				</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><LinkExternal href="https://www.amazon.co.jp/dp/B07FBKBKBM/" icon={false}>Kindle</LinkExternal></span>
+				</td>
+			</tr>
+			<tr>
+				<td>No.8</td>
+				<td>
+					<Image path="madoka/dojin/pictorial8_cover.jpg" width={57} height={80} quality={60} />
+					<a href="pictorial8">まどか☆マギカ映像比較講義録</a>
+				</td>
+				<td>2017年12月</td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+			</tr>
+			<tr>
+				<td>No.7</td>
+				<td>
+					<Image path="madoka/dojin/pictorial7_cover.jpg" width={57} height={80} quality={60} />
+					<a href="pictorial7">TVシリーズ　放送版とパッケージ版の比較</a>
+				</td>
+				<td>2017年8月</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://w0s.booth.pm/items/2649129">販売中</a></span>
+				</td>
+				<td class="u-cell -center">
+					<span class="c-tac -tick"><a href="https://id.ndl.go.jp/bib/029555881">収蔵</a></span>
+				</td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+			</tr>
+			<tr>
+				<td>No.6</td>
+				<td>
+					<Image path="madoka/dojin/pictorial6_cover.jpg" width={57} height={80} quality={60} />
+					<a href="pictorial6">[新編]叛逆の物語　上映版とパッケージ版の比較</a>
+				</td>
+				<td>2016年12月</td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+				<td class="u-cell -center"><span class="c-tac -cross">なし</span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<ul class="p-notes">
+		<li>No.5 以前の旧作（コピー本）はいずれも再販ありません。</li>
+	</ul>
+</Layout>

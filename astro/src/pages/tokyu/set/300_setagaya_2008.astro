@@ -1,0 +1,94 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '設定器配列　東急世田谷線　300系（2008年〜）',
+	heading: '世田谷線　300系',
+	subHeading: '2008年〜',
+	dateModified: dayjs('2013-04-28'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/set/', name: '設定器配列' },
+	],
+	localNav: [
+		{ path: '/tokyu/set/300_setagaya_1999', name: '〜2008年' },
+		{ path: '/tokyu/set/300_setagaya_2008', name: '2008年〜' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<div class="l-tokyu-set">
+		<div class="l-tokyu-set__header">
+			<p class="p-tokyu-set-period">2008年の放送操作器更新から</p>
+		</div>
+		<div class="l-tokyu-set__main">
+			<div class="p-tokyu-set-panel -push-300">
+				<object data="/tokyu/set/image/300_setagaya_2008.svg" type="image/svg+xml" width="631" height="553" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
+					<div id="set-image-alt1">
+						<section>
+							<ul>
+								<li>(空欄)</li>
+								<li>(空欄)</li>
+								<li>(空欄)</li>
+								<li>(空欄)</li>
+								<li>携帯<br />電話</li>
+								<li>交通<br />安全</li>
+								<li>交通<br />高齢者</li>
+								<li>夏季<br />輸送</li>
+								<li>年末<br />年始</li>
+								<li>(空欄)</li>
+							</ul>
+							<ul>
+								<li>上り<br />出庫</li>
+								<li>下り<br />出庫</li>
+								<li>入庫</li>
+								<li>駅順<br />戻す</li>
+								<li>乗換<br />案内</li>
+								<li>駅順<br />進め</li>
+								<li>運通</li>
+								<li>自動<br />放送</li>
+								<li>車内<br />放送</li>
+								<li>車外<br />←</li>
+								<li>車外<br />→</li>
+							</ul>
+						</section>
+
+						<section>
+							<ul>
+								<li>(空欄)</li>
+								<li>(空欄)</li>
+								<li>お詫び<br />(事故)</li>
+								<li>お詫び<br />(ﾀﾞｲﾔ)</li>
+								<li>車交</li>
+								<li>車内<br />事故</li>
+								<li>事故</li>
+								<li>次駅<br />回送</li>
+								<li>誤停車</li>
+								<li>車両<br />故障</li>
+							</ul>
+						</section>
+					</div>
+				</object>
+			</div>
+		</div>
+		<div class="l-tokyu-set__footer">
+			<dl class="p-tokyu-set-data">
+				<div>
+					<dt>調査日</dt>
+					<dd>2008年3月29日</dd>
+				</div>
+				<div>
+					<dt>調査車両</dt>
+					<dd>デハ308-A</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+
+	<ul class="p-notes">
+		<li>後に<q>携帯電話</q>ボタンの位置が1行3列目に変更された。<small>（2013年4月28日、複数の車両で確認）</small></li>
+	</ul>
+</Layout>

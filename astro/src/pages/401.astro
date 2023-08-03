@@ -1,0 +1,13 @@
+---
+import Layout from '@layouts/Error.astro';
+import type { StructuredDataErrorPage } from '@type/types.js';
+
+const structuredData: StructuredDataErrorPage = {
+	heading: '認証に失敗しました',
+	headingCode: '401 Unauthorized',
+};
+---
+
+<Layout structuredData={structuredData}>
+	<p>ユーザー名、パスワードが未入力か、正しくありません。</p>
+</Layout>

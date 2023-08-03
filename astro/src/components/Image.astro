@@ -1,0 +1,88 @@
+---
+import path from 'node:path';
+
+interface Props {
+	path: string;
+	alt?: string;
+	width?: number;
+	height?: number;
+	quality?: number;
+	link?: boolean;
+	class?: string;
+	style?: string;
+}
+
+const { path: filePath, alt = '', width, height, quality = 80, link = false, class: className, style } = Astro.props;
+
+let mimeType: string | undefined = undefined;
+let type = '';
+switch (path.extname(filePath)) {
+	case '.jpg':
+	case '.jpeg': {
+		mimeType = 'image/jpeg';
+		type = 'jpeg';
+		break;
+	}
+	case '.png': {
+		mimeType = 'image/png';
+		type = 'png';
+		break;
+	}
+	default:
+}
+
+const width2x = width !== undefined ? width * 2 : undefined;
+const height2x = height !== undefined ? height * 2 : undefined;
+const quality2x = quality / 2;
+
+/**
+ * Assemble Url.search
+ *
+ * @param typeValue - Image type
+ * @param widthValue - Image width
+ * @param heightValue - Image height
+ * @param qualityValue - Image quality
+ *
+ * @returns URL.search
+ */
+const assembleUrlSearch = (typeValue: string, widthValue: number | undefined, heightValue: number | undefined, qualityValue: number): string => {
+	let urlSearch = `?type=${typeValue}`;
+
+	if (width !== undefined) {
+		urlSearch += `;w=${widthValue}`;
+	}
+	if (height !== undefined) {
+		urlSearch += `;h=${heightValue}`;
+	}
+	urlSearch += `;quality=${qualityValue}`;
+
+	return urlSearch;
+};
+
+const param = assembleUrlSearch(type, width, height, quality);
+const paramWebp = assembleUrlSearch('webp', width, height, quality);
+const paramWebp2x = assembleUrlSearch('webp', width2x, height2x, quality2x);
+const paramAvif = assembleUrlSearch('avif', width, height, quality);
+const paramAvif2x = assembleUrlSearch('avif', width2x, height2x, quality2x);
+---
+
+{
+	link && (
+		<a href={`https://media.w0s.jp/image/${filePath}`} type={mimeType}>
+			<picture>
+				<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
+				<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
+				<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class:list={className} style={style} />
+			</picture>
+		</a>
+	)
+}
+{
+	!link && (
+		<picture>
+			<source type="image/avif" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramAvif}, https://media.w0s.jp/thumbimage/${filePath}${paramAvif2x} 2x`} />
+			<source type="image/webp" srcset={`https://media.w0s.jp/thumbimage/${filePath}${paramWebp}, https://media.w0s.jp/thumbimage/${filePath}${paramWebp2x} 2x`} />
+			<img src={`https://media.w0s.jp/thumbimage/${filePath}${param}`} alt={alt} width={width} height={height} class:list={className} style={style} />
+		</picture>
+	)
+}

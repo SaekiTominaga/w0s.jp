@@ -1,0 +1,98 @@
+---
+import Layout from '@layouts/Admin.astro';
+import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
+import HttpResponseUtil from '@util/HttpResponse.js';
+import RequestUtil from '@util/Request.js';
+import SsrUtil from '@util/Ssr.js';
+import type { StructuredData } from '@type/types.js';
+
+interface RequestQuery {
+	url: string | null;
+	id: string | null;
+	action_delete: boolean;
+}
+
+export const prerender = false;
+const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+
+const structuredData: StructuredData = {
+	title: 'ウェブ巡回（ニュース）',
+	breadcrumb: [
+		{ path: '/admin/', name: 'ホーム' },
+		{ path: '/admin/crawler-news/', name: 'ウェブ巡回（ニュース）' },
+	],
+};
+
+const pagePath = await SsrUtil.getPageUrl(Astro.url);
+
+const requestParams = RequestUtil.getParams(Astro.url);
+const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
+
+const requestQuery: RequestQuery = {
+	url: RequestUtil.string(requestParams.get('url') ?? requestBody?.get('url')),
+	id: RequestUtil.string(requestBody?.get('id')),
+	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
+};
+
+const dao = new CrawlerNewsDataDao(configure.sqlite.crawler);
+
+if (requestQuery.action_delete) {
+	/* 削除 */
+	if (requestQuery.id !== null) {
+		await dao.delete(requestQuery.id);
+		logger.info('データ削除', requestQuery.id);
+
+		const httpResponse = new HttpResponseUtil(Astro.request);
+		return httpResponse.response303(`?url=${requestQuery.url}`); // TODO: https://github.com/withastro/language-tools/issues/476
+	}
+}
+
+/* 初期表示 */
+const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
+---
+
+<Layout pagePath={pagePath} structuredData={structuredData}>
+	<p><a href={requestQuery.url} referrerpolicy="no-referrer" class="c-link">{requestQuery.url}</a></p>
+
+	<table class="p-table p-admin-crawler-table">
+		<thead>
+			<tr>
+				<td></td>
+				<th scope="col">日付</th>
+				<th scope="col">メッセージ</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				newsDataList.map((newsData) => (
+					<tr>
+						<td>
+							<form action={pagePath} method="post">
+								<p>
+									<input type="hidden" name="url" value={requestQuery.url} />
+								</p>
+								<p>
+									<input type="hidden" name="id" value={newsData.id} />
+								</p>
+								<p>
+									<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?" class="c-submit -compact">
+										削除
+									</button>
+								</p>
+							</form>
+						</td>
+						<td>{newsData.date !== null && <time datetime={newsData.date.format('YYYY-MM-DD')}>{newsData.date.format('YYYY年M月D日')}</time>}</td>
+						<td>
+							{newsData.refer_url !== null && (
+								<a href={newsData.refer_url} referrerpolicy="no-referrer">
+									{newsData.content}
+								</a>
+							)}
+							{newsData.refer_url === null && <>{newsData.content}</>}
+						</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '@layouts/Error.astro';
+import type { StructuredDataErrorPage } from '@type/types.js';
+
+const structuredData: StructuredDataErrorPage = {
+	heading: 'サーバー内部エラー',
+	headingCode: '500 Internal Server Error',
+};
+---
+
+<Layout structuredData={structuredData}>
+	<p>時間をおいてアクセスし直してください。</p>
+	<p>しばらく経っても解消されない場合は <a href="https://fedibird.com/@SaekiTominaga">Mastodon: @SaekiTominaga@fedibird.com</a> までお問い合わせください。</p>
+</Layout>

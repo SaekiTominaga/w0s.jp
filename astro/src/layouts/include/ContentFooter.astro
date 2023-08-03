@@ -1,0 +1,57 @@
+---
+import path from 'node:path';
+import LinkBullet from '@components/LinkBullet.astro';
+import type { StructuredData } from '@type/types.js';
+
+interface Props {
+	pagePath: string;
+	astroFilePath: string | undefined;
+	structuredData: StructuredData;
+}
+
+const { pagePath, astroFilePath: astroFileFullPath, structuredData } = Astro.props;
+
+const astroFilePath = process.env.npm_config_local_prefix !== undefined && astroFileFullPath !== undefined ? path.relative(process.env.npm_config_local_prefix, astroFileFullPath).replaceAll('\\', '/') : undefined;
+
+// TODO: `:empty` 疑似クラスがホワイトスペースの存在を許容するようになったら最初の if 文は不要になる https://drafts.csswg.org/selectors-4/#the-empty-pseudo
+---
+
+{
+	(structuredData.type === undefined || structuredData.type !== 'website' || structuredData.localNav !== undefined) && (
+		<div class="l-content__footer">
+			{structuredData.localNav !== undefined && (
+				<nav>
+					<ul class="p-local-nav">
+						{structuredData.localNav.map((localNavItem) => (
+							<li>
+								{localNavItem.path !== pagePath && <LinkBullet href={localNavItem.path}>{localNavItem.name}</LinkBullet>}
+								{localNavItem.path === pagePath && <LinkBullet>{localNavItem.name}</LinkBullet>}
+							</li>
+						))}
+					</ul>
+				</nav>
+			)}
+
+			{(structuredData.type === undefined || structuredData.type !== 'website') && (
+				<details class="p-toggle -fit" is="w0s-animation-details" data-duration="100">
+					<summary>本ページ内容の問い合わせ</summary>
+					<div class="p-toggle__contents">
+						<ul class="p-list">
+							<li>
+								コンテンツに関するご意見、ご質問などは当サイトの GitHub リポジトリに <a href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents">Issue</a> を立ててください。
+							</li>
+							{astroFilePath !== undefined && (
+								<li>
+									誤字訂正など軽微な修正は GitHub リポジトリ上の<a href={`https://github.com/SaekiTominaga/w0s.jp/blob/main/${astroFilePath}`}>ソースコード</a>を編集し、Pull Request を送っていただいても構いません。
+								</li>
+							)}
+							<li>
+								非公開での連絡を希望される場合は<a href="/contact">問い合わせフォーム</a>からお寄せください。
+							</li>
+						</ul>
+					</div>
+				</details>
+			)}
+		</div>
+	)
+}

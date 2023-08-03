@@ -1,0 +1,73 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://w0s.jp/astro.json",
+	"type": "object",
+	"title": "Astro",
+	"required": ["mail", "sqlite", "crawler_resource"],
+	"properties": {
+		"mail": {
+			"type": "object",
+			"title": "E-mail",
+			"required": ["smtp", "user", "password", "port", "from", "to"],
+			"properties": {
+				"smtp": {
+					"type": "string"
+				},
+				"user": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"port": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"from": {
+					"type": "string"
+				},
+				"to": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
+		"sqlite": {
+			"type": "object",
+			"title": "SQLite",
+			"additionalProperties": {
+				"type": "string",
+				"title": "テーブルファイルパス"
+			}
+		},
+		"crawler_resource": {
+			"type": "object",
+			"title": "ウェブ巡回・リソース",
+			"required": ["log_dir", "diff"],
+			"properties": {
+				"log_dir": {
+					"type": "string",
+					"title": "ログ格納ディレクトリ"
+				},
+				"diff": {
+					"type": "object",
+					"title": "差分表示",
+					"required": ["max_line", "omit"],
+					"properties": {
+						"max_line": {
+							"type": "integer",
+							"minimum": 1,
+							"title": "差分のない行の最大表示行数"
+						},
+						"omit": {
+							"type": "string",
+							"title": "省略文字"
+						}
+					},
+					"additionalProperties": false
+				}
+			}
+		}
+	},
+	"additionalProperties": false
+}

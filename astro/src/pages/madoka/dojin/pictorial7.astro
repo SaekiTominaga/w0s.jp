@@ -1,0 +1,304 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Madoka.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '『魔法少女まどか☆マギカ』同人誌「TVシリーズ　放送版とパッケージ版の比較」',
+	heading: '円環ピクトリアル No.7',
+	subHeading: '【特集】TVシリーズ　放送版とパッケージ版の比較',
+	dateModified: dayjs('2019-11-25'),
+	description: '『魔法少女まどか☆マギカ』 TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめまた同人誌の紹介です。',
+	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial7_cover.jpg',
+	breadcrumb: [{ path: '/madoka/', name: 'ホーム' }],
+	localNav: [
+		{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
+		{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
+		{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
+		{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
+		{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
+		{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
+		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>『魔法少女まどか☆マギカ』 TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめました。一部は放送時期による違い、 Blu-ray 版と DVD 版の違いにも言及しています。</p>
+		</div>
+
+		<div class="p-embed-sidebar -embed-first">
+			<div class="p-embed-sidebar__text">
+				<dl class="p-list-table">
+					<div>
+						<dt>発行日</dt>
+						<dd>2017年8月12日</dd>
+					</div>
+					<div>
+						<dt>ページ数</dt>
+						<dd>フルカラー 84ページ</dd>
+					</div>
+					<div>
+						<dt>冊子価格</dt>
+						<dd>2,000円</dd>
+					</div>
+				</dl>
+			</div>
+			<div class="p-embed-sidebar__embed">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="madoka/dojin/pictorial7_cover.jpg" alt="表紙画像: イベント会場での展示ブースの中央にあるディスプレイに『まどか☆マギカ』のアニメが流れている様子を写した写真" width={170} height={240} quality={60} />
+					</div>
+				</figure>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="buy">
+		<H slot="heading">購入</H>
+
+		<div class="c-flex -buttons">
+			<div class="c-flex__item">
+				<a href="pdf/pictorial7_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
+			</div>
+			<div class="c-flex__item">
+				<a href="https://w0s.booth.pm/items/2649129" class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">冊子版（BOOTH）</span></a>
+			</div>
+			<div class="c-flex__item">
+				<a href="pdf/pictorial7/v1.0.1.pdf" type="application/pdf" rel="nofollow" class="c-button">
+					<img src="/assets/image/icon/padlock.svg" alt="(認証)" width="16" height="16" class="c-button__icon" /><span class="c-button__text">
+						購入者向け PDF<small>（ver.1.0.1、2018年4月10日更新）</small>
+					</span>
+				</a>
+				<ul class="p-notes">
+					<li>認証情報は奥付またはダウンロードカードに記載</li>
+				</ul>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
+		<ol class="p-list">
+			<li>第1話 夢の中で逢った、ような……</li>
+			<li>第2話 それはとっても嬉しいなって</li>
+			<li>第3話 もう何も恐くない</li>
+			<li>第4話 奇跡も、魔法も、あるんだよ</li>
+			<li>第5話 後悔なんて、あるわけない</li>
+			<li>第6話 こんなの絶対おかしいよ</li>
+			<li>第7話 本当の気持ちと向き合えますか?</li>
+			<li>第8話 あたしって、ほんとバカ</li>
+			<li>第9話 そんなの、あたしが許さない</li>
+			<li>第10話 もう誰にも頼らない</li>
+			<li>第11話 最後に残った道しるべ</li>
+			<li>第12話 わたしの、最高の友達</li>
+			<li>オープニング「コネクト」</li>
+			<li>エンディング「Magia」</li>
+			<li>「提供クレジット」一覧</li>
+			<li>秋葉原でMBS版が流れた ―メディア芸術祭20周年企画展―</li>
+		</ol>
+	</Section>
+
+	<Section id="errata">
+		<H slot="heading">正誤情報</H>
+
+		<table class="p-table">
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.40</td>
+					<td>10m41sの説明で「HWOBHM」とあるのは「NWOBHM」が正しい。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+				<tr>
+					<td>p.59</td>
+					<td>4m21sの説明で「ストロー」と書いてしまったが、おそらく傘の石突部分と思われる。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+				<tr>
+					<td>p.61</td>
+					<td>16m02s〜16m30sの説明内に掲載しているサーカス団のキャプチャー画像は、15m47sの部分にあるのが正しい。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+				<tr>
+					<td>p.81</td>
+					<td>「提供クレジット」一覧の10話で「TOKYO MAX」とあるのは「TOKYO MX」が正しい。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+			</tbody>
+		</table>
+	</Section>
+
+	<Section id="add">
+		<H slot="heading">追加情報</H>
+
+		<div class="p-text">
+			<p>本の発行後に判明した差分データです。</p>
+		</div>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第1話</H>
+
+			<ul class="p-list">
+				<li>14m59s: 仁美のトレーにあるカップの影の付き方が変更。</li>
+				<li>15m23s: 仁美のトレーにあるカップの影の付き方が変更。<small>（14m59sと同じ変化）</small></li>
+				<li>16m07s: 仁美のトレーにあるカップの影の付き方が変更。<small>（14m59sと同じ変化）</small></li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第3話</H>
+
+			<ul class="p-list">
+				<li>20m52s: 放送版ではほむらを食べようとCharlotteが大口を開けるカットで1コマだけ舌の塗り忘れがあったが、パッケージ版で修正された。</li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第6話</H>
+
+			<ul class="p-list">
+				<li>4m47s: キュゥべえのセリフが修正。放送版は「余分な<em>ソウルジェム</em>があれば魔法を出し惜しみせずに無駄遣いすることだってできる。それが杏子の強みだ。」と言っていたが、パッケージ版では「余分な<em>グリーフシード</em>があれば……」に修正された。</li>
+				<li>11m13s: 眠るまどかが作画修正。目の表現が細くなるなどの変化。</li>
+				<li>11m16s: 眠るまどかが作画修正。<small>（11m13sと同じ変化）</small></li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第7話</H>
+
+			<ul class="p-list">
+				<li>8m03s: 杏子が投げたリンゴが宙を舞うカットで天井のステンドグラスの模様が変わり、全体的に明るくなった。また、リンゴの舞い方も変更された。</li>
+				<li>8m05s: さやかがリンゴをキャッチするカットで、放送版は画面手前からリンゴが放物線を描いてさやかの手元に向かっていったが、パッケージ版では前半部が省略され、その分 8m03s〜 のリンゴが舞うカットが長くなった。</li>
+				<li>9m08s: 紙人形の杏子の表情が変更。体型もスマートになった。</li>
+				<li>9m15s: 紙人形の杏子と妹が変更。</li>
+				<li>9m21s: 十字架が追加。</li>
+				<li>9m24s: 教会堂の屋上に十字架が追加。</li>
+				<li>10m21s: 教会堂の屋上に十字架が追加。<small>（9m24sと同じ変化）</small></li>
+				<li>16m49s: 仁美の後方に椅子の背もたれが追加。</li>
+				<li>17m00s: さやかの後方に椅子の背もたれが追加。</li>
+				<li>17m41s: 仁美の後方に椅子の背もたれが追加。<small>（16m49sと同じ変化）</small></li>
+				<li>22m04s: さやかが着地するときに衝撃で血しぶきと砂埃のようなものが舞い、画面全体がぼやけるエフェクトが追加された。</li>
+				<li>22m06s: ElsaMariaを切り刻むときに衝撃で画面全体が揺れる効果が追加され、また血しぶきが追加された。</li>
+				<!-- 「21m57s〜22m20s ElsaMariaを切り刻むときに赤い血が噴き出るようになった。」は削除。 -->
+				<li>22m14s: ElsaMariaの血しぶきが追加。</li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第8話</H>
+
+			<ul class="p-list">
+				<li>4m57s: バス停の枠の影が追加。</li>
+				<li>9m35s: ベンチに立て掛けられた恭介の松葉杖が高くなった。</li>
+				<li>10m41s: ビル群<ins>や月</ins>の形が変更。</li>
+				<li>12m57s: ほむらと杏子<del>の影の形が</del><ins>が作画修正、影の形も</ins>変更。座り位置が放送版より左下へ移動した。</li>
+				<li>13m02s: ほむらと杏子<del>の影の形が</del><ins>が作画修正、影の形も</ins>変更。座り位置が放送版より左下へ移動した。<small>（12m57sと同じ変化）</small></li>
+				<li>15m54s: ベンチに座るまどかが大きくなった（鞄やキュゥべえの大きさは変わっていない）。</li>
+				<li>16m25s: ベンチに座るまどかが大きくなった。<small>（15m54sと同じ変化）</small></li>
+				<li>17m05s: まどか<del>の影の掛かり方が</del><ins>作画微修正。顔への影の掛かり方や前髪の長さが若干</ins>変更。</li>
+				<li>17m33s: ベンチに座るまどかが大きくなった。<small>（15m54sと同じ変化）</small></li>
+				<li>17m49s: ベンチに座るまどかが大きくなった。<small>（15m54sと同じ変化）</small></li>
+				<li>17m53s: ベンチに座るまどかが大きくなった。<small>（15m54sと同じ変化）</small></li>
+				<li>18m31s: ベンチから立ち上がったまどかが大きくなった（鞄やキュゥべえ、ほむらの大きさは変わっていない）。</li>
+				<li>19m25s: 放送版ではほむらの左手にソウルジェムが描かれていなかったが、パッケージ版で追加された。</li>
+				<li>19m27s: 放送版ではほむらの左手にソウルジェムが描かれていなかったが、パッケージ版で追加された。</li>
+				<li>20m09s: 噴水の水しぶきの形状が変更。</li>
+				<li>20m15s: さやか側のベンチが一つ減った。</li>
+				<li>20m21s〜21m<del>30</del><ins>45</ins>s: <ins>ロングのカットで</ins>さやかが椅子に対してまっすぐ座るようにな<del>った</del><ins>り、杏子も描き直された</ins>。</li>
+				<li>20m21s: さやかに近づく杏子が小さくなった。</li>
+				<li>20m21s〜21m54s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。</li>
+				<li>21m03s: さやかの手のアップのカットが描き直された。とくにソウルジェムを持つ左手の薬指と小指の角度変化が目立つ。</li>
+				<!-- 「21m06s 杏子の表情が変更。」は削除。　 -->
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第9話</H>
+
+			<ul class="p-list">
+				<li>0m02s<ins>〜0m13s</ins>: <ins>ロングのカットで</ins>さやかが椅子に対してまっすぐ座るようにな<del>った</del><ins>り、杏子も描き直された</ins>。<small>（8話の20m21s〜21m45sと同じ変化）</small></li>
+				<li>0m02s〜0m13s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。<small>（8話の20m21s〜21m54sと同じ変化）</small></li>
+				<li>6m27s〜8m04s: ぬいぐるみやキュゥべえが乗っている棚の位置が右側にずれ、キュゥべえがまどかの直上に来るようになった。</li>
+				<li>9m31s: ぬいぐるみが乗っている棚の位置が右側にずれた。<small>（6m27s〜8m04sと同じ変化）</small></li>
+				<li>15m16s: 夕焼けに染まる街並みのカットで、BGM「Terror adhaerens」が流れる前にシュワーンというSEがあるが、パッケージ版ではSEが入るタイミングが遅くなり、音量も小さくなった。</li>
+				<li>17m38s: まどか作画修正。<ins>奥のレンガ壁やポスターも描き直された。</ins></li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第10話</H>
+
+			<ul class="p-list">
+				<li>11m45s: TBS版でほむらの髪が揺れるようになった。</li>
+				<li>11m50s: ほむらの盾の回転方向がMBS版と配信版は時計回りだったが、TBS版で反時計回りになった。</li>
+				<li>12m06s〜12m46s: TBS版でまどか、ほむら、さやか、マミの4人が暗くなった。</li>
+				<li>12m19s: TBS版で画面右上と左下を斜めに横切っていた影が削除された。</li>
+				<li>12m28s: TBS版で画面右上と左下を斜めに横切っていた影が削除された。<small>（12m19sと同じ変化）</small></li>
+				<li>12m50s: パッケージ版でほむらの左手にソウルジェムが追加。</li>
+				<li>12m54s: パッケージ版でほむらが2本の剣から手を離した瞬間に、剣がブレるようなエフェクトが追加された。</li>
+				<li>12m57s: 放送版ではほむらの盾の砂時計部分が、他の部分と同じく銀色だったが、パッケージ版では赤色になった。<ins>また、ほむらの左手にソウルジェムが追加。</ins></li>
+				<li>13m04s: パッケージ版でほむらと後方のヤクザが作画微修正。盾の砂時計部分の色が鮮やかになった。<ins>また、ほむらの左手にソウルジェムが追加。</ins></li>
+				<li>13m06s: パッケージ版でほむらの左手にソウルジェムが追加。</li>
+				<li>14m18s: ほむらに銃口を向けるマミがパッケージ版で作画修正。銃口の形状もブラッシュアップされた。</li>
+				<li>14m53s: 放送版と配信版ではまどかの背中が不自然な震え方をしていたが、パッケージ版で修正された。</li>
+				<li>16m01s: 放送版と配信版ではほむらが右腕を水面から離してまどかの手へ寄せるときに計3つの波紋ができていたが、パッケージ版では削除された。また、波紋の処理がほむらの髪にまで掛かっていたものが修正された。</li>
+				<li>16m09s: ほむらのソウルジェムが輝いたときの手の影の具合がパッケージ版で反転。</li>
+				<li>16m20s: パッケージ版でまどか作画微修正。髪の顔への掛かり方などが変更。<ins>また、手の甲に影が掛かるようになった。</ins></li>
+				<li>16m27s: ほむらのソウルジェムが輝いたときの手の影の具合がパッケージ版で反転。<small>（16m09sと同じ変化）</small></li>
+				<li>16m28s: パッケージ版でほむらの右手の甲に影が掛かるようになった。<ins>また、三つ編みの先端部やリボンの影が削除された。</ins></li>
+				<li>16m33s: 黒い波紋はMBS版では6つほどが次々に出現、消滅していたが、配信版では大きな2つがゆっくり出現するように変更、TBS版では出現速度は配信版と同じくゆっくりだが数が4つに増えた。</li>
+				<li>18m34s: MBS版と配信版では手榴弾がほむらと一緒に落下していたが、TBS版ではその場（ほむらが手榴弾から手を離した場所）に留まるようになった。</li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第11話</H>
+
+			<ul class="p-list">
+				<li>4m57s: キュゥべえの目が小さくなった。</li>
+				<li>19m03s: まどか作画修正。</li>
+				<li>19m06s: まどか作画修正。<small>（19m03sと同じ変化）</small></li>
+				<li>20m41s: まどか作画修正。眉毛の形状や瞬きの回数（1回増加）、タイミングが変更。</li>
+			</ul>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<H slot="heading">第12話</H>
+
+			<ul class="p-list">
+				<li>4m39s: 矢を射るまどかに白いエフェクトが掛かるようになった。</li>
+				<li>5m10s: まどかの顔の輪郭線（二重線の内側）の表現が変更。</li>
+				<li>6m42s: ワルプルギスの夜の背景のビル群にひび割れ表現の追加が行われた（一部のビルは傾くように変更）。</li>
+				<li>6m48s: ワルプルギスの夜の背景のビル群がひび割れや傾きが施されたものに描き直された。</li>
+				<li>7m36s: ほむらが立つ大地の凹凸が小さくなった。</li>
+				<li>13m16s: いわゆる「概念空間」から見滝原の夜景に切り替わる際、ピンボケした状態から徐々にピントが合うように変化するエフェクトが追加。</li>
+			</ul>
+		</Section>
+	</Section>
+
+	<Section id="etc">
+		<H slot="heading">小ネタ</H>
+
+		<div class="p-text">
+			<p>メガミマガジン2011年5月号に付属の「魔法少女まどか☆マギカ スペシャルブック」のスタッフコメントで、シリーズディレクターの宮本幸裕氏より<q>キュゥべえの提供バック絵を選んでいる</q>という発言がある。</p>
+		</div>
+	</Section>
+</Layout>

@@ -1,0 +1,111 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '自動放送　東急世田谷線　下り（2006年1月、300系）',
+	heading: '世田谷線　下り',
+	subHeading: '2006年1月、300系',
+	dateModified: dayjs('2006-01-11'),
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/an/', name: '自動放送' },
+	],
+	localNav: [
+		{ path: '/tokyu/an/setagaya_up_2006', name: '上り （2006年）' },
+		{ path: '/tokyu/an/setagaya_up_kamimachi_2006', name: '上り 上町行（2006年）' },
+		{ path: '/tokyu/an/setagaya_up_2015', name: '上り（2015年）' },
+		{ path: '/tokyu/an/setagaya_up_2016', name: '上り（2016年）' },
+		{ path: '/tokyu/an/setagaya_down_2006', name: '下り（2006年1月）' },
+		{ path: '/tokyu/an/setagaya_down_2006_2', name: '下り（2006年4月）' },
+		{ path: '/tokyu/an/setagaya_down_2015', name: '下り（2015年）' },
+		{ path: '/tokyu/an/setagaya_down_2016', name: '下り（2016年）' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<div class="l-tokyu-announce">
+		<div class="l-tokyu-announce__header">
+			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通　下高井戸</span>行</p>
+			<p class="p-tokyu-announce-period">2006年春まで</p>
+		</div>
+		<div class="l-tokyu-announce__main">
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>三軒茶屋発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>お待たせいたしました。東急世田谷線をご利用いただきましてありがとうございます。この電車は下高井戸行きです。途中の駅でお降りのお客様は、中間2ヶ所の出口よりお降りください。次は西太子堂、西太子堂です。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>西太子堂発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span><span class="c-tokyu-announce -manners">この電車には優先席がございます。この席以外でも、お年寄りや、からだの不自由な方に席をお譲りくださいますよう、みなさまのご協力をお願いいたします。</span>次は若林、若林です。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>若林発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>次は松陰神社前、松陰神社前です。<span class="c-tokyu-announce -cm">世田谷区役所最寄駅です。</span>お降りの際は足元にご注意ください。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>松陰神社前発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>次は世田谷、世田谷です。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>世田谷発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>次は上町、上町です。お降りの際は足元にご注意ください。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>上町発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>東急世田谷線をご利用いただきましてありがとうございます。この電車は下高井戸行きです。途中の駅でお降りのお客様は、中間2ヶ所の出口よりお降りください。次は宮の坂、宮の坂です。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>宮の坂発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>次は山下、山下です。<span class="c-tokyu-announce -change">小田急線豪徳寺駅ご利用のお客様はお乗り換えです。</span></p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>山下発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>次は松原、松原です。</p>
+				</section>
+			</div>
+
+			<div class="p-tokyu-announce-station">
+				<section>
+					<h2>松原発車</h2>
+					<p><span class="c-tokyu-announce -chime">♪</span>次は下高井戸、下高井戸、終点です。<span class="c-tokyu-announce -change">京王線ご利用のお客様はお乗り換えです。</span>お出口は右側です。お忘れ物ないようご注意ください。東急世田谷線をご利用いただきましてありがとうございました。</p>
+				</section>
+			</div>
+		</div>
+		<div class="l-tokyu-announce__footer">
+			<dl class="p-tokyu-announce-data">
+				<div>
+					<dt>収録日</dt>
+					<dd>2006年1月11日</dd>
+				</div>
+				<div>
+					<dt>車種</dt>
+					<dd>300系2両編成</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,61 @@
+---
+import hljs from 'highlight.js/lib/core';
+import hljsJavaScript from 'highlight.js/lib/languages/javascript';
+import hljsXml from 'highlight.js/lib/languages/xml';
+import md5 from 'md5';
+
+interface Props {
+	code: string;
+	caption?: string;
+	language?: string;
+}
+
+const { code, caption, language } = Astro.props;
+
+const id = `code-${md5(code)}`; // コード ID（記事内でのユニークさを保つためにコード文字列と位置情報を組み合わせた文字列を元にする）
+
+hljs.registerLanguage('xml', hljsXml);
+hljs.registerLanguage('javascript', hljsJavaScript);
+hljs.configure({
+	classPrefix: 'c-code-highlight -',
+});
+
+let registLanguageName: string | undefined;
+if (language !== undefined) {
+	switch (language) {
+		case 'xml':
+		case 'html':
+		case 'svg': {
+			registLanguageName = 'xml';
+			break;
+		}
+		case 'javascript': {
+			registLanguageName = 'javascript';
+			break;
+		}
+		default: {
+			console.warn('無効な言語名', language);
+		}
+	}
+}
+
+const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { language: registLanguageName }).value : undefined;
+---
+
+<figure>
+	{
+		caption !== undefined && (
+			<figcaption class="c-caption">
+				<span class="c-caption__title">{caption}</span>
+			</figcaption>
+		)
+	}
+	<div class="p-code">
+		<div class="p-code__clipboard">
+			<button type="button" is="w0s-clipboard" data-target-for={id} class="p-code__clipboard-button">
+				<img src="/assets/image/copy.svg" alt="コピー" width="24" height="24" />
+			</button>
+		</div>
+		<pre class="p-code__code">{highlighted !== undefined && <code id={id} set:html={highlighted} />}{highlighted === undefined && <code id={id}>{code}</code>}</pre>
+	</div>
+</figure>

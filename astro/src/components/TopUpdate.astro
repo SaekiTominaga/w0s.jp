@@ -1,0 +1,18 @@
+---
+import dayjs from 'dayjs';
+
+interface Props {
+	date: string;
+}
+
+const { date } = Astro.props;
+
+const dateDayjs = dayjs(date);
+---
+
+<li>
+	<div class="p-top-update-list__date"><time datetime={dateDayjs.format('YYYY-MM-DD')}>{dateDayjs.format('YYYY年M月D日')}</time></div>
+	<div class="p-top-update-list__info">
+		<slot />
+	</div>
+</li>

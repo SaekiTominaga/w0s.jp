@@ -1,0 +1,81 @@
+---
+import PageHeaderSearch from '@layouts/include/PageHeaderSearch.astro';
+
+interface Props {
+	pagePath: string;
+	top?: boolean;
+}
+
+const { pagePath, top = false } = Astro.props;
+---
+
+<header id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			{
+				top && (
+					<hgroup class="p-header-site">
+						<h1 class="p-header-site__name">
+							<a aria-current="page">東急電車形態研究</a>
+						</h1>
+						<p class="p-header-site__summary">東急電車の車両形態や自動放送を紹介するサイト</p>
+					</hgroup>
+				)
+			}
+			{
+				!top && (
+					<div class="p-header-site">
+						<div class="p-header-site__name">
+							<a href="/tokyu/">東急電車形態研究</a>
+						</div>
+						<p class="p-header-site__summary">東急電車の車両形態や自動放送を紹介するサイト</p>
+					</div>
+				)
+			}
+		</div>
+		<div class="l-header__nav">
+			<div class="p-header-nav">
+				<a href="/tokyu/feed" type="application/atom+xml" class="c-button -feed">
+					<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
+					<span class="c-button__text">フィード</span>
+				</a>
+			</div>
+
+			<PageHeaderSearch />
+		</div>
+	</div>
+	<div class="l-header__gnav">
+		<nav class="p-header-gnav">
+			<ul class="p-header-gnav__links">
+				{
+					[
+						{ path: '/tokyu/data/', name: '車両データ' },
+						{ path: '/tokyu/sty/', name: '車両形態' },
+						{ path: '/tokyu/yomoyama/', name: '車両よもやま' },
+						{ path: '/tokyu/an/', name: '自動放送' },
+						{ path: '/tokyu/set/', name: '設定器' },
+						{ path: '/tokyu/book/', name: '鉄道本執筆' },
+					].map((page) => (
+						<li>
+							{page.path === pagePath && (
+								<a aria-current="page" class="p-header-gnav__link">
+									{page.name}
+								</a>
+							)}
+							{page.path !== pagePath && pagePath.startsWith(page.path) && (
+								<a href={page.path} class="p-header-gnav__link -my-category">
+									{page.name}
+								</a>
+							)}
+							{page.path !== pagePath && !pagePath.startsWith(page.path) && (
+								<a href={page.path} class="p-header-gnav__link">
+									{page.name}
+								</a>
+							)}
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</header>

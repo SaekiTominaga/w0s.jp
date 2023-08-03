@@ -1,0 +1,101 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	type: 'website',
+	title: '東急電車の車両形態',
+	heading: '車両形態',
+	dateModified: dayjs('2023-03-19'),
+	description: '東急電鉄の車両の台車や床下・屋根上機器などを写真と文章で紹介します。',
+	breadcrumb: [{ path: '/tokyu/', name: 'ホーム' }],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<div class="c-grid -hdg-a -wide">
+		<div class="c-grid__item">
+			<Section id="truck">
+				<H slot="heading">台車</H>
+
+				<ul class="p-links">
+					<li><a href="truck_ts300">TS-300 系台車</a></li>
+					<li><a href="truck_ts700">TS-700 系台車（パイオニアⅢ）</a></li>
+					<li><a href="truck_ts800">TS-800 系台車</a></li>
+					<li><a href="truck_ts1000">TS-1000 系台車（ボルスタレス）</a></li>
+					<li><a href="truck_etc">東急車輛、J-TREC 製以外の台車</a></li>
+				</ul>
+			</Section>
+		</div>
+		<div class="c-grid__item">
+			<Section id="sty">
+				<H slot="heading">車両機器</H>
+
+				<ul class="p-links">
+					<li><a href="aps">補助電源装置</a></li>
+					<li><a href="cp">空気圧縮機</a></li>
+					<li><a href="bce">ブレーキ制御装置</a></li>
+					<li><a href="bt">蓄電池</a></li>
+					<li><a href="rec">整流装置</a></li>
+					<li><a href="aci">冷房制御装置</a></li>
+					<li><a href="usl">床下灯</a></li>
+					<li><a href="tra">情報伝送装置</a></li>
+					<li><a href="atc">ATC 装置</a></li>
+					<li><a href="pt_7000">7200系、7600系、7700系　集電装置</a></li>
+				</ul>
+			</Section>
+		</div>
+		<div class="c-grid__item">
+			<Section id="ub">
+				<H slot="heading">床下機器配置</H>
+
+				<ul class="p-links">
+					<li><a href="ub_7600">7600系</a></li>
+					<li><a href="ub_7700">7700系</a></li>
+					<li><a href="ub_7700n">7700系（7915F）</a></li>
+					<li><a href="ub_1000n">1000N系（池上、多摩川線）</a></li>
+					<li><a href="ub_1000n2">1000N′系</a></li>
+					<li><a href="ub_1500">1000系1500番台</a></li>
+					<li><a href="ub_7900_m">クハ7900形山側</a></li>
+					<li><a href="ub_8290">大井町線デハ8290形</a></li>
+					<li><a href="ub_8800">デハ8800形海側</a></li>
+				</ul>
+			</Section>
+		</div>
+		<div class="c-grid__item">
+			<Section id="roof">
+				<H slot="heading">屋根上機器配置</H>
+
+				<ul class="p-links">
+					<li><a href="roof_7200">7200系（デヤ7200、デヤ7290、サヤ7590）</a></li>
+					<li><a href="roof_7600">7600系</a></li>
+					<li><a href="roof_7700">7700系</a></li>
+					<li><a href="roof_7700n">7700系（7915F）</a></li>
+					<li><a href="roof_1000n">1000N系（池上、多摩川線）、1000N′系</a></li>
+				</ul>
+			</Section>
+		</div>
+		<div class="c-grid__item">
+			<Section id="etc">
+				<H slot="heading">室外その他</H>
+
+				<ul class="p-links">
+					<li><a href="front_7700">7700系　先頭車正面バリエーション</a></li>
+				</ul>
+			</Section>
+		</div>
+		<div class="c-grid__item">
+			<Section id="indoors">
+				<H slot="heading">室内</H>
+
+				<ul class="p-links">
+					<li><a href="nosmoking">禁煙標記</a></li>
+					<li><a href="amp_8000">8000系グループ　客室内スピーカ</a></li>
+				</ul>
+			</Section>
+		</div>
+	</div>
+</Layout>

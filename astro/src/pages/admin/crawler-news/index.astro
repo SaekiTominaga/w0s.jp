@@ -1,0 +1,350 @@
+---
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Admin.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
+import HttpResponseUtil from '@util/HttpResponse.js';
+import RequestUtil from '@util/Request.js';
+import SsrUtil from '@util/Ssr.js';
+import type { StructuredData } from '@type/types.js';
+
+interface RequestQuery {
+	url: string | null;
+	title: string | null;
+	category: number | null;
+	priority: number | null;
+	browser: boolean;
+	selector_wrap: string | null;
+	selector_date: string | null;
+	selector_content: string | null;
+	action_add: boolean;
+	action_revise: boolean;
+	action_revise_preview: boolean;
+	action_delete: boolean;
+}
+
+export const prerender = false;
+const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+
+const structuredData: StructuredData = {
+	title: 'ウェブ巡回（ニュース）',
+	breadcrumb: [{ path: '/admin/', name: 'ホーム' }],
+};
+
+const pagePath = await SsrUtil.getPageUrl(Astro.url);
+
+const slugger = new GithubSlugger();
+
+const requestParams = RequestUtil.getParams(Astro.url);
+const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
+
+const requestQuery: RequestQuery = {
+	url: RequestUtil.string(requestParams.get('url') ?? requestBody?.get('url')),
+	title: RequestUtil.string(requestBody?.get('title')),
+	category: RequestUtil.number(requestBody?.get('category')),
+	priority: RequestUtil.number(requestBody?.get('priority')),
+	browser: RequestUtil.boolean(requestBody?.get('browser')),
+	selector_wrap: RequestUtil.string(requestBody?.get('selectorwrap')),
+	selector_date: RequestUtil.string(requestBody?.get('selectordate')),
+	selector_content: RequestUtil.string(requestBody?.get('selectorcontent')),
+	action_add: RequestUtil.boolean(requestBody?.get('actionadd')),
+	action_revise: RequestUtil.boolean(requestBody?.get('actionrev')),
+	action_revise_preview: RequestUtil.boolean(requestParams.get('actionrevpre')),
+	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
+};
+
+const dao = new CrawlerNewsDao(configure.sqlite.crawler);
+
+if (requestQuery.action_add) {
+	/* 登録 */
+
+	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.selector_wrap !== null) {
+		await dao.insert(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector_wrap, requestQuery.selector_date, requestQuery.selector_content);
+		logger.info('データ登録', requestQuery.url);
+
+		const httpResponse = new HttpResponseUtil(Astro.request);
+		return httpResponse.response303(); // TODO: https://github.com/withastro/language-tools/issues/476
+	}
+} else if (requestQuery.action_revise) {
+	/* 修正実行 */
+
+	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.selector_wrap !== null) {
+		await dao.update(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector_wrap, requestQuery.selector_date, requestQuery.selector_content);
+		logger.info('データ更新', requestQuery.url);
+
+		const httpResponse = new HttpResponseUtil(Astro.request);
+		return httpResponse.response303(); // TODO: https://github.com/withastro/language-tools/issues/476
+	}
+} else if (requestQuery.action_delete) {
+	/* 削除 */
+	if (requestQuery.url !== null) {
+		await dao.delete(requestQuery.url);
+		logger.info('データ削除', requestQuery.url);
+
+		const httpResponse = new HttpResponseUtil(Astro.request);
+		return httpResponse.response303(); // TODO: https://github.com/withastro/language-tools/issues/476
+	}
+} else if (requestQuery.action_revise_preview) {
+	/* 修正データ選択 */
+	if (requestQuery.url !== null) {
+		const reviseData = await dao.getReviseData(requestQuery.url);
+		if (reviseData !== null) {
+			requestQuery.title = reviseData.title;
+			requestQuery.category = reviseData.category;
+			requestQuery.priority = reviseData.priority;
+			requestQuery.browser = reviseData.browser;
+			requestQuery.selector_wrap = reviseData.selector_wrap;
+			requestQuery.selector_date = reviseData.selector_date;
+			requestQuery.selector_content = reviseData.selector_content;
+		}
+	}
+}
+
+/* 初期表示 */
+const categoryMaster = await dao.getCategoryMaster(); // カテゴリー情報
+const priorityMaster = await dao.getPriorityMaster(); // 優先度情報
+const newsPageListDto = await dao.getNewsPageList(); // 巡回ページデータ
+
+const newsPageList: Map<
+	string,
+	{
+		url: string;
+		title: string;
+		priority: string;
+		browser: boolean;
+		selector_wrap: string;
+		selector_date: string | null;
+		selector_content: string | null;
+	}[]
+> = new Map();
+for (const newsPage of newsPageListDto) {
+	const categoryName = newsPage.category;
+
+	const newsPageOfCategoryView = newsPageList.get(categoryName) ?? [];
+	newsPageOfCategoryView.push({
+		url: newsPage.url,
+		title: newsPage.title,
+		priority: newsPage.priority,
+		browser: newsPage.browser,
+		selector_wrap: newsPage.selector_wrap,
+		selector_date: newsPage.selector_date,
+		selector_content: newsPage.selector_content,
+	});
+
+	newsPageList.set(categoryName, newsPageOfCategoryView);
+}
+---
+
+<Layout pagePath={pagePath} structuredData={structuredData}>
+	<Section slugger={slugger}>
+		<H slot="heading">データ登録</H>
+
+		<form action={pagePath} method="post" class="c-stack">
+			<div class="p-form-grid">
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								{(requestQuery.action_revise_preview || requestQuery.action_revise) && <input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly="" />}
+								{!requestQuery.action_revise_preview && !requestQuery.action_revise && <input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" />}
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<input class="c-input -full js-convert-trim" id="fc-title" name="title" value={requestQuery.title} required="" />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<select class="c-select" id="fc-category" name="category">
+									{
+										categoryMaster.map((category) => (
+											<>
+												{requestQuery.category === category.fk && (
+													<option value={category.fk} selected="">
+														{category.name}
+													</option>
+												)}
+												{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
+											</>
+										))
+									}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<select class="c-select" id="fc-priority" name="priority">
+									{
+										priorityMaster.map((priority) => (
+											<>
+												{requestQuery.priority === priority.fk && (
+													<option value={priority.fk} selected="">
+														{priority.name}
+													</option>
+												)}
+												{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
+											</>
+										))
+									}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">ブラウザ</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<label class="c-label -check">
+									{requestQuery.browser && <input type="checkbox" name="browser" value="1" checked="" />}
+									{!requestQuery.browser && <input type="checkbox" name="browser" value="1" />}
+									<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
+								>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-selectorwrap" class="c-label">セレクター（包括） <strong class="c-label-icon -required">必須</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<input class="c-input -full js-convert-trim" id="fc-selectorwrap" name="selectorwrap" value={requestQuery.selector_wrap} required="" />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-selectordate" class="c-label">セレクター（日付） <strong class="c-label-icon -optional">任意</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<input class="c-input -full js-convert-trim" id="fc-selectordate" name="selectordate" value={requestQuery.selector_date} />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="p-form-grid__group">
+					<fieldset>
+						<legend class="p-form-grid__legend">
+							<label for="fc-selectorcontent" class="c-label">セレクター（内容） <strong class="c-label-icon -optional">任意</strong></label>
+						</legend>
+						<div class="p-form-grid__contents">
+							<div class="c-form-controls">
+								<input class="c-input -full js-convert-trim" id="fc-selectorcontent" name="selectorcontent" value={requestQuery.selector_content} />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+
+			<div class="c-form-controls -submit">
+				{
+					(requestQuery.action_revise_preview || requestQuery.action_revise) && (
+						<p>
+							<button class="c-submit" name="actionrev" value="1">
+								修正
+							</button>
+						</p>
+					)
+				}
+				{
+					!requestQuery.action_revise_preview && !requestQuery.action_revise && (
+						<p>
+							<button class="c-submit" name="actionadd" value="1">
+								登録
+							</button>
+						</p>
+					)
+				}
+			</div>
+		</form>
+	</Section>
+
+	{
+		[...newsPageList].map(([categoryName, newsPageOfCategory]) => (
+			<Section slugger={slugger}>
+				<H slot="heading">{categoryName}</H>
+
+				<table class="p-table p-admin-crawler-table">
+					<thead>
+						<tr>
+							<td />
+							<th scope="col">対象ページ</th>
+							<th scope="col">優先</th>
+							<th scope="col">🌐</th>
+							<th scope="col">包括セレクター</th>
+							<th scope="col">日付セレクター</th>
+							<th scope="col">内容セレクター</th>
+						</tr>
+					</thead>
+					<tbody>
+						{newsPageOfCategory.map((newsPage) => (
+							<tr>
+								<td class="u-cell -wrap-no">
+									<form action={pagePath} method="post">
+										<p>
+											<input type="hidden" name="url" value={newsPage.url} />
+										</p>
+										<p>
+											<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
+												修正
+											</button>
+											<button name="actiondel" value="1" is="w0s-confirm-button" data-message="削除しますか?" class="c-submit -compact">
+												削除
+											</button>
+										</p>
+									</form>
+								</td>
+								<td>
+									<a href={`/admin/crawler-news/data?url=${newsPage.url}`}>{newsPage.title}</a>
+									<p style="margin-block-start: 0.5em; font-size: 80%">
+										<a href={newsPage.url} referrerpolicy="no-referrer">
+											{newsPage.url}
+										</a>
+									</p>
+								</td>
+								<td>{newsPage.priority}</td>
+								<td>{newsPage.browser && <>✔</>}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selector_wrap}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selector_date}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selector_content}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</Section>
+		))
+	}
+</Layout>

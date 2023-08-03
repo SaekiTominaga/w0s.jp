@@ -1,0 +1,281 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Kumeta.astro';
+import LibraryItemNewspaper from '@components/LibraryItemNewspaper.astro';
+import H from '@components/H.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '久米田康治作品の新聞での紹介例',
+	heading: 'メディア紹介 — 新聞',
+	dateModified: dayjs('2023-03-29'),
+	description: '新聞紙上において久米田先生のインタビューや作品紹介などが掲載された事例のリストです。',
+	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
+	localNav: [
+		{ path: '/kumeta/library/manga', name: '漫画雑誌' },
+		{ path: '/kumeta/library/book', name: '図書、一般雑誌' },
+		{ path: '/kumeta/library/newspaper', name: '新聞' },
+	],
+	tocDirection: 'row',
+	moduleScripts: ['library-tag.mjs'],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section slugger={slugger}>
+		<H slot="heading">2006年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2006-04-16" class="朝刊">
+			<div class="p-text">
+				<p>
+					14面: 「ササキバラ・ゴウ　コミックガイド」にて『さよなら絶望先生』紹介<small>（<LinkExternal href="https://web.archive.org/web/20060426054235/http://book.asahi.com/comic/TKY200604190336.html">アサヒ・コムBOOK</LinkExternal>にも一時期掲載されていた）</small>
+				</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2007年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2007-01-31" class="夕刊">
+			<div class="p-text">
+				<p>
+					5面: 「「鈴木先生」が話題　武富健治さん」教師作品の関連として『さよなら絶望先生』も紹介、第一話の<q>金ぎたない世の中に絶望した!!</q>のコマ掲載<small>（<LinkExternal href="https://web.archive.org/web/20070207123159/https://www.yomiuri.co.jp/book/news/20070131bk01.htm">YOMIURI ONLINE</LinkExternal>にも一時期掲載されていた）</small>
+				</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-07-04" class="Vol.39 2007年7月号B" tags={['アニメ']}>
+			<div class="p-text">
+				<p>2面: アニメ『さよなら絶望先生』ポスター広告（モノクロ）</p>
+				<p>15面: アフレコインタビュー（井上麻里奈、神谷浩史、松来未祐、後藤邑子、小林ゆう、野中藍、新谷良子）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-08-08" class="Vol.41 2007年8月号B" tags={['音楽']}>
+			<div class="p-text">
+				<p>29面: 「人として軸がぶれている」大槻ケンヂインタビュー</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-08-29" class="Vol.42 2007年9月号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>20面: 「人として軸がぶれている」広告</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-09-21" class="Vol.43 2007年10月号A" tags={['インタビュー', 'アニメ']}>
+			<div class="p-text">
+				<p>1面: 久米田康治&amp;神谷浩史対談</p>
+				<p>4–5面: 久米田康治&amp;神谷浩史対談（1面の続き）</p>
+				<p>2面: 「人として軸がぶれている」広告</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2008年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-02" class="Vol.49 2008年新年号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>12–13面: 『俗・さよなら絶望先生』広告</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-23" class="Vol.50 2008年2月号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>13面: 『俗・さよなら絶望先生』前田くんインタビュー</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" class="Vol.51 2008年3月号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>4面: 『俗・さよなら絶望先生』広告（「マリオネット」ほか）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-06-24" class="Vol.73 2009年7月号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>6面: 『懺・さよなら絶望先生』広告</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-07-15" class="Vol.74 2009年8月号" tags={['アニメ', '音楽']}>
+			<div class="p-text">
+				<p>10面: 「林檎もぎれビーム」大槻ケンヂインタビュー</p>
+				<p>11面: 『懺・さよなら絶望先生』神谷浩史インタビュー</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-08-19" class="Vol.75 2009年9月号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>9面: 『懺・さよなら絶望先生』広告</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2009年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01">
+			<div class="p-text">
+				<p>第4部3面: 「マンガ週刊誌　半世紀」のすごろくで2005年のコマに『さよなら絶望先生』『最強! 都立あおい坂高校野球部』の作品名が掲載</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2009-07-01" class="Vol.23" tags={['アニメ']}>
+			<div class="p-text">
+				<p>8面: 『懺・さよなら絶望先生』神谷浩史インタビュー</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2010年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2010-04-28" class="Vol.43" tags={['ラジオ']}>
+			<div class="p-text">
+				<p>「神谷浩史のオールナイトニッポンR」特集</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2011-06-01" class="Vol.129" tags={['アニメ']}>
+			<div class="p-text">
+				<p>OVA『かってに改蔵』特集、櫻井孝宏5000字インタビュー</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2011-09-14" class="夕刊 POPSTYLE Vol.265">
+			<div class="p-text">
+				<p>8–9面: 「POPSTYLE Vol.265」赤松健×畑健二郎の対談の中で「毎回アフレコに行っていた」「女性声優と飲みに行った」などの話が挙がる</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2012-06-20" class="Vol.109 2012年7月号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>23面: 『じょしらく』水島努インタビュー</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="山形新聞" release="2012-11-24">
+			<div class="p-text">
+				<p>7面: 「ことばの杜へ」で『さよなら絶望先生』第四十話「人生は一段のひな壇にも若かない」での望のセリフ<q>人間　上ばかり見ていては　自分の限界を感じた時　空しいだけです　世の中　上に伸びる段だけじゃないのです!</q>を引用しつつ、社会問題としての自殺についての言説</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2015年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="熊本日日新聞" release="2015-11-11">
+			<div class="p-text">
+				<p>14面（県内総合）: 「コスプレの世界　満喫」ゆのまえ漫画フェスタの記事、写真に糸色望コスプレの職員（サイン会で久米田先生のサポートをされた方）が写り込み</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="スポーツ報知" release="2015-11-27" class="MADOGATARI展特別号" tags={['アニメ']}>
+			<div class="p-text">
+				<p>折り込みポスターの裏面に他作品に混じって『さよなら絶望先生』1期キービジュアルも掲載</p>
+			</div>
+
+			<ul class="p-notes">
+				<li>シャフト設立40周年イベント<LinkExternal href="https://www.madogatari.jp/">MADOGATARI展</LinkExternal>の会場とコミケットで販売されたもの（タブロイド紙だがイベントのグッズ扱いで正式な新聞ではない）</li>
+				<li>2016年8月〜12月の期間限定で<LinkExternal href="https://prtimes.jp/main/html/rd/p/000000739.000001227.html">電子版も発売</LinkExternal></li>
+			</ul>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2020年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2020-04-19" class="夕刊" tags={['インタビュー']}>
+			<div class="p-text">
+				<p>3面: 「作家100人　コロナ禍切り取る」Day to Day の紹介記事で久米田先生の顔写真とコメント掲載</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-06" class="夕刊">
+			<div class="p-text">
+				<p>
+					1面: 『MANGA Day to Day』の紹介記事<small>（<a href="https://www.asahi.com/articles/ASP56358TP4XUTIL071.html">朝日新聞デジタル</a>にも掲載）</small>
+				</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-09" class="夕刊" tags={['アニメ']}>
+			<div class="p-text">
+				<p>2面: 「アニメ新番組で気分転換」（小原篤）で『かくしごと』紹介（他の春アニメ10本の中の1つ）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2020-05-23" class="夕刊">
+			<div class="p-text">
+				<p>4面（文化・芸能）: 「週刊読書かいわい」（辻真先）で『かくしごと』紹介</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2021年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-03-21" tags={['音楽']}>
+			<div class="p-text">
+				<p>30面: 「A LONG VACATION」広告（コラボポスターがカラーで掲載）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-04-19" class="夕刊" tags={['インタビュー']}>
+			<div class="p-text">
+				<p>3面: 「作家100人　コロナ禍切り取る」久米田康治&amp;月村了衛コメント</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2021-05-06" class="夕刊">
+			<div class="p-text">
+				<p>1面: 「コロナの100日　漫画で描いて」</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日スポーツ" release="2021-07-18" tags={['アニメ']}>
+			<div class="p-text">
+				<p>20面: 「原作者が半ギレ」映画『かくしごと』舞台挨拶レポート、登壇者写真掲載（カラー）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京中日スポーツ" release="2021-07-18" tags={['アニメ']}>
+			<div class="p-text">
+				<p>18面: 「原作者が半ギレ」映画『かくしごと』舞台挨拶レポート、登壇者写真掲載（カラー）<small>（同日発行の「中日スポーツ」と同内容）</small></p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞（湘南版）" release="2021-11-20" tags={['アニメ']}>
+			<div class="p-text">
+				<p>23面: 「鎌倉舞台アニメ　グッズ返礼品に」ふるさと納税の返礼品に『かくしごと』グッズ</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">2023年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2023-03-28" class="夕刊">
+			<div class="p-text">
+				<p>
+					12面: 「腕磨く姿に共感応援」週刊少年ジャンプ掲載『あかね噺』の紹介記事だが、落語漫画つながりで『じょしらく』も紹介<small>（<LinkExternal href="https://www.nikkei.com/article/DGKKZO69644980Y3A320C2BE0P00/">Web 記事（有料会員限定）</LinkExternal>にも掲載）</small>
+				</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+	<Section slugger={slugger}>
+		<H slot="heading">調査中</H>
+
+		<ul class="p-list">
+			<li>
+				2011年4月28日の新聞に『さよなら絶望先生』記事? <small>（<LinkExternal href="https://twitter.com/yaeee212/status/63502934339616768">目撃情報</LinkExternal>）</small>
+			</li>
+		</ul>
+	</Section>
+</Layout>

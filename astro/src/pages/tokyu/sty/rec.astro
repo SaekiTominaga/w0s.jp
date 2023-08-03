@@ -1,0 +1,388 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急電車の整流装置',
+	heading: '整流装置',
+	dateModified: dayjs('2007-09-01'),
+	description: '7200系から新3000系までに搭載された整流装置を紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/rec/RFE001-C.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>東急電鉄に冷房車が登場したのは1971年の8000系2次車から（当初は8019Fのみ）ですが、1986年に登場した9000系では、空気圧縮機の電動機が交流化されたことに伴い、SIV の出力電圧が三相交流 440V に変更されたため、単相交流 200V や直流 100V・24V への変圧・整流を行う整流装置が設けられました。その後の新造車、改造車も一部を除き同様のシステムになっています。</p>
+			<p>整流装置自体は MG 時代から存在しますが、ここでは主に三相交流 440V からの整流を行う装置のバリエーションを紹介します。</p>
+		</div>
+	</Section>
+
+	<Section id="series7200">
+		<H slot="heading">7200系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rs120" depth={2} headingType="c">
+					<H slot="heading">RS120</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RS120.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-10-01 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デヤ7290（2次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>7200系に搭載されていた整流装置。検測車へ改造されたデヤ7290には、旅客車と搭載場所は異なるものの、同型の整流装置が設けられました。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series8000">
+		<H slot="heading">8000系グループ</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rs175" depth={2} headingType="c">
+					<H slot="heading">RS175</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RS175.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-06-08 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ8692（20次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>8500系やサハ8390形に搭載されている整流装置。特殊車へ改造されたデヤ7200のほか、東横線から大井町線へ転籍した8590系（デハ8690形）のうち、デハ8692, 8693もこのタイプを装備します。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="rs180" depth={2} headingType="c">
+					<H slot="heading">RS180</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RS180.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-06-20 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ8091（12-1次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>同じ8000系グループでも、8000系や8090形には2枚蓋のタイプが搭載されています。大井町線転籍後のデハ8691もこのタイプを装備します。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series9000">
+		<H slot="heading">9000系、1000系、2000系、クハ7915</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rfe001a" depth={2} headingType="c">
+					<H slot="heading">RFE001-A、RFE001-B</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE001-A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-02-11 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ9001（1次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>9000系、1000系、2000系、およびクハ7915にはRFE001系整流装置が搭載されていますが、9000系1次車のみ1枚蓋タイプで異彩を放っています。写真は100V・24V共用のA型で、ほかに100V専用のB型がサハ9801に搭載されています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="rfe001d" depth={2} headingType="c">
+					<H slot="heading">RFE001-C、RFE001-D</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE001-C.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-03-08 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ9006（2次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>9000系2次車以降は、2枚蓋タイプのC型（100V・24V）、およびD型（100V）となりました。</p>
+						<p>搭載位置は、9000系はTc1、Tc2、T1の各車山側、1000系・2000系はSIV本体と同じくM2車山側、クハ7915はほかの7700系同様Tc車山側となっています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="rfe001e" depth={2} headingType="c">
+					<H slot="heading">RFE001-E、RFE001-F</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE001-E.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-09-24 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1213（3次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>1000N系は、デハ1350形奇数車用のE型と同偶数車用のF型を搭載します。</p>
+						<p>池上、多摩川線転籍にあたり3連化改造を受けた車両は、デハ1200形の海側に移設されました。東横線に残った1編成は、2003年の編成組み替え後もSIVと同様、引き続き2台搭載となっています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="rfe001g" depth={2} headingType="c">
+					<H slot="heading">RFE001-G</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE001-G.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-07-14 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1222（4次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>1000N′系は、小型化されたG型（100V・24V共用）をM車に搭載します。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series7600">
+		<H slot="heading">7600系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rfe005" depth={2} headingType="c">
+					<H slot="heading">RFE005</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-18 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7601（1次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>Tc車に搭載されています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series8500-18">
+		<H slot="heading">8500系（18次車以降の編成車）</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rfe007" depth={2} headingType="c">
+					<H slot="heading">RFE007</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE007.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-12 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ8975（18-1次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>8000系18次車以降の編成車では、<a href="aps#inv008">SIVの出力電圧変更</a>とともに整流装置も変更されました。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series7700">
+		<H slot="heading">7700系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rfe013" depth={2} headingType="c">
+					<H slot="heading">RFE013</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE013.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-08-19 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7905（2次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>Tc車に搭載。同型のSIVを搭載する9000系や1000系の整流装置よりもDC出力容量が増加しています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="s4341" depth={2} headingType="c">
+					<H slot="heading">S4341</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/S4341.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-18 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ7910（3次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>東洋電機製造のSIVを装備するクハ7910、クハ7914は、整流装置も同社製のものとなっています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series3000">
+		<H slot="heading">新3000系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="cg316" depth={2} headingType="c">
+					<H slot="heading">CG316</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/CG316.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-19 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ3510（2次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>SIV本体搭載車と同じM2, T車に搭載されています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="seriesY000">
+		<H slot="heading">Y000系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rfe059" depth={2} headingType="c">
+					<H slot="heading">RFE059</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE059.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-09-25 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハY001（1次車）山側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>Tc車に搭載されています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series8090-100k">
+		<H slot="heading">大井町線8090系二電源化工事車</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rfe068" depth={2} headingType="c">
+					<H slot="heading">RFE068</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RFE068.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-09-28 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ8282（16-2次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>大井町線8090系の一部編成は二電源化工事が行われ、3号車（デハ8290形）のSIVを100kVAに換装していますが、整流装置も更新されています。写真は<a href="aps#inv104">INV-104型SIV</a>搭載車のもので、台車のすぐ脇に搭載されていますが、<a href="aps#inv153">INV-153型SIV</a>搭載車は同位置にリアクトル箱があるため、設置位置が若干2位方になっています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="v24">
+		<H slot="heading">24V整流装置</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="rs157" depth={2} headingType="c">
+					<H slot="heading">RS157</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/rec/RS157.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-09-16 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ8975（18-1次車）海側</span>
+						</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>7600系、7700系（7915F除く）、8500系、8090系には、24V用の整流装置が独立して設けられています。いずれも、24V蓄電池を搭載する車両の海側に設置されています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>

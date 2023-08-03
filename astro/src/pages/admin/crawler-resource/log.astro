@@ -1,0 +1,52 @@
+---
+import fs from 'node:fs';
+import Layout from '@layouts/Admin.astro';
+import RequestUtil from '@util/Request.js';
+import SsrUtil from '@util/Ssr.js';
+import type { StructuredData } from '@type/types.js';
+
+interface RequestQuery {
+	dir: string | null;
+	file: string | null;
+}
+
+export const prerender = false;
+const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+
+const structuredData: StructuredData = {
+	title: 'ウェブ巡回（リソース）',
+	breadcrumb: [
+		{ path: '/admin/', name: 'ホーム' },
+		{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' },
+	],
+};
+
+const requestParams = RequestUtil.getParams(Astro.url);
+
+const requestQuery: RequestQuery = {
+	dir: RequestUtil.string(requestParams.get('dir')),
+	file: RequestUtil.string(requestParams.get('file')),
+};
+
+if (requestQuery.dir !== null && requestQuery.file !== null) {
+	const filePath = `${configure.crawler_resource.log_dir}/${requestQuery.dir}/${requestQuery.file}`;
+
+	/* ソースコード閲覧 */
+	try {
+		const file = (await fs.promises.readFile(filePath)).toString();
+		return new Response(file);
+	} catch (e) {
+		if (e instanceof SyntaxError) {
+			logger.warn(e.message);
+		} else {
+			logger.error(e);
+		}
+	}
+}
+---
+
+<Layout structuredData={structuredData}>
+	<p>
+		<strong>データがありません。</strong>
+	</p>
+</Layout>

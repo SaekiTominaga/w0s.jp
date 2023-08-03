@@ -1,0 +1,18 @@
+---
+import Layout from '@layouts/Error.astro';
+import type { StructuredDataErrorPage } from '@type/types.js';
+
+const structuredData: StructuredDataErrorPage = {
+	heading: 'コンテンツが存在しません',
+	headingCode: '404 Not Found',
+	moduleScripts: ['error.mjs'],
+};
+---
+
+<Layout structuredData={structuredData} search={true}>
+	<p id="parentpage-msg" hidden="">「<a id="parentpage-anchor"></a>」でお探しのコンテンツが見つかるかもしれませんし、見つからないかもしれません。</p>
+
+	<div class="p-err-parentthumb">
+		<w0s-portal class="p-err-parentthumb__portal" id="parentpage-portal" hidden=""></w0s-portal>
+	</div>
+</Layout>

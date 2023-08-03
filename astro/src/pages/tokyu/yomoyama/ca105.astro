@@ -1,0 +1,78 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '元東急電車の CA-105 型　放送装置',
+	heading: 'CA-105 型　放送装置',
+	dateModified: dayjs('2009-06-01'),
+	description: '譲渡車両が活躍する国内の鉄道では、豊橋鉄道以外の各社線で自動放送が導入されています。一昔前まで、これらはエンドレステープによるものが主流でしたが、最近では音声合成装置に変わられつつあり、テープ式が残るのは水間鉄道と熊本電気鉄道の2社のみとなっています。',
+	image: 'https://media.w0s.jp/image/tokyu/yomoyama/ca105/mizuma_7003.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="ca105">
+		<H slot="heading">CA-105型放送装置</H>
+
+		<div class="p-text">
+			<p>熊本電気鉄道と水間鉄道の車両に残るクラリオン製のCA-105型放送装置。水間鉄道のテープ式搭載車7000系は、現在では基本的に営業運転に就くことはなく、実質これが稼働している譲渡車両は熊本電気鉄道モハ5100形のみとなっています。</p>
+		</div>
+
+		<div class="c-grid -wide">
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<Image path="tokyu/yomoyama/ca105/CA105_kumamoto.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
+						<!-- 撮影日: 2009-05-30 -->
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">CA-105 （熊本電気鉄道モハ5101A）</span>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<Image path="tokyu/yomoyama/ca105/CA105_mizuma.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
+						<!-- 撮影日: 2007-06-24 -->
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">CA-105 （水間鉄道デハ7003）</span>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="mizuma-7000">
+		<H slot="heading">水間鉄道7000系</H>
+
+		<div class="p-text">
+			<p>水間鉄道では2006年より7000系のリニューアル工事が行われ、放送装置も更新されましたが、デハ7003、デハ7103の2両が未改造で残っています。</p>
+			<p>デハ7003は2007年にデハ7052（現在のデハ1007）との客ドア交換が成され、東急時代に室内更新工事を受けた車両でありながら、Hゴム支持窓の側引戸を持つアンバランスな形態となっています。</p>
+		</div>
+
+		<div class="c-grid -wide">
+			<div class="c-grid__item">
+				<figure>
+					<div class="p-embed -border">
+						<Image path="tokyu/yomoyama/ca105/mizuma_7003.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
+						<!-- 撮影日: 2007-10-20 -->
+					</div>
+					<figcaption class="c-caption -meta">
+						<span class="c-caption__title">水間鉄道デハ7003</span>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+	</Section>
+</Layout>

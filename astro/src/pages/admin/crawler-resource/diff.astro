@@ -1,0 +1,136 @@
+---
+import fs from 'node:fs';
+import * as Diff from 'diff';
+import Layout from '@layouts/Admin.astro';
+import RequestUtil from '@util/Request.js';
+import SsrUtil from '@util/Ssr.js';
+import type { StructuredData } from '@type/types.js';
+
+interface RequestQuery {
+	dir: string | null;
+	diff: string[];
+}
+
+export const prerender = false;
+const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+
+const structuredData: StructuredData = {
+	title: 'ウェブ巡回（リソース）',
+	breadcrumb: [
+		{ path: '/admin/', name: 'ホーム' },
+		{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' },
+	],
+};
+
+const requestParams = RequestUtil.getParams(Astro.url);
+
+const requestQuery: RequestQuery = {
+	dir: RequestUtil.string(requestParams.get('dir')),
+	diff: RequestUtil.strings(requestParams.getAll('diff[]')),
+};
+
+let diff: Diff.Change[] = [];
+let fileList: string[] = [];
+
+if (requestQuery.dir !== null) {
+	const dir = `${configure.crawler_resource.log_dir}/${requestQuery.dir}`;
+	if (fs.existsSync(dir)) {
+		if (requestQuery.diff.length >= 2) {
+			/* 差分チェック */
+			const [file1, file2] = await Promise.all([fs.promises.readFile(`${dir}/${requestQuery.diff.at(0)}`), fs.promises.readFile(`${dir}/${requestQuery.diff.at(1)}`)]);
+
+			diff = Diff.diffLines(Buffer.from(file2).toString(), Buffer.from(file1).toString(), { newlineIsToken: true });
+			diff.forEach((diffPart, index) => {
+				if (diffPart.count !== undefined && diffPart.count > configure.crawler_resource.diff.max_line && !diffPart.added && !diffPart.removed) {
+					const lines = diffPart.value.split('\n');
+
+					if (index === 0) {
+						diffPart.value = lines
+							.slice(lines.length - configure.crawler_resource.diff.max_line + 1)
+							.concat(configure.crawler_resource.diff.omit)
+							.join('\n');
+					} else if (index === diff.length - 1) {
+						diffPart.value = [configure.crawler_resource.diff.omit].concat(lines.slice(0, configure.crawler_resource.diff.max_line)).join('\n');
+					} else if (diffPart.count > configure.crawler_resource.diff.max_line * 2) {
+						diffPart.value = lines
+							.slice(0, configure.crawler_resource.diff.max_line)
+							.concat(configure.crawler_resource.diff.omit, lines.slice(lines.length - configure.crawler_resource.diff.max_line - 1))
+							.join('\n');
+					}
+				}
+			});
+
+			logger.debug('Diff mode', requestQuery.diff, diff);
+		}
+
+		/* 初期表示 */
+		fileList = (await fs.promises.readdir(dir)).filter((filePath) => filePath.endsWith('.txt')).reverse();
+	}
+}
+---
+
+<Layout structuredData={structuredData}>
+	{
+		diff.length >= 1 && (
+			<table class="p-admin-crawler-diff">
+				<tbody>
+					{diff.map((part) => (
+						<>
+							{!part.added && !part.removed && (
+								<tr class="p-admin-crawler-diff__line">
+									<td />
+									{/* prettier-ignore */}
+									<td><pre><code>{part.value}</code></pre></td>
+								</tr>
+							)}
+							{part.added && !part.removed && (
+								<tr class="p-admin-crawler-diff__line -added">
+									<td class="p-admin-crawler-diff__type">+</td>
+									{/* prettier-ignore */}
+									<td><pre><code>{part.value}</code></pre></td>
+								</tr>
+							)}
+							{!part.added && part.removed && (
+								<tr class="p-admin-crawler-diff__line -removed">
+									<td class="p-admin-crawler-diff__type">-</td>
+									{/* prettier-ignore */}
+									<td><pre><code>{part.value}</code></pre></td>
+								</tr>
+							)}
+						</>
+					))}
+				</tbody>
+			</table>
+		)
+	}
+	{
+		fileList.length >= 1 && (
+			<form class="c-stack">
+				<p>
+					<input type="hidden" name="dir" value={requestQuery.dir} />
+				</p>
+				<p>
+					<button class="c-submit">比較</button>
+				</p>
+				<ul>
+					{fileList.map((file) => (
+						<li>
+							<label>
+								{requestQuery.diff.includes(file) && <input type="checkbox" name="diff[]" value={file} checked="" />}
+								{!requestQuery.diff.includes(file) && <input type="checkbox" name="diff[]" value={file} />} {file}
+							</label>
+							(<a href={`/admin/crawler-resource/log?dir=${requestQuery.dir};file=${file}`}>ソースコード</a>)
+						</li>
+					))}
+				</ul>
+			</form>
+		)
+	}
+	{
+		fileList.length === 0 && (
+			<p>
+				<strong>データがありません。</strong>
+			</p>
+		)
+	}
+</Layout>

@@ -1,0 +1,30 @@
+name: astro@html-lint
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'astro/src/**/*.{astro,ts}'
+      - 'astro/.markuplintrc'
+  push:
+    branches:
+      - main
+    paths:
+      - 'astro/src/**/*.{astro,ts}'
+      - 'astro/.markuplintrc'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npx json2ts -i configure/schema -o configure/type
+      - run: cd astro
+      - run: npx astro check
+      - run: npx astro build
+      - run: npm run html-lint -w '@w0s.jp/astro'

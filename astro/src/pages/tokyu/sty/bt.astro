@@ -1,0 +1,247 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急電車の蓄電池',
+	heading: '蓄電池',
+	dateModified: dayjs('2005-11-30'),
+	description: '7200系から新3000系までに搭載された蓄電池を紹介します。なお、このページは写真掲載のみで解説はありません。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/bt/8500_100V-40Ah.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="series7200">
+		<H slot="heading">7200系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7200系<small>（100V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/7200_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-09-17 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デヤ7290（2次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series8000">
+		<H slot="heading">8000系グループ、7600系、7700系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8000系<small>（100V・20Ah、100V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/8000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2005-11-14 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ8232（6次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系、8090系、7600系、7700系<small>（100V・40Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/8500_100V-40Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-09-28 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ8281（16-2次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7700系<small>（100V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/7800_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-01-20 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7801（1次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">8500系、8090系<small>（24V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/8500_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2005-11-16 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ8977（18-2次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">7600系、7700系<small>（24V・20Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/7600_24V-20Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-08-19 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ7714（5次車）山側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series9000">
+		<H slot="heading">9000系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9000系<small>（100V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/9000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2005-11-14 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ9810（3次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">9000系<small>（100V・30Ah / 24V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/9000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2005-11-14 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ9010（3次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series1000">
+		<H slot="heading">1000系、2000系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000系、2000系<small>（100V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/1000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-07-18 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">クハ1024（5次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">1000系、2000系<small>（100V・30Ah / 24V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/1000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-04-17 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ1223（4次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series3000">
+		<H slot="heading">新3000系、Y000系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">新3000系、Y000系<small>（100V・60Ah / 24V・30Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/3000_100V-60Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-19 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">サハ3510（2次車）海側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="series300">
+		<H slot="heading">300系</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section slugger={slugger} depth={2} headingType="c">
+					<H slot="heading">300系<small>（100V・20Ah / 24V・80Ah）</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/bt/300_100V-20Ah_24V-80Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2009-09-23 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title">デハ305B（2次車）山側</span>
+						</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>
