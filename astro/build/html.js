@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
+import { glob } from 'glob';
 import slash from 'slash';
-import { globby } from 'globby';
 
 /**
  * HTML ビルド後調整
@@ -23,7 +23,7 @@ if (argsParsedValues.directory === undefined) {
 }
 const directory = slash(argsParsedValues.directory);
 
-const fileList = await globby(`${directory}/**/*.html`);
+const fileList = await glob(`${directory}/**/*.html`);
 
 /**
  * `build: { format: 'file' }` の設定では `dir/index.astro` が `dir.html` に出力されてしまうので、`dir/index.html` にリネームする

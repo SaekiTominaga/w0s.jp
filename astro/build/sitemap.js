@@ -3,7 +3,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { globby } from 'globby';
+import { glob } from 'glob';
 import { JSDOM } from 'jsdom';
 import slash from 'slash';
 import xmlFormat from 'xml-formatter';
@@ -47,7 +47,7 @@ const outputPath = slash(argsParsedValues.output) ?? 'sitemap.xml';
 
 const filesPath = `${directory}/**/*.html`;
 
-const fileList = await globby(filesPath, {
+const fileList = await glob(filesPath, {
 	ignore: ignores?.map((filePath) => `${directory}/${filePath}`),
 });
 
