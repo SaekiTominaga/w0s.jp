@@ -41,7 +41,7 @@ interface ViewCar {
 }
 
 export const prerender = false;
-const { configure } = SsrUtil.init(Astro);
+const { configure } = SsrUtil.init(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: '東急電車　車歴表',

@@ -2,20 +2,26 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { AstroGlobal } from 'astro';
 import Log4js from 'log4js';
-import log4jsConfigure from '../../log4js.config.json';
 import configure from '../../../configure/astro.json';
 import type { Astro as Configure } from '../../../configure/type/astro.js';
+
+interface Options {
+	dev: boolean;
+}
 
 export default class SsrUtil {
 	/**
 	 * SSR ページの初期処理
 	 *
 	 * @param Astro - `Astro` global <https://docs.astro.build/en/reference/api-reference/#astro-global>
+	 * @param options - オプション
+	 * @param options.dev - `import.meta.env.DEV` <https://docs.astro.build/en/guides/environment-variables/#default-environment-variables>
 	 *
 	 * @returns 共通で使用されるデータ
 	 */
 	static init = (
 		Astro: AstroGlobal,
+		options: Options,
 	): {
 		configure: Configure;
 		logger: Log4js.Logger;
@@ -23,7 +29,7 @@ export default class SsrUtil {
 		Astro.response.headers.set('Content-Type', 'text/html;charset=utf-8');
 
 		/* Log4js */
-		Log4js.configure(log4jsConfigure);
+		Log4js.configure(options.dev ? 'log4js.dev.config.json' : '../astro/log4js.prod.config.json');
 		const logger = Log4js.getLogger(Astro.url.pathname);
 
 		return {

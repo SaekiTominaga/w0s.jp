@@ -10,7 +10,7 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { logger } = SsrUtil.init(Astro);
+const { logger } = SsrUtil.init(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: '問い合わせ（完了）',

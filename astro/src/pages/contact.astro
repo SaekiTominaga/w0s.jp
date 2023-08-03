@@ -17,7 +17,7 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { configure, logger } = SsrUtil.init(Astro);
+const { configure, logger } = SsrUtil.init(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	'schema-type': 'ContactPage',
