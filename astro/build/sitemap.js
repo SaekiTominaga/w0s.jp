@@ -59,7 +59,7 @@ const fileList = await glob(filesPath, {
  * @returns {string} レスポンス URL のパス（ルート相対パス）
  */
 const getPageUrl = (filePath) => {
-	const parsed = path.parse(filePath);
+	const parsed = path.parse(slash(filePath));
 	const dir = parsed.dir === '/' ? '' : parsed.dir;
 
 	if (['index.html'].includes(parsed.base)) {
