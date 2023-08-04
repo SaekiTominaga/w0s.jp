@@ -7,11 +7,11 @@ interface Props {
 	headingLevel: number;
 	title: string;
 	release?: string;
-	npclass?: string;
+	npClass?: string;
 	tags?: string[];
 }
 
-const { slugger, headingLevel, title, release, npclass, tags } = Astro.props;
+const { slugger, headingLevel, title, release, npClass, tags } = Astro.props;
 
 const sectionId = slugger.slug(title);
 
@@ -37,7 +37,7 @@ if (release !== undefined) {
 					<h3>
 						{title}
 						{releaseDisplay !== undefined && <time datetime={release}>{releaseDisplay}</time>}
-						{npclass !== undefined && <>{npclass}</>}
+						{npClass !== undefined && <>{npClass}</>}
 					</h3>
 				)
 			}
