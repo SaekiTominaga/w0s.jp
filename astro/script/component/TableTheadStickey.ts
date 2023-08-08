@@ -35,7 +35,7 @@ export default class {
 			return;
 		}
 
-		this.#thisElement.style.setProperty('--stickey-thead-height', `${theadElement.scrollHeight}px`);
+		this.#thisElement.style.setProperty('--stickey-thead-block-size', `${theadElement.scrollHeight}px`);
 	}
 
 	/**
