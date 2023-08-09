@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Error.astro';
+import LinkExternal from '@components/LinkExternal.astro';
 import type { StructuredDataErrorPage } from '@type/types.js';
 
 const structuredData: StructuredDataErrorPage = {
@@ -10,5 +11,5 @@ const structuredData: StructuredDataErrorPage = {
 
 <Layout structuredData={structuredData}>
 	<p>時間をおいてアクセスし直してください。</p>
-	<p>しばらく経っても解消されない場合は <a href="https://fedibird.com/@SaekiTominaga">Mastodon: @SaekiTominaga@fedibird.com</a> までお問い合わせください。</p>
+	<p>しばらく経っても解消されない場合は <LinkExternal href="https://fedibird.com/@SaekiTominaga" icon={false}>Mastodon: @SaekiTominaga@fedibird.com</LinkExternal> までお問い合わせください。</p>
 </Layout>
