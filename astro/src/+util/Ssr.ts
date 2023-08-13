@@ -44,27 +44,30 @@ export default class SsrUtil {
 	 * Astro.url を元にページ URL を組み立てる
 	 *
 	 * @param astroUrl - Astro.url <https://docs.astro.build/en/reference/api-reference/#astrourl>
+	 * @param astroFilePath - Astro.self.moduleId
 	 *
 	 * @returns ページ URL
 	 */
-	static getPageUrl = async (astroUrl: URL): Promise<string> => {
+	static getPageUrl = (astroUrl: URL, astroFilePath: string | undefined): string => {
 		const astroPathname = astroUrl.pathname;
 
-		const parsed = path.parse(astroPathname);
-		if (parsed.ext === '') {
+		const urlParsed = path.parse(astroPathname);
+		if (urlParsed.ext === '') {
 			/* 拡張子がない場合（開発環境ないしトップページ） */
 			return astroPathname;
 		}
 
-		const dir = parsed.dir === '/' ? '' : parsed.dir;
+		const dir = urlParsed.dir === '/' ? '' : urlParsed.dir;
 
 		/* 拡張子を除去する */
-		const urlExclusionExt = `${dir}/${parsed.name}`;
+		const urlExclusionExt = `${dir}/${urlParsed.name}`;
 
-		try {
-			await fs.promises.access(`${urlExclusionExt}/`);
-			return `${urlExclusionExt}/`;
-		} catch {}
+		if (astroFilePath !== undefined) {
+			if (path.basename(astroFilePath) === 'index.astro') {
+				/* トップページ以外のインデックスページ */
+				return `${urlExclusionExt}/`;
+			}
+		}
 
 		return urlExclusionExt;
 	};

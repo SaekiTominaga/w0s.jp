@@ -32,7 +32,7 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/admin/', name: 'ホーム' }],
 };
 
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
+const pagePath = SsrUtil.getPageUrl(Astro.url, Astro.self.moduleId);
 
 const slugger = new GithubSlugger();
 
@@ -136,7 +136,7 @@ for (const newsPage of newsPageListDto) {
 }
 ---
 
-<Layout pagePath={pagePath} structuredData={structuredData}>
+<Layout pagePath={pagePath} astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
 		<H slot="heading">データ登録</H>
 

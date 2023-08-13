@@ -23,7 +23,7 @@ const structuredData: StructuredData = {
 	],
 };
 
-const pagePath = await SsrUtil.getPageUrl(Astro.url);
+const pagePath = SsrUtil.getPageUrl(Astro.url, Astro.self.moduleId);
 
 const requestParams = RequestUtil.getParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
@@ -51,7 +51,7 @@ if (requestQuery.action_delete) {
 const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
 ---
 
-<Layout pagePath={pagePath} structuredData={structuredData}>
+<Layout pagePath={pagePath} astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<p><a href={requestQuery.url} referrerpolicy="no-referrer" class="c-link">{requestQuery.url}</a></p>
 
 	<table class="p-table p-admin-crawler-table">

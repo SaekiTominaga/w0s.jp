@@ -25,7 +25,7 @@ interface Props {
 
 const { pagePath: pagePathTemp, astroFilePath, structuredData, top = false, toc = true, contentFooter = true, pageSidebar = true, ad = true } = Astro.props;
 
-const pagePath = pagePathTemp ?? (await SsrUtil.getPageUrl(Astro.url));
+const pagePath = pagePathTemp ?? (SsrUtil.getPageUrl(Astro.url, astroFilePath));
 
 const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);
