@@ -29,7 +29,7 @@ const requestQuery: RequestQuery = {
 	diff: RequestUtil.strings(requestParams.getAll('diff[]')),
 };
 
-let diff: Diff.Change[] = [];
+let diffs: Diff.Change[] = [];
 let fileList: string[] = [];
 
 if (requestQuery.dir !== null) {
@@ -39,8 +39,8 @@ if (requestQuery.dir !== null) {
 			/* 差分チェック */
 			const [file1, file2] = await Promise.all([fs.promises.readFile(`${dir}/${requestQuery.diff.at(0)}`), fs.promises.readFile(`${dir}/${requestQuery.diff.at(1)}`)]);
 
-			diff = Diff.diffLines(Buffer.from(file2).toString(), Buffer.from(file1).toString(), { newlineIsToken: true });
-			diff.forEach((diffPart, index) => {
+			diffs = Diff.diffLines(Buffer.from(file2).toString(), Buffer.from(file1).toString(), { newlineIsToken: true });
+			diffs.forEach((diffPart, index) => {
 				if (diffPart.count !== undefined && diffPart.count > configure.crawler_resource.diff.max_line && !diffPart.added && !diffPart.removed) {
 					const lines = diffPart.value.split('\n');
 
@@ -49,7 +49,7 @@ if (requestQuery.dir !== null) {
 							.slice(lines.length - configure.crawler_resource.diff.max_line + 1)
 							.concat(configure.crawler_resource.diff.omit)
 							.join('\n');
-					} else if (index === diff.length - 1) {
+					} else if (index === diffs.length - 1) {
 						diffPart.value = [configure.crawler_resource.diff.omit].concat(lines.slice(0, configure.crawler_resource.diff.max_line)).join('\n');
 					} else if (diffPart.count > configure.crawler_resource.diff.max_line * 2) {
 						diffPart.value = lines
@@ -60,7 +60,7 @@ if (requestQuery.dir !== null) {
 				}
 			});
 
-			logger.debug('Diff mode', requestQuery.diff, diff);
+			logger.debug('Diff mode', requestQuery.diff, diffs);
 		}
 
 		/* 初期表示 */
@@ -69,12 +69,12 @@ if (requestQuery.dir !== null) {
 }
 ---
 
-<Layout structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	{
-		diff.length >= 1 && (
+		diffs.length >= 1 && (
 			<table class="p-admin-crawler-diff">
 				<tbody>
-					{diff.map((part) => (
+					{diffs.map((part) => (
 						<>
 							{!part.added && !part.removed && (
 								<tr class="p-admin-crawler-diff__line">
