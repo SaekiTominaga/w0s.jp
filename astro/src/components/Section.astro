@@ -5,7 +5,7 @@ interface Props {
 	slugger?: GithubSlugger;
 	id?: string;
 	depth?: number;
-	headingType?: 'a' | 'b' | 'c';
+	headingType?: 'a' | 'b' | 'c' | 'd';
 	class?: string;
 }
 
@@ -32,6 +32,7 @@ if (id !== undefined) {
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
 		{depth === 3 && <h4 set:html={headingHtml} />}
+		{depth === 4 && <h5 set:html={headingHtml} />}
 		<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
 	</div>
 
