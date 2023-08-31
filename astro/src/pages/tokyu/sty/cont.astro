@@ -230,6 +230,7 @@ const slugger = new GithubSlugger();
 				<th scope="col">形式</th>
 				<th scope="col">製造所</th>
 				<th scope="col">登場年</th>
+				<th scope="col">電圧レベル</th>
 				<th scope="col">IM 制御</th>
 				<th scope="col">備考</th>
 			</tr>
@@ -240,6 +241,7 @@ const slugger = new GithubSlugger();
 				<td><a href="#rg654-a-m" class="c-link">RG654-A-M</a></td>
 				<td>東洋</td>
 				<td>1995年</td>
+				<td>3レベル</td>
 				<td>170kW×2×2P</td>
 				<td></td>
 			</tr>
@@ -248,6 +250,7 @@ const slugger = new GithubSlugger();
 				<td><a href="#rg660-a-m" class="c-link">RG660-A-M</a></td>
 				<td>東洋</td>
 				<td>1996年</td>
+				<td>3レベル</td>
 				<td>170kW×2×2P</td>
 				<td>SIV一体型</td>
 			</tr>
@@ -256,6 +259,7 @@ const slugger = new GithubSlugger();
 				<td><a href="#vfi-hr4820e" class="c-link">VFI-HR4820E</a></td>
 				<td rowspan="2">日立</td>
 				<td rowspan="2">1999年<FootnoteReference>実際の機器の製造初年は1998年。</FootnoteReference></td>
+				<td rowspan="2">3レベル</td>
 				<td>190kW×2×4P</td>
 				<td></td>
 			</tr>
@@ -269,6 +273,7 @@ const slugger = new GithubSlugger();
 				<td><a href="#svf038-a0" class="c-link">SVF038-A0</a></td>
 				<td rowspan="2">東芝</td>
 				<td rowspan="2">1999年<FootnoteReference>実際の機器の製造初年は1998年。</FootnoteReference></td>
+				<td rowspan="2">3レベル</td>
 				<td>190kW×2×4P</td>
 				<td></td>
 			</tr>
@@ -278,20 +283,22 @@ const slugger = new GithubSlugger();
 				<td></td>
 			</tr>
 			<tr>
-				<td>Y000系</td>
-				<td><a href="#svf041-a0" class="c-link">SVF041-A0</a></td>
-				<td>東芝</td>
-				<td>1999年</td>
-				<td>190kW×2×2P</td>
-				<td>SIV一体型</td>
-			</tr>
-			<tr>
 				<td>300系</td>
 				<td><a href="#map-064-60v82" class="c-link">MAP-064-60V82</a></td>
 				<td>三菱</td>
 				<td>1999年</td>
+				<td>2レベル（600V）</td>
 				<td>60kW×2×2P</td>
 				<td>IGBT IPM</td>
+			</tr>
+			<tr>
+				<td>Y000系</td>
+				<td><a href="#svf041-a0" class="c-link">SVF041-A0</a></td>
+				<td>東芝</td>
+				<td>1999年</td>
+				<td>3レベル</td>
+				<td>190kW×2×2P</td>
+				<td>SIV一体型</td>
 			</tr>
 		</tbody>
 	</table>
@@ -980,8 +987,8 @@ const slugger = new GithubSlugger();
 
 			<div class="p-text">
 				<p>前述のサハ7962 の電装化に続き、1996年にはサハ7963、7964 の先頭化改造が東急車輛製造（現：総合車両製作所）にて行われ、このうちサハ7964（→デハ7715）は電装化により SIV 一体型の IGBT VVVF インバータ装置が搭載されました。</p>
-				<p>VVVF と時を同じくして補助電源装置の SIV においても主回路素子に IGBT を使用した製品が登場しており、東急電鉄では1993年より8500系の旧型 SIV 置き換え用として <a href="/tokyu/sty/aps#inv095">INV095 型</a>が採用されていました。ここで電圧型 PWM 制御の3レベル方式という点で VVVF インバータと CVCF インバータ（SIV）の回路構成を共通化できるため、これらを一体化することで目蒲線や池上線のように編成中の SIV が1基しかない短編成において冗長性が確保されるものとなっています。</p>
-				<p>機器本体は枕木方向の車体全幅に渡るもので、海側に VVVF の第1〜2バンク、山側に SIV の第3バンクが配置されており、SIV 故障時は海側の正面から見て右側の第2バンクが SIV に切り替えられます<FootnoteReference>鉄道車両と技術 1996年11月号（No.16）「自動切替機能付　SIV一体形VVVFインバーター装置の概要」（辻村功） pp.4–5</FootnoteReference>。</p>
+				<p>VVVF と時を同じくして補助電源装置の SIV においても素子に IGBT を使用した製品が登場しており、東急電鉄では1993年より8500系の旧型 SIV 置き換え用として <a href="/tokyu/sty/aps#inv095">INV095 型</a>が採用されていました。ここで電圧型 PWM 制御の3レベル方式という点で VVVF インバータと CVCF インバータ（SIV）の回路構成を共通化できるため、これらを一体化することで目蒲線や池上線のように編成中の SIV が1基しかない短編成において冗長性が確保されるものとなっています。</p>
+				<p>機器本体は枕木方向の車体全幅に渡るもので、海側に VVVF の第1〜2バンク、山側に 140kVA SIV の第3バンクが配置されており、SIV 故障時は海側の正面から見て右側の第2バンクが SIV に切り替えられます<FootnoteReference>鉄道車両と技術 1996年11月号（No.16）「自動切替機能付　SIV一体形VVVFインバーター装置の概要」（辻村功） pp.4–5</FootnoteReference>。</p>
 				<p>デハ7815 と同様、2010年に廃車され消滅しました。</p>
 			</div>
 		</Section>
@@ -1052,6 +1059,54 @@ const slugger = new GithubSlugger();
 
 			<div class="p-text">
 				<p>新3000系の偶数車は旧6000系試験車以来となる東芝製の VVVF インバータ制御装置が搭載されており、インバータ装置はもちろんのこと断流器やフィルタリアクトルも日立車とは異なります。</p>
+			</div>
+		</Section>
+
+		<Section id="map-064-60v82" depth={2} headingType="b">
+			<H slot="heading">MAP-064-60V82<small>（300系）</small></H>
+
+			<div class="c-flex">
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/MAP-064-60V82_310A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2006-06-24 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【インバータ装置】</b>デハ310A（2次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="p-text">
+				<p>世田谷線のリニューアル車両として1999年にデビューした300系は、東急電鉄としては玉川線200形以来となる三菱電機製の主制御装置が搭載されました。300系は台車を旧型車から流用していますが（不足分は同型を新製）、主電動機は誘導電動機のものが新製され、2両連接の連接部を除いた編成両端の4台分を2群で制御しています。</p>
+				<p>主回路素子は IGBT と駆動回路、保護回路を内蔵した IPM が使用されています<FootnoteReference>東急車輛技報 1999年12月号（No.49）「製品紹介　東京急行電鉄300系」 p.78</FootnoteReference>。また鉄道線車両と異なり、マスコンの力行ノッチ位置によって最高速度が設定されているのが軌道線らしいところです。</p>
+				<p>機器正面の中央部のフィルターはときどき交換されるようで、時期によって印象が異なります。上写真は2000年代後半まで見られた形態となります。</p>
+			</div>
+		</Section>
+
+		<Section id="svf041-a0" depth={2} headingType="b">
+			<H slot="heading">SVF041-A0<small>（Y000系）</small></H>
+
+			<div class="c-flex">
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/SVF041-A0_Y002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2006-07-09 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【インバータ装置】</b>デハY002海側</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="p-text">
+				<p>こどもの国線の通勤線化に向けて1999年にデビューしたY000系は、車体や台車は同年の新3000系とほぼ同じ構造をしていますが、短編成（②両編成）のため主制御装置は 1C2M2群方式で、<a href="#rg660-a-m">デハ7715</a> に続き SIV 一体型のデュアルモードタイプが搭載されました。</p>
+				<p>機器正面から見て右側が VVVF、制御部を挟んだ左側が SIV で、SIV 故障時は VVVF のうち片方が SIV に切り替えられます<FootnoteReference>鉄道ピクトリアル 1999年10月号（No.675）「横浜高速鉄道Y000系」（服部典夫、佐藤浩規） p.64</FootnoteReference>。</p>
+				<p>なお、2012年に登場した動力車デヤ7500、電気検測車デヤ7550 にも同じシステム（SVF041-B0 型）が採用されています。</p>
 			</div>
 		</Section>
 	</Section>
