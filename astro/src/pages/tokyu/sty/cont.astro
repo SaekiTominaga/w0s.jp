@@ -15,7 +15,7 @@ const structuredData: StructuredData = {
 	heading: '主制御装置',
 	dateModified: dayjs('2023-08-21'),
 	description: '旧7000系から新3000系まで（軌道線の旧型車を除く）に搭載された主制御装置を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/sty/cont/HS20_9101.jpg',
+	image: 'https://media.w0s.jp/image/tokyu/sty/cont/VF-HR107_9301.jpg',
 	breadcrumb: [
 		{ path: '/tokyu/', name: 'ホーム' },
 		{ path: '/tokyu/sty/', name: '車両形態' },
@@ -27,63 +27,135 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<table class="p-table -full">
-		<caption>抵抗制御、界磁チョッパ制御</caption>
+		<caption>抵抗制御（界磁制御）</caption>
 		<thead>
 			<tr>
-				<th scope="col">搭載車種</th>
-				<th scope="col">形式</th>
-				<th scope="col">製造所</th>
-				<th scope="col">登場年</th>
+				<th scope="col" rowspan="2">搭載車種</th>
+				<th scope="col" rowspan="2">形式</th>
+				<th scope="col" rowspan="2">製造所</th>
+				<th scope="col" rowspan="2">登場年</th>
+				<th scope="col" colspan="3">カム段数</th>
+			</tr>
+			<tr>
+				<th scope="col">直列</th>
+				<th scope="col">並列</th>
+				<th scope="col">弱め界磁</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
+				<td>7000系（東洋電機車、1〜2次車）</td>
+				<td>ES754-A</td>
+				<td>東洋</td>
+				<td>1962年</td>
+				<td></td>
+				<td></td>
+				<td>FR</td>
+			</tr>
+			<tr>
+				<td>7000系（東洋電機車、3〜10次車）</td>
+				<td><a href="#es757-a" class="c-link">ES757-A</a></td>
+				<td>東洋</td>
+				<td>1963年</td>
+				<td></td>
+				<td></td>
+				<td>FR</td>
+			</tr>
+			<tr>
 				<td>7000系（日立車）</td>
 				<td><a href="#mmc-htr-10a" class="c-link">MMC-HTR-10A</a><FootnoteReference><LinkExternal href="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1965%2f05%2f1965_05_08%2epdf">日立評論 1965年5月号「東京急行電鉄株式会社納7000形電車用停車用電力回生ブレーキ付電気品」（今泉藤麿、樋口徹、神谷清） p.45</LinkExternal></FootnoteReference></td>
 				<td>日立</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>7000系（東洋電機車）</td>
-				<td><a href="#es757-a" class="c-link">ES757-A</a></td>
-				<td>東洋</td>
-				<td></td>
+				<td>1963年</td>
+				<td>10</td>
+				<td>8</td>
+				<td>5</td>
 			</tr>
 			<tr>
 				<td>7200系（日立車）</td>
 				<td><a href="#mmc-htr-10b" class="c-link">MMC-HTR-10B</a></td>
 				<td>日立</td>
 				<td>1967年</td>
+				<td>10</td>
+				<td>8</td>
+				<td>5</td>
 			</tr>
 			<tr>
 				<td>7200系（東洋電機車）</td>
 				<td><a href="#es764-a" class="c-link">ES764-A</a></td>
 				<td>東洋</td>
 				<td>1967年</td>
+				<td>11</td>
+				<td>9</td>
+				<td>FR</td>
 			</tr>
+		</tbody>
+	</table>
+
+	<table class="p-table -full">
+		<caption>抵抗制御（界磁チョッパ）</caption>
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2">搭載車種</th>
+				<th scope="col" colspan="2">形式</th>
+				<th scope="col" rowspan="2">製造所</th>
+				<th scope="col" rowspan="2">登場年</th>
+				<th scope="col" colspan="2">カム段数</th>
+				<th scope="col" rowspan="2">備考</th>
+			</tr>
+			<tr>
+				<th scope="col">主制御器</th>
+				<th scope="col">界磁チョッパ</th>
+				<th scope="col">直列</th>
+				<th scope="col">並列</th>
+			</tr>
+		</thead>
+		<tbody>
 			<tr>
 				<td>8000系1〜4次車</td>
 				<td><a href="#mmc-htr-20a" class="c-link">MMC-HTR-20A</a></td>
+				<td>?</td>
 				<td>日立</td>
 				<td>1969年</td>
+				<td>13</td>
+				<td>11</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>8000系グループ5〜11次車</td>
 				<td><a href="#mmc-htr-20c" class="c-link">MMC-HTR-20C</a></td>
+				<td>調査中</td>
 				<td>日立</td>
 				<td>1974年</td>
+				<td>13</td>
+				<td>11</td>
+				<td></td>
 			</tr>
 			<tr>
-				<td>8000系グループ12〜20次車</td>
-				<td><a href="#mmc-htr-20f" class="c-link">MMC-HTR-20F</a></td>
+				<td>8000系グループ12〜16次車</td>
+				<td rowspan="2"><a href="#mmc-htr-20f" class="c-link">MMC-HTR-20F</a></td>
+				<td>CH-SF101C</td>
 				<td>日立</td>
 				<td>1980年</td>
+				<td rowspan="2">15</td>
+				<td rowspan="2">13</td>
+				<td>16次車は組込車のみ</td>
 			</tr>
 			<tr>
-				<td>8000系グループ（単M車）</td>
-				<td><a href="#mmc-htr-10d" class="c-link">MMC-HTR-10D</a></td>
+				<td>8000系グループ16〜20次車</td>
+				<td>CH-SF111</td>
 				<td>日立</td>
-				<td>1981年</td>
+				<td>1984年</td>
+				<td>16次車は編成車のみ</td>
+			</tr>
+			<tr>
+				<td>8000系グループ（単 M 車）</td>
+				<td><a href="#mmc-htr-10d" class="c-link">MMC-HTR-10D</a></td>
+				<td>ユニット車に準ずる</td>
+				<td>日立</td>
+				<td>1982年<FootnoteReference>実際の機器の製造初年は1981年。</FootnoteReference></td>
+				<td>?</td>
+				<td>?</td>
+				<td></td>
 			</tr>
 		</tbody>
 	</table>
@@ -104,7 +176,7 @@ const slugger = new GithubSlugger();
 		<tbody>
 			<tr>
 				<td>デハ6202</td>
-				<td>VF-HR102<FootnoteReference>鉄道ピクトリアル 1986年6月号（No.465）「わが国のインバータ制御電車」（大幡哲海） p.23</FootnoteReference></td>
+				<td>VF-HR102<FootnoteReference>鉄道ピクトリアル 1985年5月臨時増刊号（No.448）「民鉄車両　車両諸元表」 p.142</FootnoteReference></td>
 				<td>日立</td>
 				<td>1983年</td>
 				<td>2500V–2000A</td>
@@ -202,7 +274,7 @@ const slugger = new GithubSlugger();
 				<td></td>
 			</tr>
 			<tr>
-				<td>1000N′系（単M車）</td>
+				<td>1000N′系（単 M 車）</td>
 				<td><a href="#rg636-a-m" class="c-link">RG636-A-M</a></td>
 				<td>東洋</td>
 				<td>1991年</td>
@@ -255,7 +327,7 @@ const slugger = new GithubSlugger();
 				<td>SIV一体型</td>
 			</tr>
 			<tr>
-				<td rowspan="2">新3000系（日立車）</td>
+				<td rowspan="2">新3000系（日立車、1〜3次車）</td>
 				<td><a href="#vfi-hr4820e" class="c-link">VFI-HR4820E</a></td>
 				<td rowspan="2">日立</td>
 				<td rowspan="2">1999年<FootnoteReference>実際の機器の製造初年は1998年。</FootnoteReference></td>
@@ -269,7 +341,7 @@ const slugger = new GithubSlugger();
 				<td></td>
 			</tr>
 			<tr>
-				<td rowspan="2">新3000系（東芝車）</td>
+				<td rowspan="2">新3000系（東芝車、1〜3次車）</td>
 				<td><a href="#svf038-a0" class="c-link">SVF038-A0</a></td>
 				<td rowspan="2">東芝</td>
 				<td rowspan="2">1999年<FootnoteReference>実際の機器の製造初年は1998年。</FootnoteReference></td>
@@ -300,25 +372,290 @@ const slugger = new GithubSlugger();
 				<td>190kW×2×2P</td>
 				<td>SIV一体型</td>
 			</tr>
+			<tr>
+				<td>1000系1500番台</td>
+				<td><a href="#svf091-b0" class="c-link">SVF091-B0</a></td>
+				<td>東芝</td>
+				<td>2014年<FootnoteReference>実際の機器の製造初年は2013年。</FootnoteReference></td>
+				<td>2レベル</td>
+				<td>130kW×4×2P</td>
+				<td>SIV一体型</td>
+			</tr>
+			<tr>
+				<td>新3000系（日立車、4次車）</td>
+				<td><a href="#vfi-hr1421m" class="c-link">VFI-HR1421M</a></td>
+				<td>日立</td>
+				<td>2021年</td>
+				<td>2レベル</td>
+				<td>190kW×4×1P</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>新3000系（東芝車、4次車）</td>
+				<td><a href="#svf065-c0" class="c-link">SVF065-C0</a></td>
+				<td>東芝</td>
+				<td>2021年</td>
+				<td>2レベル</td>
+				<td>190kW×4×1P</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="p-table -full">
+		<caption>VVVF インバータ制御（MOSFET）</caption>
+		<thead>
+			<tr>
+				<th scope="col">搭載車種</th>
+				<th scope="col">形式</th>
+				<th scope="col">製造所</th>
+				<th scope="col">登場年</th>
+				<th scope="col">電圧レベル</th>
+				<th scope="col">IM 制御</th>
+				<th scope="col">備考</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2">2000系→9020系</td>
+				<td><a href="#" class="c-link">MAP-188-15V314</a></td>
+				<td rowspan="2">三菱</td>
+				<td rowspan="2">2018年<FootnoteReference>実際の機器の製造初年は2017年。</FootnoteReference></td>
+				<td rowspan="2">2レベル</td>
+				<td>175kW×4×2P</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><a href="#" class="c-link">MAP-184-15V324</a></td>
+				<td>175kW×4×1P</td>
+				<td></td>
+			</tr>
 		</tbody>
 	</table>
 
 	<ul class="p-notes">
-		<li>機器形式で脚注のないものは現車調査による。2000系の機器形式が巷の認識と異なる理由は本文参照。</li>
+		<li>機器形式は脚注のあるものを除き現車調査による。2000系の機器形式が巷の認識と異なる理由は<a href="#vf-hr132">本文</a>参照。</li>
 		<li><q>東芝</q>のうち1984年以前は東京芝浦電気の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略。</li>
-		<li>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。なお、製造銘板などで実際の製造所年が判明しているものについては脚注にて補足している。</li>
+		<li>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。なお、製造銘板などで実際の製造初年が判明しているものについては脚注にて補足している。</li>
 		<li>上表のほか、1980年より日立製作所水戸工場においてデハ3552 やデハ6004–6103 を使用した構内試験が行われ、複数種の VVVF インバータ装置が搭載された。</li>
 	</ul>
 
-	<Section id="r">
-		<H slot="heading">抵抗制御</H>
-	</Section>
-
-	<Section id="vvvf">
-		<H slot="heading">VVVF インバータ制御</H>
+	<Section id="r-fs">
+		<H slot="heading">抵抗制御（他励界磁制御）</H>
 
 		<div class="p-text">
-			<p>東急電鉄における VVVF インバータ制御の採用は、デハ3552 日立製作所貸出車での構内試験を別にすれば、1983年より旧6000系・デハ6202 において日立製作所製の装置を搭載した現車試験（1984年夏の大井町線での短期営業運転を含む）が行われたのが始まりです。当初は従来の抵抗制御車との併結でしたが、1985年には東芝、東洋電機製造、日立製作所の3タイプの装置を積んだ VVVF インバータ制御のみの6両編成（3M3T）での試験が開始され、やはり大井町線にて数か月にわたる営業運転も行われました。この時、デハ6202 の日立製 VVVF インバータ装置は 4500V 耐圧のタイプに交換されています。</p>
+			<p></p>
+		</div>
+	</Section>
+
+	<Section id="r-ch">
+		<H slot="heading">抵抗制御（界磁チョッパ制御）</H>
+
+		<div class="p-text">
+			<p>1969年に登場した8000系では<dfn>界磁チョッパ制御</dfn>が導入されました。電機子電流（直巻界磁）は従来と同じく電動カム軸による抵抗制御が用いられる一方で、他励界磁電流（分巻界磁）の制御にサイリスタチョッパが使用されたもので、</p>
+			<ul class="p-list">
+				<li>力行時の抵抗制御（低速時の全界磁領域）では、複巻電動機の他励界磁電流を電機子電流に比例させることで直巻特性を与えられる</li>
+				<li>チョッパ制御が行われる弱め界磁制御時と回生ブレーキ時において、応答速度の向上と界磁電流の連続変化によりスムーズな加減速が実現できる</li>
+			</ul>
+			<p>といったメリットがあります。</p>
+			<p>採用車種としては8000系グループ（8000系、8500系、8090系）のみに留まったものの、20年間も続いた増備により全盛期は在籍車両の過半数を占め、VVVF インバータ制御が普及するまでの代表的な制御方式となりました。</p>
+		</div>
+
+		<Section id="mmc-htr-20a" depth={2} headingType="b">
+			<H slot="heading">MMC-HTR-20A<small>（8000系1〜4次車）</small></H>
+
+			<div class="c-flex">
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/MMC-HTR-20A_8117.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2005-11-20 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【主制御器】</b>デハ8117（2次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/CHS_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-07-21 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【界磁チョッパ装置】</b>デハ8102（1次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/URB-PH_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-18 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【断流器箱】</b>デハ8102（1次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="p-text">
+				<p>1968年の7200系による現車試験<FootnoteReference><LinkExternal href="https://www.hitachihyoron.com/jp/archive/1960s/1968/ex.html">日立評論　50周年記念号「サイリスタ式電気車の開発」（伊沢省二） p.26</LinkExternal></FootnoteReference>の後、8000系に最初に搭載されたのは MMC-HTR-20A 型で、4次車までがこのタイプとなっています。8500系、8090系を含む8000系グループでは、長年の増備の中で何度かマイナーチェンジが行われていますが、基本的な機器構成は VVVF 車を除き同一で、M<span class="u-tokyu-unit">1</span> 車の海側に界磁チョッパ装置、主制御器、断流器箱が横並びで配置され、山側には多数の抵抗器がずらっと並ぶ配置となっています。</p>
+				<p>主制御器は当初3枚蓋でしたが、後に改修を受けて4枚蓋となり、5次車以降の <a href="#mmc-htr-20c">MMC-HTR-20C 型</a>に酷似した形態となりました。断流器箱は界磁用接触器（2個）と断流器（3個）、組み合わせ用接触器（3個）を装備していましたが、これも改修工事で限流遮断器（L3）を撤去し高速度遮断器（HSCB）を追設する変更が行われました<FootnoteReference>鉄道ピクトリアル 1975年4月号（No.305）「東京急行電鉄　49年度新造車デハ8000形系の概要」（市村昇一） p.70</FootnoteReference>。その際、高速度遮断器は単体の箱が設置された一方で限流遮断器の跡地はそのまま空きスペースとされ、改造然とした形態となったのが特徴です。</p>
+				<p>東急線からは2008年までに消滅しましたが、国内では伊豆急行の譲渡車で多数が活躍しています。</p>
+			</div>
+
+			<Section id="8000-m1" depth={3} headingType="c" class="p-box">
+				<H slot="heading">8000系グループの単独 M<span class="u-tokyu-unit">1</span> 系車</H>
+
+				<div class="p-text">
+					<p>8000系はもともと新玉川線完成時に⑥両編成にて使用される想定で製造され、電動車は M<span class="u-tokyu-unit">1</span>–M<span class="u-tokyu-unit">2</span> で2両ユニットを組む構成ですが、1〜4次車の登場当初は東横線にて 3M2T の⑤両編成で運用されていました。この場合、電動車が奇数両になりますから、うち1両は MCOS 操作により M<span class="u-tokyu-unit">1</span> 車（デハ8100形）のみの単独制御となります。主電動機の接続は4台で、並列段には進まず直列制御のみとなり、回生ブレーキの有効速度はユニット車の直並列渡りに相当する 45km/h までとなります（通常のユニット車は 22km/h 程度）。また運転特性を合わせるため、2ノッチ時もユニット車は強制的に3ノッチ投入で並列段に入るよう設定されました。</p>
+					<p>新玉川線は当初予定より遅れて1977年に開通しますが、周知のとおり新たに設計し直された8500系が投入されることとなり、8000系は主に東横線や田園都市線（大井町線）で運用されることになります。1982年には<a href="#mmc-htr-10d">単独 M 車のデハ8400形</a>が作られたものの、すべての編成から単独 M<span class="u-tokyu-unit">1</span> 車を排除するには至らず、とくに大井町線では晩年（2005年）まで残ることになります。</p>
+					<p>8500系についても東横線や新玉川線などで 5M1T の⑥連ないし 5M2T の⑦連が組まれていたことがあり、やはり単独 M<span class="u-tokyu-unit">1</span> 系車が1986年まで存在していました。</p>
+					<p>譲渡車では、伊豆急行に譲渡された8000系のうち2両編成車が 1M1T 構成とされ、伊豆急下田寄りのクモハ8151（東急デハ8155、11-1次車）が当初単独 M<span class="u-tokyu-unit">1</span>c 車とされましたが、運用開始後まもなくして相方の電装化に伴いユニット車となりました。また、モデルカーとされたデハ8723（7-2次車）は伊豆急行クモハ8152 として単独 M<span class="u-tokyu-unit">1</span>c 車のまま出場したものの、現地での営業入りまでにユニット化されています。</p>
+				</div>
+
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/tokyu8103.jpg" alt="" width={360} height={240} quality={60} />
+						<!-- 撮影日: 2005-08-14 -->
+					</div>
+					<figcaption class="c-caption">
+						<span class="c-caption__title">大井町線で最後まで残った単独 M<span class="u-tokyu-unit">1</span> 車のデハ8103</span>
+					</figcaption>
+				</figure>
+			</Section>
+		</Section>
+
+		<Section id="mmc-htr-20c" depth={2} headingType="b">
+			<H slot="heading">MMC-HTR-20C<small>（8000系5〜11次車、8500系6〜11次車）</small></H>
+
+			<div class="c-flex">
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/MMC-HTR-20C_8519.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-04-27 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【主制御器】</b>デハ8519（8次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/CH-SF101C_8736.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2006-02-10 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【界磁チョッパ装置】</b>デハ8736（9-1次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/URB-PH_8514.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2006-11-19 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【断流器箱】</b>デハ8514（7-1次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="p-text">
+				<p>1974年の5次車は田園都市線（大井町 – すずかけ台）向けに④両編成で登場しましたが、2M2T で 編成中に M<span class="u-tokyu-unit">1</span> 車が1両しかないためデハ8100形が2丁パンタとされ、MT 比が低いため主抵抗器が容量増加により従来の8個に対して10個に増やされるなど、さまざまなバリエーションがあった8000系グループの中でもとくに異端のシステムとされました。</p>
+				<p>主制御器は保護回路として過電圧時に点弧される過電圧抑制サイリスタ（OVCRf）を電機子と並列に設置、また限流遮断器の代わりに高速度遮断器の機能も付いた MMC-HTR-20C 型へ変更となりました。ただし、前述のとおり1〜4次車の <a href="#mmc-htr-20a">MMC-HTR-20A 型</a>も改修工事で同じ機能が追加されたため、機器の外観に違いは見られません。一方、界磁チョッパ装置や断流器箱は4次車以前と5次車以降で差異が見られます。とくに断流器箱は2分割されたのが特徴で、向かって左側の大きめの箱には界磁用接触器（2個）と組み合わせ用接触器（3個）が、右側の小さな箱には断流器（2個）と高速度遮断器が納められています。</p>
+				<p>翌1975年の6次車では地下鉄11号線（半蔵門線）乗り入れに対応した8500系が登場しますが、登場時点では5次車と同じ④両編成ながら先頭車を電動車にした 3M1T の編成になったため主抵抗器は8個に戻された一方、上り勾配における後退対策として緩いブレーキを掛けながら力行を行う<dfn>勾配起動</dfn>や、故障列車を勾配で併結押し上げするための<dfn>限流値増</dfn>回路の追加が行われています<FootnoteReference>電気車の科学 1975年2月号（No.322）「東京急行電鉄49年度新造車（デハ8500形他）について」（市村昇一） p.43</FootnoteReference>。</p>
+				<p>2002年には新5000系の投入による車両転配で8000系の廃車が始まりますが、諸般の事情で最初に離脱した東横線 8041F を別とすれば、M<span class="u-tokyu-unit">1</span> 車に5次車が含まれる編成（東横線 8027F、大井町線 8045F〜8051F）から優先して廃車が行われた理由は推して知るべしといったところでしょう。廃車タイミングもあってか電動車の譲渡は1両もなく、5次車そのものはクハ8000形が伊豆急行に3両が譲渡されたものの、特徴的だったシステムはもはや見ることができません。</p>
+				<p>6次車以降の車両も東急線からは2022年までに消滅しましたが、国内では伊豆急行、長野電鉄、秩父鉄道の各譲渡先で活躍しています。</p>
+			</div>
+		</Section>
+
+		<Section id="mmc-htr-20f" depth={2} headingType="b">
+			<H slot="heading">MMC-HTR-20F<small>（8000系12〜18次車、8500系12〜20次車、8090系12〜20次車）</small></H>
+
+			<div class="c-flex">
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/MMC-HTR-20F_8181.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-06-08 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【主制御器】</b>デハ8181（16-2次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/CH-SF111_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-06-08 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【界磁チョッパ装置、GTO】</b>デハ8497（16-2次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="p-text">
+				<p>1980年に12次車として登場した8090系ではカム段数を増加（強め界磁直列13→15段、強め界磁並列11→13段）させた MMC-HTR-20F 型となりました。8000系、8500系も同様に変更され、<a href="#mmc-htr-10d">単独 M 車</a>を除き20次車まで続きます。</p>
+				<p>界磁チョッパ装置も IC 化の推進などの改良が行われたものの<FootnoteReference>鉄道ピクトリアル 1981年3月号（No.387）「東京急行電鉄8090系軽量ステンレス車」（金邊秀雄） p.52</FootnoteReference>、この時点では外観に変更はありません（写真は省略）。</p>
+				<p>8090系は1984年の16次車（8097F〜）でマイナーチェンジが行われ、デハ8490形の組成位置変更や前尾灯位置の変更による正面顔の変化などが目立つところですが、界磁チョッパ装置も変更が加えられ素子に GTO サイリスタを使用した小型タイプとなりました。これは前年よりデハ8100形で現車試験が行われていたもので<FootnoteReference>鉄道ピクトリアル 1985年3月号（No.444）「東急8090系モデルチェンジ車」（荻原俊夫） p.64</FootnoteReference>、この時点では GTO サイリスタは 2500V 耐圧のものしか開発されておらず、直流 1500V 用電車での使用に際し、2個の GTO サイリスタを直列接続する方式が採られています<FootnoteReference><LinkExternal href="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1984%2f06%2f1984_06_13%2epdf">日立評論 1984年6月号「GTOサイリスタ界磁チョッパ装置の開発」 p.53</LinkExternal></FootnoteReference>。</p>
+				<p>この GTO サイリスタ使用の界磁チョッパ装置は、16次車では編成単位で新製された車両のみの採用であり、8097F より入籍が4か月遅いデハ8777（田玉線 8606F の⑩連化組み込み用）は従来タイプを搭載するという逆転現象が起こっていましたが、17次車以降は組込車を含め全車が GTO タイプとなっています。</p>
+				<p>東急線からは2023年の8500系全廃に伴い消滅しましたが、国内では伊豆急行、秩父鉄道、富山地方鉄道の各譲渡先で活躍しています。</p>
+			</div>
+		</Section>
+
+		<Section id="mmc-htr-10d" depth={2} headingType="b">
+			<H slot="heading">MMC-HTR-10D<small>（8000系グループ・単 M 車）</small></H>
+
+			<div class="c-flex">
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/MMC-HTR-10D_8495.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2008-06-08 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【主制御器】</b>デハ8495（16-2次車）海側</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="c-flex__item">
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/sty/cont/R_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+							<!-- 撮影日: 2006-12-03 -->
+						</div>
+						<figcaption class="c-caption -meta">
+							<span class="c-caption__title"><b>【主抵抗器】</b>デハ8497（16-2次車）山側</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="p-text">
+				<p>1981年度の13次車では、東横線の編成増強に伴う⑥連→⑦連化ないし⑦連→⑧連化が一部の編成で行われ、単独 M 車のデハ8400形が登場しました<FootnoteReference>軽量試作車の初代デハ8400形はこれに先駆けて改番されています。</FootnoteReference>。同時期に8090系の 8093F〜8095F が⑧両編成で新製され、同様に新登場のデハ8490形が組み込まれています。</p>
+				<p>8000系グループにおいて編成の都合でユニットを組まない M<span class="u-tokyu-unit">1</span> 車は<a href="#8000-m1">前述のコラム</a>のとおり1次車新製時から存在していたものの、この場合は直列制御のみとなり、回生ブレーキの有効速度などの面で改善を要する問題がありました。これに対し、最初から単独 M 車として設計されたデハ8400形、デハ8490形では主電動機を端子電圧 750V の 2S2P 接続とすることで 1C4M 構成での直並列制御が可能となっています。</p>
+				<p>主制御器も専用の MMC-HTR-10D 型となりましたが、外観はユニット車用の <a href="#mmc-htr-20f">MMC-HTR-20F 型</a>と変わりません。しかし車両山側に目を向けると主抵抗器はユニット車の8個に対して7個と少なくなっており、抵抗器群のもっとも上り方にあるやや大きめの限流抵抗器との間が歯抜けになっている違いがあります。</p>
+				<p>9両が製造されたデハ8400形のうち、デハ8401〜8407 は新製まもない1984年から1985年にかけてユニット構成の M<span class="u-tokyu-unit">1</span> 車であるデハ8100形（デハ8162〜8168）へ車種変更されましたが、その際この主制御器は同時期に新製されたデハ8490形の16-2次車〜17次車へ転用されています。このうちデハ8162〜8166（旧デハ8401〜8405）は1988年の東横線全列車⑧連化までに M<span class="u-tokyu-unit">2</span> 車（デハ8200形）と組むことができたものの、大井町線に転籍したデハ8167〜8168（旧デハ8406〜8407）はせっかく改造したユニット構成を最後まで活かせないまま2003年の早期に廃車される残念な運命となりました。一方、デハ8408〜8409、およびデハ8490形（全10両）はその後も単 M 構成で残り、1988年度のデハ8590形、デハ8690形新製に伴う8090系の編成替え後は大井町線に集結しました。晩年、デハ8408〜8409 は5次車編成を先に廃車させるために組み込みをそれぞれ 8005F、8001F に変更する措置を執ってまで延命されたのは、単に車歴が若いというだけでなく、単独 M 車の利点を最後まで活用させる意図があったものと思われます。</p>
+				<p>東急線からは2013年までに消滅しましたが、デハ8490形のうち最後まで残った4両は先頭化改造を受けて秩父鉄道に譲渡され、7800系として活躍しています。</p>
+			</div>
+		</Section>
+	</Section>
+
+	<Section id="vvvf-gto">
+		<H slot="heading">VVVF インバータ制御（GTO サイリスタ）</H>
+
+		<div class="p-text">
+			<p>東急電鉄における VVVF インバータ制御の採用は、日立製作所におけるデハ3552 の構内試験を別にすれば、1983年より旧6000系・デハ6202 において日立製作所製の装置を搭載した現車試験（1984年夏の大井町線での短期営業運転を含む）が行われたのが始まりです。当初は従来の抵抗制御車との併結でしたが、1985年には東芝、東洋電機製造、日立製作所の3タイプの装置を積んだ VVVF インバータ制御のみの6両編成（3M3T）での試験が開始され、やはり大井町線にて数か月にわたる営業運転も行われました。この時、デハ6202 の日立製 VVVF インバータ装置は 4500V 耐圧のタイプに交換されています。</p>
 			<p>これらの現車試験結果を基に、1986年デビューの新造車9000系、および改造車7600系より本格的な VVVF インバータ制御の時代に突入しました。</p>
 		</div>
 
@@ -351,7 +688,7 @@ const slugger = new GithubSlugger();
 			</div>
 
 			<div class="p-text">
-				<p>旧6000系での2年以上にわたる現車試験を経て、1986年3月に日立製作所製の VVVF インバータ装置を搭載した新造車9000系がデビューしました。</p>
+				<p>旧6000系での2年以上にわたる現車試験を経て、1986年に日立製作所製の VVVF インバータ装置を搭載した新造車9000系がデビューしました。</p>
 				<p>このインバータ装置は日本国内の電気車で一般的に採用されている電圧形のパルス幅変調（PWM）方式で、主回路素子には 4500V 耐圧の GTO サイリスタを使用しています。架線電圧 1500V の電気車では 4000V 級の耐圧が求められますが、旧6000系試験車では当初 2500V 耐圧の GTO サイリスタを各アーム2個直列で接続した 2S1P6A 構成だったの対し、1985年には日立が 4500V タイプを開発して 1S1P6A 構成にしたものをデハ6202 に搭載（旧品と交換）しており<FootnoteReference><LinkExternal href="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1986%2f10%2f1986_10_15%2epdf">日立評論 1986年10月号「DCl,500V電車駆動用VVVFインバータ制御装置の開発」（岡松茂俊、堀江哲、浅井康夫、木村彰、加藤憲司） p.69</LinkExternal></FootnoteReference>、この時点で量産化に至るスタンダードな構成が確率されたと言えます<FootnoteReference>余談ですが、4500V 耐圧の GTO サイリスタを最初に開発したのは三菱電機であり、1984年に 1500V 普通鉄道における国内初の VVVF 新造車としてデビューした近鉄1250系（現：1420系）で早くも実用化されていました。そのため 2500V 耐圧の GTO サイリスタを2個直列配置した VVVF インバータ装置が（短期間の試験的なものとはいえ）営業列車で使われた事例は、国内では東急の旧6000系のみだったものと思われます。</FootnoteReference>。</p>
 				<p>主電動機は誘導モーター（IM）となったため、従来の直流電動機と比べてブラシや整流子の省略により回転数が上がり、8000系グループと同じ外形寸法で出力が 130kW → 170kW にアップされています。そのため編成の MT 比を下げることができ、東横線⑧両編成における組成は8000系や8500系の 6M2T に対して 4M4T となった一方、1つのインバータ装置で主電動機4台（1両分）を制御する 1C4M 方式であるため編成あたりの主制御装置の台数は増加しています。</p>
 				<p>GTO サイリスタ素子の冷却はフロン液タンクに浸漬させる自冷式で、U 相、V 相、W 相それぞれの前面に網目状の突起がありますが、その下部にタンクが収納されています。</p>
@@ -392,7 +729,7 @@ const slugger = new GithubSlugger();
 			<div class="p-text">
 				<p>9000系とほぼ同時期に（約2か月遅れ）7200系を VVVF インバータ化改造した7600系が登場しました。</p>
 				<p>旧6000系試験車や9000系は 1C4M 制御だったのに対し、7600系はインバータ制御車としては初の事例となる 1C8M 制御となったのが最大の特徴です。この 1C8M 制御は後に1000系や2000系など1990年代前半までの GTO VVVF インバータ新製車に広く普及しましたが、一方で7600系における 1C8M 制御は長くは続かず、詳しくは<a href="#rg617-b-m">後述</a>しますが、1990年までに全車両が 1C4M 制御に改造されました。</p>
-				<p>そのほかの特筆すべき点として<dfn>マイナス Fi 制御</dfn>の導入が挙げられます。これは上り勾配における後退時の対策であり、<var>Fi</var>（インバータ周波数）の最低値リミットを設けず後退速度に応じ連続的に変化させることで主電動機電流を一定に保ちながら必要なトルクを発生させる機能で、東洋電機製造が他メーカーに先駆けて旧6000系デハ6002 での試験時から導入していたものです<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3248088/1/12">東洋電機技報　第64号（1985年12月）「東京急行電鉄㈱納6000形車のVVVFインバータ制御システム」 p.21</LinkExternal></FootnoteReference>。もちろん後退しないに越したことはなく、1994年〜1995年の室内更新工事において運転台がワンハンドルマスコン化された際には9000系と同じく勾配起動ボタンが用意されています。</p>
+				<p>そのほかの特筆すべき点として<dfn>マイナス Fi 制御</dfn>の導入が挙げられます。これは上り勾配における後退時の対策であり、<var lang="en">Fi</var>（インバータ周波数）の最低値リミットを設けず後退速度に応じ連続的に変化させることで主電動機電流を一定に保ちながら必要なトルクを発生させる機能で、東洋電機製造が他メーカーに先駆けて旧6000系デハ6002 での試験時から導入していたものです<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3248088/1/12">東洋電機技報　第64号（1985年12月）「東京急行電鉄㈱納6000形車のVVVFインバータ制御システム」 p.21</LinkExternal></FootnoteReference>。もちろん後退しないに越したことはなく、1994年〜1995年の室内更新工事において運転台がワンハンドルマスコン化された際には9000系と同じく勾配起動ボタンが用意されています。</p>
 				<p>また、3両編成では編成中の補助電源装置が1台となるので、SIV 故障時に運転不能の事態に陥ることを避けるため VVVF 装置の電源は直流 100V とし、蓄電池からの供給で自力回送が可能な方式とされました<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/2313672/1/15">電気鉄道 1986年8月号（No.459）「東京急行電鉄　VVVFインバータ制御電車」（宮田道一） p.20</LinkExternal></FootnoteReference>。</p>
 				<p>7600系の引退に伴い、2015年に消滅しました。</p>
 			</div>
@@ -476,7 +813,7 @@ const slugger = new GithubSlugger();
 
 			<div class="p-text">
 				<p><a href="#rg614-a-m">前述</a>のとおり、7600系は当時の VVVF インバータ車両としては前例のない 1C8M 制御で竣工し、当初は大井町線に 2M1T を2本繋いだ6両編成1本が、目蒲線には抵抗制御のデハ7200形との混結である全電動車の3両編成1本が投入されました。しかし当初より目蒲・池上線における短編成での運用を視野に入れたものであり、まもなく目蒲線に集結した後、1988年には全車両が池上線に転籍となります。</p>
-				<p>その際、大井町線投入組の2編成（7601F〜7602F）は冗長化の観点から編成中の主制御器が1台になるのを防ぐため、下り向き先頭車のクハ7500形に本インバータ装置を搭載して電動車化し7600系に編入する一方、M2c 車であったデハ7600形を電装解除することで、2M1T の構成のまま 1C4M 制御への変更が行われました<FootnoteReference>7600系の 1C4M 化改造は必ずしも池上線転籍と同時ではなく、Rail Magazine 1989年1月号（No.61） p.124 のニュース投稿記事「東急の話題」（佐伯典昭）によると、少なくとも 7602F は改造後も目蒲線での運用実績があったようです。</FootnoteReference>。</p>
+				<p>その際、大井町線投入組の2編成（7601F〜7602F）は冗長化の観点から編成中の主制御器が1台になるのを防ぐため、下り向き先頭車のクハ7500形に本インバータ装置を搭載して電動車化し7600系に編入する一方、M<span class="u-tokyu-unit">2</span>c 車であったデハ7600形を電装解除することで、2M1T の構成のまま 1C4M 制御への変更が行われました<FootnoteReference>7600系の 1C4M 化改造は必ずしも池上線転籍と同時ではなく、Rail Magazine 1989年1月号（No.61） p.124 のニュース投稿記事「東急の話題」（佐伯典昭）によると、少なくとも 7602F は改造後も目蒲線での運用実績があったようです。</FootnoteReference>。</p>
 				<p>目蒲線投入組の1編成はこの時点では改造が行われず、デハ7200形混結のまま池上線に転籍しましたが、1990年にはデハ7200形を外し、中間にデハ7400形から改造されたデハ7673 を組み込んだうえで、さらにデハ7600形を電装解除することで、1C4M 制御で 2M1T 編成への変更が行われました。</p>
 				<p>これら2回に分けて行われた改造工事において搭載されたインバータ装置は7700系と同じ RG617 型であり、主要スペックや外観は変わりませんが、主電動機出力に違いがあるためか枝番を B 型として区別されていました。この結果、7600系は車両によって RG614 型と RG617 型が混在する結果になったのですが、登場当初からの組成の違いにより、7601F〜7602F と 7603F ではそれぞれの搭載位置が異なる結果となり、車体形状やパンタグラフ位置だけでなく、床下機器も興味深いものとなっていました。</p>
 				<p>RG614-A-M 型と同じく、7600系の引退に伴い2015年に消滅しました。</p>
@@ -602,7 +939,7 @@ const slugger = new GithubSlugger();
 						<li>鉄道ジャーナル「私鉄車両のうごき」1987年4月号（No.245）</li>
 						<li>鉄道ダイヤ情報「私鉄DATA FILE 私鉄車両のうごき」1986年秋号（No.32）、1988年11月号（No.55）、1989年7月号（No.63）、1990年10月号（No.78）、1995年7月号（No.135）</li>
 						<li>鉄道ピクトリアル 1986年12月号（No.472）「東急だより」（小林和明） pp.110–111</li>
-						<li>鉄道ピクトリアル 1987年7月号（No.482）</li>
+						<li>鉄道ピクトリアル 1987年7月号（No.482）「東急だより」（小林和明） p.110</li>
 						<li>Rail Magazine 1989年1月号（No.61）「東急の話題」（佐伯典昭） p.124</li>
 					</ul>
 				</Section>
@@ -886,7 +1223,7 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section id="rg636-a-m" depth={2} headingType="b">
-			<H slot="heading">RG636-A-M<small>（1000N′系）</small></H>
+			<H slot="heading">RG636-A-M<small>（1000N′系・単 M 車）</small></H>
 
 			<div class="c-flex">
 				<div class="c-flex__item">
@@ -920,6 +1257,15 @@ const slugger = new GithubSlugger();
 				<p>2008年には上田電鉄への譲渡のため一部の廃車が始まり、譲渡対象外の中間車は解体されましたが、本インバータ装置は2台が1000N系の伊賀鉄道譲渡車（201〜202編成）に流用されました。しかし2018年には何らかの事情でモ202 のインバータ装置が RG621 型に換装されたため<FootnoteReference><LinkExternal href="https://blog.w0s.jp/666">伊賀鉄道モ202 の VVVF 装置が（2018年に） RG621 型に換装</LinkExternal></FootnoteReference>、残るのは池上、東急多摩川線残存車（デハ1217, 1219〜1222）と伊賀鉄道モ201 の6台となっています。</p>
 			</div>
 		</Section>
+	</Section>
+
+	<Section id="vvvf-igbt">
+		<H slot="heading">VVVF インバータ制御（IGBT）</H>
+
+		<div class="p-text">
+			<p>1990年代に入ると半導体素子のうちゲート制御を電圧で指令する<dfn>絶縁ゲート型両極性トランジスタ（IGBT）</dfn>の大容量化により、鉄道車両の VVVF インバータ装置へ適用できる耐圧 2000V 級の製品が実用化され、1992年度の営団地下鉄（現：東京メトロ）06系、07系などへの採用を皮切りに、それまでの GTO サイリスタに代わって IGBT の時代に突入します。</p>
+			<p>この時期、東急電鉄では1993年に増備された2000系3次車を最後に旅客車両の新製が5年間もストップする停滞期間に入りますが、この間も池上線のワンマン化（1998年実施）に向けた若干数の車両の動きはあり、7700系の2両のみに IGBT タイプの VVVF インバータ装置が採用、その後1999年の新3000系より本格的な IGBT VVVF の導入が始まりました。</p>
+		</div>
 
 		<Section id="rg654-a-m" depth={2} headingType="b">
 			<H slot="heading">RG654-A-M<small>（デハ7815）</small></H>
@@ -950,10 +1296,9 @@ const slugger = new GithubSlugger();
 			</div>
 
 			<div class="p-text">
-				<p>1990年代に入ると半導体素子のうちゲート制御を電圧で指令する<dfn>絶縁ゲート型両極性トランジスタ（IGBT）</dfn>の大容量化により、鉄道車両の VVVF インバータ装置へ適用できる耐圧 2000V 級の製品が実用化され、1992年度の営団地下鉄（現：東京メトロ）06系、07系などへの採用を皮切りに、それまでの GTO サイリスタに代わって IGBT の時代に突入します。</p>
-				<p>この時期、東急電鉄では1993年に増備された2000系3次車を最後に旅客車両の新製が5年間もストップする停滞期間に入りますが、この間も池上線のワンマン化（1998年実施）に向けた若干数の車両の動きはあり、電動車の増加に対して東洋電機製造による IGBT タイプの VVVF インバータ装置が開発されています。まず1995年には目蒲線の 7912F に組み込まれていたサハ7962 の電装化（新車号はデハ7815）が行われ、目蒲線で営業運転が行われました。</p>
+				<p>池上線のワンマン化に向けた車両転配により、7700系のうち4両×3編成を3両×4編成に組成替えすることになり、電動車の増加に対して東洋電機製造による IGBT タイプの VVVF インバータ装置が開発されています。まず1995年には目蒲線の 7912F に組み込まれていたサハ7962 の電装化（新車号はデハ7815）が行われ、目蒲線で営業運転が行われました。</p>
 				<p>従来、1つのインバータ装置で車両単位で主電動機4台（1両）ないし8台（2両ユニット）制御をしていたのに対し、本タイプでは台車単位の2台制御となり、インバータ装置にインバータユニットを2群搭載した 1C2M2群構成となっています。このため、装置正面は三相分の IGBT ユニットを収納したインバータユニットが左右に2つ配置されるというこれまでにない形態となりました。また、PWM 制御の電圧レベルに中間段を設けて3段階とした<dfn>3レベルインバータ</dfn>が採用されており、素子の数は2倍になり主回路構成も複雑になるものの素子耐圧を低くすることができ、従来の GTO サイリスタでは 4500V 耐圧だったものが 1700V 耐圧<FootnoteReference>鉄道車両と技術 1995年10月号（No.3）「日本のインバータ制御車両一覧」 p.11</FootnoteReference>へと半減以下になっています。</p>
-				<p>電装化まもなくして、同年中に 7912F の池上線転籍に伴う3連化工事のため組み込みを 7902F に変更、しかしこれも半年ほどの暫定的なもので、1996年には他のサハ7950形改造車とともに独立した3連を組み池上線へ転籍します。1997年に機器改修のため長期にわたり運用を離脱<FootnoteReference>鉄道ピクトリアル 1998年3月号（No.650）「東急池上線7915F営業復帰」（前川一行） p.83</FootnoteReference>した後は大きな動きはありませんでしたが、新7000系の投入に伴い、7700系ワンマン車の中ではもっとも早く2010年に廃車となり、本機器も消滅しました。</p>
+				<p>デハ7815 の電装化まもなくして、同年中に 7912F の池上線転籍に伴う3連化工事のため組み込みを 7902F に変更、しかしこれも半年ほどの暫定的なもので、1996年には他のサハ7950形改造車とともに独立した3連を組み池上線へ転籍します。1997年に機器改修のため長期にわたり運用を離脱<FootnoteReference>鉄道ピクトリアル 1998年3月号（No.650）「東急池上線7915F営業復帰」（前川一行） p.83</FootnoteReference>した後は大きな動きはありませんでしたが、新7000系の投入に伴い、7700系ワンマン車の中ではもっとも早く2010年に廃車となり、本機器も消滅しました。</p>
 			</div>
 		</Section>
 
@@ -1023,8 +1368,8 @@ const slugger = new GithubSlugger();
 
 			<div class="p-text">
 				<p>1999年にデビューした新3000系の VVVF インバータ制御装置は奇数車が日立製作所製、偶数車が東芝製と複数メーカーが混在しており、基本性能は同一なものの形状は大きく異なります。</p>
-				<p>機器本体は枕木方向の車体全幅に渡るもので、海側に第1〜2群、山側に第3〜4群が配置されますが、中央部は点検通路となるよう<LinkPhoto href="https://media.w0s.jp/image/tokyu/sty/cont/VFI-HR4820E_3403_center.jpg" title="デハ3403 下り方"><!-- 撮影日: 2009-05-13 -->逆凹型の形状</LinkPhoto>をしています。</p>
-				<p>当初、1次車が東横線にて暫定⑧両編成で運用された際はデハ3200形（現：デハ3300形）に 1C2M4群の VVVF インバータ装置が搭載され、デハ3250形（現：デハ3200形）とユニットを組んでいましたが、2次車では単M車のデハ3400形（現：デハ3700形）が登場しました。機器外装は共通なものの 1C2M2群のため山側の第3〜4群を搭載しておらず、中身が空となっています。これに伴い型番が区別されており、デハ3200形の VFI-HR4820E 型に対して VFI-HR2420B 型となっています。</p>
+				<p>機器本体は枕木方向の車体全幅に渡るもので、海側に第1〜2群、山側に第3〜4群が配置されますが、中央部は点検通路となるよう<LinkPhoto href="https://media.w0s.jp/image/tokyu/sty/cont/VFI-HR4820E_3403_center.jpg" title="旧デハ3403（現デハ3703）下り方"><!-- 撮影日: 2009-05-13 -->逆凹型の形状</LinkPhoto>をしています。</p>
+				<p>当初、1次車が東横線にて暫定⑧両編成で運用された際はデハ3200形（現：デハ3300形）に 1C2M4群の VVVF インバータ装置が搭載され、デハ3250形（現：デハ3200形）とユニットを組んでいましたが、2次車では単 M 車のデハ3400形（現：デハ3700形）が登場しました。機器外装は共通なものの 1C2M2群のため山側の第3〜4群を搭載しておらず、中身が空となっています。これに伴い型番が区別されており、デハ3200形の VFI-HR4820E 型に対して VFI-HR2420B 型となっています。</p>
 				<p>2020年には⑧連化のため20年ぶりの増備がありましたが、この際デハ3500形には新型の VFI-HR1421M 型が搭載されました。</p>
 			</div>
 		</Section>
@@ -1059,6 +1404,7 @@ const slugger = new GithubSlugger();
 
 			<div class="p-text">
 				<p>新3000系の偶数車は旧6000系試験車以来となる東芝製の VVVF インバータ制御装置が搭載されており、インバータ装置はもちろんのこと断流器やフィルタリアクトルも日立車とは異なります。</p>
+				<p>2020年の増備ではデハ3500形に新型の SVF065-C0 型が搭載されました。</p>
 			</div>
 		</Section>
 
@@ -1081,7 +1427,7 @@ const slugger = new GithubSlugger();
 
 			<div class="p-text">
 				<p>世田谷線のリニューアル車両として1999年にデビューした300系は、東急電鉄としては玉川線200形以来となる三菱電機製の主制御装置が搭載されました。300系は台車を旧型車から流用していますが（不足分は同型を新製）、主電動機は誘導電動機のものが新製され、2両連接の連接部を除いた編成両端の4台分を2群で制御しています。</p>
-				<p>主回路素子は IGBT と駆動回路、保護回路を内蔵した IPM が使用されています<FootnoteReference>東急車輛技報 1999年12月号（No.49）「製品紹介　東京急行電鉄300系」 p.78</FootnoteReference>。また鉄道線車両と異なり、マスコンの力行ノッチ位置によって最高速度が設定されているのが軌道線らしいところです。</p>
+				<p>主回路素子は IGBT と駆動回路、保護回路を内蔵した IPM が使用されています<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3233259/1/41">東急車輛技報 1999年12月号（No.49）「製品紹介　東京急行電鉄300系」 p.78</LinkExternal></FootnoteReference>。また鉄道線車両と異なり、マスコンの力行ノッチ位置によって最高速度が設定されているのが軌道線らしいところです。</p>
 				<p>機器正面の中央部のフィルターはときどき交換されるようで、時期によって印象が異なります。上写真は2000年代後半まで見られた形態となります。</p>
 			</div>
 		</Section>
