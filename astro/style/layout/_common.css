@@ -3,12 +3,12 @@
  * ============================== */
 
 .l-page {
-	display: grid;
+	display: block grid;
 }
 
 /* ===== ページヘッダー ===== */
 .l-header {
-	display: grid;
+	display: block grid;
 	grid-template-columns: [full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline) [full-end];
 	grid-column: header;
 	container: header / inline-size;
@@ -18,7 +18,7 @@
 
 /* ヘッダーメイン */
 .l-header__main {
-	display: grid;
+	display: block grid;
 	grid-template-columns: 50% 1fr;
 	grid-template-areas: "site nav";
 	grid-column: content;
@@ -43,7 +43,7 @@
 .l-header__nav {
 	--_justify-content: flex-end;
 
-	display: flex;
+	display: block flex;
 	grid-column: nav;
 	flex-wrap: wrap;
 	place-content: flex-start var(--_justify-content);
@@ -86,7 +86,7 @@
 
 	&:not(:empty) {
 		&::before {
-			display: block;
+			display: block flow;
 			margin: 60px auto;
 			border-block-start: 1px solid;
 			border-image: linear-gradient(to right, transparent 0%, var(--color-lightgray) 50%, transparent 100%) 1 / 1px;
@@ -111,7 +111,7 @@
 
 /* ===== ページフッター ===== */
 .l-footer {
-	display: grid;
+	display: block grid;
 	grid-template-columns: [full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline) [full-end];
 	grid-column: footer;
 	container: footer / inline-size;
