@@ -11,15 +11,20 @@ import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
-	title: '東急電車の制御装置（抵抗制御、界磁チョッパ制御）',
+	title: '東急電車の制御装置（抵抗制御、高性能車）',
 	heading: '制御装置',
-	subHeading: '抵抗制御、界磁チョッパ制御',
-	dateModified: dayjs('2023-09-28'),
-	description: '8000系グループまでの抵抗制御車に搭載された制御装置を紹介します。',
+	subHeading: '抵抗制御、高性能車',
+	dateModified: dayjs('2023-10-26'),
+	description: '旧5000系から8000系グループまでの高性能車に搭載された制御装置を紹介します。',
 	image: 'https://media.w0s.jp/image/tokyu/sty/cont/MMC-HTR-20A_8117.jpg',
 	breadcrumb: [
 		{ path: '/tokyu/', name: 'ホーム' },
 		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+	localNav: [
+		{ path: '/tokyu/sty/cont_resist_old', name: '抵抗制御（旧性能車）' },
+		{ path: '/tokyu/sty/cont_resist_new', name: '抵抗制御（高性能車）' },
+		{ path: '/tokyu/sty/cont_vvvf', name: 'VVVF インバータ制御' },
 	],
 };
 
@@ -28,7 +33,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<table class="p-table -full">
-		<caption>抵抗制御（高性能車）</caption>
+		<caption>抵抗制御（高性能車）の主制御器一覧</caption>
 		<thead>
 			<tr>
 				<th scope="col">搭載車種</th>
@@ -137,7 +142,7 @@ const slugger = new GithubSlugger();
 	</table>
 
 	<table class="p-table -full">
-		<caption>抵抗制御（界磁チョッパ制御）</caption>
+		<caption>抵抗制御（界磁チョッパ制御）の主制御器一覧</caption>
 		<thead>
 			<tr>
 				<th scope="col" rowspan="2">搭載車種</th>
@@ -206,184 +211,8 @@ const slugger = new GithubSlugger();
 		<li>機器の登場年は東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。なお、製造銘板で実際の製造初年が判明しているものについては脚注にて補足している。</li>
 	</ul>
 
-	<Section id="old">
-		<H slot="heading">旧性能車（概略）</H>
-
-		<div class="p-text">
-			<p>吊り掛け駆動の旧性能車については機器の詳細には踏み込まず、全体的な概略を述べるに留めます。また電動貨車、電気機関車、ガソリン動車および玉川線系統の路面電車については触れません。</p>
-		</div>
-
-		<Section id="ministry" depth={2} headingType="b">
-			<H slot="heading">鉄道省払い下げ車</H>
-
-			<div class="p-text">
-				<p>目黒蒲田電鉄の開業に向けて1922年に製造されたデハ1形、および翌1923年に増備されたデハ6形<small>（いずれも後にモハ1形に統合）</small>は直接制御であったものの、1924〜1926年に鉄道省の木造電車の払い下げを受けたデハ20形、30形、40形は運転台のマスコン指令を床下に配した主制御器（複式制御器）で受ける<dfn>間接制御</dfn>であり、舶来品の電磁スイッチ式で手動進段タイプが搭載されていました<FootnoteReference>鉄道省払い下げ車のうちデハ6260形の初期車（デハ6260〜6269）など一部の車両は直接制御式で製造されたものの、1915年度と1918年度に総括化改造が行われたため<small>（『国鉄電車発達史』1977年訂補版「Ⅰ 創業時代 – 〔3〕車両 – 8. 中央・山手線電車の増備」 pp.34–35 より）</small>、払い下げの段階では全車が間接制御式を搭載していたものと考えられます。</FootnoteReference>。</p>
-			</div>
-		</Section>
-
-		<Section id="hitachi-pr" depth={2} headingType="b">
-			<H slot="heading">日立 PR, PB 型</H>
-
-			<div class="p-text">
-				<p>同時期の新造車では1925年のデハ100形<small>（後のデハ3100形→サハ3100形）</small>に圧縮空気によるエンジンでカム軸を回転させる<dfn>電空カム軸</dfn>式で自動進段の PR-150 型<small>（後の国鉄制式 CS-2 型）</small>が搭載されたのを皮切りに、1928年のモハ500形<small>（後のデハ3400形）</small>に PR-200 型<small>（後の国鉄制式 CS-3 型）</small>、そして1931年のモハ510形<small>（後のデハ3450形）</small>に PR-1Y1 型や空気機構部分を改良した PB-200 型といった具合に、ほとんどの車両に日立製作所の機器が搭載されました。PR-1Y1 型とは変わった形式名ですが、故障が頻発していた在来品に対して、当時1年に1回だった車両の定期検査時においてのみ部品修繕を行えば良いという目標のもとに開発された<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/30">目蒲東横電鐵業務研究彙報（昭和9年2月）「電車制御装置PR150型よりPR1Y1型への發達」 p.48</LinkExternal></FootnoteReference>ことからの命名と思われます。</p>
-			</div>
-
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/sty/cont/PR150.jpg" alt="" width={485} height={243} quality={60} />
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">電空カム軸制御器 PR-150 型<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/5">目蒲東横電鐵業務研究彙報（昭和9年2月）</LinkExternal>より転載</FootnoteReference></span>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/sty/cont/PR200.jpg" alt="" width={485} height={243} quality={60} />
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">電空カム軸制御器 PR-200 型<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/5">目蒲東横電鐵業務研究彙報（昭和9年2月）</LinkExternal>より転載</FootnoteReference></span>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/sty/cont/PR1Y1.jpg" alt="" width={485} height={243} quality={60} />
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">メンテナンスフリーを目指して開発された PR-1Y1 型（試作品）<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/5">目蒲東横電鐵業務研究彙報（昭和9年2月）</LinkExternal>より転載</FootnoteReference></span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-		</Section>
-
-		<Section id="dk-system" depth={2} headingType="b">
-			<H slot="heading">東洋電機デッカーシステム</H>
-
-			<div class="p-text">
-				<p>一方、新造車以外では東洋電機製造の機器を搭載した車両も若干数存在しました。同社はイギリス English Electric 社と技術提携を結んでおり、その技術によりカム軸を電動機で回転させる<dfn>電動カム軸</dfn>式の主制御装置を国産化、EE 社の前身である Dick, Kerr 社の名前から<dfn>デッカーシステム（<span lang="ja">Dick Kerr System</span>）</dfn>とも呼ばれ、目黒蒲田電鉄と東京横浜電鉄では下表に示す機器が採用されていました。ES-150 系列は架線電圧 600V 用で遮断器もカム軸動作としたもの、ES-500 系列は架線電圧 1500V 対応の大型制御器で遮断器は単位スイッチ式となり<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/11956837/1/43">『東洋電機五十年史』「第2章　製品機種の拡大と不況 – 8. 製品開発の動向」 pp.44–46</LinkExternal></FootnoteReference>、その最初の製品である ES-504 型は新京阪鉄道（現：阪急電鉄）の P-6 形電車に採用されたのが有名なところです。しかし目蒲、東横電鉄では限定的な採用に留まったため、東京急行電鉄成立後は異端の車両となり、運用面の制約からデハ3250形は早期に廃車されてしまったのは有名な話です。下表に東洋電機の採用事例をまとめます。</p>
-			</div>
-
-			<table class="p-table">
-				<caption>東洋電機製造の主制御器を搭載した旧性能車両</caption>
-				<thead>
-					<tr>
-						<th scope="col" colspan="2">車両形式</th>
-						<th scope="col" rowspan="2">事由</th>
-						<th scope="col" rowspan="2">搭載時期</th>
-						<th scope="col" rowspan="2">主制御器</th>
-						<th scope="col" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">目蒲、東横</th>
-						<th scope="col">東急</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>モハ300形</td>
-						<td>デハ3200形</td>
-						<td>クハ1形の電装化</td>
-						<td>1928年</td>
-						<td>ES-504</td>
-						<td>モハ306 のみ、後に日立に統一(?)<FootnoteReference>レイル 1979年7月号（No.16）「東横電鉄、目蒲電鉄　初期の車輛」（荻原二郎） p.34</FootnoteReference></td>
-					</tr>
-					<tr>
-						<td>モハ120形</td>
-						<td rowspan="2">デハ3250形</td>
-						<td rowspan="2">池上電気鉄道の引継車</td>
-						<td>1928年</td>
-						<td rowspan="2">ES-155</td>
-						<td rowspan="2"></td>
-					</tr>
-					<tr>
-						<td>モハ130形</td>
-						<td>1930年</td>
-					</tr>
-					<tr>
-						<td>モハ1形</td>
-						<td class="u-cell -center">―</td>
-						<td>直接制御車の間接化</td>
-						<td>1932年<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1114809/1/75">鉄道講習会講演集「過去十箇ケ年間に於ける電車の修繕費と故障に就て」（小宮次郎） p.141</LinkExternal></FootnoteReference></td>
-						<td rowspan="2">ES-158</td>
-						<td>1941年頃に鉄道省払下車と制御装置を交換</td>
-					</tr>
-					<tr>
-						<td>モハ150形</td>
-						<td>デハ3300形</td>
-						<td>鉄道省払下車の鋼体化</td>
-						<td>1941年頃</td>
-						<td>モハ1形と交換<FootnoteReference>モハ1形は全10両、モハ150形は全11両と両数が異なるため、モハ150形の全車両が ES-158 型に統一されていた可能性は少ないものと思われます。一方、東京急行電鉄成立でデハ3300形となった後に2両が戦災でクハ化した後、1950年時点の記録では全9両が ES-158 型となっています。</FootnoteReference>、戦後に日立 MMC 化<FootnoteReference>鉄道ピクトリアル 1972年9月号（No.269）「東京急行電鉄旅客車一覧表」 p.77</FootnoteReference></td>
-					</tr>
-				</tbody>
-			</table>
-
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/sty/cont/ES504.jpg" alt="" width={485} height={162} quality={60} />
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">新京阪鉄道 P-6 形電車にも搭載された電動カム軸制御器 ES-504 型<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1190932/1/91">交通電氣博ポスター選集</LinkExternal>より転載</FootnoteReference></span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-		</Section>
-
-		<Section id="hitachi-mc" depth={2} headingType="b">
-			<H slot="heading">日立 MC, MMC 型</H>
-
-			<div class="p-text">
-				<p>さて、東洋電機に遅れて日立も1930年代後半には電動カム軸式の MC-200 型を開発し、1937年に鉄道省払下車を半鋼体化して改番されたモハ150形<small>（後のデハ3300形）</small>や1939年の新造車モハ1000形<small>（後のデハ3500形）</small>に採用、続いて1939年には多段式制御の MMC-200 型が開発されました。多段式制御器自体はその数年前に芝浦製作所（現：東芝）が実現していましたが、この日立 MMC タイプはカム接触器をカム軸の上下2段に配し、またカム軸は直列制御で1回転の後、並列切り換えを行いさらに1回転する<dfn>一方向2回転制御</dfn>を行うことで従来の2倍以上のノッチ数である21ノッチを実現しながらも小型軽量化を達成した画期的なもので<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/2364356/1/10">電氣協會雑誌 1939年8月号（No.212）「MMC制御器に就て」（平田憲一） pp.15–16</LinkExternal></FootnoteReference>、1940年にまずモハ1009, 1010 の2両に搭載されました<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1124913/1/344">『東京横浜電鉄沿革史』第六編第三章第四節二「車輛の主なる改造工事」p.515</LinkExternal></FootnoteReference>。</p>
-			</div>
-
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/sty/cont/MMC-200.jpg" alt="" width={485} height={243} quality={60} />
-							<!-- 撮影日: 2006-04-30 -->
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">多段式制御を実現した MMC-200 型<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1141487/1/92">電氣工學年報　昭和十五年版</LinkExternal>より転載</FootnoteReference></span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-
-			<div class="p-text">
-				<p>戦後の1948年、運輸省規格型のデハ3700形には国鉄制式の電空カム軸式 CS-5 型が搭載され<FootnoteReference>国鉄制式である CS-5 型は東京芝浦電気（現：東芝）、日立製作所、三菱電機など多数のメーカーにより製造されており、東急デハ3700形用のメーカー内訳は不明なものの、<LinkExternal href="https://dl.ndl.go.jp/pid/11956837/1/77">『東洋電機五十年史』「第5章　戦後の復興と再建の努力 – 8. 製品の推移」 p.113</LinkExternal>には東急電鉄への納入実績があったとされており、その一部ないし全部は東洋電機製造であったようです。</FootnoteReference>、当初は弱め界磁制御を有していました。同じ頃、MMC-200 型の改良型である MMC-10 型（昇圧後は MMC-H-10 型）が開発され、デハ3700形を含め在来型を置き換えてゆきます。これにより1970年代中には旧3000形グループの主制御器は MMC-H-10 型への統一が図られました。</p>
-			</div>
-
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/sty/cont/MMC-H-10K_towada3603.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-04-30 -->
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">旧性能車で最後に導入された MMC-H-10K 型、機器単体で見れば8000系1次車より新しい<br />（十和田観光電鉄モハ3603 ← 東急デハ3655）</span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-		</Section>
-
-		<div class="p-text">
-			<p>現在、これら旧性能車は譲渡車を含めて全廃され、また機器流用車についても、えちぜん鉄道MC1102号が2014年10月に引退したのに伴い<FootnoteReference>豊橋鉄道経由で京福電気鉄道・福井本社に譲渡されたと推測される個体を搭載していました。詳細は<a href="/tokyu/yomoyama/echizen_mc1101">えちぜん鉄道MC1101形の主制御器（MMC-H-10K 型）</a>を参照。</FootnoteReference>実稼働個体は消滅し、保存車や博物館展示品に数台が残るのみとなっています。</p>
-		</div>
-	</Section>
-
-	<Section id="new">
-		<H slot="heading">高性能車</H>
+	<Section id="resist">
+		<H slot="heading">抵抗制御</H>
 
 		<Section id="pe-11" depth={2} headingType="b">
 			<H slot="heading">PE-11A<small>（旧5000系・デハ5001〜5020）</small>、PE-11B<small>（旧5000系・デハ5021〜、5200系）</small></H>
