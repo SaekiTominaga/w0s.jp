@@ -21,10 +21,10 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/sty/', name: '車両形態' },
 	],
 	localNav: [
-		{ path: '/tokyu/sty/cont_old', name: '旧性能車' },
-		{ path: '/tokyu/sty/cont_high', name: '高性能車' },
+		{ path: '/tokyu/sty/cont_old', name: '旧性能' },
+		{ path: '/tokyu/sty/cont_high', name: '高性能' },
 		{ path: '/tokyu/sty/cont_fcc', name: '界磁チョッパ' },
-		{ path: '/tokyu/sty/cont_gto', name: 'VVVF・GTO サイリスタ' },
+		{ path: '/tokyu/sty/cont_gto', name: 'VVVF・GTO' },
 		{ path: '/tokyu/sty/cont_igbt', name: 'VVVF・IGBT' },
 	],
 };
@@ -35,6 +35,17 @@ const slugger = new GithubSlugger();
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
 		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>電気車の起動時、架線から供給される電圧をそのままモーターに流すと大電流となってしまうため、電気鉄道の黎明期から行われていた方式として、モーターと直列に抵抗器を挿入する<dfn>抵抗制御</dfn>があります。モーターが回転を始めると逆向きの力である<dfn>逆起電力</dfn>が発生し、速度上昇に従いその力も増してゆくため、徐々に抵抗を抜きモーターに掛かる電圧を増やすことで逆起電力との差分がモーター出力（トルク）となり加速を続けます。このように一定の架線電圧を抵抗器で可変制御する方式は電機子チョッパ制御や VVVF インバータ制御が普及する1970〜1990年代まで長く使われました。</p>
+			<p>なお抵抗制御といっても、実際のところは以下に挙げる複数の制御方法が組み合わされています。</p>
+			<ul class="p-list">
+				<li>抵抗値を徐々に抜くことで端子電圧を上げる<dfn>抵抗制御</dfn></li>
+				<li>モーター繋ぎを4台直列から2台ずつの並列に変えることで端子電圧を2倍にする<dfn>組み合わせ制御</dfn><small>（黎明期は<dfn>シーリスパラレル（<span lang="en">Series parallel</span>）</dfn>とも呼ばれた）</small></li>
+				<li>並列切り換え後に抵抗をすべて短絡したのち、界磁の磁束を減らすことで逆起電力を減らす<dfn>弱め界磁制御</dfn></li>
+			</ul>
+			<p>ただし、駅間距離が短く高速運転が重視されていなかった東急電鉄では、旧性能車の時代の弱め界磁制御は一部車種のみの採用であり、本格的な導入は<a href="/tokyu/sty/cont_high">高性能車</a>である旧5000系以降となります。このため、旧性能車時代の進化としては開通当初に路面電車タイプの直接制御で始まった方式からまもなく間接制御が導入されて以降はシステム面での大きな変化はなく、主制御器の接触器の切り替え方法が電磁スイッチからカム軸になったり、ノッチ数を増加させた多段式制御が導入されたりといった内部構造の変化が中心となります。</p>
+		</div>
 
 		<table class="p-table -full">
 			<caption>旧性能車の主制御器一覧</caption>
@@ -58,7 +69,7 @@ const slugger = new GithubSlugger();
 				<tr>
 					<td>M コントロール</td>
 					<td>GE</td>
-					<td>デハ20形、30形（初代）、40形</td>
+					<td>デハ20形、30形（初代）、40形ほか</td>
 					<td>1924年</td>
 					<td>電磁スイッチ</td>
 				</tr>
@@ -93,7 +104,7 @@ const slugger = new GithubSlugger();
 				<tr>
 					<td>ES-158</td>
 					<td>東洋</td>
-					<td>モハ1形</td>
+					<td>モハ1形ほか</td>
 					<td>1932年</td>
 					<td>電動カム軸</td>
 				</tr>
@@ -144,8 +155,8 @@ const slugger = new GithubSlugger();
 
 		<ul class="p-notes">
 			<li><q>GE</q>は <span lang="en">General Electric</span> の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略。</li>
-			<li>日立製作所の主制御器（PR 型、PB 型、MC 型、MMC 型）は後年、旧性能車同士で車種を跨いで交換されたケースが多数存在する。</li>
-			<li>機器の登場年は東急電車でその機器が初めて搭載された車両の入籍日（他事業者からの譲渡車は譲渡後の入籍日）ないし改造日を基準としており、機器の実際の製造初年とは限らない。とくに国鉄制式の CS-5 型は機器としては1932年から存在していた。</li>
+			<li>日立製作所の主制御器（PR, PB, MC, MMC）は後年、旧性能車同士で車種を跨いで交換されたケースが多数存在する。</li>
+			<li>機器の登場年は東急電車でその機器が初めて搭載された車両の入籍日（他事業者からの譲渡車は譲渡後の入籍日）ないし改造日を基準としており、機器の実際の製造初年とは限らない。とくに国鉄制式の CS-5 型は機器としては1920年代後半に登場していた。</li>
 		</ul>
 	</Section>
 
@@ -154,7 +165,7 @@ const slugger = new GithubSlugger();
 
 		<div class="p-text">
 			<p>目黒蒲田電鉄の開業に向けて1922年に製造されたデハ1形、および翌1923年に増備されたデハ6形<small>（いずれも後にモハ1形に統合）</small>は単行運転を前提とした直接制御で製造されましたが、1932年に連結運転のため、運転台のマスコン指令を床下に配した主制御器（複式制御器）で受ける<dfn>間接制御</dfn>に改造されました<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1114809/1/75">鉄道講習会講演集「過去十箇ケ年間に於ける電車の修繕費と故障に就て」（小宮次郎） p.141</LinkExternal></FootnoteReference>。</p>
-			<p>間接化当初は後述する<a href="#dk-system">東洋電機製造のデッカーシステム</a>でしたが、1941年頃に<a href="#ministry">鉄道省払い下げ車</a>と制御装置を交換し、GE 社タイプの M コントロールとなりました。なお、モハ9〜10 の2両のみ HL 式とされた文献もありますが<FootnoteReference>Romance Car No.17「東京急行電鉄2」（川垣恭三） p.9</FootnoteReference>、詳細は不明です。</p>
+			<p>間接化当初は後述する<a href="#dk-system">東洋電機製造のデッカーシステム</a>でしたが、1941年頃に<a href="#ministry">鉄道省払い下げ車</a>と制御装置を交換し、GE 社タイプの M コントロールとなっています。なお、モハ9〜10 の2両のみ HL 式とされた文献もありますが<FootnoteReference>Romance Car No.17「東京急行電鉄2」（川垣恭三） p.9</FootnoteReference>、詳細は不明です。</p>
 		</div>
 	</Section>
 
@@ -331,9 +342,9 @@ const slugger = new GithubSlugger();
 				</figure>
 			</div>
 		</div>
-	</Section>
 
-	<div class="p-text">
-		<p>現在、これら旧性能車は譲渡車を含めて全廃され、また機器流用車についても、えちぜん鉄道MC1102号が2014年10月に引退したのに伴い<FootnoteReference>豊橋鉄道経由で京福電気鉄道・福井本社に譲渡されたと推測される個体を搭載していました。詳細は<a href="/tokyu/yomoyama/echizen_mc1101">えちぜん鉄道MC1101形の主制御器（MMC-H-10K 型）</a>を参照。</FootnoteReference>実稼働個体は消滅し、保存車や博物館展示品に数台が残るのみとなっています。</p>
-	</div>
+		<div class="p-text">
+			<p>MMC-H-10 型は東急電鉄から旧性能車が引退した後も十和田観光電鉄などの譲渡先のほか、変わったところだと豊橋鉄道経由で京福電気鉄道・福井本社に送られたと推測される個体がモハ1101形に搭載され、えちぜん鉄道になった後もMC1102号が2014年10月まで活躍していましたが<FootnoteReference>詳細は<a href="/tokyu/yomoyama/echizen_mc1101">えちぜん鉄道MC1101形の主制御器（MMC-H-10K 型）</a>を参照。</FootnoteReference>、現在は実稼働個体は消滅し、保存車や博物館展示品に数台が残るのみとなっています。</p>
+		</div>
+	</Section>
 </Layout>
