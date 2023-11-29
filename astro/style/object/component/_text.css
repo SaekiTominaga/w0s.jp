@@ -20,16 +20,16 @@ Styleguide 1.2.1
 	--_icon-block-size: 0.75em;
 	--_icon-color: var(--color-gray);
 
-	&::before {
-		display: inline flow-root;
-		clip-path: var(--_icon-clip-path);
-		margin-inline-end: 0.5em;
-		border-block-start: var(--_icon-block-size) solid var(--_icon-color);
-		inline-size: var(--_icon-inline-size);
-		content: "";
-	}
-
 	&:any-link {
+		&::before {
+			display: inline flow-root;
+			clip-path: var(--_icon-clip-path);
+			margin-inline-end: 0.5em;
+			border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+			inline-size: var(--_icon-inline-size);
+			content: "";
+		}
+
 		/* 他ページ */
 		&:not([href^="#"]) {
 			--_icon-color: var(--link-color-bullet);
