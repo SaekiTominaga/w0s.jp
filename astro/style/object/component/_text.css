@@ -318,15 +318,29 @@ Styleguide 1.2.5
 ドメイン表記
 
 Markup:
-<a href="https://example.com/">リンク</a><b class="c-domain">(example.com)</b>
+<a href="https://example.com/">リンク</a><small class="c-domain">(<code>example.com</code>)</small>
 
 Styleguide 1.2.6
 */
 .c-domain {
-	margin-inline: 0.25em;
+	--_font-size: calc(100% / var(--font-ratio-1));
+
 	color: var(--color-gray);
-	font-weight: var(--font-weight-normal);
-	font-size: calc(100% / var(--font-ratio-1));
+	font-size: var(--_font-size);
+
+	&:has(img) {
+		--_font-size: inherit;
+	}
+
+	a + & {
+		margin-inline-start: 0.25em;
+	}
+
+	& > img {
+		vertical-align: -0.05lh;
+		inline-size: auto;
+		block-size: 1em;
+	}
 }
 
 /*
