@@ -68,10 +68,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		{
 			isbn !== undefined && (
 				<p class="p-library__isbn">
-					<a href={`https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=${isbn}`}>
+					<a href={`https://iss.ndl.go.jp/books?search_mode=advanced;rft.isbn=${isbn}`} rel="external">
 						ISBN: <data value={isbn}>{isbn}</data>
 					</a>
-					<img src="/assets/image/icon/ndl.png" alt="(国立国会図書館サーチ)" width="16" height="16" class="c-link-icon" />
+					<small class="c-domain">
+						<img src="/assets/image/icon/ndl.png" alt="(国立国会図書館サーチ)" width="16" height="16" />
+					</small>
 				</p>
 			)
 		}

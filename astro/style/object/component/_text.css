@@ -20,16 +20,16 @@ Styleguide 1.2.1
 	--_icon-block-size: 0.75em;
 	--_icon-color: var(--color-gray);
 
-	&::before {
-		display: inline-block;
-		clip-path: var(--_icon-clip-path);
-		margin-inline-end: 0.5em;
-		border-block-start: var(--_icon-block-size) solid var(--_icon-color);
-		inline-size: var(--_icon-inline-size);
-		content: "";
-	}
-
 	&:any-link {
+		&::before {
+			display: inline flow-root;
+			clip-path: var(--_icon-clip-path);
+			margin-inline-end: 0.5em;
+			border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+			inline-size: var(--_icon-inline-size);
+			content: "";
+		}
+
 		/* 他ページ */
 		&:not([href^="#"]) {
 			--_icon-color: var(--link-color-bullet);
@@ -57,7 +57,7 @@ Markup:
 Styleguide 1.2.2
 */
 .c-self-link {
-	display: inline-flex;
+	display: inline flex;
 	justify-content: center;
 	align-items: center;
 	outline-width: var(--outline-width-bold);
@@ -93,7 +93,7 @@ Styleguide 1.2.3
 	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
-	display: inline-flex;
+	display: inline flex;
 	justify-content: center;
 	align-items: center;
 	gap: 0.5em;
@@ -318,15 +318,30 @@ Styleguide 1.2.5
 ドメイン表記
 
 Markup:
-<a href="https://example.com/">リンク</a><b class="c-domain">(example.com)</b>
+<a href="https://example.com/">リンク</a><small class="c-domain">(<code>example.com</code>)</small>
 
 Styleguide 1.2.6
 */
 .c-domain {
-	margin-inline: 0.25em;
+	--_font-size: calc(100% / var(--font-ratio-1));
+
 	color: var(--color-gray);
-	font-weight: var(--font-weight-normal);
-	font-size: calc(100% / var(--font-ratio-1));
+	font-size: var(--_font-size);
+	word-break: break-all;
+
+	&:has(img) {
+		--_font-size: inherit;
+	}
+
+	a + & {
+		margin-inline-start: 0.25em;
+	}
+
+	& > img {
+		vertical-align: -0.1lh;
+		inline-size: auto;
+		block-size: 1em;
+	}
 }
 
 /*
@@ -344,7 +359,7 @@ Styleguide 1.2.7
 	white-space: nowrap;
 
 	&::before {
-		display: inline-block;
+		display: inline flow-root;
 		margin-inline-end: 0.25em;
 		min-inline-size: 1em;
 		content: var(--_symbol, none);
