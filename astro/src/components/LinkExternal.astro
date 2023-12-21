@@ -88,4 +88,4 @@ const typeIcon = type !== undefined ? TYPE_ICONS.find((data) => data.type === ty
 const hostIcon = HOST_ICONS.find((data) => data.host === url.host);
 ---
 
-<a href={url.toString()} rel="external" class:list={className}><slot /></a>{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon !== undefined && <img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon === undefined && <b class="c-domain">({url.host})</b>}
+<a href={url.toString()} rel="external" class:list={className}><slot /></a>{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.file_name}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}{icon && hostIcon !== undefined && (<small class="c-domain"><img src={`/assets/image/icon/${hostIcon.file_name}`} alt={`(${hostIcon.name})`} width="16" height="16" /></small>)}{icon && hostIcon === undefined && (<small class="c-domain">(<code>{url.host}</code>)</small>)}&#32;
