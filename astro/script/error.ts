@@ -23,14 +23,14 @@ if (portalHost === null || portalHost === undefined /* <potal> 未対応ブラ�
 	}).init();
 
 	/* リファラーレポート */
-	new ReportSameReferrer('https://report.w0s.jp/referrer', {
+	await new ReportSameReferrer('https://report.w0s.jp/referrer', {
 		fetchParam: {
 			location: 'location',
 			referrer: 'referrer',
 		},
 		fetchContentType: 'application/json',
 		same: ['https://blog.w0s.jp'],
-	}).init();
+	}).report();
 
 	/* 祖先ページの埋め込み */
 	const closestHTMLPage = new ClosestHTMLPage({
