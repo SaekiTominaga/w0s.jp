@@ -1,4 +1,4 @@
-import StringEscapeHtml from '@saekitominaga/string-escape-html';
+import StringEscapeHtml from '@w0s/html-escape';
 
 export default class HttpResponseUtil {
 	readonly #request: Request;
