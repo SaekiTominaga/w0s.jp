@@ -1,5 +1,5 @@
-import StringConvert from '@saekitominaga/string-convert';
-import TableCellDitto from '@saekitominaga/htmltablecellelement-ditto';
+import StringConvert from '@w0s/string-convert';
+import TableCellDitto from '@w0s/table-cell-ditto';
 import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover.js';
 
 /**

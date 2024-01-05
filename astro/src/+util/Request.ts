@@ -1,5 +1,5 @@
 import dayjs, { type Dayjs } from 'dayjs';
-import URLSearchParamsCustomSeparator from '@saekitominaga/urlsearchparams-custom-separator';
+import URLSearchParamsCustomSeparator from '@w0s/urlsearchparams-custom-separator';
 
 export default class RequestUtil {
 	/**
