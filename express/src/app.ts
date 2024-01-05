@@ -5,7 +5,7 @@ import compression from 'compression';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
-import StringEscapeHtml from '@saekitominaga/string-escape-html';
+import HtmlEscape from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import type { Express as Configure } from '../../configure/type/express.js';
@@ -35,7 +35,7 @@ config.redirect.forEach((redirect) => {
 			});
 		}
 
-		const locationUrlEscapedHtml = StringEscapeHtml.escape(locationUrl);
+		const locationUrlEscapedHtml = HtmlEscape.escape(locationUrl);
 
 		res.status(301).setHeader('Content-Type', 'text/html;charset=utf-8').location(locationUrl).send(`<!doctype html>
 <meta name=viewport content="width=device-width,initial-scale=1">
