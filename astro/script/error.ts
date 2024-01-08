@@ -1,7 +1,7 @@
-import ClosestHTMLPage from '@saekitominaga/closest-html-page';
-import PortalAnimation from '@saekitominaga/customelements-portal';
-import ReportJsError from '@saekitominaga/report-js-error';
-import ReportSameReferrer from '@saekitominaga/report-same-referrer';
+import ClosestHTMLPage from '@w0s/closest-html-page';
+import PortalAnimation from '@w0s/portal-animation';
+import ReportJsError from '@w0s/report-js-error';
+import ReportSameReferrer from '@w0s/report-same-referrer';
 
 /**
  * 403, 404, 410 ページ
@@ -20,17 +20,17 @@ if (portalHost === null || portalHost === undefined /* <potal> 未対応ブラ�
 		fetchContentType: 'application/json',
 		allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/],
 		denyUAs: [/Googlebot\/2.1;/],
-	}).init();
+	});
 
 	/* リファラーレポート */
-	new ReportSameReferrer('https://report.w0s.jp/referrer', {
+	await new ReportSameReferrer('https://report.w0s.jp/referrer', {
 		fetchParam: {
 			location: 'location',
 			referrer: 'referrer',
 		},
 		fetchContentType: 'application/json',
 		same: ['https://blog.w0s.jp'],
-	}).init();
+	}).report();
 
 	/* 祖先ページの埋め込み */
 	const closestHTMLPage = new ClosestHTMLPage({

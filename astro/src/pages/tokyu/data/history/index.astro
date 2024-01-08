@@ -141,7 +141,7 @@ if (requestQuery.output !== null) {
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	{
 		requestQuery.output === null && (
-			<details class="p-toggle" is="w0s-animation-details" open="">
+			<details class="p-toggle js-details-animation" open="">
 				<summary>説明文</summary>
 				<div class="p-toggle__contents">
 					<div class="p-box">
@@ -172,7 +172,7 @@ if (requestQuery.output !== null) {
 	}
 	{
 		requestQuery.output !== null && (
-			<details class="p-toggle" is="w0s-animation-details">
+			<details class="p-toggle js-details-animation">
 				<summary>説明文</summary>
 				<div class="p-toggle__contents">
 					<div class="p-box">
@@ -239,8 +239,8 @@ if (requestQuery.output !== null) {
 									))
 								}
 								<p>
-									<button type="button" is="w0s-checkbox-allcheck" data-course="check" data-targets-name="ser[]" class="c-button">全車種を選択</button>
-									<button type="button" is="w0s-checkbox-allcheck" data-course="uncheck" data-targets-name="ser[]" class="c-button">全ての選択を解除</button>
+									<button type="button" class="c-button js-button-checkboxes" data-course="check" data-controls-name="ser[]">全車種を選択</button>
+									<button type="button" class="c-button js-button-checkboxes" data-course="uncheck" data-controls-name="ser[]">全ての選択を解除</button>
 								</p>
 							</div>
 						</div>
@@ -253,11 +253,11 @@ if (requestQuery.output !== null) {
 							<div class="c-form-controls">
 								<label class="c-label -input">
 									<span class="c-label__text">開始日</span>
-									<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="res" value={requestQuery.register_start} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+									<input type="date" class="c-input js-validation js-input-date-to-text" name="res" value={requestQuery.register_start} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarstart" data-validation-message-pattern="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「開始日」が存在しない日付です。" data-validation-message-date-min="「開始日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「開始日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 								</label>
 								<label class="c-label -input">
 									<span class="c-label__text">終了日</span>
-									<input is="w0s-input-date-to-text" type="date" class="c-input js-validation" name="ree" value={requestQuery.register_end} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
+									<input type="date" class="c-input js-validation js-input-date-to-text" name="ree" value={requestQuery.register_end} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" aria-errormessage="input-validate-registarend" data-validation-message-pattern="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-message-date-noexist="「終了日」が存在しない日付です。" data-validation-message-date-min="「終了日」は 1962年1月25日 以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-message-date-max="「終了日」は 2001年3月24日 以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" />
 								</label>
 							</div>
 							<p hidden="" class="c-fc-invalid" id="input-validate-registarstart"></p>
