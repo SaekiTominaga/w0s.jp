@@ -1,4 +1,4 @@
-import ClosestHTMLPage from '@saekitominaga/closest-html-page';
+import ClosestHTMLPage from '@w0s/closest-html-page';
 import PortalAnimation from '@w0s/portal-animation';
 import ReportJsError from '@w0s/report-js-error';
 import ReportSameReferrer from '@w0s/report-same-referrer';
