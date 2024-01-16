@@ -104,6 +104,7 @@ if (autoFocusElement !== null) {
 		autoFocusElement.tabIndex = -1;
 	}
 	autoFocusElement.focus();
+	autoFocusElement.scrollIntoView();
 }
 
 /* 入力値の変換 */
