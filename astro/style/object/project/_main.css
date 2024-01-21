@@ -99,28 +99,33 @@ Styleguide 2.99.2
 ツールチップ
 
 Markup:
-<dialog class="p-tooltip">
+<dialog class="p-footnote-popover">
 <p>テキスト</p>
 
 <form method="dialog">
-<button><img src="/assets/image/tooltip-close.svg" alt="閉じる"/></button>
+<button><img src="/assets/image/footnote-popover-close.svg" alt="閉じる"/></button>
 </form>
 </dialog>
 
 Styleguide 2.99.3
 */
-.p-tooltip {
+.p-footnote-popover {
+	--_border-color: var(--color-border-light);
 	--_close-button-padding: 6px;
 	--_close-button-image-size: 24px;
 
-	box-shadow: 0 0 0.5em var(--color-border-light);
-	border: 1px solid var(--color-border-light);
+	box-shadow: 0 0 0.5em var(--_border-color);
+	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
 	padding: 15px;
 	max-inline-size: min(30em, 100%);
 	color: var(--color-black);
 	font-size: calc(100% / var(--font-ratio-1));
+
+	&:focus {
+		--_border-color: var(--outline-color);
+	}
 
 	&::before {
 		display: block flow;
