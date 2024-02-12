@@ -5,6 +5,7 @@ import compression from 'compression';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
+import { isMatch } from 'matcher';
 import HtmlEscape from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
@@ -63,7 +64,7 @@ app.use(
 	}),
 	async (req, res, next) => {
 		/* Basic Authentication */
-		const basic = config.static.auth_basic?.find((auth) => auth.directory.find((urlPath) => req.url.startsWith(urlPath)));
+		const basic = config.static.auth_basic?.find((auth) => isMatch(req.url, auth.urls));
 		if (basic !== undefined) {
 			const credentials = basicAuth(req);
 
