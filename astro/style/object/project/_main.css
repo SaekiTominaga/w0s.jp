@@ -42,20 +42,20 @@ Styleguide 2.99.2
 	--_icon-gap: 1em;
 
 	& > summary {
-		cursor: default;
 		box-sizing: border-box;
-		contain: layout;
-		outline-width: var(--outline-width-bold);
 		outline-offset: -1px;
+		outline-width: var(--outline-width-bold);
+		contain: layout;
 		border: 1px solid var(--color-border-dark);
 		border-radius: var(--border-radius-small);
 		background: var(--color-white);
+		cursor: default;
 		padding: var(--_summary-padding) var(--_summary-padding) var(--_summary-padding) calc(var(--_summary-padding) + var(--_icon-size) + var(--_icon-gap));
 		inline-size: var(--_summary-inline-size);
+		list-style: none;
+		line-height: var(--line-height-narrow);
 		color: var(--color-darkblue);
 		font-size: calc(100% * var(--font-ratio-1));
-		line-height: var(--line-height-narrow);
-		list-style: none;
 
 		&:hover {
 			box-shadow: 0 0 0.25em var(--color-border-light);
@@ -137,8 +137,8 @@ Styleguide 2.99.3
 		&::before {
 			display: block flow;
 			float: inline-end;
-			inline-size: calc(var(--_hide-button-image-size) + var(--_hide-button-padding) * 2);
 			block-size: calc(var(--_hide-button-image-size) + var(--_hide-button-padding) * 2);
+			inline-size: calc(var(--_hide-button-image-size) + var(--_hide-button-padding) * 2);
 			content: "";
 		}
 	}
@@ -210,8 +210,8 @@ Styleguide 2.99.4
 }
 
 .p-amazon__hdg {
-	margin-inline-start: -16px;
 	margin-block-start: -16px;
+	margin-inline-start: -16px;
 
 	& > img {
 		display: block flow;
@@ -229,19 +229,19 @@ Styleguide 2.99.4
 	--_bg-color: var(--color-amazon);
 
 	display: block grid;
-	grid-template-columns: min(40%, 160px) 15px 1fr;
 	grid-template-areas: "image gap text";
+	grid-template-columns: min(40%, 160px) 15px 1fr;
 	transition:
 		border-color var(--link-hover-transition-duration),
 		background-color var(--link-hover-transition-duration);
+		outline-offset: -1px;
 	outline-width: var(--outline-width-bold);
-	outline-offset: -1px;
 	border: 1px solid var(--_bg-color);
 	border-radius: var(--border-radius-large);
 	background: var(--_bg-color);
 	padding: 14px;
-	line-height: var(--line-height-narrow);
 	text-decoration-line: none;
+	line-height: var(--line-height-narrow);
 
 	&:hover {
 		--_bg-color: var(--color-amazon-dark);
@@ -262,8 +262,8 @@ Styleguide 2.99.4
 	display: block flow;
 	transition: box-shadow var(--link-hover-transition-duration);
 	margin: auto;
-	max-inline-size: 100%;
 	block-size: auto;
+	max-inline-size: 100%;
 
 	:any-link:hover & {
 		box-shadow: 0 0 4px 3px var(--color-amazon-verydark);
@@ -285,8 +285,8 @@ Styleguide 2.99.4
 .p-amazon__title {
 	display: inline flow;
 	margin-inline-start: calc(0px - var(--_bullet-inline-size) - var(--_bullet-gap));
-	font-weight: var(--font-weight-bold);
 	text-decoration-line: underline;
+	font-weight: var(--font-weight-bold);
 
 	&::before {
 		display: inline flow-root;
@@ -341,8 +341,8 @@ Styleguide 2.99.5
 
 	display: block flow;
 	contain: layout; /* ripple effect */
-	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	outline-width: var(--outline-width-bold);
 	border: 1px solid var(--color-border-light);
 	border-radius: var(--border-radius-normal);
 	background: var(--_bg-color);
@@ -357,27 +357,27 @@ Styleguide 2.99.5
 	/* ripple effect */
 	&::before {
 		position: absolute;
-		transform: scale(4);
-		opacity: 0;
-		transition: var(--_ripple-transition-duration);
 		inset: 0;
+		transform: scale(4);
+		transition: var(--_ripple-transition-duration);
+		opacity: 0;
 		background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
-		inline-size: 100%;
 		block-size: 100%;
+		inline-size: 100%;
 		content: "";
 	}
 
 	/* ripple effect */
 	&:active::before {
 		transform: scale(0);
-		opacity: var(--_ripple-opacity);
 		transition: initial;
+		opacity: var(--_ripple-opacity);
 	}
 
 	& > img {
 		display: block flow;
-		inline-size: 1em;
 		block-size: 1em;
+		inline-size: 1em;
 	}
 }
 
@@ -386,8 +386,8 @@ Styleguide 2.99.5
 	background: var(--color-white);
 	padding: 1em;
 	overflow-inline: auto;
-	color: var(--color-black);
 	line-height: var(--line-height-narrow);
+	color: var(--color-black);
 
 	&:focus {
 		border-color: var(--outline-color); /* 横スクロールバーが表示される場合はブラウザによってフォーカス可能 */
@@ -409,15 +409,15 @@ Styleguide 2.99.6
 */
 .p-dialog-overlay {
 	position: fixed;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 0;
 	inset: 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
 	background: transparent;
 	padding: 1em;
-	inline-size: 100vw;
 	block-size: 100vh;
+	inline-size: 100vw;
 	color: var(--color-white);
 	font-size: 1.2rem;
 

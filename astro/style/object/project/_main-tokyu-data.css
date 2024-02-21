@@ -21,9 +21,9 @@
 		background: var(--_bg-color);
 		background-clip: padding-box; /* for Firefox, Safari (<thead> sticky) */
 		padding: var(--_padding-block) min(1vw, 5px);
+		text-align: var(--_text-align);
 		color: var(--_color);
 		font-size: clamp(calc(100% / var(--font-ratio-1)), 2vw, 100%);
-		text-align: var(--_text-align);
 	}
 
 	& > thead {
@@ -75,9 +75,9 @@
 			background: var(--color-white);
 			padding: 0.5em 0;
 			inline-size: 8em;
+			text-align: center;
 			color: var(--color-black);
 			font-size: calc(100% / var(--font-ratio-2));
-			text-align: center;
 		}
 	}
 }
@@ -176,9 +176,9 @@
 
 	& :is(td, th) {
 		min-inline-size: 7em;
-		font-weight: var(--font-weight-normal);
-		line-height: var(--line-height-narrow);
 		text-align: center;
+		line-height: var(--line-height-narrow);
+		font-weight: var(--font-weight-normal);
 	}
 
 	& :is(td + td, th + th) {
@@ -187,8 +187,8 @@
 
 	& tbody {
 		& td {
-			vertical-align: top;
 			padding-block-start: 0.75em;
+			vertical-align: top;
 		}
 	}
 }
@@ -236,8 +236,8 @@
 /* 車号 */
 .p-tokyu-localform__num {
 	display: block flow;
-	font-weight: var(--font-weight-bold);
 	font-size: 120%;
+	font-weight: var(--font-weight-bold);
 }
 
 /* 前所有者車号 */
@@ -250,16 +250,16 @@
 /* 車両振り替えが行われた際、何代目かを示す（豊橋鉄道1800系） */
 .p-tokyu-localform__count {
 	vertical-align: middle;
-	font-weight: var(--font-weight-normal);
 	font-size: 60%;
+	font-weight: var(--font-weight-normal);
 }
 
 /* 電装品（7000系、7200系） */
 .p-tokyu-localform__maker {
-	vertical-align: middle;
 	margin-inline-start: 0.25em;
-	font-weight: var(--font-weight-normal);
+	vertical-align: middle;
 	font-size: 60%;
+	font-weight: var(--font-weight-normal);
 
 	/* 東洋電機製造 */
 	&.-toyo {

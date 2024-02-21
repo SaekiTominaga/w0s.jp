@@ -58,14 +58,14 @@ Styleguide 1.2.2
 */
 .c-self-link {
 	display: inline flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	outline-width: var(--outline-width-bold);
-	min-inline-size: var(--self-link-size);
 	min-block-size: var(--self-link-size);
+	min-inline-size: var(--self-link-size);
+	text-decoration: none;
 	color: var(--link-color);
 	font-size: calc(100% / var(--font-ratio-3));
-	text-decoration: none;
 }
 
 /*
@@ -93,23 +93,23 @@ Styleguide 1.2.3
 	--_font-size: 100%;
 	--_icon-size: 1.25em;
 
-	display: inline flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5em;
 	box-sizing: border-box;
-	outline-width: var(--outline-width-bold);
+	display: inline flex;
+	gap: 0.5em;
+	align-items: center;
+	justify-content: center;
 	outline-offset: -1px;
+	outline-width: var(--outline-width-bold);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--_background);
 	padding: var(--_padding-block) var(--_padding-inline);
 	inline-size: var(--_inline-size);
-	color: var(--_color);
-	font-weight: var(--font-weight-bold);
-	font-size: var(--_font-size);
-	line-height: var(--line-height-narrow);
 	text-decoration: none;
+	line-height: var(--line-height-narrow);
+	color: var(--_color);
+	font-size: var(--_font-size);
+	font-weight: var(--font-weight-bold);
 
 	:where(button[type="button"]&):focus:not(:focus-visible) {
 		outline: none;
@@ -146,8 +146,8 @@ Styleguide 1.2.3
 }
 
 .c-button__icon {
-	inline-size: var(--_icon-size);
 	block-size: var(--_icon-size);
+	inline-size: var(--_icon-size);
 }
 
 .c-button__text {
@@ -303,10 +303,10 @@ Styleguide 1.2.5
 
 		&[role="button"] {
 			/* JS 有効時のみ */
-			cursor: default;
 			outline-offset: calc(0px - var(--outline-width));
-			color: var(--link-color);
+			cursor: default;
 			text-decoration: none;
+			color: var(--link-color);
 
 			&:focus:not(:focus-visible) {
 				outline: none;
@@ -326,9 +326,9 @@ Styleguide 1.2.6
 .c-domain {
 	--_font-size: calc(100% / var(--font-ratio-1));
 
+	word-break: break-all;
 	color: var(--color-gray);
 	font-size: var(--_font-size);
-	word-break: break-all;
 
 	&:has(img) {
 		--_font-size: inherit;
@@ -339,9 +339,9 @@ Styleguide 1.2.6
 	}
 
 	& > img {
-		vertical-align: -0.1lh;
-		inline-size: auto;
 		block-size: 1em;
+		inline-size: auto;
+		vertical-align: -0.1lh;
 	}
 }
 
@@ -363,14 +363,14 @@ Styleguide 1.2.7
 		display: inline flow-root;
 		margin-inline-end: 0.25em;
 		min-inline-size: 1em;
-		content: var(--_symbol, none);
-		color: var(--_color, inherit);
 		text-align: center;
 		text-shadow:
 			0.5px 0.5px,
 			0.5px -0.5px,
 			-0.5px 0.5px,
 			-0.5px -0.5px;
+		color: var(--_color, inherit);
+		content: var(--_symbol, none);
 	}
 
 	/* 肯定 */

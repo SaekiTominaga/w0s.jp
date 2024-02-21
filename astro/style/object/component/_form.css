@@ -21,8 +21,8 @@ Styleguide 1.4.1
 	--_bg-color: var(--color-white);
 
 	box-sizing: border-box;
-	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	outline-width: var(--outline-width-bold);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--_bg-color);
@@ -84,8 +84,8 @@ Styleguide 1.4.3
 	--_color: var(--color-black);
 	--_bg-color: transparent;
 
-	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	outline-width: var(--outline-width-bold);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--_bg-color);
@@ -120,8 +120,8 @@ Styleguide 1.4.4
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 
-	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	outline-width: var(--outline-width-bold);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--_bg-color);
@@ -156,14 +156,14 @@ Styleguide 1.4.5
 	--_bg-color: var(--color-white);
 
 	box-sizing: border-box;
-	outline-width: var(--outline-width-bold);
 	outline-offset: -1px;
+	outline-width: var(--outline-width-bold);
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--_bg-color);
 	padding: var(--form-control-padding-block);
-	inline-size: 100%;
 	min-block-size: var(--block-size, auto);
+	inline-size: 100%;
 	color: var(--_color);
 
 	&:enabled:read-write {
@@ -211,21 +211,21 @@ Styleguide 1.4.6
 	--_ripple-transition-duration: 0.5s;
 
 	display: inline flow-root;
-	vertical-align: middle;
-	contain: layout; /* ripple effect */
-	outline-width: var(--outline-width-bold);
 	outline-offset: 1px;
+	outline-width: var(--outline-width-bold);
+	contain: layout; /* ripple effect */
 	border: 1px solid var(--_border-color);
 	border-radius: var(--border-radius-normal);
 	background: var(--_bg-color);
 	padding: var(--_padding-block) var(--_padding-inline);
 	overflow: hidden; /* ripple effect */
-	color: var(--_color);
-	font-weight: var(--font-weight-bold);
-	font-size: var(--_font-size);
+	vertical-align: middle;
 	line-height: var(--line-height-nowrap);
-	font-family: var(--font-yu-gothic); /* Chrome で下側の空きが出てしまう対策 */
 	white-space: nowrap;
+	color: var(--_color);
+	font-family: var(--font-yu-gothic); /* Chrome で下側の空きが出てしまう対策 */
+	font-size: var(--_font-size);
+	font-weight: var(--font-weight-bold);
 
 	&:enabled {
 		&:hover {
@@ -235,21 +235,21 @@ Styleguide 1.4.6
 		/* ripple effect */
 		&::before {
 			position: absolute;
-			transform: scale(4);
-			opacity: 0;
-			transition: var(--_ripple-transition-duration);
 			inset: 0;
+			transform: scale(4);
+			transition: var(--_ripple-transition-duration);
+			opacity: 0;
 			background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
-			inline-size: 100%;
 			block-size: 100%;
+			inline-size: 100%;
 			content: "";
 		}
 
 		/* ripple effect */
 		&:active::before {
 			transform: scale(0);
-			opacity: var(--_ripple-opacity);
 			transition: initial;
+			opacity: var(--_ripple-opacity);
 		}
 	}
 
@@ -290,8 +290,8 @@ Styleguide 1.4.7
 .c-label {
 	display: inline flex;
 	flex-wrap: wrap;
-	align-items: center;
 	gap: 0.5em;
+	align-items: center;
 
 	/* 一行入力欄 */
 	&.-input {
@@ -332,8 +332,8 @@ Styleguide 1.4.7
 
 		& input {
 			outline: none;
-			inline-size: 1em;
 			block-size: 1em;
+			inline-size: 1em;
 		}
 	}
 
@@ -366,8 +366,8 @@ Styleguide 1.4.7
 
 		& input {
 			position: absolute;
-			opacity: 0;
 			inset: 0;
+			opacity: 0;
 		}
 	}
 }
@@ -402,10 +402,10 @@ Styleguide 1.4.8
 	border-radius: var(--border-radius-large);
 	background: var(--bg-color);
 	padding: 0.375em 0.5em;
-	color: var(--color);
-	font-size: calc(100% / var(--font-ratio-3));
 	line-height: var(--line-height-nowrap);
 	white-space: nowrap;
+	color: var(--color);
+	font-size: calc(100% / var(--font-ratio-3));
 
 	&.-optional {
 		--color: var(--color-white);
@@ -471,8 +471,8 @@ Styleguide 1.4.11
 
 	display: block flex;
 	flex-flow: wrap;
-	align-items: center;
 	gap: var(--_gap-row) var(--_gap-col);
+	align-items: center;
 
 	/* センタリング */
 	&.-center {
@@ -539,8 +539,8 @@ Styleguide 1.4.12
 
 	& > input {
 		all: initial;
-		display: block flow;
 		box-sizing: border-box;
+		display: block flow;
 		padding: 0.25em;
 		inline-size: 100%;
 		font: inherit;
@@ -553,12 +553,12 @@ Styleguide 1.4.12
 		--_color: hsl(220deg 70% 45%);
 
 		all: initial;
-		display: block flow;
 		box-sizing: border-box;
+		display: block flow;
 		margin: var(--outline-width-bold);
 		padding: 0.25em;
-		inline-size: 2em;
 		block-size: 2em;
+		inline-size: 2em;
 		color: var(--_color);
 		font: inherit;
 		fill: currentColor; /* SVG */
@@ -576,8 +576,8 @@ Styleguide 1.4.12
 		}
 
 		& > svg {
-			inline-size: 100%;
 			block-size: 100%;
+			inline-size: 100%;
 		} /* for Chrome */
 	}
 }
