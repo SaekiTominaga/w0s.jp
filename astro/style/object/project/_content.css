@@ -6,8 +6,8 @@
 .p-topic-path {
 	display: block flex;
 	flex-wrap: wrap;
-	align-items: center;
 	gap: 0 0.5em;
+	align-items: center;
 	line-height: var(--line-height-narrow);
 
 	& :any-link {
@@ -32,15 +32,15 @@
 		border-radius: var(--border-radius-small);
 		background: linear-gradient(var(--color-white), var(--color-bg-verydark));
 		padding: 0.75em 1.5%;
-		font-size: clamp(calc(100% * var(--font-ratio-1)), 7vw, calc(100% * var(--font-ratio-5)));
 		text-shadow: 1px 1px 1px var(--color-lightgray);
+		font-size: clamp(calc(100% * var(--font-ratio-1)), 7vw, calc(100% * var(--font-ratio-5)));
 	}
 }
 
 .p-title__sub-hdg {
-	font-weight: var(--font-weight-normal);
-	font-size: calc(100% / var(--font-ratio-3));
 	text-shadow: none;
+	font-size: calc(100% / var(--font-ratio-3));
+	font-weight: var(--font-weight-normal);
 }
 
 .p-title__update {
@@ -68,8 +68,8 @@
 
 		flex: 100%;
 		contain: content;
-		outline-width: var(--outline-width-bold);
 		outline-offset: calc(1px - var(--outline-width-bold));
+		outline-width: var(--outline-width-bold);
 		background: var(--_bg-color);
 		padding: 0.75em;
 		text-align: center;
@@ -115,8 +115,8 @@
 		position: relative;
 		flex: auto;
 		margin-inline-end: var(--_step-arrow-inline-size);
-		font-size: calc(100% * var(--font-ratio-1));
 		text-align: center;
+		font-size: calc(100% * var(--font-ratio-1));
 
 		&:not(:first-child) {
 			& .p-step__text {
@@ -127,12 +127,12 @@
 		&:not(:last-child) {
 			&::after {
 				position: absolute;
-				transform: translateX(var(--_step-arrow-inline-size));
-				z-index: 1;
 				inset-block-start: calc(50% - var(--_step-arrow-block-size) - var(--_step-arrow-inline-size));
 				inset-inline-start: 100%;
-				border-inline-start: calc(var(--_step-arrow-block-size) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
+				transform: translateX(var(--_step-arrow-inline-size));
+				z-index: 1;
 				border-block: calc(var(--_step-arrow-block-size) + var(--_step-arrow-inline-size)) solid transparent;
+				border-inline-start: calc(var(--_step-arrow-block-size) * var(--_step-arrow-inclination)) solid var(--_step-arrow-color);
 				content: "";
 			}
 		}
@@ -150,12 +150,12 @@
 
 	.p-step > li:not(:last-child) &::after {
 		position: absolute;
-		z-index: 2;
 		inset-block-start: calc(50% - var(--_step-arrow-block-size) - var(--_step-arrow-inline-size));
 		inset-inline-start: 100%;
+		z-index: 2;
+		border-block: calc(var(--_step-arrow-block-size) + var(--_step-arrow-inline-size)) solid transparent;
 		border-inline-start: calc(var(--_step-arrow-block-size) * var(--_step-arrow-inclination)) solid;
 		border-inline-start-color: var(--_bg-color);
-		border-block: calc(var(--_step-arrow-block-size) + var(--_step-arrow-inline-size)) solid transparent;
 		content: "";
 	}
 
