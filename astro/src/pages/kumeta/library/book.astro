@@ -11,7 +11,7 @@ import type { StructuredData } from '@type/types.js';
 const structuredData: StructuredData = {
 	title: '久米田康治作品の図書、一般雑誌での紹介例',
 	heading: 'メディア紹介 — 図書、一般雑誌',
-	dateModified: dayjs('2024-01-10'),
+	dateModified: dayjs('2024-02-25'),
 	description: '本や雑誌（漫画雑誌を除く）において久米田先生のインタビューや描き下ろしイラストが掲載された事例、また久米田作品が紹介された事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 	localNav: [
@@ -29,6 +29,12 @@ const slugger = new GithubSlugger();
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
 		<H slot="heading">1993年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="鉄道ジャーナル 1993年3月号（No.317）" release="1993-01-21">
+			<div class="p-text">
+				<p>p.137: 「WIDE LENS」コーナーにて『行け!!南国アイスホッケー部』の朝霧舞子の名前がJR神戸線の隣接駅名に存在する（朝霧駅、舞子駅）として<q>久米田さんはレールファンかなと推定している読者がある</q>と紹介。</p>
+			</div>
+		</LibraryItemBook>
 
 		<LibraryItemBook slugger={slugger} headingLevel={3} title="ぱふ 1993年4月号" release="1993-03">
 			<div class="p-text">
