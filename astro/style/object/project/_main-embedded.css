@@ -38,18 +38,18 @@ Styleguide 2.5.1
 		--_expand-icon-padding: 4px;
 
 		display: inline flow-root;
-		outline-width: var(--outline-width-bold);
 		outline-offset: -1px;
+		outline-width: var(--outline-width-bold);
 
 		&::before {
+			box-sizing: border-box;
 			display: block flow;
 			position: absolute;
-			box-sizing: border-box;
 			inset: 1px;
 			background: rgb(0 0 0 / 70%) url("/assets/image/media-expansion.svg") center/contain no-repeat content-box border-box;
 			padding: var(--_expand-icon-padding);
-			inline-size: 24px;
 			block-size: 24px;
+			inline-size: 24px;
 			content: "";
 		}
 
@@ -61,32 +61,32 @@ Styleguide 2.5.1
 	& img,
 	& video {
 		display: inline flow-root;
-		vertical-align: top;
 		border: var(--_border-width) solid var(--color-black);
-		max-inline-size: calc(100% - var(--_border-width) * 2);
 		block-size: auto;
+		max-inline-size: calc(100% - var(--_border-width) * 2);
+		vertical-align: top;
 	} /* <audio> については block-size: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
 
 	& video {
-		outline-width: var(--outline-width-bold);
 		outline-offset: -1px;
+		outline-width: var(--outline-width-bold);
 	}
 
 	& audio {
-		outline-width: var(--outline-width-bold);
 		outline-offset: 0;
+		outline-width: var(--outline-width-bold);
 	}
 
 	& iframe {
 		--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
 
-		display: block flow;
 		box-sizing: border-box;
+		display: block flow;
 		margin-inline: auto;
 		border: var(--_border-width) solid var(--color-black);
 		aspect-ratio: var(--aspect-ratio, auto);
-		inline-size: calc(100% - var(--_margin-inline) * 2);
 		block-size: auto;
+		inline-size: calc(100% - var(--_margin-inline) * 2);
 
 		@media (--breakpoint) {
 			--_margin-inline: 15px;
@@ -108,8 +108,8 @@ Markup:
 Styleguide 2.5.2
 */
 .p-embed-link {
-	font-size: calc(100% / var(--font-ratio-1));
 	line-height: var(--line-height-narrow);
+	font-size: calc(100% / var(--font-ratio-1));
 
 	& > :any-link {
 		outline: none;

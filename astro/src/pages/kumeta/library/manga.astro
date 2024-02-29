@@ -11,7 +11,7 @@ import type { StructuredData } from '@type/types.js';
 const structuredData: StructuredData = {
 	title: '久米田康治作品の漫画雑誌での紹介例',
 	heading: 'メディア紹介 — 漫画雑誌',
-	dateModified: dayjs('2024-01-10'),
+	dateModified: dayjs('2024-02-25'),
 	description: '漫画雑誌において久米田作品がカラー掲載されたり、企画記事が載ったりするなど、通常の連載以外で注目すべき事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: 'ホーム' }],
 	localNav: [
@@ -27,6 +27,21 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section slugger={slugger}>
+		<H slot="heading">1979年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="週刊少年キング 1979年6月4日号" release="1979-05-04">
+			<div class="p-text">
+				<p>p.296: キングまんがランド（似顔絵道場）の「もう一歩で入選の人たち」に<q>神奈川県　久米田康治</q>の名前</p>
+			</div>
+
+			<ul class="p-notes">
+				<li>デビュー前の11歳の時の読者投稿（ただし同姓同名の別人の可能性はある）</li>
+				<li>入選はしていないので投稿イラストは掲載されていない</li>
+			</ul>
+		</LibraryItemBook>
+	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">1988年</H>
 
