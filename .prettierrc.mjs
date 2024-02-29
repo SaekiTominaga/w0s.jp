@@ -7,6 +7,12 @@ const config = {
 
 	overrides: [
 		{
+			files: '*.html',
+			options: {
+				printWidth: 9999,
+			},
+		},
+		{
 			files: '*.astro',
 			options: {
 				parser: 'astro',
