@@ -18,7 +18,7 @@ interface Props {
 
 const { pagePath: pagePathTemp, astroFilePath, structuredData } = Astro.props;
 
-const pagePath = pagePathTemp ?? (SsrUtil.getPageUrl(Astro.url, astroFilePath));
+const pagePath = pagePathTemp ?? SsrUtil.getPageUrl(Astro.url, astroFilePath);
 
 const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);
@@ -30,7 +30,7 @@ const footnoteData = FootnoteUtil.getData(document);
 const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 	<Head structuredData={structuredData} />
 	<body>
