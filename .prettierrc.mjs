@@ -7,13 +7,6 @@ const config = {
 
 	overrides: [
 		{
-			files: ['*.html', '*.ejs'],
-			options: {
-				parser: 'html',
-				printWidth: 9999,
-			},
-		},
-		{
 			files: '*.astro',
 			options: {
 				parser: 'astro',
@@ -23,7 +16,6 @@ const config = {
 		{
 			files: '*.css',
 			options: {
-				printWidth: 9999,
 				singleQuote: false,
 			},
 		},
