@@ -1,3 +1,47 @@
+export interface SchemaOrgBreadcrumbListItem {
+	readonly '@context'?: string;
+	readonly '@type': 'ListItem';
+	readonly position: number;
+	readonly name: string;
+	readonly item?: string;
+} // https://schema.org/ListItem; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#list-item
+
+export interface SchemaOrgBreadcrumbList {
+	readonly '@context'?: string;
+	readonly '@type': 'BreadcrumbList';
+	readonly itemListElement: SchemaOrgBreadcrumbListItem[];
+} // https://schema.org/BreadcrumbList; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#breadcrumb-list
+
+export interface SchemaOrgPerson {
+	readonly '@type': 'Person';
+	readonly name: string;
+	readonly agentInteractionStatistic?: object;
+	readonly alternateName?: string;
+	readonly description?: string;
+	readonly identifier?: string;
+	readonly image?: string | string[] | object;
+	readonly interactionStatistic?: object;
+	readonly sameAs?: string;
+} // https://schema.org/Person; https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification
+
+export interface SchemaOrgOrganization {
+	readonly '@type': 'Organization';
+	readonly name: string;
+	readonly agentInteractionStatistic?: object;
+	readonly alternateName?: string;
+	readonly description?: string;
+	readonly identifier?: string;
+	readonly image?: string | string[] | object;
+	readonly interactionStatistic?: object;
+	readonly sameAs?: string;
+} // https://schema.org/Person; https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification
+
+export interface StructuredDataErrorPage {
+	readonly heading: string;
+	readonly headingCode: string;
+	readonly moduleScripts?: string[];
+}
+
 interface StructuredDataUrl {
 	readonly path: string;
 	readonly name: string;
@@ -28,25 +72,6 @@ export interface StructuredData {
 	readonly localNav?: StructuredDataUrl[];
 	readonly tocDirection?: 'column' | 'row';
 	readonly moduleScripts?: string[];
+	readonly mainEntity?: SchemaOrgPerson | SchemaOrgOrganization;
 	readonly opensearch?: StructuredDataUrl;
 }
-
-export interface StructuredDataErrorPage {
-	readonly heading: string;
-	readonly headingCode: string;
-	readonly moduleScripts?: string[];
-}
-
-export interface SchemaOrgBreadcrumbListItem {
-	readonly '@context'?: string;
-	readonly '@type': 'ListItem';
-	readonly position: number;
-	readonly name: string;
-	readonly item?: string;
-} // https://schema.org/ListItem; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#list-item
-
-export interface SchemaOrgBreadcrumbList {
-	readonly '@context'?: string;
-	readonly '@type': 'BreadcrumbList';
-	readonly itemListElement: SchemaOrgBreadcrumbListItem[];
-} // https://schema.org/BreadcrumbList; https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#breadcrumb-list

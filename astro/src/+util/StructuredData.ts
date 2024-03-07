@@ -61,6 +61,9 @@ export default class StructuredDataUtil {
 		if (structuredData.image !== undefined) {
 			webPage.set('image', structuredData.image);
 		}
+		if (structuredData.mainEntity !== undefined) {
+			webPage.set('mainEntity', structuredData.mainEntity);
+		}
 
 		return Object.fromEntries(webPage);
 	};
