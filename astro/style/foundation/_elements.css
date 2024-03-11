@@ -56,7 +56,7 @@ pre {
 	tab-size: 2;
 }
 
-:is(cite, em) {
+em {
 	&:lang(ja) {
 		font-weight: var(--font-weight-bold);
 	}
@@ -67,18 +67,18 @@ small {
 	font-weight: var(--font-weight-normal);
 }
 
-dfn {
+:is(cite, dfn) {
 	&::before {
-		content: var(--_dfn-open, "“");
+		content: var(--_open, "“");
 	}
 
 	&::after {
-		content: var(--_dfn-close, "”");
+		content: var(--_close, "”");
 	}
 
 	&:lang(ja) {
-		--_dfn-open: "「";
-		--_dfn-close: "」";
+		--_open: "「";
+		--_close: "」";
 	}
 }
 
