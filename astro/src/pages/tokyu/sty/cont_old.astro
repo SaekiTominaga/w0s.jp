@@ -14,7 +14,7 @@ const structuredData: StructuredData = {
 	heading: '制御装置',
 	subHeading: '抵抗制御、旧性能車',
 	dateModified: dayjs('2023-11-01'),
-	description: 'デハ1形からデハ3800形までの旧性能車（鉄道線の電動客車に限る）に搭載された制御装置を紹介します。',
+	description: 'デハ1形からデハ3800形までの旧性能車（鉄道線の電動客車、電動貨車に限る）に搭載された制御装置を紹介します。',
 	image: 'https://media.w0s.jp/image/tokyu/sty/cont/MMC-H-10K_towada3603.jpg',
 	breadcrumb: [
 		{ path: '/tokyu/', name: 'ホーム' },
@@ -66,7 +66,7 @@ const slugger = new GithubSlugger();
 				<tr>
 					<td>直接制御</td>
 					<td>東洋、GE 等</td>
-					<td>デハ1形、デハ6形、モハ15形</td>
+					<td>デハ1形、デハ6形、モハ15形、電動貨車</td>
 					<td>1922年</td>
 					<td></td>
 				</tr>
@@ -187,6 +187,7 @@ const slugger = new GithubSlugger();
 			<p>間接化当初は後述する<a href="#dk-system">東洋電機製造のデッカーシステム</a>でしたが、1941年に<a href="#ministry-mekama">鉄道省払い下げ車</a>と制御装置を交換し、アメリカ・<span lang="en">General Electric</span> 社タイプの M コントロールとなっています。なお、モハ9〜10 の2両のみ HL 式とされた記事もありますが<FootnoteReference>Romance Car No.17「東京急行電鉄2」（川垣恭三） p.9</FootnoteReference>、詳細は不明です。</p>
 			<p>一方、池上電気鉄道では開業初期に乙号車（デハ1〜2）、甲号車（デハ3〜6）、丙号車（デハ11〜12）の3タイプが用意され、いずれも直接制御式でした。このうち新造車である甲号車はデハ3〜4 とデハ5〜6 で車体寸法や台車、主電動機出力などが異なりますが、電気器は中古品を搭載していたため<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1505813/1/42">交通と電気 1925年10月号「池上電氣鐵道と高柳淳之助君」（巨海省吾） p.56</LinkExternal></FootnoteReference>さらに車両ごとの個体差があり、当時の鉄道省申請書類によるとデハ3 は東洋電機製 DB1 型 K8、デハ4 は GE 社製 K10 型が搭載されていたようです<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/file/2857789">【鉄道省文書】池上電気鉄道 1927年9月18日「工事方法變更認可申請書」</LinkExternal></FootnoteReference>（デハ5〜6 は不明）。池上電気鉄道は1934年に目黒蒲田電鉄へ吸収合併されますが、それより以前に乙号車は譲渡、丙号車は廃車となっていたため、甲号車のみが引き継がれてモハ15形となりました。引き継ぎの前後ともに大きな工事記録がないため、最後まで直接制御のままであったものと思われます。</p>
 			<p>また、合併前に伯陽電鉄<small>（後の日ノ丸自動車）</small>へ譲渡された乙号車のうち1両は鉄道路線廃止後も現地で保存されており、マスコンは東洋電機製 DB1 型 K4 が残されています。ただし両端の運転台で固有番号が連続しておらず形状も異なることから、少なくとも一方は製造当初からのオリジナルではなく交換されたものと思われます。</p>
+			<p>この他、目黒蒲田電鉄と東京横浜電鉄では1923年から1925年にかけて有蓋電動貨車が2両、無蓋電動貨車が6両製造されましたが（無蓋車のうち1両は後に有蓋車に改造）、これらも直接制御で製造されました。池上電気鉄道でも開業当初から電動貨車1両の製造が計画され<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/509585">【鉄道省文書】池上電気鉄道 1920年7月21日「工事方法変更認可申請書」</LinkExternal></FootnoteReference>、現車の存在も確認されているものの、どういうわけか竣功届が提出されなかった幻の車両でした。製造の申請は1927年に行われているもののそれ以前に存在したとする資料もあり<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/1505791/1/76">交通と電気 1924年1月号　巻末付録「日本電鐵明細表 ELECTRIC RAILWAYS IN JAPAN」</LinkExternal></FootnoteReference>、謎の多い車両であるが故に実際の制御方式は未確認ですが、設計書によればこれも直接制御とされています<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/511988">【鉄道省文書】池上電気鉄道 1927年9月29日「車輛工事施行認可申請書」</LinkExternal></FootnoteReference>。</p>
 		</div>
 
 		<div class="c-flex">
@@ -203,7 +204,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="ministry-mekama">
-		<H slot="heading">鉄道省払い下げ車（目蒲、東横時代）</H>
+		<H slot="heading">鉄道省払い下げ車（目蒲&amp;東横時代）</H>
 
 		<div class="p-text">
 			<p>目蒲線の全通間もない1924年には乗客増加による車両不足のため省線電車を使用することとなり、山手線、中央線の 1200V 昇圧により不要となった木造ボギー電車デハ6260形4両を借り受け、同年中に譲受となり、目黒蒲田電鉄デハ20形となりました。続けて翌1925年にも同型の8両が譲渡されたものの、どういうわけか続番ではなく新たにデハ30形と区分され、さらに1926年にはデハ6285形4両が譲渡されデハ40形となりました。</p>
