@@ -27,7 +27,7 @@ interface Car {
 }
 
 /**
- * 東急電車形態研究・車歴表
+ * 東急電車資料室・車歴表
  */
 export default class TokyuCarHistoryDao {
 	#dbh: sqlite.Database | null = null;

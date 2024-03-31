@@ -3,7 +3,7 @@ import TableCellDitto from '@w0s/table-cell-ditto';
 import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover.js';
 
 /**
- * 東急電車形態研究 - 車歴表
+ * 東急電車資料室 - 車歴表
  */
 
 /* 入力値を変換する */
