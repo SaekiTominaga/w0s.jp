@@ -25,8 +25,4 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npx json2ts -i configure/schema -o configure/type
-      - run: cd astro
-      - run: npx astro check
-      - run: npx astro build
-      - run: npm run html-lint -w '@w0s.jp/astro'
+      - run: npm run html-src-lint -w '@w0s.jp/astro'
