@@ -168,14 +168,14 @@ for (const resoursePage of resourcePageListDto) {
 								<select class="c-select" id="fc-category" name="category">
 									{
 										categoryMaster.map((category) => (
-											<>
+											<Fragment>
 												{requestQuery.category === category.fk && (
 													<option value={category.fk} selected="">
 														{category.name}
 													</option>
 												)}
 												{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-											</>
+											</Fragment>
 										))
 									}
 								</select>
@@ -193,14 +193,14 @@ for (const resoursePage of resourcePageListDto) {
 								<select class="c-select" id="fc-priority" name="priority">
 									{
 										priorityMaster.map((priority) => (
-											<>
+											<Fragment>
 												{requestQuery.priority === priority.fk && (
 													<option value={priority.fk} selected="">
 														{priority.name}
 													</option>
 												)}
 												{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-											</>
+											</Fragment>
 										))
 									}
 								</select>
@@ -302,7 +302,7 @@ for (const resoursePage of resourcePageListDto) {
 									<p style="margin-block-start: 0.5em; font-size: 80%">{resourcePage.url}</p>
 								</td>
 								<td class="u-cell -center">{resourcePage.priority}</td>
-								<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
+								<td class="u-cell -center">{resourcePage.browser && <Fragment>✔</Fragment>}</td>
 								<td class="u-cell -wrap-anywhere">{resourcePage.selector}</td>
 								<td>{resourcePage.content_hash}</td>
 								<td class="u-cell -center">{resourcePage.error && <strong style="color: red">✗</strong>}</td>

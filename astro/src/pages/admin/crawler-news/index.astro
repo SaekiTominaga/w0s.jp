@@ -176,14 +176,14 @@ for (const newsPage of newsPageListDto) {
 								<select class="c-select" id="fc-category" name="category">
 									{
 										categoryMaster.map((category) => (
-											<>
+											<Fragment>
 												{requestQuery.category === category.fk && (
 													<option value={category.fk} selected="">
 														{category.name}
 													</option>
 												)}
 												{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-											</>
+											</Fragment>
 										))
 									}
 								</select>
@@ -201,14 +201,14 @@ for (const newsPage of newsPageListDto) {
 								<select class="c-select" id="fc-priority" name="priority">
 									{
 										priorityMaster.map((priority) => (
-											<>
+											<Fragment>
 												{requestQuery.priority === priority.fk && (
 													<option value={priority.fk} selected="">
 														{priority.name}
 													</option>
 												)}
 												{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-											</>
+											</Fragment>
 										))
 									}
 								</select>
@@ -335,7 +335,7 @@ for (const newsPage of newsPageListDto) {
 									</p>
 								</td>
 								<td>{newsPage.priority}</td>
-								<td>{newsPage.browser && <>✔</>}</td>
+								<td>{newsPage.browser && <Fragment>✔</Fragment>}</td>
 								<td class="u-cell -wrap-anywhere">{newsPage.selector_wrap}</td>
 								<td class="u-cell -wrap-anywhere">{newsPage.selector_date}</td>
 								<td class="u-cell -wrap-anywhere">{newsPage.selector_content}</td>
