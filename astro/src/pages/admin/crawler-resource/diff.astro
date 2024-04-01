@@ -16,9 +16,7 @@ const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.D
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース）',
-	breadcrumb: [
-		{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' },
-	],
+	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
 const requestParams = RequestUtil.getParams(Astro.url);
@@ -115,8 +113,7 @@ if (requestQuery.dir !== null) {
 					{fileList.map((file) => (
 						<li>
 							<label>
-								{requestQuery.diff.includes(file) && <input type="checkbox" name="diff[]" value={file} checked="" />}
-								{!requestQuery.diff.includes(file) && <input type="checkbox" name="diff[]" value={file} />} {file}
+								<input type="checkbox" name="diff[]" value={file} checked={requestQuery.diff.includes(file)} /> {file}
 							</label>
 							(<a href={`/admin/crawler-resource/log?dir=${requestQuery.dir};file=${file}`}>ソースコード</a>)
 						</li>

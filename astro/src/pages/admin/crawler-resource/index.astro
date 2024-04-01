@@ -140,8 +140,7 @@ for (const resoursePage of resourcePageListDto) {
 						</legend>
 						<div class="p-form-grid__contents">
 							<div class="c-form-controls">
-								{(requestQuery.action_revise_preview || requestQuery.action_revise) && <input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly="" />}
-								{!requestQuery.action_revise_preview && !requestQuery.action_revise && <input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" />}
+								<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} />
 							</div>
 						</div>
 					</fieldset>
@@ -214,8 +213,7 @@ for (const resoursePage of resourcePageListDto) {
 						<div class="p-form-grid__contents">
 							<div class="c-form-controls">
 								<label class="c-label -check">
-									{requestQuery.browser && <input type="checkbox" name="browser" value="1" checked="" />}
-									{!requestQuery.browser && <input type="checkbox" name="browser" value="1" />}
+									<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
 									<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
 								>
 							</div>
