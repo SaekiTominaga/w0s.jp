@@ -16,10 +16,10 @@ const { pagePath, structuredData, tocData } = Astro.props;
 		structuredData.breadcrumb !== undefined && (
 			<p class="p-topic-path">
 				{structuredData.breadcrumb.map((breadcrumbItem, index) => (
-					<>
+					<Fragment>
 						{index > 0 && <span class="p-topic-path__separator">&gt;</span>}
 						<a href={breadcrumbItem.path}>{breadcrumbItem.name}</a>
-					</>
+					</Fragment>
 				))}
 				<span class="p-topic-path__separator">&gt;</span>
 				<a aria-current="page">現在のページ</a>
