@@ -148,8 +148,7 @@ for (const newsPage of newsPageListDto) {
 						</legend>
 						<div class="p-form-grid__contents">
 							<div class="c-form-controls">
-								{(requestQuery.action_revise_preview || requestQuery.action_revise) && <input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly="" />}
-								{!requestQuery.action_revise_preview && !requestQuery.action_revise && <input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" />}
+								<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} />
 							</div>
 						</div>
 					</fieldset>
@@ -176,14 +175,14 @@ for (const newsPage of newsPageListDto) {
 								<select class="c-select" id="fc-category" name="category">
 									{
 										categoryMaster.map((category) => (
-											<>
+											<Fragment>
 												{requestQuery.category === category.fk && (
 													<option value={category.fk} selected="">
 														{category.name}
 													</option>
 												)}
 												{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-											</>
+											</Fragment>
 										))
 									}
 								</select>
@@ -201,14 +200,14 @@ for (const newsPage of newsPageListDto) {
 								<select class="c-select" id="fc-priority" name="priority">
 									{
 										priorityMaster.map((priority) => (
-											<>
+											<Fragment>
 												{requestQuery.priority === priority.fk && (
 													<option value={priority.fk} selected="">
 														{priority.name}
 													</option>
 												)}
 												{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-											</>
+											</Fragment>
 										))
 									}
 								</select>
@@ -222,8 +221,7 @@ for (const newsPage of newsPageListDto) {
 						<div class="p-form-grid__contents">
 							<div class="c-form-controls">
 								<label class="c-label -check">
-									{requestQuery.browser && <input type="checkbox" name="browser" value="1" checked="" />}
-									{!requestQuery.browser && <input type="checkbox" name="browser" value="1" />}
+									<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
 									<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
 								>
 							</div>
@@ -335,7 +333,7 @@ for (const newsPage of newsPageListDto) {
 									</p>
 								</td>
 								<td>{newsPage.priority}</td>
-								<td>{newsPage.browser && <>✔</>}</td>
+								<td>{newsPage.browser && <Fragment>✔</Fragment>}</td>
 								<td class="u-cell -wrap-anywhere">{newsPage.selector_wrap}</td>
 								<td class="u-cell -wrap-anywhere">{newsPage.selector_date}</td>
 								<td class="u-cell -wrap-anywhere">{newsPage.selector_content}</td>
