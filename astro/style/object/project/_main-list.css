@@ -181,6 +181,8 @@ Markup:
 	</ul></li>
 </ul>
 
+.-index - インデックスページにおける下層ページのリンク
+
 Styleguide 2.3.6
 */
 .p-links {
@@ -224,10 +226,6 @@ Styleguide 2.3.6
 			}
 		}
 
-		& > a {
-			font-size: calc(100% * var(--font-ratio-2));
-		}
-
 		& > :any-link {
 			--_icon-color: var(--link-color-bullet);
 
@@ -237,9 +235,11 @@ Styleguide 2.3.6
 				--_icon-color: var(--link-color-hover);
 			}
 		}
+	}
 
-		& > ul > li > a {
-			font-size: calc(100% * var(--font-ratio-1));
+	&.-index {
+		& a {
+			font-size: calc(100% * var(--font-ratio-2));
 		}
 	}
 }

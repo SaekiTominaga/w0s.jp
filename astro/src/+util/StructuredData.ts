@@ -52,7 +52,7 @@ export default class StructuredDataUtil {
 			webPage.set('breadcrumb', breadcrumbList);
 		}
 		if (structuredData.dateModified !== undefined) {
-			webPage.set('dateModified', structuredData.dateModified.format('YYYY-MM-DD'));
+			webPage.set('dateModified', structuredData.dateModified.format('YYYYMMDDTHHmm'));
 		}
 		webPage.set('headline', structuredData.title);
 		if (structuredData.description !== undefined) {
