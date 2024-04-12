@@ -1,0 +1,210 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急大井町線デハ8290形　床下機器配置',
+	heading: '大井町線デハ8290形　床下機器配置',
+	dateModified: dayjs('2007-08-01'),
+	description: '大井町線8090系は2000年代に補助電源装置の二電源化工事が行われましたが、施工は一部編成に留まり床下機器配置にはバリエーションが見られました。',
+	image: 'https://media.w0s.jp/image/tokyu/machine/ub/8290m-BS33.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/machine/', name: '車両機器' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>大井町線の8090系（5両編成）は3号車に 10kVA の小容量 SIV が搭載されていますが、いずれも1970年代の製造であり、老朽化および予備品確保のためか、100kVA の大容量タイプに更新し二電源化を実現する工事が一部編成で行われました。</p>
+			<p>この工事は2000年と2005年の2回に分けて行われ、それぞれ異なる機器が搭載されました。</p>
+		</div>
+	</Section>
+
+	<Section id="m2-8290-bs33">
+		<H slot="heading">10kVA SIV 搭載車</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="m2-8290-bs33-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8290s-BS33.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2005-05-01 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8294海側（13次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、遮断器箱（SIV 起動装置）、接地開閉器、空気圧縮機（HB-2000 型、2台）、100V蓄電池です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="m2-8290-bs33-m" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8290m-BS33.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2007-09-24 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8284山側（16-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、<a href="aps#bs33">静止形インバーター（BS-33 型）</a>、負荷接触器、元空気だめ、除湿装置、元空気だめ、除湿装置、ブレーキ制御装置です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="m2-8290-bs33-j" depth={2} headingType="c">
+					<H slot="heading">山側連結部</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/IC3C.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
+							<!-- 撮影日: 2007-08-18 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8495 ｰ デハ8280山側</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>デハ8490形（2号車）とデハ8290形（3号車）の山側連結部の様子。手前から2本目、MRPの奥にあるジャンパ栓が3芯の冷房用高圧栓（IC3C 型）です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="m2-8290-inv104">
+		<H slot="heading">100kVA SIV（INV-104 型）搭載車</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="m2-8290-inv104-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8290s-INV104.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2005-05-01 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8282海側（16-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>2000年に100kVAへ換装された車両では、海側の遮断器箱を撤去して<a href="rec#rfe068">RFE068型整流装置</a>が取り付けられ、高圧接触器や電動空気圧縮機が若干移設されています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="m2-8290-inv104-m" depth={2} headingType="c">
+					<H slot="heading">山側</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8290m-INV104.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2007-10-13 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8296山側（13次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>主な機器は下り方から順に、<a href="aps#inv104">静止形インバーター（INV-104 型）</a>、元空気だめ、除湿装置、元空気だめ、除湿装置、ブレーキ制御装置です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="m2-8290-inv104-j" depth={2} headingType="c">
+					<H slot="heading">山側連結部</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/IC3C-fo.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
+							<!-- 撮影日: 2007-04-15 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8496 ｰ デハ8282山側</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>二電源化を行った車両編成では、換装された3号車の SIV が3〜5号車の給電を担当するため、2〜3号車間の冷房用繋ぎは不要となりました。なお、8496-8282間のみ冷房栓は撤去されずに残っています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="m2-8290-inv153">
+		<H slot="heading">100kVA SIV（INV-153 型）搭載車</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="m2-8290-inv153-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8290s-INV153.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2005-05-01 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8298海側（16-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>2005年に 100kVA へ換装された車両では、海側の遮断器箱を撤去して <a href="rec#rfe068">RFE068 型整流装置</a>やリアクトル・トランス箱が新設されました。</p>
+						<p>なお、山側の配置は INV-104 型搭載車とほぼ同様です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="m2-8290-inv153-j" depth={2} headingType="c">
+					<H slot="heading">山側連結部</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/IC3C-rem.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
+							<!-- 撮影日: 2007-05-19 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8494 ｰ デハ8298山側</figcaption>
+					</figure>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="m2-8200">
+		<H slot="heading">（参考）10kVA SIV 搭載車・デハ8200形</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="m2-820-s" depth={2} headingType="c">
+					<H slot="heading">海側</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8200s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2005-05-01 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8203海側（1次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>蛇足になりますが、デハ8200形の海側も紹介します。</p>
+						<p>主な機器は下り方から順に、遮断器箱（SIV起動装置）、接地開閉器、空気圧縮機（HB-2000 型）、100V 蓄電池、空気圧縮機（HB-2000 型）、100V 蓄電池で、デハ8290形と異なり蓄電池が2台搭載されているのが外観上最大の特徴です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>

@@ -1,0 +1,283 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import Image from '@components/Image.astro';
+import LinkPhoto from '@components/LinkPhoto.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急電車の台車（東急車輛、J-TREC 製以外）',
+	heading: '東急車輛、J-TREC 製以外の台車',
+	dateModified: dayjs('2022-08-20'),
+	description: '旧3000系以前の吊掛車、あるいは譲渡先で台車を履き替えたケースなど、総合車両製作所以外の台車を履いた東急電車の事例を紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/truck/KS33E_oigawa821.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/truck/', name: '台車' },
+	],
+	localNav: [
+		{ path: '/tokyu/truck/ts300', name: 'TS-300' },
+		{ path: '/tokyu/truck/ts700', name: 'TS-700' },
+		{ path: '/tokyu/truck/ts800', name: 'TS-800' },
+		{ path: '/tokyu/truck/ts1000', name: 'TS-1000' },
+		{ path: '/tokyu/truck/etc', name: '総合車両製以外' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>現在、東急電鉄の旅客車両はすべて総合車両製作所ないし前身の東急車輛製造製の台車を履いていますが、吊り掛け車時代は他メーカーの台車も存在しました。また、譲渡車両では台車を履き替えた例も存在します。</p>
+			<p>ここでは譲渡車両や保存車両で現存する台車、あるいは近年まで見られた台車の一部を紹介します。</p>
+		</div>
+
+		<table class="p-table -full">
+			<thead>
+				<tr>
+					<th scope="col">形式</th>
+					<th scope="col">メーカー</th>
+					<th scope="col">製造初年</th>
+					<th scope="col">履用車両</th>
+					<th scope="col">現状</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>（鉄道院・明治43年式電車用台車） <span class="c-tokyu-truck -m">動力</span></td>
+					<td></td>
+					<td class="u-cell -center">?</td>
+					<td>目黒蒲田電鉄モハ40形</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td><a href="#nsk-a1" class="c-link">A-1</a> <span class="c-tokyu-truck -m">動力</span></td>
+					<td>日本車輌製造</td>
+					<td class="u-cell -center">1922年</td>
+					<td>池上電気鉄道乙号電車</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td><a href="#3100" class="c-link">（東横／目蒲・デハ100形用台車）</a> <span class="c-tokyu-truck -t">付随</span></td>
+					<td>汽車製造、藤永田造船所</td>
+					<td class="u-cell -center">1925年</td>
+					<td>デハ3100形 → サハ3100形</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td>TD4 <span class="c-tokyu-truck -m">動力</span></td>
+					<td>日本車輌製造、汽車製造</td>
+					<td class="u-cell -center">?</td>
+					<td>デハ80形<small>（デハ20形鋼体化改造車）</small></td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td>（東横・デキ1形用台車） <span class="c-tokyu-truck -m">動力</span></td>
+					<td>川崎車輛</td>
+					<td class="u-cell -center">1929年</td>
+					<td>デキ3021形</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td>日車3450 <span class="c-tokyu-truck -m">動力</span></td>
+					<td>日本車輌製造</td>
+					<td class="u-cell -center">1931年</td>
+					<td>デハ3450形</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td>川車3450 <span class="c-tokyu-truck -m">動力</span></td>
+					<td>川崎車輛</td>
+					<td class="u-cell -center">1931年</td>
+					<td>デハ3450形</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td>川車3650 <span class="c-tokyu-truck -m">動力</span></td>
+					<td>川崎車輛</td>
+					<td class="u-cell -center">1942年</td>
+					<td>デハ3650形</td>
+					<td>保存</td>
+				</tr>
+				<tr>
+					<td><a href="#ks33" class="c-link">KS-33L → E</a> <span class="c-tokyu-truck -t">付随</span></td>
+					<td>扶桑金属工業</td>
+					<td class="u-cell -center">1947年</td>
+					<td>デハ3700形</td>
+					<td>現役</td>
+				</tr>
+				<tr>
+					<td><a href="#dt21" class="c-link">DT-21T, TR-64, DT-21B</a> <span class="c-tokyu-truck -t">付随</span></td>
+					<td></td>
+					<td class="u-cell -center">?</td>
+					<td>北陸鉄道7000系</td>
+					<td>現役</td>
+				</tr>
+				<tr>
+					<td><a href="#fs342" class="c-link">FS-342</a> <span class="c-tokyu-truck -m">動力</span></td>
+					<td>住友金属工業</td>
+					<td class="u-cell -center">1962年</td>
+					<td>北陸鉄道7000系</td>
+					<td>現役</td>
+				</tr>
+				<tr>
+					<td><a href="#fs097" class="c-link">FS-097</a> <span class="c-tokyu-truck -t">付随</span></td>
+					<td>住友金属工業</td>
+					<td class="u-cell -center">1978年</td>
+					<td>伊予鉄道サハ500形<small>（サハ502）</small></td>
+					<td>消滅</td>
+				</tr>
+				<tr>
+					<td><a href="#tr230" class="c-link">TR-230C</a> <span class="c-tokyu-truck -t">付随</span></td>
+					<td></td>
+					<td class="u-cell -center">1979年</td>
+					<td>マニMN50（マニ50 2186）</td>
+					<td>現役</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<ul class="p-notes">
+			<li>デキ1形（デキ3021形）用台車、 TR-230C 型の製造初年は車両入籍日からの推定。</li>
+			<li>住友金属工業の台車（FS-342 型、FS-097 型）の製造初年は鉄道ピクトリアルの連載「住友金属の台車」（鈴木光雄、1985年1月号〜1988年9月号）より。</li>
+			<li>それ以外の台車の製造初年は鉄道ピクトリアルの連載「台車のすべて」（吉雄永春、1958年1月号〜1961年1月号）より。</li>
+		</ul>
+	</Section>
+
+	<Section id="nsk-a1">
+		<H slot="heading">A-1 型 <small class="c-tokyu-truck -m">動力台車</small></H>
+
+		<figure class="c-fit">
+			<div class="p-embed -border">
+				<Image path="tokyu/truck/nsk-A1_hossyoji203.jpg" alt="写真拡大" width={1022} height={409} quality={80} link={true} />
+				<!-- 撮影日: 2010-03-08 -->
+			</div>
+			<figcaption class="c-caption -meta">日ノ丸自動車デハ203 米子市方</figcaption>
+		</figure>
+
+		<div class="p-text">
+			<p>池上電気鉄道開業時の車両のうち、駿遠電気より譲受した乙号電車（2両）は日本車輌製造の A 型と呼ばれる台車のうち、踏面ブレーキが台車内側にある A-1 型を履いていました。後に別の A 型台車が試作されたため、旧 A 型と呼ばれることもあります<FootnoteReference>日車の車輌史　写真・図面集—台車編 p.75</FootnoteReference>。</p>
+			<p>この A-1 台車は越中電気軌道や尾西鉄道など複数の私鉄に納入されており、そのほとんどは軸距が 1524mm（5フィート）でしたが、駿遠電気→池上電気鉄道の台車のみは軸距がやや短く 1473mm となっているのが特徴です。</p>
+			<p>乙号電車は目黒蒲田電鉄との合併前に2両とも鳥取県の伯陽電鉄（後の日ノ丸自動車、法勝寺電車の愛称で知られる）に譲渡されました。このうち、デハ203は1962年の廃線後に近隣の小学校に保存されましたが、2011年に県の有形文化財に指定されたことを機に修復工事が行われ、その後は町内の複合施設「キナルなんぶ」にて保存されています（写真は修復前の撮影）。私鉄向け国産台車の黎明期の個体が現存する事例として、全国的に見ても貴重な存在でしょう。</p>
+		</div>
+	</Section>
+
+	<Section id="3100">
+		<H slot="heading">東京横浜電鉄／目黒蒲田電鉄　デハ100形用台車 <small class="c-tokyu-truck -t">付随台車</small></H>
+
+		<figure class="c-fit">
+			<div class="p-embed -border">
+				<Image path="tokyu/truck/3100_kaya3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
+				<!-- 撮影日: 2010-07-21 -->
+			</div>
+			<figcaption class="c-caption -meta">加悦鉄道サハ3104</figcaption>
+		</figure>
+
+		<div class="p-text">
+			<p>東京横浜電鉄、目黒蒲田電鉄のデハ100形は藤永田造船所で製造されましたが、台車は汽車会社製（1925年）と藤永田造船所製（1926年）が混在していました。</p>
+			<p>この台車は東急系の文献ではしばしば「ブリル MCB 27-E」等と呼称されており、これは車両竣功図などにある「ブリル M.B.C 27E」の記載を元に社内でそう呼ばれていたものと思われます。しかし形式名の似たブリル 27-E やブリル 27-MCB 台車と構造を比較すると、ガゼットプレートなどブリル台車と共通する部品はあるものの、全体的にはむしろボールドウィン AA 系および L, R 系の特徴を合わせ持った形となっています。すなわち側梁は鋼板を組み合わせ、かつ軸箱守の外側が菱形を描く L, R 系の構造をしている一方で、中央の枕ばねはレールと直角に配置、下揺枕を台車枠から伸ばした揺枕吊りで支えるスイングボルスター方式であり、また釣合梁は U 字形（<span lang="en">Depressed</span> 形）で釣合ばねも含めて AA 系の雰囲気があるなど不思議な台車であり、路面電車向けボギー台車の思想を残しつつ郊外電車用へと発展させた過渡期のものと言えそうです。</p>
+			<p>登場後まもない1929年にブレーキの両抱化などの大規模改造が実施され<FootnoteReference>鐵道省文書　第十問　東京横濱電鉄　巻七　昭和四年「東横己第五七九號」および「東横己第五八一號」</FootnoteReference>、東京急行電鉄成立後の1957〜1958年には池上線の 1500V 昇圧に伴い、一部車両を電装解除して付随車のサハ3100形となりました。各地に譲渡された車両のうち、加悦鉄道のサハ3104 は用途廃止後も「加悦SLの広場」にて保存され、後年にはカフェとして利用するために車体が大改造されたものの、幸いにも足回りは原形を留めています。</p>
+			<p>
+				台車の銘板は取り外されていますが、<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/3100_kaya3104_plate.jpg"><!-- 撮影日: 2010-07-21 -->別途保管されている銘板</LinkPhoto>からすると1926年に藤永田造船所で製造されたものの可能性があります。デハ104 → サハ3104 の台車は本来は1925年の汽車会社製のはずなため<FootnoteReference>鉄道ピクトリアル 1958年10月号（No.87）「台車のすべて〔10〕」（吉雄永春） p.43</FootnoteReference>、東急在籍時以前に台車の振り替えがあったものと考えられます。
+			</p>
+			<p>
+				なお、近似の形態を持つ台車の採用例は多くはありませんが、日本車輌製造が製作した <LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/M12_kumamoto71.jpg" title="熊本電気鉄道モハ71 御代志方"><!-- 撮影日: 2010-07-21 -->M-12 型</LinkPhoto>が動態保存で残っています。
+			</p>
+		</div>
+
+		<Section id="ks33">
+			<H slot="heading">KS-33L 型 → KS-33E 型 <small class="c-tokyu-truck -t">付随台車</small></H>
+
+			<figure class="c-fit">
+				<div class="p-embed -border">
+					<Image path="tokyu/truck/KS33E_oigawa821.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
+					<!-- 撮影日: 2010-05-25 -->
+				</div>
+				<figcaption class="c-caption -meta">大井川鐵道スイテ82 1 金谷方</figcaption>
+			</figure>
+
+			<div class="p-text">
+				<p>1948年に運輸省規格型車両として製造されたデハ3700形、クハ3750形には扶桑金属工業<small>（現：日本製鉄）</small>の KS-33 形台車が履用されました。台車形式は KS-33L として製造されたものの、1949年以降の分類記号改正に伴い KS-33E となっています<FootnoteReference>住友金属 1968年10月号「住友台車の歩んで来た道（第1報）」（松宮惣一、赤松惇、高松之晴） p.63</FootnoteReference>。</p>
+				<p>KS-33 型台車はボールドウィン A 型台車を元にした鋳鋼台車で、多数の私鉄で導入されており、その形態も製造時期や納入先によってバリエーションが存在します。東急の台車は比較的後期のタイプで、釣合梁は U 字形（<span lang="en">Depressed</span> 形）タイプ、軸受けはコロ軸が採用されるなど近代的な装いとなっていました。また、後年の改造工事で多くの個体が枕ばねをオイルダンパ式に変更したことが最大の特徴として挙げられます。</p>
+				<p>デハ3700形、クハ3750形は目蒲線での活躍を終えた後、全車両が名古屋鉄道に譲渡され、同社のモ3880形、ク2880形となったことは周知の事実ですが、名鉄での廃車後も台車は全20両分がク2780形（HL 車）、ク2800形（AL 車）に転用され<FootnoteReference>鉄道ピクトリアル 1986年12月臨時増刊号（No.473）「私鉄車両めぐり〔133〕名古屋鉄道」（吉田文人） p.198</FootnoteReference>、このうち瀬戸線のク2780形は1996年まで活躍したそうです。</p>
+				<p>一方、大井川鐵道では1990年代に座敷客車ナロ80形（2両）、展望客車スイテ82形（1両）、および「しらさぎ」の愛称を持つアルミ電車クハ6061 の台車が KS-33 型に履き替えられました。これら計4両の台車は枕ばねがオイルダンパ式になっている特徴があり、その他の部品も含めた台車全体の形状、一部の台車に残る製造銘板の刻印、台車交換時期からして名鉄の廃車発生品を利用したものと判断できます。クハ6061 は廃車後に石川県・山中温泉へ里帰りし静態保存、一方のナロ80形、スイテ82形は現在でも不定期に「かわね路号」などに連結されて活躍中です。</p>
+			</div>
+
+			<Section id="dt21">
+				<H slot="heading">DT-21T 型、TR-64 型、DT-21B 型 <small class="c-tokyu-truck -t">付随台車</small></H>
+
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/truck/DT21B_hokuriku7112.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
+						<!-- 撮影日: 2007-03-31 -->
+					</div>
+					<figcaption class="c-caption -meta">北陸鉄道クハ7112 野町方</figcaption>
+				</figure>
+
+				<div class="p-text">
+					<p>北陸鉄道へ譲渡された旧7000系は、600V 降圧化に際し床下機器や主幹制御器などが一新され、台車も交換されています。東急時代は全電動車方式でしたが、譲渡に際し鶴来向きの先頭車は電装解除され、台車はいわゆる新性能国電に広く使われていた DT-21 系、 TR-64 系に換装されました。</p>
+					<p>石川線電車のクハで使われているのは DT-21T 型、 TR-64 型、 DT-21B 型の3種であり、 DT-21T は電装準備が成されている形式、 TR-64 は当初から制御車、付随車専用として作られた形式、 DT-21B は国鉄401系、421系電車等向けに一部設計変更された形式となってます。</p>
+				</div>
+
+				<Section id="fs342">
+					<H slot="heading">FS-342 型 <small class="c-tokyu-truck -m">動力台車</small></H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/truck/FS342_hokuriku7102.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
+							<!-- 撮影日: 2007-03-31 -->
+						</div>
+						<figcaption class="c-caption -meta">北陸鉄道モハ7102 鶴来方</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>北陸鉄道7000系の電動車が履く FS-342 型は、 DT-21 型台車を元に住友金属工業<small>（現：日本製鉄）</small>が西武鉄道向け（後に上信電鉄も）に製作したもので、構造は DT-21 型の量産タイプと同じです。</p>
+					</div>
+
+					<Section id="fs097">
+						<H slot="heading">FS-097 型 <small class="c-tokyu-truck -t">付随台車</small></H>
+
+						<figure class="c-fit">
+							<div class="p-embed -border">
+								<Image path="tokyu/truck/FS097_iyotetsu502.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
+								<!-- 撮影日: 2008-10-19 -->
+							</div>
+							<figcaption class="c-caption -meta">伊予鉄道サハ502 横河原方</figcaption>
+						</figure>
+
+						<div class="p-text">
+							<p>
+								伊予鉄道へ譲渡された旧サハ3350形のうち、サハ502 は昭和50年代に電気指令ブレーキ化などのほかに台車換装が行われました。対応する M 台車はこれより2年前の1976年に製造された <LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/FS397_iyotetsu303.jpg" title="伊予鉄道デハ303 高浜方"><!-- 撮影日: 2008-10-19 -->FS-397型</LinkPhoto>で、ともに伊予鉄道300形、500形のために制作された台車です。ダイレクトマウント式空気ばね、ボルスタアンカー、ペデスタル軸ばねなど、当時の東急電車の台車（<a href="ts800">TS-800 系</a>）と機能的に共通した部分が多く、古い車体とのアンバランスさが目立っていました。
+							</p>
+							<p>営業運転から撤退した後も、固定編成を組んでいたデハ303、デハ304 とともに長らく古町車庫で姿を留めていましたが、2008年に解体され現存しません。</p>
+						</div>
+
+						<Section id="tr230">
+							<H slot="heading">TR-230C 型 <small class="c-tokyu-truck -t">付随台車</small></H>
+
+							<figure class="c-fit">
+								<div class="p-embed -border">
+									<Image path="tokyu/truck/TR230_mani50-2186.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
+									<!-- 撮影日: 2019-07-03 -->
+								</div>
+								<figcaption class="c-caption -meta">マニ50 2186</figcaption>
+							</figure>
+
+							<div class="p-text">
+								<p>2019年に東急電鉄に譲渡されたマニ50 2186 はジョイフルトレイン「リゾートエクスプレスゆう」の電源車として改造された車両で、台車は TR-230C 型を履用しています。</p>
+								<p>
+									TR-230 型は国鉄の50系客車用に作られた台車で、ペデスタル軸ばね式、外吊りの枕ばねを持ちます。オリジナルタイプの他、改良型として A 〜 E の5タイプが製造されましたが、このうちマニ50形100番代に採用された C 型はそれまで<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TR230_ohafu506-68_brake.jpg" title="オハフ 50 68 の TR-230 型台車"><!-- 撮影日: 2019-09-21 -->台車装架だったブレーキシリンダ</LinkPhoto>を寒冷地対策として車体（台枠）装架に変更したものとなります。また、本車両の軸ばね、枕ばねには氷雪対策の被覆が施されています。
+								</p>
+							</div>
+						</Section>
+					</Section>
+				</Section>
+			</Section>
+		</Section>
+	</Section>
+</Layout>
