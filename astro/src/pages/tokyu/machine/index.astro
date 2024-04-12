@@ -10,73 +10,66 @@ const structuredData: StructuredData = {
 	title: '東急電車の車両機器',
 	heading: '車両機器',
 	dateModified: dayjs('2024-04-12'),
-	description: '東急電鉄の車両の床下・屋根上機器などを写真と文章で紹介します。',
+	description: '東急電鉄の車両に搭載されている各種機器を紹介します。',
 	breadcrumb: [{ path: '/tokyu/', name: '東急電車資料室' }],
 };
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="c-grid -hdg-a -wide">
-		<div class="c-grid__item">
-			<Section id="cont">
-				<H slot="heading">制御装置</H>
+	<Section id="cont">
+		<H slot="heading">制御装置</H>
 
-				<ul class="p-links">
-					<li><a href="cont_old">抵抗制御（旧性能車）</a></li>
-					<li><a href="cont_high">抵抗制御（高性能車）</a></li>
-					<li><a href="cont_fcc">抵抗制御（界磁チョッパ）</a></li>
-					<li><a href="cont_gto">VVVF インバーター制御（GTO サイリスタ）</a></li>
-					<li><a href="cont_igbt">VVVF インバーター制御（IGBT）</a></li>
-				</ul>
-			</Section>
-		</div>
-		<div class="c-grid__item">
-			<Section id="sty">
-				<H slot="heading">車両機器</H>
+		<ul class="p-links">
+			<li><a href="/tokyu/machine/cont_old">抵抗制御（旧性能車）</a>（デハ1形〜デハ3800形）</li>
+			<li><a href="/tokyu/machine/cont_high">抵抗制御（高性能車）</a>（旧5000系〜7200系）</li>
+			<li><a href="/tokyu/machine/cont_fcc">抵抗制御（界磁チョッパ）</a>（8000系〜8090系）</li>
+			<li><a href="/tokyu/machine/cont_gto">VVVF インバーター制御（GTO サイリスタ）</a>（9000系〜2000系）</li>
+			<li><a href="/tokyu/machine/cont_igbt">VVVF インバーター制御（IGBT）</a>（デハ7815〜新3000系、1000系1500番台）</li>
+		</ul>
+	</Section>
 
-				<ul class="p-links -index">
-					<li><a href="aps">補助電源装置</a></li>
-					<li><a href="cp">空気圧縮機</a></li>
-					<li><a href="bce">ブレーキ制御装置</a></li>
-					<li><a href="bt">蓄電池</a></li>
-					<li><a href="rec">整流装置</a></li>
-					<li><a href="aci">冷房制御装置</a></li>
-					<li><a href="usl">床下灯</a></li>
-					<li><a href="tra">情報伝送装置</a></li>
-					<li><a href="atc">ATC 装置</a></li>
-					<li><a href="pt_7000">7200系、7600系、7700系　集電装置</a></li>
-				</ul>
-			</Section>
-		</div>
-		<div class="c-grid__item">
-			<Section id="ub">
-				<H slot="heading">床下機器配置</H>
+	<Section id="sty">
+		<H slot="heading">その他の車両機器</H>
 
-				<ul class="p-links -index">
-					<li><a href="ub_7600">7600系</a></li>
-					<li><a href="ub_7700">7700系</a></li>
-					<li><a href="ub_7700n">7700系（7915F）</a></li>
-					<li><a href="ub_1000n">1000N系（池上、多摩川線）</a></li>
-					<li><a href="ub_1000n2">1000N′系</a></li>
-					<li><a href="ub_1500">1000系1500番台</a></li>
-					<li><a href="ub_7900_m">クハ7900形山側</a></li>
-					<li><a href="ub_8290">大井町線デハ8290形</a></li>
-					<li><a href="ub_8800">デハ8800形海側</a></li>
-				</ul>
-			</Section>
-		</div>
-		<div class="c-grid__item">
-			<Section id="roof">
-				<H slot="heading">屋根上機器配置</H>
+		<ul class="p-links -index">
+			<li><a href="/tokyu/machine/aps">補助電源装置</a>（旧5000系〜新3000系）</li>
+			<li><a href="/tokyu/machine/cp">空気圧縮機</a>（旧5000系〜新3000系）</li>
+			<li><a href="/tokyu/machine/bce">ブレーキ制御装置</a>（7200系〜新3000系）</li>
+			<li><a href="/tokyu/machine/bt">蓄電池</a>（7200系〜新3000系）</li>
+			<li><a href="/tokyu/machine/rec">整流装置</a>（7200系〜新3000系）</li>
+			<li><a href="/tokyu/machine/aci">冷房制御装置</a>（1000系〜2000系）</li>
+			<li><a href="/tokyu/machine/usl">床下灯</a>（7200系〜2000系）</li>
+			<li><a href="/tokyu/machine/tra">情報伝送装置</a>（旧7000系〜新3000系）</li>
+			<li><a href="/tokyu/machine/atc">ATC 装置</a>（8000系〜新3000系）</li>
+			<li><a href="/tokyu/machine/pt_7000">7200系、7600系、7700系　集電装置</a></li>
+		</ul>
+	</Section>
 
-				<ul class="p-links -index">
-					<li><a href="roof_7200">7200系（デヤ7200、デヤ7290、サヤ7590）</a></li>
-					<li><a href="roof_7600">7600系</a></li>
-					<li><a href="roof_7700">7700系</a></li>
-					<li><a href="roof_7700n">7700系（7915F）</a></li>
-					<li><a href="roof_1000n">1000N系（池上、多摩川線）、1000N′系</a></li>
-				</ul>
-			</Section>
-		</div>
-	</div>
+	<Section id="ub">
+		<H slot="heading">床下機器配置</H>
+
+		<ul class="p-links -index">
+			<li><a href="/tokyu/machine/ub_7600">7600系</a></li>
+			<li><a href="/tokyu/machine/ub_7700">7700系</a></li>
+			<li><a href="/tokyu/machine/ub_7700n">7700系（7915F）</a></li>
+			<li><a href="/tokyu/machine/ub_1000n">1000N系（池上、多摩川線）</a></li>
+			<li><a href="/tokyu/machine/ub_1000n2">1000N′系</a></li>
+			<li><a href="/tokyu/machine/ub_1500">1000系1500番台</a></li>
+			<li><a href="/tokyu/machine/ub_7900_m">クハ7900形山側</a></li>
+			<li><a href="/tokyu/machine/ub_8290">大井町線デハ8290形</a></li>
+			<li><a href="/tokyu/machine/ub_8800">デハ8800形海側</a></li>
+		</ul>
+	</Section>
+
+	<Section id="roof">
+		<H slot="heading">屋根上機器配置</H>
+
+		<ul class="p-links -index">
+			<li><a href="/tokyu/machine/roof_7200">7200系（デヤ7200、デヤ7290、サヤ7590）</a></li>
+			<li><a href="/tokyu/machine/roof_7600">7600系</a></li>
+			<li><a href="/tokyu/machine/roof_7700">7700系</a></li>
+			<li><a href="/tokyu/machine/roof_7700n">7700系（7915F）</a></li>
+			<li><a href="/tokyu/machine/roof_1000n">1000N系（池上、多摩川線）、1000N′系</a></li>
+		</ul>
+	</Section>
 </Layout>
