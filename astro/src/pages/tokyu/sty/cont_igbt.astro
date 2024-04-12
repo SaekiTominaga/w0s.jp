@@ -1,0 +1,347 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import H from '@components/H.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import LinkPhoto from '@components/LinkPhoto.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急電車の制御装置（VVVF インバーター制御、IGBT）',
+	heading: '制御装置',
+	subHeading: 'VVVF インバーター制御、IGBT',
+	dateModified: dayjs('2024-04-12'),
+	description: 'デハ7815 から新3000系、300系、Y000系までの VVVF インバーター制御車（IGBT 素子使用）車両に搭載された制御装置を紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/cont/VFI-HR4820E_3403_12.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+	localNav: [
+		{ path: '/tokyu/sty/cont_old', name: '旧性能' },
+		{ path: '/tokyu/sty/cont_high', name: '高性能' },
+		{ path: '/tokyu/sty/cont_fcc', name: '界磁チョッパ' },
+		{ path: '/tokyu/sty/cont_gto', name: 'VVVF・GTO' },
+		{ path: '/tokyu/sty/cont_igbt', name: 'VVVF・IGBT' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>1990年代に入ると半導体素子のうちゲート制御を電圧で指令する<dfn>絶縁ゲート型両極性トランジスタ（IGBT）</dfn>の大容量化により、鉄道車両の VVVF インバーター装置へ適用できる耐圧 2000V 級の製品が実用化され、1992年度の営団地下鉄<small>（現：東京メトロ）</small>03系や07系などへの採用を皮切りに普及が始まりました。</p>
+			<p>IGBT はそれまで使用されていた <a href="/tokyu/sty/cont_gto">GTO サイリスタ</a>に比べてスイッチング周波数を高く設定できるため騒音低減の面で PWM 制御との相性が良く、他にもスイッチング損失の低減などのメリットがある一方、耐圧性と電流容量では分が悪く、GTO VVVF が 4500V 耐圧による 1S1P6A 構成を早期に実現していたのに対し、初期の IGBT VVVF は素子を2個直列配置し主回路構成が複雑にならざるを得ない面もありました。このようなことから8個モーター制御の大容量インバータなどで GTO サイリスタが併存する見方も当初はあったものの、結果として1996年頃には新規設計で GTO サイリスタを採用する車両は皆無となったため<FootnoteReference>京浜急行電鉄2100形、新1000形初期車のような海外製品の輸入事例を除く。</FootnoteReference>、IGBT のメリットはよほど大きかったと見ることができます。</p>
+			<p>さて、鉄道車両の VVVF インバーターに IGBT が採用され始めた時期、東急電鉄では1993年に増備された2000系3次車を最後に旅客車両の新製が6年間もストップする新車停滞期間に入りますが、この間も池上線のワンマン化（1998年実施）に向けた若干数の車両の動きはあり、7700系のうち改造車2両に IGBT タイプの新型 VVVF インバーター装置が採用、その後1999年に新製された新3000系より IGBT VVVF の本格的な導入が始まりました。</p>
+		</div>
+
+		<table class="p-table -full">
+			<caption>IGBT の VVVF インバーター制御装置一覧<small>（新5000系以降の新造車を除く）</small></caption>
+			<thead>
+				<tr>
+					<th scope="col">搭載車種</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">登場年</th>
+					<th scope="col">容量</th>
+					<th scope="col">電圧レベル</th>
+					<th scope="col">IM 接続</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>デハ7815</td>
+					<td><a href="#rg654-a-m" class="c-link">RG654-A-M</a></td>
+					<td>東洋</td>
+					<td>1995年</td>
+					<td>1700V–360A</td>
+					<td>3レベル</td>
+					<td>170kW×2×2P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>デハ7715</td>
+					<td><a href="#rg660-a-m" class="c-link">RG660-A-M</a></td>
+					<td>東洋</td>
+					<td>1996年</td>
+					<td>1700V–360A</td>
+					<td>3レベル</td>
+					<td>170kW×2×2P</td>
+					<td>SIV一体型</td>
+				</tr>
+				<tr>
+					<td rowspan="2">新3000系<small>（日立車、1〜3次車）</small></td>
+					<td><a href="#vfi-hr4820e" class="c-link">VFI-HR4820E</a></td>
+					<td rowspan="2">日立</td>
+					<td rowspan="2">1999年<FootnoteReference>実際の機器の製造初年は1998年。</FootnoteReference></td>
+					<td rowspan="4">1700V–1200A</td>
+					<td rowspan="4">3レベル</td>
+					<td>190kW×2×4P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="#vfi-hr4820e" class="c-link">VFI-HR2420B</a></td>
+					<td>190kW×2×2P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td rowspan="2">新3000系<small>（東芝車、1〜3次車）</small></td>
+					<td><a href="#svf038-a0" class="c-link">SVF038-A0</a></td>
+					<td rowspan="2">東芝</td>
+					<td rowspan="2">1999年<FootnoteReference>実際の機器の製造初年は1998年。</FootnoteReference></td>
+					<td>190kW×2×4P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="#svf038-a0" class="c-link">SVF038-B0</a></td>
+					<td>190kW×2×2P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>300系</td>
+					<td><a href="#map-064-60v82" class="c-link">MAP-064-60V82</a></td>
+					<td>三菱</td>
+					<td>1999年</td>
+					<td>1700V–500A</td>
+					<td>2レベル</td>
+					<td>60kW×2×2P</td>
+					<td>600V、IPM</td>
+				</tr>
+				<tr>
+					<td>Y000系</td>
+					<td><a href="#svf041-a0" class="c-link">SVF041-A0</a></td>
+					<td>東芝</td>
+					<td>1999年</td>
+					<td>1700V–400A</td>
+					<td>3レベル</td>
+					<td>190kW×2×2P</td>
+					<td>SIV一体型</td>
+				</tr>
+				<tr>
+					<td>1000系1500番台</td>
+					<td><a href="#svf091-b0" class="c-link">SVF091-B0</a></td>
+					<td>東芝</td>
+					<td>2014年<FootnoteReference>実際の機器の製造初年は2013年。</FootnoteReference></td>
+					<td>3300V–1200A</td>
+					<td>2レベル</td>
+					<td>130kW×4×2P</td>
+					<td>SIV一体型</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<ul class="p-notes">
+			<li>機器形式は現車調査による。</li>
+			<li><q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略。</li>
+			<li>機器の登場年は東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。なお、製造銘板などで実際の製造初年が判明しているものについては脚注にて補足している。</li>
+		</ul>
+	</Section>
+
+	<Section id="rg654-a-m">
+		<H slot="heading">RG654-A-M<small>（デハ7815）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG654-A-M_7815.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-05-12 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ7815（4次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RL8249-A-M_7815.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-07-07 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【継電器箱】</b>デハ7815（4次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>池上線のワンマン化に向けた車両転配により、7700系のうち目蒲線の4両×3編成を池上線用3両×4編成に組成替えすることになり、電動車の増加に対して東洋電機製造による IGBT タイプの VVVF インバーター装置が開発されています。まず1995年には 7912F に組み込まれていたサハ7962 の電装化（新車号はデハ7815）が実施され、4両編成のまま目蒲線で営業運転が行われました。</p>
+			<p>従来、GTO サイリスタの VVVF 車では1つのインバーター装置で車両単位で主電動機4台（1両）ないし8台（2両ユニット）制御をしていたのに対して台車単位の2台制御とされ、インバーターユニットを2群搭載した 1C2M2群構成となっています。このためインバーター装置正面は三相分の IGBT ユニットを収納したカートリッジ部が左右に2つ配置されるというこれまでにない形態となりました。また当時は IGBT の素子耐圧が GTO サイリスタに比べて低く、本機も 1700V 耐圧のため<FootnoteReference>東洋電機技報 1995年11月号（No.93）「東京急行電鉄㈱7700系IGBT-VVVFインバータ制御装置」（辻村功、小泉真也、松本哲也） p.18</FootnoteReference>、素子を2個直列配置したうえで PWM 制御の電圧レベルに中間段を設けて3段階とした<dfn>3レベルインバーター</dfn>とされました。</p>
+			<p>デハ7815 の電装化まもなくして、同年中に 7912F の池上線転籍に伴う3連化工事のため組み込みを 7902F に変更、しかしこれも半年ほどの暫定的なもので、1996年には他のサハ7950形改造車とともに独立した3連を組み池上線へ転籍します。1997年に機器改修のため長期にわたり運用を離脱<FootnoteReference>鉄道ピクトリアル 1998年3月号（No.650）「東急池上線7915F営業復帰」（前川一行） p.83</FootnoteReference>した後は大きな動きはありませんでしたが、新7000系の投入に伴い、7700系ワンマン車の中ではもっとも早く2010年に廃車となり、本機器も消滅しました。</p>
+		</div>
+	</Section>
+
+	<Section id="rg660-a-m">
+		<H slot="heading">RG660-A-M<small>（デハ7715）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG660-A-M_7715_VVVF.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-04-21 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置、VVVF 側】</b>デハ7715（5次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG660-A-M_7715_SIV.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-05-12 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置、SIV 側】</b>デハ7715（5次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>前述のサハ7962 の電装化に続き、1996年にはサハ7963、7964 の先頭化改造が東急車輛製造<small>（現：総合車両製作所）</small>にて行われ、このうちサハ7964（→デハ7715）は電装化により SIV 一体型の IGBT VVVF インバーター装置が搭載されました。</p>
+			<p>VVVF と時を同じくして補助電源装置の SIV においても素子に IGBT を使用した製品が登場しており、東急電鉄では1993年より8500系の旧型 SIV 置き換え用として <a href="/tokyu/sty/aps#inv095">INV095 型</a>が採用されていました。ここで電圧型 PWM 制御の3レベル方式という点で VVVF インバーターと CVCF インバーター（SIV）の回路構成を共通化できるため、これらを一体化することで目蒲線や池上線のように編成中の SIV が1基しかない短編成において冗長性が確保されるものとなっています。</p>
+			<p>機器本体は枕木方向の車体全幅に渡るもので、海側に VVVF の第1〜2バンク、山側に 140kVA SIV の第3バンクが配置されており、SIV 故障時は海側の正面から見て右側の第2バンクが SIV に切り替えられます<FootnoteReference>鉄道車両と技術 1996年11月号（No.16）「自動切替機能付　SIV一体形VVVFインバータ装置の概要」（辻村功） pp.4–5</FootnoteReference>。</p>
+			<p>デハ7815 と同様、2010年に廃車され消滅しました。</p>
+		</div>
+	</Section>
+
+	<Section id="vfi-hr4820e">
+		<H slot="heading">VFI-HR4820E、VFI-HR2420B<small>（新3000系・日立車 1〜3次車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VFI-HR2420B_3403_12.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-04-21 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>旧デハ3403（現デハ3703、2次車）海側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VFI-HR2420B_3413_34.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2008-06-07 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>旧デハ3413（現デハ3713、3次車）山側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>目蒲線の運転系統変更に先駆けて1999年にデビューした新3000系の VVVF インバーター制御装置は奇数車が日立製作所製、偶数車が東芝製と2つのメーカーが混在しており、機器形状は大きく異なりますが基本性能は同一とされました。</p>
+			<p>電動車の新製は2000系3次車以来6年ぶりのことであり、その間の技術進化に追従して IGBT 素子の本格採用のほか、トルク制御に<dfn>ベクトル制御</dfn>を採用したことが大きな特徴です。誘導電動機におけるトルクの制御は電源電圧、電源周波数およびすべり周波数を変化させることで行われますが、空転発生時にトルクを抑える際など、従来はすべり周波数を変化させることで徐々にトルク電流を減少させていた（すなわち応答に若干の時間が掛かっていた）のに対し、ベクトル制御ではモーター電流を励磁成分とトルク成分にベクトル分解して目標とするトルク電流を演算し、インバーター電圧の大きさと位相を瞬時に変化させることが可能となったものです。ベクトル制御自体は一般産業分野では古くから実用化されていたものですが、鉄道車両では複数の電動機を制御する必要性や1パルス領域の存在から1990年代後半になって導入されたものとなります<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3254272/1/36">東芝レビュー 1997年8月号（No.578）「電気車両へのベクトル制御の適用」（長谷部寿郎、中沢洋介、戸田伸一） pp.67–70</LinkExternal></FootnoteReference>。</p>
+			<p>インバーター装置の機器本体は枕木方向の車体全幅に渡るもので、海側に第1〜2群、山側に第3〜4群が配置されますが、中央部は点検通路となるよう<LinkPhoto href="https://media.w0s.jp/image/tokyu/sty/cont/VFI-HR4820E_3403_center.jpg" title="旧デハ3403（現デハ3703）下り方山側"><!-- 撮影日: 2009-05-13 -->逆凹型の形状</LinkPhoto>をしています。</p>
+			<p>当初、1次車が東横線にて暫定⑧両編成で運用された際はデハ3200形<small>（現：デハ3300形）</small>に 1C2M4群の VVVF インバーター装置が搭載され、デハ3250形<small>（現：デハ3200形）</small>とユニットを組んでいましたが、2次車では単 M 車のデハ3400形<small>（現：デハ3700形）</small>が登場しました。機器外装は共通なものの 1C2M2群のため第3〜4群の搭載がなく中身が空となっており、型番はデハ3200形<small>（現：デハ3300形）</small>の VFI-HR4820E 型に対して VFI-HR2420B 型と区別されています。<LinkPhoto href="https://media.w0s.jp/image/tokyu/sty/cont/VFI-HR2420B_3709_nounit.jpg" title="デハ3709山側"><!-- 撮影日: 2023-11-26 -->機器山側を左斜め方向に眺める</LinkPhoto>と、網目の中が空洞になっている様子を確認することができます。</p>
+			<p>2021年には⑧連化のため20年ぶりの増備がありましたが、この際デハ3500形（単M車）には新型の VFI-HR1421M 型が搭載されました。</p>
+		</div>
+	</Section>
+
+	<Section id="svf038-a0">
+		<H slot="heading">SVF038-A0、SVF038-B0<small>（新3000系・東芝車 1〜3次車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/SVF038-B0_3404_12.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-01-31 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>旧デハ3404（現デハ3704、2次車）海側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/SVF038-B0_3412_34.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2008-05-18 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>旧デハ3412（現デハ3704、2次車）山側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>新3000系の偶数車は旧6000系試験車以来となる東芝製の VVVF インバーター制御装置が搭載されており、インバーター装置はもちろんのこと断流器やフィルタリアクトルも日立車とは異なります。</p>
+			<p>基本性能や車両組成は日立車と同一で、ユニット車のデハ3200形<small>（現：デハ3300形）</small>は 1C2M4群の SVF038-A0 型、単 M 車のデハ3400形<small>（現：デハ3700形）</small>は SVF038-B0 型を搭載しています。</p>
+			<p>2021年の⑧連化増備ではデハ3500形（単M車）に新型の SVF065-C0 型が搭載されました。</p>
+		</div>
+	</Section>
+
+	<Section id="map-064-60v82">
+		<H slot="heading">MAP-064-60V82<small>（300系）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/MAP-064-60V82_310A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2006-06-24 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ310A（2次車）海側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/MR_307A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2023-09-29 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【抵抗器】</b>デハ307A（2次車）山側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>世田谷線のリニューアル車両として1999年にデビューした300系は、東急電鉄としては<a href="/tokyu/sty/cont_high#ab-54-6mdb">玉川線200形</a>以来となる三菱電機製の主制御器が搭載されました。300系は台車を旧型車から流用していますが（不足分は同型を新製）、主電動機は誘導電動機のものが新製され、2両連接の連接部を除いた編成両端の4台分を2群で制御しています。</p>
+			<p>主回路素子は IGBT と駆動回路、保護回路を内蔵した IPM が使用されています<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3233259/1/41">東急車輛技報 1999年12月号（No.49）「製品紹介　東京急行電鉄300系」 p.78</LinkExternal></FootnoteReference>。</p>
+			<p>登場後まもなくして電制対応改造が行われ、外観上では下高井戸方のA車の山側に抵抗器が追設されたのが目立つところです。</p>
+			<p>機器正面の中央部のフィルターはときどき交換されるようで、時期によって印象が異なります。上写真は2000年代後半まで見られた形態となります。</p>
+		</div>
+	</Section>
+
+	<Section id="svf041-a0">
+		<H slot="heading">SVF041-A0<small>（Y000系）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/SVF041-A0_Y012.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2006-07-09 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハY012海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>こどもの国線の通勤線化に向けて1999年にデビューしたY000系は、車体や台車は同年の新3000系とほぼ同じ構造をしていますが、短編成（②両編成）のため主制御器は 1C2M2群方式で、<a href="#rg660-a-m">デハ7715</a> に続き SIV 一体型のデュアルモードタイプが搭載されました。</p>
+			<p>機器正面から見て右側2つが VVVF、制御部を挟んだ左側1つが SIV で、SIV 故障時は VVVF のうち片方が SIV に切り替えられます<FootnoteReference>鉄道ピクトリアル 1999年10月号（No.675）「横浜高速鉄道Y000系」（服部典夫、佐藤浩規） p.64</FootnoteReference>。</p>
+			<p>同じ1999年デビューの JR 東海313系（クモハ313形）には近似した VVVF / SIV 一体型装置が搭載されており、VVVF 容量が異なるため完全に同じものではないものの、パワーユニットは同一タイプが使用、とくに2両固定編成の車両は SIV 容量も同じ 80kVA となっています<FootnoteReference>鉄道ピクトリアル 1999年10月臨時増刊号（No.676）「JR車両　車両諸元表」 p.154</FootnoteReference>。また、2012年に登場した動力車デヤ7500、電気検測車デヤ7550 にも同じシステム（SVF041-B0 型）が採用されています。</p>
+		</div>
+	</Section>
+
+	<Section id="svf091-b0">
+		<H slot="heading">SVF091-B0<small>（1000系1500番台）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/SVF091-B0_1602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2016-10-18 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ1602海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>東横線と日比谷線の相互直通運転取り止めに伴い余剰になった1000系を改造して2014年に登場した1000系1500番台では、新7000系と同じタイプのデュアルモード VVVF / SIV システムが採用されました。なお主電動機は換装されず、1000系オリジナルの 130kW タイプが引き続き使用されています（新7000系は 190kW）。</p>
+			<p>IGBT の素子耐圧向上に伴い、2002年登場の新5000系以降は 3300V 耐圧による2レベルインバーターが採用されており、本機もそれを踏襲しています。</p>
+		</div>
+	</Section>
+</Layout>

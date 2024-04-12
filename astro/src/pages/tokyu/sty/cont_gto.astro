@@ -1,0 +1,770 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import H from '@components/H.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急電車の制御装置（VVVF インバーター制御、GTO サイリスタ）',
+	heading: '制御装置',
+	subHeading: 'VVVF インバーター制御、GTO サイリスタ',
+	dateModified: dayjs('2024-04-12'),
+	description: '9000系から2000系までの VVVF インバーター制御車（GTO サイリスタ 素子使用）に搭載された制御装置を紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/sty/cont/VF-HR107_9301.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: 'ホーム' },
+		{ path: '/tokyu/sty/', name: '車両形態' },
+	],
+	localNav: [
+		{ path: '/tokyu/sty/cont_old', name: '旧性能' },
+		{ path: '/tokyu/sty/cont_high', name: '高性能' },
+		{ path: '/tokyu/sty/cont_fcc', name: '界磁チョッパ' },
+		{ path: '/tokyu/sty/cont_gto', name: 'VVVF・GTO' },
+		{ path: '/tokyu/sty/cont_igbt', name: 'VVVF・IGBT' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>東急電鉄における VVVF インバーター制御の採用は、日立製作所におけるデハ3552 の構内試験を別にすれば、1983年より旧6000系・デハ6202 において日立製作所製の装置を搭載した現車試験（1984年夏の大井町線での短期営業運転を含む）が行われたのが始まりです。当初は従来の抵抗制御車との併結でしたが、1985年には東芝、東洋電機製造、日立製作所の3タイプの装置を積んだ VVVF インバーター制御のみの6両編成（3M3T）での試験が開始され、やはり大井町線にて数か月にわたる営業運転も行われました。この時、デハ6202 の日立製 VVVF インバーター装置は 4500V 耐圧のタイプに交換されています。</p>
+			<p>これらの現車試験結果を基に、1986年デビューの新造車9000系、および改造車7600系より本格的な VVVF インバーター制御の時代に突入しました。</p>
+		</div>
+
+		<table class="p-table -full">
+			<caption>GTO サイリスタの VVVF インバーター制御装置一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col">搭載車種</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">登場年</th>
+					<th scope="col">容量</th>
+					<th scope="col">IM 接続</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>デハ6202</td>
+					<td>VF-HR102<FootnoteReference>鉄道ピクトリアル 1985年5月臨時増刊号（No.448）「民鉄車両　車両諸元表」 p.142</FootnoteReference></td>
+					<td>日立</td>
+					<td>1983年</td>
+					<td>2500V–2000A</td>
+					<td>165kW×4</td>
+					<td>'85年に4500V化</td>
+				</tr>
+				<tr>
+					<td>デハ6302</td>
+					<td>BS1410<FootnoteReference>鉄道ピクトリアル 1986年6月号（No.465）「わが国のインバータ制御電車」（大幡哲海） p.23</FootnoteReference></td>
+					<td>東芝</td>
+					<td>1984年</td>
+					<td>2500V–1600A</td>
+					<td>160kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>デハ6002</td>
+					<td>RG611-A-M<FootnoteReference>鉄道車両と技術 2005年11月号（No.114）「VVVFインバータ装置　諸元表-5（民鉄・公営鉄道編&lt;上&gt;）」 p.46</FootnoteReference></td>
+					<td>東洋</td>
+					<td>1984年</td>
+					<td>2500V–2000A</td>
+					<td>165kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>9000系<small>（1次車）</small></td>
+					<td><a href="#vf-hr107" class="c-link">VF-HR107</a></td>
+					<td>日立</td>
+					<td>1986年<FootnoteReference>実際の機器の製造初年は1985年。</FootnoteReference></td>
+					<td>4500V–2000A</td>
+					<td>170kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>7600系<small>（1次車）</small></td>
+					<td><a href="#rg614-a-m" class="c-link">RG614-A-M</a></td>
+					<td>東洋</td>
+					<td>1986年</td>
+					<td>4500V–2500A</td>
+					<td>110kW×8</td>
+					<td>後に1C4M化</td>
+				</tr>
+				<tr>
+					<td>7700系</td>
+					<td><a href="#rg617-a-m" class="c-link">RG617-A-M</a></td>
+					<td>東洋</td>
+					<td>1987年</td>
+					<td>4500V–2500A</td>
+					<td>170kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>9000系<small>（2〜5次車）</small></td>
+					<td><a href="#vf-hr112" class="c-link">VF-HR112</a></td>
+					<td>日立</td>
+					<td>1987年</td>
+					<td>4500V–2500A</td>
+					<td>170kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>7600系<small>（2〜3次車）</small></td>
+					<td><a href="#rg617-b-m" class="c-link">RG617-B-M</a></td>
+					<td>東洋</td>
+					<td>1988年</td>
+					<td>4500V–2500A</td>
+					<td>110kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1000系</td>
+					<td><a href="#rg621-a-m" class="c-link">RG621-A-M</a></td>
+					<td>東洋</td>
+					<td>1988年</td>
+					<td>4500V–3000A</td>
+					<td>130kW×8</td>
+					<td>池上線等は1C4M</td>
+				</tr>
+				<tr>
+					<td>デハ8799–デハ0802</td>
+					<td><a href="#vf-hr121z" class="c-link">VF-HR121Z</a></td>
+					<td>日立</td>
+					<td>1989年</td>
+					<td>4500V–3600A</td>
+					<td>実質150kW×8</td>
+					<td>IMデチューン</td>
+				</tr>
+				<tr>
+					<td>8500系21次車</td>
+					<td><a href="#vf-hr132" class="c-link">VF-HR132</a></td>
+					<td>日立</td>
+					<td>1991年<FootnoteReference>実際の機器の製造年は1990年。</FootnoteReference></td>
+					<td>4500V–3600A</td>
+					<td>170kW×8</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1000N′系<small>（単 M 車）</small></td>
+					<td><a href="#rg636-a-m" class="c-link">RG636-A-M</a></td>
+					<td>東洋</td>
+					<td>1991年</td>
+					<td>4500V–2500A</td>
+					<td>130kW×4</td>
+					<td>RCGTO</td>
+				</tr>
+				<tr>
+					<td>2000系</td>
+					<td><a href="#vf-hr132" class="c-link">VFG-HR1820D</a></td>
+					<td>日立</td>
+					<td>1992年<FootnoteReference>実際の機器の製造初年は1991年。</FootnoteReference></td>
+					<td>4500V–3600A</td>
+					<td>170kW×8</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<ul class="p-notes">
+			<li>機器形式は脚注のあるものを除き現車調査による。2000系の機器形式が巷の認識と異なる理由は<a href="#vf-hr132">本文</a>参照。</li>
+			<li><q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略。</li>
+			<li>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。なお、製造銘板などで実際の製造初年が判明しているものについては脚注にて補足している。</li>
+			<li>上表のほか、1980年より日立製作所水戸工場においてデハ3552 やデハ6004–6103 を使用した構内試験が行われ、複数種の VVVF インバーター装置が搭載された。</li>
+		</ul>
+	</Section>
+
+	<Section id="vf-hr107">
+		<H slot="heading">VF-HR107<small>（9000系1次車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VF-HR107_9301.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-03-28 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ9301（1次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/GC-MR137A_9607.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-01-20 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【ゲート制御装置】</b>デハ9607（2次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>旧6000系での2年以上にわたる現車試験を経て、1986年に日立製作所製の VVVF インバーター装置を搭載した新造車9000系がデビューしました。</p>
+			<p>このインバーター装置は日本国内の電気車で一般的に採用されている電圧形のパルス幅変調（PWM）方式で、主回路素子には 4500V 耐圧の GTO サイリスタを使用しています。架線電圧 1500V の電気車では 4000V 級の耐圧が求められますが、旧6000系試験車では当初 2500V 耐圧の GTO サイリスタを各アーム2個直列で接続した 2S1P6A 構成だったの対し、1985年には日立が 4500V タイプを開発して 1S1P6A 構成にしたものをデハ6202 に搭載（旧品と交換）しており<FootnoteReference><LinkExternal href="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1986%2f10%2f1986_10_15%2epdf">日立評論 1986年10月号「DCl,500V電車駆動用VVVFインバータ制御装置の開発」（岡松茂俊、堀江哲、浅井康夫、木村彰、加藤憲司） p.69</LinkExternal></FootnoteReference>、この時点で量産化に至るスタンダードな構成が確率されたと言えます<FootnoteReference>余談ですが、4500V 耐圧の GTO サイリスタを最初に開発したのは三菱電機であり、1984年に 1500V 普通鉄道における国内初の VVVF 新造車としてデビューした近鉄1250系<small>（現：1420系）</small>で早くも実用化されていました。そのため 2500V 耐圧の GTO サイリスタを2個直列配置した VVVF インバーター装置が（短期間の試験的なものとはいえ）営業列車で使われた事例は、国内では東急の旧6000系のみだったものと思われます。</FootnoteReference>。</p>
+			<p>主電動機は誘導モーターとなったため、従来の直流電動機と比べてブラシや整流子の省略により回転数が上がり、<a href="/tokyu/sty/cont_fcc">8000系グループ</a>と同じ外形寸法で出力が 130kW → 170kW にアップされています。そのため編成の MT 比を下げることができ、東横線⑧両編成における組成は8000系や8500系の 6M2T に対して 4M4T となった一方、1つのインバーター装置で主電動機4台（1両分）を制御する 1C4M 方式であるため編成あたりの主制御器の台数は増加しています。</p>
+			<p>GTO サイリスタ素子の冷却はフロン液タンクに浸漬させる自冷式で、U 相、V 相、W 相それぞれの前面に網目状の突起がありますが、その下部にタンクが収納されています。</p>
+			<p>機能面では力行2ノッチ指令時にそのときの速度を維持する<dfn>定速制御</dfn>や、常用ブレーキ時の乗り心地向上のためマスコンハンドルの素早い操作に対して減速度変化を緩和する<dfn>ジャーク制御</dfn>、電力回生ブレーキ時に T 車のブレーキ力を M 車で負担する<dfn>遅れ込め制御</dfn>を有しています。</p>
+			<p>インバーター装置本体は山側に配置されていますが、反対側の海側には制御回路や継電器が納められた<dfn>ゲート制御装置</dfn>、および隣接して断流器、さらに枕木方向全長にわたってフィルタリアクトルが搭載されています。</p>
+			<p>機器配置上の特徴としては、従来8000系グループや7200系では冷房用の大容量 SIV は T 車に搭載されるのが常だったのものが、9000系では粘着力増加のため M 車搭載とされ、VVVF と SIV という異なる目的を持った2つのインバーター装置が隣接して置かれているのが興味深いところです。なお、電動車のうち9200, 9300, 9400番台車の VVVF 装置の電源は自車の SIV から供給され、SIV を搭載しない M0 車（9600番台車）のみ隣接 M 車（9400番台車）から供給される形になっています。</p>
+		</div>
+	</Section>
+
+	<Section id="rg614-a-m">
+		<H slot="heading">RG614-A-M<small>（7600系1次車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG614-A-M_7681.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-04-21 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ7681（1次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RL8177-A-M_7681.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-06-16 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【継電器箱】</b>デハ7681（1次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>9000系とほぼ同時期に（約2か月遅れ）7200系を VVVF インバーター化改造した7600系が登場しました。</p>
+			<p>旧6000系試験車や9000系は 1C4M 制御だったのに対し、7600系はインバーター制御車としては初の事例となる 1C8M 制御となったのが最大の特徴です。この 1C8M 制御は後に1000系や2000系など1990年代前半までの GTO VVVF インバーター新製車に広く普及しましたが、一方で7600系における 1C8M 制御は長くは続かず、詳しくは<a href="#rg617-b-m">後述</a>しますが、1990年までに全電動車が 1C4M 制御に改造されました。</p>
+			<p>そのほかの特筆すべき点として<dfn>マイナス Fi 制御</dfn>が挙げられます。これは上り勾配における後退時の対策であり、インバーター周波数 <var lang="en">Fi</var> の最低値リミットを設けず後退速度に応じ連続的に変化させることで主電動機電流を一定に保ちながら必要なトルクを発生させる機能で、東洋電機製造が他メーカーに先駆けて旧6000系デハ6002 での試験時から導入していたものです<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3248088/1/12">東洋電機技報 1985年12月号（No.64）「東京急行電鉄㈱納6000形車のVVVFインバータ制御システム」（阿部政俊、上野照雄、木村紘道、徳岡謙二、佐野孝、近藤栄作、渡部朗、岡部実） p.21</LinkExternal></FootnoteReference>。もちろん後退しないに越したことはなく、1994年〜1995年の室内更新工事において運転台がワンハンドルマスコン化された際には9000系と同じく勾配起動ボタンが用意されました。</p>
+			<p>また、3両編成では編成中の補助電源装置が1台となるので、SIV 故障時に運転不能の事態に陥ることを避けるため VVVF 装置の電源は直流 100V とし、蓄電池からの供給で自力回送が可能な方式とされました<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/2313672/1/15">電気鉄道 1986年8月号（No.459）「東京急行電鉄　VVVFインバータ制御電車」（宮田道一） p.20</LinkExternal></FootnoteReference>。</p>
+			<p>7600系の引退に伴い、2015年に消滅しました。</p>
+		</div>
+	</Section>
+
+	<Section id="rg617-a-m">
+		<H slot="heading">RG617-A-M<small>（7700系）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG617-A-M_7801.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-04-13 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ7801（1次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RL8186-A-M_7808.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-09-24 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【継電器箱】</b>デハ7808（2次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>7600系の翌年、旧7000系を VVVF インバーター化改造した7700系が登場し、当初は暫定的に4+2連で大井町線に投入されました。</p>
+			<p>基本的な仕様は7600系と同一ですが、大きな変更点としては主電動機が9000系と同じ 170kW の大容量タイプとなり、4両編成で MT 比 1:1 の組成にするため、7600系の 1C8M に対し 1C4M 構成となったことが挙げられます。このため、1989年の目蒲線4連化に際しては自動非扱化などの<dfn>目蒲4連化工事</dfn>が行われて目蒲線に集結し、後に T 車を抜いた 2M1T の3連を池上線に投入したり、地方私鉄への譲渡に際して 1M1T の2連が登場したりするなど、柔軟な運用が可能となっています。</p>
+			<p>その他の改良点は、旧7000系由来の低い床面高さへの対応で機器高さを縮小、空転検知を代表軸検知から全軸検知へ変更といったものがあり、この関係で海側搭載の継電器箱は7600系とは異なるタイプとなりました。</p>
+			<p>7700系の引退に伴い東急電鉄からは2018年に消滅しましたが、譲渡先の養老鉄道で見ることができます。</p>
+		</div>
+	</Section>
+
+	<Section id="vf-hr112">
+		<H slot="heading">VF-HR112<small>（9000系2〜5次車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VF-HR112_9205.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-03-08 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ9205（2次車）山側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>9000系の本格的な量産は1次車デビューから1年半ほどの期間を空けてのこととなり、2次車以降のインバーター装置はマイナーチェンジされた VF-HR112 型となりました。</p>
+			<p>仕様変更が行われたのは車両山側に配置されたインバーター装置本体のみで、海側のゲート制御装置や断流器は最終増備の5次車に至るまで共通です。</p>
+		</div>
+	</Section>
+
+	<Section id="rg617-b-m">
+		<H slot="heading">RG617-B-M<small>（7600系2〜3次車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG617-B-M_7661.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-07-07 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ7661（2次車）山側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p><a href="#rg614-a-m">前述</a>のとおり、7600系は当時の VVVF インバーター車両としては前例のない 1C8M 制御で竣工し、当初は大井町線に 2M1T を2本繋いだ6両編成1本が、目蒲線には抵抗制御のデハ7200形との混結である全電動車の3両編成1本が投入されました。しかし当初より目蒲・池上線における短編成での運用を視野に入れたものであり、まもなく目蒲線に集結した後、1988年には全車両が池上線に転籍となります。</p>
+			<p>その際、大井町線投入組の2編成（7601F〜7602F）は冗長化の観点から編成中の主制御器が1台になるのを防ぐため、下り向き先頭車のクハ7500形に本インバーター装置を搭載して電動車化し7600系に編入する一方、M<span class="u-tokyu-unit">2</span>c 車であったデハ7600形を電装解除することで、2M1T の構成のまま 1C4M 制御への変更が行われました<FootnoteReference>7600系の 1C4M 化改造は必ずしも池上線転籍と同時ではなく、Rail Magazine 1989年1月号（No.61） p.124 のニュース投稿記事「東急の話題」（佐伯典昭）によると、少なくとも 7602F は改造後も目蒲線での運用実績があったようです。</FootnoteReference>。</p>
+			<p>目蒲線投入組の1編成はこの時点では改造が行われず、デハ7200形混結のまま池上線に転籍しましたが、1990年にはデハ7200形を外し、中間にデハ7400形から改造されたデハ7673 を組み込んだうえで、さらにデハ7600形を電装解除することで、1C4M 制御で 2M1T 編成への変更が行われました。</p>
+			<p>これら2回に分けて行われた改造工事において搭載されたインバーター装置は7700系と同じ RG617 型であり、主要スペックや外観は変わりませんが、主電動機出力に違いがあるためか枝番を B 型として区別されていました。この結果、7600系は車両によって RG614 型と RG617 型が混在する結果になったのですが、登場当初からの組成の違いにより、7601F〜7602F と 7603F ではそれぞれの搭載位置が異なる結果となり、車体形状やパンタグラフ位置だけでなく、床下機器も興味深いものとなっていました。</p>
+			<p>RG614-A-M 型と同じく、7600系の引退に伴い2015年に消滅しました。</p>
+		</div>
+
+		<Section slugger={slugger} depth={2} headingType="c" class="p-box">
+			<H slot="heading">7600系編成替えと制御装置の変遷</H>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1986年5月時点<small>（デビュー）</small></H>
+
+				<div class="p-embed">
+					<h5>大井町線</h5>
+					<ul>
+						<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7601.svg" alt="7601–7651[VVVF・RG614-A-M]–7503–7602–7652[VVVF・RG614-A-M]–7510" width="414" height="62" /></li>
+					</ul>
+
+					<h5>目蒲線</h5>
+					<ul>
+						<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7255.svg" alt="7255[抵抗]–7603–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+					</ul>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1986年9月〜1987年3月<small>（目蒲線転用・暫定編成）</small></H>
+
+				<div class="p-embed">
+					<h5>目蒲線</h5>
+					<ul>
+						<li><img src="/tokyu/sty/image/cont/7600form_1986-09_7201.svg" alt="7201[抵抗]–7601–7651[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						<li><img src="/tokyu/sty/image/cont/7600form_1986-09_7212.svg" alt="7212[抵抗]–7602–7652[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7255.svg" alt="7255[抵抗]–7603–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+					</ul>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1987年4月時点<small>（7601F 大井町線復帰）</small></H>
+
+				<div class="p-embed">
+					<section>
+						<h5>大井町線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7601.svg" alt="7601–7651[VVVF・RG614-A-M]–7503–7602–7652[VVVF・RG614-A-M]–7510" width="414" height="62" /></li>
+						</ul>
+					</section>
+
+					<section>
+						<h5>目蒲線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7255.svg" alt="7255[抵抗]–7603–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1988年4月時点<small>（7601F〜7602F 目蒲線転籍）</small></H>
+
+				<div class="p-embed">
+					<section>
+						<h5>目蒲線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-04_7601.svg" alt="7601–7651[VVVF・RG614-A-M]–7503" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-04_7602.svg" alt="7602–7652[VVVF・RG614-A-M]–7510" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7255.svg" alt="7255[抵抗]–7603–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1988年秋時点<small>（7601F〜7602F 1C4M 化）</small></H>
+
+				<div class="p-embed">
+					<section>
+						<h5>池上線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-09_7601.svg" alt="7601–7651[VVVF・RG614-A-M]–7661[VVVF・RG617-B-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+
+					<section>
+						<h5>目蒲線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-09_7602.svg" alt="7602–7652[VVVF・RG614-A-M]–7662[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7255.svg" alt="7255[抵抗]–7603–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1989年4月時点<small>（全車池上線転籍）</small></H>
+
+				<div class="p-embed">
+					<section>
+						<h5>池上線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-09_7601.svg" alt="7601–7651[VVVF・RG614-A-M]–7661[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-09_7602.svg" alt="7602–7652[VVVF・RG614-A-M]–7662[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1986-05_7255.svg" alt="7255[抵抗]–7603–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1990年5月時点<small>（7603F 編成替え &amp; 1C4M 化）</small></H>
+
+				<div class="p-embed">
+					<section>
+						<h5>池上線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-09_7601.svg" alt="7601–7651[VVVF・RG614-A-M]–7661[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1988-09_7602.svg" alt="7602–7652[VVVF・RG614-A-M]–7662[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1990-05_7603.svg" alt="7603–7673（デハ7400形）[VVVF・RG617-B-M]–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">1995年4月時点<small>（室内更新）</small></H>
+
+				<div class="p-embed">
+					<section>
+						<h5>池上線</h5>
+						<ul>
+							<li><img src="/tokyu/sty/image/cont/7600form_1995-04_7601.svg" alt="7601–7681[VVVF・RG614-A-M]–7661[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1995-04_7602.svg" alt="7602–7682[VVVF・RG614-A-M]–7662[VVVF・RG617-B-M]" width="205" height="62" /></li>
+							<li><img src="/tokyu/sty/image/cont/7600form_1995-04_7603.svg" alt="7603–7673[VVVF・RG617-B-M]–7653[VVVF・RG614-A-M]" width="205" height="62" /></li>
+						</ul>
+					</section>
+				</div>
+			</Section>
+
+			<Section slugger={slugger} depth={3} headingType="d">
+				<H slot="heading">参考文献</H>
+
+				<ul class="p-list">
+					<li>「私鉄車両編成表」'85年版〜'95年版</li>
+					<li>鉄道ジャーナル「私鉄車両のうごき」1987年4月号（No.245）</li>
+					<li>鉄道ダイヤ情報「私鉄DATA FILE 私鉄車両のうごき」1986年秋号（No.32）、1988年11月号（No.55）、1989年7月号（No.63）、1990年10月号（No.78）、1995年7月号（No.135）</li>
+					<li>鉄道ピクトリアル 1986年12月号（No.472）「東急だより」（小林和明） pp.110–111</li>
+					<li>鉄道ピクトリアル 1987年7月号（No.482）「東急だより」（小林和明） p.110</li>
+					<li>Rail Magazine 1989年1月号（No.61）「東急の話題」（佐伯典昭） p.124</li>
+					<li>Rail Magazine 1990年8月号（No.81）「東急の話題」（佐伯典昭） p.139</li>
+				</ul>
+			</Section>
+		</Section>
+	</Section>
+
+	<Section id="rg621-a-m">
+		<H slot="heading">RG621-A-M<small>（1000系、1000N系、1000N′系）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG621-A-M_1322.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2008-12-29 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ1322（5次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RL8196-A-M_1212.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2005-11-25 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【継電器箱】</b>デハ1212（3次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>9000系や7700系の増備が続く中、1988年には日比谷線直通用として1000系がデビューします。</p>
+			<p>1000系の車体構造や台車は9000系3次車を踏襲していますが、制御系は大きく変わっています。すなわち地下鉄乗り入れのため起動加速度は9000系の 3.1km/h/s に対して 3.5km/h/s と高く設定され<FootnoteReference>ちなみに先代の旧7000系は全電動車方式で起動加速度 4.0km/h/s。</FootnoteReference>、編成は MT 比を高めた 6M2T となり、VVVF インバーター装置は9000系の 1C4M 制御に対して7600系と同じ 1C8M 制御となりました。</p>
+			<p>GTO サイリスタは当時としては最大容量の 4500V–3000A タイプが採用されたことも特筆されますが、なによりの特徴はその冷却方式がそれまでのフロン浸漬タイプを止めてヒートパイプを使用したものとなったことでしょう。ヒートパイプ冷却方式は1987年の広島電鉄3800形（路面電車）などですでに実用化されていましたが、普通鉄道では初の採用で、これによりフロン液の使用量が大幅に削減されました。このため機器外観も9000系や7600系とは大きく変わり、フロン浸漬用のタンクが姿を消した一方、水平方向に配置されたヒートパイプと冷却用フィンを納めたユニットが前面に大きく張り出しており、網目越しに丸棒状のヒートパイプ先端部を多数見ることができます。さらに1990年度の3次車からは冷媒がパーフルオロカーボン<!-- パーフロロカーボン -->に変更され、脱フロン化が図られました<FootnoteReference><LinkExternal href="https://www.amazon.co.jp/dp/4533079253/">東急ステンレスカーのあゆみ</LinkExternal>「(3)独自開発の軽量ステンレスカー　ビードタイプ – 1000系」（荻原俊夫） p.134</FootnoteReference>。</p>
+			<p>また低速域のパルスモード切り替えにおいて非同期帯を長く取る対策が行われ、9000系で際立っていた「ヒュイーン、ヒュイーン」という電磁音変化はとくに発車直後、停車直前においてかなり緩和されています。運転台の速度計を見ながら9000系と1000系を乗り比べてみると、9000系は発車直後 5km/h ほどで最初の電磁音変化があるのに対して、1000系は 20km/h 程度まで非同期帯が続く違いを聴き取ることができます。</p>
+			<p>1990年には目蒲線との共通予備車として運用できるよう 4+4 両に分割可能な1000N系が登場しましたが、この際 3M1T の組成で電動車の両数が奇数になり、デハ1200形は 1C4M 制御となるものの、制御装置は同一のものを使用しモード切り替えにより主電動機4台制御が行われていました。さらに1991年デビューの池上線向け1000N′系では後述する <a href="#rg636-a-m">1C4M 専用の小型タイプ（RG636 型）</a>が登場し、車両によって混用されています。一方、登場以来の 1C8M 制御は2013年の日比谷線直通運転終了に伴う東横線撤退で消滅し、現在活躍中の車両はすべて 1C4M 制御となっています。譲渡車も含めたすべてのパターンを下表にまとめました。</p>
+		</div>
+
+		<table class="p-table">
+			<caption>1000系グループ（1500番台を除く）の VVVF インバーター装置バリエーション</caption>
+			<thead>
+				<tr>
+					<th scope="col" rowspan="2">車種</th>
+					<th scope="col" rowspan="2">線区</th>
+					<th scope="col" rowspan="2">編成</th>
+					<th scope="col" rowspan="2">時期</th>
+					<th scope="col" colspan="2">IM 制御数</th>
+					<th scope="col" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">RG621</th>
+					<th scope="col">RG636</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="rowgroup" rowspan="6">1000系</th>
+					<td>東横線</td>
+					<td>6M2T</td>
+					<td>1988年〜2013年</td>
+					<td>8M×3ユニット</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>伊賀鉄道</td>
+					<td>1M1T</td>
+					<td>2010年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td>203〜205編成</td>
+				</tr>
+				<tr>
+					<td>一畑電車</td>
+					<td>1M1T</td>
+					<td>2015年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>上田電鉄</td>
+					<td>1M1T</td>
+					<td>2015年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td>6000系</td>
+				</tr>
+				<tr>
+					<td rowspan="2">福島交通</td>
+					<td>1M1T</td>
+					<td>2017年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>2M1T</td>
+					<td>2017年〜</td>
+					<td>4M×2両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<th scope="rowgroup" rowspan="5">1000N系</th>
+					<td>東横線、目蒲線</td>
+					<td>3M1T</td>
+					<td>1990年〜2003年</td>
+					<td>8M×1ユニット、4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>池多摩線</td>
+					<td>2M1T</td>
+					<td>2000年〜</td>
+					<td>4M×2両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>東横線</td>
+					<td>6M2T</td>
+					<td>2003年〜2008年</td>
+					<td>8M×3ユニット</td>
+					<td class="u-cell -center">―</td>
+					<td>1010F 編成替え</td>
+				</tr>
+				<tr>
+					<td rowspan="2">伊賀鉄道</td>
+					<td>1M1T</td>
+					<td>2009年〜</td>
+					<td class="u-cell -center">―</td>
+					<td>4M×1両</td>
+					<td>現在は201編成のみ</td>
+				</tr>
+				<tr>
+					<td>1M1T</td>
+					<td>2018年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td>202編成のみ</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<th scope="rowgroup" rowspan="3">1000N′系</th>
+					<td>目蒲線</td>
+					<td>3M1T</td>
+					<td>1991年〜1993年</td>
+					<td>4M×1両</td>
+					<td>4M×2両</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>池多摩線</td>
+					<td>2M1T</td>
+					<td>1993年〜</td>
+					<td>4M×1両</td>
+					<td>4M×1両</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>上田電鉄</td>
+					<td>1M1T</td>
+					<td>2008年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</Section>
+
+	<Section id="vf-hr121z">
+		<H slot="heading">VF-HR121Z<small>（デハ8799–デハ0802）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VF-HR121Z_8799_VW.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-06-22 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置本体、V・W 相側】</b>デハ8799（18-1次車）海側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VF-HR121Z_8799_U.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2006-02-27 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置本体、U 相側】</b>デハ8799（18-1次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/GC-MR148A_8799.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-01-25 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【ゲート制御装置】</b>デハ8799（18-1次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>1989年に 8637F×⑩R のうちデハ0802–デハ8799–サハ8974 の3両が東急車輛製造<small>（現：総合車両製作所）</small>に送られ VVVF 化改造が行われました。機器本体の形状はこれまでとは大きく異なり、枕木方向の車体全幅に渡るもので、海側に V・W 層、山側に U 層が配置されています。</p>
+			<p>主回路素子は1000系で 4500V–3000A タイプが登場していましたが、本タイプではさらに大容量化が進んで 4500V–3600A となり、170kW の主電動機8台制御を実現しています。ただし抵抗制御車との混結のため、実際には約 150kW 相当の性能で使用されていました<FootnoteReference>鉄道と電気技術 1991年3月号（No.515）「通勤用インバータ制御車両」（荻原俊夫） p.16</FootnoteReference>。</p>
+			<p>素子の冷却方式は気中に配置した外置き方式で、冷媒の使用量削減を実現しています<FootnoteReference><LinkExternal href="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1991%2f03%2f1991_03_03%2epdf">日立評論 1991年3月号「鉄道車両用小形･軽量制御システム」（岩滝雅人、今井勇人、中武良二、長谷川三吉） p.13</LinkExternal></FootnoteReference>。</p>
+		</div>
+	</Section>
+
+	<Section id="vf-hr132">
+		<H slot="heading">VF-HR132, VFG-HR1820D<small>（8500系21次車、2000系）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VF-HR132_2203_VW.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2014-05-10 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置本体、V・W 相側】</b>デハ2203（2次車）海側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/VF-HR132_0718_U.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2006-02-27 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置本体、U 相側】</b>デハ0718（21次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/GC-MR157_0718.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-09-13 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【ゲート制御装置、8500系用】</b>デハ0718（21次車）海側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/GC-MR164_2201.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-09-12 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【ゲート制御装置、2000系用】</b>デハ2201（1次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>1991年に東横線の 8642F×⑧R が⑩連化のうえ田玉線へ転籍することとなり、8000系グループの最終増備車（21次車）としてデハ0718–デハ0818 が製造されましたが、このユニットには先の<a href="#vf-hr121z">デハ8799–デハ0802 での試作タイプ</a>を元に 170kW 主電動機8台制御の量産タイプが搭載されました。転籍に際し 8637F に組み込まれていた VVVF 車を 8642F に集約する編成替えが行われ、8642F は抵抗制御 + VVVF 試作<small>（VF-HR121Z）</small>+ VVVF 量産<small>（VF-HR132）</small>の3タイプの制御装置を搭載する特異な編成となったのは周知のとおりです。</p>
+			<p>一方、1992年に田玉線でデビューした2000系には同じ量産タイプが搭載されていますが、日立製作所における型番ルールが変更となり VFG-HR1820D 型となりました<FootnoteReference>東急電鉄発行による公式の車両カタログをはじめ多くの文献では、2000系の VVVF インバーター装置も8500系21次車と同じ<q>VF-HR132</q>とされていますが、現車の機器銘板は1次車、2次車ともに<q>VFG-1820D</q>となっていました。2000系がデビューした1992年は鉄道業界で VVVF インバーター装置に IGBT 素子が試験採用された年であり、この型番変更は GTO タイプと IGBT タイプを区別できるようにする目的だったものと思われます。</FootnoteReference>。また、8500系21次車と比べて主電動機の回転数が高くなった関係で車両速度とインバーター周波数の関係が変更された<FootnoteReference>鉄道ピクトリアル 1992年5月号（No.559）「東京急行電鉄2000系電車」（川口雄二） p.68</FootnoteReference>とのことで、ゲート制御装置は別形式となり箱も小型化されています。</p>
+			<p>8500系の VVVF 組み込み編成は組成としては他編成と同じ 8M2T でしたが、2000系では 170kW 主電動機8台制御の性能から⑩両編成で 6M4T でインバーター搭載数を3台に抑えており、GTO サイリスタ使用の VVVF インバーター装置としては完成形に達したと言えるでしょう。</p>
+			<p>2000系はインバーター装置の換装、8500系21次車は引退に伴い、2019年に消滅しました。</p>
+		</div>
+	</Section>
+
+	<Section id="rg636-a-m">
+		<H slot="heading">RG636-A-M<small>（1000N′系・単 M 車）</small></H>
+
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RG636-A-M_1222.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2009-06-16 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【インバーター装置】</b>デハ1222（4次車）山側</figcaption>
+				</figure>
+			</div>
+			<div class="c-flex__item">
+				<figure class="c-fit">
+					<div class="p-embed -border">
+						<Image path="tokyu/sty/cont/RL8225-A-M_1217.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+						<!-- 撮影日: 2007-09-23 -->
+					</div>
+					<figcaption class="c-caption -meta"><b>【継電器箱】</b>デハ1217（4次車）海側</figcaption>
+				</figure>
+			</div>
+		</div>
+
+		<div class="p-text">
+			<p>1000系は当初は日比谷線直通列車用として東横線に投入されましたが、1991年には池上線向けとして1000N′系がデビューしました。</p>
+			<p>東横線／目蒲線向けの1000N系では従来の <a href="#rg621-a-m">RG621 型</a>のままモード切り替えにより一部車両の主電動機4台制御を行っていましたが、1000N′系では主制御器を搭載する中間電動車（デハ1200形）に空気圧縮機も装備する必要性から、床下スペース確保のため制御装置の小型化が求められ、1C4M 専用として新設計が行われた次第です。一方、先頭電動車のデハ1310形は将来の4両編成化に対応できるよう<FootnoteReference><LinkExternal href="https://dl.ndl.go.jp/pid/3248109/1/7">東洋電機技報 1993年1月号（No.85）「東京急行電鉄㈱納1000N′系編成用VVVFインバータ制御装置」（小泉真也） p.11</LinkExternal></FootnoteReference>、1C4M 制御でありながら従来の RG621 型が搭載されたため、編成内に2種類の VVVF インバーター装置が混在する結果となりました。しかしながら1000N′系は現在に至るまでほぼ一貫して3両編成での使用であり、4次車登場当初の1年半ほど行われていた目蒲線での暫定4両編成においては中間にデハ1200形を2両連結し、3両の電動車がそれぞれ 1C4M 制御を行う組成であったため、デハ1310形の 1C8M 化準備が実を結んだことはありません。</p>
+			<p>さて、本タイプの特徴は<dfn>逆導通 GTO サイリスタ</dfn>の素子が採用されたことです。従来の GTO サイリスタでは GTO 素子と並列に逆方向のダイオードが接続されていたところ、ウェハーの内部にその機能を組み込むことで素子数を半減し、従って冷却用のヒートパイプ数も削減できたため、装置本体の大幅な小型化を達成しています。インバーター装置本体だけでなく、海側に配置される継電器箱も小型化され、フィルタリアクトルも7700系のものと同じ小型タイプとなっています。</p>
+			<p>2008年には上田電鉄への譲渡のため一部の廃車が始まり、譲渡対象外の中間車は解体されましたが、本インバーター装置は2台が1000N系の伊賀鉄道譲渡車（201〜202編成）に流用されました。しかし2018年には何らかの事情でモ202 のインバーター装置が RG621 型に換装されたため<FootnoteReference><LinkExternal href="https://blog.w0s.jp/666">伊賀鉄道モ202 の VVVF 装置が（2018年に） RG621 型に換装</LinkExternal></FootnoteReference>、残るのは池上、東急多摩川線残存車（デハ1217, 1219〜1222）と伊賀鉄道モ201 の6台となっています。</p>
+		</div>
+	</Section>
+</Layout>
