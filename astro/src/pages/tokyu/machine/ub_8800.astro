@@ -1,0 +1,201 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
+import Section from '@components/Section.astro';
+import Image from '@components/Image.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '東急デハ8800形海側　床下機器配置',
+	heading: 'デハ8800形海側　床下機器配置',
+	dateModified: dayjs('2009-12-01'),
+	description: '田園都市線8500系の空気圧縮機3台化工事に伴い発生した、デハ8800形の床下機器配置バリエーションを紹介します。',
+	image: 'https://media.w0s.jp/image/tokyu/machine/ub/8800s-frame.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/machine/', name: '車両機器' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<div class="p-text">
+			<p>田園都市線の8500系（10両編成）は M2, M2c 車である1, 4, 6, 9号車に空気圧縮機が搭載されていましたが、2001年より順次6号車の取り外しが行われ、全車両が18次車以降で組成されている後期2編成を除き、編成あたり3台とされました。</p>
+			<p>削減工事に際し、蓄電池が移設された車、空気圧縮機の吊り枠のみ残された車などが存在し、とくに海側の床下機器配置にはバリエーションがみられました。</p>
+		</div>
+	</Section>
+
+	<Section id="m2-8800">
+		<H slot="heading">通常のデハ8800形</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="m2-8800-7" depth={2} headingType="c">
+					<H slot="heading">7〜11次車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-7.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2010-01-11 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8816海側（7-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>11次車までは蓄電池が海側に搭載されています。</p>
+						<p>主な機器は下り方から順に、接地開閉器、100V蓄電池、空気圧縮機（HB-2000型）です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="m2-8800-14" depth={2} headingType="c">
+					<H slot="heading">14〜17次車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-14.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2010-01-11 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8862海側（14-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>13次車からは蓄電池が山側搭載となりました。CPの搭載位置も若干1位側にずれています。</p>
+						<p>主な機器は下り方から順に、接地開閉器、空気圧縮機（HB-2000型）です。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="cpremove">
+		<H slot="heading">CP撤去車（6号車に連結されたデハ8800形）</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="cpremove-10" depth={2} headingType="c">
+					<H slot="heading">10〜11次車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-cpremove10.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2009-10-23 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8835海側（10-1次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>蓄電池が海側搭載のCP撤去車で、主な機器は下り方から順に、接地開閉器、100V蓄電池です。</p>
+						<p>CP撤去が行われた当初はこの形態がもっとも多かったのですが、編成替えや廃車の進行に伴い、2009年12月の時点ではデハ8827、デハ8835、デハ8838の3両のみが残っています。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="cpremove-13" depth={2} headingType="c">
+					<H slot="heading">14〜17次車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-cpremove13.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2010-01-20 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8850海側（14-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>蓄電池が山側搭載のCP撤去車で、海側の主な機器は接地開閉器のみです。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="bttransfer" depth={2} headingType="c">
+					<H slot="heading">蓄電池移設車（18-1次車）</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-BTtransfer.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2009-11-24 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8897海側（18-1次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>CP撤去後に編成替えで6号車に組み込まれた車両（すべて18-1次車）では、山側の蓄電池が海側に移設されましたが、山側時代と同じく台車間のもっとも1位側に搭載されています。ただし、デハ8895のみは移設が行われず、山側のままとなっています。</p>
+						<p>主な機器は下り方から順に、100V蓄電池、接地開閉器です。</p>
+					</div>
+				</Section>
+			</div>
+			<div class="c-grid__item">
+				<Section id="frame" depth={2} headingType="c">
+					<H slot="heading">HB-2000型の吊り枠搭載車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-frame.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2009-11-27 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8849海側（14-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>一部の車両はCP撤去に際し、吊り枠が残されています。とくにデハ8845は、完全に撤去されながら後に吊り枠のみを再び載せられるという変わった経歴を持っています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="hs20">
+		<H slot="heading">HS-20型コンプレッサ搭載車</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="hs20-18" depth={2} headingType="c">
+					<H slot="heading">18〜21次車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8800s-20G.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2009-12-10 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ0808海側（19-1次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>18次車以降の車両は空気圧縮機がHS-20型となっていますが、全車両が18次車以降で組成されている8637F、8642Fの2編成は、6号車のCP撤去が行われていません。</p>
+						<p>写真は、乗車率測定装置を搭載した8637Fの6号車で、空気圧縮機の右隣には変換器が搭載されています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+
+	<Section id="m2-8290">
+		<H slot="heading">（参考）デハ8290形</H>
+
+		<div class="c-grid -wide -hdg-c">
+			<div class="c-grid__item">
+				<Section id="m2-8290-16" depth={2} headingType="c">
+					<H slot="heading">16〜17次車</H>
+
+					<figure class="c-fit">
+						<div class="p-embed -border">
+							<Image path="tokyu/machine/ub/8290s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
+							<!-- 撮影日: 2009-11-29 -->
+						</div>
+						<figcaption class="c-caption -meta">デハ8283海側（16-2次車）</figcaption>
+					</figure>
+
+					<div class="p-text">
+						<p>参考までに、8090系の6号車に組み込まれているデハ8290形も紹介します。</p>
+						<p>主な機器は下り方から順に、接地開閉器、空気圧縮機（HB-2000型）、100V蓄電池で、デハ8800形と比較すると蓄電池が2位側に搭載され、空気圧縮機との位置関係が逆になっています。</p>
+					</div>
+				</Section>
+			</div>
+		</div>
+	</Section>
+</Layout>
