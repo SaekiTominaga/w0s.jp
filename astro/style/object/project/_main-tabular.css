@@ -48,10 +48,15 @@ Styleguide 2.6.1
 */
 .p-table {
 	--stickey-thead-block-size: 1em;
+	--_border-color: var(--color-border-dark);
 	--_color: var(--color-black);
 	--_bg-color: var(--color-white);
 	--_font-size-base: 100%;
 	--_text-align: start;
+
+	@media print {
+		--_border-color: var(--color-black);
+	}
 
 	/* 全幅 */
 	&.-full {
@@ -82,11 +87,11 @@ Styleguide 2.6.1
 		}
 
 		& > :is(thead + tbody, tbody + tbody, tfoot) {
-			border-block-start: 2px solid;
+			border-block-start: 2px solid var(--_border-color);
 		}
 
 		& :is(td, th) {
-			border: 1px solid;
+			border: 1px solid var(--_border-color);
 			background: var(--_bg-color);
 			background-clip: padding-box; /* for Firefox, Safari (<thead> sticky) */
 			padding: 0.75em min(1vw, 10px);
