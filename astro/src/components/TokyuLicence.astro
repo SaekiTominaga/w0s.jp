@@ -1,0 +1,17 @@
+---
+import DateWareki from '@components/DateWareki.astro';
+
+interface Props {
+	name?: string;
+	date: string;
+	no?: string;
+}
+
+const { name, no, date } = Astro.props;
+---
+
+<span class="c-tokyu-licence">
+	{name !== undefined && <span class="c-tokyu-licence__name">{name}</span>}
+	<DateWareki value={date} class="c-tokyu-licence__date" />
+	{no !== undefined && <span class="c-tokyu-licence__no">{no}</span>}
+</span>
