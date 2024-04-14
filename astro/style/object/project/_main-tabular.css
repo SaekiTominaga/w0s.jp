@@ -8,7 +8,8 @@ Styleguide 2.6.
 データ表
 
 Markup:
-<table class="p-table {{modifier_class}}">
+<div class="p-table {{modifier_class}}">
+<table>
 <caption>キャプション</caption>
 <thead>
 <tr>
@@ -37,8 +38,10 @@ Markup:
 </tr>
 </tfoot>
 </table>
+</div>
 
 .-full - 全幅
+.-scroll - 横スクロール
 .-font-small - 文字サイズを小さくする
 
 Styleguide 2.6.1
@@ -53,6 +56,14 @@ Styleguide 2.6.1
 	/* 全幅 */
 	&.-full {
 		--_inline-size: 100%;
+	}
+
+	/* 横スクロール */
+	&.-scroll {
+		--_text-wrap: nowrap;
+
+		padding-block-end: 2px; /* 横スクロールバー上部の空き */
+		overflow-x: auto;
 	}
 
 	/* 文字サイズを小さくする */
@@ -80,6 +91,7 @@ Styleguide 2.6.1
 			background-clip: padding-box; /* for Firefox, Safari (<thead> sticky) */
 			padding: 0.75em min(1vw, 10px);
 			text-align: var(--_text-align);
+			white-space: var(--_text-wrap);
 			color: var(--_color);
 			font-size: clamp(calc(var(--_font-size-base) / var(--font-ratio-1)), 2vw, var(--_font-size-base));
 		}
