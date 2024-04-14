@@ -1,0 +1,522 @@
+---
+import dayjs from 'dayjs';
+import DateWareki from '@components/DateWareki.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import GithubSlugger from 'github-slugger';
+import H from '@components/H.astro';
+import Layout from '@layouts/Tokyu.astro';
+import Licence from '@components/TokyuLicence.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '目黒蒲田電鉄、東京横浜電鉄　車歴表',
+	dateModified: dayjs('2024-05-01'),
+	description: '目黒蒲田電鉄、東京横浜電鉄時代の車両は両社がそれぞれ保有していましたが、同一タイプの車両は連続した車号が付番されていたため、まとめて取り扱います。ここでは1939年の両社の合併を経て、1942年の東京急行電鉄成立までの車両のうごきをまとめました。なお、現時点では暫定的なものであり、軌道線車両（玉川線）は含めていません。',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/data/', name: '車両データ' },
+	],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<ul class="p-list">
+			<li>改造については車号の変更を伴うものに限ります。</li>
+			<li>旅客用車両には目黒蒲田電鉄と東京横浜電鉄の間で複数回異動が行われた車両が存在しますが、表の煩雑化を避けるため本ページではその情報を含めていません。</li>
+			<li>
+				表中の鉄道事業者および車両譲渡先会社の名称は以下のとおり省略表記しています。
+				<ul>
+					<li>目蒲：目黒蒲田電鉄</li>
+					<li>東横：東京横浜電鉄</li>
+					<li>池上：池上電気鉄道</li>
+					<li>五日市：五日市鉄道<small>（現：JR五日市線）</small></li>
+					<li>神中：神中鉄道<small>（現：相模鉄道）</small></li>
+					<li>駿豆：駿豆鉄道<small>（現：伊豆箱根鉄道駿豆線）</small></li>
+					<li>福武：福武電気鉄道<small>（現：福井鉄道）</small></li>
+					<li>阪急：阪神急行電鉄<small>（現：阪急電鉄）</small></li>
+					<li>芝浦：芝浦製作所<small>（現：東芝）</small></li>
+				</ul>
+			</li>
+		</ul>
+	</Section>
+
+	<Section id="passenger">
+		<H slot="heading">旅客用車両</H>
+
+		<Section id="deha1" depth={2} headingType="b">
+			<H slot="heading">デハ1形、デハ6形 → モハ1形</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">当初所属</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col" rowspan="2">譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">購入認可申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ1</th>
+						<td rowspan="5">目蒲</td>
+						<td rowspan="5"><Licence date="1922-07-07" /></td>
+						<td rowspan="5"><Licence date="1922-12-12" no="監第2517号" /></td>
+						<td rowspan="5"><Licence date="1923-02-22" no="目電第78号" /></td>
+						<td rowspan="10"><Licence name="目蒲→神中" date="1942" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ2</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ3</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ4</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ5</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ6</th>
+						<td rowspan="5">目蒲</td>
+						<td rowspan="5"><Licence date="1923-03-30" no="目電第124号" /></td>
+						<td rowspan="5"><Licence date="1923-04-06" no="監第663号" /></td>
+						<td rowspan="5"><Licence date="1923-10-04" no="目電第293号" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ7</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ8</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ9</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ10</th>
+					</tr>
+				</tbody>
+			</table>
+
+			<ul class="p-notes">
+				<li>神中鉄道<small>（現：相模鉄道）</small>への譲渡は申請書類が残されておらず詳細な時期は不明だが、神中鉄道側の譲受使用認可申請は<DateWareki value="1942-03-30" />に提出されている（神鉄午第15号）。</li>
+			</ul>
+		</Section>
+
+		<Section depth={2} headingType="b">
+			<H slot="heading">形式不明（計画のみ）</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="2">購入</th>
+					</tr>
+					<tr>
+						<th scope="col">購入認可申請</th>
+						<th scope="col">取下願</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">未採番（10両）</th>
+						<td>目蒲</td>
+						<td><Licence date="1924-03-01" no="目電第54号" /></td>
+						<td><Licence date="1924-05-24" no="目電第152号" /></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<ul class="p-notes">
+				<li>目黒蒲田電鉄が新製を計画しつつも実現しなかった車両。時期的に考えて、鉄道省車両の譲受が行われることになったため新製を取りやめたものと思われる。</li>
+				<li>車両の詳細な仕様は不明だが、申請時の書類に残された断片的な情報によるとデハ1形、デハ6形と台車軸距は同一ながらよりやや長い車体を持ち、座席が4か所に分かれているとあるため中間ドアを持つものであったようだ。</li>
+			</ul>
+		</Section>
+
+		<Section id="deha20" depth={2} headingType="b">
+			<H slot="heading">デハ20形 → モハ20形</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="2">借入</th>
+					</tr>
+					<tr>
+						<th scope="col">運転認可申請</th>
+						<th scope="col">認可</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">鉄道省デハ6269</th>
+						<td rowspan="4">目蒲</td>
+						<td rowspan="4"><Licence date="1924-03-07" no="目電第60号" /></td>
+						<td rowspan="4"><Licence date="1924-03-19" no="監第484号" /></td>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6275</th>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6277</th>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6278</th>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">前所有</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col">半鋼体化</th>
+						<th scope="col" rowspan="2">備考</th>
+					</tr>
+					<tr>
+						<th scope="col">運転認可申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">設計変更認可申請</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ21</th>
+						<td>鉄道省デハ6261</td>
+						<td rowspan="4">目蒲</td>
+						<td rowspan="4"><Licence date="1924-09-27" no="目電第299号" /></td>
+						<td rowspan="4"><Licence date="1924-10-13" no="監第2259号" /></td>
+						<td rowspan="4"><Licence date="1924-11-30" no="目電第111号" /></td>
+						<td><Licence date="1937-10-30" no="目電丑第1404号" /></td>
+						<td>以降、<a href="#moha150">モハ150形</a></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ22</th>
+						<td>鉄道省デハ6262</td>
+						<td rowspan="3"><Licence date="1939-06-12" no="目電寅第1360号" /></td>
+						<td rowspan="3">以降、<a href="#moha150">モハ150形</a></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ23</th>
+						<td>鉄道省デハ6263</td>
+					</tr>
+					<tr>
+						<th scope="row">デハ24</th>
+						<td>鉄道省デハ6264</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<ul class="p-notes">
+				<li>当初は東京工業学校の大岡山移転（<DateWareki value="1924-04" />）に伴う車両不足のために、鉄道省デハ6260形を借り入れる形で使用された。</li>
+				<li>借入時と購入時で鉄道省の車号が異なる。</li>
+				<li>鉄道省車号と目蒲車号の対照は許認可書類からは特定できない。上表の<q>前所有</q>欄は便宜上、番号の若い順に並べたものである。</li>
+			</ul>
+		</Section>
+
+		<Section id="deha30" depth={2} headingType="b">
+			<H slot="heading">デハ30形 → モハ30形（初代）</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">前所有</th>
+						<th scope="col" rowspan="2">当初所属</th>
+						<th scope="col" colspan="2">譲受</th>
+						<th scope="col" colspan="2">廃止／譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">運転届</th>
+						<th scope="col">竣功</th>
+						<th scope="col">認可申請</th>
+						<th scope="col">認可</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ31</th>
+						<td>鉄道省デハ6269</td>
+						<td rowspan="8">目蒲</td>
+						<td rowspan="8"><Licence date="1925-03-02" no="目電第56号" /></td>
+						<td rowspan="8"><Licence date="1925-05-21" no="目電第168号" /></td>
+						<td rowspan="2"><Licence name="目蒲→駿豆" date="1929-09-30" no="目電巳第1631号" /></td>
+						<td rowspan="2"><Licence date="1929-10-14" no="監第3514号" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ32</th>
+						<td>鉄道省デハ6270</td>
+					</tr>
+					<tr>
+						<th scope="row">デハ33</th>
+						<td>鉄道省デハ6271</td>
+						<td rowspan="2"><Licence name="東横→駿豆" date="1927-08-20" no="東横卯第1387号" /></td>
+						<td rowspan="2"><Licence date="1927-09-06" no="監第2356号" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ34</th>
+						<td>鉄道省デハ6272</td>
+					</tr>
+					<tr>
+						<th scope="row">デハ35</th>
+						<td>鉄道省デハ6273</td>
+						<td><Licence name="目蒲廃車" date="1929-10-08" no="目電巳第1647号" /></td>
+						<td><Licence date="1929-10-16" no="監第3538号" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ36</th>
+						<td>鉄道省デハ6275</td>
+						<td rowspan="2"><Licence name="東横→駿豆" date="1927-08-20" no="東横卯第1387号" /></td>
+						<td rowspan="2"><Licence date="1927-09-06" no="監第2356号" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ37</th>
+						<td>鉄道省デハ6277</td>
+					</tr>
+					<tr>
+						<th scope="row">デハ38</th>
+						<td>鉄道省デハ6278</td>
+						<td><Licence name="目蒲→駿豆" date="1929-09-30" no="目電巳第1631号" /></td>
+						<td><Licence date="1929-10-14" no="監第3514号" /></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<ul class="p-notes">
+				<li>鉄道省車号と目蒲車号の対照は許認可書類からは特定できない。上表の<q>前所有</q>欄は便宜上、番号の若い順に並べたものである。</li>
+				<li>デハ35 は許認可書類では廃車後の足取りは追えないが、定説では芝浦製作所に引き取られたのち鶴見臨港鉄道に譲渡されたとされている。</li>
+			</ul>
+		</Section>
+
+		<Section id="deha40" depth={2} headingType="b">
+			<H slot="heading">デハ40形 → モハ40形 → モハ25形</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">前所有</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="3">譲受</th>
+						<th scope="col">改番</th>
+						<th scope="col" colspan="2">廃止／譲渡</th>
+						<th scope="col">半鋼体化</th>
+						<th scope="col" rowspan="2">備考</th>
+					</tr>
+					<tr>
+						<th scope="col">使用認可申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">形式称号及番号改正届</th>
+						<th scope="col">認可申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">設計変更認可申請</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ41</th>
+						<td>鉄道省デハ6288</td>
+						<td rowspan="4">目蒲</td>
+						<td rowspan="4"><Licence date="1926-04-30" no="目電第166号" /></td>
+						<td rowspan="4"><Licence date="1926-06-12" no="監第1557号" /></td>
+						<td rowspan="4">不明</td>
+						<td></td>
+						<td><Licence name="目蒲廃車" /></td>
+						<td>不明</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ42</th>
+						<td>鉄道省デハ6293</td>
+						<td><Licence name="モハ42→モハ25" date="1929-11-14" no="目電巳第1902号" /></td>
+						<td></td>
+						<td></td>
+						<td><Licence date="1937-10-30" no="目電丑第1404号" /></td>
+						<td>以降、<a href="#moha150">モハ150形</a></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ43</th>
+						<td>鉄道省デハ6294</td>
+						<td></td>
+						<td rowspan="2"><Licence name="目蒲→福武" date="1927-05-02" no="目電第159号" /></td>
+						<td rowspan="2"><Licence date="1927-05-14" no="監第1221号" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ44</th>
+						<td>鉄道省デハ6295</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col">車号</th>
+						<th scope="col">譲渡</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">鉄道省デハ6254</th>
+						<td rowspan="6"><Licence name="目蒲→阪急" date="1926" /></td>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6256</th>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6257</th>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6285</th>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6289</th>
+					</tr>
+					<tr>
+						<th scope="row">鉄道省デハ6290</th>
+					</tr>
+				</tbody>
+			</table>
+
+			<ul class="p-notes">
+				<li>鉄道省車号と目蒲車号の対照は許認可書類からは特定できない。上表の<q>前所有</q>欄は便宜上、番号の若い順に並べたものである。</li>
+				<li>デハ41 は廃車の許認可書類が残されておらず足取りは追えないが、定説では<DateWareki value="1930-05" />に芝浦製作所に引き取られたのち鶴見臨港鉄道に譲渡されたとされている。なお、モハ42 →モハ25 の改番届における記述の中でモハ40形は41号車1両が残るとあるため、短期間ではあるがモハ40形とモハ25形が1両ずつ併存していたことになる。</li>
+				<li>未採番の6両は目黒蒲田電鉄の発行書類において<q>鐵道省ヨリ譲受ノ電車……（中略）……六輛ヲ都合ニヨリ<em>其儘</em>阪神急行電鐵株式會社ニ賣渡シ</q>（※強調は筆者による）とあるため<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/466009">【鉄道省文書】目黒蒲田電鉄 1926年4月3日「證明書」</LinkExternal></FootnoteReference>、事実上は鉄道省から直接に阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡されたものと思われる。参考までに、阪神側での認可申請は<DateWareki value="1926-04-05" />、認可は同年5月21日に行われている。</li>
+			</ul>
+		</Section>
+	</Section>
+	<Section id="freight">
+		<H slot="heading">貨物用車両</H>
+
+		<Section id="deto1" depth={2} headingType="b">
+			<H slot="heading">デト1形 → モト1形</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col" rowspan="2">廃車</th>
+					</tr>
+					<tr>
+						<th scope="col">購入認可申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デト1</th>
+						<td rowspan="3">目蒲</td>
+						<td rowspan="2"><Licence date="1922-07-07" /></td>
+						<td rowspan="2"><Licence date="1922-12-12" no="監第2517号" /></td>
+						<td rowspan="2"><Licence date="1923-02-22" no="目電第78号" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デト2</th>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デト3</th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デト4</th>
+						<td rowspan="3">東横</td>
+						<td rowspan="3"></td>
+						<td rowspan="3"></td>
+						<td rowspan="3"></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デト5</th>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デト6</th>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</Section>
+
+		<Section id="to1" depth={2} headingType="b">
+			<H slot="heading">ト1形 → フト10形</H>
+
+			<table class="p-table">
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col" rowspan="2">廃車</th>
+					</tr>
+					<tr>
+						<th scope="col">購入認可申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">ト1</th>
+						<td rowspan="4">目蒲</td>
+						<td rowspan="4"><Licence date="1922-07-07" /></td>
+						<td rowspan="4"><Licence date="1922-12-12" no="監第2517号" /></td>
+						<td rowspan="4"><Licence date="1923-02-22" no="目電第78号" /></td>
+						<td></td>
+						<td rowspan="4"></td>
+					</tr>
+					<tr>
+						<th scope="row">ト2</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">ト3</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">ト4</th>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</Section>
+	</Section>
+</Layout>
