@@ -1,0 +1,18 @@
+---
+import Date from './Date.astro';
+import LinkExternal from './LinkExternal.astro';
+
+interface Props {
+	company: string; // 鉄道事業者名
+	no?: string; // 資料番号
+	date: string; // 年月日
+	title?: string; // タイトル
+	url: string; // 国立公文書館デジタルアーカイブの URL
+}
+
+const { company, no, date, title, url } = Astro.props;
+
+const noDisplay = no !== undefined ? `${company}　${no}　` : `${company}　`;
+---
+
+<>【鉄道省文書】<LinkExternal href={url}>{noDisplay}<Date value={date} />{title !== undefined && <cite>{title}</cite>}</LinkExternal></>
