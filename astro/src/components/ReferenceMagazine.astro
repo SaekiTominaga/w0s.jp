@@ -1,0 +1,26 @@
+---
+interface Props {
+	name: string; // 雑誌名
+	date?: string; // 年月や特集名
+	no?: number; // 通巻
+	title: string; // 記事タイトル
+	author?: string; // 著者
+	pages: string; // ページ数
+}
+
+const { name, date, no, title, author, pages } = Astro.props;
+
+const dateDisplay = date !== undefined ? ` ${date}` : undefined;
+
+let noDisplay: string | undefined = undefined;
+if (no !== undefined) {
+	noDisplay = date !== undefined ? `（No.${no}）` : ` No.${no}`;
+}
+
+const authorDisplay = author !== undefined ? `（${author}）` : undefined;
+
+const [startPage, endPage] = pages.split('-');
+const pageDisplay = endPage !== undefined ? ` pp.${startPage}–${endPage}` : ` p.${startPage}`;
+---
+
+<>{name}{dateDisplay}{noDisplay}<cite>{title}</cite>{authorDisplay}{pageDisplay}</>
