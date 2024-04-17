@@ -1,4 +1,6 @@
 ---
+import LinkExternal from './LinkExternal.astro';
+
 interface Props {
 	name: string; // 雑誌名
 	date?: string; // 年月や特集名
@@ -6,21 +8,55 @@ interface Props {
 	title: string; // 記事タイトル
 	author?: string; // 著者
 	pages: string; // ページ数
+	url?: string; // Web ページの URL
 }
 
-const { name, date, no, title, author, pages } = Astro.props;
-
-const dateDisplay = date !== undefined ? ` ${date}` : undefined;
+const { name, date, no, title, author, pages, url } = Astro.props;
 
 let noDisplay: string | undefined = undefined;
 if (no !== undefined) {
 	noDisplay = date !== undefined ? `（No.${no}）` : ` No.${no}`;
 }
 
-const authorDisplay = author !== undefined ? `（${author}）` : undefined;
-
 const [startPage, endPage] = pages.split('-');
-const pageDisplay = endPage !== undefined ? ` pp.${startPage}–${endPage}` : ` p.${startPage}`;
+const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
 ---
 
-<>{name}{dateDisplay}{noDisplay}<cite>{title}</cite>{authorDisplay}{pageDisplay}</>
+<span class="c-ref -magazine">
+	{
+		url !== undefined && (
+			<LinkExternal href={url}>
+				<span class="c-ref__name">{name}</span>
+				{date !== undefined && <span class="c-ref__date">{date}</span>}
+				{no !== undefined && <span class="c-ref__no">No.{no}</span>}
+				<cite class="c-ref__title">{title}</cite>
+				{author !== undefined && <span class="c-ref__author">{author}</span>}
+				<span class="c-ref__pages">{pageDisplay}</span>
+			</LinkExternal>
+		)
+	}
+	{
+		url === undefined && (
+			<>
+				<span class="c-ref__name">{name}</span>
+				{date !== undefined && (
+					<>
+						<span class="c-ref__date">{date}</span>
+					</>
+				)}
+				{no !== undefined && (
+					<>
+						<span class="c-ref__no">No.{no}</span>
+					</>
+				)}
+				<cite class="c-ref__title">{title}</cite>
+				{author !== undefined && (
+					<>
+						<span class="c-ref__author">{author}</span>
+					</>
+				)}
+				<span class="c-ref__pages">{pageDisplay}</span>
+			</>
+		)
+	}
+</span>
