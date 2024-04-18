@@ -7,13 +7,13 @@ interface Props {
 	no?: number; // 通巻
 	article: string; // 記事タイトル
 	author?: string; // 著者
-	pages: string; // ページ数
+	pages: number[]; // ページ数
 	url?: string; // Web ページの URL
 }
 
 const { name, date, no, article, author, pages, url } = Astro.props;
 
-const [startPage, endPage] = pages.split('-');
+const [startPage, endPage] = pages;
 const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
 ---
 
