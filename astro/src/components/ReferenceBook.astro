@@ -23,8 +23,16 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				<LinkExternal href={url}>
 					<cite class="c-ref__name">{name}</cite>
 				</LinkExternal>
-				{article !== undefined && <span class="c-ref__title">{article}</span>}
-				{author !== undefined && <span class="c-ref__author">{author}</span>}
+				{article !== undefined && (
+					<>
+						<span class="c-ref__article">{article}</span>
+					</>
+				)}
+				{author !== undefined && (
+					<>
+						<span class="c-ref__author">{author}</span>
+					</>
+				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
 			</>
 		)
@@ -33,8 +41,16 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 		url !== undefined && urlScope === 'page' && (
 			<LinkExternal href={url}>
 				<cite class="c-ref__name">{name}</cite>
-				{article !== undefined && <span class="c-ref__title">{article}</span>}
-				{author !== undefined && <span class="c-ref__author">{author}</span>}
+				{article !== undefined && (
+					<>
+						<span class="c-ref__article">{article}</span>
+					</>
+				)}
+				{author !== undefined && (
+					<>
+						<span class="c-ref__author">{author}</span>
+					</>
+				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
 			</LinkExternal>
 		)
@@ -43,8 +59,16 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 		url === undefined && (
 			<>
 				<cite class="c-ref__name">{name}</cite>
-				{article !== undefined && <span class="c-ref__title">{article}</span>}
-				{author !== undefined && <span class="c-ref__author">{author}</span>}
+				{article !== undefined && (
+					<>
+						<span class="c-ref__article">{article}</span>
+					</>
+				)}
+				{author !== undefined && (
+					<>
+						<span class="c-ref__author">{author}</span>
+					</>
+				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
 			</>
 		)
