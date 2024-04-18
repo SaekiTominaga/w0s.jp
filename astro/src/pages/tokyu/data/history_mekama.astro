@@ -7,6 +7,8 @@ import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import RefMagazine from '@components/ReferenceMagazine.astro';
+import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -424,7 +426,7 @@ const slugger = new GithubSlugger();
 			<ul class="p-notes">
 				<li>鉄道省車号と目蒲車号の対照は認可書類からは特定できない。上表の<q>前所有</q>欄は便宜上、番号の若い順に並べている。</li>
 				<li>デハ41 は廃車の認可書類が残されておらず足取りは追えないが、定説では<DateWareki value="1930-05" />に芝浦製作所に引き取られたのち鶴見臨港鉄道に譲渡されたとされている。なお、モハ42 →モハ25 の改番届における記述の中でモハ40形は41号車1両が残るとあるため、短期間ではあるがモハ40形とモハ25形が1両ずつ併存していたことになる。</li>
-				<li>未採番の6両は目黒蒲田電鉄の発行書類において<q>鐵道省ヨリ譲受ノ電車……（中略）……六輛ヲ都合ニヨリ<em>其儘</em>阪神急行電鐵株式會社ニ賣渡シ</q><small>（※強調は筆者による）</small>とあるため<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/466009">【鉄道省文書】目黒蒲田電鉄 1926年4月3日「證明書」</LinkExternal></FootnoteReference>、事実上は鉄道省から直接に阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡されたものと思われる。参考までに、阪急側での認可申請は<DateWareki value="1926-04-05" />、認可は同年5月21日に行われている。</li>
+				<li>未採番の6両は目黒蒲田電鉄の発行書類において<q>鐵道省ヨリ譲受ノ電車……（中略）……六輛ヲ都合ニヨリ<em>其儘</em>阪神急行電鐵株式會社ニ賣渡シ</q><small>（※強調は筆者による）</small>とあるため<FootnoteReference><RefTetsudosho company="目黒蒲田電鉄" date="1926-04-03" title="證明書" url="https://www.digital.archives.go.jp/item/466009" /></FootnoteReference>、事実上は鉄道省から直接に阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡されたものと思われる。参考までに、阪急側での認可申請は<DateWareki value="1926-04-05" />、認可は同年5月21日に行われている。</li>
 			</ul>
 		</Section>
 
@@ -651,8 +653,8 @@ const slugger = new GithubSlugger();
 			</div>
 
 			<ul class="p-notes">
-				<li>デハ303→デハ307 の改番は認可書類が残されていないため、実施時期は鉄道ピクトリアル 1985年1月臨時増刊号（No.442）<cite>私鉄車両めぐり〔127〕</cite>（荻原俊夫）p.210 による。</li>
-				<li>クハ1〜4 の電装は認可書類が残されていないため、実施時期は鉄道ピクトリアル 1985年1月臨時増刊号（No.442）<cite>私鉄車両めぐり〔127〕</cite>（荻原俊夫）p.210 による。また新旧車号対照は Romance Car No.17「東京急行電鉄2」（川垣恭三） p.10 による。</li>
+				<li>デハ303→デハ307 の改番は認可書類が残されていないため、実施時期は<RefMagazine name="鉄道ピクトリアル" date="1985年1月臨時増刊号" no={442} article="私鉄車両めぐり〔127〕" author="荻原俊夫" pages={[210]} />による。</li>
+				<li>クハ1〜4 の電装は認可書類が残されていないため、実施時期は<RefMagazine name="鉄道ピクトリアル" date="1985年1月臨時増刊号" no={442} article="私鉄車両めぐり〔127〕" author="荻原俊夫" pages={[210]} />による。また新旧車号対照は<RefMagazine name="Romance Car" no={17} article="東京急行電鉄2" author="川垣恭三" pages={[10]} />による。</li>
 			</ul>
 		</Section>
 
@@ -1012,7 +1014,7 @@ const slugger = new GithubSlugger();
 
 			<ul class="p-notes">
 				<li>モハ18 の越中鉄道<small>（後の富山地方鉄道射水線）</small>への譲渡に際しては認可申請の提出が行われたが、監督局にて<q>届出ニテ足ル事項</q>とされ、届出扱いにて処理が行われた。なお、1927年〜1929年にデハ30形（モハ30形）、デハ40形の譲渡が行われた際は申請と認可が行われている。</li>
-				<li>モハ18 は越中鉄道への譲渡の同年、7月29日の申請でさらに温泉電軌<small>（後の北陸鉄道加南線）</small>への譲渡が行われたが、越中鉄道側の申請書類において<q>當社ニ於テ使用スルヨリ温泉電氣株式會社ニ於テ使用スル方總テノ奌ニ於テ有利ト認</q>とあり<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/455583">【鉄道省文書】越中鉄道 1935年7月29日「客車譲渡認可申請書」</LinkExternal></FootnoteReference>、また車両は東京横浜電鉄の元住吉駅構内にて引き渡すとされていることから<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/463047">【鉄道省文書】温泉電軌 1935年7月29日「客車譲受認可申請書」</LinkExternal></FootnoteReference>、越中鉄道への譲渡は書類上のことに過ぎなかったものと思われる。</li>
+				<li>モハ18 は越中鉄道への譲渡の同年、7月29日の申請でさらに温泉電軌<small>（後の北陸鉄道加南線）</small>への譲渡が行われたが、越中鉄道側の申請書類において<q>當社ニ於テ使用スルヨリ温泉電氣株式會社ニ於テ使用スル方總テノ奌ニ於テ有利ト認</q>とあり<FootnoteReference><RefTetsudosho company="越中鉄道" date="1935-07-29" title="客車譲渡認可申請書" url="https://www.digital.archives.go.jp/item/455583" /></FootnoteReference>、また車両は東京横浜電鉄の元住吉駅構内にて引き渡すとされていることから<FootnoteReference><RefTetsudosho company="温泉電軌" date="1935-07-29" title="客車譲受認可申請書" url="https://www.digital.archives.go.jp/item/463047" /></FootnoteReference>、越中鉄道への譲渡は書類上のことに過ぎなかったものと思われる。</li>
 			</ul>
 		</Section>
 
@@ -1254,7 +1256,7 @@ const slugger = new GithubSlugger();
 			</div>
 
 			<ul class="p-notes">
-				<li>ガソリンカーの導入検討に際し、<DateWareki value="1933" />に鉄道省より当時新製されたばかりのキハ36900形を借り入れての試運転が渋谷―桜木町で行われた模様<FootnoteReference><LinkExternal href="https://www.digital.archives.go.jp/item/536006">【鉄道省文書】東京横浜電鉄　東横酉第1110号　1933年9月5日「ガソリンカー試運轉ニ關スル件認可申請」</LinkExternal></FootnoteReference>。</li>
+				<li>ガソリンカーの導入検討に際し、<DateWareki value="1933" />に鉄道省より当時新製されたばかりのキハ36900形を借り入れての試運転が渋谷―桜木町で行われた模様<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横酉第1110号" date="1933-09-05" title="ガソリンカー試運轉ニ關スル件認可申請" url="https://www.digital.archives.go.jp/item/536006" /></FootnoteReference>。</li>
 				<li>ガソリンカーの導入に際し、上表のほかに<cite>ガソリン動力併用認可申請書</cite>が車両の認可申請と同日に提出され、認可も同時に処理されている。</li>
 			</ul>
 		</Section>
@@ -1416,7 +1418,7 @@ const slugger = new GithubSlugger();
 			<ul class="p-notes">
 				<li>モハ156〜161 は当初計画では鉄道省時代の当初計画では制御装置の換装をせず半鋼体化後も鉄道省時代の <a href="/tokyu/machine/cont_old#ministry-mekama">M コントロール</a>を使い続ける予定だったものが、竣功前に設計変更申請を行い、<a href="/tokyu/machine/cont_old#dk-system">東洋電機製造の電動カム軸タイプ</a>の搭載に変更されている。それ以外にもなぜか車体寸法が初期車（モハ150〜155）と若干異なっていたのを統一している。</li>
 				<li>モハ156〜161 は定説では<DateWareki value="1940" />の完成とされているが、竣功届の提出は上表のとおり<DateWareki value="1941" />である（モハ161 は不明）。</li>
-				<li>モハ161 の竣功は届出書類が残されておらず詳細な時期は不明だが、第二次世界大戦後まで T 車代用になっていたとのことで<FootnoteReference>The Tight Coupler 1950年2月号（No.23）「T.K.K. 車輌現況」（久保敏） p.34</FootnoteReference>、電装品の調達に問題があり竣功が遅れたことが覗える。</li>
+				<li>モハ161 の竣功は届出書類が残されておらず詳細な時期は不明だが、第二次世界大戦後まで T 車代用になっていたとのことで<FootnoteReference><RefMagazine name="The Tight Coupler" date="1950年2月号" no={23} article="T.K.K. 車輌現況" author="久保敏" pages={[34]} /></FootnoteReference>、電装品の調達に問題があり竣功が遅れたことが覗える。</li>
 				<li>未採番の6両は、ガソリン規制によりキハ1形8両のうち4両しか使用できない状況下にて、後述のモハ1000形10両の増備のみでは急増する輸送需要に追いつかないとして、2両編成の3両化を進めるために増備が計画されたもので、形式は<q>サハ一</q>とされているが、サハ1〜4 と同じく鉄道省譲受車の改造か、それとも新造によるものかは不明である。ただし、工事方法認可に前後して目黒蒲田電鉄よりモハ150形6両の改造申請が提出されており、その増備理由がサハ予定車6両と酷似していることから、東横、目黒の両社間で調整のうえ付随客車の予定を電動客車へ変更したと考えることもできる。</li>
 			</ul>
 		</Section>
