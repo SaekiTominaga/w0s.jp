@@ -14,8 +14,9 @@ const { company, no, date, title, url } = Astro.props;
 ---
 
 <span class="c-ref -tetsudosho">
-	<b>鉄道省文書</b><LinkExternal href={url}
-		>{(<span class="c-ref__company">{company}</span>)}
+	<b>鉄道省文書</b>
+	<LinkExternal href={url}>
+		<span class="c-ref__company">{company}</span>
 		{
 			no !== undefined && (
 				<>
