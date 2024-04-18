@@ -327,8 +327,15 @@ Styleguide 1.2.8
 	}
 }
 
-/* 図書名／雑誌名／【鉄道省文書】鉄道事業者名 */
-.c-ref__name,
+/* 図書名／雑誌名 */
+.c-ref__name {
+	&:lang(ja) {
+		--_open: "";
+		--_close: "";
+	}
+}
+
+/* 【鉄道省文書】鉄道事業者名 */
 .c-ref__company {
 }
 
@@ -342,6 +349,13 @@ Styleguide 1.2.8
 
 /* 記事タイトル */
 .c-ref__title {
+	&::before {
+		content: "「";
+	}
+
+	&::after {
+		content: "」";
+	}
 }
 
 /* 著者 */
