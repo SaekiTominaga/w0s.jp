@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
-import Image from '@components/Image.astro';
 import H from '@components/H.astro';
+import Image from '@components/Image.astro';
+import LinkPhoto from '@components/LinkPhoto.astro';
+import RefMagazine from '@components/ReferenceMagazine.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -149,7 +150,7 @@ const structuredData: StructuredData = {
 		</div>
 
 		<ul class="p-notes">
-			<li>TS-301 型 〜 TS-322 型の製造初年は鉄道ピクトリアル 1989年10月号（No.518）「国鉄・JRおよびメーカー別の台車リスト(Ⅲ)」p.109 より。</li>
+			<li>TS-301 型 〜 TS-322 型の製造初年は<RefMagazine name="鉄道ピクトリアル" date="1989年10月号" no={518} article="国鉄・JRおよびメーカー別の台車リスト(Ⅲ)" pages={[109]} />より。</li>
 			<li>TS-332 型 〜 TS-333 型の製造初年は現車調査による。</li>
 			<li>TS-334 型の製造初年は車両入籍日からの推定。</li>
 		</ul>
