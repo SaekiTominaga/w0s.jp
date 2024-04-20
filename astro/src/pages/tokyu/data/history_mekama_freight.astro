@@ -36,7 +36,7 @@ const slugger = new GithubSlugger();
 		<ul class="p-list">
 			<li>改造については車号の変更を伴うものに限ります。</li>
 			<li>
-				表中の鉄道事業者および車両譲渡先の名称は以下のとおり省略表記しています。
+				表中の鉄道事業者および車両譲受元、譲渡先の名称は以下のとおり省略表記しています。
 				<ul>
 					<li>目蒲：目黒蒲田電鉄</li>
 					<li>東横：東京横浜電鉄（<DateWareki value="1939-10-01" />に目黒蒲田電鉄と合併する前まで）</li>
@@ -60,7 +60,6 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">発注</th>
 						<th scope="col" colspan="3">購入</th>
 						<th scope="col" colspan="3">ＸＸＸ</th>
-						<th scope="col" rowspan="2">廃車</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
@@ -81,11 +80,9 @@ const slugger = new GithubSlugger();
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">デト2</th>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -95,7 +92,6 @@ const slugger = new GithubSlugger();
 						<td><Licence no="目電第165号" title="車両購入認可申請書" date="1924-06-09" /></td>
 						<td><Licence no="監第1713号" date="1924-08-06" /></td>
 						<td><Licence no="目電第350号" title="車両竣功御届" date="1924-12-03" /></td>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -109,18 +105,15 @@ const slugger = new GithubSlugger();
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">デト5</th>
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">デト6</th>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -135,7 +128,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="to1">
-		<H slot="heading">ト1形 → フト10形</H>
+		<H slot="heading">ト1形（初代） → ト1形（初代）&amp;フト10形 → ト1形（2代目）&amp;ト11形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -145,7 +138,8 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">発注</th>
 						<th scope="col" colspan="3">購入</th>
 						<th scope="col" colspan="3">フト10形化</th>
-						<th scope="col" rowspan="2">廃車</th>
+						<th scope="col" colspan="2">記号改正</th>
+						<th scope="col">廃止</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
@@ -154,11 +148,14 @@ const slugger = new GithubSlugger();
 						<th scope="col">申請</th>
 						<th scope="col">認可</th>
 						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
+						<th scope="col">届出</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">ト1</th>
+						<th scope="row">ト1→ト1</th>
 						<td rowspan="4">目蒲</td>
 						<td rowspan="4"><Licence title="車両購入許可申請書" date="1922-07-07" /></td>
 						<td rowspan="4"><Licence no="監第2517号" date="1922-12-12" /></td>
@@ -166,25 +163,24 @@ const slugger = new GithubSlugger();
 						<td></td>
 						<td></td>
 						<td></td>
+						<td rowspan="4"><Licence summary="ト1形→ト1形、フト10形→ト11形" date="1928-08-31" /></td>
+						<td rowspan="4"><Licence no="目電巳第265号" date="1929-02-25" /></td>
+						<td rowspan="4"><Licence no="目電亥第724号" title="貨車廃止届" date="1930-05-30" /></td>
+					</tr>
+					<tr>
+						<th scope="row">ト2→ト2</th>
+						<td></td>
+						<td></td>
 						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">ト2</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">ト3→フト11</th>
-						<td rowspan="2"><Licence no="目電第171号" title="車両設計変更許可申請書" date="1925-05-26" /></td>
+						<th scope="row">ト3→フト11→ト11</th>
+						<td rowspan="2"><Licence summary="ト1形→フト10形" no="目電第171号" title="車両設計変更許可申請書" date="1925-05-26" /></td>
 						<td rowspan="2"><Licence no="監第1368号" date="1925-06-02" /></td>
 						<td rowspan="2"><Licence no="目電第203号" title="車両竣功御届" date="1925-06-17" /></td>
-						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">ト4→フト12</th>
-						<td></td>
+						<th scope="row">ト4→フト12→ト12</th>
 					</tr>
 				</tbody>
 			</table>
@@ -192,12 +188,14 @@ const slugger = new GithubSlugger();
 
 		<ul class="p-notes">
 			<li>購入申請書類の表題は<q>許可申請</q>（認可でなく許可）となっているが、おそらく単なる記載ミスで、監督局側からも言及されることなく認可として処理されている。</li>
-			<li>ト1形とフト10形の車号対照は認可書類からは特定できない。上表は若い順に変更されたと仮定している。</li>
+			<li>ト1形とフト10形の新旧車号対照は認可書類からは特定できない。上表は若い順に変更されたと仮定している。</li>
+			<li><DateWareki value="1928" />に付随貨車全体に対して行われた記号改正では、ト1形は称号・番号とも新旧同一であるが、(旧)ト1形から(新)ト1形への変更が行われた扱いであったようだ。後の車両竣功表にも<q>形式称号 ト1</q> に対して<q>旧番号 ト1</q>と書かれている。</li>
+			<li><DateWareki value="1929-11-16" />時点でト1形、ト11形ともにねじ式連結器のため使用停止中とある<FootnoteReference><RefTetsudosho company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></FootnoteReference>。</li>
 		</ul>
 	</Section>
 
 	<Section id="futo1">
-		<H slot="heading">フト1形</H>
+		<H slot="heading">フト1形 → ト15形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -206,34 +204,34 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">車号</th>
 						<th scope="col" rowspan="2">所属</th>
 						<th scope="col" colspan="3">購入</th>
-						<th scope="col" rowspan="2">廃車</th>
+						<th scope="col" colspan="2">記号改正</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
 						<th scope="col">認可</th>
 						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">フト1</th>
+						<th scope="row">フト1→ト15</th>
 						<td rowspan="4">目蒲</td>
 						<td rowspan="4"><Licence no="目電第280号" title="貨車購入認可申請書" date="1923-08-24" /></td>
 						<td rowspan="4"><Licence no="監第3350号" date="1923-11-15" /></td>
 						<td rowspan="4"><Licence no="目電第97号" title="貨車竣功御届" date="1924-04-12" /></td>
-						<td></td>
+						<td rowspan="4"><Licence summary="フト1形→ト15形" date="1928-08-31" /></td>
+						<td rowspan="4"><Licence no="目電巳第265号" date="1929-02-25" /></td>
 					</tr>
 					<tr>
-						<th scope="row">フト2</th>
-						<td></td>
+						<th scope="row">フト2→ト16</th>
 					</tr>
 					<tr>
-						<th scope="row">フト3</th>
-						<td></td>
+						<th scope="row">フト3→ト17</th>
 					</tr>
 					<tr>
-						<th scope="row">フト4</th>
-						<td></td>
+						<th scope="row">フト4→ト18</th>
 					</tr>
 				</tbody>
 			</table>
@@ -241,7 +239,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="to5">
-		<H slot="heading">ト5形</H>
+		<H slot="heading">ト5形（初代）→ ト5形（2代目）</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -251,27 +249,32 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">前所有</th>
 						<th scope="col" rowspan="2">所属</th>
 						<th scope="col" colspan="3">譲受</th>
-						<th scope="col" rowspan="2">廃車</th>
+						<th scope="col" colspan="2">記号改正</th>
+						<th scope="col">廃止</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
 						<th scope="col">認可</th>
 						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
+						<th scope="col">届出</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">ト5</th>
-						<td rowspan="2">上州</td>
+						<th scope="row">ト5→ト5</th>
+						<td rowspan="2">上州ト1〜2</td>
 						<td rowspan="2">目蒲</td>
 						<td rowspan="2"><Licence no="目電第319号" date="1923-10-23" /></td>
 						<td rowspan="2"><Licence no="監第3213号" date="1923-10-26" /></td>
 						<td rowspan="2"><Licence no="目電第230号" title="貨車竣功御届" date="1927-06-30" /></td>
-						<td></td>
+						<td rowspan="2"><Licence summary="ト5形→ト5形" date="1928-08-31" /></td>
+						<td rowspan="2"><Licence no="目電巳第265号" date="1929-02-25" /></td>
+						<td rowspan="2"><Licence no="目電亥第724号" title="貨車廃止届" date="1930-05-30" /></td>
 					</tr>
 					<tr>
-						<th scope="row">ト6</th>
-						<td></td>
+						<th scope="row">ト6→ト6</th>
 					</tr>
 				</tbody>
 			</table>
@@ -279,6 +282,9 @@ const slugger = new GithubSlugger();
 
 		<ul class="p-notes">
 			<li>認可から竣功届の提出までに3年半以上もの期間が経っているが理由は不明。</li>
+			<li>上州鉄道<small>（現：東武鉄道小泉線）</small>時代の車号は認可書類からは確認できないが、車両竣功図表に旧番号が記載されている。なお製造メーカーや製造年月は不明とされている。</li>
+			<li><DateWareki value="1928" />に付随貨車全体に対して行われた記号改正では、当形式は称号・番号とも新旧同一であるが、(旧)ト5形から(新)ト5形への変更が行われた扱いであったようだ。後の車両竣功表でも<q>形式称号 ト5</q> に対して、上州鉄道車号をわざわざ削除して<q>旧番号 ト5</q>と書き替えられている。</li>
+			<li><DateWareki value="1929-11-16" />時点でねじ式連結器のため使用停止中とある<FootnoteReference><RefTetsudosho company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></FootnoteReference>。</li>
 		</ul>
 	</Section>
 
@@ -292,7 +298,6 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">車号</th>
 						<th scope="col" rowspan="2">発注</th>
 						<th scope="col" colspan="3">購入</th>
-						<th scope="col" rowspan="2">廃車</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
@@ -307,7 +312,6 @@ const slugger = new GithubSlugger();
 						<td><Licence no="目電第165号" title="車両購入認可申請書" date="1924-06-09" /></td>
 						<td><Licence no="監第1713号" date="1924-08-06" /></td>
 						<td><Licence no="目電第350号" title="車両竣功御届" date="1924-12-03" /></td>
-						<td></td>
 					</tr>
 				</tbody>
 			</table>
@@ -315,7 +319,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="to20">
-		<H slot="heading">ト20形 → フト20形</H>
+		<H slot="heading">ト20形(?) → フト20形 → ト21形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -326,7 +330,8 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">所属</th>
 						<th scope="col" colspan="3">譲受</th>
 						<th scope="col" colspan="3">フト20形化</th>
-						<th scope="col" rowspan="2">廃車</th>
+						<th scope="col" colspan="2">記号改正</th>
+						<th scope="col" rowspan="2">廃止</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
@@ -335,35 +340,39 @@ const slugger = new GithubSlugger();
 						<th scope="col">申請</th>
 						<th scope="col">認可</th>
 						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">ト21→フト21</th>
+						<th scope="row">ト21→フト21→ト21</th>
 						<td rowspan="5">播丹ト735〜739</td>
 						<td rowspan="5">目蒲</td>
 						<td rowspan="5"><Licence no="目電第52号" title="貨車譲受認可申請書" date="1925-02-23" /></td>
 						<td rowspan="5"><Licence no="監第665号" date="1925-03-23" /></td>
 						<td rowspan="5"><Licence no="目電第184号" title="車両竣功御届" date="1925-05-31" /></td>
-						<td rowspan="5"><Licence no="目電第165号" title="車両設計変更認可申請書" date="1925-05-21" /></td>
+						<td rowspan="5"><Licence summary="ト20形(?)→フト20形" no="目電第165号" title="車両設計変更認可申請書" date="1925-05-21" /></td>
 						<td rowspan="5"><Licence no="監第1367号" date="1925-06-02" /></td>
 						<td rowspan="5"><Licence no="目電第203号" title="車両竣功御届" date="1925-06-17" /></td>
+						<td rowspan="5"><Licence summary="フト20形→ト21形" date="1928-08-31" /></td>
+						<td rowspan="5"><Licence no="目電巳第265号" date="1929-02-25" /></td>
 						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">ト22→フト22</th>
+						<th scope="row">ト22→フト22→ト22</th>
 						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">ト23→フト23</th>
+						<th scope="row">ト23→フト23→ト23</th>
 						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">ト24→フト24</th>
+						<th scope="row">ト24→フト24→ト24</th>
 						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">ト25→フト25</th>
+						<th scope="row">ト25→フト25→ト25</th>
 						<td></td>
 					</tr>
 				</tbody>
@@ -372,12 +381,13 @@ const slugger = new GithubSlugger();
 
 		<ul class="p-notes">
 			<li>フト20形化の申請は譲受竣功より先に提出されている。</li>
-			<li>ト20形とフト20形の車号対照は認可書類からは特定できない。上表は番号はそのままに称号のみ変更されたと仮定している。</li>
+			<li><q>ト20形</q>の形式表記は認可書類からは確認できない。<DateWareki value="1925" />当時は同一グループの車両を「○○形」と称す文書が皆無で、形式の概念がなかった可能性も考えられる。</li>
+			<li>ト20形(?)とフト20形の新旧車号対照は認可書類からは特定できない。上表は番号はそのままに称号のみ変更されたと仮定している。</li>
 		</ul>
 	</Section>
 
 	<Section id="futo30">
-		<H slot="heading">フト30形</H>
+		<H slot="heading">フト30形 → ト31形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -386,12 +396,14 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">車号</th>
 						<th scope="col" rowspan="2">所属</th>
 						<th scope="col" colspan="3">購入</th>
-						<th scope="col" rowspan="2">廃車</th>
+						<th scope="col" colspan="2">記号改正</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
 						<th scope="col">認可</th>
 						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -401,23 +413,20 @@ const slugger = new GithubSlugger();
 						<td rowspan="5"><Licence no="目電第122号" title="貨車購入認可申請書" date="1925-04-20" /></td>
 						<td rowspan="5"><Licence no="監第1059号" date="1925-04-30" /></td>
 						<td rowspan="5"><Licence no="目電第203号" title="車両竣功御届" date="1925-06-17" /></td>
-						<td></td>
+						<td rowspan="5"><Licence summary="フト30形→ト31形" date="1928-08-31" /></td>
+						<td rowspan="5"><Licence no="目電巳第265号" date="1929-02-25" /></td>
 					</tr>
 					<tr>
 						<th scope="row">フト32</th>
-						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">フト33</th>
-						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">フト34</th>
-						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">フト35</th>
-						<td></td>
 					</tr>
 				</tbody>
 			</table>
