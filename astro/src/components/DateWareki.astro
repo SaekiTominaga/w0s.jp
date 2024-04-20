@@ -16,7 +16,7 @@ let afterWarekiDisplay: string | undefined = undefined;
 if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)) {
 	beforeWarekiDisplay = value.substring(0, 4);
 	warekiDisplay = new Wareki(value).getYear();
-	afterWarekiDisplay = dayjs(value).format(`年M月D日`);
+	afterWarekiDisplay = dayjs(value).format('年M月D日');
 } else if (/^[0-9]{4}-[0-9]{2}$/.test(value)) {
 	beforeWarekiDisplay = value.substring(0, 4);
 	warekiDisplay = new Wareki(value).getYear();
