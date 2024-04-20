@@ -2,31 +2,26 @@
 import dayjs from 'dayjs';
 import DateWareki from '@components/DateWareki.astro';
 import FootnoteReference from '@components/FootnoteReference.astro';
-import GithubSlugger from 'github-slugger';
 import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
-import LinkExternal from '@components/LinkExternal.astro';
-import RefMagazine from '@components/ReferenceMagazine.astro';
 import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
-	title: '目黒蒲田電鉄、東京横浜電鉄　鉄道線・貨車　車歴表',
+	title: '目黒蒲田電鉄、東京横浜電鉄　機関車&貨車　車歴表',
 	dateModified: dayjs('2024-05-01'),
-	description: '目黒蒲田電鉄、東京横浜電鉄時代の車両は両社がそれぞれ保有していましたが、同一タイプの車両は連続した車号が付番されていたため、まとめて取り扱います。ここでは1939年の両社の合併を経て、1942年の東京急行電鉄成立までの鉄道線用貨車のうごきをまとめました。',
+	description: '目黒蒲田電鉄、東京横浜電鉄時代の車両は両社がそれぞれ保有していましたが、同一タイプの車両は連続した車号が付番されていたため、まとめて取り扱います。ここでは1939年の両社の合併を経て、1942年の東京急行電鉄成立までの機関車と貨車のうごきをまとめました。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/data/', name: '車両データ' },
 	],
 	localNav: [
-		{ path: '/tokyu/data/history_mekama_passenger', name: '目黒・東横　鉄道旅客車' },
-		{ path: '/tokyu/data/history_mekama_freight', name: '目黒・東横　鉄道貨車' },
+		{ path: '/tokyu/data/history_mekama_passenger', name: '目黒・東横　旅客車' },
+		{ path: '/tokyu/data/history_mekama_freight', name: '目黒・東横　機関車&貨車' },
 	],
 };
-
-const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -41,9 +36,11 @@ const slugger = new GithubSlugger();
 					<li>目蒲：目黒蒲田電鉄</li>
 					<li>東横：東京横浜電鉄（<DateWareki value="1939-10-01" />に目黒蒲田電鉄と合併する前まで）</li>
 					<li>新東横：東京横浜電鉄（旧・東京横浜電鉄と合併した目黒蒲田電鉄がその直後の<DateWareki value="1939-10-16" />に「東京横浜電鉄」へ商号変更して以降）</li>
-					<li>池上：池上電気鉄道</li>
+					<li>雄別：雄別炭鉱鉄道<small>（後の雄別鉄道、1970年廃止）</small></li>
+					<li>留萠：留萠鉄道<small>（1971年廃止）</small></li>
 					<li>上州：上州鉄道<small>（現：東武鉄道小泉線）</small></li>
 					<li>播丹：播丹鉄道<small>（現：JR加古川線および北条鉄道）</small></li>
+					<li>旭日：旭日機械製作所</li>
 					<li>朝工：朝日工業製作所<small>（東京市下谷区山伏町に存在した車両部品を扱う会社）</small></li>
 				</ul>
 			</li>
@@ -51,7 +48,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deto1">
-		<H slot="heading">デト1形 → デト1形&amp;デト3形 → モト1形&amp;モト3形</H>
+		<H slot="heading">デト1形 → デト3形、4形<small>（一部）</small>→ モト1形、3形、4形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -60,12 +57,21 @@ const slugger = new GithubSlugger();
 						<th scope="col" rowspan="2">車号</th>
 						<th scope="col" rowspan="2">発注</th>
 						<th scope="col" colspan="3">購入</th>
+						<th scope="col" colspan="5">パンタグラフ取り付け</th>
+						<th scope="col">有蓋電動貨車化</th>
 						<th scope="col">番号改正</th>
+						<th scope="col" rowspan="2">備考</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
 						<th scope="col">認可</th>
 						<th scope="col">竣功</th>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">パンタ併用申請</th>
+						<th scope="col">パンタ併用認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">申請</th>
 						<th scope="col">届出</th>
 					</tr>
 				</thead>
@@ -76,31 +82,67 @@ const slugger = new GithubSlugger();
 						<td rowspan="2"><Licence title="車両購入許可申請書" date="1922-07-07" /></td>
 						<td rowspan="2"><Licence no="監第2517号" date="1922-12-12" /></td>
 						<td rowspan="2"><Licence no="目電第78号" title="車両竣功図表提出届" date="1923-02-22" /></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td rowspan="3"><Licence summary="デト1形→モト1形、デト3形→モト3形" no="目電卯第962号" title="電動貨車形式称号記号番号変更届" date="1939-09-28" /></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">デト2→モト2</th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">デト3→モト3</th>
 						<td><Licence no="目電第165号" title="車両購入認可申請書" date="1924-06-09" /></td>
 						<td><Licence no="監第1713号" date="1924-08-06" /></td>
 						<td><Licence no="目電第350号" title="車両竣功御届" date="1924-12-03" /></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">デト4</th>
+						<th scope="row">デト4→モト4</th>
 						<td rowspan="3">東横</td>
-						<td rowspan="3"></td>
-						<td rowspan="3"></td>
-						<td rowspan="3"></td>
+						<td rowspan="3"><Licence no="庶第923号" title="車両購入認可申請書" date="1925-07-15" /></td>
+						<td rowspan="3"><Licence no="監第2149号" date="1925-09-02" /></td>
+						<td rowspan="3"><Licence no="東横寅第164号" title="車両竣功御届" date="1925-11-30" /></td>
+						<td rowspan="3"><Licence no="東横辰第403号" title="車両設計変更認可申請書" date="1928-03-14" /></td>
+						<td rowspan="3"><Licence no="監第1461号" date="1928-05-15" /></td>
+						<td><Licence no="東横辰第875号" title="車両設計変更認可申請書" date="1928-05-31" /></td>
+						<td><Licence no="監第2355号" date="1928-07-18" /></td>
+						<td rowspan="3"><Licence summary="デト4 のみデト1形→デト4形" no="東横辰第1312号" title="車両竣功届" date="1928-08-06" /></td>
+						<td><Licence summary="モト4形→モワ3形" no="東横未第207号" title="電動貨車設計変更認可申請書" date="1931-02-27" /></td>
+						<td></td>
+						<td>以降<a href="#dewa1">モワ3形</a>へ</td>
+					</tr>
+					<tr>
+						<th scope="row">デト5→モト5</th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 					</tr>
 					<tr>
-						<th scope="row">デト5</th>
+						<th scope="row">デト6→モト6</th>
 						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デト6</th>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 					</tr>
 				</tbody>
@@ -109,11 +151,12 @@ const slugger = new GithubSlugger();
 
 		<ul class="p-notes">
 			<li>デト1〜2 の購入申請書類の表題は<q>許可申請</q>（認可でなく許可）となっているが、おそらく単なる記載ミスで、監督局側からも言及されることなく認可として処理されている。</li>
+			<li>デト4〜6 は<DateWareki value="1928" />にトロリーポールをパンタグラフに変更する改造申請を行ったが、認可直後にデト4 のみ省線駅構内の入換作業用にトロリーポールを撤去せず（ただし有蓋貨車との連結に支障があるため取り付け位置と長さを変更）、新設のパンタグラフと併用する申請が行われた。そしてその竣功時にはデト4 のみデト4形とされている。なお、デト5〜6 はデト1形のままである。</li>
 		</ul>
 	</Section>
 
 	<Section id="to1">
-		<H slot="heading">ト1形<small>（初代）</small>→ ト1形<small>（初代）</small>&amp;フト10形 → ト1形<small>（2代目）</small>&amp;ト11形</H>
+		<H slot="heading">ト1形<small>（初代）</small>→ フト10形<small>（一部）</small>→ ト1形<small>（2代目）</small>、11形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -187,7 +230,7 @@ const slugger = new GithubSlugger();
 				<thead>
 					<tr>
 						<th scope="col" rowspan="2">車号</th>
-						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" rowspan="2">発注</th>
 						<th scope="col" colspan="3">購入</th>
 						<th scope="col" colspan="2">番号改正</th>
 					</tr>
@@ -274,7 +317,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="dewa1">
-		<H slot="heading">デワ1形 → モワ1形</H>
+		<H slot="heading">デワ1形 → モワ1形、3形</H>
 
 		<div class="p-table -scroll">
 			<table>
@@ -301,9 +344,49 @@ const slugger = new GithubSlugger();
 						<td><Licence no="目電第350号" title="車両竣功御届" date="1924-12-03" /></td>
 						<td><Licence summary="デワ1形→モワ1形" no="目電卯第962号" title="電動貨車形式称号記号番号変更届" date="1939-09-28" /></td>
 					</tr>
+					<tr>
+						<th scope="row">デワ2→モワ2</th>
+						<td>東横</td>
+						<td><Licence no="庶第923号" title="車両購入認可申請書" date="1925-07-15" /></td>
+						<td><Licence no="監第2149号" date="1925-09-02" /></td>
+						<td><Licence no="東横寅第164号" title="車両竣功御届" date="1925-11-30" /></td>
+						<td></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">旧車号</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" colspan="3">無蓋→有蓋電動貨車化</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">モワ3</th>
+						<td>モト4</td>
+						<td>東横</td>
+						<td><Licence no="東横未第207号" title="電動貨車設計変更認可申請書" date="1931-02-27" /></td>
+						<td><Licence no="監第383号" date="1931-03-09" /></td>
+						<td><Licence no="東横未第742号" title="車両竣功届" date="1931-05-20" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>無蓋電動貨車モト4 から改造されたモワ3 はトロリーポールとパンタグラフを併用しているなど他車と形態が異なるためか、モワ1形ではなくモワ3形とされた。なお、<DateWareki value="1933" />にはトロリーポールを撤去しているが<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横酉第85号" date="1933-02-15" title="電動貨車設計変更認可申請書" url="https://www.digital.archives.go.jp/item/537030" /></FootnoteReference>、形式はモワ3形のままとされた<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横酉第1022号" date="1933-08-21" title="車両竣功届" url="https://www.digital.archives.go.jp/item/537034" /></FootnoteReference>。</li>
+		</ul>
 	</Section>
 
 	<Section id="to20">
@@ -320,7 +403,7 @@ const slugger = new GithubSlugger();
 						<th scope="col" colspan="3">フト20形化</th>
 						<th scope="col" colspan="2">番号改正</th>
 						<th scope="col" colspan="2">貸渡</th>
-						<th scope="col" rowspan="2">廃止</th>
+						<th scope="col">廃止</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
@@ -333,6 +416,7 @@ const slugger = new GithubSlugger();
 						<th scope="col">報告</th>
 						<th scope="col">届出</th>
 						<th scope="col">延長届出</th>
+						<th scope="col">届出</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -389,7 +473,7 @@ const slugger = new GithubSlugger();
 				<thead>
 					<tr>
 						<th scope="col" rowspan="2">車号</th>
-						<th scope="col" rowspan="2">所属</th>
+						<th scope="col" rowspan="2">発注</th>
 						<th scope="col" colspan="3">購入</th>
 						<th scope="col" colspan="2">番号改正</th>
 					</tr>
@@ -422,6 +506,360 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<th scope="row">フト35</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</Section>
+
+	<Section id="krauss10">
+		<H slot="heading">鉄道省10形蒸気機関車<small>（未入籍）</small></H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">所属</th>
+						<th scope="col">購入</th>
+						<th scope="col" colspan="2">譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">購入元供覧</th>
+						<th scope="col">譲渡先申請／届出</th>
+						<th scope="col">譲渡先認可</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">15</th>
+						<td rowspan="2">東横</td>
+						<td rowspan="2"><Licence summary="鉄道省→東横" no="倉亥発第1278号" date="1925-07-04" /></td>
+						<td><Licence summary="東横→留萠" title="構内運転用機関車使用認可申請書" date="1931-03-11" /></td>
+						<td><Licence no="監第650号" date="1931-04-06" /></td>
+					</tr>
+					<tr>
+						<th scope="row">17</th>
+						<td><Licence summary="東横→留萠" title="構内運転用機関車増備届" date="1931-11-21" /></td>
+						<td class="u-cell -center">―</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>東京横浜電鉄が路線建設用に購入したものであり、入籍はしていない。東京横浜電鉄の認可書類は存在しないため、上表では参考として購入元の鉄道省、および譲渡先の留萠鉄道の認可書類に記されたデータを挙げる。</li>
+			<li>留萠鉄道の申請／届出書類には<q>大正拾四年九月門司鐵道局ヨリ東京横濱電鐵株式會社ニテ譲受ケタルモノ</q>と記述されている。</li>
+		</ul>
+	</Section>
+
+	<Section id="futo40">
+		<H slot="heading">フト40形 → ト41形</H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">発注</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col" colspan="2">番号改正</th>
+						<th scope="col">廃止</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
+						<th scope="col">届出</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">フト41→ト41</th>
+						<td rowspan="30">東横</td>
+						<td rowspan="30"><Licence no="庶第414号" title="貨車購入認可申請書" date="1925-04-21" /></td>
+						<td rowspan="30"><Licence no="監第1119号" date="1925-05-07" /></td>
+						<td rowspan="30"><Licence no="東横寅第164号" title="車両竣功御届" date="1925-11-30" /></td>
+						<td rowspan="30"><Licence summary="フト40形→ト41形" date="1928-08-31" /></td>
+						<td rowspan="30"><Licence no="東横巳第200号" date="1929-02-25" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト42→ト42</th>
+						<td><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト43→ト43</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト44→ト44</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト45→ト45</th>
+						<td><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト46→ト46</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト47→ト47</th>
+						<td><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト48→ト48</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト49→ト49</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト50→ト50</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト51→ト51</th>
+						<td><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト52→ト52</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト53→ト53</th>
+						<td rowspan="2"><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト54→ト54</th>
+					</tr>
+					<tr>
+						<th scope="row">フト55→ト55</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト56→ト56</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト57→ト57</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト58→ト58</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト59→ト59</th>
+						<td rowspan="2"><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト60→ト60</th>
+					</tr>
+					<tr>
+						<th scope="row">フト61→ト61</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト62→ト62</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト63→ト63</th>
+						<td rowspan="4"><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト64→ト64</th>
+					</tr>
+					<tr>
+						<th scope="row">フト65→ト65</th>
+					</tr>
+					<tr>
+						<th scope="row">フト66→ト66</th>
+					</tr>
+					<tr>
+						<th scope="row">フト67→ト67</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト68→ト68</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト69→ト69</th>
+						<td rowspan="2"><Licence summary="東横→朝工" no="東横卯第1842号" title="貨車廃車届" date="1939-06-07" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト70→ト70</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</Section>
+
+	<Section id="futo80">
+		<H slot="heading">フト80形 → トム81形</H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">発注</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col" colspan="2">番号改正</th>
+						<th scope="col" colspan="2">貸渡</th>
+						<th scope="col" colspan="3">譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">実施</th>
+						<th scope="col">報告</th>
+						<th scope="col">届出</th>
+						<th scope="col">延長届出</th>
+						<th scope="col">届出</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">フト81→トム81</th>
+						<td rowspan="20">東横</td>
+						<td rowspan="20"><Licence no="東横寅第990号" title="貨車購入認可申請書" date="1926-05-24" /></td>
+						<td rowspan="20"><Licence no="監第1416号" date="1926-05-31" /></td>
+						<td rowspan="10"><Licence no="東横寅第164号" title="車両竣功御届" date="1925-06-07" /></td>
+						<td rowspan="20"><Licence summary="フト80形→トム81形" date="1928-08-31" /></td>
+						<td rowspan="20"><Licence no="東横巳第200号" date="1929-02-25" /></td>
+						<td rowspan="2"><Licence summary="東横→播丹（引き渡しより3か月間）" no="東横丑第630号" title="貨車貸渡御届" date="1937-04-08" /></td>
+						<td rowspan="2"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
+						<td rowspan="3"><Licence summary="東横→雄別" no="東横寅第3986号" date="1939-01-09" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト82→トム82</th>
+					</tr>
+					<tr>
+						<th scope="row">フト83→トム83</th>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト84→トム84</th>
+						<td rowspan="3"><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
+						<td rowspan="3"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト85→トム85</th>
+						<td><Licence summary="東横→雄別" no="東横寅第3986号" date="1939-01-09" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト86→トム86</th>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト87→トム87</th>
+						<td></td>
+						<td></td>
+						<td><Licence summary="東横→雄別" no="東横寅第3986号" date="1939-01-09" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト88→トム88</th>
+						<td rowspan="3"><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
+						<td rowspan="3"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト89→トム89</th>
+						<td rowspan="5"><Licence summary="東横→雄別" no="東横寅第3986号" date="1939-01-09" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト90→トム90</th>
+					</tr>
+					<tr>
+						<th scope="row">フト91→トム91</th>
+						<td rowspan="10"><Licence no="東横寅第1233号" title="車両竣功御届" date="1925-07-20" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト92→トム92</th>
+						<td rowspan="4"><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
+						<td rowspan="4"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト93→トム93</th>
+					</tr>
+					<tr>
+						<th scope="row">フト94→トム94</th>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト95→トム95</th>
+						<td rowspan="3"><Licence summary="東横→雄別" no="東横寅第3986号" date="1939-01-09" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト96→トム96</th>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">フト97→トム97</th>
+						<td rowspan="2"><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
+						<td rowspan="2"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト98→トム98</th>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト99→トム99</th>
+						<td></td>
+						<td></td>
+						<td rowspan="2"><Licence summary="東横→雄別" no="東横寅第3986号" date="1939-01-09" /></td>
+					</tr>
+					<tr>
+						<th scope="row">フト100→トム100</th>
+						<td><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
+						<td><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>トム84, 86, 88, 94, 98 の5両は鉄道事業者ではなく工作機械を扱う会社「旭日機械製作所」へ売却されたが、表題は<q>譲渡届</q>となっている。ただし<q>譲渡</q>の脇に手書きにて<q>廃車</q>とメモ書きがあり、実質的に廃車届と見なせるだろう。</li>
+		</ul>
+	</Section>
+
+	<Section id="deki1">
+		<H slot="heading">デキ1形</H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">発注</th>
+						<th scope="col" colspan="3">購入</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デキ1</th>
+						<td>東横</td>
+						<td><Licence no="東横巳第2164号" title="電気機関車購入認可申請書" date="1929-10-12" /></td>
+						<td><Licence no="監第3923号" date="1929-11-16" /></td>
+						<td><Licence no="東横巳第2499号" title="車両竣功届" date="1929-11-30" /></td>
 					</tr>
 				</tbody>
 			</table>
