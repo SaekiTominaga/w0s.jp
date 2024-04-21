@@ -5,6 +5,7 @@ import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
+import RefBook from '@components/ReferenceBook.astro';
 import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -30,6 +31,15 @@ const structuredData: StructuredData = {
 
 		<ul class="p-list">
 			<li>改造については車号の変更を伴うものに限ります。</li>
+			<li>
+				<a href="/tokyu/data/history_mekama_passenger">旅客車</a>は目黒蒲田電鉄、東京横浜電鉄ともに<DateWareki value="1929" />前半に「デハ」→「モハ」への称号変更が行われたものと推定されます。この時期は電動貨車の動きがなく、「デワ」→「モワ」、「デト」→「モト」の称号変更が最初に確認できるのは<DateWareki value="1931" />となります。電動貨車の称号変更そのものの書類は後述する目黒蒲田電鉄の後付けのものしか存在しないため、本ページの表中には含めていませんが、旅客車と同じ時期に全車両が称号変更を行ったものと判断して取り扱います。
+				<ul>
+					<li>デト4形を例に取ると、<DateWareki value="1928-08-06" />の書類では<q>デト四號</q>とあるのに対し<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横辰第1312号" date="1928-08-06" title="車両竣功届" url="https://www.digital.archives.go.jp/item/507221" /></FootnoteReference>、<DateWareki value="1931-02-27" />の書類では<q>モト第四號形式</q><FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横未第207号" date="1931-02-27" title="電動貨車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/510385" /></FootnoteReference>となっています。</li>
+					<li>電気機関車であるデキ1形は称号変更後に製造されていますが、本車両のみ「デ」が使用されており、<DateWareki value="1937" />時点での所属車両一覧でも「モハ」「モワ」「モト」に混じって「デキ」のままであることが確認できます<FootnoteReference><RefTetsudosho company="目黒蒲田電鉄" no="目電丑第976号" date="1937-08-07" title="他鐵道所属車輛運轉認可申請書" url="https://www.digital.archives.go.jp/item/533963" /></FootnoteReference>。</li>
+					<li>目黒蒲田電鉄所属の電動貨車は<DateWareki value="1939-09" />に称号変更の届出が提出されていますが、それ以前にすでに現車標記が「モワ」「モト」とされている写真が残されているため<FootnoteReference><RefBook name="東急の電車たち　電車とバスのなんでもシリーズその1" author="東京急行電鉄株式会社　広報室、車両部" pages={[144, 146]} /></FootnoteReference>、実際は東京横浜電鉄所属車と同じ時期に改称されたものと判断します。目蒲の電動貨車は<DateWareki value="1929" />以降、申請や届出を伴う改造工事がなかったため、書類上は旧称のままで問題なかったところ、東京横浜電鉄との合併（<DateWareki value="1939-10" />）を控えて整合性を取る必要に迫られてのことだったものと思われます。</li>
+					<li><DateWareki value="1942" />の東京急行電鉄発足に際しての改番では再び「デワ」「デト」とされました。</li>
+				</ul>
+			</li>
 			<li>
 				表中の鉄道事業者および車両譲受元、譲渡先の名称は以下のとおり省略表記しています。
 				<ul>
@@ -151,6 +161,7 @@ const structuredData: StructuredData = {
 
 		<ul class="p-notes">
 			<li>デト1〜2 の購入申請書類の表題は<q>許可申請</q>（認可でなく許可）となっているが、おそらく単なる記載ミスで、監督局側からも言及されることなく認可として処理されている。</li>
+			<li>目黒蒲田電鉄所属のデト1〜3 は<DateWareki value="1939-09" />に称号変更届が提出されているが、前述のとおり実際はそれ以前から改称されていたものと思われる。</li>
 			<li>デト4〜6 は<DateWareki value="1928" />にトロリーポールをパンタグラフに変更する改造申請を行ったが、認可直後にデト4 のみ省線駅構内の入換作業用にトロリーポールを撤去せず（ただし有蓋貨車との連結に支障があるため取り付け位置と長さを変更）、新設のパンタグラフと併用する申請が行われた。そしてその竣功時にはデト4 のみデト4形とされている。なお、デト5〜6 はデト1形のままである。</li>
 		</ul>
 	</Section>
@@ -385,6 +396,7 @@ const structuredData: StructuredData = {
 		</div>
 
 		<ul class="p-notes">
+			<li>目黒蒲田電鉄所属のデワ1 は<DateWareki value="1939-09" />に称号変更届が提出されているが、前述のとおり実際はそれ以前から改称されていたものと思われる。</li>
 			<li>無蓋電動貨車モト4 から改造されたモワ3 はトロリーポールとパンタグラフを併用しているなど他車と形態が異なるためか、モワ1形ではなくモワ3形とされた。なお、<DateWareki value="1933" />にはトロリーポールを撤去しているが<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横酉第85号" date="1933-02-15" title="電動貨車設計変更認可申請書" url="https://www.digital.archives.go.jp/item/537030" /></FootnoteReference>、形式はモワ3形のままとされた<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横酉第1022号" date="1933-08-21" title="車両竣功届" url="https://www.digital.archives.go.jp/item/537034" /></FootnoteReference>。</li>
 		</ul>
 	</Section>
@@ -751,7 +763,7 @@ const structuredData: StructuredData = {
 						<th scope="row">フト84→トム84</th>
 						<td rowspan="3"><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
 						<td rowspan="3"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
-						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届" date="1940-04-11" /></td>
 					</tr>
 					<tr>
 						<th scope="row">フト85→トム85</th>
@@ -759,7 +771,7 @@ const structuredData: StructuredData = {
 					</tr>
 					<tr>
 						<th scope="row">フト86→トム86</th>
-						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届" date="1940-04-11" /></td>
 					</tr>
 					<tr>
 						<th scope="row">フト87→トム87</th>
@@ -771,7 +783,7 @@ const structuredData: StructuredData = {
 						<th scope="row">フト88→トム88</th>
 						<td rowspan="3"><Licence summary="東横→播丹" no="東横亥第630号" date="1937-04-08" /></td>
 						<td rowspan="3"><Licence summary="東横→播丹（1937年8月19日〜12月31日）" no="東横丑第1946号" title="車両貸渡期間延長届" date="1937-10-26" /></td>
-						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届" date="1940-04-11" /></td>
 					</tr>
 					<tr>
 						<th scope="row">フト89→トム89</th>
@@ -796,7 +808,7 @@ const structuredData: StructuredData = {
 					</tr>
 					<tr>
 						<th scope="row">フト94→トム94</th>
-						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届" date="1940-04-11" /></td>
 					</tr>
 					<tr>
 						<th scope="row">フト95→トム95</th>
@@ -814,7 +826,7 @@ const structuredData: StructuredData = {
 					</tr>
 					<tr>
 						<th scope="row">フト98→トム98</th>
-						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届"date="1940-04-11" /></td>
+						<td><Licence summary="新東横→旭日" no="東辰第1055号" title="15トン貨車譲渡届" date="1940-04-11" /></td>
 					</tr>
 					<tr>
 						<th scope="row">フト99→トム99</th>
