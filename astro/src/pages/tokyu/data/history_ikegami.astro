@@ -1,0 +1,203 @@
+---
+import dayjs from 'dayjs';
+import DateWareki from '@components/DateWareki.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import H from '@components/H.astro';
+import Layout from '@layouts/Tokyu.astro';
+import Licence from '@components/TokyuLicence.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import RefMagazine from '@components/ReferenceMagazine.astro';
+import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '池上電気鉄道　車歴表',
+	dateModified: dayjs('2024-05-01'),
+	description: '',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/data/', name: '車両データ' },
+	],
+	localNav: [
+		{ path: '/tokyu/data/history_mekama&toyoko_passenger', name: '目黒・東横　旅客車' },
+		{ path: '/tokyu/data/history_mekama&toyoko_freight', name: '目黒・東横　機関車&貨車' },
+		{ path: '/tokyu/data/history_ikegami', name: '池上' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<ul class="p-list">
+			<li>改造については車号の変更を伴うものに限ります。</li>
+			<li>
+				表中の鉄道事業者および車両譲受元、譲渡先の名称は以下のとおり省略表記しています。
+				<ul>
+					<li>駿遠：駿遠電気<small>（現：静岡鉄道）</small></li>
+					<li>伯陽：伯陽電鉄<small>（後の日ノ丸自動車、1967年廃止）</small></li>
+				</ul>
+			</li>
+		</ul>
+	</Section>
+
+	<Section id="deha1">
+		<H slot="heading">乙号車</H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">前所有</th>
+						<th scope="col" colspan="8">購入</th>
+						<th scope="col">貸渡</th>
+						<th scope="col">譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">仮使用</th>
+						<th scope="col">仮使用認可</th>
+						<th scope="col">仮使用期限延長申請</th>
+						<th scope="col">仮使用期限延長認可</th>
+						<th scope="col">竣功届提出→設計変更申請</th>
+						<th scope="col">設計変更認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">届出</th>
+						<th scope="col">届出</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ1</th>
+						<td rowspan="2">駿遠22, 24</td>
+						<td rowspan="2"><Licence title="車両工事施行許可申請書" date="1922-09-13" /></td>
+						<td rowspan="2"><Licence title="追申書" date="1922-09-29" /></td>
+						<td rowspan="2"><Licence no="監第2024号" date="1922-10-02" /></td>
+						<td rowspan="2"><Licence no="池第5号" title="追願書" date="1923-02-16" /></td>
+						<td rowspan="2"><Licence no="監第365号" date="1923-02-22" /></td>
+						<td rowspan="2"><Licence title="客車々両改造竣工届出ノ件" date="1923-03-27" /></td>
+						<td rowspan="2"><Licence no="監第627号" date="1923-03-31" /></td>
+						<td rowspan="2"><Licence title="客車々両改造竣功届ノ件" date="1923-04-04" /></td>
+						<td rowspan="2"><Licence summary="池上→伯陽（1931年4月1日まで）" no="池発第39号" title="車両貸渡届" date="1930-03-10" /></td>
+						<td rowspan="2"><Licence summary="池上→伯陽" no="池発第229号" title="車両譲渡ノ件" date="1931-11-13" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ2</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>
+				上表のとおり、竣功までには複数回のやりとりを要している。
+				<ul>
+					<li><DateWareki value="1922-09-29" />の<cite>追申書</cite>では、本来は認可後に（新車を?）購入すべきところ、路線の開業に間に合わないとして、急ぎ既成品（譲受車?）を使用するため幅員規定に合致しないことから3か月以内の改造を行うとして、監督局からは<DateWareki value="1923-01-01" />までの仮使用という形で認可を得ている。</li>
+					<li>仮使用期限が過ぎた<DateWareki value="1923-02-16" />の<cite>追願書</cite>では、各工場に改造の交渉を行ったものの受け入れられず、畠中工場にて引き受けられたものの未だ竣功に至っていないとして、3月10日までの仮使用期間延期を申請している。</li>
+					<li><DateWareki value="1923-03-27" />に竣功届を提出したものの、監督局からは設計変更になるため認可申請を要するとして、この竣功届を申請書扱いと見なすと回答があり、改めて4月4日に竣功届を提出している。</li>
+				</ul>
+			</li>
+			<li>定説では駿遠電気<small>（現：静岡鉄道）</small>20形の譲受車とされているが、認可書類には駿遠電気の名前は出てこない（車両竣功図表に前歴の記載がある）。駿遠電気側も譲渡の認可や届出は出されていない。</li>
+		</ul>
+	</Section>
+
+	<Section id="deha11">
+		<H slot="heading">丙号車</H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" rowspan="2">前所有</th>
+						<th scope="col" colspan="3">購入</th>
+						<th scope="col">休車</th>
+						<th scope="col">廃車</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">届出</th>
+						<th scope="col">届出</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ11</th>
+						<td rowspan="2">駿遠</td>
+						<td rowspan="2"><Licence no="池第27号" title="車両工事施行許可申請書" date="1923-04-18" /></td>
+						<td rowspan="2"><Licence no="監第854号" date="1923-05-02" /></td>
+						<td rowspan="2"><Licence title="客車々両竣功届" date="1926-07-22" /></td>
+						<td rowspan="2"><Licence no="池発第240号" date="1928-07-04" /></td>
+						<td rowspan="2"><Licence no="池発第267号" title="電動客車廃止届" date="1933-10-23" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ12</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>定説では駿遠電気<small>（現：静岡鉄道）</small>からの譲受車とされているが、乙号車と同様に認可書類には駿遠電気の名前は出てこない。駿遠電気側も譲渡の認可や届出は出されていない。</li>
+			<li>申請書類には<q>本電車ハ甲號電車完成（大正一二年七月迠）ノ後ハ予備車トナスモノナリ</q>との記述があり、当初から急場凌ぎの導入であったことが覗える。</li>
+			<li>認可から竣功届の提出までに3年以上もの期間が経っているが理由は不明。</li>
+			<li><DateWareki value="1928" />の休車届の書類そのものは消失したのか現物を確認できていない。ただし<DateWareki value="1933" />の廃車届出において、休車届を提出している旨の記述があるため上表に含めている。</li>
+		</ul>
+	</Section>
+
+	<Section id="deha3">
+		<H slot="heading">甲号車</H>
+
+		<div class="p-table -scroll">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車号</th>
+						<th scope="col" colspan="4">購入</th>
+						<th scope="col" rowspan="2">備考</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">竣功</th>
+						<th scope="col">竣功（再提出）</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ3</th>
+						<td rowspan="2"><Licence no="池第84号" title="車両工事施行許可申請書" date="1925-01-26" /></td>
+						<td rowspan="2"><Licence no="監第533号" date="1925-03-09" /></td>
+						<td rowspan="2"><Licence no="池第111号" title="電動客車竣功之件" date="1925-05-16" /></td>
+						<td></td>
+						<td rowspan="4">目蒲合併後<a href="/tokyu/data/history_mekama&amp;toyoko_passenger#moha15">モハ15形</a></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ4</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ5</th>
+						<td rowspan="2"><Licence title="車両工事施行許可申請書" date="1923-08-02" /></td>
+						<td rowspan="2"><Licence no="監第58号" date="1924-01-17" /></td>
+						<td rowspan="2"><Licence no="池第129号" title="電動客車竣功届出之件" date="1924-02-02" /></td>
+						<td rowspan="2"><Licence no="池第120号" title="電動客車竣功届" date="1925-06-11" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ6</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>デハ3〜4 よりもデハ5〜6 の方が先に認可申請が行われている。甲号車は新造車でありながら電機品は中古品を使用しており<FootnoteReference><RefMagazine name="交通と電気" date="1925年10月号" article="池上電氣鐵道と高柳淳之助君" author="巨海省吾" pages={[56]} url="https://dl.ndl.go.jp/pid/1505813/1/42" /></FootnoteReference>、そのことが納期に影響したのかもしれないが、はっきりした理由は不明である。</li>
+			<li>デハ5〜6 は<DateWareki value="1924-02-02" />に竣功届を提出したものの、監督局からの照会事項に際し、再三の催促にも関わらずなぜか回答を行わず、翌年のデハ3〜4 の竣功届に対する照会に反応する形で（行き違いによる不達があったとして）再度竣功届が提出されている。</li>
+		</ul>
+	</Section>
+</Layout>
