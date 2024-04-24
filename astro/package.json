@@ -6,6 +6,7 @@
 		"dev": "astro dev",
 		"build-dev": "astro check && tsc --noEmit && run-s _astro-build:*",
 		"build-prod": "NODE_OPTIONS=\"--max-old-space-size=500\" run-s _astro-build:*",
+		"prelint": "cd ../ && npm run _config-convert",
 		"lint": "eslint src/**/*.{astro,ts}",
 		"node-lint": "eslint build/*.js",
 		"html-src-lint": "markuplint src/pages/**/*.astro",
