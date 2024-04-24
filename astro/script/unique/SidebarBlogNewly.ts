@@ -45,7 +45,7 @@ export default class SidebarBlogNewly {
 	static async #fetch(jsonName?: string): Promise<BlogNewlyJson[]> {
 		const response = await fetch(`https://blog.w0s.jp/json/newly${jsonName !== undefined ? `_${jsonName}` : ''}.json`);
 		if (!response.ok) {
-			throw new Error(`"${response.url}" is ${response.status} ${response.statusText}`);
+			throw new Error(`"${response.url}" is ${String(response.status)} ${response.statusText}`);
 		}
 
 		const json = await response.json();

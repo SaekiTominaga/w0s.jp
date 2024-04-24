@@ -20,8 +20,8 @@ export default class FootnoteUtil {
 
 			const aElement = templateElementClone.querySelector('a');
 			if (aElement !== null) {
-				aElement.href = `#fn-${no}`;
-				aElement.id = `fnref-${no}`;
+				aElement.href = `#fn-${String(no)}`;
+				aElement.id = `fnref-${String(no)}`;
 			}
 
 			const numberElement = templateElementClone.querySelector('.build-number');
