@@ -66,9 +66,9 @@ const { pagePath, structuredData, tocData } = Astro.props;
 	{
 		tocData !== undefined && tocData.size >= 2 && structuredData.tocDirection === undefined && (
 			<ol class="p-toc" aria-label="目次">
-				{[...tocData].map(([id, headingText]) => (
+				{[...tocData].map(([id, headingHtml]) => (
 					<li>
-						<a href={`#${encodeURIComponent(id)}`}>{headingText}</a>
+						<a href={`#${encodeURIComponent(id)}`} set:html={headingHtml} />
 					</li>
 				))}
 			</ol>
@@ -79,7 +79,7 @@ const { pagePath, structuredData, tocData } = Astro.props;
 			<ol class:list={['p-toc', `-${structuredData.tocDirection}`]} aria-label="目次">
 				{[...tocData].map(([id, headingText]) => (
 					<li>
-						<a href={`#${encodeURIComponent(id)}`}>{headingText}</a>
+						<a href={`#${encodeURIComponent(id)}`} set:html={headingText} />
 					</li>
 				))}
 			</ol>
