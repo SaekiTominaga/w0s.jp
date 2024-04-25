@@ -7,19 +7,19 @@
 	],
 	"scripts": {
 		"format": "prettier -w .",
-		"config": "run-p _config:*",
+		"config": "run-p _config-convert _config-validate:*",
 		"github-actions-lint": "yamllint .github/workflows/*.yml",
-		"_config:convert": "json2ts -i configure/schema -o configure/type",
-		"_config:validate-astro": "ajv --spec=draft7 -s configure/schema/astro.json -d configure/astro.json",
-		"_config:validate-express": "ajv --spec=draft7 -s configure/schema/express.json -d configure/express.json"
+		"_config-convert": "json2ts -i configure/schema -o configure/type",
+		"_config-validate:astro": "ajv --spec=draft7 -s configure/schema/astro.json -d configure/astro.json",
+		"_config-validate:express": "ajv --spec=draft7 -s configure/schema/express.json -d configure/express.json"
 	},
 	"devDependencies": {
 		"@markuplint/astro-parser": "^4.5.0",
-		"@w0s/eslint-config": "^5.1.0",
+		"@w0s/eslint-config": "^5.2.0",
 		"@w0s/markuplint-config": "^3.6.0",
 		"@w0s/stylelint-config": "^4.3.0",
 		"@w0s/tsconfig": "^1.4.0",
-		"eslint": "^8.56.0",
+		"eslint": "^8.57.0",
 		"markuplint": "^4.6.0",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^3.2.5",

@@ -99,13 +99,13 @@ Styleguide 2.99.2
 脚注ポップオーバー
 
 Markup:
-<dialog class="p-footnote-popover">
+<div class="p-footnote-popover" popover="">
+<div part="content">
 <p>テキスト</p>
 
-<form method="dialog">
-<button><img src="/assets/image/footnote-popover-close.svg" alt="閉じる"/></button>
-</form>
-</dialog>
+<button part="hide-button"><img src="/assets/image/footnote-popover-close.svg" alt="閉じる"/></button>
+</div>
+</div>
 
 Styleguide 2.99.3
 */
@@ -116,7 +116,7 @@ Styleguide 2.99.3
 
 	outline: none;
 
-	&::part(popover) {
+	&::part(content) {
 		outline-offset: -1px;
 		border: 1px solid var(--_border-color);
 		border-radius: var(--border-radius-normal);
@@ -148,8 +148,8 @@ Styleguide 2.99.3
 		--_background-color: transparent;
 
 		position: absolute;
-		inset-block-start: 0;
-		inset-inline-end: 0;
+		inset-block-start: 1px;
+		inset-inline-end: 1px;
 		outline-offset: -1px;
 		border: 1px solid var(--_border-color);
 		border-radius: var(--border-radius-normal);
