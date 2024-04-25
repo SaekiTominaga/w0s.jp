@@ -17,8 +17,13 @@ const { pagePath, structuredData, tocData } = Astro.props;
 			<p class="p-topic-path">
 				{structuredData.breadcrumb.map((breadcrumbItem, index) => (
 					<Fragment>
-						{index > 0 && <span class="p-topic-path__separator">&gt;</span>}
-						<a href={breadcrumbItem.path}>{breadcrumbItem.name}</a>
+						{index === 0 && <a href={breadcrumbItem.path}>ホーム</a>}
+						{index >= 1 && (
+							<Fragment>
+								<span class="p-topic-path__separator">&gt;</span>
+								<a href={breadcrumbItem.path}>{breadcrumbItem.name}</a>
+							</Fragment>
+						)}
 					</Fragment>
 				))}
 				<span class="p-topic-path__separator">&gt;</span>
