@@ -20,7 +20,7 @@ export default class HttpResponseUtil {
 	response303 = (url?: string): Response => {
 		if (url === undefined && this.#request.method === 'GET') {
 			/* 無限ループ回避 */
-			throw new Error(`The request URL and 303 redirect destination are the same (${url}), risking an infinite loop.`);
+			throw new Error(`The request URL and 303 redirect destination are the same (${this.#request.url}), risking an infinite loop.`);
 		}
 
 		const locationUrl = url ?? this.#request.url;

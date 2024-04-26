@@ -32,7 +32,7 @@ config.redirect.forEach((redirect) => {
 		let locationUrl = redirect.to;
 		if (typeof fromUrl !== 'string') {
 			fromUrl.exec(req.path)?.forEach((value, index) => {
-				locationUrl = locationUrl.replace(`$${index}`, value);
+				locationUrl = locationUrl.replace(`$${String(index)}`, value);
 			});
 		}
 
@@ -208,5 +208,5 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-
  * HTTP サーバー起動
  */
 app.listen(config.port, () => {
-	console.info(`Example app listening at http://localhost:${config.port}`);
+	console.info(`Example app listening at http://localhost:${String(config.port)}`);
 });

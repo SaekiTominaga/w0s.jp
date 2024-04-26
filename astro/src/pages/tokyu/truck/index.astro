@@ -1,0 +1,24 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	type: 'website',
+	title: '東急電車の台車',
+	heading: '台車',
+	dateModified: dayjs('2024-04-12'),
+	description: '東急電鉄の高性能車（一部旧性能車を含む）のうち、新3000系までの台車を紹介します。',
+	breadcrumb: [{ path: '/tokyu/', name: '東急電車資料室' }],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
+	<ul class="p-links -index">
+		<li><a href="/tokyu/truck/ts300">TS-300 系</a></li>
+		<li><a href="/tokyu/truck/ts700">TS-700 系（パイオニアⅢ）</a></li>
+		<li><a href="/tokyu/truck/ts800">TS-800 系</a></li>
+		<li><a href="/tokyu/truck/ts1000">TS-1000 系（ボルスタレス）</a></li>
+		<li><a href="/tokyu/truck/etc">東急車輛、J-TREC 製以外の台車</a></li>
+	</ul>
+</Layout>
