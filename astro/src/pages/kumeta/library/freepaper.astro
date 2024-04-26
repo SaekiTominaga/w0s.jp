@@ -1,0 +1,230 @@
+---
+import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Kumeta.astro';
+import H from '@components/H.astro';
+import LibraryItemBook from '@components/LibraryItemBook.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '久米田康治作品のフリーペーパーでの紹介例',
+	heading: 'メディア紹介 — フリーペーパー',
+	dateModified: dayjs('2024-04-26'),
+	description: 'フリーペーパーにおいて久米田先生のインタビューや作品紹介などが掲載された事例のリストです。',
+	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
+	localNav: [
+		{ path: '/kumeta/library/manga', name: '漫画雑誌' },
+		{ path: '/kumeta/library/book', name: '図書、一般雑誌' },
+		{ path: '/kumeta/library/newspaper', name: '新聞' },
+		{ path: '/kumeta/library/freepaper', name: 'フリーペーパー' },
+		{ path: '/kumeta/library/web', name: 'Web' },
+	],
+	tocDirection: 'row',
+	moduleScripts: ['library-tag.mjs'],
+};
+
+const slugger = new GithubSlugger();
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section slugger={slugger}>
+		<H slot="heading">2003年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.70" distribution="2003-12-01">
+			<div class="p-text">
+				<p>p.38: アニメイト『かってに改蔵』フェア情報</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.71" distribution="2003-12-15">
+			<div class="p-text">
+				<p>p.37: アニメイト『かってに改蔵』フェア情報</p>
+			</div>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2007年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="A-STATION 2007年8月号" distribution="2007-07-30" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.11: アニメ『さよなら絶望先生』紹介</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.13 夏号" distribution="2007-08-17" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>表紙: 『さよなら絶望先生』</p>
+				<p>pp.1–4: 『さよなら絶望先生』非公式アニメコミック、キャストインタビュー</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.160" distribution="2007-09-05" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>pp.4–6: 『さよなら絶望先生』神谷浩史、野中藍、新房昭之インタビュー</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.14 秋号" distribution="2007-10-20" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.8: 『さよなら絶望先生』非公式アニメコミック第二話</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.167" distribution="2007-12-20" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.7: 『俗・さよなら絶望先生』放送情報</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.15 冬号" distribution="2007-12-29" tags={['アニメ']}>
+			<div class="p-text">
+				<p>表紙: 『俗・さよなら絶望先生』</p>
+				<p>pp.1–3: 『さよなら絶望先生』非公式アニメコミック第三話、『俗・さよなら絶望先生』放送直前レビュー、『さよなら絶望先生　序～絶望少女撰集〜』紹介記事</p>
+			</div>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2008年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.17 夏号" distribution="2008-08-15" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.10: 『さよなら絶望先生　序〜俗・絶望少女撰集〜』DVD 広告</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.18 秋号" distribution="2008-10-19" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.13: 『獄・さよなら絶望先生』紹介記事</p>
+			</div>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2009年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.21 夏号" distribution="2009-08-14" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>表紙: 『懺・さよなら絶望先生』</p>
+				<p>pp.1–4: 『懺・さよなら絶望先生』新房昭之インタビュー、非公式アニメコミック第四話、大槻ケンヂインタビュー</p>
+			</div>
+
+			<ul class="p-notes">
+				<li><LinkExternal href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</LinkExternal>で公開。</li>
+			</ul>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.23 冬号" distribution="2009-12-29" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.16: 『懺・さよなら絶望先生』DVD 広告</p>
+			</div>
+
+			<ul class="p-notes">
+				<li><LinkExternal href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</LinkExternal>で公開。</li>
+			</ul>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2011年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ 2011 Spring Vol.28" distribution="2011" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>p.27: 『かってに改蔵』OVA 広告、キャストメッセージ（櫻井孝宏、喜多村英梨、堀江由衣）</p>
+				<p>p.28: 『さよなら絶望先生』Blu-ray BOX 広告</p>
+			</div>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2012年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃTV Vol.8" distribution="2012-06-10" tags={['アニメ']}>
+			<div class="p-text">
+				<p>アニメ『じょしらく』キャラクター紹介など</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="アニメ『じょしらく』小冊子" distribution="2012-06-30" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>壱：作品内容。</p>
+				<p>弐：登場人物。</p>
+				<p>参：制作陣・出演者ノ言葉。（久米田康治、ヤス、水島努、佐倉綾音、山本希望、小岩井ことり、南條愛乃、後藤沙緒里）</p>
+			</div>
+
+			<ul class="p-notes">
+				<li>2012年6月30日、7月1日に秋葉原で行われた<LinkExternal href="https://king-cr.jp/special/joshiraku/news/news02.html">無料配布イベント2DAYS</LinkExternal>で配布。</li>
+			</ul>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="声優きゃらびぃ Vol.7" distribution="2012-08-10" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>pp.8–9: 佐倉綾音インタビュー</p>
+			</div>
+		</LibraryItemBook>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="週刊アスキー秋葉原限定版 2012年9月号" distribution="2012-08-31" tags={['アニメ', 'インタビュー']}>
+			<div class="p-text">
+				<p>pp.32–33: 『じょしらく』山本希望×小岩井ことりインタビュー</p>
+			</div>
+
+			<ul class="p-notes">
+				<li><LinkExternal href="https://weekly.ascii.jp/elem/000/002/611/2611297/">紹介ページ</LinkExternal></li>
+			</ul>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2017年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.392" distribution="2017-05-05" tags={['描き下ろし']}>
+			<div class="p-text">
+				<p>pp.28–35: アニメ店長トリビュート第6回『かくしごと』×『アニメ店長』描き下ろし漫画</p>
+			</div>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2020年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.457" distribution="2020-01-20" tags={['アニメ']}>
+			<div class="p-text">
+				<p>p.39: 『かくしごと』TV アニメ情報</p>
+			</div>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2022年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="異質力奇譚" distribution="2020-03" tags={['描き下ろし']}>
+			<div class="p-text">
+				<p>6ページの大学紹介漫画</p>
+			</div>
+
+			<ul class="p-notes">
+				<li>和光大学の冊子（オープンキャンパス等で配布）</li>
+			</ul>
+		</LibraryItemBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2023年</H>
+
+		<LibraryItemBook slugger={slugger} headingLevel={3} title="WAKO UNIVERSITY 2024" distribution="2023-05" tags={['描き下ろし', 'インタビュー']}>
+			<div class="p-text">
+				<p>表紙&amp;裏表紙: 描き下ろしイラスト</p>
+				<p>pp.5–6: 久米田康治インタビュー</p>
+			</div>
+
+			<ul class="p-notes">
+				<li>和光大学の2024年度大学案内（オープンキャンパス等で配布）</li>
+				<li>表紙イラストは<LinkExternal href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</LinkExternal>で公開。</li>
+				<li>掲載のインタビューは<LinkExternal href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</LinkExternal>とは異なる（「5つの質問」は同一）。</li>
+			</ul>
+		</LibraryItemBook>
+	</Section>
+</Layout>
