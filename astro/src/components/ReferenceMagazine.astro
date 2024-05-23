@@ -4,7 +4,7 @@ import LinkExternal from './LinkExternal.astro';
 interface Props {
 	name: string; // 雑誌名
 	date?: string; // 年月や特集名
-	no?: number; // 通巻
+	no?: number | number[]; // 通巻
 	article: string; // 記事タイトル
 	author?: string; // 著者
 	pages: number[]; // ページ数
@@ -29,7 +29,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				)}
 				{no !== undefined && (
 					<>
-						<span class="c-ref__no">No.{no}</span>
+						<span class="c-ref__no">No.{typeof no === 'number' ? no : no.join('・')}</span>
 					</>
 				)}
 				<cite class="c-ref__article">{article}</cite>
@@ -53,7 +53,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				)}
 				{no !== undefined && (
 					<>
-						<span class="c-ref__no">No.{no}</span>
+						<span class="c-ref__no">No.{typeof no === 'number' ? no : no.join('・')}</span>
 					</>
 				)}
 				<cite class="c-ref__article">{article}</cite>
