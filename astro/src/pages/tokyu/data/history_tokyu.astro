@@ -13,9 +13,11 @@ import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
-	title: '東京急行電鉄　車歴表',
+	title: '東京急行電鉄　車歴表（1949年以前）',
+	heading: '東京急行電鉄　車歴表',
+	subHeading: '1949年以前',
 	dateModified: dayjs('2024-06-01'),
-	description: '東京急行電鉄成立（1942年）から1949年までの鉄道線の旅客車のうごきをまとめました。',
+	description: '東京急行電鉄成立（1942年）から1949年までの鉄道線車両のうごきをまとめました。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/data/', name: '車両データ' },
@@ -37,6 +39,7 @@ const slugger = new GithubSlugger();
 
 		<ul class="p-list">
 			<li>認可、竣功などの日付は原則として<LinkExternal href="https://www.archives.go.jp/">国立公文書館</LinkExternal>が所蔵する公文書（鉄道省および運輸通信省、運輸省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで市販の書籍など2次情報を参照しています。</li>
+			<li>日本国有鉄道の発足以降は公文書が断片的にしか残されていないため、その年の年末である<DateWareki value="1949-12-31" />以前に認可申請や届出が行われた車両を対象期間とします。ただし期間をまたいで増備が行われたデハ3600形、クハ3670形、クハ3770形（いずれも戦災復旧車）はそれぞれの最終増備車の竣功までを対象としています。すなわち、おおむね第二次世界大戦後の混乱期が終わるまでの動向をまとめたものということになります。</li>
 			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
 			<li>
 				表中の鉄道事業者および車両譲渡先の名称は以下のとおり省略表記しています。
@@ -50,58 +53,6 @@ const slugger = new GithubSlugger();
 				</ul>
 			</li>
 		</ul>
-	</Section>
-
-	<Section id="deha3250">
-		<H slot="heading">デハ3250形<small>（東京横浜電鉄引継）</small></H>
-
-		<div class="p-text">
-			<p></p>
-		</div>
-
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup">車号</th>
-						<th scope="colgroup">譲渡</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ3251</th>
-						<td rowspan="2"><Licence summary="東急→静岡" no="東急車丑第9号" title="車両譲渡届" date="1949-02-19" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ3252</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ3253</th>
-						<td><Licence summary="東急→庄内" no="東急車子発第68号" title="車両譲渡届" date="1948-09-25" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ3254</th>
-						<td><Licence summary="東急→京福" no="東急車子発第73号" title="車両譲渡届" date="1948-10-19" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ3255</th>
-						<td rowspan="3"><Licence summary="東急→京福" no="車亥発第27号" title="車両譲渡届" date="1947-03-31" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ3256</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ3257</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ3258</th>
-						<td><Licence summary="東急→庄内" no="車亥発第28号" title="車両譲渡届" date="1947-03-31" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	</Section>
 
 	<Section id="kuha3650">
@@ -175,7 +126,7 @@ const slugger = new GithubSlugger();
 		<H slot="heading">デハ1100形</H>
 
 		<div class="p-text">
-			<p>溝ノ口<small>（現：溝の口）</small>付近に工場新設が相次いだことに伴う輸送力強化のため、玉川線の延長線のような扱いだった溝ノ口線を改軌して大井町線列車を乗り入れるようにする変更が行われることになり、<DateWareki value="1943-07-01" />より乗り入れが開始、これに伴う車両増備として新宿営業局<small>（現：小田急電鉄）</small>よりデハ1100形3両が 600V 降圧化のうえ転局されました。</p>
+			<p>溝ノ口<small>（現：溝の口）</small>付近に工場新設が相次いだことに伴う輸送力強化のため、玉川線の延長線のような扱いだった溝ノ口線を改軌して大井町線列車を乗り入れるようにする変更が行われることになり、<DateWareki value="1943-07-01" />より乗り入れが開始、これに伴う車両増備として新宿営業局<small>（現：小田急電鉄）</small>よりデハ1100形3両が 600V 降圧化のうえ転籍されました。</p>
 			<p>この車両は<DateWareki value="1938" />に当時の小田原急行鉄道<small>（現：小田急電鉄）</small>が鉄道省モハ1形の払い下げを受けてモハ51形とした木造電車で、元をたどれば京浜線<small>（現：JR 京浜東北線）</small>の増備車として製造されたデハ33500形となります。わずか3両の所帯でありながらラッシュ時用とするためか目蒲線と大井町線に分かれて配属されましたが、両線での使用は短期間に終わり、<DateWareki value="1944" />には相模鉄道へ貸与されて神中線<small>（現：相模鉄道の本線）</small>の 600V 区間（横浜〜二俣川）で使用されることとなり、<DateWareki value="1948" />には正式に譲渡されました。</p>
 		</div>
 
@@ -213,8 +164,8 @@ const slugger = new GithubSlugger();
 		</div>
 
 		<ul class="p-notes">
-			<li>新宿局からの転入は同一社内での異動につき認可書類は存在しない。</li>
-			<li>相模鉄道への貸渡は認可書類が残されていないため、詳細な時期は不明だが、<RefMagazine name="Romance Car" no={2} article="東京急行電鉄デハ1100形及び相模鉄道クハ1100形に就て" author="T.T.D. 東急電鐵部" pages={[60, 61]} />および<RefMagazine name="Romance Car" no={19} article="東京急行電鉄3" author="川垣恭三" pages={[7]} />によると<DateWareki value="1944" />秋から<DateWareki value="1945" />にかけて順次移動したとされている。</li>
+			<li>新宿局からの転入は同一社内での異動につき届出書類は存在しない。</li>
+			<li>経営委託中だった相模鉄道への貸渡は届出書類が存在せず、詳細な時期は不明だが、<RefMagazine name="Romance Car" no={2} article="東京急行電鉄デハ1100形及び相模鉄道クハ1100形に就て" author="T.T.D. 東急電鐵部" pages={[60, 61]} />および<RefMagazine name="Romance Car" no={19} article="東京急行電鉄3" author="川垣恭三" pages={[7]} />によると<DateWareki value="1944" />秋から<DateWareki value="1945" />にかけて順次移動したとされている。</li>
 		</ul>
 	</Section>
 
@@ -245,6 +196,62 @@ const slugger = new GithubSlugger();
 						<th scope="row">未採番（電動車5両）</th>
 						<td><Licence no="企電申午第467号" title="電動客車設計認可申請書" date="1944-11-15" /></td>
 						<td><Licence no="鉄業監第357号" date="1945-05-02" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</Section>
+
+	<Section id="deha3250">
+		<H slot="heading">デハ3250形<small>（東京横浜電鉄引継）</small></H>
+
+		<div class="p-text">
+			<p>第二次世界大戦後の車両新製としてモハ63形、クハ86形が計20両割り当てられ、20m 車を使用できる(元)小田急電鉄線と相模鉄道線<small>（当時は東急電鉄に経営委託中で厚木線と呼称）</small>に投入されましたが、それ対して現有車両のうち12両を供出することが命ぜられ、池上線デハ3250形8両、厚木線デハ1050形4両が対象とされています。</p>
+			<p>このうちデハ3251〜3254 は譲渡時期が<DateWareki value="1948" />〜<DateWareki value="1949" />にずれ込んだため、<a href="#deha3700">デハ3700形、クハ3750形</a>の新製に対する供出と見なされたり、あるいは供出車に分類すること自体への疑念も出たりしていますが<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="1965年6月号" no={171} article="私鉄高速電車発達史〔5〕〔脚注〕補遺" author="中川浩一" pages={[71]} /></FootnoteReference>、運輸省文書ではモハ63形、クハ86形の新製に対する認可時の通牒で12両の供出が指示されているため<FootnoteReference><RefTetsudosho company="運輸省" no="陸業第1号" date="1947-01-30" title="東京急行電鉄　車両増備について" url="https://www.digital.archives.go.jp/item/501683" /></FootnoteReference>、全8両分が当初から決定されていた供出車であると見なせるでしょう。</p>
+		</div>
+
+		<div class="p-table -scroll">
+			<table>
+				<colgroup></colgroup>
+				<colgroup></colgroup>
+				<thead>
+					<tr>
+						<th scope="colgroup" rowspan="2">車号</th>
+						<th scope="colgroup">譲渡（供出）</th>
+					</tr>
+					<tr>
+						<th scope="col">届出</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">デハ3251</th>
+						<td rowspan="2"><Licence summary="東急→静岡" no="東急車丑第9号" title="車両譲渡届" date="1949-02-19" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ3252</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ3253</th>
+						<td><Licence summary="東急→庄内" no="東急車子発第68号" title="車両譲渡届" date="1948-09-25" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ3254</th>
+						<td><Licence summary="東急→京福" no="東急車子発第73号" title="車両譲渡届" date="1948-10-19" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ3255</th>
+						<td rowspan="3"><Licence summary="東急→京福" no="車亥発第27号" title="車両譲渡届" date="1947-03-31" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デハ3256</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ3257</th>
+					</tr>
+					<tr>
+						<th scope="row">デハ3258</th>
+						<td><Licence summary="東急→庄内" no="車亥発第28号" title="車両譲渡届" date="1947-03-31" /></td>
 					</tr>
 				</tbody>
 			</table>
@@ -341,7 +348,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<th scope="row">クハ3678</th>
-						<td>（手持ち台枠・台車利用）</td>
+						<td>手持ち台枠利用</td>
 						<td rowspan="2"></td>
 						<td rowspan="2"></td>
 						<td rowspan="2"><Licence no="東急車発26第25号" title="車両設計認可並に特別設計許可申請書" date="1951-08-23" /></td>
@@ -352,7 +359,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<th scope="row">クハ3679</th>
-						<td>（手持ち台枠・台車利用）</td>
+						<td>手持ち台枠利用</td>
 					</tr>
 				</tbody>
 			</table>
@@ -747,6 +754,10 @@ const slugger = new GithubSlugger();
 				</tbody>
 			</table>
 		</div>
+
+		<ul class="p-notes">
+			<li>クハ3232 は復旧工事完成後もしばらく元住吉車庫で車体利用されており、<DateWareki value="1950-02" />に営業運転に復帰した模様<FootnoteReference><RefMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" author="川垣恭三" pages={[117]} /></FootnoteReference>。</li>
+		</ul>
 	</Section>
 
 	<Section id="deha3600">
@@ -849,6 +860,13 @@ const slugger = new GithubSlugger();
 						<th scope="row">デハ3615</th>
 						<td>国鉄モハ41037</td>
 					</tr>
+					<tr>
+						<th scope="row">デハ3616</th>
+						<td>手持ち台枠利用</td>
+						<td><Licence no="東急車発26第31号" title="車両設計認可並に特別設計許可申請書" date="1951-11-28" /></td>
+						<td><Licence no="鉄監第516号" date="1952-04-16" /></td>
+						<td><Licence /></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -863,27 +881,44 @@ const slugger = new GithubSlugger();
 		<H slot="heading">デト3010形<small>（東京横浜電鉄引継）</small></H>
 
 		<div class="p-text">
-			<p></p>
+			<p><a href="/tokyu/data/history_mekama&toyoko_freight#deto1">東京横浜電鉄モト1形</a>を引き継いだもので、デト3011〜3015 の5両が引き継がれましたが、うち2両は江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>へ譲渡されました。</p>
 		</div>
 
 		<div class="p-table -scroll">
 			<table>
 				<colgroup></colgroup>
 				<colgroup></colgroup>
+				<colgroup></colgroup>
 				<thead>
 					<tr>
-						<th scope="colgroup">車号</th>
+						<th scope="colgroup" rowspan="2">車号</th>
+						<th scope="colgroup">貸渡</th>
 						<th scope="colgroup">譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">届出</th>
+						<th scope="col">届出</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th scope="row">デト3011</th>
+						<td></td>
 						<td><Licence summary="東急→江ノ電" no="技発戌第41号" title="車両譲渡届" date="1946-02-23" /></td>
+					</tr>
+					<tr>
+						<th scope="row">デト3012</th>
+						<td><Licence summary="東急→江ノ電" date="1946" /></td>
+						<td><Licence summary="東急→江ノ電" date="1949" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+
+		<ul class="p-notes">
+			<li>デト3012 の江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>への貸渡は届出書類が残されていないため、実施時期は<RefMagazine name="Romance Car" no={19} article="東京急行電鉄3" author="川垣恭三" pages={[10]} />による。</li>
+			<li>デト3012 の江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>への譲渡は届出書類が残されていないため、実施時期は<RefMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" author="川垣恭三" pages={[118]} />による。</li>
+		</ul>
 	</Section>
 
 	<Section id="dewa3040">
@@ -923,40 +958,18 @@ const slugger = new GithubSlugger();
 		</div>
 	</Section>
 
-	<Section id="tiki3090">
-		<H slot="heading">チキ3090形</H>
+	<Section id="etc">
+		<H slot="heading">その他の車両動向</H>
 
 		<div class="p-text">
-			<p></p>
+			<p>同一社内ないし経営委託中会社との異動につき届出書類は存在しませんが、事実上の譲受、借入、貸渡として以下の4例が挙げられます。</p>
 		</div>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">旧車号</th>
-						<th scope="colgroup" colspan="3">払下</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">チキ3095</th>
-						<td>国鉄マニ19706</td>
-						<td><Licence no="東急車発25第39号" title="車両設計認可申請書" date="1950-11-20" /></td>
-						<td><Licence no="鉄監第389号" date="1951-04-04" /></td>
-						<td><Licence no="東急車発26第13号" title="車両竣功届" date="1951-05-09" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<ul class="p-list">
+			<li><DateWareki value="1945" />の相模鉄道経営委託に伴い厚木線へ デハ3401〜3404 を貸し渡し、翌年の電車線 1500V 統一に伴い返還</li>
+			<li><DateWareki value="1947" />頃の数か月の間、厚木線の日立電鉄供出予定車デハ1051–1052 を暫定的に東横線で使用</li>
+			<li><DateWareki value="1947" />から1年強の間、厚木線からクハ1113–1114 を借り入れ</li>
+			<li><DateWareki value="1947" />に井の頭線から東横線へデハ1366、デハ1401、クハ1553–1554 が転籍</li>
+		</ul>
 	</Section>
 </Layout>
