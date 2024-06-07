@@ -3,8 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"app": "nodemon --inspect dist/app.js",
-		"watch": "tsc --project tsconfig.json -w",
+		"app": "tsx --watch --tsconfig tsconfig.json src/app.ts",
 		"build": "tsc --project tsconfig.json",
 		"prelint": "cd ../ && npm run _config-convert",
 		"lint": "eslint src/**/*.ts"
@@ -20,6 +19,7 @@
 	},
 	"devDependencies": {
 		"@types/basic-auth": "^1.1.8",
-		"@types/compression": "^1.7.5"
+		"@types/compression": "^1.7.5",
+		"tsx": "^4.13.1"
 	}
 }
