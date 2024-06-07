@@ -3,13 +3,29 @@
 	"$id": "https://w0s.jp/express.json",
 	"type": "object",
 	"title": "Express",
-	"required": ["port", "response", "static", "redirect"],
+	"required": ["port", "extension", "response", "static", "redirect"],
 	"properties": {
 		"port": {
 			"type": "integer",
 			"minimum": 1,
 			"maximum": 65535,
 			"title": "HTTP サーバーのポート番号"
+		},
+		"extension": {
+			"type": "object",
+			"title": "ファイル拡張子",
+			"required": ["brotli", "map"],
+			"properties": {
+				"brotli": {
+					"type": "string",
+					"title": "Brotli"
+				},
+				"map": {
+					"type": "string",
+					"title": "MAP"
+				}
+			},
+			"additionalProperties": false
 		},
 		"response": {
 			"type": "object",
@@ -110,7 +126,7 @@
 						"cache_control": {
 							"type": "object",
 							"title": "キャッシュ定義",
-							"required": ["default"],
+							"required": ["default", "path", "extension"],
 							"properties": {
 								"default": {
 									"type": "string",
