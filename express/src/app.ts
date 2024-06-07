@@ -33,7 +33,7 @@ config.redirect.forEach((redirect) => {
 
 		const locationUrlEscapedHtml = HtmlEscape.escape(locationUrl);
 
-		res.status(301).setHeader('Content-Type', 'text/html;charset=utf-8').location(locationUrl).send(`<!doctype html>
+		res.status(301).location(locationUrl).send(`<!doctype html>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Moved Permanently</title>
 <h1>301 Moved Permanently</h1>
@@ -73,7 +73,6 @@ app.use(
 				res
 					.set('WWW-Authenticate', `Basic realm="${basic.realm}"`)
 					.status(401)
-					.setHeader('Content-Type', 'text/html;charset=utf-8')
 					.sendFile(path.resolve(`${config.static.root}/401.html`));
 
 				return;
