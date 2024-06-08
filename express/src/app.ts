@@ -11,11 +11,6 @@ import HtmlEscape from '@w0s/html-escape';
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import type { Express as Configure } from '../../configure/type/express.js';
 
-const EXTENTIONS = {
-	brotli: '.br',
-	map: '.map',
-}; // 静的ファイル拡張子の定義
-
 /* 設定ファイル読み込み */
 const config = JSON.parse((await fs.promises.readFile('../configure/express.json')).toString()) as Configure;
 
@@ -38,7 +33,7 @@ config.redirect.forEach((redirect) => {
 
 		const locationUrlEscapedHtml = HtmlEscape.escape(locationUrl);
 
-		res.status(301).setHeader('Content-Type', 'text/html;charset=utf-8').location(locationUrl).send(`<!doctype html>
+		res.status(301).location(locationUrl).send(`<!doctype html>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <title>Moved Permanently</title>
 <h1>301 Moved Permanently</h1>
@@ -78,7 +73,6 @@ app.use(
 				res
 					.set('WWW-Authenticate', `Basic realm="${basic.realm}"`)
 					.status(401)
-					.setHeader('Content-Type', 'text/html;charset=utf-8')
 					.sendFile(path.resolve(`${config.static.root}/401.html`));
 
 				return;
@@ -110,7 +104,7 @@ app.use(
 
 		/* Brotli */
 		if (requestFilePath !== undefined && req.method === 'GET' && req.acceptsEncodings('br') === 'br') {
-			const brotliFilePath = `${requestFilePath}${EXTENTIONS.brotli}`;
+			const brotliFilePath = `${requestFilePath}${config.extension.brotli}`;
 			if (fs.existsSync(`${config.static.root}/${brotliFilePath}`)) {
 				req.url = brotliFilePath;
 				res.setHeader('Content-Encoding', 'br');
@@ -124,8 +118,12 @@ app.use(
 		index: config.static.indexes,
 		setHeaders: (res, localPath) => {
 			const requestUrl = res.req.url; // リクエストパス e.g. ('/foo.html.br')
-			const requestUrlOrigin = requestUrl.endsWith(EXTENTIONS.brotli) ? requestUrl.substring(0, requestUrl.length - EXTENTIONS.brotli.length) : requestUrl; // 元ファイル（圧縮ファイルではない）のリクエストパス (e.g. '/foo.html')
-			const localPathOrigin = localPath.endsWith(EXTENTIONS.brotli) ? localPath.substring(0, localPath.length - EXTENTIONS.brotli.length) : localPath; // 元ファイルの絶対パス (e.g. '/var/www/public/foo.html')
+			const requestUrlOrigin = requestUrl.endsWith(config.extension.brotli)
+				? requestUrl.substring(0, requestUrl.length - config.extension.brotli.length)
+				: requestUrl; // 元ファイル（圧縮ファイルではない）のリクエストパス (e.g. '/foo.html')
+			const localPathOrigin = localPath.endsWith(config.extension.brotli)
+				? localPath.substring(0, localPath.length - config.extension.brotli.length)
+				: localPath; // 元ファイルの絶対パス (e.g. '/var/www/public/foo.html')
 			const extensionOrigin = path.extname(localPathOrigin); // 元ファイルの拡張子 (e.g. '.html')
 
 			/* Content-Type */
@@ -144,8 +142,8 @@ app.use(
 			/* Cache-Control */
 			if (config.static.headers.cache_control !== undefined) {
 				const cacheControl =
-					config.static.headers.cache_control.path?.find((ccPath) => ccPath.paths.includes(requestUrlOrigin))?.value ??
-					config.static.headers.cache_control.extension?.find((ccExt) => ccExt.extensions.includes(extensionOrigin))?.value ??
+					config.static.headers.cache_control.path.find((ccPath) => ccPath.paths.includes(requestUrlOrigin))?.value ??
+					config.static.headers.cache_control.extension.find((ccExt) => ccExt.extensions.includes(extensionOrigin))?.value ??
 					config.static.headers.cache_control.default;
 
 				res.setHeader('Cache-Control', cacheControl);
@@ -162,7 +160,7 @@ app.use(
 
 			/* SourceMap */
 			if (config.static.headers.source_map?.extensions?.includes(extensionOrigin)) {
-				const mapFilePath = `${localPathOrigin}${EXTENTIONS.map}`;
+				const mapFilePath = `${localPathOrigin}${config.extension.map}`;
 				if (fs.existsSync(mapFilePath)) {
 					res.setHeader('SourceMap', path.basename(mapFilePath));
 				}
@@ -190,18 +188,12 @@ app.use((req, res, next): void => {
 app.use((req, res): void => {
 	console.warn(`404 Not Found: ${req.method} ${req.url}`);
 
-	res
-		.status(404)
-		.setHeader('Content-Type', 'text/html;charset=utf-8')
-		.sendFile(path.resolve(`${config.static.root}/404.html`));
+	res.status(404).sendFile(path.resolve(`${config.static.root}/404.html`));
 });
 app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
 	console.error(`${req.method} ${req.url}`, err.stack);
 
-	res
-		.status(500)
-		.setHeader('Content-Type', 'text/html;charset=utf-8')
-		.sendFile(path.resolve(`${config.static.root}/500.html`));
+	res.status(500).sendFile(path.resolve(`${config.static.root}/500.html`));
 });
 
 /**
