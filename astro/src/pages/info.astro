@@ -11,7 +11,7 @@ import type { StructuredData } from '@type/types.js';
 const structuredData: StructuredData = {
 	'schema-type': 'ProfilePage',
 	title: '制作者',
-	dateModified: dayjs('2024-02-08'),
+	dateModified: dayjs('2024-06-17'),
 	image: 'https://media.w0s.jp/image/info_profile.jpg',
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 	mainEntity: {
@@ -24,54 +24,68 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section id="profile">
-		<H slot="heading">制作者</H>
+	<Section id="name">
+		<H slot="heading">名前</H>
+
+		<p><ruby>富永 冴樹<rp>（</rp><rt>とみなが さえき</rt><rp>）</rp></ruby> / トミー</p>
 
 		<figure>
 			<div class="p-embed -border">
 				<Image path="info_profile.jpg" alt="正方形のアイコン画像: 下っぱスーツでテンパる坪内地丹の顔が描かれたデザインカプチーノ" width={120} height={120} quality={60} />
 			</div>
 		</figure>
+	</Section>
+
+	<Section id="like">
+		<H slot="heading">興味</H>
 
 		<dl class="p-list-description">
-			<dt>名前</dt>
-			<dd>
-				<ruby>富永 冴樹<rp>（</rp><rt>とみなが さえき</rt><rp>）</rp></ruby> / トミー
-			</dd>
-			<dt>興味</dt>
-			<dd>Web (HTML, Accessibility, etc.)</dd>
-			<dd>東急電車</dd>
-			<dd>久米田康治作品</dd>
-			<dt>利用サービス</dt>
-			<dd>
-				<img src="/assets/image/icon/github.svg" alt="" class="c-link-icon" width="16" height="16" />
-				<LinkExternal href="https://github.com/SaekiTominaga" icon={false}>GitHub</LinkExternal>
-			</dd>
-			<dd>
+			<dt>Web (HTML, Accessibility, etc.)</dt>
+			<dd>この個人サイトを制作するために HTML を学んだことがきっかけで Web 技術に興味を持つ。マークアップが好き。HTML なにもわからない。</dd>
+			<dt>東急電車</dt>
+			<dd>幼少期から電車通園や電車通塾をしていたこと、車庫や手動踏切のあった元住吉駅を利用していたことから自然と興味がわく。ギリギリ旧3000系の記憶がある世代。</dd>
+			<dt>久米田康治作品</dt>
+			<dd>1999年1月27日、週刊少年サンデー 1999年9号に掲載された『かってに改蔵』第36話「科特部部室争奪戦」を読んで一目惚れ。</dd>
+		</dl>
+	</Section>
+
+	<Section id="service">
+		<H slot="heading">利用サービス</H>
+
+		<ul>
+			<li>
 				<img src="/assets/image/icon/mastodon.png" alt="" class="c-link-icon" width="16" height="16" />
 				<LinkExternal href="https://fedibird.com/@SaekiTominaga">Mastodon</LinkExternal>
-			</dd>
-			<dd>
+			</li>
+			<li>
 				<img src="/assets/image/icon/bluesky.png" alt="" class="c-link-icon" width="16" height="16" />
 				<LinkExternal href="https://bsky.app/profile/w0s.jp" icon={false}>Bluesky</LinkExternal>
-			</dd>
-			<dd>
-				<img src="/assets/image/icon/instagram.png" alt="" class="c-link-icon" width="16" height="16" />
-				<LinkExternal href="https://www.instagram.com/saekitominaga/" icon={false}>Instagram</LinkExternal>
-			</dd>
-			<dd>
-				<img src="/assets/image/icon/youtube.svg" alt="" class="c-link-icon" width="16" height="16" />
-				<LinkExternal href="https://www.youtube.com/@SaekiTominaga" icon={false}>YouTube</LinkExternal>
-			</dd>
-			<dd>
+			</li>
+			<li>
 				<img src="/assets/image/icon/x.png" alt="" class="c-link-icon" width="16" height="16" />
 				<LinkExternal href="https://x.com/SaekiTominaga" icon={false}>X</LinkExternal>
-			</dd>
-			<dd>
+			</li>
+			<li>
+				<img src="/assets/image/icon/instagram.png" alt="" class="c-link-icon" width="16" height="16" />
+				<LinkExternal href="https://www.instagram.com/saekitominaga/" icon={false}>Instagram</LinkExternal>
+			</li>
+			<li>
+				<img src="/assets/image/icon/youtube.svg" alt="" class="c-link-icon" width="16" height="16" />
+				<LinkExternal href="https://www.youtube.com/@SaekiTominaga" icon={false}>YouTube</LinkExternal>
+			</li>
+			<li>
+				<img src="/assets/image/icon/github.svg" alt="" class="c-link-icon" width="16" height="16" />
+				<LinkExternal href="https://github.com/SaekiTominaga" icon={false}>GitHub</LinkExternal>
+			</li>
+			<li>
 				<img src="/assets/image/icon/amazon.png" alt="" class="c-link-icon" width="16" height="16" />
 				<LinkExternal href="https://www.amazon.co.jp/~/e/B07FBRDDJN" icon={false}>Amazon（著者ページ）</LinkExternal>
-			</dd>
-		</dl>
+			</li>
+		</ul>
+
+		<div class="p-text">
+			<p>Web 関係の投稿は Mastodon、趣味の投稿は Bluesky で使い分けています。X<small>（旧：Twitter）</small>は自分のアカウントであることを証明するためにリンクは残していますが、日常的な使用は止めています。</p>
+		</div>
 	</Section>
 
 	<Section id="write">
@@ -122,19 +136,6 @@ const structuredData: StructuredData = {
 					<div class="p-item__text">
 						<p><b>商業雑誌</b></p>
 						<p>東急電車や譲渡車両に関する記事を書いています。</p>
-					</div>
-				</div>
-			</li>
-			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/madoka/#%E5%90%8C%E4%BA%BA%E8%AA%8C">
-						<Image path="madoka/dojin/pictorial11_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">円環ピクトリアル</span>
-					</a>
-
-					<div class="p-item__text">
-						<p><b>自費出版</b></p>
-						<p>アニメ『魔法少女まどか☆マギカ』の映像研究やイベントレポートなど。</p>
 					</div>
 				</div>
 			</li>
