@@ -158,7 +158,7 @@ const structuredData: StructuredData = {
 					<li>公式のプリセットは HTML Standard や WAI-ARIA への仕様適合だけではなく、パフォーマンスやセキュリティを含めたベストプラクティス的な考えも取り入れられている。純粋な構文チェックに留まらないところは Markuplint の良い点であるが、そのすべてに賛同できるわけではない。</li>
 				</ul>
 			</li>
-			<li>HTML ページの MIME タイプは <code>text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、今や <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<FootnoteReference><a href="https://blog.w0s.jp/706">XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</a>の記事を参照。</FootnoteReference>。</li>
+			<li>HTML ページの MIME タイプは <code>text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、今や <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<FootnoteReference>詳細はブログ記事 <a href="https://blog.w0s.jp/706">XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</a>（2024年4月）を参照。</FootnoteReference>。</li>
 			<li>
 				ウェブページの URL に拡張子が含まれるのは好ましくないと考えているので<FootnoteReference>Tim Berners-Lee による <LinkExternal href="https://www.w3.org/Provider/Style/URI">Cool URIs don't change</LinkExternal>でも URL にファイル名拡張子を含めることは問題を引き起こすと言われている。</FootnoteReference>、拡張子なしの URL でアクセスできるようにしている。
 			</li>
@@ -267,87 +267,33 @@ const structuredData: StructuredData = {
 
 		<ul class="p-list">
 			<li>
-				昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下6種類の画像を <code>&lt;a&gt;</code> 要素と <code>&lt;picture&gt;</code> 要素を使って提示している。
+				昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下5種類の画像を <code>&lt;picture&gt;</code> 要素を使って提示している。
 				<ul>
-					<li>大画像（JPEG ないし PNG）</li>
-					<li>サムネイル: AVIF</li>
-					<li>サムネイル: AVIF, @2x</li>
-					<li>サムネイル: WebP</li>
-					<li>サムネイル: WebP, @2x</li>
-					<li>サムネイル: JPEG （※ WebP 未対応環境は減少しているため、JPEG の @2x 画像は用意しない）</li>
+					<li>AVIF</li>
+					<li>AVIF @2x</li>
+					<li>WebP</li>
+					<li>WebP @2x</li>
+					<li>JPEG （※ WebP 未対応環境は減少しているため JPEG の @2x 画像は用意しない）</li>
 				</ul>
-				マークアップのイメージを下記に記す。なお、画像の説明は極力本文か <code>&lt;figcaption&gt;</code> 要素で行う方針のため、<code>&lt;img&gt;</code> 要素の <code>alt</code> 属性値に長々とした文章を書くことはあまりなく、大抵は一律の短い文言である。
-				<CodeBlock
-					code={`<a href="image.jpg" type="image/jpeg">
-	<picture>
-		<source type="image/avif" srcset="thumb.avif, thumb@2x.avif 2x"/>
-		<source type="image/webp" srcset="thumb.webp, thumb@2x.webp 2x"/>
-		<img src="thumb.jpeg" alt="画像"/>
-	</picture>
-</a>`}
-					language="html"
-				/>
 			</li>
-			<li>大画像（上記コード例でいえば <code>image.jpg</code>）は Photoshop などの画像編集ソフトで生成する。大画像といっても、デジタルカメラの画像あるいはフィルム写真をスキャンした元素材そのままではなく Web 用に縮小をしているが、一般的な PC 用ディスプレイで全画面表示しても問題ない大きさとしている。なお、JPEG ファイルの拡張子は Photoshop のデフォルト動作に合わせて <code>.jpg</code> としている（<code>.jpeg</code> ではない）。</li>
-		</ul>
-
-		<Section id="bitmap-thumbnail" depth={2} headingType="c">
-			<H slot="heading">サムネイル生成</H>
-
-			<div class="p-text">
-				<p>サムネイル画像は大画像ファイルをソースとして自動生成しているが、以下に示す理由から事前に静的ファイルを生成する方式は運用が面倒になることが予想された。</p>
-			</div>
-
-			<ul class="p-list">
-				<li>使用するページによって表示する大きさが異なる</li>
-				<li>ページのリニューアルや CSS の調整で後から大きさが変わることもあり得る</li>
-			</ul>
-
-			<div class="p-text">
-				<p>そのためパフォーマンス的に不利な面はあるが、<code>/thumbimage/path/to/image.jpg?type=webp;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成する方式とした。詳細は画像を配置している <a href="https://media.w0s.jp/">media.w0s.jp</a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて下記に述べる。</p>
-			</div>
-
-			<ul class="p-list">
-				<li>
-					URL パラメーターの区切り文字は一般的な <code>&amp;</code> だけでなく <code>;</code> にも対応しており、後者を利用する。これは HTML4 時代に <LinkExternal href="https://www.w3.org/TR/2018/SPSD-html401-20180327/appendix/notes.html#h-B.2.2">B.2.2 Ampersands in URI attribute values</LinkExternal>で推奨されていたテクニックである。設定は Express の <LinkExternal href="https://expressjs.com/en/4x/api.html#app.settings.table"><code>app.set('query parser', value)</code></LinkExternal>にカスタムクエリ文字列解析関数を指定することで実現している。
-				</li>
-				<li>
-					画像生成は <LinkExternal href="https://sharp.pixelplumbing.com/">sharp</LinkExternal>を利用しているが、AVIF への変換は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは画像がすべて表示されるまでに多大な時間が掛かったり、タイムアウトしたりするケースが多発してしまった。 そのため AVIF の初回リクエスト（サムネイルファイルが生成されていない状態でのリクエスト）に限っては代替として WebP を生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたらレスポンスで <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの <LinkExternal href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</LinkExternal>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
-				</li>
-				<li>
-					一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。これについては <LinkExternal href="https://tools.ietf.org/html/rfc7231#section-4.2.1">RFC 7231 の 4.2.1. Safe Methods</LinkExternal>では <q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
-					<ul>
-						<li>副作用を起こす実装が禁止されているものではない</li>
-						<li>アクセスログのように GET リクエストでサーバー内にファイルを追加・更新する機能は一般的に存在する</li>
-						<li>そもそも本機能の要件は GET リクエストでないと実現できない</li>
-					</ul>
-					といった理由から GET リクエストでファイル生成を行うようにしている。
-				</li>
-			</ul>
-		</Section>
-	</Section>
-
-	<Section id="vector">
-		<H slot="heading">ベクター画像<small>（SVG）</small></H>
-
-		<CodeBlock
-			code={`└packages
-	└frontend
-		├ image
-		│└ *.svg
-		├ svgo.config.cjs
-		└ public /* Static directory */
-			├ *.svg
-			└ *.svg.br`}
-			caption="SVG ファイルの構成図"
-		/>
-
-		<ul class="p-list">
 			<li>
-				簡単なものはエディターで手打ちするが、複雑な画像は Illustrator などの画像編集ソフトで作成し、
-				<code>packages/frontend/image</code> ディレクトリ（非公開領域）に配置する。
+				これらの画像は <code>/path/to/image.jpg?type=avif;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成している。詳細は画像を配置している <a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて以下に述べる。
 			</li>
-			<li><code>packages/frontend/image</code> ディレクトリ内の SVG ファイルを <LinkExternal href="https://github.com/svg/svgo">SVGO</LinkExternal>で最適化し、静的ディレクトリに配置。最適化の際、Brotli 圧縮ファイルも同時に出力している。</li>
+			<li>
+				URL パラメーターの区切り文字は一般的な <code>&amp;</code> だけでなく <code>;</code> にも対応しており、原則として後者を利用する。これは HTML4 時代に <LinkExternal href="https://www.w3.org/TR/2018/SPSD-html401-20180327/appendix/notes.html#h-B.2.2">B.2.2 Ampersands in URI attribute values</LinkExternal>で推奨されていたテクニックである。設定は Express の <LinkExternal href="https://expressjs.com/en/4x/api.html#app.settings.table"><code>app.set('query parser', value)</code></LinkExternal>にカスタムクエリ文字列解析関数を指定することで実現している。
+			</li>
+			<li>
+				画像生成は <LinkExternal href="https://sharp.pixelplumbing.com/">sharp</LinkExternal>を利用しているが、AVIF への変換処理は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは問題があるため AVIF の初回リクエストに限っては代替として WebP を動的生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたら <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの、<LinkExternal href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</LinkExternal>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
+			</li>
+			<li>
+				一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。しかし <LinkExternal href="https://tools.ietf.org/html/rfc7231#section-4.2.1">RFC 7231 の 4.2.1. Safe Methods</LinkExternal>では <q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
+				<ul>
+					<li>副作用を起こす実装が禁止されているものではない</li>
+					<li>アクセスログのように GET リクエストでサーバー内にファイルを追加・更新する機能は一般的に存在する</li>
+					<li>そもそも本機能の要件は GET リクエストでないと実現できない</li>
+				</ul>
+				といった理由から GET リクエストでファイル生成を行うようにしている。
+			</li>
 		</ul>
 	</Section>
 
@@ -357,22 +303,13 @@ const structuredData: StructuredData = {
 		<ul class="p-list">
 			<li>ファビコンは SVG 形式で提供している。</li>
 			<li>
-				<LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装を発端とする歴史的な経緯</LinkExternal>により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> で提供することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる。このため以下の特別な処理を行っている。
+				<LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装を発端とする歴史的な経緯</LinkExternal>により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<FootnoteReference>詳細はブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>」（2021年10月）を参照。</FootnoteReference>。ただし以下のデメリットがある（いずれも2024年6月現在）。
 				<ul>
-					<li>ファビコン用 SVG ファイルの生成は<a href="#vector">他の SVG 画像</a>と同様に、<LinkExternal href="https://github.com/svg/svgo">SVGO</LinkExternal>による最適化や Brotli 圧縮ファイルの同時生成を行っているが、ビルド処理の際に拡張子を <code>favicon.svg</code> → <code>favicon.ico</code> に変更する。</li>
-					<li>通常、<code>Content-Type</code> レスポンスヘッダー（MIME タイプ）はファイル拡張子によって決定されるが、<code>/favicon.ico</code> に限ってはファイルパスで判断し、<code>image/svg+xml</code> を返す。</li>
+					<li>Safari は最新のバージョン 17 系においても SVG ファビコンに対応していない</li>
+					<li>Android 版 Firefox も同様に対応しておらず、そればかりか <LinkExternal href="https://ogp.me/">The Open Graph protocol</LinkExternal>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう</li>
+					<li>検索サービス <LinkExternal href="https://duckduckgo.com/">DuckDuckGo</LinkExternal>での検索結果においてファビコン表示が行われない</li>
 				</ul>
-				詳細はブログ記事「<a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>」（2021年10月）にまとめている。
 			</li>
-		</ul>
-	</Section>
-
-	<Section id="compress">
-		<H slot="heading">圧縮</H>
-
-		<ul class="p-list">
-			<li>前述のとおり、事前に静的ファイルをビルドする HTML, CSS, JavaScript, SVG はビルド時に Brotli ファイル（<code>*.br</code>）も生成している。これらは圧縮品質を最高にし、極力ファイルサイズが小さくなるようにしている。</li>
-			<li>それ以外の静的リソース、および動的ページ（リクエストがある毎にサーバーサイドで HTML を生成するページ）は Express のミドルウェア <LinkExternal href="https://github.com/expressjs/compression">expressjs/compression</LinkExternal>により、レスポンス返却時に gzip の圧縮を行っている。ただし、しきい値の設定を行っており、<code>robots.txt</code> などファイルサイズが僅かなリソースは圧縮されない。</li>
 		</ul>
 	</Section>
 
@@ -381,17 +318,9 @@ const structuredData: StructuredData = {
 
 		<ul class="p-list">
 			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシート、ユーザースクリプトによるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
-			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定。</li>
-			<li>それ以外のディレクティブは <code>Content-Security-Policy</code> で設定。</li>
-			<li>Reporting は <LinkExternal href="https://report-uri.com/">Report URI</LinkExternal> を利用。</li>
-			<li>
-				当サイトでは主に以下の外部サービスを使っているため、これらの指定が多くを占める。
-				<ul>
-					<li>Google AdSense</li>
-					<li>YouTube 動画埋め込み</li>
-					<li>Amazon アソシエイトリンク</li>
-				</ul>
-			</li>
+			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定している。</li>
+			<li>それ以外のディレクティブは <code>Content-Security-Policy</code> で設定している。</li>
+			<li>Reporting は <LinkExternal href="https://report-uri.com/">Report URI</LinkExternal> を利用している。</li>
 		</ul>
 	</Section>
 </Layout>
