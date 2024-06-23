@@ -65,10 +65,12 @@ Styleguide 2.6.1
 
 	/* 横スクロール */
 	&.-scroll {
-		--_text-wrap: nowrap;
+		@media not print {
+			--_text-wrap: nowrap;
 
-		padding-block-end: 2px; /* 横スクロールバー上部の空き */
-		overflow-x: auto;
+			padding-block-end: 2px; /* 横スクロールバー上部の空き */
+			overflow-x: auto;
+		}
 	}
 
 	/* 文字サイズを小さくする */
