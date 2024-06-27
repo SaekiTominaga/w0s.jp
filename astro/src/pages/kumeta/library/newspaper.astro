@@ -11,7 +11,7 @@ import type { StructuredData } from '@type/types.js';
 const structuredData: StructuredData = {
 	title: '久米田康治作品の新聞での紹介例',
 	heading: 'メディア紹介 — 新聞',
-	dateModified: dayjs('2024-06-06'),
+	dateModified: dayjs('2024-06-27'),
 	description: '新聞紙上において久米田先生のインタビューや作品紹介などが掲載された事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 	localNav: [
@@ -30,6 +30,16 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
+		<H slot="heading">2002年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2002-03-23" npClass="夕刊">
+			<div class="p-text">
+				<p>6面: <cite>このギャグ笑える? 笑えない?</cite>で<cite class="c-cite -work">魁!!クロマティ高校</cite>、<cite class="c-cite -work">あずまんが大王</cite>などと共に<cite class="c-cite -work">かってに改蔵</cite>が紹介、<cite class="c-cite -work">魁!!クロマティ高校</cite>と同じく<q>「笑えるヤツだけ笑えばよし」という開き直りが徹底</q>との評</p>
+			</div>
+		</LibraryItemNewspaper>
+	</Section>
+
+	<Section slugger={slugger}>
 		<H slot="heading">2006年</H>
 
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2006-04-16" npClass="朝刊">
@@ -40,6 +50,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2007年</H>
 
@@ -78,6 +89,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2008年</H>
 
@@ -118,12 +130,25 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2009年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01">
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01" npClass="朝刊">
 			<div class="p-text">
 				<p>第4部3面: 「マンガ週刊誌　半世紀」のすごろくで2005年のコマに『さよなら絶望先生』『最強! 都立あおい坂高校野球部』の作品名が掲載</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2009-02-10" npClass="夕刊">
+			<div class="p-text">
+				<p>10面: <cite>らっぷびと　動画サイトでアクセス殺到</cite>で<cite class="c-cite -work">さよなら絶望先生</cite>の楽曲にも言及</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-03-16" npClass="朝刊">
+			<div class="p-text">
+				<p>13面: <cite>動画サイトからデビュー『らっぷびと』</cite>で<cite class="c-cite -work">さよなら絶望先生</cite>の楽曲にも言及</p>
 			</div>
 		</LibraryItemNewspaper>
 
@@ -133,6 +158,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2010年</H>
 
@@ -141,7 +167,20 @@ const slugger = new GithubSlugger();
 				<p>「神谷浩史のオールナイトニッポンR」特集</p>
 			</div>
 		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2010-05-23" npClass="朝刊">
+			<div class="p-text">
+				<p>20面: <cite>半歩遅れの読書術</cite>（明治大学教授・高山宏）で逆説的世界観の事例として<cite class="c-cite -work">さよなら絶望先生</cite>が紹介</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2010-06-28" npClass="夕刊">
+			<div class="p-text">
+				<p>11面: <cite>伝統芸能と「萌え」の新世界</cite>で<cite class="c-cite -work">國崎出雲の事情</cite>など他作品と混じって<cite class="c-cite -work">じょしらく</cite>が紹介、担当・三浦敏宏コメント、一日目3ページ目<q>音だったら犬より猫でしょう</q>のカット掲載</p>
+			</div>
+		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2011年</H>
 
@@ -157,6 +196,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2012年</H>
 
@@ -178,8 +218,15 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2015年</H>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-07-27" npClass="夕刊">
+			<div class="p-text">
+				<p>6面: 村田沙耶香（作家）による漫画作品のヒロイン紹介で名取羽美が取り上げられる</p>
+			</div>
+		</LibraryItemNewspaper>
 
 		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="熊本日日新聞" release="2015-11-11">
 			<div class="p-text">
@@ -198,6 +245,7 @@ const slugger = new GithubSlugger();
 			</ul>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2020年</H>
 
@@ -227,6 +275,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2021年</H>
 
@@ -276,6 +325,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2023年</H>
 
@@ -287,6 +337,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">2024年</H>
 
@@ -300,14 +351,57 @@ const slugger = new GithubSlugger();
 				<li>一例として朝日新聞の朝刊を挙げたが、他の多くの新聞でも同様の内容が夕刊を含めて掲載</li>
 			</ul>
 		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2024-06-21" npClass="夕刊">
+			<div class="p-text">
+				<p>9面: <cite>レクサス窃盗容疑　逮捕</cite>久米田先生所有のレクサスが2023年2月に盗難に遭い、容疑者2人が逮捕された事件の報道（被害者実名報道）</p>
+			</div>
+
+			<ul class="p-notes">
+				<li>当事件は産経新聞による独自報道で <LinkExternal href="https://www.sankei.com/article/20240621-DONL7TAZ3RJ5LMVTM7DDYPG22M/">6月21日10:00に発表</LinkExternal>された。当日の夕刊への掲載が確認できたのはこの読売新聞のみだが、翌日には多くの新聞（スポーツ紙を含む）に掲載された。</li>
+				<li>当事件は当日の TV ニュース番組やラジオ番組中のニュースコーナー等でも報道され、その一部は本記事のように被害者実名報道が行われた。</li>
+			</ul>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2024-06-22" npClass="朝刊">
+			<div class="p-text">
+				<p>39面: <cite>レクサス窃盗　容疑者逮捕　被害総額7億円強か</cite>レクサス盗難事件に関する記事（被害者名記載なし）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="スポーツニッポン" release="2024-06-22">
+			<div class="p-text">
+				<p>21面: <cite>漫画家のレクサス　盗んで男2人逮捕　「絶望先生」作者被害</cite>レクサス盗難事件に関する記事（被害者実名報道）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-22" npClass="朝刊">
+			<div class="p-text">
+				<p>23面: <cite>漫画家のレクサス　盗んだ疑いで逮捕</cite>レクサス盗難事件に関する記事（被害者実名報道）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="神奈川新聞" release="2024-06-22">
+			<div class="p-text">
+				<p>23面: <cite>漫画家のレクサス窃盗疑い</cite>レクサス盗難事件に関する記事（被害者実名報道）</p>
+			</div>
+		</LibraryItemNewspaper>
+
+		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-23" npClass="朝刊">
+			<div class="p-text">
+				<p>20面: <cite>狙われる国産高級車</cite>レクサス盗難事件の手口に関してより深掘りした記事（被害者実名報道）、同内容が <LinkExternal href="https://www.tokyo-np.co.jp/article/335359">Web 記事</LinkExternal>でも公開</p>
+			</div>
+		</LibraryItemNewspaper>
 	</Section>
+
 	<Section slugger={slugger}>
 		<H slot="heading">調査中</H>
 
 		<ul class="p-list">
-			<li>
-				2011年4月28日の新聞に『さよなら絶望先生』記事? <small>（<LinkExternal href="https://x.com/yaeee212/status/63502934339616768">目撃情報</LinkExternal>）</small>
-			</li>
+			<li><q cite="https://x.com/23720/status/15032124387">そういえば新聞を読み直していたら、絶望先生の作者の名前が見えた気がしたけど、同姓同名の気のせい？</q><LinkExternal href="https://x.com/23720/status/15032124387">2010年5月30日 18:49 投稿</LinkExternal></li>
+			<li><q cite="https://x.com/yaeee212/status/63502934339616768">電車待ってたら隣の男の人の新聞に絶望先生の文字 なんだとっ</q><LinkExternal href="https://x.com/yaeee212/status/63502934339616768">2011年4月28日 16:20 投稿</LinkExternal></li>
+			<li><q cite="https://x.com/yuki_snow05/status/217448049985859584">絶望先生が新聞に載ってたー</q><LinkExternal href="https://x.com/yuki_snow05/status/217448049985859584">2012年6月26日 11:43 投稿</LinkExternal></li>
+			<li><q cite="https://x.com/gypsy324/status/585490152736325632">鈴木先生特集の新聞記事に絶望先生も出てるあたりが、なんていうか俺の縮図かこれ</q><LinkExternal href="https://x.com/gypsy324/status/585490152736325632">2015年4月8日 02:11 投稿</LinkExternal></li>
 		</ul>
 	</Section>
 </Layout>
