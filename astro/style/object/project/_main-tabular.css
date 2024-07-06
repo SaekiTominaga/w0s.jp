@@ -75,7 +75,7 @@ Styleguide 2.6.1
 
 	/* 文字サイズを小さくする */
 	&.-font-small {
-		--_font-size-base: calc(100% / var(--font-ratio-2));
+		--_font-size-base: calc(100% / pow(var(--font-ratio), 2));
 	}
 
 	& > table {
@@ -100,7 +100,7 @@ Styleguide 2.6.1
 			text-align: var(--_text-align);
 			white-space: var(--_text-wrap);
 			color: var(--_color);
-			font-size: clamp(calc(var(--_font-size-base) / var(--font-ratio-1)), 2vi, var(--_font-size-base));
+			font-size: clamp(calc(var(--_font-size-base) / pow(var(--font-ratio), 1)), 2vi, var(--_font-size-base));
 		}
 
 		& > thead {
