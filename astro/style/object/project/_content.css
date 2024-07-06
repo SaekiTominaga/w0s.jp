@@ -33,13 +33,13 @@
 		background: linear-gradient(var(--color-white), var(--color-bg-verydark));
 		padding: 0.75em 1.5%;
 		text-shadow: 1px 1px 1px var(--color-lightgray);
-		font-size: clamp(calc(100% * var(--font-ratio-1)), 7vi, calc(100% * var(--font-ratio-5)));
+		font-size: clamp(calc(100% * pow(var(--font-ratio), 1)), 7vi, calc(100% * pow(var(--font-ratio), 5)));
 	}
 }
 
 .p-title__sub-hdg {
 	text-shadow: none;
-	font-size: calc(100% / var(--font-ratio-3));
+	font-size: calc(100% / pow(var(--font-ratio), 3));
 	font-weight: var(--font-weight-normal);
 }
 
@@ -116,7 +116,7 @@
 		flex: auto;
 		margin-inline-end: var(--_step-arrow-inline-size);
 		text-align: center;
-		font-size: calc(100% * var(--font-ratio-1));
+		font-size: calc(100% * pow(var(--font-ratio), 1));
 
 		&:not(:first-child) {
 			& .p-step__text {
@@ -190,7 +190,7 @@
 
 	& > li {
 		margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
-		font-size: calc(100% * var(--font-ratio-1));
+		font-size: calc(100% * pow(var(--font-ratio), 1));
 	}
 
 	& :any-link {
