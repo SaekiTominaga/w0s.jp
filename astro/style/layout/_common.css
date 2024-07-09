@@ -3,6 +3,9 @@
  * ============================== */
 
 .l-page {
+	/* ページの左右の余白 */
+	--_page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline));
+
 	display: block grid;
 }
 
@@ -10,7 +13,7 @@
 .l-header {
 	display: block grid;
 	grid-template-columns:
-		[full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline)
+		[full-start] var(--_page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--_page-margin-inline)
 		[full-end];
 	grid-column: header;
 	container: header / inline-size;
@@ -115,7 +118,7 @@
 .l-footer {
 	display: block grid;
 	grid-template-columns:
-		[full-start] var(--page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--page-margin-inline)
+		[full-start] var(--_page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--_page-margin-inline)
 		[full-end];
 	grid-column: footer;
 	container: footer / inline-size;
