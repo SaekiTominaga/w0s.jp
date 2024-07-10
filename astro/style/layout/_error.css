@@ -1,12 +1,16 @@
 /* ==============================
  *   エラーページ
  * ============================== */
+
 .l-page {
+	/* ページの左右の余白 */
+	--_page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline));
+
 	display: block grid;
 	grid-template-areas:
 		"header-margin-left  header-padding-left  header  header-padding-right  header-margin-right "
 		"content-margin-left content-padding-left content content-padding-right content-margin-right";
-	grid-template-columns: var(--page-margin-inline) var(--page-padding-inline) 1fr var(--page-padding-inline) var(--page-margin-inline);
+	grid-template-columns: var(--_page-margin-inline) var(--page-padding-inline) 1fr var(--page-padding-inline) var(--_page-margin-inline);
 }
 
 /* ===== ページヘッダー ===== */
