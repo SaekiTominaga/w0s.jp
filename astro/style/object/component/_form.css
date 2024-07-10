@@ -205,7 +205,7 @@ Styleguide 1.4.6
 	--_color: var(--color-white);
 	--_bg-color: hsl(204deg 100% 42%);
 	--_bg-color-hover: hsl(204deg 100% 48%); /* 太字の 15pt なのでコントラスト比の基準は 3:1 以上 */
-	--_font-size: calc(100% * var(--font-ratio-2));
+	--_font-size: calc(100% * pow(var(--font-ratio), 2));
 	--_ripple-color: var(--color-white);
 	--_ripple-opacity: 0.25;
 	--_ripple-transition-duration: 0.5s;
@@ -405,7 +405,7 @@ Styleguide 1.4.8
 	line-height: var(--line-height-nowrap);
 	white-space: nowrap;
 	color: var(--color);
-	font-size: calc(100% / var(--font-ratio-3));
+	font-size: calc(100% / pow(var(--font-ratio), 3));
 
 	&.-optional {
 		--color: var(--color-white);
@@ -428,7 +428,7 @@ Styleguide 1.4.9
 */
 .c-fc-note {
 	color: var(--color-gray);
-	font-size: calc(100% / var(--font-ratio-1));
+	font-size: calc(100% / pow(var(--font-ratio), 1));
 }
 
 /*
@@ -441,7 +441,7 @@ Styleguide 1.4.10
 */
 .c-fc-invalid {
 	color: var(--color-red);
-	font-size: calc(100% / var(--font-ratio-1));
+	font-size: calc(100% / pow(var(--font-ratio), 1));
 
 	&::before {
 		margin-inline-end: 0.25em;

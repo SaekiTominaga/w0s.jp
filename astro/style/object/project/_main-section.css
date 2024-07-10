@@ -78,14 +78,17 @@ Styleguide 2.1.1
 		border-block-start: 1px solid transparent;
 		border-block-end: 1px solid var(--color-border-dark);
 		padding-block: 0.25em;
-		font-size: calc(100% * var(--font-ratio-6));
+		font-size: calc(100% * pow(var(--font-ratio), 6));
 
 		&::before {
-			transform: scaleY(75%);
 			border: 0.125em solid var(--color-gray);
 			border-radius: var(--border-radius-full);
 			background: var(--color-gray); /* for Chrome */
 			content: "";
+
+			@media not print { /* Firefox の印刷プレビューで2ページ目以降の場合に縦線が上方にずれてしまうバグの対策 */
+				transform: scaleY(75%);
+			}
 		}
 
 		& + * {
@@ -94,7 +97,7 @@ Styleguide 2.1.1
 	}
 
 	.p-section.-hdg-b > & {
-		font-size: calc(100% * var(--font-ratio-4));
+		font-size: calc(100% * pow(var(--font-ratio), 4));
 
 		&::before {
 			transform: scaleY(75%);
@@ -106,7 +109,7 @@ Styleguide 2.1.1
 	}
 
 	.p-section.-hdg-c > & {
-		font-size: calc(100% * var(--font-ratio-2));
+		font-size: calc(100% * pow(var(--font-ratio), 2));
 	}
 }
 
