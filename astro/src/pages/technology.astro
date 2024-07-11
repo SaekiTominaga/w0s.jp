@@ -167,21 +167,15 @@ const structuredData: StructuredData = {
 		<Section id="html-redirect" depth={2} headingType="c">
 			<H slot="heading">3xx リダイレクトページ</H>
 
-			<div class="p-text">
-				<p>URL が変更になった場合は <code>301 Moved Permanently</code>、フォームの POST 送信後には <code>303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
-				<p><LinkExternal href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の 6.4. Redirection 3xx</LinkExternal>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際にブラウザの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<FootnoteReference>Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、Android Firefox 96 にて確認）</FootnoteReference>。</p>
-				<p>
-					当サイトで使用している Node.js フレームワークの Express では、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code></LinkExternal> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code is:raw>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${path}"&gt;${path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <LinkExternal href="https://github.com/expressjs/express/issues/5058">Issue を上げており</LinkExternal>、それに対する <LinkExternal href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</LinkExternal>が、2024年6月現在マージはされていない。そのためこの機能は使わず、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.send"><code>res.send()</code></LinkExternal> メソッドにて独自の HTML を返すようにカスタマイズしている。
-				</p>
-			</div>
+			<p>URL が変更になった場合は <code>301 Moved Permanently</code>、フォームの POST 送信後には <code>303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
+			<p><LinkExternal href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の 6.4. Redirection 3xx</LinkExternal>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際にブラウザの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<FootnoteReference>Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、Android Firefox 96 にて確認）</FootnoteReference>。</p>
+			<p>当サイトで使用している Node.js フレームワークの Express では、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code></LinkExternal> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code is:raw>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${path}"&gt;${path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <LinkExternal href="https://github.com/expressjs/express/issues/5058">Issue を上げており</LinkExternal>、それに対する <LinkExternal href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</LinkExternal>が、2024年6月現在マージはされていない。そのためこの機能は使わず、<LinkExternal href="https://expressjs.com/en/4x/api.html#res.send"><code>res.send()</code></LinkExternal> メソッドにて独自の HTML を返すようにカスタマイズしている。</p>
 		</Section>
 
 		<Section id="html-clienterror" depth={2} headingType="c">
 			<H slot="heading">4xx クライアントエラーページ</H>
 
-			<div class="p-text">
-				<p><code>403 Forbidden</code> および <code>404 Not Found</code> のクライアントエラーページには JavaScript で以下の機能を組み込んでいる。</p>
-			</div>
+			<p><code>403 Forbidden</code> および <code>404 Not Found</code> のクライアントエラーページには JavaScript で以下の機能を組み込んでいる。</p>
 
 			<ul class="p-list">
 				<li>同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが張られている）は管理者へ通知する。<LinkExternal href="https://github.com/SaekiTominaga/frontend/tree/main/packages/report-same-referrer">検知プログラムは GitHub で公開</LinkExternal>している。</li>
@@ -222,9 +216,7 @@ const structuredData: StructuredData = {
 	<Section id="script">
 		<H slot="heading">スクリプト<small>（JavaScript）</small></H>
 
-		<div class="p-text">
-			<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトの一部ないし全部が動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。フィード全文配信などスクリプトが動かないケースは往々にして存在するため、当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
-		</div>
+		<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトの一部ないし全部が動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。フィード全文配信などスクリプトが動かないケースは往々にして存在するため、当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
 
 		<ul class="p-list">
 			<li>ソースコードは TypeScript による記述とし、コンパイルには <LinkExternal href="https://www.rollupjs.org/">Rollup</LinkExternal> を使用している。</li>
@@ -234,13 +226,10 @@ const structuredData: StructuredData = {
 		<Section id="script-error" depth={2} headingType="c">
 			<H slot="heading">エラー検知</H>
 
-			<div class="p-text">
-				<p>
-					作成したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、<code>error</code> イベントを検知し通知する機能を組み込んでいる。この<LinkExternal href="https://github.com/SaekiTominaga/frontend/tree/main/packages/report-js-error">検知プログラムは GitHub で公開</LinkExternal>しているが、簡略化したコード例を下記に示す。
-				</p>
+			<p>作成したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、<code>error</code> イベントを検知し通知する機能を組み込んでいる。この<LinkExternal href="https://github.com/SaekiTominaga/frontend/tree/main/packages/report-js-error">検知プログラムは GitHub で公開</LinkExternal>しているが、簡略化したコード例を下記に示す。</p>
 
-				<CodeBlock
-					code={`window.addEventListener('error', (ev) => {
+			<CodeBlock
+				code={`window.addEventListener('error', (ev) => {
 	const formData = new FormData();
 	formData.append('location', location.toString());
 	formData.append('message', ev.message);
@@ -253,26 +242,23 @@ const structuredData: StructuredData = {
 		body: new URLSearchParams([...formData]),
 	});
 });`}
-					language="javascript"
-				/>
+				language="javascript"
+			/>
 
-				<p>これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。</p>
+			<p>これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。</p>
 
-				<ul class="p-list">
-					<li>古いブラウザ</li>
-					<li>ブラウザの設定やアドオンに起因するもの</li>
-					<li>検索エンジンのロボットなどブラウザ以外の環境</li>
-				</ul>
-			</div>
+			<ul class="p-list">
+				<li>古いブラウザ</li>
+				<li>ブラウザの設定やアドオンに起因するもの</li>
+				<li>検索エンジンのロボットなどブラウザ以外の環境</li>
+			</ul>
 		</Section>
 	</Section>
 
 	<Section id="bitmap">
 		<H slot="heading">ビットマップ画像<small>（JPEG, PNG）</small></H>
 
-		<div class="p-text">
-			<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下5種類の画像を <code>&lt;picture&gt;</code> 要素を使って提示している。</p>
-		</div>
+		<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下5種類の画像を <code>&lt;picture&gt;</code> 要素を使って提示している。</p>
 
 		<ul class="p-list">
 			<li>AVIF</li>
@@ -282,9 +268,7 @@ const structuredData: StructuredData = {
 			<li>JPEG<small>（WebP 未対応環境は減少しているため JPEG の @2x 画像は用意しない）</small></li>
 		</ul>
 
-		<div class="p-text">
-			<p>これらの画像は <code>/path/to/image.jpg?type=avif;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成している。詳細は画像を配置している <a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて以下に述べる。</p>
-		</div>
+		<p>これらの画像は <code>/path/to/image.jpg?type=avif;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成している。詳細は画像を配置している <a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて以下に述べる。</p>
 
 		<ul class="p-list">
 			<li>
@@ -308,17 +292,13 @@ const structuredData: StructuredData = {
 	<Section id="favicon">
 		<H slot="heading">ファビコン<small>（favicon.ico）</small></H>
 
-		<div class="p-text">
-			<p>ファビコンは SVG 形式で提供している。</p>
-			<p>
-				<LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装を発端とする歴史的な経緯</LinkExternal>により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<FootnoteReference>詳細はブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>（2021年10月）を参照。</FootnoteReference>。ただし以下のデメリットがある（いずれも2024年6月現在）。
-			</p>
-			<ul class="p-list">
-				<li>Safari は最新のバージョン 17 系においても SVG ファビコンに対応していない</li>
-				<li>Android 版 Firefox も同様に対応しておらず、そればかりか <LinkExternal href="https://ogp.me/">The Open Graph protocol</LinkExternal>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう</li>
-				<li>検索サービス <LinkExternal href="https://duckduckgo.com/">DuckDuckGo</LinkExternal>での検索結果においてファビコン表示が行われない</li>
-			</ul>
-		</div>
+		<p>ファビコンは SVG 形式で提供している。</p>
+		<p><LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</LinkExternal>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<FootnoteReference>詳細はブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>（2021年10月）を参照。</FootnoteReference>。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>
+		<ul class="p-list">
+			<li>Safari は最新のバージョン 17 系においても SVG ファビコンに対応していない</li>
+			<li>Android 版 Firefox も同様に対応しておらず、そればかりか <LinkExternal href="https://ogp.me/">The Open Graph protocol</LinkExternal>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう</li>
+			<li>検索サービス <LinkExternal href="https://duckduckgo.com/">DuckDuckGo</LinkExternal>での検索結果においてファビコン表示が行われない</li>
+		</ul>
 	</Section>
 
 	<Section id="csp">
