@@ -38,22 +38,21 @@ if (requestQuery.referrer !== null && requestQuery.referrer !== '') {
 		<li><span class="p-step__text">確認</span></li>
 		<li><em class="p-step__text -current">完了</em></li>
 	</ol>
-	<div class="p-text">
-		<p>問い合わせを受け付けました。</p>
 
-		{
-			requestQuery.referrer !== null && requestQuery.referrer !== '' && (
-				<p>
-					<LinkBullet href={requestQuery.referrer}>元のページへ戻る</LinkBullet>
-				</p>
-			)
-		}
-		{
-			(requestQuery.referrer === null || requestQuery.referrer === '') && (
-				<p>
-					<LinkBullet href="/">トップページへ戻る</LinkBullet>
-				</p>
-			)
-		}
-	</div>
+	<p>問い合わせを受け付けました。</p>
+
+	{
+		requestQuery.referrer !== null && requestQuery.referrer !== '' && (
+			<p>
+				<LinkBullet href={requestQuery.referrer}>元のページへ戻る</LinkBullet>
+			</p>
+		)
+	}
+	{
+		(requestQuery.referrer === null || requestQuery.referrer === '') && (
+			<p>
+				<LinkBullet href="/">トップページへ戻る</LinkBullet>
+			</p>
+		)
+	}
 </Layout>

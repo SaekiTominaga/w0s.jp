@@ -7,12 +7,12 @@
 	border: var(--_border-width) solid var(--color-border-dark);
 	border-radius: var(--border-radius-normal);
 	background: var(--color-white);
+	line-height: var(--line-height-normal);
 	color: var(--color-black);
 }
 
 .p-library__header {
-	--_padding-block: 16px;
-	--_line-height: var(--line-height-narrow);
+	--_header-padding-block: 12px;
 
 	display: block flex;
 	flex-wrap: wrap;
@@ -22,8 +22,7 @@
 	border-start-start-radius: var(--_border-radius-inner);
 	border-start-end-radius: var(--_border-radius-inner);
 	background: var(--color-verylightgreen);
-	padding: var(--_padding-block) var(--_padding-inline) var(--_padding-block) calc(var(--_padding-inline) + var(--self-link-size));
-	line-height: var(--_line-height);
+	padding: var(--_header-padding-block) var(--_padding-inline) var(--_header-padding-block) calc(var(--_padding-inline) + var(--self-link-size));
 }
 
 .p-library__main {
@@ -35,7 +34,7 @@
 
 	& .c-self-link {
 		position: absolute;
-		inset-block-start: calc(var(--_padding-block) + 0.15em * pow(var(--font-ratio), 1));
+		inset-block-start: calc(var(--_header-padding-block) + 0.25em);
 		inset-inline-start: var(--_padding-inline);
 	}
 }
@@ -93,4 +92,16 @@
 	display: block flex;
 	flex-basis: 100%;
 	justify-content: flex-end;
+}
+
+.p-library__content {
+	& > * + * {
+		margin-block-start: 0.25em;
+	}
+}
+
+.p-library__position {
+	&::after {
+		content: ":";
+	}
 }
