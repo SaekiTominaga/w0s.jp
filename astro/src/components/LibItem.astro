@@ -1,0 +1,28 @@
+---
+interface Props {
+	pages?: number[]; // ページ数
+	pageNote?: string; // ページ数補足
+	position?: string; // 位置
+}
+
+const { pages, pageNote, position } = Astro.props;
+
+let pageDisplay: string | undefined = undefined;
+if (pages !== undefined) {
+	const [startPage, endPage] = pages;
+	pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
+}
+---
+
+<p>
+	{
+		pageDisplay !== undefined && (
+			<span class="p-library__position">
+				{pageDisplay}
+				{pageNote !== undefined && <small>（{pageNote}）</small>}
+			</span>
+		)
+	}
+	{position !== undefined && <span class="p-library__position">{position}</span>}
+	<slot />
+</p>

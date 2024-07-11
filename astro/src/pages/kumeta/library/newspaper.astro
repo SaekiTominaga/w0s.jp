@@ -3,7 +3,9 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import H from '@components/H.astro';
-import LibraryItemNewspaper from '@components/LibraryItemNewspaper.astro';
+import LibContent from '@components/LibContent.astro';
+import LibItem from '@components/LibItem.astro';
+import LibNewspaper from '@components/LibNewspaper.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -32,366 +34,358 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<H slot="heading">2002年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2002-03-23" npClass="夕刊">
-			<div class="p-text">
-				<p>6面: <cite>このギャグ笑える? 笑えない?</cite>で<cite class="c-cite -work">魁!!クロマティ高校</cite>、<cite class="c-cite -work">あずまんが大王</cite>などと共に<cite class="c-cite -work">かってに改蔵</cite>が紹介、<cite class="c-cite -work">魁!!クロマティ高校</cite>と同じく<q>「笑えるヤツだけ笑えばよし」という開き直りが徹底</q>との評</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2002-03-23" npClass="夕刊">
+			<LibContent>
+				<LibItem position="6面"><cite>このギャグ笑える? 笑えない?</cite>で<cite class="c-cite -work">魁!!クロマティ高校</cite>、<cite class="c-cite -work">あずまんが大王</cite>などと共に<cite class="c-cite -work">かってに改蔵</cite>が紹介、<cite class="c-cite -work">魁!!クロマティ高校</cite>と同じく<q>「笑えるヤツだけ笑えばよし」という開き直りが徹底</q>との評</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2006年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2006-04-16" npClass="朝刊">
-			<div class="p-text">
-				<p>
-					14面: 「ササキバラ・ゴウ　コミックガイド」にて『さよなら絶望先生』紹介<small>（<LinkExternal href="https://web.archive.org/web/20060426054235/http://book.asahi.com/comic/TKY200604190336.html">アサヒ・コムBOOK</LinkExternal>にも一時期掲載されていた）</small>
-				</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2006-04-16" npClass="朝刊">
+			<LibContent>
+				<LibItem position="14面">「ササキバラ・ゴウ　コミックガイド」にて『さよなら絶望先生』紹介<small>（<LinkExternal href="https://web.archive.org/web/20060426054235/http://book.asahi.com/comic/TKY200604190336.html">アサヒ・コムBOOK</LinkExternal>にも一時期掲載されていた）</small></LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2007年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2007-01-31" npClass="夕刊">
-			<div class="p-text">
-				<p>
-					5面: 「「鈴木先生」が話題　武富健治さん」教師作品の関連として『さよなら絶望先生』も紹介、第一話の<q>金ぎたない世の中に絶望した!!</q>のコマ掲載<small>（<LinkExternal href="https://web.archive.org/web/20070207123159/https://www.yomiuri.co.jp/book/news/20070131bk01.htm">YOMIURI ONLINE</LinkExternal>にも一時期掲載されていた）</small>
-				</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2007-01-31" npClass="夕刊">
+			<LibContent>
+				<LibItem position="5面">「「鈴木先生」が話題　武富健治さん」教師作品の関連として『さよなら絶望先生』も紹介、第一話の<q>金ぎたない世の中に絶望した!!</q>のコマ掲載<small>（<LinkExternal href="https://web.archive.org/web/20070207123159/https://www.yomiuri.co.jp/book/news/20070131bk01.htm">YOMIURI ONLINE</LinkExternal>にも一時期掲載されていた）</small></LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-07-04" npClass="Vol.39 2007年7月号B" tags={['アニメ']}>
-			<div class="p-text">
-				<p>2面: アニメ『さよなら絶望先生』ポスター広告（モノクロ）</p>
-				<p>15面: アフレコインタビュー（井上麻里奈、神谷浩史、松来未祐、後藤邑子、小林ゆう、野中藍、新谷良子）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-07-04" npClass="Vol.39 2007年7月号B" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="2面">アニメ『さよなら絶望先生』ポスター広告（モノクロ）</LibItem>
+				<LibItem position="15面">アフレコインタビュー（井上麻里奈、神谷浩史、松来未祐、後藤邑子、小林ゆう、野中藍、新谷良子）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-08-08" npClass="Vol.41 2007年8月号B" tags={['音楽']}>
-			<div class="p-text">
-				<p>29面: 「人として軸がぶれている」大槻ケンヂインタビュー</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-08-08" npClass="Vol.41 2007年8月号B" tags={['音楽']}>
+			<LibContent>
+				<LibItem position="29面">「人として軸がぶれている」大槻ケンヂインタビュー</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-08-29" npClass="Vol.42 2007年9月号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>20面: 「人として軸がぶれている」広告</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-08-29" npClass="Vol.42 2007年9月号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="20面">「人として軸がぶれている」広告</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-09-21" npClass="Vol.43 2007年10月号A" tags={['インタビュー', 'アニメ']}>
-			<div class="p-text">
-				<p>1面: 久米田康治&amp;神谷浩史対談</p>
-				<p>4–5面: 久米田康治&amp;神谷浩史対談（1面の続き）</p>
-				<p>2面: 「人として軸がぶれている」広告</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2007-09-21" npClass="Vol.43 2007年10月号A" tags={['インタビュー', 'アニメ']}>
+			<LibContent>
+				<LibItem position="1面">久米田康治&amp;神谷浩史対談</LibItem>
+				<LibItem position="4–5面">久米田康治&amp;神谷浩史対談（1面の続き）</LibItem>
+				<LibItem position="2面">「人として軸がぶれている」広告</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2008年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-02" npClass="Vol.49 2008年新年号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>12–13面: 『俗・さよなら絶望先生』広告</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-02" npClass="Vol.49 2008年新年号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="12–13面">『俗・さよなら絶望先生』広告</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-23" npClass="Vol.50 2008年2月号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>13面: 『俗・さよなら絶望先生』前田くんインタビュー</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-23" npClass="Vol.50 2008年2月号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="13面">『俗・さよなら絶望先生』前田くんインタビュー</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" npClass="Vol.51 2008年3月号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>4面: 『俗・さよなら絶望先生』広告（「マリオネット」ほか）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" npClass="Vol.51 2008年3月号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="4面">『俗・さよなら絶望先生』広告（「マリオネット」ほか）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-06-24" npClass="Vol.73 2009年7月号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>6面: 『懺・さよなら絶望先生』広告</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-06-24" npClass="Vol.73 2009年7月号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="6面">『懺・さよなら絶望先生』広告</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-07-15" npClass="Vol.74 2009年8月号" tags={['アニメ', '音楽']}>
-			<div class="p-text">
-				<p>10面: 「林檎もぎれビーム」大槻ケンヂインタビュー</p>
-				<p>11面: 『懺・さよなら絶望先生』神谷浩史インタビュー</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-07-15" npClass="Vol.74 2009年8月号" tags={['アニメ', '音楽']}>
+			<LibContent>
+				<LibItem position="10面">「林檎もぎれビーム」大槻ケンヂインタビュー</LibItem>
+				<LibItem position="11面">『懺・さよなら絶望先生』神谷浩史インタビュー</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-08-19" npClass="Vol.75 2009年9月号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>9面: 『懺・さよなら絶望先生』広告</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-08-19" npClass="Vol.75 2009年9月号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="9面">『懺・さよなら絶望先生』広告</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2009年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01" npClass="朝刊">
-			<div class="p-text">
-				<p>第4部3面: 「マンガ週刊誌　半世紀」のすごろくで2005年のコマに『さよなら絶望先生』『最強! 都立あおい坂高校野球部』の作品名が掲載</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01" npClass="朝刊">
+			<LibContent>
+				<LibItem position="第4部3面">「マンガ週刊誌　半世紀」のすごろくで2005年のコマに『さよなら絶望先生』『最強! 都立あおい坂高校野球部』の作品名が掲載</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2009-02-10" npClass="夕刊">
-			<div class="p-text">
-				<p>10面: <cite>らっぷびと　動画サイトでアクセス殺到</cite>で<cite class="c-cite -work">さよなら絶望先生</cite>の楽曲にも言及</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2009-02-10" npClass="夕刊">
+			<LibContent>
+				<LibItem position="10面"><cite>らっぷびと　動画サイトでアクセス殺到</cite>で<cite class="c-cite -work">さよなら絶望先生</cite>の楽曲にも言及</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-03-16" npClass="朝刊">
-			<div class="p-text">
-				<p>13面: <cite>動画サイトからデビュー『らっぷびと』</cite>で<cite class="c-cite -work">さよなら絶望先生</cite>の楽曲にも言及</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-03-16" npClass="朝刊">
+			<LibContent>
+				<LibItem position="13面"><cite>動画サイトからデビュー『らっぷびと』</cite>で<cite class="c-cite -work">さよなら絶望先生</cite>の楽曲にも言及</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2009-07-01" npClass="Vol.23" tags={['アニメ']}>
-			<div class="p-text">
-				<p>8面: 『懺・さよなら絶望先生』神谷浩史インタビュー</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2009-07-01" npClass="Vol.23" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="8面">『懺・さよなら絶望先生』神谷浩史インタビュー</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2010年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2010-04-28" npClass="Vol.43" tags={['ラジオ']}>
-			<div class="p-text">
-				<p>「神谷浩史のオールナイトニッポンR」特集</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2010-04-28" npClass="Vol.43" tags={['ラジオ']}>
+			<LibContent>
+				<LibItem>「神谷浩史のオールナイトニッポンR」特集</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2010-05-23" npClass="朝刊">
-			<div class="p-text">
-				<p>20面: <cite>半歩遅れの読書術</cite>（明治大学教授・高山宏）で逆説的世界観の事例として<cite class="c-cite -work">さよなら絶望先生</cite>が紹介</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2010-05-23" npClass="朝刊">
+			<LibContent>
+				<LibItem position="20面"><cite>半歩遅れの読書術</cite>（明治大学教授・高山宏）で逆説的世界観の事例として<cite class="c-cite -work">さよなら絶望先生</cite>が紹介</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2010-06-28" npClass="夕刊">
-			<div class="p-text">
-				<p>11面: <cite>伝統芸能と「萌え」の新世界</cite>で<cite class="c-cite -work">國崎出雲の事情</cite>など他作品と混じって<cite class="c-cite -work">じょしらく</cite>が紹介、担当・三浦敏宏コメント、一日目3ページ目<q>音だったら犬より猫でしょう</q>のカット掲載</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2010-06-28" npClass="夕刊">
+			<LibContent>
+				<LibItem position="11面"><cite>伝統芸能と「萌え」の新世界</cite>で<cite class="c-cite -work">國崎出雲の事情</cite>など他作品と混じって<cite class="c-cite -work">じょしらく</cite>が紹介、担当・三浦敏宏コメント、一日目3ページ目<q>音だったら犬より猫でしょう</q>のカット掲載</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2011年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2011-06-01" npClass="Vol.129" tags={['アニメ']}>
-			<div class="p-text">
-				<p>OVA『かってに改蔵』特集、櫻井孝宏5000字インタビュー</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2011-06-01" npClass="Vol.129" tags={['アニメ']}>
+			<LibContent>
+				<LibItem>OVA『かってに改蔵』特集、櫻井孝宏5000字インタビュー</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2011-09-14" npClass="夕刊 POPSTYLE Vol.265">
-			<div class="p-text">
-				<p>8–9面: 「POPSTYLE Vol.265」赤松健×畑健二郎の対談の中で「毎回アフレコに行っていた」「女性声優と飲みに行った」などの話が挙がる</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2011-09-14" npClass="夕刊 POPSTYLE Vol.265">
+			<LibContent>
+				<LibItem position="8–9面">「POPSTYLE Vol.265」赤松健×畑健二郎の対談の中で「毎回アフレコに行っていた」「女性声優と飲みに行った」などの話が挙がる</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2012年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2012-01-26" npClass="夕刊">
-			<div class="p-text">
-				<p>5面: 「小池龍之介の心を保つお稽古」で『さよなら絶望先生』第7集紙ブログにおける宅配便を優先されて約束を反故にされたネタが紹介</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2012-01-26" npClass="夕刊">
+			<LibContent>
+				<LibItem position="5面">「小池龍之介の心を保つお稽古」で『さよなら絶望先生』第7集紙ブログにおける宅配便を優先されて約束を反故にされたネタが紹介</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2012-06-20" npClass="Vol.109 2012年7月号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>23面: 『じょしらく』水島努インタビュー</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2012-06-20" npClass="Vol.109 2012年7月号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="23面">『じょしらく』水島努インタビュー</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="山形新聞" release="2012-11-24">
-			<div class="p-text">
-				<p>7面: 「ことばの杜へ」で『さよなら絶望先生』第四十話「人生は一段のひな壇にも若かない」での望のセリフ<q>人間　上ばかり見ていては　自分の限界を感じた時　空しいだけです　世の中　上に伸びる段だけじゃないのです!</q>を引用しつつ、社会問題としての自殺についての言説</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="山形新聞" release="2012-11-24">
+			<LibContent>
+				<LibItem position="7面">「ことばの杜へ」で『さよなら絶望先生』第四十話「人生は一段のひな壇にも若かない」での望のセリフ<q>人間　上ばかり見ていては　自分の限界を感じた時　空しいだけです　世の中　上に伸びる段だけじゃないのです!</q>を引用しつつ、社会問題としての自殺についての言説</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2015年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-07-27" npClass="夕刊">
-			<div class="p-text">
-				<p>6面: 村田沙耶香（作家）による漫画作品のヒロイン紹介で名取羽美が取り上げられる</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-07-27" npClass="夕刊">
+			<LibContent>
+				<LibItem position="6面">村田沙耶香（作家）による漫画作品のヒロイン紹介で名取羽美が取り上げられる</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="熊本日日新聞" release="2015-11-11">
-			<div class="p-text">
-				<p>14面（県内総合）: 「コスプレの世界　満喫」ゆのまえ漫画フェスタの記事、写真に糸色望コスプレの職員（サイン会で久米田先生のサポートをされた方）が写り込み</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="熊本日日新聞" release="2015-11-11">
+			<LibContent>
+				<LibItem position="14面（県内総合）">「コスプレの世界　満喫」ゆのまえ漫画フェスタの記事、写真に糸色望コスプレの職員（サイン会で久米田先生のサポートをされた方）が写り込み</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="スポーツ報知" release="2015-11-27" npClass="MADOGATARI展特別号" tags={['アニメ']}>
-			<div class="p-text">
-				<p>折り込みポスターの裏面に他作品に混じって『さよなら絶望先生』1期キービジュアルも掲載</p>
-			</div>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="スポーツ報知" release="2015-11-27" npClass="MADOGATARI展特別号" tags={['アニメ']}>
+			<LibContent>
+				<LibItem>折り込みポスターの裏面に他作品に混じって『さよなら絶望先生』1期キービジュアルも掲載</LibItem>
+			</LibContent>
 
 			<ul class="p-notes">
 				<li>シャフト設立40周年イベント<LinkExternal href="https://www.madogatari.jp/">MADOGATARI展</LinkExternal>の会場とコミケットで販売されたもの（タブロイド紙だがイベントのグッズ扱いで正式な新聞ではない）</li>
 				<li>2016年8月〜12月の期間限定で<LinkExternal href="https://prtimes.jp/main/html/rd/p/000000739.000001227.html">電子版も発売</LinkExternal></li>
 			</ul>
-		</LibraryItemNewspaper>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2020年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2020-04-19" npClass="夕刊" tags={['インタビュー']}>
-			<div class="p-text">
-				<p>3面: 「作家100人　コロナ禍切り取る」Day to Day の紹介記事で久米田先生の顔写真とコメント掲載</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2020-04-19" npClass="夕刊" tags={['インタビュー']}>
+			<LibContent>
+				<LibItem position="3面">「作家100人　コロナ禍切り取る」Day to Day の紹介記事で久米田先生の顔写真とコメント掲載</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-06" npClass="夕刊">
-			<div class="p-text">
-				<p>
-					1面: 『MANGA Day to Day』の紹介記事<small>（<LinkExternal href="https://www.asahi.com/articles/ASP56358TP4XUTIL071.html">朝日新聞デジタル</LinkExternal>にも掲載）</small>
-				</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-06" npClass="夕刊">
+			<LibContent>
+				<LibItem position="1面">『MANGA Day to Day』の紹介記事<small>（<LinkExternal href="https://www.asahi.com/articles/ASP56358TP4XUTIL071.html">朝日新聞デジタル</LinkExternal>にも掲載）</small></LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-09" npClass="夕刊" tags={['アニメ']}>
-			<div class="p-text">
-				<p>2面: 「アニメ新番組で気分転換」（小原篤）で『かくしごと』紹介（他の春アニメ10本の中の1つ）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-09" npClass="夕刊" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="2面">「アニメ新番組で気分転換」（小原篤）で『かくしごと』紹介（他の春アニメ10本の中の1つ）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2020-05-23" npClass="夕刊">
-			<div class="p-text">
-				<p>4面（文化・芸能）: 「週刊読書かいわい」（辻真先）で『かくしごと』紹介</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2020-05-23" npClass="夕刊">
+			<LibContent>
+				<LibItem position="4面（文化・芸能）">「週刊読書かいわい」（辻真先）で『かくしごと』紹介</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2021年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-03-21" tags={['音楽']}>
-			<div class="p-text">
-				<p>30面: 「A LONG VACATION」広告（コラボポスターがカラーで掲載）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-03-21" tags={['音楽']}>
+			<LibContent>
+				<LibItem position="30面">「A LONG VACATION」広告（コラボポスターがカラーで掲載）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-04-19" npClass="夕刊" tags={['インタビュー']}>
-			<div class="p-text">
-				<p>3面: 「作家100人　コロナ禍切り取る」久米田康治&amp;月村了衛コメント</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-04-19" npClass="夕刊" tags={['インタビュー']}>
+			<LibContent>
+				<LibItem position="3面">「作家100人　コロナ禍切り取る」久米田康治&amp;月村了衛コメント</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2021-05-06" npClass="夕刊">
-			<div class="p-text">
-				<p>1面: 「コロナの100日　漫画で描いて」</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2021-05-06" npClass="夕刊">
+			<LibContent>
+				<LibItem position="1面">「コロナの100日　漫画で描いて」</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京中日スポーツ" release="2021-07-12" tags={['アニメ']}>
-			<div class="p-text">
-				<p>18面: 「高橋李依「『じわじわ』願ってます」」映画『かくしごと』舞台挨拶レポート、登壇者写真掲載（声優陣5人のみ）</p>
-			</div>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="東京中日スポーツ" release="2021-07-12" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="18面">「高橋李依「『じわじわ』願ってます」」映画『かくしごと』舞台挨拶レポート、登壇者写真掲載（声優陣5人のみ）</LibItem>
+			</LibContent>
 
 			<ul class="p-notes">
 				<li>同日の中日スポーツは休刊で代わりに「特別販売版」が発行されたようだが、そちらへの掲載可否は未確認</li>
 			</ul>
-		</LibraryItemNewspaper>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="中日スポーツ" release="2021-07-18" tags={['アニメ']}>
-			<div class="p-text">
-				<p>20面: 「原作者が半ギレ」映画『かくしごと』舞台挨拶レポート、登壇者6人の写真掲載（カラー）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="中日スポーツ" release="2021-07-18" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="20面">「原作者が半ギレ」映画『かくしごと』舞台挨拶レポート、登壇者6人の写真掲載（カラー）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京中日スポーツ" release="2021-07-18" tags={['アニメ']}>
-			<div class="p-text">
-				<p>18面: 「原作者が半ギレ」映画『かくしごと』舞台挨拶レポート、登壇者写真掲載（カラー）<small>（同日発行の「中日スポーツ」と同内容）</small></p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="東京中日スポーツ" release="2021-07-18" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="18面">「原作者が半ギレ」映画『かくしごと』舞台挨拶レポート、登壇者写真掲載（カラー）<small>（同日発行の「中日スポーツ」と同内容）</small></LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞（湘南版）" release="2021-11-20" tags={['アニメ']}>
-			<div class="p-text">
-				<p>23面: 「鎌倉舞台アニメ　グッズ返礼品に」ふるさと納税の返礼品に『かくしごと』グッズ</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞（湘南版）" release="2021-11-20" tags={['アニメ']}>
+			<LibContent>
+				<LibItem position="23面">「鎌倉舞台アニメ　グッズ返礼品に」ふるさと納税の返礼品に『かくしごと』グッズ</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2023年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2023-03-28" npClass="夕刊">
-			<div class="p-text">
-				<p>
-					12面: 「腕磨く姿に共感応援」週刊少年ジャンプ掲載『あかね噺』の紹介記事だが、落語漫画つながりで『じょしらく』も紹介<small>（<LinkExternal href="https://www.nikkei.com/article/DGKKZO69644980Y3A320C2BE0P00/">Web 記事（有料会員限定）</LinkExternal>にも掲載）</small>
-				</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2023-03-28" npClass="夕刊">
+			<LibContent>
+				<LibItem position="12面">「腕磨く姿に共感応援」週刊少年ジャンプ掲載『あかね噺』の紹介記事だが、落語漫画つながりで『じょしらく』も紹介<small>（<LinkExternal href="https://www.nikkei.com/article/DGKKZO69644980Y3A320C2BE0P00/">Web 記事（有料会員限定）</LinkExternal>にも掲載）</small></LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
 		<H slot="heading">2024年</H>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2024-04-30" npClass="朝刊">
-			<div class="p-text">
-				<p>24面（TV欄）: 『踊る！さんま御殿!!』の紹介文に<q>職質される人気漫画家</q></p>
-			</div>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2024-04-30" npClass="朝刊">
+			<LibContent>
+				<LibItem position="24面（TV欄）">『踊る！さんま御殿!!』の紹介文に<q>職質される人気漫画家</q></LibItem>
+			</LibContent>
 
 			<ul class="p-notes">
 				<li><LinkExternal href="https://www.ntv.co.jp/goten/articles/32dxmld9epjxplcgbp.html">「人によく怒られる有名人」特集</LinkExternal>で久米田先生が出演</li>
 				<li>一例として朝日新聞の朝刊を挙げたが、他の多くの新聞でも同様の内容が夕刊を含めて掲載</li>
 			</ul>
-		</LibraryItemNewspaper>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2024-06-21" npClass="夕刊">
-			<div class="p-text">
-				<p>9面: <cite>レクサス窃盗容疑　逮捕</cite>久米田先生所有のレクサスが2023年2月に盗難に遭い、容疑者2人が逮捕された事件の報道（被害者実名報道）</p>
-			</div>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2024-06-21" npClass="夕刊">
+			<LibContent>
+				<LibItem position="9面"><cite>レクサス窃盗容疑　逮捕</cite>久米田先生所有のレクサスが2023年2月に盗難に遭い、容疑者2人が逮捕された事件の報道（被害者実名報道）</LibItem>
+			</LibContent>
 
 			<ul class="p-notes">
 				<li>当事件は産経新聞による独自報道で <LinkExternal href="https://www.sankei.com/article/20240621-DONL7TAZ3RJ5LMVTM7DDYPG22M/">6月21日10:00に発表</LinkExternal>された。当日の夕刊への掲載が確認できたのはこの読売新聞のみだが、翌日には多くの新聞（スポーツ紙を含む）に掲載された。</li>
 				<li>当事件は当日の TV ニュース番組やラジオ番組中のニュースコーナー等でも報道され、その一部は本記事のように被害者実名報道が行われた。</li>
 			</ul>
-		</LibraryItemNewspaper>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2024-06-22" npClass="朝刊">
-			<div class="p-text">
-				<p>39面: <cite>レクサス窃盗　容疑者逮捕　被害総額7億円強か</cite>レクサス盗難事件に関する記事（被害者名記載なし）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2024-06-22" npClass="朝刊">
+			<LibContent>
+				<LibItem position="39面"><cite>レクサス窃盗　容疑者逮捕　被害総額7億円強か</cite>レクサス盗難事件に関する記事（被害者名記載なし）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="スポーツニッポン" release="2024-06-22">
-			<div class="p-text">
-				<p>21面: <cite>漫画家のレクサス　盗んで男2人逮捕　「絶望先生」作者被害</cite>レクサス盗難事件に関する記事（被害者実名報道）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="スポーツニッポン" release="2024-06-22">
+			<LibContent>
+				<LibItem position="21面"><cite>漫画家のレクサス　盗んで男2人逮捕　「絶望先生」作者被害</cite>レクサス盗難事件に関する記事（被害者実名報道）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-22" npClass="朝刊">
-			<div class="p-text">
-				<p>23面: <cite>漫画家のレクサス　盗んだ疑いで逮捕</cite>レクサス盗難事件に関する記事（被害者実名報道）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-22" npClass="朝刊">
+			<LibContent>
+				<LibItem position="23面"><cite>漫画家のレクサス　盗んだ疑いで逮捕</cite>レクサス盗難事件に関する記事（被害者実名報道）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="神奈川新聞" release="2024-06-22">
-			<div class="p-text">
-				<p>23面: <cite>漫画家のレクサス窃盗疑い</cite>レクサス盗難事件に関する記事（被害者実名報道）</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="神奈川新聞" release="2024-06-22">
+			<LibContent>
+				<LibItem position="23面"><cite>漫画家のレクサス窃盗疑い</cite>レクサス盗難事件に関する記事（被害者実名報道）</LibItem>
+			</LibContent>
+		</LibNewspaper>
 
-		<LibraryItemNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-23" npClass="朝刊">
-			<div class="p-text">
-				<p>20面: <cite>狙われる国産高級車</cite>レクサス盗難事件の手口に関してより深掘りした記事（被害者実名報道）、同内容が <LinkExternal href="https://www.tokyo-np.co.jp/article/335359">Web 記事</LinkExternal>でも公開</p>
-			</div>
-		</LibraryItemNewspaper>
+		<LibNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-23" npClass="朝刊">
+			<LibContent>
+				<LibItem position="20面"><cite>狙われる国産高級車</cite>レクサス盗難事件の手口に関してより深掘りした記事（被害者実名報道）、同内容が <LinkExternal href="https://www.tokyo-np.co.jp/article/335359">Web 記事</LinkExternal>でも公開</LibItem>
+			</LibContent>
+		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
