@@ -16,7 +16,7 @@ Markup:
 
 Styleguide 1.5.1
 */
-:is(.l-content__main, .c-stack, .p-section, .p-quote, .p-embed-sidebar__text, .p-box, .p-toggle__contents, .p-library__main) {
+:is(.l-content__main, .c-stack, .c-embed-sidebar__text, .p-section, .p-quote, .p-box, .p-toggle__contents, .p-library__main) {
 	& > * + * {
 		margin-block-start: var(--stack-margin-base);
 	}
@@ -175,4 +175,52 @@ Styleguide 1.5.4
 }
 
 .c-flex__item {
+}
+
+/*
+テキスト & 埋め込みコンテンツ横並び
+
+Markup:
+<div class="c-embed-sidebar {{modifier_class}}">
+<div class="c-embed-sidebar__text">
+<p>テキスト</p>
+</div>
+<div class="c-embed-sidebar__embed">
+<img src="https://media.w0s.jp/thumbimage/sample.jpg?type=webp;w=360;quality=30" alt=""/>
+</div>
+</div>
+
+.-text-first - テキストエリアが先頭
+.-embed-first - 埋め込みエリアが先頭
+
+Styleguide 1.5.5
+*/
+.c-embed-sidebar {
+	display: block flex;
+	flex-wrap: wrap;
+	gap: 15px 30px;
+
+	/* テキストエリアが先頭 */
+	&.-text-first {
+		& .c-embed-sidebar__embed {
+			--_order: 1;
+		}
+	}
+
+	/* 埋め込みエリアが先頭 */
+	&.-embed-first {
+		& .c-embed-sidebar__text {
+			--_order: 1;
+		}
+	}
+}
+
+.c-embed-sidebar__text {
+	flex: 999 0px;
+	order: var(--_order, 0);
+	min-inline-size: 50%;
+}
+
+.c-embed-sidebar__embed {
+	order: var(--_order, 0);
 }
