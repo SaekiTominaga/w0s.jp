@@ -6,6 +6,8 @@ import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import RefBook from '@components/ReferenceBook.astro';
+import RefMagazine from '@components/ReferenceMagazine.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -42,26 +44,26 @@ const structuredData: StructuredData = {
 		</div>
 
 		<p>この車種は竣功当初は吊り掛け駆動式だったようですが、京福時代の1998年にカルダン駆動化が行われており、同時に主制御器は MMC-H-10K に換装されました。</p>
-		<p>新性能化に関する話は、鉄道ピクトリアルの特集「北陸地方のローカル私鉄」にある京福電鉄の記事が詳しく、次のように書かれています。</p>
+		<p>新性能化に関する話は、鉄道ピクトリアルの特集「<cite>北陸地方のローカル私鉄</cite>」にある京福電鉄の記事が詳しく、次のように書かれています。</p>
 
 		<figure>
 			<blockquote class="p-quote">
 				<p>車両近代化の一環として，1500V昇圧によって廃車となった豊橋鉄道モハ1900形から発生したDT-21中空カルダン式台車と，クーラー3基（合計10,500Kcal）を利用して新性能化が計画され，2000年(平成12年)4月11日深夜に川崎重工へ陸送．改造工事終了後の同年7月2日早朝に福井へ帰着した．</p>
 			</blockquote>
-			<figcaption class="c-caption -meta">鉄道ピクトリアル 2001年5月臨時増刊号（No.701）<cite>【現有私鉄概説】京福電気鉄道福井鉄道部</cite>（岡本英志）</figcaption>
+			<figcaption class="c-caption -meta"><RefMagazine name="鉄道ピクトリアル" date="2001年5月臨時増刊号" no={701} article="【現有私鉄概説】京福電気鉄道福井鉄道部" author="岡本英志" pages={[112]} /></figcaption>
 		</figure>
 
 		<ul class="p-notes">
 			<li>管理者注: 改造時期が2000年と書かれていますが、1998年の誤記でしょう。</li>
 		</ul>
 
-		<p>この記事では主制御器に関しては触れられていませんが、同じく鉄道ピクトリアルの「新車年鑑1999年版」にはこんな記述があります。</p>
+		<p>この記事では主制御器に関しては触れられていませんが、同じく鉄道ピクトリアルの「<cite>新車年鑑1999年版</cite>」にはこんな記述があります。</p>
 
 		<figure>
 			<blockquote class="p-quote">
 				<p>新製・廃車はないが，改造ではモハ1101形1101・1102の冷房化，高性能化が施工され1998年7月17日に竣功している．これに伴い台車は日車D-18から川車DT-21に，電動機はTDK-528/9-HMから東洋MT-46Aに，制御器は東洋ES-519Bから日立MMC-H-10Kに変更された．</p>
 			</blockquote>
-			<figcaption class="c-caption -meta">鉄道ピクトリアル 1999年10月臨時増刊号（No.676）<cite>各社別車両情勢</cite>（藤井信夫・大幡哲海・岸上明彦）</figcaption>
+			<figcaption class="c-caption -meta"><RefMagazine name="鉄道ピクトリアル" date="1999年10月臨時増刊号" no={676} article="各社別車両情勢" author="藤井信夫・大幡哲海・岸上明彦" pages={[99]} /></figcaption>
 		</figure>
 
 		<p>豊橋鉄道で使われていたというこの主制御器のルーツを遡ってみます。</p>
@@ -76,7 +78,7 @@ const structuredData: StructuredData = {
 			<blockquote class="p-quote">
 				<p>この車は，本年3月に新車5300系に台車・モータを譲って廃車になった名鉄モ5205・5206の車体を購入し，自社高師工場で国鉄101系の台車・モータ（DT21・MT42），名鉄3880系〔元東急3600系〕の制御器・パンタグラフ（MMC-H-10・PT42）と南海の600V時代のMG，他予備品の床下機器に三菱電機製の架線電源（DC600V）を，三相交流（AC200V）に変えるインバーターとクーラを組み合わせた，DA空調システムにより，冷房車化したものである．</p>
 			</blockquote>
-			<figcaption class="c-caption -meta">鉄道ファン 1986年11月号（No.307）<cite>豊橋鉄道に冷房車登場</cite>（神沢順）</figcaption>
+			<figcaption class="c-caption -meta"><RefMagazine name="鉄道ファン" date="1986年11月号" no={307} article="豊橋鉄道に冷房車登場" author="神沢順" pages={[109]} /></figcaption>
 		</figure>
 
 		<ul class="p-notes">
@@ -87,7 +89,7 @@ const structuredData: StructuredData = {
 			<blockquote class="p-quote">
 				<p>制御装置は従来の釣掛車との総括制御を考慮し，名鉄3880系（元東急3700系）に使用されていた電動カム軸式MMC-H-10Gが採用されている。</p>
 			</blockquote>
-			<figcaption class="c-caption -meta">鉄道ピクトリアル 1987年5月臨時増刊号（No.480）<cite>豊橋鉄道1900系</cite>（鉄道ピクトリアル編集部）</figcaption>
+			<figcaption class="c-caption -meta"><RefMagazine name="鉄道ピクトリアル" date="1987年5月臨時増刊号" no={480} article="豊橋鉄道1900系" author="鉄道ピクトリアル編集部" pages={[147]} /></figcaption>
 		</figure>
 
 		<p>これらに書かれているように、第1編成は名鉄3880系で使用されていた主制御器を流用したようです。これはそのまま東急デハ3700形由来のものと思われますが、同じ MMC-H-10 でもえち鉄MC1101形とはタイプが異なります。</p>
@@ -140,7 +142,7 @@ const structuredData: StructuredData = {
 			<blockquote class="p-quote">
 				<p>主制御器はMMC-H-10G化，電動発電機もCLG-107形となって活躍したが，昭50〜55に全車両を名古屋鉄道へ譲渡した．</p>
 			</blockquote>
-			<figcaption class="c-caption -meta">鉄道ピクトリアル 1985年1月臨時増刊号（No.442）<cite>私鉄車両めぐり〔127〕</cite>（荻原俊夫）</figcaption>
+			<figcaption class="c-caption -meta"><RefMagazine name="鉄道ピクトリアル" date="1985年1月臨時増刊号" no={442} article="私鉄車両めぐり〔127〕" author="荻原俊夫" pages={[221]} /></figcaption>
 		</figure>
 
 		<p>一方、K型は1960年代から旧式のMMC-H-200を置き換える形でデハ3450形やデハ3500形、デハ3650形などに搭載されました。</p>
@@ -280,7 +282,7 @@ const structuredData: StructuredData = {
 		<H slot="heading">主制御器の出自を推測する</H>
 
 		<p>えちぜん鉄道MC1102号の主制御器を2012年に調べたところ、 形式: MMC H-10K1、製造番号: 830241-2、製造年月: 昭和46年3月 でした。製造番号を照らし合わせると、豊橋モ1956と同じ事が分かります。</p>
-		<p>さらに前面蓋の向かって右側、MCOS部分にはうっすら「3509」という車番らしき数字が残っていました。豊橋鉄道渥美線とえちぜん鉄道（京福電鉄）には、3500番台の車両は存在しません。名古屋鉄道にはモ3500形という車両が居たようですが、主制御器はMMC系ではなく、そもそもモ3509は東急譲渡車が入線するずっと前に制御車化されており、可能性はないでしょう。そう考えると東急デハ3509のものでしょうか。</p>
+		<p>さらに前面蓋の向かって右側、MCOS部分にはうっすら<q>3509</q>という車番らしき数字が残っていました。豊橋鉄道渥美線とえちぜん鉄道（京福電鉄）には、3500番台の車両は存在しません。名古屋鉄道にはモ3500形という車両が居たようですが、主制御器はMMC系ではなく、そもそもモ3509は東急譲渡車が入線するずっと前に制御車化されており、可能性はないでしょう。そう考えると東急デハ3509のものでしょうか。</p>
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
@@ -300,10 +302,10 @@ const structuredData: StructuredData = {
 			<blockquote cite="urn:ISBN:4-938343-92-4" class="p-quote">
 				<p>1968・69(昭43・44)年にATS装置取り付け、42芯連結栓化、1969年から車軸を平軸受からコロ軸受に改造、主制御器を新しいMMC-H-10K形に交換、1972(昭47)年からMGを撤去し、中間に組み込まれた付随車の補助電源装置から給電する方式とした。</p>
 			</blockquote>
-			<figcaption class="c-caption -meta"><cite>東急電車形式集.2</cite>（高間恒雄）</figcaption>
+			<figcaption class="c-caption -meta"><RefBook name="東急電車形式集.2" author="高間恒雄" pages={[38]} /></figcaption>
 		</figure>
 
-		<p>また、鉄道ピクトリアルNo.269（1972年9月号）に掲載されている「東京急行電鉄旅客車一覧表」によると、1972年5月末の時点で22両中デハ3509を含む14両が更新済みとなっています。これらの記述が正しければ、デハ3509の主制御機交換は1969年から1972年の間に行われたこととなり、MC1102号に搭載されている機器の製造時期（1971年）と辻褄が合います。また、東急での廃車が1989年3月、豊橋モ1956の竣功が同年7月という時期からしても、廃車後に機器を豊橋に譲渡したと考えて不自然ではありません。</p>
+		<p>また、鉄道ピクトリアルNo.269（1972年9月号）に掲載されている「<cite>東京急行電鉄旅客車一覧表</cite>」によると、1972年5月末の時点で22両中デハ3509を含む14両が更新済みとなっています。これらの記述が正しければ、デハ3509の主制御機交換は1969年から1972年の間に行われたこととなり、MC1102号に搭載されている機器の製造時期（1971年）と辻褄が合います。また、東急での廃車が1989年3月、豊橋モ1956の竣功が同年7月という時期からしても、廃車後に機器を豊橋に譲渡したと考えて不自然ではありません。</p>
 	</Section>
 
 	<Section id="settle">
@@ -313,7 +315,7 @@ const structuredData: StructuredData = {
 
 		<ul class="p-list">
 			<li>えちぜん鉄道MC1102と豊橋鉄道モ1956の製造番号が一致する</li>
-			<li>前面蓋に「3509」という数字が残っていた</li>
+			<li>前面蓋に<q>3509</q>という数字が残っていた</li>
 			<li>東急デハ3509の主制御器交換時期、車両の廃車時期とも矛盾はない</li>
 		</ul>
 
