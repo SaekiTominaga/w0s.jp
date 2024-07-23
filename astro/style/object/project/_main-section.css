@@ -9,9 +9,9 @@ Styleguide 2.1.
 
 Markup:
 <section class="p-section {{modifier_class}}">
-<div class="p-section__hdg">
-	<h2>見出し <span class="p-section__subhdg">（注釈）</span></h2>
-</div>
+	<div class="p-section__hdg">
+		<h2>見出し <span class="p-section__subhdg">（注釈）</span></h2>
+	</div>
 </section>
 
 .-hdg-a - 子に見出しA を含む
@@ -86,7 +86,8 @@ Styleguide 2.1.1
 			background: var(--color-gray); /* for Chrome */
 			content: "";
 
-			@media not print { /* Firefox の印刷プレビューで2ページ目以降の場合に縦線が上方にずれてしまうバグの対策 */
+			@media not print {
+				/* Firefox の印刷プレビューで2ページ目以降の場合に縦線が上方にずれてしまうバグの対策 */
 				transform: scaleY(75%);
 			}
 		}
@@ -110,6 +111,10 @@ Styleguide 2.1.1
 
 	.p-section.-hdg-c > & {
 		font-size: calc(100% * pow(var(--font-ratio), 2));
+	}
+
+	& .c-self-link {
+		font-size: calc(100% / pow(var(--font-ratio), 3));
 	}
 }
 
