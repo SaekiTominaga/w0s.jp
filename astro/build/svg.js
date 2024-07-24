@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
-import { glob } from 'glob';
 import slash from 'slash';
 import { loadConfig, optimize } from 'svgo';
 
@@ -34,18 +33,16 @@ const configFilePath = slash(argsParsedValues.config);
 
 const config = await loadConfig(configFilePath);
 
-const fileList = await glob(filesPath);
+const files = fs.promises.glob(filesPath);
 
-await Promise.all(
-	fileList.map(async (filePath) => {
-		/* ファイル読み込み */
-		const fileData = (await fs.promises.readFile(filePath)).toString();
+for await (const file of files) {
+	/* ファイル読み込み */
+	const fileData = (await fs.promises.readFile(file)).toString();
 
-		/* SVG 最適化 */
-		const optimized = optimize(fileData.replace(/<svg version="([0-9.]+)"/, '<svg').replace(' id="レイヤー_1"', ''), config);
+	/* SVG 最適化 */
+	const optimized = optimize(fileData.replace(/<svg version="([0-9.]+)"/, '<svg').replace(' id="レイヤー_1"', ''), config);
 
-		/* 出力 */
-		await fs.promises.writeFile(filePath, optimized.data);
-		console.info(`SVG file optimized: ${filePath}`);
-	}),
-);
+	/* 出力 */
+	await fs.promises.writeFile(file, optimized.data);
+	console.info(`SVG file optimized: ${file}`);
+}
