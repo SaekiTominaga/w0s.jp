@@ -178,8 +178,8 @@ app.use(
 /**
  * SSR
  */
-app.use((req, res, next): void => {
-	ssrHandler(req, res, next);
+app.use(async (req, res, next): Promise<void> => {
+	await ssrHandler(req, res, next);
 });
 
 /**
