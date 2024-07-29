@@ -2,11 +2,10 @@
 
 import parserAstro from 'astro-eslint-parser';
 import pluginAstro from 'eslint-plugin-astro';
-import tseslint from 'typescript-eslint';
 import w0sConfig from '@w0s/eslint-config';
 
 /** @type {import("@typescript-eslint/utils/ts-eslint").FlatConfig.ConfigArray} */
-export default tseslint.config(
+export default [
 	...w0sConfig,
 	...pluginAstro.configs.recommended,
 	{
@@ -26,6 +25,7 @@ export default tseslint.config(
 			'no-irregular-whitespace': 'off',
 			'no-undef-init': 'off',
 			'no-useless-return': 'off',
+			'import/no-unresolved': 'off',
 			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',
 			'jsdoc/require-property-type': 'off',
@@ -34,7 +34,7 @@ export default tseslint.config(
 		},
 	},
 	{
-		files: ['build/*.js'],
+		files: ['build/**/*.js'],
 		rules: {
 			'no-console': 'off',
 		},
@@ -59,14 +59,6 @@ export default tseslint.config(
 		},
 	},
 	{
-		files: ['script/trusted-types.ts'],
-		languageOptions: {
-			parserOptions: {
-				sourceType: 'script',
-			},
-		},
-	},
-	{
 		files: ['script/analytics.ts'],
 		languageOptions: {
 			parserOptions: {
@@ -74,9 +66,20 @@ export default tseslint.config(
 			},
 		},
 		rules: {
+			'no-implicit-globals': 'off',
 			'no-multi-assign': 'off',
 			'no-underscore-dangle': 'off',
 			'no-var': 'off',
+		},
+	},
+	{
+		files: ['script/trusted-types.ts'],
+		languageOptions: {
+			parserOptions: {
+				sourceType: 'script',
+			},
+		},
+		rules: {
 			strict: 'off',
 		},
 	},
@@ -86,22 +89,4 @@ export default tseslint.config(
 			'no-console': 'off',
 		},
 	},
-	{
-		files: ['src/+util/Ssr.ts'],
-		rules: {
-			'import/no-relative-packages': 'off',
-		},
-	},
-	{
-		files: ['src/pages/technology.astro'],
-		rules: {
-			'no-undef': 'off',
-		},
-	},
-	{
-		files: ['rollup.config.js'],
-		rules: {
-			'import/no-extraneous-dependencies': 'off',
-		},
-	},
-);
+];

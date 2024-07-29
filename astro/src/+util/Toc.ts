@@ -11,6 +11,7 @@ export default class TocUtil {
 	 */
 	static getData = (document: Document): Map<string, string> => {
 		const { window } = new JSDOM('');
+		// eslint-disable-next-line new-cap
 		const purify = DOMPurify(window);
 
 		const tocData = new Map<string, string>();
