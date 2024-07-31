@@ -20,6 +20,13 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 	 * @returns 新着データ
 	 */
 	async getNewsDataList(url: string): Promise<NewsData[]> {
+		interface Select {
+			uuid: string;
+			date: number | null;
+			content: string;
+			refer_url: string | null;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -39,7 +46,7 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 			':url': url,
 		});
 
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const newsData: NewsData[] = [];

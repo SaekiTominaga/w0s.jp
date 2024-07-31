@@ -33,6 +33,17 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	 * @returns 巡回ページデータ
 	 */
 	async getNewsPageList(): Promise<NewsPage[]> {
+		interface Select {
+			url: string;
+			title: string;
+			category: string;
+			priority: string;
+			browser: number;
+			selector_wrap: string;
+			selector_date: string | null;
+			selector_content: string | null;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -57,7 +68,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				n.title
 		`);
 
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const newsPage: NewsPage[] = [];
@@ -235,6 +246,16 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	 * @returns 巡回情報データ
 	 */
 	async getReviseData(url: string): Promise<ReviseData | null> {
+		interface Select {
+			title: string;
+			category: number;
+			priority: number;
+			browser: number;
+			selector_wrap: string;
+			selector_date: string | null;
+			selector_content: string | null;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -255,7 +276,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 			':url': url,
 		});
 
-		const row = await sth.get();
+		const row: Select | undefined = await sth.get();
 		await sth.finalize();
 
 		if (row === undefined) {

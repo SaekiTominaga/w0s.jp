@@ -89,4 +89,10 @@ export default [
 			'no-console': 'off',
 		},
 	},
+	{
+		files: ['src/+util/Request.ts'],
+		rules: {
+			'@typescript-eslint/no-unsafe-return': 'off',
+		},
+	},
 ];
