@@ -23,7 +23,7 @@ export default class TocUtil {
 			}
 
 			const sanitizedHeadingHtml = purify.sanitize(headingHtml, {
-				ALLOWED_TAGS: ['cite', 'small', 'span'],
+				ALLOWED_TAGS: ['small', 'cite', 'code', 'span'],
 				ALLOWED_ATTR: ['lang'],
 			});
 			if (headingHtml !== sanitizedHeadingHtml) {
