@@ -203,8 +203,7 @@ export default class TokyuCarHistoryDao {
 			case 'reg': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
 				sql += ' ORDER BY c.register_date, s.display, c.annual, i.sort, c.type, c.num';
 				break;
-			default:
-				// 車種別車号ソート（車種、車号）
+			default: // 車種別車号ソート（車種、車号）
 				sql += ' ORDER BY s.display, c.num';
 		}
 
