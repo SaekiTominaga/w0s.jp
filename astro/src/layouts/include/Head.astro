@@ -33,7 +33,7 @@ const jsonLd = StructuredDataUtil.getJsonLd(structuredData, { site: import.meta.
 	{structuredData.description !== undefined && <meta name="description" content={structuredData.description} />}
 	{
 		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && (
-			<Fragment>
+			<>
 				<meta property="og:title" content={structuredData.title} />
 				<meta property="og:type" content={structuredData.type ?? 'article'} />
 				<meta property="og:image" content={structuredData.image} />
@@ -41,7 +41,7 @@ const jsonLd = StructuredDataUtil.getJsonLd(structuredData, { site: import.meta.
 				<meta property="og:locale" content="ja_JP" />
 				<meta property="og:site_name" content="w0s.jp" />
 				{structuredData.description !== undefined && <meta property="og:description" content={structuredData.description} />}
-			</Fragment>
+			</>
 		)
 	}
 
