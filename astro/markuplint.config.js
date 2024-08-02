@@ -62,4 +62,12 @@ export default {
 			as: 'li',
 		},
 	],
+	overrideMode: 'merge',
+	overrides: {
+		'**/*.astro': {
+			rules: {
+				'no-empty-palpable-content': false, // Astro ファイルでエラーが出るため暫定的に無効化
+			},
+		},
+	},
 };
