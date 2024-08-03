@@ -66,7 +66,13 @@ export default {
 	overrides: {
 		'**/*.astro': {
 			rules: {
-				'no-empty-palpable-content': false, // Astro ファイルでエラーが出るため暫定的に無効化
+				'no-empty-palpable-content': false, // markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 でエラーが出るため暫定的に無効化
+			},
+		},
+		'src/pages/tokyu/data/history/index.astro': {
+			rules: {
+				'no-orphaned-end-tag': false, // markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 でエラーが出るため暫定的に無効化
+				'permitted-contents': false, // markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 でエラーが出るため暫定的に無効化
 			},
 		},
 	},
