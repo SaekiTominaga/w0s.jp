@@ -11,10 +11,7 @@ export default {
 		'src/pages/madoka/yomoyama/namae.astro',
 	],
 	rules: {
-		'disallowed-element': ['base', 'style', 'hr', 'i', 'u', 'area'],
-		'heading-levels': {
-			severity: 'warning',
-		},
+		'disallowed-element': ['base', 'style', 'h5', 'h6', 'hr', 'i', 'u', 'area'],
 		'class-naming': [
 			'/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/',
 			'/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
