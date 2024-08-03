@@ -339,7 +339,7 @@ if (requestQuery.output !== null) {
 				<H slot="heading">検索結果</H>
 
 				{searchCount >= 1 && (
-					<Fragment>
+					<>
 						<p>{searchCount}件ヒットしました。</p>
 
 						{searchCount >= 2 && (
@@ -353,7 +353,7 @@ if (requestQuery.output !== null) {
 
 						<table class="p-tokyu-history-table js-result-table" id="result-table">
 							{requestQuery.output !== 'mob' && (
-								<Fragment>
+								<>
 									<thead>
 										<tr>
 											<th scope="col">車号</th>
@@ -371,7 +371,7 @@ if (requestQuery.output !== null) {
 									{cars.map((carOfSeries) => (
 										<tbody>
 											{carOfSeries.map((car) => (
-												<Fragment>
+												<>
 													{car.changes.length <= 1 && (
 														<tr data-car-num={car.number}>
 															{/* prettier-ignore */}
@@ -381,29 +381,29 @@ if (requestQuery.output !== null) {
 															<td class="u-cell -center">{car.annual}</td>
 															<td class="u-cell -center">{car.register}</td>
 															{car.changes.length === 0 && (
-																<Fragment>
+																<>
 																	<td />
 																	<td />
-																</Fragment>
+																</>
 															)}
 															{car.changes.length >= 1 && (
-																<Fragment>
+																<>
 																	{/* prettier-ignore */}
 																	<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
 																	<td class="u-cell -center">{car.changes[0].date}</td>
-																</Fragment>
+																</>
 															)}
 															<td>{car.renewal}</td>
 															<td>{car.transfer}</td>
 															{/* prettier-ignore */}
-															<td class="u-cell -center">{car.scrap && <Fragment>解体</Fragment>}{!car.scrap && <Fragment>{car.age}年</Fragment>}</td>
+															<td class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
 														</tr>
 													)}
 
 													{car.changes.length >= 2 && (
-														<Fragment>
+														<>
 															{car.changes.map((change, index) => (
-																<Fragment>
+																<>
 																	{index === 0 && (
 																		<tr data-car-num={car.number}>
 																			{/* prettier-ignore */}
@@ -424,7 +424,7 @@ if (requestQuery.output !== null) {
 																			{/* prettier-ignore */}
 																			<td rowspan={car.changes.length} class="u-cell -center">{car.transfer}</td>
 																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <Fragment>解体</Fragment>}{!car.scrap && <Fragment>{car.age}年</Fragment>}</td>
+																			<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
 																		</tr>
 																	)}
 																	{index >= 1 && (
@@ -434,18 +434,18 @@ if (requestQuery.output !== null) {
 																			<td class="u-cell -center">{change.date}</td>
 																		</tr>
 																	)}
-																</Fragment>
+																</>
 															))}
-														</Fragment>
+														</>
 													)}
-												</Fragment>
+												</>
 											))}
 										</tbody>
 									))}
-								</Fragment>
+								</>
 							)}
 							{requestQuery.output === 'mob' && (
-								<Fragment>
+								<>
 									<thead>
 										<tr>
 											<th scope="col">車号</th>
@@ -457,7 +457,7 @@ if (requestQuery.output !== null) {
 									{cars.map((carOfSeries) => (
 										<tbody>
 											{carOfSeries.map((car) => (
-												<Fragment>
+												<>
 													{car.changes.length <= 1 && (
 														<tr data-car-num={car.number}>
 															{/* prettier-ignore */}
@@ -466,18 +466,18 @@ if (requestQuery.output !== null) {
 															<td class="u-cell -center">{car.register}</td>
 															{car.changes.length === 0 && <td />}
 															{car.changes.length >= 1 && (
-																<Fragment>
+																<>
 																	{/* prettier-ignore */}
 																	<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
-																</Fragment>
+																</>
 															)}
 														</tr>
 													)}
 
 													{car.changes.length >= 2 && (
-														<Fragment>
+														<>
 															{car.changes.map((change, index) => (
-																<Fragment>
+																<>
 																	{index === 0 && (
 																		<tr data-car-num={car.number}>
 																			{/* prettier-ignore */}
@@ -496,18 +496,18 @@ if (requestQuery.output !== null) {
 																			<td class="u-cell -center">{car.sign}{car.number}</td>
 																		</tr>
 																	)}
-																</Fragment>
+																</>
 															))}
-														</Fragment>
+														</>
 													)}
-												</Fragment>
+												</>
 											))}
 										</tbody>
 									))}
-								</Fragment>
+								</>
 							)}
 						</table>
-					</Fragment>
+					</>
 				)}
 
 				{searchCount === 0 && (

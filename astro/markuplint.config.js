@@ -1,20 +1,18 @@
 /** @type {import('@markuplint/ml-config').Config} */
 export default {
-	extends: ['../node_modules/@w0s/markuplint-config/.markuplintrc'],
+	extends: ['@w0s/markuplint-config'],
 	parser: {
 		'\\.astro$': '@markuplint/astro-parser',
 	},
 	excludeFiles: [
-		'src/pages/kumeta/manga/comment.astro',
-		'src/pages/kumeta/manga/subtitle.astro',
-		'src/pages/madoka/library/magazine.astro',
-		'src/pages/madoka/yomoyama/namae.astro',
+		/* markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 で 200KB 超えの巨大なファイルはエラーが出るため暫定的に除外 */
+		'src/pages/kumeta/manga/comment.astro', // 258KB
+		'src/pages/kumeta/manga/subtitle.astro', // 285KB
+		'src/pages/madoka/library/magazine.astro', // 202KB
+		'src/pages/madoka/yomoyama/namae.astro', // 308 KB
 	],
 	rules: {
-		'disallowed-element': ['base', 'style', 'hr', 'i', 'u', 'area'],
-		'heading-levels': {
-			severity: 'warning',
-		},
+		'disallowed-element': ['base', 'style', 'h5', 'h6', 'hr', 'i', 'u', 'area'],
 		'class-naming': [
 			'/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/',
 			'/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
@@ -62,4 +60,19 @@ export default {
 			as: 'li',
 		},
 	],
+	overrideMode: 'merge',
+	overrides: {
+		/* markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 でエラーが出るため暫定的に無効化 */
+		'**/*.astro': {
+			rules: {
+				'no-empty-palpable-content': false,
+			},
+		},
+		'src/pages/tokyu/data/history/index.astro': {
+			rules: {
+				'no-orphaned-end-tag': false,
+				'permitted-contents': false,
+			},
+		},
+	},
 };
