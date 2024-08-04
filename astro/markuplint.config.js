@@ -36,12 +36,6 @@ export default {
 			},
 		},
 		{
-			selector: 'audio',
-			rules: {
-				'no-empty-palpable-content': false,
-			},
-		},
-		{
 			selector: 'table',
 			rules: {
 				'require-accessible-name': false,
