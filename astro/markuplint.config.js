@@ -30,7 +30,7 @@ export default {
 			},
 		},
 		{
-			selector: 'nav, aside',
+			selector: 'nav',
 			rules: {
 				'landmark-roles': false,
 			},
