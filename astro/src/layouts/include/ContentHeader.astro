@@ -53,9 +53,9 @@ const { pagePath, structuredData, tocData } = Astro.props;
 
 	{
 		structuredData.localNav !== undefined && (
-			<nav>
+			<nav aria-label={structuredData.localNav.label}>
 				<ul class="p-local-nav">
-					{structuredData.localNav.map((localNavItem) => (
+					{structuredData.localNav.items.map((localNavItem) => (
 						<li>
 							{localNavItem.path !== pagePath && <LinkBullet href={localNavItem.path}>{localNavItem.name}</LinkBullet>}
 							{localNavItem.path === pagePath && <LinkBullet>{localNavItem.name}</LinkBullet>}

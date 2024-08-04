@@ -30,12 +30,6 @@ export default {
 			},
 		},
 		{
-			selector: 'nav',
-			rules: {
-				'landmark-roles': false,
-			},
-		},
-		{
 			selector: 'table',
 			rules: {
 				'require-accessible-name': false,
