@@ -16,13 +16,16 @@ const structuredData: StructuredData = {
 	dateModified: dayjs('2024-06-15'),
 	description: '漫画雑誌において久米田作品がカラー掲載されたり、企画記事が載ったりするなど、通常の連載以外で注目すべき事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
-	localNav: [
-		{ path: '/kumeta/library/manga', name: '漫画雑誌' },
-		{ path: '/kumeta/library/book', name: '図書、一般雑誌' },
-		{ path: '/kumeta/library/newspaper', name: '新聞' },
-		{ path: '/kumeta/library/freepaper', name: 'フリーペーパー' },
-		{ path: '/kumeta/library/web', name: 'Web' },
-	],
+	localNav: {
+		label: 'メディア紹介',
+		items: [
+			{ path: '/kumeta/library/manga', name: '漫画雑誌' },
+			{ path: '/kumeta/library/book', name: '図書、一般雑誌' },
+			{ path: '/kumeta/library/newspaper', name: '新聞' },
+			{ path: '/kumeta/library/freepaper', name: 'フリーペーパー' },
+			{ path: '/kumeta/library/web', name: 'Web' },
+		],
+	},
 	tocDirection: 'row',
 	moduleScripts: ['library-tag.mjs'],
 };

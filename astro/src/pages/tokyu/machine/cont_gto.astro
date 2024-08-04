@@ -22,13 +22,16 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
 	],
-	localNav: [
-		{ path: '/tokyu/machine/cont_old', name: '旧性能' },
-		{ path: '/tokyu/machine/cont_high', name: '高性能' },
-		{ path: '/tokyu/machine/cont_fcc', name: '界磁チョッパ' },
-		{ path: '/tokyu/machine/cont_gto', name: 'VVVF・GTO' },
-		{ path: '/tokyu/machine/cont_igbt', name: 'VVVF・IGBT' },
-	],
+	localNav: {
+		label: '制御装置',
+		items: [
+			{ path: '/tokyu/machine/cont_old', name: '旧性能' },
+			{ path: '/tokyu/machine/cont_high', name: '高性能' },
+			{ path: '/tokyu/machine/cont_fcc', name: '界磁チョッパ' },
+			{ path: '/tokyu/machine/cont_gto', name: 'VVVF・GTO' },
+			{ path: '/tokyu/machine/cont_igbt', name: 'VVVF・IGBT' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();
