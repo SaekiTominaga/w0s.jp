@@ -5,7 +5,7 @@ import PageHeader from '@layouts/include/PageHeaderTokyu.astro';
 import PageSidebar from '@layouts/include/PageSidebar.astro';
 import PageFooter from '@layouts/include/PageFooter.astro';
 import ContentHeader from '@layouts/include/ContentHeader.astro';
-import ContentMain from '@layouts/include/ContentMain.astro';
+import ContentMain from '@layouts/include/ContentBody.astro';
 import ContentFooter from '@layouts/include/ContentFooter.astro';
 import type { StructuredData } from '@type/types.js';
 import FootnoteUtil from '@util/Footnote.js';
@@ -47,11 +47,11 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 			{
 				pageSidebar && (
 					<>
-						<div id="content" class="l-content">
+						<main id="content" class="l-content">
 							{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
 							<ContentMain html={mainHtml} footnoteData={footnoteData} />
 							{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
-						</div>
+						</main>
 
 						<PageSidebar />
 					</>
@@ -59,11 +59,11 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 			}
 			{
 				!pageSidebar && (
-					<div id="content" class="l-content -nosidebar">
+					<main id="content" class="l-content -nosidebar">
 						{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
 						<ContentMain html={mainHtml} footnoteData={footnoteData} />
 						{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
-					</div>
+					</main>
 				)
 			}
 
