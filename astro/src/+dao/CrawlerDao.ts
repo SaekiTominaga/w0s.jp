@@ -57,6 +57,11 @@ export default class CrawlerDao {
 	 * @returns カテゴリー情報
 	 */
 	async getCategoryMaster(): Promise<CategoryMaster[]> {
+		interface Select {
+			fk: number;
+			name: string;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -69,7 +74,7 @@ export default class CrawlerDao {
 				sort
 		`);
 
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const categories: CategoryMaster[] = [];
@@ -89,6 +94,11 @@ export default class CrawlerDao {
 	 * @returns 優先度情報
 	 */
 	async getPriorityMaster(): Promise<PriorityMaster[]> {
+		interface Select {
+			fk: number;
+			name: string;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -101,7 +111,7 @@ export default class CrawlerDao {
 				fk
 		`);
 
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const priorities: PriorityMaster[] = [];

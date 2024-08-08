@@ -16,7 +16,7 @@ Markup:
 
 Styleguide 1.5.1
 */
-:is(.l-content__main, .c-stack, .c-embed-sidebar__text, .p-section, .p-quote, .p-box, .p-toggle__contents, .p-library__main) {
+:is(.l-content__body, .c-stack, .c-embed-sidebar__text, .p-section, .p-quote, .p-box, .p-toggle__contents, .p-library__main) {
 	& > * + * {
 		margin-block-start: var(--stack-margin-base);
 	}
@@ -82,10 +82,10 @@ Styleguide 1.5.3
 .c-grid {
 	--_gap-row: 1em;
 	--_gap-col: 50px;
-	--_max-inline-size: auto;
+	--_min-inline-size: auto;
 
 	display: block grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(var(--_max-inline-size), 100%), 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(min(var(--_min-inline-size), 100%), 1fr));
 	gap: var(--_gap-row) var(--_gap-col);
 
 	&.-hdg-a {
@@ -102,23 +102,23 @@ Styleguide 1.5.3
 
 	/* 2カラム */
 	&.-wide {
-		--_max-inline-size: 330px;
+		--_min-inline-size: 360px;
 	}
 
 	/* 3カラム */
 	&.-medium {
-		--_max-inline-size: 240px;
+		--_min-inline-size: 240px;
 	}
 
 	/* 4カラム */
 	&.-narrow {
-		--_max-inline-size: 180px;
+		--_min-inline-size: 180px;
 	}
 
 	/* トップページ・ナビゲーション */
 	&.-top-nav {
 		--_gap-row: 4em;
-		--_max-inline-size: 330px;
+		--_min-inline-size: 360px;
 	}
 }
 

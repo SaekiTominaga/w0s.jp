@@ -190,8 +190,8 @@ export default class Contact {
 	 * @returns ラベルテキスト（ラベルが存在しない場合は value 属性値）
 	 */
 	static #getLabelTextFormControl(formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
-		const labelElements = formCtrl.labels!;
-		if (labelElements.length === 0) {
+		const labelElements = formCtrl.labels;
+		if (labelElements === null || labelElements.length === 0) {
 			console.info('label does not exist', formCtrl);
 			return formCtrl.value;
 		}

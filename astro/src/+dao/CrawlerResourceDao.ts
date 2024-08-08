@@ -31,6 +31,17 @@ export default class CrawlerResourceDao extends CrawlerDao {
 	 * @returns 巡回ページデータ
 	 */
 	async getResourcePageList(): Promise<ResourcePage[]> {
+		interface Select {
+			url: string;
+			title: string;
+			category: string;
+			priority: string;
+			browser: number;
+			selector: string | null;
+			content_hash: string;
+			error: number;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -55,7 +66,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				r.title
 		`);
 
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const resourcePage: ResourcePage[] = [];
@@ -194,6 +205,14 @@ export default class CrawlerResourceDao extends CrawlerDao {
 	 * @returns 巡回情報データ
 	 */
 	async getReviseData(url: string): Promise<ReviseData | null> {
+		interface Select {
+			title: string;
+			category: number;
+			priority: number;
+			browser: number;
+			selector: string | null;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -212,7 +231,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 			':url': url,
 		});
 
-		const row = await sth.get();
+		const row: Select | undefined = await sth.get();
 		await sth.finalize();
 
 		if (row === undefined) {

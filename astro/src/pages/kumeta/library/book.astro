@@ -16,13 +16,16 @@ const structuredData: StructuredData = {
 	dateModified: dayjs('2024-06-15'),
 	description: '本や雑誌（漫画雑誌を除く）において久米田先生のインタビューや描き下ろしイラストが掲載された事例、また久米田作品が紹介された事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
-	localNav: [
-		{ path: '/kumeta/library/manga', name: '漫画雑誌' },
-		{ path: '/kumeta/library/book', name: '図書、一般雑誌' },
-		{ path: '/kumeta/library/newspaper', name: '新聞' },
-		{ path: '/kumeta/library/freepaper', name: 'フリーペーパー' },
-		{ path: '/kumeta/library/web', name: 'Web' },
-	],
+	localNav: {
+		label: 'メディア紹介',
+		items: [
+			{ path: '/kumeta/library/manga', name: '漫画雑誌' },
+			{ path: '/kumeta/library/book', name: '図書、一般雑誌' },
+			{ path: '/kumeta/library/newspaper', name: '新聞' },
+			{ path: '/kumeta/library/freepaper', name: 'フリーペーパー' },
+			{ path: '/kumeta/library/web', name: 'Web' },
+		],
+	},
 	tocDirection: 'row',
 	moduleScripts: ['library-tag.mjs'],
 };

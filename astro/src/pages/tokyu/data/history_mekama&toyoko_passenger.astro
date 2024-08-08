@@ -21,11 +21,14 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/data/', name: '車両データ' },
 	],
-	localNav: [
-		{ path: '/tokyu/data/history_mekama&toyoko_passenger', name: '目黒・東横　旅客車' },
-		{ path: '/tokyu/data/history_mekama&toyoko_freight', name: '目黒・東横　機関車&貨車' },
-		{ path: '/tokyu/data/history_ikegami', name: '池上' },
-	],
+	localNav: {
+		label: '車歴表',
+		items: [
+			{ path: '/tokyu/data/history_mekama&toyoko_passenger', name: '目黒・東横　旅客車' },
+			{ path: '/tokyu/data/history_mekama&toyoko_freight', name: '目黒・東横　機関車&貨車' },
+			{ path: '/tokyu/data/history_ikegami', name: '池上' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();

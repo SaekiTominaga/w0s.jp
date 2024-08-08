@@ -23,7 +23,7 @@ export default class SidebarBlogNewly {
 		const jsonName = document.querySelector<HTMLMetaElement>('meta[name="w0s:blog:newly"]')?.content;
 
 		/* エンドポイントから JSON ファイルを取得する */
-		const entries: BlogNewlyJson[] = await SidebarBlogNewly.#fetch(jsonName);
+		const entries = await SidebarBlogNewly.#fetch(jsonName);
 
 		/* 取得したデータを HTML ページ内に挿入する */
 		this.#insert(entries);
@@ -48,8 +48,7 @@ export default class SidebarBlogNewly {
 			throw new Error(`"${response.url}" is ${String(response.status)} ${response.statusText}`);
 		}
 
-		const json = await response.json();
-		return json;
+		return response.json() as Promise<BlogNewlyJson[]>;
 	}
 
 	/**

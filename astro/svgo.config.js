@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import('svgo').Config} */
+export default {
 	plugins: [
 		'cleanupAttrs',
 		'mergeStyles',

@@ -15,10 +15,13 @@ const structuredData: StructuredData = {
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/data/', name: '車両データ' },
 	],
-	localNav: [
-		{ path: '/tokyu/data/acu_9000', name: '9000系' },
-		{ path: '/tokyu/data/acu_8500', name: '8500系後期車' },
-	],
+	localNav: {
+		label: '冷房配置バリエーション',
+		items: [
+			{ path: '/tokyu/data/acu_9000', name: '9000系' },
+			{ path: '/tokyu/data/acu_8500', name: '8500系後期車' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();

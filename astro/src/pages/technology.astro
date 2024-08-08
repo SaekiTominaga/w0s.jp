@@ -278,7 +278,7 @@ const structuredData: StructuredData = {
 				画像生成は <LinkExternal href="https://sharp.pixelplumbing.com/">sharp</LinkExternal>を利用しているが、AVIF への変換処理は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは問題があるため AVIF の初回リクエストに限っては代替として WebP を動的生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたら <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの、<LinkExternal href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</LinkExternal>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。
 			</li>
 			<li>
-				一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。一方で <LinkExternal href="https://tools.ietf.org/html/rfc7231#section-4.2.1">RFC 7231 の 4.2.1. Safe Methods</LinkExternal>では <q lang="en" cite="https://tools.ietf.org/html/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
+				一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。一方で <LinkExternal href="https://www.rfc-editor.org/rfc/rfc7231#section-4.2.1">RFC 7231 の 4.2.1. Safe Methods</LinkExternal>では <q lang="en" cite="https://www.rfc-editor.org/rfc/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
 				<ul>
 					<li>副作用を起こす実装が禁止されているものではない</li>
 					<li>アクセスログのように GET でサーバー内にファイルを追加・更新する機能は一般的に存在する</li>
@@ -290,7 +290,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="favicon">
-		<H slot="heading">ファビコン<small>（favicon.ico）</small></H>
+		<H slot="heading">ファビコン<small>（<code>favicon.ico</code>）</small></H>
 
 		<p>ファビコンは SVG 形式で提供している。</p>
 		<p><LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</LinkExternal>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<FootnoteReference>詳細はブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>（2021年10月）を参照。</FootnoteReference>。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>

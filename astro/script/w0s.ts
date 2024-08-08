@@ -100,7 +100,7 @@ if (sidebarBlogNewlyTemplateElement !== null) {
 const autoFocusElement = document.querySelector<HTMLElement>('.js-autofocus');
 if (autoFocusElement !== null) {
 	if (autoFocusElement.tabIndex === -1) {
-		// tabIndex IDL のデフォルト値は -1 <https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex>
+		/* tabIndex IDL のデフォルト値は -1 <https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex> */
 		autoFocusElement.tabIndex = -1;
 	}
 	autoFocusElement.focus();
