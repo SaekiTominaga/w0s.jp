@@ -2,7 +2,10 @@
 import DateWareki from './DateWareki.astro';
 import LinkExternal from './LinkExternal.astro';
 
+type Government = '鉄道院' | '鉄道省' | '運輸通信省' | '運輸省' | '国土交通省';
+
 interface Props {
+	government?: Government; // 省庁名
 	company: string; // 鉄道事業者名
 	no?: string; // 資料番号
 	date: string; // 年月日（YYYY-MM-DD, YYYY-MM, YYYY）
@@ -10,11 +13,11 @@ interface Props {
 	url: string; // 国立公文書館デジタルアーカイブの URL
 }
 
-const { company, no, date, title, url } = Astro.props;
+const { government, company, no, date, title, url } = Astro.props;
 ---
 
 <span class="c-ref -tetsudosho">
-	<b>鉄道省文書</b>
+	<b>{government ?? '鉄道省'}文書</b>
 	<LinkExternal href={url}>
 		<span class="c-ref__company">{company}</span>
 		{
