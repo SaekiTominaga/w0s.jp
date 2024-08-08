@@ -69,7 +69,10 @@ export interface StructuredData {
 	readonly description?: string;
 	readonly image?: string;
 	readonly breadcrumb?: StructuredDataUrl[];
-	readonly localNav?: StructuredDataUrl[];
+	readonly localNav?: {
+		label: string;
+		items: StructuredDataUrl[];
+	};
 	readonly tocDirection?: 'column' | 'row';
 	readonly moduleScripts?: string[];
 	readonly mainEntity?: SchemaOrgPerson | SchemaOrgOrganization;

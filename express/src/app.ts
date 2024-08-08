@@ -63,6 +63,7 @@ app.use(
 		if (basic !== undefined) {
 			const credentials = basicAuth(req);
 
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
 			const result = (await htpasswd.authenticate({
 				username: credentials?.name,
 				password: credentials?.pass,
@@ -178,8 +179,8 @@ app.use(
 /**
  * SSR
  */
-app.use((req, res, next): void => {
-	ssrHandler(req, res, next);
+app.use(async (req, res, next): Promise<void> => {
+	await ssrHandler(req, res, next);
 });
 
 /**

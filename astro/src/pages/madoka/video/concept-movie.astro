@@ -12,6 +12,16 @@ const structuredData: StructuredData = {
 	dateModified: dayjs('2017-12-11'),
 	description: '2015年〜2016年に開催された「MADOGATARI展」の会場で流された『コンセプトムービー』の映像について、タイプ A とタイプ B の違いなどの情報をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
+	localNav: {
+		label: '映像',
+		items: [
+			{ path: '/madoka/video/connect', name: 'コネクト' },
+			{ path: '/madoka/video/zenpen', name: '前編' },
+			{ path: '/madoka/video/kouhen', name: '後編' },
+			{ path: '/madoka/video/shinpen', name: '新編' },
+			{ path: '/madoka/video/concept-movie', name: 'コンセプトムービー' },
+		],
+	},
 };
 ---
 
@@ -339,12 +349,10 @@ const structuredData: StructuredData = {
 	</div>
 
 	<Section id="theater">
-		<H slot="heading">シャフトシアターの流れ</H>
+		<H slot="heading"><cite>シャフトシアター</cite>の流れ</H>
 
-		<div class="p-text">
-			<p>札幌会場以降は「シャフトシアター」として3面スクリーン上映が行われ、他作品も含めた10分前後の映像となりました。</p>
-			<p>金沢の「MADOGATARI GALLERY」は通常のスクリーンでしたが、様々な作品の映像が22分に渡って流れるものとなりました。</p>
-		</div>
+		<p>札幌会場以降は「<cite>シャフトシアター</cite>」として3面スクリーン上映が行われ、他作品も含めた10分前後の映像となりました。</p>
+		<p>金沢の「<cite>MADOGATARI GALLERY</cite>」は通常のスクリーンでしたが、様々な作品の映像が22分に渡って流れるものとなりました。</p>
 
 		<Section id="theater-sapporo" depth={2} headingType="b">
 			<H slot="heading">札幌会場<small>（2016年2月）</small></H>
@@ -388,7 +396,7 @@ const structuredData: StructuredData = {
 			</ol>
 		</Section>
 		<Section id="theater-kanazawa" depth={2} headingType="b">
-			<H slot="heading">金沢会場（MADOGATARI GALLERY）<small>（2016年12月）</small></H>
+			<H slot="heading">金沢会場（<cite>MADOGATARI GALLERY</cite>）<small>（2016年12月）</small></H>
 
 			<ol class="p-list-num">
 				<li>『暦ヒストリー』&lt;MADOGATARI展用特別映像&gt; 3:40</li>
@@ -415,11 +423,15 @@ const structuredData: StructuredData = {
 	<Section id="majyomoji">
 		<H slot="heading">魔女文字</H>
 
-		<div class="p-text">
-			<p>映像で読めるのは一行のみですが、MADOGATARI展大阪会場以降の劇団イヌカレーボードにあった展示物では続きを確認することができ、以下のようになっていました。</p>
-			<p class="u-madoka-font-witch">EIEN NI SITE<br />MAHOU NARU<br />KOTOWARI<br />NO MOTONI<br />KONO MONO NO<br />JIYUUTO AI WO<br />UBAU</p>
-			<p>（永遠にして魔法なる理の元にこの者の自由と愛を奪う）</p>
-		</div>
+		<p>映像で読めるのは一行のみですが、MADOGATARI展大阪会場以降の劇団イヌカレーボードにあった展示物では続きを確認することができ、以下のようになっていました。</p>
+		<pre class="u-madoka-font-witch">EIEN NI SITE
+MAHOU NARU
+KOTOWARI
+NO MOTONI
+KONO MONO NO
+JIYUUTO AI WO
+UBAU</pre>
+		<p>（永遠にして魔法なる理の元にこの者の自由と愛を奪う）</p>
 	</Section>
 
 	<Section id="report">

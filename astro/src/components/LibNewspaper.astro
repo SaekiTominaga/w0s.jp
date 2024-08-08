@@ -31,19 +31,16 @@ if (release !== undefined) {
 
 <section class="p-library" id={sectionId}>
 	<header class="p-library__header">
-		<div class="p-library__title">
-			{
-				headingLevel === 3 && (
-					<h3>
-						{title}
-						{releaseDisplay !== undefined && <time datetime={release}>{releaseDisplay}</time>}
-						{npClass !== undefined && <Fragment>{npClass}</Fragment>}
-					</h3>
-				)
-			}
-
-			<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
-		</div>
+		{
+			headingLevel === 3 && (
+				<h3 class="p-library__hdg">
+					{title}
+					{releaseDisplay !== undefined && <time datetime={release}>{releaseDisplay}</time>}
+					{npClass !== undefined && <>{npClass}</>}
+				</h3>
+			)
+		}
+		<p class="p-library__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
 		{
 			tags !== undefined && tags.length >= 1 && (
 				<ul class="p-library__tags">

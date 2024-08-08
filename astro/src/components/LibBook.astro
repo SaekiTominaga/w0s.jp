@@ -41,24 +41,20 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 
 <section class="p-library" id={sectionId}>
 	<header class="p-library__header">
-		<div class="p-library__title">
-			{headingLevel === 3 && <h3>{title}</h3>}
-			<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
-		</div>
+		{headingLevel === 3 && <h3 class="p-library__hdg">{title}</h3>}
+		<p class="p-library__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
 		{
 			release !== undefined && (
-				<Fragment>
-					{/* prettier-ignore */}
-					<p class="p-library__release"><time datetime={release}>{dateDisplay(release)}</time>発売</p>
-				</Fragment>
+				<p class="p-library__release">
+					<time datetime={release}>{dateDisplay(release)}</time>発売
+				</p>
 			)
 		}
 		{
 			distribution !== undefined && (
-				<Fragment>
-					{/* prettier-ignore */}
-					<p class="p-library__release"><time datetime={distribution}>{dateDisplay(distribution)}</time>配布</p>
-				</Fragment>
+				<p class="p-library__release">
+					<time datetime={distribution}>{dateDisplay(distribution)}</time>配布
+				</p>
 			)
 		}
 		{
@@ -91,8 +87,8 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		{amazonAsin === undefined && <slot />}
 		{
 			amazonAsin !== undefined && (
-				<div class="p-embed-sidebar -embed-first">
-					<div class="p-embed-sidebar__embed">
+				<div class="c-embed-sidebar -embed-first">
+					<div class="c-embed-sidebar__embed">
 						<div class="p-embed-link">
 							<a href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`}>
 								{amazonImageId !== undefined && <img src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} srcset={`https://m.media-amazon.com/images/I/${amazonImageId}._SL320_.jpg 2x`} alt="" width={amazonImageWidth} height={amazonImageHeight} />}
@@ -101,7 +97,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 							</a>
 						</div>
 					</div>
-					<div class="p-embed-sidebar__text">
+					<div class="c-embed-sidebar__text">
 						<slot />
 					</div>
 				</div>

@@ -4,7 +4,7 @@ import Head from '@layouts/include/HeadAdmin.astro';
 import PageHeader from '@layouts/include/PageHeader.astro';
 import PageFooter from '@layouts/include/PageFooter.astro';
 import ContentHeader from '@layouts/include/ContentHeader.astro';
-import ContentMain from '@layouts/include/ContentMain.astro';
+import ContentMain from '@layouts/include/ContentBody.astro';
 import type { StructuredData } from '@type/types.js';
 import FootnoteUtil from '@util/Footnote.js';
 import SsrUtil from '@util/Ssr.js';
@@ -37,10 +37,10 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 		<div class="l-page">
 			<PageHeader top={false} />
 
-			<div id="content" class="l-content -nosidebar">
+			<main id="content" class="l-content -nosidebar">
 				<ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />
 				<ContentMain html={mainHtml} footnoteData={footnoteData} />
-			</div>
+			</main>
 
 			<PageFooter pagePath={pagePath} ad={false} />
 		</div>

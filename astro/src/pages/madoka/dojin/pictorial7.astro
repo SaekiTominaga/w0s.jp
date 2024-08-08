@@ -16,15 +16,18 @@ const structuredData: StructuredData = {
 	description: '『魔法少女まどか☆マギカ』 TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめまた同人誌の紹介です。',
 	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial7_cover.jpg',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
-	localNav: [
-		{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
-		{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
-		{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
-		{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
-		{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
-		{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
-		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
-	],
+	localNav: {
+		label: '円環ピクトリアル',
+		items: [
+			{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
+			{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
+			{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
+			{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
+			{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
+			{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
+			{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();
@@ -34,12 +37,10 @@ const slugger = new GithubSlugger();
 	<Section id="introduction">
 		<H slot="heading">概要</H>
 
-		<div class="p-text">
-			<p>『魔法少女まどか☆マギカ』 TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめました。一部は放送時期による違い、 Blu-ray 版と DVD 版の違いにも言及しています。</p>
-		</div>
+		<p>『<cite>魔法少女まどか☆マギカ</cite>』TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめました。一部は放送時期による違い、 Blu-ray 版と DVD 版の違いにも言及しています。</p>
 
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__text">
+		<div class="c-embed-sidebar -embed-first">
+			<div class="c-embed-sidebar__text">
 				<dl class="p-list-table">
 					<div>
 						<dt>発行日</dt>
@@ -55,7 +56,7 @@ const slugger = new GithubSlugger();
 					</div>
 				</dl>
 			</div>
-			<div class="p-embed-sidebar__embed">
+			<div class="c-embed-sidebar__embed">
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="madoka/dojin/pictorial7_cover.jpg" alt="表紙画像: イベント会場での展示ブースの中央にあるディスプレイに『まどか☆マギカ』のアニメが流れている様子を写した写真" width={170} height={240} quality={60} />
@@ -126,22 +127,22 @@ const slugger = new GithubSlugger();
 				<tbody>
 					<tr>
 						<td>p.40</td>
-						<td>10m41sの説明で「HWOBHM」とあるのは「NWOBHM」が正しい。</td>
+						<td>10m41sの説明で<q>HWOBHM</q>とあるのは「NWOBHM」が正しい。</td>
 						<td>ver.1.0.1</td>
 					</tr>
 					<tr>
 						<td>p.59</td>
-						<td>4m21sの説明で「ストロー」と書いてしまったが、おそらく傘の石突部分と思われる。</td>
+						<td>4m21sの説明で<q>ストロー</q>と書いてしまったが、おそらく傘の石突部分と思われる。</td>
 						<td>ver.1.0.1</td>
 					</tr>
 					<tr>
 						<td>p.61</td>
-						<td>16m02s〜16m30sの説明内に掲載しているサーカス団のキャプチャー画像は、15m47sの部分にあるのが正しい。</td>
+						<td>16m02s〜16m30s の説明内に掲載しているサーカス団のキャプチャー画像は、15m47s の部分にあるのが正しい。</td>
 						<td>ver.1.0.1</td>
 					</tr>
 					<tr>
 						<td>p.81</td>
-						<td>「提供クレジット」一覧の10話で「TOKYO MAX」とあるのは「TOKYO MX」が正しい。</td>
+						<td><q>提供クレジット</q>一覧の10話で<q>TOKYO MAX</q>とあるのは「TOKYO MX」が正しい。</td>
 						<td>ver.1.0.1</td>
 					</tr>
 				</tbody>
@@ -152,9 +153,7 @@ const slugger = new GithubSlugger();
 	<Section id="add">
 		<H slot="heading">追加情報</H>
 
-		<div class="p-text">
-			<p>本の発行後に判明した差分データです。</p>
-		</div>
+		<p>本の発行後に判明した差分データです。</p>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<H slot="heading">第1話</H>
@@ -178,7 +177,7 @@ const slugger = new GithubSlugger();
 			<H slot="heading">第6話</H>
 
 			<ul class="p-list">
-				<li>4m47s: キュゥべえのセリフが修正。放送版は「余分な<em>ソウルジェム</em>があれば魔法を出し惜しみせずに無駄遣いすることだってできる。それが杏子の強みだ。」と言っていたが、パッケージ版では「余分な<em>グリーフシード</em>があれば……」に修正された。</li>
+				<li>4m47s: キュゥべえのセリフが修正。放送版は<q>余分な<em>ソウルジェム</em>があれば魔法を出し惜しみせずに無駄遣いすることだってできる。それが杏子の強みだ。</q>と言っていたが、パッケージ版では<q>余分な<em>グリーフシード</em>があれば……</q>に修正された。</li>
 				<li>11m13s: 眠るまどかが作画修正。目の表現が細くなるなどの変化。</li>
 				<li>11m16s: 眠るまどかが作画修正。<small>（11m13sと同じ変化）</small></li>
 			</ul>
@@ -200,7 +199,7 @@ const slugger = new GithubSlugger();
 				<li>17m41s: 仁美の後方に椅子の背もたれが追加。<small>（16m49sと同じ変化）</small></li>
 				<li>22m04s: さやかが着地するときに衝撃で血しぶきと砂埃のようなものが舞い、画面全体がぼやけるエフェクトが追加された。</li>
 				<li>22m06s: ElsaMariaを切り刻むときに衝撃で画面全体が揺れる効果が追加され、また血しぶきが追加された。</li>
-				<!-- 「21m57s〜22m20s ElsaMariaを切り刻むときに赤い血が噴き出るようになった。」は削除。 -->
+				<!-- 21m57s〜22m20s: <q>ElsaMariaを切り刻むときに赤い血が噴き出るようになった。</q>は削除。 -->
 				<li>22m14s: ElsaMariaの血しぶきが追加。</li>
 			</ul>
 		</Section>
@@ -229,7 +228,7 @@ const slugger = new GithubSlugger();
 				<li>20m21s: さやかに近づく杏子が小さくなった。</li>
 				<li>20m21s〜21m54s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。</li>
 				<li>21m03s: さやかの手のアップのカットが描き直された。とくにソウルジェムを持つ左手の薬指と小指の角度変化が目立つ。</li>
-				<!-- 「21m06s 杏子の表情が変更。」は削除。　 -->
+				<!-- 21m06s: <q>杏子の表情が変更。</q>は削除。　 -->
 			</ul>
 		</Section>
 
@@ -241,7 +240,7 @@ const slugger = new GithubSlugger();
 				<li>0m02s〜0m13s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。<small>（8話の20m21s〜21m54sと同じ変化）</small></li>
 				<li>6m27s〜8m04s: ぬいぐるみやキュゥべえが乗っている棚の位置が右側にずれ、キュゥべえがまどかの直上に来るようになった。</li>
 				<li>9m31s: ぬいぐるみが乗っている棚の位置が右側にずれた。<small>（6m27s〜8m04sと同じ変化）</small></li>
-				<li>15m16s: 夕焼けに染まる街並みのカットで、BGM「Terror adhaerens」が流れる前にシュワーンというSEがあるが、パッケージ版ではSEが入るタイミングが遅くなり、音量も小さくなった。</li>
+				<li>15m16s: 夕焼けに染まる街並みのカットで、BGM「<cite>Terror adhaerens</cite>」が流れる前にシュワーンというSEがあるが、パッケージ版ではSEが入るタイミングが遅くなり、音量も小さくなった。</li>
 				<li>17m38s: まどか作画修正。<ins>奥のレンガ壁やポスターも描き直された。</ins></li>
 			</ul>
 		</Section>
@@ -300,8 +299,6 @@ const slugger = new GithubSlugger();
 	<Section id="etc">
 		<H slot="heading">小ネタ</H>
 
-		<div class="p-text">
-			<p>メガミマガジン2011年5月号に付属の「魔法少女まどか☆マギカ スペシャルブック」のスタッフコメントで、シリーズディレクターの宮本幸裕氏より<q>キュゥべえの提供バック絵を選んでいる</q>という発言がある。</p>
-		</div>
+		<p>メガミマガジン2011年5月号に付属の「<cite>魔法少女まどか☆マギカ　スペシャルブック</cite>」のスタッフコメントで、シリーズディレクターの宮本幸裕氏より<q>キュゥべえの提供バック絵を選んでいる</q>という発言がある。</p>
 	</Section>
 </Layout>

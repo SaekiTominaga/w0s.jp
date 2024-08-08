@@ -16,13 +16,16 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/', name: 'まどか資料館' },
 		{ path: '/madoka/yomoyama/kumeta', name: '久米田作品における『まどか☆マギカ』ネタ' },
 	],
-	localNav: [
-		{ path: '/madoka/yomoyama/kumeta_kaizo', name: 'かってに改蔵' },
-		{ path: '/madoka/yomoyama/kumeta_zetsubou', name: 'さよなら絶望先生' },
-		{ path: '/madoka/yomoyama/kumeta_joshiraku', name: 'じょしらく' },
-		{ path: '/madoka/yomoyama/kumeta_sekadoro', name: 'せっかち伯爵と時間どろぼう' },
-		{ path: '/madoka/yomoyama/kumeta_kakushigoto', name: 'かくしごと' },
-	],
+	localNav: {
+		label: '久米田作品',
+		items: [
+			{ path: '/madoka/yomoyama/kumeta_kaizo', name: 'かってに改蔵' },
+			{ path: '/madoka/yomoyama/kumeta_zetsubou', name: 'さよなら絶望先生' },
+			{ path: '/madoka/yomoyama/kumeta_joshiraku', name: 'じょしらく' },
+			{ path: '/madoka/yomoyama/kumeta_sekadoro', name: 'せっかち伯爵と時間どろぼう' },
+			{ path: '/madoka/yomoyama/kumeta_kakushigoto', name: 'かくしごと' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();
@@ -32,10 +35,8 @@ const slugger = new GithubSlugger();
 	<Section id="introduction">
 		<H slot="heading">作品概要</H>
 
-		<div class="p-text">
-			<p>「週刊少年サンデー」において1998年〜2004年に連載された作品であり、連載終了から7年経ってまさかのアニメ化（OVA）を果たしました。このアニメは『さよなら絶望先生』と同じくシャフト制作で、総監督は新房昭之、メインキャストとして喜多村英梨、斎藤千和など、『魔法少女まどか☆マギカ』と共通する関係者も多いです。</p>
-			<p>アニメの発売時期が2011年ということもあり、当時アニメイトTVで配信されたウェブラジオでは何度か『まどか☆マギカ』に言及されたほか、同時期に「週刊少年マガジン」に掲載された特別番外編では、『かってに改蔵』の漫画としては唯一『魔法少女まどか☆マギカ』ネタが仕込まれています。</p>
-		</div>
+		<p>「<cite>週刊少年サンデー</cite>」において1998年〜2004年に連載された作品であり、連載終了から7年経ってまさかのアニメ化（OVA）を果たしました。このアニメは『<cite>さよなら絶望先生</cite>』と同じくシャフト制作で、総監督は新房昭之、メインキャストとして喜多村英梨、斎藤千和など、『<cite>魔法少女まどか☆マギカ</cite>』と共通する関係者も多いです。</p>
+		<p>アニメの発売時期が2011年ということもあり、当時アニメイトTVで配信されたウェブラジオでは何度か『<cite>まどか☆マギカ</cite>』に言及されたほか、同時期に「<cite>週刊少年マガジン</cite>」に掲載された特別番外編では、『<cite>かってに改蔵</cite>』の漫画としては唯一『<cite>魔法少女まどか☆マギカ</cite>』ネタが仕込まれています。</p>
 	</Section>
 
 	<Section id="manga">
@@ -44,21 +45,19 @@ const slugger = new GithubSlugger();
 		<Section slugger={slugger} depth={2} headingType="b">
 			<H slot="heading">特別番外編　損して得とれない</H>
 
-			<div class="p-text">
-				<p>2011年4月27日　「週刊少年マガジン2011年22・23合併号」掲載</p>
-				<p>10ページ目（「かってに研究しやがれBOOK 追補版」p.47）</p>
-			</div>
+			<p>2011年4月27日　「週刊少年マガジン2011年22・23合併号」掲載</p>
+			<p>10ページ目（「<cite>かってに研究しやがれBOOK 追補版</cite>」p.47）</p>
 
 			<div class="p-box">
 				<ul class="p-list">
 					<li>誰も得をしない例として、女性に暁美ほむらのフィギュア（眼鏡ほむら魔法少女服）を贈る例が描かれている。</li>
-					<li>フィギュアケースの表記は「ホム」。</li>
-					<li>原形師の机の棚には「ホムホム」という本と「CHiwA」と書かれたティッシュボックス。</li>
+					<li>フィギュアケースの表記は<q>ホム</q>。</li>
+					<li>原形師の机の棚には<q>ホムホム</q>という本と<q>CHiwA</q>と書かれたティッシュボックス。</li>
 				</ul>
 			</div>
 
 			<ul class="p-notes">
-				<li>なお、これらのことは「かってに研究しやがれBOOK 追補版」p.51 の「改蔵辞典 番外編」でもしっかり解説されている。</li>
+				<li>なお、これらのことは「<cite>かってに研究しやがれBOOK 追補版</cite>」p.51 の「<cite>改蔵辞典 番外編</cite>」でもしっかり解説されている。</li>
 			</ul>
 
 			<Amazon headingLevel={4}>
@@ -68,22 +67,18 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="radio">
-		<H slot="heading">ラジオ<small>（かってに改蔵ラジオしてもいいぜ）</small></H>
+		<H slot="heading">ラジオ<small>（<cite>かってに改蔵ラジオしてもいいぜ</cite>）</small></H>
 
-		<div class="p-text">
-			<p>全12回配信 + DJCD1枚。パーソナリティは斎藤千和（坪内地丹 役）で、初回と最終回を除きゲストを迎えた2名体制で送られた。</p>
-		</div>
+		<p>全12回配信 + DJCD1枚。パーソナリティは斎藤千和（坪内地丹 役）で、初回と最終回を除きゲストを迎えた2名体制で送られた。</p>
 
 		<Section slugger={slugger} depth={2} headingType="b">
 			<H slot="heading">第4回　いつかギリギリトークする日…!?</H>
 
-			<div class="p-text">
-				<p>2011年7月27日配信</p>
-				<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
-			</div>
+			<p>2011年7月27日配信</p>
+			<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「水を差す人がいます」</H>
+				<H slot="heading">コーナー「<cite>水を差す人がいます</cite>」</H>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -93,7 +88,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「とらうま高校だれとく部」</H>
+				<H slot="heading">コーナー「<cite>とらうま高校だれとく部</cite>」</H>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -107,9 +102,7 @@ const slugger = new GithubSlugger();
 				<H slot="heading">Webサイト掲載の次回予告</H>
 
 				<div class="p-box">
-					<div class="p-text">
-						<p>「かってに次回予告」、地丹と羽美がアイツと契約して魔法少女に!?次回、『かってに魔法少女ラジオ』放送開始！(しません！)</p>
-					</div>
+					<p>「かってに次回予告」、地丹と羽美がアイツと契約して魔法少女に!?次回、『かってに魔法少女ラジオ』放送開始！(しません！)</p>
 				</div>
 			</Section>
 		</Section>
@@ -117,13 +110,11 @@ const slugger = new GithubSlugger();
 		<Section slugger={slugger} depth={2} headingType="b">
 			<H slot="heading">第8回　結局はオレの出番だよ。</H>
 
-			<div class="p-text">
-				<p>2011年9月21日配信</p>
-				<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
-			</div>
+			<p>2011年9月21日配信</p>
+			<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「理論上は可能なんです!」</H>
+				<H slot="heading">コーナー「<cite>理論上は可能なんです!</cite>」</H>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -136,20 +127,16 @@ const slugger = new GithubSlugger();
 		<Section slugger={slugger} depth={2} headingType="b">
 			<H slot="heading">第11回　スレスレ★サービス</H>
 
-			<div class="p-text">
-				<p>2011年11月2日配信</p>
-				<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
-			</div>
+			<p>2011年11月2日配信</p>
+			<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
 				<H slot="heading">Webサイト掲載の次回予告</H>
 
 				<div class="p-box">
-					<div class="p-text">
-						<p>「とらうま高校だれとく部」、羽美はあの魔法少女たちにも勝てるほど危険な存在!?そんな羽美の○○ソングが聴けるのはこの番組だけ！</p>
-						<p><em>【中略】</em></p>
-						<p>「かってに次回予告」、とらうま町にワルプ○ギスの夜が出現！しかし、その正体はヤンデレの域を超えた羽美の真の姿だった？次回、「魔法少女？ちたん☆マギカ」を…(絶対に放送しません！絶対に!!!)</p>
-					</div>
+					<p>「とらうま高校だれとく部」、羽美はあの魔法少女たちにも勝てるほど危険な存在!?そんな羽美の○○ソングが聴けるのはこの番組だけ！</p>
+					<p><em>【中略】</em></p>
+					<p>「かってに次回予告」、とらうま町にワルプ○ギスの夜が出現！しかし、その正体はヤンデレの域を超えた羽美の真の姿だった？次回、「魔法少女？ちたん☆マギカ」を…(絶対に放送しません！絶対に!!!)</p>
 				</div>
 			</Section>
 		</Section>
@@ -157,13 +144,11 @@ const slugger = new GithubSlugger();
 		<Section slugger={slugger} depth={2} headingType="b">
 			<H slot="heading">DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜</H>
 
-			<div class="p-text">
-				<p>2011年10月26日発売</p>
-				<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
-			</div>
+			<p>2011年10月26日発売</p>
+			<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「とらうま高校だれとく部（前半）」</H>
+				<H slot="heading">コーナー「<cite>とらうま高校だれとく部（前半）</cite>」</H>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -194,7 +179,7 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「とらうま高校だれとく部（後半）」</H>
+				<H slot="heading">コーナー「<cite>とらうま高校だれとく部（後半）</cite>」</H>
 
 				<div class="p-box">
 					<ul class="p-list">

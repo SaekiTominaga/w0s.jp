@@ -15,15 +15,18 @@ const structuredData: StructuredData = {
 	description: '『劇場版　魔法少女まどか☆マギカ』の韓国での上映の様子をまとめた同人誌の紹介です。',
 	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial10_cover.jpg',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
-	localNav: [
-		{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
-		{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
-		{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
-		{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
-		{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
-		{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
-		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
-	],
+	localNav: {
+		label: '円環ピクトリアル',
+		items: [
+			{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
+			{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
+			{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
+			{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
+			{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
+			{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
+			{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
+		],
+	},
 };
 ---
 
@@ -31,13 +34,11 @@ const structuredData: StructuredData = {
 	<Section id="introduction">
 		<H slot="heading">概要</H>
 
-		<div class="p-text">
-			<p>韓国でこれまでに行われた劇場版上映の様子をまとめました。</p>
-			<p>2018年に行われた [新編] の全国公開レポートを中心に、興行統計からの考察や韓国版映像の比較などを紹介。また2012年と2013年にソウルで行われた特別上映会の貴重な写真も掲載しています。</p>
-		</div>
+		<p>韓国でこれまでに行われた劇場版上映の様子をまとめました。</p>
+		<p>2018年に行われた [新編] の全国公開レポートを中心に、興行統計からの考察や韓国版映像の比較などを紹介。また2012年と2013年にソウルで行われた特別上映会の貴重な写真も掲載しています。</p>
 
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__text">
+		<div class="c-embed-sidebar -embed-first">
+			<div class="c-embed-sidebar__text">
 				<dl class="p-list-table">
 					<div>
 						<dt>発行日</dt>
@@ -53,7 +54,7 @@ const structuredData: StructuredData = {
 					</div>
 				</dl>
 			</div>
-			<div class="p-embed-sidebar__embed">
+			<div class="c-embed-sidebar__embed">
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="madoka/dojin/pictorial10_cover.jpg" alt="表紙画像: 建物内にある[新編]の告知イラストが書かれた大きなポスターと、券売機ディスプレイに流れる[新編]映像の写真" width={170} height={240} quality={60} />
@@ -120,30 +121,25 @@ const structuredData: StructuredData = {
 	<Section id="add">
 		<H slot="heading">追加情報</H>
 
-		<div class="p-text">
-			<p>
-				p.12
-				<q>日本国外でのイベント上映の動向までは把握していないが、少なくとも一般上映において劇場でパッケージ版映像が流れたのは世界でも初めて、かつ今のところは唯一の例と思われる。</q>の部分に関する補足です。2014年4月の Blu-ray, DVD 発売以降、海外でイベント上映が行われたのは下記の2件を把握しています。
-			</p>
-		</div>
+		<p>p.12 <q>日本国外でのイベント上映の動向までは把握していないが、少なくとも一般上映において劇場でパッケージ版映像が流れたのは世界でも初めて、かつ今のところは唯一の例と思われる。</q>の部分に関する補足です。2014年4月の Blu-ray, DVD 発売以降、海外でイベント上映が行われたのは下記の2件を把握しています。</p>
 
 		<ul class="p-list">
 			<li>
-				2014年7月5日〜14日に中国・上海で開催された「CCG EXPO 2014」の関連イベントとして、期間中に複数の映画館にて[前編][後編]も含めた3部作の上映が行われました。
+				2014年7月5日〜14日に中国・上海で開催された「<cite>CCG EXPO 2014</cite>」の関連イベントとして、期間中に複数の映画館にて [前編] [後編] も含めた3部作の上映が行われました。
 				<ul>
 					<li>
 						<LinkExternal href="https://web.archive.org/web/20161114000219/http://www.ccgexpo.cn/events/24">イベント公式サイトの告知</LinkExternal>
 					</li>
 					<li>
-						<LinkExternal href="https://www.weibo.com/2539961154/Bc0Cvh2ms">「上海发布」の新浪微博アカウントによるタイムテーブル</LinkExternal>
+						<LinkExternal href="https://www.weibo.com/2539961154/Bc0Cvh2ms">「<span lang="zh-Hans">上海发布</span>」の新浪微博アカウントによるタイムテーブル</LinkExternal>
 					</li>
 				</ul>
 			</li>
 			<li>
-				2014年12月5日〜7日にシンガポールで開催された「AFA 2014」の関連イベントとして、同月9〜11日に上映が行われました。
+				2014年12月5日〜7日にシンガポールで開催された「<cite>AFA 2014</cite>」の関連イベントとして、同月9〜11日に上映が行われました。
 				<ul>
 					<li>
-						<LinkExternal href="https://sgcafe.com/2014/12/aniplex-show-idolmster-movie-madoka-magica-rebellion-anohana-movie-singapore-afa/">日本のサブカル情報を発信している「SGCafe」による記事</LinkExternal>
+						<LinkExternal href="https://sgcafe.com/2014/12/aniplex-show-idolmster-movie-madoka-magica-rebellion-anohana-movie-singapore-afa/">日本のサブカル情報を発信している「<cite>SGCafe</cite>」による記事</LinkExternal>
 					</li>
 				</ul>
 			</li>

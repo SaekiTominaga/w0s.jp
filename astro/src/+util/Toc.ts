@@ -11,6 +11,7 @@ export default class TocUtil {
 	 */
 	static getData = (document: Document): Map<string, string> => {
 		const { window } = new JSDOM('');
+		// eslint-disable-next-line new-cap
 		const purify = DOMPurify(window);
 
 		const tocData = new Map<string, string>();
@@ -22,7 +23,7 @@ export default class TocUtil {
 			}
 
 			const sanitizedHeadingHtml = purify.sanitize(headingHtml, {
-				ALLOWED_TAGS: ['small', 'span'],
+				ALLOWED_TAGS: ['small', 'cite', 'code', 'span'],
 				ALLOWED_ATTR: ['lang'],
 			});
 			if (headingHtml !== sanitizedHeadingHtml) {

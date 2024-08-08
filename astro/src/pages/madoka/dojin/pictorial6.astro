@@ -15,15 +15,18 @@ const structuredData: StructuredData = {
 	description: '『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』の劇場上映版と Blu-ray / DVD 版の違いをまとめた同人誌の紹介です。',
 	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial6_cover.jpg',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
-	localNav: [
-		{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
-		{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
-		{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
-		{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
-		{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
-		{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
-		{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
-	],
+	localNav: {
+		label: '円環ピクトリアル',
+		items: [
+			{ path: '/madoka/dojin/pictorial6', name: 'No.6 叛逆比較' },
+			{ path: '/madoka/dojin/pictorial7', name: 'No.7 TV比較' },
+			{ path: '/madoka/dojin/pictorial8', name: 'No.8 講義録' },
+			{ path: '/madoka/dojin/pictorial9', name: 'No.9 さやかポスター' },
+			{ path: '/madoka/dojin/pictorial10', name: 'No.10 韓国上映' },
+			{ path: '/madoka/dojin/pictorial11', name: 'No.11 マギレコ海外' },
+			{ path: '/madoka/dojin/zaiko', name: '在庫状況' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();
@@ -33,13 +36,11 @@ const slugger = new GithubSlugger();
 	<Section id="introduction">
 		<H slot="heading">概要</H>
 
-		<div class="p-text">
-			<p>『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』の劇場上映版と Blu-ray / DVD 版の違いをまとめました。</p>
-			<p>多数の協力者のもと、400か所近い差分を解説し、一部は TVCM や特典フィルムなどのデータを使って比較画像を紹介します。</p>
-		</div>
+		<p>『<cite>劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語</cite>』の劇場上映版と Blu-ray / DVD 版の違いをまとめました。</p>
+		<p>多数の協力者のもと、400か所近い差分を解説し、一部は TVCM や特典フィルムなどのデータを使って比較画像を紹介します。</p>
 
-		<div class="p-embed-sidebar -embed-first">
-			<div class="p-embed-sidebar__text">
+		<div class="c-embed-sidebar -embed-first">
+			<div class="c-embed-sidebar__text">
 				<dl class="p-list-table">
 					<div>
 						<dt>発行日</dt>
@@ -55,7 +56,7 @@ const slugger = new GithubSlugger();
 					</div>
 				</dl>
 			</div>
-			<div class="p-embed-sidebar__embed">
+			<div class="c-embed-sidebar__embed">
 				<figure class="c-fit">
 					<div class="p-embed -border">
 						<Image path="madoka/dojin/pictorial6_cover.jpg" alt="表紙画像: [新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} />
@@ -105,7 +106,7 @@ const slugger = new GithubSlugger();
 				<tbody>
 					<tr>
 						<td>p.31</td>
-						<td>Chapter 29 の「1h52m02s 背景のクレジットに5人追加。」のタイムは、正しくは「1h51m35s」。</td>
+						<td>Chapter 29 の<q>1h52m02s 背景のクレジットに5人追加。</q>のタイムは、正しくは「1h51m35s」。</td>
 						<td>ver.1.0.1</td>
 					</tr>
 				</tbody>
@@ -116,9 +117,7 @@ const slugger = new GithubSlugger();
 	<Section id="add">
 		<H slot="heading">追加情報</H>
 
-		<div class="p-text">
-			<p>本の発行後に判明した差分データです。</p>
-		</div>
+		<p>本の発行後に判明した差分データです。</p>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<H slot="heading">Chapter 10</H>

@@ -16,15 +16,15 @@ const { pagePath, structuredData, tocData } = Astro.props;
 		structuredData.breadcrumb !== undefined && (
 			<p class="p-topic-path">
 				{structuredData.breadcrumb.map((breadcrumbItem, index) => (
-					<Fragment>
+					<>
 						{index === 0 && <a href={breadcrumbItem.path}>ホーム</a>}
 						{index >= 1 && (
-							<Fragment>
+							<>
 								<span class="p-topic-path__separator">&gt;</span>
 								<a href={breadcrumbItem.path}>{breadcrumbItem.name}</a>
-							</Fragment>
+							</>
 						)}
-					</Fragment>
+					</>
 				))}
 				<span class="p-topic-path__separator">&gt;</span>
 				<a aria-current="location">現在のページ</a>
@@ -53,9 +53,9 @@ const { pagePath, structuredData, tocData } = Astro.props;
 
 	{
 		structuredData.localNav !== undefined && (
-			<nav>
+			<nav aria-label={structuredData.localNav.label}>
 				<ul class="p-local-nav">
-					{structuredData.localNav.map((localNavItem) => (
+					{structuredData.localNav.items.map((localNavItem) => (
 						<li>
 							{localNavItem.path !== pagePath && <LinkBullet href={localNavItem.path}>{localNavItem.name}</LinkBullet>}
 							{localNavItem.path === pagePath && <LinkBullet>{localNavItem.name}</LinkBullet>}

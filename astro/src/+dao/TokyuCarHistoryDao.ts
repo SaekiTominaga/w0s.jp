@@ -22,7 +22,7 @@ interface Car {
 	register: Date;
 	renewal: string;
 	scrap: boolean;
-	transfer: string;
+	transfer: string | null;
 	change: Change[] | null;
 }
 
@@ -72,6 +72,11 @@ export default class TokyuCarHistoryDao {
 	 * @returns 車種情報
 	 */
 	async getCarSeries(): Promise<Series[]> {
+		interface Select {
+			fk: string;
+			series: string;
+		}
+
 		const dbh = await this.getDbh();
 
 		const sth = await dbh.prepare(`
@@ -84,7 +89,7 @@ export default class TokyuCarHistoryDao {
 				display,
 				display_cargroup
 		`);
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const carSeries: Series[] = [];
@@ -118,6 +123,18 @@ export default class TokyuCarHistoryDao {
 		registerEnd: string | null,
 		sort: string | null,
 	): Promise<Car[]> {
+		interface Select {
+			num: string;
+			sign: string;
+			series: string;
+			type: string;
+			annual: string;
+			register: number;
+			renewal: string;
+			scrap: number;
+			transfer: string | null;
+		}
+
 		const dbh = await this.getDbh();
 
 		let sql = `
@@ -186,8 +203,7 @@ export default class TokyuCarHistoryDao {
 			case 'reg': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
 				sql += ' ORDER BY c.register_date, s.display, c.annual, i.sort, c.type, c.num';
 				break;
-			default:
-				// 車種別車号ソート（車種、車号）
+			default: // 車種別車号ソート（車種、車号）
 				sql += ' ORDER BY s.display, c.num';
 		}
 
@@ -215,7 +231,7 @@ export default class TokyuCarHistoryDao {
 			await sth.bind(Object.fromEntries(bindParams));
 		}
 
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const carDataList: Car[] = [];
@@ -251,6 +267,13 @@ export default class TokyuCarHistoryDao {
 	 * @returns 改番情報
 	 */
 	static async #getCarChangeData(dbh: sqlite.Database): Promise<Map<string, Change[]>> {
+		interface Select {
+			now_num: string;
+			before_num: string;
+			sign: string;
+			date: number;
+		}
+
 		const sth = await dbh.prepare(`
 			SELECT
 				c.now_num AS now_num,
@@ -267,12 +290,12 @@ export default class TokyuCarHistoryDao {
 			ORDER BY
 				c.change_date
 		`);
-		const rows = await sth.all();
+		const rows: Select[] = await sth.all();
 		await sth.finalize();
 
 		const changeDataMap = new Map<string, Change[]>();
 		for (const row of rows) {
-			const nowNumber: string = row.now_num;
+			const nowNumber = row.now_num;
 			const dateStr = String(row.date);
 
 			const changeDataList = changeDataMap.get(nowNumber) ?? [];

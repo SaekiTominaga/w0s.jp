@@ -16,13 +16,16 @@ const structuredData: StructuredData = {
 		{ path: '/madoka/', name: 'まどか資料館' },
 		{ path: '/madoka/yomoyama/kumeta', name: '久米田作品における『まどか☆マギカ』ネタ' },
 	],
-	localNav: [
-		{ path: '/madoka/yomoyama/kumeta_kaizo', name: 'かってに改蔵' },
-		{ path: '/madoka/yomoyama/kumeta_zetsubou', name: 'さよなら絶望先生' },
-		{ path: '/madoka/yomoyama/kumeta_joshiraku', name: 'じょしらく' },
-		{ path: '/madoka/yomoyama/kumeta_sekadoro', name: 'せっかち伯爵と時間どろぼう' },
-		{ path: '/madoka/yomoyama/kumeta_kakushigoto', name: 'かくしごと' },
-	],
+	localNav: {
+		label: '久米田作品',
+		items: [
+			{ path: '/madoka/yomoyama/kumeta_kaizo', name: 'かってに改蔵' },
+			{ path: '/madoka/yomoyama/kumeta_zetsubou', name: 'さよなら絶望先生' },
+			{ path: '/madoka/yomoyama/kumeta_joshiraku', name: 'じょしらく' },
+			{ path: '/madoka/yomoyama/kumeta_sekadoro', name: 'せっかち伯爵と時間どろぼう' },
+			{ path: '/madoka/yomoyama/kumeta_kakushigoto', name: 'かくしごと' },
+		],
+	},
 };
 
 const slugger = new GithubSlugger();
@@ -32,9 +35,7 @@ const slugger = new GithubSlugger();
 	<Section id="introduction">
 		<H slot="heading">作品概要</H>
 
-		<div class="p-text">
-			<p>「月刊少年マガジン」において2015年から連載されている作品であり、2020年にはTVアニメ化も予定されています。</p>
-		</div>
+		<p>「<cite>月刊少年マガジン</cite>」において2015年から連載されている作品であり、2020年にはTVアニメ化も予定されています。</p>
 	</Section>
 
 	<Section id="manga">
@@ -43,10 +44,8 @@ const slugger = new GithubSlugger();
 		<Section slugger={slugger} depth={2} headingType="b">
 			<H slot="heading">第36号　採ってもラッキーマン</H>
 
-			<div class="p-text">
-				<p>2019年11月15日　単行本「第10巻」発売</p>
-				<p>5ページ目（第10巻の80ページ）</p>
-			</div>
+			<p>2019年11月15日　単行本「第10巻」発売</p>
+			<p>5ページ目（第10巻の80ページ）</p>
 
 			<div class="p-box">
 				<ul class="p-list">
