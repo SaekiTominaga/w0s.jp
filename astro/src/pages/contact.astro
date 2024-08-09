@@ -39,9 +39,7 @@ if (Astro.request.method === 'POST') {
 	};
 
 	if (requestQuery.action_send) {
-		/**
-		 * メール送信
-		 */
+		/* メール送信 */
 		const sendMail = async (): Promise<void> => {
 			const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
 				requestQuery: requestQuery,
