@@ -3,15 +3,15 @@
  * （※rowspan 属性による行またがりがある場合、 :hover 疑似クラスでは意図したスタイルが設定できないため）
  */
 export default class TokyuCarHistoryResultTableTrHover {
-	#thisElement: HTMLTableRowElement; // 対象要素
+	readonly #thisElement: HTMLTableRowElement; // 対象要素
 
 	#carNum: string | undefined; // 車号
 
-	#hoverClassName: string; // マウスオーバー時に付与するクラス名
+	readonly #hoverClassName: string; // マウスオーバー時に付与するクラス名
 
-	#mouseOverEventListener: () => void;
+	readonly #mouseOverEventListener: () => void;
 
-	#mouseOutEventListener: () => void;
+	readonly #mouseOutEventListener: () => void;
 
 	/**
 	 * @param thisElement - 対象要素
