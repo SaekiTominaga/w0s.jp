@@ -1,31 +1,30 @@
-/* eslint-disable lines-between-class-members */
 /**
  * 問い合わせフォーム
  */
 export default class Contact {
-	#bodyElement: HTMLBodyElement;
+	readonly #bodyElement: HTMLBodyElement;
 
 	/* 問い合わせフォーム要素 */
-	#FORM_ELEMENT_ID = 'contact-form';
-	#formElement: HTMLFormElement;
+	readonly #FORM_ELEMENT_ID = 'contact-form';
+	readonly #formElement: HTMLFormElement;
 
 	/* 確認ボタン（確認画面へ進む） */
-	#CONFIRM_BUTTON_ELEMENT_ID = 'js-confirm-button';
-	#confirmButtonElement: HTMLButtonElement;
+	readonly #CONFIRM_BUTTON_ELEMENT_ID = 'js-confirm-button';
+	readonly #confirmButtonElement: HTMLButtonElement;
 
 	/* 修正ボタン（入力画面へ戻る） */
-	#CORRECT_BUTTON_ELEMENT_ID = 'js-correct-button';
-	#correctButtonElement: HTMLButtonElement;
+	readonly #CORRECT_BUTTON_ELEMENT_ID = 'js-correct-button';
+	readonly #correctButtonElement: HTMLButtonElement;
 
 	/* 送信ボタン（完了画面へ進む） */
-	#SEND_BUTTON_ELEMENT_ID = 'js-send-button';
-	#sendButtonElement: HTMLButtonElement;
+	readonly #SEND_BUTTON_ELEMENT_ID = 'js-send-button';
+	readonly #sendButtonElement: HTMLButtonElement;
 
-	#inputScreenElements: NodeListOf<HTMLElement>; // 入力画面で表示する要素
-	#confirmScreenElements: NodeListOf<HTMLElement>; // 確認画面で表示する要素
-	#confirmOutputElements: NodeListOf<HTMLElement>; // 入力画面で入力した内容を確認画面で出力する要素
+	readonly #inputScreenElements: NodeListOf<HTMLElement>; // 入力画面で表示する要素
+	readonly #confirmScreenElements: NodeListOf<HTMLElement>; // 確認画面で表示する要素
+	readonly #confirmOutputElements: NodeListOf<HTMLElement>; // 入力画面で入力した内容を確認画面で出力する要素
 
-	#CONFIRM_HASH = 'confirm'; // 確認画面の URL に使用するハッシュ値
+	readonly #CONFIRM_HASH = 'confirm'; // 確認画面の URL に使用するハッシュ値
 
 	constructor() {
 		this.#bodyElement = document.body as HTMLBodyElement; // <body> 要素

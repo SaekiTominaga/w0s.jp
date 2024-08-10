@@ -7,7 +7,7 @@ interface BlogNewlyJson {
  * 日記の新着情報を取得し、サイドバーに挿入する
  */
 export default class SidebarBlogNewly {
-	#templateElement: HTMLTemplateElement;
+	readonly #templateElement: HTMLTemplateElement;
 
 	/**
 	 * @param templateElement - 挿入するページに存在する <tempalte> 要素
