@@ -63,23 +63,20 @@
 
 /* ===== グローバルナビ ===== */
 .p-header-gnav {
-	display: block flex;
-	justify-content: center;
-	border: solid var(--color-border-light);
-	border-width: 1px 0;
-	background: var(--color-bg-superlight);
-}
+	--_border-width: 1px;
 
-.p-header-gnav__links {
 	display: block flex;
 	flex-flow: wrap;
-	margin: -0.5px 0.5px;
-	inline-size: min(100%, var(--page-max-width));
+	margin-inline: calc(var(--_border-width) / 2);
+
+	.l-header__gnav > & {
+		margin-block: calc(0px - var(--_border-width) / 2);
+	}
 
 	& > li {
 		display: block flex;
 		flex: auto;
-		margin: -0.5px;
+		margin: calc(0px - var(--_border-width) / 2);
 		border: 1px solid var(--color-border-light);
 	}
 }

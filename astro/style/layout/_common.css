@@ -13,7 +13,8 @@
 .l-header {
 	display: block grid;
 	grid-template-columns:
-		[full-start] var(--_page-margin-inline) var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline) var(--_page-margin-inline)
+		[full-start] var(--_page-margin-inline) [stick-start] var(--page-padding-inline) [content-start] 1fr [content-end] var(--page-padding-inline)
+		[stick-end] var(--_page-margin-inline)
 		[full-end];
 	grid-column: header;
 	container: header / inline-size;
@@ -67,8 +68,17 @@
 
 /* ===== グローバルナビ ===== */
 .l-header__gnav {
+	display: block grid;
+	grid-template-columns: subgrid;
 	grid-column: full;
 	margin-block-start: 20px;
+	border: solid var(--color-border-light);
+	border-width: 1px 0;
+	background: var(--color-bg-superlight);
+
+	& > * {
+		grid-column: stick;
+	}
 }
 
 /* ===== コンテンツエリア ===== */
