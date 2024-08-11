@@ -14,7 +14,7 @@ const { pagePath, structuredData, tocData } = Astro.props;
 <div class="l-content__header">
 	{
 		structuredData.breadcrumb !== undefined && (
-			<p class="p-topic-path">
+			<nav class="p-topic-path" aria-label="パンくず">
 				{structuredData.breadcrumb.map((breadcrumbItem, index) => (
 					<>
 						{index === 0 && <a href={breadcrumbItem.path}>ホーム</a>}
@@ -28,7 +28,7 @@ const { pagePath, structuredData, tocData } = Astro.props;
 				))}
 				<span class="p-topic-path__separator">&gt;</span>
 				<a aria-current="page">現在のページ</a>
-			</p>
+			</nav>
 		)
 	}
 
