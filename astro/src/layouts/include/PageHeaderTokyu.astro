@@ -41,39 +41,37 @@ const { pagePath, top = false } = Astro.props;
 			<PageHeaderSearch />
 		</div>
 	</div>
-	<div class="l-header__gnav">
-		<nav class="p-header-gnav" aria-label="サイト">
-			<ul class="p-header-gnav__links">
-				{
-					[
-						{ path: '/tokyu/data/', name: '車両データ' },
-						{ path: '/tokyu/machine/', name: '車両機器' },
-						{ path: '/tokyu/truck/', name: '台車' },
-						{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
-						{ path: '/tokyu/an/', name: '自動放送' },
-						{ path: '/tokyu/set/', name: '設定器' },
-						{ path: '/tokyu/book/', name: '鉄道本執筆' },
-					].map((page) => (
-						<li>
-							{page.path === pagePath && (
-								<a aria-current="page" class="p-header-gnav__link">
-									{page.name}
-								</a>
-							)}
-							{page.path !== pagePath && pagePath.startsWith(page.path) && (
-								<a href={page.path} class="p-header-gnav__link -my-category">
-									{page.name}
-								</a>
-							)}
-							{page.path !== pagePath && !pagePath.startsWith(page.path) && (
-								<a href={page.path} class="p-header-gnav__link">
-									{page.name}
-								</a>
-							)}
-						</li>
-					))
-				}
-			</ul>
-		</nav>
-	</div>
+	<nav class="l-header__gnav" aria-label="サイト">
+		<ul class="p-header-gnav">
+			{
+				[
+					{ path: '/tokyu/data/', name: '車両データ' },
+					{ path: '/tokyu/machine/', name: '車両機器' },
+					{ path: '/tokyu/truck/', name: '台車' },
+					{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
+					{ path: '/tokyu/an/', name: '自動放送' },
+					{ path: '/tokyu/set/', name: '設定器' },
+					{ path: '/tokyu/book/', name: '鉄道本執筆' },
+				].map((page) => (
+					<li>
+						{page.path === pagePath && (
+							<a aria-current="page" class="p-header-gnav__link">
+								{page.name}
+							</a>
+						)}
+						{page.path !== pagePath && pagePath.startsWith(page.path) && (
+							<a href={page.path} class="p-header-gnav__link -my-category">
+								{page.name}
+							</a>
+						)}
+						{page.path !== pagePath && !pagePath.startsWith(page.path) && (
+							<a href={page.path} class="p-header-gnav__link">
+								{page.name}
+							</a>
+						)}
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </header>
