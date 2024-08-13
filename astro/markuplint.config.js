@@ -36,6 +36,12 @@ export default {
 			},
 		},
 		{
+			selector: 'th:has(> DateWareki)',
+			rules: {
+				'require-accessible-name': false,
+			},
+		},
+		{
 			selector: 'summary',
 			rules: {
 				'permitted-contents': false,
