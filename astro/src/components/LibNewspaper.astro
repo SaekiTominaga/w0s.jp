@@ -13,7 +13,7 @@ interface Props {
 
 const { slugger, headingLevel, title, release, npClass, tags } = Astro.props;
 
-const sectionId = slugger.slug(title);
+const sectionId = slugger.slug(`${title} ${release ?? ''} ${npClass ?? ''}`.trim());
 
 let releaseDisplay = release;
 if (release !== undefined) {
