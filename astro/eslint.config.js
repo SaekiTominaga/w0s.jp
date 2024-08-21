@@ -9,7 +9,7 @@ export default [
 	...w0sConfig,
 	...pluginAstro.configs.recommended,
 	{
-		ignores: ['dist/**/*.mjs', 'src/env.d.ts', 'src/pages/kumeta/manga/subtitle.astro', 'public/assets/script/*.js', 'public/assets/script/*.mjs'],
+		ignores: ['dist', 'src/env.d.ts', 'src/pages/kumeta/manga/subtitle.astro', 'public/assets/script/*.js', 'public/assets/script/*.mjs'],
 	},
 	{
 		files: ['**/*.astro'],
@@ -28,9 +28,7 @@ export default [
 			'import/no-unresolved': 'off',
 			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',
-			'jsdoc/require-property-type': 'off',
 			'jsdoc/require-returns-type': 'off',
-			'@typescript-eslint/no-unused-vars': 'off',
 		},
 	},
 	{
