@@ -6,9 +6,23 @@ interface Props {
 	no?: string;
 	title?: string;
 	date?: string;
+	possess?: ('tetsudo' | 'kensetsu' | 'tokyo')[];
 }
 
-const { summary, no, title, date } = Astro.props;
+const { summary, no, title, date, possess } = Astro.props;
+
+const possessDisplay: string[] = [];
+if (possess !== undefined) {
+	if (possess.includes('tetsudo')) {
+		possessDisplay.push('鉄道省');
+	}
+	if (possess.includes('kensetsu')) {
+		possessDisplay.push('建設省');
+	}
+	if (possess.includes('tokyo')) {
+		possessDisplay.push('東京府');
+	}
+}
 ---
 
 <span class="c-tokyu-licence">
@@ -16,4 +30,5 @@ const { summary, no, title, date } = Astro.props;
 	{no !== undefined && <span class="c-tokyu-licence__no">{no}</span>}
 	{title !== undefined && <cite class="c-tokyu-licence__title">{title}</cite>}
 	{date !== undefined && <DateWareki value={date} class="c-tokyu-licence__date" />}{date === undefined && <span class="c-tokyu-licence__date">時期不明</span>}
+	{possessDisplay.length > 0 && <span class="c-tokyu-licence__possess">資料：{possessDisplay.join('、')}</span>}
 </span>

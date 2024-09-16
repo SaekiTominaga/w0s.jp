@@ -38,7 +38,14 @@ const structuredData: StructuredData = {
 		<H slot="heading">概要</H>
 
 		<ul class="p-list">
-			<li>認可、竣功などの日付は<LinkExternal href="https://www.archives.go.jp/">国立公文書館</LinkExternal>および<LinkExternal href="https://www.soumu.metro.tokyo.lg.jp/01soumu/archives/">東京都公文書館</LinkExternal>が所蔵する公文書（鉄道省文書など）を情報源とします。</li>
+			<li>
+				認可、竣功などの日付は<LinkExternal href="https://www.archives.go.jp/">国立公文書館</LinkExternal>および<LinkExternal href="https://www.soumu.metro.tokyo.lg.jp/01soumu/archives/">東京都公文書館</LinkExternal>が所蔵する公文書（鉄道省文書など）を情報源とします。
+				<ul>
+					<li>鉄道省：国立公文書館が所蔵</li>
+					<li>建設省：国立公文書館が所蔵</li>
+					<li>東京府：東京都公文書館が所蔵</li>
+				</ul>
+			</li>
 			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
 			<li>
 				表中の鉄道事業者の名称は以下のとおり省略表記しています。
@@ -52,7 +59,7 @@ const structuredData: StructuredData = {
 	<Section id="gauge1067">
 		<H slot="heading">狭軌時代の車両</H>
 
-		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920" />までの13年間、1,067mmの狭軌で営業が行われていました。この時代の車両に関する許認可書類は一部しか残されておらず、その詳細は未だ謎が多いものとなっております。</p>
+		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920-09" />までの13年間、1,067mmの狭軌で営業が行われていました。この時代の車両に関する許認可書類は一部しか残されておらず、その詳細は未だ謎が多いものとなっております。</p>
 		<p>しかし<cite>鉄道院年報</cite>、<cite>電気事業要覧</cite>などの統計資料により車両数の変遷はおおむね判明してるため、まずはそのデータを示します。</p>
 
 		<div class="p-table -scroll">
@@ -204,13 +211,11 @@ const structuredData: StructuredData = {
 				<colgroup></colgroup>
 				<colgroup span="4"></colgroup>
 				<colgroup span="2"></colgroup>
-				<colgroup></colgroup>
 				<thead>
 					<tr>
 						<th scope="colgroup" rowspan="2">車号</th>
 						<th scope="colgroup" colspan="4">構造</th>
 						<th scope="colgroup" colspan="2">定員</th>
-						<th scope="colgroup" rowspan="2">備考</th>
 					</tr>
 					<tr>
 						<th scope="col">申請</th>
@@ -224,13 +229,12 @@ const structuredData: StructuredData = {
 				<tbody>
 					<tr>
 						<th scope="row">付随客車 5</th>
-						<td rowspan="3"><Licence no="玉第686号" date="1916-03-23" /> <Licence no="玉第686号-1" date="1916-06-13" /></td>
-						<td rowspan="3"><Licence no="辰土甲第627号" date="1916-07-22" /></td>
-						<td rowspan="3"><Licence no="玉第668号-3" title="附随客車御検査願" date="1916-07-24" /></td>
-						<td rowspan="3"><Licence no="辰土甲第627号" date="1916-08-04" /></td>
-						<td rowspan="3"><Licence no="玉第668号-2" title="附随客車乗客定員認可申請書" date="1916-07-24" /></td>
-						<td rowspan="3"><Licence no="第459号-2" date="1916-07-31" /></td>
-						<td rowspan="3"></td>
+						<td rowspan="3"><Licence no="玉第686号" date="1916-03-23" possess={['tokyo']} /> <Licence no="玉第686号-1" date="1916-06-13" possess={['tokyo']} /></td>
+						<td rowspan="3"><Licence no="辰土甲第627号" date="1916-07-22" possess={['tokyo']} /></td>
+						<td rowspan="3"><Licence no="玉第668号-3" title="附随客車御検査願" date="1916-07-24" possess={['tokyo']} /></td>
+						<td rowspan="3"><Licence no="辰土甲第627号" date="1916-08-04" possess={['tokyo']} /></td>
+						<td rowspan="3"><Licence no="玉第668号-2" title="附随客車乗客定員認可申請書" date="1916-07-24" possess={['tokyo']} /></td>
+						<td rowspan="3"><Licence no="第459号-2" date="1916-07-31" possess={['tokyo']} /></td>
 					</tr>
 					<tr>
 						<th scope="row">付随客車 6</th>
@@ -264,5 +268,97 @@ const structuredData: StructuredData = {
 
 	<Section id="passenger1-15">
 		<H slot="heading">電動客車 1～15号</H>
+
+		<p>玉川電気鉄道は東京市電の貨車乗り入れのため<DateWareki value="1920-09" />に軌間 1,067mm から 1,372mm への改軌が行われ、旅客車両は総取り替えとなりました。</p>
+
+		<p>最初に用意された15両は4輪単車で、定員は狭軌時代の電動車と同じ40人。従来は電動車、付随車あわせて22両だったものが電動車のみ15両となったため、改軌に前後して複線化工事が進む中、同年末に<a href="#passenger16-30">ボギー車が増備</a>されるまでの間は一時的に輸送力は低下していたことになります。</p>
+
+		<p>改軌を目前に控えた<DateWareki value="1920-08-26" />に構造認可を受けますが、アメリカ・<span lang="en">Brill</span> 社に発注していた手ブレーキ装置が届かないため12両分（車号は不明）は仮に国内品を取り付けることとし、力率が減少するため仮使用許可を申請、<DateWareki value="1920-12" />に落成しています。</p>
+
+		<div class="p-table -scroll">
+			<table>
+				<colgroup></colgroup>
+				<colgroup span="3"></colgroup>
+				<colgroup span="4"></colgroup>
+				<colgroup></colgroup>
+				<thead>
+					<tr>
+						<th scope="colgroup" rowspan="2">車号</th>
+						<th scope="colgroup" colspan="3">構造</th>
+						<th scope="colgroup" colspan="4">仮使用</th>
+						<th scope="colgroup">廃車／譲渡</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">検査願</th>
+						<th scope="col">申請</th>
+						<th scope="col">期間延期願</th>
+						<th scope="col">認可</th>
+						<th scope="col">落成</th>
+						<th scope="col">届出</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td rowspan="15"><Licence no="玉発第47号" title="車輌構造認可願" date="1920-04-30" possess={['tokyo']} /></td>
+						<td rowspan="15"><Licence no="申土甲第1885号" date="1920-08-26" possess={['tokyo']} /></td>
+						<td rowspan="15"><Licence no="玉第68号" title="車輌御検査願" date="1920-08-26" possess={['tokyo']} /></td>
+						<td rowspan="15"><Licence summary="15両中12両、10月31日まで" title="仮使用願" date="1920-08-30" possess={['tokyo']} /></td>
+						<td rowspan="15"><Licence summary="15両中12両、12月31日まで" title="ハンドブレーキ仮使用期間延期願" date="1920-10-25" possess={['tokyo']} /></td>
+						<td rowspan="15"><Licence no="申土甲第5243号" date="1920-12-27" possess={['tokyo']} /></td>
+						<td rowspan="15"><Licence title="ハンドブレーキ落成届" date="1920-12-23" possess={['tokyo']} /></td>
+						<td rowspan="2"><Licence no="東辰第1950号" title="四輪電動客車廃車届" date="1940-06-01" possess={['tetsudo']} /></td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td rowspan="2"><Licence summary="東横→新京" no="東横電巳第182号" title="電動客車並電動貨車譲渡届" date="1941-10-30" possess={['tetsudo']} /></td>
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+					</tr>
+					<tr>
+						<th scope="row">5</th>
+						<td rowspan="2"><Licence no="東辰第1950号" title="四輪電動客車廃車届" date="1940-06-01" possess={['tetsudo']} /></td>
+					</tr>
+					<tr>
+						<th scope="row">6</th>
+					</tr>
+					<tr>
+						<th scope="row">7</th>
+						<td rowspan="2"><Licence no="玉第82号" title="廃車届" date="1936-03-12" possess={['tetsudo']} /></td>
+					</tr>
+					<tr>
+						<th scope="row">8</th>
+					</tr>
+					<tr>
+						<th scope="row">9</th>
+						<td rowspan="7"><Licence no="玉丑第37号" title="廃車届" date="1937-04-07" possess={['tetsudo']} /></td>
+					</tr>
+					<tr>
+						<th scope="row">10</th>
+					</tr>
+					<tr>
+						<th scope="row">11</th>
+					</tr>
+					<tr>
+						<th scope="row">12</th>
+					</tr>
+					<tr>
+						<th scope="row">13</th>
+					</tr>
+					<tr>
+						<th scope="row">14</th>
+					</tr>
+					<tr>
+						<th scope="row">15</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</Section>
 </Layout>

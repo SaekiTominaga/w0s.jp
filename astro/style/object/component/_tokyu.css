@@ -156,6 +156,7 @@ Markup:
 <span class="c-tokyu-licence__no">監第2517号</span>
 <span class="c-tokyu-licence__name">○○鉄道</span>
 <time class="c-tokyu-licence__date" datetime="1922-07-07">1922年7月7日</time>
+<span class="c-tokyu-licence__possess">資料：鉄道省、東京府</span>
 </span>
 
 Styleguide 1.6.1
@@ -167,6 +168,10 @@ Styleguide 1.6.1
 
 	& > * {
 		inline-size: fit-content;
+	}
+
+	& + & {
+		margin-block-start: 1em;
 	}
 }
 
@@ -189,6 +194,11 @@ Styleguide 1.6.1
 }
 
 .c-tokyu-licence__date {
+}
+
+.c-tokyu-licence__possess {
+	margin-block-start: 0.25em;
+	font-size: calc(100% / pow(var(--font-ratio), 2));
 }
 
 /*
