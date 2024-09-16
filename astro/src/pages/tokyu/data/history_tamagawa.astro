@@ -1,0 +1,268 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import DateWareki from '@components/DateWareki.astro';
+import FootnoteReference from '@components/FootnoteReference.astro';
+import H from '@components/H.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Licence from '@components/TokyuLicence.astro';
+import RefBook from '@components/ReferenceBook.astro';
+import RefMagazine from '@components/ReferenceMagazine.astro';
+import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '玉川電気鉄道　車歴表',
+	dateModified: dayjs('2024-09-15'),
+	description: '玉川電気鉄道の開通（1907年）から東京横浜電鉄への合併（1938年）までの車両のうごきをまとめました。',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/data/', name: '車両データ' },
+	],
+	localNav: {
+		label: '車歴表',
+		items: [
+			{ path: '/tokyu/data/history_mekama&toyoko_passenger', name: '目黒・東横　旅客車' },
+			{ path: '/tokyu/data/history_mekama&toyoko_freight', name: '目黒・東横　機関車&貨車' },
+			{ path: '/tokyu/data/history_ikegami', name: '池上' },
+			{ path: '/tokyu/data/history_tamagawa', name: '玉川' },
+			{ path: '/tokyu/data/history_tokyu', name: '東急' },
+		],
+	},
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="introduction">
+		<H slot="heading">概要</H>
+
+		<ul class="p-list">
+			<li>認可、竣功などの日付は<LinkExternal href="https://www.archives.go.jp/">国立公文書館</LinkExternal>および<LinkExternal href="https://www.soumu.metro.tokyo.lg.jp/01soumu/archives/">東京都公文書館</LinkExternal>が所蔵する公文書（鉄道省文書など）を情報源とします。</li>
+			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
+			<li>
+				表中の鉄道事業者の名称は以下のとおり省略表記しています。
+				<ul>
+					<li>新京：新京交通<small>（満州国）</small></li>
+				</ul>
+			</li>
+		</ul>
+	</Section>
+
+	<Section id="gauge1067">
+		<H slot="heading">狭軌時代の車両</H>
+
+		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920" />までの13年間、1,067mmの狭軌で営業が行われていました。この時代の車両に関する許認可書類は一部しか残されておらず、その詳細は未だ謎が多いものとなっております。</p>
+		<p>しかし<cite>鉄道院年報</cite>、<cite>電気事業要覧</cite>などの統計資料により車両数の変遷はおおむね判明してるため、まずはそのデータを示します。</p>
+
+		<div class="p-table -scroll">
+			<table>
+				<colgroup></colgroup>
+				<colgroup span="2"></colgroup>
+				<colgroup></colgroup>
+				<colgroup span="2"></colgroup>
+				<thead>
+					<tr>
+						<th scope="colgroup" rowspan="2">年度</th>
+						<th scope="colgroup" colspan="2">旅客車</th>
+						<th scope="colgroup">貨車</th>
+						<th scope="colgroup" colspan="2">統計資料</th>
+					</tr>
+					<tr>
+						<th scope="col">電動車</th>
+						<th scope="col">付随車</th>
+						<th scope="col">付随車</th>
+						<th scope="col">鉄道院</th>
+						<th scope="col">逓信省</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1906<small>(明治39)</small>年度</th>
+						<td class="u-cell -center">?</td>
+						<td class="u-cell -center">?</td>
+						<td class="u-cell -end">0両(?)</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">1907<small>(明治40)</small>年度</th>
+						<td class="u-cell -end">10両</td>
+						<td class="u-cell -end">0両</td>
+						<td class="u-cell -end">20両</td>
+						<td></td>
+						<td><RefBook name="電気事業要覧　明治40年" pages={[92]} url="https://dl.ndl.go.jp/pid/805420/1/68" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1908<small>(明治41)</small>年度</th>
+						<td class="u-cell -end">10両</td>
+						<td class="u-cell -end">0両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　明治41～43年度　軌道之部" pages={[21]} url="https://dl.ndl.go.jp/pid/805361/1/16" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　明治41年" pages={[236, 237]} url="https://dl.ndl.go.jp/pid/805421/1/139" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1909<small>(明治42)</small>年度</th>
+						<td class="u-cell -end">10両</td>
+						<td class="u-cell -end">0両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　明治41～43年度　軌道之部" pages={[99]} url="https://dl.ndl.go.jp/pid/805361/1/56" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　明治42年" pages={[270, 271]} url="https://dl.ndl.go.jp/pid/805422/1/158" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1910<small>(明治43)</small>年度</th>
+						<td class="u-cell -end">10両</td>
+						<td class="u-cell -end">0両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　明治41～43年度　軌道之部" pages={[187]} url="https://dl.ndl.go.jp/pid/805361/1/102" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　明治43年" pages={[310, 311]} url="https://dl.ndl.go.jp/pid/805423/1/178" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1911<small>(明治44)</small>年度</th>
+						<td class="u-cell -end">10両</td>
+						<td class="u-cell -end">0両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　明治44～大正元年度　軌道之部" pages={[37]} url="https://dl.ndl.go.jp/pid/974219/1/23" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　明治44年" pages={[334, 335]} url="https://dl.ndl.go.jp/pid/974998/1/197" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1912<small>(大正元)</small>年度</th>
+						<td class="u-cell -end">12両</td>
+						<td class="u-cell -end">0両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　明治44～大正元年度　軌道之部" pages={[109]} url="https://dl.ndl.go.jp/pid/974219/1/61" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　大正元年" pages={[284, 285]} url="https://dl.ndl.go.jp/pid/974999/1/169" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1913<small>(大正2)</small>年度</th>
+						<td class="u-cell -end">12両</td>
+						<td class="u-cell -end">4両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　大正2年度" pages={[270]} url="https://dl.ndl.go.jp/pid/974221/1/153" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第7回" pages={[296, 297]} url="https://dl.ndl.go.jp/pid/975000/1/177" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1914<small>(大正3)</small>年度</th>
+						<td class="u-cell -end">15両</td>
+						<td class="u-cell -end">4両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　大正3年度" pages={[306]} url="https://dl.ndl.go.jp/pid/974222/1/172" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第8回" pages={[330, 331]} url="https://dl.ndl.go.jp/pid/975001/1/195" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1915<small>(大正4)</small>年度</th>
+						<td class="u-cell -end">15両</td>
+						<td class="u-cell -end">4両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院年報　大正4年度" pages={[319]} url="https://dl.ndl.go.jp/pid/974223/1/180" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第9回" pages={[334, 335]} url="https://dl.ndl.go.jp/pid/975002/1/187" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1916<small>(大正5)</small>年度</th>
+						<td class="u-cell -end">15両</td>
+						<td class="u-cell -end">7両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院鉄道統計資料　大正5年度　第十編" pages={[135]} url="https://dl.ndl.go.jp/pid/974234/1/368" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第10回" pages={[418, 419]} url="https://dl.ndl.go.jp/pid/975003/1/237" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1917<small>(大正6)</small>年度</th>
+						<td class="u-cell -end">15両</td>
+						<td class="u-cell -end">7両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院鉄道統計資料　大正6年度　第十編" pages={[131]} url="https://dl.ndl.go.jp/pid/974236/1/388" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第11回" pages={[402, 403]} url="https://dl.ndl.go.jp/pid/975004/1/227" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1918<small>(大正7)</small>年度</th>
+						<td class="u-cell -end">15両</td>
+						<td class="u-cell -end">7両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院鉄道統計資料　大正7年度　第九編" pages={[142]} url="https://dl.ndl.go.jp/pid/974238/1/397" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第12回" pages={[440, 441]} url="https://dl.ndl.go.jp/pid/975005/1/245" urlScope="page" /></td>
+					</tr>
+					<tr>
+						<th scope="row">1919<small>(大正8)</small>年度</th>
+						<td class="u-cell -end">15両</td>
+						<td class="u-cell -end">7両</td>
+						<td class="u-cell -end">20両</td>
+						<td><RefBook name="鉄道院鉄道統計資料　大正8年度　第十編" pages={[161]} url="https://dl.ndl.go.jp/pid/974240/1/474" urlScope="page" /></td>
+						<td><RefBook name="電気事業要覧　第13回" pages={[296, 297]} url="https://dl.ndl.go.jp/pid/975006/1/178" urlScope="page" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>開通当初、道玄坂上～三軒茶屋間の暫定開業を経て玉川までの延伸に至った直後の<DateWareki value="1907-04-07" />に行われた開通式の時点で<q cite="https://dl.ndl.go.jp/pid/10296113/1/66">貨車は未だ出来上らず</q>との報告があるが<FootnoteReference><RefMagazine name="三田商業界" date="第3巻第5号" article="玉川電鐵の開通式" pages={[74]} url="https://dl.ndl.go.jp/pid/10296113/1/66" /></FootnoteReference>、同年中には砂利運搬を開始し、上表のように付随貨車20両が在籍した。</li>
+		</ul>
+
+		<p>このように、最終的に電動客車15両、付随客車7両、付随貨車20両の陣営となったのですが、このうち1916<small>(大正5)</small>年度に増備された付随車3両のみ許認可書類が残されています。</p>
+
+		<div class="p-table -scroll">
+			<table>
+				<colgroup></colgroup>
+				<colgroup span="4"></colgroup>
+				<colgroup span="2"></colgroup>
+				<colgroup></colgroup>
+				<thead>
+					<tr>
+						<th scope="colgroup" rowspan="2">車号</th>
+						<th scope="colgroup" colspan="4">構造</th>
+						<th scope="colgroup" colspan="2">定員</th>
+						<th scope="colgroup" rowspan="2">備考</th>
+					</tr>
+					<tr>
+						<th scope="col">申請</th>
+						<th scope="col">認可</th>
+						<th scope="col">検査願</th>
+						<th scope="col">検査証交付</th>
+						<th scope="col">申請</th>
+						<th scope="col">認可（警視総監）</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">付随客車 5</th>
+						<td rowspan="3"><Licence no="玉第686号" date="1916-03-23" /> <Licence no="玉第686号-1" date="1916-06-13" /></td>
+						<td rowspan="3"><Licence no="辰土甲第627号" date="1916-07-22" /></td>
+						<td rowspan="3"><Licence no="玉第668号-3" title="附随客車御検査願" date="1916-07-24" /></td>
+						<td rowspan="3"><Licence no="辰土甲第627号" date="1916-08-04" /></td>
+						<td rowspan="3"><Licence no="玉第668号-2" title="附随客車乗客定員認可申請書" date="1916-07-24" /></td>
+						<td rowspan="3"><Licence no="第459号-2" date="1916-07-31" /></td>
+						<td rowspan="3"></td>
+					</tr>
+					<tr>
+						<th scope="row">付随客車 6</th>
+					</tr>
+					<tr>
+						<th scope="row">付随客車 7</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<ul class="p-notes">
+			<li>車両構造認可の申請日と書類番号は認可書類の本文より判明しているものであり、申請書類そのものは残されていないため、2回に分けて申請が行われた理由は不明である。</li>
+			<li>乗客定員の認可申請では、本増備車の客室設備は在来車と同一であるとして、座席26人、立席14人の計40人と報告しているが、これは前述の鉄道院の統計資料（3両増備で90人分の増加）と食い違っている。</li>
+		</ul>
+
+		<p>これらの車両は路線の改軌に際して譲渡や台車改造が行われたはずですが、やはり許認可書類は残されていません。定説では旅客車は以下のように全車ないし大半を譲渡したとされています。</p>
+
+		<ul class="p-list">
+			<li>駿遠電気<small>（現：静岡鉄道）</small>へ電動客車6～7両程度、付随客車3両を譲渡<FootnoteReference><RefMagazine name="鉄道史料" date="2016年7月号" no={149} article="駿遠電気の創業期の車両の解明にむけて　訂正" author="阿部一紀" pages={[57, 58]} /></FootnoteReference></li>
+			<li>
+				上田温泉電軌<small>（現：上田電鉄）</small>へ電動客車9両、付随客車4両を譲渡<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="1964年11月号" no={164} article="私鉄車両めぐり〔59〕上田丸子電鉄(終)" author="小林宇一郎" pages={[60, 61]} /></FootnoteReference>、ただし電動客車は8両説もある<FootnoteReference><RefBook name="玉川電気鉄道狭軌時代の車両と駿遠電気初期の車両について" author="車歴研究会" pages={[103]} /></FootnoteReference>
+				<ul>
+					<li><DateWareki value="1921" />には駿遠電気から電動客車2両（8両説の場合は3両）が再譲渡された結果、元玉電の車両は電動客車11両、付随客車4両の陣営となった</li>
+				</ul>
+			</li>
+		</ul>
+
+		<p>一方、貨車は全20両が玉電の自社工場で軌間改造された可能性が高く、現車の写真を見ても改軌前後で特徴的なバッファー形態などが同一であることが確認できます。ただし、<a href="#freight1-20">後述</a>のとおり改軌に際しては改めて車両構造認可が行われており、書類上の連続性はありません。</p>
+	</Section>
+
+	<Section id="passenger1-15">
+		<H slot="heading">電動客車 1～15号</H>
+	</Section>
+</Layout>
