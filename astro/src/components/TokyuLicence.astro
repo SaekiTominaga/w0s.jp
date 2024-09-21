@@ -12,9 +12,17 @@ interface Props {
 const { summary, no, title, date, possess } = Astro.props;
 
 const possessDisplay: string[] = [];
-if (possess !== undefined) {
+if (possess !== undefined && date !== undefined) {
 	if (possess.includes('tetsudo')) {
-		possessDisplay.push('鉄道省');
+		const date1 = new Date(date);
+
+		if (date1 < new Date('1943-11-01')) {
+			possessDisplay.push('鉄道省');
+		} else if (date1 < new Date('1945-05-19')) {
+			possessDisplay.push('運輸通信省');
+		} else {
+			possessDisplay.push('運輸省');
+		}
 	}
 	if (possess.includes('kensetsu')) {
 		possessDisplay.push('建設省');
