@@ -6,10 +6,11 @@ interface Props {
 	id?: string;
 	depth?: number;
 	headingType?: 'a' | 'b' | 'c' | 'd';
+	box?: boolean;
 	class?: string;
 }
 
-const { slugger, id, depth = 1, headingType = 'a', class: className } = Astro.props;
+const { slugger, id, depth = 1, headingType = 'a', box = false, class: className } = Astro.props;
 
 const headingHtml = await Astro.slots.render('heading');
 
@@ -27,7 +28,7 @@ if (id !== undefined) {
 }
 ---
 
-<section class:list={['p-section', `-hdg-${headingType}`, className]} id={sectionId}>
+<section class:list={['p-section', `-hdg-${headingType}`, box ? '-box' : undefined, className]} id={sectionId}>
 	<div class="p-section__hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
