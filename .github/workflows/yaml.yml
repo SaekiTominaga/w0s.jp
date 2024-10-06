@@ -1,17 +1,11 @@
-name: astro@node-lint
+name: YAML files
+
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'astro/build/*.js'
-      - 'astro/eslint.config.js'
-  push:
-    branches:
-      - main
-    paths:
-      - 'astro/build/*.js'
-      - 'astro/eslint.config.js'
+      - '.github/workflows/*.yml'
   workflow_dispatch:
 
 jobs:
@@ -23,4 +17,4 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - run: npm run node-lint -w '@w0s.jp/astro'
+      - run: npm run yaml-lint
