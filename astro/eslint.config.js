@@ -9,7 +9,14 @@ export default [
 	...w0sConfig,
 	...pluginAstro.configs.recommended,
 	{
-		ignores: ['dist', 'src/env.d.ts', 'src/pages/kumeta/manga/subtitle.astro', 'public/assets/script/*.js', 'public/assets/script/*.mjs'],
+		ignores: [
+			'dist',
+			'src/env.d.ts',
+			'src/pages/kumeta/manga/subtitle.astro',
+			'src/pages/madoka/yomoyama/namae.astro',
+			'public/assets/script/*.js',
+			'public/assets/script/*.mjs',
+		],
 	},
 	{
 		files: ['**/*.astro'],
