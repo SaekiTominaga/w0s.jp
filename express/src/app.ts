@@ -71,7 +71,7 @@ app.use(
 		if (basic !== undefined) {
 			const credentials = basicAuth(req);
 
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			const result = (await htpasswd.authenticate({
 				username: credentials?.name,
 				password: credentials?.pass,
