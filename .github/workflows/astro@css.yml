@@ -1,17 +1,12 @@
-name: express@lint
+name: CSS files
+
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'express/src/**/*.ts'
-      - 'express/eslint.config.js'
-  push:
-    branches:
-      - main
-    paths:
-      - 'express/src/**/*.ts'
-      - 'express/eslint.config.js'
+      - 'astro/style/**/*.css'
+      - 'astro/stylelint.config.js'
   workflow_dispatch:
 
 jobs:
@@ -23,4 +18,4 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - run: npm run lint -w '@w0s.jp/express'
+      - run: npm run css-lint -w '@w0s.jp/astro'

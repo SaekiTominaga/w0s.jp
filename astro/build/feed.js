@@ -4,7 +4,7 @@ import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
-import prettier from 'prettier';
+import { format } from 'prettier';
 import slash from 'slash';
 import xmlFormat from 'xml-formatter';
 
@@ -109,7 +109,7 @@ INFO.forEach(async (feedInfo) => {
 			const updated = new Date(`${dateElement.dateTime}T00:00`);
 			const content = contentElement.innerHTML;
 
-			const contentFormatted = (await prettier.format(content, PRETTIER_OPTIONS_HTML)).trim();
+			const contentFormatted = (await format(content, PRETTIER_OPTIONS_HTML)).trim();
 
 			const internalLinkURLs = [...contentElement.querySelectorAll('a[href^="/"]')].map((anchorElement) => anchorElement.href);
 
