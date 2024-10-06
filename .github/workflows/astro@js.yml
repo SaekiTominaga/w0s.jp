@@ -1,11 +1,11 @@
-name: astro@node-lint
+name: JavaScript files
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - 'astro/build/*.js'
+      - 'astro/script/**/*.ts'
       - 'astro/eslint.config.js'
   workflow_dispatch:
 
@@ -18,4 +18,4 @@ jobs:
         with:
           node-version: '22'
       - run: npm ci
-      - run: npm run node-lint -w '@w0s.jp/astro'
+      - run: npm run js-lint -w '@w0s.jp/astro'

@@ -3,7 +3,7 @@
 	"scripts": {
 		"format": "prettier -w .",
 		"config": "run-p _config-convert _config-validate:*",
-		"github-actions-lint": "yamllint .github/workflows/*.yml",
+		"yaml-lint": "yamllint .github/workflows/*.yml",
 		"_config-convert": "json2ts -i configure/schema -o configure/type",
 		"_config-validate:astro": "ajv --spec=draft7 -s configure/schema/astro.json -d configure/astro.json",
 		"_config-validate:express": "ajv --spec=draft7 -s configure/schema/express.json -d configure/express.json"
