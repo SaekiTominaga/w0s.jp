@@ -25,6 +25,11 @@ export default [
 			'no-irregular-whitespace': 'off',
 			'no-undef-init': 'off',
 			'no-useless-return': 'off',
+			'import/default': 'off', // parser.parse is not a function
+			'import/namespace': 'off', // parser.parse is not a function
+			'import/no-deprecated': 'off', // parser.parse is not a function
+			'import/no-named-as-default': 'off', // parser.parse is not a function
+			'import/no-named-as-default-member': 'off', // parser.parse is not a function
 			'import/no-unresolved': 'off',
 			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',
