@@ -3,7 +3,7 @@ import LinkExternal from './LinkExternal.astro';
 
 interface Props {
 	name: string; // 図書名
-	article?: string; // 記事タイトル
+	article?: string | string[]; // 記事タイトル
 	author?: string; // 著者
 	pages: number[]; // ページ数
 	url?: string; // Web ページの URL
@@ -25,7 +25,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				</LinkExternal>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{article}</span>
+						<span class="c-ref__article">{typeof article === 'string' ? article : article.join(' – ')}</span>
 					</>
 				)}
 				{author !== undefined && (
@@ -43,7 +43,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				<cite class="c-ref__name">{name}</cite>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{article}</span>
+						<span class="c-ref__article">{typeof article === 'string' ? article : article.join(' – ')}</span>
 					</>
 				)}
 				{author !== undefined && (
@@ -61,7 +61,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				<cite class="c-ref__name">{name}</cite>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{article}</span>
+						<span class="c-ref__article">{typeof article === 'string' ? article : article.join(' – ')}</span>
 					</>
 				)}
 				{author !== undefined && (
