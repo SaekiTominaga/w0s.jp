@@ -281,7 +281,10 @@ Styleguide 1.2.7
 	&.-tetsudosho {
 		& .c-ref__government {
 			all: unset;
-			margin-inline-end: -0.25em;
+
+			&:not(:last-child) {
+				margin-inline-end: -0.25em;
+			}
 
 			&::before {
 				content: "【";
@@ -304,10 +307,6 @@ Styleguide 1.2.7
 
 /* 図書名／雑誌名 */
 .c-ref__name {
-	&:lang(ja) {
-		--_open: "";
-		--_close: "";
-	}
 }
 
 /* 【鉄道省文書】鉄道事業者名 */
@@ -324,6 +323,10 @@ Styleguide 1.2.7
 
 /* 記事タイトル */
 .c-ref__article {
+	&:not(:first-child) {
+		margin-inline: -0.25em;
+	}
+
 	&::before {
 		content: "「";
 	}
@@ -335,8 +338,8 @@ Styleguide 1.2.7
 
 /* 著者 */
 .c-ref__author {
-	cite + & {
-		margin-inline-start: -0.5em;
+	&:not(:first-child) {
+		margin-inline: -0.25em;
 	}
 
 	&::before {
