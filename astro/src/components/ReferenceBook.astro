@@ -7,10 +7,10 @@ interface Props {
 	author?: string; // 著者
 	pages: number[]; // ページ数
 	url?: string; // Web ページの URL
-	urlScope?: 'name' | 'page'; // URL の対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
+	linkScope?: 'name' | 'page'; // リンクの対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
 }
 
-const { name, article, author, pages, url, urlScope } = Astro.props;
+const { name, article, author, pages, url, linkScope = 'name' } = Astro.props;
 
 const [startPage, endPage] = pages;
 const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
@@ -18,7 +18,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 
 <span class="c-ref -book">
 	{
-		url !== undefined && (urlScope === undefined || urlScope === 'name') && (
+		url !== undefined && linkScope === 'name' && (
 			<>
 				<LinkExternal href={url}>
 					<cite class="c-ref__name">{name}</cite>
@@ -38,7 +38,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 		)
 	}
 	{
-		url !== undefined && urlScope === 'page' && (
+		url !== undefined && linkScope === 'page' && (
 			<LinkExternal href={url}>
 				<cite class="c-ref__name">{name}</cite>
 				{article !== undefined && (
