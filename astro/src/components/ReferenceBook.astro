@@ -3,7 +3,7 @@ import LinkExternal from './LinkExternal.astro';
 
 interface Props {
 	name: string; // 図書名
-	author: string | string[]; // 著者、出版社
+	authors: string[]; // 著者、出版社
 	year: number; // 発行年
 	article?: string | string[]; // 記事タイトル
 	pages: number[]; // ページ数
@@ -11,9 +11,9 @@ interface Props {
 	linkScope?: 'name' | 'page'; // リンクの対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
 }
 
-const { name, author, year, article, pages, url, linkScope = 'name' } = Astro.props;
+const { name, authors, year, article, pages, url, linkScope = 'name' } = Astro.props;
 
-const authorDisplay = typeof author === 'string' ? author : author.join('、');
+const authorsDisplay = authors.join('、');
 
 let articleDisplay: string | undefined;
 if (article !== undefined) {
@@ -31,7 +31,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				<LinkExternal href={url}>
 					<cite class="c-ref__name">{name}</cite>
 					<span class="c-ref__meta">
-						<span class="c-ref__author">{authorDisplay}</span>
+						<span class="c-ref__author">{authorsDisplay}</span>
 						<time datetime={String(year)} class="c-ref__date">
 							{year}年
 						</time>
@@ -51,7 +51,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 			<LinkExternal href={url}>
 				<cite class="c-ref__name">{name}</cite>
 				<span class="c-ref__meta">
-					<span class="c-ref__author">{authorDisplay}</span>
+					<span class="c-ref__author">{authorsDisplay}</span>
 					<time datetime={String(year)} class="c-ref__date">
 						{year}年
 					</time>
@@ -70,7 +70,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 			<>
 				<cite class="c-ref__name">{name}</cite>
 				<span class="c-ref__meta">
-					<span class="c-ref__author">{authorDisplay}</span>
+					<span class="c-ref__author">{authorsDisplay}</span>
 					<time datetime={String(year)} class="c-ref__date">
 						{year}年
 					</time>
