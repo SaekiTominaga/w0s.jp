@@ -13,6 +13,11 @@ interface Props {
 
 const { name, date, no, article, author, pages, url } = Astro.props;
 
+let noDisplay: string | undefined;
+if (no !== undefined) {
+	noDisplay = `No.${typeof no === 'number' ? String(no) : no.join('・')}`;
+}
+
 const [startPage, endPage] = pages;
 const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
 ---
@@ -29,7 +34,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				)}
 				{no !== undefined && (
 					<>
-						<span class="c-ref__no">No.{typeof no === 'number' ? no : no.join('・')}</span>
+						<span class="c-ref__no">{noDisplay}</span>
 					</>
 				)}
 				<cite class="c-ref__article">{article}</cite>
@@ -53,7 +58,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				)}
 				{no !== undefined && (
 					<>
-						<span class="c-ref__no">No.{typeof no === 'number' ? no : no.join('・')}</span>
+						<span class="c-ref__no">{noDisplay}</span>
 					</>
 				)}
 				<cite class="c-ref__article">{article}</cite>
