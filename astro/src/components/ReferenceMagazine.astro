@@ -6,7 +6,7 @@ interface Props {
 	date?: string; // 年月や特集名
 	no?: number | number[]; // 通巻
 	article: string; // 記事タイトル
-	author?: string; // 著者
+	author?: string | string[]; // 記事の著者
 	pages: number[]; // ページ数
 	url?: string; // Web ページの URL
 }
@@ -16,6 +16,11 @@ const { name, date, no, article, author, pages, url } = Astro.props;
 let noDisplay: string | undefined;
 if (no !== undefined) {
 	noDisplay = `No.${typeof no === 'number' ? String(no) : no.join('・')}`;
+}
+
+let authorDisplay: string | undefined;
+if (author !== undefined) {
+	authorDisplay = typeof author === 'string' ? author : author.join('、');
 }
 
 const [startPage, endPage] = pages;
@@ -38,9 +43,9 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 					</>
 				)}
 				<cite class="c-ref__article">{article}</cite>
-				{author !== undefined && (
+				{authorDisplay !== undefined && (
 					<>
-						<span class="c-ref__author">{author}</span>
+						<span class="c-ref__author">{authorDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
@@ -62,9 +67,9 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 					</>
 				)}
 				<cite class="c-ref__article">{article}</cite>
-				{author !== undefined && (
+				{authorDisplay !== undefined && (
 					<>
-						<span class="c-ref__author">{author}</span>
+						<span class="c-ref__author">{authorDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
