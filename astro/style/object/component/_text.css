@@ -269,18 +269,79 @@ Markup:
 Styleguide 1.2.7
 */
 .c-ref {
+	--_space-width: 0.25em;
+
 	/* 図書 */
 	&.-book {
+		/* 図書名 */
+		& .c-ref__name {
+			&::before {
+				content: "『";
+			}
+
+			&::after {
+				content: "』";
+			}
+		}
+
+		/* 本の発行年、著者名などのメタ情報 */
+		& .c-ref__meta {
+			&:not(:first-child) {
+				margin-inline-start: calc(0px - var(--_space-width));
+			}
+
+			&:not(:last-child) {
+				margin-inline-end: calc(0px - var(--_space-width));
+			}
+
+			&::before {
+				margin-inline-end: calc(0px - var(--_space-width));
+				content: "（";
+			}
+
+			&::after {
+				margin-inline-start: calc(0px - var(--_space-width));
+				content: "）";
+			}
+
+			/* 全角スペース相当の間隔を開ける */
+			& > *:not(:last-child) {
+				&::after {
+					margin-inline-end: -0.5em;
+					content: "\3000";
+				}
+			}
+		}
 	}
 
 	/* 雑誌 */
 	&.-magazine {
+		/* 記事の著者名 */
+		& .c-ref__author {
+			&:not(:first-child) {
+				margin-inline-start: calc(0px - var(--_space-width));
+			}
+
+			&:not(:last-child) {
+				margin-inline-end: calc(0px - var(--_space-width));
+			}
+
+			&::before {
+				content: "（";
+			}
+
+			&::after {
+				content: "）";
+			}
+		}
 	}
 
 	/* 鉄道省文書 */
 	&.-tetsudosho {
-		& > b:first-child {
+		/* 行政機関名（鉄道省、運輸省……） */
+		& .c-ref__government {
 			all: unset;
+			margin-inline-end: calc(0px - var(--_space-width));
 
 			&::before {
 				content: "【";
@@ -291,6 +352,7 @@ Styleguide 1.2.7
 			}
 		}
 
+		/* 全角スペース相当の間隔を開ける */
 		& .c-ref__no,
 		& .c-ref__date {
 			&::before {
@@ -301,28 +363,16 @@ Styleguide 1.2.7
 	}
 }
 
-/* 図書名／雑誌名 */
-.c-ref__name {
-	&:lang(ja) {
-		--_open: "";
-		--_close: "";
-	}
-}
-
-/* 【鉄道省文書】鉄道事業者名 */
-.c-ref__company {
-}
-
-/* 雑誌の年月や特集名 */
-.c-ref__date {
-}
-
-/* No. */
-.c-ref__no {
-}
-
 /* 記事タイトル */
 .c-ref__article {
+	&:not(:first-child) {
+		margin-inline-start: calc(0px - var(--_space-width));
+	}
+
+	&:not(:last-child) {
+		margin-inline-end: calc(0px - var(--_space-width));
+	}
+
 	&::before {
 		content: "「";
 	}
@@ -330,25 +380,6 @@ Styleguide 1.2.7
 	&::after {
 		content: "」";
 	}
-}
-
-/* 著者 */
-.c-ref__author {
-	cite + & {
-		margin-inline-start: -0.5em;
-	}
-
-	&::before {
-		content: "（";
-	}
-
-	&::after {
-		content: "）";
-	}
-}
-
-/* ページ数 */
-.c-ref__pages {
 }
 
 /*
