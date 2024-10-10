@@ -2,10 +2,7 @@
 import DateWareki from './DateWareki.astro';
 import LinkExternal from './LinkExternal.astro';
 
-type Government = '鉄道院' | '鉄道省' | '運輸通信省' | '運輸省' | '国土交通省';
-
 interface Props {
-	government?: Government; // 省庁名
 	company: string; // 鉄道事業者名
 	no?: string; // 資料番号
 	date: string; // 年月日（YYYY-MM-DD, YYYY-MM, YYYY）
@@ -13,11 +10,26 @@ interface Props {
 	url: string; // 国立公文書館デジタルアーカイブの URL
 }
 
-const { government, company, no, date, title, url } = Astro.props;
+const { company, no, date: dateStr, title, url } = Astro.props;
+
+const date = new Date(dateStr);
+
+let government: string;
+if (date < new Date('1920-05-15')) {
+	government = '鉄道院';
+} else if (date < new Date('1943-11-01')) {
+	government = '鉄道省';
+} else if (date < new Date('1945-05-19')) {
+	government = '運輸通信省';
+} else if (date < new Date('2001-01-06')) {
+	government = '運輸省';
+} else {
+	government = '国土交通省';
+}
 ---
 
 <span class="c-ref -tetsudosho">
-	<b>{government ?? '鉄道省'}文書</b>
+	<b class="c-ref__government">{government}文書</b>
 	<LinkExternal href={url}>
 		<span class="c-ref__company">{company}</span>
 		{
@@ -27,7 +39,7 @@ const { government, company, no, date, title, url } = Astro.props;
 				</>
 			)
 		}
-		<DateWareki value={date} class="c-ref__date" />
+		<DateWareki value={dateStr} class="c-ref__date" />
 		{title !== undefined && <cite class="c-ref__article">{title}</cite>}
 	</LinkExternal>
 </span>

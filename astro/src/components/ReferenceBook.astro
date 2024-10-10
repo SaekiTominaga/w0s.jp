@@ -3,14 +3,22 @@ import LinkExternal from './LinkExternal.astro';
 
 interface Props {
 	name: string; // 図書名
-	article?: string; // 記事タイトル
-	author?: string; // 著者
+	author: string | string[]; // 著者、出版社
+	year: number; // 発行年
+	article?: string | string[]; // 記事タイトル
 	pages: number[]; // ページ数
 	url?: string; // Web ページの URL
-	urlScope?: 'name' | 'page'; // URL の対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
+	linkScope?: 'name' | 'page'; // リンクの対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
 }
 
-const { name, article, author, pages, url, urlScope } = Astro.props;
+const { name, author, year, article, pages, url, linkScope = 'name' } = Astro.props;
+
+const authorDisplay = typeof author === 'string' ? author : author.join('、');
+
+let articleDisplay: string | undefined;
+if (article !== undefined) {
+	articleDisplay = typeof article === 'string' ? article : article.join(' – ');
+}
 
 const [startPage, endPage] = pages;
 const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
@@ -18,19 +26,20 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 
 <span class="c-ref -book">
 	{
-		url !== undefined && (urlScope === undefined || urlScope === 'name') && (
+		url !== undefined && linkScope === 'name' && (
 			<>
 				<LinkExternal href={url}>
 					<cite class="c-ref__name">{name}</cite>
+					<span class="c-ref__meta">
+						<span class="c-ref__author">{authorDisplay}</span>
+						<time datetime={String(year)} class="c-ref__date">
+							{year}年
+						</time>
+					</span>
 				</LinkExternal>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{article}</span>
-					</>
-				)}
-				{author !== undefined && (
-					<>
-						<span class="c-ref__author">{author}</span>
+						<span class="c-ref__article">{articleDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
@@ -38,17 +47,18 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 		)
 	}
 	{
-		url !== undefined && urlScope === 'page' && (
+		url !== undefined && linkScope === 'page' && (
 			<LinkExternal href={url}>
 				<cite class="c-ref__name">{name}</cite>
+				<span class="c-ref__meta">
+					<span class="c-ref__author">{authorDisplay}</span>
+					<time datetime={String(year)} class="c-ref__date">
+						{year}年
+					</time>
+				</span>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{article}</span>
-					</>
-				)}
-				{author !== undefined && (
-					<>
-						<span class="c-ref__author">{author}</span>
+						<span class="c-ref__article">{articleDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
@@ -59,14 +69,15 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 		url === undefined && (
 			<>
 				<cite class="c-ref__name">{name}</cite>
+				<span class="c-ref__meta">
+					<span class="c-ref__author">{authorDisplay}</span>
+					<time datetime={String(year)} class="c-ref__date">
+						{year}年
+					</time>
+				</span>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{article}</span>
-					</>
-				)}
-				{author !== undefined && (
-					<>
-						<span class="c-ref__author">{author}</span>
+						<span class="c-ref__article">{articleDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
