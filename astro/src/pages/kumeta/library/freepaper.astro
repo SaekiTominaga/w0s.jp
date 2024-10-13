@@ -13,7 +13,7 @@ import type { StructuredData } from '@type/types.js';
 const structuredData: StructuredData = {
 	title: '久米田康治作品のフリーペーパーでの紹介例',
 	heading: 'メディア紹介 — フリーペーパー',
-	dateModified: dayjs('2024-04-26'),
+	dateModified: dayjs('2024-10-13'),
 	description: 'フリーペーパーにおいて久米田先生のインタビューや作品紹介などが掲載された事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 	localNav: {
@@ -227,8 +227,25 @@ const slugger = new GithubSlugger();
 
 			<ul class="p-notes">
 				<li>和光大学の2024年度大学案内（オープンキャンパス等で配布）</li>
-				<li>表紙イラストは<LinkExternal href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</LinkExternal>で公開。</li>
-				<li>掲載のインタビューは<LinkExternal href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</LinkExternal>とは異なる（「<cite>5つの質問</cite>」は同一）。</li>
+				<li>表紙イラストは<LinkExternal href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</LinkExternal>で公開</li>
+				<li>掲載のインタビューは<LinkExternal href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</LinkExternal>とは異なる（「<cite>5つの質問</cite>」は同一）</li>
+			</ul>
+		</LibBook>
+	</Section>
+
+	<Section slugger={slugger}>
+		<H slot="heading">2024年</H>
+
+		<LibBook slugger={slugger} headingLevel={3} title="GCLマガジン" distribution="2024-09-26" tags={['描き下ろし', 'インタビュー']}>
+			<LibContent>
+				<LibItem position="表紙&裏表紙">描き下ろしイラスト</LibItem>
+				<LibItem pages={[2, 5]}>久米田康治×ところにょり特別対談</LibItem>
+				<LibItem pages={[6, 7]}>『<cite>違う冬のぼくら</cite>』紹介、イラスト掲載</LibItem>
+			</LibContent>
+
+			<ul class="p-notes">
+				<li><LinkExternal href="https://tgs.nikkeibp.co.jp/tgs/2024/jp/">東京ゲームショウ2024</LinkExternal> の「講談社ゲームクリエイターズラボ」ブースで配布</li>
+				<li>表紙イラストは<LinkExternal href="https://creatorslab.kodansha.co.jp/topics/2673/">プレスリリース</LinkExternal>で公開</li>
 			</ul>
 		</LibBook>
 	</Section>
