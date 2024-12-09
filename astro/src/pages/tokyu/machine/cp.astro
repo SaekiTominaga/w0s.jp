@@ -2,11 +2,12 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
-import Image from '@components/Image.astro';
 import H from '@components/H.astro';
+import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import LinkPhoto from '@components/LinkPhoto.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import RefMagazine from '@components/ReferenceMagazine.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -55,14 +56,14 @@ const slugger = new GithubSlugger();
 				</tr>
 				<tr>
 					<td><a href="#3ys" class="c-link">3YS</a></td>
-					<td>1,000ℓ/min<FootnoteReference>「<cite>TKK超軽量電車5000型</cite>」（パンフレット）より。ただし、現車調査において 1,175ℓ/min の固体も存在することを確認しています。後の増備で増加したのか、それとも資料ではおおよその値を示しているに過ぎないのかは不明です。</FootnoteReference></td>
+					<td>1,000ℓ/min<NoteRef by="tkk5000-pamphlet" /></td>
 					<td>SE551</td>
 					<td>DC 1500V</td>
 					<td>5000系、5200系</td>
 				</tr>
 				<tr>
 					<td><a href="#c1000" class="c-link">C1000</a></td>
-					<td>1,194ℓ/min<FootnoteReference><RefMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></FootnoteReference></td>
+					<td>1,194ℓ/min<NoteRef type="ref" by="denkisha145" /></td>
 					<td>MH80</td>
 					<td>DC 1500V</td>
 					<td>6000系、7000系、7200系</td>
@@ -116,33 +117,45 @@ const slugger = new GithubSlugger();
 				</tr>
 				<tr>
 					<td rowspan="2"><a href="#hs5" class="c-link">HS5</a></td>
-					<td>600ℓ/min<FootnoteReference><RefMagazine name="ナブコ技報" date="1986年7月号" no={62} article="HS5電動空気圧縮機装置" pages={[53]} /></FootnoteReference></td>
+					<td>600ℓ/min<NoteRef type="ref" by="nabuco62" /></td>
 					<td>D3360</td>
 					<td>DC 600V</td>
 					<td>デハ70形、300系</td>
 				</tr>
 				<tr>
-					<td>610ℓ/min<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="1999年10月号" no={675} article="横浜高速鉄道Y000系" authors={['服部典夫', '佐藤浩規']} pages={[64]} /></FootnoteReference></td>
+					<td>610ℓ/min<NoteRef type="ref" by="pic675" /></td>
 					<td>?</td>
 					<td>AC 440V</td>
 					<td>Y000系</td>
 				</tr>
 				<tr>
 					<td><a href="#c2500" class="c-link">C2500L</a></td>
-					<td>2,463ℓ/min<FootnoteReference><RefMagazine name="車両技術" date="1999年9月号" no={218} article="東京急行電鉄3000系車両" authors={['神尾純一', '門田吉人']} pages={[49]} /></FootnoteReference></td>
+					<td>2,463ℓ/min<NoteRef type="ref" by="sharyogijyutu218" /></td>
 					<td>A1744</td>
 					<td>AC 440V</td>
 					<td>新3000系</td>
 				</tr>
 				<tr>
 					<td><a href="#c2000m" class="c-link">C2000M</a></td>
-					<td>2,100ℓ/min<FootnoteReference><RefMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7]} /></FootnoteReference></td>
+					<td>2,100ℓ/min<NoteRef type="ref" by="nabuco57" /></td>
 					<td>?</td>
 					<td>DC 1500V</td>
 					<td>富山地方鉄道17480形</td>
 				</tr>
 			</tbody>
 		</table>
+
+		<NoteRefContent id="tkk5000-pamphlet">「<cite>T.K.K.超軽量電車5000型</cite>」（パンフレット）より。ただし、現車調査において 1,175ℓ/min の固体も存在することを確認しています。後の増備で増加したのか、それとも資料ではおおよその値を示しているに過ぎないのかは不明です。</NoteRefContent>
+
+		<NoteRefContent id="denkisha145"><RefMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
+
+		<NoteRefContent id="nabuco62"><RefMagazine name="ナブコ技報" date="1986年7月号" no={62} article="HS5電動空気圧縮機装置" pages={[53]} /></NoteRefContent>
+
+		<NoteRefContent id="pic675"><RefMagazine name="鉄道ピクトリアル" date="1999年10月号" no={675} article="横浜高速鉄道Y000系" authors={['服部典夫', '佐藤浩規']} pages={[64]} /></NoteRefContent>
+
+		<NoteRefContent id="sharyogijyutu218"><RefMagazine name="車両技術" date="1999年9月号" no={218} article="東京急行電鉄3000系車両" authors={['神尾純一', '門田吉人']} pages={[49]} /></NoteRefContent>
+
+		<NoteRefContent id="nabuco57"><RefMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7]} /></NoteRefContent>
 	</div>
 
 	<ul class="p-notes">
@@ -266,7 +279,9 @@ const slugger = new GithubSlugger();
 		<p><a href="#3ys">3YS 型</a>、<a href="#c1000">C1000 型</a>からさらに構造が変わり、電動機と圧縮機をゴム可とう継手で繋ぎ、高圧・低圧それぞれ2つのシリンダを対向に配したもの（水平対向4気筒）となりました。この基本構造は後の <a href="#hb2000">HB2000 型</a>や <a href="#hs20">HS20 型</a>にも引き継がれています。</p>
 		<p>本タイプは東急では7200系で採用され、後に旧7000系の一部にも C1000 型の交換という形で搭載、7700系でもサハ7950形の一部やクハ7915（先頭化改造車）が搭載していました。7200系用と7000系用では形態が異なり、ちりこしの設置高さや配管配置、シリンダ形状などに違いが見られます。変わったところだと、長津田車両工場の入れ替え車となったデワ3043 に晩年7200系タイプが搭載されていたこともありました。</p>
 		<p>現在では徐々に数を減らしているとはいえ、豊橋鉄道、大井川鐵道などで7200系タイプが、弘南鉄道、水間鉄道で7000系タイプがまだ多数活躍しています。ただし水間鉄道デハ1008 は7000系ながら7200系タイプを搭載しています。</p>
-		<p>なお、旧7000系のうち北陸鉄道譲渡車は床下機器が一新され、このうち CP は後に京阪電気鉄道の発生品<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="2001年5月臨時増刊号" no={701} article="現有私鉄概説　北陸鉄道" authors={['山本宏之']} pages={[88]} /></FootnoteReference>への再交換がなされたのですが、奇しくも HB1500 型を搭載することになりました。ただし東急とは表裏逆向きに取り付けられており、また<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HB1500_ueda7255_back.jpg" title="上田電鉄モハ7255">東急タイプの HB1500 型の裏側</LinkPhoto>と比較すると電動機が異なるほか、フレームの電動機側の下端が斜めにカットされた形状になっている特徴が分かります。</p>
+		<p>なお、旧7000系のうち北陸鉄道譲渡車は床下機器が一新され、このうち CP は後に京阪電気鉄道の発生品<NoteRef type="ref" by="pic701" />への再交換がなされたのですが、奇しくも HB1500 型を搭載することになりました。ただし東急とは表裏逆向きに取り付けられており、また<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HB1500_ueda7255_back.jpg" title="上田電鉄モハ7255">東急タイプの HB1500 型の裏側</LinkPhoto>と比較すると電動機が異なるほか、フレームの電動機側の下端が斜めにカットされた形状になっている特徴が分かります。</p>
+
+		<NoteRefContent id="pic701"><RefMagazine name="鉄道ピクトリアル" date="2001年5月臨時増刊号" no={701} article="現有私鉄概説　北陸鉄道" authors={['山本宏之']} pages={[88]} /></NoteRefContent>
 	</Section>
 
 	<Section id="hb2000">
@@ -313,8 +328,12 @@ const slugger = new GithubSlugger();
 
 		<p>8000系に搭載された HB2000 型の基本構造は7200系で採用された <a href="#hb1500">HB1500 型</a>と同様ですが、容積や出力がアップされています。</p>
 		<p>8500系、8090系も含めた17次車までに搭載され、電動機は神鋼電機<small>（現：シンフォニアテクノロジー）</small>製の CM2015 型が多くを占めていましたが、日立製作所製の EFO 型も混在しており、出力や定格回転数の特性は同一ながら点検蓋の形状などに差異がみられました。</p>
-		<p>8000系グループの東急での活躍末期は神鋼製に統一されており、長野電鉄、秩父鉄道の譲渡車も同様の状況と思われますが、伊豆急行では CP 搭載車のおよそ3分の1ほどが日立製を搭載しています<FootnoteReference>2011年頃の調査では CP 搭載車22両のうち、日立製作所製は次の8両でした。モハ8201, 8202, 8206, 8257、クハ8002, 8005, 8006, 8007。</FootnoteReference>。また、伊豆急行譲渡車のうちクモハ8250形のみは表裏逆向きに取り付けられているのが特徴です。</p>
-		<p>ユニークなところで田園都市線の8500系（10両編成）は、一部編成を除き6号車の CP を撤去して1編成あたりの台数を3機にする改造が行われましたが、一部の撤去車は吊枠のみ残されていました<FootnoteReference>吊枠のみの状態になっていたのは次の7両です。デハ8842<small>（8625F）</small>、デハ8843<small>（8626F）</small>、デハ8845<small>（8617F）</small>、デハ8849<small>（8621F）</small>、デハ8866<small>（8623F）</small>、デハ8878<small>（8632F）</small>、デハ8881<small>（8633F）</small>。このうちデハ8845 はいったん撤去された後、改めて吊枠のみ設置されたことを確認しています。</FootnoteReference>。なお当該車両はいずれも13次車以降で、これは 100V 蓄電池が山側に搭載された車両だったため（CP は海側搭載）、車両の重量バランスを考慮した処置だったものと思われます。</p>
+		<p>8000系グループの東急での活躍末期は神鋼製に統一されており、長野電鉄、秩父鉄道の譲渡車も同様の状況と思われますが、伊豆急行では CP 搭載車のおよそ3分の1ほどが日立製を搭載しています<NoteRef by="hb2000-shinko" />。また、伊豆急行譲渡車のうちクモハ8250形のみは表裏逆向きに取り付けられているのが特徴です。</p>
+		<p>ユニークなところで田園都市線の8500系（10両編成）は、一部編成を除き6号車の CP を撤去して1編成あたりの台数を3機にする改造が行われましたが、一部の撤去車は吊枠のみ残されていました<NoteRef by="hb2000-frame" />。なお当該車両はいずれも13次車以降で、これは 100V 蓄電池が山側に搭載された車両だったため（CP は海側搭載）、車両の重量バランスを考慮した処置だったものと思われます。</p>
+
+		<NoteRefContent id="hb2000-shinko">2011年頃の調査では CP 搭載車22両のうち、日立製作所製は次の8両でした。モハ8201, 8202, 8206, 8257、クハ8002, 8005, 8006, 8007。</NoteRefContent>
+
+		<NoteRefContent id="hb2000-frame">吊枠のみの状態になっていたのは次の7両です。デハ8842<small>（8625F）</small>、デハ8843<small>（8626F）</small>、デハ8845<small>（8617F）</small>、デハ8849<small>（8621F）</small>、デハ8866<small>（8623F）</small>、デハ8878<small>（8632F）</small>、デハ8881<small>（8633F）</small>。このうちデハ8845 はいったん撤去された後、改めて吊枠のみ設置されたことを確認しています。</NoteRefContent>
 	</Section>
 
 	<Section id="hs20">
@@ -344,14 +363,17 @@ const slugger = new GithubSlugger();
 				</div>
 			</div>
 
-			<p>低騒音、小型軽量化、低振動化を図るために開発された機種で、弁部から発生する音を軽減したり、フレーム構造を廃して圧縮機と電動機を直結したりすることにより、 <a href="#hb2000">HB2000 型</a>と比較して重量 40% 減、車内騒音値 11% 減を達成しています<FootnoteReference><RefMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7, 8]} /></FootnoteReference>。</p>
+			<p>低騒音、小型軽量化、低振動化を図るために開発された機種で、弁部から発生する音を軽減したり、フレーム構造を廃して圧縮機と電動機を直結したりすることにより、 <a href="#hb2000">HB2000 型</a>と比較して重量 40% 減、車内騒音値 11% 減を達成しています<NoteRef type="ref" by="nabuco57" />。</p>
+
+			<NoteRefContent id="nabuco57"><RefMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7, 8]} /></NoteRefContent>
+
 			<p>現車試験の後、1986年デビューの9000系で本格採用され、2000系までの新造車に搭載されています。また <a href="#hb1500">HB1500 型</a>を搭載していたクハ7915 も先頭化改造からしばらくして本タイプに換装されました。</p>
 			<p>
 				電動機は交流駆動とされ、 SIV から出力された三相交流が直接供給されます。隣接して<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS20_cm_9001.jpg" title="クハ9001 海側"><!-- 撮影日: 2007-09-15 -->起動装置</LinkPhoto>を備えますが、<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS20_cm_9009.jpg" title="クハ9009 海側"><!-- 撮影日: 2010-03-31 -->9000系3次車以降の起動装置</LinkPhoto>は小型化されています。
 			</p>
-			<p>
-				クハ9010 の CP は1992年に<dfn>双固定子誘導電動機（SIM モーター）</dfn>を使ったものに交換されました<FootnoteReference>SIM とは開発元である佐竹製作所（現在の<LinkExternal href="https://satake-japan.co.jp/">株式会社サタケ</LinkExternal>）から名称を取った SATAKE Induction Motor の略です。1989年に開発され、1992年に東急電車にて初めて実車搭載がなされました。装置の詳細は<RefMagazine name="電気車の科学" date="1993年10月号" no={546} article="SIMモータ式空気圧縮機の実用化について" authors={['宮田道一', '尾崎正明']} pages={[36, 39]} />や<RefMagazine name="自動化技術" date="1993年11月号" article="車載用双固定子形誘導電動機式空気圧縮機の実用化" authors={['丸山博正']} pages={[56, 59]} url="https://dl.ndl.go.jp/pid/2322419/1/46" />に、また開発時のエピソードは<LinkExternal href="https://satake-japan.co.jp/news/new-release/news120418-2.html">新幹線E5系に採用された時のニュースリリース</LinkExternal>に掲載されています。</FootnoteReference>。これは始動時のみローターバーの抵抗を高くして、ローターに流れる誘導電流を抑えることで始動電流の抑制を図ったものであり、電動機（TFC221 型）の特性は通常の誘導電動機タイプとほぼ同一となっています。当時、東武鉄道など量産が行われた事業者もありましたが、東急電鉄では現車試験を続けている中で旅客車両の新造が1993年〜1999年の6年間途絶えたためか、 HS20 型の SIM タイプは量産されないまま、クハ9010 の CP も2013年の大井町線転籍直後に通常タイプに戻されて消滅しました。
-			</p>
+			<p>クハ9010 の CP は1992年に<dfn>双固定子誘導電動機（SIM モーター）</dfn>を使ったものに交換されました<NoteRef by="sim" />。これは始動時のみローターバーの抵抗を高くして、ローターに流れる誘導電流を抑えることで始動電流の抑制を図ったものであり、電動機（TFC221 型）の特性は通常の誘導電動機タイプとほぼ同一となっています。当時、東武鉄道など量産が行われた事業者もありましたが、東急電鉄では現車試験を続けている中で旅客車両の新造が1993年〜1999年の6年間途絶えたためか、 HS20 型の SIM タイプは量産されないまま、クハ9010 の CP も2013年の大井町線転籍直後に通常タイプに戻されて消滅しました。</p>
+
+			<NoteRefContent id="sim">SIM とは開発元である佐竹製作所（現在の<LinkExternal href="https://satake-japan.co.jp/">株式会社サタケ</LinkExternal>）から名称を取った SATAKE Induction Motor の略です。1989年に開発され、1992年に東急電車にて初めて実車搭載がなされました。装置の詳細は<RefMagazine name="電気車の科学" date="1993年10月号" no={546} article="SIMモータ式空気圧縮機の実用化について" authors={['宮田道一', '尾崎正明']} pages={[36, 39]} />や<RefMagazine name="自動化技術" date="1993年11月号" article="車載用双固定子形誘導電動機式空気圧縮機の実用化" authors={['丸山博正']} pages={[56, 59]} url="https://dl.ndl.go.jp/pid/2322419/1/46" />に、また開発時のエピソードは<LinkExternal href="https://satake-japan.co.jp/news/new-release/news120418-2.html">新幹線E5系に採用された時のニュースリリース</LinkExternal>に掲載されています。</NoteRefContent>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
@@ -403,7 +425,10 @@ const slugger = new GithubSlugger();
 
 			<p><a href="#hs20">HS20 型</a>を元に開発された小容量タイプで、全体的にコンパクトになり、ちりこしが横向きに配されるなど印象も異なります。</p>
 			<p>東急電鉄では池上線向けに製造された1000N′系にのみ搭載されていますが、1000N系と同様に短編成で SIV が1機なため、電動機は電車線給電の直流駆動式とされました。</p>
-			<p>HS20 型を搭載していた1000系、1000N系のうち、伊賀鉄道譲渡車はク100形に本タイプが搭載されましたが、1000N′系登場前に製造された個体もあるため<FootnoteReference>2012年にク105 の銘板を調査したところ、製造番号は 89035 でした。通常、製造番号の上2桁は製造年を表すため、これは1989年製造であるものと思われます。一方、1000N′系の登場は1991年です。</FootnoteReference>、型式、外観は同一ながら東急以外からの出物ではないかと思われます。</p>
+
+			<p>HS20 型を搭載していた1000系、1000N系のうち、伊賀鉄道譲渡車はク100形に本タイプが搭載されましたが、1000N′系登場前に製造された個体もあるため<NoteRef by="hs20-iga" />、型式、外観は同一ながら東急以外からの出物ではないかと思われます。</p>
+
+			<NoteRefContent id="hs20-iga">2012年にク105 の銘板を調査したところ、製造番号は 89035 でした。通常、製造番号の上2桁は製造年を表すため、これは1989年製造であるものと思われます。一方、1000N′系の登場は1991年です。</NoteRefContent>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">

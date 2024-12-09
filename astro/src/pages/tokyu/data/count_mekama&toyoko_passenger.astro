@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/DateWareki.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -139,7 +140,7 @@ const structuredData: StructuredData = {
 					</tr>
 					<tr>
 						<th scope="row"><DateWareki value="1924" />春</th>
-						<th scope="row">鉄道省よりデハ6260形4両を借入<FootnoteReference>借り入れの認可申請書類には目黒蒲田電鉄における車号は記載されておらず、この時点では鉄道省車号のまま運用された可能性がありますが、本表では便宜上「デハ20形」としてカウントしています。</FootnoteReference></th>
+						<th scope="row">鉄道省よりデハ6260形4両を借入<NoteRef by="deha6260" /></th>
 						<td class="u-cell -end">14</td>
 						<td class="u-cell -end">10</td>
 						<td class="u-cell -end">4</td>
@@ -196,7 +197,7 @@ const structuredData: StructuredData = {
 					</tr>
 					<tr>
 						<th scope="row"><DateWareki value="1926-03-08" /></th>
-						<th scope="row">デハ101–105 東横より譲受<FootnoteReference>東京横浜電鉄における竣功（<DateWareki value="1925-12-07" />）と同時に目黒蒲田電鉄への譲渡申請が行われたため、事実上は目蒲への新製投入であったものと思われます。</FootnoteReference></th>
+						<th scope="row">デハ101–105 東横より譲受<NoteRef by="1926-03-08" /></th>
 						<td class="u-cell -end">27</td>
 						<td class="u-cell -end">10</td>
 						<td class="u-cell -end">4</td>
@@ -234,7 +235,7 @@ const structuredData: StructuredData = {
 					</tr>
 					<tr>
 						<th scope="row"><DateWareki value="1926" />初夏(?)</th>
-						<th scope="row">デハ41–44 鉄道省より譲受<FootnoteReference>書類上は鉄道省より10両を譲り受けたうえで6両を未使用のまま阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡していますが、本表では実際に運用された両数を重視するためその6両分は除外しています。</FootnoteReference></th>
+						<th scope="row">デハ41–44 鉄道省より譲受<NoteRef by="deha41" /></th>
 						<td class="u-cell -end">21</td>
 						<td class="u-cell -end">7</td>
 						<td class="u-cell -end">4</td>
@@ -790,6 +791,12 @@ const structuredData: StructuredData = {
 					</tr>
 				</tbody>
 			</table>
+
+			<NoteRefContent id="deha6260">借り入れの認可申請書類には目黒蒲田電鉄における車号は記載されておらず、この時点では鉄道省車号のまま運用された可能性がありますが、本表では便宜上「デハ20形」としてカウントしています。</NoteRefContent>
+
+			<NoteRefContent id="1926-03-08">東京横浜電鉄における竣功（<DateWareki value="1925-12-07" />）と同時に目黒蒲田電鉄への譲渡申請が行われたため、事実上は目蒲への新製投入であったものと思われます。</NoteRefContent>
+
+			<NoteRefContent id="deha41">書類上は鉄道省より10両を譲り受けたうえで6両を未使用のまま阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡していますが、本表では実際に運用された両数を重視するためその6両分は除外しています。</NoteRefContent>
 		</div>
 	</Section>
 

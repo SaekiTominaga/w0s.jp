@@ -1,11 +1,12 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import RefBook from '@components/ReferenceBook.astro';
 import RefMagazine from '@components/ReferenceMagazine.astro';
 import type { StructuredData } from '@type/types.js';
@@ -28,7 +29,7 @@ const structuredData: StructuredData = {
 	<Section id="echizen-1101">
 		<H slot="heading">えちぜん鉄道MC1101形について</H>
 
-		<p>えちぜん鉄道は2002年に京福電気鉄道の福井鉄道部を引き継いで誕生した鉄道で、福井駅と勝山駅を結ぶ勝山永平寺線と、三国港駅までの三国芦原線の2路線から成ります。旅客車両は京福から引き継いだ4車種と、愛知環状鉄道から譲渡されたMC6001形、MC6101形が在籍しています。前者の中には全国でも希少となった吊り掛け駆動車も含まれており、平日ラッシュ時を中心に活躍しています。</p>
+		<p>えちぜん鉄道は2002年に京福電気鉄道の福井鉄道部を引き継いで誕生した鉄道で、福井駅と勝山駅を結ぶ勝山永平寺線と、三国港駅までの三国芦原線の2路線から成ります。旅客車両は京福から引き継いだ4車種と、愛知環状鉄道から譲渡されたMC6001形、MC6101形が在籍しています。前者の中には全国でも希少となった吊り掛け車も含まれており、平日ラッシュ時を中心に活躍しています。</p>
 		<p>車両によって走り装置の更新や冷房搭載など各種の改造が行われていますが、今回注目するのはMC1101形という車両で、1981年に阪神電鉄で廃車になった車両の車体を譲り受け、各種機器は在来車のものを流用して2両が竣功したものとのことです。</p>
 
 		<div class="c-grid -wide">
@@ -43,7 +44,7 @@ const structuredData: StructuredData = {
 			</div>
 		</div>
 
-		<p>この車種は竣功当初は吊り掛け駆動式だったようですが、京福時代の1998年にカルダン駆動化が行われており、同時に主制御器は MMC-H-10K に換装されました。</p>
+		<p>この車種は竣功当初は吊り掛け式だったようですが、京福時代の1998年にカルダン駆動化が行われており、同時に主制御器は MMC-H-10K に換装されました。</p>
 		<p>新性能化に関する話は、鉄道ピクトリアルの特集「<cite>北陸地方のローカル私鉄</cite>」にある京福電鉄の記事が詳しく、次のように書かれています。</p>
 
 		<figure>
@@ -271,10 +272,12 @@ const structuredData: StructuredData = {
 						<td>名鉄モ5200形</td>
 						<td>MMC H-10K1</td>
 						<td>830241-2</td>
-						<td>昭和49年11月<FootnoteReference>モ1956の製造年月はおそらく記録ミスで、モ1904やモ1954の番号と比較するに実際は1971(昭和46)年製と思われます。</FootnoteReference></td>
+						<td>昭和49年11月<NoteRef by="mo1956-date" /></td>
 					</tr>
 				</tbody>
 			</table>
+
+			<NoteRefContent id="mo1956-date">モ1956の製造年月はおそらく記録ミスで、モ1904やモ1954の番号と比較するに実際は1971(昭和46)年製と思われます。</NoteRefContent>
 		</div>
 	</Section>
 

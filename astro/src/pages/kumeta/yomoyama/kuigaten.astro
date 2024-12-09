@@ -4,8 +4,9 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import type { StructuredData } from '@type/types.js';
@@ -476,7 +477,7 @@ const slugger = new GithubSlugger();
 						<td>アニメ</td>
 						<td><cite>さよなら絶望先生</cite></td>
 						<td>Blu-ray BOX化記念　全巻購入者特典用ディスク収録タイトルバック</td>
-						<td>2012年2月上旬<FootnoteReference>悔画展では初出が<q>2011年</q>とされているが、実際の商品到着日は2012年2月上旬。</FootnoteReference></td>
+						<td>2012年2月上旬<NoteRef by="zetsubou-bdbox" /></td>
 					</tr>
 					<tr>
 						<td>アニメ</td>
@@ -488,7 +489,7 @@ const slugger = new GithubSlugger();
 						<td>OAD</td>
 						<td><cite>獄・さよなら絶望先生</cite>　下</td>
 						<td>「<cite>一本昔ばなし</cite>」 タイトルバック</td>
-						<td>2009年2月17日<FootnoteReference>悔画展では初出が<q>2008年</q>とされているが、実際の発売日は2009年2月17日。</FootnoteReference></td>
+						<td>2009年2月17日<NoteRef by="goku-zetsubou3" /></td>
 					</tr>
 					<tr>
 						<td>アニメ</td>
@@ -691,7 +692,7 @@ const slugger = new GithubSlugger();
 					<tr>
 						<td>漫画</td>
 						<td><cite>かってに改蔵</cite></td>
-						<td>週刊少年サンデー 2004年32・33号　表紙集合イラスト<FootnoteReference>悔画展の初出には<q>週刊少年サンデー 2004年33号</q>とあるが、実際は合併号。</FootnoteReference></td>
+						<td>週刊少年サンデー 2004年32・33号　表紙集合イラスト<NoteRef by="sunday2004-32+33" /></td>
 						<td>2004年7月7日</td>
 					</tr>
 					<tr>
@@ -799,12 +800,12 @@ const slugger = new GithubSlugger();
 					<tr>
 						<td>漫画</td>
 						<td><LinkExternal href="https://www.amazon.co.jp/dp/B07C7PXZ46/"><cite>トゥインクルスターのんのんじーEX</cite></LinkExternal></td>
-						<td>寄稿イラスト<FootnoteReference>悔画展の初出には<q>付録小冊子寄稿イラスト</q>とあるが、実際はコミック本体。</FootnoteReference></td>
+						<td>寄稿イラスト<NoteRef by="nonnonji" /></td>
 						<td>2004年9月29日</td>
 					</tr>
 					<tr>
 						<td>アニメ</td>
-						<td><cite>ひだまりスケッチ×365</cite><FootnoteReference>悔画展の初出には作品名が<q>アニメ『ひだまりスケッチ』</q>とあるが、正確にはアニメ第2期の『<cite>ひだまりスケッチ×365</cite>』。</FootnoteReference></td>
+						<td><cite>ひだまりスケッチ×365</cite><NoteRef by="hidamari365" /></td>
 						<td><LinkExternal href="https://www.tbs.co.jp/anime/hidamari/2nd/08special/illust.html#illust12">第12話エンドカード</LinkExternal></td>
 						<td>2008年9月19日（18日深夜）</td>
 					</tr>
@@ -817,8 +818,8 @@ const slugger = new GithubSlugger();
 					<tr>
 						<td>アニメ</td>
 						<td><cite>機動戦士ガンダム</cite></td>
-						<td><LinkExternal href="https://www.amazon.co.jp/dp/B00X65OCO6/">ガンダムグッズエース（ガンダムエース9月号増刊）</LinkExternal>　寄稿イラスト<FootnoteReference>悔画展の初出には書籍名が<q>僕たちの好きなガンダム　永遠に残したい名場面100</q>とあるが、そちらに掲載されたのは部屋着で機械いじりをするアムロ・レイのイラストであり別物。</FootnoteReference></td>
-						<td>2003年7月15日<FootnoteReference>悔画展では初出が<q>2006年</q>とされているが、前述のとおり書籍名が誤っているためこちらも事実と異なり、正しくは2003年7月15日。</FootnoteReference></td>
+						<td><LinkExternal href="https://www.amazon.co.jp/dp/B00X65OCO6/">ガンダムグッズエース（ガンダムエース9月号増刊）</LinkExternal>　寄稿イラスト<NoteRef by="gundam-goods-ace1" /></td>
+						<td>2003年7月15日<NoteRef by="gundam-goods-ace2" /></td>
 					</tr>
 					<tr>
 						<td>漫画</td>
@@ -841,8 +842,8 @@ const slugger = new GithubSlugger();
 					<tr>
 						<td>アニメ</td>
 						<td><cite>くじびきアンバランス</cite></td>
-						<td><LinkExternal href="https://www.amazon.co.jp/dp/B000IZJ18E/">DVD BOX Ⅲ</LinkExternal> 小冊子　アンソロジーピンナップイラスト<FootnoteReference>悔画展では単に<q>DVD BOX</q> とされているが、久米田先生のピンナップイラストが封入されたのは第3巻にあたる DVD-BOX Ⅲ。</FootnoteReference></td>
-						<td>2007年4月25日<FootnoteReference>悔画展では初出が<q>2006年</q>とされている。DVD BOX Ⅰ の発売日は2006年12月22日だが、久米田先生のピンナップイラストが含まれた <LinkExternal href="https://web.archive.org/web/20070423055359/http://www.kujian.info/goods_dvd.html">DVD-BOX Ⅲ</LinkExternal> が発売されたのは2007年4月25日。</FootnoteReference></td>
+						<td><LinkExternal href="https://www.amazon.co.jp/dp/B000IZJ18E/">DVD BOX Ⅲ</LinkExternal> 小冊子　アンソロジーピンナップイラスト<NoteRef by="kujibiki1" /></td>
+						<td>2007年4月25日<NoteRef by="kujibiki2" /></td>
 					</tr>
 					<tr>
 						<td>漫画</td>
@@ -914,7 +915,7 @@ const slugger = new GithubSlugger();
 						<td>漫画</td>
 						<td><cite>幽良物件仲介します</cite></td>
 						<td>週刊ヤングサンデー1996年7号　トビラ</td>
-						<td>1996年1月18日<FootnoteReference>悔画展ではなぜが初出年が抜けている。</FootnoteReference></td>
+						<td>1996年1月18日<NoteRef by="youngsunday1996-07" /></td>
 					</tr>
 					<tr>
 						<td>漫画</td>
@@ -1032,6 +1033,26 @@ const slugger = new GithubSlugger();
 					</tr>
 				</tbody>
 			</table>
+
+			<NoteRefContent id="zetsubou-bdbox">悔画展では初出が<q>2011年</q>とされているが、実際の商品到着日は2012年2月上旬。</NoteRefContent>
+
+			<NoteRefContent id="goku-zetsubou3">悔画展では初出が<q>2008年</q>とされているが、実際の発売日は2009年2月17日。</NoteRefContent>
+
+			<NoteRefContent id="sunday2004-32+33">悔画展の初出には<q>週刊少年サンデー 2004年33号</q>とあるが、実際は合併号。</NoteRefContent>
+
+			<NoteRefContent id="nonnonji">悔画展の初出には<q>付録小冊子寄稿イラスト</q>とあるが、実際はコミック本体。</NoteRefContent>
+
+			<NoteRefContent id="hidamari365">悔画展の初出には作品名が<q>アニメ『ひだまりスケッチ』</q>とあるが、正確にはアニメ第2期の『<cite>ひだまりスケッチ×365</cite>』。</NoteRefContent>
+
+			<NoteRefContent id="gundam-goods-ace1">悔画展の初出には書籍名が<q>僕たちの好きなガンダム　永遠に残したい名場面100</q>とあるが、そちらに掲載されたのは部屋着で機械いじりをするアムロ・レイのイラストであり別物。</NoteRefContent>
+
+			<NoteRefContent id="gundam-goods-ace2">悔画展では初出が<q>2006年</q>とされているが、前述のとおり書籍名が誤っているためこちらも事実と異なり、正しくは2003年7月15日。</NoteRefContent>
+
+			<NoteRefContent id="kujibiki1">悔画展では単に<q>DVD BOX</q> とされているが、久米田先生のピンナップイラストが封入されたのは第3巻にあたる DVD-BOX Ⅲ。</NoteRefContent>
+
+			<NoteRefContent id="kujibiki2">悔画展では初出が<q>2006年</q>とされている。DVD BOX Ⅰ の発売日は2006年12月22日だが、久米田先生のピンナップイラストが含まれた <LinkExternal href="https://web.archive.org/web/20070423055359/http://www.kujian.info/goods_dvd.html">DVD-BOX Ⅲ</LinkExternal> が発売されたのは2007年4月25日。</NoteRefContent>
+
+			<NoteRefContent id="youngsunday1996-07">悔画展ではなぜが初出年が抜けている。</NoteRefContent>
 		</div>
 	</Section>
 
