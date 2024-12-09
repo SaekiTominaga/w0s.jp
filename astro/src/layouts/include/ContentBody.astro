@@ -1,27 +1,28 @@
 ---
 interface Props {
 	html: string;
-	footnoteData: { note: Map<number, string | undefined>; reference: Map<number, string | undefined> };
+	footnoteNoteData: Map<number, string | undefined>;
+	footnoteReferenceData: Map<number, string | undefined>;
 }
 
-const { html, footnoteData } = Astro.props;
+const { html, footnoteNoteData, footnoteReferenceData } = Astro.props;
 ---
 
 <div class="l-content__body">
 	<Fragment set:html={html} />
 
 	{
-		footnoteData.note.size > 0 && (
+		footnoteNoteData.size > 0 && (
 			<section class="p-footnote">
 				<h2 class="p-footnote__hdg">注釈</h2>
 
 				<ul class="p-footnote__list">
-					{[...footnoteData.note].map(([fnNo, fnHtml]) => (
+					{[...footnoteNoteData].map(([fnNo, fnHtml]) => (
 						<li>
 							<span class="p-footnote__no">{fnNo}.</span>
 							<p class="p-footnote__content">
 								<span id={`fn-note${fnNo}`} set:html={fnHtml} />
-								<a href={`#fnref-note${fnNo}`} class="p-footnote__backref">
+								<a href={`#nr-note${fnNo}`} class="p-footnote__backref">
 									↩ 戻る
 								</a>
 							</p>
@@ -33,17 +34,17 @@ const { html, footnoteData } = Astro.props;
 	}
 
 	{
-		footnoteData.reference.size > 0 && (
+		footnoteReferenceData.size > 0 && (
 			<section class="p-footnote">
 				<h2 class="p-footnote__hdg">参考文献</h2>
 
 				<ul class="p-footnote__list">
-					{[...footnoteData.reference].map(([fnNo, fnHtml]) => (
+					{[...footnoteReferenceData].map(([fnNo, fnHtml]) => (
 						<li>
 							<span class="p-footnote__no">{fnNo}.</span>
 							<p class="p-footnote__content">
 								<span id={`fn-ref${fnNo}`} set:html={fnHtml} />
-								<a href={`#fnref-ref${fnNo}`} class="p-footnote__backref">
+								<a href={`#nr-ref${fnNo}`} class="p-footnote__backref">
 									↩ 戻る
 								</a>
 							</p>
