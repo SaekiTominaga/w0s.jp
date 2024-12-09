@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
 import type { StructuredData } from '@type/types.js';
@@ -891,9 +892,7 @@ const slugger = new GithubSlugger();
 						<td>前田くん同席によるインタビュー</td>
 					</tr>
 					<tr>
-						<td>
-							アニメ『<cite>じょしらく</cite>』小冊子<FootnoteReference><LinkExternal href="http://king-cr.jp/special/joshiraku/news/news02.html">AKIHABARA ゲーマーズでの配布イベント</LinkExternal>で配られたもの。</FootnoteReference>
-						</td>
+						<td>アニメ『<cite>じょしらく</cite>』小冊子<NoteRef by="jyoshiraku-notebook" /></td>
 						<td></td>
 						<td>2012年6月30日</td>
 						<td></td>
@@ -937,6 +936,8 @@ const slugger = new GithubSlugger();
 					</tr>
 				</tbody>
 			</table>
+
+			<NoteRefContent id="jyoshiraku-notebook"><LinkExternal href="http://king-cr.jp/special/joshiraku/news/news02.html">AKIHABARA ゲーマーズでの配布イベント</LinkExternal>で配られたもの。</NoteRefContent>
 		</div>
 	</Section>
 </Layout>

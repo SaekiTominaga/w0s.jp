@@ -1,10 +1,11 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import RefMagazine from '@components/ReferenceMagazine.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -134,7 +135,7 @@ const structuredData: StructuredData = {
 					<tr>
 						<td><a href="#ts815c" class="c-link">TS-815C</a> <span class="c-tokyu-truck -t">付随</span></td>
 						<td class="u-cell -center">1983年</td>
-						<td class="u-cell -center">21両<FootnoteReference>TS-815M 型、TS-815A 型からの編入分を含まない両数。</FootnoteReference></td>
+						<td class="u-cell -center">21両<NoteRef by="ts815c-count" /></td>
 						<td>8500系<small>（15〜19次車）</small></td>
 						<td>現役</td>
 						<td></td>
@@ -189,13 +190,17 @@ const structuredData: StructuredData = {
 					<tr>
 						<td><a href="#ts839-t" class="c-link">TS-839</a> <span class="c-tokyu-truck -t">付随</span></td>
 						<td class="u-cell -center">1993年</td>
-						<td class="u-cell -center">3両<FootnoteReference>TS-835 型からの編入分を含まない両数。含むと5両になる。</FootnoteReference></td>
+						<td class="u-cell -center">3両<NoteRef by="ts839-count" /></td>
 						<td>7600系</td>
 						<td>消滅</td>
 						<td>TS-708 淘汰用</td>
 					</tr>
 				</tbody>
 			</table>
+
+			<NoteRefContent id="ts815c-count">TS-815M 型、TS-815A 型からの編入分を含まない両数。</NoteRefContent>
+
+			<NoteRefContent id="ts839-count">TS-835 型からの編入分を含まない両数。含むと5両になる。</NoteRefContent>
 		</div>
 
 		<ul class="p-notes">
@@ -230,7 +235,9 @@ const structuredData: StructuredData = {
 				1967年に登場した7200系は、電動車の台車に TS-800 系が採用されました。軸箱支持は前々年に新製されたサハ3250形の TS-322 型と同じくペデスタル軸ばね式で、防振ゴムを組み合わせています。側梁は枕ばねのある中央部が下がる形で弓形に湾曲しており、この形態は後の <a href="/tokyu/truck/ts1000">TS-1000 系</a>にも踏襲されています。また、基礎ブレーキ装置は<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS802_towada7305_brake.jpg" title="十和田観光電鉄デハ7305"><!-- 撮影日: 2009-09-06 -->片押式踏面ブレーキ</LinkPhoto>です。
 			</p>
 			<p>1枚目写真は初期に製造されたタイプで、側梁は水平方向に溶接痕があります。1968年の途中より、2枚目写真のように側梁が一枚板で周囲に縁取りのある形状となりました。なお、検査時等に振り替えが行われたケースがあるためか、車両の製造時期と側梁形状の関係性は必ずしも一致しません（<a href="#ts802-variation">現存個体一覧表</a>）。</p>
-			<p>現在では大井川鐵道、豊橋鉄道などの譲渡先で見ることができます。 なお、豊橋鉄道譲渡車の一部<FootnoteReference>豊橋鉄道モ1802, 1804, 1807 の3両。</FootnoteReference>にはセラミック粒子の噴射装置（セラジェット）が追設されました。</p>
+			<p>現在では大井川鐵道、豊橋鉄道などの譲渡先で見ることができます。 なお、豊橋鉄道譲渡車の一部にはセラミック粒子の噴射装置（セラジェット）が追設されました<NoteRef by="toyohashi-cerajet" />。</p>
+
+			<NoteRefContent id="toyohashi-cerajet">豊橋鉄道モ1802, 1804, 1807 の3両。</NoteRefContent>
 		</Section>
 
 		<Section id="ts802a" depth={2} headingType="b">
@@ -505,9 +512,9 @@ const structuredData: StructuredData = {
 			</figure>
 
 			<p>8090系（8590系含む）の動力台車は、車体の軽量化に伴うブレーキシリンダ径の小型化<!-- 直径160→140mm -->などが行われた B 型となりました。</p>
-			<p>
-				12〜15次車の側梁両端のペデスタル部には<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS807B_8294_pedestal.jpg" title="デハ8292 下り方山側"><!-- 撮影日: 2008-12-31 -->ボルト留め機構</LinkPhoto>が設けられ、デビュー当初は空転や滑走防止のために車輪踏面にシューを常時押し付ける<dfn>踏面清掃装置（増粘着装置）</dfn>が取り付けられていました<FootnoteReference><RefMagazine name="車両技術" date="1981年6月号" no={153} article="東京急行電鉄8090系電車" authors={['立田公雄']} pages={[46]} />に写真と図面が掲載されている。</FootnoteReference>。後に装置は撤去されましたが、ボルト留め機構は残っています。なお、同様の機構は <a href="#ts807a">TS-807A 型</a>のうち13次車、<a href="#ts815c">TS-815C 型（オリジナルタイプ）</a>、<a href="#ts815d">TS-815D 型</a>のうち16次車、<a href="#ts815f">TS-815F 型</a>にも存在します。
-			</p>
+			<p>12〜15次車の側梁両端のペデスタル部には<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS807B_8294_pedestal.jpg" title="デハ8292 下り方山側"><!-- 撮影日: 2008-12-31 -->ボルト留め機構</LinkPhoto>が設けられ、デビュー当初は空転や滑走防止のために車輪踏面にシューを常時押し付ける<dfn>踏面清掃装置（増粘着装置）</dfn>が取り付けられていました<NoteRef by="ts807b-clean" />。後に装置は撤去されましたが、ボルト留め機構は残っています。なお、同様の機構は <a href="#ts807a">TS-807A 型</a>のうち13次車、<a href="#ts815c">TS-815C 型（オリジナルタイプ）</a>、<a href="#ts815d">TS-815D 型</a>のうち16次車、<a href="#ts815f">TS-815F 型</a>にも存在します。</p>
+
+			<NoteRefContent id="ts807b-clean"><RefMagazine name="車両技術" date="1981年6月号" no={153} article="東京急行電鉄8090系電車" authors={['立田公雄']} pages={[46]} />に写真と図面が掲載されている。</NoteRefContent>
 		</Section>
 	</Section>
 
@@ -594,9 +601,9 @@ const structuredData: StructuredData = {
 			</figure>
 
 			<p>8090系も8500系と同様に16次車以降はディスクブレーキ式となり、台車形式は D 型となりました。</p>
-			<p>
-				このうち16次車のみペデスタル部のボルト留め機構が用意されましたが、17次車（6両）は1985年に行われたサハ8300形の電装化に伴う <a href="#ts815a">TS-815A型</a>発生品を流用改造したため、この機構はありません。後年、16次車のうち大井町線先頭車の一部<FootnoteReference>クハ8080, 8083, 8084, 8099 の4両。</FootnoteReference>の連結面方台車にボルト留め機構を活用して、<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS815D_8083_clean.jpg" title="クハ8083 下り方山側"><!-- 撮影日: 2008-10-25 -->踏面清掃装置</LinkPhoto>が取り付けられていました。
-			</p>
+			<p>このうち16次車のみペデスタル部のボルト留め機構が用意されましたが、17次車（6両）は1985年に行われたサハ8300形の電装化に伴う <a href="#ts815a">TS-815A型</a>発生品を流用改造したため、この機構はありません。後年、16次車のうち大井町線先頭車の一部の連結面方台車にボルト留め機構を活用して、<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS815D_8083_clean.jpg" title="クハ8083 下り方山側"><!-- 撮影日: 2008-10-25 -->踏面清掃装置</LinkPhoto>が取り付けられていました<NoteRef by="ts815d-clean" />。</p>
+
+			<NoteRefContent id="ts815d-clean">クハ8080, 8083, 8084, 8099 の4両。</NoteRefContent>
 		</Section>
 
 		<Section id="ts815f" depth={2} headingType="b">
@@ -612,7 +619,9 @@ const structuredData: StructuredData = {
 
 			<p>クハ8000形（1〜5次車）は登場以来 <a href="/tokyu/truck/ts700#ts708">TS-708 型</a>台車を履いていましたが、1990年から順次この TS-815F 型へ取り替えられました。なお、パイオニア台車時代と同じく、一部車両には軌条塗油器の油噴口が設けられていました。</p>
 			<p>廃車の進行により東急電鉄からは消滅しましたが、伊豆急行などの車両譲渡先のほか、2006年からは豊橋鉄道ク2800形（元・東急クハ7500形）の TS-708 型台車履替えに抜てきされ、8両分が TS-815T 型に改称されて使用されています。その際、 <a href="#ts835">TS-835 型から改称されていた TS-839 型</a>も TS-815T 型に編入されたため、同じ形式ながら出自と形態が異なる2タイプの台車が混在している状況となっています。</p>
-			<p>また、譲渡車両の一部<FootnoteReference>豊橋鉄道ク2802, 2804, 2807、伊豆急行クハ8001, 8003, 8011, 8013 の7両。</FootnoteReference>にはセラジェットが追設されましたが、台車形態の違いにより <a href="#ts802">TS-802 型</a>とは異なる取付方となっています。</p>
+			<p>また、譲渡車両の一部にはセラジェットが追設されましたが<NoteRef by="ts815f-cerajet" />、台車形態の違いにより <a href="#ts802">TS-802 型</a>とは異なる取付方となっています。</p>
+
+			<NoteRefContent id="ts815f-cerajet">豊橋鉄道ク2802, 2804, 2807、伊豆急行クハ8001, 8003, 8011, 8013 の7両。</NoteRefContent>
 		</Section>
 	</Section>
 

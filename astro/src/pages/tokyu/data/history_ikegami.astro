@@ -2,10 +2,11 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/DateWareki.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import Licence from '@components/TokyuLicence.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import RefBook from '@components/ReferenceBook.astro';
 import RefMagazine from '@components/ReferenceMagazine.astro';
 import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
@@ -114,7 +115,10 @@ const structuredData: StructuredData = {
 		<H slot="heading">丙号車</H>
 
 		<p>予定していた<a href="#deha3">甲号車</a>が電気機器の輸入延期のため完成しないことから、乙号車と同じく静岡電気鉄道<small>（現：静岡鉄道）</small>から譲受した車両とされていますが、やはり認可書類には前歴の記載はなく、また旧車号も不明です。</p>
-		<p>40人乗りの4輪単車でオープンデッキの路面電車タイプであり、車両竣功図表では側面窓は8枚ですが、現車は末期には9枚となっている写真が残されており<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="1959年6月号" no={95} article="私鉄車両めぐり(36) 東京急行電鉄〔1〕" authors={['荻原二郎']} pages={[42]} /></FootnoteReference>、このあたりも謎が残ります。</p>
+		<p>40人乗りの4輪単車でオープンデッキの路面電車タイプであり、車両竣功図表では側面窓は8枚ですが、現車は末期には9枚となっている写真が残されており<NoteRef type="ref" by="pic95" />、このあたりも謎が残ります。</p>
+
+		<NoteRefContent id="pic95"><RefMagazine name="鉄道ピクトリアル" date="1959年6月号" no={95} article="私鉄車両めぐり(36) 東京急行電鉄〔1〕" authors={['荻原二郎']} pages={[42]} /></NoteRefContent>
+
 		<p>認可申請書類には<q>本電車ハ甲號電車完成（大正一二年七月迠）ノ後ハ予備車トナスモノナリ</q>との記述があり、急場凌ぎの導入であったことが覗えます。認可から竣功届の提出までになぜか3年以上もの期間が経っており、甲号車より後の<DateWareki value="1926" />に竣功したことになっていますが、譲受動機からすると甲号車の完成後まで本車の導入を待ったとは考えにくいところです。池上電気鉄道の路線は<DateWareki value="1923-05-04" />に雪ヶ谷まで延伸をしていますから、実際はそのあたりで使用開始したのではないでしょうか。</p>
 		<p>いずれにせよ<DateWareki value="1928" />には早々に休車となり、目黒蒲田電鉄への合併前に廃車されました。</p>
 
@@ -162,9 +166,19 @@ const structuredData: StructuredData = {
 	<Section id="deha3">
 		<H slot="heading">甲号車</H>
 
-		<p>前述のとおり、池上電気鉄道の開通当初は乙号車のみで運転を開始し、雪ヶ谷延伸のあたりに丙号車を増備していますが、その後<DateWareki value="1923-08" />にようやく甲号車の購入認可申請が提出されます。しかしどういうわけかデハ3〜4 よりも先にデハ5〜6 の方が先に手続きが行われました。甲号車は新造車でありながら電機品は中古品を使用しており<FootnoteReference><RefMagazine name="交通と電気" date="1925年10月号" article="池上電氣鐵道と高柳淳之助君" authors={['巨海省吾']} pages={[56]} url="https://dl.ndl.go.jp/pid/1505813/1/42" /></FootnoteReference>、そのことが納期に影響したのかもしれませんが、はっきりした理由は分かっていません。</p>
-		<p>車両竣功図表によると車体は4両とも<DateWareki value="1922-05" />に完成しており、池上―蒲田間の開通直前(?)に池上車庫の奥に2両の車体が置かれている写真（絵はがき）が残されていますから<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="1985年1月臨時増刊号" no={442} article="絵はがきに見る池上電鉄開業の頃" authors={['関田克孝']} pages={[184, 185]} /></FootnoteReference>、車体だけは早期に搬入されていたことが分かります。</p>
-		<p>また、開通前の<DateWareki value="1922-08" />時点の工事計画では甲号車は計6両が導入される予定で<FootnoteReference><RefTetsudosho company="池上電気鉄道" date="1922-08-19" title="工事方法変更認可申請書" url="https://www.digital.archives.go.jp/item/510379" /></FootnoteReference>、これは<DateWareki value="1923" />に丙号車を追加することになって以降も変わらず、すなわち甲・乙・丙あわせて10両の陣営になる計画でしたが<FootnoteReference><RefTetsudosho company="池上電気鉄道" no="池第28号" date="1923-04-18" title="工事方法変更認可申請書" url="https://www.digital.archives.go.jp/item/524634" /></FootnoteReference>、実際は4両の製造に留まっています。</p>
+		<p>前述のとおり、池上電気鉄道の開通当初は乙号車のみで運転を開始し、雪ヶ谷延伸のあたりに丙号車を増備していますが、その後<DateWareki value="1923-08" />にようやく甲号車の購入認可申請が提出されます。しかしどういうわけかデハ3〜4 よりも先にデハ5〜6 の方が先に手続きが行われました。甲号車は新造車でありながら電機品は中古品を使用しており<NoteRef type="ref" by="kotsu1925-10" />、そのことが納期に影響したのかもしれませんが、はっきりした理由は分かっていません。</p>
+
+		<NoteRefContent id="kotsu1925-10"><RefMagazine name="交通と電気" date="1925年10月号" article="池上電氣鐵道と高柳淳之助君" authors={['巨海省吾']} pages={[56]} url="https://dl.ndl.go.jp/pid/1505813/1/42" /></NoteRefContent>
+
+		<p>車両竣功図表によると車体は4両とも<DateWareki value="1922-05" />に完成しており、池上―蒲田間の開通直前(?)に池上車庫の奥に2両の車体が置かれている写真（絵はがき）が残されていますから<NoteRef type="ref" by="pic442" />、車体だけは早期に搬入されていたことが分かります。</p>
+
+		<NoteRefContent id="pic442"><RefMagazine name="鉄道ピクトリアル" date="1985年1月臨時増刊号" no={442} article="絵はがきに見る池上電鉄開業の頃" authors={['関田克孝']} pages={[184, 185]} /></NoteRefContent>
+
+		<p>また、開通前の<DateWareki value="1922-08" />時点の工事計画では甲号車は計6両が導入される予定で<NoteRef type="ref" by="ikegami1922-08-19" />、これは<DateWareki value="1923" />に丙号車を追加することになって以降も変わらず、すなわち甲・乙・丙あわせて10両の陣営になる計画でしたが<NoteRef type="ref" by="ikegami1923-04-18" />、実際は4両の製造に留まっています。</p>
+
+		<NoteRefContent id="ikegami1922-08-19"><RefTetsudosho company="池上電気鉄道" date="1922-08-19" title="工事方法変更認可申請書" url="https://www.digital.archives.go.jp/item/510379" /></NoteRefContent>
+
+		<NoteRefContent id="ikegami1923-04-18"><RefTetsudosho company="池上電気鉄道" no="池第28号" date="1923-04-18" title="工事方法変更認可申請書" url="https://www.digital.archives.go.jp/item/524634" /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -220,7 +234,9 @@ const structuredData: StructuredData = {
 		<H slot="heading">デハ20形</H>
 
 		<p>近隣の目黒蒲田電鉄にやや遅れて、池上電気鉄道でも鉄道省の木造ボギー電車を導入することになり、まずは1両を、その後<DateWareki value="1927" />中に9両が払い下げられました。</p>
-		<p>これらの種車はいずれもデハ6310形で、<DateWareki value="1921-10" />の山手線 1200V 昇圧ののち使用停止となり、付随車化が予定されていたグループの一部を購入したものです<FootnoteReference><RefBook name="国鉄電車発達史" authors={['電気車研究会']} year={1977} article="Ⅱ 再建時代" pages={[66, 67]} /></FootnoteReference>。</p>
+		<p>これらの種車はいずれもデハ6310形で、<DateWareki value="1921-10" />の山手線 1200V 昇圧ののち使用停止となり、付随車化が予定されていたグループの一部を購入したものです<NoteRef type="ref" by="hattatsushi" />。</p>
+
+		<NoteRefContent id="hattatsushi"><RefBook name="国鉄電車発達史" authors={['電気車研究会']} year={1977} article="Ⅱ 再建時代" pages={[66, 67]} /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -294,7 +310,10 @@ const structuredData: StructuredData = {
 	<Section id="deto1">
 		<H slot="heading">デト1形<small>（無入籍）</small></H>
 
-		<p>池上電気鉄道ではもともと小規模な貨物輸送の計画があり、開通前の<DateWareki value="1920-07" />時点の工事計画では電動貨車（有蓋車）1両、付随貨車5両の製造が予定されていました<FootnoteReference><RefTetsudosho company="池上電気鉄道" date="1920-07-21" title="工事方法変更認可申請書" url="https://www.digital.archives.go.jp/item/509585" /></FootnoteReference>。</p>
+		<p>池上電気鉄道ではもともと小規模な貨物輸送の計画があり、開通前の<DateWareki value="1920-07" />時点の工事計画では電動貨車（有蓋車）1両、付随貨車5両の製造が予定されていました<NoteRef type="ref" by="ikegami1920-07-21" />。</p>
+
+		<NoteRefContent id="ikegami1920-07-21"><RefTetsudosho company="池上電気鉄道" date="1920-07-21" title="工事方法変更認可申請書" url="https://www.digital.archives.go.jp/item/509585" /></NoteRefContent>
+
 		<p>路線が五反田まで全通した頃に電動貨車の製造が行われていますが（もともと有蓋車の予定だったものが実際は無蓋車に変更）、購入認可ののち、主電動機電圧と歯車比を変更する設計変更の認可申請を行って以降、竣功届が提出されず、<DateWareki value="1930" />には監督局より<q>既ニ竣功セシモノト認メラレ候處未タ竣功届提出無</q>として至急手続きを行うよう通牒があったものの、池上側は<q>未竣功ニ有</q>と回答し、以後やりとりは途絶えてしまいます。</p>
 		<p>結局この車両は無車籍の状態だったようで、付随貨車が製造されず貨物列車が運行されなかったことからしてもせいぜい社用品輸送程度の使用であったものと思われます。</p>
 
@@ -335,14 +354,18 @@ const structuredData: StructuredData = {
 		</div>
 
 		<ul class="p-notes">
-			<li>認可書類には形式、車号の記載はないが、車両竣功図表<FootnoteReference><RefBook name="東急70周年記念　歴代在籍車両竣功図集 1922〜1992" authors={['東京急行電鉄株式会社']} year={1992} pages={[15]} /></FootnoteReference>にデト1形のデト1号とある。</li>
+			<li>認可書類には形式、車号の記載はないが、車両竣功図表<NoteRef type="ref" by="tokyu70" />にデト1形のデト1号とある。</li>
 		</ul>
+
+		<NoteRefContent id="tokyu70"><RefBook name="東急70周年記念　歴代在籍車両竣功図集 1922〜1992" authors={['東京急行電鉄株式会社']} year={1992} pages={[15]} /></NoteRefContent>
 	</Section>
 
 	<Section id="deha100">
 		<H slot="heading">デハ100形、デハ200形</H>
 
-		<p><DateWareki value="1928-06" />の五反田全通を控えて8両の認可申請が行われましたが、デハ100形5両が製造されたのち、2年後に未竣功の残り3両に対して正面貫通扉の廃止と室内灯の増設の設計変更が行われ、デハ200形として別形式を名乗りました<FootnoteReference>設計変更の届出には形式や車号の記載がありませんが、改番届の記録がないため、当初からデハ200形を名乗っていたものと判断します。</FootnoteReference>。</p>
+		<p><DateWareki value="1928-06" />の五反田全通を控えて8両の認可申請が行われましたが、デハ100形5両が製造されたのち、2年後に未竣功の残り3両に対して正面貫通扉の廃止と室内灯の増設の設計変更が行われ、デハ200形として別形式を名乗りました<NoteRef by="deha200-name" />。</p>
+
+		<NoteRefContent id="deha200-name">設計変更の届出には形式や車号の記載がありませんが、改番届の記録がないため、当初からデハ200形を名乗っていたものと判断します。</NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>

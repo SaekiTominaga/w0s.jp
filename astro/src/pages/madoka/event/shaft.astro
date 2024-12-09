@@ -1,8 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -176,9 +177,13 @@ const structuredData: StructuredData = {
 					<td>東京ビッグサイト 西1-2ホール No.2442</td>
 					<td>
 						<ul class="p-list">
-							<li><a href="https://media.w0s.jp/image/madoka/event/shaft_c90_b01.jpg" type="image/jpeg">MADOGATARI展入場券（東京アンコール）</a><FootnoteReference>C90 の販売商品はシャフト公式サイトのリニューアルにより現在は閲覧することができず、 Internet Archive のサイトにも保存されていないので、当時掲載されていた画像を転載のうえ掲載します。</FootnoteReference></li>
-							<li><a href="https://media.w0s.jp/image/madoka/event/shaft_c90_b02.jpg" type="image/jpeg">Puella Magi Holy Quintet Tシャツ</a><FootnoteReference>C90 の販売商品はシャフト公式サイトのリニューアルにより現在は閲覧することができず、 Internet Archive のサイトにも保存されていないので、当時掲載されていた画像を転載のうえ掲載します。</FootnoteReference></li>
+							<li><a href="https://media.w0s.jp/image/madoka/event/shaft_c90_b01.jpg" type="image/jpeg">MADOGATARI展入場券（東京アンコール）</a><NoteRef by="c90-1" /></li>
+							<li><a href="https://media.w0s.jp/image/madoka/event/shaft_c90_b02.jpg" type="image/jpeg">Puella Magi Holy Quintet Tシャツ</a><NoteRef by="c90-2" /></li>
 						</ul>
+
+						<NoteRefContent id="c90-1">C90 の販売商品はシャフト公式サイトのリニューアルにより現在は閲覧することができず、 Internet Archive のサイトにも保存されていないので、当時掲載されていた画像を転載のうえ掲載します。</NoteRefContent>
+
+						<NoteRefContent id="c90-2">C90 の販売商品はシャフト公式サイトのリニューアルにより現在は閲覧することができず、 Internet Archive のサイトにも保存されていないので、当時掲載されていた画像を転載のうえ掲載します。</NoteRefContent>
 					</td>
 				</tr>
 				<tr>
@@ -187,8 +192,10 @@ const structuredData: StructuredData = {
 					<td>みやこめっせ 第3展示場 No.12</td>
 					<td>
 						<ul class="p-list">
-							<li><a href="https://media.w0s.jp/image/madoka/event/shaft_kyomaf2016_b02.jpg" type="image/jpeg">Puella Magi Holy Quintet Tシャツ</a><FootnoteReference>京まふ2016 の販売商品はシャフト公式サイトのリニューアルにより現在は閲覧することができず、 Internet Archive のサイトにも保存されていないので、当時掲載されていた画像を転載のうえ掲載します。</FootnoteReference></li>
+							<li><a href="https://media.w0s.jp/image/madoka/event/shaft_kyomaf2016_b02.jpg" type="image/jpeg">Puella Magi Holy Quintet Tシャツ</a><NoteRef by="kyomaf2016" /></li>
 						</ul>
+
+						<NoteRefContent id="kyomaf2016">京まふ2016 の販売商品はシャフト公式サイトのリニューアルにより現在は閲覧することができず、 Internet Archive のサイトにも保存されていないので、当時掲載されていた画像を転載のうえ掲載します。</NoteRefContent>
 					</td>
 				</tr>
 			</tbody>

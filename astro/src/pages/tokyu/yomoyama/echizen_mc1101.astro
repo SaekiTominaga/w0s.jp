@@ -1,11 +1,12 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import RefBook from '@components/ReferenceBook.astro';
 import RefMagazine from '@components/ReferenceMagazine.astro';
 import type { StructuredData } from '@type/types.js';
@@ -271,10 +272,12 @@ const structuredData: StructuredData = {
 						<td>名鉄モ5200形</td>
 						<td>MMC H-10K1</td>
 						<td>830241-2</td>
-						<td>昭和49年11月<FootnoteReference>モ1956の製造年月はおそらく記録ミスで、モ1904やモ1954の番号と比較するに実際は1971(昭和46)年製と思われます。</FootnoteReference></td>
+						<td>昭和49年11月<NoteRef by="mo1956-date" /></td>
 					</tr>
 				</tbody>
 			</table>
+
+			<NoteRefContent id="mo1956-date">モ1956の製造年月はおそらく記録ミスで、モ1904やモ1954の番号と比較するに実際は1971(昭和46)年製と思われます。</NoteRefContent>
 		</div>
 	</Section>
 

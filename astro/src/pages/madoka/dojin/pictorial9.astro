@@ -1,8 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -165,7 +166,12 @@ const structuredData: StructuredData = {
 			<p>7月20日〜8月2日にゲーム内イベント「<cite>波打ち際のリボン</cite>」が開催。さやかの親戚が経営する民宿へ原作組5人が泊まりに行くストーリーが展開され、さやかの叔母と従姉妹が登場した（ただし立ち姿はモブキャラのもの）。</p>
 			<p>このイベントに合わせて「暁美ほむら 水着ver.」が登場。その魔法少女ストーリー1〜3話では神浜市で偶然会ったほむらとさやかが「<cite>第二回 みたま杯</cite>」（釣り大会）に参加し、かのこ制作の水着を着させられるストーリーが展開された。ストーリー内容に関連して、水着ほむらのマギア「<cite>荒磯ドッペル一本釣りスペシャル</cite>」発動時には、恋慕のドッペルに乗ったさやかが釣り上げられる演出が見られる。また、同4話「<cite>ほむらのドッペル</cite>」BATTLE3では魔法少女の中で唯一ストーリーが存在し、ほむらの影バージョンによるセリフ<q>あなたが怠けていたせいで、今度は誰が死ぬのかしら？　美樹さやか？それとも巴マミ？</q>があった。</p>
 			<p>イベントストーリーに登場した魔法少女のうち、ほむらは前述のとおり水着衣装が専用のキャラクターとして実装されており、ホーム画面でのタップ時ランダムセリフで<q>美樹さんの水着、かっこいいですよね。夏の女って感じで。私には似合わないと思うから憧れちゃうな</q>が存在する。まどか、さやか、マミ、杏子、ひなの、れんの6人はショップで水着衣装を入手することができ、他の衣装時とは異なる専用ボイスが用意されている。さやかの名前が挙がったものは、まどかのログイン時セリフ（深夜）で<q>夜は花火大会、さやかちゃんがたくさん用意してくれたんだ</q>、杏子のタップ時ランダムセリフで<q>ちょっーと味見しただけなのに、さやかの奴がうるさくてさ</q>と<q>んー、あっ分かった、さやかの水着、なんかスポーツやってそうだなって引っ掛かってたんだけど、サーフィンだ。似合いそうだろ</q>の計3件がある。</p>
-			<p>イベントに合わせて特設サイト<LinkExternal href="https://summercard.magireco.com/">マギレコ サマーカードメーカー</LinkExternal>が開設され、背景や魔法少女<FootnoteReference>ゲーム内で水着が用意された魔法少女7人の制服姿（杏子とれんは私服姿）と水着姿の計14種。ちなみに背景は7種、メッセージは6種（文言はいずれも<q>暑中お見舞い申し上げます</q>）、スタンプは9種。8月9日からはゲーム内イベント「<cite>みかづき荘のSummer Vacation</cite>」に合わせて、いろはややちよなど10人が追加されて、合計17人・34種になった。</FootnoteReference>などを選択して暑中見舞いの画像をツイートすることができた<FootnoteReference>画像はツイートに直接貼付されるのではなく、OGPが設定されたページのURLをツイートすることにより、Twitterのウェブ画面や公式アプリでのみ画像を閲覧できる方式であった。ちなみにそのURLのページはOGPのためだけに用意されたものでコンテンツは空であり、アクセスした0.5秒後にサマーカードメーカーのトップページへ自動でリダイレクトされるものになっていた。</FootnoteReference>。</p>
+			<p>イベントに合わせて特設サイト<LinkExternal href="https://summercard.magireco.com/">マギレコ サマーカードメーカー</LinkExternal>が開設され、背景や魔法少女<NoteRef by="charactor" />などを選択して暑中見舞いの画像をツイートすることができた<NoteRef by="ogp" />。</p>
+
+			<NoteRefContent id="charactor">ゲーム内で水着が用意された魔法少女7人の制服姿（杏子とれんは私服姿）と水着姿の計14種。ちなみに背景は7種、メッセージは6種（文言はいずれも<q>暑中お見舞い申し上げます</q>）、スタンプは9種。8月9日からはゲーム内イベント「<cite>みかづき荘のSummer Vacation</cite>」に合わせて、いろはややちよなど10人が追加されて、合計17人・34種になった。</NoteRefContent>
+
+			<NoteRefContent id="ogp">画像はツイートに直接貼付されるのではなく、OGPが設定されたページのURLをツイートすることにより、Twitterのウェブ画面や公式アプリでのみ画像を閲覧できる方式であった。ちなみにそのURLのページはOGPのためだけに用意されたものでコンテンツは空であり、アクセスした0.5秒後にサマーカードメーカーのトップページへ自動でリダイレクトされるものになっていた。</NoteRefContent>
+
 			<p>8月10日より配信1周年を記念して秋葉原の観光マップ「<cite>アド街っぷ</cite>」とのタイアップキャンペーンが行われた。飲食店10店舗で指定されたメニューを注文することでポストカードが貰えるもので、<LinkExternal href="http://akibakotower.com/queen-dolce/">男装カフェ＆BAR「QUEEN DOLCE」</LinkExternal>ではノンアルコールカクテル「<cite>マーメイド</cite>」またはギャルソンオリジナルカクテルの注文でさやかのポストカードがプレゼントされた。</p>
 		</div>
 	</Section>

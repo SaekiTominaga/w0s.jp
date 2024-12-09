@@ -8,7 +8,7 @@ import ContentHeader from '@layouts/include/ContentHeader.astro';
 import ContentMain from '@layouts/include/ContentBody.astro';
 import ContentFooter from '@layouts/include/ContentFooter.astro';
 import type { StructuredData } from '@type/types.js';
-import FootnoteUtil from '@util/Footnote.js';
+import { getNoteData, getReferenceData } from '@util/Footnote.js';
 import SsrUtil from '@util/Ssr.js';
 import TocUtil from '@util/Toc.js';
 
@@ -32,7 +32,8 @@ const dom = new JSDOM(rendered);
 const { document } = dom.window;
 
 const tocData = toc ? TocUtil.getData(document) : undefined;
-const footnoteData = FootnoteUtil.getData(document);
+const footnoteNoteData = getNoteData(document);
+const footnoteReferenceData = getReferenceData(document);
 
 const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 ---
@@ -49,7 +50,7 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 					<>
 						<main id="content" class="l-content">
 							{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
-							<ContentMain html={mainHtml} footnoteData={footnoteData} />
+							<ContentMain html={mainHtml} footnoteNoteData={footnoteNoteData} footnoteReferenceData={footnoteReferenceData} />
 							{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
 						</main>
 
@@ -61,7 +62,7 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 				!pageSidebar && (
 					<main id="content" class="l-content -nosidebar">
 						{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
-						<ContentMain html={mainHtml} footnoteData={footnoteData} />
+						<ContentMain html={mainHtml} footnoteNoteData={footnoteNoteData} footnoteReferenceData={footnoteReferenceData} />
 						{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
 					</main>
 				)
