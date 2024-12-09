@@ -309,10 +309,8 @@ Styleguide 2.3.8
 	padding: 1em;
 	font-size: calc(100% / pow(var(--font-ratio), 1));
 
-	.l-content__body & {
-		&:last-child {
-			margin-block-start: calc(var(--stack-margin-base) * 6);
-		}
+	:not(&) + & {
+		margin-block-start: calc(var(--stack-margin-base) * 6);
 	}
 }
 
