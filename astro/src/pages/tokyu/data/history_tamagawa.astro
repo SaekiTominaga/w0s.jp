@@ -2,10 +2,11 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/DateWareki.astro';
-import FootnoteReference from '@components/FootnoteReference.astro';
 import H from '@components/H.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import Licence from '@components/TokyuLicence.astro';
+import NoteRef from '@components/NoteRef.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
 import RefBook from '@components/ReferenceBook.astro';
 import RefMagazine from '@components/ReferenceMagazine.astro';
 import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
@@ -217,7 +218,11 @@ const structuredData: StructuredData = {
 
 		<p>改軌を目前に控えた<DateWareki value="1920-08-26" />に構造認可を受けますが、アメリカ・<span lang="en">J.G. Brill</span> 社に発注していた手ブレーキ装置が届かないため12両分（車号は不明）は仮に国内品を取り付けることとし、力率が減少するため仮使用許可を申請、<DateWareki value="1920-12" />に落成しています。</p>
 
-		<p>後述のボギー車群と車齢はそう変わらないものの、4輪単車であることが災いしてか早期に処分されており、7～15号車は玉川電気鉄道時代に廃車となりました。1～6号車は東京横浜電鉄への合併を経て渋谷以東の天現寺橋、中目黒方面で活躍したものの<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東辰第1950号" date="1940-06-01" title="四輪電動客車廃車届" url="https://www.digital.archives.go.jp/item/504817" /></FootnoteReference>、<DateWareki value="1937" />の路線分断により不要となり、一部は砧線で活躍したようですが<FootnoteReference><RefMagazine name="鉄道ピクトリアル" date="1959年6月号" no={95} article="私鉄車両めぐり(36) 東京急行電鉄〔1〕" authors={['荻原二郎']} pages={[43]} /></FootnoteReference>、<DateWareki value="1941" />までに姿を消しました。最後まで残った2両は満洲国で当時開業したばかりの<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>に供出されています。</p>
+		<p>後述のボギー車群と車齢はそう変わらないものの、4輪単車であることが災いしてか早期に処分されており、7～15号車は玉川電気鉄道時代に廃車となりました。1～6号車は東京横浜電鉄への合併を経て渋谷以東の天現寺橋、中目黒方面で活躍したものの<NoteRef type="ref" by="toyoko1940-06-01" />、<DateWareki value="1937" />の路線分断により不要となり、一部は砧線で活躍したようですが<NoteRef type="ref" by="pic95" />、<DateWareki value="1941" />までに姿を消しました。最後まで残った2両は満洲国で当時開業したばかりの<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>に供出されています。</p>
+
+		<NoteRefContent id="toyoko1940-06-01"><RefTetsudosho company="東京横浜電鉄" no="東辰第1950号" date="1940-06-01" title="四輪電動客車廃車届" url="https://www.digital.archives.go.jp/item/504817" /></NoteRefContent>
+
+		<NoteRefContent id="pic95"><RefMagazine name="鉄道ピクトリアル" date="1959年6月号" no={95} article="私鉄車両めぐり(36) 東京急行電鉄〔1〕" authors={['荻原二郎']} pages={[43]} /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -368,7 +373,9 @@ const structuredData: StructuredData = {
 
 		<p>改軌に際して電動客車、電動貨車とともに車両構造認可が行われた 10t 積み無蓋貨車で、認可申請書では<q>現用車輌ヲ廢止シ（中略）新車輌ヲ使用</q>と書かれているものの、改軌前後で車両数が変わらないこと、改軌後の車両は車体、台車とも玉川電気鉄道自身が製造したことになっていること、現車の写真を比較しても角形バッファーなどの特徴が改軌前後で同一であることから、実際は狭軌時代の貨車を自社工場で改造したものと思われます。なお申請時に車両数が25両とされているのですが、統計資料によれば20両（狭軌時代と同じ数）しか竣功しておらず、残り5両が書類上どのように処理されたのかは不明です。</p>
 
-		<p>一部の車両は散水車に改造されたようで、<DateWareki value="1932" />に撮影された写真が残されていますが<FootnoteReference><RefBook name="東急の電車たち　電車とバスのなんでもシリーズその1" authors={['電車とバスの博物館']} year={1984} pages={[164]} /></FootnoteReference>、この改造に伴う許認可書類は確認されておらず、営業報告書での言及もありません。後述するように<DateWareki value="1924" />に<a href="#sansui">散水電動車</a>を発注したものの、何らかの理由で付随貨車で代替することになり、その経緯から公式の文書には改造記録が残らなかったのではないかと思われます。</p>
+		<p>一部の車両は散水車に改造されたようで、<DateWareki value="1932" />に撮影された写真が残されていますが<NoteRef type="ref" by="denshatachi1" />、この改造に伴う許認可書類は確認されておらず、営業報告書での言及もありません。後述するように<DateWareki value="1924" />に<a href="#sansui">散水電動車</a>を発注したものの、何らかの理由で付随貨車で代替することになり、その経緯から公式の文書には改造記録が残らなかったのではないかと思われます。</p>
+
+		<NoteRefContent id="denshatachi1"><RefBook name="東急の電車たち　電車とバスのなんでもシリーズその1" authors={['電車とバスの博物館']} year={1984} pages={[164]} /></NoteRefContent>
 
 		<p>7両は玉川電気鉄道時代に廃車され、その後東京横浜電鉄への合併を経て東京急行電鉄成立の直後に一部の車両が2度目の改軌を行い品川営業局<small>（現：京浜急行電鉄）</small>へ転局しました。この転局に伴う改造は8両での認可申請が行われていますが、実際は6両のみが転局し、残る7両が戦後まで玉川線に在籍していました。</p>
 
@@ -714,7 +721,11 @@ const structuredData: StructuredData = {
 
 		<p>なによりの変化はそれまで輸入に頼っていた台車が国産品となり、さらに車輪径を小型化した低床車となったことで、それまでデッキと客室間には段差があったものが、本グループではフラットな構造となっています。また空気ブレーキが付いたのもこのグループからです。</p>
 
-		<p>東京横浜電鉄への合併直後に30号車以前に先がけて半鋼体化改造が行われ、<a href="#passenger71-75">71～75号車</a>に改番されました。旧車体のうち2両分は江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>へ譲渡されています<FootnoteReference><RefTetsudosho possess="naimu" company="江ノ島電気鉄道" no="江発辰乙第42号" date="1940-03-28" title="車輛設計認可申請書並ニ手用制動機省略許可申請書" url="https://www.digital.archives.go.jp/item/400098" /></FootnoteReference>。またそれ以外の3両分は満洲国に渡ったと言われており、<DateWareki value="1941" />には2両が<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>への譲渡のため船送されたことが記録されているのですが<FootnoteReference><RefBook name="工業年鑑　昭和18年版" authors={['産業経済新聞社出版部']} year={1942} article="大東亜建設編" pages={[12]} url="https://dl.ndl.go.jp/pid/1139759/1/345" linkScope="page" /></FootnoteReference>、これは前述の<a href="#passenger1-15">電動客車3～4号</a>や<a href="#freight1-5">電動貨車1〜5号</a>の廃車より早い時期のため、このグループのことではないかと思われます。</p>
+		<p>東京横浜電鉄への合併直後に30号車以前に先がけて半鋼体化改造が行われ、<a href="#passenger71-75">71～75号車</a>に改番されました。旧車体のうち2両分は江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>へ譲渡されています<NoteRef type="ref" by="enoden1940-03-28" />。またそれ以外の3両分は満洲国に渡ったと言われており、<DateWareki value="1941" />には2両が<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>への譲渡のため船送されたことが記録されているのですが<NoteRef type="ref" by="kogyonenkan-s18" />、これは前述の<a href="#passenger1-15">電動客車3～4号</a>や<a href="#freight1-5">電動貨車1〜5号</a>の廃車より早い時期のため、このグループのことではないかと思われます。</p>
+
+		<NoteRefContent id="enoden1940-03-28"><RefTetsudosho possess="naimu" company="江ノ島電気鉄道" no="江発辰乙第42号" date="1940-03-28" title="車輛設計認可申請書並ニ手用制動機省略許可申請書" url="https://www.digital.archives.go.jp/item/400098" /></NoteRefContent>
+
+		<NoteRefContent id="kogyonenkan-s18"><RefBook name="工業年鑑　昭和18年版" authors={['産業経済新聞社出版部']} year={1942} article="大東亜建設編" pages={[12]} url="https://dl.ndl.go.jp/pid/1139759/1/345" linkScope="page" /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -988,7 +999,9 @@ const structuredData: StructuredData = {
 
 		<p>玉川電気鉄道が東京横浜電鉄へ合併された直後、30号車以前に先がけて<a href="#passenger31-35">31～35号車</a>の半鋼体化改造が行われたのですが、改造車であることを区別するため車号も70番台に変更されました（書類上は改造竣功の翌日に改番）。</p>
 
-		<p>車体の載せ替えにより 13m 級の3ドア構成となり、大きな側窓は高さも 950mm に拡大されて<a href="/tokyu/data/history_mekama&toyoko_passenger#moha1000">鉄道線モハ1000形</a>との共通性も感じます。なお、この車体サイズ拡大に際しては一部の曲線区間において軌道中心間隔を拡大する工事が行われています<FootnoteReference><RefTetsudosho company="東京横浜電鉄" no="東横卯第272号" date="1939-02-15" title="線路並ニ工事方法書記載事項一部變更ニ付御届" url="https://www.digital.archives.go.jp/item/505609" /></FootnoteReference>。</p>
+		<p>車体の載せ替えにより 13m 級の3ドア構成となり、大きな側窓は高さも 950mm に拡大されて<a href="/tokyu/data/history_mekama&toyoko_passenger#moha1000">鉄道線モハ1000形</a>との共通性も感じます。なお、この車体サイズ拡大に際しては一部の曲線区間において軌道中心間隔を拡大する工事が行われています<NoteRef type="ref" by="toyoko1939-02-15" />。</p>
+
+		<NoteRefContent id="toyoko1939-02-15"><RefTetsudosho company="東京横浜電鉄" no="東横卯第272号" date="1939-02-15" title="線路並ニ工事方法書記載事項一部變更ニ付御届" url="https://www.digital.archives.go.jp/item/505609" /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -1038,11 +1051,19 @@ const structuredData: StructuredData = {
 	<Section id="deha70">
 		<H slot="heading"><small>東急</small>デハ70形</H>
 
-		<p>前述のとおり<DateWareki value="1941-10" />に4輪電動客車2両と電動貨車5両が満洲国の<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>へ供出されたのですが、その代替として新造車両が3両増備されることになりました（同年8月19日に鉄道省より通牒）。当時は(新)東京横浜電鉄の時代で木造車を半鋼体化した<a href="#passenger71-75">71～75号車</a>が最大番号で存在しており、新造車両は81～83号車となる予定だったのですが<FootnoteReference><RefTetsudosho company="東京急行電鉄" no="企電午第129号" date="1942-08-17" title="電動客車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/507956" /></FootnoteReference>、購入認可と竣功は東京急行電鉄の成立後となり、実際の車号は70番台とされました。</p>
+		<p>前述のとおり<DateWareki value="1941-10" />に4輪電動客車2両と電動貨車5両が満洲国の<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>へ供出されたのですが、その代替として新造車両が3両増備されることになりました（同年8月19日に鉄道省より通牒）。当時は(新)東京横浜電鉄の時代で木造車を半鋼体化した<a href="#passenger71-75">71～75号車</a>が最大番号で存在しており、新造車両は81～83号車となる予定だったのですが<NoteRef type="ref" by="toyoko1942-08-17" />、購入認可と竣功は東京急行電鉄の成立後となり、実際の車号は70番台とされました。</p>
 
-		<p>当初は(旧)71～75号車と同じ仕様での購入認可申請が行われたのですが、認可後に主電動機を 37.3kW → 50kW に増大する設計変更が行われ、その影響で台車の固定軸距と車輪径をそれぞれ 100mm 拡大したため高床車となっています。また予定番号 81, 82 の2両は当時 56, 72号車で試験が行われていた総括制御器（MMC-50 型）を取り付けることとされました。書類上はこの時点では連結器を設置せず、<DateWareki value="1949" />に取り付けたことになっているのですが<FootnoteReference><RefTetsudosho company="東京急行電鉄" no="車子発第18号" date="1948-02-26" title="車輛設計變更認可申請書" url="https://www.digital.archives.go.jp/item/467048" /></FootnoteReference>、入線直後と思われるデハ71 の写真<FootnoteReference><RefBook name="東急電車形式集.3" authors={['レイルロード']} year={1997} pages={[86]} url="https://www.amazon.co.jp/dp/4947714034/" /></FootnoteReference>を見るに、少なくとも片側は完成時から並形の自動連結器を備えていたようです。</p>
+		<NoteRefContent id="toyoko1942-08-17"><RefTetsudosho company="東京急行電鉄" no="企電午第129号" date="1942-08-17" title="電動客車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/507956" /></NoteRefContent>
 
-		<p>一方、工事方法書では別途7両の増備認可を申請していたものの、第二次世界大戦の影響もあってか当初は5両分しか認可が下りず、<DateWareki value="1943" />になって残り2両分も認可されたものの設計認可申請には至らず、その結果8両で打ち止めとなりました。増備認可が下りた5両のうち、設計認可申請にてデハ74～75 は直接制御、デハ76～78 は総括制御（MMC-50 型）とされたものの、前者は完成が終戦後にずれ込み、書類上は他の6両を改めて総括制御対応に設計変更する工事の竣功に合わせて<DateWareki value="1949" />に竣功届が提出されています。もっとも実際には<DateWareki value="1946" />に完成していたようで<FootnoteReference><RefMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[9]} /></FootnoteReference>、東急側でもその時期の入籍となっています。</p>
+		<p>当初は(旧)71～75号車と同じ仕様での購入認可申請が行われたのですが、認可後に主電動機を 37.3kW → 50kW に増大する設計変更が行われ、その影響で台車の固定軸距と車輪径をそれぞれ 100mm 拡大したため高床車となっています。また予定番号 81, 82 の2両は当時 56, 72号車で試験が行われていた総括制御器（MMC-50 型）を取り付けることとされました。書類上はこの時点では連結器を設置せず、<DateWareki value="1949" />に取り付けたことになっているのですが<NoteRef type="ref" by="tokyu1948-02-26" />、入線直後と思われるデハ71 の写真<NoteRef type="ref" by="keishiki3" />を見るに、少なくとも片側は完成時から並形の自動連結器を備えていたようです。</p>
+
+		<NoteRefContent id="tokyu1948-02-26"><RefTetsudosho company="東京急行電鉄" no="車子発第18号" date="1948-02-26" title="車輛設計變更認可申請書" url="https://www.digital.archives.go.jp/item/467048" /></NoteRefContent>
+
+		<NoteRefContent id="keishiki3"><RefBook name="東急電車形式集.3" authors={['レイルロード']} year={1997} pages={[86]} url="https://www.amazon.co.jp/dp/4947714034/" /></NoteRefContent>
+
+		<p>一方、工事方法書では別途7両の増備認可を申請していたものの、第二次世界大戦の影響もあってか当初は5両分しか認可が下りず、<DateWareki value="1943" />になって残り2両分も認可されたものの設計認可申請には至らず、その結果8両で打ち止めとなりました。増備認可が下りた5両のうち、設計認可申請にてデハ74～75 は直接制御、デハ76～78 は総括制御（MMC-50 型）とされたものの、前者は完成が終戦後にずれ込み、書類上は他の6両を改めて総括制御対応に設計変更する工事の竣功に合わせて<DateWareki value="1949" />に竣功届が提出されています。もっとも実際には<DateWareki value="1946" />に完成していたようで<NoteRef type="ref" by="romancecar19" />、東急側でもその時期の入籍となっています。</p>
+
+		<NoteRefContent id="romancecar19"><RefMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[9]} /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -1138,7 +1159,9 @@ const structuredData: StructuredData = {
 
 		<p><DateWareki value="1941-10" />に<a href="#freight1-5">電動貨車 1～5</a> が供出されたため、玉川線には付随貨車を牽引できる車両がなくなっていたのですが、品川営業局<small>（現：京浜急行電鉄）</small>で余剰となっていた電動貨車デワ5010形1両が転局することになり、軌間改造（1,435mm → 1,372mm）のほか、付随貨車に合わせて新たにねじ式連結器を追加（バッファーはもともと装備）、またパンタグラフはトロリーポールへの変更が実施されています。この際、車両番号はなぜか鉄道線用の3000番台が付与されました。</p>
 
-		<p>一度取り止めた貨車の使用を再開した理由は、認可申請書の記述によれば、軌道保守にはトラックを使用していたもののそれが不可能になってきたためとされており、日中戦争を発端とした石油規制の影響が覗えます。(旧)京浜電気鉄道でも同様の理由でやはり鉄道車両による保守作業に迫られたのですが<FootnoteReference><RefBook name="京浜急行八十年史" authors={['京浜急行電鉄']} year={1980} pages={[433]} url="https://dl.ndl.go.jp/pid/11951009/1/240" linkScope="page" /></FootnoteReference>、入れ替わるように無蓋貨車6両を転局させていますから、電動貨車に余剰があった京浜線と、逆に付随貨車のみが残っていた玉川線とが同一会社になったことでうまく車両を融通し合えた（改軌工事をしてでも融通せねばならない状況にあった）ということでしょう。</p>
+		<p>一度取り止めた貨車の使用を再開した理由は、認可申請書の記述によれば、軌道保守にはトラックを使用していたもののそれが不可能になってきたためとされており、日中戦争を発端とした石油規制の影響が覗えます。(旧)京浜電気鉄道でも同様の理由でやはり鉄道車両による保守作業に迫られたのですが<NoteRef type="ref" by="keikyu80" />、入れ替わるように無蓋貨車6両を転局させていますから、電動貨車に余剰があった京浜線と、逆に付随貨車のみが残っていた玉川線とが同一会社になったことでうまく車両を融通し合えた（改軌工事をしてでも融通せねばならない状況にあった）ということでしょう。</p>
+
+		<NoteRefContent id="keikyu80"><RefBook name="京浜急行八十年史" authors={['京浜急行電鉄']} year={1980} pages={[433]} url="https://dl.ndl.go.jp/pid/11951009/1/240" linkScope="page" /></NoteRefContent>
 
 		<p>ところで玉川線ではあくまで軌道保守や社用品輸送の用途であり大規模な砂利輸送は取り止めていたため、付随貨車を連結しての運転は効率的ではなく、戦後になって電動貨車自体に運搬物を積載できるよう車体を無蓋タイプに載せ替える改造が行われ、車両記号もデワからデトへ変更されました。</p>
 
@@ -1183,7 +1206,9 @@ const structuredData: StructuredData = {
 	<Section id="deha80">
 		<H slot="heading"><small>東急</small>デハ80形</H>
 
-		<p>戦後の本格的な車両増備は、前述のデハ74～75 の例外を除けばデハ80形より始まります。これは1949<small>(昭和24)</small>年度の増備認可を受けたもので、その認可書類は残されておらず詳細は不明ながら8両での認可申請が行われ、そのうち6両が認可されたもののようです<FootnoteReference><RefMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" authors={['川垣恭三']} pages={[116]} /></FootnoteReference>。主電動機は 74.6kW（100馬力）で後のデハ150形より大きく歴代最強を誇り、新製当時からビューゲルを装備、正面上部の両脇には緑ランプの方向指示灯（三軒茶屋の分岐で使用）が付きました。中央ドアは<a href="#passenger56-66">デハ40形</a>のような階段外付け式ですが、閉扉時はステップが台枠下部に収納される方式となっています。</p>
+		<p>戦後の本格的な車両増備は、前述のデハ74～75 の例外を除けばデハ80形より始まります。これは1949<small>(昭和24)</small>年度の増備認可を受けたもので、その認可書類は残されておらず詳細は不明ながら8両での認可申請が行われ、そのうち6両が認可されたもののようです<NoteRef type="ref" by="romancecar21" />。主電動機は 74.6kW（100馬力）で後のデハ150形より大きく歴代最強を誇り、新製当時からビューゲルを装備、正面上部の両脇には緑ランプの方向指示灯（三軒茶屋の分岐で使用）が付きました。中央ドアは<a href="#passenger56-66">デハ40形</a>のような階段外付け式ですが、閉扉時はステップが台枠下部に収納される方式となっています。</p>
+
+		<NoteRefContent id="romancecar21"><RefMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" authors={['川垣恭三']} pages={[116]} /></NoteRefContent>
 
 		<p>一方、木製車のデハ20 は<DateWareki value="1946-05" />に漏電のため車体を全焼しており、復旧に際しデハ81～86 と同じ車体に載せ替えて80形に編入されました。この際、連結運転のために主電動機容量を増大させる必要がありデハ46 と台車を振り替えたため、デハ20 の面影はほとんど残っていません。主電動機は当初 48.5kW を搭載していたのですが、2年ほどで新造車と同じ 74.6kW に変更されています。</p>
 
