@@ -45,9 +45,7 @@ const structuredData: StructuredData = {
 			</dd>
 			<dt>2012年2月<!-- 12日 --></dt>
 			<dd>
-				<p>
-					NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<LinkExternal href="https://www.inetd.co.jp/">アイネットディー</LinkExternal>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。
-				</p>
+				<p>NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<LinkExternal href="https://www.inetd.co.jp/">アイネットディー</LinkExternal>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。</p>
 
 				<NoteRefContent id="nurs-cookie"><LinkExternal href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - 共用SSLサーバの危険性が理解されていない</LinkExternal>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</NoteRefContent>
 			</dd>
@@ -175,6 +173,7 @@ const structuredData: StructuredData = {
 			<H slot="heading">3xx リダイレクトページ</H>
 
 			<p>URL が変更になった場合は <code>301 Moved Permanently</code>、フォームの POST 送信後には <code>303 See Other</code> などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
+
 			<p><LinkExternal href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の 6.4. Redirection 3xx</LinkExternal>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際にブラウザの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されることがある<NoteRef by="3xx-error" />。</p>
 
 			<NoteRefContent id="3xx-error">Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、Android Firefox 96 にて確認）</NoteRefContent>
@@ -303,6 +302,7 @@ const structuredData: StructuredData = {
 		<H slot="heading">ファビコン<small>（<code>favicon.ico</code>）</small></H>
 
 		<p>ファビコンは SVG 形式で提供している。</p>
+
 		<p><LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</LinkExternal>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef by="favicon-svg" />。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>
 
 		<NoteRefContent id="favicon-svg">詳細はブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>（2021年10月）を参照。</NoteRefContent>
