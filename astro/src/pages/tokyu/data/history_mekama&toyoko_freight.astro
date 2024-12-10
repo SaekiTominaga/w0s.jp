@@ -1,14 +1,14 @@
 ---
 import dayjs from 'dayjs';
 import DateWareki from '@components/DateWareki.astro';
+import DocBook from '@components/DocBook.astro';
+import DocOfficial from '@components/DocOfficial.astro';
 import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
-import RefBook from '@components/ReferenceBook.astro';
-import RefTetsudosho from '@components/ReferenceTetsudosho.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -48,13 +48,13 @@ const structuredData: StructuredData = {
 					<li><DateWareki value="1942" />の東京急行電鉄発足に際しての改番では再び「デワ」「デト」とされました。</li>
 				</ul>
 
-				<NoteRefContent id="toyoko1928-08-06"><RefTetsudosho company="東京横浜電鉄" no="東横辰第1312号" date="1928-08-06" title="車両竣功届" url="https://www.digital.archives.go.jp/item/507221" /></NoteRefContent>
+				<NoteRefContent id="toyoko1928-08-06"><DocOfficial company="東京横浜電鉄" no="東横辰第1312号" date="1928-08-06" title="車両竣功届" url="https://www.digital.archives.go.jp/item/507221" /></NoteRefContent>
 
-				<NoteRefContent id="toyoko1931-02-27"><RefTetsudosho company="東京横浜電鉄" no="東横未第207号" date="1931-02-27" title="電動貨車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/510385" /></NoteRefContent>
+				<NoteRefContent id="toyoko1931-02-27"><DocOfficial company="東京横浜電鉄" no="東横未第207号" date="1931-02-27" title="電動貨車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/510385" /></NoteRefContent>
 
-				<NoteRefContent id="mekama1937-08-07"><RefTetsudosho company="目黒蒲田電鉄" no="目電丑第976号" date="1937-08-07" title="他鐵道所属車輛運轉認可申請書" url="https://www.digital.archives.go.jp/item/533963" /></NoteRefContent>
+				<NoteRefContent id="mekama1937-08-07"><DocOfficial company="目黒蒲田電鉄" no="目電丑第976号" date="1937-08-07" title="他鐵道所属車輛運轉認可申請書" url="https://www.digital.archives.go.jp/item/533963" /></NoteRefContent>
 
-				<NoteRefContent id="denshatachi1-1"><RefBook name="東急の電車たち　電車とバスのなんでもシリーズその1" authors={['電車とバスの博物館']} year={1984} pages={[144, 146]} /></NoteRefContent>
+				<NoteRefContent id="denshatachi1-1"><DocBook name="東急の電車たち　電車とバスのなんでもシリーズその1" authors={['電車とバスの博物館']} year={1984} pages={[144, 146]} /></NoteRefContent>
 			</li>
 			<li>付随貨車は<DateWareki value="1928-07" />に監督局から出された通牒を元に一斉改番が8月31日に行われ、「フト」が「ト」ないし「トム」になり形式称号も変更されました。同年実施の鉄道省貨車の称号規定変更に合わせたものと思われますが、こちらは目黒蒲田電鉄、東京横浜電鉄ともに書類が残っているため表中に含めています。</li>
 			<li>
@@ -80,9 +80,9 @@ const structuredData: StructuredData = {
 		<p>デト1形は目黒蒲田電鉄の最初の路線である目黒―丸子間が<DateWareki value="1923-03" />に開通するのに伴い、旅客車の<a href="/tokyu/data/history_mekama&toyoko_passenger#deha1">デハ1形</a>、付随貨車の<a href="#to1">ト1形</a>とともに製造された無蓋電動貨車です。</p>
 		<p><DateWareki value="1924" />にはデト3 が増備されましたが、この車両は車体幅が若干広がるなどの仕様変更があったためかデト3形として形式が区別されています<NoteRef type="ref" by="mekama1928-03-14" />。ただし初期の書類には形式表記がなく、製造時からデト3形を名乗っていたかどうかは定かではありません。また「モト」への記号変更後のことですが、現車表記は<q>形式モト1</q>とされている写真が記録されているため<NoteRef type="ref" by="keishiki1" />、現場ではとくに区別なく取り扱われていた可能性もあります。</p>
 
-		<NoteRefContent id="mekama1928-03-14"><RefTetsudosho company="目黒蒲田電鉄" no="目電辰第275号" date="1928-03-14" title="車輛設計變更認可申請書" url="https://www.digital.archives.go.jp/item/473104" /></NoteRefContent>
+		<NoteRefContent id="mekama1928-03-14"><DocOfficial company="目黒蒲田電鉄" no="目電辰第275号" date="1928-03-14" title="車輛設計變更認可申請書" url="https://www.digital.archives.go.jp/item/473104" /></NoteRefContent>
 
-		<NoteRefContent id="keishiki1"><RefBook name="東急電車形式集.1" authors={['レイルロード']} year={1996} pages={[70]} url="https://www.amazon.co.jp/dp/4938343916/" /></NoteRefContent>
+		<NoteRefContent id="keishiki1"><DocBook name="東急電車形式集.1" authors={['レイルロード']} year={1996} pages={[70]} url="https://www.amazon.co.jp/dp/4938343916/" /></NoteRefContent>
 
 		<p><DateWareki value="1925" />には東京横浜電鉄の丸子多摩川〜神奈川間の開通に向けてデト4〜6 が製造されました。このグループは車体メーカーの違いによるものか、目蒲デト1形ともデト3形とも車体寸法が若干異なるものの、形式呼称はデト1形とされました。</p>
 		<p>東京横浜電鉄の3両は<DateWareki value="1928" />にトロリーポールをパンタグラフに変更する改造認可申請が行われたのですが、認可直後にデト4 のみ省線駅構内の入換作業用としてトロリーポールを撤去せず、新設のパンタグラフと併用するよう変更の認可申請が行われ、その竣功時にはデト4 のみデト4形に変更されています。なお、デト5〜6 はデト1形のままとされたため、この時点で無蓋電動貨車はデト1形（デト1〜2, 5〜6）、デト3形（デト3）、デト4形（デト4）の3形式6両というややこしい状況になっていました。</p>
@@ -205,13 +205,13 @@ const structuredData: StructuredData = {
 
 		<p>電動貨車の<a href="#deto1">デト1形</a>とともに製造された付随貨車で、7トン積みの無蓋車として製造されましたが、これは積載重量10トンのものを7トンとして認可を受けたためであり、後に10トン化されています<NoteRef type="ref" by="mekama1926-11-27" />。</p>
 
-		<NoteRefContent id="mekama1926-11-27"><RefTetsudosho company="目黒蒲田電鉄" no="目電第398号" date="1926-11-27" title="附隨貨車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/543294" /></NoteRefContent>
+		<NoteRefContent id="mekama1926-11-27"><DocOfficial company="目黒蒲田電鉄" no="目電第398号" date="1926-11-27" title="附隨貨車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/543294" /></NoteRefContent>
 
 		<p>4両が製造されましたが、<DateWareki value="1925" />にはト3〜4 の2両のみ側ブレーキに加えて手ブレーキを追加する改造が行われ、フト10形へ改番されました。</p>
 		<p><DateWareki value="1928-08" />には他の付随貨車を含めた一斉改番が行われ、フト10形はト11形へ形式変更されました。この際、フト化が行われなかったト1〜2 については車番の変更こそなかったものの、(旧)ト1形から(新)ト1形への変更が行われた扱いであったようで、後の車両竣功図表にも<q>形式称号　ト1</q> に対して<q>旧番号　ト1</q>と書かれています。</p>
 		<p><DateWareki value="1929-11-16" />時点でト1形、ト11形ともにねじ式連結器のため使用停止中とあり<NoteRef type="ref" by="mekama1929-11-16" />、付随貨車の中ではもっとも早く<DateWareki value="1935" />に<a href="#to5">ト5形</a>とともに廃車されました。</p>
 
-		<NoteRefContent id="mekama1929-11-16"><RefTetsudosho company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></NoteRefContent>
+		<NoteRefContent id="mekama1929-11-16"><DocOfficial company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -287,7 +287,7 @@ const structuredData: StructuredData = {
 		<p>ト1形と比べて若干の寸法変更が行われているもののほぼ同じ大きさの無蓋車ですが、こちらは当初から10トン積みとされ、また自重は 4t → 5.5t に増加しています。制動装置は側ブレーキのほかに手ブレーキが設けられ、「フト」の記号からしても緩急車として使用されていたものと思われます。</p>
 		<p>新製時の認可書類によると当初から自動連結器の取り付け準備が行われていたようで、鉄道省貨車の自動連結器への一斉交換に少し遅れて<DateWareki value="1926" />にはデワ1、デト1、フト21〜25 とともに自動連結器化されています<NoteRef type="ref" by="mekama1926-01-20" />。</p>
 
-		<NoteRefContent id="mekama1926-01-20"><RefTetsudosho company="目黒蒲田電鉄" no="目電第32号" date="1926-01-20" title="車輛設計變更認可申請書" url="https://www.digital.archives.go.jp/item/542883" /></NoteRefContent>
+		<NoteRefContent id="mekama1926-01-20"><DocOfficial company="目黒蒲田電鉄" no="目電第32号" date="1926-01-20" title="車輛設計變更認可申請書" url="https://www.digital.archives.go.jp/item/542883" /></NoteRefContent>
 
 		<p><DateWareki value="1928-08" />の付随貨車一斉改番ではト15形に形式変更が行われました。</p>
 
@@ -342,14 +342,14 @@ const structuredData: StructuredData = {
 		<p>上州鉄道<small>（現：東武鉄道小泉線）</small>より譲受した9トン積み無蓋車で、<DateWareki value="1923-10" />に譲受認可を受けていますが、竣功はそれから3年半以上もの期間が経った<DateWareki value="1927-06" />となっています。車体長は<a href="#to1">ト1形</a>より若干短く、目黒蒲田電鉄における最小の貨車でしたが、台車の固定軸距はこのサイズの貨車にしては長い部類で後述の<a href="#futo40">東横フト40形</a>と同じ9尺（2,740mm）です。</p>
 		<p>上州鉄道側の認可申請書類によると、譲渡の理由として<q>来ル大正十五年四月一日以降御省線内ヘ直通運轉不能ニ有之且ツ改修ニ多大ノ費用ヲ要スルヲ以テ此際賣却スル方有利</q>と記載されています<NoteRef type="ref" by="jyoshu1923-10-12" />。これは鉄道省貨車における自動連結器への一斉交換に関連して、<DateWareki value="1926-04-01" />より10トン積み未満の貨車直通が禁止されたことを表します<NoteRef type="ref" by="jidorenketsuki" />。</p>
 
-		<NoteRefContent id="jyoshu1923-10-12"><RefTetsudosho company="上州鉄道" no="発第101号" date="1923-10-12" title="貨車譲渡認可申請" url="https://www.digital.archives.go.jp/item/503204" /></NoteRefContent>
+		<NoteRefContent id="jyoshu1923-10-12"><DocOfficial company="上州鉄道" no="発第101号" date="1923-10-12" title="貨車譲渡認可申請" url="https://www.digital.archives.go.jp/item/503204" /></NoteRefContent>
 
-		<NoteRefContent id="jidorenketsuki"><RefBook name="鐵道車輛ノ連結器ヲ自動連結器ニ取替ニ關スル記錄" authors={['鉄道省']} year={1928} article={['第十七章　地方鐵道車輛竝私有貨車', '第五節　增噸工事']} pages={[236]} url="https://dl.ndl.go.jp/pid/1877648/1/146" linkScope="page" /></NoteRefContent>
+		<NoteRefContent id="jidorenketsuki"><DocBook name="鐵道車輛ノ連結器ヲ自動連結器ニ取替ニ關スル記錄" authors={['鉄道省']} year={1928} article={['第十七章　地方鐵道車輛竝私有貨車', '第五節　增噸工事']} pages={[236]} url="https://dl.ndl.go.jp/pid/1877648/1/146" linkScope="page" /></NoteRefContent>
 
 		<p><DateWareki value="1928-08" />の付随貨車一斉改番では車番の変更こそなかったものの、(旧)ト5形から(新)ト5形への変更が行われた扱いであったようで、後の車両竣功図表にも<q>形式称号　ト5</q> に対して、上州鉄道車号をわざわざ削除して<q>旧番号　ト5</q>と書き替えられています。</p>
 		<p><DateWareki value="1929-11-16" />時点でねじ式連結器のため使用停止中とあり<NoteRef type="ref" by="mekama1929-11-16" />、<DateWareki value="1935" />に<a href="#to1">ト1形、ト11形</a>とともに廃車されました。</p>
 
-		<NoteRefContent id="mekama1929-11-16"><RefTetsudosho company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></NoteRefContent>
+		<NoteRefContent id="mekama1929-11-16"><DocOfficial company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -399,7 +399,7 @@ const structuredData: StructuredData = {
 		<ul class="p-notes">
 			<li>上州鉄道時代の車号は目黒蒲田電鉄の譲受申請書類からは確認できないが、上州側の譲渡申請書類に記載がある<NoteRef type="ref" by="jyoshu1923-10-12" />。また目蒲の車両竣功図表にも旧番号の記載があるが、メーカーや製造年月は不明とされている。</li>
 
-			<NoteRefContent id="jyoshu1923-10-12"><RefTetsudosho company="上州鉄道" no="発第101号" date="1923-10-12" title="貨車譲渡認可申請" url="https://www.digital.archives.go.jp/item/503204" /></NoteRefContent>
+			<NoteRefContent id="jyoshu1923-10-12"><DocOfficial company="上州鉄道" no="発第101号" date="1923-10-12" title="貨車譲渡認可申請" url="https://www.digital.archives.go.jp/item/503204" /></NoteRefContent>
 		</ul>
 	</Section>
 
@@ -410,9 +410,9 @@ const structuredData: StructuredData = {
 		<p><DateWareki value="1925" />には東京横浜電鉄の丸子多摩川〜神奈川間の開通に向けて、<a href="#deto1">デト4〜6</a> とともにデワ2 が製造されました。車体メーカーの違いによるものか、目蒲デト1 とは車体寸法が若干異なります。</p>
 		<p>東京横浜電鉄では前述のとおり、<DateWareki value="1931" />にはモト4 が車体改造を受けて有蓋化されたのですが、トロリーポールとパンタグラフを併用しているなど他車と形態が異なるためか、モワ1形ではなくモワ3形とされました。なお、<DateWareki value="1933" />にはトロリーポールが撤去されていますが<NoteRef type="ref" by="toyoko1933-02-15" />、形式統合はされていません<NoteRef type="ref" by="toyoko1933-08-21" />。</p>
 
-		<NoteRefContent id="toyoko1933-02-15"><RefTetsudosho company="東京横浜電鉄" no="東横酉第85号" date="1933-02-15" title="電動貨車設計変更認可申請書" url="https://www.digital.archives.go.jp/item/537030" /></NoteRefContent>
+		<NoteRefContent id="toyoko1933-02-15"><DocOfficial company="東京横浜電鉄" no="東横酉第85号" date="1933-02-15" title="電動貨車設計変更認可申請書" url="https://www.digital.archives.go.jp/item/537030" /></NoteRefContent>
 
-		<NoteRefContent id="toyoko1933-08-21"><RefTetsudosho company="東京横浜電鉄" no="東横酉第1022号" date="1933-08-21" title="車両竣功届" url="https://www.digital.archives.go.jp/item/537034" /></NoteRefContent>
+		<NoteRefContent id="toyoko1933-08-21"><DocOfficial company="東京横浜電鉄" no="東横酉第1022号" date="1933-08-21" title="車両竣功届" url="https://www.digital.archives.go.jp/item/537034" /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
@@ -797,9 +797,9 @@ const structuredData: StructuredData = {
 		<p>東京横浜電鉄が路線建設用に鉄道省の門司鉄道局10形を購入したもので、メーカー名から「クラウス号」の愛称で親しまれている4輪タンク式の蒸気機関車です。</p>
 		<p>東京横浜電鉄では車両としての入籍はしていないため、認可書類も存在しませんが、購入元である鉄道省などの関係書類によれば<DateWareki value="1925-07" />に売却契約<NoteRef type="ref" by="tetsudosho1925-07-04" />ののち9月に譲受<NoteRef type="ref" by="rumoi1931-03-11" />されたとあります。</p>
 
-		<NoteRefContent id="tetsudosho1925-07-04"><RefTetsudosho company="鉄道省" no="倉丑発第1276号" date="1925-07-04" url="https://www.digital.archives.go.jp/item/510358" /></NoteRefContent>
+		<NoteRefContent id="tetsudosho1925-07-04"><DocOfficial company="鉄道省" no="倉丑発第1276号" date="1925-07-04" url="https://www.digital.archives.go.jp/item/510358" /></NoteRefContent>
 
-		<NoteRefContent id="rumoi1931-03-11"><RefTetsudosho company="留萠鉄道" date="1931-03-11" title="構内運転用機関車使用認可申請書" url="https://www.digital.archives.go.jp/item/450192" /></NoteRefContent>
+		<NoteRefContent id="rumoi1931-03-11"><DocOfficial company="留萠鉄道" date="1931-03-11" title="構内運転用機関車使用認可申請書" url="https://www.digital.archives.go.jp/item/450192" /></NoteRefContent>
 
 		<p>東横線の建設工事に使用されたのち、北海道の昭和炭鉱で使用されることになり、その所有者である明治鉱業への譲渡を経て留萠鉄道の車籍を得ることになりました。</p>
 
@@ -1033,7 +1033,7 @@ const structuredData: StructuredData = {
 		<p>池上電気鉄道では竣功届が提出されず無入籍の扱いだったものですが、目黒蒲田電鉄においても改番リストや車両一覧表に含まれていないためやはり無入籍の扱いだった模様です。</p>
 		<p>目黒蒲田電鉄への合併後の<DateWareki value="1937" />に車庫で撮影された写真が残されていますが<NoteRef type="ref" by="denshatachi1-2" />、その時点においてもなお自動連結器化やパンタグラフ化が行われておらず、また灯具も取り外されているため稼働できる状態だったのかは不明です。</p>
 
-		<NoteRefContent id="denshatachi1-2"><RefBook name="東急の電車たち　電車とバスのなんでもシリーズその1" authors={['電車とバスの博物館']} year={1984} pages={[145]} /></NoteRefContent>
+		<NoteRefContent id="denshatachi1-2"><DocBook name="東急の電車たち　電車とバスのなんでもシリーズその1" authors={['電車とバスの博物館']} year={1984} pages={[145]} /></NoteRefContent>
 
 		<div class="p-table -scroll">
 			<table>
