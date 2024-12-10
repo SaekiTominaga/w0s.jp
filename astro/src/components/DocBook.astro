@@ -9,9 +9,10 @@ interface Props {
 	pages: number[]; // ページ数
 	url?: string; // Web ページの URL
 	linkScope?: 'name' | 'page'; // リンクの対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
+	lang?: string;
 }
 
-const { name, authors, year, article, pages, url, linkScope = 'name' } = Astro.props;
+const { name, authors, year, article, pages, url, linkScope = 'name', lang } = Astro.props;
 
 const authorsDisplay = authors.join('、');
 
@@ -29,9 +30,9 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 		url !== undefined && linkScope === 'name' && (
 			<>
 				<LinkExternal href={url}>
-					<cite class="c-ref__name">{name}</cite>
+					<cite class="c-ref__name" lang={lang}>{name}</cite>
 					<span class="c-ref__meta">
-						<span class="c-ref__author">{authorsDisplay}</span>
+						<span class="c-ref__author" lang={lang}>{authorsDisplay}</span>
 						<time datetime={String(year)} class="c-ref__date">
 							{year}年
 						</time>
@@ -39,7 +40,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 				</LinkExternal>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{articleDisplay}</span>
+						<span class="c-ref__article" lang={lang}>{articleDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
@@ -49,16 +50,16 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 	{
 		url !== undefined && linkScope === 'page' && (
 			<LinkExternal href={url}>
-				<cite class="c-ref__name">{name}</cite>
+				<cite class="c-ref__name" lang={lang}>{name}</cite>
 				<span class="c-ref__meta">
-					<span class="c-ref__author">{authorsDisplay}</span>
+					<span class="c-ref__author" lang={lang}>{authorsDisplay}</span>
 					<time datetime={String(year)} class="c-ref__date">
 						{year}年
 					</time>
 				</span>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{articleDisplay}</span>
+						<span class="c-ref__article" lang={lang}>{articleDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
@@ -68,16 +69,16 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 	{
 		url === undefined && (
 			<>
-				<cite class="c-ref__name">{name}</cite>
+				<cite class="c-ref__name" lang={lang}>{name}</cite>
 				<span class="c-ref__meta">
-					<span class="c-ref__author">{authorsDisplay}</span>
+					<span class="c-ref__author" lang={lang}>{authorsDisplay}</span>
 					<time datetime={String(year)} class="c-ref__date">
 						{year}年
 					</time>
 				</span>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article">{articleDisplay}</span>
+						<span class="c-ref__article" lang={lang}>{articleDisplay}</span>
 					</>
 				)}
 				<span class="c-ref__pages">{pageDisplay}</span>
