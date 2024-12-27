@@ -1,0 +1,123 @@
+---
+import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
+import Date from '@components/Date.astro';
+import DateWareki from '@components/DateWareki.astro';
+import H from '@components/H.astro';
+import Image from '@components/Image.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
+import type { StructuredData } from '@type/types.js';
+
+const structuredData: StructuredData = {
+	title: '自費出版本「公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両」',
+	heading: '公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両',
+	dateModified: dayjs('2024-12-31'),
+	description: '資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。',
+	image: 'https://media.w0s.jp/image/tokyu/book/tamagawa1067_cover.jpg',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/book/', name: '鉄道本執筆' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<div class="c-embed-sidebar -embed-first">
+		<div class="c-embed-sidebar__text">
+			<dl class="p-list-table">
+				<div>
+					<dt>発行日</dt>
+					<dd><Date value="2024-12-31" /></dd>
+				</div>
+				<div>
+					<dt>価格</dt>
+					<dd>1,000円（税込）</dd>
+				</div>
+			</dl>
+
+			<ul class="p-notes">
+				<li>本書は電子書籍のみの販売</li>
+			</ul>
+		</div>
+		<div class="c-embed-sidebar__embed">
+			<figure class="c-fit">
+				<div class="p-embed -border">
+					<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙画像: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} />
+				</div>
+			</figure>
+		</div>
+	</div>
+
+	<Section id="buy">
+		<H slot="heading">購入案内</H>
+
+		<p><LinkExternal href="https://www.amazon.co.jp/dp/" icon={false} class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></LinkExternal></p>
+	</Section>
+
+	<Section id="toc">
+		<H slot="heading">目次</H>
+
+		<ol class="p-list">
+			<li><a href="#introduction">はじめに</a></li>
+			<li>
+				第1章　開通前の車両計画と諸元
+				<ol>
+					<li>電動客車</li>
+					<li>アメリカ製特別客車</li>
+					<li>付随貨車</li>
+				</ol>
+			</li>
+			<li>
+				第2章　開通時の車両とその後の増備
+				<ol>
+					<li>路線全通までの車両</li>
+					<li>電動客車の増備</li>
+					<li>西武軌道より付随客車を譲受</li>
+					<li>さらなる増備と予備電機品</li>
+				</ol>
+			</li>
+			<li>
+				第3章　電動客車のバリエーション
+				<ol>
+					<li>車体メーカー</li>
+					<li>車体形態</li>
+					<li>電機品</li>
+				</ol>
+			</li>
+			<li>第4章　改修工事</li>
+			<li>第5章　事故報道にみる電動客車の車号</li>
+			<li>
+				第6章　改軌に伴う譲渡、改造
+				<ol>
+					<li>駿遠電気への譲渡</li>
+					<li>上田温泉電軌への譲渡</li>
+					<li>貨車の軌間改造</li>
+				</ol>
+			</li>
+		</ol>
+	</Section>
+
+	<Section id="introduction">
+		<H slot="heading">本文冒頭抜粋</H>
+
+		<ul class="p-notes">
+			<li>本文冒頭の「<cite>はじめに</cite>」を抜粋します。</li>
+		</ul>
+
+		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920-09" />までの13年間、1,067mmの狭軌で営業が行われていました。明治、大正期の私鉄研究には一般に『<cite>鉄道省文書</cite>』と呼ばれる公文書（許認可書類）の調査が欠かせないのですが、玉電狭軌車の許認可書類は一部しか残されていないためその全容は謎に包まれており、車両番号すら明確には分かっていないのが現状です。</p>
+
+		<p>一方、昨今になって国立国会図書館をはじめとする図書館資料のデジタル化が進んだことでこれまでに知られていなかった資料の発見が相次ぎ、様々なことが明らかになってきています。</p>
+
+		<ul class="p-list">
+			<li>電動客車のみならず電気機関車で乗客を輸送する計画があった</li>
+			<li>電動客車のメーカーは定説では大半が高橋鐵工場とされてきたが、同社が旅客車の製造に関わっていた可能性は低い</li>
+			<li>電動客車は車体サイズや形態に少なくとも4種類のバリエーションが存在した</li>
+			<li>付随客車の一部は新製ではなく他路線から譲り受けた</li>
+			<li>旅客車22両のほかに予備の台車を輸入しており、その一部は車体も作られた可能性がある</li>
+			<li>一部の車両は改軌の実施を待たずに譲渡された</li>
+		</ul>
+
+		<p>本書では公文書のほか、監督機関の統計資料、会社の営業報告書、雑誌記事、新聞報道などをもとに、狭軌時代の車両について解明を試みます。</p>
+	</Section>
+</Layout>

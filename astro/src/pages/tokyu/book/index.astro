@@ -1,9 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
 import type { StructuredData } from '@type/types.js';
@@ -11,7 +11,7 @@ import type { StructuredData } from '@type/types.js';
 const structuredData: StructuredData = {
 	type: 'website',
 	title: '鉄道本執筆',
-	dateModified: dayjs('2022-07-07'),
+	dateModified: dayjs('2024-12-31'),
 	description: '鉄道関係で執筆に関わった本の紹介、および補足を行っています。',
 	breadcrumb: [{ path: '/tokyu/', name: '東急電車資料室' }],
 };
@@ -24,15 +24,26 @@ const structuredData: StructuredData = {
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
 				<div class="p-item">
+					<a href="/tokyu/book/tamagawa1067">
+						<Image path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
+						<span class="p-item__title">公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</span>
+					</a>
+
+					<div class="p-item__text">
+						<p><b>自費出版、2024年12月発売</b></p>
+						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
+					</div>
+				</div>
+			</li>
+			<li class="c-grid__item">
+				<div class="p-item">
 					<a href="/tokyu/book/7700">
 						<Image path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
 						<span class="p-item__title">東急7700系形態分類</span>
 					</a>
 
 					<div class="p-item__text">
-						<p>
-							<b>自費出版、2019年8月発売</b>
-						</p>
+						<p><b>自費出版、2019年8月発売</b></p>
 						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
 					</div>
 				</div>
@@ -45,9 +56,7 @@ const structuredData: StructuredData = {
 					</LinkExternal>
 
 					<div class="p-item__text">
-						<p>
-							<b>イカロス・ムック、2019年8月発売</b>
-						</p>
+						<p><b>イカロス・ムック、2019年8月発売</b></p>
 						<p>平成時代の東急電車の動向をまとめた本です。「<cite>現役車両ガイド</cite>」の一部の本文解説を担当しました。</p>
 					</div>
 				</div>
