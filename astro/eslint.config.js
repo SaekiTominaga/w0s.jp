@@ -53,6 +53,7 @@ export default [
 			],
 			'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
 			'@typescript-eslint/no-unnecessary-condition': 'off',
+			'@typescript-eslint/no-unsafe-type-assertion': 'off',
 		},
 	},
 	{
