@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 
-// https://docs.astro.build/en/reference/configuration-reference/
+/* https://docs.astro.build/en/reference/configuration-reference/ */
 export default defineConfig({
 	site: 'https://w0s.jp',
 	output: 'static',
@@ -11,6 +11,7 @@ export default defineConfig({
 	srcDir: './src',
 	publicDir: './public',
 	outDir: './dist',
+	compressHTML: false,
 	build: {
 		format: 'file',
 	},
