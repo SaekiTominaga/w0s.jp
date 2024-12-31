@@ -9,14 +9,7 @@ export default [
 	...w0sConfig,
 	...pluginAstro.configs.recommended,
 	{
-		ignores: [
-			'dist',
-			'src/env.d.ts',
-			'src/pages/kumeta/manga/subtitle.astro',
-			'src/pages/madoka/yomoyama/namae.astro',
-			'public/assets/script/*.js',
-			'public/assets/script/*.mjs',
-		],
+		ignores: ['dist', 'src/pages/kumeta/manga/subtitle.astro', 'public/assets/script/*.js', 'public/assets/script/*.mjs'],
 	},
 	{
 		files: ['**/*.astro'],
@@ -60,6 +53,7 @@ export default [
 			],
 			'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
 			'@typescript-eslint/no-unnecessary-condition': 'off',
+			'@typescript-eslint/no-unsafe-type-assertion': 'off',
 		},
 	},
 	{
@@ -97,12 +91,25 @@ export default [
 		files: ['src/**/*.astro', 'src/**/*.ts'],
 		rules: {
 			'no-console': 'off',
+			'@typescript-eslint/no-unsafe-type-assertion': 'off',
 		},
 	},
 	{
 		files: ['src/+util/Request.ts'],
 		rules: {
 			'@typescript-eslint/no-unsafe-return': 'off',
+		},
+	},
+	{
+		files: ['astro.config.mjs'],
+		rules: {
+			'import/no-unresolved': 'off',
+		},
+	},
+	{
+		files: ['eslint.config.js'],
+		rules: {
+			'import/no-named-as-default-member': 'off',
 		},
 	},
 ];

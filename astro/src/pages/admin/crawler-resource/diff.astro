@@ -1,6 +1,6 @@
 ---
 import fs from 'node:fs';
-import * as Diff from 'diff';
+import { diffLines, type Change as DiffChange } from 'diff';
 import Layout from '@layouts/Admin.astro';
 import RequestUtil from '@util/Request.js';
 import SsrUtil from '@util/Ssr.js';
@@ -26,8 +26,8 @@ const requestQuery: RequestQuery = {
 	diff: RequestUtil.strings(requestParams.getAll('diff[]')),
 };
 
-let diffs: Diff.Change[] = [];
-let fileList: string[] = [];
+const diffs: DiffChange[] = [];
+const fileList: string[] = [];
 
 if (requestQuery.dir !== null) {
 	const dir = `${configure.crawler_resource.log_dir}/${requestQuery.dir}`;
@@ -36,7 +36,7 @@ if (requestQuery.dir !== null) {
 			/* 差分チェック */
 			const [file1, file2] = await Promise.all([fs.promises.readFile(`${dir}/${requestQuery.diff.at(0)}`), fs.promises.readFile(`${dir}/${requestQuery.diff.at(1)}`)]);
 
-			diffs = Diff.diffLines(Buffer.from(file2).toString(), Buffer.from(file1).toString(), { newlineIsToken: true });
+			diffs.push(...diffLines(file2.toString(), file1.toString(), { newlineIsToken: true }));
 			diffs.forEach((diffPart, index) => {
 				if (diffPart.count !== undefined && diffPart.count > configure.crawler_resource.diff.max_line && !diffPart.added && !diffPart.removed) {
 					const lines = diffPart.value.split('\n');
@@ -61,7 +61,7 @@ if (requestQuery.dir !== null) {
 		}
 
 		/* 初期表示 */
-		fileList = (await fs.promises.readdir(dir)).filter((filePath) => filePath.endsWith('.txt')).reverse();
+		fileList.push(...(await fs.promises.readdir(dir)).filter((filePath) => filePath.endsWith('.txt')).reverse());
 	}
 }
 ---
