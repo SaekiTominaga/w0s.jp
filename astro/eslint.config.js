@@ -99,4 +99,16 @@ export default [
 			'@typescript-eslint/no-unsafe-return': 'off',
 		},
 	},
+	{
+		files: ['astro.config.mjs'],
+		rules: {
+			'import/no-unresolved': 'off',
+		},
+	},
+	{
+		files: ['eslint.config.js'],
+		rules: {
+			'import/no-named-as-default-member': 'off',
+		},
+	},
 ];
