@@ -18,7 +18,7 @@ import TableTheadStickey from './component/TableTheadStickey.js';
 /**
  * w0s.jp（エラーページを除く）
  */
-new ReportJsError('https://report.w0s.jp/js', {
+new ReportJsError('https://report.w0s.jp/report/js', {
 	fetchParam: {
 		location: 'location',
 		message: 'message',
