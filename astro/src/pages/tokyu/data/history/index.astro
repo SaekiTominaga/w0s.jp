@@ -6,7 +6,7 @@ import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
 import RequestUtil from '@util/Request.js';
-import SsrUtil from '@util/Ssr.js';
+import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -41,7 +41,6 @@ interface ViewCar {
 }
 
 export const prerender = false;
-const { configure } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: '東急電車　車歴表',
@@ -55,6 +54,8 @@ const structuredData: StructuredData = {
 	moduleScripts: ['tokyu-car-history.mjs'],
 	opensearch: { path: '/tokyu/data/history/search', name: '東急電車　車歴検索' },
 };
+
+ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const slugger = new GithubSlugger();
 
@@ -71,7 +72,7 @@ const requestQuery: RequestQuery = {
 	output: RequestUtil.string(requestParams.get('out')),
 };
 
-const dao = new TokyuCarHistoryDao(configure.sqlite.tokyu_car_history);
+const dao = new TokyuCarHistoryDao(process.env['SQLITE_TOKYU_CAR_HISTORY']);
 
 const carSeries = await dao.getCarSeries();
 

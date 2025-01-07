@@ -3,7 +3,7 @@ import Layout from '@layouts/Admin.astro';
 import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
 import HttpResponseUtil from '@util/HttpResponse.js';
 import RequestUtil from '@util/Request.js';
-import SsrUtil from '@util/Ssr.js';
+import { init as ssrInit, getPageUrl } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -13,14 +13,14 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
 	breadcrumb: [{ path: '/admin/crawler-news/', name: 'ウェブ巡回（ニュース）' }],
 };
 
-const pagePath = SsrUtil.getPageUrl(Astro.url, Astro.self.moduleId);
+const pagePath = getPageUrl(Astro.url, Astro.self.moduleId);
 
 const requestParams = RequestUtil.getParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
@@ -31,7 +31,7 @@ const requestQuery: RequestQuery = {
 	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
 };
 
-const dao = new CrawlerNewsDataDao(configure.sqlite.crawler);
+const dao = new CrawlerNewsDataDao(process.env['SQLITE_CRAWLER']);
 
 if (requestQuery.action_delete) {
 	/* 削除 */

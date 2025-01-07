@@ -6,7 +6,7 @@ import Section from '@components/Section.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import HttpResponseUtil from '@util/HttpResponse.js';
 import RequestUtil from '@util/Request.js';
-import SsrUtil from '@util/Ssr.js';
+import { init as ssrInit, getPageUrl } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -23,13 +23,13 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース）',
 };
 
-const pagePath = SsrUtil.getPageUrl(Astro.url, Astro.self.moduleId);
+const pagePath = getPageUrl(Astro.url, Astro.self.moduleId);
 
 const slugger = new GithubSlugger();
 
@@ -49,7 +49,7 @@ const requestQuery: RequestQuery = {
 	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
 };
 
-const dao = new CrawlerResourceDao(configure.sqlite.crawler);
+const dao = new CrawlerResourceDao(process.env['SQLITE_CRAWLER']);
 
 if (requestQuery.action_add) {
 	/* 登録 */

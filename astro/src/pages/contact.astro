@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 import Layout from '@layouts/W0s.astro';
 import HttpResponseUtil from '@util/HttpResponse.js';
 import RequestUtil from '@util/Request.js';
-import SsrUtil from '@util/Ssr.js';
+import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -17,7 +17,7 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	'schema-type': 'ContactPage',
@@ -48,17 +48,17 @@ if (Astro.request.method === 'POST') {
 			});
 
 			const transporter = nodemailer.createTransport({
-				host: configure.mail.smtp,
-				port: configure.mail.port,
+				host: process.env['MAIL_SMTP'],
+				port: process.env['MAIL_PORT'],
 				auth: {
-					user: configure.mail.user,
-					pass: configure.mail.password,
+					user: process.env['MAIL_USER'],
+					pass: process.env['MAIL_PASSWORD'],
 				},
 			});
 
 			const info = await transporter.sendMail({
-				from: configure.mail.from,
-				to: configure.mail.to,
+				from: process.env['MAIL_FROM'],
+				to: process.env['MAIL_TO'],
 				subject: 'w0s.jp 問い合わせ',
 				html: html,
 			});

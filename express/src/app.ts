@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import basicAuth from 'basic-auth';
 import compression from 'compression';
+import * as dotenv from 'dotenv';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
@@ -9,10 +10,12 @@ import { isMatch } from 'matcher';
 import HtmlEscape from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
-import type { Express as Configure } from '../../configure/type/express.js';
+import config from './config/express.js';
 
 /* 設定ファイル読み込み */
-const config = JSON.parse((await fs.promises.readFile('../configure/express.json')).toString()) as Configure;
+dotenv.config({
+	path: process.env['NODE_ENV'] === 'production' ? '.env.production' : '.env.development',
+});
 
 const app = express();
 
@@ -52,7 +55,7 @@ app.use(
 		/* Report */
 		res.setHeader(
 			'Reporting-Endpoints',
-			Object.entries(config.response.header.reporting_endpoints)
+			Object.entries(config.response.header.reportingEndpoints)
 				.map((endpoint) => `${endpoint.at(0) ?? ''}="${endpoint.at(1) ?? ''}"`)
 				.join(','),
 		);
@@ -67,7 +70,12 @@ app.use(
 	}),
 	async (req, res, next) => {
 		/* Basic Authentication */
-		const basic = config.static.auth_basic?.find((auth) => isMatch(req.url, auth.urls));
+		const authFileDirectory = process.env['AUTH_DIRECTORY'];
+		if (authFileDirectory === undefined) {
+			throw new Error('Auth file directory not defined');
+		}
+
+		const basic = config.static.authBasic.find((auth) => isMatch(req.url, auth.urls));
 		if (basic !== undefined) {
 			const credentials = basicAuth(req);
 
@@ -75,7 +83,7 @@ app.use(
 			const result = (await htpasswd.authenticate({
 				username: credentials?.name,
 				password: credentials?.pass,
-				file: basic.htpasswd,
+				file: `${authFileDirectory}/${basic.htpasswd}`,
 			})) as boolean;
 
 			if (!result) {
@@ -96,13 +104,13 @@ app.use(
 		let requestFilePath: string | undefined; // 実ファイルパス
 		if (requestPath.endsWith('/')) {
 			/* ディレクトリトップ（e.g. /foo/ ） */
-			const fileName = config.static.indexes?.find((name) => fs.existsSync(`${config.static.root}${requestPath}${name}`));
+			const fileName = config.static.indexes.find((name) => fs.existsSync(`${config.static.root}${requestPath}${name}`));
 			if (fileName !== undefined) {
 				requestFilePath = `${requestPath}${fileName}`;
 			}
 		} else if (path.extname(requestPath) === '') {
 			/* 拡張子のない URL（e.g. /foo ） */
-			const extension = config.static.extensions?.find((ext) => fs.existsSync(`${config.static.root}${requestPath}${ext}`));
+			const extension = config.static.extensions.find((ext) => fs.existsSync(`${config.static.root}${requestPath}${ext}`));
 			if (extension !== undefined) {
 				requestFilePath = `${requestPath}${extension}`;
 			}
@@ -123,7 +131,7 @@ app.use(
 		next();
 	},
 	express.static(config.static.root, {
-		extensions: config.static.extensions?.map((ext) => /* 拡張子の . は不要 */ ext.substring(1)),
+		extensions: config.static.extensions.map((ext) => /* 拡張子の . は不要 */ ext.substring(1)),
 		index: config.static.indexes,
 		setHeaders: (res, localPath) => {
 			const requestUrl = res.req.url; // リクエストパス e.g. ('/foo.html.br')
@@ -137,10 +145,10 @@ app.use(
 
 			/* Content-Type */
 			const mimeType =
-				Object.entries(config.static.headers.mime_type.path)
+				Object.entries(config.static.headers.mimeType.path)
 					.find(([filePath]) => filePath === requestUrlOrigin)
 					?.at(1) ??
-				Object.entries(config.static.headers.mime_type.extension)
+				Object.entries(config.static.headers.mimeType.extension)
 					.find(([fileExtension]) => fileExtension === extensionOrigin)
 					?.at(1);
 			if (mimeType === undefined) {
@@ -149,26 +157,15 @@ app.use(
 			res.setHeader('Content-Type', mimeType ?? 'application/octet-stream');
 
 			/* Cache-Control */
-			if (config.static.headers.cache_control !== undefined) {
-				const cacheControl =
-					config.static.headers.cache_control.path.find((ccPath) => ccPath.paths.includes(requestUrlOrigin))?.value ??
-					config.static.headers.cache_control.extension.find((ccExt) => ccExt.extensions.includes(extensionOrigin))?.value ??
-					config.static.headers.cache_control.default;
+			const cacheControl =
+				config.static.headers.cacheControl.path.find((ccPath) => ccPath.paths.includes(requestUrlOrigin))?.value ??
+				config.static.headers.cacheControl.extension.find((ccExt) => ccExt.extensions.includes(extensionOrigin))?.value ??
+				config.static.headers.cacheControl.default;
 
-				res.setHeader('Cache-Control', cacheControl);
-			}
-
-			/* CORS */
-			if (config.static.headers.cors?.directory.find((urlPath) => requestUrl.startsWith(urlPath)) !== undefined) {
-				const origin = res.req.get('Origin');
-				if (origin !== undefined && config.static.headers.cors.origin.includes(origin)) {
-					res.setHeader('Access-Control-Allow-Origin', origin);
-					res.vary('Origin');
-				}
-			}
+			res.setHeader('Cache-Control', cacheControl);
 
 			/* SourceMap */
-			if (config.static.headers.source_map?.extensions?.includes(extensionOrigin)) {
+			if (config.static.headers.sourceMap.extensions.includes(extensionOrigin)) {
 				const mapFilePath = `${localPathOrigin}${config.extension.map}`;
 				if (fs.existsSync(mapFilePath)) {
 					res.setHeader('SourceMap', path.basename(mapFilePath));
@@ -177,8 +174,8 @@ app.use(
 
 			/* CSP */
 			if (['.html', '.xhtml'].includes(extensionOrigin)) {
-				res.setHeader('Content-Security-Policy', config.response.header.csp_html);
-				res.setHeader('Content-Security-Policy-Report-Only', config.response.header.cspro_html);
+				res.setHeader('Content-Security-Policy', config.response.header.cspHtml);
+				res.setHeader('Content-Security-Policy-Report-Only', config.response.header.csproHtml);
 			}
 		},
 	}),
@@ -208,6 +205,10 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-
 /**
  * HTTP サーバー起動
  */
-app.listen(config.port, () => {
-	console.info(`Example app listening at http://localhost:${String(config.port)}`);
+const port = process.env['PORT'];
+if (port === undefined) {
+	throw new Error('Port not defined');
+}
+app.listen(Number(port), () => {
+	console.info(`Server is running on http://localhost:${port}`);
 });

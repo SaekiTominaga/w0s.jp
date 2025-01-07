@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import Layout from '@layouts/Admin.astro';
 import RequestUtil from '@util/Request.js';
-import SsrUtil from '@util/Ssr.js';
+import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -11,7 +11,7 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { configure, logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース）',
@@ -26,7 +26,7 @@ const requestQuery: RequestQuery = {
 };
 
 if (requestQuery.dir !== null && requestQuery.file !== null) {
-	const filePath = `${configure.crawler_resource.log_dir}/${requestQuery.dir}/${requestQuery.file}`;
+	const filePath = `${process.env['CRAWLER_RESOURCE_LOG_DIR']}/${requestQuery.dir}/${requestQuery.file}`;
 
 	/* ソースコード閲覧 */
 	try {
