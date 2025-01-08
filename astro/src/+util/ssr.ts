@@ -20,7 +20,7 @@ export const init = (Astro: AstroGlobal, options: Options): { logger: Log4js.Log
 	Astro.response.headers.set('Content-Type', 'text/html;charset=utf-8');
 
 	dotenv.config({
-		path: !options.dev ? '.env.production' : '.env.development',
+		path: !options.dev ? '../.env.production' : '../.env.development',
 	});
 
 	/* Logger */
