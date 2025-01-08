@@ -1,13 +1,13 @@
 // @ts-check
 
 import parserAstro from 'astro-eslint-parser';
-import pluginAstro from 'eslint-plugin-astro';
+import { configs as pluginAstroConfigs } from 'eslint-plugin-astro';
 import w0sConfig from '@w0s/eslint-config';
 
 /** @type {import("@typescript-eslint/utils/ts-eslint").FlatConfig.ConfigArray} */
 export default [
 	...w0sConfig,
-	...pluginAstro.configs.recommended,
+	...pluginAstroConfigs.recommended,
 	{
 		ignores: ['dist', 'src/pages/kumeta/manga/subtitle.astro', 'public/assets/script/*.js', 'public/assets/script/*.mjs'],
 	},
@@ -22,6 +22,8 @@ export default [
 		},
 		rules: {
 			'consistent-return': 'off',
+			'dot-notation': 'off',
+			'no-console': 'off',
 			'no-irregular-whitespace': 'off',
 			'no-undef-init': 'off',
 			'no-useless-return': 'off',
@@ -34,6 +36,13 @@ export default [
 			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',
 			'jsdoc/require-returns-type': 'off',
+		},
+	},
+	{
+		files: ['src/**/*.ts'],
+		rules: {
+			'no-console': 'off',
+			'@typescript-eslint/dot-notation': 'off',
 		},
 	},
 	{
@@ -88,28 +97,9 @@ export default [
 		},
 	},
 	{
-		files: ['src/**/*.astro', 'src/**/*.ts'],
-		rules: {
-			'no-console': 'off',
-			'@typescript-eslint/no-unsafe-type-assertion': 'off',
-		},
-	},
-	{
-		files: ['src/+util/Request.ts'],
-		rules: {
-			'@typescript-eslint/no-unsafe-return': 'off',
-		},
-	},
-	{
 		files: ['astro.config.mjs'],
 		rules: {
 			'import/no-unresolved': 'off',
-		},
-	},
-	{
-		files: ['eslint.config.js'],
-		rules: {
-			'import/no-named-as-default-member': 'off',
 		},
 	},
 ];

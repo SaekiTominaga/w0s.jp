@@ -32,7 +32,7 @@ export default class RequestUtil {
 	 * @returns Converted
 	 */
 	static strings(request: unknown): string[] {
-		return Array.isArray(request) ? request : [];
+		return Array.isArray(request) ? (request as string[]) : [];
 	}
 
 	/**

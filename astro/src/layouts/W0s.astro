@@ -9,7 +9,7 @@ import ContentMain from '@layouts/include/ContentBody.astro';
 import ContentFooter from '@layouts/include/ContentFooter.astro';
 import type { StructuredData } from '@type/types.js';
 import { getNoteData, getReferenceData } from '@util/Footnote.js';
-import SsrUtil from '@util/Ssr.js';
+import { getPageUrl } from '@util/ssr.js';
 import TocUtil from '@util/Toc.js';
 
 interface Props {
@@ -25,7 +25,7 @@ interface Props {
 
 const { pagePath: pagePathTemp, astroFilePath, structuredData, top = false, toc = true, contentFooter = true, pageSidebar = true, ad = true } = Astro.props;
 
-const pagePath = pagePathTemp ?? SsrUtil.getPageUrl(Astro.url, astroFilePath);
+const pagePath = pagePathTemp ?? getPageUrl(Astro.url, astroFilePath);
 
 const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);

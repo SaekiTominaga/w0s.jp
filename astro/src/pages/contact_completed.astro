@@ -2,7 +2,7 @@
 import Layout from '@layouts/W0s.astro';
 import LinkBullet from '@components/LinkBullet.astro';
 import RequestUtil from '@util/Request.js';
-import SsrUtil from '@util/Ssr.js';
+import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -10,7 +10,7 @@ interface RequestQuery {
 }
 
 export const prerender = false;
-const { logger } = await SsrUtil.init(Astro, { dev: import.meta.env.DEV });
+const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: '問い合わせ（完了）',
