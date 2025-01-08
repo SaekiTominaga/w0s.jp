@@ -215,7 +215,7 @@ if (requestQuery.output !== null) {
 							<div class="c-form-controls">
 								<input class="c-input js-convert-tokyu-car-histroy-num js-validation" id="fc-num" name="num" value={requestQuery.number} maxlength="4" pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" style="--inline-size: 4em" aria-errormessage="input-validate-num" title="検索対象の車種は旧7000系から新3000系までです。" />
 								<label class="c-label -check">
-									<input type="checkbox" name="old" value="1" checked={requestQuery.number_old ? '' : undefined} />
+									<input type="checkbox" name="old" value="1" checked={requestQuery.number_old ? 'checked' : undefined} />
 									<span class="c-label__text">旧車号を含む</span></label
 								>
 							</div>
@@ -231,7 +231,7 @@ if (requestQuery.output !== null) {
 								{
 									carSeries.map((car) => (
 										<label class="c-label -check">
-											<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== null && requestQuery.series.includes(car.id) ? '' : undefined} />
+											<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== null && requestQuery.series.includes(car.id) ? 'checked' : undefined} />
 											<span class="c-label__text">{car.series}</span>
 										</label>
 									))
@@ -277,7 +277,7 @@ if (requestQuery.output !== null) {
 										['reg', '入籍日'],
 									].map(([name, value], index) => (
 										<label class="c-label -check">
-											<input type="radio" name="srt" value={name} checked={((requestQuery.sort === null || requestQuery.sort === '') && index === 0) || requestQuery.sort === name ? '' : undefined} />
+											<input type="radio" name="srt" value={name} checked={((requestQuery.sort === null || requestQuery.sort === '') && index === 0) || requestQuery.sort === name ? 'checked' : undefined} />
 											<span class="c-label__text">{value}</span>
 										</label>
 									))
@@ -297,7 +297,7 @@ if (requestQuery.output !== null) {
 										['ja', '和暦'],
 									].map(([name, value], index) => (
 										<label class="c-label -check">
-											<input type="radio" name="era" value={name} checked={((requestQuery.era === null || requestQuery.era === '') && index === 0) || requestQuery.era === name ? '' : undefined} />
+											<input type="radio" name="era" value={name} checked={((requestQuery.era === null || requestQuery.era === '') && index === 0) || requestQuery.era === name ? 'checked' : undefined} />
 											<span class="c-label__text">{value}</span>
 										</label>
 									))
@@ -317,7 +317,7 @@ if (requestQuery.output !== null) {
 										['mob', '主要列表示（モバイル向け）'],
 									].map(([name, value], index) => (
 										<label class="c-label -check">
-											<input type="radio" name="out" value={name} checked={((requestQuery.output === null || requestQuery.output === '') && index === 0) || requestQuery.output === name ? '' : undefined} />
+											<input type="radio" name="out" value={name} checked={((requestQuery.output === null || requestQuery.output === '') && index === 0) || requestQuery.output === name ? 'checked' : undefined} />
 											<span class="c-label__text">{value}</span>
 										</label>
 									))
