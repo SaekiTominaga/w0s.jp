@@ -14,7 +14,7 @@ import config from './config/express.js';
 
 /* 設定ファイル読み込み */
 dotenv.config({
-	path: process.env['NODE_ENV'] === 'production' ? '.env.production' : '.env.development',
+	path: process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development',
 });
 
 const app = express();
