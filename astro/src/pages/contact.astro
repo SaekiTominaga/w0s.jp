@@ -40,33 +40,29 @@ if (Astro.request.method === 'POST') {
 
 	if (requestQuery.action_send) {
 		/* メール送信 */
-		const sendMail = async (): Promise<void> => {
-			const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
-				requestQuery: requestQuery,
-				ip: Astro.clientAddress,
-				ua: Astro.request.headers.get('User-Agent'),
-			});
+		const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
+			requestQuery: requestQuery,
+			ip: Astro.clientAddress,
+			ua: Astro.request.headers.get('User-Agent'),
+		});
 
-			const transporter = nodemailer.createTransport({
-				host: process.env['MAIL_SMTP'],
-				port: process.env['MAIL_PORT'],
-				auth: {
-					user: process.env['MAIL_USER'],
-					pass: process.env['MAIL_PASSWORD'],
-				},
-			});
+		const transporter = nodemailer.createTransport({
+			host: process.env['MAIL_SMTP'],
+			port: Number(process.env['MAIL_PORT']),
+			auth: {
+				user: process.env['MAIL_USER'],
+				pass: process.env['MAIL_PASSWORD'],
+			},
+		});
 
-			const info = await transporter.sendMail({
-				from: process.env['MAIL_FROM'],
-				to: process.env['MAIL_TO'],
-				subject: 'w0s.jp 問い合わせ',
-				html: html,
-			});
+		const info = await transporter.sendMail({
+			from: process.env['MAIL_FROM'],
+			to: process.env['MAIL_TO'],
+			subject: 'w0s.jp 問い合わせ',
+			html: html,
+		});
 
-			logger.info('Message sent: %s', info.messageId);
-		};
-
-		await sendMail();
+		logger.info('Message sent: %s', info.messageId);
 
 		const httpResponse = new HttpResponseUtil(Astro.request);
 		return httpResponse.response303(`/contact_completed?referrer=${requestQuery.referrer}`); // TODO: https://github.com/withastro/language-tools/issues/476

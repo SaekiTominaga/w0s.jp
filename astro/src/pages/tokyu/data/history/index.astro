@@ -72,7 +72,11 @@ const requestQuery: RequestQuery = {
 	output: RequestUtil.string(requestParams.get('out')),
 };
 
-const dao = new TokyuCarHistoryDao(process.env['SQLITE_TOKYU_CAR_HISTORY']);
+const sqlite = process.env['SQLITE_TOKYU_CAR_HISTORY'];
+if (sqlite === undefined) {
+	throw new Error('SQLite tokyu car history not defined');
+}
+const dao = new TokyuCarHistoryDao(sqlite);
 
 const carSeries = await dao.getCarSeries();
 

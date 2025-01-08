@@ -23,6 +23,7 @@ export default [
 		rules: {
 			'consistent-return': 'off',
 			'dot-notation': 'off',
+			'no-console': 'off',
 			'no-irregular-whitespace': 'off',
 			'no-undef-init': 'off',
 			'no-useless-return': 'off',
@@ -35,6 +36,13 @@ export default [
 			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',
 			'jsdoc/require-returns-type': 'off',
+		},
+	},
+	{
+		files: ['src/**/*.ts'],
+		rules: {
+			'no-console': 'off',
+			'@typescript-eslint/dot-notation': 'off',
 		},
 	},
 	{
@@ -86,12 +94,6 @@ export default [
 		},
 		rules: {
 			strict: 'off',
-		},
-	},
-	{
-		files: ['src/**/*.astro', 'src/**/*.ts'],
-		rules: {
-			'no-console': 'off',
 		},
 	},
 	{
