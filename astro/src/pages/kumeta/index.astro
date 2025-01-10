@@ -2,6 +2,7 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import H from '@components/H.astro';
+import LinkExternal from '@components/LinkExternal.astro';
 import Section from '@components/Section.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import type { StructuredData } from '@type/types.js';
@@ -93,15 +94,36 @@ const slugger = new GithubSlugger();
 					<Section slugger={slugger} depth={2} headingType="b">
 						<H slot="heading">最新ニュース</H>
 
-						<ul class="p-links -index">
-							<li><a href="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com">久米田康治カレンダー</a><small>（Google カレンダー）</small></li>
-							<li><a href="https://discord.gg/3G4kchxRgk">久米田康治情報</a><small>（Discord）</small></li>
-							<li><a href="https://mastodon.social/@kumeta_news">久米田康治ニュース</a><small>（Mastodon）</small></li>
+						<ul class="p-kumeta-top-news">
+							<li>
+								<LinkExternal href="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" icon={false}>
+									<span class="p-kumeta-top-news__image"><img src="/kumeta/image/icon_google-calendar.png" alt="" width="64" height="64" /></span>
+									<span class="p-kumeta-top-news__text">Google カレンダー</span>
+								</LinkExternal>
+							</li>
+							<li>
+								<LinkExternal href="https://discord.gg/3G4kchxRgk" icon={false}>
+									<span class="p-kumeta-top-news__image"><img src="/kumeta/image/icon_discord.svg" alt="" width="64" height="49" /></span>
+									<span class="p-kumeta-top-news__text">Discord</span></LinkExternal
+								>
+							</li>
+							<li>
+								<LinkExternal href="https://mastodon.social/@kumeta_news" icon={false}>
+									<span class="p-kumeta-top-news__image"><img src="/kumeta/image/icon_mastodon.svg" alt="" width="61" height="64" /></span>
+									<span class="p-kumeta-top-news__text">Mastodon</span></LinkExternal
+								>
+							</li>
+							<li>
+								<LinkExternal href="https://bsky.app/profile/kumeta-news.mastodon.social.ap.brid.gy" icon={false}>
+									<span class="p-kumeta-top-news__image"><img src="/kumeta/image/icon_bluesky.svg" alt="" width="64" height="64" /></span>
+									<span class="p-kumeta-top-news__text">Bluesky</span></LinkExternal
+								>
+							</li>
 						</ul>
 
 						<ul class="p-notes">
-							<li>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Discord と Mastodon に流しています。</li>
-							<li>皆さまからの情報提供もお待ちしております。上記 Discord サーバーに参加のうえ #news チャンネルに投稿ください。</li>
+							<li>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Discord と Mastodon、Bluesky に流しています。</li>
+							<li>情報提供も歓迎します。上記 Discord サーバーに参加のうえ <code>#news</code> チャンネルに投稿ください。</li>
 						</ul>
 					</Section>
 				</div>
