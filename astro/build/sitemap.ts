@@ -43,7 +43,7 @@ if (argsParsedValues.template === undefined) {
 const directory = slash(argsParsedValues.directory);
 const ignores = argsParsedValues.ignore;
 const template = slash(argsParsedValues.template);
-const outputPath = argsParsedValues.output !== undefined ? slash(argsParsedValues.output) : 'sitemap.xml';
+const outputPath = slash(argsParsedValues.output ?? 'sitemap.xml');
 
 const filesPath = `${directory}/**/*.html`;
 
