@@ -43,22 +43,22 @@ if (argsParsedValues.template === undefined) {
 const directory = slash(argsParsedValues.directory);
 const ignores = argsParsedValues.ignore;
 const template = slash(argsParsedValues.template);
-const outputPath = slash(argsParsedValues.output) ?? 'sitemap.xml';
+const outputPath = slash(argsParsedValues.output ?? 'sitemap.xml');
 
 const filesPath = `${directory}/**/*.html`;
 
 const fileList = await glob(filesPath, {
-	ignore: ignores?.map((filePath) => `${directory}/${filePath}`),
+	ignore: ignores?.map((filePath) => `${directory}/${filePath}`) ?? [],
 });
 
 /**
  * 実ファイルパスを元にレスポンス URL のパスを取得する
  *
- * @param {string} filePath - 実ファイルパス
+ * @param filePath - 実ファイルパス
  *
- * @returns {string} レスポンス URL のパス（ルート相対パス）
+ * @returns  レスポンス URL のパス（ルート相対パス）
  */
-const getPageUrl = (filePath) => {
+const getPageUrl = (filePath: string): string => {
 	const parsed = path.parse(slash(filePath));
 	const dir = parsed.dir === '/' ? '' : parsed.dir;
 
@@ -82,7 +82,7 @@ const entries = await Promise.all(
 		/* DOM 化 */
 		const { document } = new JSDOM(html).window;
 
-		const modifiedAt = document.querySelector('.p-title time')?.dateTime;
+		const modifiedAt = document.querySelector<HTMLTimeElement>('.p-title time')?.dateTime;
 
 		return {
 			pagePathAbsoluteUrl: getPageUrl(filePath.substring(directory.length)), // U+002F (/) から始まるパス絶対 URL

@@ -46,7 +46,7 @@ export default [
 		},
 	},
 	{
-		files: ['build/**/*.js'],
+		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',
 		},

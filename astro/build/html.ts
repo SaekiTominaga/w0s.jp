@@ -27,9 +27,9 @@ const files = fs.promises.glob(`${directory}/**/*.html`);
 /**
  * `build: { format: 'file' }` の設定では `dir/index.astro` が `dir.html` に出力されてしまうので、`dir/index.html` にリネームする
  *
- * @param {string} filePath - ファイルパス
+ * @param filePath - ファイルパス
  */
-const rename = async (filePath) => {
+const rename = async (filePath: string): Promise<void> => {
 	const parsed = path.parse(filePath);
 	const dir = parsed.dir === '/' ? '' : parsed.dir;
 
