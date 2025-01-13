@@ -21,7 +21,7 @@ export default {
 	},
 	static: {
 		root: '../astro/dist/client',
-		indexes: ['index.html'],
+		index: 'index.html',
 		extensions: ['.html', '.atom', '.osdx'], // URL 上で省略できる拡張子
 		headers: {
 			mimeType: {

@@ -104,9 +104,9 @@ app.use(
 		let requestFilePath: string | undefined; // 実ファイルパス
 		if (requestPath.endsWith('/')) {
 			/* ディレクトリトップ（e.g. /foo/ ） */
-			const fileName = config.static.indexes.find((name) => fs.existsSync(`${config.static.root}${requestPath}${name}`));
-			if (fileName !== undefined) {
-				requestFilePath = `${requestPath}${fileName}`;
+			const indexPath = `${requestPath}${config.static.index}`;
+			if (fs.existsSync(`${config.static.root}${indexPath}`)) {
+				requestFilePath = indexPath;
 			}
 		} else if (path.extname(requestPath) === '') {
 			/* 拡張子のない URL（e.g. /foo ） */
@@ -132,7 +132,7 @@ app.use(
 	},
 	express.static(config.static.root, {
 		extensions: config.static.extensions.map((ext) => /* 拡張子の . は不要 */ ext.substring(1)),
-		index: config.static.indexes,
+		index: config.static.index,
 		setHeaders: (res, localPath) => {
 			const requestUrl = res.req.url; // リクエストパス e.g. ('/foo.html.br')
 			const requestUrlOrigin = requestUrl.endsWith(config.extension.brotli)
