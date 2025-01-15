@@ -6,11 +6,45 @@ export default {
 	response: {
 		header: {
 			hsts: 'max-age=31536000',
-			csp: "frame-ancestors 'self'; report-uri https://w0sjp.report-uri.com/r/d/csp/enforce; report-to default",
-			cspHtml:
-				"base-uri 'none'; form-action 'self' https://www.google.com; frame-ancestors 'self'; report-uri https://w0sjp.report-uri.com/r/d/csp/enforce; report-to default",
-			csproHtml:
-				"default-src 'self'; connect-src 'self' https://*.w0s.jp https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google; font-src 'self' data:; frame-src 'self' https://www.youtube-nocookie.com https://www.google.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net; img-src 'self' data: https://media.w0s.jp https://m.media-amazon.com https://*.ytimg.com https://pagead2.googlesyndication.com; media-src 'self' https://media.w0s.jp; script-src-elem 'self' 'unsafe-inline' https://analytics.w0s.jp https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://ep2.adtrafficquality.google; style-src 'self' 'unsafe-inline'; trusted-types default goog#html google#safe 'allow-duplicates'; require-trusted-types-for 'script'; report-uri https://w0sjp.report-uri.com/r/d/csp/reportOnly; report-to default",
+			csp: {
+				'frame-ancestors': ["'self'"],
+				'report-uri': ['https://w0sjp.report-uri.com/r/d/csp/enforce'],
+				'report-to': ['default'],
+			},
+			cspHtml: {
+				'base-uri': ["'none'"],
+				'form-action': ["'self'", 'https://www.google.com'],
+				'frame-ancestors': ["'self'"],
+				'report-uri': ['https://w0sjp.report-uri.com/r/d/csp/enforce'],
+				'report-to': ['default'],
+			},
+			csproHtml: {
+				'default-src': ["'self'"],
+				'connect-src': ["'self'", 'https://*.w0s.jp', 'https://pagead2.googlesyndication.com', 'https://ep1.adtrafficquality.google'],
+				'font-src': ["'self'", 'data:'],
+				'frame-src': [
+					"'self'",
+					'https://www.youtube-nocookie.com',
+					'https://www.google.com',
+					'https://tpc.googlesyndication.com',
+					'https://googleads.g.doubleclick.net',
+				],
+				'img-src': ["'self'", 'data:', 'https://media.w0s.jp', 'https://m.media-amazon.com', 'https://*.ytimg.com', 'https://pagead2.googlesyndication.com'],
+				'media-src': ["'self'", 'https://media.w0s.jp'],
+				'script-src-elem': [
+					"'self'",
+					"'unsafe-inline'",
+					'https://analytics.w0s.jp',
+					'https://pagead2.googlesyndication.com',
+					'https://tpc.googlesyndication.com',
+					'https://ep2.adtrafficquality.google',
+				],
+				'style-src': ["'self'", "'unsafe-inline'"],
+				'trusted-types': ['default', 'goog#html', 'google#safe', "'allow-duplicates'"],
+				'require-trusted-types-for': ["'script'"],
+				'report-uri': ['https://w0sjp.report-uri.com/r/d/csp/reportOnly'],
+				'report-to': ['default'],
+			},
 			reportingEndpoints: {
 				default: 'https://w0sjp.report-uri.com/a/d/g',
 			},
