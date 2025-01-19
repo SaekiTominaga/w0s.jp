@@ -8,14 +8,14 @@ export default {
 			hsts: 'max-age=31536000',
 			csp: {
 				'frame-ancestors': ["'self'"],
-				'report-uri': ['https://w0sjp.report-uri.com/r/d/csp/enforce'],
+				'report-uri': ['https://report.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
 			cspHtml: {
 				'base-uri': ["'none'"],
 				'form-action': ["'self'", 'https://www.google.com'],
 				'frame-ancestors': ["'self'"],
-				'report-uri': ['https://w0sjp.report-uri.com/r/d/csp/enforce'],
+				'report-uri': ['https://report.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
 			csproHtml: {
@@ -28,25 +28,44 @@ export default {
 					'https://www.google.com',
 					'https://tpc.googlesyndication.com',
 					'https://googleads.g.doubleclick.net',
+					'https://ep2.adtrafficquality.google',
 				],
-				'img-src': ["'self'", 'data:', 'https://media.w0s.jp', 'https://m.media-amazon.com', 'https://*.ytimg.com', 'https://pagead2.googlesyndication.com'],
-				'media-src': ["'self'", 'https://media.w0s.jp'],
+				'img-src': [
+					"'self'",
+					'data:',
+					'https://media.w0s.jp',
+					'https://m.media-amazon.com',
+					'https://*.ytimg.com',
+					'https://pagead2.googlesyndication.com',
+					'https://ep1.adtrafficquality.google',
+				],
+				'media-src': [
+					"'self'",
+					'data:', // moz-extension (NoScript)
+					'https://media.w0s.jp',
+				],
 				'script-src-elem': [
 					"'self'",
-					"'unsafe-inline'",
+					"'unsafe-inline'", // moz-extension (Violentmonkey)
 					'https://analytics.w0s.jp',
 					'https://pagead2.googlesyndication.com',
 					'https://tpc.googlesyndication.com',
 					'https://ep2.adtrafficquality.google',
 				],
 				'style-src': ["'self'", "'unsafe-inline'"],
-				'trusted-types': ['default', 'goog#html', 'google#safe', "'allow-duplicates'"],
+				'trusted-types': [
+					'default',
+					'goog#html',
+					'google#safe',
+					'trusted-types-policy', // chrome-extension
+					"'allow-duplicates'",
+				],
 				'require-trusted-types-for': ["'script'"],
-				'report-uri': ['https://w0sjp.report-uri.com/r/d/csp/reportOnly'],
+				'report-uri': ['https://report.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
 			reportingEndpoints: {
-				default: 'https://w0sjp.report-uri.com/a/d/g',
+				default: 'https://report.w0s.jp/report/csp',
 			},
 		},
 		compression: {
