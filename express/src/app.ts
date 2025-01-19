@@ -11,6 +11,7 @@ import HtmlEscape from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import config from './config/express.js';
+import { env } from './util/env.js';
 
 /* 設定ファイル読み込み */
 dotenv.config({
@@ -75,11 +76,6 @@ app.use(
 	}),
 	async (req, res, next) => {
 		/* Basic Authentication */
-		const authFileDirectory = process.env['AUTH_DIRECTORY'];
-		if (authFileDirectory === undefined) {
-			throw new Error('Auth file directory not defined');
-		}
-
 		const basic = config.static.authBasic.find((auth) => isMatch(req.url, auth.urls));
 		if (basic !== undefined) {
 			const credentials = basicAuth(req);
@@ -88,7 +84,7 @@ app.use(
 			const result = (await htpasswd.authenticate({
 				username: credentials?.name,
 				password: credentials?.pass,
-				file: `${authFileDirectory}/${basic.htpasswd}`,
+				file: `${env('AUTH_DIRECTORY')}/${basic.htpasswd}`,
 			})) as boolean;
 
 			if (!result) {
@@ -220,10 +216,7 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-
 /**
  * HTTP サーバー起動
  */
-const port = process.env['PORT'];
-if (port === undefined) {
-	throw new Error('Port not defined');
-}
+const port = env('PORT');
 app.listen(Number(port), () => {
 	console.info(`Server is running on http://localhost:${port}`);
 });

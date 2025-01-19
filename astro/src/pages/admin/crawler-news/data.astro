@@ -2,6 +2,7 @@
 import Layout from '@layouts/Admin.astro';
 import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
 import HttpResponseUtil from '@util/HttpResponse.js';
+import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit, getPageUrl } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -31,11 +32,7 @@ const requestQuery: RequestQuery = {
 	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
 };
 
-const sqlite = process.env['SQLITE_CRAWLER'];
-if (sqlite === undefined) {
-	throw new Error('SQLite crawler not defined');
-}
-const dao = new CrawlerNewsDataDao(sqlite);
+const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
 
 if (requestQuery.action_delete) {
 	/* 削除 */

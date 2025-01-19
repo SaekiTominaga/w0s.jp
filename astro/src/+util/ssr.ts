@@ -2,6 +2,7 @@ import path from 'node:path';
 import type { AstroGlobal } from 'astro';
 import * as dotenv from 'dotenv';
 import Log4js from 'log4js';
+import { env } from './env.js';
 
 interface Options {
 	dev: boolean;
@@ -24,11 +25,7 @@ export const init = (Astro: AstroGlobal, options: Options): { logger: Log4js.Log
 	});
 
 	/* Logger */
-	const loggerFilePath = process.env['LOGGER'];
-	if (loggerFilePath === undefined) {
-		throw new Error('Logger file path not defined');
-	}
-	Log4js.configure(loggerFilePath);
+	Log4js.configure(env('LOGGER'));
 	const logger = Log4js.getLogger(Astro.url.pathname);
 
 	return { logger };

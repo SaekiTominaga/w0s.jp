@@ -5,6 +5,7 @@ import Layout from '@layouts/Tokyu.astro';
 import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
+import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -72,11 +73,7 @@ const requestQuery: RequestQuery = {
 	output: RequestUtil.string(requestParams.get('out')),
 };
 
-const sqlite = process.env['SQLITE_TOKYU_CAR_HISTORY'];
-if (sqlite === undefined) {
-	throw new Error('SQLite tokyu car history not defined');
-}
-const dao = new TokyuCarHistoryDao(sqlite);
+const dao = new TokyuCarHistoryDao(env('SQLITE_TOKYU_CAR_HISTORY'));
 
 const carSeries = await dao.getCarSeries();
 
