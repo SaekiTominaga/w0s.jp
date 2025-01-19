@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import { diffLines, type Change as DiffChange } from 'diff';
 import Layout from '@layouts/Admin.astro';
+import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -30,7 +31,7 @@ const diffs: DiffChange[] = [];
 const fileList: string[] = [];
 
 if (requestQuery.dir !== null) {
-	const dir = `${process.env['CRAWLER_RESOURCE_LOG_DIR']}/${requestQuery.dir}`;
+	const dir = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestQuery.dir}`;
 	if (fs.existsSync(dir)) {
 		if (requestQuery.diff.length >= 2) {
 			/* 差分チェック */

@@ -3,6 +3,7 @@ import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import Layout from '@layouts/W0s.astro';
 import HttpResponseUtil from '@util/HttpResponse.js';
+import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -47,17 +48,17 @@ if (Astro.request.method === 'POST') {
 		});
 
 		const transporter = nodemailer.createTransport({
-			host: process.env['MAIL_SMTP'],
-			port: Number(process.env['MAIL_PORT']),
+			host: env('MAIL_SMTP'),
+			port: Number(env('MAIL_PORT')),
 			auth: {
-				user: process.env['MAIL_USER'],
-				pass: process.env['MAIL_PASSWORD'],
+				user: env('MAIL_USER'),
+				pass: env('MAIL_PASSWORD'),
 			},
 		});
 
 		const info = await transporter.sendMail({
-			from: process.env['MAIL_FROM'],
-			to: process.env['MAIL_TO'],
+			from: env('MAIL_FROM'),
+			to: env('MAIL_TO'),
 			subject: 'w0s.jp 問い合わせ',
 			html: html,
 		});

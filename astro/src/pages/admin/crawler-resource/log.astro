@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import Layout from '@layouts/Admin.astro';
+import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -26,7 +27,7 @@ const requestQuery: RequestQuery = {
 };
 
 if (requestQuery.dir !== null && requestQuery.file !== null) {
-	const filePath = `${process.env['CRAWLER_RESOURCE_LOG_DIR']}/${requestQuery.dir}/${requestQuery.file}`;
+	const filePath = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestQuery.dir}/${requestQuery.file}`;
 
 	/* ソースコード閲覧 */
 	try {
