@@ -12,6 +12,9 @@ export default defineConfig({
 	publicDir: './public',
 	outDir: './dist',
 	compressHTML: false,
+	security: {
+		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
+	},
 	build: {
 		format: 'file',
 	},
