@@ -216,7 +216,7 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-
 /**
  * HTTP サーバー起動
  */
-const port = env('PORT');
-app.listen(Number(port), () => {
-	console.info(`Server is running on http://localhost:${port}`);
+const port = env('PORT', 'number');
+app.listen(port, () => {
+	console.info(`Server is running on http://localhost:${String(port)}`);
 });
