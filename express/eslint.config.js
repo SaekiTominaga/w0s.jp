@@ -16,4 +16,18 @@ export default [
 			'@typescript-eslint/no-unsafe-call': 'off', // Github Actions 環境ではエラーになる
 		},
 	},
+	{
+		files: ['src/util/**/*.ts'],
+		rules: {
+			'func-style': [
+				'error',
+				'expression',
+				{
+					overrides: {
+						namedExports: 'ignore',
+					},
+				},
+			],
+		},
+	},
 ];
