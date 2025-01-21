@@ -57,7 +57,7 @@ export default {
 					'default',
 					'goog#html',
 					'google#safe',
-					'trusted-types-policy', // chrome-extension
+					'dompurify', // chrome-extension
 					"'allow-duplicates'",
 				],
 				'require-trusted-types-for': ["'script'"],
