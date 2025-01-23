@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
+import Log4js from 'log4js';
 import { isMatch } from 'matcher';
 import HtmlEscape from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
@@ -13,11 +14,15 @@ import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import config from './config/express.js';
 import { env } from './util/env.js';
 
-/* 設定ファイル読み込み */
 dotenv.config({
 	path: process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development',
 });
 
+/* Logger */
+Log4js.configure(env('LOGGER'));
+const logger = Log4js.getLogger();
+
+/* Express */
 const app = express();
 
 app.set('x-powered-by', false);
@@ -153,7 +158,7 @@ app.use(
 					.find(([fileExtension]) => fileExtension === extensionOrigin)
 					?.at(1);
 			if (mimeType === undefined) {
-				console.warn(`MIME type is undefined: ${requestUrlOrigin}`);
+				logger.error(`MIME type is undefined: ${requestUrlOrigin}`);
 			}
 			res.setHeader('Content-Type', mimeType ?? 'application/octet-stream');
 
@@ -192,31 +197,25 @@ app.use(
 	}),
 );
 
-/**
- * SSR
- */
+/* SSR */
 app.use(async (req, res, next): Promise<void> => {
 	await ssrHandler(req, res, next);
 });
 
-/**
- * エラー処理
- */
+/* Error pages */
 app.use((req, res): void => {
-	console.warn(`404 Not Found: ${req.method} ${req.url}`);
+	logger.warn(`404 Not Found: ${req.method} ${req.url}`);
 
 	res.status(404).sendFile(path.resolve(`${config.static.root}/404.html`));
 });
 app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
-	console.error(`${req.method} ${req.url}`, err.stack);
+	logger.fatal(`${req.method} ${req.url}`, err.stack);
 
 	res.status(500).sendFile(path.resolve(`${config.static.root}/500.html`));
 });
 
-/**
- * HTTP サーバー起動
- */
+/* HTTP Server */
 const port = env('PORT', 'number');
 app.listen(port, () => {
-	console.info(`Server is running on http://localhost:${String(port)}`);
+	logger.info(`Server is running on http://localhost:${String(port)}`);
 });
