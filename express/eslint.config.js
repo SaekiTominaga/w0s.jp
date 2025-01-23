@@ -11,8 +11,6 @@ export default [
 	{
 		files: ['src/app.ts'],
 		rules: {
-			'no-console': 'off',
-			'@typescript-eslint/no-misused-promises': 'off',
 			'@typescript-eslint/no-unsafe-call': 'off', // Github Actions 環境ではエラーになる
 		},
 	},
