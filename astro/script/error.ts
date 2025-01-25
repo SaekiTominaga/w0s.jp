@@ -38,8 +38,7 @@ const closestHTMLPage = new ClosestHTMLPage({
 });
 
 await closestHTMLPage.fetch();
-const url = closestHTMLPage.getUrl();
-const title = closestHTMLPage.getTitle();
+const { url, title } = closestHTMLPage;
 
 if (url !== null && title !== null) {
 	const messageElement = document.getElementById('parentpage-msg');
