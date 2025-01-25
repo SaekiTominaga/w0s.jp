@@ -1,16 +1,16 @@
-import ButtonCheckboxes from '@w0s/button-checkboxes';
-import ButtonClipboard from '@w0s/button-clipboard';
-import ButtonConfirm from '@w0s/button-confirm';
-import ButtonMediaSamePlay from '@w0s/button-media-same-play';
-import DetailsAnimation from '@w0s/details-animation';
-import FootnoteReferencePopover from '@w0s/footnote-reference-popover';
-import FormControlValidation from '@w0s/form-control-validation';
-import FormSubmitOverlay from '@w0s/form-submit-overlay';
-import InputDateToText from '@w0s/input-date-to-text';
+import buttonCheckboxes from '@w0s/button-checkboxes';
+import buttonClipboard from '@w0s/button-clipboard';
+import buttonConfirm from '@w0s/button-confirm';
+import buttonMediaSamePlay from '@w0s/button-media-same-play';
+import detailsAnimation from '@w0s/details-animation';
+import footnoteReferencePopover from '@w0s/footnote-reference-popover';
+import formControlValidation from '@w0s/form-control-validation';
+import formSubmitOverlay from '@w0s/form-submit-overlay';
+import inputDateToText from '@w0s/input-date-to-text';
 import InputSwitch from '@w0s/input-switch';
-import ReportJsError from '@w0s/report-js-error';
+import reportJsError from '@w0s/report-js-error';
 import StringConvert from '@w0s/string-convert';
-import TextareaAutoSize from '@w0s/textarea-auto-size';
+import textareaAutoSize from '@w0s/textarea-auto-size';
 import GoogleAdsense from './unique/GoogleAdsense.js';
 import SidebarBlogNewly from './unique/SidebarBlogNewly.js';
 import TableTheadStickey from './component/TableTheadStickey.js';
@@ -18,13 +18,13 @@ import TableTheadStickey from './component/TableTheadStickey.js';
 /**
  * w0s.jp（エラーページを除く）
  */
-new ReportJsError('https://report.w0s.jp/report/js', {
+reportJsError('https://report.w0s.jp/report/js', {
 	fetchParam: {
-		location: 'location',
+		documentURL: 'documentURL',
 		message: 'message',
-		filename: 'filename',
-		lineno: 'lineno',
-		colno: 'colno',
+		filename: 'jsURL',
+		lineno: 'lineNumber',
+		colno: 'columnNumber',
 	},
 	fetchContentType: 'application/json',
 	allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/],
@@ -37,49 +37,31 @@ if (document.querySelector('w0s-input-switch') !== null) {
 }
 
 /* ツールチップ */
-for (const targetElement of document.querySelectorAll<HTMLAnchorElement>('.js-footnote-reference-popover')) {
-	new FootnoteReferencePopover(targetElement);
-}
+footnoteReferencePopover(document.querySelectorAll('.js-footnote-reference-popover'));
 
 /* アニメーション <details> */
-for (const targetElement of document.querySelectorAll<HTMLDetailsElement>('.js-details-animation')) {
-	new DetailsAnimation(targetElement);
-}
+detailsAnimation(document.querySelectorAll('.js-details-animation'));
 
 /* クリップボード書き込みボタン */
-for (const targetElement of document.querySelectorAll<HTMLButtonElement>('.js-button-clipboard')) {
-	new ButtonClipboard(targetElement);
-}
+buttonClipboard(document.querySelectorAll('.js-button-clipboard'));
 
 /* ボタン押下時に確認メッセージを表示 */
-for (const targetElement of document.querySelectorAll<HTMLButtonElement>('.js-button-confirm')) {
-	new ButtonConfirm(targetElement);
-}
+buttonConfirm(document.querySelectorAll('.js-button-confirm'));
 
 /* チェックボックス群の全選択/全解除ボタン */
-for (const targetElement of document.querySelectorAll<HTMLButtonElement>('.js-button-checkboxes')) {
-	new ButtonCheckboxes(targetElement);
-}
+buttonCheckboxes(document.querySelectorAll('.js-button-checkboxes'));
 
 /* 複数音声/動画の同時再生ボタン */
-for (const targetElement of document.querySelectorAll<HTMLButtonElement>('.js-button-media-same-play')) {
-	new ButtonMediaSamePlay(targetElement);
-}
+buttonMediaSamePlay(document.querySelectorAll('.js-button-media-same-play'));
 
 /* 日付入力欄を <input type="text"> で表示 */
-for (const targetElement of document.querySelectorAll<HTMLInputElement>('.js-input-date-to-text')) {
-	new InputDateToText(targetElement);
-}
+inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
 
 /* <textarea> 要素の高さを入力内容に応じて自動調整 */
-for (const targetElement of document.querySelectorAll<HTMLTextAreaElement>('.js-textarea-auto-size')) {
-	new TextareaAutoSize(targetElement);
-}
+textareaAutoSize(document.querySelectorAll('.js-textarea-auto-size'));
 
 /* 送信ボタン2度押し防止 */
-for (const formElement of document.querySelectorAll<HTMLFormElement>('.js-submit-overlay')) {
-	new FormSubmitOverlay(formElement);
-}
+formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
 
 /* <thead> の sticky スクロール量調整 */
 if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
@@ -121,9 +103,7 @@ for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLT
 }
 
 /* 入力バリデーション（エラー時はメッセージを画面表示する） */
-for (const validationElement of document.querySelectorAll<HTMLElement>('.js-validation')) {
-	new FormControlValidation(validationElement);
-}
+formControlValidation(document.querySelectorAll('.js-validation'));
 
 /* Google AdSense */
 for (const adsGoogleElement of document.querySelectorAll('.js-ads-google')) {
