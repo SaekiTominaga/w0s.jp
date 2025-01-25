@@ -1,15 +1,15 @@
 import ClosestHTMLPage from '@w0s/closest-html-page';
-import ReportJsError from '@w0s/report-js-error';
-import ReportSameReferrer from '@w0s/report-same-referrer';
+import reportJsError from '@w0s/report-js-error';
+import reportSameReferrer from '@w0s/report-same-referrer';
 
 /**
  * 403, 404, 410 ページ
  */
 
 /* JS エラーレポート */
-new ReportJsError('https://report.w0s.jp/report/report/js', {
+reportJsError('https://report.w0s.jp/report/report/js', {
 	fetchParam: {
-		location: 'documentURL',
+		documentURL: 'documentURL',
 		message: 'message',
 		filename: 'jsURL',
 		lineno: 'lineNumber',
@@ -21,14 +21,14 @@ new ReportJsError('https://report.w0s.jp/report/report/js', {
 });
 
 /* リファラーレポート */
-await new ReportSameReferrer('https://report.w0s.jp/report/referrer', {
+await reportSameReferrer('https://report.w0s.jp/report/referrer', {
 	fetchParam: {
-		location: 'documentURL',
+		documentURL: 'documentURL',
 		referrer: 'referrer',
 	},
 	fetchContentType: 'application/json',
 	same: ['https://blog.w0s.jp'],
-}).report();
+});
 
 /* 祖先ページの埋め込み */
 const closestHTMLPage = new ClosestHTMLPage({
