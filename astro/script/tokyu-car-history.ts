@@ -1,4 +1,4 @@
-import StringConvert from '@w0s/string-convert';
+import { convert } from '@w0s/string-convert';
 import TableCellDitto from '@w0s/table-cell-ditto';
 import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover.js';
 
@@ -12,7 +12,7 @@ if (numCtrlElement !== null) {
 	numCtrlElement.addEventListener(
 		'change',
 		() => {
-			numCtrlElement.value = StringConvert.convert(numCtrlElement.value, {
+			numCtrlElement.value = convert(numCtrlElement.value, {
 				trim: true,
 				toHankakuEisu: true,
 				toUpperCase: true,

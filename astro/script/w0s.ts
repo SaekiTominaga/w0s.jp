@@ -9,7 +9,7 @@ import formSubmitOverlay from '@w0s/form-submit-overlay';
 import inputDateToText from '@w0s/input-date-to-text';
 import InputSwitch from '@w0s/input-switch';
 import reportJsError from '@w0s/report-js-error';
-import StringConvert from '@w0s/string-convert';
+import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
 import GoogleAdsense from './unique/GoogleAdsense.js';
 import SidebarBlogNewly from './unique/SidebarBlogNewly.js';
@@ -94,7 +94,7 @@ for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLT
 	formCtrlElement.addEventListener(
 		'change',
 		() => {
-			formCtrlElement.value = StringConvert.convert(formCtrlElement.value, {
+			formCtrlElement.value = convert(formCtrlElement.value, {
 				trim: true,
 			});
 		},

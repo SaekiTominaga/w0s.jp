@@ -5,7 +5,7 @@ export default {
 		'\\.astro$': '@markuplint/astro-parser',
 	},
 	excludeFiles: [
-		/* markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 で 200KB 超えの巨大なファイルはエラーが出るため暫定的に除外 */
+		/* markuplint@4.11.4 + @markuplint/astro-parser@4.6.14 で 200KB 超えの巨大なファイルはエラーが出るため暫定的に除外 */
 		'src/pages/kumeta/manga/comment.astro', // 258KB
 		'src/pages/kumeta/manga/subtitle.astro', // 285KB
 		'src/pages/madoka/library/magazine.astro', // 202KB
@@ -56,7 +56,7 @@ export default {
 	],
 	overrideMode: 'merge',
 	overrides: {
-		/* markuplint@4.9.2 + @markuplint/astro-parser@4.6.5 でエラーが出るため暫定的に無効化 */
+		/* markuplint@4.11.4 + @markuplint/astro-parser@4.6.14 でエラーが出るため暫定的に無効化 */
 		'**/*.astro': {
 			rules: {
 				'no-empty-palpable-content': false,

@@ -8,7 +8,7 @@ import express, { type NextFunction, type Request, type Response } from 'express
 import htpasswd from 'htpasswd-js';
 import Log4js from 'log4js';
 import { isMatch } from 'matcher';
-import HtmlEscape from '@w0s/html-escape';
+import { escape } from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import config from './config/express.js';
@@ -40,7 +40,7 @@ config.redirect.forEach((redirect) => {
 			});
 		}
 
-		const locationUrlEscapedHtml = HtmlEscape.escape(locationUrl);
+		const locationUrlEscapedHtml = escape(locationUrl);
 
 		res.status(301).location(locationUrl).send(`<!doctype html>
 <meta name=viewport content="width=device-width,initial-scale=1">
