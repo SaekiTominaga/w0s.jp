@@ -60,15 +60,7 @@ export default [
 					allow: ['info', 'error'],
 				},
 			],
-			'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
 			'@typescript-eslint/no-unnecessary-condition': 'off',
-			'@typescript-eslint/no-unsafe-type-assertion': 'off',
-		},
-	},
-	{
-		files: ['script/*.ts'],
-		rules: {
-			'no-new': 'off',
 		},
 	},
 	{

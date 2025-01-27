@@ -1,4 +1,4 @@
-import StringEscapeHtml from '@w0s/html-escape';
+import { escape } from '@w0s/html-escape';
 
 export default class HttpResponseUtil {
 	readonly #request: Request;
@@ -24,7 +24,7 @@ export default class HttpResponseUtil {
 		}
 
 		const locationUrl = url ?? this.#request.url;
-		const locationUrlEscapedHtml = StringEscapeHtml.escape(locationUrl);
+		const locationUrlEscapedHtml = escape(locationUrl);
 
 		return new Response(
 			`<!doctype html>
