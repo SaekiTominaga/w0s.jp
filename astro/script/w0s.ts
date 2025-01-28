@@ -11,7 +11,7 @@ import InputSwitch from '@w0s/input-switch';
 import reportJsError from '@w0s/report-js-error';
 import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
-import GoogleAdsense from './unique/GoogleAdsense.js';
+import adsense from './unique/adsense.js';
 import SidebarBlogNewly from './unique/SidebarBlogNewly.js';
 import TableTheadStickey from './component/TableTheadStickey.js';
 
@@ -106,6 +106,4 @@ for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLT
 formControlValidation(document.querySelectorAll('.js-validation'));
 
 /* Google AdSense */
-for (const adsGoogleElement of document.querySelectorAll('.js-ads-google')) {
-	new GoogleAdsense(adsGoogleElement).init('100px');
-}
+adsense(document.querySelectorAll('.js-ads-google'), { rootMargin: '100px' });
