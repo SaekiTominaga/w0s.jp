@@ -52,18 +52,6 @@ export default [
 		},
 	},
 	{
-		files: ['script/**/*.ts'],
-		rules: {
-			'no-console': [
-				'warn',
-				{
-					allow: ['info', 'error'],
-				},
-			],
-			'@typescript-eslint/no-unnecessary-condition': 'off',
-		},
-	},
-	{
 		files: ['script/analytics.ts'],
 		languageOptions: {
 			parserOptions: {
@@ -75,6 +63,7 @@ export default [
 			'no-multi-assign': 'off',
 			'no-underscore-dangle': 'off',
 			'no-var': 'off',
+			'@typescript-eslint/no-unused-vars': 'off',
 		},
 	},
 	{
@@ -86,6 +75,17 @@ export default [
 		},
 		rules: {
 			strict: 'off',
+		},
+	},
+	{
+		files: ['script/unique/Contact.ts'],
+		rules: {
+			'no-console': [
+				'warn',
+				{
+					allow: ['info', 'error'],
+				},
+			],
 		},
 	},
 	{
