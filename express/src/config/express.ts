@@ -20,7 +20,13 @@ export default {
 			},
 			csproHtml: {
 				'default-src': ["'self'"],
-				'connect-src': ["'self'", 'https://*.w0s.jp', 'https://pagead2.googlesyndication.com', 'https://ep1.adtrafficquality.google'],
+				'connect-src': [
+					"'self'",
+					'https://*.w0s.jp',
+					'https://pagead2.googlesyndication.com',
+					'https://csi.gstatic.com',
+					'https://ep1.adtrafficquality.google',
+				],
 				'font-src': ["'self'", 'data:'],
 				'frame-src': [
 					"'self'",
@@ -39,27 +45,16 @@ export default {
 					'https://pagead2.googlesyndication.com',
 					'https://ep1.adtrafficquality.google',
 				],
-				'media-src': [
-					"'self'",
-					'data:', // moz-extension (NoScript)
-					'https://media.w0s.jp',
-				],
+				'media-src': ["'self'", 'https://media.w0s.jp'],
 				'script-src-elem': [
 					"'self'",
-					"'unsafe-inline'", // moz-extension (Violentmonkey)
 					'https://analytics.w0s.jp',
 					'https://pagead2.googlesyndication.com',
 					'https://tpc.googlesyndication.com',
 					'https://ep2.adtrafficquality.google',
 				],
 				'style-src': ["'self'", "'unsafe-inline'"],
-				'trusted-types': [
-					'default',
-					'goog#html',
-					'google#safe',
-					'dompurify', // chrome-extension
-					"'allow-duplicates'",
-				],
+				'trusted-types': ['default', 'goog#html', 'google#safe', "'allow-duplicates'"],
 				'require-trusted-types-for': ["'script'"],
 				'report-uri': ['https://report.w0s.jp/report/csp'],
 				'report-to': ['default'],
