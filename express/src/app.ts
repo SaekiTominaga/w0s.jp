@@ -13,6 +13,7 @@ import { escape } from '@w0s/html-escape';
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import config from './config/express.js';
 import { env } from './util/env.js';
+import { csp, reportingEndpoints } from './util/httpHeader.js';
 
 dotenv.config({
 	path: process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development',
@@ -56,20 +57,10 @@ app.use(
 		res.setHeader('Strict-Transport-Security', config.response.header.hsts);
 
 		/* CSP */
-		res.setHeader(
-			'Content-Security-Policy',
-			Object.entries(config.response.header.csp)
-				.map(([key, values]) => `${key} ${values.join(' ')}`)
-				.join(';'),
-		);
+		res.setHeader('Content-Security-Policy', csp(config.response.header.csp));
 
 		/* Report */
-		res.setHeader(
-			'Reporting-Endpoints',
-			Object.entries(config.response.header.reportingEndpoints)
-				.map(([key, value]) => `${key}="${value}"`)
-				.join(','),
-		);
+		res.setHeader('Reporting-Endpoints', reportingEndpoints(config.response.header.reportingEndpoints));
 
 		/* MIME スニッフィング抑止 */
 		res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -180,18 +171,8 @@ app.use(
 
 			/* CSP */
 			if (['.html', '.xhtml'].includes(extensionOrigin)) {
-				res.setHeader(
-					'Content-Security-Policy',
-					Object.entries(config.response.header.cspHtml)
-						.map(([key, values]) => `${key} ${values.join(' ')}`)
-						.join(';'),
-				);
-				res.setHeader(
-					'Content-Security-Policy-Report-Only',
-					Object.entries(config.response.header.csproHtml)
-						.map(([key, values]) => `${key} ${values.join(' ')}`)
-						.join(';'),
-				);
+				res.setHeader('Content-Security-Policy', csp(config.response.header.cspHtml));
+				res.setHeader('Content-Security-Policy-Report-Only', csp(config.response.header.csproHtml));
 			}
 		},
 	}),
