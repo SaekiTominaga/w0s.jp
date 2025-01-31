@@ -8,9 +8,9 @@ export default defineConfig({
 	adapter: node({
 		mode: 'middleware',
 	}),
-	srcDir: './src',
-	publicDir: './public',
-	outDir: './dist',
+	srcDir: 'src',
+	publicDir: '../public',
+	outDir: 'dist',
 	compressHTML: false,
 	security: {
 		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
