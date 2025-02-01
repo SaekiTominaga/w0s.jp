@@ -59,26 +59,16 @@ const structuredData: StructuredData = {
 	<Section id="server">
 		<H slot="heading">サーバー構成</H>
 
-		<dl class="p-list-description">
-			<dt>サーバー</dt>
-			<dd><LinkExternal href="https://httpd.apache.org/">Apache HTTP Server</LinkExternal></dd>
-			<dt>アプリケーション</dt>
-			<dd><LinkExternal href="https://nodejs.org/">Node.js</LinkExternal></dd>
-			<dt>プロセス・マネージャー</dt>
-			<dd><LinkExternal href="https://pm2.keymetrics.io/">PM2</LinkExternal></dd>
-			<dt>データベース (RDBMS)</dt>
-			<dd><LinkExternal href="https://sqlite.org/">SQLite</LinkExternal>, <LinkExternal href="https://www.mysql.com/">MySQL</LinkExternal></dd>
-		</dl>
-
-		<div class="p-table">
+		<div class="p-table -scroll">
 			<table>
-				<caption>ドメイン一覧</caption>
 				<thead>
 					<tr>
 						<th scope="col">ドメイン</th>
 						<th scope="col">用途</th>
+						<th scope="col">サーバー実行環境</th>
 						<th scope="col">フレームワーク</th>
-						<th scope="col">ソースコード</th>
+						<th scope="col">RDBMS</th>
+						<th scope="col">ソース</th>
 						<th scope="col">備考</th>
 					</tr>
 				</thead>
@@ -86,34 +76,29 @@ const structuredData: StructuredData = {
 					<tr>
 						<td><a href="https://w0s.jp/"><code>w0s.jp</code></a></td>
 						<td>個人サイト</td>
+						<td rowspan="4"><LinkExternal href="https://nodejs.org/" icon={false}>Node.js</LinkExternal> + <LinkExternal href="https://pm2.keymetrics.io/" icon={false}>PM2</LinkExternal></td>
 						<td><LinkExternal href="https://expressjs.com/" icon={false}>Express</LinkExternal>, <LinkExternal href="https://astro.build/" icon={false}>Astro</LinkExternal></td>
+						<td class="u-cell -center">―</td>
 						<td class="u-cell -center">
 							<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external" aria-label="w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
 						</td>
-						<td></td>
+						<td>静的コンテンツ中心</td>
 					</tr>
 					<tr>
 						<td><a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a></td>
 						<td>ブログ</td>
 						<td><LinkExternal href="https://expressjs.com/" icon={false}>Express</LinkExternal></td>
+						<td><LinkExternal href="https://sqlite.org/" icon={false}>SQLite</LinkExternal></td>
 						<td class="u-cell -center">
 							<a href="https://github.com/SaekiTominaga/blog.w0s.jp" rel="external" aria-label="blog.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
-						<td><a href="https://labs.w0s.jp/"><code>labs.w0s.jp</code></a></td>
-						<td>Web 技術の遊び場</td>
-						<td></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/labs.w0s.jp" rel="external" aria-label="labs.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>HTTP でもアクセス可</td>
-					</tr>
-					<tr>
 						<td><a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a></td>
 						<td>画像、動画、音声の配信</td>
-						<td><LinkExternal href="https://expressjs.com/" icon={false}>Express</LinkExternal></td>
+						<td><LinkExternal href="https://hono.dev/" icon={false}>Hono</LinkExternal></td>
+						<td><LinkExternal href="https://sqlite.org/" icon={false}>SQLite</LinkExternal></td>
 						<td class="u-cell -center">
 							<a href="https://github.com/SaekiTominaga/media.w0s.jp" rel="external" aria-label="media.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
 						</td>
@@ -122,16 +107,29 @@ const structuredData: StructuredData = {
 					<tr>
 						<td><code>report.w0s.jp</code></td>
 						<td>エラーレポート収集</td>
-						<td><LinkExternal href="https://expressjs.com/" icon={false}>Express</LinkExternal></td>
+						<td><LinkExternal href="https://hono.dev/" icon={false}>Hono</LinkExternal></td>
+						<td><LinkExternal href="https://sqlite.org/" icon={false}>SQLite</LinkExternal></td>
 						<td class="u-cell -center">
 							<a href="https://github.com/SaekiTominaga/report.w0s.jp" rel="external" aria-label="report.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
+						<td><a href="https://labs.w0s.jp/"><code>labs.w0s.jp</code></a></td>
+						<td>Web 技術の遊び場</td>
+						<td rowspan="2"><LinkExternal href="https://httpd.apache.org/" icon={false}>Apache</LinkExternal> + <LinkExternal href="https://www.php.net/" icon={false}>PHP</LinkExternal></td>
+						<td class="u-cell -center">―</td>
+						<td class="u-cell -center">―</td>
+						<td class="u-cell -center">
+							<a href="https://github.com/SaekiTominaga/labs.w0s.jp" rel="external" aria-label="labs.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+						</td>
+						<td>HTTP でもアクセス可</td>
+					</tr>
+					<tr>
 						<td><code>analytics.w0s.jp</code></td>
 						<td>アクセス解析</td>
-						<td></td>
+						<td class="u-cell -center">―</td>
+						<td><LinkExternal href="https://www.mysql.com/" icon={false}>MySQL</LinkExternal></td>
 						<td class="u-cell -center">―</td>
 						<td><LinkExternal href="https://matomo.org/">Matomo Analytics</LinkExternal> を利用</td>
 					</tr>
