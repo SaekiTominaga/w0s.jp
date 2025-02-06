@@ -237,16 +237,16 @@ const structuredData: StructuredData = {
 
 			<CodeBlock
 				code={`window.addEventListener('error', (ev) => {
-	const formData = new FormData();
-	formData.append('location', location.toString());
-	formData.append('message', ev.message);
-	formData.append('filename', ev.filename);
-	formData.append('lineno', String(ev.lineno));
-	formData.append('colno', String(ev.colno));
-
 	fetch(ENDPOINT, {
 		method: 'POST',
-		body: new URLSearchParams([...formData]),
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			documentURL: location.toString(),
+			message: ev.message,
+			jsURL: ev.filename,
+			lineNumber: ev.lineno,
+			columnNumber: ev.colno,
+		}),
 	});
 });`}
 				language="javascript"
