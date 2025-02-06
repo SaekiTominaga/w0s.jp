@@ -157,13 +157,13 @@ const structuredData: StructuredData = {
 					<li>公式のプリセットは HTML Standard や WAI-ARIA への仕様適合だけではなく、パフォーマンスやセキュリティを含めたベストプラクティス的な考えも取り入れられている。純粋な構文チェックに留まらないところは Markuplint の良い点であるが、そのすべてに賛同できるわけではない。</li>
 				</ul>
 			</li>
-			<li>HTML ページの MIME タイプは <code>text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、今や <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef by="xhtml" />。</li>
+			<li>HTML ページの MIME タイプは <code>text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、今や <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef type="ref" by="xhtml-blog" />。</li>
 			<li>
 				ウェブページの URL に拡張子が含まれるのは好ましくないと考えているので<NoteRef by="ext" />、拡張子なしの URL でアクセスできるようにしている。
 			</li>
 		</ul>
 
-		<NoteRefContent id="xhtml">詳細はブログ記事 <a href="https://blog.w0s.jp/706">XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</a>（2024年4月）を参照。</NoteRefContent>
+		<NoteRefContent id="xhtml-blog">ブログ記事 <a href="https://blog.w0s.jp/706">XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</a>（2024年4月）</NoteRefContent>
 
 		<NoteRefContent id="ext">Tim Berners-Lee による <LinkExternal href="https://www.w3.org/Provider/Style/URI" lang="en" hreflang="en">Cool URIs don't change</LinkExternal>でも URL にファイル名拡張子を含めることは問題を引き起こすと言われている。</NoteRefContent>
 
@@ -196,11 +196,11 @@ const structuredData: StructuredData = {
 
 		<ul class="p-list">
 			<li>CSS ファイルのビルドには <LinkExternal href="https://postcss.org/">PostCSS</LinkExternal>を使用している。これはブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるパフォーマンス向上が目的であり、標準化の見込みのないプラグインは使っていない。将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</li>
-			<li>ビルド過程で <LinkExternal href="https://cssnano.github.io/cssnano/">CSSNANO</LinkExternal>を適用しているが、minify 処理が目的ではなくコメントの除去など最小限の最適化のみを行っている。以前は minify 処理も行っていたが、IE 11 のサポート終了によりすべてのメジャーブラウザが Brotli に対応する状況になったことから、通信量の削減効果は薄くなったと考えている<NoteRef by="css-minify" />。</li>
+			<li>ビルド過程で <LinkExternal href="https://cssnano.github.io/cssnano/">CSSNANO</LinkExternal>を適用しているが、minify 処理が目的ではなくコメントの除去など最小限の最適化のみを行っている。以前は minify 処理も行っていたが、IE 11 のサポート終了によりすべてのメジャーブラウザが Brotli に対応する状況になったことから、通信量の削減効果は薄くなったと考えている<NoteRef type="ref" by="css-minify-blog" />。</li>
 			<li><LinkExternal href="https://stylelint.io/">Stylelint</LinkExternal>を使用したチェックを実施している。<LinkExternal href="https://github.com/SaekiTominaga/config/tree/main/packages/stylelint">設定ファイルは GitHub で公開</LinkExternal>している。</li>
 		</ul>
 
-		<NoteRefContent id="css-minify">詳細はブログ記事 <a href="https://blog.w0s.jp/674">CSS ファイルの最小化を止めた</a>（2022年6月）を参照。</NoteRefContent>
+		<NoteRefContent id="css-minify-blog">ブログ記事 <a href="https://blog.w0s.jp/674">CSS ファイルの最小化を止めた</a>（2022年6月）</NoteRefContent>
 
 		<Section id="style-print" depth={2} headingType="c">
 			<H slot="heading">印刷用スタイル</H>
@@ -301,9 +301,9 @@ const structuredData: StructuredData = {
 
 		<p>ファビコンは SVG 形式で提供している。</p>
 
-		<p><LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</LinkExternal>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef by="favicon-svg" />。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>
+		<p><LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</LinkExternal>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっている。あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はないため、SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef type="ref" by="favicon-svg-blog" />。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>
 
-		<NoteRefContent id="favicon-svg">詳細はブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>（2021年10月）を参照。</NoteRefContent>
+		<NoteRefContent id="favicon-svg-blog">ブログ記事 <a href="https://blog.w0s.jp/656">SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</a>（2021年10月）</NoteRefContent>
 
 		<ul class="p-list">
 			<li>Safari は最新のバージョン 17 系においても SVG ファビコンに対応していない</li>
@@ -316,10 +316,12 @@ const structuredData: StructuredData = {
 		<H slot="heading">CSP</H>
 
 		<ul class="p-list">
-			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシート、ユーザースクリプトによるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
+			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシートやユーザースクリプト、アドオン等によるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
 			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定している。</li>
 			<li>それ以外のディレクティブは <code>Content-Security-Policy</code> で設定している。</li>
-			<li>Reporting は <LinkExternal href="https://report-uri.com/">Report URI</LinkExternal> を利用している。</li>
+			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<LinkExternal href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/node/src/controller/csp.ts">ソースコードは GitHub で公開</LinkExternal>している<NoteRef type="ref" by="csp-blog" />。</li>
 		</ul>
+
+		<NoteRefContent id="csp-blog">ブログ記事 <a href="https://blog.w0s.jp/730">Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</a>（2025年1月）</NoteRefContent>
 	</Section>
 </Layout>
