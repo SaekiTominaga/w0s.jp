@@ -28,26 +28,26 @@ const app = express();
 
 app.set('x-powered-by', false);
 
-/**
- * リダイレクト
- */
+/* Redirect */
 config.redirect.forEach((redirect) => {
+	if (!redirect.to.startsWith('/') && !redirect.to.startsWith('https://') && !redirect.to.startsWith('http://')) {
+		throw new Error('The path to the redirect must begin with a U+002F slash');
+	}
+
 	const fromUrl = redirect.type === 'regexp' ? new RegExp(`^${redirect.from}$`) : redirect.from;
 	app.get(fromUrl, (req, res) => {
-		let locationUrl = redirect.to;
+		let redirectPath = redirect.to;
 		if (typeof fromUrl !== 'string') {
 			fromUrl.exec(req.path)?.forEach((value, index) => {
-				locationUrl = locationUrl.replace(`$${String(index)}`, value);
+				redirectPath = redirectPath.replace(`$${String(index)}`, value);
 			});
 		}
 
-		const locationUrlEscapedHtml = escape(locationUrl);
-
-		res.status(301).location(locationUrl).send(`<!doctype html>
+		res.status(301).location(redirectPath).send(`<!DOCTYPE html>
+<html lang=ja>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<title>Moved Permanently</title>
-<h1>301 Moved Permanently</h1>
-<p><a href="${locationUrlEscapedHtml}">${locationUrlEscapedHtml}</a>`);
+<title>ページ移動</title>
+<p>このページは <a href="${escape(redirectPath)}"><code>${escape(redirectPath)}</code></a> に移動しました。`);
 	});
 });
 
