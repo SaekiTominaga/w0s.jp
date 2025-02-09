@@ -206,7 +206,7 @@ export default {
 		{
 			/* 2021-04-19 実施（恒久維持） */
 			from: '/diary/([1-9][0-9]{0,2})',
-			to: 'https://blog.w0s.jp/$1',
+			to: 'https://blog.w0s.jp/entry/$1',
 			type: 'regexp',
 		},
 		{
