@@ -6,10 +6,12 @@
 		"css-dev": "postcss style/*.css --base style -d ../public/assets/style -w",
 		"precss-prod": "rimraf ../public/assets/style/* -g && npm run css-lint",
 		"css-prod": "postcss style/*.css --base style -d ../public/assets/style",
+		"postcss-prod": "prettier --config ../.prettierrc.mjs -w ../public/assets/style/*.css && brotli-cli compress -g ../public/assets/style/*.css -m text",
 		"css-lint": "stylelint style/**/*.css",
 		"js-dev": "rollup -c -w --environment build:development",
 		"prejs-prod": "rimraf ../public/assets/script/* -g && npm run js-lint",
 		"js-prod": "rollup -c --environment build:production",
+		"postjs-prod": "brotli-cli compress -g ../public/assets/script/*.{js,mjs} -m text",
 		"js-lint": "eslint script/**/*.ts"
 	},
 	"dependencies": {

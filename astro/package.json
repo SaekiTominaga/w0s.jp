@@ -16,7 +16,7 @@
 		"_postbuild-feed": "node --experimental-strip-types build/feed.ts -d dist/client",
 		"_postbuild-sitemap": "node --experimental-strip-types build/sitemap.ts -d dist/client --ignore 4** --ignore 5** --ignore admin -t template/xml/sitemap.ejs",
 		"_postbuild-format": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.{html,css}",
-		"_postbuild-compress": "brotli-cli compress -g dist/client/**/*.{html,css,js,mjs,svg,atom} -g dist/client/favicon.ico -m text"
+		"_postbuild-compress": "brotli-cli compress -g dist/client/**/*.{html,svg,atom} -g dist/client/favicon.ico -m text"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
