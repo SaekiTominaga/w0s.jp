@@ -22,7 +22,7 @@ if (argsParsedValues.directory === undefined) {
 }
 const directory = slash(argsParsedValues.directory);
 
-const files = fs.promises.glob(`${directory}/**/*.html`);
+const files = await Array.fromAsync(fs.promises.glob(`${directory}/**/*.html`));
 
 /**
  * `build: { format: 'file' }` の設定では `dir/index.astro` が `dir.html` に出力されてしまうので、`dir/index.html` にリネームする
@@ -46,6 +46,8 @@ const rename = async (filePath: string): Promise<void> => {
 	console.info(`File renamed: ${newPath}`);
 };
 
-for await (const file of files) {
-	await rename(file);
-}
+await Promise.all(
+	files.map(async (filePath) => {
+		await rename(filePath);
+	}),
+);

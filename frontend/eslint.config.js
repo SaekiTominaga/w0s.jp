@@ -9,6 +9,12 @@ export default [
 		ignores: ['public/assets/script/*.js', 'public/assets/script/*.mjs'],
 	},
 	{
+		files: ['build/**/*.ts'],
+		rules: {
+			'no-console': 'off',
+		},
+	},
+	{
 		files: ['script/analytics.ts'],
 		languageOptions: {
 			parserOptions: {

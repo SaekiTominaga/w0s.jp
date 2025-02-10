@@ -4,19 +4,18 @@
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
-		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"npm run css-prod -w @w0s.jp/frontend\" \"npm run js-prod -w @w0s.jp/frontend\"",
+		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"npm run css-prod -w @w0s.jp/frontend\" \"npm run js-prod -w @w0s.jp/frontend\" \"npm run svg -w @w0s.jp/frontend\"",
 		"build": "astro build",
-		"postbuild": "conc \"npm run _postbuild-html\" \"npm run _postbuild-svg\" \"npm run _postbuild-feed\" \"npm run _postbuild-sitemap\" && npm run _postbuild-format && npm run _postbuild-compress",
+		"postbuild": "npm run _postbuild-html && conc \"npm run _postbuild-feed\" \"npm run _postbuild-sitemap\" \"npm run _postbuild-format\" && npm run _postbuild-compress",
 		"lint": "eslint src/**/*.{astro,ts}",
 		"node-lint": "eslint build/*.ts",
 		"html-src-lint": "markuplint src/pages/**/*.astro",
 		"html-dist-lint": "markuplint dist/client/**/*.html",
 		"_postbuild-html": "node --experimental-strip-types build/html.ts -d dist/client",
-		"_postbuild-svg": "node --experimental-strip-types build/svg.ts -f dist/client/**/*.svg -f dist/client/favicon.ico -c svgo.config.js",
 		"_postbuild-feed": "node --experimental-strip-types build/feed.ts -d dist/client",
 		"_postbuild-sitemap": "node --experimental-strip-types build/sitemap.ts -d dist/client --ignore 4** --ignore 5** --ignore admin -t template/xml/sitemap.ejs",
-		"_postbuild-format": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.{html,css}",
-		"_postbuild-compress": "brotli-cli compress -g dist/client/**/*.{html,css,js,mjs,svg,atom} -g dist/client/favicon.ico -m text"
+		"_postbuild-format": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.html",
+		"_postbuild-compress": "brotli-cli compress -g dist/client/**/*.{html,atom} -m text"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
@@ -44,7 +43,6 @@
 		"slash": "^5.1.0",
 		"sqlite": "^5.1.1",
 		"sqlite3": "^5.1.7",
-		"svgo": "^3.3.2",
 		"xml-formatter": "^3.6.4"
 	},
 	"devDependencies": {
