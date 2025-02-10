@@ -34,11 +34,10 @@ config.redirect.forEach((redirect) => {
 		throw new Error('The path to the redirect must begin with a U+002F slash');
 	}
 
-	const fromUrl = redirect.type === 'regexp' ? new RegExp(`^${redirect.from}$`) : redirect.from;
-	app.get(fromUrl, (req, res) => {
+	app.get(redirect.from, (req, res) => {
 		let redirectPath = redirect.to;
-		if (typeof fromUrl !== 'string') {
-			fromUrl.exec(req.path)?.forEach((value, index) => {
+		if (redirect.from instanceof RegExp) {
+			redirect.from.exec(req.path)?.forEach((value, index) => {
 				redirectPath = redirectPath.replace(`$${String(index)}`, value);
 			});
 		}
