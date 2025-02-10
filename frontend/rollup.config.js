@@ -14,7 +14,7 @@ const pluginCommonjs = commonjs();
 const pluginResolve = resolve();
 const pluginTerser = process.env.build === 'production' ? terser() : undefined;
 const pluginTypeScript = typescript({
-	tsconfig: 'tsconfig.json',
+	tsconfig: `${inputDir}/tsconfig.json`,
 });
 
 const moduleConfigurations = moduleFiles.map(
@@ -30,6 +30,7 @@ const moduleConfigurations = moduleFiles.map(
 			},
 		}),
 );
+
 const jsConfigurations = jsFiles.map(
 	(file) =>
 		/** @type {import('rollup').RollupOptions} */
@@ -43,6 +44,7 @@ const jsConfigurations = jsFiles.map(
 			},
 		}),
 );
+
 const legacyConfigurations = legacyFiles.map(
 	(file) =>
 		/** @type {import('rollup').RollupOptions} */

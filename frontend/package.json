@@ -12,7 +12,11 @@
 		"prejs-prod": "rimraf ../public/assets/script/* -g && npm run js-lint",
 		"js-prod": "rollup -c --environment build:production",
 		"postjs-prod": "brotli-cli compress -g ../public/assets/script/*.{js,mjs} -m text",
-		"js-lint": "eslint script/**/*.ts"
+		"js-lint": "eslint script/**/*.ts",
+		"presvg": "rimraf ../public/**/*.svg ../public/**/*.svg.br ../public/favicon.ico ../public/favicon.ico.br -g",
+		"svg": "node --experimental-strip-types build/svg.ts -i image -o ../public -c svgo.config.js",
+		"postsvg": "brotli-cli compress -g ../public/**/*.svg -g ../public/favicon.ico -m text",
+		"node-lint": "eslint build/*.ts"
 	},
 	"dependencies": {
 		"@w0s/button-checkboxes": "^3.0.1",
@@ -30,7 +34,9 @@
 		"@w0s/report-same-referrer": "^4.0.1",
 		"@w0s/string-convert": "^3.0.0",
 		"@w0s/table-cell-ditto": "^4.1.1",
-		"@w0s/textarea-auto-size": "^4.0.1"
+		"@w0s/textarea-auto-size": "^4.0.1",
+		"slash": "^5.1.0",
+		"svgo": "^3.3.2"
 	},
 	"devDependencies": {
 		"@csstools/postcss-global-data": "^3.0.0",
