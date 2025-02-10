@@ -169,147 +169,123 @@ export default {
 	redirect: [
 		{
 			/* 2013-04-01 実施（恒久維持） */
-			from: '/sty/([a-z0-9_/]+)',
+			from: /^\/sty\/([a-z0-9_/]+)$/,
 			to: '/tokyu/machine/$1',
-			type: 'regexp',
 		},
 		{
 			/* 2013-04-01 実施（恒久維持） */
-			from: '/an/([a-z0-9_/]+)',
+			from: /^\/an\/([a-z0-9_/]+)$/,
 			to: '/tokyu/an/$1',
-			type: 'regexp',
 		},
 		{
 			/* 2013-04-01 実施（恒久維持） */
 			from: '/an',
 			to: '/tokyu/an/',
-			type: 'string',
 		},
 		{
 			/* 2018-04-22 実施（恒久維持） */
-			from: '/madoka-magica/coterie/the-cycle-pictorial_([6-8])',
+			from: /^\/madoka-magica\/coterie\/the-cycle-pictorial_([6-8])$/,
 			to: '/madoka/dojin/pictorial$1',
-			type: 'regexp',
 		},
 		{
 			/* 2018-04-22 実施（恒久維持） */
-			from: '/madoka-magica/dojin/pictorial(1?[0-9])',
+			from: /^\/madoka-magica\/dojin\/pictorial(1?[0-9])$/,
 			to: '/madoka/dojin/pictorial$1',
-			type: 'regexp',
 		},
 		{
 			/* 2021-04-19 実施（恒久維持） */
 			from: '/diary/',
 			to: 'https://blog.w0s.jp/',
-			type: 'string',
 		},
 		{
 			/* 2021-04-19 実施（恒久維持） */
-			from: '/diary/([1-9][0-9]{0,2})',
+			from: /^\/diary\/([1-9][0-9]{0,2})$/,
 			to: 'https://blog.w0s.jp/entry/$1',
-			type: 'regexp',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/',
 			to: '/tokyu/machine/',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
-			from: '/tokyu/sty/truck_([a-z0-9]+)',
+			from: /^\/tokyu\/sty\/truck_([a-z0-9]+)$/,
 			to: '/tokyu/truck/$1',
-			type: 'regexp',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/aps',
 			to: '/tokyu/machine/aps',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/cp',
 			to: '/tokyu/machine/cp',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/bce',
 			to: '/tokyu/machine/bce',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/bt',
 			to: '/tokyu/machine/bt',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/rec',
 			to: '/tokyu/machine/rec',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/aci',
 			to: '/tokyu/machine/aci',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/usl',
 			to: '/tokyu/machine/usl',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/tra',
 			to: '/tokyu/machine/tra',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/atc',
 			to: '/tokyu/machine/atc',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/pt_7000',
 			to: '/tokyu/machine/pt_7000',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
-			from: '/tokyu/sty/ub_([a-z0-9_]+)',
+			from: /^\/tokyu\/sty\/ub_([a-z0-9_]+)$/,
 			to: '/tokyu/machine/ub_$1',
-			type: 'regexp',
 		},
 		{
 			/* 2024-04-12 実施 */
-			from: '/tokyu/sty/roof_([a-z0-9]+)',
+			from: /^\/tokyu\/sty\/roof_([a-z0-9]+)$/,
 			to: '/tokyu/machine/roof_$1',
-			type: 'regexp',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/amp_8000',
 			to: '/tokyu/yomoyama/8000_amp',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/front_7700',
 			to: '/tokyu/yomoyama/7700_front',
-			type: 'string',
 		},
 		{
 			/* 2024-04-12 実施 */
 			from: '/tokyu/sty/nosmoking',
 			to: '/tokyu/yomoyama/nosmoking',
-			type: 'string',
 		},
 	],
 };
