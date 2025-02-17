@@ -2,7 +2,7 @@
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import Layout from '@layouts/W0s.astro';
-import HttpResponseUtil from '@util/HttpResponse.js';
+import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
@@ -49,7 +49,7 @@ if (Astro.request.method === 'POST') {
 
 		const transporter = nodemailer.createTransport({
 			host: env('MAIL_SMTP'),
-			port: Number(env('MAIL_PORT')),
+			port: env('MAIL_PORT', 'number'),
 			auth: {
 				user: env('MAIL_USER'),
 				pass: env('MAIL_PASSWORD'),
@@ -65,8 +65,7 @@ if (Astro.request.method === 'POST') {
 
 		logger.info('Message sent: %s', info.messageId);
 
-		const httpResponse = new HttpResponseUtil(Astro.request);
-		return httpResponse.response303(`/contact_completed?referrer=${requestQuery.referrer}`); // TODO: https://github.com/withastro/language-tools/issues/476
+		return response303(Astro.request, `/contact_completed?referrer=${requestQuery.referrer}`);
 	}
 }
 

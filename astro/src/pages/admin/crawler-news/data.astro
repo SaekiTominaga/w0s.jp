@@ -1,7 +1,7 @@
 ---
 import Layout from '@layouts/Admin.astro';
 import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
-import HttpResponseUtil from '@util/HttpResponse.js';
+import { response303 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit, getPageUrl } from '@util/ssr.js';
@@ -40,8 +40,7 @@ if (requestQuery.action_delete) {
 		await dao.delete(requestQuery.id);
 		logger.info('データ削除', requestQuery.id);
 
-		const httpResponse = new HttpResponseUtil(Astro.request);
-		return httpResponse.response303(`?url=${requestQuery.url}`); // TODO: https://github.com/withastro/language-tools/issues/476
+		return response303(Astro.request, `?url=${requestQuery.url}`);
 	}
 }
 
