@@ -40,6 +40,15 @@ if (Astro.request.method === 'POST') {
 	};
 
 	if (requestQuery.action_send) {
+		/* Origin ヘッダーのチェック（bot 阻止） */
+		Astro.response.headers.append('Vary', 'Origin');
+
+		const requestOrigin = Astro.request.headers.get('Origin');
+		if (requestOrigin === null || !env('CONTACT_ALLOW_ORIGINS', 'string[]').includes(requestOrigin)) {
+			logger.warn('Origin header error', requestOrigin);
+			return response400();
+		}
+
 		/* メール送信 */
 		const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
 			requestQuery: requestQuery,
