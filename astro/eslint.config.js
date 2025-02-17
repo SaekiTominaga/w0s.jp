@@ -46,6 +46,20 @@ export default [
 		},
 	},
 	{
+		files: ['src/+util/**/*.ts'],
+		rules: {
+			'func-style': [
+				'error',
+				'expression',
+				{
+					overrides: {
+						namedExports: 'ignore',
+					},
+				},
+			],
+		},
+	},
+	{
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',

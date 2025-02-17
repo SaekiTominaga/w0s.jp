@@ -5,7 +5,7 @@ import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { env } from '@util/env.js';
-import HttpResponseUtil from '@util/HttpResponse.js';
+import { response303 } from '@util/httpResponse.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit, getPageUrl } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -58,8 +58,7 @@ if (requestQuery.action_add) {
 		await dao.insert(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector);
 		logger.info('データ登録', requestQuery.url);
 
-		const httpResponse = new HttpResponseUtil(Astro.request);
-		return httpResponse.response303(); // TODO: https://github.com/withastro/language-tools/issues/476
+		return response303(Astro.request);
 	}
 } else if (requestQuery.action_revise) {
 	/* 修正実行 */
@@ -67,8 +66,7 @@ if (requestQuery.action_add) {
 		await dao.update(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector);
 		logger.info('データ更新', requestQuery.url);
 
-		const httpResponse = new HttpResponseUtil(Astro.request);
-		return httpResponse.response303(); // TODO: https://github.com/withastro/language-tools/issues/476
+		return response303(Astro.request);
 	}
 } else if (requestQuery.action_delete) {
 	/* 削除 */
@@ -77,8 +75,7 @@ if (requestQuery.action_add) {
 		logger.info('データ削除', requestQuery.url);
 	}
 
-	const httpResponse = new HttpResponseUtil(Astro.request);
-	return httpResponse.response303(); // TODO: https://github.com/withastro/language-tools/issues/476
+	return response303(Astro.request);
 } else if (requestQuery.action_revise_preview) {
 	/* 修正データ選択 */
 	if (requestQuery.url !== null) {
