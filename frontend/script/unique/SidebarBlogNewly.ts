@@ -64,7 +64,7 @@ export default class SidebarBlogNewly {
 
 			const aElement = templateElementClone.querySelector('a');
 			if (aElement !== null) {
-				aElement.href = `https://blog.w0s.jp/${String(entry.id)}`;
+				aElement.href = `https://blog.w0s.jp/entry/${String(entry.id)}`;
 				aElement.insertAdjacentHTML('afterbegin', entry.title);
 			}
 
