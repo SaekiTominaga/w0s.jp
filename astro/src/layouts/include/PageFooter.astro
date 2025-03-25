@@ -37,6 +37,18 @@ const { pagePath, ad = true } = Astro.props;
 						<span class="p-footer-social__text">GitHub</span>
 					</a>
 				</li>
+				{
+					!pagePath.substring(1).includes('/') && (
+						<li>
+							<a href="https://fedibird.com/@SaekiTominaga" rel="external">
+								<span class="p-footer-social__image">
+									<img src="/assets/image/icon/mastodon.svg" alt="" width="48" height="48" />
+								</span>
+								<span class="p-footer-social__text">Mastodon</span>
+							</a>
+						</li>
+					)
+				}
 				<li>
 					<a href="https://bsky.app/profile/w0s.jp" rel="external">
 						<span class="p-footer-social__image"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
