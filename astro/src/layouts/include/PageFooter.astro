@@ -9,60 +9,56 @@ const { pagePath, ad = true } = Astro.props;
 
 <footer id="footer" class="l-footer">
 	<div class="l-footer__nav">
-		<nav class="p-footer-nav" aria-label="サイトナビゲーション">
-			<ul class="p-footer-nav__links">
-				{
-					[
-						{ path: '/info', name: '制作者' },
-						{ path: '/privacy', name: 'プライバシーポリシー' },
-						{ path: '/technology', name: '当サイトの Web 技術' },
-						{ path: '/contact', name: '問い合わせ' },
-					].map((page) => (
-						<li>
-							{page.path === pagePath && <a>{page.name}</a>}
-							{page.path !== pagePath && <a href={page.path}>{page.name}</a>}
-						</li>
-					))
-				}
-			</ul>
-		</nav>
+		<ul class="p-footer-nav">
+			{
+				[
+					{ path: '/info', name: '制作者' },
+					{ path: '/privacy', name: 'プライバシーポリシー' },
+					{ path: '/technology', name: '当サイトの Web 技術' },
+					{ path: '/contact', name: '問い合わせ' },
+				].map((page) => (
+					<li>
+						{page.path === pagePath && <a>{page.name}</a>}
+						{page.path !== pagePath && <a href={page.path}>{page.name}</a>}
+					</li>
+				))
+			}
+		</ul>
 	</div>
 
 	<div class="l-footer__social">
-		<section class="p-footer-social" aria-label="ソーシャルメディア">
-			<ul class="p-footer-social__links">
-				<li>
-					<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external">
-						<span class="p-footer-social__image"><img src="/assets/image/icon/github.svg" alt="" width="48" height="48" /></span>
-						<span class="p-footer-social__text">GitHub</span>
-					</a>
-				</li>
-				{
-					!pagePath.substring(1).includes('/') && (
-						<li>
-							<a href="https://fedibird.com/@SaekiTominaga" rel="external">
-								<span class="p-footer-social__image">
-									<img src="/assets/image/icon/mastodon.svg" alt="" width="48" height="48" />
-								</span>
-								<span class="p-footer-social__text">Mastodon</span>
-							</a>
-						</li>
-					)
-				}
-				<li>
-					<a href="https://bsky.app/profile/w0s.jp" rel="external">
-						<span class="p-footer-social__image"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
-						<span class="p-footer-social__text">Bluesky</span>
-					</a>
-				</li>
-				<li>
-					<a href="https://www.youtube.com/@SaekiTominaga" rel="external">
-						<span class="p-footer-social__image"><img src="/assets/image/icon/youtube.svg" alt="" width="48" height="48" /></span>
-						<span class="p-footer-social__text">YouTube</span>
-					</a>
-				</li>
-			</ul>
-		</section>
+		<ul class="p-footer-social">
+			<li>
+				<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external">
+					<span class="p-footer-social__image"><img src="/assets/image/icon/github.svg" alt="" width="48" height="48" /></span>
+					<span class="p-footer-social__text">GitHub</span>
+				</a>
+			</li>
+			{
+				!pagePath.substring(1).includes('/') && (
+					<li>
+						<a href="https://fedibird.com/@SaekiTominaga" rel="external">
+							<span class="p-footer-social__image">
+								<img src="/assets/image/icon/mastodon.svg" alt="" width="48" height="48" />
+							</span>
+							<span class="p-footer-social__text">Mastodon</span>
+						</a>
+					</li>
+				)
+			}
+			<li>
+				<a href="https://bsky.app/profile/w0s.jp" rel="external">
+					<span class="p-footer-social__image"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
+					<span class="p-footer-social__text">Bluesky</span>
+				</a>
+			</li>
+			<li>
+				<a href="https://www.youtube.com/@SaekiTominaga" rel="external">
+					<span class="p-footer-social__image"><img src="/assets/image/icon/youtube.svg" alt="" width="48" height="48" /></span>
+					<span class="p-footer-social__text">YouTube</span>
+				</a>
+			</li>
+		</ul>
 	</div>
 
 	{
