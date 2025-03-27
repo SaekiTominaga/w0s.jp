@@ -16,7 +16,7 @@ export default defineConfig({
 		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
 	},
 	build: {
-		format: 'file',
+		format: 'preserve',
 	},
 	server: {
 		port: 3000,
