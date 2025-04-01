@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
-		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"npm run css-prod -w @w0s.jp/frontend\" \"npm run js-prod -w @w0s.jp/frontend\" \"npm run svg -w @w0s.jp/frontend\"",
+		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"stylelint src/components/**/*.astro\" \"npm run css-prod -w @w0s.jp/frontend\" \"npm run js-prod -w @w0s.jp/frontend\" \"npm run svg -w @w0s.jp/frontend\"",
 		"build": "astro build",
 		"postbuild": "conc \"npm run _postbuild-feed\" \"npm run _postbuild-sitemap\" \"npm run _postbuild-format\" && npm run _postbuild-compress",
 		"lint": "eslint src/**/*.{astro,ts}",
@@ -56,6 +56,7 @@
 		"brotli-cli": "^2.1.0",
 		"eslint-plugin-astro": "^1.3.1",
 		"postcss-nesting": "^13.0.1",
-		"prettier-plugin-astro": "^0.14.1"
+		"prettier-plugin-astro": "^0.14.1",
+		"stylelint-config-html": "^1.1.0"
 	}
 }

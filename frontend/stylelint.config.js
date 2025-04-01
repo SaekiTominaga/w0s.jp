@@ -3,7 +3,6 @@
 /** @type {import('stylelint').Config} */
 export default {
 	extends: ['@w0s/stylelint-config'],
-	ignoreFiles: ['public/assets/style/*.css'],
 	rules: {
 		'max-nesting-depth': [
 			5,
