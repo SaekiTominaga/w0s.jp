@@ -12,11 +12,19 @@ export default defineConfig({
 	publicDir: '../public',
 	outDir: 'dist',
 	compressHTML: false,
+	scopedStyleStrategy: 'where',
 	security: {
 		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
 	},
+	vite: {
+		build: {
+			minify: false,
+		},
+	},
 	build: {
 		format: 'preserve',
+		assets: 'assets/astro',
+		inlineStylesheets: 'never',
 	},
 	server: {
 		port: 3000,
