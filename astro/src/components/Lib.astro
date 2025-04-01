@@ -1,0 +1,213 @@
+---
+import dayjs from 'dayjs';
+import IsbnVerify from '@w0s/isbn-verify';
+
+interface Props {
+	id: string;
+	headingLevel: number;
+	title: string;
+	release?: string;
+	distribution?: string;
+	tags?: string[];
+	isbn?: string;
+	amazonAsin?: string;
+	amazonImageId?: string;
+	amazonImageWidth?: number;
+	amazonImageHeight?: number;
+}
+
+const { id, headingLevel, title, release, distribution, tags, isbn, amazonAsin, amazonImageId, amazonImageWidth, amazonImageHeight } = Astro.props;
+
+export const dateDisplay = (date: string | undefined): string | undefined => {
+	if (date === undefined) {
+		return undefined;
+	}
+
+	if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(date)) {
+		return dayjs(date).format('YYYY年M月D日');
+	} else if (/^[0-9]{4}-[0-9]{2}$/.test(date)) {
+		return dayjs(date).format('YYYY年M月');
+	} else if (/^[0-9]{4}$/.test(date)) {
+		return `${date}年`;
+	}
+
+	console.warn(`Invalid date: ${date}`);
+	return date;
+};
+
+if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
+	console.warn(`Invalid ISBN: ${isbn}`);
+}
+---
+
+<section class="library js-library" id={id}>
+	<header class="header">
+		{headingLevel === 3 && <h3 class="hdg">{title}</h3>}
+		<p class="self-link"><a href={`#${encodeURIComponent(id)}`} class="c-self-link">§</a></p>
+		{
+			release !== undefined && (
+				<p class="release">
+					<time datetime={release}>{dateDisplay(release)}</time>発売
+				</p>
+			)
+		}
+		{
+			distribution !== undefined && (
+				<p class="release">
+					<time datetime={distribution}>{dateDisplay(distribution)}</time>配布
+				</p>
+			)
+		}
+		{
+			tags !== undefined && tags.length >= 1 && (
+				<ul class="tags">
+					{tags.map((tag) => (
+						<li>
+							<button type="button" class="tag-button js-library-tag" disabled="">
+								{tag}
+							</button>
+						</li>
+					))}
+				</ul>
+			)
+		}
+		{
+			isbn !== undefined && (
+				<p class="isbn">
+					<a href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`} rel="external">
+						ISBN: <data value={isbn}>{isbn}</data>
+					</a>
+					<small class="c-domain">
+						<img src="/assets/image/icon/ndlsearch.svg" alt="(国立国会図書館サーチ)" width="16" height="16" />
+					</small>
+				</p>
+			)
+		}
+	</header>
+	<div class="main">
+		{amazonAsin === undefined && <slot />}
+		{
+			amazonAsin !== undefined && (
+				<div class="c-embed-sidebar -embed-first">
+					<div class="c-embed-sidebar__embed">
+						<div class="p-embed-link">
+							<a href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`}>
+								{amazonImageId !== undefined && <img src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} srcset={`https://m.media-amazon.com/images/I/${amazonImageId}._SL320_.jpg 2x`} alt="" width={amazonImageWidth} height={amazonImageHeight} />}
+								{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />}
+								<span class="p-embed-link__title">Amazon 商品ページ</span>
+							</a>
+						</div>
+					</div>
+					<div class="c-embed-sidebar__text">
+						<slot />
+					</div>
+				</div>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.library {
+		--_border-width: 1px;
+		--_border-radius-inner: calc(var(--border-radius-normal) - var(--_border-width));
+		--_padding-inline: clamp(8px, 1.5dvi, 16px);
+
+		border: var(--_border-width) solid var(--color-border-dark);
+		border-radius: var(--border-radius-normal);
+		background: var(--color-white);
+		line-height: var(--line-height-normal);
+		color: var(--color-black);
+	}
+
+	.header {
+		--_header-padding-block: 12px;
+
+		display: block flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		align-items: center;
+		contain: layout;
+		border-start-start-radius: var(--_border-radius-inner);
+		border-start-end-radius: var(--_border-radius-inner);
+		background: var(--color-verylightgreen);
+		padding-block: var(--_header-padding-block);
+		padding-inline: calc(var(--_padding-inline) + var(--self-link-size)) var(--_padding-inline);
+	}
+
+	.main {
+		padding: 24px var(--_padding-inline);
+
+		& > :global(* + *) {
+			margin-block-start: var(--stack-margin-base);
+		}
+	}
+
+	.hdg {
+		font-size: calc(100% * pow(var(--font-ratio), 2));
+	}
+
+	.self-link {
+		position: absolute;
+		inset-block-start: calc(var(--_header-padding-block) + 0.25ex);
+		inset-inline-start: calc(var(--_padding-inline) - 0.25em);
+	}
+
+	.release {
+		display: block flex;
+
+		&::before {
+			content: '（';
+		}
+
+		&::after {
+			content: '）';
+		}
+	}
+
+	.tags {
+		display: block flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		margin-inline-start: 0.5em;
+	}
+
+	.tag-button {
+		--_bgcolor: var(--color-white);
+		--_color: var(--color-black);
+
+		border: 1px solid var(--color-black);
+		border-radius: var(--border-radius-large);
+		background-color: var(--_bgcolor);
+		padding: 0.25em;
+		line-height: var(--line-height-nowrap);
+		color: var(--_color);
+
+		&:focus-visible {
+			outline-offset: -1px;
+			outline-width: var(--outline-width-bold);
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+
+		&:not(:disabled):hover {
+			--_bgcolor: var(--color-bg-verylight);
+		}
+
+		&[aria-pressed='true'] {
+			--_bgcolor: var(--color-lightred);
+
+			&:hover {
+				--_bgcolor: var(--color-pink);
+			}
+		}
+	}
+
+	.isbn {
+		display: block flex;
+		flex-basis: 100%;
+		justify-content: flex-end;
+	}
+</style>

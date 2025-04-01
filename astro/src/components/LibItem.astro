@@ -17,12 +17,20 @@ if (pages !== undefined) {
 <p>
 	{
 		pageDisplay !== undefined && (
-			<span class="p-library__position">
+			<span class="position">
 				{pageDisplay}
 				{pageNote !== undefined && <small>（{pageNote}）</small>}
 			</span>
 		)
 	}
-	{position !== undefined && <span class="p-library__position">{position}</span>}
+	{position !== undefined && <span class="position">{position}</span>}
 	<slot />
 </p>
+
+<style>
+	.position {
+		&::after {
+			content: ':';
+		}
+	}
+</style>
