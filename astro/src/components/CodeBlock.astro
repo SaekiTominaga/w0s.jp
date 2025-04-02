@@ -12,7 +12,7 @@ interface Props {
 
 const { code, caption, language } = Astro.props;
 
-const id = `code-${md5(code)}`; // コード ID（記事内でのユニークさを保つためにコード文字列と位置情報を組み合わせた文字列を元にする）
+const id = `code-${md5(code)}`; // コード ID
 
 hljs.registerLanguage('xml', hljsXml);
 hljs.registerLanguage('javascript', hljsJavaScript);
@@ -44,12 +44,95 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 
 <figure>
 	{caption !== undefined && <figcaption class="c-caption">{caption}</figcaption>}
-	<div class="p-code">
-		<div class="p-code__clipboard">
-			<button type="button" class="p-code__clipboard-button js-button-clipboard" data-target={id}>
+	<div class="code-block">
+		<div class="clipboard">
+			<button type="button" class="clipboard-button js-button-clipboard" data-target={id}>
 				<img src="/assets/image/copy.svg" alt="コピー" width="16" height="16" />
 			</button>
 		</div>
-		<pre class="p-code__code">{highlighted !== undefined && <code id={id} set:html={highlighted} />}{highlighted === undefined && <code id={id}>{code}</code>}</pre>
+		<pre class="code">{highlighted !== undefined && <code id={id} set:html={highlighted} />}{highlighted === undefined && <code id={id}>{code}</code>}</pre>
 	</div>
 </figure>
+
+<style>
+	.code-block {
+		position: relative;
+		contain: content;
+	}
+
+	.clipboard {
+		display: none;
+		position: absolute;
+		inset-block-start: 0.5em;
+		inset-inline-end: 0.5em;
+
+		.code-block:hover > :global(&) {
+			display: block flow;
+		}
+	}
+
+	.clipboard-button {
+		--_bg-color: var(--color-bg-superlight);
+		--_ripple-color: var(--color-black);
+		--_ripple-opacity: 0.25;
+		--_ripple-transition-duration: 0.5s;
+
+		display: block flow;
+		contain: layout; /* ripple effect */
+		outline-offset: -1px;
+		outline-width: var(--outline-width-bold);
+		border: 1px solid var(--color-border-light);
+		border-radius: var(--border-radius-normal);
+		background: var(--_bg-color);
+		padding: 0.5em;
+		overflow: hidden; /* ripple effect */
+		color: var(--color-black);
+
+		&:hover {
+			--_bg-color: var(--color-white);
+		}
+
+		/* ripple effect */
+		&::before {
+			position: absolute;
+			inset: 0;
+			transform: scale(4);
+			transition: var(--_ripple-transition-duration);
+			opacity: 0;
+			background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
+			block-size: 100%;
+			inline-size: 100%;
+			content: '';
+		}
+
+		/* ripple effect */
+		&:active::before {
+			transform: scale(0);
+			transition: initial;
+			opacity: var(--_ripple-opacity);
+		}
+
+		& > :global(img) {
+			display: block flow;
+			block-size: 1em;
+			inline-size: 1em;
+		}
+	}
+
+	.code {
+		border: 1px solid var(--color-border-light);
+		background: var(--color-white);
+		padding: 1em;
+		overflow-x: auto;
+		line-height: var(--line-height-narrow);
+		color: var(--color-black);
+
+		&:focus {
+			border-color: var(--outline-color); /* 横スクロールバーが表示される場合はブラウザによってフォーカス可能 */
+		}
+
+		& > :global(code) {
+			color: #24292e; /* https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css */
+		}
+	}
+</style>
