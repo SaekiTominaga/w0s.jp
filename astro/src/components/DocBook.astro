@@ -25,64 +25,137 @@ const [startPage, endPage] = pages;
 const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
 ---
 
-<span class="c-ref -book">
+<span class="doc">
 	{
 		url !== undefined && linkScope === 'name' && (
 			<>
 				<LinkExternal href={url}>
-					<cite class="c-ref__name" lang={lang}>{name}</cite>
-					<span class="c-ref__meta">
-						<span class="c-ref__author" lang={lang}>{authorsDisplay}</span>
-						<time datetime={String(year)} class="c-ref__date">
-							{year}年
-						</time>
+					{/* prettier-ignore */}
+					<cite class="name" lang={lang}>{name}</cite>
+					<span class="meta">
+						{/* prettier-ignore */}
+						<span class="author" lang={lang}>{authorsDisplay}</span>
+						{/* prettier-ignore */}
+						<time datetime={String(year)} class="date">{year}年</time>
 					</span>
 				</LinkExternal>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article" lang={lang}>{articleDisplay}</span>
+						{/* prettier-ignore */}
+						<span class="article" lang={lang}>{articleDisplay}</span>
 					</>
 				)}
-				<span class="c-ref__pages">{pageDisplay}</span>
+				<span class="pages">{pageDisplay}</span>
 			</>
 		)
 	}
 	{
 		url !== undefined && linkScope === 'page' && (
 			<LinkExternal href={url}>
-				<cite class="c-ref__name" lang={lang}>{name}</cite>
-				<span class="c-ref__meta">
-					<span class="c-ref__author" lang={lang}>{authorsDisplay}</span>
-					<time datetime={String(year)} class="c-ref__date">
-						{year}年
-					</time>
+				{/* prettier-ignore */}
+				<cite class="name" lang={lang}>{name}</cite>
+				<span class="meta">
+					{/* prettier-ignore */}
+					<span class="author" lang={lang}>{authorsDisplay}</span>
+					{/* prettier-ignore */}
+					<time datetime={String(year)} class="date">{year}年</time>
 				</span>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article" lang={lang}>{articleDisplay}</span>
+						{/* prettier-ignore */}
+						<span class="article" lang={lang}>{articleDisplay}</span>
 					</>
 				)}
-				<span class="c-ref__pages">{pageDisplay}</span>
+				<span class="pages">{pageDisplay}</span>
 			</LinkExternal>
 		)
 	}
 	{
 		url === undefined && (
 			<>
-				<cite class="c-ref__name" lang={lang}>{name}</cite>
-				<span class="c-ref__meta">
-					<span class="c-ref__author" lang={lang}>{authorsDisplay}</span>
-					<time datetime={String(year)} class="c-ref__date">
-						{year}年
-					</time>
+				{/* prettier-ignore */}
+				<cite class="name" lang={lang}>{name}</cite>
+				<span class="meta">
+					{/* prettier-ignore */}
+					<span class="author" lang={lang}>{authorsDisplay}</span>
+					{/* prettier-ignore */}
+					<time datetime={String(year)} class="date">{year}年</time>
 				</span>
 				{article !== undefined && (
 					<>
-						<span class="c-ref__article" lang={lang}>{articleDisplay}</span>
+						{/* prettier-ignore */}
+						<span class="article" lang={lang}>{articleDisplay}</span>
 					</>
 				)}
-				<span class="c-ref__pages">{pageDisplay}</span>
+				<span class="pages">{pageDisplay}</span>
 			</>
 		)
 	}
 </span>
+
+<style>
+	.doc {
+		--_space-width: 0.25em;
+	}
+
+	/* 図書名 */
+	.name {
+		font-style: normal;
+
+		&::before {
+			content: '『';
+		}
+
+		&::after {
+			content: '』';
+		}
+	}
+
+	/* 本の発行年、著者名などのメタ情報 */
+	.meta {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			margin-inline-end: calc(0px - var(--_space-width));
+			content: '（';
+		}
+
+		&::after {
+			margin-inline-start: calc(0px - var(--_space-width));
+			content: '）';
+		}
+	}
+
+	.author {
+		/* 全角スペース相当の間隔を開ける */
+		&:not(:last-child) {
+			&::after {
+				margin-inline-end: -0.5em;
+				content: '\3000';
+			}
+		}
+	}
+
+	.date {
+		/* 全角スペース相当の間隔を開ける */
+		&:not(:last-child) {
+			&::after {
+				margin-inline-end: -0.5em;
+				content: '\3000';
+			}
+		}
+	}
+
+	/* 記事タイトル */
+	.article {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '「';
+		}
+
+		&::after {
+			content: '」';
+		}
+	}
+</style>

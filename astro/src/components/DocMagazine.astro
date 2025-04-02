@@ -27,53 +27,85 @@ const [startPage, endPage] = pages;
 const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
 ---
 
-<span class="c-ref -magazine">
+<span class="doc">
 	{
 		url !== undefined && (
 			<LinkExternal href={url}>
-				<span class="c-ref__name">{name}</span>
+				<span class="name">{name}</span>
 				{date !== undefined && (
 					<>
-						<span class="c-ref__date">{date}</span>
+						<span class="date">{date}</span>
 					</>
 				)}
 				{no !== undefined && (
 					<>
-						<span class="c-ref__no">{noDisplay}</span>
+						<span class="no">{noDisplay}</span>
 					</>
 				)}
-				<cite class="c-ref__article">{article}</cite>
+				<cite class="article">{article}</cite>
 				{authorsDisplay !== undefined && (
 					<>
-						<span class="c-ref__author">{authorsDisplay}</span>
+						<span class="author">{authorsDisplay}</span>
 					</>
 				)}
-				<span class="c-ref__pages">{pageDisplay}</span>
+				<span class="pages">{pageDisplay}</span>
 			</LinkExternal>
 		)
 	}
 	{
 		url === undefined && (
 			<>
-				<span class="c-ref__name">{name}</span>
+				<span class="name">{name}</span>
 				{date !== undefined && (
 					<>
-						<span class="c-ref__date">{date}</span>
+						<span class="date">{date}</span>
 					</>
 				)}
 				{no !== undefined && (
 					<>
-						<span class="c-ref__no">{noDisplay}</span>
+						<span class="no">{noDisplay}</span>
 					</>
 				)}
-				<cite class="c-ref__article">{article}</cite>
+				<cite class="article">{article}</cite>
 				{authorsDisplay !== undefined && (
 					<>
-						<span class="c-ref__author">{authorsDisplay}</span>
+						<span class="author">{authorsDisplay}</span>
 					</>
 				)}
-				<span class="c-ref__pages">{pageDisplay}</span>
+				<span class="pages">{pageDisplay}</span>
 			</>
 		)
 	}
 </span>
+
+<style>
+	.doc {
+		--_space-width: 0.25em;
+	}
+
+	/* 記事タイトル */
+	.article {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '「';
+		}
+
+		&::after {
+			content: '」';
+		}
+	}
+
+	/* 記事の著者名 */
+	.author {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '（';
+		}
+
+		&::after {
+			content: '）';
+		}
+	}
+</style>

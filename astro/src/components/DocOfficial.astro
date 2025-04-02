@@ -53,18 +53,66 @@ switch (possess) {
 }
 ---
 
-<span class="c-ref -tetsudosho">
-	<b class="c-ref__government">{government}文書</b>
+<span class="doc">
+	<b class="government">{government}文書</b>
 	<LinkExternal href={url}>
-		<span class="c-ref__company">{company}</span>
+		<span class="company">{company}</span>
 		{
 			no !== undefined && (
 				<>
-					<span class="c-ref__no">{no}</span>
+					<span class="no">{no}</span>
 				</>
 			)
 		}
-		<DateWareki value={dateStr} class="c-ref__date" />
-		{title !== undefined && <cite class="c-ref__article">{title}</cite>}
+		<DateWareki value={dateStr} class="date" />
+		{title !== undefined && <cite class="article">{title}</cite>}
 	</LinkExternal>
 </span>
+
+<style>
+	.doc {
+		--_space-width: 0.25em;
+	}
+
+	/* 行政機関名（鉄道省、運輸省……） */
+	.government {
+		all: unset;
+		margin-inline-end: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '【';
+		}
+
+		&::after {
+			content: '】';
+		}
+	}
+
+	/* 全角スペース相当の間隔を開ける */
+	.no {
+		&::before {
+			margin-inline-start: -0.5em;
+			content: '\3000';
+		}
+	}
+
+	.date {
+		&::before {
+			margin-inline-start: -0.5em;
+			content: '\3000';
+		}
+	}
+
+	/* 記事タイトル */
+	.article {
+		margin-inline-start: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '「';
+		}
+
+		&::after {
+			content: '」';
+		}
+	}
+</style>
