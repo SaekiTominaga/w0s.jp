@@ -2,9 +2,32 @@
 
 ---
 
-<div class="p-amazon">
-	<p class="p-amazon__label"><img src="/assets/image/amazon-buy.png" srcset="/assets/image/amazon-buy@2x.png 2x" alt="Amazon で買う" width="127" height="26" /></p>
-	<ul class="p-amazon__list">
+<div class="amazon">
+	<p class="label"><img src="/assets/image/amazon-buy.png" srcset="/assets/image/amazon-buy@2x.png 2x" alt="Amazon で買う" width="127" height="26" /></p>
+	<ul class="list">
 		<slot />
 	</ul>
 </div>
+
+<style>
+	.amazon {
+		border: 1px solid var(--color-amazon-dark);
+		border-radius: var(--border-radius-large);
+		background: linear-gradient(var(--color-amazon-light), var(--color-white));
+		padding: 15px;
+		color: var(--color-black);
+	}
+
+	.label {
+		display: block flex;
+		margin-block-start: -16px;
+		margin-inline-start: -16px;
+	}
+
+	.list {
+		display: block grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(22em, 100%), 1fr));
+		gap: 12px;
+		margin-block-start: 15px;
+	}
+</style>
