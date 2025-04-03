@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import DocMagazine from '@components/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -167,22 +168,18 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/D2N_510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-19 -->
-					</div>
-					<figcaption class="c-caption -meta">モハ510 復元車</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/D2N_510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-19 -->
+					<Fragment slot="caption">モハ510 復元車</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/D2N_kumamoto5102A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-05-06 -->
-					</div>
-					<figcaption class="c-caption -meta">熊本電気鉄道モハ5102A（東急デハ5032）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/D2N_kumamoto5102A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-05-06 -->
+					<Fragment slot="caption">熊本電気鉄道モハ5102A（東急デハ5032）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -198,22 +195,18 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/3YS_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2010-03-21 -->
-					</div>
-					<figcaption class="c-caption -meta">松本電気鉄道モハ5005（東急デハ5055）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/3YS_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2010-03-21 -->
+					<Fragment slot="caption">松本電気鉄道モハ5005（東急デハ5055）</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/3YS_nagano2510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-05-05 -->
-					</div>
-					<figcaption class="c-caption -meta">長野電鉄モハ2510（東急デハ5015）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/3YS_nagano2510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-05-05 -->
+					<Fragment slot="caption">長野電鉄モハ2510（東急デハ5015）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -229,13 +222,11 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/C1000_konan6005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-09-03 -->
-					</div>
-					<figcaption class="c-caption -meta">弘南鉄道デハ6005（東急デハ6005）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/C1000_konan6005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-09-03 -->
+					<Fragment slot="caption">弘南鉄道デハ6005（東急デハ6005）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -249,31 +240,25 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB1500_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-03-29 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【7200系タイプ】</b>上田交通モハ7255（東急デハ7258）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB1500_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-03-29 -->
+					<Fragment slot="caption"><b>【7200系タイプ】</b>上田交通モハ7255（東急デハ7258）</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB1500_fukushima7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2013-07-07 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【7000系タイプ】</b>福島交通デハ7202（東急デハ7125）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB1500_fukushima7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2013-07-07 -->
+					<Fragment slot="caption"><b>【7000系タイプ】</b>福島交通デハ7202（東急デハ7125）</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB1500_hokuriku7211.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-04-13 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【京阪タイプ】</b>北陸鉄道クハ7211（東急デハ7137）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB1500_hokuriku7211.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-04-13 -->
+					<Fragment slot="caption"><b>【京阪タイプ】</b>北陸鉄道クハ7211（東急デハ7137）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -293,40 +278,32 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_8879.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-04-05 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【神鋼電機】</b>デハ8879（15次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_8879.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-04-05 -->
+					<Fragment slot="caption"><b>【神鋼電機】</b>デハ8879（15次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_8281.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-09-06 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【日立製作所】</b>デハ8281（16-2次車）海側 #1</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_8281.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-09-06 -->
+					<Fragment slot="caption"><b>【日立製作所】</b>デハ8281（16-2次車）海側 #1</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_izukyu8252.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-05-28 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【神鋼電機、反転】</b>伊豆急行クモハ8252（東急デハ8049）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_izukyu8252.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-05-28 -->
+					<Fragment slot="caption"><b>【神鋼電機、反転】</b>伊豆急行クモハ8252（東急デハ8049）</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_8881_frame.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-22 -->
-					</div>
-					<figcaption class="c-caption -meta">デハ8881（15次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_8881_frame.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-22 -->
+					<Fragment slot="caption">デハ8881（15次車）海側</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -351,22 +328,18 @@ const slugger = new GithubSlugger();
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS20_9101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-01-24 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9101（1次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS20_9101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-01-24 -->
+						<Fragment slot="caption">クハ9101（1次車）海側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS20_9010.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2013-06-16 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9010（3次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS20_9010.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2013-06-16 -->
+						<Fragment slot="caption">クハ9010（3次車）海側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -388,13 +361,11 @@ const slugger = new GithubSlugger();
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS20_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-12-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8641（18-2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS20_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-12-29 -->
+						<Fragment slot="caption">デハ8641（18-2次車）海側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -412,22 +383,18 @@ const slugger = new GithubSlugger();
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS10_1223.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-04-17 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1223（4次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS10_1223.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-04-17 -->
+						<Fragment slot="caption">デハ1223（4次車）海側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS10_iga101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-12-20 -->
-						</div>
-						<figcaption class="c-caption -meta">伊賀鉄道ク101（東急クハ1010）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS10_iga101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-12-20 -->
+						<Fragment slot="caption">伊賀鉄道ク101（東急クハ1010）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -445,13 +412,11 @@ const slugger = new GithubSlugger();
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS10_fukushima1208.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-04-17 -->
-						</div>
-						<figcaption class="c-caption -meta">福島交通クハ1208（東急デハ1257）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS10_fukushima1208.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-04-17 -->
+						<Fragment slot="caption">福島交通クハ1208（東急デハ1257）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -467,13 +432,11 @@ const slugger = new GithubSlugger();
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS5_310B.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-02-22 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ310B（2次車）山側 #2</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS5_310B.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-02-22 -->
+						<Fragment slot="caption">デハ310B（2次車）山側 #2</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -487,22 +450,18 @@ const slugger = new GithubSlugger();
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS5_Y001.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-04-06 -->
-						</div>
-						<figcaption class="c-caption -meta">クハY001（1次車）海側 #1</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS5_Y001.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-04-06 -->
+						<Fragment slot="caption">クハY001（1次車）海側 #1</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS5_Y002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-03-22 -->
-						</div>
-						<figcaption class="c-caption -meta">クハY002（2次車）海側 #1</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS5_Y002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-03-22 -->
+						<Fragment slot="caption">クハY002（2次車）海側 #1</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -515,13 +474,15 @@ const slugger = new GithubSlugger();
 	<Section id="c2500">
 		<H slot="heading">C2500L</H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/machine/cp/C2500L_3510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-				<!-- 撮影日: 2007-08-19 -->
+		<div class="c-flex">
+			<div class="c-flex__item">
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/C2500L_3510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-08-19 -->
+					<Fragment slot="caption">サハ3510（2次車）海側</Fragment>
+				</Embedded>
 			</div>
-			<figcaption class="c-caption -meta">サハ3510（2次車）海側</figcaption>
-		</figure>
+		</div>
 
 		<p>新3000系に搭載されたもので、シリンダは <a href="#hs20">HS20 型</a>などの対向4気筒から直列3気筒となり、ちりこしの右側に低圧2、高圧1 が一列に並んだ様相が特徴です。</p>
 
@@ -533,13 +494,11 @@ const slugger = new GithubSlugger();
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/C2000M_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2013-11-03 -->
-					</div>
-					<figcaption class="c-caption -meta">富山地方鉄道モハ17482</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/C2000M_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2013-11-03 -->
+					<Fragment slot="caption">富山地方鉄道モハ17482</Fragment>
+				</Embedded>
 			</div>
 		</div>
 

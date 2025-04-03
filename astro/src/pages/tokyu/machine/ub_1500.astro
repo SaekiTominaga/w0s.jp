@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -39,13 +40,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-1500-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1500_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1501海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1500_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">デハ1501海側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、蓄電池、定位置停止支援装置（TASC）、共通機器箱、空気圧縮機（HS-20型）、CP起動装置、主幹指令装置、情報伝送装置です。</p>
 				</Section>
@@ -54,13 +53,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-1500-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1500_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1501山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1500_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">デハ1501山側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、冷房制御装置、整流装置、元空気だめ、ブレーキ制御装置です。</p>
 				</Section>
@@ -76,13 +73,11 @@ const structuredData: StructuredData = {
 				<Section id="m-1600-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1600_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1601海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1600_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">デハ1601海側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、VVVF主制御器、VVVFフィルタリアクトル、VVVF断流器、接地開閉器です。</p>
 				</Section>
@@ -91,13 +86,11 @@ const structuredData: StructuredData = {
 				<Section id="m-1600-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1600_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1601山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1600_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">デハ1601山側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、冷房制御装置、VVVFトランスリアクトル、VVVFフィルタリアクトル、ブレーキ制御装置、高速度遮断器です。</p>
 				</Section>
@@ -113,13 +106,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-1700-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1724_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1724海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1724_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">デハ1724海側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、冷房制御装置、蓄電池、定位置停止支援装置（TASC）、接地開閉器、主幹指令装置です。</p>
 				</Section>
@@ -128,13 +119,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-1700-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1724_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1724山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1724_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">デハ1724山側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、整流装置、ブレーキ制御装置です。</p>
 				</Section>
@@ -150,13 +139,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-1500-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1524_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1524海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1524_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">クハ1524海側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、蓄電池、冷房制御装置、空気圧縮機（HS-10型・2台）、接地開閉器、定位置停止支援装置（TASC）です。</p>
 				</Section>
@@ -165,13 +152,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-1500-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1524_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1524山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1524_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">クハ1524山側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、元空気だめ、整流装置、元空気だめ、ブレーキ制御装置、情報伝送装置です。</p>
 				</Section>
@@ -187,13 +172,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-1700-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1700_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1701海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1700_sea.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">クハ1701海側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、定位置停止支援装置（TASC）、共通機器箱、空気圧縮機（HS-20型）、CP起動装置、蓄電池です。</p>
 				</Section>
@@ -202,13 +185,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-1700-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/1700_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 2019-04-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1701山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/1700_mount.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 2019-04-29 -->
+						<Fragment slot="caption">クハ1701山側</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、冷房制御装置、整流装置、元空気だめ、ブレーキ制御装置です。</p>
 				</Section>

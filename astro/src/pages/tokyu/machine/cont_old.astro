@@ -4,6 +4,7 @@ import Layout from '@layouts/Tokyu.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -208,13 +209,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/DB1-K4_hinomaru203.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
-						<!-- 撮影日: 2024-03-19 -->
-					</div>
-					<figcaption class="c-caption">東洋電機製造 DB1 式 K4 型マスコン（日ノ丸自動車デハ203 ← 池上乙号車）</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/DB1-K4_hinomaru203.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2024-03-19 -->
+					<Fragment slot="caption">東洋電機製造 DB1 式 K4 型マスコン（日ノ丸自動車デハ203 ← 池上乙号車）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -321,32 +320,26 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/PR150.jpg" alt="" width={485} height={243} quality={60} />
-					</div>
-					<figcaption class="c-caption">電空カム軸制御器 PR-150 型<NoteRef by="pr150-photo-source" /></figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/PR150.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<Fragment slot="caption">電空カム軸制御器 PR-150 型<NoteRef by="pr150-photo-source" /></Fragment>
+				</Embedded>
 
 				<NoteRefContent id="pr150-photo-source"><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/5">目蒲東横電鐵業務研究彙報（昭和9年2月）</LinkExternal>より転載</NoteRefContent>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/PR200.jpg" alt="" width={485} height={243} quality={60} />
-					</div>
-					<figcaption class="c-caption">電空カム軸制御器 PR-200 型<NoteRef by="pr200-photo-source" /></figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/PR200.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<Fragment slot="caption">電空カム軸制御器 PR-200 型<NoteRef by="pr200-photo-source" /></Fragment>
+				</Embedded>
 
 				<NoteRefContent id="pr200-photo-source"><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/5">目蒲東横電鐵業務研究彙報（昭和9年2月）</LinkExternal>より転載</NoteRefContent>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/PR1Y1.jpg" alt="" width={485} height={243} quality={60} />
-					</div>
-					<figcaption class="c-caption">メンテナンスフリーを目指して開発された PR-1Y1 型（試作品）<NoteRef by="pr1y1-photo-source" /></figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/PR1Y1.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<Fragment slot="caption">メンテナンスフリーを目指して開発された PR-1Y1 型（試作品）<NoteRef by="pr1y1-photo-source" /></Fragment>
+				</Embedded>
 
 				<NoteRefContent id="pr1y1-photo-source"><LinkExternal href="https://dl.ndl.go.jp/pid/1146676/1/5">目蒲東横電鐵業務研究彙報（昭和9年2月）</LinkExternal>より転載</NoteRefContent>
 			</div>
@@ -430,13 +423,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/ES-155_meitetsu755.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2024-03-20 -->
-					</div>
-					<figcaption class="c-caption">現存する ES-155 型（名古屋鉄道モ755）</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/ES-155_meitetsu755.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2024-03-20 -->
+					<Fragment slot="caption">現存する ES-155 型（名古屋鉄道モ755）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -456,12 +447,10 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/ES504.jpg" alt="" width={485} height={162} quality={60} />
-					</div>
-					<figcaption class="c-caption">新京阪鉄道 P-6 形電車にも搭載された ES-504 型<NoteRef by="es504-photo-source" /></figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/ES504.jpg" alt="" width={485} height={162} quality={60} slot="media" />
+					<Fragment slot="caption">新京阪鉄道 P-6 形電車にも搭載された ES-504 型<NoteRef by="es504-photo-source" /></Fragment>
+				</Embedded>
 
 				<NoteRefContent id="es504-photo-source"><LinkExternal href="https://dl.ndl.go.jp/pid/1190932/1/91">交通電氣博ポスター選集</LinkExternal>より転載</NoteRefContent>
 			</div>
@@ -549,13 +538,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-200.jpg" alt="" width={485} height={243} quality={60} />
-						<!-- 撮影日: 2006-04-30 -->
-					</div>
-					<figcaption class="c-caption">多段式制御を実現した MMC-200 型<NoteRef by="mmc200-photo-source" /></figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/MMC-200.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<!-- 撮影日: 2006-04-30 -->
+					<Fragment slot="caption">多段式制御を実現した MMC-200 型<NoteRef by="mmc200-photo-source" /></Fragment>
+				</Embedded>
 
 				<NoteRefContent id="mmc200-photo-source"><LinkExternal href="https://dl.ndl.go.jp/pid/1141487/1/92">電氣工學年報　昭和十五年版</LinkExternal>より転載</NoteRefContent>
 			</div>
@@ -565,13 +552,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-H-10K_towada3603.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-04-30 -->
-					</div>
-					<figcaption class="c-caption">旧性能車で最後に導入された MMC-H-10K 型、機器単体で見れば8000系1次車より新しい（十和田観光電鉄モハ3603 ← 東急デハ3655）</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/machine/cont/MMC-H-10K_towada3603.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-04-30 -->
+					<Fragment slot="caption">旧性能車で最後に導入された MMC-H-10K 型、機器単体で見れば8000系1次車より新しい（十和田観光電鉄モハ3603 ← 東急デハ3655）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 

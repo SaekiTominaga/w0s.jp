@@ -1,4 +1,5 @@
 ---
+import Embedded from './Embedded.astro';
 import LinkExternal from './LinkExternal.astro';
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 
 const { id, title, width = 560, height = 315, start = 0, end = 0 } = Astro.props;
 
-const embeddedSearchParams = new URLSearchParams(); // https://developers.google.com/youtube/player_parameters?hl=ja#Parameters
+const embeddedSearchParams = new URLSearchParams(); // https://developers.google.com/youtube/player_parameters#Parameters
 embeddedSearchParams.set('cc_load_policy', '1');
 embeddedSearchParams.set('rel', '0');
 
@@ -29,9 +30,7 @@ if (end >= 1) {
 }
 ---
 
-<figure>
-	<div class="p-embed -border">
-		<iframe src={`https://www.youtube-nocookie.com/embed/${id}?${embeddedSearchParams.toString()}`} allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width={width} height={height} style=`--aspect-ratio: ${width}/${height}`></iframe>
-	</div>
-	<figcaption class="c-caption -meta"><LinkExternal href={`https://www.youtube.com/watch?${linkSearchParams.toString()}`}>{title}</LinkExternal></figcaption>
-</figure>
+<Embedded border={true} captionMeta={true}>
+	<iframe src={`https://www.youtube-nocookie.com/embed/${id}?${embeddedSearchParams.toString()}`} allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width={width} height={height} style=`--aspect-ratio: ${width}/${height}` slot="media"></iframe>
+	<LinkExternal href={`https://www.youtube.com/watch?${linkSearchParams.toString()}`} slot="caption">{title}</LinkExternal>
+</Embedded>

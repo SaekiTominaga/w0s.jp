@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -39,13 +40,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-7715-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7700Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7715海側（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7700Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-20 -->
+						<Fragment slot="caption">デハ7715海側（5次車）</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、SIV一体型VVVF主制御器（RG660-A-M型）、接地開閉器、VVVF断流器、定位置停止支援装置（TASC）です。</p>
 				</Section>
@@ -54,13 +53,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-7715-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7700Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7715山側（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7700Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-20 -->
+						<Fragment slot="caption">デハ7715山側（5次車）</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、SIV一体型VVVF主制御器（RG660-A-M型）、SIV抵抗器、ブレーキ制御装置、ブレーキ受量器です。</p>
 				</Section>
@@ -76,13 +73,11 @@ const structuredData: StructuredData = {
 				<Section id="m-7815-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7800Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7815海側（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7800Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-20 -->
+						<Fragment slot="caption">デハ7815海側（4次車）</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、100V蓄電池、VVVF継電器、VVVF断流器、接地開閉器、ブレーキ受量器、空気圧縮機（HS-20型）です。</p>
 				</Section>
@@ -91,13 +86,11 @@ const structuredData: StructuredData = {
 				<Section id="m-7815-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7800Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7815山側（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7800Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-20 -->
+						<Fragment slot="caption">デハ7815山側（4次車）</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、VVVF主制御器（RG654-A-M型）、元空気だめ、ブレーキ制御装置です。</p>
 				</Section>
@@ -113,13 +106,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-7915-sea" depth={2} headingType="c">
 					<H slot="heading">海側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7900Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7915海側（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7900Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-20 -->
+						<Fragment slot="caption">クハ7915海側（5次車）</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、100V蓄電池、24V蓄電池、軌条塗油器、定位置停止支援装置（TASC）、接地開閉器、CP起動装置、空気圧縮機（HS-20型）です。</p>
 				</Section>
@@ -128,13 +119,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-7915-mount" depth={2} headingType="c">
 					<H slot="heading">山側</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7900Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7915山側（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7900Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-20 -->
+						<Fragment slot="caption">クハ7915山側（5次車）</Fragment>
+					</Embedded>
 
 					<p>主な機器は下り方から順に、整流装置、ブレーキ制御装置、元空気だめ、情報伝送装置です。</p>
 				</Section>
@@ -150,41 +139,33 @@ const structuredData: StructuredData = {
 				<Section id="couple7715" depth={2} headingType="c">
 					<H slot="heading">デハ7700形 ｰ デハ7800形間</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7700N-7800N_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-04-12 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7715 ｰ デハ7815海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7700N-7800N_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-04-12 -->
+						<Fragment slot="caption">デハ7715 ｰ デハ7815海側</Fragment>
+					</Embedded>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7800N-7700N_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-02-24 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7815 ｰ デハ7715山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7800N-7700N_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-02-24 -->
+						<Fragment slot="caption">デハ7815 ｰ デハ7715山側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section id="couple7815" depth={2} headingType="c">
 					<H slot="heading">デハ7700形 ｰ デハ7800形間</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7800N-7900N_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-04-12 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7815 ｰ クハ7915海側</figcaption>
-					</figure>
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7900N-7800N_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-02-17 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7915 ｰ デハ7815山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7800N-7900N_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-04-12 -->
+						<Fragment slot="caption">デハ7815 ｰ クハ7915海側</Fragment>
+					</Embedded>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7900N-7800N_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-02-17 -->
+						<Fragment slot="caption">クハ7915 ｰ デハ7815山側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>

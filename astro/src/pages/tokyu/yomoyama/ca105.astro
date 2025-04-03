@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -27,22 +28,18 @@ const structuredData: StructuredData = {
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/ca105/CA105_kumamoto.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-30 -->
-					</div>
-					<figcaption class="c-caption">CA-105（熊本電気鉄道モハ5101A）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/yomoyama/ca105/CA105_kumamoto.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-30 -->
+					<Fragment slot="caption">熊本電気鉄道モハ5101A</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/ca105/CA105_mizuma.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2007-06-24 -->
-					</div>
-					<figcaption class="c-caption">CA-105（水間鉄道デハ7003）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/yomoyama/ca105/CA105_mizuma.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-06-24 -->
+					<Fragment slot="caption">水間鉄道デハ7003</Fragment>
+				</Embedded>
 			</div>
 		</div>
 	</Section>
@@ -56,13 +53,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/ca105/mizuma_7003.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2007-10-20 -->
-					</div>
-					<figcaption class="c-caption">水間鉄道デハ7003</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/yomoyama/ca105/mizuma_7003.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-10-20 -->
+					<Fragment slot="caption">水間鉄道デハ7003</Fragment>
+				</Embedded>
 			</div>
 		</div>
 	</Section>

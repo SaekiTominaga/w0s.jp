@@ -1,11 +1,12 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/W0s.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
+import LinkExternal from '@components/LinkExternal.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -29,11 +30,9 @@ const structuredData: StructuredData = {
 
 		<p><ruby>富永 冴樹<rp>（</rp><rt>とみなが さえき</rt><rp>）</rp></ruby> / トミー</p>
 
-		<figure>
-			<div class="p-embed -border">
-				<Image path="info_profile.jpg" alt="正方形のアイコン画像: 下っぱスーツでテンパる坪内地丹の顔が描かれたデザインカプチーノ" width={120} height={120} quality={60} />
-			</div>
-		</figure>
+		<Embedded border={true}>
+			<Image path="info_profile.jpg" alt="正方形のアイコン画像: 下っぱスーツでテンパる坪内地丹の顔が描かれたデザインカプチーノ" width={120} height={120} quality={60} slot="media" />
+		</Embedded>
 	</Section>
 
 	<Section id="like">

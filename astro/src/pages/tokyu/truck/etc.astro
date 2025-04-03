@@ -4,6 +4,7 @@ import Layout from '@layouts/Tokyu.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
@@ -160,13 +161,11 @@ const structuredData: StructuredData = {
 	<Section id="nsk-a1">
 		<H slot="heading">A-1 型 <small class="c-tokyu-truck -m">動力台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/nsk-A1_hossyoji203.jpg" alt="写真拡大" width={1022} height={409} quality={80} link={true} />
-				<!-- 撮影日: 2010-03-08 -->
-			</div>
-			<figcaption class="c-caption -meta">日ノ丸自動車デハ203 米子市方</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/nsk-A1_hossyoji203.jpg" alt="写真拡大" width={1022} height={409} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2010-03-08 -->
+			<Fragment slot="caption">日ノ丸自動車デハ203 米子市方</Fragment>
+		</Embedded>
 
 		<p>池上電気鉄道開業時の車両のうち、駿遠電気より譲受した乙号電車（2両）は日本車輌製造の A 型と呼ばれる台車のうち、踏面ブレーキが台車内側にある A-1 型を履いていました。後に別の A 型台車が試作されたため、旧 A 型と呼ばれることもあります<NoteRef type="ref" by="nsharyo-shi" />。</p>
 
@@ -180,13 +179,11 @@ const structuredData: StructuredData = {
 	<Section id="3100">
 		<H slot="heading">東京横浜電鉄／目黒蒲田電鉄　デハ100形用台車 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/3100_kaya3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-				<!-- 撮影日: 2010-07-21 -->
-			</div>
-			<figcaption class="c-caption -meta">加悦鉄道サハ3104</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/3100_kaya3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2010-07-21 -->
+			<Fragment slot="caption">加悦鉄道サハ3104</Fragment>
+		</Embedded>
 
 		<p>東京横浜電鉄、目黒蒲田電鉄のデハ100形は藤永田造船所で製造されましたが、台車は汽車会社製（1925年）と藤永田造船所製（1926年）が混在していました。</p>
 
@@ -208,13 +205,11 @@ const structuredData: StructuredData = {
 	<Section id="ks33">
 		<H slot="heading">KS-33L 型 → KS-33E 型 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/KS33E_oigawa821.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-				<!-- 撮影日: 2010-05-25 -->
-			</div>
-			<figcaption class="c-caption -meta">大井川鐵道スイテ82 1 金谷方</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/KS33E_oigawa821.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2010-05-25 -->
+			<Fragment slot="caption">大井川鐵道スイテ82 1 金谷方</Fragment>
+		</Embedded>
 
 		<p>1948年に運輸省規格型車両として製造されたデハ3700形、クハ3750形には扶桑金属工業<small>（現：日本製鉄）</small>の KS-33 形台車が履用されました。台車形式は KS-33L として製造されたものの、1949年以降の分類記号改正に伴い KS-33E となっています<NoteRef type="ref" by="sumitomo1968-10" />。</p>
 
@@ -232,13 +227,11 @@ const structuredData: StructuredData = {
 	<Section id="dt21">
 		<H slot="heading">DT-21T 型、TR-64 型、DT-21B 型 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/DT21B_hokuriku7112.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-				<!-- 撮影日: 2007-03-31 -->
-			</div>
-			<figcaption class="c-caption -meta">北陸鉄道クハ7112 野町方</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/DT21B_hokuriku7112.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2007-03-31 -->
+			<Fragment slot="caption">北陸鉄道クハ7112 野町方</Fragment>
+		</Embedded>
 
 		<p>北陸鉄道へ譲渡された旧7000系は、600V 降圧化に際し床下機器や主幹制御器などが一新され、台車も交換されています。東急時代は全電動車方式でしたが、譲渡に際し鶴来向きの先頭車は電装解除され、台車はいわゆる新性能国電に広く使われていた DT-21 系、 TR-64 系に換装されました。</p>
 
@@ -248,13 +241,11 @@ const structuredData: StructuredData = {
 	<Section id="fs342">
 		<H slot="heading">FS-342 型 <small class="c-tokyu-truck -m">動力台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/FS342_hokuriku7102.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-				<!-- 撮影日: 2007-03-31 -->
-			</div>
-			<figcaption class="c-caption -meta">北陸鉄道モハ7102 鶴来方</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/FS342_hokuriku7102.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2007-03-31 -->
+			<Fragment slot="caption">北陸鉄道モハ7102 鶴来方</Fragment>
+		</Embedded>
 
 		<p>北陸鉄道7000系の電動車が履く FS-342 型は、 DT-21 型台車を元に住友金属工業<small>（現：日本製鉄）</small>が西武鉄道向け（後に上信電鉄も）に製作したもので、構造は DT-21 型の量産タイプと同じです。</p>
 	</Section>
@@ -262,13 +253,11 @@ const structuredData: StructuredData = {
 	<Section id="fs097">
 		<H slot="heading">FS-097 型 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/FS097_iyotetsu502.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-				<!-- 撮影日: 2008-10-19 -->
-			</div>
-			<figcaption class="c-caption -meta">伊予鉄道サハ502 横河原方</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/FS097_iyotetsu502.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2008-10-19 -->
+			<Fragment slot="caption">伊予鉄道サハ502 横河原方</Fragment>
+		</Embedded>
 
 		<p>伊予鉄道へ譲渡された旧サハ3350形のうち、サハ502 は昭和50年代に電気指令ブレーキ化などのほかに台車換装が行われました。対応する M 台車はこれより2年前の1976年に製造された <LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/FS397_iyotetsu303.jpg" title="伊予鉄道デハ303 高浜方"><!-- 撮影日: 2008-10-19 -->FS-397型</LinkPhoto>で、ともに伊予鉄道300形、500形のために制作された台車です。ダイレクトマウント式空気ばね、ボルスタアンカー、ペデスタル軸ばねなど、当時の東急電車の台車（<a href="/tokyu/truck/ts800">TS-800 系</a>）と機能的に共通した部分が多く、古い車体とのアンバランスさが目立っていました。</p>
 
@@ -278,13 +267,11 @@ const structuredData: StructuredData = {
 	<Section id="tr230">
 		<H slot="heading">TR-230C 型 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/truck/TR230_mani50-2186.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-				<!-- 撮影日: 2019-07-03 -->
-			</div>
-			<figcaption class="c-caption -meta">マニ50 2186</figcaption>
-		</figure>
+		<Embedded border={true} captionMeta={true}>
+			<Image path="tokyu/truck/TR230_mani50-2186.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+			<!-- 撮影日: 2019-07-03 -->
+			<Fragment slot="caption">マニ50 2186</Fragment>
+		</Embedded>
 
 		<p>2019年に東急電鉄に譲渡されたマニ50 2186 はジョイフルトレイン「<cite>リゾートエクスプレスゆう</cite>」の電源車として改造された車両で、台車は TR-230C 型を履用しています。</p>
 

@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocMagazine from '@components/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
@@ -99,13 +100,11 @@ const structuredData: StructuredData = {
 		<Section id="ts701-m" depth={2} headingType="b">
 			<H slot="heading">TS-701 <small class="c-tokyu-truck -m">動力台車</small></H>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS701_mizuma7003.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2006-09-02 -->
-				</div>
-				<figcaption class="c-caption -meta">水間鉄道デハ7003 貝塚方（東急デハ7012 下り方）</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS701_mizuma7003.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2006-09-02 -->
+				<Fragment slot="caption">水間鉄道デハ7003 貝塚方（東急デハ7012 下り方）</Fragment>
+			</Embedded>
 
 			<p>1962年に登場した旧7000系の台車として、国内で初めて採用されたパイオニアⅢ台車です。軸ばねのないすっきりした外観はPⅢ台車共通ですが、車軸端に取り付けられた外側ディスクブレーキと車体天秤梁に結合されたボルスタアンカー受けが目立ち、同台車最大の特徴となっています。また直流電動機を持つ電動車でありながら、車内騒音を考慮し車体床面の主電動機点検蓋が設けられていないことも注目点として挙げられます。</p>
 
@@ -117,13 +116,11 @@ const structuredData: StructuredData = {
 		<Section id="ts701-t" depth={2} headingType="b">
 			<H slot="heading">TS-701 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS701_fukushima7315.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2017-08-26 -->
-				</div>
-				<figcaption class="c-caption -meta">福島交通サハ7315 飯坂温泉方（東急デハ7134 上り方）</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS701_fukushima7315.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2017-08-26 -->
+				<Fragment slot="caption">福島交通サハ7315 飯坂温泉方（東急デハ7134 上り方）</Fragment>
+			</Embedded>
 
 			<p>全電動車方式で登場した旧7000系ですが、1991年に福島交通へ譲渡された車両のうち3両編成用の中間車は付随車サハ7300形となり、電装解除されました。</p>
 		</Section>
@@ -135,13 +132,11 @@ const structuredData: StructuredData = {
 		<Section id="ts708-t" depth={2} headingType="b">
 			<H slot="heading">TS-708 <small class="c-tokyu-truck -t">付随台車</small></H>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS708_ueda7551.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2005-04-16 -->
-				</div>
-				<figcaption class="c-caption -meta">上田交通クハ7551 別所温泉方（東急クハ7551 下り方）</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS708_ueda7551.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2005-04-16 -->
+				<Fragment slot="caption">上田交通クハ7551 別所温泉方（東急クハ7551 下り方）</Fragment>
+			</Embedded>
 
 			<p>1967年登場の7200系では電動車にペデスタル軸ばね式の <a href="/tokyu/truck/ts800">TS-800 系</a>が採用されたものの、制御車のクハ7500形のみ引き続きパイオニア台車 TS-707 型が採用されました。側梁は弓形に湾曲し、ボルスタアンカー位置は低くなっています。また、ブレーキディスクは1軸に1枚が車輪内側に配置されたため、 TS-701 型とは外観がかなり異なるものとなっています。</p>
 

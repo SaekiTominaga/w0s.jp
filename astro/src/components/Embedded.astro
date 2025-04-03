@@ -1,0 +1,91 @@
+---
+interface Props {
+	border?: boolean;
+	captionMeta?: boolean;
+}
+
+const { border, captionMeta } = Astro.props;
+---
+
+<figure>
+	<div class:list={['embed', border ? '-border' : undefined]}>
+		<slot name="media" />
+	</div>
+	{
+		Astro.slots.has('caption') && (
+			<figcaption class:list={['c-caption', captionMeta ? '-meta' : undefined]}>
+				<slot name="caption" />
+			</figcaption>
+		)
+	}
+</figure>
+
+<style>
+	.embed {
+		--_border-width: 0px;
+
+		contain: layout;
+
+		&.-border {
+			--_border-width: 1px;
+		}
+
+		:global(& > :any-link) {
+			--_expand-icon-padding: 4px;
+
+			display: inline flow-root;
+			outline-offset: -1px;
+			outline-width: var(--outline-width-bold);
+
+			&::before {
+				box-sizing: border-box;
+				display: block flow;
+				position: absolute;
+				inset: 1px;
+				background: rgb(0 0 0 / 70%) url('/assets/image/media-expansion.svg') center/contain no-repeat content-box border-box;
+				padding: var(--_expand-icon-padding);
+				block-size: 24px;
+				inline-size: 24px;
+				content: '';
+			}
+
+			&:hover {
+				--_expand-icon-padding: 3px;
+			}
+		}
+
+		:global(& :is(img, video)) {
+			display: inline flow-root;
+			border: var(--_border-width) solid var(--color-black);
+			block-size: auto;
+			max-inline-size: calc(100% - var(--_border-width) * 2);
+			vertical-align: top;
+		} /* <audio> については block-size: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
+
+		:global(& video) {
+			outline-offset: -1px;
+			outline-width: var(--outline-width-bold);
+		}
+
+		:global(& audio) {
+			outline-offset: 0;
+			outline-width: var(--outline-width-bold);
+		}
+
+		:global(& iframe) {
+			--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
+
+			box-sizing: border-box;
+			display: block flow;
+			margin-inline: auto;
+			border: var(--_border-width) solid var(--color-black);
+			aspect-ratio: var(--aspect-ratio, auto);
+			block-size: auto;
+			inline-size: calc(100% - var(--_margin-inline) * 2);
+
+			@media (--breakpoint) {
+				--_margin-inline: 15px;
+			}
+		}
+	}
+</style>

@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -38,13 +39,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-1000N" depth={2} headingType="c">
 					<H slot="heading">1000N系、1000N′系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/1000N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-11 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1017（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/1000N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-11 -->
+						<Fragment slot="caption">クハ1017（4次車）</Fragment>
+					</Embedded>
 
 					<p>車央部に冷房装置が3台配置されており、キセの開口部は両端の2台は下り方に、中央の1台は上り方に開けられています。冷房装置の両脇には、ほぼ車体全長にわたってランボードが設けられています。</p>
 
@@ -62,13 +61,11 @@ const structuredData: StructuredData = {
 				<Section id="m-1200N" depth={2} headingType="c">
 					<H slot="heading">1000N系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/1200N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-11 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1213（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/1200N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-11 -->
+						<Fragment slot="caption">デハ1213（3次車）</Fragment>
+					</Embedded>
 
 					<p>上り方車端部に集電装置（菱形またはシングルアーム形パンタグラフ）が設置されており、その上り方には避雷器があります。集電装置から延びる配管は、上り方妻面から床下へ繋がっています。なお、主ヒューズ（MF）を通る配管は2本です。</p>
 
@@ -79,13 +76,11 @@ const structuredData: StructuredData = {
 				<Section id="m-1200N2" depth={2} headingType="c">
 					<H slot="heading">1000N′系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/1200N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-11 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1221（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/1200N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-11 -->
+						<Fragment slot="caption">デハ1221（4次車）</Fragment>
+					</Embedded>
 
 					<p>1000N′系のデハ1200形は、主ヒューズ（MF）を通る配管が1本となっています。</p>
 				</Section>
@@ -101,13 +96,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-1300N" depth={2} headingType="c">
 					<H slot="heading">1000N系、1000N′系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/1300N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-27 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1323（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/1300N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-27 -->
+						<Fragment slot="caption">デハ1323（5次車）</Fragment>
+					</Embedded>
 
 					<p>上り方車端部に集電装置（菱形またはシングルアーム形パンタグラフ）が設置されており、その上り方には避雷器があります。集電装置から延びる配管は、上り方妻面から床下へ繋がっています。なお、主ヒューズ（MF）を通る配管は2本です。</p>
 

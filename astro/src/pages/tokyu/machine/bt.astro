@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -31,13 +32,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">7200系<small>（100V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/7200_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-09-17 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7290（2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/7200_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-09-17 -->
+						<Fragment slot="caption">デヤ7290（2次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>
@@ -51,65 +50,55 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">8000系<small>（100V・20Ah、100V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/8000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-11-14 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8232（6次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/8000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-11-14 -->
+						<Fragment slot="caption">デハ8232（6次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">8500系、8090系、7600系、7700系<small>（100V・40Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/8500_100V-40Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-09-28 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8281（16-2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/8500_100V-40Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-09-28 -->
+						<Fragment slot="caption">デハ8281（16-2次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">7700系<small>（100V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/7800_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7801（1次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/7800_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-01-20 -->
+						<Fragment slot="caption">デハ7801（1次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">8500系、8090系<small>（24V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/8500_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-11-16 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ8977（18-2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/8500_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-11-16 -->
+						<Fragment slot="caption">サハ8977（18-2次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">7600系、7700系<small>（24V・20Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/7600_24V-20Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-08-19 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7714（5次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/7600_24V-20Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-08-19 -->
+						<Fragment slot="caption">デハ7714（5次車）山側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>
@@ -123,26 +112,22 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">9000系<small>（100V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/9000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-11-14 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ9810（3次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/9000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-11-14 -->
+						<Fragment slot="caption">サハ9810（3次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">9000系<small>（100V・30Ah / 24V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/9000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-11-14 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9010（3次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/9000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-11-14 -->
+						<Fragment slot="caption">クハ9010（3次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>
@@ -156,26 +141,22 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">1000系、2000系<small>（100V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/1000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-07-18 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1024（5次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/1000_100V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-07-18 -->
+						<Fragment slot="caption">クハ1024（5次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">1000系、2000系<small>（100V・30Ah / 24V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/1000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-04-17 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1223（4次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/1000_100V-30Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-04-17 -->
+						<Fragment slot="caption">デハ1223（4次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>
@@ -189,13 +170,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">新3000系、Y000系<small>（100V・60Ah / 24V・30Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/3000_100V-60Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-08-19 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ3510（2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/3000_100V-60Ah_24V-30Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-08-19 -->
+						<Fragment slot="caption">サハ3510（2次車）海側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>
@@ -209,13 +188,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">300系<small>（100V・20Ah / 24V・80Ah）</small></H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bt/300_100V-20Ah_24V-80Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-09-23 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ305B（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bt/300_100V-20Ah_24V-80Ah.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-09-23 -->
+						<Fragment slot="caption">デハ305B（2次車）山側</Fragment>
+					</Embedded>
 				</Section>
 			</div>
 		</div>

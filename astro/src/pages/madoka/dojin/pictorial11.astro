@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -54,11 +55,10 @@ const structuredData: StructuredData = {
 				</dl>
 			</div>
 			<div class="c-embed-sidebar__embed">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="madoka/dojin/pictorial11_cover.jpg" alt="表紙画像: 複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} quality={60} />
-					</div>
-				</figure>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial11_cover.jpg" alt="表紙画像: 複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
 			</div>
 		</div>
 	</Section>

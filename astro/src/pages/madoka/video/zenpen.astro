@@ -3,9 +3,10 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import Image from '@components/Image.astro';
+import Embedded from '@components/Embedded.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import H from '@components/H.astro';
+import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -146,20 +147,16 @@ const structuredData: StructuredData = {
 
 					<div class="c-grid -medium">
 						<div class="c-grid__item">
-							<figure>
-								<div class="p-embed -border">
-									<Image path="madoka/video/zenpen_chapter6_00-17-13_trailer.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} />
-								</div>
-								<figcaption class="c-caption">予告編1（後編BD/DVD収録）</figcaption>
-							</figure>
+							<Embedded border={true}>
+								<Image path="madoka/video/zenpen_chapter6_00-17-13_trailer.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+								<Fragment slot="caption">予告編1（後編BD/DVD収録）</Fragment>
+							</Embedded>
 						</div>
 						<div class="c-grid__item">
-							<figure>
-								<div class="p-embed -border">
-									<Image path="madoka/video/zenpen_chapter6_00-17-13_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} />
-								</div>
-								<figcaption class="c-caption">パッケージ版</figcaption>
-							</figure>
+							<Embedded border={true}>
+								<Image path="madoka/video/zenpen_chapter6_00-17-13_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+								<Fragment slot="caption">パッケージ版</Fragment>
+							</Embedded>
 						</div>
 					</div>
 

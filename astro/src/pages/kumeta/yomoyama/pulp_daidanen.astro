@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,12 +26,10 @@ const slugger = new GithubSlugger();
 			<summary>イラストを見る<small>（※最終話ネタバレ注意）</small></summary>
 
 			<div class="p-toggle__contents">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="kumeta/yomoyama/pulp15_daidanen.jpg" alt="大画像" width={1022} height={734} quality={60} link={true} />
-					</div>
-					<figcaption class="c-caption">見開きの大団円イラスト（<cite>楽園</cite> 32号 pp.360–361 を加工）</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="kumeta/yomoyama/pulp15_daidanen.jpg" alt="画像拡大" width={1022} height={734} quality={60} link={true} slot="media" />
+					<Fragment slot="caption">見開きの大団円イラスト（<cite>楽園</cite> 32号 pp.360–361 を加工）</Fragment>
+				</Embedded>
 			</div>
 		</details>
 	</Section>

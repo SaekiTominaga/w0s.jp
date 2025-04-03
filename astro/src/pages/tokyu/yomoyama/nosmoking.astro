@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -28,13 +29,11 @@ const structuredData: StructuredData = {
 				<Section id="bold-purple" depth={2} headingType="c">
 					<H slot="heading">太フォント、英文紺字</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/bold_purple.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-07-30 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8218（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/bold_purple.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-07-30 -->
+						<Fragment slot="caption">デハ8218（4次車）</Fragment>
+					</Embedded>
 
 					<p>長方形のプレートに赤字で<q>禁煙</q>、紺色で<q lang="en">NO SMOKING</q>と書かれています。ほかの太フォントタイプと比べると字体が若干異なります。残存枚数は1桁台と思われます。</p>
 				</Section>
@@ -43,13 +42,11 @@ const structuredData: StructuredData = {
 				<Section id="bold-black" depth={2} headingType="c">
 					<H slot="heading">太フォント、英文黒字</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/bold_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-07-30 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ8040（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/bold_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-07-30 -->
+						<Fragment slot="caption">クハ8040（4次車）</Fragment>
+					</Embedded>
 
 					<p>太フォント、英文黒字のタイプ。こちらも残存枚数わずかと思われますが、譲渡車両には多数現存します。</p>
 				</Section>
@@ -58,13 +55,11 @@ const structuredData: StructuredData = {
 				<Section id="bold-blue" depth={2} headingType="c">
 					<H slot="heading">太フォント、英文青字</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/bold_blue.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-25 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1312（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/bold_blue.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-25 -->
+						<Fragment slot="caption">デハ1312（3次車）</Fragment>
+					</Embedded>
 
 					<p>2000系1次車までの車両に広く使用されています。</p>
 				</Section>
@@ -73,13 +68,11 @@ const structuredData: StructuredData = {
 				<Section id="thin-black" depth={2} headingType="c">
 					<H slot="heading">細フォント、英文黒字</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/thin_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-25 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7908（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/thin_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-25 -->
+						<Fragment slot="caption">クハ7908（2次車）</Fragment>
+					</Embedded>
 
 					<p>8000系や8500系、7700系などの一部は、フォントが細字なタイプとなっています。</p>
 				</Section>
@@ -95,13 +88,11 @@ const structuredData: StructuredData = {
 				<Section id="pic-str" depth={2} headingType="c">
 					<H slot="heading">ピクトグラム + 文字</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/pic_str.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-18 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7653（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/pic_str.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-18 -->
+						<Fragment slot="caption">デハ7653（1次車）</Fragment>
+					</Embedded>
 
 					<p>2000系アメニティ向上車や1000系5次車ではピクトグラム標記が採用され、プレートの左側に禁煙サイン、右側は従来どおり<q>禁煙</q><q lang="en">NO SMOKING</q>と文字が書かれています。8000系（東横線所属車）や8500系、7600系の室内・車体更新車もこのタイプに交換されました。</p>
 				</Section>
@@ -110,13 +101,11 @@ const structuredData: StructuredData = {
 				<Section id="pic-only" depth={2} headingType="c">
 					<H slot="heading">ピクトグラムのみ</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/pic_only.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-18 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ8001（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/pic_only.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-18 -->
+						<Fragment slot="caption">クハ8001（1次車）</Fragment>
+					</Embedded>
 
 					<p>大井町線の8000系車体更新車は、正方形のシールによる掲出となり、文字はなく禁煙サインのみです。</p>
 				</Section>
@@ -132,13 +121,11 @@ const structuredData: StructuredData = {
 				<Section id="3000" depth={2} headingType="c">
 					<H slot="heading">新3000系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/3000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-25 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ3013（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/3000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-25 -->
+						<Fragment slot="caption">クハ3013（3次車）</Fragment>
+					</Embedded>
 
 					<p>新3000系からは、室内標記が化粧板に直接印刷されたものとなり、禁煙サインもデザインが変わり小型のものが号車標記と一体になった形で印刷されています。</p>
 				</Section>
@@ -147,13 +134,11 @@ const structuredData: StructuredData = {
 				<Section id="y000" depth={2} headingType="c">
 					<H slot="heading">Y000系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/Y000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-24 -->
-						</div>
-						<figcaption class="c-caption -meta">デハY011（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/Y000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-24 -->
+						<Fragment slot="caption">デハY011（1次車）</Fragment>
+					</Embedded>
 
 					<p>こどもの国線のY000系は、地下線に乗り入れることがないためか号車標記がなく、禁煙サインが車号標記と一体になっています。</p>
 				</Section>
@@ -162,13 +147,11 @@ const structuredData: StructuredData = {
 				<Section id="300" depth={2} headingType="c">
 					<H slot="heading">300系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/300.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-06-24 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ301A（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/300.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-06-24 -->
+						<Fragment slot="caption">デハ301A（1次車）</Fragment>
+					</Embedded>
 
 					<p>世田谷線の300系は、車号標記とは独立した位置に禁煙サインのみが印刷されています。</p>
 				</Section>
@@ -177,13 +160,11 @@ const structuredData: StructuredData = {
 				<Section id="9000-renewal" depth={2} headingType="c">
 					<H slot="heading">9000系化粧板修繕車</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/yomoyama/nosmoking/9000_renewal.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} />
-							<!-- 撮影日: 2006-07-01 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9011（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/yomoyama/nosmoking/9000_renewal.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-07-01 -->
+						<Fragment slot="caption">クハ9011（3次車）</Fragment>
+					</Embedded>
 
 					<p>2003年より9000系の化粧板修繕工事が開始されましたが、2本目以降は室内標記も交換対象となりました。禁煙サインは再び旧デザインのものとなり、号車標記と一体になって印刷されています。</p>
 				</Section>

@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -174,22 +175,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-grid -medium">
 				<div class="c-grid__item">
-					<figure>
-						<div class="p-embed -border">
-							<Image path="madoka/yomoyama/monoga-modoka_kanazawa1.jpg" alt="写真拡大" width={306} height={306} quality={60} link={true} />
-							<!-- 2016-12-22 IMG_5289 -->
-						</div>
-						<figcaption class="c-caption"><cite>MADOGATARI GALLERY</cite> でのキャラクターボード展示</figcaption>
-					</figure>
+					<Embedded border={true}>
+						<Image path="madoka/yomoyama/monoga-modoka_kanazawa1.jpg" alt="写真拡大" width={306} height={306} quality={60} link={true} slot="media" />
+						<Fragment slot="caption"><cite>MADOGATARI GALLERY</cite> でのキャラクターボード展示</Fragment>
+						<!-- 2016-12-22 IMG_5289 -->
+					</Embedded>
 				</div>
 				<div class="c-grid__item">
-					<figure>
-						<div class="p-embed -border">
-							<Image path="madoka/yomoyama/monoga-modoka_kanazawa2.jpg" alt="写真拡大" width={306} height={204} quality={60} link={true} />
-							<!-- 2016-12-22 IMG_5296 -->
-						</div>
-						<figcaption class="c-caption">キャラクターボードが展示されていたエリアの様子</figcaption>
-					</figure>
+					<Embedded border={true}>
+						<Image path="madoka/yomoyama/monoga-modoka_kanazawa2.jpg" alt="写真拡大" width={306} height={204} quality={60} link={true} slot="media" />
+						<Fragment slot="caption">キャラクターボードが展示されていたエリアの様子</Fragment>
+						<!-- 2016-12-22 IMG_5296 -->
+					</Embedded>
 				</div>
 			</div>
 		</Section>

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -417,22 +418,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CLG107_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2010-06-20 -->
-						</div>
-						<figcaption class="c-caption -meta">松本電気鉄道モハ5005（東急デハ5055）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CLG107_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2010-06-20 -->
+						<Fragment slot="caption">松本電気鉄道モハ5005（東急デハ5055）</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CLG107_3043.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-03-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デワ3043 海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CLG107_3043.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-03-20 -->
+						<Fragment slot="caption">デワ3043 海側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -452,11 +449,9 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-						</div>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+					</Embedded>
 				</div>
 			</div>
 
@@ -472,11 +467,9 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-						</div>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+					</Embedded>
 				</div>
 			</div>
 
@@ -490,13 +483,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/TDK381_konan6007.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-09-03 -->
-						</div>
-						<figcaption class="c-caption -meta">弘南鉄道デハ6007（東急デハ6007）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/TDK381_konan6007.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-09-03 -->
+						<Fragment slot="caption">弘南鉄道デハ6007（東急デハ6007）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -514,11 +505,9 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-						</div>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+					</Embedded>
 				</div>
 			</div>
 
@@ -540,13 +529,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/HG533_konan7031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-05-05 -->
-						</div>
-						<figcaption class="c-caption -meta">弘南鉄道デハ7031（東急デハ7031）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/HG533_konan7031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-05-05 -->
+						<Fragment slot="caption">弘南鉄道デハ7031（東急デハ7031）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -560,22 +547,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CLG339_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-01-17 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7290 山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CLG339_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-01-17 -->
+						<Fragment slot="caption">デヤ7290 山側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/SC102_toyohashi1809.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2023-03-03 -->
-						</div>
-						<figcaption class="c-caption -meta"><b>【自動調整器】</b>豊橋鉄道モ1809（東急デハ7256）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/SC102_toyohashi1809.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2023-03-03 -->
+						<Fragment slot="caption"><b>【自動調整器】</b>豊橋鉄道モ1809（東急デハ7256）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -599,13 +582,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CLG319_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-12 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7290 山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CLG319_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-12 -->
+						<Fragment slot="caption">デヤ7290 山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -631,13 +612,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CLG333_hakone107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2011-06-26 -->
-						</div>
-						<figcaption class="c-caption -meta">箱根登山鉄道モハ107</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CLG333_hakone107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2011-06-26 -->
+						<Fragment slot="caption">箱根登山鉄道モハ107</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -657,13 +636,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/TDK359_kumamoto5102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-01-02 -->
-						</div>
-						<figcaption class="c-caption -meta">熊本電気鉄道モハ5102A（東急デハ5032）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/TDK359_kumamoto5102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-01-02 -->
+						<Fragment slot="caption">熊本電気鉄道モハ5102A（東急デハ5032）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -681,13 +658,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/TDK366_hokuriku7112.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-11-04 -->
-						</div>
-						<figcaption class="c-caption -meta">北陸鉄道モハ7112（東急デハ7055）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/TDK366_hokuriku7112.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-11-04 -->
+						<Fragment slot="caption">北陸鉄道モハ7112（東急デハ7055）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -707,13 +682,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/BS33_8201.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-12-10 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8201（1次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/BS33_8201.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-12-10 -->
+						<Fragment slot="caption">デハ8201（1次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -735,13 +708,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV009_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-03-22 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8641（18-2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV009_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-03-22 -->
+						<Fragment slot="caption">デハ8641（18-2次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -761,13 +732,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/S11_konan7031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-08-05 -->
-						</div>
-						<figcaption class="c-caption -meta">弘南鉄道デハ7031（東急デハ7031）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/S11_konan7031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-08-05 -->
+						<Fragment slot="caption">弘南鉄道デハ7031（東急デハ7031）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -787,13 +756,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CLG350_8015.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-07-08 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ8015（2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CLG350_8015.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-07-08 -->
+						<Fragment slot="caption">クハ8015（2次車）海側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -809,13 +776,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/HG554_toyohashi2807.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-11-25 -->
-						</div>
-						<figcaption class="c-caption -meta">豊橋鉄道ク2807（東急クハ7554）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/HG554_toyohashi2807.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-11-25 -->
+						<Fragment slot="caption">豊橋鉄道ク2807（東急クハ7554）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -829,13 +794,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/TDK3725_mizuma1002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2015-04-18 -->
-						</div>
-						<figcaption class="c-caption -meta">水間鉄道デハ1002（東急デハ7009）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/TDK3725_mizuma1002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2015-04-18 -->
+						<Fragment slot="caption">水間鉄道デハ1002（東急デハ7009）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -855,11 +818,9 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-						</div>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+					</Embedded>
 				</div>
 			</div>
 
@@ -879,22 +840,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/BS477_7200.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-01-20 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7200 山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/BS477_7200.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-01-20 -->
+						<Fragment slot="caption">デヤ7200 山側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/BS477_mizuma1004.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-10-20 -->
-						</div>
-						<figcaption class="c-caption -meta">水間鉄道デハ1004（東急デハ7007）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/BS477_mizuma1004.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-10-20 -->
+						<Fragment slot="caption">水間鉄道デハ1004（東急デハ7007）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -918,13 +875,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/BS482_8097.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-03-01 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ8097（16-2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/BS482_8097.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-03-01 -->
+						<Fragment slot="caption">クハ8097（16-2次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -942,11 +897,9 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-						</div>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+					</Embedded>
 				</div>
 			</div>
 
@@ -964,22 +917,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV006_7602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-09-04 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7602（1次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV006_7602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-09-04 -->
+						<Fragment slot="caption">クハ7602（1次車）山側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV006_toyohashi2806.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-01-10 -->
-						</div>
-						<figcaption class="c-caption -meta">豊橋鉄道ク2806（東急クハ7505）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV006_toyohashi2806.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-01-10 -->
+						<Fragment slot="caption">豊橋鉄道ク2806（東急クハ7505）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -995,13 +944,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV008_8977.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-02-11 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ8977（18-2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV008_8977.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-02-11 -->
+						<Fragment slot="caption">サハ8977（18-2次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1015,13 +962,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV020_9310.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-03-08 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ9310（3次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV020_9310.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-03-08 -->
+						<Fragment slot="caption">デハ9310（3次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1035,13 +980,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/SVH120_7914.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-09-02 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7914（5次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/SVH120_7914.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-09-02 -->
+						<Fragment slot="caption">クハ7914（5次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1061,22 +1004,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV029_8398.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-01-31 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ8398（16-2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV029_8398.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-01-31 -->
+						<Fragment slot="caption">サハ8398（16-2次車）山側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV029_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2013-11-04 -->
-						</div>
-						<figcaption class="c-caption -meta">富山地方鉄道モハ17482（東急デハ8692）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV029_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2013-11-04 -->
+						<Fragment slot="caption">富山地方鉄道モハ17482（東急デハ8692）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1096,13 +1035,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV095_8932.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2006-09-05 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ8932（10-1次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV095_8932.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-09-05 -->
+						<Fragment slot="caption">サハ8932（10-1次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1118,13 +1055,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV127_3262.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-05-18 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ3262（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV127_3262.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-05-18 -->
+						<Fragment slot="caption">デハ3262（2次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1138,13 +1073,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV104_8296.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-27 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8296（13次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV104_8296.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-27 -->
+						<Fragment slot="caption">デハ8296（13次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1158,13 +1091,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV146_8031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-01-21 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ8031（4次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV146_8031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-01-21 -->
+						<Fragment slot="caption">クハ8031（4次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1178,13 +1109,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV153_8290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-22 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8290（17-1次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV153_8290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-22 -->
+						<Fragment slot="caption">デハ8290（17-1次車）山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1200,22 +1129,18 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV205_9322_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2023-01-19 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ9322 海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV205_9322_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2023-01-19 -->
+						<Fragment slot="caption">デハ9322 海側</Fragment>
+					</Embedded>
 				</div>
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/INV205_9322_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2019-05-19 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ9322 山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/INV205_9322_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2019-05-19 -->
+						<Fragment slot="caption">デハ9322 山側</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1231,13 +1156,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/CDA021_towada7204.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-04-30 -->
-						</div>
-						<figcaption class="c-caption -meta">十和田観光電鉄デハ7204（東急デハ7211）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/CDA021_towada7204.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-04-30 -->
+						<Fragment slot="caption">十和田観光電鉄デハ7204（東急デハ7211）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1255,13 +1178,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/BS483_toyohashi2810.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-04-04 -->
-						</div>
-						<figcaption class="c-caption -meta">豊橋鉄道ク2810（東急クハ7551）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/BS483_toyohashi2810.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-04-04 -->
+						<Fragment slot="caption">豊橋鉄道ク2810（東急クハ7551）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1275,13 +1196,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/RG5096_yoro7914.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2022-10-18 -->
-						</div>
-						<figcaption class="c-caption -meta">養老鉄道ク7914（東急クハ7914）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/RG5096_yoro7914.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2022-10-18 -->
+						<Fragment slot="caption">養老鉄道ク7914（東急クハ7914）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 
@@ -1319,77 +1238,71 @@ const structuredData: StructuredData = {
 				</table>
 			</div>
 		</Section>
-	</Section>
 
-	<Section id="vvvf">
-		<H slot="heading">VVVF 主制御器 / SIV 一体型</H>
+		<Section id="vvvf">
+			<H slot="heading">VVVF 主制御器 / SIV 一体型</H>
 
-		<Section id="rg660" depth={2} headingType="b">
-			<H slot="heading">RG660<small>（東洋電機製造、140kVA）</small></H>
+			<Section id="rg660" depth={2} headingType="b">
+				<H slot="heading">RG660<small>（東洋電機製造、140kVA）</small></H>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/RG660_7715.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+				<div class="c-flex">
+					<div class="c-flex__item">
+						<Embedded border={true} captionMeta={true}>
+							<Image path="tokyu/machine/aps/RG660_7715.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
 							<!-- 撮影日: 2009-05-12 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7715（5次車）山側</figcaption>
-					</figure>
+							<Fragment slot="caption">デハ7715（5次車）山側</Fragment>
+						</Embedded>
+					</div>
 				</div>
-			</div>
 
-			<p>サハ7950形を改造した車両を集めて1996年に池上線に登場した 7915F は、デハ7715 に主制御器の VVVF インバーターと一体になった SIV が搭載されました。</p>
+				<p>サハ7950形を改造した車両を集めて1996年に池上線に登場した 7915F は、デハ7715 に主制御器の VVVF インバーターと一体になった SIV が搭載されました。</p>
 
-			<p>これは3組あるインバーターのうち山側の第3バンクが SIV として動作、 SIV 故障時は海側の正面から見て右側の第2バンクを VVVF から SIV に切り替えられるもので、編成中に SIV が1基しかない短編成において冗長性を確保したものとなっています<NoteRef type="ref" by="rsat16" />。写真は山側の SIV 側を見たところで、向かって右側（下り方）が第3バンクです。</p>
+				<p>これは3組あるインバーターのうち山側の第3バンクが SIV として動作、 SIV 故障時は海側の正面から見て右側の第2バンクを VVVF から SIV に切り替えられるもので、編成中に SIV が1基しかない短編成において冗長性を確保したものとなっています<NoteRef type="ref" by="rsat16" />。写真は山側の SIV 側を見たところで、向かって右側（下り方）が第3バンクです。</p>
 
-			<NoteRefContent id="rsat16"><DocMagazine name="鉄道車両と技術" date="1996年11月号" no={16} article="自動切替機能付　SIV一体形VVVFインバータ装置の概要" authors={['辻村功']} pages={[4, 5]} /></NoteRefContent>
+				<NoteRefContent id="rsat16"><DocMagazine name="鉄道車両と技術" date="1996年11月号" no={16} article="自動切替機能付　SIV一体形VVVFインバータ装置の概要" authors={['辻村功']} pages={[4, 5]} /></NoteRefContent>
 
-			<p>2010年に廃車され、消滅しました。</p>
-		</Section>
+				<p>2010年に廃車され、消滅しました。</p>
+			</Section>
 
-		<Section id="svf041" depth={2} headingType="b">
-			<H slot="heading">SVF041<small>（東芝、80kVA）</small></H>
+			<Section id="svf041" depth={2} headingType="b">
+				<H slot="heading">SVF041<small>（東芝、80kVA）</small></H>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/SVF041_Y012.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+				<div class="c-flex">
+					<div class="c-flex__item">
+						<Embedded border={true} captionMeta={true}>
+							<Image path="tokyu/machine/aps/SVF041_Y012.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
 							<!-- 撮影日: 2006-07-09 -->
-						</div>
-						<figcaption class="c-caption -meta">デハY012 海側</figcaption>
-					</figure>
+							<Fragment slot="caption">デハY012 海側</Fragment>
+						</Embedded>
+					</div>
 				</div>
-			</div>
 
-			<p>こどもの国線用として2両編成で登場したY000系も、VVVF 主制御器（2群）と SIV（1群）が一体となったデュアルモードシステムが採用されました。</p>
+				<p>こどもの国線用として2両編成で登場したY000系も、VVVF 主制御器（2群）と SIV（1群）が一体となったデュアルモードシステムが採用されました。</p>
 
-			<p>2012年に登場した動力車デヤ7500、電気検測車デヤ7550 にも同じシステムが採用されています。</p>
-		</Section>
+				<p>2012年に登場した動力車デヤ7500、電気検測車デヤ7550 にも同じシステムが採用されています。</p>
+			</Section>
 
-		<Section id="svf091" depth={2} headingType="b">
-			<H slot="heading">SVF091<small>（東芝、150kVA）</small></H>
+			<Section id="svf091" depth={2} headingType="b">
+				<H slot="heading">SVF091<small>（東芝、150kVA）</small></H>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/SVF091_1602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
+				<div class="c-flex">
+					<div class="c-flex__item">
+						<Embedded border={true} captionMeta={true}>
+							<Image path="tokyu/machine/aps/SVF091_1602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
 							<!-- 撮影日: 2016-10-18 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1602 海側</figcaption>
-					</figure>
+							<Fragment slot="caption">デハ1602 海側</Fragment>
+						</Embedded>
+					</div>
 				</div>
-			</div>
 
-			<p>東横線と日比谷線の相互直通運転取り止めに伴い余剰になった1000系を改造して2014年に登場した1000系1500番台では、新7000系と同じタイプのデュアルモード VVVF / SIV システムが採用されました。</p>
+				<p>東横線と日比谷線の相互直通運転取り止めに伴い余剰になった1000系を改造して2014年に登場した1000系1500番台では、新7000系と同じタイプのデュアルモード VVVF / SIV システムが採用されました。</p>
 
-			<p>基本的なシステムは新7000系と同様ですが、新5000系以降の新造車は単相交流出力の電圧が 100V とされており、新7000系もそれを踏襲している<NoteRef type="ref" by="pic801" />のに対し、在来車改造の1000系1500番台では従来どおり 200V 出力となっている違いがあります<NoteRef type="ref" by="untenkyokai670" />。</p>
+				<p>基本的なシステムは新7000系と同様ですが、新5000系以降の新造車は単相交流出力の電圧が 100V とされており、新7000系もそれを踏襲している<NoteRef type="ref" by="pic801" />のに対し、在来車改造の1000系1500番台では従来どおり 200V 出力となっている違いがあります<NoteRef type="ref" by="untenkyokai670" />。</p>
 
-			<NoteRefContent id="pic801"><DocMagazine name="鉄道ピクトリアル" date="2008年3月号" no={801} article="東京急行電鉄7000系" authors={['望月利明']} pages={[112]} /></NoteRefContent>
+				<NoteRefContent id="pic801"><DocMagazine name="鉄道ピクトリアル" date="2008年3月号" no={801} article="東京急行電鉄7000系" authors={['望月利明']} pages={[112]} /></NoteRefContent>
 
-			<NoteRefContent id="untenkyokai670"><DocMagazine name="運転協会誌" date="2015年4月号" no={670} article="東京急行電鉄 1000系1500番台池上線・東急多摩川線転籍改造工事の概要" authors={['川浪一喜']} pages={[45]} /></NoteRefContent>
+				<NoteRefContent id="untenkyokai670"><DocMagazine name="運転協会誌" date="2015年4月号" no={670} article="東京急行電鉄 1000系1500番台池上線・東急多摩川線転籍改造工事の概要" authors={['川浪一喜']} pages={[45]} /></NoteRefContent>
+			</Section>
 		</Section>
 	</Section>
 
@@ -1401,13 +1314,11 @@ const structuredData: StructuredData = {
 
 			<div class="c-flex">
 				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aps/DA61T_306B.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} />
-							<!-- 撮影日: 2013-09-07 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ306B（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aps/DA61T_306B.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2013-09-07 -->
+						<Fragment slot="caption">デハ306B（2次車）</Fragment>
+					</Embedded>
 				</div>
 			</div>
 

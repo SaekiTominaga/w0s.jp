@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Date from '@components/Date.astro';
 import DateWareki from '@components/DateWareki.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkExternal from '@components/LinkExternal.astro';
@@ -41,11 +42,10 @@ const structuredData: StructuredData = {
 			</ul>
 		</div>
 		<div class="c-embed-sidebar__embed">
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙画像: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} />
-				</div>
-			</figure>
+			<Embedded border={true}>
+				<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙画像: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} slot="media" />
+				<Fragment slot="caption">表紙</Fragment>
+			</Embedded>
 		</div>
 	</div>
 

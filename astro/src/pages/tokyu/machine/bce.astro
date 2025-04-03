@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
-import Image from '@components/Image.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
+import Image from '@components/Image.astro';
+import LinkPhoto from '@components/LinkPhoto.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -29,13 +30,11 @@ const structuredData: StructuredData = {
 				<Section id="hd23" depth={2} headingType="c">
 					<H slot="heading">7200系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/HD23.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-12 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7200（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/HD23.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-12 -->
+						<Fragment slot="caption">デヤ7200（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>HSC（High Speed Control）としては最後の新造形式となった7200系が装備しているブレーキ制御装置。自動ブレーキの作用は7000系までのA制御弁に代わり、M非常弁で非常ブレーキ（EB）のみ行っています。</p>
 
@@ -53,13 +52,11 @@ const structuredData: StructuredData = {
 				<Section id="e6" depth={2} headingType="c">
 					<H slot="heading">8000系グループ、サヤ7590</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/E6-M.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-12-24 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8115（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/E6-M.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-12-24 -->
+						<Fragment slot="caption">デハ8115（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>8000系では全電気指令式ブレーキの<dfn>HRD</dfn>（High Response Digital）が採用されました。これは主幹制御器から3本の常用ブレーキ指令線を引き、0（オフ）と1（オン）の組み合わせによるデジタル指令を行うものであり、アナログ変換されたブレーキ指令を、ブレーキ制御装置で電気演算して空気ブレーキ制御装置へ送っています。</p>
 
@@ -70,13 +67,11 @@ const structuredData: StructuredData = {
 				<Section id="e30" depth={2} headingType="c">
 					<H slot="heading">9000系、1000系、2000系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/E30-A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-04-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ9311（3次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/E30-A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-04-21 -->
+						<Fragment slot="caption">デハ9311（3次車）山側</Fragment>
+					</Embedded>
 
 					<p>9000系では、主幹制御器からの指令電送をアナログ信号で行う<dfn>HRA</dfn>（High Response Analog）となりました。ブレーキ制御装置はユニット方式を採用しています。</p>
 
@@ -89,13 +84,11 @@ const structuredData: StructuredData = {
 				<Section id="e53" depth={2} headingType="c">
 					<H slot="heading">7600系、7700系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/E53.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-08-19 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7713（5次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/E53.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-08-19 -->
+						<Fragment slot="caption">デハ7713（5次車）山側</Fragment>
+					</Embedded>
 
 					<p>7600系、7700系は、当初は種車のままHSC-Rで竣功しましたが、遅れ込め制御などの実現のため海側に受量器が設置されました（ただし、後にT車から改造された<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/7715.jpg" title="デハ7715山側"><!-- 撮影日: 2007-06-03 -->デハ7715の受量器</LinkPhoto>は山側にある。）</p>
 
@@ -106,13 +99,11 @@ const structuredData: StructuredData = {
 				<Section id="e78" depth={2} headingType="c">
 					<H slot="heading">新3000系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/E78-M1.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-05-18 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ3212（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/E78-M1.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-05-18 -->
+						<Fragment slot="caption">デハ3212（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>新3000系から使われているブレーキ制御装置は、9000系などと同じユニット構造ですが、主制御器のある電動車では、受量器類および継電器類が一体の箱に収められており、フラット防止装置も内蔵されているため3部屋構造となっています。</p>
 
@@ -123,21 +114,17 @@ const structuredData: StructuredData = {
 				<Section id="e80" depth={2} headingType="c">
 					<H slot="heading">300系</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/E80.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2005-11-30 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ304A（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/E80.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2005-11-30 -->
+						<Fragment slot="caption">デハ304A（2次車）山側</Fragment>
+					</Embedded>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/bce/BSR70.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2007-10-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ309A（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/bce/BSR70.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2007-10-21 -->
+						<Fragment slot="caption">デハ309A（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>世田谷線の300系が装備するブレーキ制御装置（上写真）で、下高井戸向きのA車に搭載されています。別置きで受量器（下写真）を装備します。</p>
 				</Section>

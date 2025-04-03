@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -58,11 +59,10 @@ const slugger = new GithubSlugger();
 				</dl>
 			</div>
 			<div class="c-embed-sidebar__embed">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="madoka/dojin/pictorial6_cover.jpg" alt="表紙画像: [新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} />
-					</div>
-				</figure>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial6_cover.jpg" alt="表紙画像: [新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
 			</div>
 		</div>
 	</Section>

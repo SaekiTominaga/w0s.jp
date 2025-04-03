@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
+import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -32,13 +33,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">オリジナルタイプ</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-09-16 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7662（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-09-16 -->
+						<Fragment slot="caption">デハ7662（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>主制御器のある車両に取り付けられている過負荷灯は床下にあり、昔ながらの独立タイプです。7600系化された車両は非常通報灯を車体側面に増設しましたが、過負荷灯は床下のままとなっています。</p>
 				</Section>
@@ -47,13 +46,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">新型タイプ</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-09-07 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7200（2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-09-07 -->
+						<Fragment slot="caption">デヤ7200（2次車）海側</Fragment>
+					</Embedded>
 
 					<p>デハ7653、デハ7681、デハ7682、デヤ7200は異なる形状をしています。</p>
 				</Section>
@@ -69,13 +66,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">3灯タイプ</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-08-13 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8591（20次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-08-13 -->
+						<Fragment slot="caption">デハ8591（20次車）山側</Fragment>
+					</Embedded>
 
 					<p>8000系で車体側面に設けられた<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/usl/8000_bcl.jpg" title="デハ8408"><!-- 撮影日: 2005-08-10 -->BC不緩解灯</LinkPhoto>は、8500系では床下設置となりました。以降、8090系を除くすべての新造・改造形式は、車体にBC不緩解灯を持ちません。</p>
 
@@ -93,13 +88,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">4灯タイプ</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-10-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1218（4次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-10-21 -->
+						<Fragment slot="caption">デハ1218（4次車）山側</Fragment>
+					</Embedded>
 
 					<p>2000系までのVVVF新造車、および8500系VVVF車ではブレーキ装置に横付けされており、主制御器のある電動車と先頭車が4灯（「指令器異常」が追加）となりました。</p>
 				</Section>
@@ -108,13 +101,11 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<H slot="heading">3灯タイプ</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-08-19 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ9706（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-08-19 -->
+						<Fragment slot="caption">サハ9706（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>主制御器のない電動車と付随車は3灯です。</p>
 				</Section>

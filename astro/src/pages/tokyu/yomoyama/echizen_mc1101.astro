@@ -3,9 +3,10 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import LinkExternal from '@components/LinkExternal.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
@@ -35,13 +36,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/echizen_mc1101/MC1102.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-07-20 -->
-					</div>
-					<figcaption class="c-caption">えちぜん鉄道MC1102</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/echizen_mc1101/MC1102.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-07-20 -->
+					<Fragment slot="caption">えちぜん鉄道MC1102</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -99,12 +98,10 @@ const structuredData: StructuredData = {
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/echizen_mc1101/toyohashi_1956.jpg" width={500} height={356} quality={60} />
-					</div>
-					<figcaption class="c-caption">豊橋鉄道モ1956</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/echizen_mc1101/toyohashi_1956.jpg" width={500} height={356} quality={60} slot="media" />
+					<Fragment slot="caption">豊橋鉄道モ1956</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -120,22 +117,18 @@ const structuredData: StructuredData = {
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/echizen_mc1101/ttm_MMC-H-10G.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2006-04-23 -->
-					</div>
-					<figcaption class="c-caption">MMC-H-10G（電車とバスの博物館展示品）</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/echizen_mc1101/ttm_MMC-H-10G.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-04-23 -->
+					<Fragment slot="caption">MMC-H-10G（電車とバスの博物館展示品）</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-07-20 -->
-					</div>
-					<figcaption class="c-caption">MMC-H-10K（えちぜん鉄道MC1102）</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-07-20 -->
+					<Fragment slot="caption">MMC-H-10K（えちぜん鉄道MC1102）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -292,13 +285,11 @@ const structuredData: StructuredData = {
 
 		<div class="c-grid -wide">
 			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K_magnify.jpg" alt="写真拡大" width={500} height={375} quality={60} link={true} />
-						<!-- 撮影日: 2009-07-20 -->
-					</div>
-					<figcaption class="c-caption">MC1102の主制御器、MCOS蓋拡大</figcaption>
-				</figure>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K_magnify.jpg" alt="写真拡大" width={500} height={375} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-07-20 -->
+					<Fragment slot="caption">MC1102の主制御器、MCOS蓋拡大</Fragment>
+				</Embedded>
 			</div>
 		</div>
 

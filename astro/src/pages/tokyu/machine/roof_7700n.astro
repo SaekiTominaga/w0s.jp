@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -38,13 +39,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-7715" depth={2} headingType="c">
 					<H slot="heading">デハ7715</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7700N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7715（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7700N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-21 -->
+						<Fragment slot="caption">デハ7715（5次車）</Fragment>
+					</Embedded>
 
 					<p>もっとも下り方の冷房装置の上り方に集電装置（シングルアーム形パンタグラフ）が設置されており、その上り方には避雷器があります。集電装置から延びる配管は、上り方妻面から床下へ繋がっています。</p>
 
@@ -64,13 +63,11 @@ const structuredData: StructuredData = {
 				<Section id="m-7815" depth={2} headingType="c">
 					<H slot="heading">デハ7815</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7800N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7815（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7800N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-21 -->
+						<Fragment slot="caption">デハ7815（4次車）</Fragment>
+					</Embedded>
 
 					<p>もっとも下り方の冷房装置の上り方に集電装置（シングルアーム形パンタグラフ）が設置されており、その上り方には避雷器があります。集電装置から延びる配管は、下り方妻面から床下へ繋がっています。</p>
 
@@ -88,13 +85,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-7915" depth={2} headingType="c">
 					<H slot="heading">クハ7915</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7900N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-21 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7915（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7900N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-21 -->
+						<Fragment slot="caption">クハ7915（5次車）</Fragment>
+					</Embedded>
 
 					<p>冷房装置が等間隔に3台配置されており、キセの開口部はすべて下り方に開けられています。冷房装置の両脇には、ほぼ車体全長にわたって小型のランボードが設けられています。</p>
 

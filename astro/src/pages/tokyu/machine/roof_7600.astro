@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
-import Section from '@components/Section.astro';
 import Image from '@components/Image.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -38,13 +39,11 @@ const structuredData: StructuredData = {
 				<Section id="tc-7601" depth={2} headingType="c">
 					<H slot="heading">クハ7601〜7603</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7600.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-21 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7602（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7600.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-21 -->
+						<Fragment slot="caption">クハ7602（1次車）</Fragment>
+					</Embedded>
 
 					<p>冷房装置が等間隔に4台配置されており、キセの開口部はすべて上り方に開けられています。冷房装置の両脇には、ほぼ車体全長にわたってゲタ型のランボードが設けられています。</p>
 
@@ -62,13 +61,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-7653" depth={2} headingType="c">
 					<H slot="heading">デハ7653</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7653.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-27 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7653（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7653.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-27 -->
+						<Fragment slot="caption">デハ7653（1次車）</Fragment>
+					</Embedded>
 
 					<p>下り方車端部に集電装置（シングルアーム形パンタグラフ）が設置されており、その上り方には避雷器があります。集電装置から延びる配管は、上り方妻面から床下へ繋がっています。上り方には集電装置の撤去跡として台座が残されています。</p>
 
@@ -81,13 +78,11 @@ const structuredData: StructuredData = {
 				<Section id="mc-7661" depth={2} headingType="c">
 					<H slot="heading">デハ7661〜7662</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7650.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7662（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7650.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-21 -->
+						<Fragment slot="caption">デハ7662（2次車）</Fragment>
+					</Embedded>
 
 					<p>冷房装置が等間隔に4台配置されており、キセの開口部はすべて下り方に開けられています。冷房装置の両脇には、ほぼ車体全長にわたってゲタ型のランボードが設けられています。</p>
 
@@ -105,13 +100,11 @@ const structuredData: StructuredData = {
 				<Section id="m-7673" depth={2} headingType="c">
 					<H slot="heading">デハ7673</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7673.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-27 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7673（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7673.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-27 -->
+						<Fragment slot="caption">デハ7673（3次車）</Fragment>
+					</Embedded>
 
 					<p>下り方車端部に集電装置（シングルアーム形パンタグラフ）が設置されており、その下り方には避雷器があります。集電装置から延びる配管は、下り方妻面から床下へ繋がっています。</p>
 
@@ -122,13 +115,11 @@ const structuredData: StructuredData = {
 				<Section id="m-7681" depth={2} headingType="c">
 					<H slot="heading">デハ7681〜7682</H>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7670.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-05-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7682（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7670.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-05-21 -->
+						<Fragment slot="caption">デハ7682（1次車）</Fragment>
+					</Embedded>
 
 					<p>両側の車端部に集電装置（菱形パンタグラフ）が設置されており、それぞれの上り方には避雷器があります。下り方の集電装置から延びる配管は、上り方集電装置からのもの共々、上り方妻面から床下へ繋がっています。</p>
 

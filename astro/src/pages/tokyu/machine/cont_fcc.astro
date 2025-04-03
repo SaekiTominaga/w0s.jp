@@ -2,8 +2,9 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocMagazine from '@components/DocMagazine.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
+import H from '@components/H.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -125,40 +126,32 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-20A_8117.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-11-20 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8117（2次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-20A_8117.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-11-20 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8117（2次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CHS_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-07-21 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁チョッパ装置】</b>デハ8102（1次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CHS_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-07-21 -->
+					<Fragment slot="caption"><b>【界磁チョッパ装置】</b>デハ8102（1次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-08-18 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>デハ8102（1次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-08-18 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>デハ8102（1次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_izukyu8107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2023-10-20 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【限流抵抗器&amp;主抵抗器】</b>伊豆急行モハ8107（東急デハ8115）</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_izukyu8107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2023-10-20 -->
+					<Fragment slot="caption"><b>【限流抵抗器&amp;主抵抗器】</b>伊豆急行モハ8107（東急デハ8115）</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -183,15 +176,11 @@ const structuredData: StructuredData = {
 
 			<p>譲渡車では、伊豆急行に譲渡された8000系第1陣のうち2両編成車が 1M1T 構成とされ、伊豆急下田寄りのクモハ8151（東急デハ8155、11-1次車）が当初単独 M<span class="u-tokyu-unit">1</span>c 車とされましたが、運用開始後まもなくして相方の電装化に伴いユニット車となりました。また、モデルカーとされたデハ8723（7-2次車）は伊豆急行クモハ8152 として単独 M<span class="u-tokyu-unit">1</span>c 車のまま出場したものの、現地での営業入りまでにユニット化されています。</p>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/machine/cont/tokyu8103.jpg" alt="" width={360} height={240} quality={60} />
-					<!-- 撮影日: 2005-08-14 -->
-				</div>
-				<figcaption class="c-caption">
-					<span class="c-caption__title">大井町線で最後まで残った単独 M<span class="u-tokyu-unit">1</span> 車のデハ8103</span>
-				</figcaption>
-			</figure>
+			<Embedded border={true}>
+				<Image path="tokyu/machine/cont/tokyu8103.jpg" alt="" width={360} height={240} quality={60} slot="media" />
+				<!-- 撮影日: 2005-08-14 -->
+				<Fragment slot="caption">大井町線で最後まで残った単独 M<span class="u-tokyu-unit">1</span> 車のデハ8103 </Fragment>
+			</Embedded>
 		</Section>
 	</Section>
 
@@ -200,31 +189,25 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-20C_8519.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-04-27 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8519（8次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-20C_8519.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-04-27 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8519（8次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CH-SF101C_8736.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-02-10 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁チョッパ装置】</b>デハ8736（9-1次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CH-SF101C_8736.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-02-10 -->
+					<Fragment slot="caption"><b>【界磁チョッパ装置】</b>デハ8736（9-1次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_8514.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-11-19 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>デハ8514（7-1次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_8514.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-11-19 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>デハ8514（7-1次車）海側</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -246,31 +229,25 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-20F_8181.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-06-08 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8181（16-2次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-20F_8181.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-06-08 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8181（16-2次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CH-SF111_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-06-08 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁チョッパ装置、GTO】</b>デハ8497（16-2次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CH-SF111_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-06-08 -->
+					<Fragment slot="caption"><b>【界磁チョッパ装置、GTO】</b>デハ8497（16-2次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_8180.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-08-18 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱、小型】</b>デハ8180（16-2次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_8180.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-08-18 -->
+					<Fragment slot="caption"><b>【断流器箱、小型】</b>デハ8180（16-2次車）海側</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
@@ -294,22 +271,18 @@ const structuredData: StructuredData = {
 
 		<div class="c-flex">
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-10D_8495.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-06-08 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8495（16-2次車）海側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-10D_8495.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-06-08 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8495（16-2次車）海側</Fragment>
+				</Embedded>
 			</div>
 			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-12-03 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【限流抵抗器&amp;主抵抗器】</b>デハ8497（16-2次車）山側</figcaption>
-				</figure>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-12-03 -->
+					<Fragment slot="caption"><b>【限流抵抗器&amp;主抵抗器】</b>デハ8497（16-2次車）山側</Fragment>
+				</Embedded>
 			</div>
 		</div>
 
