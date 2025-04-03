@@ -62,6 +62,11 @@ export default {
 				'no-empty-palpable-content': false,
 			},
 		},
+		'dist/client/**/*.html': {
+			rules: {
+				'class-naming': false,
+			},
+		},
 		'src/pages/tokyu/data/history/index.astro': {
 			rules: {
 				'no-orphaned-end-tag': false,

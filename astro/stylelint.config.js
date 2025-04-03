@@ -12,5 +12,6 @@ export default {
 				severity: 'warning',
 			},
 		],
+		'selector-class-pattern': /^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$/,
 	},
 };
