@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
+import Link from './Link.astro';
 import SelfLink from './SelfLink.astro';
 
 interface Props {
@@ -75,12 +76,8 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		{
 			isbn !== undefined && (
 				<p class="isbn">
-					<a href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`} rel="external">
-						ISBN: <data value={isbn}>{isbn}</data>
-					</a>
-					<small class="c-domain">
-						<img src="/assets/image/icon/ndlsearch.svg" alt="(国立国会図書館サーチ)" width="16" height="16" />
-					</small>
+					{/* prettier-ignore */}
+					<Link href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`}>ISBN: <data value={isbn}>{isbn}</data></Link>
 				</p>
 			)
 		}
@@ -207,8 +204,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 	}
 
 	.isbn {
-		display: block flex;
 		flex-basis: 100%;
-		justify-content: flex-end;
+		text-align: end;
 	}
 </style>
