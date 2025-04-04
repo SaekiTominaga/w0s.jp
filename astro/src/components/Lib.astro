@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
+import EmbeddedLink from './EmbeddedLink.astro';
+import ImageAmazon from './ImageAmazon.astro';
 import Link from './Link.astro';
 import SelfLink from './SelfLink.astro';
 
@@ -88,13 +90,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			amazonAsin !== undefined && (
 				<div class="c-embed-sidebar -embed-first">
 					<div class="c-embed-sidebar__embed">
-						<div class="p-embed-link">
-							<a href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`}>
-								{amazonImageId !== undefined && <img src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} srcset={`https://m.media-amazon.com/images/I/${amazonImageId}._SL320_.jpg 2x`} alt="" width={amazonImageWidth} height={amazonImageHeight} />}
+						<EmbeddedLink href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`} title="Amazon 商品ページ">
+							<Fragment slot="media">
+								{amazonImageId !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`}` width={amazonImageWidth} height={amazonImageHeight} />}
 								{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />}
-								<span class="p-embed-link__title">Amazon 商品ページ</span>
-							</a>
-						</div>
+							</Fragment>
+						</EmbeddedLink>
 					</div>
 					<div class="c-embed-sidebar__text">
 						<slot />
