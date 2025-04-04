@@ -29,14 +29,123 @@ if (id !== undefined) {
 }
 ---
 
-<section class:list={['p-section', `-hdg-${headingType}`, box ? '-box' : undefined, className]} id={sectionId}>
-	<div class="p-section__hdg">
+<section class:list={['section', `-${headingType}`, box ? '-box' : undefined, className]} id={sectionId}>
+	<div class="hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
 		{depth === 3 && <h4 set:html={headingHtml} />}
 		{depth === 4 && <h5 set:html={headingHtml} />}
-		<p class="p-section__self-link"><SelfLink id={sectionId} /></p>
+		<p class="self-link"><SelfLink id={sectionId} /></p>
 	</div>
 
 	<slot />
 </section>
+
+<style>
+	@keyframes section-target {
+		0% {
+			background-color: var(--color-verylightred);
+		}
+
+		50% {
+			background-color: var(--color-verylightred);
+		}
+
+		100% {
+			background-color: transparent;
+		}
+	}
+
+	.section {
+		--_margin-block: 1rem;
+
+		&:target {
+			animation: section-target 1s;
+		}
+
+		&:not(:first-child) {
+			:not(.hdg) + & {
+				margin-block-start: var(--_margin-block);
+			}
+		}
+
+		&:not(:last-child) {
+			margin-block-end: var(--_margin-block);
+		}
+
+		&.-a {
+			--_margin-block: 4.5rem;
+		}
+
+		&.-b {
+			--_margin-block: 3.75rem;
+		}
+
+		&.-c {
+			--_margin-block: 3rem;
+		}
+
+		&.-d {
+			--_margin-block: 2rem;
+		}
+
+		&.-box {
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-normal);
+			background: var(--color-white);
+			padding: 1em;
+		}
+
+		& > :global(* + *) {
+			margin-block-start: var(--stack-margin-base);
+		}
+	}
+
+	.hdg {
+		display: block flex;
+		gap: 0.5em;
+		line-height: var(--line-height-narrow);
+
+		.section.-a > & {
+			margin-block-end: 2rem;
+			border-block-start: 1px solid transparent;
+			border-block-end: 1px solid var(--color-border-dark);
+			padding-block: 0.25em;
+			font-size: calc(100% * pow(var(--font-ratio), 6));
+		}
+
+		.section.-a > &::before {
+			border: 0.125em solid var(--color-gray);
+			border-radius: var(--border-radius-full);
+			background: var(--color-gray); /* for Chrome */
+			content: '';
+
+			@media not print {
+				/* Firefox の印刷プレビューで2ページ目以降の場合に縦線が上方にずれてしまうバグの対策 */
+				transform: scaleY(75%);
+			}
+		}
+
+		.section.-b > & {
+			font-size: calc(100% * pow(var(--font-ratio), 4));
+		}
+
+		.section.-b > &::before {
+			transform: scaleY(75%);
+			border: 0.125em solid var(--color-lightgray);
+			border-radius: var(--border-radius-full);
+			background: var(--color-lightgray); /* for Chrome */
+			content: '';
+		}
+
+		.section.-c > & {
+			font-size: calc(100% * pow(var(--font-ratio), 2));
+		}
+	}
+
+	.self-link {
+		display: block flex;
+		align-items: center;
+		font-size: calc(100% / pow(var(--font-ratio), 3));
+	}
+</style>
