@@ -1,0 +1,73 @@
+---
+interface Props {
+	pagePath: string;
+}
+
+const { pagePath } = Astro.props;
+---
+
+<ul class="social">
+	<li>
+		<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external">
+			<span class="image"><img src="/assets/image/icon/github.svg" alt="" width="48" height="48" /></span>
+			<span class="text">GitHub</span>
+		</a>
+	</li>
+	{
+		!pagePath.substring(1).includes('/') && (
+			<li>
+				<a href="https://fedibird.com/@SaekiTominaga" rel="external">
+					<span class="image">
+						<img src="/assets/image/icon/mastodon.svg" alt="" width="48" height="48" />
+					</span>
+					<span class="text">Mastodon</span>
+				</a>
+			</li>
+		)
+	}
+	<li>
+		<a href="https://bsky.app/profile/w0s.jp" rel="external">
+			<span class="image"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
+			<span class="text">Bluesky</span>
+		</a>
+	</li>
+	<li>
+		<a href="https://www.youtube.com/@SaekiTominaga" rel="external">
+			<span class="image"><img src="/assets/image/icon/youtube.svg" alt="" width="48" height="48" /></span>
+			<span class="text">YouTube</span>
+		</a>
+	</li>
+</ul>
+
+<style>
+	.social {
+		display: block flex;
+		flex-flow: row wrap;
+		gap: 24px;
+		font-size: calc(100% / pow(var(--font-ratio), 2));
+		text-align: center;
+
+		@container footer-social (inline-size >= 600px) {
+			justify-content: flex-end;
+		}
+
+		& :global(:any-link) {
+			outline-offset: var(--outline-offset-linkonly);
+		}
+	}
+
+	.image {
+		display: inline flex;
+		align-items: center;
+		padding-block-end: 0.5em;
+	}
+
+	.text {
+		inline-size: fit-content;
+
+		&::before {
+			display: block flow;
+			content: '';
+		}
+	}
+</style>
