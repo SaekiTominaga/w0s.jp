@@ -1,0 +1,51 @@
+<search role="search" aria-label="サイト">
+	<form action="https://www.google.com/search">
+		<fieldset>
+			<legend>
+				サイト内検索<small>（Google 検索）</small>
+			</legend>
+			<div class="ctrl c-search">
+				<span class="c-search__hidden">
+					<input type="hidden" name="as_sitesearch" value="w0s.jp" />
+				</span>
+				<span class="c-search__query">
+					<input type="search" name="q" required="" title="キーワード" />
+				</span>
+				<span class="c-search__submit">
+					<button>
+						<svg role="img" aria-labelledby="search-button">
+							<title id="search-button">検索</title>
+							<use href="/assets/image/icon/search.svg#icon"></use>
+						</svg>
+					</button>
+				</span>
+			</div>
+		</fieldset>
+	</form>
+</search>
+
+<style>
+	form {
+		display: block grid;
+		grid-template-areas:
+			'legend'
+			'ctrl';
+		grid-template-columns: min(30em, 100%);
+		justify-content: center;
+		margin-block-start: 10dvb;
+
+		& > :global(fieldset) {
+			display: contents;
+		}
+	}
+
+	legend {
+		grid-area: legend;
+		font-weight: var(--font-weight-bold);
+	}
+
+	.ctrl {
+		grid-area: ctrl;
+		font-size: calc(100% * pow(var(--font-ratio), 3));
+	}
+</style>
