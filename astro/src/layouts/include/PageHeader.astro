@@ -1,5 +1,6 @@
 ---
-import PageHeaderSearch from '@layouts/include/PageHeaderSearch.astro';
+import HeaderSearch from '@components/header/Search.astro';
+import HeaderSite from '@components/header/Site.astro';
 
 interface Props {
 	top: boolean;
@@ -11,27 +12,12 @@ const { top } = Astro.props;
 <header id="header" class="l-header">
 	<div class="l-header__main">
 		<div class="l-header__site">
-			{
-				top && (
-					<hgroup class="p-header-site">
-						<h1 class="p-header-site__name">w0s.jp</h1>
-						<p class="p-header-site__summary">富永冴樹の個人サイト</p>
-					</hgroup>
-				)
-			}
-			{
-				!top && (
-					<div class="p-header-site">
-						<div class="p-header-site__name">
-							<a href="/">w0s.jp</a>
-						</div>
-						<p class="p-header-site__summary">富永冴樹の個人サイト</p>
-					</div>
-				)
-			}
+			<HeaderSite top={top} href="/" name="w0s.jp" summary="富永冴樹の個人サイト" />
 		</div>
 		<div class="l-header__utility">
-			<PageHeaderSearch />
+			<div class="l-header__search">
+				<HeaderSearch />
+			</div>
 		</div>
 	</div>
 </header>

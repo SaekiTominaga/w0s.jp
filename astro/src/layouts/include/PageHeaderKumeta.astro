@@ -1,5 +1,6 @@
 ---
-import PageHeaderSearch from '@layouts/include/PageHeaderSearch.astro';
+import HeaderSearch from '@components/header/Search.astro';
+import HeaderSite from '@components/header/Site.astro';
 
 interface Props {
 	top?: boolean;
@@ -11,24 +12,7 @@ const { top = false } = Astro.props;
 <header id="header" class="l-header">
 	<div class="l-header__main">
 		<div class="l-header__site">
-			{
-				top && (
-					<hgroup class="p-header-site">
-						<h1 class="p-header-site__name">久米田康治データベース</h1>
-						<p class="p-header-site__summary">漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト</p>
-					</hgroup>
-				)
-			}
-			{
-				!top && (
-					<div class="p-header-site">
-						<div class="p-header-site__name">
-							<a href="/kumeta/">久米田康治データベース</a>
-						</div>
-						<p class="p-header-site__summary">漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト</p>
-					</div>
-				)
-			}
+			<HeaderSite top={top} href="/kumeta/" name="久米田康治データベース" summary="漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト" />
 		</div>
 		<div class="l-header__utility">
 			<div class="l-header__feed">
@@ -37,7 +21,9 @@ const { top = false } = Astro.props;
 					<span class="c-button__text">新着フィード</span>
 				</a>
 			</div>
-			<PageHeaderSearch />
+			<div class="l-header__search">
+				<HeaderSearch />
+			</div>
 		</div>
 	</div>
 </header>

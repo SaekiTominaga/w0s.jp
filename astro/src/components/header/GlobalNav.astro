@@ -1,0 +1,90 @@
+---
+interface Props {
+	pagePath: string;
+	data: { path: string; name: string }[];
+}
+
+const { pagePath, data } = Astro.props;
+---
+
+<nav aria-label="サイト">
+	<ul class="global-nav">
+		{
+			data.map((page) => (
+				<li>
+					{page.path === pagePath && (
+						<a aria-current="page" class="link">
+							{page.name}
+						</a>
+					)}
+					{page.path !== pagePath && pagePath.startsWith(page.path) && (
+						<a href={page.path} aria-current="true" class="link">
+							{page.name}
+						</a>
+					)}
+					{page.path !== pagePath && !pagePath.startsWith(page.path) && (
+						<a href={page.path} class="link">
+							{page.name}
+						</a>
+					)}
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.global-nav {
+		--_border-width: 1px;
+
+		margin-block: calc(0px - var(--_border-width) / 2);
+		display: block flex;
+		flex-flow: wrap;
+		margin-inline: calc(var(--_border-width) / 2);
+
+		& > :global(li) {
+			display: block flex;
+			flex: auto;
+			margin: calc(0px - var(--_border-width) / 2);
+			border: 1px solid var(--color-border-light);
+		}
+	}
+
+	.link {
+		--_border-color: transparent;
+		--_border-width: 0px;
+		--_color: var(--color-darkgray);
+		--_background: var(--color-white);
+
+		flex: 100%;
+		contain: content;
+		outline-offset: calc(1px - var(--outline-width-bold));
+		outline-width: var(--outline-width-bold);
+		border-block-end: var(--_border-width) solid var(--_border-color);
+		background: var(--_background);
+		padding: 0.5em 0.25em calc(0.5em - var(--_border-width));
+		text-align: center;
+		text-decoration: none;
+		color: var(--_color);
+		font-size: clamp(100%, 2.5svi, calc(100% * pow(var(--font-ratio), 2)));
+
+		&:any-link {
+			--_background: linear-gradient(var(--color-white), var(--color-bg-light));
+
+			&:hover {
+				--_background: linear-gradient(var(--color-bg-light), var(--color-white));
+
+				color: var(--_color);
+			}
+		}
+
+		&[aria-current] {
+			--_border-width: 2px;
+			--_border-color: var(--color-red);
+
+			&:focus {
+				--_border-width: 3px; /* フォーカスリングとの関係 */
+			}
+		}
+	}
+</style>

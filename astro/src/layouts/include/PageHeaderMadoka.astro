@@ -1,5 +1,6 @@
 ---
-import PageHeaderSearch from '@layouts/include/PageHeaderSearch.astro';
+import HeaderSearch from '@components/header/Search.astro';
+import HeaderSite from '@components/header/Site.astro';
 
 interface Props {
 	top?: boolean;
@@ -11,28 +12,7 @@ const { top = false } = Astro.props;
 <header id="header" class="l-header">
 	<div class="l-header__main">
 		<div class="l-header__site">
-			{
-				top && (
-					<hgroup class="p-header-site">
-						<h1 class="p-header-site__name">まどか資料館</h1>
-						<p class="p-header-site__summary">
-							『<cite>魔法少女まどか☆マギカ</cite>』の各種データやイベントレポートを紹介するサイト
-						</p>
-					</hgroup>
-				)
-			}
-			{
-				!top && (
-					<div class="p-header-site">
-						<div class="p-header-site__name">
-							<a href="/madoka/">まどか資料館</a>
-						</div>
-						<p class="p-header-site__summary">
-							『<cite>魔法少女まどか☆マギカ</cite>』の各種データやイベントレポートを紹介するサイト
-						</p>
-					</div>
-				)
-			}
+			<HeaderSite top={top} href="/madoka/" name="まどか資料館" summary="『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト" />
 		</div>
 		<div class="l-header__utility">
 			<div class="l-header__feed">
@@ -41,7 +21,9 @@ const { top = false } = Astro.props;
 					<span class="c-button__text">新着フィード</span>
 				</a>
 			</div>
-			<PageHeaderSearch />
+			<div class="l-header__search">
+				<HeaderSearch />
+			</div>
 		</div>
 	</div>
 </header>

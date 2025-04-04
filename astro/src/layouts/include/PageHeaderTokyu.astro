@@ -1,5 +1,7 @@
 ---
-import PageHeaderSearch from '@layouts/include/PageHeaderSearch.astro';
+import HeaderGlobalNav from '@components/header/GlobalNav.astro';
+import HeaderSearch from '@components/header/Search.astro';
+import HeaderSite from '@components/header/Site.astro';
 
 interface Props {
 	pagePath: string;
@@ -12,24 +14,7 @@ const { pagePath, top = false } = Astro.props;
 <header id="header" class="l-header">
 	<div class="l-header__main">
 		<div class="l-header__site">
-			{
-				top && (
-					<hgroup class="p-header-site">
-						<h1 class="p-header-site__name">東急電車資料室</h1>
-						<p class="p-header-site__summary">目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト</p>
-					</hgroup>
-				)
-			}
-			{
-				!top && (
-					<div class="p-header-site">
-						<div class="p-header-site__name">
-							<a href="/tokyu/">東急電車資料室</a>
-						</div>
-						<p class="p-header-site__summary">目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト</p>
-					</div>
-				)
-			}
+			<HeaderSite top={top} href="/tokyu/" name="東急電車資料室" summary="目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト" />
 		</div>
 		<div class="l-header__utility">
 			<div class="l-header__feed">
@@ -38,40 +23,23 @@ const { pagePath, top = false } = Astro.props;
 					<span class="c-button__text">新着フィード</span>
 				</a>
 			</div>
-			<PageHeaderSearch />
+			<div class="l-header__search">
+				<HeaderSearch />
+			</div>
 		</div>
 	</div>
-	<nav class="l-header__gnav" aria-label="サイト">
-		<ul class="p-header-gnav">
-			{
-				[
-					{ path: '/tokyu/data/', name: '車両データ' },
-					{ path: '/tokyu/machine/', name: '車両機器' },
-					{ path: '/tokyu/truck/', name: '台車' },
-					{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
-					{ path: '/tokyu/an/', name: '自動放送' },
-					{ path: '/tokyu/set/', name: '設定器' },
-					{ path: '/tokyu/book/', name: '鉄道本執筆' },
-				].map((page) => (
-					<li>
-						{page.path === pagePath && (
-							<a aria-current="page" class="p-header-gnav__link">
-								{page.name}
-							</a>
-						)}
-						{page.path !== pagePath && pagePath.startsWith(page.path) && (
-							<a href={page.path} aria-current="true" class="p-header-gnav__link">
-								{page.name}
-							</a>
-						)}
-						{page.path !== pagePath && !pagePath.startsWith(page.path) && (
-							<a href={page.path} class="p-header-gnav__link">
-								{page.name}
-							</a>
-						)}
-					</li>
-				))
-			}
-		</ul>
-	</nav>
+	<div class="l-header__gnav">
+		<HeaderGlobalNav
+			pagePath={pagePath}
+			data={[
+				{ path: '/tokyu/data/', name: '車両データ' },
+				{ path: '/tokyu/machine/', name: '車両機器' },
+				{ path: '/tokyu/truck/', name: '台車' },
+				{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
+				{ path: '/tokyu/an/', name: '自動放送' },
+				{ path: '/tokyu/set/', name: '設定器' },
+				{ path: '/tokyu/book/', name: '鉄道本執筆' },
+			]}
+		/>
+	</div>
 </header>
