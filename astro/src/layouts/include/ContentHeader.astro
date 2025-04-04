@@ -1,5 +1,5 @@
 ---
-import LinkBullet from '@components/LinkBullet.astro';
+import Link from '@components/Link.astro';
 import type { StructuredData } from '@type/types.js';
 
 interface Props {
@@ -57,8 +57,12 @@ const { pagePath, structuredData, tocData } = Astro.props;
 				<ul class="p-local-nav">
 					{structuredData.localNav.items.map((localNavItem) => (
 						<li>
-							{localNavItem.path !== pagePath && <LinkBullet href={localNavItem.path}>{localNavItem.name}</LinkBullet>}
-							{localNavItem.path === pagePath && <LinkBullet>{localNavItem.name}</LinkBullet>}
+							{localNavItem.path !== pagePath && (
+								<Link href={localNavItem.path} bullet={true}>
+									{localNavItem.name}
+								</Link>
+							)}
+							{localNavItem.path === pagePath && <Link bullet={true}>{localNavItem.name}</Link>}
 						</li>
 					))}
 				</ul>

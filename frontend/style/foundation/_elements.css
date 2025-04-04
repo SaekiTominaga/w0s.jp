@@ -86,21 +86,17 @@ dfn {
 	}
 }
 
-code {
+code:not([class]) {
 	border-radius: var(--border-radius-normal);
 	background-color: var(--color-ultralightgreen);
 	padding-block: 0.25em;
 	color: var(--color-green);
 
-	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, a, .c-domain) & {
+	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, a) & {
 		border-radius: initial;
 		background-color: initial;
 		padding-block: initial;
 		color: inherit;
-	}
-
-	.c-domain & {
-		font-family: inherit;
 	}
 
 	/* for Chrome, Safari */

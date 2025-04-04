@@ -1,7 +1,6 @@
 ---
 import path from 'node:path';
-import LinkBullet from '@components/LinkBullet.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Link from '@components/Link.astro';
 import type { StructuredData } from '@type/types.js';
 
 interface Props {
@@ -25,8 +24,12 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 					<ul class="p-local-nav">
 						{structuredData.localNav.items.map((localNavItem) => (
 							<li>
-								{localNavItem.path !== pagePath && <LinkBullet href={localNavItem.path}>{localNavItem.name}</LinkBullet>}
-								{localNavItem.path === pagePath && <LinkBullet>{localNavItem.name}</LinkBullet>}
+								{localNavItem.path !== pagePath && (
+									<Link href={localNavItem.path} bullet={true}>
+										{localNavItem.name}
+									</Link>
+								)}
+								{localNavItem.path === pagePath && <Link bullet={true}>{localNavItem.name}</Link>}
 							</li>
 						))}
 					</ul>
@@ -39,11 +42,11 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 					<div class="p-toggle__contents">
 						<ul class="p-list">
 							{/* prettier-ignore */}
-							<li>コンテンツに関するご意見、ご質問などは当サイトの GitHub リポジトリに <LinkExternal href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents" icon={false}>Issue</LinkExternal> を立ててください。</li>
+							<li>コンテンツに関するご意見、ご質問などは当サイトの GitHub リポジトリに <Link href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents" icon={false}>Issue</Link> を立ててください。</li>
 							{astroFilePath !== undefined && (
 								<>
 									{/* prettier-ignore */}
-									<li>誤字訂正など軽微な修正は GitHub リポジトリ上の<LinkExternal href={`https://github.com/SaekiTominaga/w0s.jp/blob/main/${astroFilePath}`} icon={false}>ソースコード</LinkExternal>を編集し、Pull Request を送っていただいても構いません。</li>
+									<li>誤字訂正など軽微な修正は GitHub リポジトリ上の<Link href={`https://github.com/SaekiTominaga/w0s.jp/blob/main/${astroFilePath}`} icon={false}>ソースコード</Link>を編集し、Pull Request を送っていただいても構いません。</li>
 								</>
 							)}
 							{/* prettier-ignore */}

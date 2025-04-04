@@ -1,6 +1,6 @@
 ---
 import DateWareki from './DateWareki.astro';
-import LinkExternal from './LinkExternal.astro';
+import Link from './Link.astro';
 
 interface Props {
 	possess?: 'tetsudo' | 'naimu' | 'tokyo';
@@ -55,7 +55,7 @@ switch (possess) {
 
 <span class="doc">
 	<b class="government">{government}文書</b>
-	<LinkExternal href={url}>
+	<Link href={url}>
 		<span class="company">{company}</span>
 		{
 			no !== undefined && (
@@ -66,7 +66,7 @@ switch (possess) {
 		}
 		<DateWareki value={dateStr} class="date" />
 		{title !== undefined && <cite class="article">{title}</cite>}
-	</LinkExternal>
+	</Link>
 </span>
 
 <style>

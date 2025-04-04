@@ -7,7 +7,7 @@ import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Link from '@components/Link.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -91,7 +91,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>9000系<small>（1次車）</small></td>
-						<td><a href="#vf-hr107" class="c-link">VF-HR107</a></td>
+						<td><Link href="#vf-hr107" bullet={true}>VF-HR107</Link></td>
 						<td>日立</td>
 						<td>1986年<NoteRef by="vf-hr107-date" /></td>
 						<td>4500V–2000A</td>
@@ -100,7 +100,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>7600系<small>（1次車）</small></td>
-						<td><a href="#rg614-a-m" class="c-link">RG614-A-M</a></td>
+						<td><Link href="#rg614-a-m" bullet={true}>RG614-A-M</Link></td>
 						<td>東洋</td>
 						<td>1986年</td>
 						<td>4500V–2500A</td>
@@ -109,7 +109,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>7700系</td>
-						<td><a href="#rg617-a-m" class="c-link">RG617-A-M</a></td>
+						<td><Link href="#rg617-a-m" bullet={true}>RG617-A-M</Link></td>
 						<td>東洋</td>
 						<td>1987年</td>
 						<td>4500V–2500A</td>
@@ -118,7 +118,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>9000系<small>（2〜5次車）</small></td>
-						<td><a href="#vf-hr112" class="c-link">VF-HR112</a></td>
+						<td><Link href="#vf-hr112" bullet={true}>VF-HR112</Link></td>
 						<td>日立</td>
 						<td>1987年</td>
 						<td>4500V–2000A</td>
@@ -127,7 +127,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>7600系<small>（2〜3次車）</small></td>
-						<td><a href="#rg617-b-m" class="c-link">RG617-B-M</a></td>
+						<td><Link href="#rg617-b-m" bullet={true}>RG617-B-M</Link></td>
 						<td>東洋</td>
 						<td>1988年</td>
 						<td>4500V–2500A</td>
@@ -136,7 +136,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>1000系</td>
-						<td><a href="#rg621-a-m" class="c-link">RG621-A-M</a></td>
+						<td><Link href="#rg621-a-m" bullet={true}>RG621-A-M</Link></td>
 						<td>東洋</td>
 						<td>1988年</td>
 						<td>4500V–3000A</td>
@@ -145,7 +145,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>デハ8799–デハ0802</td>
-						<td><a href="#vf-hr121z" class="c-link">VF-HR121Z</a></td>
+						<td><Link href="#vf-hr121z" bullet={true}>VF-HR121Z</Link></td>
 						<td>日立</td>
 						<td>1989年</td>
 						<td>4500V–3600A</td>
@@ -154,7 +154,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>8500系21次車</td>
-						<td><a href="#vf-hr132" class="c-link">VF-HR132</a></td>
+						<td><Link href="#vf-hr132" bullet={true}>VF-HR132</Link></td>
 						<td>日立</td>
 						<td>1991年<NoteRef by="vf-hr132-date" /></td>
 						<td>4500V–3600A</td>
@@ -163,7 +163,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>1000N′系<small>（単 M 車）</small></td>
-						<td><a href="#rg636-a-m" class="c-link">RG636-A-M</a></td>
+						<td><Link href="#rg636-a-m" bullet={true}>RG636-A-M</Link></td>
 						<td>東洋</td>
 						<td>1991年</td>
 						<td>4500V–2500A</td>
@@ -172,7 +172,7 @@ const slugger = new GithubSlugger();
 					</tr>
 					<tr>
 						<td>2000系</td>
-						<td><a href="#vf-hr132" class="c-link">VFG-HR1820D</a></td>
+						<td><Link href="#vf-hr132" bullet={true}>VFG-HR1820D</Link></td>
 						<td>日立</td>
 						<td>1992年<NoteRef by="vf-hr1820d-date" /></td>
 						<td>4500V–3600A</td>
@@ -812,6 +812,6 @@ const slugger = new GithubSlugger();
 
 		<p>2008年には上田電鉄への譲渡のため一部の廃車が始まり、譲渡対象外の中間車は解体されましたが、本インバーター装置は2台が1000N系の伊賀鉄道譲渡車（201〜202編成）に流用されました。しかし2018年には何らかの事情でモ202 のインバーター装置が RG621 型に換装されたため<NoteRef type="ref" by="blog666" />、残るのは池上、東急多摩川線残存車（デハ1217, 1219〜1222）と伊賀鉄道モ201 の6台となっています。</p>
 
-		<NoteRefContent id="blog666"><LinkExternal href="https://blog.w0s.jp/entry/666"><cite>伊賀鉄道モ202 の VVVF 装置が（2018年に） RG621 型に換装</cite></LinkExternal></NoteRefContent>
+		<NoteRefContent id="blog666"><Link href="https://blog.w0s.jp/entry/666"><cite>伊賀鉄道モ202 の VVVF 装置が（2018年に） RG621 型に換装</cite></Link></NoteRefContent>
 	</Section>
 </Layout>

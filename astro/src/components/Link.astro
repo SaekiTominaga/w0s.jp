@@ -1,0 +1,188 @@
+---
+interface Props {
+	href?: string;
+	hreflang?: string;
+	type?: string;
+	icon?: boolean;
+	lang?: string;
+	bullet?: boolean;
+}
+
+interface TypeIcon {
+	type: string;
+	name: string;
+	fileName: string;
+}
+
+interface HostIcon {
+	host: string;
+	name: string;
+	fileName: string;
+}
+
+const TYPE_ICONS: TypeIcon[] = [
+	{
+		type: 'application/pdf',
+		name: 'PDF',
+		fileName: 'pdf.png',
+	},
+];
+
+const HOST_ICONS: HostIcon[] = [
+	{
+		host: 'github.com',
+		name: 'GitHub',
+		fileName: 'github.svg',
+	},
+	{
+		host: 'www.youtube.com',
+		name: 'YouTube',
+		fileName: 'youtube.svg',
+	},
+	{
+		host: 'x.com',
+		name: 'X',
+		fileName: 'x.png',
+	},
+	{
+		host: 'www.amazon.co.jp',
+		name: 'Amazon',
+		fileName: 'amazon.png',
+	},
+	{
+		host: 'ndlsearch.ndl.go.jp',
+		name: '国立国会図書館サーチ',
+		fileName: 'ndlsearch.svg',
+	},
+	{
+		host: 'dl.ndl.go.jp',
+		name: '国立国会図書館デジタルコレクション',
+		fileName: 'ndldl.svg',
+	},
+	{
+		host: 'www.digital.archives.go.jp',
+		name: '国立公文書館デジタルアーカイブ',
+		fileName: 'archives.png',
+	},
+	{
+		host: 'www.nicovideo.jp',
+		name: 'ニコニコ動画',
+		fileName: 'nicovideo.png',
+	},
+	{
+		host: 'www.w3.org',
+		name: 'W3C',
+		fileName: 'w3c.png',
+	},
+	{
+		host: 'html.spec.whatwg.org',
+		name: 'WHATWG',
+		fileName: 'whatwg.svg',
+	},
+];
+
+const { href, hreflang, type, icon = true, lang, bullet } = Astro.props;
+
+let url: URL | undefined;
+
+if (href !== undefined) {
+	let urlStr = href;
+	if (href?.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([A-Z0-9]{10})\/$/)) {
+		urlStr = `${href}ref=nosim?tag=w0s.jp-22`;
+	}
+
+	if (URL.canParse(href)) {
+		url = new URL(urlStr);
+	}
+}
+
+const typeIcon = type !== undefined ? TYPE_ICONS.find((data) => data.type === type) : undefined;
+const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url.host) : undefined;
+---
+
+{
+	url === undefined && (
+		<>
+			{/* prettier-ignore */}
+			<a href={href} hreflang={hreflang} lang={lang} aria-current={href === undefined ? 'page' : undefined} class:list={[bullet ? "-bullet" : undefined]}><slot /></a>
+		</>
+	)
+}
+{
+	url !== undefined && (
+		<>
+			{/* prettier-ignore */}
+			<a href={url.toString()} rel="external" hreflang={hreflang} lang={lang} class:list={[bullet ? '-bullet' : undefined]}><slot /></a>
+			{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.fileName}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}
+			{icon && hostIcon !== undefined && (
+				<>
+					{/* prettier-ignore */}
+					<small class="domain"><img src={`/assets/image/icon/${hostIcon.fileName}`} alt={`(${hostIcon.name})`} width="16" height="16" /></small>
+				</>
+			)}
+			{icon && hostIcon === undefined && (
+				<>
+					{/* prettier-ignore */}
+					<small class="domain">(<code>{url.host}</code>)</small>
+				</>
+			)}
+		</>
+	)
+}
+
+<style>
+	a.-bullet {
+		--_icon-clip-path: var(--shape-link-triangle);
+		--_icon-inline-size: 0.45em;
+		--_icon-block-size: 0.75em;
+		--_icon-color: var(--color-gray);
+
+		&:any-link {
+			&::before {
+				display: inline flow-root;
+				clip-path: var(--_icon-clip-path);
+				margin-inline-end: 0.5em;
+				border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+				inline-size: var(--_icon-inline-size);
+				content: '';
+			}
+
+			/* 他ページ */
+			&:not([href^='#']) {
+				--_icon-color: var(--link-color-bullet);
+			}
+
+			/* 同一ページ */
+			&[href^='#'] {
+				--_icon-clip-path: var(--shape-pagelink-triangle);
+				--_icon-inline-size: 0.75em;
+				--_icon-block-size: 0.5625em;
+			}
+
+			&:hover {
+				--_icon-color: var(--link-color-hover);
+			}
+		}
+	}
+
+	.domain {
+		word-break: break-all;
+		color: var(--color-gray);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
+
+		&::before,
+		&::after {
+			content: ' ';
+		}
+
+		& > :global(img) {
+			block-size: 1em;
+			inline-size: auto;
+			vertical-align: -0.1lh;
+		}
+
+		& > :global(code) {
+			font-family: inherit;
+		}
+	}
+</style>

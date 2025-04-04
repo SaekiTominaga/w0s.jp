@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/W0s.astro';
-import LinkBullet from '@components/LinkBullet.astro';
+import Link from '@components/Link.astro';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -44,14 +44,18 @@ if (requestQuery.referrer !== null && requestQuery.referrer !== '') {
 	{
 		requestQuery.referrer !== null && requestQuery.referrer !== '' && (
 			<p>
-				<LinkBullet href={requestQuery.referrer}>元のページへ戻る</LinkBullet>
+				<Link href={requestQuery.referrer} bullet={true}>
+					元のページへ戻る
+				</Link>
 			</p>
 		)
 	}
 	{
 		(requestQuery.referrer === null || requestQuery.referrer === '') && (
 			<p>
-				<LinkBullet href="/">トップページへ戻る</LinkBullet>
+				<Link href="/" bullet={true}>
+					トップページへ戻る
+				</Link>
 			</p>
 		)
 	}

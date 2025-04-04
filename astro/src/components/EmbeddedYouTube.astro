@@ -1,6 +1,6 @@
 ---
 import Embedded from './Embedded.astro';
-import LinkExternal from './LinkExternal.astro';
+import Link from './Link.astro';
 
 interface Props {
 	id: string;
@@ -32,5 +32,5 @@ if (end >= 1) {
 
 <Embedded border={true} captionMeta={true}>
 	<iframe src={`https://www.youtube-nocookie.com/embed/${id}?${embeddedSearchParams.toString()}`} allow="accelerometer;autoplay;clipboard-write;encrypted-media;fullscreen;gyroscope;picture-in-picture" title="YouTube 動画" width={width} height={height} style=`--aspect-ratio: ${width}/${height}` slot="media"></iframe>
-	<LinkExternal href={`https://www.youtube.com/watch?${linkSearchParams.toString()}`} slot="caption">{title}</LinkExternal>
+	<Link href={`https://www.youtube.com/watch?${linkSearchParams.toString()}`} slot="caption">{title}</Link>
 </Embedded>

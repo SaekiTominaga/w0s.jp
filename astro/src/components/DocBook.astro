@@ -1,5 +1,5 @@
 ---
-import LinkExternal from './LinkExternal.astro';
+import Link from './Link.astro';
 
 interface Props {
 	name: string; // 図書名
@@ -29,7 +29,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 	{
 		url !== undefined && linkScope === 'name' && (
 			<>
-				<LinkExternal href={url}>
+				<Link href={url}>
 					{/* prettier-ignore */}
 					<cite class="name" lang={lang}>{name}</cite>
 					<span class="meta">
@@ -38,7 +38,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 						{/* prettier-ignore */}
 						<time datetime={String(year)} class="date">{year}年</time>
 					</span>
-				</LinkExternal>
+				</Link>
 				{article !== undefined && (
 					<>
 						{/* prettier-ignore */}
@@ -51,7 +51,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 	}
 	{
 		url !== undefined && linkScope === 'page' && (
-			<LinkExternal href={url}>
+			<Link href={url}>
 				{/* prettier-ignore */}
 				<cite class="name" lang={lang}>{name}</cite>
 				<span class="meta">
@@ -67,7 +67,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 					</>
 				)}
 				<span class="pages">{pageDisplay}</span>
-			</LinkExternal>
+			</Link>
 		)
 	}
 	{

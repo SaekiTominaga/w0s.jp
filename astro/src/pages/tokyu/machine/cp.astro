@@ -6,7 +6,7 @@ import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
 import H from '@components/H.astro';
 import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Link from '@components/Link.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
@@ -49,35 +49,35 @@ const slugger = new GithubSlugger();
 			</thead>
 			<tbody>
 				<tr>
-					<td><a href="#d2n" class="c-link">D2N</a></td>
+					<td><Link href="#d2n" bullet={true}>D2N</Link></td>
 					<td>?</td>
 					<td>?</td>
 					<td>DC 750V / 1500V</td>
 					<td>3000形グループ、熊本電気鉄道5000形</td>
 				</tr>
 				<tr>
-					<td><a href="#3ys" class="c-link">3YS</a></td>
+					<td><Link href="#3ys" bullet={true}>3YS</Link></td>
 					<td>1,000ℓ/min<NoteRef by="tkk5000-pamphlet" /></td>
 					<td>SE551</td>
 					<td>DC 1500V</td>
 					<td>5000系、5200系</td>
 				</tr>
 				<tr>
-					<td><a href="#c1000" class="c-link">C1000</a></td>
+					<td><Link href="#c1000" bullet={true}>C1000</Link></td>
 					<td>1,194ℓ/min<NoteRef type="ref" by="denkisha145" /></td>
 					<td>MH80</td>
 					<td>DC 1500V</td>
 					<td>6000系、7000系、7200系</td>
 				</tr>
 				<tr>
-					<td><a href="#hb1500" class="c-link">HB1500</a></td>
+					<td><Link href="#hb1500" bullet={true}>HB1500</Link></td>
 					<td>1,590ℓ/min</td>
 					<td>CM1515</td>
 					<td>DC 1500V</td>
 					<td>7200系、7000系、サハ7950形</td>
 				</tr>
 				<tr>
-					<td rowspan="2"><a href="#hb2000" class="c-link">HB2000</a></td>
+					<td rowspan="2"><Link href="#hb2000" bullet={true}>HB2000</Link></td>
 					<td rowspan="2">2,130ℓ/min</td>
 					<td>CM2015</td>
 					<td rowspan="2">DC 1500V</td>
@@ -87,7 +87,7 @@ const slugger = new GithubSlugger();
 					<td>EFO-H30</td>
 				</tr>
 				<tr>
-					<td rowspan="3"><a href="#hs20" class="c-link">HS20</a></td>
+					<td rowspan="3"><Link href="#hs20" bullet={true}>HS20</Link></td>
 					<td rowspan="2">2,100ℓ/min</td>
 					<td>A1544</td>
 					<td rowspan="2">AC 440V</td>
@@ -104,7 +104,7 @@ const slugger = new GithubSlugger();
 					<td>7600系、8000系グループ<small>（18次車以降）</small>、7700系、1000N系</td>
 				</tr>
 				<tr>
-					<td rowspan="2"><a href="#hs10" class="c-link">HS10</a></td>
+					<td rowspan="2"><Link href="#hs10" bullet={true}>HS10</Link></td>
 					<td>1,175ℓ/min</td>
 					<td>D6515</td>
 					<td>DC 1500V</td>
@@ -117,7 +117,7 @@ const slugger = new GithubSlugger();
 					<td>福島交通1000系</td>
 				</tr>
 				<tr>
-					<td rowspan="2"><a href="#hs5" class="c-link">HS5</a></td>
+					<td rowspan="2"><Link href="#hs5" bullet={true}>HS5</Link></td>
 					<td>600ℓ/min<NoteRef type="ref" by="nabuco62" /></td>
 					<td>D3360</td>
 					<td>DC 600V</td>
@@ -130,14 +130,14 @@ const slugger = new GithubSlugger();
 					<td>Y000系</td>
 				</tr>
 				<tr>
-					<td><a href="#c2500" class="c-link">C2500L</a></td>
+					<td><Link href="#c2500" bullet={true}>C2500L</Link></td>
 					<td>2,463ℓ/min<NoteRef type="ref" by="sharyogijyutu218" /></td>
 					<td>A1744</td>
 					<td>AC 440V</td>
 					<td>新3000系</td>
 				</tr>
 				<tr>
-					<td><a href="#c2000m" class="c-link">C2000M</a></td>
+					<td><Link href="#c2000m" bullet={true}>C2000M</Link></td>
 					<td>2,100ℓ/min<NoteRef type="ref" by="nabuco57" /></td>
 					<td>?</td>
 					<td>DC 1500V</td>
@@ -353,7 +353,7 @@ const slugger = new GithubSlugger();
 
 			<p>クハ9010 の CP は1992年に<dfn>双固定子誘導電動機（SIM モーター）</dfn>を使ったものに交換されました<NoteRef by="sim" />。これは始動時のみローターバーの抵抗を高くして、ローターに流れる誘導電流を抑えることで始動電流の抑制を図ったものであり、電動機（TFC221 型）の特性は通常の誘導電動機タイプとほぼ同一となっています。当時、東武鉄道など量産が行われた事業者もありましたが、東急電鉄では現車試験を続けている中で旅客車両の新造が1993年〜1999年の6年間途絶えたためか、 HS20 型の SIM タイプは量産されないまま、クハ9010 の CP も2013年の大井町線転籍直後に通常タイプに戻されて消滅しました。</p>
 
-			<NoteRefContent id="sim">SIM とは開発元である佐竹製作所（現在の<LinkExternal href="https://satake-japan.co.jp/">株式会社サタケ</LinkExternal>）から名称を取った SATAKE Induction Motor の略です。1989年に開発され、1992年に東急電車にて初めて実車搭載がなされました。装置の詳細は<DocMagazine name="電気車の科学" date="1993年10月号" no={546} article="SIMモータ式空気圧縮機の実用化について" authors={['宮田道一', '尾崎正明']} pages={[36, 39]} />や<DocMagazine name="自動化技術" date="1993年11月号" article="車載用双固定子形誘導電動機式空気圧縮機の実用化" authors={['丸山博正']} pages={[56, 59]} url="https://dl.ndl.go.jp/pid/2322419/1/46" />に、また開発時のエピソードは<LinkExternal href="https://satake-japan.co.jp/news/new-release/news120418-2.html">新幹線E5系に採用された時のニュースリリース</LinkExternal>に掲載されています。</NoteRefContent>
+			<NoteRefContent id="sim">SIM とは開発元である佐竹製作所（現在の<Link href="https://satake-japan.co.jp/">株式会社サタケ</Link>）から名称を取った SATAKE Induction Motor の略です。1989年に開発され、1992年に東急電車にて初めて実車搭載がなされました。装置の詳細は<DocMagazine name="電気車の科学" date="1993年10月号" no={546} article="SIMモータ式空気圧縮機の実用化について" authors={['宮田道一', '尾崎正明']} pages={[36, 39]} />や<DocMagazine name="自動化技術" date="1993年11月号" article="車載用双固定子形誘導電動機式空気圧縮機の実用化" authors={['丸山博正']} pages={[56, 59]} url="https://dl.ndl.go.jp/pid/2322419/1/46" />に、また開発時のエピソードは<Link href="https://satake-japan.co.jp/news/new-release/news120418-2.html">新幹線E5系に採用された時のニュースリリース</Link>に掲載されています。</NoteRefContent>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
