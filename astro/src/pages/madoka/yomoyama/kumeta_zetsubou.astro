@@ -4,7 +4,6 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,7 +32,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">作品概要</H>
+		<Fragment slot="heading">作品概要</Fragment>
 
 		<p>「<cite>週刊少年マガジン</cite>」において2005年〜2012年に連載され、2011年以降に描かれた話には『<cite>魔法少女まどか☆マギカ</cite>』ネタも随所で登場します。</p>
 
@@ -43,10 +42,10 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="manga">
-		<H slot="heading">漫画</H>
+		<Fragment slot="heading">漫画</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百五十六話　出でよ、オツベルと象!</H>
+			<Fragment slot="heading">第二百五十六話　出でよ、オツベルと象!</Fragment>
 
 			<p>2011年7月15日　単行本「第二六集」発売</p>
 
@@ -59,7 +58,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百五十九話　アウェイなる一族</H>
+			<Fragment slot="heading">第二百五十九話　アウェイなる一族</Fragment>
 
 			<p>2011年7月15日　単行本「第二六集」発売</p>
 
@@ -72,7 +71,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百六十一話　春は曙。やうやう難くなりゆくやめ際。</H>
+			<Fragment slot="heading">第二百六十一話　春は曙。やうやう難くなりゆくやめ際。</Fragment>
 
 			<p>2011年10月17日　単行本「第二七集」発売</p>
 
@@ -85,7 +84,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百六十六話　笹の上のメモ</H>
+			<Fragment slot="heading">第二百六十六話　笹の上のメモ</Fragment>
 
 			<p>2011年10月17日　単行本「第二七集」発売</p>
 
@@ -98,7 +97,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百七十四話　善いサマリア人ね。善いサマリア人は善いね。</H>
+			<Fragment slot="heading">第二百七十四話　善いサマリア人ね。善いサマリア人は善いね。</Fragment>
 
 			<p>2012年2月17日　単行本「第二八集」発売</p>
 
@@ -111,7 +110,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百七十六話　悲しき絶対</H>
+			<Fragment slot="heading">第二百七十六話　悲しき絶対</Fragment>
 
 			<p>2012年2月17日　単行本「第二八集」発売</p>
 
@@ -124,7 +123,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百七十八話　似勢物語</H>
+			<Fragment slot="heading">第二百七十八話　似勢物語</Fragment>
 
 			<p>2012年2月17日　単行本「第二八集」発売</p>
 
@@ -142,7 +141,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第二百九十七話　（あと）五回の憂鬱</H>
+			<Fragment slot="heading">第二百九十七話　（あと）五回の憂鬱</Fragment>
 
 			<p>2012年8月17日　単行本「第三十集」発売</p>
 
@@ -167,12 +166,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="radio">
-		<H slot="heading">ラジオ<small>（<cite>さよなら絶望放送</cite>）</small></H>
+		<Fragment slot="heading">ラジオ<small>（<cite>さよなら絶望放送</cite>）</small></Fragment>
 
 		<p>全203回配信 + DJCD16枚、その他DJDVDや携帯版、オールナイトニッポンRでの放送など。パーソナリティは神谷浩史（糸色望 役）と新谷良子（日塔奈美 役）。</p>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第166回　ティモシー・アーチャーの変声</H>
+			<Fragment slot="heading">第166回　ティモシー・アーチャーの変声</Fragment>
 
 			<p>2010年11月24日配信</p>
 
@@ -189,7 +188,7 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第175回　フェッセンデンの普通</H>
+			<Fragment slot="heading">第175回　フェッセンデンの普通</Fragment>
 
 			<p>2011年2月2日配信</p>
 
@@ -206,7 +205,7 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第177回　春季の祭典</H>
+			<Fragment slot="heading">第177回　春季の祭典</Fragment>
 
 			<p>2011年2月16日配信</p>
 
@@ -223,7 +222,7 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第179回　はしごからの眺め</H>
+			<Fragment slot="heading">第179回　はしごからの眺め</Fragment>
 
 			<p>2011年3月2日配信</p>
 
@@ -248,7 +247,7 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第182回　猫のネタに釘を打て</H>
+			<Fragment slot="heading">第182回　猫のネタに釘を打て</Fragment>
 
 			<p>2011年3月25日配信</p>
 
@@ -261,7 +260,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第184回　真・さよなら絶望放送</H>
+			<Fragment slot="heading">第184回　真・さよなら絶望放送</Fragment>
 
 			<p>2011年4月13日配信</p>
 
@@ -303,7 +302,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第190回　妻という名の魔女子たち</H>
+			<Fragment slot="heading">第190回　妻という名の魔女子たち</Fragment>
 
 			<p>2011年6月1日配信</p>
 
@@ -318,7 +317,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第191回　五十歩万歩の男</H>
+			<Fragment slot="heading">第191回　五十歩万歩の男</Fragment>
 
 			<p>2011年6月8日配信</p>
 
@@ -333,7 +332,7 @@ const slugger = new GithubSlugger();
 			</div>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第201回　幻想と解禁</H>
+			<Fragment slot="heading">第201回　幻想と解禁</Fragment>
 
 			<p>2011年8月17日配信</p>
 
@@ -350,7 +349,7 @@ const slugger = new GithubSlugger();
 			</ul>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">携帯版　第190回　誰か注意してあげて下さい!!</H>
+			<Fragment slot="heading">携帯版　第190回　誰か注意してあげて下さい!!</Fragment>
 
 			<p>2011年6月1日配信</p>
 
@@ -370,7 +369,7 @@ const slugger = new GithubSlugger();
 			</Amazon>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">DJCD　さよなら絶望放送　第十巻</H>
+			<Fragment slot="heading">DJCD　さよなら絶望放送　第十巻</Fragment>
 
 			<p>2011年10月26日発売</p>
 
@@ -389,7 +388,7 @@ const slugger = new GithubSlugger();
 			</Amazon>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">糸色望のオールナイトニッポンR</H>
+			<Fragment slot="heading">糸色望のオールナイトニッポンR</Fragment>
 
 			<p>2011年10月15日放送</p>
 

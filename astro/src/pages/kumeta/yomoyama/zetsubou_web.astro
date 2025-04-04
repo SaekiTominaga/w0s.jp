@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
 import YouTube from '@components/EmbeddedYouTube.astro';
 import Link from '@components/Link.astro';
 import Section from '@components/Section.astro';
@@ -21,7 +20,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">公式サイト一覧</H>
+		<Fragment slot="heading">公式サイト一覧</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -94,12 +93,12 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading"><cite>さよなら絶望先生</cite></H>
+		<Fragment slot="heading"><cite>さよなら絶望先生</cite></Fragment>
 
 		<YouTube id="J3J4b_wuxsM" title="『さよなら絶望先生』公式サイト閲覧の様子" />
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading"><cite>俗・さよなら絶望先生</cite></H>
+		<Fragment slot="heading"><cite>俗・さよなら絶望先生</cite></Fragment>
 
 		<YouTube id="kDSBb4UD5CQ" title="『俗・さよなら絶望先生』公式サイト閲覧の様子" />
 
@@ -108,7 +107,7 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading"><cite>懺・さよなら絶望先生</cite></H>
+		<Fragment slot="heading"><cite>懺・さよなら絶望先生</cite></Fragment>
 
 		<YouTube id="t4j7jg8_GZQ" title="『懺・さよなら絶望先生』公式サイト閲覧の様子" />
 

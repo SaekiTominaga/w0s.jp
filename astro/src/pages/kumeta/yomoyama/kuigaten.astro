@@ -4,7 +4,6 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -29,7 +28,7 @@ const slugger = new GithubSlugger();
 	</Amazon>
 
 	<Section slugger={slugger}>
-		<H slot="heading">収録イラスト一覧</H>
+		<Fragment slot="heading">収録イラスト一覧</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -1057,7 +1056,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">主な非収録イラスト</H>
+		<Fragment slot="heading">主な非収録イラスト</Fragment>
 
 		<ul class="p-notes">
 			<li>すべての非収録事例をまとめているわけではありません。モノクロイラストや簡素な掲載例を除いた、画集に収録されるに相応しい事例のみを対象としています。意図としては、今後画集の第二弾が制作される暁には是非とも収録して欲しいものをまとめたリストとなります。</li>

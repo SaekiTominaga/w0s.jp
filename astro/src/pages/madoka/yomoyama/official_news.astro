@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
 import Link from '@components/Link.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -20,7 +19,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">TV シリーズ</H>
+		<Fragment slot="heading">TV シリーズ</Fragment>
 
 		<ul class="p-links -index">
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n234575" icon={false}>発売中の『ニュータイプ5月号』『アニメージュ5月号』『アニメディア5月号』に情報掲載中</Link> （2011年4月11日）</li>
@@ -105,7 +104,7 @@ const slugger = new GithubSlugger();
 		</ul>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">劇場版</H>
+		<Fragment slot="heading">劇場版</Fragment>
 
 		<ul class="p-links -index">
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=14354" icon={false}>【限定特典付き】 劇場窓口販売前売券第1弾7月7日(土)発売</Link>（2012年6月8日）</li>

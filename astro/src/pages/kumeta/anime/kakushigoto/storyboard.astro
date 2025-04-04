@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Kumeta.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -19,7 +18,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="first-half">
-		<H slot="heading">前半パート</H>
+		<Fragment slot="heading">前半パート</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -922,7 +921,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="latter-half">
-		<H slot="heading">後半パート</H>
+		<Fragment slot="heading">後半パート</Fragment>
 
 		<div class="p-table">
 			<table>

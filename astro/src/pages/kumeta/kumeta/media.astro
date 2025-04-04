@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
@@ -25,7 +24,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">ラジオ</H>
+		<Fragment slot="heading">ラジオ</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -92,7 +91,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">テレビ</H>
+		<Fragment slot="heading">テレビ</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -155,7 +154,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="movie">
-		<H slot="heading">DVD, Blu-ray, Web</H>
+		<Fragment slot="heading">DVD, Blu-ray, Web</Fragment>
 
 		<div class="p-table">
 			<table>

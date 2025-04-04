@@ -4,7 +4,6 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,16 +32,16 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">作品概要</H>
+		<Fragment slot="heading">作品概要</Fragment>
 
 		<p>「<cite>別冊少年マガジン</cite>」において2013年〜2015年に連載された作品で、作中では2回だけ『<cite>魔法少女まどか☆マギカ</cite>』ネタを確認しています。</p>
 	</Section>
 
 	<Section id="manga">
-		<H slot="heading">漫画</H>
+		<Fragment slot="heading">漫画</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">00′03″　かわいそうな伯爵</H>
+			<Fragment slot="heading">00′03″　かわいそうな伯爵</Fragment>
 
 			<p>2014年2月17日　単行本「第1巻」発売</p>
 
@@ -60,7 +59,7 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">00′29″　かしこい葦</H>
+			<Fragment slot="heading">00′29″　かしこい葦</Fragment>
 
 			<p>2014年9月17日　単行本「第4巻」発売</p>
 

@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,7 +25,7 @@ const structuredData: StructuredData = {
 	</Amazon>
 
 	<Section id="description">
-		<H slot="heading">1. 概要</H>
+		<Fragment slot="heading">1. 概要</Fragment>
 
 		<p>電車とバスの博物館は1982(昭和57)年4月3日、東京急行の創立60周年を記念して高津駅高架下に開館した。この博物館は特に「体験できる」ことを重視し、多くの展示物に直に触れることが出来るようになっている。当時としては画期的だった運転シミュレータをいち早く導入したのも、そのようなコンセプトがあってのことであろう。</p>
 
@@ -38,12 +37,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="car">
-		<H slot="heading">2. 展示車両</H>
+		<Fragment slot="heading">2. 展示車両</Fragment>
 
 		<p>レプリカも含めた展示車両を紹介する。</p>
 
 		<Section id="deha3456" depth={2} headingType="b">
-			<H slot="heading">(1) デハ3450形3456号（カット車両）</H>
+			<Fragment slot="heading">(1) デハ3450形3456号（カット車両）</Fragment>
 
 			<p>正面口（南口）を入ってまず目につくのがこのデハ3450形である。実車の頭部約1/3をカットして展示されている。運転台での操作により前方の車輪が動作し、また放送装置などの機器も扱えるようになっている。</p>
 
@@ -53,7 +52,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="kuha8090" depth={2} headingType="b">
-			<H slot="heading">(2) 8090系8090号（シミュレータ）</H>
+			<Fragment slot="heading">(2) 8090系8090号（シミュレータ）</Fragment>
 
 			<p>運転シミュレーション体験ができ、当館の一番の目玉でもある。車体は8090系13次車（Tc2車）を元に制作され、車号は8090となっている。その後、実車でも8090号が登場したが、そちらは17次車（Tc1車）であり、別物である。</p>
 
@@ -65,7 +64,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="moha517" depth={2} headingType="b">
-			<H slot="heading">(3) モハ510形517号（シミュレータ）</H>
+			<Fragment slot="heading">(3) モハ510形517号（シミュレータ）</Fragment>
 
 			<p>先に記した3456号をカットした際、反対側切断面のうち3.7m分を510形時代に復元したものである。517号は3456号の旧番で、こちらはツーハンドルタイプの運転体験が行える。</p>
 
@@ -73,7 +72,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="deha204" depth={2} headingType="b">
-			<H slot="heading">(4) デハ200形204号</H>
+			<Fragment slot="heading">(4) デハ200形204号</Fragment>
 
 			<p>玉川線で活躍していた204号車を展示保存している。</p>
 
@@ -83,7 +82,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="moha510" depth={2} headingType="b">
-			<H slot="heading">(5) モハ510形510号（復元車両）</H>
+			<Fragment slot="heading">(5) モハ510形510号（復元車両）</Fragment>
 
 			<p>1989(平成元)年に引退したデハ3450形の1号車である3450号を登場時の姿に復元し、保存展示しているものである。高津時代は年に数回の公開時しか車内に立ち入れなかったが、現在では運転室も含め、常時公開されている。</p>
 
@@ -91,7 +90,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="bus&airport" depth={2} headingType="b">
-			<H slot="heading">(6) バス、航空機</H>
+			<Fragment slot="heading">(6) バス、航空機</Fragment>
 
 			<p>鉄道車両以外の実物展示品については、概要のみを簡素に述べる。</p>
 
@@ -102,7 +101,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="library">
-		<H slot="heading">3. ライブラリー</H>
+		<Fragment slot="heading">3. ライブラリー</Fragment>
 
 		<p>鉄道、バスなどに関する資料を備えているライブラリーはイベント館にあり、日曜日と祝日に開いている。（イベント開催中などは臨時閉室の場合あり）</p>
 
@@ -114,7 +113,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="move">
-		<H slot="heading">4. 高津から宮崎台への移動劇</H>
+		<Fragment slot="heading">4. 高津から宮崎台への移動劇</Fragment>
 
 		<p>高津閉館の2002(平成14)年9月から、宮崎台オープンの2003(平成15)年3月までの間に、大型展示物の移動が行われた。</p>
 
@@ -181,7 +180,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="epilogue">
-		<H slot="heading">おわりに</H>
+		<Fragment slot="heading">おわりに</Fragment>
 
 		<p>以上、電車とバスの博物館について展示車両を中心に簡単に紹介させて頂いた。今回は誌面の都合上割愛したが、この他にも歴代車両の模型や復元された旧高津駅出札所、おもいでカード発行に使われている旧定期券発行機などの見所はたくさんある。是非足を運んで頂き、新たな発見をして頂ければ幸いである。</p>
 

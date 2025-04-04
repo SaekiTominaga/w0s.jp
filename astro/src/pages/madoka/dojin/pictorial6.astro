@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -35,7 +34,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>『<cite>劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語</cite>』の劇場上映版と Blu-ray / DVD 版の違いをまとめました。</p>
 
@@ -68,7 +67,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
 		<ul class="p-notes">
 			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
@@ -93,7 +92,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="errata">
-		<H slot="heading">正誤情報</H>
+		<Fragment slot="heading">正誤情報</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -116,12 +115,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="add">
-		<H slot="heading">追加情報</H>
+		<Fragment slot="heading">追加情報</Fragment>
 
 		<p>本の発行後に判明した差分データです。</p>
 
 		<Section slugger={slugger} depth={2} headingType="c">
-			<H slot="heading">Chapter 10</H>
+			<Fragment slot="heading">Chapter 10</Fragment>
 
 			<ul class="p-list">
 				<li>34m16s: バスの蒸気が追加。</li>
@@ -130,7 +129,7 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
-			<H slot="heading">Chapter 25</H>
+			<Fragment slot="heading">Chapter 25</Fragment>
 
 			<ul class="p-list">
 				<li>1h32m07s: ホムリリィのスカートが飛行形態になり（円形の白い歯はなし）、さらにスカートが小刻みに揺れる効果が追加。</li>
@@ -138,7 +137,7 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
-			<H slot="heading">Chapter 27</H>
+			<Fragment slot="heading">Chapter 27</Fragment>
 
 			<ul class="p-list">
 				<li>1h42m20s: テーブルの側面に溝が彫られているが、ほむらの髪と重なる部分が上映版では埋まっていたのが、パッケージ版では穴のように空いて奥の桜が見えるようになった。</li>
@@ -147,7 +146,7 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
-			<H slot="heading">Chapter 28</H>
+			<Fragment slot="heading">Chapter 28</Fragment>
 
 			<ul class="p-list">
 				<li>1h46m46s: モブキャラ達が変更<ins>され、手前（画面下）側の生徒達はまどかとほむらを向くようになった</ins>。</li>

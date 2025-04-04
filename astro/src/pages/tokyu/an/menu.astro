@@ -2,7 +2,6 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Link from '@components/Link.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -21,12 +20,12 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="portable">
-		<H slot="heading">携帯電話<small>（通常時）</small></H>
+		<Fragment slot="heading">携帯電話<small>（通常時）</small></Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">池上、多摩川線</H>
+					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</p>
@@ -35,7 +34,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">目黒線</H>
+					<Fragment slot="heading">目黒線</Fragment>
 
 					<div class="p-box">
 						<p><b>池上、多摩川線と同内容</b></p>
@@ -46,12 +45,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="trans">
-		<H slot="heading">全国交通安全運動<small>（例年4月上旬、9月下旬）</small></H>
+		<Fragment slot="heading">全国交通安全運動<small>（例年4月上旬、9月下旬）</small></Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">池上、多摩川線</H>
+					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま全国交通安全運動を実施しております。交通ルールを守り、事故を防止しましょう。</p>
@@ -60,7 +59,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">目黒線</H>
+					<Fragment slot="heading">目黒線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま全国交通安全運動を実施しております。線路への置き石、電車への投石など、列車妨害行為の防止に、ご協力ください。</p>
@@ -71,12 +70,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="summer">
-		<H slot="heading">夏季の輸送対策と安全運動<small>（例年7月下旬）</small></H>
+		<Fragment slot="heading">夏季の輸送対策と安全運動<small>（例年7月下旬）</small></Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">池上、多摩川線</H>
+					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま夏季の輸送対策と安全運動を実施しております。踏切の無理な横断はお止めください。皆様方のご理解とご協力をお願い申し上げます。</p>
@@ -85,7 +84,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">目黒線</H>
+					<Fragment slot="heading">目黒線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま夏季の輸送対策と安全運動を実施しております。車内や駅構内で不審なものを発見されましたら、乗務員または駅係員までお知らせください。</p>
@@ -96,12 +95,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="fire">
-		<H slot="heading">全国火災予防運動<small>（例年11月中旬、3月上旬）</small></H>
+		<Fragment slot="heading">全国火災予防運動<small>（例年11月中旬、3月上旬）</small></Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">池上、多摩川線</H>
+					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<div class="p-box">
 						<p><b>設定なし</b>（通常時の放送が流れる）</p>
@@ -110,7 +109,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">目黒線</H>
+					<Fragment slot="heading">目黒線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま全国火災予防運動を実施しております。危険品の車内持ち込みや車内でのお煙草は、事故の元になるばかりでなく、ほかのお客様のご迷惑となりますので、固くお断りいたします。</p>
@@ -121,12 +120,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="year">
-		<H slot="heading">年末年始輸送安全総点検<small>（例年12月下旬〜1月上旬）</small></H>
+		<Fragment slot="heading">年末年始輸送安全総点検<small>（例年12月下旬〜1月上旬）</small></Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">池上、多摩川線</H>
+					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま年末年始輸送安全総点検を実施しております。危険物の車内持ち込みや、駆け込み乗車はお止めくださるよう、お願い申し上げます。</p>
@@ -135,7 +134,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">目黒線</H>
+					<Fragment slot="heading">目黒線</Fragment>
 
 					<div class="p-box">
 						<p>お客様にお知らせいたします。ただいま年末年始輸送安全総点検を実施しております。危険品の車内持ち込みや、駆け込み乗車はお止めください。お客様のご協力をお願いいたします。</p>
@@ -150,7 +149,7 @@ const slugger = new GithubSlugger();
 	</ul>
 
 	<Section id="link">
-		<H slot="heading">参考リンク</H>
+		<Fragment slot="heading">参考リンク</Fragment>
 
 		<ul class="p-links">
 			<li><Link href="http://www.mlit.go.jp/list/anzen_04.html">国土交通省／政策分野別情報／安全４</Link></li>

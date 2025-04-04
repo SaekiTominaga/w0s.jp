@@ -4,7 +4,6 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,7 +32,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">作品概要</H>
+		<Fragment slot="heading">作品概要</Fragment>
 
 		<p>「<cite>週刊少年サンデー</cite>」において1998年〜2004年に連載された作品であり、連載終了から7年経ってまさかのアニメ化（OVA）を果たしました。このアニメは『<cite>さよなら絶望先生</cite>』と同じくシャフト制作で、総監督は新房昭之、メインキャストとして喜多村英梨、斎藤千和など、『<cite>魔法少女まどか☆マギカ</cite>』と共通する関係者も多いです。</p>
 
@@ -41,10 +40,10 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="manga">
-		<H slot="heading">漫画</H>
+		<Fragment slot="heading">漫画</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">特別番外編　損して得とれない</H>
+			<Fragment slot="heading">特別番外編　損して得とれない</Fragment>
 
 			<p>2011年4月27日　「週刊少年マガジン2011年22・23合併号」掲載</p>
 
@@ -69,19 +68,19 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="radio">
-		<H slot="heading">ラジオ<small>（<cite>かってに改蔵ラジオしてもいいぜ</cite>）</small></H>
+		<Fragment slot="heading">ラジオ<small>（<cite>かってに改蔵ラジオしてもいいぜ</cite>）</small></Fragment>
 
 		<p>全12回配信 + DJCD1枚。パーソナリティは斎藤千和（坪内地丹 役）で、初回と最終回を除きゲストを迎えた2名体制で送られた。</p>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第4回　いつかギリギリトークする日…!?</H>
+			<Fragment slot="heading">第4回　いつかギリギリトークする日…!?</Fragment>
 
 			<p>2011年7月27日配信</p>
 
 			<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「<cite>水を差す人がいます</cite>」</H>
+				<Fragment slot="heading">コーナー「<cite>水を差す人がいます</cite>」</Fragment>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -91,7 +90,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「<cite>とらうま高校だれとく部</cite>」</H>
+				<Fragment slot="heading">コーナー「<cite>とらうま高校だれとく部</cite>」</Fragment>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -102,7 +101,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">Webサイト掲載の次回予告</H>
+				<Fragment slot="heading">Webサイト掲載の次回予告</Fragment>
 
 				<div class="p-box">
 					<p>「かってに次回予告」、地丹と羽美がアイツと契約して魔法少女に!?次回、『かってに魔法少女ラジオ』放送開始！(しません！)</p>
@@ -111,14 +110,14 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第8回　結局はオレの出番だよ。</H>
+			<Fragment slot="heading">第8回　結局はオレの出番だよ。</Fragment>
 
 			<p>2011年9月21日配信</p>
 
 			<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「<cite>理論上は可能なんです!</cite>」</H>
+				<Fragment slot="heading">コーナー「<cite>理論上は可能なんです!</cite>」</Fragment>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -129,14 +128,14 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第11回　スレスレ★サービス</H>
+			<Fragment slot="heading">第11回　スレスレ★サービス</Fragment>
 
 			<p>2011年11月2日配信</p>
 
 			<p>ゲスト: 喜多村英梨（名取羽美 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">Webサイト掲載の次回予告</H>
+				<Fragment slot="heading">Webサイト掲載の次回予告</Fragment>
 
 				<div class="p-box">
 					<p>「とらうま高校だれとく部」、羽美はあの魔法少女たちにも勝てるほど危険な存在!?そんな羽美の○○ソングが聴けるのはこの番組だけ！</p>
@@ -149,14 +148,14 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜</H>
+			<Fragment slot="heading">DJCD かってに改蔵ラジオしてもいいぜ 〜地丹をうけたらサヨウナラ〜</Fragment>
 
 			<p>2011年10月26日発売</p>
 
 			<p>ゲスト: 櫻井孝宏（勝改蔵 役）</p>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「<cite>とらうま高校だれとく部（前半）</cite>」</H>
+				<Fragment slot="heading">コーナー「<cite>とらうま高校だれとく部（前半）</cite>」</Fragment>
 
 				<div class="p-box">
 					<ul class="p-list">
@@ -187,7 +186,7 @@ const slugger = new GithubSlugger();
 				</div>
 			</Section>
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">コーナー「<cite>とらうま高校だれとく部（後半）</cite>」</H>
+				<Fragment slot="heading">コーナー「<cite>とらうま高校だれとく部（後半）</cite>」</Fragment>
 
 				<div class="p-box">
 					<ul class="p-list">

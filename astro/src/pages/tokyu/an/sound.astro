@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -23,13 +22,13 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="tokyu">
-		<H slot="heading">東急電鉄</H>
+		<Fragment slot="heading">東急電鉄</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">東横線</H>
+			<Fragment slot="heading">東横線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">通勤特急列車の英語放送</H>
+				<Fragment slot="heading">通勤特急列車の英語放送</Fragment>
 
 				<p>ラッシュ時に運転される通勤特急列車では、基本的に英語放送が省略されますが、始発駅停車中のみ流れる場合があります。</p>
 
@@ -44,7 +43,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">日比谷線直通、種別案内が<q>各駅停車</q>のみ</H>
+				<Fragment slot="heading">日比谷線直通、種別案内が<q>各駅停車</q>のみ</Fragment>
 
 				<p>上り日比谷線直通列車における武蔵小杉駅停車中の案内では、東急車のみ種別案内に<q>日比谷線直通</q>が含まれていませんでした。2008年の横浜市交グリーンライン開業に伴う変更で修正されています。</p>
 
@@ -59,10 +58,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">目黒線</H>
+			<Fragment slot="heading">目黒線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">下り奥沢止まりの放送</H>
+				<Fragment slot="heading">下り奥沢止まりの放送</Fragment>
 
 				<p>下り奥沢行きのうち、上りホームの3番線に到着する列車では、下車しない場合もいったん改札を出る必要がありました。これは2006年の急行運転開始前のバージョンです。</p>
 
@@ -78,10 +77,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">田園都市線</H>
+			<Fragment slot="heading">田園都市線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">準急列車の放送</H>
+				<Fragment slot="heading">準急列車の放送</Fragment>
 
 				<p>平日朝間に上りのみ設定されている準急列車の放送のうち、通過駅のある区間は急行列車に似た内容となっていますが、二子玉川到着時のみ各駅停車になる旨の案内が行われます。</p>
 
@@ -96,10 +95,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">大井町線</H>
+			<Fragment slot="heading">大井町線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">お立ちのお客様は、吊り革・手摺りにお掴まりください。</H>
+				<Fragment slot="heading">お立ちのお客様は、吊り革・手摺りにお掴まりください。</Fragment>
 
 				<p>カーブの続く上野毛〜二子玉川間では、立客向けの注意放送が行われていました。同様の案内は東横線の一部区間でも行われていましたが、現在ではこどもの国線の始発駅発車時に残るのみとなっています。</p>
 
@@ -114,7 +113,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">路線名を言わない</H>
+				<Fragment slot="heading">路線名を言わない</Fragment>
 
 				<p>2009年の溝の口延伸以前、鷺沼始発の大井町線直通列車は、始発駅発車時の案内で路線名を省略し、<q>東急線</q>と放送されていました。</p>
 
@@ -129,7 +128,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">不自然な間のある放送</H>
+				<Fragment slot="heading">不自然な間のある放送</Fragment>
 
 				<p>大井町線旗の台駅はもともと2面2線の対向式ホームで、上り列車は北千束発車時の自動放送で<q>お出口は左側に変わります。</q>と案内していました。駅改良工事に伴い2006年に開扉方向が変わった際、当該部分が削除されましたが、その際に前後の切り詰めを行わなかったため、放送途中に不自然な間が生じていました。後に自動放送休止期間を経て、2009年の溝の口延伸の際に全面的な更新が成されています。</p>
 
@@ -145,10 +144,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">池上線</H>
+			<Fragment slot="heading">池上線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">1000系ワンマン案内、<q>お降りになりましたら…</q></H>
+				<Fragment slot="heading">1000系ワンマン案内、<q>お降りになりましたら…</q></Fragment>
 
 				<p>池上、多摩川線では、主要駅発車時に<q>発車ベルが鳴り終わりましたら…</q>というワンマン運転の案内が流れますが、1000系のうち旗の台発車時のみは異なる文言となっています。</p>
 
@@ -164,10 +163,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">世田谷線</H>
+			<Fragment slot="heading">世田谷線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">携帯電話マナー放送、<q>オレンジ色の吊り革付近は、…</q></H>
+				<Fragment slot="heading">携帯電話マナー放送、<q>オレンジ色の吊り革付近は、…</q></Fragment>
 
 				<p>下り西太子堂発車時に流れる携帯電話マナー放送は、上り列車の<q>吊り革がオレンジ色の優先席付近では…</q>に対し、異なる文言となっています。</p>
 
@@ -183,13 +182,13 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="transfer">
-		<H slot="heading">譲渡車両</H>
+		<Fragment slot="heading">譲渡車両</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">弘南鉄道（弘南線）</H>
+			<Fragment slot="heading">弘南鉄道（弘南線）</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">テープ時代の放送</H>
+				<Fragment slot="heading">テープ時代の放送</Fragment>
 
 				<p>2008年の放送装置IC化以前の放送で、現在とは印象が異なるものです。</p>
 
@@ -204,10 +203,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">福島交通</H>
+			<Fragment slot="heading">福島交通</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">飯坂温泉駅降車ホーム使用休止</H>
+				<Fragment slot="heading">飯坂温泉駅降車ホーム使用休止</Fragment>
 
 				<p>冬季は飯坂温泉駅の降車専用ホームが使用休止されるため、乗車ホームが降車兼用となります。到着時の案内文言はしばしば変更されており、ここでは2007年の放送装置IC化直前のバージョンを紹介します。</p>
 
@@ -222,10 +221,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">伊豆急行</H>
+			<Fragment slot="heading">伊豆急行</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">快速列車の放送</H>
+				<Fragment slot="heading">快速列車の放送</Fragment>
 
 				<p>伊豆急行線では多客期などに臨時快速が運転されますが、近年は東急から譲渡された8000系が使われています。一部で停車駅案内を行うほか、通過駅がある場合に限り<q>次の停車駅は…</q>と案内されます。</p>
 
@@ -240,10 +239,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">北陸鉄道（石川線）</H>
+			<Fragment slot="heading">北陸鉄道（石川線）</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">英語案内付きの放送</H>
+				<Fragment slot="heading">英語案内付きの放送</Fragment>
 
 				<p>北陸鉄道石川線では、主要駅の次駅放送に英語案内が含まれます。</p>
 
@@ -259,10 +258,10 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">熊本電気鉄道（菊池線）</H>
+			<Fragment slot="heading">熊本電気鉄道（菊池線）</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">男性声による放送</H>
+				<Fragment slot="heading">男性声による放送</Fragment>
 
 				<p>熊本電気鉄道では、珍しく男性声による放送が行われています。また一部区間で宣伝放送が行われていましたが、2008年に中止されています。</p>
 

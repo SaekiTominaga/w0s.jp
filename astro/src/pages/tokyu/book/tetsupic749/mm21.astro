@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,7 +25,7 @@ const structuredData: StructuredData = {
 	</Amazon>
 
 	<Section id="prologue">
-		<H slot="heading">はじめに</H>
+		<Fragment slot="heading">はじめに</Fragment>
 
 		<p>2004(平成16)年2月1日、横浜高速鉄道みなとみらい線が開業し、東横線との相互直通運転が開始された。これに伴い、横浜―桜木町間は1月31日に廃止となり、横浜―高島町間は1928(昭和3)年、高島町―桜木町間は1932(昭和7)年に開業して以来の歴史に幕を下ろした。</p>
 
@@ -34,7 +33,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="toyoko-car">
-		<H slot="heading">1. 東横線関連の車両動向など</H>
+		<Fragment slot="heading">1. 東横線関連の車両動向など</Fragment>
 
 		<p>ここで主に紹介するのは、廃止と開業に深く関連する2003年下半期〜2004年2月のことであるが、最初にそれ以前の車両面の動きを簡単にまとめてみる。</p>
 
@@ -48,13 +47,13 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="trial-run">
-		<H slot="heading">2. 夜間走行試験</H>
+		<Fragment slot="heading">2. 夜間走行試験</Fragment>
 
 		<p>2003(平成15)年10月から菊名―東白楽間を中心に、ATC化などに伴う夜間走行試験が実施された。試験走行には、事業用車両であるデヤ7200+デヤ7290の他、元住吉検車区所属の営業用編成が使用された。</p>
 	</Section>
 
 	<Section id="delivery">
-		<H slot="heading">3. 車両搬入工事</H>
+		<Fragment slot="heading">3. 車両搬入工事</Fragment>
 
 		<p>新たに建設された地下線内で試験走行を行うため、東京急行と横浜高速の車両が1編成ずつ先行搬入されることとなった。搬入にあたっては、長津田車両工場へ回送された車両を、深夜にトレーラー牽引で東白楽付近に設置された搬入線まで輸送した。</p>
 
@@ -64,7 +63,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="sign">
-		<H slot="heading">4. 表示器の更新</H>
+		<Fragment slot="heading">4. 表示器の更新</Fragment>
 
 		<p>12月になると、みなとみらい線への乗入れを考慮し、表示器の更新が始まった。更新は9000系と8090系・8590系から始まり、行先内容に横浜や元町・中華街などが入ったものとなった。また、普通列車はそれまで種別幕が無表示（黒一色）となっていたが、「各停」の表示がされるようになった。その他、ローマ字併記は従来「Shibuya」のように、先頭文字だけ大文字であったものが「SHIBUYA」とすべて大文字になり、正面の種別幕にも英文が入った。ちなみに、LED式に改造された車両の側面表示器は従来からすべて大文字の英文併記である。側面表示のデザインも大幅に変更となり、行先駅名の部分は、種別にかかわらず黒地に白文字となった。</p>
 
@@ -74,13 +73,13 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="inspect">
-		<H slot="heading">5. 最後の検測</H>
+		<Fragment slot="heading">5. 最後の検測</Fragment>
 
 		<p>2004(平成16)年1月14日から3日間、鉄道線で架線・高速軌道検測が実施された。東横線の検測が行われた15日は、“派手車”最後の桜木町入線を見届けようと多くのファンが集まり、鉄道の安全を守る裏方の勇姿を写真に納めていた。</p>
 	</Section>
 
 	<Section id="to8000-forY500">
-		<H slot="heading">6. 来たるもの、追われしもの</H>
+		<Fragment slot="heading">6. 来たるもの、追われしもの</Fragment>
 
 		<p>1月30日、横浜―桜木町間の最終営業日である。この日は、車両面でも翌日にかけて大きな動きがあった。2月1日からの営業運転開始を前にY500系が元住吉に集結し、代わりに8000系の一部編成が疎開または廃車のために住み慣れた地を離れてしまうのであった。</p>
 
@@ -90,7 +89,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="sakuragicho-end">
-		<H slot="heading">7. 横浜－桜木町の終焉</H>
+		<Fragment slot="heading">7. 横浜－桜木町の終焉</Fragment>
 
 		<p>日付が前後してしまうが、再び1月30日である。最後の時を見届けようと、各地から多くの鉄道ファンや利用客らが押し寄せ、各駅は大変な混雑であった。特に高島町、桜木町の両駅では、終始人が途絶えることはなかった。</p>
 
@@ -100,7 +99,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="for-yokohama">
-		<H slot="heading">8. 切替え工事と横浜行き</H>
+		<Fragment slot="heading">8. 切替え工事と横浜行き</Fragment>
 
 		<p>1月31日未明、終列車が通過した後の東白楽付近の切替え現場では、地下線切替えの作業が進んでいた。まずレールの切断作業が行われ、仮桁を撤去。そして新設の軌道および電車線を既存区間と接続し、わずか3時間強で作業は終了した。営業初列車の時間が近くなると、東白楽4時53分発の試験走行列車を筆頭に、送出の回送列車や事前投入車両の返却回送列車などで慌ただしく、早朝にもかかわらず2分間隔で列車が続くこともあった。</p>
 
@@ -110,7 +109,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mm21-start">
-		<H slot="heading">9. みなとみらい線、開業</H>
+		<Fragment slot="heading">9. みなとみらい線、開業</Fragment>
 
 		<p>2月1日、ついにみなとみらい線が開業し、渋谷―元町・中華街間が一本で結ばれた。</p>
 
@@ -120,19 +119,19 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="epilogue">
-		<H slot="heading">10. おわりに</H>
+		<Fragment slot="heading">10. おわりに</Fragment>
 
 		<p>変化が激しく、常に話題性のある東横線。ここ十数年の間にも複々線化、連続立体化などで車窓風景は大きく変わった。そのような中でも今回の桜木町廃止とみなとみらい線直通が東横線の歴史に大きな足跡を残したことは間違いないであろう。今後も新車投入や渋谷駅地下化など、更なる変化を続けてゆくであろう東横線が、多くの方に愛され続けてゆくことを願いたい。</p>
 	</Section>
 
 	<Section id="errata">
-		<H slot="heading">正誤データ</H>
+		<Fragment slot="heading">正誤データ</Fragment>
 
 		<Section id="errata-toyoko-car" depth={2} headingType="b">
-			<H slot="heading">1. 東横線関連の車両動向など</H>
+			<Fragment slot="heading">1. 東横線関連の車両動向など</Fragment>
 
 			<Section id="errata-toyoko-car-8590change" depth={3} headingType="c">
-				<H slot="heading">8694F, 8695Fの転籍</H>
+				<Fragment slot="heading">8694F, 8695Fの転籍</Fragment>
 
 				<div class="p-box">
 					<p>(誤) その後、東横線の渋谷―菊名間ATC化や、目黒線開通に伴う朝間の運用減により余剰が出ることから、一部編成が田園都市線に移籍され、</p>
@@ -147,10 +146,10 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="errata-sign" depth={2} headingType="b">
-			<H slot="heading">4. 表示器の更新</H>
+			<Fragment slot="heading">4. 表示器の更新</Fragment>
 
 			<Section id="errata-sign-8000spcm" depth={3} headingType="c">
-				<H slot="heading">8021F, 8023Fの字幕</H>
+				<Fragment slot="heading">8021F, 8023Fの字幕</Fragment>
 
 				<div class="p-box">
 					<p>(誤) ちなみに、LED化の進行により、東横線の8000系で字幕表示を行っているのは8021Fおよび8023F側面のみとなってしまっていたが、</p>

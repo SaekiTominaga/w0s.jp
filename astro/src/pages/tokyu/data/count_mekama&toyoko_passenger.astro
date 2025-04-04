@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/DateWareki.astro';
-import H from '@components/H.astro';
 import Link from '@components/Link.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
@@ -22,7 +21,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>目黒蒲田電鉄と東京横浜電鉄は<DateWareki value="1939" />の合併以前も両社間で車両の融通が図られており、譲受／譲渡および借り受け／貸し渡しがそれぞれ複数回行われています。そのため車両数の変遷を知るには入籍日や廃車日のデータだけではなく、それら車両の移動を含めた動向を考慮する必要があります。</p>
 
@@ -58,7 +57,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mekama">
-		<H slot="heading">目黒蒲田電鉄</H>
+		<Fragment slot="heading">目黒蒲田電鉄</Fragment>
 
 		<div class="p-table -scroll">
 			<table>
@@ -802,7 +801,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="toyoko">
-		<H slot="heading">東京横浜電鉄</H>
+		<Fragment slot="heading">東京横浜電鉄</Fragment>
 
 		<div class="p-table -scroll">
 			<table>
@@ -1216,7 +1215,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="new-toyoko">
-		<H slot="heading">目黒蒲田電鉄 → (新)東京横浜電鉄</H>
+		<Fragment slot="heading">目黒蒲田電鉄 → (新)東京横浜電鉄</Fragment>
 
 		<div class="p-table -scroll">
 			<table>
