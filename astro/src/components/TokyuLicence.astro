@@ -43,10 +43,48 @@ if (possess !== undefined && dateStr !== undefined) {
 }
 ---
 
-<span class="c-tokyu-licence">
-	{summary !== undefined && <span class="c-tokyu-licence__summary">{summary}</span>}
-	{no !== undefined && <span class="c-tokyu-licence__no">{no}</span>}
-	{title !== undefined && <cite class="c-tokyu-licence__title">{title}</cite>}
-	{dateStr !== undefined && <DateWareki value={dateStr} class="c-tokyu-licence__date" />}{dateStr === undefined && <span class="c-tokyu-licence__date">時期不明</span>}
-	{possessDisplay.length > 0 && <span class="c-tokyu-licence__possess">資料：{possessDisplay.join('、')}</span>}
-</span>
+<div class="licence">
+	{summary !== undefined && <span class="summary">{summary}</span>}
+	{no !== undefined && <span class="no">{no}</span>}
+	{title !== undefined && <cite class="title">{title}</cite>}
+	{dateStr !== undefined && <DateWareki value={dateStr} class="date" />}{dateStr === undefined && <span class="date">時期不明</span>}
+	{possessDisplay.length > 0 && <span class="possess">資料：{possessDisplay.join('、')}</span>}
+</div>
+
+<style>
+	.licence {
+		display: block flex;
+		flex-direction: column;
+		gap: 0.25em;
+
+		& > :global(*) {
+			inline-size: fit-content;
+		}
+	}
+
+	.summary {
+		& + :global(*) {
+			margin-block-start: 0.5em;
+		}
+	}
+
+	.no {
+		border: 1px solid;
+		border-radius: var(--border-radius-normal);
+		padding: 0.25em;
+		color: var(--color-gray);
+		font-size: calc(100% / pow(var(--font-ratio), 2));
+	}
+
+	.title {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.date {
+	}
+
+	.possess {
+		margin-block-start: 0.25em;
+		font-size: calc(100% / pow(var(--font-ratio), 2));
+	}
+</style>
