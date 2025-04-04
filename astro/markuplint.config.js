@@ -51,6 +51,10 @@ export default {
 	pretenders: [
 		{
 			selector: 'TopUpdate',
+			as: 'ul',
+		},
+		{
+			selector: 'TopUpdateItem',
 			as: 'li',
 		},
 	],
