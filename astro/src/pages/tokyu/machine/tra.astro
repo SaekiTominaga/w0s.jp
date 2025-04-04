@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -25,12 +24,12 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="door-non-treat">
-		<H slot="heading">扉非扱い制御用</H>
+		<Fragment slot="heading">扉非扱い制御用</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">大井町線</H>
+					<Fragment slot="heading">大井町線</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/tra/dnt_oimachi.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
@@ -43,7 +42,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">池上、多摩川線</H>
+					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/tra/dnt_ikegami.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
@@ -63,12 +62,12 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="atc">
-		<H slot="heading">列車情報などの伝送用</H>
+		<Fragment slot="heading">列車情報などの伝送用</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">東横線（1000系まで）</H>
+					<Fragment slot="heading">東横線（1000系まで）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/tra/atc_toyoko.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
@@ -81,7 +80,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">目黒線、こどもの国線（Y000系）</H>
+					<Fragment slot="heading">目黒線、こどもの国線（Y000系）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/tra/atc_meguro.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
@@ -96,7 +95,7 @@ const slugger = new GithubSlugger();
 			</div>
 			<div class="c-grid__item">
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">大井町線</H>
+					<Fragment slot="heading">大井町線</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/tra/atc_oimachi.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />

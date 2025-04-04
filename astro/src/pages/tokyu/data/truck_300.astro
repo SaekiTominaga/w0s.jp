@@ -1,7 +1,6 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -19,7 +18,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>世田谷線車両は旧型車時代、デハ70形8両、デハ80形6両、デハ150形4両の陣営で、このうちデハ70形とデハ80形は1994年〜1997年に台車交換によるカルダン駆動化が行われました。それまで1台車1モーターであったものを先頭側は T 台車、連結面側は M 台車の方式とされたため、当時の <a href="/tokyu/truck/ts300#ts332">TS-332 型台車</a>は M 台車、T 台車とも14台ずつが存在したことになります。</p>
 
@@ -29,7 +28,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="table">
-		<H slot="heading">TS-332 型台車一覧表</H>
+		<Fragment slot="heading">TS-332 型台車一覧表</Fragment>
 
 		<div class="p-table">
 			<table>

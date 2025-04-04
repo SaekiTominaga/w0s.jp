@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
@@ -37,7 +36,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>1967年に登場した TS-800 系台車の初作品は京王井の頭線3000系向けで、東急電鉄では同年に7200系の電動車で TS-802 型が採用されました。続く8000系グループの大量増備と、パイオニアⅢ台車の置き換えで20年以上にわたり製造され、東急電車の代表的な台車として1990年代には在籍車両の7割以上に普及するまでに至りました。</p>
 
@@ -214,10 +213,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts802">
-		<H slot="heading">TS-802 型</H>
+		<Fragment slot="heading">TS-802 型</Fragment>
 
 		<Section id="ts802-m" depth={2} headingType="b">
-			<H slot="heading">TS-802 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-802 <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS802_7200.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -241,7 +240,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts802a" depth={2} headingType="b">
-			<H slot="heading">TS-802A <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-802A <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS802A_7290.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -466,10 +465,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts807">
-		<H slot="heading">TS-807 型</H>
+		<Fragment slot="heading">TS-807 型</Fragment>
 
 		<Section id="ts807-m" depth={2} headingType="b">
-			<H slot="heading">TS-807, TS-807M <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-807, TS-807M <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS807M_8728.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -483,7 +482,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts807a" depth={2} headingType="b">
-			<H slot="heading">TS-807A, TS-807C <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-807A, TS-807C <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS807A_8791.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -499,7 +498,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts807b" depth={2} headingType="b">
-			<H slot="heading">TS-807B <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-807B <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS807B_8492.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -516,10 +515,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts815">
-		<H slot="heading">TS-815 型</H>
+		<Fragment slot="heading">TS-815 型</Fragment>
 
 		<Section id="ts815m" depth={2} headingType="b">
-			<H slot="heading"><small>（TS-815M →）</small>TS-815C <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading"><small>（TS-815M →）</small>TS-815C <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS815C-M_8918.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -541,7 +540,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts815a" depth={2} headingType="b">
-			<H slot="heading"><small>（TS-815A →）</small>TS-815C <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading"><small>（TS-815A →）</small>TS-815C <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS815C-A_8935.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -555,7 +554,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts815b" depth={2} headingType="b">
-			<H slot="heading"><small>（TS-815B →）</small>TS-815E <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading"><small>（TS-815B →）</small>TS-815E <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS815E_8093.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -567,7 +566,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts815c" depth={2} headingType="b">
-			<H slot="heading">TS-815C<small>（オリジナル）</small> <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-815C<small>（オリジナル）</small> <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS815C_8978.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -581,7 +580,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts815d" depth={2} headingType="b">
-			<H slot="heading">TS-815D <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-815D <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS815D_8097.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -597,7 +596,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts815f" depth={2} headingType="b">
-			<H slot="heading">TS-815F, <small>（TS-815F →）</small>TS-815T, <small>（TS-835 → TS-839 →）</small>TS-815T <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-815F, <small>（TS-815F →）</small>TS-815T, <small>（TS-835 → TS-839 →）</small>TS-815T <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS815F_8020.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -616,10 +615,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts831">
-		<H slot="heading">TS-831 型</H>
+		<Fragment slot="heading">TS-831 型</Fragment>
 
 		<Section id="ts831-m" depth={2} headingType="b">
-			<H slot="heading">TS-831 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-831 <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS831_7681.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -640,10 +639,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts832">
-		<H slot="heading">TS-832 型</H>
+		<Fragment slot="heading">TS-832 型</Fragment>
 
 		<Section id="ts832-m" depth={2} headingType="b">
-			<H slot="heading">TS-832 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-832 <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS832_7810.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -666,10 +665,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts835">
-		<H slot="heading">TS-835 型</H>
+		<Fragment slot="heading">TS-835 型</Fragment>
 
 		<Section id="ts835-t" depth={2} headingType="b">
-			<H slot="heading">TS-835 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-835 <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS835_7907.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -696,10 +695,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts839">
-		<H slot="heading">TS-839 型</H>
+		<Fragment slot="heading">TS-839 型</Fragment>
 
 		<Section id="ts839-t" depth={2} headingType="b">
-			<H slot="heading">TS-839 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-839 <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS839_7601.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />

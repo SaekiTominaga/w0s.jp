@@ -5,7 +5,6 @@ import Layout from '@layouts/Tokyu.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -41,7 +40,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>東急電鉄における VVVF インバーター制御の採用は、日立製作所におけるデハ3552 の構内試験を別にすれば、1983年より旧6000系・デハ6202 において日立製作所製の装置を搭載した現車試験（1984年夏の大井町線での短期営業運転を含む）が行われたのが始まりです。当初は従来の抵抗制御車との併結でしたが、1985年には東芝、東洋電機製造、日立製作所の3タイプの装置を積んだ VVVF インバーター制御のみの6両編成（3M3T）での試験が開始され、やはり大井町線にて数か月にわたる営業運転も行われました。この時、デハ6202 の日立製 VVVF インバーター装置は 4500V 耐圧のタイプに交換されています。</p>
 
@@ -204,7 +203,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="vf-hr107">
-		<H slot="heading">VF-HR107<small>（9000系1次車）</small></H>
+		<Fragment slot="heading">VF-HR107<small>（9000系1次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -243,7 +242,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="rg614-a-m">
-		<H slot="heading">RG614-A-M<small>（7600系1次車）</small></H>
+		<Fragment slot="heading">RG614-A-M<small>（7600系1次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -278,7 +277,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="rg617-a-m">
-		<H slot="heading">RG617-A-M<small>（7700系）</small></H>
+		<Fragment slot="heading">RG617-A-M<small>（7700系）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -307,7 +306,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="vf-hr112">
-		<H slot="heading">VF-HR112<small>（9000系2〜5次車）</small></H>
+		<Fragment slot="heading">VF-HR112<small>（9000系2〜5次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -325,7 +324,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="rg617-b-m">
-		<H slot="heading">RG617-B-M<small>（7600系2〜3次車）</small></H>
+		<Fragment slot="heading">RG617-B-M<small>（7600系2〜3次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -350,10 +349,10 @@ const slugger = new GithubSlugger();
 		<p>RG614-A-M 型と同じく、7600系の引退に伴い2015年に消滅しました。</p>
 
 		<Section slugger={slugger} depth={2} headingType="c" box={true}>
-			<H slot="heading">7600系編成替えと制御装置の変遷</H>
+			<Fragment slot="heading">7600系編成替えと制御装置の変遷</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1986年5月時点<small>（デビュー）</small></H>
+				<Fragment slot="heading">1986年5月時点<small>（デビュー）</small></Fragment>
 
 				<dl>
 					<dt>大井町線</dt>
@@ -372,7 +371,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1986年9月〜1987年3月<small>（目蒲線転用・暫定編成）</small></H>
+				<Fragment slot="heading">1986年9月〜1987年3月<small>（目蒲線転用・暫定編成）</small></Fragment>
 
 				<dl>
 					<dt>目蒲線</dt>
@@ -391,7 +390,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1987年4月時点<small>（7601F 大井町線復帰）</small></H>
+				<Fragment slot="heading">1987年4月時点<small>（7601F 大井町線復帰）</small></Fragment>
 
 				<dl>
 					<dt>大井町線</dt>
@@ -410,7 +409,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1988年4月時点<small>（7601F〜7602F 目蒲線転籍）</small></H>
+				<Fragment slot="heading">1988年4月時点<small>（7601F〜7602F 目蒲線転籍）</small></Fragment>
 
 				<dl>
 					<dt>目蒲線</dt>
@@ -429,7 +428,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1988年秋時点<small>（7601F〜7602F 1C4M 化）</small></H>
+				<Fragment slot="heading">1988年秋時点<small>（7601F〜7602F 1C4M 化）</small></Fragment>
 
 				<dl>
 					<dt>池上線</dt>
@@ -451,7 +450,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1989年4月時点<small>（全車池上線転籍）</small></H>
+				<Fragment slot="heading">1989年4月時点<small>（全車池上線転籍）</small></Fragment>
 
 				<dl>
 					<dt>池上線</dt>
@@ -470,7 +469,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1990年5月時点<small>（7603F 編成替え &amp; 1C4M 化）</small></H>
+				<Fragment slot="heading">1990年5月時点<small>（7603F 編成替え &amp; 1C4M 化）</small></Fragment>
 
 				<dl>
 					<dt>池上線</dt>
@@ -489,7 +488,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">1995年4月時点<small>（室内更新）</small></H>
+				<Fragment slot="heading">1995年4月時点<small>（室内更新）</small></Fragment>
 
 				<dl>
 					<dt>池上線</dt>
@@ -508,7 +507,7 @@ const slugger = new GithubSlugger();
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="d">
-				<H slot="heading">参考文献</H>
+				<Fragment slot="heading">参考文献</Fragment>
 
 				<ul class="p-list">
 					<li>「<cite>私鉄車両編成表</cite>」'85年版〜'95年版</li>
@@ -524,7 +523,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="rg621-a-m">
-		<H slot="heading">RG621-A-M<small>（1000系、1000N系、1000N′系）</small></H>
+		<Fragment slot="heading">RG621-A-M<small>（1000系、1000N系、1000N′系）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -698,7 +697,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="vf-hr121z">
-		<H slot="heading">VF-HR121Z<small>（デハ8799–デハ0802）</small></H>
+		<Fragment slot="heading">VF-HR121Z<small>（デハ8799–デハ0802）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -736,7 +735,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="vf-hr132">
-		<H slot="heading">VF-HR132, VFG-HR1820D<small>（8500系21次車、2000系）</small></H>
+		<Fragment slot="heading">VF-HR132, VFG-HR1820D<small>（8500系21次車、2000系）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -783,7 +782,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="rg636-a-m">
-		<H slot="heading">RG636-A-M<small>（1000N′系・単 M 車）</small></H>
+		<Fragment slot="heading">RG636-A-M<small>（1000N′系・単 M 車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">

@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/W0s.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import Link from '@components/Link.astro';
-import H from '@components/H.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -19,7 +18,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="notice">
-		<H slot="heading">おことわり</H>
+		<Fragment slot="heading">おことわり</Fragment>
 
 		<ul class="p-list">
 			<li>本ページで記載することは特記のない限り <a href="https://w0s.jp/"><code>w0s.jp</code></a> および <a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
@@ -28,7 +27,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="history">
-		<H slot="heading">歴史</H>
+		<Fragment slot="heading">歴史</Fragment>
 
 		<dl class="p-list-description">
 			<dt>2001年2月</dt>
@@ -57,7 +56,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="server">
-		<H slot="heading">サーバー構成</H>
+		<Fragment slot="heading">サーバー構成</Fragment>
 
 		<div class="p-table -scroll">
 			<table>
@@ -139,7 +138,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="html">
-		<H slot="heading">HTML</H>
+		<Fragment slot="heading">HTML</Fragment>
 
 		<ul class="p-list">
 			<li>
@@ -166,7 +165,7 @@ const structuredData: StructuredData = {
 		<NoteRefContent id="ext"><span lang="en"><Link href="https://www.w3.org/Provider/Style/URI" hreflang="en"><cite>Cool URIs don't change</cite></Link> (Tim Berners-Lee, 1998)</span></NoteRefContent>
 
 		<Section id="html-redirect" depth={2} headingType="c">
-			<H slot="heading">3xx リダイレクトページ</H>
+			<Fragment slot="heading">3xx リダイレクトページ</Fragment>
 
 			<p>URL が変更になった場合は 301 Moved Permanently、フォームの POST 送信後には 303 See Other などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
 
@@ -180,7 +179,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="html-clienterror" depth={2} headingType="c">
-			<H slot="heading">4xx クライアントエラーページ</H>
+			<Fragment slot="heading">4xx クライアントエラーページ</Fragment>
 
 			<p><code>404 Not Found</code> のエラーページには JavaScript で以下の機能を組み込んでいる。</p>
 
@@ -192,7 +191,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="style">
-		<H slot="heading">スタイルシート<small>（CSS）</small></H>
+		<Fragment slot="heading">スタイルシート<small>（CSS）</small></Fragment>
 
 		<ul class="p-list">
 			<li>CSS ファイルのビルドには <Link href="https://postcss.org/">PostCSS</Link>を使用している。これはブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるパフォーマンス向上が目的であり、標準化の見込みのないプラグインは使っていない。将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</li>
@@ -203,7 +202,7 @@ const structuredData: StructuredData = {
 		<NoteRefContent id="css-minify-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></a>（2022年6月）</NoteRefContent>
 
 		<Section id="style-print" depth={2} headingType="c">
-			<H slot="heading">印刷用スタイル</H>
+			<Fragment slot="heading">印刷用スタイル</Fragment>
 
 			<ul class="p-list">
 				<li>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code>@print</code> を使って完全な白（<code>#ffffff</code>）に設定している。</li>
@@ -211,7 +210,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="style-reader" depth={2} headingType="c">
-			<H slot="heading">リーダー表示</H>
+			<Fragment slot="heading">リーダー表示</Fragment>
 
 			<ul class="p-list">
 				<li>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダー表示を実装している。</li>
@@ -220,7 +219,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="style-darkmode" depth={2} headingType="c">
-			<H slot="heading">ダークモード</H>
+			<Fragment slot="heading">ダークモード</Fragment>
 
 			<ul class="p-list">
 				<li>制作者スタイルシートでいわゆるダークモードを提供するサイトが多いが、本来そのような機能はブラウザが提供すべきものと考えており、本サイトにおいて背景色などの切り替え機構を提供するつもりはない。</li>
@@ -232,7 +231,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="script">
-		<H slot="heading">スクリプト<small>（JavaScript）</small></H>
+		<Fragment slot="heading">スクリプト<small>（JavaScript）</small></Fragment>
 
 		<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトの一部ないし全部が動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。フィード全文配信などスクリプトが動かないケースは往々にして存在するため、当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
 
@@ -242,7 +241,7 @@ const structuredData: StructuredData = {
 		</ul>
 
 		<Section id="script-error" depth={2} headingType="c">
-			<H slot="heading">エラー検知</H>
+			<Fragment slot="heading">エラー検知</Fragment>
 
 			<p>作成したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、<code>error</code> イベントを検知し通知する機能を組み込んでいる。この<Link href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-js-error">検知プログラムは GitHub で公開</Link>しているが、簡略化したコード例を下記に示す。</p>
 
@@ -274,7 +273,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="bitmap">
-		<H slot="heading">ビットマップ画像<small>（JPEG, PNG）</small></H>
+		<Fragment slot="heading">ビットマップ画像<small>（JPEG, PNG）</small></Fragment>
 
 		<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下5種類の画像を <code>&lt;picture&gt;</code> 要素を使って提示している。</p>
 
@@ -304,7 +303,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="favicon">
-		<H slot="heading">ファビコン<small>（<code>favicon.ico</code>）</small></H>
+		<Fragment slot="heading">ファビコン<small>（<code>favicon.ico</code>）</small></Fragment>
 
 		<p>ファビコンは SVG 形式で提供している。</p>
 
@@ -320,7 +319,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="csp">
-		<H slot="heading">CSP</H>
+		<Fragment slot="heading">CSP</Fragment>
 
 		<ul class="p-list">
 			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシートやユーザースクリプト、アドオン等によるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>

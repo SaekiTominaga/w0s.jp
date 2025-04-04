@@ -1,7 +1,6 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -19,7 +18,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>8500系の冷房電源は当初MGでしたが、7-2次車で逆導通サイリスタを使用した大容量SIVが搭載され、13次車からはGTOサイリスタ式のBS-482形、18次車からは出力電圧を440Vに上げたINV-008形となりました。</p>
 
@@ -27,7 +26,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="table">
-		<H slot="heading">SIV形式一覧表</H>
+		<Fragment slot="heading">SIV形式一覧表</Fragment>
 
 		<div class="p-table">
 			<table>

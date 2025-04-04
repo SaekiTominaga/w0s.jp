@@ -5,7 +5,6 @@ import DateWareki from '@components/DateWareki.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
-import H from '@components/H.astro';
 import Licence from '@components/TokyuLicence.astro';
 import Link from '@components/Link.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -38,7 +37,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<ul class="p-list">
 			<li>
@@ -66,7 +65,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="gauge1067">
-		<H slot="heading">狭軌時代の車両</H>
+		<Fragment slot="heading">狭軌時代の車両</Fragment>
 
 		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920-09" />までの13年間、1,067mmの狭軌で営業が行われていました。当初は電動客車5両でスタートし、徐々に増備が行われて最終的には以下の陣営となったことが営業報告書と統計資料から判明しています。</p>
 
@@ -205,7 +204,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="passenger1-15">
-		<H slot="heading"><small>玉川／東横</small>電動客車 1～15</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動客車 1～15</Fragment>
 
 		<p>玉川電気鉄道は東京市電の貨車乗り入れのため<DateWareki value="1920-09" />に軌間 1,067mm から 1,372mm への改軌が行われ、旅客車両は総取り替えとなりました。</p>
 
@@ -309,7 +308,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="freight1-5">
-		<H slot="heading"><small>玉川／東横</small>電動貨車 1～5</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動貨車 1～5</Fragment>
 
 		<p>狭軌時代は電動客車が付随貨車を牽いていましたが、改軌に際しては有蓋電動貨車が製造されました。中央の荷物室は屋根付きの有蓋車で、車体サイズは<a href="/tokyu/data/history_mekama&toyoko_freight#dewa1">目黒蒲田電鉄と東京横浜電鉄のデワ1形</a>より一回り小型で、主電動機容量も 50㏋×2台 と小出力であり（それでも<a href="#passenger1-15">電動客車の1～15号車</a>よりは大きい）、積載状態の付随貨車は1両のみ牽引することが想定されていました。</p>
 
@@ -368,7 +367,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="freight1-20">
-		<H slot="heading"><small>玉川／東横</small>付随貨車 1～20 → <small>東急</small>ト1形</H>
+		<Fragment slot="heading"><small>玉川／東横</small>付随貨車 1～20 → <small>東急</small>ト1形</Fragment>
 
 		<p>改軌に際して電動客車、電動貨車とともに車両構造認可が行われた 10t 積み無蓋貨車で、認可申請書では<q>現用車輌ヲ廢止シ（中略）新車輌ヲ使用</q>と書かれているものの、改軌前後で車両数が変わらないこと、改軌後の車両は車体、台車とも玉川電気鉄道自身が製造したことになっていること、現車の写真を比較しても角形バッファーなどの特徴が改軌前後で同一であることから、実際は狭軌時代の貨車を自社工場で改造したものと思われます。なお申請時に車両数が25両とされているのですが、統計資料によれば20両（狭軌時代と同じ数）しか竣功しておらず、残り5両が書類上どのように処理されたのかは不明です。</p>
 
@@ -607,7 +606,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="passenger16-30">
-		<H slot="heading"><small>玉川／東横</small>電動客車 16～30 → <small>東急</small>デハ1形</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動客車 16～30 → <small>東急</small>デハ1形</Fragment>
 
 		<p>改軌にやや遅れて製造されたボギー車で、<a href="#passenger1-15">4輪単車（1～15号車）</a>と比較すると定員は40人から70人へ、車体長（バンパー末端まで）は 8,181mm から 11,734mm へと大型化しています。</p>
 
@@ -708,13 +707,13 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="sansui" box={true}>
-		<H slot="heading"><small>玉川</small>散水電動車<small>（未製造）</small></H>
+		<Fragment slot="heading"><small>玉川</small>散水電動車<small>（未製造）</small></Fragment>
 
 		<p>関東大震災の翌年、玉川電気鉄道の「<cite>第43期　営業報告書</cite>」（<DateWareki value="1924-06" />～11月）には散水電動車を1両注文したことが記載されています。<q>附随貨車ヲ牽引シ得ル</q>とあるため、<a href="#freight1-5">電動貨車</a>と同じく連結器を装備したであろうほかは諸元などまったく不明で、実際に導入された形跡もありません。</p>
 	</Section>
 
 	<Section id="passenger31-35">
-		<H slot="heading"><small>玉川／東横</small>電動客車 31～35</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動客車 31～35</Fragment>
 
 		<p>出入口が両端2つのオープンデッキタイプですが、<a href="#passenger16-30">16～30号車</a>と比べて車体長さが延長され、定員も70人→90人へ増加しています。ただし車長の変化の割に定員の増加率が大きいこと、車端部に空間を作ったため座席長はむしろ短縮されたにも関わらず座席定員も増加していることから、定員の考え方が変わったのかもしれません。</p>
 
@@ -773,7 +772,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="passenger36-45">
-		<H slot="heading"><small>玉川／東横</small>電動客車 36～45 → <small>東急</small>デハ20形</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動客車 36～45 → <small>東急</small>デハ20形</Fragment>
 
 		<p><a href="#passenger31-35">31～35号車</a>と似ていますが、中間ドアを設けて出入口が3つとなりました（両端はオープンデッキ）。座席定員が削減された一方で立席分が調整され、全体の定員は90人で変化ありません。また台車も基本構造は変わらないものの軸距が延長されています。</p>
 
@@ -856,7 +855,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="passenger46-55">
-		<H slot="heading"><small>玉川／東横</small>電動客車 46～55 → <small>東急</small>デハ30形</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動客車 46～55 → <small>東急</small>デハ30形</Fragment>
 
 		<p>それまでの木製車体から半鋼製車体となり、屋根はモニターデッキ（<span lang="en">Clerestory</span> 型）から段差のないプレーンアーチ型へ、両端の出入口はドア付きとなった一方で、車輪径が元に戻ってふたたび客室が一段高くなり、中間ドアはなくなるなど、部位によって進化と退化が混在したようなグループです。</p>
 
@@ -919,7 +918,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="passenger56-66">
-		<H slot="heading"><small>玉川／東横</small>電動客車 56～66 → <small>東急</small>デハ40形</H>
+		<Fragment slot="heading"><small>玉川／東横</small>電動客車 56～66 → <small>東急</small>デハ40形</Fragment>
 
 		<p><a href="#passenger46-55">46～55号車</a>に中間ドアを付けたほかは殆ど同様の構造です。中間ドアは<a href="#passenger36-45">36～45号車</a>のものとは異なり、階段が折り畳み可能な外付け式で、車掌や駅員が外部より開閉操作を行うものとされました。</p>
 
@@ -994,7 +993,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="passenger71-75">
-		<H slot="heading"><small>東横</small>電動客車 31～35 → 71～75 → <small>東急</small>デハ60形</H>
+		<Fragment slot="heading"><small>東横</small>電動客車 31～35 → 71～75 → <small>東急</small>デハ60形</Fragment>
 
 		<p>玉川電気鉄道が東京横浜電鉄へ合併された直後、30号車以前に先がけて<a href="#passenger31-35">31～35号車</a>の半鋼体化改造が行われたのですが、改造車であることを区別するため車号も70番台に変更されました（書類上は改造竣功の翌日に改番）。</p>
 
@@ -1048,7 +1047,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha70">
-		<H slot="heading"><small>東急</small>デハ70形</H>
+		<Fragment slot="heading"><small>東急</small>デハ70形</Fragment>
 
 		<p>前述のとおり<DateWareki value="1941-10" />に4輪電動客車2両と電動貨車5両が満洲国の<span lang="zh-Hans">新京交通</span><small>（現：<span lang="zh-Hans">长春有轨电车</span>）</small>へ供出されたのですが、その代替として新造車両が3両増備されることになりました（同年8月19日に鉄道省より通牒）。当時は(新)東京横浜電鉄の時代で木造車を半鋼体化した<a href="#passenger71-75">71～75号車</a>が最大番号で存在しており、新造車両は81～83号車となる予定だったのですが<NoteRef type="ref" by="toyoko1942-08-17" />、購入認可と竣功は東京急行電鉄の成立後となり、実際の車号は70番台とされました。</p>
 
@@ -1154,7 +1153,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="dewa3030">
-		<H slot="heading"><small>東急</small>デワ3030形 → デト3030形</H>
+		<Fragment slot="heading"><small>東急</small>デワ3030形 → デト3030形</Fragment>
 
 		<p><DateWareki value="1941-10" />に<a href="#freight1-5">電動貨車 1～5</a> が供出されたため、玉川線には付随貨車を牽引できる車両がなくなっていたのですが、品川営業局<small>（現：京浜急行電鉄）</small>で余剰となっていた電動貨車デワ5010形1両が転局することになり、軌間改造（1,435mm → 1,372mm）のほか、付随貨車に合わせて新たにねじ式連結器を追加（バッファーはもともと装備）、またパンタグラフはトロリーポールへの変更が実施されています。この際、車両番号はなぜか鉄道線用の3000番台が付与されました。</p>
 
@@ -1203,7 +1202,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha80">
-		<H slot="heading"><small>東急</small>デハ80形</H>
+		<Fragment slot="heading"><small>東急</small>デハ80形</Fragment>
 
 		<p>戦後の本格的な車両増備は、前述のデハ74～75 の例外を除けばデハ80形より始まります。これは1949<small>(昭和24)</small>年度の増備認可を受けたもので、その認可書類は残されておらず詳細は不明ながら8両での認可申請が行われ、そのうち6両が認可されたもののようです<NoteRef type="ref" by="romancecar21" />。主電動機は 74.6kW（100馬力）で後のデハ150形より大きく歴代最強を誇り、新製当時からビューゲルを装備、正面上部の両脇には緑ランプの方向指示灯（三軒茶屋の分岐で使用）が付きました。中央ドアは<a href="#passenger56-66">デハ40形</a>のような階段外付け式ですが、閉扉時はステップが台枠下部に収納される方式となっています。</p>
 

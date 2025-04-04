@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -22,12 +21,12 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="string">
-		<H slot="heading">文字のみのタイプ</H>
+		<Fragment slot="heading">文字のみのタイプ</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="bold-purple" depth={2} headingType="c">
-					<H slot="heading">太フォント、英文紺字</H>
+					<Fragment slot="heading">太フォント、英文紺字</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/bold_purple.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -40,7 +39,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="bold-black" depth={2} headingType="c">
-					<H slot="heading">太フォント、英文黒字</H>
+					<Fragment slot="heading">太フォント、英文黒字</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/bold_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -53,7 +52,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="bold-blue" depth={2} headingType="c">
-					<H slot="heading">太フォント、英文青字</H>
+					<Fragment slot="heading">太フォント、英文青字</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/bold_blue.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -66,7 +65,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="thin-black" depth={2} headingType="c">
-					<H slot="heading">細フォント、英文黒字</H>
+					<Fragment slot="heading">細フォント、英文黒字</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/thin_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -81,12 +80,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="pictogram1">
-		<H slot="heading">ピクトグラム（旧）</H>
+		<Fragment slot="heading">ピクトグラム（旧）</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="pic-str" depth={2} headingType="c">
-					<H slot="heading">ピクトグラム + 文字</H>
+					<Fragment slot="heading">ピクトグラム + 文字</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/pic_str.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -99,7 +98,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="pic-only" depth={2} headingType="c">
-					<H slot="heading">ピクトグラムのみ</H>
+					<Fragment slot="heading">ピクトグラムのみ</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/pic_only.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -114,12 +113,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="pictogram2">
-		<H slot="heading">ピクトグラム（新）</H>
+		<Fragment slot="heading">ピクトグラム（新）</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="3000" depth={2} headingType="c">
-					<H slot="heading">新3000系</H>
+					<Fragment slot="heading">新3000系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/3000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -132,7 +131,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="y000" depth={2} headingType="c">
-					<H slot="heading">Y000系</H>
+					<Fragment slot="heading">Y000系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/Y000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -145,7 +144,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="300" depth={2} headingType="c">
-					<H slot="heading">300系</H>
+					<Fragment slot="heading">300系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/300.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
@@ -158,7 +157,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="9000-renewal" depth={2} headingType="c">
-					<H slot="heading">9000系化粧板修繕車</H>
+					<Fragment slot="heading">9000系化粧板修繕車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/yomoyama/nosmoking/9000_renewal.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />

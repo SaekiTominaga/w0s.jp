@@ -5,7 +5,6 @@ import DateWareki from '@components/DateWareki.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
-import H from '@components/H.astro';
 import Link from '@components/Link.astro';
 import Licence from '@components/TokyuLicence.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -36,7 +35,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<ul class="p-list">
 			<li>認可、竣功などの日付は<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省文書）を情報源とします。</li>
@@ -53,7 +52,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha1">
-		<H slot="heading">乙号車</H>
+		<Fragment slot="heading">乙号車</Fragment>
 
 		<p>池上電気鉄道が<DateWareki value="1922-10-06" />の池上―蒲田間の開通に際し導入した車両で、定説では駿遠電気<small>（現：静岡鉄道）</small>20形の譲受車とされていますが、認可書類には駿遠電気の名前は出てきません（車両竣功図表に前歴の記載があります）。</p>
 
@@ -117,7 +116,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha11">
-		<H slot="heading">丙号車</H>
+		<Fragment slot="heading">丙号車</Fragment>
 
 		<p>予定していた<a href="#deha3">甲号車</a>が電気機器の輸入延期のため完成しないことから、乙号車と同じく静岡電気鉄道<small>（現：静岡鉄道）</small>から譲受した車両とされていますが、やはり認可書類には前歴の記載はなく、また旧車号も不明です。</p>
 
@@ -171,7 +170,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha3">
-		<H slot="heading">甲号車</H>
+		<Fragment slot="heading">甲号車</Fragment>
 
 		<p>前述のとおり、池上電気鉄道の開通当初は乙号車のみで運転を開始し、雪ヶ谷延伸のあたりに丙号車を増備していますが、その後<DateWareki value="1923-08" />にようやく甲号車の購入認可申請が提出されます。しかしどういうわけかデハ3〜4 よりも先にデハ5〜6 の方が先に手続きが行われました。甲号車は新造車でありながら電機品は中古品を使用しており<NoteRef type="ref" by="kotsu1925-10" />、そのことが納期に影響したのかもしれませんが、はっきりした理由は分かっていません。</p>
 
@@ -238,7 +237,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha20">
-		<H slot="heading">デハ20形</H>
+		<Fragment slot="heading">デハ20形</Fragment>
 
 		<p>近隣の目黒蒲田電鉄にやや遅れて、池上電気鉄道でも鉄道省の木造ボギー電車を導入することになり、まずは1両を、その後<DateWareki value="1927" />中に9両が払い下げられました。</p>
 
@@ -316,7 +315,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deto1">
-		<H slot="heading">デト1形<small>（無入籍）</small></H>
+		<Fragment slot="heading">デト1形<small>（無入籍）</small></Fragment>
 
 		<p>池上電気鉄道ではもともと小規模な貨物輸送の計画があり、開通前の<DateWareki value="1920-07" />時点の工事計画では電動貨車（有蓋車）1両、付随貨車5両の製造が予定されていました<NoteRef type="ref" by="ikegami1920-07-21" />。</p>
 
@@ -370,7 +369,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha100">
-		<H slot="heading">デハ100形、デハ200形</H>
+		<Fragment slot="heading">デハ100形、デハ200形</Fragment>
 
 		<p><DateWareki value="1928-06" />の五反田全通を控えて8両の認可申請が行われましたが、デハ100形5両が製造されたのち、2年後に未竣功の残り3両に対して正面貫通扉の廃止と室内灯の増設の設計変更が行われ、デハ200形として別形式を名乗りました<NoteRef by="deha200-name" />。</p>
 

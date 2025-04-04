@@ -5,7 +5,6 @@ import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -39,7 +38,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>電気車の起動時、電車線から供給される電圧をそのままモーターに流すと大電流となってしまうため、電気鉄道の黎明期から行われていた方式として、モーターと直列に抵抗器を挿入する<dfn>抵抗制御</dfn>があります。モーターが回転を始めると逆向きの力である<dfn>逆起電力</dfn>が発生し、速度上昇に従いその力も増してゆくため、徐々に抵抗を抜きモーターに掛かる電圧を増やすことで逆起電力との差分がモーター出力（トルク）となり加速を続けます。このように一定の電車線電圧を車載の抵抗器で可変制御する方式は電機子チョッパ制御や VVVF インバーター制御が普及する1970〜1990年代まで長く採用されました。</p>
 
@@ -189,7 +188,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="direct">
-		<H slot="heading">直接制御車</H>
+		<Fragment slot="heading">直接制御車</Fragment>
 
 		<p>目黒蒲田電鉄の開業に向けて1922年に製造されたデハ1形、および翌1923年に増備されたデハ6形は単行運転を前提とした直接制御で製造されましたが、1932年に連結運転のため、運転台のマスコン指令を主制御器（複式制御器）で受ける<dfn>間接制御</dfn>に改造されました<NoteRef type="ref" by="koenshu" />。</p>
 
@@ -227,7 +226,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ministry-mekama">
-		<H slot="heading">鉄道省払い下げ車（目蒲&amp;東横時代）</H>
+		<Fragment slot="heading">鉄道省払い下げ車（目蒲&amp;東横時代）</Fragment>
 
 		<p>目蒲線の全通間もない1924年には乗客増加による車両不足のため省線電車を使用することとなり、山手線、中央線の 1200V 昇圧により不要となった木造ボギー電車デハ6260形4両を借り受け（同年中に譲受）、目黒蒲田電鉄デハ20形となりました。続けて翌1925年にも同型の8両が譲渡されてデハ30形に、さらに1926年にはデハ6285形4両が譲渡されデハ40形となりました。</p>
 
@@ -306,7 +305,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="hitachi-pr">
-		<H slot="heading">日立・電空カム軸<small>（PR, PB）</small></H>
+		<Fragment slot="heading">日立・電空カム軸<small>（PR, PB）</small></Fragment>
 
 		<p>鉄道省払い下げ車の導入と並行して1925年には新造車デハ100形<small>（後のデハ3100形→サハ3100形）</small>が増備され、間接制御式として日立製作所の PR-150 型が搭載されました。鉄道省払い下げ車とは異なり、圧縮空気によるエンジンでカム軸を回転させることで接触器を作動させる<dfn>電磁空気カム軸</dfn>（電空カム軸）の自動進段タイプで、型番の数字は 150㏋ の主電動機4台を制御することからの命名です。これは本来 1500V 用であり、この時点から将来の昇圧を見越していたことが覗えます。なお、PR-150 型は目黒蒲田電鉄、東京横浜電鉄のほか鉄道省へも大量採用され<NoteRef type="ref" by="hitachi1926-07" />、後に国鉄制式 CS-2 型とされました。</p>
 
@@ -347,7 +346,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="dk-system">
-		<H slot="heading">東洋電機・ディッカーシステム</H>
+		<Fragment slot="heading">東洋電機・ディッカーシステム</Fragment>
 
 		<p>前述のとおりデハ100形以降の新造車は一部の例外を除き日立製作所の制御装置が搭載され、この傾向は吊り掛け車の終焉まで長く続くことになるのですが、新造車以外では東洋電機製造の機器を搭載したケースも若干数存在しました。同社はイギリス <span lang="en">English Electric</span> 社と技術提携を結んでおり、その技術によりカムシャフトを電動機で回転させる<dfn>電動カム軸</dfn>式の制御装置を国産化、EE 社の前身である <span lang="en">Dick, Kerr</span> 社の名前から<dfn>ディッカーシステム（<span lang="en">Dick Kerr System</span>）</dfn>と呼ばれていました。</p>
 
@@ -457,7 +456,7 @@ const structuredData: StructuredData = {
 		</div>
 
 		<Section id="moha150-transition" depth={2} headingType="c" box={true}>
-			<H slot="heading">モハ150形（デハ3300形）の制御装置の変遷</H>
+			<Fragment slot="heading">モハ150形（デハ3300形）の制御装置の変遷</Fragment>
 
 			<p>前述のとおり鉄道省払い下げ車の半鋼体化改造は3回に分けて行われ、サハ1形<small>（東急サハ3350形）</small>4両とモハ150形<small>（東急デハ3300形）</small>11両になりました。</p>
 
@@ -524,7 +523,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="hitachi-mc">
-		<H slot="heading">日立・電動カム軸<small>（MC, MMC）</small></H>
+		<Fragment slot="heading">日立・電動カム軸<small>（MC, MMC）</small></Fragment>
 
 		<p>東洋電機製造に遅れて日立製作所も1936年には電動カム軸式を開発し、1937年に鉄道省払い下げ車を半鋼体化して改番されたモハ150形<small>（後のデハ3300形）</small>や1939年の新造車モハ1000形<small>（後のデハ3500形）</small>に MC-200 型が採用されました。大きな特徴を2つ挙げると、一つは力行の並列最終段からノッチオフした際、従来の電空式ではカム軸を逆転させていたものの、本品では逆転せずさらに正転させることで接触器の開閉回数を半減ひいては摩耗減少につながり、回路の簡素化も実現しています。もう一つは連結運転時に各電動車の進段タイミングを合わせるため、限流継電器に同期機能を付けたことで力行時の衝撃を緩和していることです<NoteRef type="ref" by="hitachi1936-12" />。</p>
 
@@ -565,7 +564,7 @@ const structuredData: StructuredData = {
 		<NoteRefContent id="echizen1101"><a href="/tokyu/yomoyama/echizen_mc1101">えちぜん鉄道MC1101形の主制御器（MMC-H-10K 型）</a></NoteRefContent>
 
 		<Section id="mmc-first" depth={2} headingType="c" box={true}>
-			<H slot="heading">日本初の多段式制御装置の採用電車は?</H>
+			<Fragment slot="heading">日本初の多段式制御装置の採用電車は?</Fragment>
 
 			<p>東京横浜電鉄モハ1000形は日本で初めて多段式制御装置を採用した電車であると紹介されることがありますが、日本初であることには疑念を抱いています。</p>
 
@@ -661,7 +660,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ministry-odakyu">
-		<H slot="heading">鉄道省払い下げ車（大東急時代）</H>
+		<Fragment slot="heading">鉄道省払い下げ車（大東急時代）</Fragment>
 
 		<p>戦時体制下において京浜電気鉄道<small>（現：京浜急行電鉄）</small>と小田急電鉄を合併して東京急行電鉄が発足し<dfn>大東急</dfn>と呼ばれていた時代、各営業局間で施設や車両の融通が行われましたが、その一環で新宿営業局<small>（現：小田急電鉄）</small>で使用されていた鉄道省払い下げ車が入線したことがあります。これは1943年に通勤輸送強化のため、玉川線の二子読売園<small>（現：二子玉川）</small>〜溝ノ口<small>（現：溝の口）</small>を改軌して大井町線列車を乗り入れるようにしたことに伴う車両増備として、デハ1100形3両を 600V 降圧化のうえ転局させたものです。</p>
 
@@ -677,7 +676,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="hl">
-		<H slot="heading"><span lang="en">Westinghouse Electric</span> 型<small>（HL）</small></H>
+		<Fragment slot="heading"><span lang="en">Westinghouse Electric</span> 型<small>（HL）</small></Fragment>
 
 		<p>第二次世界大戦直後の車両増備は、予定されていた新製車デハ3550形<small>（1953年に登場した後のデハ3550形とは別物）</small>が戦災被害の大きかった井の頭線に投入され、また運輸省63形の割り当ては20m車を使用できる(元)小田急電鉄線と相模鉄道線<small>（当時は東急電鉄に経営委託中で厚木線と呼称）</small>に振り分けられたため、東横、目蒲、大井町、池上の(元)東京横浜電鉄線においては後述の<a href="#cs5">規格型電車</a>の新製が行われるまで、以下のように細々とした増車があったのみとなります。</p>
 
@@ -704,7 +703,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="cs5">
-		<H slot="heading">鉄道省型<small>（CS-5）</small></H>
+		<Fragment slot="heading">鉄道省型<small>（CS-5）</small></Fragment>
 
 		<p><a href="#hl">前述</a>のとおり第二次世界大戦直後の車両増備は限定的なものであり、本格的な増備は終戦から3年後の1948年より始まった省線車両の復旧、およびデハ3700形、クハ3750形の新製でようやく再開となりました。</p>
 

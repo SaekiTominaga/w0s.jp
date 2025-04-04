@@ -4,7 +4,6 @@ import Layout from '@layouts/Tokyu.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
@@ -39,7 +38,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>1954年に登場した旧5000系は旧来の吊り掛け式電車とは一線を画した高性能車で、東急電車で初めて発電ブレーキを搭載するなど制御まわりも革新されました。</p>
 
@@ -190,7 +189,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="pe-11">
-		<H slot="heading">PE-11A<small>（旧5000系・デハ5001〜5020）</small>、PE-11B<small>（旧5000系・デハ5021〜、5200系）</small></H>
+		<Fragment slot="heading">PE-11A<small>（旧5000系・デハ5001〜5020）</small>、PE-11B<small>（旧5000系・デハ5021〜、5200系）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -243,7 +242,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ab-54-6mdb">
-		<H slot="heading">AB-54-6MDB<small>（デハ200形）</small></H>
+		<Fragment slot="heading">AB-54-6MDB<small>（デハ200形）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -273,7 +272,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="es753-a">
-		<H slot="heading">ACRF-H4100-753A<small>（旧6000系・A編成）</small>、ACRF-H4120-754A<small>（旧6000系・C編成）</small></H>
+		<Fragment slot="heading">ACRF-H4100-753A<small>（旧6000系・A編成）</small>、ACRF-H4120-754A<small>（旧6000系・C編成）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -319,7 +318,7 @@ const structuredData: StructuredData = {
 		<p>現在は弘南鉄道大鰐線にC編成が1編成のみが残っていますが、本線で動くことはまずありません。</p>
 
 		<Section id="tdk-fr" depth={2} headingType="c" box={true}>
-			<H slot="heading">磁気増幅器制御の整流子型界磁調整器による弱め界磁制御</H>
+			<Fragment slot="heading">磁気増幅器制御の整流子型界磁調整器による弱め界磁制御</Fragment>
 
 			<p>抵抗制御車の力行において、速度上昇に伴い主電動機の回転が速くなるにつれ逆起電力が増加してゆきますが、低速域では抵抗を徐々に減らしてゆくことで主電動機に流れる電流を調整し、一定の加速度を維持します。すべての抵抗が短絡した後は、本来であれば回転力の伸びが大幅に低下し加速度が落ちてゆくところ、界磁に流れる電流を弱めて逆起電力を減らすことでその低下度を抑えることができ、これを<dfn>弱め界磁制御</dfn>と呼びます。</p>
 
@@ -353,7 +352,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mm-101a">
-		<H slot="heading">MM-101A<small>（旧6000系・B編成）</small></H>
+		<Fragment slot="heading">MM-101A<small>（旧6000系・B編成）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -376,7 +375,7 @@ const structuredData: StructuredData = {
 		<p>旧6000系B編成は晩年 VVVF インバーター制御の試験車として改造され、この制御装置は1984年に消滅しました。</p>
 
 		<Section id="mcm" depth={2} headingType="c" box={true}>
-			<H slot="heading">東芝 MCM パッケージ型主制御器</H>
+			<Fragment slot="heading">東芝 MCM パッケージ型主制御器</Fragment>
 
 			<p>旧6000系B編成の主制御器は東芝の資料によると <dfn>MCM 型</dfn>として区分されていますが<NoteRef type="ref" by="toshiba127" />、本来の MCM 型の特徴とはかなり違いがあります。</p>
 
@@ -486,7 +485,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="es754-a">
-		<H slot="heading">ACRF-H860-754A<small>（旧7000系・東洋車 1〜2次車）</small>、ACRF-H860-757A<small>（旧7000系・東洋車 3〜10次車）</small></H>
+		<Fragment slot="heading">ACRF-H860-754A<small>（旧7000系・東洋車 1〜2次車）</small>、ACRF-H860-757A<small>（旧7000系・東洋車 3〜10次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -520,7 +519,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-10a">
-		<H slot="heading">MMC-HTR-10A<small>（旧7000系・日立車）</small></H>
+		<Fragment slot="heading">MMC-HTR-10A<small>（旧7000系・日立車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -569,7 +568,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-10b">
-		<H slot="heading">MMC-HTR-10B<small>（7200系・日立車）</small></H>
+		<Fragment slot="heading">MMC-HTR-10B<small>（7200系・日立車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -614,7 +613,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="es764-a">
-		<H slot="heading">ACRF-H4110-764A<small>（7200系・東洋電機車）</small></H>
+		<Fragment slot="heading">ACRF-H4110-764A<small>（7200系・東洋電機車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -653,7 +652,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="cs-20a">
-		<H slot="heading">CS-20A<small>（旧7000系北陸鉄道譲渡車）</small></H>
+		<Fragment slot="heading">CS-20A<small>（旧7000系北陸鉄道譲渡車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">

@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Link from '@components/Link.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -21,7 +20,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="list">
-		<H slot="heading">保存車リスト</H>
+		<Fragment slot="heading">保存車リスト</Fragment>
 
 		<div class="p-table">
 			<table>
@@ -296,7 +295,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="map">
-		<H slot="heading">保存車マップ</H>
+		<Fragment slot="heading">保存車マップ</Fragment>
 
 		<Embedded border={true}>
 			<iframe src="https://www.google.com/maps/d/embed?mid=1wcErO5GFrxTDWgFmFvooaScjytnyRnSy&hl=ja" title="保存車両マップ" style="block-size: min(100dvh, 720px)" slot="media"></iframe>

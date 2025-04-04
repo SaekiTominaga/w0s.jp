@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -22,12 +21,12 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="original">
-		<H slot="heading">オリジナルタイプ（製造時）</H>
+		<Fragment slot="heading">オリジナルタイプ（製造時）</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="inv049" depth={2} headingType="c">
-					<H slot="heading">INV-049</H>
+					<Fragment slot="heading">INV-049</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/aci/INV049.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
@@ -42,7 +41,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="inv088" depth={2} headingType="c">
-					<H slot="heading">INV-088</H>
+					<Fragment slot="heading">INV-088</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/aci/INV088.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
@@ -59,12 +58,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="renewal2014">
-		<H slot="heading">2014年更新後</H>
+		<Fragment slot="heading">2014年更新後</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="tc220" depth={2} headingType="c">
-					<H slot="heading">TCE-220</H>
+					<Fragment slot="heading">TCE-220</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/aci/TCE220.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />

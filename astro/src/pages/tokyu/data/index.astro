@@ -1,7 +1,6 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -17,7 +16,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="history">
-		<H slot="heading">車両履歴</H>
+		<Fragment slot="heading">車両履歴</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/data/history_mekama&toyoko_passenger">目黒蒲田電鉄、東京横浜電鉄　旅客車</a></li>
@@ -30,7 +29,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="count">
-		<H slot="heading">車種別車両数推移</H>
+		<Fragment slot="heading">車種別車両数推移</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/data/count_mekama&toyoko_passenger">目黒蒲田電鉄、東京横浜電鉄　旅客車</a></li>
@@ -38,7 +37,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="form">
-		<H slot="heading">編成表</H>
+		<Fragment slot="heading">編成表</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/data/form_car">主要機器搭載表（車種別）</a>（2009年3月時点）</li>
@@ -48,7 +47,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="list">
-		<H slot="heading">機器一覧</H>
+		<Fragment slot="heading">機器一覧</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/data/siv_8500">8500系　大容量 SIV 形式一覧</a>（2005年2月時点）</li>
@@ -59,7 +58,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="preservation">
-		<H slot="heading">保存車両</H>
+		<Fragment slot="heading">保存車両</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/data/preservation">保存車両リスト</a>（2019年10月時点）</li>

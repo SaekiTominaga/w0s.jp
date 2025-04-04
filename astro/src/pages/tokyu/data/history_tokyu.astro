@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import DateWareki from '@components/DateWareki.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
-import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import Link from '@components/Link.astro';
@@ -37,7 +36,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<ul class="p-list">
 			<li>認可、竣功などの日付は原則として<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省および運輸通信省、運輸省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで市販の書籍など2次情報を参照しています。</li>
@@ -59,7 +58,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="kuha3650">
-		<H slot="heading">クハ3650形</H>
+		<Fragment slot="heading">クハ3650形</Fragment>
 
 		<p>クハ3650形のうち最初に製造された6両の認可申請は東京横浜電鉄の時代に行われましたが、認可は東京横浜電鉄の成立後となり、製造当初から3000番台の車号が与えられた最初の車両であり、そして結果的に終戦前最後の新製車となってしまった車両でもあります。</p>
 
@@ -133,7 +132,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha1100">
-		<H slot="heading">デハ1100形</H>
+		<Fragment slot="heading">デハ1100形</Fragment>
 
 		<p>溝ノ口<small>（現：溝の口）</small>付近に工場新設が相次いだことに伴う輸送力強化のため、玉川線の延長線のような扱いだった溝ノ口線を改軌して大井町線列車を乗り入れるようにする変更が行われることになり、<DateWareki value="1943-07-01" />より乗り入れが開始、これに伴う車両増備として新宿営業局<small>（現：小田急電鉄）</small>よりデハ1100形3両が 600V 降圧化のうえ転籍されました。</p>
 
@@ -179,7 +178,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha3550" box={true}>
-		<H slot="heading">デハ3550形予定車(?)</H>
+		<Fragment slot="heading">デハ3550形予定車(?)</Fragment>
 
 		<p>戦時下において5両の新製が計画された電動車で、東京横浜電鉄時代の<DateWareki value="1940" />に認可が行われた<a href="/tokyu/data/history_mekama&toyoko_passenger#deha3550">44両の新製計画</a>のうち1943<small>(昭和18)</small>年度の製造工程組入分を利用しての認可申請が行われ、横浜営業局<small>（現：京浜急行電鉄）</small>向けの制御車5両と同じタイミングで認可がなされています。</p>
 
@@ -213,7 +212,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha1700">
-		<H slot="heading">井の頭線デハ1700形<small>（デハ3550形予定車）</small></H>
+		<Fragment slot="heading">井の頭線デハ1700形<small>（デハ3550形予定車）</small></Fragment>
 
 		<p>第二次世界大戦後の<DateWareki value="1946" />に<a href="#kuha3650">クハ3650形</a>の電動車版ともいえるデハ3550形が製造され、最初の4両が元住吉工場に搬入されたのですが<NoteRef type="ref" by="pic24" />、戦争末期の<DateWareki value="1945-05" />に起こった大空襲で壊滅的な被害を受けていた井の頭線へ投入されることとなり、竣功前にデハ1700形への改番が行われました。もともとデハ3550形として予定されていた5両に加えて小田原線<small>（現：小田急電鉄）</small>投入予定車の2両<NoteRef type="ref" by="pic174" />を加えた7両の陣営となり、後年には長軸台車であることを活かして軌間の異なる京王線への転籍も行われています。</p>
 
@@ -288,7 +287,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha3250">
-		<H slot="heading">デハ3250形<small>（東京横浜電鉄引継）</small></H>
+		<Fragment slot="heading">デハ3250形<small>（東京横浜電鉄引継）</small></Fragment>
 
 		<p>第二次世界大戦後の車両新製として東京急行電鉄にはモハ63形、クハ86形が計20両割り当てられ、20m 車を使用できる小田原線<small>（旧：小田急電鉄）</small>と厚木線<small>（経営委託中の相模鉄道）</small>に投入されましたが、それ対して現有車両のうち12両を供出することが命ぜられ、池上線デハ3250形8両、厚木線デハ1050形4両が対象とされています。</p>
 
@@ -347,7 +346,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="kuha3660">
-		<H slot="heading">クハ3660形</H>
+		<Fragment slot="heading">クハ3660形</Fragment>
 
 		<p>小田原線で全焼事故を起こした車両の代替として川崎車輛<small>（現：川崎車両）</small>で<DateWareki value="1947" />に2両分の車体が製造されたものの、事故車は独自に復旧したため、(元)京浜電気鉄道<small>（現：京浜急行電鉄）</small>の木造車の復旧扱いとしてその新造車体を流用することになりました。</p>
 
@@ -395,7 +394,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="kuha3670">
-		<H slot="heading">クハ3670形、クハ3770形</H>
+		<Fragment slot="heading">クハ3670形、クハ3770形</Fragment>
 
 		<p>第二次世界大戦直後の車両増備として、運輸省<small>（現：国土交通省）</small>の戦災車を払い下げて復旧したグループで、電車線 1500V 昇圧の準備工事の有無によって形式が分かれていました。</p>
 
@@ -652,7 +651,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha3700">
-		<H slot="heading">デハ3700形、クハ3750形</H>
+		<Fragment slot="heading">デハ3700形、クハ3750形</Fragment>
 
 		<p>運輸省戦災車の復旧と並行して東横線と目蒲線向けに車両新造が行われることとなり、連合国軍による許可のもと電動車15両、制御車5両が製造されました。</p>
 
@@ -786,7 +785,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="kuha3220">
-		<H slot="heading">クハ3220形</H>
+		<Fragment slot="heading">クハ3220形</Fragment>
 
 		<p>戦災に遭ったデハ3150形、デハ3200形を復旧するに際し、電装解除と片運転台化、座席数削減（44人→34人）などが行われクハ3220形とされました。</p>
 
@@ -836,7 +835,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="kuha3230">
-		<H slot="heading">クハ3230形</H>
+		<Fragment slot="heading">クハ3230形</Fragment>
 
 		<p><a href="#kuha3220">クハ3220形</a>と同じく戦災車に対して電装解除と片運転台化、座席数削減（40人→26人）を行い復旧したものですが、種車は鉄道省譲受車を鋼体化した元・目黒蒲田電鉄の<a href="/tokyu/data/history_mekama&toyoko_passenger#moha150">モハ150形</a>で車体は 16m 級と短く、車両形式はクハ3230形として区別されました。</p>
 
@@ -880,7 +879,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deha3600">
-		<H slot="heading">デハ3600形</H>
+		<Fragment slot="heading">デハ3600形</Fragment>
 
 		<p>運輸省車両の戦災復旧車である<a href="#kuha3670">クハ3670形、クハ3770形</a>の電動車版で、同じく地方鉄道建設規定で定められた車両定規を超過しているため、使用路線を東横線のみとして特別設計許可を得ての復旧とされました。</p>
 
@@ -1002,7 +1001,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deto3010">
-		<H slot="heading">デト3010形<small>（東京横浜電鉄引継）</small></H>
+		<Fragment slot="heading">デト3010形<small>（東京横浜電鉄引継）</small></Fragment>
 
 		<p><a href="/tokyu/data/history_mekama&toyoko_freight#deto1">東京横浜電鉄モト1形</a>を引き継いだもので、デト3011〜3015 の5両が引き継がれましたが、うち2両は江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>へ譲渡されました。</p>
 
@@ -1044,7 +1043,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="dewa3040">
-		<H slot="heading">デワ3040形</H>
+		<Fragment slot="heading">デワ3040形</Fragment>
 
 		<p>木造荷電の事故車を払い下げたもので、この車両も地方鉄道建設規定で定められた車両定規を超過しているため、使用路線を東横線のみとして特別設計許可を得ての復旧とされました。</p>
 
@@ -1083,7 +1082,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="etc">
-		<H slot="heading">その他の車両動向</H>
+		<Fragment slot="heading">その他の車両動向</Fragment>
 
 		<div class="p-text">
 			<p>同一社内ないし経営委託中会社との異動につき届出書類は存在しませんが、事実上の譲受、借入、貸渡として以下の4例が挙げられます。</p>

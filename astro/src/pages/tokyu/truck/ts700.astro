@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
@@ -36,7 +35,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>1962年に登場した旧7000系は日本初のオールステンレスカーとして有名ですが、台車は米国バッド社との技術提携により完成した「パイオニアⅢ」が採用され、軸ばねを廃した簡素な構造と外側ディスクブレーキでユニークなものとなりました。</p>
 
@@ -96,10 +95,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts701">
-		<H slot="heading">TS-701 型<small>（PⅢ-701 型）</small></H>
+		<Fragment slot="heading">TS-701 型<small>（PⅢ-701 型）</small></Fragment>
 
 		<Section id="ts701-m" depth={2} headingType="b">
-			<H slot="heading">TS-701 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-701 <small class="c-tokyu-truck -m">動力台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS701_mizuma7003.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -115,7 +114,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts701-t" depth={2} headingType="b">
-			<H slot="heading">TS-701 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-701 <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS701_fukushima7315.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -128,10 +127,10 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts708">
-		<H slot="heading">TS-708 型<small>（PⅢ-708 型）</small></H>
+		<Fragment slot="heading">TS-708 型<small>（PⅢ-708 型）</small></Fragment>
 
 		<Section id="ts708-t" depth={2} headingType="b">
-			<H slot="heading">TS-708 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-708 <small class="c-tokyu-truck -t">付随台車</small></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS708_ueda7551.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />

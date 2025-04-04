@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import DateWareki from '@components/DateWareki.astro';
 import DocBook from '@components/DocBook.astro';
 import DocOfficial from '@components/DocOfficial.astro';
-import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import Link from '@components/Link.astro';
@@ -35,7 +34,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<ul class="p-list">
 			<li>認可、竣功などの日付は<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省文書）を情報源とします。</li>
@@ -76,7 +75,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deto1">
-		<H slot="heading">デト1形、3形 → デト4形<small>（一部）</small>→ モト1形、3形、4形</H>
+		<Fragment slot="heading">デト1形、3形 → デト4形<small>（一部）</small>→ モト1形、3形、4形</Fragment>
 
 		<p>デト1形は目黒蒲田電鉄の最初の路線である目黒―丸子間が<DateWareki value="1923-03" />に開通するのに伴い、旅客車の<a href="/tokyu/data/history_mekama&toyoko_passenger#deha1">デハ1形</a>、付随貨車の<a href="#to1">ト1形</a>とともに製造された無蓋電動貨車です。</p>
 
@@ -205,7 +204,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="to1">
-		<H slot="heading">ト1形<small>（初代）</small>→ フト10形<small>（一部）</small>→ ト1形<small>（2代目）</small>、11形</H>
+		<Fragment slot="heading">ト1形<small>（初代）</small>→ フト10形<small>（一部）</small>→ ト1形<small>（2代目）</small>、11形</Fragment>
 
 		<p>電動貨車の<a href="#deto1">デト1形</a>とともに製造された付随貨車で、7トン積みの無蓋車として製造されましたが、これは積載重量10トンのものを7トンとして認可を受けたためであり、後に10トン化されています<NoteRef type="ref" by="mekama1926-11-27" />。</p>
 
@@ -288,7 +287,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="futo1">
-		<H slot="heading">フト1形 → ト15形</H>
+		<Fragment slot="heading">フト1形 → ト15形</Fragment>
 
 		<p>ト1形と比べて若干の寸法変更が行われているもののほぼ同じ大きさの無蓋車ですが、こちらは当初から10トン積みとされ、また自重は 4t → 5.5t に増加しています。制動装置は側ブレーキのほかに手ブレーキが設けられ、「フト」の記号からしても緩急車として使用されていたものと思われます。</p>
 
@@ -344,7 +343,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="to5">
-		<H slot="heading">ト5形<small>（初代）</small>→ ト5形<small>（2代目）</small></H>
+		<Fragment slot="heading">ト5形<small>（初代）</small>→ ト5形<small>（2代目）</small></Fragment>
 
 		<p>上州鉄道<small>（現：東武鉄道小泉線）</small>より譲受した9トン積み無蓋車で、<DateWareki value="1923-10" />に譲受認可を受けていますが、竣功はそれから3年半以上もの期間が経った<DateWareki value="1927-06" />となっています。車体長は<a href="#to1">ト1形</a>より若干短く、目黒蒲田電鉄における最小の貨車でしたが、台車の固定軸距はこのサイズの貨車にしては長い部類で後述の<a href="#futo40">東横フト40形</a>と同じ9尺（2,740mm）です。</p>
 
@@ -413,7 +412,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="dewa1">
-		<H slot="heading">デワ1形 → モワ1形、3形</H>
+		<Fragment slot="heading">デワ1形 → モワ1形、3形</Fragment>
 
 		<p>目黒蒲田電鉄では<DateWareki value="1924" />に<a href="#deto1">デト3</a> の増備と同時に有蓋電動貨車のデワ1 が製造されました。</p>
 
@@ -504,7 +503,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="to20">
-		<H slot="heading">ト20形(?) → フト20形 → ト21形</H>
+		<Fragment slot="heading">ト20形(?) → フト20形 → ト21形</Fragment>
 
 		<p>播丹鉄道<small>（現：JR 加古川線および北条鉄道）</small>のト700形を譲受した12トン積み無蓋車で、譲受認可ののち、竣功を待たずに手ブレーキ追加およびそれに伴い車体高さを増加する設計変更申請が提出されてフト20形となりました。このため譲受時のト21〜24 であった期間はきわめて短いか、あるいは現車は最初からフト21〜24 であった可能性も考えられます。</p>
 
@@ -595,7 +594,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="futo30">
-		<H slot="heading">フト30形 → ト31形</H>
+		<Fragment slot="heading">フト30形 → ト31形</Fragment>
 
 		<p><a href="#to20">フト20形</a>の譲受とほぼ同じタイミングで新製された10トン積み無蓋車で、車体寸法は<a href="#futo1">フト1形</a>に近く、台車の固定軸距も同一ですが、手ブレーキの位置が高い（4枚側の<a href="#to20">フト20形</a>より若干高い）のと当初から自動連結器を装備していた違いがあります。</p>
 
@@ -650,7 +649,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="futo40">
-		<H slot="heading">フト40形 → ト41形</H>
+		<Fragment slot="heading">フト40形 → ト41形</Fragment>
 
 		<p>東京横浜電鉄が最初に導入した付随貨車で、自動連結器装備の10トン積み無蓋車ですが、目黒蒲田電鉄の<a href="#futo30">フト30形</a>と比べると台車の固定軸距が長くなった違いがあります。</p>
 
@@ -809,7 +808,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="krauss10">
-		<H slot="heading">鉄道省10形<small>（未入籍）</small></H>
+		<Fragment slot="heading">鉄道省10形<small>（未入籍）</small></Fragment>
 
 		<p>東京横浜電鉄が路線建設用に鉄道省の門司鉄道局10形を購入したもので、メーカー名から「クラウス号」の愛称で親しまれている4輪タンク式の蒸気機関車です。</p>
 
@@ -864,7 +863,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="futo80">
-		<H slot="heading">フト80形 → トム81形</H>
+		<Fragment slot="heading">フト80形 → トム81形</Fragment>
 
 		<p>丸子多摩川〜神奈川間の開通後に増備された15トン積みの無蓋車で、車体サイズや台車固定軸距も全体的に拡大されています。</p>
 
@@ -1013,7 +1012,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deki1">
-		<H slot="heading">デキ1形</H>
+		<Fragment slot="heading">デキ1形</Fragment>
 
 		<p>東京横浜電鉄が発注した凸型電気機関車で、前述の車籍のない10形蒸気機関車を除けば唯一の機関車です。</p>
 
@@ -1048,7 +1047,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="deto1-ikegami">
-		<H slot="heading">デト1形<small>（池上電気鉄道引継、無入籍）</small></H>
+		<Fragment slot="heading">デト1形<small>（池上電気鉄道引継、無入籍）</small></Fragment>
 
 		<p><DateWareki value="1934-10" />に目黒蒲田電鉄が池上電気鉄道を吸収合併したことに伴い、<a href="/tokyu/data/history_ikegami#deto1">池上のデト1形</a>を引き継いだものです。</p>
 

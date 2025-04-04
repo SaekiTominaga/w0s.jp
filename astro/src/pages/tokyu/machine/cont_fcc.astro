@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -37,7 +36,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>1969年に登場した8000系では<dfn>界磁チョッパ制御</dfn>が導入されました。電機子電流（直巻界磁）は従来と同じく電動カム軸による抵抗制御が用いられる一方で、他励界磁電流（分巻界磁）の制御にサイリスタチョッパが使用されたもので、</p>
 		<ul class="p-list">
@@ -123,7 +122,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-20a">
-		<H slot="heading">MMC-HTR-20A<small>（8000系1〜4次車）</small></H>
+		<Fragment slot="heading">MMC-HTR-20A<small>（8000系1〜4次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -167,7 +166,7 @@ const structuredData: StructuredData = {
 		<p>東急線からは2008年までに消滅しましたが、国内では伊豆急行の譲渡車で多数が活躍しています。</p>
 
 		<Section id="8000-m1" depth={2} headingType="c" box={true}>
-			<H slot="heading">8000系グループの単独 M<span class="u-tokyu-unit">1</span> 系車</H>
+			<Fragment slot="heading">8000系グループの単独 M<span class="u-tokyu-unit">1</span> 系車</Fragment>
 
 			<p>8000系はもともと新玉川線完成時に⑥両編成にて使用される想定で製造され、電動車は M<span class="u-tokyu-unit">1</span>–M<span class="u-tokyu-unit">2</span> で2両ユニットを組む構成ですが、1〜4次車の登場当初は東横線にて 3M2T の⑤両編成で運用されていました。この場合、電動車が奇数両になりますから、うち1両は MCOS 操作により M<span class="u-tokyu-unit">1</span> 車（デハ8100形）のみの単独制御となります。主電動機の接続は4台で、並列段には進まず直列制御のみとなり、電力回生ブレーキの有効速度はユニット車の直並列渡りに相当する約 45km/h までとなります（通常のユニット車は約 22km/h）。また運転特性を合わせるため、2ノッチ時もユニット車は強制的に3ノッチ投入で並列段に入るよう設定されました。</p>
 
@@ -186,7 +185,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-20c">
-		<H slot="heading">MMC-HTR-20C<small>（8000系5〜11次車、8500系6〜11次車）</small></H>
+		<Fragment slot="heading">MMC-HTR-20C<small>（8000系5〜11次車、8500系6〜11次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -226,7 +225,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-20f">
-		<H slot="heading">MMC-HTR-20F<small>（8000系12〜18次車、8500系12〜20次車、8090系12〜20次車）</small></H>
+		<Fragment slot="heading">MMC-HTR-20F<small>（8000系12〜18次車、8500系12〜20次車、8090系12〜20次車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">
@@ -268,7 +267,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-10d">
-		<H slot="heading">MMC-HTR-10D<small>（8000系グループ・単 M 車）</small></H>
+		<Fragment slot="heading">MMC-HTR-10D<small>（8000系グループ・単 M 車）</small></Fragment>
 
 		<div class="c-flex">
 			<div class="c-flex__item">

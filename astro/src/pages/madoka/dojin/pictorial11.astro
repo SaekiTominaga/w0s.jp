@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -32,7 +31,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>マギレコ中国版、繁中版、北米版のゲーム概要、イベントレポート、街頭広告の掲出例などを紹介します。</p>
 
@@ -63,7 +62,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
 		<div class="c-flex -buttons">
 			<div class="c-flex__item">
@@ -83,7 +82,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
 		<ol class="p-list">
 			<li>
@@ -117,7 +116,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="errata">
-		<H slot="heading">正誤情報</H>
+		<Fragment slot="heading">正誤情報</Fragment>
 
 		<div class="p-table">
 			<table>

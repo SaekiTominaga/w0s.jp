@@ -2,7 +2,6 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import H from '@components/H.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -22,7 +21,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>田園都市線の8500系（10両編成）は M2, M2c 車である1, 4, 6, 9号車に空気圧縮機が搭載されていましたが、2001年より順次6号車の取り外しが行われ、全車両が18次車以降で組成されている後期2編成を除き、編成あたり3台とされました。</p>
 
@@ -30,12 +29,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="m2-8800">
-		<H slot="heading">通常のデハ8800形</H>
+		<Fragment slot="heading">通常のデハ8800形</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="m2-8800-7" depth={2} headingType="c">
-					<H slot="heading">7〜11次車</H>
+					<Fragment slot="heading">7〜11次車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-7.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -50,7 +49,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="m2-8800-14" depth={2} headingType="c">
-					<H slot="heading">14〜17次車</H>
+					<Fragment slot="heading">14〜17次車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-14.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -67,12 +66,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="cpremove">
-		<H slot="heading">CP撤去車（6号車に連結されたデハ8800形）</H>
+		<Fragment slot="heading">CP撤去車（6号車に連結されたデハ8800形）</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="cpremove-10" depth={2} headingType="c">
-					<H slot="heading">10〜11次車</H>
+					<Fragment slot="heading">10〜11次車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-cpremove10.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -87,7 +86,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="cpremove-13" depth={2} headingType="c">
-					<H slot="heading">14〜17次車</H>
+					<Fragment slot="heading">14〜17次車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-cpremove13.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -100,7 +99,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="bttransfer" depth={2} headingType="c">
-					<H slot="heading">蓄電池移設車（18-1次車）</H>
+					<Fragment slot="heading">蓄電池移設車（18-1次車）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-BTtransfer.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -115,7 +114,7 @@ const structuredData: StructuredData = {
 			</div>
 			<div class="c-grid__item">
 				<Section id="frame" depth={2} headingType="c">
-					<H slot="heading">HB-2000型の吊り枠搭載車</H>
+					<Fragment slot="heading">HB-2000型の吊り枠搭載車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-frame.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -130,12 +129,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="hs20">
-		<H slot="heading">HS-20型コンプレッサ搭載車</H>
+		<Fragment slot="heading">HS-20型コンプレッサ搭載車</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="hs20-18" depth={2} headingType="c">
-					<H slot="heading">18〜21次車</H>
+					<Fragment slot="heading">18〜21次車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8800s-20G.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
@@ -152,12 +151,12 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="m2-8290">
-		<H slot="heading">（参考）デハ8290形</H>
+		<Fragment slot="heading">（参考）デハ8290形</Fragment>
 
 		<div class="c-grid -wide -hdg-c">
 			<div class="c-grid__item">
 				<Section id="m2-8290-16" depth={2} headingType="c">
-					<H slot="heading">16〜17次車</H>
+					<Fragment slot="heading">16〜17次車</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
 						<Image path="tokyu/machine/ub/8290s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />

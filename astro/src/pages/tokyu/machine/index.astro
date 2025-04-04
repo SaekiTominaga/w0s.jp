@@ -1,7 +1,6 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -17,7 +16,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="cont">
-		<H slot="heading">制御装置</H>
+		<Fragment slot="heading">制御装置</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/machine/cont_old">抵抗制御（旧性能車）</a>（デハ1形〜デハ3800形）</li>
@@ -29,7 +28,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="sty">
-		<H slot="heading">その他の車両機器</H>
+		<Fragment slot="heading">その他の車両機器</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/machine/aps">補助電源装置</a>（旧5000系〜新3000系）</li>
@@ -46,7 +45,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ub">
-		<H slot="heading">床下機器配置</H>
+		<Fragment slot="heading">床下機器配置</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/machine/ub_7600">7600系</a></li>
@@ -62,7 +61,7 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="roof">
-		<H slot="heading">屋根上機器配置</H>
+		<Fragment slot="heading">屋根上機器配置</Fragment>
 
 		<ul class="p-links -index">
 			<li><a href="/tokyu/machine/roof_7200">7200系（デヤ7200、デヤ7290、サヤ7590）</a></li>

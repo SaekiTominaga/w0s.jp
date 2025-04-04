@@ -5,7 +5,6 @@ import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
 import GithubSlugger from 'github-slugger';
-import H from '@components/H.astro';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import Link from '@components/Link.astro';
@@ -39,7 +38,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<ul class="p-list">
 			<li>認可、竣功などの日付は原則として<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで社史のほか、市販の書籍など2次情報を参照しています。</li>
@@ -81,7 +80,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha1">
-		<H slot="heading">デハ1形、6形 → モハ1形、6形 → モハ1形</H>
+		<Fragment slot="heading">デハ1形、6形 → モハ1形、6形 → モハ1形</Fragment>
 
 		<p>デハ1形は目黒蒲田電鉄の最初の路線である目黒―丸子間が<DateWareki value="1923-03" />に開通するのに伴い、貨車の<a href="/tokyu/data/history_mekama&toyoko_freight#deto1">デト1形</a>、<a href="/tokyu/data/history_mekama&toyoko_freight#to1">ト1形</a>とともに製造された全長11m級の小型車です。</p>
 
@@ -163,7 +162,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger} box={true}>
-		<H slot="heading">形式不明<small>（製造中止）</small></H>
+		<Fragment slot="heading">形式不明<small>（製造中止）</small></Fragment>
 
 		<p>目黒蒲田電鉄が10両の新製を計画しつつも実現しなかった車両で、購入認可申請の後、認可前に申請が取り下げられています。取り下げの理由は<q>更ニ改良設計ノ上申請致度候</q>とあるものの、タイミングからすれば後述の<a href="#deha20">鉄道省車両の譲受（デハ20形）</a>が行われることになったため新製を取り止めた可能性が考えられます。</p>
 
@@ -198,7 +197,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha20">
-		<H slot="heading">デハ20形 → モハ20形</H>
+		<Fragment slot="heading">デハ20形 → モハ20形</Fragment>
 
 		<p>開通から1年が経ち乗客が急増する中で、<DateWareki value="1924-04" />には東京高等工業学校<small>（現：東京工業大学）</small>が大岡山に移転することとなり、車両不足解消のために鉄道省で山手線 1200V 昇圧に向けて余剰となった木造ボギー電車デハ6260形を借り入れることとなりました。</p>
 
@@ -298,7 +297,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha30">
-		<H slot="heading">デハ30形 → モハ30形<small>（初代）</small></H>
+		<Fragment slot="heading">デハ30形 → モハ30形<small>（初代）</small></Fragment>
 
 		<p>デハ20形の譲受に続けて翌<DateWareki value="1925" />にも鉄道省より同じくデハ6260形の8両が譲渡されました。同型車のため認可を伴わない届出での譲受でしたが、どういうわけか続番ではなく新たにデハ30形と区分されています。</p>
 
@@ -375,7 +374,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha100">
-		<H slot="heading">デハ100形 → モハ100形</H>
+		<Fragment slot="heading">デハ100形 → モハ100形</Fragment>
 
 		<p>東京横浜電鉄の前身である武蔵電気鉄道では、現在の東横線にあたる本線のほか多数の支線の免許獲得時における数多の困難を乗り越えた末、<DateWareki value="1920" />に祐天寺―神奈川間を2区間に分割して工事施行認可申請を行った時点で、路線規格を軌間 1,435mm、電車線電圧 1,200V で計画しており、旅客車両は 105㏋・600V 主電動機を4台搭載したものが想定されていましたが、会社が目黒蒲田電鉄の傘下に収まったのち、<DateWareki value="1925" />に鉄道省や目黒蒲田電鉄との直通運転を見越して軌間 1,067mm へと計画変更し<NoteRef type="ref" by="toyoko1925-02-02" />、同年中に貨車の<a href="/tokyu/data/history_mekama&toyoko_freight#dewa1">デワ1形</a>、<a href="/tokyu/data/history_mekama&toyoko_freight#deto1">デト1形</a>とともにデハ100形の認可申請が行われました。</p>
 
@@ -458,7 +457,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha40">
-		<H slot="heading">デハ40形 → モハ40形 → モハ25形</H>
+		<Fragment slot="heading">デハ40形 → モハ40形 → モハ25形</Fragment>
 
 		<p>デハ20形、デハ30形に続き、<DateWareki value="1926" />にも鉄道省車両の譲受が行われましたが、種車はそれまでのデハ6260形から変わり、デハ6250形とデハ6285形になりました。</p>
 
@@ -587,7 +586,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha200">
-		<H slot="heading">デハ200形 → モハ200形</H>
+		<Fragment slot="heading">デハ200形 → モハ200形</Fragment>
 
 		<p>大井町線の開通（大井町―大岡山間）に伴う増備で、屋根の深いいわゆる川造型電車です。川崎造船所の兵庫工場<small>（現：川崎車両）</small>では<DateWareki value="1925" />に阪神急行電鉄<small>（現：阪急電鉄）</small>向けの全鋼製車を完成させており<NoteRef type="ref" by="kawazo40" />、本車も阪急600形、800形とよく似た形態をしていますが、全鋼製ではなく半鋼製車とされました。</p>
 
@@ -650,7 +649,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha300">
-		<H slot="heading">デハ300形、クハ1形 → モハ300形</H>
+		<Fragment slot="heading">デハ300形、クハ1形 → モハ300形</Fragment>
 
 		<p>デハ200形と同じく川崎造船所兵庫工場<small>（現：川崎車両）</small>で製造された車両で、形態もよく似ていますが、主電動機が 75㏋ → 105㏋ となり、台車も大型化されています。同時に制御車としてクハ1形が製造されましたが、主電動機と集電装置、電動空気圧縮機を装備しないほかは電動車と同じ仕様でした。制御器（マスコン）も2個装備していたとされているため<NoteRef type="ref" by="mekama1927-07-05" />、運転台も電動車と同じく両側にあったものと思われます。</p>
 
@@ -764,7 +763,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha500">
-		<H slot="heading">モハ500形</H>
+		<Fragment slot="heading">モハ500形</Fragment>
 
 		<p>デハ200形、300形と同じく川崎車輛<small>（現：川崎車両）</small>による製造ですが、正面非貫通にドア間4枚窓、片隅式運転台など、これまでより大きく進化した車両です。</p>
 
@@ -817,7 +816,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha510">
-		<H slot="heading">モハ510形</H>
+		<Fragment slot="heading">モハ510形</Fragment>
 
 		<p>日本車輌製造と川崎車輛<small>（現：川崎車両）</small>であわせて50両もの大量製造がなされた車両で、メーカーにより車体や台車の形態に多少の違いはあるものの、製造時期によるバリエーションは意外と少なく、とくに最終増備のモハ552〜565 は在来車と同一設計として、認可を伴わない届出にて製造が行われました。</p>
 
@@ -1086,7 +1085,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha15">
-		<H slot="heading">モハ15形<small>（池上電気鉄道引継）</small></H>
+		<Fragment slot="heading">モハ15形<small>（池上電気鉄道引継）</small></Fragment>
 
 		<p><DateWareki value="1934-10" />に目黒蒲田電鉄が池上電気鉄道を吸収合併したことに伴い、<a href="/tokyu/data/history_ikegami#deha3">池上の甲号車</a>を引き継いだものですが、短期間に全車両が他鉄道へ譲渡されました。</p>
 
@@ -1149,7 +1148,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha30">
-		<H slot="heading">モハ30形<small>（2代目、池上電気鉄道引継）</small></H>
+		<Fragment slot="heading">モハ30形<small>（2代目、池上電気鉄道引継）</small></Fragment>
 
 		<p><a href="/tokyu/data/history_ikegami#deha20">池上電気鉄道デハ20形</a>を引き継いだもので、目黒蒲田電鉄では2代目となるモハ30形を名乗ることになりました。この車両も鉄道省木造車を譲受したものですが、種車はデハ6310形であり、側面窓割などにモハ20形やモハ25形との違いがありました。</p>
 
@@ -1232,7 +1231,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha120">
-		<H slot="heading">モハ120形<small>（池上電気鉄道引継）</small></H>
+		<Fragment slot="heading">モハ120形<small>（池上電気鉄道引継）</small></Fragment>
 
 		<p><a href="/tokyu/data/history_ikegami#deha100">池上電気鉄道デハ100形</a>を引き継いだものです。</p>
 
@@ -1282,7 +1281,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha130">
-		<H slot="heading">モハ130形<small>（池上電気鉄道引継）</small></H>
+		<Fragment slot="heading">モハ130形<small>（池上電気鉄道引継）</small></Fragment>
 
 		<p><a href="/tokyu/data/history_ikegami#deha100">池上電気鉄道デハ200形</a>を引き継いだものです。</p>
 
@@ -1324,7 +1323,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="kiha1">
-		<H slot="heading">キハ1形</H>
+		<Fragment slot="heading">キハ1形</Fragment>
 
 		<p>東京横浜電鉄ではモハ510形の増備が続く中、変電所増設をすることなく輸送力増強を行うため、ガソリン車が8両導入されることになりました。それに先立ち、<DateWareki value="1933" />に鉄道省より当時新製されたばかりのキハ36900形<small>（後のキハ41000形）</small>を借り入れての日中試運転が渋谷―桜木町間で行われています<NoteRef type="ref" by="toyoko1933-09-05" />。</p>
 
@@ -1426,7 +1425,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha150">
-		<H slot="heading">モハ150形、サハ1形</H>
+		<Fragment slot="heading">モハ150形、サハ1形</Fragment>
 
 		<p>鉄道省の譲受車は木造車体のため老朽化が激しく、<DateWareki value="1936" />より半鋼製化改造が行われることになりました。</p>
 
@@ -1589,7 +1588,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="moha1000">
-		<H slot="heading">モハ1000形</H>
+		<Fragment slot="heading">モハ1000形</Fragment>
 
 		<p>モハ510形以来の新製電車として東京横浜電鉄が10両、目黒蒲田電鉄が12両を発注した車両で、湘南電気鉄道<small>（現：京浜急行電鉄の日ノ出町以南）</small>との乗り入れ計画があったため 1,435mm への改軌を想定して長軸台車が採用されました。当初申請時の仕様はモハ510形に似たものでしたが、認可の翌年に設計変更申請を行い、台車や主電動機の歯車比、主制御器などが変更されました。</p>
 
@@ -1726,7 +1725,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="deha3550" box={true}>
-		<H slot="heading">1940〜1941年度増備計画車<small>（未製造）</small></H>
+		<Fragment slot="heading">1940〜1941年度増備計画車<small>（未製造）</small></Fragment>
 
 		<p>(新)東京横浜電鉄が44両もの大量新製を計画した車両で、自重 37.5t、定員 120人、75kW 主電動機といった仕様はモハ1000形と同一です。</p>
 
@@ -1765,7 +1764,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger} id="kuha3650">
-		<H slot="heading">クハ3650形</H>
+		<Fragment slot="heading">クハ3650形</Fragment>
 
 		<div class="p-text">
 			<p><DateWareki value="1942-01" />には後にクハ3650形として竣功する制御客車6両の認可申請が(新)東京横浜電鉄より提出されましたが、認可は東京急行電鉄の成立後となっため、<a href="/tokyu/data/history_tokyu#kuha3650">東京急行電鉄のページ</a>に記載します。</p>
