@@ -1,0 +1,75 @@
+---
+import Link from '@components/Link.astro';
+import type { StructuredDataUrl } from '@type/types';
+
+interface Props {
+	data:
+		| {
+				label: string;
+				items: StructuredDataUrl[];
+		  }
+		| undefined;
+	pagePath: string;
+}
+
+const { data, pagePath } = Astro.props;
+---
+
+{
+	data !== undefined && (
+		<nav aria-label={data.label}>
+			<ul class="local-nav">
+				{data.items.map((localNavItem) => (
+					<li>
+						{localNavItem.path !== pagePath && (
+							<Link href={localNavItem.path} bullet={true}>
+								{localNavItem.name}
+							</Link>
+						)}
+						{localNavItem.path === pagePath && <Link bullet={true}>{localNavItem.name}</Link>}
+					</li>
+				))}
+			</ul>
+		</nav>
+	)
+}
+
+<style>
+	.local-nav {
+		display: block flex;
+		flex-flow: wrap;
+		margin-inline: auto;
+		inline-size: min(50em, 100%);
+		line-height: var(--line-height-narrow);
+
+		& > :global(li) {
+			display: block flex;
+			flex: auto;
+			margin: -0.5px;
+			border: 1px solid var(--color-border-light);
+		}
+
+		& :global(a) {
+			--_bg-color: var(--color-white);
+
+			flex: 100%;
+			contain: content;
+			outline-offset: calc(1px - var(--outline-width-bold));
+			outline-width: var(--outline-width-bold);
+			background: var(--_bg-color);
+			padding: 0.75em;
+			text-align: center;
+		}
+
+		& :global(a:any-link:hover) {
+			--_bg-color: var(--color-bg-superlight);
+		}
+
+		& :global(a:not(:any-link)) {
+			/* 現在ページ */
+			--_bg-color: var(--color-lightpink);
+
+			color: var(--color-darkgray);
+		}
+	}
+</style>

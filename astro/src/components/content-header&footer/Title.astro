@@ -1,0 +1,59 @@
+---
+interface Props {
+	title: string;
+	heading: string | undefined;
+	subHeading: string | undefined;
+	dateModified: import('dayjs').Dayjs | undefined;
+}
+
+const { title, heading, subHeading, dateModified } = Astro.props;
+---
+
+<hgroup class="title">
+	{subHeading === undefined && <h1>{heading ?? title}</h1>}
+	{
+		subHeading !== undefined && (
+			<h1>
+				{heading ?? title}
+				<span class="sub-heading">（{subHeading}）</span>
+			</h1>
+		)
+	}
+	{
+		dateModified !== undefined && (
+			<p class="updated">
+				<time datetime={dateModified.format('YYYY-MM-DD')}>{dateModified.format('YYYY年M月D日')}</time>更新
+			</p>
+		)
+	}
+</hgroup>
+
+<style>
+	.title {
+		line-height: var(--line-height-narrow);
+
+		&:not(:first-child) {
+			margin-block-start: calc(var(--stack-margin-base) / 2); /* パンくずとの間隔を狭める */
+		}
+
+		& > :global(h1) {
+			border: 1px solid;
+			border-radius: var(--border-radius-small);
+			background: linear-gradient(var(--color-white), var(--color-bg-verydark));
+			padding: 0.75em 1.5%;
+			text-shadow: 1px 1px 1px var(--color-lightgray);
+			font-size: clamp(calc(100% * pow(var(--font-ratio), 1)), 7svi, calc(100% * pow(var(--font-ratio), 5)));
+		}
+	}
+
+	.sub-heading {
+		text-shadow: none;
+		font-size: calc(100% / pow(var(--font-ratio), 3));
+		font-weight: var(--font-weight-normal);
+	}
+
+	.updated {
+		margin-block-start: 0.5em;
+		text-align: end;
+	}
+</style>

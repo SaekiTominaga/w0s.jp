@@ -1,6 +1,7 @@
 ---
 import path from 'node:path';
 import Link from '@components/Link.astro';
+import LocalNav from '@components/content-header&footer/LocalNav.astro';
 import type { StructuredData } from '@type/types.js';
 
 interface Props {
@@ -19,22 +20,7 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 {
 	(structuredData.type === undefined || structuredData.type !== 'website' || structuredData.localNav !== undefined) && (
 		<div class="l-content__footer">
-			{structuredData.localNav !== undefined && (
-				<nav aria-label={structuredData.localNav.label}>
-					<ul class="p-local-nav">
-						{structuredData.localNav.items.map((localNavItem) => (
-							<li>
-								{localNavItem.path !== pagePath && (
-									<Link href={localNavItem.path} bullet={true}>
-										{localNavItem.name}
-									</Link>
-								)}
-								{localNavItem.path === pagePath && <Link bullet={true}>{localNavItem.name}</Link>}
-							</li>
-						))}
-					</ul>
-				</nav>
-			)}
+			<LocalNav data={structuredData.localNav} pagePath={pagePath} />
 
 			{(structuredData.type === undefined || structuredData.type !== 'website') && (
 				<details class="p-toggle -fit js-details-animation" data-duration="100">
