@@ -1,5 +1,6 @@
 ---
 import type GithubSlugger from 'github-slugger';
+import SelfLink from './SelfLink.astro';
 
 interface Props {
 	slugger?: GithubSlugger;
@@ -34,7 +35,7 @@ if (id !== undefined) {
 		{depth === 2 && <h3 set:html={headingHtml} />}
 		{depth === 3 && <h4 set:html={headingHtml} />}
 		{depth === 4 && <h5 set:html={headingHtml} />}
-		<p class="p-section__self-link"><a href={`#${encodeURIComponent(sectionId)}`} class="c-self-link">§</a></p>
+		<p class="p-section__self-link"><SelfLink id={sectionId} /></p>
 	</div>
 
 	<slot />

@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
+import SelfLink from './SelfLink.astro';
 
 interface Props {
 	id: string;
@@ -43,7 +44,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 <section class="library js-library" id={id}>
 	<header class="header">
 		{headingLevel === 3 && <h3 class="hdg">{title}</h3>}
-		<p class="self-link"><a href={`#${encodeURIComponent(id)}`} class="c-self-link">§</a></p>
+		<p class="self-link"><SelfLink id={id} /></p>
 		{
 			release !== undefined && (
 				<p class="release">
