@@ -6,11 +6,10 @@ import md5 from 'md5';
 
 interface Props {
 	code: string;
-	caption?: string;
 	language?: string;
 }
 
-const { code, caption, language } = Astro.props;
+const { code, language } = Astro.props;
 
 const id = `code-${md5(code)}`; // コード ID
 
@@ -43,7 +42,6 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 ---
 
 <figure>
-	{caption !== undefined && <figcaption class="c-caption">{caption}</figcaption>}
 	<div class="code-block">
 		<div class="clipboard">
 			<button type="button" class="clipboard-button js-button-clipboard" data-target={id}>

@@ -13,7 +13,7 @@ const { border, captionMeta } = Astro.props;
 	</div>
 	{
 		Astro.slots.has('caption') && (
-			<figcaption class:list={['c-caption', captionMeta ? '-meta' : undefined]}>
+			<figcaption class:list={[captionMeta ? '-meta' : undefined]}>
 				<slot name="caption" />
 			</figcaption>
 		)
@@ -86,6 +86,23 @@ const { border, captionMeta } = Astro.props;
 			@media (width <= 60em) {
 				--_margin-inline: 15px;
 			}
+		}
+	}
+
+	figcaption {
+		inline-size: fit-content;
+		line-height: var(--line-height-narrow);
+		color: var(--color-gray);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
+
+		.embedded + & {
+			margin-block-start: 0.5em;
+		}
+
+		/* メタデータ */
+		&.-meta {
+			margin-inline-start: auto;
+			padding-inline-start: 10%;
 		}
 	}
 </style>
