@@ -7,7 +7,7 @@ import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
 import RequestUtil from '@util/Request.js';
-import { init as ssrInit, getPageUrl } from '@util/ssr.js';
+import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -31,8 +31,6 @@ const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
 };
-
-const pagePath = getPageUrl(Astro.url, Astro.self.moduleId);
 
 const slugger = new GithubSlugger();
 
@@ -133,11 +131,11 @@ for (const newsPage of newsPageListDto) {
 }
 ---
 
-<Layout pagePath={pagePath} astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
 		<H slot="heading">データ登録</H>
 
-		<form action={pagePath} method="post" class="c-stack">
+		<form action={Astro.url.pathname} method="post" class="c-stack">
 			<div class="p-form-grid">
 				<div class="p-form-grid__group">
 					<fieldset>
@@ -309,7 +307,7 @@ for (const newsPage of newsPageListDto) {
 							{newsPageOfCategory.map((newsPage) => (
 								<tr>
 									<td class="u-cell -wrap-no">
-										<form action={pagePath} method="post">
+										<form action={Astro.url.pathname} method="post">
 											<p>
 												<input type="hidden" name="url" value={newsPage.url} />
 											</p>

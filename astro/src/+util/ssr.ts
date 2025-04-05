@@ -1,4 +1,3 @@
-import path from 'node:path';
 import type { AstroGlobal } from 'astro';
 import * as dotenv from 'dotenv';
 import Log4js from 'log4js';
@@ -34,7 +33,7 @@ export const init = (Astro: AstroGlobal, options: Options): { logger: Log4js.Log
 /**
  * `Astro.url` を元にページ URL を組み立てる
  *
- * @param astroUrl - Astro.url <https://docs.astro.build/en/reference/api-reference/#astrourl>
+ * @param astroUrl - Astro.url <https://docs.astro.build/en/reference/api-reference/#url>
  * @param astroFilePath - Astro.self.moduleId
  *
  * @returns ページ URL
@@ -42,23 +41,10 @@ export const init = (Astro: AstroGlobal, options: Options): { logger: Log4js.Log
 export const getPageUrl = (astroUrl: URL, astroFilePath: string | undefined): string => {
 	const astroPathname = astroUrl.pathname;
 
-	const urlParsed = path.parse(astroPathname);
-	if (urlParsed.ext === '') {
-		/* 拡張子がない場合（開発環境ないしトップページ） */
-		return astroPathname;
+	/* build - format: 'preserve' の設定ではビルド時のみ末尾に / が付いてしまうので除去する */
+	if (astroFilePath !== undefined && !astroFilePath.endsWith('/index.astro') && astroPathname.endsWith('/')) {
+		return astroPathname.slice(0, -1);
 	}
 
-	const dir = urlParsed.dir === '/' ? '' : urlParsed.dir;
-
-	/* 拡張子を除去する */
-	const urlExclusionExt = `${dir}/${urlParsed.name}`;
-
-	if (astroFilePath !== undefined) {
-		if (path.basename(astroFilePath) === 'index.astro') {
-			/* トップページ以外のインデックスページ */
-			return `${urlExclusionExt}/`;
-		}
-	}
-
-	return urlExclusionExt;
+	return astroPathname;
 };
