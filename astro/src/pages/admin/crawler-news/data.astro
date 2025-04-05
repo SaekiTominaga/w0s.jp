@@ -4,7 +4,7 @@ import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
 import { response303 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
-import { init as ssrInit, getPageUrl } from '@util/ssr.js';
+import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
@@ -20,8 +20,6 @@ const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
 	breadcrumb: [{ path: '/admin/crawler-news/', name: 'ウェブ巡回（ニュース）' }],
 };
-
-const pagePath = getPageUrl(Astro.url, Astro.self.moduleId);
 
 const requestParams = RequestUtil.getParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
@@ -48,7 +46,7 @@ if (requestQuery.action_delete) {
 const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
 ---
 
-<Layout pagePath={pagePath} astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<p><a href={requestQuery.url} referrerpolicy="no-referrer" class="c-link">{requestQuery.url}</a></p>
 
 	<div class="p-table p-admin-crawler-table">
@@ -65,7 +63,7 @@ const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(reque
 					newsDataList.map((newsData) => (
 						<tr>
 							<td>
-								<form action={pagePath} method="post">
+								<form action={Astro.url.pathname} method="post">
 									<p>
 										<input type="hidden" name="url" value={requestQuery.url} />
 									</p>
