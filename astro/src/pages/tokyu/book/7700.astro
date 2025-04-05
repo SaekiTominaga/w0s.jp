@@ -4,6 +4,7 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -23,7 +24,7 @@ const structuredData: StructuredData = {
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<div class="c-embed-sidebar -embed-first">
 		<div class="c-embed-sidebar__text">
-			<dl class="p-list-table">
+			<ListTable>
 				<div>
 					<dt>発行日</dt>
 					<dd>2019年8月12日</dd>
@@ -46,7 +47,7 @@ const structuredData: StructuredData = {
 					<dt>書店販売</dt>
 					<dd>終了（紙の本は増刷予定なし）</dd>
 				</div>
-			</dl>
+			</ListTable>
 		</div>
 		<div class="c-embed-sidebar__embed">
 			<Embedded border={true}>

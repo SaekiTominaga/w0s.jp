@@ -7,6 +7,7 @@ import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import List from '@components/List.astro';
 import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,7 +27,7 @@ const structuredData: StructuredData = {
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<div class="c-embed-sidebar -embed-first">
 		<div class="c-embed-sidebar__text">
-			<dl class="p-list-table">
+			<ListTable>
 				<div>
 					<dt>発行日</dt>
 					<dd><Date value="2024-12-31" /></dd>
@@ -35,7 +36,7 @@ const structuredData: StructuredData = {
 					<dt>価格</dt>
 					<dd>1,000円（税込）</dd>
 				</div>
-			</dl>
+			</ListTable>
 
 			<ul class="p-notes">
 				<li>本書は電子書籍のみの販売</li>
