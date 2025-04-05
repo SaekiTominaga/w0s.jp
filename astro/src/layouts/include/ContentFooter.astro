@@ -1,6 +1,7 @@
 ---
 import path from 'node:path';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import LocalNav from '@components/content-header&footer/LocalNav.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -26,7 +27,7 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 				<details class="p-toggle -fit js-details-animation" data-duration="100">
 					<summary>本ページ内容の問い合わせ</summary>
 					<div class="p-toggle__contents">
-						<ul class="p-list">
+						<List>
 							{/* prettier-ignore */}
 							<li>コンテンツに関するご意見、ご質問などは当サイトの GitHub リポジトリに <Link href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents" icon={false}>Issue</Link> を立ててください。</li>
 							{astroFilePath !== undefined && (
@@ -37,7 +38,7 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 							)}
 							{/* prettier-ignore */}
 							<li>非公開での連絡を希望される場合は<a href="/contact">問い合わせフォーム</a>からお寄せください。</li>
-						</ul>
+						</List>
 					</div>
 				</details>
 			)}

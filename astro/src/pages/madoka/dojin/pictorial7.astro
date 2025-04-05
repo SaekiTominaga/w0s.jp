@@ -4,6 +4,8 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
+import List from '@components/List.astro';
+import ListOrder from '@components/ListOrder.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -90,7 +92,7 @@ const slugger = new GithubSlugger();
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>第1話 夢の中で逢った、ような……</li>
 			<li>第2話 それはとっても嬉しいなって</li>
 			<li>第3話 もう何も恐くない</li>
@@ -107,7 +109,7 @@ const slugger = new GithubSlugger();
 			<li>エンディング「Magia」</li>
 			<li>「提供クレジット」一覧</li>
 			<li>秋葉原でMBS版が流れた ―メディア芸術祭20周年企画展―</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="errata">
@@ -156,35 +158,35 @@ const slugger = new GithubSlugger();
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第1話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>14m59s: 仁美のトレーにあるカップの影の付き方が変更。</li>
 				<li>15m23s: 仁美のトレーにあるカップの影の付き方が変更。<small>（14m59sと同じ変化）</small></li>
 				<li>16m07s: 仁美のトレーにあるカップの影の付き方が変更。<small>（14m59sと同じ変化）</small></li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第3話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>20m52s: 放送版ではほむらを食べようとCharlotteが大口を開けるカットで1コマだけ舌の塗り忘れがあったが、パッケージ版で修正された。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第6話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>4m47s: キュゥべえのセリフが修正。放送版は<q>余分な<em>ソウルジェム</em>があれば魔法を出し惜しみせずに無駄遣いすることだってできる。それが杏子の強みだ。</q>と言っていたが、パッケージ版では<q>余分な<em>グリーフシード</em>があれば……</q>に修正された。</li>
 				<li>11m13s: 眠るまどかが作画修正。目の表現が細くなるなどの変化。</li>
 				<li>11m16s: 眠るまどかが作画修正。<small>（11m13sと同じ変化）</small></li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第7話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>8m03s: 杏子が投げたリンゴが宙を舞うカットで天井のステンドグラスの模様が変わり、全体的に明るくなった。また、リンゴの舞い方も変更された。</li>
 				<li>8m05s: さやかがリンゴをキャッチするカットで、放送版は画面手前からリンゴが放物線を描いてさやかの手元に向かっていったが、パッケージ版では前半部が省略され、その分 8m03s〜 のリンゴが舞うカットが長くなった。</li>
 				<li>9m08s: 紙人形の杏子の表情が変更。体型もスマートになった。</li>
@@ -199,13 +201,13 @@ const slugger = new GithubSlugger();
 				<li>22m06s: ElsaMariaを切り刻むときに衝撃で画面全体が揺れる効果が追加され、また血しぶきが追加された。</li>
 				<!-- 21m57s〜22m20s: <q>ElsaMariaを切り刻むときに赤い血が噴き出るようになった。</q>は削除。 -->
 				<li>22m14s: ElsaMariaの血しぶきが追加。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第8話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>4m57s: バス停の枠の影が追加。</li>
 				<li>9m35s: ベンチに立て掛けられた恭介の松葉杖が高くなった。</li>
 				<li>10m41s: ビル群<ins>や月</ins>の形が変更。</li>
@@ -227,26 +229,26 @@ const slugger = new GithubSlugger();
 				<li>20m21s〜21m54s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。</li>
 				<li>21m03s: さやかの手のアップのカットが描き直された。とくにソウルジェムを持つ左手の薬指と小指の角度変化が目立つ。</li>
 				<!-- 21m06s: <q>杏子の表情が変更。</q>は削除。　 -->
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第9話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>0m02s<ins>〜0m13s</ins>: <ins>ロングのカットで</ins>さやかが椅子に対してまっすぐ座るようにな<del>った</del><ins>り、杏子も描き直された</ins>。<small>（8話の20m21s〜21m45sと同じ変化）</small></li>
 				<li>0m02s〜0m13s: ホーム床面の市松模様や点字ブロックがより上方から覗き込んだ感じに変更。<small>（8話の20m21s〜21m54sと同じ変化）</small></li>
 				<li>6m27s〜8m04s: ぬいぐるみやキュゥべえが乗っている棚の位置が右側にずれ、キュゥべえがまどかの直上に来るようになった。</li>
 				<li>9m31s: ぬいぐるみが乗っている棚の位置が右側にずれた。<small>（6m27s〜8m04sと同じ変化）</small></li>
 				<li>15m16s: 夕焼けに染まる街並みのカットで、BGM「<cite>Terror adhaerens</cite>」が流れる前にシュワーンというSEがあるが、パッケージ版ではSEが入るタイミングが遅くなり、音量も小さくなった。</li>
 				<li>17m38s: まどか作画修正。<ins>奥のレンガ壁やポスターも描き直された。</ins></li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第10話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>11m45s: TBS版でほむらの髪が揺れるようになった。</li>
 				<li>11m50s: ほむらの盾の回転方向がMBS版と配信版は時計回りだったが、TBS版で反時計回りになった。</li>
 				<li>12m06s〜12m46s: TBS版でまどか、ほむら、さやか、マミの4人が暗くなった。</li>
@@ -266,31 +268,31 @@ const slugger = new GithubSlugger();
 				<li>16m28s: パッケージ版でほむらの右手の甲に影が掛かるようになった。<ins>また、三つ編みの先端部やリボンの影が削除された。</ins></li>
 				<li>16m33s: 黒い波紋はMBS版では6つほどが次々に出現、消滅していたが、配信版では大きな2つがゆっくり出現するように変更、TBS版では出現速度は配信版と同じくゆっくりだが数が4つに増えた。</li>
 				<li>18m34s: MBS版と配信版では手榴弾がほむらと一緒に落下していたが、TBS版ではその場（ほむらが手榴弾から手を離した場所）に留まるようになった。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第11話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>4m57s: キュゥべえの目が小さくなった。</li>
 				<li>19m03s: まどか作画修正。</li>
 				<li>19m06s: まどか作画修正。<small>（19m03sと同じ変化）</small></li>
 				<li>20m41s: まどか作画修正。眉毛の形状や瞬きの回数（1回増加）、タイミングが変更。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="c">
 			<Fragment slot="heading">第12話</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>4m39s: 矢を射るまどかに白いエフェクトが掛かるようになった。</li>
 				<li>5m10s: まどかの顔の輪郭線（二重線の内側）の表現が変更。</li>
 				<li>6m42s: ワルプルギスの夜の背景のビル群にひび割れ表現の追加が行われた（一部のビルは傾くように変更）。</li>
 				<li>6m48s: ワルプルギスの夜の背景のビル群がひび割れや傾きが施されたものに描き直された。</li>
 				<li>7m36s: ほむらが立つ大地の凹凸が小さくなった。</li>
 				<li>13m16s: いわゆる「概念空間」から見滝原の夜景に切り替わる際、ピンボケした状態から徐々にピントが合うように変化するエフェクトが追加。</li>
-			</ul>
+			</List>
 		</Section>
 	</Section>
 

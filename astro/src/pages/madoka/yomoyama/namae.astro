@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
+import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -16,12 +17,12 @@ const structuredData: StructuredData = {
 	<Section id="rule">
 		<Fragment slot="heading">統計ルール</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>対面あるいはテレパシーでの会話のみを抽出しているため、独りごとや、AとBの会話でCの名前が出てくるようなケースは対象外としています。</li>
 			<li>結果的に会話として成り立っていなくても、返答を期待した呼びかけであれば対象に含めます。（例：まどかが人魚の魔女に対して<q>さやかちゃん</q>と話しかける）</li>
 			<li>長音や無音状態が含まれていても、通常の呼び方に統合しています。（「○○……ちゃん」や「○○ちゃーん」はすべて「○○ちゃん」でカウント）</li>
 			<li>暁美ほむらに関しては、通常時（いわゆる「クールほむら」）と眼鏡バージョン、悪魔バージョンでそれぞれ話し方が大きく異なるため別人扱いとしています。同様に、鹿目まどかとアルティメットまどか、百江なぎさとベベも別人扱いとします。</li>
-		</ul>
+		</List>
 	</Section>
 	<Section id="table">
 		<Fragment slot="heading">呼称統計</Fragment>
@@ -10944,20 +10945,20 @@ const structuredData: StructuredData = {
 		<Section id="matome-tv" depth={2} headingType="b">
 			<Fragment slot="heading">TV シリーズ</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>お互いをもっとも多く呼び合ったのはまどかとほむら（まどか→ほむら48回、ほむら→まどか55回）。一方通行なら、キュゥべえ→まどかの56回が1位。</li>
 				<li>マミと杏子はお互いを直接呼んでいない。</li>
 				<li>相手をフルネームで呼ぶイメージのあるほむらだが、1話の<q>鹿目まどかさん</q>を含めても、3人に対して計6回と多くない。</li>
 				<li>さやかがほむらを<q>転校生</q>と呼んだのは、ハコの魔女戦後の1回だけ。</li>
 				<li>杏子が名前で呼んだ相手はさやかのみ。一方、さやかは杏子を名前で呼んでいない。</li>
 				<li>仁美は友人であるまどか、さやかを下の名前で呼ぶが、魔女に操られていた時は<q>鹿目さん</q>と苗字で呼んでいた。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section id="matome-shinpen" depth={2} headingType="b">
 			<Fragment slot="heading">[新編]叛逆の物語</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>まどかは杏子を呼んでいない。マミはさやかと杏子を呼んでいない。</li>
 				<li>いわゆる「クールほむら」は、TV シリーズでは他人を<q>○○さん</q>と敬称付きで呼んだのはまどかに初めて話しかけた1回のみであったが、[新編]ではマミを4回、杏子を1回（電話越しの会話）呼んでいる。</li>
 				<li>悪魔ほむらは転校してきたまどかに<q>まどかって呼んでもいいかしら?</q>と聞いておきながら、以降はフルネームで<q>鹿目まどか</q>と1回呼んだ以外は<q>あなた</q>のみで、「まどか」とは呼んでいない。</li>
@@ -10966,7 +10967,7 @@ const structuredData: StructuredData = {
 				<li>TV シリーズでは杏子が名前で呼んだ相手はさやかのみだったが、[新編]ではほむら、マミ、さやかを名前で呼んでいる。</li>
 				<li>なぎさは他人を名前や二人称で呼んだことがない（「ベベ」形態の時はほむら、マミ、さやかの3人を呼んでいる）。また、他人から呼ばれたのもマミに<q>あなた</q>と問い掛けられた1回のみ。</li>
 				<li>キュゥべえが名前や二人称で呼んだ相手はほとんどほむらのみで、それ以外はまどかを3回呼んだのみ。</li>
-			</ul>
+			</List>
 		</Section>
 	</Section>
 </Layout>

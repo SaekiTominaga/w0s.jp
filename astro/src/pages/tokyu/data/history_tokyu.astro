@@ -1,11 +1,12 @@
 ---
 import dayjs from 'dayjs';
+import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/DateWareki.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
-import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -38,7 +39,7 @@ const structuredData: StructuredData = {
 	<Section id="introduction">
 		<Fragment slot="heading">概要</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>認可、竣功などの日付は原則として<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省および運輸通信省、運輸省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで市販の書籍など2次情報を参照しています。</li>
 			<li>日本国有鉄道の発足以降は公文書が断片的にしか残されていないため、その年の年末である<DateWareki value="1949-12-31" />以前に認可申請や届出が行われた車両までを対象とします。ただし期間をまたいで増備が行われたデハ3600形、クハ3670形、クハ3770形（いずれも戦災復旧車）はそれぞれの最終増備車の竣功までを対象としています。すなわち、本ページのデータはおおむね第二次世界大戦後の混乱期が終わるまでの動向ということになります。</li>
 			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
@@ -54,7 +55,7 @@ const structuredData: StructuredData = {
 				</ul>
 			</li>
 			<li>玉川線をはじめとする軌道線の車両は<a href="/tokyu/data/history_tamagawa">玉川電気鉄道、玉川線</a>に記載します。</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="kuha3650">
@@ -1088,11 +1089,11 @@ const structuredData: StructuredData = {
 			<p>同一社内ないし経営委託中会社との異動につき届出書類は存在しませんが、事実上の譲受、借入、貸渡として以下の4例が挙げられます。</p>
 		</div>
 
-		<ul class="p-list">
+		<List>
 			<li><DateWareki value="1945" />の相模鉄道経営委託に伴い厚木線へデハ3401〜3404 を貸し渡し、翌年の電車線 1500V 統一に伴い返還</li>
 			<li><DateWareki value="1947" />頃の数か月の間、厚木線の日立電鉄供出予定車デハ1051〜1052 を暫定的に東横線で使用</li>
 			<li><DateWareki value="1947" />から1年強の間、厚木線からクハ1113〜1114 を借り入れて東横線で使用</li>
 			<li><DateWareki value="1947" />に井の頭線から東横線へデハ1366、デハ1401、クハ1553〜1554 が転籍</li>
-		</ul>
+		</List>
 	</Section>
 </Layout>

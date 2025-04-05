@@ -7,6 +7,7 @@ import DocOfficial from '@components/DocOfficial.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -44,11 +45,11 @@ const structuredData: StructuredData = {
 
 		<p>なお抵抗制御といっても、実際のところは以下に挙げる複数の制御方法が組み合わされています。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>抵抗値を徐々に抜くことで端子電圧を上げる、本来の意味での<dfn>抵抗制御</dfn></li>
 			<li>モーター繋ぎを4台直列から2台ずつの並列に変えることで端子電圧を2倍にする<dfn>組み合わせ制御</dfn><small>（黎明期は<dfn>シーリスパラレル（<span lang="en">Series parallel</span>）</dfn>とも呼ばれた）</small></li>
 			<li>並列切り換え後に抵抗をすべて短絡したのち、界磁の磁束を減らすことで逆起電力を減らす<dfn>弱め界磁制御</dfn></li>
-		</ul>
+		</List>
 
 		<p>ただし、駅間距離が短く高速運転が重視されていなかった東急電鉄では、旧性能車の時代の弱め界磁制御は一部車種のみの限定的な採用であり、本格的な導入は<a href="/tokyu/machine/cont_high">高性能車</a>の旧5000系以降となります。このため旧性能車時代の進化としては、開通当初に路面電車タイプの直接制御で始まった方式からまもなく間接制御が導入されて以降はシステム面での大きな変化はなく、主制御器の接触器の切り替え方法が単位スイッチからカム軸になったり、ノッチ数を増加させた多段式制御が導入されたりといった内部構造の変化が中心となります。</p>
 
@@ -680,12 +681,12 @@ const structuredData: StructuredData = {
 
 		<p>第二次世界大戦直後の車両増備は、予定されていた新製車デハ3550形<small>（1953年に登場した後のデハ3550形とは別物）</small>が戦災被害の大きかった井の頭線に投入され、また運輸省63形の割り当ては20m車を使用できる(元)小田急電鉄線と相模鉄道線<small>（当時は東急電鉄に経営委託中で厚木線と呼称）</small>に振り分けられたため、東横、目蒲、大井町、池上の(元)東京横浜電鉄線においては後述の<a href="#cs5">規格型電車</a>の新製が行われるまで、以下のように細々とした増車があったのみとなります。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>厚木線の電車線 1500V 統一に伴う貸出車の復帰（デハ3400形4両）</li>
 			<li>厚木線の気動車改造電車の短期使用（63形割り当てに対する供出予定車デハ1050形2両と東横キハ1形改造で出戻りのクハ1110形2両）</li>
 			<li>(元)京浜電気鉄道<small>（現：京浜急行電鉄）</small>車両の復旧扱いで2両を車体新造（クハ3660形）</li>
 			<li>井の頭線から4両の転籍（デハ1366、デハ1401、クハ1553〜1554）</li>
-		</ul>
+		</List>
 
 		<p>これらのうちデハ1050形は、もともと茅ヶ崎 – 橋本間を全通させた相模鉄道が横浜線八王子乗り入れのために増備したディーゼル電動客車・キハ1000形で、神中線（厚木線）の電化に際し電車化された車両です。電車化改造時の資料に乏しく、当時の詳細な諸元は不明な部分も多いのですが、目撃情報によれば東横線運用時代および日立電鉄譲渡後には三菱電機製の HL タイプのマスコンが搭載されていたとのことで<NoteRef type="ref" by="pic468" /><NoteRef type="ref" by="pic623" />、制御装置もアメリカ・<span lang="en">Westinghouse Electric</span> 社の系統である HL 式であったものと思われます。<dfn>HL</dfn>とは同社の分類において手動進段（H）かつ電車線電圧電源（L）の方式を意味するもので、東急電車では軌道線（玉川線）車両に広く採用され、世田谷線では2001年の旧型車全廃まで使用されていたことでお馴染みですが<NoteRef by="setagaya-hb" />、鉄道線の旅客用電車ではそれまで縁がなかったものとなります。</p>
 

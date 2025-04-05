@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/W0s.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -20,10 +21,10 @@ const structuredData: StructuredData = {
 	<Section id="notice">
 		<Fragment slot="heading">おことわり</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>本ページで記載することは特記のない限り <a href="https://w0s.jp/"><code>w0s.jp</code></a> および <a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
 			<li>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい改修は度々実施しているが、本ドキュメントは常に追従できるとは限らない。</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="history">
@@ -140,7 +141,7 @@ const structuredData: StructuredData = {
 	<Section id="html">
 		<Fragment slot="heading">HTML</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>
 				静的ファイルを事前に生成するページは、<code>w0s.jp</code> では <Link href="https://astro.build/">Astro</Link> を使用、一方 <code>blog.w0s.jp</code> では自作の Node.js プログラムにテンプレート言語として <Link href="https://ejs.co/">EJS</Link> を組み合わせているが、そのままだと HTML のインデントが不揃いになってしまう。周知のとおりブラウザにはソースの表示機能があり、これはユーザースタイルシートを設定する場合などに欠かせない。昨今ではソースを開発者ツールで見るユーザーも多いと思うが、公共施設のパソコンなど開発者ツールの機能が封じられているケースもあるため、生の HTML を綺麗に整形しておくことは重要なことと考えている。さらに事前に圧縮ファイルを生成しておくことで通信量の削減にも繋がるため、ビルドに際して以下の処理を挟んでいる。
 				<ul>
@@ -158,7 +159,7 @@ const structuredData: StructuredData = {
 			</li>
 			<li>HTML ページの MIME タイプは <code>text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、今や <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef type="ref" by="xhtml-blog" />。</li>
 			<li>ウェブページの URL に拡張子が含まれるのは好ましくないので<NoteRef type="ref" by="ext" />、拡張子なしの URL でアクセスできるようにしている。</li>
-		</ul>
+		</List>
 
 		<NoteRefContent id="xhtml-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></a>（2024年4月）</NoteRefContent>
 
@@ -183,48 +184,48 @@ const structuredData: StructuredData = {
 
 			<p><code>404 Not Found</code> のエラーページには JavaScript で以下の機能を組み込んでいる。</p>
 
-			<ul class="p-list">
+			<List>
 				<li>同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが張られている）は管理者へ通知する。<Link href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-same-referrer">検知プログラムは GitHub で公開</Link>している。</li>
 				<li>直近の有効な祖先ディレクトリへのリンクを提示する。（e.g. <code>/foo/bar</code> へのリクエストに対し、そのレスポンスコードが 404 で <code>/foo/</code> が 200 の場合、<code>/foo/</code> のリンクを提示）</li>
-			</ul>
+			</List>
 		</Section>
 	</Section>
 
 	<Section id="style">
 		<Fragment slot="heading">スタイルシート<small>（CSS）</small></Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>CSS ファイルのビルドには <Link href="https://postcss.org/">PostCSS</Link>を使用している。これはブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるパフォーマンス向上が目的であり、標準化の見込みのないプラグインは使っていない。将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</li>
 			<li>ビルド過程で <Link href="https://cssnano.github.io/cssnano/">CSSNANO</Link>を適用しているが、minify 処理が目的ではなくコメントの除去など最小限の最適化のみを行っている。以前は minify 処理も行っていたが、IE 11 のサポート終了によりすべてのメジャーブラウザが Brotli に対応する状況になったことから、通信量の削減効果は薄くなったと考えている<NoteRef type="ref" by="css-minify-blog" />。</li>
 			<li><Link href="https://stylelint.io/">Stylelint</Link>を使用したチェックを実施している。<Link href="https://github.com/SaekiTominaga/config/tree/main/packages/stylelint">設定ファイルは GitHub で公開</Link>している。</li>
-		</ul>
+		</List>
 
 		<NoteRefContent id="css-minify-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></a>（2022年6月）</NoteRefContent>
 
 		<Section id="style-print" depth={2} headingType="c">
 			<Fragment slot="heading">印刷用スタイル</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code>@print</code> を使って完全な白（<code>#ffffff</code>）に設定している。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section id="style-reader" depth={2} headingType="c">
 			<Fragment slot="heading">リーダー表示</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダー表示を実装している。</li>
 				<li>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<Link href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</Link>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。Chrome など他ブラウザでも拡張機能が公開されている。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section id="style-darkmode" depth={2} headingType="c">
 			<Fragment slot="heading">ダークモード</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>制作者スタイルシートでいわゆるダークモードを提供するサイトが多いが、本来そのような機能はブラウザが提供すべきものと考えており、本サイトにおいて背景色などの切り替え機構を提供するつもりはない。</li>
 				<li>Edge は2024年にページカラーをカスタマイズする機能を実装している<NoteRef type="ref" by="edge-color-blog" />。そのような機能を持たないブラウザを使っている方はアドオンを探すなり、ユーザースタイルシートを書くなりして各自で対応して欲しい。</li>
-			</ul>
+			</List>
 
 			<NoteRefContent id="edge-color-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/724"><cite>Edge の新しいページカラー設定と `background-color` や `border` 使用時のアクセシビリティ</cite></a>（2024年10月）</NoteRefContent>
 		</Section>
@@ -235,10 +236,10 @@ const structuredData: StructuredData = {
 
 		<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトの一部ないし全部が動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。フィード全文配信などスクリプトが動かないケースは往々にして存在するため、当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>ソースコードは TypeScript による記述とし、コンパイルには <Link href="https://www.rollupjs.org/">Rollup</Link> を使用している。</li>
 			<li>外部サービスに関係した機能など一部を除き ES modules で作成しており、本来であれば機能ごとに別れたファイルを <code>import</code> / <code>export</code> を使ってそのままブラウザに読ませることができるのだが、実際には HTTP/2 通信下であっても画面描画への影響が体感できるほど大きかったため、ビルド時にファイル結合を行うようにしている。</li>
-		</ul>
+		</List>
 
 		<Section id="script-error" depth={2} headingType="c">
 			<Fragment slot="heading">エラー検知</Fragment>
@@ -264,11 +265,11 @@ const structuredData: StructuredData = {
 
 			<p>これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。</p>
 
-			<ul class="p-list">
+			<List>
 				<li>古いブラウザ</li>
 				<li>ブラウザの設定やアドオンに起因するもの</li>
 				<li>検索エンジンのロボットなどブラウザ以外の環境</li>
-			</ul>
+			</List>
 		</Section>
 	</Section>
 
@@ -277,17 +278,17 @@ const structuredData: StructuredData = {
 
 		<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下5種類の画像を <code>&lt;picture&gt;</code> 要素を使って提示している。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>AVIF</li>
 			<li>AVIF @2x</li>
 			<li>WebP</li>
 			<li>WebP @2x</li>
 			<li>JPEG<small>（WebP 未対応環境は減少しているため JPEG の @2x 画像は用意しない）</small></li>
-		</ul>
+		</List>
 
 		<p>これらの画像は <code>/path/to/image.jpg?type=avif;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成している。詳細は画像を配置している <a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて以下に述べる。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>URL パラメーターの区切り文字は一般的な <code>&amp;</code> だけでなく <code>;</code> にも対応しており、原則として後者を利用する。これは HTML4 時代に <Link href="https://www.w3.org/TR/2018/SPSD-html401-20180327/appendix/notes.html#h-B.2.2" lang="en"><cite>B.2.2 Ampersands in URI attribute values</cite></Link>で推奨されていたテクニックである。設定は Hono のミドルウェアに <Link href="https://github.com/ljharb/qs">qs</Link>のライブラリを適用することで実現している。</li>
 			<li>画像生成は <Link href="https://sharp.pixelplumbing.com/">sharp</Link>を利用しているが、AVIF への変換処理は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは問題があるため AVIF の初回リクエストに限っては代替として WebP を動的生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたら <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの、<Link href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</Link>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。</li>
 			<li>
@@ -299,7 +300,7 @@ const structuredData: StructuredData = {
 				</ul>
 				といった理由から GET リクエストでファイル生成を行うようにしている。
 			</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="favicon">
@@ -311,22 +312,22 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="favicon-svg-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/656"><cite>SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</cite></a>（2021年10月）</NoteRefContent>
 
-		<ul class="p-list">
+		<List>
 			<li>Safari は最新のバージョン 17 系においても SVG ファビコンに対応していない</li>
 			<li>Android 版 Firefox も同様に対応しておらず、そればかりか <Link href="https://ogp.me/">The Open Graph protocol</Link>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう</li>
 			<li>検索サービス <Link href="https://duckduckgo.com/">DuckDuckGo</Link>での検索結果においてファビコン表示が行われない</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="csp">
 		<Fragment slot="heading">CSP</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシートやユーザースクリプト、アドオン等によるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
 			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定している。</li>
 			<li>それ以外のディレクティブは <code>Content-Security-Policy</code> で設定している。</li>
 			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<Link href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/node/src/controller/csp.ts">ソースコードは GitHub で公開</Link>している<NoteRef type="ref" by="csp-blog" />。</li>
-		</ul>
+		</List>
 
 		<NoteRefContent id="csp-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/730"><cite>Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</cite></a>（2025年1月）</NoteRefContent>
 	</Section>

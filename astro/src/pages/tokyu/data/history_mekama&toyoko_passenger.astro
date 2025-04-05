@@ -8,6 +8,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/TokyuLicence.astro';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -40,7 +41,7 @@ const slugger = new GithubSlugger();
 	<Section id="introduction">
 		<Fragment slot="heading">概要</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>認可、竣功などの日付は原則として<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで社史のほか、市販の書籍など2次情報を参照しています。</li>
 			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
 			<li>目黒蒲田電鉄と東京横浜電鉄の間で複数回異動（別会社なので譲渡、譲受の扱い）が行われた車両が多数存在しますが、表の煩雑化を避けるため本ページではその情報を含めていません。</li>
@@ -76,7 +77,7 @@ const slugger = new GithubSlugger();
 					<li>芝浦：芝浦製作所<small>（現：東芝）</small></li>
 				</ul>
 			</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="deha1">

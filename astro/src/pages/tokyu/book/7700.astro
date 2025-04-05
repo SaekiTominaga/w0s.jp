@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
+import ListOrder from '@components/ListOrder.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -77,7 +78,7 @@ const structuredData: StructuredData = {
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>はじめに</li>
 			<li>車両一覧</li>
 			<li>年表</li>
@@ -298,7 +299,7 @@ const structuredData: StructuredData = {
 					</li>
 				</ol>
 			</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="errata">

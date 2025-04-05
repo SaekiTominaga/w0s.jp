@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/DateWareki.astro';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -27,7 +28,7 @@ const structuredData: StructuredData = {
 
 		<p>ここでは<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省文書）を元に両社の車両数推移をまとめました。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>新製、改造、および他鉄道事業者（目蒲⇔東横間以外）からの譲受の日付は竣功届が提出された日とします（入籍日ではありません）。</li>
 			<li>他鉄道事業者（目蒲⇔東横間以外）への譲渡の日付は<DateWareki value="1929-12" />以前の事例は認可日、届出制となったそれ以降は譲渡届が提出された日とします。</li>
 			<li>目蒲⇔東横間の譲受、譲渡の日付は譲渡先において竣功届が提出された日とします（実際の車両の移動日とは限りません）。</li>
@@ -53,7 +54,7 @@ const structuredData: StructuredData = {
 					<li>芝浦：芝浦製作所<small>（現：東芝）</small></li>
 				</ul>
 			</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="mekama">

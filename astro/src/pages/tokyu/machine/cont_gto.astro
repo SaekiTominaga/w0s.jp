@@ -7,6 +7,7 @@ import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
+import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -509,7 +510,7 @@ const slugger = new GithubSlugger();
 			<Section slugger={slugger} depth={3} headingType="d">
 				<Fragment slot="heading">参考文献</Fragment>
 
-				<ul class="p-list">
+				<List>
 					<li>「<cite>私鉄車両編成表</cite>」'85年版〜'95年版</li>
 					<li>鉄道ジャーナル「<cite>私鉄車両のうごき</cite>」1987年4月号 No.245</li>
 					<li>鉄道ダイヤ情報「<cite>私鉄DATA FILE 私鉄車両のうごき</cite>」1986年秋号 No.32、1988年11月号 No.55、1989年7月号 No.63、1990年10月号 No.78、1995年7月号 No.135</li>
@@ -517,7 +518,7 @@ const slugger = new GithubSlugger();
 					<li><DocMagazine name="鉄道ピクトリアル" date="1987年7月号" no={482} article="読者短信　東急だより" authors={['小林和明']} pages={[110]} /></li>
 					<li><DocMagazine name="Rail Magazine" date="1989年1月号" no={61} article="ニュース投稿記事　東急の話題" authors={['佐伯典昭']} pages={[124]} /></li>
 					<li><DocMagazine name="Rail Magazine" date="1990年8月号" no={81} article="ニュース投稿記事　東急の話題" authors={['佐伯典昭']} pages={[139]} /></li>
-				</ul>
+				</List>
 			</Section>
 		</Section>
 	</Section>

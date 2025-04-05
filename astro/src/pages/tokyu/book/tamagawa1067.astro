@@ -5,6 +5,8 @@ import Date from '@components/Date.astro';
 import DateWareki from '@components/DateWareki.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
+import List from '@components/List.astro';
+import ListOrder from '@components/ListOrder.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -56,7 +58,7 @@ const structuredData: StructuredData = {
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li><a href="#introduction">はじめに</a></li>
 			<li>
 				第1章　開通前の車両計画と諸元
@@ -93,7 +95,7 @@ const structuredData: StructuredData = {
 					<li>貨車の軌間改造</li>
 				</ol>
 			</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="introduction">
@@ -107,14 +109,14 @@ const structuredData: StructuredData = {
 
 		<p>一方、昨今になって国立国会図書館をはじめとする図書館資料のデジタル化が進んだことでこれまでに知られていなかった資料の発見が相次ぎ、様々なことが明らかになってきています。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>電動客車のみならず電気機関車で乗客を輸送する計画があった</li>
 			<li>電動客車のメーカーは定説では大半が高橋鐵工場とされてきたが、同社が旅客車の製造に関わった可能性は低い</li>
 			<li>電動客車は車体サイズや形態に少なくとも4種類のバリエーションが存在した</li>
 			<li>付随客車の一部は新製ではなく他路線から譲り受けた</li>
 			<li>旅客車22両のほかに予備の台車を輸入しており、その一部は車体も作られた可能性がある</li>
 			<li>一部の車両は改軌の実施を待たずに譲渡された</li>
-		</ul>
+		</List>
 
 		<p>本書では公文書のほか、統計資料、会社の営業報告書、雑誌記事、新聞報道などをもとに、狭軌時代の車両について解明を試みます。</p>
 	</Section>

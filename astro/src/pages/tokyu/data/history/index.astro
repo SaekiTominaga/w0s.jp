@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
 import { env } from '@util/env.js';
@@ -146,7 +147,7 @@ if (requestQuery.output !== null) {
 				<summary>説明文</summary>
 				<div class="p-toggle__contents">
 					<div class="p-box">
-						<ul class="p-list">
+						<List>
 							<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
 							<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
 							<li>
@@ -165,7 +166,7 @@ if (requestQuery.output !== null) {
 							<li>
 								入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
 							</li>
-						</ul>
+						</List>
 					</div>
 				</div>
 			</details>
@@ -177,7 +178,7 @@ if (requestQuery.output !== null) {
 				<summary>説明文</summary>
 				<div class="p-toggle__contents">
 					<div class="p-box">
-						<ul class="p-list">
+						<List>
 							<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
 							<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
 							<li>
@@ -196,7 +197,7 @@ if (requestQuery.output !== null) {
 							<li>
 								入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
 							</li>
-						</ul>
+						</List>
 					</div>
 				</div>
 			</details>
