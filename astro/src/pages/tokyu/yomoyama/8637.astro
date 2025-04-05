@@ -4,8 +4,9 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
-import Section from '@components/Section.astro';
 import Link from '@components/Link.astro';
+import ListDescription from '@components/ListDescription.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -58,12 +59,13 @@ const slugger = new GithubSlugger();
 
 		<p>1989年にはVVVFインバーターの試験に伴う編成替えが行われ、中間の電動車1ユニットに付随車を加えた3両が最終編成の8642Fと差し替えられました。</p>
 
-		<dl class="p-list-description">
+		<ListDescription>
 			<dt>編成替え前</dt>
 			<dd>8637-8797-8973-0801-8798-<mark>0802-8799-8974</mark>-0803-8537</dd>
 			<dt>編成替え後</dt>
 			<dd>8637-8797-8973-0801-8798-<mark>0808-0711-8980</mark>-0803-8537</dd>
-		</dl>
+		</ListDescription>
+
 		<p>写真は側面の青帯が貼られたまま8642Fに組込まれて試運転を行うサハ8974で、組み替えにより通常の側帯のない車と混在しています。</p>
 
 		<Embedded border={true}>
@@ -156,11 +158,11 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">写真提供者</Fragment>
 
-		<dl class="p-list-description">
+		<ListDescription>
 			<dt>kazuma さん</dt>
 			<dd><Link href="https://itreni.net/">I TRENI〜失われし鉄道車両を求めて</Link></dd>
 			<dt>高橋うさお さん</dt>
 			<dd><Link href="http://www.nozomi.vc/">〜bve工学研究室〜　通過信号機の宴</Link></dd>
-		</dl>
+		</ListDescription>
 	</Section>
 </Layout>

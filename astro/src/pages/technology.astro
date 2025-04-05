@@ -1,5 +1,6 @@
 ---
 import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/W0s.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import Link from '@components/Link.astro';
@@ -15,6 +16,8 @@ const structuredData: StructuredData = {
 	dateModified: dayjs('2025-02-09'),
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
+
+const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -30,30 +33,37 @@ const structuredData: StructuredData = {
 	<Section id="history">
 		<Fragment slot="heading">歴史</Fragment>
 
-		<dl class="p-list-description">
-			<dt>2001年2月</dt>
-			<dd>
-				<p>前身のサイトを開設。<Link href="https://web.archive.org/web/20010202073300/http://www.cool.ne.jp/">COOL ONLINE</Link>の無料会員枠を利用（容量20MB）。<q>地域コミュニティ</q>を謳っており、登録の際にまず都市を選択、それによってサブドメインが振り分けられた（e.g. <code>tokyo.cool.ne.jp</code>）。</p>
-			</dd>
-			<dt>2001年6月<!-- 1日 --></dt>
-			<dd>
-				<p>掲載写真の増大により容量面で厳しくなり、<Link href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/">goo フリーホームページ</Link>に移転（容量50MB）。URL は <code is:raw>http://users.goo.ne.jp/${userId}</code> 形式だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
-			</dd>
-			<dt>2002年3月<!-- 26日 --></dt>
-			<dd>
-				<p><Link href="http://www.nurs.or.jp/">ネットワーク利用技術研究会（NURS）</Link>に移転。レンタルサーバーではなく研究・実験目的のサーバーであり、Telnet が制限なしに使えたので、root 権限が必要なこと以外は割となんでもできた。</p>
-			</dd>
-			<dt>2012年2月<!-- 12日 --></dt>
-			<dd>
-				<p>NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<Link href="https://www.inetd.co.jp/">アイネットディー</Link>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。</p>
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2001年2月</Fragment>
 
-				<NoteRefContent id="nurs-cookie"><Link href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - <cite>共用SSLサーバの危険性が理解されていない</cite></Link>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</NoteRefContent>
-			</dd>
-			<dt>2017年1月</dt>
-			<dd>
-				<p>常時 TLS の波に乗り<Link href="https://vps.sakura.ad.jp/">さくらの VPS</Link> に移転。<Link href="https://letsencrypt.org/">Let's Encrypt</Link>を利用して TLS 対応を行う。</p>
-			</dd>
-		</dl>
+			<p>前身のサイトを開設。<Link href="https://web.archive.org/web/20010202073300/http://www.cool.ne.jp/">COOL ONLINE</Link>の無料会員枠を利用（容量20MB）。<q>地域コミュニティ</q>を謳っており、登録の際にまず都市を選択、それによってサブドメインが振り分けられた（e.g. <code>tokyo.cool.ne.jp</code>）。</p>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2001年6月<!-- 1日 --></Fragment>
+
+			<p>掲載写真の増大により容量面で厳しくなり、<Link href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/">goo フリーホームページ</Link>に移転（容量50MB）。URL は <code is:raw>http://users.goo.ne.jp/${userId}</code> 形式だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2002年3月<!-- 26日 --></Fragment>
+
+			<p><Link href="http://www.nurs.or.jp/">ネットワーク利用技術研究会（NURS）</Link>に移転。レンタルサーバーではなく研究・実験目的のサーバーであり、Telnet が制限なしに使えたので、root 権限が必要なこと以外は割となんでもできた。</p>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2012年2月<!-- 12日 --></Fragment>
+
+			<p>NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<Link href="https://www.inetd.co.jp/">アイネットディー</Link>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。</p>
+
+			<NoteRefContent id="nurs-cookie"><Link href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - <cite>共用SSLサーバの危険性が理解されていない</cite></Link>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</NoteRefContent>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2017年1月</Fragment>
+
+			<p>常時 TLS の波に乗り<Link href="https://vps.sakura.ad.jp/">さくらの VPS</Link> に移転。<Link href="https://letsencrypt.org/">Let's Encrypt</Link>を利用して TLS 対応を行う。</p>
+		</Section>
 	</Section>
 
 	<Section id="server">
