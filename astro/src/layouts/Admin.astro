@@ -11,14 +11,13 @@ import { getPageUrl } from '@util/ssr.js';
 import TocUtil from '@util/Toc.js';
 
 interface Props {
-	pagePath?: string;
 	astroFilePath: string | undefined;
 	structuredData: StructuredData;
 }
 
-const { pagePath: pagePathTemp, astroFilePath, structuredData } = Astro.props;
+const { astroFilePath, structuredData } = Astro.props;
 
-const pagePath = pagePathTemp ?? getPageUrl(Astro.url, astroFilePath);
+const pagePath = getPageUrl(Astro.url, astroFilePath);
 
 const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);
