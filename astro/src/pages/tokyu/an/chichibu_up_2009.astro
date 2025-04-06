@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -346,15 +347,13 @@ const structuredData: StructuredData = {
 		</div>
 	</div>
 
-	<ul class="p-notes">
+	<ListNote>
 		<li>
 			上記のほか、駅発車前に以下の放送が流れる場合があります。
 			<ul>
 				<li><q>ドアが閉まります。ご注意ください。</q></li>
 			</ul>
 		</li>
-		<li>
-			収録当時、上り列車の影森到着において<q lang="en">The doors on the <em>left side</em> will open.</q>と放送されていました（実際の開扉方向は右側）。現在は修正されています。
-		</li>
-	</ul>
+		<li>収録当時、上り列車の影森到着において<q lang="en">The doors on the <em>left side</em> will open.</q>と放送されていました（実際の開扉方向は右側）。現在は修正されています。</li>
+	</ListNote>
 </Layout>

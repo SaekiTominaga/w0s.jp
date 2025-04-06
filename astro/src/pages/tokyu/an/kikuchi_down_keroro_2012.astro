@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -28,9 +29,9 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<ul class="p-notes">
+	<ListNote>
 		<li><strong>一部に発音が聞き取れない箇所があり、ゲタ文字(〓)で表しています。</strong></li>
-	</ul>
+	</ListNote>
 
 	<div class="l-tokyu-announce">
 		<div class="l-tokyu-announce__header">

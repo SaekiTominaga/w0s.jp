@@ -6,6 +6,7 @@ import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import Link from '@components/Link.astro';
 import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -31,9 +32,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<ul class="p-notes">
+	<ListNote>
 		<li>カット番号は<Link href="https://www.amazon.co.jp/dp/4896106393/">KEY ANIMATION NOTE VOL.1</Link>より。カットごとのタイトルは分かりやすさのために作成者が付けたもので、正式なものではありません。</li>
-	</ul>
+	</ListNote>
 
 	<Section id="c001">
 		<Fragment slot="heading">#OP-C001　まどか遠景</Fragment>
@@ -818,9 +819,9 @@ const slugger = new GithubSlugger();
 			<li>劇場版後編で背景変更。テーブルと仁美の位置が若干上方に移動。</li>
 		</List>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>絵コンテの段階では、中央にいるのは仁美ではなくマミだった。（KEY ANIMATION NOTE vol.4 特典「<cite>Animation Storyboard</cite>」より）</li>
-		</ul>
+		</ListNote>
 	</Section>
 
 	<Section id="c018">

@@ -5,6 +5,7 @@ import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -71,9 +72,9 @@ const slugger = new GithubSlugger();
 	<Section id="buy">
 		<Fragment slot="heading">購入</Fragment>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
-		</ul>
+		</ListNote>
 
 		<div class="c-flex -buttons">
 			<div class="c-flex__item">
@@ -86,9 +87,9 @@ const slugger = new GithubSlugger();
 						購入者向け PDF<small>（ver.1.0.2、2018年4月10日更新）</small>
 					</span>
 				</a>
-				<ul class="p-notes">
+				<ListNote>
 					<li>認証情報は奥付またはダウンロードカードに記載</li>
-				</ul>
+				</ListNote>
 			</div>
 		</div>
 	</Section>

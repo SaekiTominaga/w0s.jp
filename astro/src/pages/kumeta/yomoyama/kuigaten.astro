@@ -4,10 +4,11 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
+import Link from '@components/Link.astro';
+import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
-import Link from '@components/Link.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -1058,12 +1059,12 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">主な非収録イラスト</Fragment>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>すべての非収録事例をまとめているわけではありません。モノクロイラストや簡素な掲載例を除いた、画集に収録されるに相応しい事例のみを対象としています。意図としては、今後画集の第二弾が制作される暁には是非とも収録して欲しいものをまとめたリストとなります。</li>
 			<li>「<cite>悔画展</cite>」の発売後に発表されたイラストは除きます。</li>
 			<li>漫画形式のカラーページはトビラや大コマのみに絞っています。</li>
 			<li>単行本のカバーイラスト（表紙、裏表紙）やカラーページは電子版や中古販売で容易に入手可能なことから対象外としています。ただし『<cite>育ってダーリン!!</cite>』1巻（新装版ではないオリジナル版の方）のみ現在では入手困難なため、例外的に含めています。</li>
-		</ul>
+		</ListNote>
 
 		<div class="p-table">
 			<table>

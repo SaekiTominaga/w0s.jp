@@ -4,6 +4,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import YouTube from '@components/EmbeddedYouTube.astro';
 import Link from '@components/Link.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -75,7 +76,7 @@ const slugger = new GithubSlugger();
 			</table>
 		</div>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>入口ページ（<code>index.html</code>）とトップページ（<code>top.html</code>）が分かれていた TV アニメ 3サイトは、2024年に入口ページが廃止され、トップページを <code>top.html</code> から <code>index.html</code> にリネームする変更が行われました。</li>
 			<li>
 				『<cite>懺・さよなら絶望先生</cite>』のサイトはトップページのメニュー部分も Flash によるものなので、現在はリンクを辿ることはできませんが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です。
@@ -90,7 +91,7 @@ const slugger = new GithubSlugger();
 					<li><Link href="https://king-cr.jp/special/zetsubou3/story.html" icon={false}>懺・さよなら絶望先生とは? （ストーリー）</Link></li>
 				</ul>
 			</li>
-		</ul>
+		</ListNote>
 	</Section>
 	<Section slugger={slugger}>
 		<Fragment slot="heading"><cite>さよなら絶望先生</cite></Fragment>
@@ -102,16 +103,16 @@ const slugger = new GithubSlugger();
 
 		<YouTube id="kDSBb4UD5CQ" title="『俗・さよなら絶望先生』公式サイト閲覧の様子" />
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>裏ページ内の神谷浩史コメント動画は直接<Link href="https://king-cr.jp/special/zetsubou2/ura/kamiya_com.flv">動画ファイル（Flash Video 形式）</Link>をダウンロードして閲覧ください。</li>
-		</ul>
+		</ListNote>
 	</Section>
 	<Section slugger={slugger}>
 		<Fragment slot="heading"><cite>懺・さよなら絶望先生</cite></Fragment>
 
 		<YouTube id="t4j7jg8_GZQ" title="『懺・さよなら絶望先生』公式サイト閲覧の様子" />
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>
 				裏ページ内の動画コンテンツはそれぞれ以下のリンクから直接動画ファイル（Flash Video 形式）をダウンロードして閲覧ください。
 				<ul>
@@ -120,6 +121,6 @@ const slugger = new GithubSlugger();
 					<li><Link href="https://king-cr.jp/special/zetsubou3/ura/05_otsuki.flv">大槻ケンヂ　コメント</Link></li>
 				</ul>
 			</li>
-		</ul>
+		</ListNote>
 	</Section>
 </Layout>
