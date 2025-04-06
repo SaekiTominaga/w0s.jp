@@ -1,4 +1,6 @@
 ---
+import Footnote from '@components/Footnote.astro';
+
 interface Props {
 	html: string;
 	footnoteNoteData: Map<number, string | undefined>;
@@ -11,47 +13,7 @@ const { html, footnoteNoteData, footnoteReferenceData } = Astro.props;
 <div class="l-content__body">
 	<Fragment set:html={html} />
 
-	{
-		footnoteNoteData.size > 0 && (
-			<section class="p-footnote">
-				<h2 class="p-footnote__hdg">注釈</h2>
+	<Footnote title="注釈" data={footnoteNoteData} prefix="fn-note" refPrefix="nr-note" />
 
-				<ul class="p-footnote__list">
-					{[...footnoteNoteData].map(([fnNo, fnHtml]) => (
-						<li>
-							<span class="p-footnote__no">{fnNo}.</span>
-							<p class="p-footnote__content">
-								<span id={`fn-note${fnNo}`} set:html={fnHtml} />
-								<a href={`#nr-note${fnNo}`} class="p-footnote__backref">
-									↩ 戻る
-								</a>
-							</p>
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
-
-	{
-		footnoteReferenceData.size > 0 && (
-			<section class="p-footnote">
-				<h2 class="p-footnote__hdg">参考文献</h2>
-
-				<ul class="p-footnote__list">
-					{[...footnoteReferenceData].map(([fnNo, fnHtml]) => (
-						<li>
-							<span class="p-footnote__no">{fnNo}.</span>
-							<p class="p-footnote__content">
-								<span id={`fn-ref${fnNo}`} set:html={fnHtml} />
-								<a href={`#nr-ref${fnNo}`} class="p-footnote__backref">
-									↩ 戻る
-								</a>
-							</p>
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
+	<Footnote title="参考文献" data={footnoteReferenceData} prefix="fn-ref" refPrefix="nr-ref" />
 </div>
