@@ -1,0 +1,73 @@
+---
+interface Props {
+	index?: boolean;
+}
+
+const { index } = Astro.props;
+---
+
+<ul class:list={['list', index ? '-index' : undefined]}>
+	<slot />
+</ul>
+
+<style>
+	.list {
+		--_icon-clip-path: var(--shape-link-triangle);
+		--_icon-block-size: 0.75em;
+		--_icon-inline-size: calc(var(--_icon-block-size) * 0.6);
+		--_icon-color: var(--color-gray);
+		--_icon-gap: 0.5em;
+
+		line-height: var(--line-height-normal);
+
+		& > :global(li) {
+			margin-inline-start: calc((var(--_icon-inline-size) + var(--_icon-gap)) * pow(var(--font-ratio), 2));
+		}
+
+		& > :global(li + li) {
+			margin-block-start: 1em;
+		}
+
+		& > :global(li > ul) {
+			--_icon-clip-path: polygon(55% 0, 55% 45%, 100% 45%, 100% 55%, 45% 55%, 45% 0);
+			--_icon-inline-size: var(--_icon-block-size);
+			--_icon-color: var(--color-black);
+		}
+
+		& > :global(li > ul > li) {
+			margin-block-start: 0.25em;
+			margin-inline-start: calc((var(--_icon-inline-size) + var(--_icon-gap)) / 2 * pow(var(--font-ratio), 1));
+		}
+
+		& > :global(li > a),
+		& > :global(li > ul > li > a) {
+			margin-inline-start: calc(0px - var(--_icon-inline-size) - var(--_icon-gap));
+		}
+
+		& > :global(li > a::before),
+		& > :global(li > ul > li > a::before) {
+			display: inline flow-root;
+			clip-path: var(--_icon-clip-path);
+			margin-inline-end: var(--_icon-gap);
+			border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+			inline-size: var(--_icon-inline-size);
+			content: '';
+		}
+
+		& > :global(li > :any-link) {
+			--_icon-color: var(--link-color-bullet);
+
+			outline-offset: var(--outline-offset-linkonly);
+		}
+
+		& > :global(li > :any-link:hover) {
+			--_icon-color: var(--link-color-hover);
+		}
+
+		&.-index {
+			& :global(a) {
+				font-size: calc(100% * pow(var(--font-ratio), 2));
+			}
+		}
+	}
+</style>

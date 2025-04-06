@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Link from '@components/Link.astro';
+import ListLink from '@components/ListLink.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -22,7 +23,7 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">TV シリーズ</Fragment>
 
-		<ul class="p-links -index">
+		<ListLink index={true}>
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n234575" icon={false}>発売中の『ニュータイプ5月号』『アニメージュ5月号』『アニメディア5月号』に情報掲載中</Link> （2011年4月11日）</li>
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n234594" icon={false}>発売中の『オトナアニメvol.20』大特集中</Link> （2011年4月11日）</li>
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n234613" icon={false}>公式HPリニューアル</Link> （2011年4月12日）</li>
@@ -102,12 +103,12 @@ const slugger = new GithubSlugger();
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n257286" icon={false}>オリジナルtwitter用アイコンをプレゼント！</Link> （2012年4月27日）</li>
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n261552" icon={false}>ニコニコ生放送にて、6月9日（土）12時30分より、第12話英語吹き替え版（日本語字幕付）を無料で生放送</Link> （2012年5月25日）</li>
 			<li><Link href="https://www.madoka-magica.com/tv/news/#n263559" icon={false}>『魔法少女まどか☆マギカ オンライン』みんなでテスト参加者募集開始!</Link> （2012年6月4日）</li>
-		</ul>
+		</ListLink>
 	</Section>
 	<Section slugger={slugger}>
 		<Fragment slot="heading">劇場版</Fragment>
 
-		<ul class="p-links -index">
+		<ListLink index={true}>
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=14354" icon={false}>【限定特典付き】 劇場窓口販売前売券第1弾7月7日(土)発売</Link>（2012年6月8日）</li>
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=14355" icon={false}>前編＆後編公開日決定！！</Link>（2012年6月8日）</li>
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=14356" icon={false}>劇場版前編＆後編公開館追加情報公開！！</Link>（2012年6月8日）</li>
@@ -494,7 +495,7 @@ const slugger = new GithubSlugger();
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=56138" icon={false}>ハノカゲさんからのお祝いイラスト公開！</Link>（2021年1月14日）</li>
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=56326" icon={false}>PAPAさんからのお祝いイラスト公開！</Link>（2021年1月21日）</li>
 			<li><Link href="https://www.madoka-magica.com/rebellion/news/?id=56327" icon={false}>川井マコト先生からのお祝いイラスト公開！</Link>（2021年1月28日）</li>
-		</ul>
+		</ListLink>
 	</Section>
 
 	<ListNote>

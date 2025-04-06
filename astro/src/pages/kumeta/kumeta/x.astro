@@ -4,9 +4,10 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
+import Link from '@components/Link.astro';
+import ListLink from '@components/ListLink.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
-import Link from '@components/Link.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -21,9 +22,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<ul class="p-links">
+	<ListLink>
 		<li><Link href="https://x.com/3doO4OZ07IlQnOo">久米田先生の X アカウント</Link></li>
-	</ul>
+	</ListLink>
 
 	<Section slugger={slugger}>
 		<Fragment slot="heading">アイコン履歴<small>（新しい順）</small></Fragment>

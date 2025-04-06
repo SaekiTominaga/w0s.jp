@@ -2,6 +2,7 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Link from '@components/Link.astro';
+import ListLink from '@components/ListLink.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -152,9 +153,9 @@ const slugger = new GithubSlugger();
 	<Section id="link">
 		<Fragment slot="heading">参考リンク</Fragment>
 
-		<ul class="p-links">
+		<ListLink>
 			<li><Link href="http://www.mlit.go.jp/list/anzen_04.html">国土交通省／政策分野別情報／安全４</Link></li>
 			<li><Link href="http://www.fdma.go.jp/">総務省消防庁</Link></li>
-		</ul>
+		</ListLink>
 	</Section>
 </Layout>
