@@ -1,0 +1,56 @@
+---
+interface Props {
+	stationUp: string;
+	stationDown: string;
+}
+
+const { stationUp, stationDown } = Astro.props;
+---
+
+<table class="local-form">
+	<caption>
+		<div class="dir">
+			<span class="up">←{stationUp}</span>
+			<span class="down">{stationDown}→</span>
+		</div>
+	</caption>
+	<thead>
+		<tr>
+			<slot name="series" />
+		</tr>
+	</thead>
+	<tbody>
+		<slot name="formation" />
+	</tbody>
+</table>
+
+<style>
+	.local-form {
+		& > :global(caption) {
+			margin-block-end: 0.125em;
+		}
+
+		& :global(:is(td, th)) {
+			min-inline-size: 7em;
+			text-align: center;
+			line-height: var(--line-height-narrow);
+			font-weight: var(--font-weight-normal);
+		}
+
+		& :global(:is(td + td, th + th)) {
+			padding-inline-start: 0.5em;
+		}
+
+		& :global(tbody td) {
+			padding-block-start: 0.75em;
+			vertical-align: top;
+		}
+	}
+
+	/* 編成表内の上下方向 */
+	.dir {
+		display: block flex;
+		justify-content: space-between;
+		font-size: 80%;
+	}
+</style>

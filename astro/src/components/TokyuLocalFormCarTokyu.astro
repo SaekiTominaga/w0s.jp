@@ -1,0 +1,23 @@
+---
+interface Props {
+	num: string; // 東急車号
+	note: string; // 呼称など
+	renewal?: 'body' | 'room' | 'board'; // 更新
+	shintama?: boolean; // 新玉川線復旧車
+}
+
+const { num, note, renewal, shintama } = Astro.props;
+---
+
+<div class="tokyu">
+	<span class="num"><span class:list={['c-tokyu-renewal', renewal !== undefined ? `-${renewal}` : undefined, shintama ? '-shintama' : undefined]}>東急{num}</span></span>
+	<span class="note">({note})</span>
+</div>
+
+<style>
+	.tokyu {
+		display: block flow;
+		margin-block-start: 0.15em;
+		font-size: 75%;
+	}
+</style>
