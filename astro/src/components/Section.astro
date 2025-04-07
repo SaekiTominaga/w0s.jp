@@ -64,9 +64,11 @@ if (id !== undefined) {
 		}
 
 		&:not(:first-child) {
-			:not(.hdg) + & {
-				margin-block-start: var(--_margin-block);
-			}
+			margin-block-start: var(--_margin-block);
+		}
+
+		.hdg + & /* Astro ビルドで :not() が使えないため上書き */ {
+			margin-block-start: var(--stack-margin-base);
 		}
 
 		&:not(:last-child) {
