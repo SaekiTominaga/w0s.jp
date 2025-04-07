@@ -9,6 +9,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -31,8 +32,7 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">収録イラスト一覧</Fragment>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" colspan="2">作品名</th>
@@ -1032,28 +1032,27 @@ const slugger = new GithubSlugger();
 						<td>2012年10月10日</td>
 					</tr>
 				</tbody>
-			</table>
+			</Table>
 
-			<NoteRefContent id="zetsubou-bdbox">悔画展では初出が<q>2011年</q>とされているが、実際の商品到着日は2012年2月上旬。</NoteRefContent>
+		<NoteRefContent id="zetsubou-bdbox">悔画展では初出が<q>2011年</q>とされているが、実際の商品到着日は2012年2月上旬。</NoteRefContent>
 
-			<NoteRefContent id="goku-zetsubou3">悔画展では初出が<q>2008年</q>とされているが、実際の発売日は2009年2月17日。</NoteRefContent>
+		<NoteRefContent id="goku-zetsubou3">悔画展では初出が<q>2008年</q>とされているが、実際の発売日は2009年2月17日。</NoteRefContent>
 
-			<NoteRefContent id="sunday2004-32+33">悔画展の初出には<q>週刊少年サンデー 2004年33号</q>とあるが、実際は合併号。</NoteRefContent>
+		<NoteRefContent id="sunday2004-32+33">悔画展の初出には<q>週刊少年サンデー 2004年33号</q>とあるが、実際は合併号。</NoteRefContent>
 
-			<NoteRefContent id="nonnonji">悔画展の初出には<q>付録小冊子寄稿イラスト</q>とあるが、実際はコミック本体。</NoteRefContent>
+		<NoteRefContent id="nonnonji">悔画展の初出には<q>付録小冊子寄稿イラスト</q>とあるが、実際はコミック本体。</NoteRefContent>
 
-			<NoteRefContent id="hidamari365">悔画展の初出には作品名が<q>アニメ『ひだまりスケッチ』</q>とあるが、正確にはアニメ第2期の『<cite>ひだまりスケッチ×365</cite>』。</NoteRefContent>
+		<NoteRefContent id="hidamari365">悔画展の初出には作品名が<q>アニメ『ひだまりスケッチ』</q>とあるが、正確にはアニメ第2期の『<cite>ひだまりスケッチ×365</cite>』。</NoteRefContent>
 
-			<NoteRefContent id="gundam-goods-ace1">悔画展の初出には書籍名が<q>僕たちの好きなガンダム　永遠に残したい名場面100</q>とあるが、そちらに掲載されたのは部屋着で機械いじりをするアムロ・レイのイラストであり別物。</NoteRefContent>
+		<NoteRefContent id="gundam-goods-ace1">悔画展の初出には書籍名が<q>僕たちの好きなガンダム　永遠に残したい名場面100</q>とあるが、そちらに掲載されたのは部屋着で機械いじりをするアムロ・レイのイラストであり別物。</NoteRefContent>
 
-			<NoteRefContent id="gundam-goods-ace2">悔画展では初出が<q>2006年</q>とされているが、前述のとおり書籍名が誤っているためこちらも事実と異なり、正しくは2003年7月15日。</NoteRefContent>
+		<NoteRefContent id="gundam-goods-ace2">悔画展では初出が<q>2006年</q>とされているが、前述のとおり書籍名が誤っているためこちらも事実と異なり、正しくは2003年7月15日。</NoteRefContent>
 
-			<NoteRefContent id="kujibiki1">悔画展では単に<q>DVD BOX</q> とされているが、久米田先生のピンナップイラストが封入されたのは第3巻にあたる DVD-BOX Ⅲ。</NoteRefContent>
+		<NoteRefContent id="kujibiki1">悔画展では単に<q>DVD BOX</q> とされているが、久米田先生のピンナップイラストが封入されたのは第3巻にあたる DVD-BOX Ⅲ。</NoteRefContent>
 
-			<NoteRefContent id="kujibiki2">悔画展では初出が<q>2006年</q>とされている。DVD BOX Ⅰ の発売日は2006年12月22日だが、久米田先生のピンナップイラストが含まれた <Link href="https://web.archive.org/web/20070423055359/http://www.kujian.info/goods_dvd.html">DVD-BOX Ⅲ</Link> が発売されたのは2007年4月25日。</NoteRefContent>
+		<NoteRefContent id="kujibiki2">悔画展では初出が<q>2006年</q>とされている。DVD BOX Ⅰ の発売日は2006年12月22日だが、久米田先生のピンナップイラストが含まれた <Link href="https://web.archive.org/web/20070423055359/http://www.kujian.info/goods_dvd.html">DVD-BOX Ⅲ</Link> が発売されたのは2007年4月25日。</NoteRefContent>
 
-			<NoteRefContent id="youngsunday1996-07">悔画展ではなぜが初出年が抜けている。</NoteRefContent>
-		</div>
+		<NoteRefContent id="youngsunday1996-07">悔画展ではなぜが初出年が抜けている。</NoteRefContent>
 	</Section>
 
 	<Section slugger={slugger}>
@@ -1066,8 +1065,7 @@ const slugger = new GithubSlugger();
 			<li>単行本のカバーイラスト（表紙、裏表紙）やカラーページは電子版や中古販売で容易に入手可能なことから対象外としています。ただし『<cite>育ってダーリン!!</cite>』1巻（新装版ではないオリジナル版の方）のみ現在では入手困難なため、例外的に含めています。</li>
 		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" colspan="2">作品名</th>
@@ -1665,7 +1663,6 @@ const slugger = new GithubSlugger();
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 </Layout>

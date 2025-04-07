@@ -12,6 +12,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -80,8 +81,7 @@ const structuredData: StructuredData = {
 
 		<p>このうち許認可書類は付随客車の分のみ残されているのですが、電動客車の一部も営業報告書の記述により日付のみ判明している部分があります。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup></colgroup>
 				<colgroup span="4"></colgroup>
@@ -199,8 +199,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>付随客車</small>7</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<p>このように狭軌時代の車両は許認可書類が一部しか残されていないためその全容は謎に包まれており、車両番号すら明確には分かっていません。統計資料や営業報告書などにより解明を試みた結果を書籍「<a href="/tokyu/book/tamagawa1067"><cite>公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</cite></a>」にまとめているので、興味ある方はそちらもご覧ください。</p>
 	</Section>
@@ -222,8 +221,7 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="pic95"><DocMagazine name="鉄道ピクトリアル" date="1959年6月号" no={95} article="私鉄車両めぐり(36) 東京急行電鉄〔1〕" authors={['荻原二郎']} pages={[43]} /></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup span="4"></colgroup>
@@ -305,8 +303,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>電動客車</small>15</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="freight1-5">
@@ -318,8 +315,7 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="romancecar20"><DocMagazine name="Romance Car" date="1952 Apr–Jun" no={20} article="川越久保町訪問その他" authors={['飯島正資']} pages={[53]} /></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -360,8 +356,7 @@ const structuredData: StructuredData = {
 						<td><Licence no="玉第68号" title="車両御検査願" date="1920-08-26" possess={['tokyo']} /></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>4号車の検査願は残されていないが、玉川電気鉄道の営業報告書には第36期（<DateWareki value="1920-12" />～翌年5月）の間に検査が行われたとある。</li>
@@ -379,8 +374,7 @@ const structuredData: StructuredData = {
 
 		<p>7両は玉川電気鉄道時代に廃車され、その後東京横浜電鉄への合併を経て東京急行電鉄成立の直後に一部の車両が2度目の改軌を行い品川営業局<small>（現：京浜急行電鉄）</small>へ転局しました。この転局に伴う改造は8両での認可申請が行われていますが、実際は6両のみが転局し、残る7両が戦後まで玉川線に在籍していました。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -598,8 +592,7 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>検査願は8両分しか残されていないが、玉川電気鉄道の営業報告書によると第35期（<DateWareki value="1920-06" />～11月）に12両、第36期（<DateWareki value="1920-12" />～翌年5月）に3両の検査が行われ、第38期（<DateWareki value="1921-12" />～翌年5月）に残る5両が竣功したとある。なお第38期の検査願提出日は<DateWareki value="1922-04-10" />。</li>
@@ -616,8 +609,7 @@ const structuredData: StructuredData = {
 
 		<p>東京急行電鉄の成立に際しては4輪単車が全廃されていたため、このグループを1号車からの付番に変更してデハ1形を名乗り、後に車体更新で全車が<a href="#deha80">デハ80形</a>に統合されました。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -699,8 +691,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>電動客車</small>30→デハ15</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>25～27号車の認可は22～24号車と同一番号の「戌土甲第2314号」で行われたが、検査願の文書では「夫土甲第2314号」となっており、以降玉川電気鉄道が提出する文書（<DateWareki value="1939" />の車体延長工事など）はすべて後者の扱いとなっている。途中で文書記号が変わること、冒頭の漢字に十二支でないものが採用されることのいずれの点においても異例である。上表では「戌土甲」から「夫土甲」へ変更されたかのような表現をしたが、東京府が正式に変更を認めた証拠はなく、電鉄側が誤表記をしたものが以後社内で続いてしまっただけの可能性も考えられる。</li>
@@ -727,8 +718,7 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="kogyonenkan-s18"><DocBook name="工業年鑑　昭和18年版" authors={['産業経済新聞社出版部']} year={1942} article="大東亜建設編" pages={[12]} url="https://dl.ndl.go.jp/pid/1139759/1/345" linkScope="page" /></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -765,8 +755,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>電動客車</small>35</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>車両構造の認可日（監第11号）は、認可書類そのものには<DateWareki value="1925-01-25" />と書かれているが、後の資料（竣功届やその後の改造時の申請書類）では<DateWareki value="1925-01-23" />とされている。</li>
@@ -780,8 +769,7 @@ const structuredData: StructuredData = {
 
 		<p>東京急行電鉄の成立でデハ20形に改番された後、3両が箱根登山鉄道<small>（現：小田急箱根）</small>の小田原市内線に譲渡、残りは車体更新で<a href="#deha80">デハ80形</a>に統合されました。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -852,8 +840,7 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="passenger46-55">
@@ -861,8 +848,7 @@ const structuredData: StructuredData = {
 
 		<p>それまでの木製車体から半鋼製車体となり、屋根はモニターデッキ（<span lang="en">Clerestory</span> 型）から段差のないプレーンアーチ型へ、両端の出入口はドア付きとなった一方で、車輪径が元に戻ってふたたび客室が一段高くなり、中間ドアはなくなるなど、部位によって進化と退化が混在したようなグループです。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -915,8 +901,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>電動客車</small>55→デハ39</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="passenger56-66">
@@ -926,8 +911,7 @@ const structuredData: StructuredData = {
 
 		<p>玉川電気鉄道の新線建設は<DateWareki value="1927" />の玉川<small>（現：二子玉川）</small>―溝ノ口<small>（現：溝の口）</small>間をもって終了しており、車両増備は次の<a href="#deha70">デハ70形</a>まで15年ほど停止、むしろ<DateWareki value="1937" />の渋谷以東の天現寺橋、中目黒方面の分断などによる4輪単車や貨車の一部廃車により車両数は微減しています。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
 				<colgroup></colgroup>
@@ -986,8 +970,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>電動客車</small>66→デハ51</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>56～61号車の竣功届は残されていないが、玉川電気鉄道の「<cite>第51期　営業報告書</cite>」には<DateWareki value="1928-08-15" />に完成とある。ここでいう<q>完成</q>は竣功届の提出日と同義と見なせる。</li>
@@ -1003,8 +986,7 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="toyoko1939-02-15"><DocOfficial company="東京横浜電鉄" no="東横卯第272号" date="1939-02-15" title="線路並ニ工事方法書記載事項一部變更ニ付御届" url="https://www.digital.archives.go.jp/item/505609" /></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="4"></colgroup>
 				<colgroup></colgroup>
@@ -1044,8 +1026,7 @@ const structuredData: StructuredData = {
 						<th scope="row"><small>電動客車</small>35→<small>電動客車</small>75→デハ65</th>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="deha70">
@@ -1065,8 +1046,7 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="romancecar19"><DocMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[9]} /></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="2"></colgroup>
 				<colgroup span="5"></colgroup>
@@ -1146,8 +1126,7 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>デハ71～73, 76～78 の竣功届そのものは残されていないが、<Link href="https://www.digital.archives.go.jp/item/396822">連結運転に伴う設計変更の認可申請書類</Link>内の記述により提出日は判明している。</li>
@@ -1165,8 +1144,7 @@ const structuredData: StructuredData = {
 
 		<p>ところで玉川線ではあくまで軌道保守や社用品輸送の用途であり大規模な砂利輸送は取り止めていたため、付随貨車を連結しての運転は効率的ではなく、戦後になって電動貨車自体に運搬物を積載できるよう車体を無蓋タイプに載せ替える改造が行われ、車両記号もデワからデトへ変更されました。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup></colgroup>
 				<colgroup span="3"></colgroup>
@@ -1199,8 +1177,7 @@ const structuredData: StructuredData = {
 						<td><Licence no="東急車発26第24号" title="車両竣功届" date="1951-08-22" possess={['tetsudo']} /></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="deha80">
@@ -1214,8 +1191,7 @@ const structuredData: StructuredData = {
 
 		<p>その後、木製車体で残っていたデハ1形、デハ20形の半鋼体化改造が実施されるに際し、同様にデハ80形の車体への載せ替えと形式編入が行われました。主電動機は 48.5kW を搭載し、このうちデハ20形の更新（デハ103～108）に関しては台車をデハ30形、デハ40形と交換していたため、デハ80形の台車は国産新製台車（固定軸距 1,380mm）、国産流用台車（固定軸距 1,422mm）、<span lang="en">Brill</span> 76-E 流用台車（固定軸距 1,473mm）の3種類となりました。このほか車内照明に交流蛍光灯が採用され、電動発電機を搭載したことも特筆されます。</p>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup></colgroup>
 				<colgroup span="2"></colgroup>
 				<colgroup span="2"></colgroup>
@@ -1435,8 +1411,7 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<ListNote>
 			<li>デハ81～86 の増備認可に関する書類そのものは残されていないが、<Link href="https://www.digital.archives.go.jp/item/542143">同車の竣功届</Link>内の記述により認可日のみ判明している。</li>

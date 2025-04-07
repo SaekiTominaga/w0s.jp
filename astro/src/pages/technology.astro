@@ -8,6 +8,7 @@ import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -69,83 +70,81 @@ const slugger = new GithubSlugger();
 	<Section id="server">
 		<Fragment slot="heading">サーバー構成</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ドメイン</th>
-						<th scope="col">用途</th>
-						<th scope="col">サーバー実行環境</th>
-						<th scope="col">フレームワーク</th>
-						<th scope="col">RDBMS</th>
-						<th scope="col">ソース</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a href="https://w0s.jp/"><code>w0s.jp</code></a></td>
-						<td>個人サイト</td>
-						<td rowspan="4"><Link href="https://nodejs.org/" icon={false}>Node.js</Link> + <Link href="https://pm2.keymetrics.io/" icon={false}>PM2</Link></td>
-						<td><Link href="https://expressjs.com/" icon={false}>Express</Link>, <Link href="https://astro.build/" icon={false}>Astro</Link></td>
-						<td class="u-cell -center">―</td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external" aria-label="w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>静的コンテンツ中心</td>
-					</tr>
-					<tr>
-						<td><a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a></td>
-						<td>ブログ</td>
-						<td><Link href="https://hono.dev/" icon={false}>Hono</Link></td>
-						<td><Link href="https://sqlite.org/" icon={false}>SQLite</Link></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/blog.w0s.jp" rel="external" aria-label="blog.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a></td>
-						<td>画像、動画、音声の配信</td>
-						<td><Link href="https://hono.dev/" icon={false}>Hono</Link></td>
-						<td><Link href="https://sqlite.org/" icon={false}>SQLite</Link></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/media.w0s.jp" rel="external" aria-label="media.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>画像は URL パラメーターにより動的生成</td>
-					</tr>
-					<tr>
-						<td><code>report.w0s.jp</code></td>
-						<td>エラーレポート収集</td>
-						<td><Link href="https://hono.dev/" icon={false}>Hono</Link></td>
-						<td><Link href="https://sqlite.org/" icon={false}>SQLite</Link></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/report.w0s.jp" rel="external" aria-label="report.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://labs.w0s.jp/"><code>labs.w0s.jp</code></a></td>
-						<td>Web 技術の遊び場</td>
-						<td rowspan="2"><Link href="https://httpd.apache.org/" icon={false}>Apache</Link> + <Link href="https://www.php.net/" icon={false}>PHP</Link></td>
-						<td class="u-cell -center">―</td>
-						<td class="u-cell -center">―</td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/labs.w0s.jp" rel="external" aria-label="labs.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>HTTP でもアクセス可</td>
-					</tr>
-					<tr>
-						<td><code>analytics.w0s.jp</code></td>
-						<td>アクセス解析</td>
-						<td class="u-cell -center">―</td>
-						<td><Link href="https://www.mysql.com/" icon={false}>MySQL</Link></td>
-						<td class="u-cell -center">―</td>
-						<td><Link href="https://matomo.org/">Matomo Analytics</Link> を利用</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<thead>
+				<tr>
+					<th scope="col">ドメイン</th>
+					<th scope="col">用途</th>
+					<th scope="col">サーバー実行環境</th>
+					<th scope="col">フレームワーク</th>
+					<th scope="col">RDBMS</th>
+					<th scope="col">ソース</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="https://w0s.jp/"><code>w0s.jp</code></a></td>
+					<td>個人サイト</td>
+					<td rowspan="4"><Link href="https://nodejs.org/" icon={false}>Node.js</Link> + <Link href="https://pm2.keymetrics.io/" icon={false}>PM2</Link></td>
+					<td><Link href="https://expressjs.com/" icon={false}>Express</Link>, <Link href="https://astro.build/" icon={false}>Astro</Link></td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external" aria-label="w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td>静的コンテンツ中心</td>
+				</tr>
+				<tr>
+					<td><a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a></td>
+					<td>ブログ</td>
+					<td><Link href="https://hono.dev/" icon={false}>Hono</Link></td>
+					<td><Link href="https://sqlite.org/" icon={false}>SQLite</Link></td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/blog.w0s.jp" rel="external" aria-label="blog.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a></td>
+					<td>画像、動画、音声の配信</td>
+					<td><Link href="https://hono.dev/" icon={false}>Hono</Link></td>
+					<td><Link href="https://sqlite.org/" icon={false}>SQLite</Link></td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/media.w0s.jp" rel="external" aria-label="media.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td>画像は URL パラメーターにより動的生成</td>
+				</tr>
+				<tr>
+					<td><code>report.w0s.jp</code></td>
+					<td>エラーレポート収集</td>
+					<td><Link href="https://hono.dev/" icon={false}>Hono</Link></td>
+					<td><Link href="https://sqlite.org/" icon={false}>SQLite</Link></td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/report.w0s.jp" rel="external" aria-label="report.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="https://labs.w0s.jp/"><code>labs.w0s.jp</code></a></td>
+					<td>Web 技術の遊び場</td>
+					<td rowspan="2"><Link href="https://httpd.apache.org/" icon={false}>Apache</Link> + <Link href="https://www.php.net/" icon={false}>PHP</Link></td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/labs.w0s.jp" rel="external" aria-label="labs.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td>HTTP でもアクセス可</td>
+				</tr>
+				<tr>
+					<td><code>analytics.w0s.jp</code></td>
+					<td>アクセス解析</td>
+					<td class="u-cell -center">―</td>
+					<td><Link href="https://www.mysql.com/" icon={false}>MySQL</Link></td>
+					<td class="u-cell -center">―</td>
+					<td><Link href="https://matomo.org/">Matomo Analytics</Link> を利用</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="html">

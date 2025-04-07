@@ -12,6 +12,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -48,153 +49,151 @@ const slugger = new GithubSlugger();
 
 		<p>これらの現車試験結果を基に、1986年デビューの新造車9000系、および改造車7600系より本格的な VVVF インバーター制御の時代に突入しました。</p>
 
-		<div class="p-table -full">
-			<table>
-				<caption>GTO サイリスタの VVVF インバーター制御装置一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col">搭載車種</th>
-						<th scope="col">形式</th>
-						<th scope="col">製造所</th>
-						<th scope="col">登場年</th>
-						<th scope="col">容量</th>
-						<th scope="col">IM 接続</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>デハ6202</td>
-						<td>VF-HR102<NoteRef type="ref" by="pic448" /></td>
-						<td>日立</td>
-						<td>1983年</td>
-						<td>2500V–2000A</td>
-						<td>165kW×4</td>
-						<td>'85年に4500V化</td>
-					</tr>
-					<tr>
-						<td>デハ6302</td>
-						<td>BS1410<NoteRef type="ref" by="pic465" /></td>
-						<td>東芝</td>
-						<td>1984年</td>
-						<td>2500V–1600A</td>
-						<td>160kW×4</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>デハ6002</td>
-						<td>RG611-A-M<NoteRef type="ref" by="rsat114" /></td>
-						<td>東洋</td>
-						<td>1984年</td>
-						<td>2500V–2000A</td>
-						<td>165kW×4</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>9000系<small>（1次車）</small></td>
-						<td><Link href="#vf-hr107" bullet={true}>VF-HR107</Link></td>
-						<td>日立</td>
-						<td>1986年<NoteRef by="vf-hr107-date" /></td>
-						<td>4500V–2000A</td>
-						<td>170kW×4</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>7600系<small>（1次車）</small></td>
-						<td><Link href="#rg614-a-m" bullet={true}>RG614-A-M</Link></td>
-						<td>東洋</td>
-						<td>1986年</td>
-						<td>4500V–2500A</td>
-						<td>110kW×8</td>
-						<td>後に1C4M化</td>
-					</tr>
-					<tr>
-						<td>7700系</td>
-						<td><Link href="#rg617-a-m" bullet={true}>RG617-A-M</Link></td>
-						<td>東洋</td>
-						<td>1987年</td>
-						<td>4500V–2500A</td>
-						<td>170kW×4</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>9000系<small>（2〜5次車）</small></td>
-						<td><Link href="#vf-hr112" bullet={true}>VF-HR112</Link></td>
-						<td>日立</td>
-						<td>1987年</td>
-						<td>4500V–2000A</td>
-						<td>170kW×4</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>7600系<small>（2〜3次車）</small></td>
-						<td><Link href="#rg617-b-m" bullet={true}>RG617-B-M</Link></td>
-						<td>東洋</td>
-						<td>1988年</td>
-						<td>4500V–2500A</td>
-						<td>110kW×4</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>1000系</td>
-						<td><Link href="#rg621-a-m" bullet={true}>RG621-A-M</Link></td>
-						<td>東洋</td>
-						<td>1988年</td>
-						<td>4500V–3000A</td>
-						<td>130kW×8</td>
-						<td>池上線等は1C4M</td>
-					</tr>
-					<tr>
-						<td>デハ8799–デハ0802</td>
-						<td><Link href="#vf-hr121z" bullet={true}>VF-HR121Z</Link></td>
-						<td>日立</td>
-						<td>1989年</td>
-						<td>4500V–3600A</td>
-						<td>実質150kW×8</td>
-						<td>IMデチューン</td>
-					</tr>
-					<tr>
-						<td>8500系21次車</td>
-						<td><Link href="#vf-hr132" bullet={true}>VF-HR132</Link></td>
-						<td>日立</td>
-						<td>1991年<NoteRef by="vf-hr132-date" /></td>
-						<td>4500V–3600A</td>
-						<td>170kW×8</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>1000N′系<small>（単 M 車）</small></td>
-						<td><Link href="#rg636-a-m" bullet={true}>RG636-A-M</Link></td>
-						<td>東洋</td>
-						<td>1991年</td>
-						<td>4500V–2500A</td>
-						<td>130kW×4</td>
-						<td>RCGTO</td>
-					</tr>
-					<tr>
-						<td>2000系</td>
-						<td><Link href="#vf-hr132" bullet={true}>VFG-HR1820D</Link></td>
-						<td>日立</td>
-						<td>1992年<NoteRef by="vf-hr1820d-date" /></td>
-						<td>4500V–3600A</td>
-						<td>170kW×8</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		<Table full={true}>
+			<caption>GTO サイリスタの VVVF インバーター制御装置一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col">搭載車種</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">登場年</th>
+					<th scope="col">容量</th>
+					<th scope="col">IM 接続</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>デハ6202</td>
+					<td>VF-HR102<NoteRef type="ref" by="pic448" /></td>
+					<td>日立</td>
+					<td>1983年</td>
+					<td>2500V–2000A</td>
+					<td>165kW×4</td>
+					<td>'85年に4500V化</td>
+				</tr>
+				<tr>
+					<td>デハ6302</td>
+					<td>BS1410<NoteRef type="ref" by="pic465" /></td>
+					<td>東芝</td>
+					<td>1984年</td>
+					<td>2500V–1600A</td>
+					<td>160kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>デハ6002</td>
+					<td>RG611-A-M<NoteRef type="ref" by="rsat114" /></td>
+					<td>東洋</td>
+					<td>1984年</td>
+					<td>2500V–2000A</td>
+					<td>165kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>9000系<small>（1次車）</small></td>
+					<td><Link href="#vf-hr107" bullet={true}>VF-HR107</Link></td>
+					<td>日立</td>
+					<td>1986年<NoteRef by="vf-hr107-date" /></td>
+					<td>4500V–2000A</td>
+					<td>170kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>7600系<small>（1次車）</small></td>
+					<td><Link href="#rg614-a-m" bullet={true}>RG614-A-M</Link></td>
+					<td>東洋</td>
+					<td>1986年</td>
+					<td>4500V–2500A</td>
+					<td>110kW×8</td>
+					<td>後に1C4M化</td>
+				</tr>
+				<tr>
+					<td>7700系</td>
+					<td><Link href="#rg617-a-m" bullet={true}>RG617-A-M</Link></td>
+					<td>東洋</td>
+					<td>1987年</td>
+					<td>4500V–2500A</td>
+					<td>170kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>9000系<small>（2〜5次車）</small></td>
+					<td><Link href="#vf-hr112" bullet={true}>VF-HR112</Link></td>
+					<td>日立</td>
+					<td>1987年</td>
+					<td>4500V–2000A</td>
+					<td>170kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>7600系<small>（2〜3次車）</small></td>
+					<td><Link href="#rg617-b-m" bullet={true}>RG617-B-M</Link></td>
+					<td>東洋</td>
+					<td>1988年</td>
+					<td>4500V–2500A</td>
+					<td>110kW×4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1000系</td>
+					<td><Link href="#rg621-a-m" bullet={true}>RG621-A-M</Link></td>
+					<td>東洋</td>
+					<td>1988年</td>
+					<td>4500V–3000A</td>
+					<td>130kW×8</td>
+					<td>池上線等は1C4M</td>
+				</tr>
+				<tr>
+					<td>デハ8799–デハ0802</td>
+					<td><Link href="#vf-hr121z" bullet={true}>VF-HR121Z</Link></td>
+					<td>日立</td>
+					<td>1989年</td>
+					<td>4500V–3600A</td>
+					<td>実質150kW×8</td>
+					<td>IMデチューン</td>
+				</tr>
+				<tr>
+					<td>8500系21次車</td>
+					<td><Link href="#vf-hr132" bullet={true}>VF-HR132</Link></td>
+					<td>日立</td>
+					<td>1991年<NoteRef by="vf-hr132-date" /></td>
+					<td>4500V–3600A</td>
+					<td>170kW×8</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1000N′系<small>（単 M 車）</small></td>
+					<td><Link href="#rg636-a-m" bullet={true}>RG636-A-M</Link></td>
+					<td>東洋</td>
+					<td>1991年</td>
+					<td>4500V–2500A</td>
+					<td>130kW×4</td>
+					<td>RCGTO</td>
+				</tr>
+				<tr>
+					<td>2000系</td>
+					<td><Link href="#vf-hr132" bullet={true}>VFG-HR1820D</Link></td>
+					<td>日立</td>
+					<td>1992年<NoteRef by="vf-hr1820d-date" /></td>
+					<td>4500V–3600A</td>
+					<td>170kW×8</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="pic448"><DocMagazine name="鉄道ピクトリアル" date="1985年5月臨時増刊号" no={448} article="民鉄車両　車両諸元表" pages={[142]} /></NoteRefContent>
+		<NoteRefContent id="pic448"><DocMagazine name="鉄道ピクトリアル" date="1985年5月臨時増刊号" no={448} article="民鉄車両　車両諸元表" pages={[142]} /></NoteRefContent>
 
-			<NoteRefContent id="pic465"><DocMagazine name="鉄道ピクトリアル" date="1986年6月号" no={465} article="わが国のインバータ制御電車" authors={['大幡哲海']} pages={[23]} /></NoteRefContent>
+		<NoteRefContent id="pic465"><DocMagazine name="鉄道ピクトリアル" date="1986年6月号" no={465} article="わが国のインバータ制御電車" authors={['大幡哲海']} pages={[23]} /></NoteRefContent>
 
-			<NoteRefContent id="rsat114"><DocMagazine name="鉄道車両と技術" date="2005年11月号" no={114} article="VVVFインバータ装置　諸元表-5（民鉄・公営鉄道編<上>）" pages={[46]} /></NoteRefContent>
+		<NoteRefContent id="rsat114"><DocMagazine name="鉄道車両と技術" date="2005年11月号" no={114} article="VVVFインバータ装置　諸元表-5（民鉄・公営鉄道編<上>）" pages={[46]} /></NoteRefContent>
 
-			<NoteRefContent id="vf-hr107-date">実際の機器の製造初年は1985年。</NoteRefContent>
+		<NoteRefContent id="vf-hr107-date">実際の機器の製造初年は1985年。</NoteRefContent>
 
-			<NoteRefContent id="vf-hr132-date">実際の機器の製造年は1990年。</NoteRefContent>
+		<NoteRefContent id="vf-hr132-date">実際の機器の製造年は1990年。</NoteRefContent>
 
-			<NoteRefContent id="vf-hr1820d-date">実際の機器の製造初年は1991年。</NoteRefContent>
-		</div>
+		<NoteRefContent id="vf-hr1820d-date">実際の機器の製造初年は1991年。</NoteRefContent>
 
 		<ListNote>
 			<li>機器形式は脚注のあるものを除き現車調査による。2000系の機器形式が巷の認識と異なる理由は<a href="#vf-hr132">本文</a>参照。</li>
@@ -558,144 +557,142 @@ const slugger = new GithubSlugger();
 
 		<p>1990年には目蒲線との共通予備車として運用できるよう 4+4 両に分割可能な1000N系が登場しましたが、この際 3M1T の組成で電動車の両数が奇数になり、デハ1200形は 1C4M 制御となるものの、制御装置は同一のものを使用しモード切り替えにより主電動機4台制御が行われていました。さらに1991年デビューの池上線向け1000N′系では後述する <a href="#rg636-a-m">1C4M 専用の小型タイプ（RG636 型）</a>が登場し、車両によって混用されています。一方、登場以来の 1C8M 制御は2013年の日比谷線直通運転終了に伴う東横線撤退で消滅し、現在活躍中の車両はすべて 1C4M 制御となっています。譲渡車も含めたすべてのパターンを下表にまとめました。</p>
 
-		<div class="p-table">
-			<table>
-				<caption>1000系グループ（1500番台を除く）の VVVF インバーター装置バリエーション</caption>
-				<thead>
-					<tr>
-						<th scope="col" rowspan="2">車種</th>
-						<th scope="col" rowspan="2">線区</th>
-						<th scope="col" rowspan="2">編成</th>
-						<th scope="col" rowspan="2">時期</th>
-						<th scope="col" colspan="2">IM 制御数</th>
-						<th scope="col" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">RG621</th>
-						<th scope="col">RG636</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="rowgroup" rowspan="6">1000系</th>
-						<td>東横線</td>
-						<td>6M2T</td>
-						<td>1988年〜2013年</td>
-						<td>8M×3ユニット</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>伊賀鉄道</td>
-						<td>1M1T</td>
-						<td>2010年〜</td>
-						<td>4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td>203〜205編成</td>
-					</tr>
-					<tr>
-						<td>一畑電車</td>
-						<td>1M1T</td>
-						<td>2015年〜</td>
-						<td>4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>上田電鉄</td>
-						<td>1M1T</td>
-						<td>2015年〜</td>
-						<td>4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td>6000系</td>
-					</tr>
-					<tr>
-						<td rowspan="2">福島交通</td>
-						<td>1M1T</td>
-						<td>2017年〜</td>
-						<td>4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2M1T</td>
-						<td>2017年〜</td>
-						<td>4M×2両</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th scope="rowgroup" rowspan="5">1000N系</th>
-						<td>東横線、目蒲線</td>
-						<td>3M1T</td>
-						<td>1990年〜2003年</td>
-						<td>8M×1ユニット、4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>池多摩線</td>
-						<td>2M1T</td>
-						<td>2000年〜</td>
-						<td>4M×2両</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>東横線</td>
-						<td>6M2T</td>
-						<td>2003年〜2008年</td>
-						<td>8M×3ユニット</td>
-						<td class="u-cell -center">―</td>
-						<td>1010F 編成替え</td>
-					</tr>
-					<tr>
-						<td rowspan="2">伊賀鉄道</td>
-						<td>1M1T</td>
-						<td>2009年〜</td>
-						<td class="u-cell -center">―</td>
-						<td>4M×1両</td>
-						<td>現在は201編成のみ</td>
-					</tr>
-					<tr>
-						<td>1M1T</td>
-						<td>2018年〜</td>
-						<td>4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td>202編成のみ</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th scope="rowgroup" rowspan="3">1000N′系</th>
-						<td>目蒲線</td>
-						<td>3M1T</td>
-						<td>1991年〜1993年</td>
-						<td>4M×1両</td>
-						<td>4M×2両</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>池多摩線</td>
-						<td>2M1T</td>
-						<td>1993年〜</td>
-						<td>4M×1両</td>
-						<td>4M×1両</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>上田電鉄</td>
-						<td>1M1T</td>
-						<td>2008年〜</td>
-						<td>4M×1両</td>
-						<td class="u-cell -center">―</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<caption>1000系グループ（1500番台を除く）の VVVF インバーター装置バリエーション</caption>
+			<thead>
+				<tr>
+					<th scope="col" rowspan="2">車種</th>
+					<th scope="col" rowspan="2">線区</th>
+					<th scope="col" rowspan="2">編成</th>
+					<th scope="col" rowspan="2">時期</th>
+					<th scope="col" colspan="2">IM 制御数</th>
+					<th scope="col" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">RG621</th>
+					<th scope="col">RG636</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="rowgroup" rowspan="6">1000系</th>
+					<td>東横線</td>
+					<td>6M2T</td>
+					<td>1988年〜2013年</td>
+					<td>8M×3ユニット</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>伊賀鉄道</td>
+					<td>1M1T</td>
+					<td>2010年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td>203〜205編成</td>
+				</tr>
+				<tr>
+					<td>一畑電車</td>
+					<td>1M1T</td>
+					<td>2015年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>上田電鉄</td>
+					<td>1M1T</td>
+					<td>2015年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td>6000系</td>
+				</tr>
+				<tr>
+					<td rowspan="2">福島交通</td>
+					<td>1M1T</td>
+					<td>2017年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>2M1T</td>
+					<td>2017年〜</td>
+					<td>4M×2両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<th scope="rowgroup" rowspan="5">1000N系</th>
+					<td>東横線、目蒲線</td>
+					<td>3M1T</td>
+					<td>1990年〜2003年</td>
+					<td>8M×1ユニット、4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>池多摩線</td>
+					<td>2M1T</td>
+					<td>2000年〜</td>
+					<td>4M×2両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>東横線</td>
+					<td>6M2T</td>
+					<td>2003年〜2008年</td>
+					<td>8M×3ユニット</td>
+					<td class="u-cell -center">―</td>
+					<td>1010F 編成替え</td>
+				</tr>
+				<tr>
+					<td rowspan="2">伊賀鉄道</td>
+					<td>1M1T</td>
+					<td>2009年〜</td>
+					<td class="u-cell -center">―</td>
+					<td>4M×1両</td>
+					<td>現在は201編成のみ</td>
+				</tr>
+				<tr>
+					<td>1M1T</td>
+					<td>2018年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td>202編成のみ</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<th scope="rowgroup" rowspan="3">1000N′系</th>
+					<td>目蒲線</td>
+					<td>3M1T</td>
+					<td>1991年〜1993年</td>
+					<td>4M×1両</td>
+					<td>4M×2両</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>池多摩線</td>
+					<td>2M1T</td>
+					<td>1993年〜</td>
+					<td>4M×1両</td>
+					<td>4M×1両</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>上田電鉄</td>
+					<td>1M1T</td>
+					<td>2008年〜</td>
+					<td>4M×1両</td>
+					<td class="u-cell -center">―</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="vf-hr121z">

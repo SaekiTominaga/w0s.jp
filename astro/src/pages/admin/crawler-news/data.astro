@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Admin.astro';
+import Table from '@components/Table.astro';
 import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
 import { response303 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
@@ -49,49 +50,47 @@ const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(reque
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<p><a href={requestQuery.url} referrerpolicy="no-referrer">{requestQuery.url}</a></p>
 
-	<div class="p-table p-admin-crawler-table">
-		<table>
-			<thead>
-				<tr>
-					<td></td>
-					<th scope="col">日付</th>
-					<th scope="col">メッセージ</th>
-				</tr>
-			</thead>
-			<tbody>
-				{
-					newsDataList.map((newsData) => (
-						<tr>
-							<td>
-								<form action={Astro.url.pathname} method="post">
-									<p>
-										<input type="hidden" name="url" value={requestQuery.url} />
-									</p>
+	<Table>
+		<thead>
+			<tr>
+				<td></td>
+				<th scope="col">日付</th>
+				<th scope="col">メッセージ</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				newsDataList.map((newsData) => (
+					<tr>
+						<td>
+							<form action={Astro.url.pathname} method="post">
+								<p>
+									<input type="hidden" name="url" value={requestQuery.url} />
+								</p>
 
-									<p>
-										<input type="hidden" name="id" value={newsData.id} />
-									</p>
+								<p>
+									<input type="hidden" name="id" value={newsData.id} />
+								</p>
 
-									<p>
-										<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
-											削除
-										</button>
-									</p>
-								</form>
-							</td>
-							<td>{newsData.date !== null && <time datetime={newsData.date.format('YYYY-MM-DD')}>{newsData.date.format('YYYY年M月D日')}</time>}</td>
-							<td>
-								{newsData.refer_url !== null && (
-									<a href={newsData.refer_url} referrerpolicy="no-referrer">
-										{newsData.content}
-									</a>
-								)}
-								{newsData.refer_url === null && <>{newsData.content}</>}
-							</td>
-						</tr>
-					))
-				}
-			</tbody>
-		</table>
-	</div>
+								<p>
+									<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
+										削除
+									</button>
+								</p>
+							</form>
+						</td>
+						<td>{newsData.date !== null && <time datetime={newsData.date.format('YYYY-MM-DD')}>{newsData.date.format('YYYY年M月D日')}</time>}</td>
+						<td>
+							{newsData.refer_url !== null && (
+								<a href={newsData.refer_url} referrerpolicy="no-referrer">
+									{newsData.content}
+								</a>
+							)}
+							{newsData.refer_url === null && <>{newsData.content}</>}
+						</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</Table>
 </Layout>

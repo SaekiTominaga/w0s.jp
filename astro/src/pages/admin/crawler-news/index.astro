@@ -2,6 +2,7 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Admin.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -289,56 +290,54 @@ for (const newsPage of newsPageListDto) {
 			<Section slugger={slugger}>
 				<Fragment slot="heading">{categoryName}</Fragment>
 
-				<div class="p-table -scroll">
-					<table>
-						<thead>
+				<Table scroll={true}>
+					<thead>
+						<tr>
+							<td />
+							<th scope="col">対象ページ</th>
+							<th scope="col">優先</th>
+							<th scope="col">🌐</th>
+							<th scope="col">包括セレクター</th>
+							<th scope="col">日付セレクター</th>
+							<th scope="col">内容セレクター</th>
+						</tr>
+					</thead>
+					<tbody>
+						{newsPageOfCategory.map((newsPage) => (
 							<tr>
-								<td />
-								<th scope="col">対象ページ</th>
-								<th scope="col">優先</th>
-								<th scope="col">🌐</th>
-								<th scope="col">包括セレクター</th>
-								<th scope="col">日付セレクター</th>
-								<th scope="col">内容セレクター</th>
-							</tr>
-						</thead>
-						<tbody>
-							{newsPageOfCategory.map((newsPage) => (
-								<tr>
-									<td class="u-cell -wrap-no">
-										<form action={Astro.url.pathname} method="post">
-											<p>
-												<input type="hidden" name="url" value={newsPage.url} />
-											</p>
-
-											<p>
-												<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
-													修正
-												</button>
-												<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
-													削除
-												</button>
-											</p>
-										</form>
-									</td>
-									<td>
-										<a href={`/admin/crawler-news/data?url=${newsPage.url}`}>{newsPage.title}</a>
-										<p style="margin-block-start: 0.5em; font-size: 80%">
-											<a href={newsPage.url} referrerpolicy="no-referrer">
-												{newsPage.url}
-											</a>
+								<td class="u-cell -wrap-no">
+									<form action={Astro.url.pathname} method="post">
+										<p>
+											<input type="hidden" name="url" value={newsPage.url} />
 										</p>
-									</td>
-									<td>{newsPage.priority}</td>
-									<td>{newsPage.browser && <>✔</>}</td>
-									<td class="u-cell -wrap-anywhere">{newsPage.selector_wrap}</td>
-									<td class="u-cell -wrap-anywhere">{newsPage.selector_date}</td>
-									<td class="u-cell -wrap-anywhere">{newsPage.selector_content}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+
+										<p>
+											<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
+												修正
+											</button>
+											<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
+												削除
+											</button>
+										</p>
+									</form>
+								</td>
+								<td>
+									<a href={`/admin/crawler-news/data?url=${newsPage.url}`}>{newsPage.title}</a>
+									<p style="margin-block-start: 0.5em; font-size: 80%">
+										<a href={newsPage.url} referrerpolicy="no-referrer">
+											{newsPage.url}
+										</a>
+									</p>
+								</td>
+								<td>{newsPage.priority}</td>
+								<td>{newsPage.browser && <>✔</>}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selector_wrap}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selector_date}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selector_content}</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
 			</Section>
 		))
 	}

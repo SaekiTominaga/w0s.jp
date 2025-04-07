@@ -11,6 +11,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -29,135 +30,133 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<div class="p-table -full">
-		<table>
-			<colgroup span="3"></colgroup>
-			<colgroup span="2"></colgroup>
-			<colgroup></colgroup>
-			<thead>
-				<tr>
-					<th scope="colgroup" colspan="2">圧縮機</th>
-					<th scope="colgroup" colspan="2">電動機</th>
-					<th scope="colgroup" rowspan="2">主な搭載車両</th>
-				</tr>
-				<tr>
-					<th scope="col">形式</th>
-					<th scope="col">変位容積</th>
-					<th scope="col">形式</th>
-					<th scope="col">電圧</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><Link href="#d2n" bullet={true}>D2N</Link></td>
-					<td>?</td>
-					<td>?</td>
-					<td>DC 750V / 1500V</td>
-					<td>3000形グループ、熊本電気鉄道5000形</td>
-				</tr>
-				<tr>
-					<td><Link href="#3ys" bullet={true}>3YS</Link></td>
-					<td>1,000ℓ/min<NoteRef by="tkk5000-pamphlet" /></td>
-					<td>SE551</td>
-					<td>DC 1500V</td>
-					<td>5000系、5200系</td>
-				</tr>
-				<tr>
-					<td><Link href="#c1000" bullet={true}>C1000</Link></td>
-					<td>1,194ℓ/min<NoteRef type="ref" by="denkisha145" /></td>
-					<td>MH80</td>
-					<td>DC 1500V</td>
-					<td>6000系、7000系、7200系</td>
-				</tr>
-				<tr>
-					<td><Link href="#hb1500" bullet={true}>HB1500</Link></td>
-					<td>1,590ℓ/min</td>
-					<td>CM1515</td>
-					<td>DC 1500V</td>
-					<td>7200系、7000系、サハ7950形</td>
-				</tr>
-				<tr>
-					<td rowspan="2"><Link href="#hb2000" bullet={true}>HB2000</Link></td>
-					<td rowspan="2">2,130ℓ/min</td>
-					<td>CM2015</td>
-					<td rowspan="2">DC 1500V</td>
-					<td rowspan="2">8000系グループ<small>（17次車以前）</small></td>
-				</tr>
-				<tr>
-					<td>EFO-H30</td>
-				</tr>
-				<tr>
-					<td rowspan="3"><Link href="#hs20" bullet={true}>HS20</Link></td>
-					<td rowspan="2">2,100ℓ/min</td>
-					<td>A1544</td>
-					<td rowspan="2">AC 440V</td>
-					<td>9000系、1000系<small>（N、N′除く）</small>、2000系→9020系、クハ7915</td>
-				</tr>
-				<tr>
-					<td>TFC221</td>
-					<td>クハ9010</td>
-				</tr>
-				<tr>
-					<td>2,130ℓ/min</td>
-					<td>D1215</td>
-					<td>DC 1500V</td>
-					<td>7600系、8000系グループ<small>（18次車以降）</small>、7700系、1000N系</td>
-				</tr>
-				<tr>
-					<td rowspan="2"><Link href="#hs10" bullet={true}>HS10</Link></td>
-					<td>1,175ℓ/min</td>
-					<td>D6515</td>
-					<td>DC 1500V</td>
-					<td>1000N′系、伊賀鉄道200系</td>
-				</tr>
-				<tr>
-					<td>1,120ℓ/min</td>
-					<td>?</td>
-					<td>AC 440V</td>
-					<td>福島交通1000系</td>
-				</tr>
-				<tr>
-					<td rowspan="2"><Link href="#hs5" bullet={true}>HS5</Link></td>
-					<td>600ℓ/min<NoteRef type="ref" by="nabuco62" /></td>
-					<td>D3360</td>
-					<td>DC 600V</td>
-					<td>デハ70形、300系</td>
-				</tr>
-				<tr>
-					<td>610ℓ/min<NoteRef type="ref" by="pic675" /></td>
-					<td>?</td>
-					<td>AC 440V</td>
-					<td>Y000系</td>
-				</tr>
-				<tr>
-					<td><Link href="#c2500" bullet={true}>C2500L</Link></td>
-					<td>2,463ℓ/min<NoteRef type="ref" by="sharyogijyutu218" /></td>
-					<td>A1744</td>
-					<td>AC 440V</td>
-					<td>新3000系</td>
-				</tr>
-				<tr>
-					<td><Link href="#c2000m" bullet={true}>C2000M</Link></td>
-					<td>2,100ℓ/min<NoteRef type="ref" by="nabuco57" /></td>
-					<td>?</td>
-					<td>DC 1500V</td>
-					<td>富山地方鉄道17480形</td>
-				</tr>
-			</tbody>
-		</table>
+	<Table full={true}>
+		<colgroup span="3"></colgroup>
+		<colgroup span="2"></colgroup>
+		<colgroup></colgroup>
+		<thead>
+			<tr>
+				<th scope="colgroup" colspan="2">圧縮機</th>
+				<th scope="colgroup" colspan="2">電動機</th>
+				<th scope="colgroup" rowspan="2">主な搭載車両</th>
+			</tr>
+			<tr>
+				<th scope="col">形式</th>
+				<th scope="col">変位容積</th>
+				<th scope="col">形式</th>
+				<th scope="col">電圧</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><Link href="#d2n" bullet={true}>D2N</Link></td>
+				<td>?</td>
+				<td>?</td>
+				<td>DC 750V / 1500V</td>
+				<td>3000形グループ、熊本電気鉄道5000形</td>
+			</tr>
+			<tr>
+				<td><Link href="#3ys" bullet={true}>3YS</Link></td>
+				<td>1,000ℓ/min<NoteRef by="tkk5000-pamphlet" /></td>
+				<td>SE551</td>
+				<td>DC 1500V</td>
+				<td>5000系、5200系</td>
+			</tr>
+			<tr>
+				<td><Link href="#c1000" bullet={true}>C1000</Link></td>
+				<td>1,194ℓ/min<NoteRef type="ref" by="denkisha145" /></td>
+				<td>MH80</td>
+				<td>DC 1500V</td>
+				<td>6000系、7000系、7200系</td>
+			</tr>
+			<tr>
+				<td><Link href="#hb1500" bullet={true}>HB1500</Link></td>
+				<td>1,590ℓ/min</td>
+				<td>CM1515</td>
+				<td>DC 1500V</td>
+				<td>7200系、7000系、サハ7950形</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><Link href="#hb2000" bullet={true}>HB2000</Link></td>
+				<td rowspan="2">2,130ℓ/min</td>
+				<td>CM2015</td>
+				<td rowspan="2">DC 1500V</td>
+				<td rowspan="2">8000系グループ<small>（17次車以前）</small></td>
+			</tr>
+			<tr>
+				<td>EFO-H30</td>
+			</tr>
+			<tr>
+				<td rowspan="3"><Link href="#hs20" bullet={true}>HS20</Link></td>
+				<td rowspan="2">2,100ℓ/min</td>
+				<td>A1544</td>
+				<td rowspan="2">AC 440V</td>
+				<td>9000系、1000系<small>（N、N′除く）</small>、2000系→9020系、クハ7915</td>
+			</tr>
+			<tr>
+				<td>TFC221</td>
+				<td>クハ9010</td>
+			</tr>
+			<tr>
+				<td>2,130ℓ/min</td>
+				<td>D1215</td>
+				<td>DC 1500V</td>
+				<td>7600系、8000系グループ<small>（18次車以降）</small>、7700系、1000N系</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><Link href="#hs10" bullet={true}>HS10</Link></td>
+				<td>1,175ℓ/min</td>
+				<td>D6515</td>
+				<td>DC 1500V</td>
+				<td>1000N′系、伊賀鉄道200系</td>
+			</tr>
+			<tr>
+				<td>1,120ℓ/min</td>
+				<td>?</td>
+				<td>AC 440V</td>
+				<td>福島交通1000系</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><Link href="#hs5" bullet={true}>HS5</Link></td>
+				<td>600ℓ/min<NoteRef type="ref" by="nabuco62" /></td>
+				<td>D3360</td>
+				<td>DC 600V</td>
+				<td>デハ70形、300系</td>
+			</tr>
+			<tr>
+				<td>610ℓ/min<NoteRef type="ref" by="pic675" /></td>
+				<td>?</td>
+				<td>AC 440V</td>
+				<td>Y000系</td>
+			</tr>
+			<tr>
+				<td><Link href="#c2500" bullet={true}>C2500L</Link></td>
+				<td>2,463ℓ/min<NoteRef type="ref" by="sharyogijyutu218" /></td>
+				<td>A1744</td>
+				<td>AC 440V</td>
+				<td>新3000系</td>
+			</tr>
+			<tr>
+				<td><Link href="#c2000m" bullet={true}>C2000M</Link></td>
+				<td>2,100ℓ/min<NoteRef type="ref" by="nabuco57" /></td>
+				<td>?</td>
+				<td>DC 1500V</td>
+				<td>富山地方鉄道17480形</td>
+			</tr>
+		</tbody>
+	</Table>
 
-		<NoteRefContent id="tkk5000-pamphlet">「<cite>T.K.K.超軽量電車5000型</cite>」（パンフレット）より。ただし、現車調査において 1,175ℓ/min の固体も存在することを確認しています。後の増備で増加したのか、それとも資料ではおおよその値を示しているに過ぎないのかは不明です。</NoteRefContent>
+	<NoteRefContent id="tkk5000-pamphlet">「<cite>T.K.K.超軽量電車5000型</cite>」（パンフレット）より。ただし、現車調査において 1,175ℓ/min の固体も存在することを確認しています。後の増備で増加したのか、それとも資料ではおおよその値を示しているに過ぎないのかは不明です。</NoteRefContent>
 
-		<NoteRefContent id="denkisha145"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
+	<NoteRefContent id="denkisha145"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
 
-		<NoteRefContent id="nabuco62"><DocMagazine name="ナブコ技報" date="1986年7月号" no={62} article="HS5電動空気圧縮機装置" pages={[53]} /></NoteRefContent>
+	<NoteRefContent id="nabuco62"><DocMagazine name="ナブコ技報" date="1986年7月号" no={62} article="HS5電動空気圧縮機装置" pages={[53]} /></NoteRefContent>
 
-		<NoteRefContent id="pic675"><DocMagazine name="鉄道ピクトリアル" date="1999年10月号" no={675} article="横浜高速鉄道Y000系" authors={['服部典夫', '佐藤浩規']} pages={[64]} /></NoteRefContent>
+	<NoteRefContent id="pic675"><DocMagazine name="鉄道ピクトリアル" date="1999年10月号" no={675} article="横浜高速鉄道Y000系" authors={['服部典夫', '佐藤浩規']} pages={[64]} /></NoteRefContent>
 
-		<NoteRefContent id="sharyogijyutu218"><DocMagazine name="車両技術" date="1999年9月号" no={218} article="東京急行電鉄3000系車両" authors={['神尾純一', '門田吉人']} pages={[49]} /></NoteRefContent>
+	<NoteRefContent id="sharyogijyutu218"><DocMagazine name="車両技術" date="1999年9月号" no={218} article="東京急行電鉄3000系車両" authors={['神尾純一', '門田吉人']} pages={[49]} /></NoteRefContent>
 
-		<NoteRefContent id="nabuco57"><DocMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7]} /></NoteRefContent>
-	</div>
+	<NoteRefContent id="nabuco57"><DocMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7]} /></NoteRefContent>
 
 	<ListNote>
 		<li>圧縮機変位容積で脚注のないものは現車調査による。</li>

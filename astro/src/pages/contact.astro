@@ -2,6 +2,7 @@
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import Layout from '@layouts/W0s.astro';
+import Table from '@components/Table.astro';
 import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
@@ -179,30 +180,28 @@ if (referrer !== null) {
 		</div>
 
 		<div class="js-screen-confirm" hidden="">
-			<div class="p-table -full">
-				<table>
-					<tbody>
-						<tr>
-							<th scope="row">名前</th>
-							<td class="js-confirm-output" data-ctrl-name="yourname"></td>
-						</tr>
-						<tr>
-							<th scope="row">Eメールアドレス</th>
-							<td class="js-confirm-output" data-ctrl-name="email"></td>
-						</tr>
-						<tr>
-							<th scope="row">返信の有無</th>
-							<td class="js-confirm-output" data-ctrl-name="reply"></td>
-						</tr>
-						<tr>
-							<th scope="row">内容</th>
-							<td>
-								<pre class="js-confirm-output" data-ctrl-name="body"></pre>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<Table full={true}>
+				<tbody>
+					<tr>
+						<th scope="row">名前</th>
+						<td class="js-confirm-output" data-ctrl-name="yourname"></td>
+					</tr>
+					<tr>
+						<th scope="row">Eメールアドレス</th>
+						<td class="js-confirm-output" data-ctrl-name="email"></td>
+					</tr>
+					<tr>
+						<th scope="row">返信の有無</th>
+						<td class="js-confirm-output" data-ctrl-name="reply"></td>
+					</tr>
+					<tr>
+						<th scope="row">内容</th>
+						<td>
+							<pre class="js-confirm-output" data-ctrl-name="body"></pre>
+						</td>
+					</tr>
+				</tbody>
+			</Table>
 		</div>
 
 		<div class="c-form-controls -submit -center">

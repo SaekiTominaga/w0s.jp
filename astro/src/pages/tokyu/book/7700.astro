@@ -7,6 +7,7 @@ import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -307,37 +308,35 @@ const structuredData: StructuredData = {
 	<Section id="errata">
 		<Fragment slot="heading">正誤情報</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ページ</th>
-						<th scope="col">章</th>
-						<th scope="col">内容</th>
-						<th scope="col">電子版修正</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>p.2</td>
-						<td>年表</td>
-						<td>「1995年10月11日〜12日　サハ7953〜7964が東急車輛製造へ入場のため甲種輸送（長津田→逗子）」の車号は「サハ7963〜7964」が正しい。</td>
-						<td>ver.1.0.2</td>
-					</tr>
-					<tr>
-						<td>p.13</td>
-						<td>車外 - 側面</td>
-						<td>「車端部のジャッキアップポイント」の上写真キャプションの車号「7801-7701山側」は「7813-7713山側」が正しい。</td>
-						<td>ver.1.0.1</td>
-					</tr>
-					<tr>
-						<td>p.33</td>
-						<td>車内 - 側面</td>
-						<td>「側窓の手掛けストッパーと窓戸錠跡」の写真キャプションが (上)、 (下) となっているが、正しくは (左)、 (右) 。</td>
-						<td>ver.1.0.1</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">章</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.2</td>
+					<td>年表</td>
+					<td>「1995年10月11日〜12日　サハ7953〜7964が東急車輛製造へ入場のため甲種輸送（長津田→逗子）」の車号は「サハ7963〜7964」が正しい。</td>
+					<td>ver.1.0.2</td>
+				</tr>
+				<tr>
+					<td>p.13</td>
+					<td>車外 - 側面</td>
+					<td>「車端部のジャッキアップポイント」の上写真キャプションの車号「7801-7701山側」は「7813-7713山側」が正しい。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+				<tr>
+					<td>p.33</td>
+					<td>車内 - 側面</td>
+					<td>「側窓の手掛けストッパーと窓戸錠跡」の写真キャプションが (上)、 (下) となっているが、正しくは (左)、 (右) 。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

@@ -8,6 +8,7 @@ import Link from '@components/Link.astro';
 import LinkPhoto from '@components/LinkPhoto.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -42,117 +43,115 @@ const structuredData: StructuredData = {
 
 		<p>これらの試験ののち、1986年の9000系にて量産台車が採用され、以降の鉄道線車両の標準となっています。</p>
 
-		<div class="p-table -full">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">形式</th>
-						<th scope="col">製造初年</th>
-						<th scope="col">最多履数</th>
-						<th scope="col">履用車両</th>
-						<th scope="col">現状</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>TS-1001</td>
-						<td class="u-cell -center">1977年</td>
-						<td class="u-cell -center">1両</td>
-						<td>8000系<small>（デハ8402）</small></td>
-						<td>消滅</td>
-						<td>試作台車</td>
-					</tr>
-					<tr>
-						<td>TS-1002</td>
-						<td class="u-cell -center">1977年</td>
-						<td class="u-cell -center">1両</td>
-						<td>デハ3550形<small>（デハ3552）</small></td>
-						<td>消滅</td>
-						<td>試作台車</td>
-					</tr>
-					<tr>
-						<td>TS-1003 <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1982年</td>
-						<td class="u-cell -center">1両</td>
-						<td>6000系<small>（デハ6202）</small></td>
-						<td>消滅</td>
-						<td>試作台車</td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1004-m" bullet={true}>TS-1004</Link> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1986年</td>
-						<td class="u-cell -center">59両</td>
-						<td>9000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1005-t" bullet={true}>TS-1005</Link> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1986年</td>
-						<td class="u-cell -center">58両</td>
-						<td>9000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1006-m" bullet={true}>TS-1006</Link> <span class="c-tokyu-truck -m">動力</span></td>
-						<td rowspan="2" class="u-cell -center">1988年</td>
-						<td class="u-cell -center">82両</td>
-						<td>1000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1006a" bullet={true}>TS-1006A</Link> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1両</td>
-						<td>1000系<small>（デハ1362）</small></td>
-						<td>消滅</td>
-						<td>TS-1006 の改造</td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1007-t" bullet={true}>TS-1007</Link> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1987年</td>
-						<td class="u-cell -center">32両</td>
-						<td>1000系</td>
-						<td>現役</td>
-						<td>デハ1350形からの付随車化改造車1両を含む</td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1010-m" bullet={true}>TS-1010</Link> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1992年</td>
-						<td class="u-cell -center">18両</td>
-						<td>2000系→9020系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1011-t" bullet={true}>TS-1011</Link> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1992年</td>
-						<td class="u-cell -center">12両</td>
-						<td>2000系→9020系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1019-m" bullet={true}>TS-1019</Link> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1999年</td>
-						<td class="u-cell -center">42両</td>
-						<td>新3000系、Y000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#ts1020-t" bullet={true}>TS-1020</Link> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1999年</td>
-						<td class="u-cell -center">42両</td>
-						<td>新3000系、Y000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table full={true}>
+			<thead>
+				<tr>
+					<th scope="col">形式</th>
+					<th scope="col">製造初年</th>
+					<th scope="col">最多履数</th>
+					<th scope="col">履用車両</th>
+					<th scope="col">現状</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>TS-1001</td>
+					<td class="u-cell -center">1977年</td>
+					<td class="u-cell -center">1両</td>
+					<td>8000系<small>（デハ8402）</small></td>
+					<td>消滅</td>
+					<td>試作台車</td>
+				</tr>
+				<tr>
+					<td>TS-1002</td>
+					<td class="u-cell -center">1977年</td>
+					<td class="u-cell -center">1両</td>
+					<td>デハ3550形<small>（デハ3552）</small></td>
+					<td>消滅</td>
+					<td>試作台車</td>
+				</tr>
+				<tr>
+					<td>TS-1003 <span class="c-tokyu-truck -m">動力</span></td>
+					<td class="u-cell -center">1982年</td>
+					<td class="u-cell -center">1両</td>
+					<td>6000系<small>（デハ6202）</small></td>
+					<td>消滅</td>
+					<td>試作台車</td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1004-m" bullet={true}>TS-1004</Link> <span class="c-tokyu-truck -m">動力</span></td>
+					<td class="u-cell -center">1986年</td>
+					<td class="u-cell -center">59両</td>
+					<td>9000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1005-t" bullet={true}>TS-1005</Link> <span class="c-tokyu-truck -t">付随</span></td>
+					<td class="u-cell -center">1986年</td>
+					<td class="u-cell -center">58両</td>
+					<td>9000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1006-m" bullet={true}>TS-1006</Link> <span class="c-tokyu-truck -m">動力</span></td>
+					<td rowspan="2" class="u-cell -center">1988年</td>
+					<td class="u-cell -center">82両</td>
+					<td>1000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1006a" bullet={true}>TS-1006A</Link> <span class="c-tokyu-truck -m">動力</span></td>
+					<td class="u-cell -center">1両</td>
+					<td>1000系<small>（デハ1362）</small></td>
+					<td>消滅</td>
+					<td>TS-1006 の改造</td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1007-t" bullet={true}>TS-1007</Link> <span class="c-tokyu-truck -t">付随</span></td>
+					<td class="u-cell -center">1987年</td>
+					<td class="u-cell -center">32両</td>
+					<td>1000系</td>
+					<td>現役</td>
+					<td>デハ1350形からの付随車化改造車1両を含む</td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1010-m" bullet={true}>TS-1010</Link> <span class="c-tokyu-truck -m">動力</span></td>
+					<td class="u-cell -center">1992年</td>
+					<td class="u-cell -center">18両</td>
+					<td>2000系→9020系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1011-t" bullet={true}>TS-1011</Link> <span class="c-tokyu-truck -t">付随</span></td>
+					<td class="u-cell -center">1992年</td>
+					<td class="u-cell -center">12両</td>
+					<td>2000系→9020系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1019-m" bullet={true}>TS-1019</Link> <span class="c-tokyu-truck -m">動力</span></td>
+					<td class="u-cell -center">1999年</td>
+					<td class="u-cell -center">42両</td>
+					<td>新3000系、Y000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#ts1020-t" bullet={true}>TS-1020</Link> <span class="c-tokyu-truck -t">付随</span></td>
+					<td class="u-cell -center">1999年</td>
+					<td class="u-cell -center">42両</td>
+					<td>新3000系、Y000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>TS-1011, TS-1002 型の製造年は<DocMagazine name="東急車輛技報" no={37} article="TS-1003型ボルスタレス台車について—その1—" authors={['児玉邦彦', '山根徹雄']} pages={[13]} />より。</li>

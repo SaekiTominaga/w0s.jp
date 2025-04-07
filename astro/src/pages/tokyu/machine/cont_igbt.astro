@@ -10,6 +10,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -48,109 +49,107 @@ const structuredData: StructuredData = {
 
 		<p>さて、鉄道車両の VVVF インバーターに IGBT が採用され始めた時期、東急電鉄では1993年に増備された2000系3次車を最後に旅客車両の新製が6年間もストップする新車停滞期間に入りますが、この間も池上線のワンマン化（1998年実施）に向けた若干数の車両の動きはあり、7700系のうち改造車2両に IGBT タイプの新型 VVVF インバーター装置が採用、その後1999年に新製された新3000系より IGBT VVVF の本格的な導入が始まりました。</p>
 
-		<div class="p-table -full">
-			<table>
-				<caption>IGBT の VVVF インバーター制御装置一覧<small>（新5000系以降の新造車を除く）</small></caption>
-				<thead>
-					<tr>
-						<th scope="col">搭載車種</th>
-						<th scope="col">形式</th>
-						<th scope="col">製造所</th>
-						<th scope="col">登場年</th>
-						<th scope="col">容量</th>
-						<th scope="col">電圧レベル</th>
-						<th scope="col">IM 接続</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>デハ7815</td>
-						<td><Link href="#rg654-a-m" bullet={true}>RG654-A-M</Link></td>
-						<td>東洋</td>
-						<td>1995年</td>
-						<td>1700V–360A</td>
-						<td>3レベル</td>
-						<td>170kW×2×2P</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>デハ7715</td>
-						<td><Link href="#rg660-a-m" bullet={true}>RG660-A-M</Link></td>
-						<td>東洋</td>
-						<td>1996年</td>
-						<td>1700V–360A</td>
-						<td>3レベル</td>
-						<td>170kW×2×2P</td>
-						<td>SIV一体型</td>
-					</tr>
-					<tr>
-						<td rowspan="2">新3000系<small>（日立車、1〜3次車）</small></td>
-						<td><Link href="#vfi-hr4820e" bullet={true}>VFI-HR4820E</Link></td>
-						<td rowspan="2">日立</td>
-						<td rowspan="2">1999年<NoteRef by="vfi-hr4820e-date" /></td>
-						<td rowspan="4">1700V–1200A</td>
-						<td rowspan="4">3レベル</td>
-						<td>190kW×2×4P</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#vfi-hr4820e" bullet={true}>VFI-HR2420B</Link></td>
-						<td>190kW×2×2P</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td rowspan="2">新3000系<small>（東芝車、1〜3次車）</small></td>
-						<td><Link href="#svf038-a0" bullet={true}>SVF038-A0</Link></td>
-						<td rowspan="2">東芝</td>
-						<td rowspan="2">1999年<NoteRef by="svf038-a0-date" /></td>
-						<td>190kW×2×4P</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><Link href="#svf038-a0" bullet={true}>SVF038-B0</Link></td>
-						<td>190kW×2×2P</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>300系</td>
-						<td><Link href="#map-064-60v82" bullet={true}>MAP-064-60V82</Link></td>
-						<td>三菱</td>
-						<td>1999年</td>
-						<td>1700V–500A</td>
-						<td>2レベル</td>
-						<td>60kW×2×2P</td>
-						<td>600V、IPM</td>
-					</tr>
-					<tr>
-						<td>Y000系</td>
-						<td><Link href="#svf041-a0" bullet={true}>SVF041-A0</Link></td>
-						<td>東芝</td>
-						<td>1999年</td>
-						<td>1700V–400A</td>
-						<td>3レベル</td>
-						<td>190kW×2×2P</td>
-						<td>SIV一体型</td>
-					</tr>
-					<tr>
-						<td>1000系1500番台</td>
-						<td><Link href="#svf091-b0" bullet={true}>SVF091-B0</Link></td>
-						<td>東芝</td>
-						<td>2014年<NoteRef by="svf091-b0-date" /></td>
-						<td>3300V–1200A</td>
-						<td>2レベル</td>
-						<td>130kW×4×2P</td>
-						<td>SIV一体型</td>
-					</tr>
-				</tbody>
-			</table>
+		<Table full={true}>
+			<caption>IGBT の VVVF インバーター制御装置一覧<small>（新5000系以降の新造車を除く）</small></caption>
+			<thead>
+				<tr>
+					<th scope="col">搭載車種</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">登場年</th>
+					<th scope="col">容量</th>
+					<th scope="col">電圧レベル</th>
+					<th scope="col">IM 接続</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>デハ7815</td>
+					<td><Link href="#rg654-a-m" bullet={true}>RG654-A-M</Link></td>
+					<td>東洋</td>
+					<td>1995年</td>
+					<td>1700V–360A</td>
+					<td>3レベル</td>
+					<td>170kW×2×2P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>デハ7715</td>
+					<td><Link href="#rg660-a-m" bullet={true}>RG660-A-M</Link></td>
+					<td>東洋</td>
+					<td>1996年</td>
+					<td>1700V–360A</td>
+					<td>3レベル</td>
+					<td>170kW×2×2P</td>
+					<td>SIV一体型</td>
+				</tr>
+				<tr>
+					<td rowspan="2">新3000系<small>（日立車、1〜3次車）</small></td>
+					<td><Link href="#vfi-hr4820e" bullet={true}>VFI-HR4820E</Link></td>
+					<td rowspan="2">日立</td>
+					<td rowspan="2">1999年<NoteRef by="vfi-hr4820e-date" /></td>
+					<td rowspan="4">1700V–1200A</td>
+					<td rowspan="4">3レベル</td>
+					<td>190kW×2×4P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#vfi-hr4820e" bullet={true}>VFI-HR2420B</Link></td>
+					<td>190kW×2×2P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td rowspan="2">新3000系<small>（東芝車、1〜3次車）</small></td>
+					<td><Link href="#svf038-a0" bullet={true}>SVF038-A0</Link></td>
+					<td rowspan="2">東芝</td>
+					<td rowspan="2">1999年<NoteRef by="svf038-a0-date" /></td>
+					<td>190kW×2×4P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Link href="#svf038-a0" bullet={true}>SVF038-B0</Link></td>
+					<td>190kW×2×2P</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>300系</td>
+					<td><Link href="#map-064-60v82" bullet={true}>MAP-064-60V82</Link></td>
+					<td>三菱</td>
+					<td>1999年</td>
+					<td>1700V–500A</td>
+					<td>2レベル</td>
+					<td>60kW×2×2P</td>
+					<td>600V、IPM</td>
+				</tr>
+				<tr>
+					<td>Y000系</td>
+					<td><Link href="#svf041-a0" bullet={true}>SVF041-A0</Link></td>
+					<td>東芝</td>
+					<td>1999年</td>
+					<td>1700V–400A</td>
+					<td>3レベル</td>
+					<td>190kW×2×2P</td>
+					<td>SIV一体型</td>
+				</tr>
+				<tr>
+					<td>1000系1500番台</td>
+					<td><Link href="#svf091-b0" bullet={true}>SVF091-B0</Link></td>
+					<td>東芝</td>
+					<td>2014年<NoteRef by="svf091-b0-date" /></td>
+					<td>3300V–1200A</td>
+					<td>2レベル</td>
+					<td>130kW×4×2P</td>
+					<td>SIV一体型</td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="vfi-hr4820e-date">実際の機器の製造初年は1998年。</NoteRefContent>
+		<NoteRefContent id="vfi-hr4820e-date">実際の機器の製造初年は1998年。</NoteRefContent>
 
-			<NoteRefContent id="svf038-a0-date">実際の機器の製造初年は1998年。</NoteRefContent>
+		<NoteRefContent id="svf038-a0-date">実際の機器の製造初年は1998年。</NoteRefContent>
 
-			<NoteRefContent id="svf091-b0-date">実際の機器の製造初年は2013年。</NoteRefContent>
-		</div>
+		<NoteRefContent id="svf091-b0-date">実際の機器の製造初年は2013年。</NoteRefContent>
 
 		<ListNote>
 			<li>機器形式は現車調査による。</li>

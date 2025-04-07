@@ -12,6 +12,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -54,131 +55,129 @@ const structuredData: StructuredData = {
 
 		<p>ただし、駅間距離が短く高速運転が重視されていなかった東急電鉄では、旧性能車の時代の弱め界磁制御は一部車種のみの限定的な採用であり、本格的な導入は<a href="/tokyu/machine/cont_high">高性能車</a>の旧5000系以降となります。このため旧性能車時代の進化としては、開通当初に路面電車タイプの直接制御で始まった方式からまもなく間接制御が導入されて以降はシステム面での大きな変化はなく、主制御器の接触器の切り替え方法が単位スイッチからカム軸になったり、ノッチ数を増加させた多段式制御が導入されたりといった内部構造の変化が中心となります。</p>
 
-		<div class="p-table -full">
-			<table>
-				<caption>旧性能車の主制御器一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col">形式</th>
-						<th scope="col">製造所</th>
-						<th scope="col">搭載車種</th>
-						<th scope="col">登場年</th>
-						<th scope="col">接触器</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>直接制御</td>
-						<td>東洋、GE 等</td>
-						<td>デハ1形、6形、モハ15形、電動貨車</td>
-						<td>1922年</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>M（マスコン C-87B）</td>
-						<td>GE</td>
-						<td>デハ20形、30形、40形ほか</td>
-						<td>1924年</td>
-						<td>電磁単位スイッチ</td>
-					</tr>
-					<tr>
-						<td>PR-150</td>
-						<td>日立</td>
-						<td>デハ100形、200形、300形ほか</td>
-						<td>1925年</td>
-						<td>電空カム軸</td>
-					</tr>
-					<tr>
-						<td>ES-155</td>
-						<td>東洋</td>
-						<td>モハ120形、130形</td>
-						<td>1928年</td>
-						<td>電動カム軸</td>
-					</tr>
-					<tr>
-						<td>ES-504</td>
-						<td>東洋</td>
-						<td>デハ306</td>
-						<td>1928年</td>
-						<td>電動カム軸</td>
-					</tr>
-					<tr>
-						<td>PR-200</td>
-						<td>日立</td>
-						<td>モハ500形、300形（クハ1形電装車）ほか</td>
-						<td>1928年</td>
-						<td>電空カム軸</td>
-					</tr>
-					<tr>
-						<td>ES-158</td>
-						<td>東洋</td>
-						<td>モハ1形ほか</td>
-						<td>1932年</td>
-						<td>電動カム軸</td>
-					</tr>
-					<tr>
-						<td>PR-1Y1</td>
-						<td>日立</td>
-						<td>モハ510形（初期車）</td>
-						<td>1932年</td>
-						<td>電空カム軸</td>
-					</tr>
-					<tr>
-						<td>PB-200</td>
-						<td>日立</td>
-						<td>モハ510形（後期車）ほか</td>
-						<td>1934年</td>
-						<td>電空カム軸</td>
-					</tr>
-					<tr>
-						<td>MC-200</td>
-						<td>日立</td>
-						<td>モハ150形ほか</td>
-						<td>1937年</td>
-						<td>電動カム軸</td>
-					</tr>
-					<tr>
-						<td>MMC-200</td>
-						<td>日立</td>
-						<td>モハ1000形ほか</td>
-						<td>1939年</td>
-						<td>電動カム軸</td>
-					</tr>
-					<tr>
-						<td>M（マスコン C-36D）</td>
-						<td>GE、芝浦<NoteRef by="c-36d-maker" /></td>
-						<td>デハ1100形</td>
-						<td>1943年</td>
-						<td>電磁単位スイッチ</td>
-					</tr>
-					<tr>
-						<td>HL</td>
-						<td>三菱(?)</td>
-						<td>デハ1050形</td>
-						<td>1946年</td>
-						<td>電空単位スイッチ</td>
-					</tr>
-					<tr>
-						<td>CS-5</td>
-						<td>東洋<NoteRef by="cs-5-maker" /></td>
-						<td>デハ3700形、3800形ほか</td>
-						<td>1948年</td>
-						<td>電空カム軸</td>
-					</tr>
-					<tr>
-						<td>MMC-10</td>
-						<td>日立</td>
-						<td>デハ3550形ほか</td>
-						<td>1940年台後半</td>
-						<td>電動カム軸</td>
-					</tr>
-				</tbody>
-			</table>
+		<Table full={true}>
+			<caption>旧性能車の主制御器一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">搭載車種</th>
+					<th scope="col">登場年</th>
+					<th scope="col">接触器</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>直接制御</td>
+					<td>東洋、GE 等</td>
+					<td>デハ1形、6形、モハ15形、電動貨車</td>
+					<td>1922年</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>M（マスコン C-87B）</td>
+					<td>GE</td>
+					<td>デハ20形、30形、40形ほか</td>
+					<td>1924年</td>
+					<td>電磁単位スイッチ</td>
+				</tr>
+				<tr>
+					<td>PR-150</td>
+					<td>日立</td>
+					<td>デハ100形、200形、300形ほか</td>
+					<td>1925年</td>
+					<td>電空カム軸</td>
+				</tr>
+				<tr>
+					<td>ES-155</td>
+					<td>東洋</td>
+					<td>モハ120形、130形</td>
+					<td>1928年</td>
+					<td>電動カム軸</td>
+				</tr>
+				<tr>
+					<td>ES-504</td>
+					<td>東洋</td>
+					<td>デハ306</td>
+					<td>1928年</td>
+					<td>電動カム軸</td>
+				</tr>
+				<tr>
+					<td>PR-200</td>
+					<td>日立</td>
+					<td>モハ500形、300形（クハ1形電装車）ほか</td>
+					<td>1928年</td>
+					<td>電空カム軸</td>
+				</tr>
+				<tr>
+					<td>ES-158</td>
+					<td>東洋</td>
+					<td>モハ1形ほか</td>
+					<td>1932年</td>
+					<td>電動カム軸</td>
+				</tr>
+				<tr>
+					<td>PR-1Y1</td>
+					<td>日立</td>
+					<td>モハ510形（初期車）</td>
+					<td>1932年</td>
+					<td>電空カム軸</td>
+				</tr>
+				<tr>
+					<td>PB-200</td>
+					<td>日立</td>
+					<td>モハ510形（後期車）ほか</td>
+					<td>1934年</td>
+					<td>電空カム軸</td>
+				</tr>
+				<tr>
+					<td>MC-200</td>
+					<td>日立</td>
+					<td>モハ150形ほか</td>
+					<td>1937年</td>
+					<td>電動カム軸</td>
+				</tr>
+				<tr>
+					<td>MMC-200</td>
+					<td>日立</td>
+					<td>モハ1000形ほか</td>
+					<td>1939年</td>
+					<td>電動カム軸</td>
+				</tr>
+				<tr>
+					<td>M（マスコン C-36D）</td>
+					<td>GE、芝浦<NoteRef by="c-36d-maker" /></td>
+					<td>デハ1100形</td>
+					<td>1943年</td>
+					<td>電磁単位スイッチ</td>
+				</tr>
+				<tr>
+					<td>HL</td>
+					<td>三菱(?)</td>
+					<td>デハ1050形</td>
+					<td>1946年</td>
+					<td>電空単位スイッチ</td>
+				</tr>
+				<tr>
+					<td>CS-5</td>
+					<td>東洋<NoteRef by="cs-5-maker" /></td>
+					<td>デハ3700形、3800形ほか</td>
+					<td>1948年</td>
+					<td>電空カム軸</td>
+				</tr>
+				<tr>
+					<td>MMC-10</td>
+					<td>日立</td>
+					<td>デハ3550形ほか</td>
+					<td>1940年台後半</td>
+					<td>電動カム軸</td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="c-36d-maker">東急デハ1100形の種車である鉄道院デハ33500形に使用された C-36D 形制御装置のメーカーは、<DocBook name="省線電車史綱要（抄録）" authors={['鉄道史資料保存会']} year={1976} article={['Ⅲ 車輛', '2. 電車機器']} pages={[49]} url="https://dl.ndl.go.jp/pid/12065807/1/46" linkScope="page" />によると <span lang="en">General Electric</span> と芝浦製作所の2社があり、舶来品とそれを元にした国産品が混在していたようですが、東急譲渡車がどちらのタイプを装備していたかは不明です。</NoteRefContent>
+		<NoteRefContent id="c-36d-maker">東急デハ1100形の種車である鉄道院デハ33500形に使用された C-36D 形制御装置のメーカーは、<DocBook name="省線電車史綱要（抄録）" authors={['鉄道史資料保存会']} year={1976} article={['Ⅲ 車輛', '2. 電車機器']} pages={[49]} url="https://dl.ndl.go.jp/pid/12065807/1/46" linkScope="page" />によると <span lang="en">General Electric</span> と芝浦製作所の2社があり、舶来品とそれを元にした国産品が混在していたようですが、東急譲渡車がどちらのタイプを装備していたかは不明です。</NoteRefContent>
 
-			<NoteRefContent id="cs-5-maker">国鉄制式である CS-5 型は芝浦製作所<small>（現：東芝）</small>、日立製作所、三菱電機など複数のメーカーにより製造されています。東急デハ3700形用のメーカー内訳は不明なものの、<DocBook name="東洋電機五十年史" authors={['東洋電機製造']} year={1969} article={['第5章　戦後の復興と再建の努力', '8. 製品の推移']} pages={[113]} url="https://dl.ndl.go.jp/pid/11956837/1/77" linkScope="page" />には東急電鉄への納入実績があったとされており、その一部ないし全部は東洋電機製造であったようです。</NoteRefContent>
-		</div>
+		<NoteRefContent id="cs-5-maker">国鉄制式である CS-5 型は芝浦製作所<small>（現：東芝）</small>、日立製作所、三菱電機など複数のメーカーにより製造されています。東急デハ3700形用のメーカー内訳は不明なものの、<DocBook name="東洋電機五十年史" authors={['東洋電機製造']} year={1969} article={['第5章　戦後の復興と再建の努力', '8. 製品の推移']} pages={[113]} url="https://dl.ndl.go.jp/pid/11956837/1/77" linkScope="page" />には東急電鉄への納入実績があったとされており、その一部ないし全部は東洋電機製造であったようです。</NoteRefContent>
 
 		<ListNote>
 			<li><q>GE</q>は <span lang="en">General Electric</span> の略、<q>芝浦</q>は芝浦製作所の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略。</li>
@@ -248,58 +247,56 @@ const structuredData: StructuredData = {
 
 		<NoteRefContent id="toyoko1940-10-22"><DocOfficial company="東京横浜電鉄" no="東辰第3713号" date="1940-10-22" title="電動客車設計變更認可申請書" url="https://www.digital.archives.go.jp/item/530878" /></NoteRefContent>
 
-		<div class="p-table">
-			<table>
-				<caption>目黒蒲田電鉄、東京横浜電鉄時代の鉄道省払い下げ車一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col">鉄道院／鉄道省</th>
-						<th scope="col">前身私鉄</th>
-						<th scope="col">改造前形式</th>
-						<th scope="col">改造後形式</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td rowspan="2">ホデ6110形→デハ6260形</td>
-						<td class="u-cell -center">―</td>
-						<td>デハ20形</td>
-						<td>モハ150形</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="u-cell -center">―</td>
-						<td>デハ30形<small>（初代）</small></td>
-						<td class="u-cell -center">―</td>
-						<td>全車譲渡</td>
-					</tr>
-					<tr>
-						<td rowspan="2">ナデ6110形→デハ6285形</td>
-						<td rowspan="2" class="u-cell -center">―</td>
-						<td>デハ40形</td>
-						<td class="u-cell -center">―</td>
-						<td>モハ42以外譲渡</td>
-					</tr>
-					<tr>
-						<td>デハ40形→モハ25形</td>
-						<td>モハ150形</td>
-						<td>モハ42のみ</td>
-					</tr>
-					<tr>
-						<td rowspan="2">デハ6310形</td>
-						<td rowspan="2">池上デハ20形</td>
-						<td rowspan="2">モハ30形<small>（2代目）</small></td>
-						<td>モハ150形</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>サハ1形</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<caption>目黒蒲田電鉄、東京横浜電鉄時代の鉄道省払い下げ車一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col">鉄道院／鉄道省</th>
+					<th scope="col">前身私鉄</th>
+					<th scope="col">改造前形式</th>
+					<th scope="col">改造後形式</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">ホデ6110形→デハ6260形</td>
+					<td class="u-cell -center">―</td>
+					<td>デハ20形</td>
+					<td>モハ150形</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="u-cell -center">―</td>
+					<td>デハ30形<small>（初代）</small></td>
+					<td class="u-cell -center">―</td>
+					<td>全車譲渡</td>
+				</tr>
+				<tr>
+					<td rowspan="2">ナデ6110形→デハ6285形</td>
+					<td rowspan="2" class="u-cell -center">―</td>
+					<td>デハ40形</td>
+					<td class="u-cell -center">―</td>
+					<td>モハ42以外譲渡</td>
+				</tr>
+				<tr>
+					<td>デハ40形→モハ25形</td>
+					<td>モハ150形</td>
+					<td>モハ42のみ</td>
+				</tr>
+				<tr>
+					<td rowspan="2">デハ6310形</td>
+					<td rowspan="2">池上デハ20形</td>
+					<td rowspan="2">モハ30形<small>（2代目）</small></td>
+					<td>モハ150形</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>サハ1形</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>鉄道院の車両は1913年に「ホデ」→「ナデ」への称号変更が行われた。</li>
@@ -354,63 +351,61 @@ const structuredData: StructuredData = {
 
 		<p>目黒蒲田電鉄と東京横浜電鉄に採用された機器の一覧はページ冒頭の表にも記していますが、下記により詳しいデータを示します。</p>
 
-		<div class="p-table">
-			<table>
-				<caption>旧性能車における東洋電機製造の主制御器一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col" rowspan="2">形式</th>
-						<th scope="col" colspan="2">搭載車種</th>
-						<th scope="col" rowspan="2">事由</th>
-						<th scope="col" rowspan="2">搭載時期</th>
-						<th scope="col" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">目蒲、東横</th>
-						<th scope="col">東急</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td rowspan="2">ES-155</td>
-						<td>モハ120形</td>
-						<td rowspan="2">デハ3250形</td>
-						<td rowspan="2">池上電気鉄道の引継車</td>
-						<td>1928年〜廃車</td>
-						<td rowspan="2"></td>
-					</tr>
-					<tr>
-						<td>モハ130形</td>
-						<td>1930年〜廃車</td>
-					</tr>
-					<tr>
-						<td rowspan="2">ES-158</td>
-						<td>モハ1形</td>
-						<td class="u-cell -center">―</td>
-						<td>直接制御車の間接化</td>
-						<td>1932年〜1941年</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>モハ150形</td>
-						<td>デハ3300形</td>
-						<td>鉄道省払下車の半鋼体化</td>
-						<td>1941年〜戦後</td>
-						<td>モハ1形と交換、後に日立 MMC 化</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<td>ES-504</td>
-						<td>デハ300形</td>
-						<td>デハ3200形</td>
-						<td>クハ1形の電動車化</td>
-						<td>1928年〜 ?</td>
-						<td>デハ306 のみ、後に日立に統一(?)</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<caption>旧性能車における東洋電機製造の主制御器一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col" rowspan="2">形式</th>
+					<th scope="col" colspan="2">搭載車種</th>
+					<th scope="col" rowspan="2">事由</th>
+					<th scope="col" rowspan="2">搭載時期</th>
+					<th scope="col" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">目蒲、東横</th>
+					<th scope="col">東急</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">ES-155</td>
+					<td>モハ120形</td>
+					<td rowspan="2">デハ3250形</td>
+					<td rowspan="2">池上電気鉄道の引継車</td>
+					<td>1928年〜廃車</td>
+					<td rowspan="2"></td>
+				</tr>
+				<tr>
+					<td>モハ130形</td>
+					<td>1930年〜廃車</td>
+				</tr>
+				<tr>
+					<td rowspan="2">ES-158</td>
+					<td>モハ1形</td>
+					<td class="u-cell -center">―</td>
+					<td>直接制御車の間接化</td>
+					<td>1932年〜1941年</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>モハ150形</td>
+					<td>デハ3300形</td>
+					<td>鉄道省払下車の半鋼体化</td>
+					<td>1941年〜戦後</td>
+					<td>モハ1形と交換、後に日立 MMC 化</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td>ES-504</td>
+					<td>デハ300形</td>
+					<td>デハ3200形</td>
+					<td>クハ1形の電動車化</td>
+					<td>1928年〜 ?</td>
+					<td>デハ306 のみ、後に日立に統一(?)</td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<p>ES-150 系列は電車線電圧 600V 用で遮断器もカム軸動作としたもの、ES-500 系列は電車線電圧 1500V 対応の大型制御器で遮断器は単位スイッチ式となり<NoteRef type="ref" by="toyo50" />、その最初の製品である ES-504 型は新京阪鉄道<small>（現：阪急電鉄）</small>の P-6 形電車に採用されたのが有名なところです。</p>
 
@@ -462,43 +457,41 @@ const structuredData: StructuredData = {
 
 			<p>前述のとおり鉄道省払い下げ車の半鋼体化改造は3回に分けて行われ、サハ1形<small>（東急サハ3350形）</small>4両とモハ150形<small>（東急デハ3300形）</small>11両になりました。</p>
 
-			<div class="p-table">
-				<table>
-					<caption>鉄道省払い下げ車の半鋼体化改造</caption>
-					<thead>
-						<tr>
-							<th scope="col">竣功時期</th>
-							<th scope="col">改造前車号</th>
-							<th scope="col">改造後車号</th>
-							<th scope="col">両数</th>
-							<th scope="col">改造後制御装置</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1936年度</td>
-							<td>目蒲モハ36–39</td>
-							<td>(旧)東横サハ1–4</td>
-							<td>4両</td>
-							<td class="u-cell -center">―</td>
-						</tr>
-						<tr>
-							<td>1937年度</td>
-							<td>目蒲モハ21、モハ25、モハ30–31, 35</td>
-							<td>目蒲モハ150–152, 154–155</td>
-							<td>5両</td>
-							<td>日立 MC-200</td>
-						</tr>
-						<tr>
-							<td>1941年度</td>
-							<td>(新)東横モハ22–24、モハ32–34</td>
-							<td>(新)東横モハ156–161</td>
-							<td>6両</td>
-							<td>東洋 ES-158</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<Table>
+				<caption>鉄道省払い下げ車の半鋼体化改造</caption>
+				<thead>
+					<tr>
+						<th scope="col">竣功時期</th>
+						<th scope="col">改造前車号</th>
+						<th scope="col">改造後車号</th>
+						<th scope="col">両数</th>
+						<th scope="col">改造後制御装置</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1936年度</td>
+						<td>目蒲モハ36–39</td>
+						<td>(旧)東横サハ1–4</td>
+						<td>4両</td>
+						<td class="u-cell -center">―</td>
+					</tr>
+					<tr>
+						<td>1937年度</td>
+						<td>目蒲モハ21、モハ25、モハ30–31, 35</td>
+						<td>目蒲モハ150–152, 154–155</td>
+						<td>5両</td>
+						<td>日立 MC-200</td>
+					</tr>
+					<tr>
+						<td>1941年度</td>
+						<td>(新)東横モハ22–24、モハ32–34</td>
+						<td>(新)東横モハ156–161</td>
+						<td>6両</td>
+						<td>東洋 ES-158</td>
+					</tr>
+				</tbody>
+			</Table>
 
 			<p>このうち最終改造グループのモハ156〜161 については、当初計画では制御装置の換装をせず半鋼体化後も鉄道省時代の M コントロールを使い続ける予定だったものが<NoteRef type="ref" by="mekama1939-06-12-2" />、途中で ES-158 型への換装へと計画変更されています<NoteRef type="ref" by="toyoko1940-10-22-2" />。そしてモハ156〜161 の竣功後まもなくしてモハ1形（モハ1〜10）の改造工事が行われ、主電動機や制御装置が互いに入れ替わる形で換装されました<NoteRef type="ref" by="toyoko1941-07-07" />。モハ1形はこの直後に全車両が神中鉄道<small>（現：相模鉄道）</small>へ譲渡されていますから、東京横浜電鉄としては手放すつもりの老朽車に鉄道省時代からのより古い機器を押し付ける思惑があったものと思われます。</p>
 
@@ -600,60 +593,58 @@ const structuredData: StructuredData = {
 
 			<p>ここまでの流れを時系列でまとめると以下のようになります。</p>
 
-			<div class="p-table">
-				<table>
-					<caption>モハ1000形車両と MMC 式制御装置の導入に至る流れ</caption>
-					<thead>
-						<tr>
-							<th scope="col">時期</th>
-							<th scope="col">出来事</th>
-							<th scope="col">備考</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1937年頃</td>
-							<td>日立 MMC 式の試作品完成</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>1938年度</td>
-							<td>日立 MMC 式の改良品完成</td>
-							<td>東京横浜電鉄と目黒蒲田電鉄へ複数台を納品<small>（現車搭載の実績は不明）</small></td>
-						</tr>
-						<tr>
-							<td>1939年5月頃</td>
-							<td>モハ1000形（1001〜1022）が完成</td>
-							<td>営業運転に入っていた可能性が高いが、この時点では竣功届は出されず</td>
-						</tr>
-						<tr>
-							<td>1939年夏</td>
-							<td>日立 MMC 式の再改良品(?)完成</td>
-							<td>東京横浜電鉄へ2台が納品され営業線で使用<small>（試運転かそれとも営業運転入りしたのかは不明）</small></td>
-						</tr>
-						<tr>
-							<td>1939年10月12日</td>
-							<td>モハ1000形（1001〜1022）の竣功届提出</td>
-							<td>10月1日に目黒蒲田電鉄が(旧)東京横浜電鉄と合併し、同16日に(新)東京横浜電鉄へ商号変更する狭間の時期</td>
-						</tr>
-						<tr>
-							<td>1940年1月31日</td>
-							<td>モハ1009, 1010 への多段式制御器使用を認可申請</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>1940年4月27日</td>
-							<td>モハ1009, 1010 の設計変更の竣功届提出</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>1940年8月23日</td>
-							<td>モハ1009, 1010 の竣功監査を実施</td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<Table>
+				<caption>モハ1000形車両と MMC 式制御装置の導入に至る流れ</caption>
+				<thead>
+					<tr>
+						<th scope="col">時期</th>
+						<th scope="col">出来事</th>
+						<th scope="col">備考</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1937年頃</td>
+						<td>日立 MMC 式の試作品完成</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>1938年度</td>
+						<td>日立 MMC 式の改良品完成</td>
+						<td>東京横浜電鉄と目黒蒲田電鉄へ複数台を納品<small>（現車搭載の実績は不明）</small></td>
+					</tr>
+					<tr>
+						<td>1939年5月頃</td>
+						<td>モハ1000形（1001〜1022）が完成</td>
+						<td>営業運転に入っていた可能性が高いが、この時点では竣功届は出されず</td>
+					</tr>
+					<tr>
+						<td>1939年夏</td>
+						<td>日立 MMC 式の再改良品(?)完成</td>
+						<td>東京横浜電鉄へ2台が納品され営業線で使用<small>（試運転かそれとも営業運転入りしたのかは不明）</small></td>
+					</tr>
+					<tr>
+						<td>1939年10月12日</td>
+						<td>モハ1000形（1001〜1022）の竣功届提出</td>
+						<td>10月1日に目黒蒲田電鉄が(旧)東京横浜電鉄と合併し、同16日に(新)東京横浜電鉄へ商号変更する狭間の時期</td>
+					</tr>
+					<tr>
+						<td>1940年1月31日</td>
+						<td>モハ1009, 1010 への多段式制御器使用を認可申請</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>1940年4月27日</td>
+						<td>モハ1009, 1010 の設計変更の竣功届提出</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>1940年8月23日</td>
+						<td>モハ1009, 1010 の竣功監査を実施</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</Table>
 
 			<p>一方、1937年登場の九州鉄道<small>（現：西日本鉄道）</small>20形<small>（後の200形）</small>に芝浦製作所<small>（現：東芝）</small>が開発した26ノッチの PA 式カム軸制御器が搭載されています<NoteRef type="ref" by="shibaura1937-12" />。製品の完成として芝浦 PA 式と日立 MMC 式のどちらが早かったかは分かりませんが、納品と現車搭載は九州鉄道が先行したと言えるのではないでしょうか。</p>
 

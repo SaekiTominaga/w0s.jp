@@ -7,6 +7,7 @@ import List from '@components/List.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -60,8 +61,7 @@ const structuredData: StructuredData = {
 	<Section id="mekama">
 		<Fragment slot="heading">目黒蒲田電鉄</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup span="2"></colgroup>
 				<colgroup></colgroup>
 				<colgroup span="14"></colgroup>
@@ -791,21 +791,19 @@ const structuredData: StructuredData = {
 						<td class="u-cell -end">5</td>
 					</tr>
 				</tbody>
-			</table>
+			</Table>
 
-			<NoteRefContent id="deha6260">借り入れの認可申請書類には目黒蒲田電鉄における車号は記載されておらず、この時点では鉄道省車号のまま運用された可能性がありますが、本表では便宜上「デハ20形」としてカウントしています。</NoteRefContent>
+		<NoteRefContent id="deha6260">借り入れの認可申請書類には目黒蒲田電鉄における車号は記載されておらず、この時点では鉄道省車号のまま運用された可能性がありますが、本表では便宜上「デハ20形」としてカウントしています。</NoteRefContent>
 
-			<NoteRefContent id="1926-03-08">東京横浜電鉄における竣功（<DateWareki value="1925-12-07" />）と同時に目黒蒲田電鉄への譲渡申請が行われたため、事実上は目蒲への新製投入であったものと思われます。</NoteRefContent>
+		<NoteRefContent id="1926-03-08">東京横浜電鉄における竣功（<DateWareki value="1925-12-07" />）と同時に目黒蒲田電鉄への譲渡申請が行われたため、事実上は目蒲への新製投入であったものと思われます。</NoteRefContent>
 
-			<NoteRefContent id="deha41">書類上は鉄道省より10両を譲り受けたうえで6両を未使用のまま阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡していますが、本表では実際に運用された両数を重視するためその6両分は除外しています。</NoteRefContent>
-		</div>
+		<NoteRefContent id="deha41">書類上は鉄道省より10両を譲り受けたうえで6両を未使用のまま阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡していますが、本表では実際に運用された両数を重視するためその6両分は除外しています。</NoteRefContent>
 	</Section>
 
 	<Section id="toyoko">
 		<Fragment slot="heading">東京横浜電鉄</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup span="2"></colgroup>
 				<colgroup></colgroup>
 				<colgroup span="8"></colgroup>
@@ -1211,15 +1209,13 @@ const structuredData: StructuredData = {
 						<td class="u-cell -end">4</td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="new-toyoko">
 		<Fragment slot="heading">目黒蒲田電鉄 → (新)東京横浜電鉄</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
+		<Table scroll={true}>
 				<colgroup span="2"></colgroup>
 				<colgroup></colgroup>
 				<colgroup span="13"></colgroup>
@@ -1357,7 +1353,6 @@ const structuredData: StructuredData = {
 						<td class="u-cell -end">22</td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 </Layout>

@@ -13,6 +13,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -92,68 +93,66 @@ const slugger = new GithubSlugger();
 
 		<p>大東急成立の直前に全車が神中鉄道<small>（現：相模鉄道）</small>に譲渡され、姿を消しました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="3">購入</th>
-						<th scope="colgroup" rowspan="2">譲渡</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ1→モハ1</th>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence title="車両購入許可申請書" date="1922-07-07" /></td>
-						<td rowspan="5"><Licence no="監第2517号" date="1922-12-12" /></td>
-						<td rowspan="5"><Licence no="目電第78号" title="車両竣功図表提出届" date="1923-02-22" /></td>
-						<td rowspan="10"><Licence summary="目蒲→神中" date="1942" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ2→モハ2</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ3→モハ3</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ4→モハ4</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ5→モハ5</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ6→モハ6</th>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence no="目電第124号" title="車両購入認可申請書" date="1923-03-30" /></td>
-						<td rowspan="5"><Licence no="監第663号" date="1923-04-06" /></td>
-						<td rowspan="5"><Licence no="目電第293号" title="車両竣功御届" date="1923-10-04" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ7→モハ7</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ8→モハ8</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ9→モハ9</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ10→モハ10</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="3">購入</th>
+					<th scope="colgroup" rowspan="2">譲渡</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ1→モハ1</th>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence title="車両購入許可申請書" date="1922-07-07" /></td>
+					<td rowspan="5"><Licence no="監第2517号" date="1922-12-12" /></td>
+					<td rowspan="5"><Licence no="目電第78号" title="車両竣功図表提出届" date="1923-02-22" /></td>
+					<td rowspan="10"><Licence summary="目蒲→神中" date="1942" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ2→モハ2</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ3→モハ3</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ4→モハ4</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ5→モハ5</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ6→モハ6</th>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence no="目電第124号" title="車両購入認可申請書" date="1923-03-30" /></td>
+					<td rowspan="5"><Licence no="監第663号" date="1923-04-06" /></td>
+					<td rowspan="5"><Licence no="目電第293号" title="車両竣功御届" date="1923-10-04" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ7→モハ7</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ8→モハ8</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ9→モハ9</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ10→モハ10</th>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>デハ1〜5 の購入申請書類の表題は<q>許可申請</q>（認可でなく許可）となっているが、おそらく単なる記載ミスで、監督局側からも言及されることなく認可として処理されている。</li>
@@ -170,32 +169,30 @@ const slugger = new GithubSlugger();
 
 		<p>車両の詳細な仕様は不明ですが、申請時の書類に残された断片的なデータによると、デハ1形、デハ6形と台車軸距は同一ながらよりやや長い車体を持ち、座席が4か所に分かれているとあるため中間ドアを持つものであったようです。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="2"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">計画</th>
-						<th scope="colgroup" colspan="2">購入</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">取下</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">未採番（10両）</th>
-						<td>目蒲</td>
-						<td><Licence no="目電第54号" title="車両購入認可申請書" date="1924-03-01" /></td>
-						<td><Licence no="目電第152号" title="取下願" date="1924-05-24" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="2"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">計画</th>
+					<th scope="colgroup" colspan="2">購入</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">取下</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">未採番（10両）</th>
+					<td>目蒲</td>
+					<td><Licence no="目電第54号" title="車両購入認可申請書" date="1924-03-01" /></td>
+					<td><Licence no="目電第152号" title="取下願" date="1924-05-24" /></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="deha20">
@@ -211,91 +208,87 @@ const slugger = new GithubSlugger();
 
 		<p>後に半鋼体化改造が行われて<a href="#moha150">モハ150形</a>となり、1970年代後半まで長く活躍しました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="2"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup" colspan="2">借入</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">鉄道省デハ6269</th>
-						<td rowspan="4">目蒲</td>
-						<td rowspan="4"><Licence no="目電第60号" title="鉄道省所属電動客車運転認可申請書" date="1924-03-07" /></td>
-						<td rowspan="4"><Licence no="監第484号" date="1924-03-19" /></td>
-					</tr>
-					<tr>
-						<th scope="row">鉄道省デハ6275</th>
-					</tr>
-					<tr>
-						<th scope="row">鉄道省デハ6277</th>
-					</tr>
-					<tr>
-						<th scope="row">鉄道省デハ6278</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="2"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup" colspan="2">借入</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">鉄道省デハ6269</th>
+					<td rowspan="4">目蒲</td>
+					<td rowspan="4"><Licence no="目電第60号" title="鉄道省所属電動客車運転認可申請書" date="1924-03-07" /></td>
+					<td rowspan="4"><Licence no="監第484号" date="1924-03-19" /></td>
+				</tr>
+				<tr>
+					<th scope="row">鉄道省デハ6275</th>
+				</tr>
+				<tr>
+					<th scope="row">鉄道省デハ6277</th>
+				</tr>
+				<tr>
+					<th scope="row">鉄道省デハ6278</th>
+				</tr>
+			</tbody>
+		</Table>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup" colspan="3">譲受</th>
-						<th scope="colgroup">半鋼体化</th>
-						<th scope="colgroup" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-						<th scope="col">申請</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ21→モハ21</th>
-						<td rowspan="4">鉄道省デハ6261–6264</td>
-						<td rowspan="4">目蒲</td>
-						<td rowspan="4"><Licence no="目電第299号" title="鉄道省電動客車譲受運転認可申請書" date="1924-09-27" /></td>
-						<td rowspan="4"><Licence no="監第2259号" date="1924-10-13" /></td>
-						<td rowspan="4"><Licence no="目電第111号" title="車両竣功御届" date="1924-11-30" /></td>
-						<td><Licence summary="モハ20形→モハ150形" no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
-						<td>以降<a href="#moha150">モハ150形</a></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ22→モハ22</th>
-						<td rowspan="3"><Licence summary="モハ20形→モハ150形" no="目電寅第1360号" title="電動客車改造認可申請ノ件" date="1939-06-12" /></td>
-						<td rowspan="3">以降<a href="#moha150">モハ150形</a></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ23→モハ23</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ24→モハ24</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup" colspan="3">譲受</th>
+					<th scope="colgroup">半鋼体化</th>
+					<th scope="colgroup" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+					<th scope="col">申請</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ21→モハ21</th>
+					<td rowspan="4">鉄道省デハ6261–6264</td>
+					<td rowspan="4">目蒲</td>
+					<td rowspan="4"><Licence no="目電第299号" title="鉄道省電動客車譲受運転認可申請書" date="1924-09-27" /></td>
+					<td rowspan="4"><Licence no="監第2259号" date="1924-10-13" /></td>
+					<td rowspan="4"><Licence no="目電第111号" title="車両竣功御届" date="1924-11-30" /></td>
+					<td><Licence summary="モハ20形→モハ150形" no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
+					<td>以降<a href="#moha150">モハ150形</a></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ22→モハ22</th>
+					<td rowspan="3"><Licence summary="モハ20形→モハ150形" no="目電寅第1360号" title="電動客車改造認可申請ノ件" date="1939-06-12" /></td>
+					<td rowspan="3">以降<a href="#moha150">モハ150形</a></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ23→モハ23</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ24→モハ24</th>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="deha30">
@@ -305,70 +298,68 @@ const slugger = new GithubSlugger();
 
 		<p><DateWareki value="1929" />までに全車が他鉄道へ譲渡されて短期間に消滅しました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="2"></colgroup>
-				<colgroup span="2"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">当初所属</th>
-						<th scope="colgroup" colspan="2">譲受</th>
-						<th scope="colgroup" colspan="2">廃車／譲渡</th>
-					</tr>
-					<tr>
-						<th scope="col">届出</th>
-						<th scope="col">竣功</th>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ31→モハ31</th>
-						<td rowspan="8">鉄道省デハ6269–6273, 6275, 6277, 6278</td>
-						<td rowspan="8">目蒲</td>
-						<td rowspan="8"><Licence no="目電第56号" title="鉄道省電動客車譲受運転届" date="1925-03-02" /></td>
-						<td rowspan="8"><Licence no="目電第168号" title="車両竣功御届" date="1925-05-21" /></td>
-						<td rowspan="2"><Licence summary="目蒲→駿豆" no="目電巳第1631号" title="電動客車譲渡認可申請書" date="1929-09-30" /></td>
-						<td rowspan="2"><Licence no="監第3514号" date="1929-10-14" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ32→モハ32</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ33</th>
-						<td rowspan="2"><Licence summary="東横→駿豆" no="東横卯第1387号" title="電動客車譲渡譲受認可申請書" date="1927-08-20" /></td>
-						<td rowspan="2"><Licence no="監第2356号" date="1927-09-06" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ34</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ35→モハ35</th>
-						<td><Licence summary="目蒲→芝浦" no="目電巳第1647号" title="電動客車廃止認可申請書" date="1929-10-08" /></td>
-						<td><Licence no="監第3538号" date="1929-10-16" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ36</th>
-						<td rowspan="2"><Licence summary="東横→駿豆" no="東横卯第1387号" title="電動客車譲渡譲受認可申請書" date="1927-08-20" /></td>
-						<td rowspan="2"><Licence no="監第2356号" date="1927-09-06" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ37</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ38→モハ38</th>
-						<td><Licence summary="目蒲→駿豆" no="目電巳第1631号" title="電動客車譲渡認可申請書" date="1929-09-30" /></td>
-						<td><Licence no="監第3514号" date="1929-10-14" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="2"></colgroup>
+			<colgroup span="2"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">当初所属</th>
+					<th scope="colgroup" colspan="2">譲受</th>
+					<th scope="colgroup" colspan="2">廃車／譲渡</th>
+				</tr>
+				<tr>
+					<th scope="col">届出</th>
+					<th scope="col">竣功</th>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ31→モハ31</th>
+					<td rowspan="8">鉄道省デハ6269–6273, 6275, 6277, 6278</td>
+					<td rowspan="8">目蒲</td>
+					<td rowspan="8"><Licence no="目電第56号" title="鉄道省電動客車譲受運転届" date="1925-03-02" /></td>
+					<td rowspan="8"><Licence no="目電第168号" title="車両竣功御届" date="1925-05-21" /></td>
+					<td rowspan="2"><Licence summary="目蒲→駿豆" no="目電巳第1631号" title="電動客車譲渡認可申請書" date="1929-09-30" /></td>
+					<td rowspan="2"><Licence no="監第3514号" date="1929-10-14" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ32→モハ32</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ33</th>
+					<td rowspan="2"><Licence summary="東横→駿豆" no="東横卯第1387号" title="電動客車譲渡譲受認可申請書" date="1927-08-20" /></td>
+					<td rowspan="2"><Licence no="監第2356号" date="1927-09-06" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ34</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ35→モハ35</th>
+					<td><Licence summary="目蒲→芝浦" no="目電巳第1647号" title="電動客車廃止認可申請書" date="1929-10-08" /></td>
+					<td><Licence no="監第3538号" date="1929-10-16" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ36</th>
+					<td rowspan="2"><Licence summary="東横→駿豆" no="東横卯第1387号" title="電動客車譲渡譲受認可申請書" date="1927-08-20" /></td>
+					<td rowspan="2"><Licence no="監第2356号" date="1927-09-06" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ37</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ38→モハ38</th>
+					<td><Licence summary="目蒲→駿豆" no="目電巳第1631号" title="電動客車譲渡認可申請書" date="1929-09-30" /></td>
+					<td><Licence no="監第3514号" date="1929-10-14" /></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>デハ35 の廃車は認可書類では単に<q>廃止</q>とあるが、定説では芝浦製作所<small>（現：東芝）</small>に売却されたのち鶴見臨港鉄道<small>（現：JR 鶴見線）</small>に譲渡されたとされている。公式の文献では<DocBook name="東京横浜電鉄沿革史" authors={['東京急行電鉄']} year={1943} pages={[512]} url="https://dl.ndl.go.jp/pid/1124913/1/343" linkScope="page" />に芝浦製作所へ譲渡されたことまでが書かれている。</li>
@@ -384,74 +375,72 @@ const slugger = new GithubSlugger();
 
 		<p>本車は半鋼製車体となった一方で当初はトラス棒付き、トロリーポール併用（デハ101〜105 のみ）であるなど過渡期の形態をした車両です。最初の5両は<DateWareki value="1925-12" />の竣功と同時に目黒蒲田電鉄への譲渡申請が行われ（目蒲側での譲受竣功は翌年3月）、また翌<DateWareki value="1926" />製造の7両は目黒蒲田電鉄にて増備されたため、当初の数年間は全車が目蒲の所属となっていました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="4"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="4">購入</th>
-					</tr>
-					<tr>
-						<th scope="col">申請／届出</th>
-						<th scope="col">設計変更申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ101→モハ101</th>
-						<td rowspan="5">東横</td>
-						<td rowspan="5"><Licence no="庶第923号" title="車両購入認可申請書" date="1925-07-15" /></td>
-						<td rowspan="5" class="u-cell -center">―</td>
-						<td rowspan="5"><Licence no="監第2149号" date="1925-09-02" /></td>
-						<td rowspan="5"><Licence no="庶第1872号" title="車両竣功御届" date="1925-12-07" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ102→モハ102</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ103→モハ103</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ104→モハ104</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ105→モハ105</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ106→モハ106</th>
-						<td rowspan="7">目蒲</td>
-						<td rowspan="7"><Licence no="目電第112号" title="電動客車購入御届" date="1926-03-31" /></td>
-						<td rowspan="7"><Licence no="目電第180号" title="電動客車設計変更認可申請書" date="1926-06-01" /></td>
-						<td rowspan="7"><Licence no="監第1752号" date="1926-07-01" /></td>
-						<td rowspan="7"><Licence no="目電第222号" title="車両竣功御届" date="1926-07-06" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ107→モハ107</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ108→モハ108</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ109→モハ109</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ110→モハ110</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ111→モハ111</th>
-					</tr>
-					<tr>
-						<th scope="row">デハ112→モハ112</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="4"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="4">購入</th>
+				</tr>
+				<tr>
+					<th scope="col">申請／届出</th>
+					<th scope="col">設計変更申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ101→モハ101</th>
+					<td rowspan="5">東横</td>
+					<td rowspan="5"><Licence no="庶第923号" title="車両購入認可申請書" date="1925-07-15" /></td>
+					<td rowspan="5" class="u-cell -center">―</td>
+					<td rowspan="5"><Licence no="監第2149号" date="1925-09-02" /></td>
+					<td rowspan="5"><Licence no="庶第1872号" title="車両竣功御届" date="1925-12-07" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ102→モハ102</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ103→モハ103</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ104→モハ104</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ105→モハ105</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ106→モハ106</th>
+					<td rowspan="7">目蒲</td>
+					<td rowspan="7"><Licence no="目電第112号" title="電動客車購入御届" date="1926-03-31" /></td>
+					<td rowspan="7"><Licence no="目電第180号" title="電動客車設計変更認可申請書" date="1926-06-01" /></td>
+					<td rowspan="7"><Licence no="監第1752号" date="1926-07-01" /></td>
+					<td rowspan="7"><Licence no="目電第222号" title="車両竣功御届" date="1926-07-06" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ107→モハ107</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ108→モハ108</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ109→モハ109</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ110→モハ110</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ111→モハ111</th>
+				</tr>
+				<tr>
+					<th scope="row">デハ112→モハ112</th>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>デハ106〜112 は東京横浜電鉄から譲渡されたデハ101〜105 と同一設計として認可を伴わない届出による手続きが行われたが、<DateWareki value="1926-03-10" />に発生した東洋電機製造の横浜工場火災による影響で主電動機の 65㏋ → 75㏋ 化（デハ106 を除く）や集電装置をパンタグラフ&amp;トロリーポール併用からパンタグラフのみにするといった設計変更が行われることとなり、結局認可を伴う申請手続きとなった。</li>
@@ -469,116 +458,112 @@ const slugger = new GithubSlugger();
 
 		<p>デハ40形として活躍した車両のうち1両は後にモハ25形へ形式変更されましたが、モハ42→モハ25 の改番届における記述の中でモハ40形は41号車1両が残るとあるため、短期間ではあるもののモハ40形とモハ25形が1両ずつ併存していたことになります。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="2"></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup" colspan="3">譲受</th>
-						<th scope="colgroup">改番</th>
-						<th scope="colgroup" colspan="2">廃車／譲渡</th>
-						<th scope="colgroup">半鋼体化</th>
-						<th scope="colgroup" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-						<th scope="col">届出</th>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">申請</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ41→モハ41</th>
-						<td rowspan="2">鉄道省デハ6293, 6294</td>
-						<td rowspan="4">目蒲</td>
-						<td rowspan="4"><Licence no="目電第166号" title="鉄道省電動客車譲受使用認可申請書" date="1926-04-30" /></td>
-						<td rowspan="4"><Licence no="監第1557号" date="1926-06-12" /></td>
-						<td rowspan="4"><Licence /></td>
-						<td></td>
-						<td colspan="2"><Licence summary="目蒲→芝浦" date="1930" /></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ42→モハ42→モハ25</th>
-						<td><Licence summary="モハ42→モハ25" no="目電巳第1902号" title="電動客車形式称号及番号改正届" date="1929-11-14" /></td>
-						<td></td>
-						<td></td>
-						<td><Licence no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
-						<td>以降、<a href="#moha150">モハ150形</a></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ43</th>
-						<td>鉄道省デハ6288</td>
-						<td></td>
-						<td rowspan="2"><Licence summary="目蒲→福武" no="目電第159号" title="電動客車譲渡認可申請書" date="1927-05-02" /></td>
-						<td rowspan="2"><Licence no="監第1221号" date="1927-05-14" /></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ44</th>
-						<td>鉄道省デハ6295</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="2"></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup" colspan="3">譲受</th>
+					<th scope="colgroup">改番</th>
+					<th scope="colgroup" colspan="2">廃車／譲渡</th>
+					<th scope="colgroup">半鋼体化</th>
+					<th scope="colgroup" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+					<th scope="col">届出</th>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">申請</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ41→モハ41</th>
+					<td rowspan="2">鉄道省デハ6293, 6294</td>
+					<td rowspan="4">目蒲</td>
+					<td rowspan="4"><Licence no="目電第166号" title="鉄道省電動客車譲受使用認可申請書" date="1926-04-30" /></td>
+					<td rowspan="4"><Licence no="監第1557号" date="1926-06-12" /></td>
+					<td rowspan="4"><Licence /></td>
+					<td></td>
+					<td colspan="2"><Licence summary="目蒲→芝浦" date="1930" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ42→モハ42→モハ25</th>
+					<td><Licence summary="モハ42→モハ25" no="目電巳第1902号" title="電動客車形式称号及番号改正届" date="1929-11-14" /></td>
+					<td></td>
+					<td></td>
+					<td><Licence no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
+					<td>以降、<a href="#moha150">モハ150形</a></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ43</th>
+					<td>鉄道省デハ6288</td>
+					<td></td>
+					<td rowspan="2"><Licence summary="目蒲→福武" no="目電第159号" title="電動客車譲渡認可申請書" date="1927-05-02" /></td>
+					<td rowspan="2"><Licence no="監第1221号" date="1927-05-14" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ44</th>
+					<td>鉄道省デハ6295</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-		<div class="p-table -scroll">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">車号</th>
-						<th scope="col">前所有</th>
-						<th scope="col">譲渡</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ45</th>
-						<td>鉄道省デハ6285</td>
-						<td rowspan="6"><Licence summary="目蒲→阪急" date="1926" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ46</th>
-						<td>鉄道省デハ6254</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ47</th>
-						<td>鉄道省デハ6256</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ48</th>
-						<td>鉄道省デハ6257</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ49</th>
-						<td>鉄道省デハ6289</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ50</th>
-						<td>鉄道省デハ6290</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<thead>
+				<tr>
+					<th scope="col">車号</th>
+					<th scope="col">前所有</th>
+					<th scope="col">譲渡</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ45</th>
+					<td>鉄道省デハ6285</td>
+					<td rowspan="6"><Licence summary="目蒲→阪急" date="1926" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ46</th>
+					<td>鉄道省デハ6254</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ47</th>
+					<td>鉄道省デハ6256</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ48</th>
+					<td>鉄道省デハ6257</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ49</th>
+					<td>鉄道省デハ6289</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ50</th>
+					<td>鉄道省デハ6290</td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>鉄道省車号と目蒲車号の対照は車両竣功図表による（認可書類には個々の対照は書かれていない）。</li>
@@ -596,58 +581,56 @@ const slugger = new GithubSlugger();
 
 		<p>このうちモハ203 は<DateWareki value="1929" />に改番されています。これは前述のモハ42→モハ25 と同時に行われたもので、他に<a href="#deha300">デハ300形</a>、<a href="#moha510">モハ510形</a>、<a href="#moha150">モハ150形</a>も末尾 3 を避ける付番が行われています。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="3">購入</th>
-						<th scope="colgroup">改番</th>
-					</tr>
-					<tr>
-						<th scope="col">申請／届出</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-						<th scope="col">届出</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ201→モハ201</th>
-						<td rowspan="6">目蒲</td>
-						<td rowspan="6"><Licence no="目電第431号" title="車両購入認可申請書" date="1926-12-16" /></td>
-						<td rowspan="6"><Licence no="監第220号" date="1927-02-10" /></td>
-						<td rowspan="6"><Licence no="目電第90号" title="車両竣功届" date="1927-03-12" /></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ202→モハ202</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ203→モハ203→モハ200</th>
-						<td><Licence summary="モハ203→モハ200" no="目電巳第1902号" title="電動客車形式称号及番号改正届" date="1929-11-14" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ204→モハ204</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ205→モハ205</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ206→モハ206</th>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="3">購入</th>
+					<th scope="colgroup">改番</th>
+				</tr>
+				<tr>
+					<th scope="col">申請／届出</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+					<th scope="col">届出</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ201→モハ201</th>
+					<td rowspan="6">目蒲</td>
+					<td rowspan="6"><Licence no="目電第431号" title="車両購入認可申請書" date="1926-12-16" /></td>
+					<td rowspan="6"><Licence no="監第220号" date="1927-02-10" /></td>
+					<td rowspan="6"><Licence no="目電第90号" title="車両竣功届" date="1927-03-12" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ202→モハ202</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ203→モハ203→モハ200</th>
+					<td><Licence summary="モハ203→モハ200" no="目電巳第1902号" title="電動客車形式称号及番号改正届" date="1929-11-14" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ204→モハ204</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ205→モハ205</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ206→モハ206</th>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="deha300">
@@ -659,104 +642,100 @@ const slugger = new GithubSlugger();
 
 		<p>制御車のうちクハ5 は製造の翌年に電装化されてデハ306 となりましたが、制御装置は唯一両のみ<a href="/tokyu/machine/cont_old#dk-system">東洋電機製造の電動カム軸式</a>が搭載されたことが特筆されます。ほかの4両もその2年後には電装化されたため、クハ1形は短期間のうちに形式消滅しました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="3">購入</th>
-						<th scope="colgroup">改番</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-						<th scope="col">報告</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">デハ301→モハ301</th>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence no="目電第240号" title="車両購入認可申請書" date="1927-07-05" /></td>
-						<td rowspan="5"><Licence no="監第2286号" date="1927-08-27" /></td>
-						<td rowspan="5"><Licence no="目電第335号" title="車両竣工届" date="1927-09-29" /></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ302→モハ302</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ303→デハ307→モハ307</th>
-						<td><Licence summary="デハ303→デハ307" no="目電第1713号" date="1927-11-30" /></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ304→モハ304</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">デハ305→モハ305</th>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="3">購入</th>
+					<th scope="colgroup">改番</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+					<th scope="col">報告</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">デハ301→モハ301</th>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence no="目電第240号" title="車両購入認可申請書" date="1927-07-05" /></td>
+					<td rowspan="5"><Licence no="監第2286号" date="1927-08-27" /></td>
+					<td rowspan="5"><Licence no="目電第335号" title="車両竣工届" date="1927-09-29" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ302→モハ302</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ303→デハ307→モハ307</th>
+					<td><Licence summary="デハ303→デハ307" no="目電第1713号" date="1927-11-30" /></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ304→モハ304</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">デハ305→モハ305</th>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup span="3"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="3">購入</th>
-						<th scope="colgroup" colspan="3">電装</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">クハ1→モハ311</th>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence no="目電第240号" title="車両購入認可申請書" date="1927-07-05" /></td>
-						<td rowspan="5"><Licence no="監第2286号" date="1927-08-27" /></td>
-						<td rowspan="5"><Licence no="目電第335号" title="車両竣工届" date="1927-09-29" /></td>
-						<td colspan="3" rowspan="4"><Licence summary="クハ1形→モハ300形" date="1930" /></td>
-					</tr>
-					<tr>
-						<th scope="row">クハ2→モハ312</th>
-					</tr>
-					<tr>
-						<th scope="row">クハ3→モハ314</th>
-					</tr>
-					<tr>
-						<th scope="row">クハ4→モハ315</th>
-					</tr>
-					<tr>
-						<th scope="row">クハ5→デハ306→モハ306</th>
-						<td><Licence summary="クハ5→デハ306" no="目電辰第284号" title="車両設計変更認可申請書" date="1928-03-17" /></td>
-						<td><Licence no="監第1456号" date="1928-05-15" /></td>
-						<td><Licence no="目電辰第1078号" title="車両竣功届" date="1928-08-04" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup span="3"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="3">購入</th>
+					<th scope="colgroup" colspan="3">電装</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">クハ1→モハ311</th>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence no="目電第240号" title="車両購入認可申請書" date="1927-07-05" /></td>
+					<td rowspan="5"><Licence no="監第2286号" date="1927-08-27" /></td>
+					<td rowspan="5"><Licence no="目電第335号" title="車両竣工届" date="1927-09-29" /></td>
+					<td colspan="3" rowspan="4"><Licence summary="クハ1形→モハ300形" date="1930" /></td>
+				</tr>
+				<tr>
+					<th scope="row">クハ2→モハ312</th>
+				</tr>
+				<tr>
+					<th scope="row">クハ3→モハ314</th>
+				</tr>
+				<tr>
+					<th scope="row">クハ4→モハ315</th>
+				</tr>
+				<tr>
+					<th scope="row">クハ5→デハ306→モハ306</th>
+					<td><Licence summary="クハ5→デハ306" no="目電辰第284号" title="車両設計変更認可申請書" date="1928-03-17" /></td>
+					<td><Licence no="監第1456号" date="1928-05-15" /></td>
+					<td><Licence no="目電辰第1078号" title="車両竣功届" date="1928-08-04" /></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>デハ303→デハ307 の変更は改番届が出されていない（残されていない）が、<DateWareki value="1927-11-30" />に提出された<Link href="https://www.digital.archives.go.jp/item/544125">車両代価の報告書（目電第1713号）</Link>において<q>デハ第三〇三號ハ都合ニヨリ第三〇七號ト變更致候</q>とあるため、その前後に改番が行われたものと判断できる。</li>
@@ -775,46 +754,44 @@ const slugger = new GithubSlugger();
 
 		<p>当時の旅客車としては珍しく目黒蒲田電鉄と東京横浜電鉄の間での異動が一度も行われず、両社の合併まで終始目蒲に在籍していました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="3">購入</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ501</th>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence no="目電辰第1524号" title="車両購入認可申請書" date="1928-10-23" /></td>
-						<td rowspan="5"><Licence no="監第3962号" date="1928-12-18" /></td>
-						<td rowspan="5"><Licence no="目電辰第1819号" title="車両竣功届" date="1928-12-27" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ502</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ503</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ504</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ505</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="3">購入</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ501</th>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence no="目電辰第1524号" title="車両購入認可申請書" date="1928-10-23" /></td>
+					<td rowspan="5"><Licence no="監第3962号" date="1928-12-18" /></td>
+					<td rowspan="5"><Licence no="目電辰第1819号" title="車両竣功届" date="1928-12-27" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ502</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ503</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ504</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ505</th>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="moha510">
@@ -822,262 +799,260 @@ const slugger = new GithubSlugger();
 
 		<p>日本車輌製造と川崎車輛<small>（現：川崎車両）</small>であわせて50両もの大量製造がなされた車両で、メーカーにより車体や台車の形態に多少の違いはあるものの、製造時期によるバリエーションは意外と少なく、とくに最終増備のモハ552〜565 は在来車と同一設計として、認可を伴わない届出にて製造が行われました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="4"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="4">購入</th>
-					</tr>
-					<tr>
-						<th scope="col">申請／届出</th>
-						<th scope="col">認可</th>
-						<th scope="col">車両数変更</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ510</th>
-						<td rowspan="3">東横</td>
-						<td rowspan="2"><Licence no="東横未第1224号" title="車両購入認可申請書" date="1931-08-21" /></td>
-						<td rowspan="2"><Licence no="監第3255号" date="1931-11-21" /></td>
-						<td></td>
-						<td rowspan="3"><Licence no="東横申第599号" title="車両竣功届" date="1932-05-24" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ511</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ512</th>
-						<td rowspan="3"><Licence no="目電未第1005号" title="車両購入認可申請書" date="1931-08-21" /></td>
-						<td rowspan="3"><Licence no="監第3256号" date="1931-11-21" /></td>
-						<td><Licence no="目電申第332号 & 東横申第350号" title="電動客車車両数変更御願" date="1932-04-08" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ514</th>
-						<td rowspan="2">目蒲</td>
-						<td></td>
-						<td rowspan="2"><Licence no="目電申第556号" title="車両竣功届" date="1932-05-24" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ515</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ516</th>
-						<td rowspan="5">東横</td>
-						<td rowspan="5"><Licence no="東横申第846号" title="電動客車設計認可申請書" date="1932-07-28" /></td>
-						<td rowspan="5"><Licence no="監第2931号" date="1932-10-21" /></td>
-						<td></td>
-						<td rowspan="5"><Licence no="東横申第1404号" title="車両竣功届" date="1932-11-24" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ517</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ518</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ519</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ520</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ521</th>
-						<td rowspan="8">東横</td>
-						<td rowspan="8"><Licence no="東横戌第179号" title="電動客車設計認可申請書" date="1934-02-27" /></td>
-						<td rowspan="8"><Licence no="監第1382号" date="1934-04-30" /></td>
-						<td></td>
-						<td rowspan="8"><Licence no="東横戌第654号" title="車両竣功届" date="1934-05-18" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ522</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ524</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ525</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ526</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ527</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ528</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ529</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ530</th>
-						<td rowspan="11">東横</td>
-						<td rowspan="11"><Licence no="東横亥第56号" title="電動客車設計認可申請書" date="1935-01-22" /></td>
-						<td rowspan="11"><Licence no="監第604号" date="1935-02-28" /></td>
-						<td></td>
-						<td rowspan="6"><Licence no="東横亥第598号" title="車両竣功届" date="1935-04-30" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ531</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ532</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ534</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ535</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ536</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ537</th>
-						<td></td>
-						<td rowspan="5"><Licence no="東横亥第885号" title="車両竣功届" date="1935-05-31" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ538</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ539</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ540</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ541</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ542</th>
-						<td rowspan="9">目蒲</td>
-						<td rowspan="9"><Licence no="目電亥第439号" title="電動客車設計認可申請書" date="1935-04-10" /></td>
-						<td rowspan="9"><Licence no="監第2037号" date="1935-06-12" /></td>
-						<td></td>
-						<td rowspan="4"><Licence no="目電亥第1235号" title="車両竣功届" date="1935-08" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ544</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ545</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ546</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ547</th>
-						<td></td>
-						<td rowspan="5"><Licence no="目電亥第1517号" title="車両竣功届" date="1935-09-26" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ548</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ549</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ550</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ551</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ552</th>
-						<td rowspan="10">目蒲</td>
-						<td rowspan="10"><Licence no="目電子第337号" title="車両増加届" date="1936-03-26" /></td>
-						<td rowspan="10" class="u-cell -center">―</td>
-						<td></td>
-						<td rowspan="10" class="u-cell -center">―</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ554</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ555</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ556</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ557</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ558</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ559</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ560</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ561</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ562</th>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ564</th>
-						<td rowspan="2">東横</td>
-						<td rowspan="2"><Licence no="東横子第341号" title="車両増加届" date="1936-03-26" /></td>
-						<td rowspan="2" class="u-cell -center">―</td>
-						<td></td>
-						<td rowspan="2" class="u-cell -center">―</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ565</th>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="4"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="4">購入</th>
+				</tr>
+				<tr>
+					<th scope="col">申請／届出</th>
+					<th scope="col">認可</th>
+					<th scope="col">車両数変更</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ510</th>
+					<td rowspan="3">東横</td>
+					<td rowspan="2"><Licence no="東横未第1224号" title="車両購入認可申請書" date="1931-08-21" /></td>
+					<td rowspan="2"><Licence no="監第3255号" date="1931-11-21" /></td>
+					<td></td>
+					<td rowspan="3"><Licence no="東横申第599号" title="車両竣功届" date="1932-05-24" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ511</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ512</th>
+					<td rowspan="3"><Licence no="目電未第1005号" title="車両購入認可申請書" date="1931-08-21" /></td>
+					<td rowspan="3"><Licence no="監第3256号" date="1931-11-21" /></td>
+					<td><Licence no="目電申第332号 & 東横申第350号" title="電動客車車両数変更御願" date="1932-04-08" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ514</th>
+					<td rowspan="2">目蒲</td>
+					<td></td>
+					<td rowspan="2"><Licence no="目電申第556号" title="車両竣功届" date="1932-05-24" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ515</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ516</th>
+					<td rowspan="5">東横</td>
+					<td rowspan="5"><Licence no="東横申第846号" title="電動客車設計認可申請書" date="1932-07-28" /></td>
+					<td rowspan="5"><Licence no="監第2931号" date="1932-10-21" /></td>
+					<td></td>
+					<td rowspan="5"><Licence no="東横申第1404号" title="車両竣功届" date="1932-11-24" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ517</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ518</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ519</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ520</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ521</th>
+					<td rowspan="8">東横</td>
+					<td rowspan="8"><Licence no="東横戌第179号" title="電動客車設計認可申請書" date="1934-02-27" /></td>
+					<td rowspan="8"><Licence no="監第1382号" date="1934-04-30" /></td>
+					<td></td>
+					<td rowspan="8"><Licence no="東横戌第654号" title="車両竣功届" date="1934-05-18" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ522</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ524</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ525</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ526</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ527</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ528</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ529</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ530</th>
+					<td rowspan="11">東横</td>
+					<td rowspan="11"><Licence no="東横亥第56号" title="電動客車設計認可申請書" date="1935-01-22" /></td>
+					<td rowspan="11"><Licence no="監第604号" date="1935-02-28" /></td>
+					<td></td>
+					<td rowspan="6"><Licence no="東横亥第598号" title="車両竣功届" date="1935-04-30" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ531</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ532</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ534</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ535</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ536</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ537</th>
+					<td></td>
+					<td rowspan="5"><Licence no="東横亥第885号" title="車両竣功届" date="1935-05-31" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ538</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ539</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ540</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ541</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ542</th>
+					<td rowspan="9">目蒲</td>
+					<td rowspan="9"><Licence no="目電亥第439号" title="電動客車設計認可申請書" date="1935-04-10" /></td>
+					<td rowspan="9"><Licence no="監第2037号" date="1935-06-12" /></td>
+					<td></td>
+					<td rowspan="4"><Licence no="目電亥第1235号" title="車両竣功届" date="1935-08" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ544</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ545</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ546</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ547</th>
+					<td></td>
+					<td rowspan="5"><Licence no="目電亥第1517号" title="車両竣功届" date="1935-09-26" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ548</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ549</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ550</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ551</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ552</th>
+					<td rowspan="10">目蒲</td>
+					<td rowspan="10"><Licence no="目電子第337号" title="車両増加届" date="1936-03-26" /></td>
+					<td rowspan="10" class="u-cell -center">―</td>
+					<td></td>
+					<td rowspan="10" class="u-cell -center">―</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ554</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ555</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ556</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ557</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ558</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ559</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ560</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ561</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ562</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ564</th>
+					<td rowspan="2">東横</td>
+					<td rowspan="2"><Licence no="東横子第341号" title="車両増加届" date="1936-03-26" /></td>
+					<td rowspan="2" class="u-cell -center">―</td>
+					<td></td>
+					<td rowspan="2" class="u-cell -center">―</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ565</th>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>第1次購入のモハ510〜515 は東京横浜電鉄が3両、目黒蒲田電鉄が2両の購入申請を行ったが、認可後に両数の記載に誤記があったとして目蒲、東横の両社から「<cite>電動客車車両数変更御願</cite>」が提出され、東横2両、目蒲3両となった。上表では便宜的にモハ512 を変更対象としているが、認可申請書や変更届において具体的な車号が記載されているわけではない。</li>
@@ -1091,51 +1066,49 @@ const slugger = new GithubSlugger();
 
 		<p><DateWareki value="1934-10" />に目黒蒲田電鉄が池上電気鉄道を吸収合併したことに伴い、<a href="/tokyu/data/history_ikegami#deha3">池上の甲号車</a>を引き継いだものですが、短期間に全車両が他鉄道へ譲渡されました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup">池上合併に伴う改番</th>
-						<th scope="colgroup">譲渡</th>
-					</tr>
-					<tr>
-						<th scope="col">届出</th>
-						<th scope="col">届出</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ15</th>
-						<td>池上デハ3</td>
-						<td rowspan="4">目蒲</td>
-						<td rowspan="4"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
-						<td rowspan="2"><Licence summary="目蒲→江ノ電" no="目電寅第1686号" title="電動客車譲渡届" date="1938-03-01" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ16</th>
-						<td>池上デハ4</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ17</th>
-						<td>池上デハ5</td>
-						<td><Licence summary="目蒲→野上" no="目電亥第994号" title="電動客車譲渡届" date="1935-06-24" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ18</th>
-						<td>池上デハ6</td>
-						<td><Licence summary="目蒲→越中" no="目電亥第225号" title="電動客車譲渡認可申請書" date="1935-02-25" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup">池上合併に伴う改番</th>
+					<th scope="colgroup">譲渡</th>
+				</tr>
+				<tr>
+					<th scope="col">届出</th>
+					<th scope="col">届出</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ15</th>
+					<td>池上デハ3</td>
+					<td rowspan="4">目蒲</td>
+					<td rowspan="4"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
+					<td rowspan="2"><Licence summary="目蒲→江ノ電" no="目電寅第1686号" title="電動客車譲渡届" date="1938-03-01" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ16</th>
+					<td>池上デハ4</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ17</th>
+					<td>池上デハ5</td>
+					<td><Licence summary="目蒲→野上" no="目電亥第994号" title="電動客車譲渡届" date="1935-06-24" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ18</th>
+					<td>池上デハ6</td>
+					<td><Licence summary="目蒲→越中" no="目電亥第225号" title="電動客車譲渡認可申請書" date="1935-02-25" /></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>モハ18 の越中鉄道<small>（後の富山地方鉄道射水線）</small>への譲渡に際しては認可申請の提出が行われたが、車両譲渡は<DateWareki value="1929-12" />より届出制となっていたため<NoteRef type="ref" by="shishin" />、監督局にて届出として処理が行われた。</li>
@@ -1156,80 +1129,78 @@ const slugger = new GithubSlugger();
 
 		<p>引き継ぎ後まもなくして4両が半鋼製化&amp;電装解除されてサハ1形に、残りの車両もその数年後に半鋼製化でモハ150形となりました。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup">池上合併に伴う改番</th>
-						<th scope="colgroup">半鋼製化</th>
-						<th scope="colgroup" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">届出</th>
-						<th scope="col">申請</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ30</th>
-						<td>池上デハ20</td>
-						<td rowspan="10">目蒲</td>
-						<td rowspan="10"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
-						<td rowspan="2"><Licence summary="モハ30形→モハ150形" no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
-						<td rowspan="6">以降<a href="#moha150">モハ150形</a></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ31</th>
-						<td>池上デハ21</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ32</th>
-						<td>池上デハ22</td>
-						<td rowspan="3"><Licence summary="モハ30形→モハ150形" no="目電寅第1360号" title="電動客車改造認可申請ノ件" date="1939-06-12" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ33</th>
-						<td>池上デハ23</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ34</th>
-						<td>池上デハ24</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ35</th>
-						<td>池上デハ25</td>
-						<td><Licence summary="モハ30形→モハ150形" no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ36</th>
-						<td>池上デハ26</td>
-						<td rowspan="4"><Licence summary="モハ30形→サハ1形" no="東横子第81号" title="電動客車譲受並設計変更認可申請書" date="1936-02-10" /></td>
-						<td rowspan="4">以降<a href="#moha150">サハ1形</a></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ37</th>
-						<td>池上デハ27</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ38</th>
-						<td>池上デハ28</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ39</th>
-						<td>池上デハ29</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup">池上合併に伴う改番</th>
+					<th scope="colgroup">半鋼製化</th>
+					<th scope="colgroup" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">届出</th>
+					<th scope="col">申請</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ30</th>
+					<td>池上デハ20</td>
+					<td rowspan="10">目蒲</td>
+					<td rowspan="10"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
+					<td rowspan="2"><Licence summary="モハ30形→モハ150形" no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
+					<td rowspan="6">以降<a href="#moha150">モハ150形</a></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ31</th>
+					<td>池上デハ21</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ32</th>
+					<td>池上デハ22</td>
+					<td rowspan="3"><Licence summary="モハ30形→モハ150形" no="目電寅第1360号" title="電動客車改造認可申請ノ件" date="1939-06-12" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ33</th>
+					<td>池上デハ23</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ34</th>
+					<td>池上デハ24</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ35</th>
+					<td>池上デハ25</td>
+					<td><Licence summary="モハ30形→モハ150形" no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ36</th>
+					<td>池上デハ26</td>
+					<td rowspan="4"><Licence summary="モハ30形→サハ1形" no="東横子第81号" title="電動客車譲受並設計変更認可申請書" date="1936-02-10" /></td>
+					<td rowspan="4">以降<a href="#moha150">サハ1形</a></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ37</th>
+					<td>池上デハ27</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ38</th>
+					<td>池上デハ28</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ39</th>
+					<td>池上デハ29</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="moha120">
@@ -1237,49 +1208,47 @@ const slugger = new GithubSlugger();
 
 		<p><a href="/tokyu/data/history_ikegami#deha100">池上電気鉄道デハ100形</a>を引き継いだものです。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup">池上合併に伴う改番</th>
-					</tr>
-					<tr>
-						<th scope="col">届出</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ120</th>
-						<td>池上デハ101</td>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ121</th>
-						<td>池上デハ102</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ122</th>
-						<td>池上デハ103</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ123</th>
-						<td>池上デハ104</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ124</th>
-						<td>池上デハ105</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup">池上合併に伴う改番</th>
+				</tr>
+				<tr>
+					<th scope="col">届出</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ120</th>
+					<td>池上デハ101</td>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ121</th>
+					<td>池上デハ102</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ122</th>
+					<td>池上デハ103</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ123</th>
+					<td>池上デハ104</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ124</th>
+					<td>池上デハ105</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="moha130">
@@ -1287,41 +1256,39 @@ const slugger = new GithubSlugger();
 
 		<p><a href="/tokyu/data/history_ikegami#deha100">池上電気鉄道デハ200形</a>を引き継いだものです。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">前所有</th>
-						<th scope="colgroup" rowspan="2">所属</th>
-						<th scope="colgroup">池上合併に伴う改番</th>
-					</tr>
-					<tr>
-						<th scope="col">届出</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ130</th>
-						<td>池上デハ201</td>
-						<td rowspan="3">目蒲</td>
-						<td rowspan="3"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ131</th>
-						<td>池上デハ202</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ132</th>
-						<td>池上デハ203</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">前所有</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup">池上合併に伴う改番</th>
+				</tr>
+				<tr>
+					<th scope="col">届出</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ130</th>
+					<td>池上デハ201</td>
+					<td rowspan="3">目蒲</td>
+					<td rowspan="3"><Licence no="目電戌第1142号" title="電動客車形式称号、記号変更御届" date="1934-11-10" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ131</th>
+					<td>池上デハ202</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ132</th>
+					<td>池上デハ203</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="kiha1">
@@ -1339,87 +1306,85 @@ const slugger = new GithubSlugger();
 
 		<NoteRefContent id="toyoko1938-05-24"><DocOfficial company="東京横浜電鉄" no="東横寅第1175号" date="1938-05-24" title="工事方法書中事項一部變更ノ件" url="https://www.digital.archives.go.jp/item/522593" /></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<colgroup span="2"></colgroup>
-				<colgroup></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="3">購入</th>
-						<th scope="colgroup" colspan="2">貸渡</th>
-						<th scope="colgroup">譲渡</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-						<th scope="col">届出</th>
-						<th scope="col">延長届出</th>
-						<th scope="col">届出</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">キハ1</th>
-						<td rowspan="8">東横</td>
-						<td rowspan="8"><Licence no="東横亥第1415号" title="ガソリン客車設計認可申請書" date="1935-09-12" /></td>
-						<td rowspan="8"><Licence no="監第951号" date="1936-03-30" /></td>
-						<td rowspan="2"><Licence no="東横子第636号" title="車両竣功届" date="1936-05-08" /></td>
-						<td><Licence summary="東横→神中（1939年9月25日〜12月24日）" no="東横卯第1561号" title="車両貸渡届" date="1939-11-16" /></td>
-						<td><Licence summary="東横→神中（1939年12月25日〜翌年9月30日）" no="東辰第1054号" title="車両貸渡期間延長届" date="1940-02-20" /></td>
-						<td><Licence summary="東横→神中" no="東辰第3498号" title="ガソリン客車譲渡届" date="1940-09-27" /></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ2</th>
-						<td><Licence summary="東横→五日市（1938年11月頃〜12月31日）" /></td>
-						<td></td>
-						<td><Licence summary="東横→五日市" no="東横卯第765号" title="ガソリン客車譲渡届" date="1939-03-15" /></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ3</th>
-						<td rowspan="4"><Licence no="東横子第717号" title="車両竣功届" date="1936-05-28" /></td>
-						<td></td>
-						<td></td>
-						<td><Licence summary="東横→神中" no="東横卯第2493号" title="ガソリン客車譲渡届" date="1939-07-06" /></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ4</th>
-						<td><Licence summary="東横→神中（1939年9月25日〜12月24日）" no="東横卯第1561号" title="車両貸渡届" date="1939-11-16" /></td>
-						<td><Licence summary="東横→神中（1939年12月25日〜翌年9月30日）" no="東辰第1054号" title="車両貸渡期間延長届" date="1940-02-20" /></td>
-						<td rowspan="2"><Licence summary="東横→神中" no="東辰第3498号" title="ガソリン客車譲渡届" date="1940-09-27" /></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ5</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ6</th>
-						<td></td>
-						<td></td>
-						<td><Licence summary="東横→神中" no="東横寅第3456号" title="ガソリン客車譲渡届" date="1938-12" /></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ7</th>
-						<td rowspan="2"><Licence no="東横子第771号" title="車両竣功届" date="1936-05-29" /></td>
-						<td></td>
-						<td></td>
-						<td><Licence summary="東横→神中" no="東辰第3498号" title="ガソリン客車譲渡届" date="1940-09-27" /></td>
-					</tr>
-					<tr>
-						<th scope="row">キハ8</th>
-						<td><Licence summary="東横→五日市（1938年11月頃〜12月31日）" /></td>
-						<td></td>
-						<td><Licence summary="東横→五日市" no="東横卯第765号" title="ガソリン客車譲渡届" date="1939-03-15" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<colgroup span="2"></colgroup>
+			<colgroup></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="3">購入</th>
+					<th scope="colgroup" colspan="2">貸渡</th>
+					<th scope="colgroup">譲渡</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+					<th scope="col">届出</th>
+					<th scope="col">延長届出</th>
+					<th scope="col">届出</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">キハ1</th>
+					<td rowspan="8">東横</td>
+					<td rowspan="8"><Licence no="東横亥第1415号" title="ガソリン客車設計認可申請書" date="1935-09-12" /></td>
+					<td rowspan="8"><Licence no="監第951号" date="1936-03-30" /></td>
+					<td rowspan="2"><Licence no="東横子第636号" title="車両竣功届" date="1936-05-08" /></td>
+					<td><Licence summary="東横→神中（1939年9月25日〜12月24日）" no="東横卯第1561号" title="車両貸渡届" date="1939-11-16" /></td>
+					<td><Licence summary="東横→神中（1939年12月25日〜翌年9月30日）" no="東辰第1054号" title="車両貸渡期間延長届" date="1940-02-20" /></td>
+					<td><Licence summary="東横→神中" no="東辰第3498号" title="ガソリン客車譲渡届" date="1940-09-27" /></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ2</th>
+					<td><Licence summary="東横→五日市（1938年11月頃〜12月31日）" /></td>
+					<td></td>
+					<td><Licence summary="東横→五日市" no="東横卯第765号" title="ガソリン客車譲渡届" date="1939-03-15" /></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ3</th>
+					<td rowspan="4"><Licence no="東横子第717号" title="車両竣功届" date="1936-05-28" /></td>
+					<td></td>
+					<td></td>
+					<td><Licence summary="東横→神中" no="東横卯第2493号" title="ガソリン客車譲渡届" date="1939-07-06" /></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ4</th>
+					<td><Licence summary="東横→神中（1939年9月25日〜12月24日）" no="東横卯第1561号" title="車両貸渡届" date="1939-11-16" /></td>
+					<td><Licence summary="東横→神中（1939年12月25日〜翌年9月30日）" no="東辰第1054号" title="車両貸渡期間延長届" date="1940-02-20" /></td>
+					<td rowspan="2"><Licence summary="東横→神中" no="東辰第3498号" title="ガソリン客車譲渡届" date="1940-09-27" /></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ5</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ6</th>
+					<td></td>
+					<td></td>
+					<td><Licence summary="東横→神中" no="東横寅第3456号" title="ガソリン客車譲渡届" date="1938-12" /></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ7</th>
+					<td rowspan="2"><Licence no="東横子第771号" title="車両竣功届" date="1936-05-29" /></td>
+					<td></td>
+					<td></td>
+					<td><Licence summary="東横→神中" no="東辰第3498号" title="ガソリン客車譲渡届" date="1940-09-27" /></td>
+				</tr>
+				<tr>
+					<th scope="row">キハ8</th>
+					<td><Licence summary="東横→五日市（1938年11月頃〜12月31日）" /></td>
+					<td></td>
+					<td><Licence summary="東横→五日市" no="東横卯第765号" title="ガソリン客車譲渡届" date="1939-03-15" /></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>キハ2, 8 は五日市鉄道<small>（現：JR 五日市線）</small>への譲渡に先がけて<DateWareki value="1938" />に貸し渡しが行われたが、東京横浜電鉄の届出書類は現存しない。五日市鉄道側の認可書類によれば11月5日申請（五鐵第590号）、12月15日認可（監8888号）で理由は<q>秋川渓谷ハイキング旅客激増</q>のためとされている。借受期間は12月31日までとあるが、開始日は記載されておらず不明。</li>
@@ -1449,140 +1414,136 @@ const slugger = new GithubSlugger();
 
 		<NoteRefContent id="tomoe"><DocBook name="小林宗作抄伝" authors={['佐野和彦']} year={1985} article="トモエ学園の開校" pages={[232, 239]} url="https://dl.ndl.go.jp/pid/12226883/1/119" linkScope="page" />および「<cite>アサヒグラフ</cite>」1940年4月24日号によると、トモエ学園は<DateWareki value="1939" />の暮れに1両を、その後3両程度を学園敷地内および九品仏近くの農園で活用したとされています。「<cite>アサヒグラフ</cite>」掲載の写真からは、最初の1両は鉄道省デハ6310形の車体であり、すなわち池上電気鉄道引き継ぎのモハ30形（2代目）のいずれかであったことが分かります。</NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="3"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">旧車号</th>
-						<th scope="colgroup" rowspan="2">改造</th>
-						<th scope="colgroup" colspan="3">半鋼体化&amp;電装解除</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">サハ1</th>
-						<td>モハ36<small>（旧池上）</small></td>
-						<td rowspan="4">東横</td>
-						<td rowspan="4"><Licence no="東横子第81号" title="電動客車譲受並設計変更認可申請書" date="1936-02-10" /></td>
-						<td rowspan="4"><Licence no="監1090号" date="1936-04-10" /></td>
-						<td rowspan="4"><Licence no="東横子第665号" title="車両竣功届" date="1936-05-15" /></td>
-					</tr>
-					<tr>
-						<th scope="row">サハ2</th>
-						<td>モハ37<small>（旧池上）</small></td>
-					</tr>
-					<tr>
-						<th scope="row">サハ3</th>
-						<td>モハ38<small>（旧池上）</small></td>
-					</tr>
-					<tr>
-						<th scope="row">サハ4</th>
-						<td>モハ39<small>（旧池上）</small></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="3"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">旧車号</th>
+					<th scope="colgroup" rowspan="2">改造</th>
+					<th scope="colgroup" colspan="3">半鋼体化&amp;電装解除</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">サハ1</th>
+					<td>モハ36<small>（旧池上）</small></td>
+					<td rowspan="4">東横</td>
+					<td rowspan="4"><Licence no="東横子第81号" title="電動客車譲受並設計変更認可申請書" date="1936-02-10" /></td>
+					<td rowspan="4"><Licence no="監1090号" date="1936-04-10" /></td>
+					<td rowspan="4"><Licence no="東横子第665号" title="車両竣功届" date="1936-05-15" /></td>
+				</tr>
+				<tr>
+					<th scope="row">サハ2</th>
+					<td>モハ37<small>（旧池上）</small></td>
+				</tr>
+				<tr>
+					<th scope="row">サハ3</th>
+					<td>モハ38<small>（旧池上）</small></td>
+				</tr>
+				<tr>
+					<th scope="row">サハ4</th>
+					<td>モハ39<small>（旧池上）</small></td>
+				</tr>
+			</tbody>
+		</Table>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="5"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">旧車号</th>
-						<th scope="colgroup" rowspan="2">改造</th>
-						<th scope="colgroup" colspan="5">半鋼体化</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">設計変更申請</th>
-						<th scope="col">設計変更認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ150</th>
-						<td>モハ21</td>
-						<td rowspan="5">目蒲</td>
-						<td rowspan="5"><Licence no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
-						<td rowspan="5"><Licence no="監7926号" date="1937-12-20" /></td>
-						<td></td>
-						<td></td>
-						<td rowspan="5"><Licence no="目電丑第1685号" date="1937-12-29" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ151</th>
-						<td>モハ25<small>（旧モハ40形）</small></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ152</th>
-						<td>モハ30<small>（旧池上）</small></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ154</th>
-						<td>モハ31<small>（旧池上）</small></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ155</th>
-						<td>モハ35<small>（旧池上）</small></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ156</th>
-						<td>モハ22</td>
-						<td rowspan="6">新東横</td>
-						<td rowspan="6"><Licence no="目電寅第1360号" title="電動客車改造認可申請ノ件" date="1939-06-12" /></td>
-						<td rowspan="6"><Licence no="監246号" date="1940-02-01" /></td>
-						<td rowspan="6"><Licence no="東辰第3713号" title="電動客車設計変更認可申請書" date="1940-10-22" /></td>
-						<td rowspan="6"><Licence no="監3732号" date="1940-12-13" /></td>
-						<td rowspan="5"><Licence no="東横電巳第59号" title="電動客車設計変更竣功届" date="1941-04-24" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ157</th>
-						<td>モハ23</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ158</th>
-						<td>モハ24</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ159</th>
-						<td>モハ32<small>（旧池上）</small></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ160</th>
-						<td>モハ33<small>（旧池上）</small></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ161</th>
-						<td>モハ34<small>（旧池上）</small></td>
-						<td><Licence /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="5"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">旧車号</th>
+					<th scope="colgroup" rowspan="2">改造</th>
+					<th scope="colgroup" colspan="5">半鋼体化</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">設計変更申請</th>
+					<th scope="col">設計変更認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ150</th>
+					<td>モハ21</td>
+					<td rowspan="5">目蒲</td>
+					<td rowspan="5"><Licence no="目電丑第1404号" title="電動客車設計変更認可申請書" date="1937-10-30" /></td>
+					<td rowspan="5"><Licence no="監7926号" date="1937-12-20" /></td>
+					<td></td>
+					<td></td>
+					<td rowspan="5"><Licence no="目電丑第1685号" date="1937-12-29" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ151</th>
+					<td>モハ25<small>（旧モハ40形）</small></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ152</th>
+					<td>モハ30<small>（旧池上）</small></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ154</th>
+					<td>モハ31<small>（旧池上）</small></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ155</th>
+					<td>モハ35<small>（旧池上）</small></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ156</th>
+					<td>モハ22</td>
+					<td rowspan="6">新東横</td>
+					<td rowspan="6"><Licence no="目電寅第1360号" title="電動客車改造認可申請ノ件" date="1939-06-12" /></td>
+					<td rowspan="6"><Licence no="監246号" date="1940-02-01" /></td>
+					<td rowspan="6"><Licence no="東辰第3713号" title="電動客車設計変更認可申請書" date="1940-10-22" /></td>
+					<td rowspan="6"><Licence no="監3732号" date="1940-12-13" /></td>
+					<td rowspan="5"><Licence no="東横電巳第59号" title="電動客車設計変更竣功届" date="1941-04-24" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ157</th>
+					<td>モハ23</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ158</th>
+					<td>モハ24</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ159</th>
+					<td>モハ32<small>（旧池上）</small></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ160</th>
+					<td>モハ33<small>（旧池上）</small></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ161</th>
+					<td>モハ34<small>（旧池上）</small></td>
+					<td><Licence /></td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>モハ161 の竣功時期は認可書類が残されおらず不明であるが、<DocBook name="東京横浜電鉄沿革史" authors={['東京急行電鉄']} year={1943} pages={[516, 517]} url="https://dl.ndl.go.jp/pid/1124913/1/345" linkScope="page" />の「<cite>車輛一覧表（地方鉄道線）</cite>」では<DateWareki value="1941-05-31" />時点でモハ150形の両数が11両とあるため、電機品の装備を除いた半鋼製車体への載せ替え自体はモハ156〜160 とそう変わらない時期に完成していたものと見られる。</li>
@@ -1600,130 +1561,128 @@ const slugger = new GithubSlugger();
 
 		<NoteRefContent id="moha1000-debut"><Link href="https://blog.w0s.jp/entry/705"><cite>東京横浜電鉄モハ1000形の竣功日の謎</cite></Link></NoteRefContent>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="7"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">発注</th>
-						<th scope="colgroup" colspan="7">購入</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-						<th scope="col">設計変更申請</th>
-						<th scope="col">他社所属車運転申請</th>
-						<th scope="col">設計変更認可</th>
-						<th scope="col">他社所属車運転認可</th>
-						<th scope="col">竣功</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">モハ1001</th>
-						<td rowspan="10">東横</td>
-						<td rowspan="10"><Licence no="東横丑第1868号" title="電動客車設計認可申請書" date="1937-10-22" /></td>
-						<td rowspan="10"><Licence no="監第3950号" date="1938-04-25" /></td>
-						<td rowspan="10"><Licence no="東横卯第1397号" date="1939-05-01" /></td>
-						<td></td>
-						<td rowspan="10"><Licence no="監第3299号" date="1939-10-02" /></td>
-						<td></td>
-						<td rowspan="22"><Licence no="目電卯第1131号" title="車両設計変更竣功届" date="1939-10-12" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1002</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1003</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1004</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1005</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1006</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1007</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1008</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1009</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1010</th>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1011</th>
-						<td rowspan="12">目蒲</td>
-						<td rowspan="12"><Licence no="目電丑第1362号" title="電動客車設計認可申請書" date="1937-10-22" /></td>
-						<td rowspan="12"><Licence no="監第3951号" date="1938-04-25" /></td>
-						<td rowspan="12"><Licence no="目電卯第435号" date="1939-05-11" /></td>
-						<td rowspan="12"><Licence no="東横卯第1544号" title="他鉄道所属車両運転認可申請書" date="1939-05-11" /></td>
-						<td rowspan="12"><Licence no="監第3297号" date="1939-10-02" /></td>
-						<td rowspan="12"><Licence no="監第3296号" date="1939-10-02" /></td>
-					</tr>
-					<tr>
-						<th scope="row">モハ1012</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1013</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1014</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1015</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1016</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1017</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1018</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1019</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1020</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1021</th>
-					</tr>
-					<tr>
-						<th scope="row">モハ1022</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="7"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">発注</th>
+					<th scope="colgroup" colspan="7">購入</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+					<th scope="col">設計変更申請</th>
+					<th scope="col">他社所属車運転申請</th>
+					<th scope="col">設計変更認可</th>
+					<th scope="col">他社所属車運転認可</th>
+					<th scope="col">竣功</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">モハ1001</th>
+					<td rowspan="10">東横</td>
+					<td rowspan="10"><Licence no="東横丑第1868号" title="電動客車設計認可申請書" date="1937-10-22" /></td>
+					<td rowspan="10"><Licence no="監第3950号" date="1938-04-25" /></td>
+					<td rowspan="10"><Licence no="東横卯第1397号" date="1939-05-01" /></td>
+					<td></td>
+					<td rowspan="10"><Licence no="監第3299号" date="1939-10-02" /></td>
+					<td></td>
+					<td rowspan="22"><Licence no="目電卯第1131号" title="車両設計変更竣功届" date="1939-10-12" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1002</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1003</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1004</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1005</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1006</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1007</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1008</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1009</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1010</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1011</th>
+					<td rowspan="12">目蒲</td>
+					<td rowspan="12"><Licence no="目電丑第1362号" title="電動客車設計認可申請書" date="1937-10-22" /></td>
+					<td rowspan="12"><Licence no="監第3951号" date="1938-04-25" /></td>
+					<td rowspan="12"><Licence no="目電卯第435号" date="1939-05-11" /></td>
+					<td rowspan="12"><Licence no="東横卯第1544号" title="他鉄道所属車両運転認可申請書" date="1939-05-11" /></td>
+					<td rowspan="12"><Licence no="監第3297号" date="1939-10-02" /></td>
+					<td rowspan="12"><Licence no="監第3296号" date="1939-10-02" /></td>
+				</tr>
+				<tr>
+					<th scope="row">モハ1012</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1013</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1014</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1015</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1016</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1017</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1018</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1019</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1020</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1021</th>
+				</tr>
+				<tr>
+					<th scope="row">モハ1022</th>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="deha3550" box={true}>
@@ -1737,32 +1696,30 @@ const slugger = new GithubSlugger();
 
 		<p>これらはあくまで工事方法の中で言及されていたものに過ぎず、戦局の悪化もあってかそのほとんどは実際の車両製造の認可申請には至りませんでしたが、<a href="/tokyu/data/history_tokyu#deha3550">デハ3550形予定車（井の頭線デハ1700形）</a>のように本計画を利用しての増備が行われた事例も存在します。</p>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="2"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" rowspan="2">車号</th>
-						<th scope="colgroup" rowspan="2">計画</th>
-						<th scope="colgroup" colspan="2">工事方法</th>
-					</tr>
-					<tr>
-						<th scope="col">申請</th>
-						<th scope="col">認可</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">未採番（電動客車44両）</th>
-						<td>新東横</td>
-						<td><Licence no="東卯第3602号" title="工事方法書中事項一部変更の件" date="1939-10-16" /></td>
-						<td><Licence no="監第446号" date="1940-02-22" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="2"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">計画</th>
+					<th scope="colgroup" colspan="2">工事方法</th>
+				</tr>
+				<tr>
+					<th scope="col">申請</th>
+					<th scope="col">認可</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">未採番（電動客車44両）</th>
+					<td>新東横</td>
+					<td><Licence no="東卯第3602号" title="工事方法書中事項一部変更の件" date="1939-10-16" /></td>
+					<td><Licence no="監第446号" date="1940-02-22" /></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section slugger={slugger} id="kuha3650">

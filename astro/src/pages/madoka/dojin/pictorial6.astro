@@ -8,6 +8,7 @@ import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -97,24 +98,22 @@ const slugger = new GithubSlugger();
 	<Section id="errata">
 		<Fragment slot="heading">正誤情報</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ページ</th>
-						<th scope="col">内容</th>
-						<th scope="col">電子版修正</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>p.31</td>
-						<td>Chapter 29 の<q>1h52m02s 背景のクレジットに5人追加。</q>のタイムは、正しくは「1h51m35s」。</td>
-						<td>ver.1.0.1</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.31</td>
+					<td>Chapter 29 の<q>1h52m02s 背景のクレジットに5人追加。</q>のタイムは、正しくは「1h51m35s」。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="add">

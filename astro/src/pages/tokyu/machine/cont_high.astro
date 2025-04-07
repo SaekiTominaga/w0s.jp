@@ -11,6 +11,7 @@ import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -45,141 +46,139 @@ const structuredData: StructuredData = {
 
 		<p>続く旧6000系では複巻電動機による電力回生ブレーキが導入されましたが、その分巻界磁電流の制御は電機メーカーによりそれぞれ異なった特徴的な方式が採用、旧7000系や7200系でも同様に2種類の方式が混在した状況の中、それぞれが独自に改良を重ねてゆく試行錯誤の様子が覗えるものとなっています。</p>
 
-		<div class="p-table -full">
-			<table>
-				<caption>高性能車の主制御器一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col">搭載車種</th>
-						<th scope="col">形式</th>
-						<th scope="col">製造所</th>
-						<th scope="col">登場年</th>
-						<th scope="col">DCM 接続</th>
-						<th scope="col">組合せ制御</th>
-						<th scope="col">弱め界磁</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>5000系<small>（デハ5001〜5020）</small></td>
-						<td><Link href="#pe-11" bullet={true}>PE-11A</Link></td>
-						<td rowspan="2">東芝</td>
-						<td>1954年</td>
-						<td rowspan="2">直巻 110kW×4</td>
-						<td rowspan="2">直並列</td>
-						<td rowspan="2">カム軸</td>
-					</tr>
-					<tr>
-						<td>5000系G<small>（デハ5021<NoteRef type="ref" by="pe11-b-5021" />〜）</small></td>
-						<td><Link href="#pe-11" bullet={true}>PE-11B</Link></td>
-						<td>1956年</td>
-					</tr>
-					<tr>
-						<td>デハ200形</td>
-						<td><Link href="#ab-54-6mdb" bullet={true}>AB-54-6MDB</Link><NoteRef type="ref" by="ab-54-6mdb-name" /></td>
-						<td>三菱</td>
-						<td>1955年</td>
-						<td>直巻 38kW×4</td>
-						<td>永久並列</td>
-						<td class="u-cell -center">―</td>
-					</tr>
-					<tr>
-						<td>6000系<small>（東洋車、A編成）</small></td>
-						<td><Link href="#es753-a" bullet={true}>ACRF-H4100-753A</Link><NoteRef type="ref" by="es753-a-name" /></td>
-						<td>東洋</td>
-						<td>1960年</td>
-						<td>複巻 100kW×4</td>
-						<td>永久直列</td>
-						<td>FR</td>
-					</tr>
-					<tr>
-						<td>6000系<small>（東芝車、B編成）</small></td>
-						<td><Link href="#mm-101a" bullet={true}>MM-101A</Link><NoteRef type="ref" by="mm-101a-name" /></td>
-						<td>東芝</td>
-						<td>1960年</td>
-						<td>複巻 85kW×4</td>
-						<td>永久直列</td>
-						<td>ブースター</td>
-					</tr>
-					<tr>
-						<td>6000系<small>（東洋車、C編成）</small></td>
-						<td><Link href="#es753-a" bullet={true}>ACRF-H4120-754A</Link><NoteRef type="ref" by="es754-a-6000-name" /></td>
-						<td rowspan="2">東洋</td>
-						<td>1961年</td>
-						<td>複巻 120kW×4</td>
-						<td rowspan="2">永久直列</td>
-						<td rowspan="2">FR</td>
-					</tr>
-					<tr>
-						<td>7000系<small>（東洋車、1〜2次車）</small></td>
-						<td><Link href="#es754-a" bullet={true}>ACRF-H860-754A</Link><NoteRef type="ref" by="es754-a-7000-name" /></td>
-						<td>1962年</td>
-						<td>複巻 60kW×8</td>
-					</tr>
-					<tr>
-						<td>7000系<small>（東洋車、3〜10次車）</small></td>
-						<td><Link href="#es754-a" bullet={true}>ACRF-H860-757A</Link></td>
-						<td>東洋</td>
-						<td>1963年</td>
-						<td>複巻 60kW×8</td>
-						<td>永久直列</td>
-						<td>FR</td>
-					</tr>
-					<tr>
-						<td>7000系<small>（日立車）</small></td>
-						<td><Link href="#mmc-htr-10a" bullet={true}>MMC-HTR-10A</Link><NoteRef type="ref" by="mmc-htr-10a-name" /></td>
-						<td>日立</td>
-						<td>1963年</td>
-						<td>複巻 70kW×8</td>
-						<td>直並列</td>
-						<td>カム軸</td>
-					</tr>
-					<tr>
-						<td>7200系<small>（日立車）</small></td>
-						<td><Link href="#mmc-htr-10b" bullet={true}>MMC-HTR-10B</Link></td>
-						<td>日立</td>
-						<td>1967年</td>
-						<td>複巻 110kW×4</td>
-						<td>直並列</td>
-						<td>カム軸</td>
-					</tr>
-					<tr>
-						<td>7200系<small>（東洋車）</small></td>
-						<td><Link href="#es764-a" bullet={true}>ACRF-H4110-764A</Link></td>
-						<td>東洋</td>
-						<td>1967年</td>
-						<td>複巻 110kW×4</td>
-						<td>直並列</td>
-						<td>FR</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<td>7000系<small>（北陸鉄道譲渡車）</small></td>
-						<td><Link href="#cs-20a" bullet={true}>CS-20A</Link></td>
-						<td>(複数)</td>
-						<td></td>
-						<td>直巻 120kW×4</td>
-						<td>直並列</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		<Table full={true}>
+			<caption>高性能車の主制御器一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col">搭載車種</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">登場年</th>
+					<th scope="col">DCM 接続</th>
+					<th scope="col">組合せ制御</th>
+					<th scope="col">弱め界磁</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>5000系<small>（デハ5001〜5020）</small></td>
+					<td><Link href="#pe-11" bullet={true}>PE-11A</Link></td>
+					<td rowspan="2">東芝</td>
+					<td>1954年</td>
+					<td rowspan="2">直巻 110kW×4</td>
+					<td rowspan="2">直並列</td>
+					<td rowspan="2">カム軸</td>
+				</tr>
+				<tr>
+					<td>5000系G<small>（デハ5021<NoteRef type="ref" by="pe11-b-5021" />〜）</small></td>
+					<td><Link href="#pe-11" bullet={true}>PE-11B</Link></td>
+					<td>1956年</td>
+				</tr>
+				<tr>
+					<td>デハ200形</td>
+					<td><Link href="#ab-54-6mdb" bullet={true}>AB-54-6MDB</Link><NoteRef type="ref" by="ab-54-6mdb-name" /></td>
+					<td>三菱</td>
+					<td>1955年</td>
+					<td>直巻 38kW×4</td>
+					<td>永久並列</td>
+					<td class="u-cell -center">―</td>
+				</tr>
+				<tr>
+					<td>6000系<small>（東洋車、A編成）</small></td>
+					<td><Link href="#es753-a" bullet={true}>ACRF-H4100-753A</Link><NoteRef type="ref" by="es753-a-name" /></td>
+					<td>東洋</td>
+					<td>1960年</td>
+					<td>複巻 100kW×4</td>
+					<td>永久直列</td>
+					<td>FR</td>
+				</tr>
+				<tr>
+					<td>6000系<small>（東芝車、B編成）</small></td>
+					<td><Link href="#mm-101a" bullet={true}>MM-101A</Link><NoteRef type="ref" by="mm-101a-name" /></td>
+					<td>東芝</td>
+					<td>1960年</td>
+					<td>複巻 85kW×4</td>
+					<td>永久直列</td>
+					<td>ブースター</td>
+				</tr>
+				<tr>
+					<td>6000系<small>（東洋車、C編成）</small></td>
+					<td><Link href="#es753-a" bullet={true}>ACRF-H4120-754A</Link><NoteRef type="ref" by="es754-a-6000-name" /></td>
+					<td rowspan="2">東洋</td>
+					<td>1961年</td>
+					<td>複巻 120kW×4</td>
+					<td rowspan="2">永久直列</td>
+					<td rowspan="2">FR</td>
+				</tr>
+				<tr>
+					<td>7000系<small>（東洋車、1〜2次車）</small></td>
+					<td><Link href="#es754-a" bullet={true}>ACRF-H860-754A</Link><NoteRef type="ref" by="es754-a-7000-name" /></td>
+					<td>1962年</td>
+					<td>複巻 60kW×8</td>
+				</tr>
+				<tr>
+					<td>7000系<small>（東洋車、3〜10次車）</small></td>
+					<td><Link href="#es754-a" bullet={true}>ACRF-H860-757A</Link></td>
+					<td>東洋</td>
+					<td>1963年</td>
+					<td>複巻 60kW×8</td>
+					<td>永久直列</td>
+					<td>FR</td>
+				</tr>
+				<tr>
+					<td>7000系<small>（日立車）</small></td>
+					<td><Link href="#mmc-htr-10a" bullet={true}>MMC-HTR-10A</Link><NoteRef type="ref" by="mmc-htr-10a-name" /></td>
+					<td>日立</td>
+					<td>1963年</td>
+					<td>複巻 70kW×8</td>
+					<td>直並列</td>
+					<td>カム軸</td>
+				</tr>
+				<tr>
+					<td>7200系<small>（日立車）</small></td>
+					<td><Link href="#mmc-htr-10b" bullet={true}>MMC-HTR-10B</Link></td>
+					<td>日立</td>
+					<td>1967年</td>
+					<td>複巻 110kW×4</td>
+					<td>直並列</td>
+					<td>カム軸</td>
+				</tr>
+				<tr>
+					<td>7200系<small>（東洋車）</small></td>
+					<td><Link href="#es764-a" bullet={true}>ACRF-H4110-764A</Link></td>
+					<td>東洋</td>
+					<td>1967年</td>
+					<td>複巻 110kW×4</td>
+					<td>直並列</td>
+					<td>FR</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td>7000系<small>（北陸鉄道譲渡車）</small></td>
+					<td><Link href="#cs-20a" bullet={true}>CS-20A</Link></td>
+					<td>(複数)</td>
+					<td></td>
+					<td>直巻 120kW×4</td>
+					<td>直並列</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="pe11-b-5021"><DocMagazine name="鉄道ファン" date="1985年3月号" no={287} article="30才を迎えた“青ガエル”　東急5000系のあゆみ" authors={['宮田道一', '荻原俊夫']} pages={[45]} /></NoteRefContent>
+		<NoteRefContent id="pe11-b-5021"><DocMagazine name="鉄道ファン" date="1985年3月号" no={287} article="30才を迎えた“青ガエル”　東急5000系のあゆみ" authors={['宮田道一', '荻原俊夫']} pages={[45]} /></NoteRefContent>
 
-			<NoteRefContent id="ab-54-6mdb-name"><DocMagazine name="電気鉄道" date="1955年9月号" no={88} article="東京急行玉川線の連接車" authors={['白石安之']} pages={[12]} url="https://dl.ndl.go.jp/pid/2313824/1/9" /></NoteRefContent>
+		<NoteRefContent id="ab-54-6mdb-name"><DocMagazine name="電気鉄道" date="1955年9月号" no={88} article="東京急行玉川線の連接車" authors={['白石安之']} pages={[12]} url="https://dl.ndl.go.jp/pid/2313824/1/9" /></NoteRefContent>
 
-			<NoteRefContent id="es753-a-name"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
+		<NoteRefContent id="es753-a-name"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
 
-			<NoteRefContent id="mm-101a-name"><DocMagazine name="東芝レビュー" date="1960年8月号" no={127} article="新製品紹介" pages={[949]} url="https://dl.ndl.go.jp/pid/3253820/1/53" /></NoteRefContent>
+		<NoteRefContent id="mm-101a-name"><DocMagazine name="東芝レビュー" date="1960年8月号" no={127} article="新製品紹介" pages={[949]} url="https://dl.ndl.go.jp/pid/3253820/1/53" /></NoteRefContent>
 
-			<NoteRefContent id="es754-a-6000-name"><DocMagazine name="鉄道ピクトリアル" date="1972年9月号" no={269} article="私鉄車両めぐり〔93〕東京急行電鉄の車両" authors={['荻原二郎', '久原秀雄', '宮田道一']} pages={[78]} /></NoteRefContent>
+		<NoteRefContent id="es754-a-6000-name"><DocMagazine name="鉄道ピクトリアル" date="1972年9月号" no={269} article="私鉄車両めぐり〔93〕東京急行電鉄の車両" authors={['荻原二郎', '久原秀雄', '宮田道一']} pages={[78]} /></NoteRefContent>
 
-			<NoteRefContent id="es754-a-7000-name"><DocMagazine name="電気車の科学" date="1962年1月号" no={165} article="東京急行の7000形オールステンレス・カーについて (1)" authors={['白石安之']} pages={[10]} /></NoteRefContent>
+		<NoteRefContent id="es754-a-7000-name"><DocMagazine name="電気車の科学" date="1962年1月号" no={165} article="東京急行の7000形オールステンレス・カーについて (1)" authors={['白石安之']} pages={[10]} /></NoteRefContent>
 
-			<NoteRefContent id="mmc-htr-10a-name"><DocMagazine name="日立評論" date="1965年5月号" article="東京急行電鉄株式会社納7000形電車用停車用電力回生ブレーキ付電気品" authors={['今泉藤麿', '樋口徹', '神谷清']} pages={[45]} url="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1965%2f05%2f1965_05_08%2epdf" /></NoteRefContent>
-		</div>
+		<NoteRefContent id="mmc-htr-10a-name"><DocMagazine name="日立評論" date="1965年5月号" article="東京急行電鉄株式会社納7000形電車用停車用電力回生ブレーキ付電気品" authors={['今泉藤麿', '樋口徹', '神谷清']} pages={[45]} url="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1965%2f05%2f1965_05_08%2epdf" /></NoteRefContent>
 
 		<ListNote>
 			<li>機器形式は脚注のあるものを除き現車調査による。</li>
@@ -394,69 +393,67 @@ const structuredData: StructuredData = {
 
 			<p>同年の東急6000系向けでは断流器を横付けする大きな変化があったためか、型番が MM-101 と3桁数字になったものの、その後の製品は MM-11, MM-12, ……と2桁に戻っています。ここまでの採用例を一覧にしてみましょう。</p>
 
-			<div class="p-table">
-				<table>
-					<caption>初期の東芝 MCM 型主制御器</caption>
-					<thead>
-						<tr>
-							<th scope="col">型式</th>
-							<th scope="col">製造初年</th>
-							<th scope="col">搭載車種</th>
-							<th scope="col">特徴</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>MC-1A</td>
-							<td>1956年</td>
-							<td>阪神電気鉄道 1121形（1130）</td>
-							<td>ジェットカー試験車</td>
-						</tr>
-						<tr>
-							<td>MC-2A</td>
-							<td>1956年</td>
-							<td>神戸市交通局 1150形（1153〜1158）</td>
-							<td>和製 PCC カー</td>
-						</tr>
-						<tr>
-							<td>MC-3A</td>
-							<td>1958年</td>
-							<td>阪神電気鉄道 5001形</td>
-							<td>ジェットカー試作車、永久並列接続</td>
-						</tr>
-						<tr>
-							<td>MC-11A</td>
-							<td>1958年</td>
-							<td>名古屋鉄道 5500系（1次車）</td>
-							<td>冷房車</td>
-						</tr>
-						<tr>
-							<td>MC-11B</td>
-							<td>1959年</td>
-							<td>名古屋鉄道 5500系（2次車）</td>
-							<td>冷房車</td>
-						</tr>
-						<tr>
-							<td>MM-10A</td>
-							<td>1959年</td>
-							<td>阪神電気鉄道 5101形、5201形</td>
-							<td>ジェットカー量産車</td>
-						</tr>
-						<tr>
-							<td>MM-10B</td>
-							<td>1959年</td>
-							<td>福井鉄道 200形</td>
-							<td>連接車</td>
-						</tr>
-						<tr>
-							<td>MM-101A</td>
-							<td>1959年</td>
-							<td>東京急行電鉄 6000系（B編成）</td>
-							<td>電力回生ブレーキ</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<Table>
+				<caption>初期の東芝 MCM 型主制御器</caption>
+				<thead>
+					<tr>
+						<th scope="col">型式</th>
+						<th scope="col">製造初年</th>
+						<th scope="col">搭載車種</th>
+						<th scope="col">特徴</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>MC-1A</td>
+						<td>1956年</td>
+						<td>阪神電気鉄道 1121形（1130）</td>
+						<td>ジェットカー試験車</td>
+					</tr>
+					<tr>
+						<td>MC-2A</td>
+						<td>1956年</td>
+						<td>神戸市交通局 1150形（1153〜1158）</td>
+						<td>和製 PCC カー</td>
+					</tr>
+					<tr>
+						<td>MC-3A</td>
+						<td>1958年</td>
+						<td>阪神電気鉄道 5001形</td>
+						<td>ジェットカー試作車、永久並列接続</td>
+					</tr>
+					<tr>
+						<td>MC-11A</td>
+						<td>1958年</td>
+						<td>名古屋鉄道 5500系（1次車）</td>
+						<td>冷房車</td>
+					</tr>
+					<tr>
+						<td>MC-11B</td>
+						<td>1959年</td>
+						<td>名古屋鉄道 5500系（2次車）</td>
+						<td>冷房車</td>
+					</tr>
+					<tr>
+						<td>MM-10A</td>
+						<td>1959年</td>
+						<td>阪神電気鉄道 5101形、5201形</td>
+						<td>ジェットカー量産車</td>
+					</tr>
+					<tr>
+						<td>MM-10B</td>
+						<td>1959年</td>
+						<td>福井鉄道 200形</td>
+						<td>連接車</td>
+					</tr>
+					<tr>
+						<td>MM-101A</td>
+						<td>1959年</td>
+						<td>東京急行電鉄 6000系（B編成）</td>
+						<td>電力回生ブレーキ</td>
+					</tr>
+				</tbody>
+			</Table>
 
 			<ListNote>
 				<li>東芝レビュー <Link href="https://dl.ndl.go.jp/pid/3253779">1957年4月号（No.87）</Link>、<Link href="https://dl.ndl.go.jp/pid/3253802">1959年3月号（No.110）</Link>、<Link href="https://dl.ndl.go.jp/pid/3253815">1960年3月号（No.122）</Link>のそれぞれ「<cite>電気鉄道</cite>」の章に記載されたデータを元に作成。</li>

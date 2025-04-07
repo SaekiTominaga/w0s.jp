@@ -2,6 +2,7 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Admin.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -257,55 +258,53 @@ for (const resoursePage of resourcePageListDto) {
 			<Section slugger={slugger}>
 				<Fragment slot="heading">{categoryName}</Fragment>
 
-				<div class="p-table -scroll">
-					<table>
-						<thead>
+				<Table scroll={true}>
+					<thead>
+						<tr>
+							<td />
+							<th scope="col">対象ページ</th>
+							<th scope="col">優先</th>
+							<th scope="col">🌐</th>
+							<th scope="col">セレクター</th>
+							<th scope="col">ハッシュ値</th>
+							<th scope="col">エラー</th>
+						</tr>
+					</thead>
+					<tbody>
+						{resourcePageOfCategory.map((resourcePage) => (
 							<tr>
-								<td />
-								<th scope="col">対象ページ</th>
-								<th scope="col">優先</th>
-								<th scope="col">🌐</th>
-								<th scope="col">セレクター</th>
-								<th scope="col">ハッシュ値</th>
-								<th scope="col">エラー</th>
-							</tr>
-						</thead>
-						<tbody>
-							{resourcePageOfCategory.map((resourcePage) => (
-								<tr>
-									<td class="u-cell -wrap-no">
-										<form action={Astro.url.pathname} method="post" class="c-stack">
-											<p>
-												<input type="hidden" name="url" value={resourcePage.url.toString()} />
-												<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
-													修正
-												</button>
-												<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
-													削除
-												</button>
-											</p>
+								<td class="u-cell -wrap-no">
+									<form action={Astro.url.pathname} method="post" class="c-stack">
+										<p>
+											<input type="hidden" name="url" value={resourcePage.url.toString()} />
+											<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
+												修正
+											</button>
+											<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
+												削除
+											</button>
+										</p>
 
-											<p>
-												<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
-											</p>
-										</form>
-									</td>
-									<td>
-										<a href={resourcePage.url} referrerpolicy="no-referrer">
-											{resourcePage.title}
-										</a>
-										<p style="margin-block-start: 0.5em; font-size: 80%">{resourcePage.url}</p>
-									</td>
-									<td class="u-cell -center">{resourcePage.priority}</td>
-									<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
-									<td class="u-cell -wrap-anywhere">{resourcePage.selector}</td>
-									<td>{resourcePage.content_hash}</td>
-									<td class="u-cell -center">{resourcePage.error && <strong style="color: red">✗</strong>}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+										<p>
+											<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
+										</p>
+									</form>
+								</td>
+								<td>
+									<a href={resourcePage.url} referrerpolicy="no-referrer">
+										{resourcePage.title}
+									</a>
+									<p style="margin-block-start: 0.5em; font-size: 80%">{resourcePage.url}</p>
+								</td>
+								<td class="u-cell -center">{resourcePage.priority}</td>
+								<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
+								<td class="u-cell -wrap-anywhere">{resourcePage.selector}</td>
+								<td>{resourcePage.content_hash}</td>
+								<td class="u-cell -center">{resourcePage.error && <strong style="color: red">✗</strong>}</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
 			</Section>
 		))
 	}

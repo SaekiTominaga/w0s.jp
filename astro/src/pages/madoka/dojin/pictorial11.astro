@@ -7,6 +7,7 @@ import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -121,23 +122,21 @@ const structuredData: StructuredData = {
 	<Section id="errata">
 		<Fragment slot="heading">正誤情報</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ページ</th>
-						<th scope="col">内容</th>
-						<th scope="col">電子版修正</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>p.22</td>
-						<td>バス、タクシーのラッピング広告期間について<q>2019年4月下旬から6月頃まで台湾の台北でバス、タクシーのラッピング広告が行われた。</q>となっているが、実際は7月下旬頃まで行われていた模様。</td>
-						<td><span class="c-tac -tick">済み</span></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.22</td>
+					<td>バス、タクシーのラッピング広告期間について<q>2019年4月下旬から6月頃まで台湾の台北でバス、タクシーのラッピング広告が行われた。</q>となっているが、実際は7月下旬頃まで行われていた模様。</td>
+					<td><span class="c-tac -tick">済み</span></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

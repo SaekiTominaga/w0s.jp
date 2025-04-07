@@ -6,6 +6,7 @@ import YouTube from '@components/EmbeddedYouTube.astro';
 import Link from '@components/Link.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -23,58 +24,56 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">公式サイト一覧</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">Web サイト</th>
-						<th scope="col">入口ページ</th>
-						<th scope="col">トップページ</th>
-						<th scope="col">Flash 使用コンテンツ</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>さよなら絶望先生シリーズ</td>
-						<td colspan="2"><Link href="https://king-cr.jp/special/zetsubou_series/" icon={false}><code>index.html</code></Link></td>
-						<td>なし</td>
-					</tr>
-					<tr>
-						<td>さよなら絶望先生</td>
-						<td><Link href="https://web.archive.org/web/20240128211100/https://king-cr.jp/special/zetsubou/" icon={false}><code>index.html</code></Link><small>（2024年まで）</small></td>
-						<td><Link href="https://king-cr.jp/special/zetsubou/" icon={false}>旧<code>top.html</code><small>（現<code>index.html）</code></small></Link></td>
-						<td>入口ページ、裏ページ</td>
-					</tr>
-					<tr>
-						<td>俗・さよなら絶望先生</td>
-						<td><Link href="https://web.archive.org/web/20231214185856/https://king-cr.jp/special/zetsubou2/" icon={false}><code>index.html</code></Link><small>（2024年まで）</small></td>
-						<td><Link href="https://king-cr.jp/special/zetsubou2/" icon={false}>旧<code>top.html</code><small>（現<code>index.html）</code></small></Link></td>
-						<td>入口ページ、裏ページ</td>
-					</tr>
-					<tr>
-						<td>獄・さよなら絶望先生</td>
-						<td colspan="2"><Link href="https://king-cr.jp/special/zetsubou_oad/" icon={false}><code>index.html</code></Link></td>
-						<td>なし</td>
-					</tr>
-					<tr>
-						<td>懺・さよなら絶望先生</td>
-						<td><Link href="https://web.archive.org/web/20231214185937/https://king-cr.jp/special/zetsubou3/" icon={false}><code>index.html</code></Link><small>（2024年まで）</small></td>
-						<td><Link href="https://king-cr.jp/special/zetsubou3/" icon={false}>旧<code>top.html</code><small>（現<code>index.html）</code></small></Link></td>
-						<td>入口ページ、トップページのメニュー部分、裏ページ</td>
-					</tr>
-					<tr>
-						<td>さよなら絶望先生 Blu-ray BOX</td>
-						<td colspan="2"><Link href="https://king-cr.jp/special/zetsubou_bd/" icon={false}><code>index.html</code></Link></td>
-						<td>「<cite>メビウス荒野〜絶望伝説エピソード1</cite>」動画</td>
-					</tr>
-					<tr>
-						<td>大槻ケンヂと絶望少女達</td>
-						<td colspan="2"><Link href="https://king-cr.jp/artist/otsuki/" icon={false}><code>index.html</code></Link></td>
-						<td>なし</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">Web サイト</th>
+					<th scope="col">入口ページ</th>
+					<th scope="col">トップページ</th>
+					<th scope="col">Flash 使用コンテンツ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>さよなら絶望先生シリーズ</td>
+					<td colspan="2"><Link href="https://king-cr.jp/special/zetsubou_series/" icon={false}><code>index.html</code></Link></td>
+					<td>なし</td>
+				</tr>
+				<tr>
+					<td>さよなら絶望先生</td>
+					<td><Link href="https://web.archive.org/web/20240128211100/https://king-cr.jp/special/zetsubou/" icon={false}><code>index.html</code></Link><small>（2024年まで）</small></td>
+					<td><Link href="https://king-cr.jp/special/zetsubou/" icon={false}>旧<code>top.html</code><small>（現<code>index.html）</code></small></Link></td>
+					<td>入口ページ、裏ページ</td>
+				</tr>
+				<tr>
+					<td>俗・さよなら絶望先生</td>
+					<td><Link href="https://web.archive.org/web/20231214185856/https://king-cr.jp/special/zetsubou2/" icon={false}><code>index.html</code></Link><small>（2024年まで）</small></td>
+					<td><Link href="https://king-cr.jp/special/zetsubou2/" icon={false}>旧<code>top.html</code><small>（現<code>index.html）</code></small></Link></td>
+					<td>入口ページ、裏ページ</td>
+				</tr>
+				<tr>
+					<td>獄・さよなら絶望先生</td>
+					<td colspan="2"><Link href="https://king-cr.jp/special/zetsubou_oad/" icon={false}><code>index.html</code></Link></td>
+					<td>なし</td>
+				</tr>
+				<tr>
+					<td>懺・さよなら絶望先生</td>
+					<td><Link href="https://web.archive.org/web/20231214185937/https://king-cr.jp/special/zetsubou3/" icon={false}><code>index.html</code></Link><small>（2024年まで）</small></td>
+					<td><Link href="https://king-cr.jp/special/zetsubou3/" icon={false}>旧<code>top.html</code><small>（現<code>index.html）</code></small></Link></td>
+					<td>入口ページ、トップページのメニュー部分、裏ページ</td>
+				</tr>
+				<tr>
+					<td>さよなら絶望先生 Blu-ray BOX</td>
+					<td colspan="2"><Link href="https://king-cr.jp/special/zetsubou_bd/" icon={false}><code>index.html</code></Link></td>
+					<td>「<cite>メビウス荒野〜絶望伝説エピソード1</cite>」動画</td>
+				</tr>
+				<tr>
+					<td>大槻ケンヂと絶望少女達</td>
+					<td colspan="2"><Link href="https://king-cr.jp/artist/otsuki/" icon={false}><code>index.html</code></Link></td>
+					<td>なし</td>
+				</tr>
+			</tbody>
+		</Table>
 
 		<ListNote>
 			<li>入口ページ（<code>index.html</code>）とトップページ（<code>top.html</code>）が分かれていた TV アニメ 3サイトは、2024年に入口ページが廃止され、トップページを <code>top.html</code> から <code>index.html</code> にリネームする変更が行われました。</li>
