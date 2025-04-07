@@ -1,6 +1,8 @@
 ---
 import Layout from '@layouts/W0s.astro';
 import Image from '@components/Image.astro';
+import TopNavCard from '@components/TopNavCard.astro';
+import TopNavCardItem from '@components/TopNavCardItem.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -11,36 +13,16 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
-	<nav>
-		<ul class="p-top-nav-card">
-			<li class="p-top-nav-card__box">
-				<a href="https://blog.w0s.jp/">
-					<div class="p-top-nav-card__image">
-						<Image path="index_nav_blog.png" width={360} height={180} style="--object-position: 0" />
-					</div>
-					<div class="p-top-nav-card__title">富永日記帳</div>
-					<p class="p-top-nav-card__description">ウェブ技術や東急電車、久米田康治作品の話を中心としたブログ</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/">
-					<div class="p-top-nav-card__image">
-						<Image path="index_nav_tokyu.jpg" width={360} height={180} quality={60} style="--object-position: 80% 45%" />
-					</div>
-					<div class="p-top-nav-card__title">東急電車資料室</div>
-					<p class="p-top-nav-card__description">目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/kumeta/">
-					<div class="p-top-nav-card__image">
-						<Image path="index_nav_kumeta.jpg" width={360} height={180} quality={60} />
-						<!-- 2021-07-07 IMG_4978 -->
-					</div>
-					<div class="p-top-nav-card__title">久米田康治データベース</div>
-					<p class="p-top-nav-card__description">漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト</p>
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<TopNavCard>
+		<TopNavCardItem title="富永日記帳" description="ウェブ技術や東急電車、久米田康治作品の話を中心としたブログ" linkHref="https://blog.w0s.jp/">
+			<Image slot="image" path="index_nav_blog.png" width={360} height={180} style="--object-position: 0" />
+		</TopNavCardItem>
+		<TopNavCardItem title="東急電車資料室" description="目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト" linkHref="/tokyu/">
+			<Image slot="image" path="index_nav_tokyu.jpg" width={360} height={180} quality={60} style="--object-position: 80% 45%" />
+		</TopNavCardItem>
+		<TopNavCardItem title="久米田康治データベース" description="漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト" linkHref="/kumeta/">
+			<Image slot="image" path="index_nav_kumeta.jpg" width={360} height={180} quality={60} />
+			<!-- 2021-07-07 IMG_4978 -->
+		</TopNavCardItem>
+	</TopNavCard>
 </Layout>

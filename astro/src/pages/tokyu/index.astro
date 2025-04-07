@@ -1,5 +1,7 @@
 ---
 import Layout from '@layouts/Tokyu.astro';
+import TopNavCard from '@components/TopNavCard.astro';
+import TopNavCardItem from '@components/TopNavCardItem.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
 import type { StructuredData } from '@type/types.js';
@@ -12,54 +14,15 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
-	<nav id="contents" aria-labelledby="landmark-contents-label">
-		<h2 id="landmark-contents-label">サイトコンテンツ</h2>
-
-		<ul class="p-top-nav-card">
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/data/">
-					<div class="p-top-nav-card__title">車両データ</div>
-					<p class="p-top-nav-card__description">車歴表、編成表などの車両関連データ</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/machine/">
-					<div class="p-top-nav-card__title">車両機器</div>
-					<p class="p-top-nav-card__description">制御装置をはじめとする車両搭載機器</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/truck/">
-					<div class="p-top-nav-card__title">台車</div>
-					<p class="p-top-nav-card__description">高性能車の台車バリエーション</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/yomoyama/">
-					<div class="p-top-nav-card__title">よもやま話</div>
-					<p class="p-top-nav-card__description">車両や車両機器の四方山話</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/an/">
-					<div class="p-top-nav-card__title">自動放送</div>
-					<p class="p-top-nav-card__description">車内で流れる自動放送フレーズの紹介</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/set/">
-					<div class="p-top-nav-card__title">設定器</div>
-					<p class="p-top-nav-card__description">行先設定器のボタン（ダイヤル）配列</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/book/">
-					<div class="p-top-nav-card__title">鉄道本執筆</div>
-					<p class="p-top-nav-card__description">鉄道関係で執筆に関わった本の紹介と補足</p>
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<TopNavCard heading="サイトコンテンツ">
+		<TopNavCardItem title="車両データ" description="車歴表、編成表などの車両関連データ" linkHref="/tokyu/data/" />
+		<TopNavCardItem title="車両機器" description="制御装置をはじめとする車両搭載機器" linkHref="/tokyu/machine/" />
+		<TopNavCardItem title="台車" description="高性能車の台車バリエーション" linkHref="/tokyu/truck/" />
+		<TopNavCardItem title="よもやま話" description="車両や車両機器の四方山話" linkHref="/tokyu/yomoyama/" />
+		<TopNavCardItem title="自動放送" description="車内で流れる自動放送フレーズの紹介" linkHref="/tokyu/an/" />
+		<TopNavCardItem title="設定器" description="行先設定器のボタン（ダイヤル）配列" linkHref="/tokyu/set/" />
+		<TopNavCardItem title="鉄道本執筆" description="鉄道関係で執筆に関わった本の紹介と補足" linkHref="/tokyu/book/" />
+	</TopNavCard>
 
 	<section class="p-top-update" id="update">
 		<header class="p-top-update__header">

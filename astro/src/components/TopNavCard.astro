@@ -1,0 +1,26 @@
+---
+interface Props {
+	heading?: string;
+}
+
+const { heading } = Astro.props;
+
+const headingId = heading !== undefined ? crypto.randomUUID() : undefined;
+---
+
+<nav aria-labelledby={headingId}>
+	{heading !== undefined && <h2 id={headingId}>{heading}</h2>}
+
+	<ul class="top-nav-card">
+		<slot />
+	</ul>
+</nav>
+
+<style>
+	.top-nav-card {
+		display: block grid;
+		grid-template-columns: repeat(auto-fill, minmax(15.3em, 1fr));
+		gap: 15px;
+		container-type: inline-size;
+	}
+</style>
