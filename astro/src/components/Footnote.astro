@@ -38,10 +38,6 @@ const { title, data, prefix, refPrefix } = Astro.props;
 		background: var(--color-bg-light);
 		padding: 1em;
 		font-size: calc(100% / pow(var(--font-ratio), 1));
-
-		:not(&) + & {
-			margin-block-start: calc(var(--stack-margin-base) * 6);
-		}
 	}
 
 	.hdg {
@@ -51,14 +47,12 @@ const { title, data, prefix, refPrefix } = Astro.props;
 		display: block table;
 		margin-block-start: 0.25em;
 
-		& > li {
+		& > :global(li) {
 			display: table-row;
+		}
 
-			&:not(:first-child) {
-				& > * {
-					border-block-start: 0.5em solid transparent;
-				}
-			}
+		& > :global(li:not(:first-child) > *) {
+			border-block-start: 0.5em solid transparent;
 		}
 	}
 
