@@ -2,13 +2,14 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import LayoutTop from '@layouts/content-body/Top.astro';
-import Link from '@components/Link.astro';
 import ListLink from '@components/ListLink.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import TopNavText from '@components/TopNavText.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
+import KumetaTopService from '@components/kumeta/TopService.astro';
+import KumetaTopServiceItem from '@components/kumeta/TopServiceItem.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -95,20 +96,10 @@ const slugger = new GithubSlugger();
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">最新ニュース</Fragment>
 
-								<ul class="p-kumeta-top-news">
-									<li>
-										<Link href="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" icon={false}>
-											<span class="p-kumeta-top-news__image"><img src="/kumeta/image/icon_google-calendar.png" alt="" width="64" height="64" /></span>
-											<span class="p-kumeta-top-news__text">Google カレンダー</span>
-										</Link>
-									</li>
-									<li>
-										<Link href="https://mastodon.social/@kumeta_news" icon={false}>
-											<span class="p-kumeta-top-news__image"><img src="/assets/image/icon/mastodon.svg" alt="" width="61" height="64" /></span>
-											<span class="p-kumeta-top-news__text">Mastodon</span></Link
-										>
-									</li>
-								</ul>
+								<KumetaTopService>
+									<KumetaTopServiceItem title="Google カレンダー" linkPath="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" iconPath="/kumeta/image/icon_google-calendar.png" />
+									<KumetaTopServiceItem title="Mastodon" linkPath="https://mastodon.social/@kumeta_news" iconPath="/assets/image/icon/mastodon.svg" />
+								</KumetaTopService>
 
 								<ListNote>
 									<li>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Mastodon に流しています。</li>

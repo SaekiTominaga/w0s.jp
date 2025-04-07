@@ -1,0 +1,33 @@
+---
+import Link from '@components/Link.astro';
+
+interface Props {
+	title: string;
+	linkPath: string;
+	iconPath: string;
+}
+
+const { title, linkPath, iconPath } = Astro.props;
+---
+
+<li>
+	<Link href={linkPath} icon={false}>
+		<span class="image"><img src={iconPath} alt="" width="64" height="64" /></span>
+		<span class="title">{title}</span>
+	</Link>
+</li>
+
+<style>
+	.image {
+		display: inline flex;
+		align-items: center;
+		margin-block-end: 0.5em;
+	}
+
+	.title {
+		&::before {
+			display: block flow;
+			content: '';
+		}
+	}
+</style>
