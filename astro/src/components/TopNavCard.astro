@@ -8,16 +8,16 @@ const { heading } = Astro.props;
 const headingId = heading !== undefined ? crypto.randomUUID() : undefined;
 ---
 
-<nav aria-labelledby={headingId}>
+<nav class="top-nav-card" aria-labelledby={headingId}>
 	{heading !== undefined && <h2 id={headingId}>{heading}</h2>}
 
-	<ul class="top-nav-card">
+	<ul class="list">
 		<slot />
 	</ul>
 </nav>
 
 <style>
-	.top-nav-card {
+	.list {
 		display: block grid;
 		grid-template-columns: repeat(auto-fill, minmax(15.3em, 1fr));
 		gap: 15px;

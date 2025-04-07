@@ -1,9 +1,10 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import TopNavText from '@layouts/content-body/TopNavText.astro';
+import LayoutTop from '@layouts/content-body/Top.astro';
 import ListLink from '@components/ListLink.astro';
 import Section from '@components/Section.astro';
+import TopNavText from '@components/TopNavText.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
 import type { StructuredData } from '@type/types.js';
@@ -18,106 +19,112 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
-	<TopNavText heading="サイトコンテンツ">
-		<Fragment slot="main">
-			<div class="c-grid -top-nav">
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<Fragment slot="heading">映像</Fragment>
+	<LayoutTop>
+		<Fragment slot="nav">
+			<TopNavText heading="サイトコンテンツ">
+				<Fragment slot="main">
+					<div class="c-grid -top-nav">
+						<div class="c-grid__item">
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">映像</Fragment>
 
-						<ListLink index={true}>
-							<li><a href="/madoka/video/connect">「コネクト」映像バリエーション</a></li>
-							<li><a href="/madoka/video/zenpen">[前編] 始まりの物語　上映版とパッケージ版の比較</a></li>
-							<li><a href="/madoka/video/kouhen">[後編] 永遠の物語　上映版とパッケージ版の比較</a></li>
-							<li><a href="/madoka/video/shinpen">[新編] 叛逆の物語　上映版とパッケージ版の比較</a></li>
-							<li><a href="/madoka/video/concept-movie">コンセプトムービー</a></li>
-						</ListLink>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<Fragment slot="heading">メディア紹介</Fragment>
+								<ListLink index={true}>
+									<li><a href="/madoka/video/connect">「コネクト」映像バリエーション</a></li>
+									<li><a href="/madoka/video/zenpen">[前編] 始まりの物語　上映版とパッケージ版の比較</a></li>
+									<li><a href="/madoka/video/kouhen">[後編] 永遠の物語　上映版とパッケージ版の比較</a></li>
+									<li><a href="/madoka/video/shinpen">[新編] 叛逆の物語　上映版とパッケージ版の比較</a></li>
+									<li><a href="/madoka/video/concept-movie">コンセプトムービー</a></li>
+								</ListLink>
+							</Section>
+						</div>
+						<div class="c-grid__item">
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">メディア紹介</Fragment>
 
-						<ListLink index={true}>
-							<li><a href="/madoka/library/book">図書</a><small>（2011年〜2019年）</small></li>
-							<li><a href="/madoka/library/magazine">雑誌</a><small>（2010年〜2021年）</small></li>
-							<li><a href="/madoka/library/newspaper">新聞</a><small>（2011年〜2019年）</small></li>
-							<li><a href="/madoka/library/web">Web</a><small>（2011年〜2020年）</small></li>
-						</ListLink>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<Fragment slot="heading">イベント</Fragment>
+								<ListLink index={true}>
+									<li><a href="/madoka/library/book">図書</a><small>（2011年〜2019年）</small></li>
+									<li><a href="/madoka/library/magazine">雑誌</a><small>（2010年〜2021年）</small></li>
+									<li><a href="/madoka/library/newspaper">新聞</a><small>（2011年〜2019年）</small></li>
+									<li><a href="/madoka/library/web">Web</a><small>（2011年〜2020年）</small></li>
+								</ListLink>
+							</Section>
+						</div>
+						<div class="c-grid__item">
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">イベント</Fragment>
 
-						<ListLink index={true}>
-							<li><a href="/madoka/event/event">まどか☆マギカ展</a><small>（2011年〜2014年）</small></li>
-							<li><a href="/madoka/event/genga">まどか☆マギカ複製原画展</a><small>（2013年）</small></li>
-							<li><a href="/madoka/event/shop">まどか☆マギカショップ</a><small>（2012年〜2015年）</small></li>
-							<li><a href="/madoka/event/concert">オーケストラ・コンサート</a><small>（2013年〜2015年）</small></li>
-							<li><a href="/madoka/event/umeten">蒼樹うめ展</a><small>（2015年〜2017年）</small></li>
-							<li><a href="/madoka/event/madogatari">MADOGATARI 展</a><small>（2015年〜2016年）</small></li>
-							<li><a href="/madoka/event/shaft">シャフト　イベント販売商品</a></li>
-							<li><a href="/madoka/event/1kuji">バンプレスト　一番くじ</a></li>
-						</ListLink>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<Fragment slot="heading">よもやま</Fragment>
+								<ListLink index={true}>
+									<li><a href="/madoka/event/event">まどか☆マギカ展</a><small>（2011年〜2014年）</small></li>
+									<li><a href="/madoka/event/genga">まどか☆マギカ複製原画展</a><small>（2013年）</small></li>
+									<li><a href="/madoka/event/shop">まどか☆マギカショップ</a><small>（2012年〜2015年）</small></li>
+									<li><a href="/madoka/event/concert">オーケストラ・コンサート</a><small>（2013年〜2015年）</small></li>
+									<li><a href="/madoka/event/umeten">蒼樹うめ展</a><small>（2015年〜2017年）</small></li>
+									<li><a href="/madoka/event/madogatari">MADOGATARI 展</a><small>（2015年〜2016年）</small></li>
+									<li><a href="/madoka/event/shaft">シャフト　イベント販売商品</a></li>
+									<li><a href="/madoka/event/1kuji">バンプレスト　一番くじ</a></li>
+								</ListLink>
+							</Section>
+						</div>
+						<div class="c-grid__item">
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">よもやま</Fragment>
 
-						<ListLink index={true}>
-							<li><a href="/madoka/yomoyama/official_news">公式サイトニュース一覧</a></li>
-							<li><a href="/madoka/yomoyama/commentary">オーディオコメンタリー</a></li>
-							<li><a href="/madoka/yomoyama/umeten_guide">蒼樹うめ展　音声ガイド</a></li>
-							<li><a href="/madoka/yomoyama/aj2017_magireco_jiho">AnimeJapan 2017『マギアレコード』ブース時報</a></li>
-							<li><a href="/madoka/yomoyama/namae">なまえをよんで</a></li>
-							<li><a href="/madoka/yomoyama/kumeta">久米田作品における『まどか☆マギカ』ネタ</a></li>
-							<li><a href="/madoka/yomoyama/monoga-modoka">惑語　魔法少女ものが☆モドカ</a></li>
-						</ListLink>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<Fragment slot="heading">同人誌</Fragment>
+								<ListLink index={true}>
+									<li><a href="/madoka/yomoyama/official_news">公式サイトニュース一覧</a></li>
+									<li><a href="/madoka/yomoyama/commentary">オーディオコメンタリー</a></li>
+									<li><a href="/madoka/yomoyama/umeten_guide">蒼樹うめ展　音声ガイド</a></li>
+									<li><a href="/madoka/yomoyama/aj2017_magireco_jiho">AnimeJapan 2017『マギアレコード』ブース時報</a></li>
+									<li><a href="/madoka/yomoyama/namae">なまえをよんで</a></li>
+									<li><a href="/madoka/yomoyama/kumeta">久米田作品における『まどか☆マギカ』ネタ</a></li>
+									<li><a href="/madoka/yomoyama/monoga-modoka">惑語　魔法少女ものが☆モドカ</a></li>
+								</ListLink>
+							</Section>
+						</div>
+						<div class="c-grid__item">
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">同人誌</Fragment>
 
-						<ListLink index={true}>
-							<li><a href="/madoka/dojin/pictorial6">[新編]叛逆の物語　上映版とパッケージ版の比較</a></li>
-							<li><a href="/madoka/dojin/pictorial7">TVシリーズ　放送版とパッケージ版の比較</a></li>
-							<li><a href="/madoka/dojin/pictorial8">まどか☆マギカ映像比較講義録</a></li>
-							<li><a href="/madoka/dojin/pictorial9">美樹さやか駅ポスターめぐり</a></li>
-							<li><a href="/madoka/dojin/pictorial10">『劇場版　魔法少女まどか☆マギカ』韓国上映</a></li>
-							<li><a href="/madoka/dojin/pictorial11">マギアレコード海外版動向</a></li>
-							<li><a href="/madoka/dojin/zaiko">在庫状況</a></li>
-						</ListLink>
-					</Section>
-				</div>
-			</div>
-		</Fragment>
-	</TopNavText>
-
-	<TopUpdate id="update" heading="更新履歴">
-		<Fragment slot="notice">
-			<a href="/madoka/feed" type="application/atom+xml" class="c-button -feed -narrow">
-				<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
-				<span class="c-button__text">新着フィード</span>
-			</a>
+								<ListLink index={true}>
+									<li><a href="/madoka/dojin/pictorial6">[新編]叛逆の物語　上映版とパッケージ版の比較</a></li>
+									<li><a href="/madoka/dojin/pictorial7">TVシリーズ　放送版とパッケージ版の比較</a></li>
+									<li><a href="/madoka/dojin/pictorial8">まどか☆マギカ映像比較講義録</a></li>
+									<li><a href="/madoka/dojin/pictorial9">美樹さやか駅ポスターめぐり</a></li>
+									<li><a href="/madoka/dojin/pictorial10">『劇場版　魔法少女まどか☆マギカ』韓国上映</a></li>
+									<li><a href="/madoka/dojin/pictorial11">マギアレコード海外版動向</a></li>
+									<li><a href="/madoka/dojin/zaiko">在庫状況</a></li>
+								</ListLink>
+							</Section>
+						</div>
+					</div>
+				</Fragment>
+			</TopNavText>
 		</Fragment>
 
-		<TopUpdateItem slot="item" date="2024-04-02">
-			<p><a href="/madoka/library/web">メディア紹介 — Web</a> を新規作成</p>
-		</TopUpdateItem>
-		<TopUpdateItem slot="item" date="2023-06-20">
-			<p><a href="/madoka/library/book">メディア紹介 — 図書</a>に「<cite>日本TVアニメーション大全</cite>」（2014年）を追加</p>
-		</TopUpdateItem>
-		<TopUpdateItem slot="item" date="2021-01-02">
-			<p><a href="/madoka/dojin/zaiko">過去に発行した同人誌</a>の BOOTH 販売を開始</p>
-		</TopUpdateItem>
-		<TopUpdateItem slot="item" date="2020-08-22">
-			<p><a href="/madoka/video/kouhen">『[後編]永遠の物語』上映版とパッケージ版の比較</a>に差分データ1件（14′13″）を追加</p>
-		</TopUpdateItem>
-		<TopUpdateItem slot="item" date="2019-11-25">
-			<p><a href="/madoka/dojin/pictorial7">円環ピクトリアル No.7 【特集】TVシリーズ　放送版とパッケージ版の比較</a>に第12話の追加差分データ6件を追加</p>
-		</TopUpdateItem>
-	</TopUpdate>
+		<Fragment slot="update">
+			<TopUpdate id="update" heading="更新履歴">
+				<Fragment slot="notice">
+					<a href="/madoka/feed" type="application/atom+xml" class="c-button -feed -narrow">
+						<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
+						<span class="c-button__text">新着フィード</span>
+					</a>
+				</Fragment>
+
+				<TopUpdateItem slot="item" date="2024-04-02">
+					<p><a href="/madoka/library/web">メディア紹介 — Web</a> を新規作成</p>
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2023-06-20">
+					<p><a href="/madoka/library/book">メディア紹介 — 図書</a>に「<cite>日本TVアニメーション大全</cite>」（2014年）を追加</p>
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2021-01-02">
+					<p><a href="/madoka/dojin/zaiko">過去に発行した同人誌</a>の BOOTH 販売を開始</p>
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2020-08-22">
+					<p><a href="/madoka/video/kouhen">『[後編]永遠の物語』上映版とパッケージ版の比較</a>に差分データ1件（14′13″）を追加</p>
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2019-11-25">
+					<p><a href="/madoka/dojin/pictorial7">円環ピクトリアル No.7 【特集】TVシリーズ　放送版とパッケージ版の比較</a>に第12話の追加差分データ6件を追加</p>
+				</TopUpdateItem>
+			</TopUpdate>
+		</Fragment>
+	</LayoutTop>
 </Layout>
