@@ -2,9 +2,10 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Image from '@components/Image.astro';
-import Link from '@components/Link.astro';
-import Section from '@components/Section.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
+import Link from '@components/Link.astro';
+import LinkImageSide from '@components/LinkImageSide.astro';
+import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -22,45 +23,34 @@ const structuredData: StructuredData = {
 
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/tokyu/book/tamagawa1067">
-						<Image path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</span>
-					</a>
-
-					<div class="p-item__text">
+				<LinkImageSide href="/tokyu/book/tamagawa1067" title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両">
+					<Image path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} slot="image" />
+					<Fragment slot="text">
 						<p><b>自費出版、2024年12月発売</b></p>
 						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/tokyu/book/7700">
-						<Image path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">東急7700系形態分類</span>
-					</a>
-
-					<div class="p-item__text">
+				<LinkImageSide href="/tokyu/book/7700" title="東急7700系形態分類">
+					<Image path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} slot="image" />
+					<Fragment slot="text">
 						<p><b>自費出版、2019年8月発売</b></p>
 
 						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 			<li class="c-grid__item">
-				<div class="p-item">
-					<Link href="https://www.amazon.co.jp/dp/480220695X/">
-						<ImageAmazon src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" alt="" width={111} height={160} class="p-item__image" />
-						<span class="p-item__title">東急電鉄 1989-2019</span>
-					</Link>
+				<LinkImageSide href="https://www.amazon.co.jp/dp/480220695X/" title="東急電鉄 1989-2019">
+					<ImageAmazon src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" alt="" width={111} height={160} slot="image" />
 
-					<div class="p-item__text">
+					<Fragment slot="text">
 						<p><b>イカロス・ムック、2019年8月発売</b></p>
 
 						<p>平成時代の東急電車の動向をまとめた本です。「<cite>現役車両ガイド</cite>」の一部の本文解説を担当しました。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 		</ul>
 	</Section>
@@ -70,60 +60,40 @@ const structuredData: StructuredData = {
 
 		<ul class="c-grid -wide">
 			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/tokyu/book/tetsupic851/tokyu_transfer">
-						<Image path="tokyu/book/tetsupic851_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">地方私鉄へ譲渡された元東急の車両の近況</span>
-					</a>
-
-					<div class="p-item__text">
+				<LinkImageSide href="/tokyu/book/tetsupic851/tokyu_transfer" title="地方私鉄へ譲渡された元東急の車両の近況">
+					<Image path="tokyu/book/tetsupic851_cover.jpg" width={114} height={160} quality={60} slot="image" />
+					<Fragment slot="text">
 						<p><b>2011年8月号 【特集】地方私鉄の現状</b></p>
-
 						<p>旧7000系、旧8000系、1000系など譲渡車両の概要を紹介しています。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/tokyu/book/tetsupic789/mizuma1000">
-						<Image path="tokyu/book/tetsupic789_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">水間鉄道1000形改造車デビュー</span>
-					</a>
-
-					<div class="p-item__text">
+				<LinkImageSide href="/tokyu/book/tetsupic789/mizuma1000" title="水間鉄道1000形改造車デビュー">
+					<Image path="tokyu/book/tetsupic789_cover.jpg" width={114} height={160} quality={60} slot="image" />
+					<Fragment slot="text">
 						<p><b>2007年5月号 【特集】連接車</b></p>
-
 						<p>水間鉄道1000形のデビューにあたり、7000系からの改造箇所を紹介しています。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/tokyu/book/tetsupic749/mm21">
-						<Image path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">みなとみらい線　開業前後の動き</span>
-					</a>
-
-					<div class="p-item__text">
+				<LinkImageSide href="/tokyu/book/tetsupic749/mm21" title="みなとみらい線　開業前後の動き">
+					<Image path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} slot="image" />
+					<Fragment slot="text">
 						<p><b>2004年7月臨時増刊号 【特集】東京急行電鉄</b></p>
-
 						<p>当時の車両動向を紹介。また桜木町廃止日、MM線開業日の様子を追いました。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 			<li class="c-grid__item">
-				<div class="p-item">
-					<a href="/tokyu/book/tetsupic749/ttm">
-						<Image path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} class="p-item__image" />
-						<span class="p-item__title">リニューアルオープンした電車とバスの博物館</span>
-					</a>
-
-					<div class="p-item__text">
+				<LinkImageSide href="/tokyu/book/tetsupic749/ttm" title="リニューアルオープンした電車とバスの博物館">
+					<Image path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} slot="image" />
+					<Fragment slot="text">
 						<p><b>2004年7月臨時増刊号 【特集】東京急行電鉄</b></p>
-
 						<p>展示車両紹介、高津から宮崎台への移動劇のデータなど。</p>
-					</div>
-				</div>
+					</Fragment>
+				</LinkImageSide>
 			</li>
 		</ul>
 	</Section>
