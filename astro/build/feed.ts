@@ -16,7 +16,7 @@ const INFO = [
 	{
 		htmlPath: 'tokyu/index.html',
 		selector: {
-			wrap: '#update .top-update > li',
+			wrap: '#update .list > li',
 			date: '.date > time',
 			content: '.info',
 		},
@@ -26,7 +26,7 @@ const INFO = [
 	{
 		htmlPath: 'kumeta/index.html',
 		selector: {
-			wrap: '#update .top-update > li',
+			wrap: '#update .list > li',
 			date: '.date > time',
 			content: '.info',
 		},
@@ -36,7 +36,7 @@ const INFO = [
 	{
 		htmlPath: 'madoka/index.html',
 		selector: {
-			wrap: '#update .top-update > li',
+			wrap: '#update .list > li',
 			date: '.date > time',
 			content: '.info',
 		},
