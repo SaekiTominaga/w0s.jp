@@ -3,6 +3,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import ListLink from '@components/ListLink.astro';
 import Section from '@components/Section.astro';
+import TopNavText from '@components/TopNavText.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
 import type { StructuredData } from '@type/types.js';
@@ -17,13 +18,8 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
-	<nav class="p-top-nav" id="contents" aria-labelledby="landmark-contents-label">
-		<header class="p-top-nav__header">
-			<div class="p-top-nav__hdg">
-				<h2 id="landmark-contents-label">サイトコンテンツ</h2>
-			</div>
-		</header>
-		<div class="p-top-nav__main">
+	<TopNavText heading="サイトコンテンツ">
+		<Fragment slot="main">
 			<div class="c-grid -top-nav">
 				<div class="c-grid__item">
 					<Section slugger={slugger} depth={2} headingType="b">
@@ -97,8 +93,8 @@ const slugger = new GithubSlugger();
 					</Section>
 				</div>
 			</div>
-		</div>
-	</nav>
+		</Fragment>
+	</TopNavText>
 
 	<section class="p-top-update" id="update">
 		<header class="p-top-update__header">

@@ -1,0 +1,34 @@
+---
+interface Props {
+	heading: string;
+}
+
+const { heading } = Astro.props;
+
+const headingId = crypto.randomUUID();
+---
+
+<nav class="top-nav" id="contents" aria-labelledby={headingId}>
+	<div class="hdg">
+		<h2 id={headingId}>{heading}</h2>
+	</div>
+	<div class="main">
+		<slot name="main" />
+	</div>
+</nav>
+
+<style>
+	.top-nav {
+	}
+
+	.hdg {
+		border-block-end: 1px solid var(--color-border-light);
+		padding-block: 0.25em;
+		line-height: var(--line-height-narrow);
+		font-size: calc(100% * pow(var(--font-ratio), 5));
+	}
+
+	.main {
+		margin-block-start: 2.5em;
+	}
+</style>
