@@ -2,6 +2,8 @@
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import Layout from '@layouts/Site.astro';
+import Step from '@components/Step.astro';
+import StepItem from '@components/StepItem.astro';
 import Table from '@components/Table.astro';
 import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
@@ -94,23 +96,13 @@ if (referrer !== null) {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} contentFooter={false} pageSidebar={false} ad={false}>
-	<ol class="p-step">
-		<li class="js-screen-input">
-			<em class="p-step__text -current">入力</em>
-		</li>
-		<li class="js-screen-confirm" hidden="">
-			<span class="p-step__text">入力</span>
-		</li>
-		<li class="js-screen-input" hidden="">
-			<span class="p-step__text">確認</span>
-		</li>
-		<li class="js-screen-confirm" hidden="">
-			<em class="p-step__text -current">確認</em>
-		</li>
-		<li>
-			<span class="p-step__text">完了</span>
-		</li>
-	</ol>
+	<Step>
+		<StepItem name="入力" current={true} jsClassName="js-screen-input" />
+		<StepItem name="入力" hidden={true} jsClassName="js-screen-confirm" />
+		<StepItem name="確認" hidden={true} jsClassName="js-screen-input" />
+		<StepItem name="確認" current={true} hidden={true} jsClassName="js-screen-confirm" />
+		<StepItem name="完了" />
+	</Step>
 
 	<form method="post" novalidate="" class="c-stack js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
 		<div class="js-screen-input">
