@@ -2,6 +2,8 @@
 import fs from 'node:fs';
 import { diffLines, type Change as DiffChange } from 'diff';
 import Layout from '@layouts/Admin.astro';
+import CrawlerDiff from '@components/admin/CrawlerDiff.astro';
+import CrawlerDiffLine from '@components/admin/CrawlerDiffLine.astro';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
@@ -73,35 +75,35 @@ if (requestQuery.dir !== null) {
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	{
 		diffs.length >= 1 && (
-			<table class="p-admin-crawler-diff">
+			<CrawlerDiff>
 				<tbody>
 					{diffs.map((part) => (
 						<>
 							{!part.added && !part.removed && (
-								<tr class="p-admin-crawler-diff__line">
+								<CrawlerDiffLine>
 									<td />
 									{/* prettier-ignore */}
 									<td><pre><code>{part.value}</code></pre></td>
-								</tr>
+								</CrawlerDiffLine>
 							)}
 							{part.added && !part.removed && (
-								<tr class="p-admin-crawler-diff__line -added">
-									<td class="p-admin-crawler-diff__type">+</td>
+								<CrawlerDiffLine type="added">
+									<td>+</td>
 									{/* prettier-ignore */}
 									<td><pre><code>{part.value}</code></pre></td>
-								</tr>
+								</CrawlerDiffLine>
 							)}
 							{!part.added && part.removed && (
-								<tr class="p-admin-crawler-diff__line -removed">
-									<td class="p-admin-crawler-diff__type">-</td>
+								<CrawlerDiffLine type="removed">
+									<td>-</td>
 									{/* prettier-ignore */}
 									<td><pre><code>{part.value}</code></pre></td>
-								</tr>
+								</CrawlerDiffLine>
 							)}
 						</>
 					))}
 				</tbody>
-			</table>
+			</CrawlerDiff>
 		)
 	}
 	{
