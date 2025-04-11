@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -27,136 +29,117 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ツーマン　上田</span>行</p>
-			<p class="p-tokyu-announce-car">1000系に搭載されているタイプ</p>
-			<p class="p-tokyu-announce-note">正月三が日など多客時の車掌乗務列車</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>別所温泉停車中</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>本日も上田電鉄別所線をご利用いただきましてありがとうございます。この電車は上田行きです。</p>
-				</section>
-				<section>
-					<h2>別所温泉発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。ご乗車ありがとうございます。この電車は上田行きです。次は八木沢、八木沢です。降り口は、左側すべてのドアが開きます。</p>
+	<Announce station="上田" type="local" operation="twoman" cars={['1000系']} note="正月三が日など多客時の車掌乗務列車" recordDate="2013-01-02" recordCar="1000系2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>別所温泉停車中</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>本日も上田電鉄別所線をご利用いただきましてありがとうございます。この電車は上田行きです。</p>
+			</section>
+			<section>
+				<h2>別所温泉発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。ご乗車ありがとうございます。この電車は上田行きです。次は八木沢、八木沢です。降り口は、左側すべてのドアが開きます。</p>
 
-					<p><span class="c-tokyu-announce -chime">♪</span> <span class="c-tokyu-announce -oneman">本日は車掌が乗車しております。各駅ホーム側すべてのドアが降り口となっています。お近くのドアからお降りください。きっぷ、運賃は車掌にお渡しください。定期券ははっきりとお見せください。</span></p>
-				</section>
-			</div>
+				<p><span class="c-tokyu-announce -chime">♪</span> <span class="c-tokyu-announce -oneman">本日は車掌が乗車しております。各駅ホーム側すべてのドアが降り口となっています。お近くのドアからお降りください。きっぷ、運賃は車掌にお渡しください。定期券ははっきりとお見せください。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>八木沢発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は舞田、舞田です。降り口は、右側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>八木沢発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は舞田、舞田です。降り口は、右側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>舞田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は中野、中野です。降り口は、左側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>舞田発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は中野、中野です。降り口は、左側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>中野発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は塩田町、塩田町です。降り口は、右側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>中野発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は塩田町、塩田町です。降り口は、右側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>塩田町発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>この電車は上田行きです。次は中塩田、中塩田です。降り口は、右側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>塩田町発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>この電車は上田行きです。次は中塩田、中塩田です。降り口は、右側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>中塩田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は下之郷、下之郷です。降り口は、右側すべてのドアが開きます。きっぷ、運賃、整理券は駅係員にお渡しください。定期券ははっきりとお見せください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>中塩田発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は下之郷、下之郷です。降り口は、右側すべてのドアが開きます。きっぷ、運賃、整理券は駅係員にお渡しください。定期券ははっきりとお見せください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>下之郷発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>この電車は上田行きです。次は大学前、大学前です。降り口は、右側すべてのドアが開きます。お降りの際は、足元に充分ご注意ください。<span class="c-tokyu-announce -oneman">本日は車掌が乗車しております。ホーム側すべてのドアが降り口となっています。ドア付近のお客様はドアの開け閉めにご注意ください。きっぷ、運賃は車掌にお渡しください。定期券ははっきりとお見せください。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>下之郷発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>この電車は上田行きです。次は大学前、大学前です。降り口は、右側すべてのドアが開きます。お降りの際は、足元に充分ご注意ください。<span class="c-tokyu-announce -oneman">本日は車掌が乗車しております。ホーム側すべてのドアが降り口となっています。ドア付近のお客様はドアの開け閉めにご注意ください。きっぷ、運賃は車掌にお渡しください。定期券ははっきりとお見せください。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>大学前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は神畑、神畑です。降り口は、左側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>大学前発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は神畑、神畑です。降り口は、左側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>神畑発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は寺下、寺下です。降り口は、右側すべてのドアが開きます。お降りの際は、足元に充分ご注意ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>神畑発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は寺下、寺下です。降り口は、右側すべてのドアが開きます。お降りの際は、足元に充分ご注意ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>寺下発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は上田原、上田原です。降り口は、右側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>寺下発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は上田原、上田原です。降り口は、右側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>上田原停車中</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>列車ゆき違いを行います。しばらくお待ちください。</p>
-				</section>
-				<section>
-					<h2>上田原発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は赤坂上、赤坂上です。降り口は、右側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>上田原停車中</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>列車ゆき違いを行います。しばらくお待ちください。</p>
+			</section>
+			<section>
+				<h2>上田原発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は赤坂上、赤坂上です。降り口は、右側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>赤坂上発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は三好町、三好町です。降り口は、左側すべてのドアが開きます。<span class="c-tokyu-announce -stand">電車は事故防止のため、急停車することがあります。お立ちのお客様は、吊り革か手すりにお掴まりください。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>赤坂上発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は三好町、三好町です。降り口は、左側すべてのドアが開きます。<span class="c-tokyu-announce -stand">電車は事故防止のため、急停車することがあります。お立ちのお客様は、吊り革か手すりにお掴まりください。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>三好町発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は城下、城下です。降り口は、左側すべてのドアが開きます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>三好町発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は城下、城下です。降り口は、左側すべてのドアが開きます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>城下発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は終点、上田、上田です。車内にお忘れ物、落とし物のございませんよう、ご注意ください。降り口は、右側すべてのドアが開きます。お近くのドアからお降りください。きっぷ、運賃、整理券は駅係員にお渡しください。定期券ははっきりとお見せください。きっぷをお持ちでないお客様は、駅の精算機をご利用ください。</p>
-				</section>
-				<section>
-					<h2>上田到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく終点、上田に到着いたします。<span class="c-tokyu-announce -change">新幹線、しなの鉄道線はお乗り換えです。</span>お降りの際は、足元に充分ご注意ください。ご乗車ありがとうございました。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2013年1月2日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>1000系2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>城下発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は終点、上田、上田です。車内にお忘れ物、落とし物のございませんよう、ご注意ください。降り口は、右側すべてのドアが開きます。お近くのドアからお降りください。きっぷ、運賃、整理券は駅係員にお渡しください。定期券ははっきりとお見せください。きっぷをお持ちでないお客様は、駅の精算機をご利用ください。</p>
+			</section>
+			<section>
+				<h2>上田到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>まもなく終点、上田に到着いたします。<span class="c-tokyu-announce -change">新幹線、しなの鉄道線はお乗り換えです。</span>お降りの際は、足元に充分ご注意ください。ご乗車ありがとうございました。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>

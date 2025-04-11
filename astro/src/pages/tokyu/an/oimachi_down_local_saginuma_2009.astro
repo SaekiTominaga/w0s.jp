@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -31,209 +33,191 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -bkakutei">普通　鷺沼</span>行</p>
-			<p class="p-tokyu-announce-period">2009年の溝の口延伸から、2013年の戸越公園ドア非扱い解消まで</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>大井町停車中</h2>
-					<p>東急大井町線をご利用くださいまして、ありがとうございます。この電車は田園都市線直通、各駅停車鷺沼行きです。<span class="c-tokyu-announce -door">途中の戸越公園では、後ろの2両はドアが開きません。前の車両にご乗車ください。</span></p>
-					<p lang="en">Thank you for using the Tōkyū Ōimachi Line. This train will merge and continue traveling at the local train on the Den-en-toshi Line to Saginuma.</p>
-				</section>
-				<section>
-					<h2>下神明到着</h2>
-					<p>本日も東急大井町線をご利用くださいまして、ありがとうございます。この電車は田園都市線直通、各駅停車鷺沼行きです。<span class="c-tokyu-announce -door">途中の戸越公園では、後ろの2両はドアが開きません。前の車両にお移りください。</span>まもなく下神明です。出口は左側です。</p>
-					<p lang="en">Thank you for using the Tōkyū Ōimachi Line. This train will merge and continue traveling at the local train on the Den-en-toshi Line to Saginuma. We will soon make a brief stop at Shimo-shimmei.</p>
-				</section>
-			</div>
+	<Announce station="鷺沼" type="bkakutei" period="2009年の溝の口延伸から、2013年の戸越公園ドア非扱い解消まで" recordDate="2009-09-22" recordCar="8590系5両編成">
+		<AnnounceStation>
+			<section>
+				<h2>大井町停車中</h2>
+				<p>東急大井町線をご利用くださいまして、ありがとうございます。この電車は田園都市線直通、各駅停車鷺沼行きです。<span class="c-tokyu-announce -door">途中の戸越公園では、後ろの2両はドアが開きません。前の車両にご乗車ください。</span></p>
+				<p lang="en">Thank you for using the Tōkyū Ōimachi Line. This train will merge and continue traveling at the local train on the Den-en-toshi Line to Saginuma.</p>
+			</section>
+			<section>
+				<h2>下神明到着</h2>
+				<p>本日も東急大井町線をご利用くださいまして、ありがとうございます。この電車は田園都市線直通、各駅停車鷺沼行きです。<span class="c-tokyu-announce -door">途中の戸越公園では、後ろの2両はドアが開きません。前の車両にお移りください。</span>まもなく下神明です。出口は左側です。</p>
+				<p lang="en">Thank you for using the Tōkyū Ōimachi Line. This train will merge and continue traveling at the local train on the Den-en-toshi Line to Saginuma. We will soon make a brief stop at Shimo-shimmei.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>戸越公園到着</h2>
-					<p>まもなく戸越公園です。<span class="c-tokyu-announce -door">後ろの2両はドアが開きません。前の車両からお降りください。</span>お降りの際は、足元にご注意ください。</p>
-					<p lang="en">We will soon make a brief stop at Togoshi-kōen.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>戸越公園到着</h2>
+				<p>まもなく戸越公園です。<span class="c-tokyu-announce -door">後ろの2両はドアが開きません。前の車両からお降りください。</span>お降りの際は、足元にご注意ください。</p>
+				<p lang="en">We will soon make a brief stop at Togoshi-kōen.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>中延到着</h2>
-					<p>まもなく中延です。<span class="c-tokyu-announce -change">都営浅草線はお乗り換えです。</span></p>
-					<p lang="en">We will soon make a brief stop at Nakanobu. <span class="c-tokyu-announce -change">Passengers changing to the Toei Asakusa Line, please transfer at this station.</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>中延到着</h2>
+				<p>まもなく中延です。<span class="c-tokyu-announce -change">都営浅草線はお乗り換えです。</span></p>
+				<p lang="en">We will soon make a brief stop at Nakanobu. <span class="c-tokyu-announce -change">Passengers changing to the Toei Asakusa Line, please transfer at this station.</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>荏原町到着</h2>
-					<p>まもなく荏原町です。お降りの際は、足元にご注意ください。</p>
-					<p lang="en">We will soon make a brief stop at Ebara-machi.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>荏原町到着</h2>
+				<p>まもなく荏原町です。お降りの際は、足元にご注意ください。</p>
+				<p lang="en">We will soon make a brief stop at Ebara-machi.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>旗の台到着</h2>
-					<p>まもなく旗の台です。<span class="c-tokyu-announce -change">池上線はお乗り換えです。</span></p>
-					<p lang="en">We will soon make a brief stop at Hatanodai. <span class="c-tokyu-announce -change">Passengers changing to the Ikegami Line, please transfer at this station.</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>旗の台到着</h2>
+				<p>まもなく旗の台です。<span class="c-tokyu-announce -change">池上線はお乗り換えです。</span></p>
+				<p lang="en">We will soon make a brief stop at Hatanodai. <span class="c-tokyu-announce -change">Passengers changing to the Ikegami Line, please transfer at this station.</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>北千束到着</h2>
-					<p>まもなく北千束です。出口は右側です。</p>
-					<p lang="en">We will soon make a brief stop at Kita-senzoku.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>北千束到着</h2>
+				<p>まもなく北千束です。出口は右側です。</p>
+				<p lang="en">We will soon make a brief stop at Kita-senzoku.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>大岡山到着</h2>
-					<p>まもなく大岡山です。<span class="c-tokyu-announce -change">目黒線はお乗り換えです。</span>出口は左側です。</p>
-					<p lang="en">We will soon make a brief stop at Ōokayama. <span class="c-tokyu-announce -change">Passengers changing to the Meguro Line, please transfer at this station.</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>大岡山到着</h2>
+				<p>まもなく大岡山です。<span class="c-tokyu-announce -change">目黒線はお乗り換えです。</span>出口は左側です。</p>
+				<p lang="en">We will soon make a brief stop at Ōokayama. <span class="c-tokyu-announce -change">Passengers changing to the Meguro Line, please transfer at this station.</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>緑が丘到着</h2>
-					<p><span class="c-tokyu-announce -door">途中の九品仏では、前の1両はドアが開きません。後ろの車両にお移りください。</span>まもなく緑が丘です。</p>
-					<p lang="en">We will soon make a brief stop at Midorigaoka.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>緑が丘到着</h2>
+				<p><span class="c-tokyu-announce -door">途中の九品仏では、前の1両はドアが開きません。後ろの車両にお移りください。</span>まもなく緑が丘です。</p>
+				<p lang="en">We will soon make a brief stop at Midorigaoka.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>自由が丘到着</h2>
-					<p>まもなく自由が丘です。<span class="c-tokyu-announce -change">東横線はお乗り換えです。</span></p>
-					<p lang="en">We will soon make a brief stop at Jiyūgaoka. <span class="c-tokyu-announce -change">Passengers changing to the Tōyoko Line, please transfer at this station.</span></p>
+		<AnnounceStation>
+			<section>
+				<h2>自由が丘到着</h2>
+				<p>まもなく自由が丘です。<span class="c-tokyu-announce -change">東横線はお乗り換えです。</span></p>
+				<p lang="en">We will soon make a brief stop at Jiyūgaoka. <span class="c-tokyu-announce -change">Passengers changing to the Tōyoko Line, please transfer at this station.</span></p>
 
-					<p><span class="c-tokyu-announce -manners">東急電鉄からのお願いです。吊り革がオレンジ色の優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はお控えください。車内マナーにご協力をお願いいたします。</span></p>
-				</section>
-			</div>
+				<p><span class="c-tokyu-announce -manners">東急電鉄からのお願いです。吊り革がオレンジ色の優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はお控えください。車内マナーにご協力をお願いいたします。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>九品仏到着</h2>
-					<p>この電車は田園都市線直通、各駅停車鷺沼行きです。まもなく九品仏です。<span class="c-tokyu-announce -door">前の1両はドアが開きません。後ろの車両からお降りください。</span>出口は右側です。</p>
-					<p lang="en">We will soon make a brief stop at Kuhombutsu.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>九品仏到着</h2>
+				<p>この電車は田園都市線直通、各駅停車鷺沼行きです。まもなく九品仏です。<span class="c-tokyu-announce -door">前の1両はドアが開きません。後ろの車両からお降りください。</span>出口は右側です。</p>
+				<p lang="en">We will soon make a brief stop at Kuhombutsu.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>尾山台到着</h2>
-					<p>まもなく尾山台です。出口は左側です。</p>
-					<p lang="en">We will soon make a brief stop at Oyamadai.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>尾山台到着</h2>
+				<p>まもなく尾山台です。出口は左側です。</p>
+				<p lang="en">We will soon make a brief stop at Oyamadai.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>等々力到着</h2>
-					<p>まもなく等々力です。出口は右側です。</p>
-					<p lang="en">We will soon make a brief stop at Todoroki.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>等々力到着</h2>
+				<p>まもなく等々力です。出口は右側です。</p>
+				<p lang="en">We will soon make a brief stop at Todoroki.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>上野毛到着</h2>
-					<p>まもなく上野毛です。</p>
-					<p lang="en">We will soon make a brief stop at Kaminoge.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>上野毛到着</h2>
+				<p>まもなく上野毛です。</p>
+				<p lang="en">We will soon make a brief stop at Kaminoge.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>二子玉川到着</h2>
-					<p>まもなく二子玉川です。<span class="c-tokyu-announce -change">田園都市線渋谷方面はお乗り換えです。</span>出口は左側です。この電車は田園都市線直通、各駅停車鷺沼行きです。二子新地、高津に停まります。</p>
-					<p lang="en">We will soon make a brief stop at Futako-tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Den-en-toshi Line for Shibuya, please transfer at this station.</span> This train will merge and continue traveling at the local train on the Den-en-toshi Line to Saginuma.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>二子玉川到着</h2>
+				<p>まもなく二子玉川です。<span class="c-tokyu-announce -change">田園都市線渋谷方面はお乗り換えです。</span>出口は左側です。この電車は田園都市線直通、各駅停車鷺沼行きです。二子新地、高津に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Futako-tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Den-en-toshi Line for Shibuya, please transfer at this station.</span> This train will merge and continue traveling at the local train on the Den-en-toshi Line to Saginuma.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>二子新地到着</h2>
-					<p>まもなく二子新地です。出口は左側です。</p>
-					<p lang="en">This train is bound for Saginuma. We will soon make a brief stop at Futako-shinchi.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>二子新地到着</h2>
+				<p>まもなく二子新地です。出口は左側です。</p>
+				<p lang="en">This train is bound for Saginuma. We will soon make a brief stop at Futako-shinchi.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>高津到着</h2>
-					<p>まもなく高津です。</p>
-					<p lang="en">We will soon make a brief stop at Takatsu.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>高津到着</h2>
+				<p>まもなく高津です。</p>
+				<p lang="en">We will soon make a brief stop at Takatsu.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>溝の口到着</h2>
-					<p>まもなく溝の口です。<span class="c-tokyu-announce -change">JR南武線はお乗り換えです。</span></p>
-					<p lang="en">We will soon make a brief stop at Mizonokuchi. <span class="c-tokyu-announce -change">Passengers changing to the JR Nambu Line, please transfer at this station.</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>溝の口到着</h2>
+				<p>まもなく溝の口です。<span class="c-tokyu-announce -change">JR南武線はお乗り換えです。</span></p>
+				<p lang="en">We will soon make a brief stop at Mizonokuchi. <span class="c-tokyu-announce -change">Passengers changing to the JR Nambu Line, please transfer at this station.</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>溝の口停車中</h2>
-					<p><span class="c-tokyu-announce -stand">発車しますと揺れますのでご注意ください。</span></p>
-				</section>
-				<section>
-					<h2>梶が谷到着</h2>
-					<p><span class="c-tokyu-announce -stand">この先揺れますのでご注意ください。</span>まもなく梶が谷です。お降りの際は、足元にご注意ください。</p>
-					<p lang="en">This train is bound for Saginuma. We will soon make a brief stop at Kajigaya.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>溝の口停車中</h2>
+				<p><span class="c-tokyu-announce -stand">発車しますと揺れますのでご注意ください。</span></p>
+			</section>
+			<section>
+				<h2>梶が谷到着</h2>
+				<p><span class="c-tokyu-announce -stand">この先揺れますのでご注意ください。</span>まもなく梶が谷です。お降りの際は、足元にご注意ください。</p>
+				<p lang="en">This train is bound for Saginuma. We will soon make a brief stop at Kajigaya.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>宮崎台到着</h2>
-					<p>まもなく宮崎台です。</p>
-					<p lang="en">We will soon make a brief stop at Miyazakidai.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>宮崎台到着</h2>
+				<p>まもなく宮崎台です。</p>
+				<p lang="en">We will soon make a brief stop at Miyazakidai.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>宮前平到着</h2>
-					<p>まもなく宮前平です。</p>
-					<p lang="en">We will soon make a brief stop at Miyamaedaira.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>宮前平到着</h2>
+				<p>まもなく宮前平です。</p>
+				<p lang="en">We will soon make a brief stop at Miyamaedaira.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>鷺沼到着</h2>
-					<p><span class="c-tokyu-announce -stand">この先揺れますのでご注意ください。</span>まもなく鷺沼、この電車の終点です。<span class="c-tokyu-announce -change">当駅から先へお出でのお客様は、降りたホームでお待ちください。</span>お忘れ物無さいませんように、ご注意ください。本日も東急田園都市線をご利用くださいまして、ありがとうございました。</p>
-					<p lang="en">We will soon be arriving at Saginuma. This is the last stop of this line. Thank you for using the Tōkyū Den-en-toshi Line.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>鷺沼到着</h2>
+				<p><span class="c-tokyu-announce -stand">この先揺れますのでご注意ください。</span>まもなく鷺沼、この電車の終点です。<span class="c-tokyu-announce -change">当駅から先へお出でのお客様は、降りたホームでお待ちください。</span>お忘れ物無さいませんように、ご注意ください。本日も東急田園都市線をご利用くださいまして、ありがとうございました。</p>
+				<p lang="en">We will soon be arriving at Saginuma. This is the last stop of this line. Thank you for using the Tōkyū Den-en-toshi Line.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>鷺沼到着後</h2>
-					<p>ご乗車ありがとうございました。鷺沼、この電車の終点です。この電車は車庫に入ります。ご乗車にはなれません。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2009年9月22日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>8590系5両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>鷺沼到着後</h2>
+				<p>ご乗車ありがとうございました。鷺沼、この電車の終点です。この電車は車庫に入ります。ご乗車にはなれません。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>

@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -27,445 +29,427 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　電鉄富山</span>行</p>
-			<p class="p-tokyu-announce-period">2013年の17480形導入から、同年の新相ノ木駅開業まで</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>宇奈月温泉停車中</h2>
-					<p>この電車は宇奈月温泉発、電鉄富山行きです。お乗り間違えのないようご注意ください。駅員の居ない駅でお降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>宇奈月温泉発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は音沢、音沢です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>音沢到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>音沢、音沢です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+	<Announce station="電鉄富山" type="local" operation="oneman" period="2013年の17480形導入から、同年の新相ノ木駅開業まで" recordDate="2013-11-03" recordCar="17480形2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>宇奈月温泉停車中</h2>
+				<p>この電車は宇奈月温泉発、電鉄富山行きです。お乗り間違えのないようご注意ください。駅員の居ない駅でお降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>宇奈月温泉発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は音沢、音沢です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>音沢到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>音沢、音沢です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>音沢発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は内山、内山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>内山到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>内山、内山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>音沢発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は内山、内山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>内山到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>内山、内山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>内山発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は愛本、愛本です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由な方には席をお譲りください。皆様のご協力をお願いします。</span>後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>愛本到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>愛本、愛本です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>内山発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は愛本、愛本です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由な方には席をお譲りください。皆様のご協力をお願いします。</span>後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>愛本到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>愛本、愛本です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>愛本発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は下立、下立です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>下立到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。下立、下立です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>愛本発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は下立、下立です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>下立到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。下立、下立です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>下立発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は下立口、下立口です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>下立口到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>下立口、下立口です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>下立発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は下立口、下立口です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>下立口到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>下立口、下立口です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>下立口発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は浦山、浦山です。乗車券をお持ちでない方は、車内の運賃表でお確かめのうえ、釣り銭のいらないようご準備ください。両替ご希望の方はお早めに自動両替機をご利用ください。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>浦山到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>浦山、浦山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>下立口発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は浦山、浦山です。乗車券をお持ちでない方は、車内の運賃表でお確かめのうえ、釣り銭のいらないようご準備ください。両替ご希望の方はお早めに自動両替機をご利用ください。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>浦山到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>浦山、浦山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>浦山発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は栃屋、栃屋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>栃屋到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>栃屋、栃屋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>浦山発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は栃屋、栃屋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>栃屋到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>栃屋、栃屋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>栃屋発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は若栗、若栗です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>若栗到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>若栗、若栗です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>栃屋発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は若栗、若栗です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>若栗到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>若栗、若栗です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>若栗発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は舌山、舌山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>舌山到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>舌山、舌山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>若栗発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は舌山、舌山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>舌山到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>舌山、舌山です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>舌山発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は長屋、長屋です。<span class="c-tokyu-announce -manners">踏切を横断するときはかならず左右の安全を確かめましょう。踏切場所以外での線路の横断はたいへん危険です。線路敷きには立ち入らないよう願います。</span>後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>長屋到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>長屋、長屋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>舌山発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は長屋、長屋です。<span class="c-tokyu-announce -manners">踏切を横断するときはかならず左右の安全を確かめましょう。踏切場所以外での線路の横断はたいへん危険です。線路敷きには立ち入らないよう願います。</span>後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>長屋到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>長屋、長屋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>長屋発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は荻生、荻生です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>荻生到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>荻生、荻生です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>長屋発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は荻生、荻生です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>荻生到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>荻生、荻生です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>荻生発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は東三日市、東三日市です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>東三日市到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>東三日市、東三日市です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>荻生発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は東三日市、東三日市です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>東三日市到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>東三日市、東三日市です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>東三日市発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は電鉄黒部、電鉄黒部です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由な方には席をお譲りください。皆様のご協力をお願いします。</span></p>
-				</section>
-				<section>
-					<h2>電鉄黒部到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>電鉄黒部、電鉄黒部です。車内にお忘れもの、落としものございませぬようご注意ください。乗車券、運賃は駅改札口でご精算ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>東三日市発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は電鉄黒部、電鉄黒部です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由な方には席をお譲りください。皆様のご協力をお願いします。</span></p>
+			</section>
+			<section>
+				<h2>電鉄黒部到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>電鉄黒部、電鉄黒部です。車内にお忘れもの、落としものございませぬようご注意ください。乗車券、運賃は駅改札口でご精算ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>電鉄黒部発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は電鉄石田、電鉄石田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>電鉄石田到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>電鉄石田、電鉄石田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>電鉄黒部発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は電鉄石田、電鉄石田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>電鉄石田到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>電鉄石田、電鉄石田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>電鉄石田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は経田、経田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>経田到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>経田、経田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>電鉄石田発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は経田、経田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>経田到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>経田、経田です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>経田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は新魚津、新魚津です。<span class="c-tokyu-announce -change">JR線ご利用のお客様はお乗り換えとなります。</span></p>
-				</section>
-				<section>
-					<h2>新魚津到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>新魚津、新魚津です。<span class="c-tokyu-announce -change">JR線ご利用のお客様はお乗り換えとなります。</span>お降りの方は車内にお忘れもののございませんようご注意ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>経田発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は新魚津、新魚津です。<span class="c-tokyu-announce -change">JR線ご利用のお客様はお乗り換えとなります。</span></p>
+			</section>
+			<section>
+				<h2>新魚津到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>新魚津、新魚津です。<span class="c-tokyu-announce -change">JR線ご利用のお客様はお乗り換えとなります。</span>お降りの方は車内にお忘れもののございませんようご注意ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>新魚津発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は電鉄魚津、電鉄魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>電鉄魚津到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>電鉄魚津、電鉄魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>新魚津発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は電鉄魚津、電鉄魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>電鉄魚津到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>電鉄魚津、電鉄魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>電鉄魚津発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は西魚津、西魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>西魚津到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>西魚津、西魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>電鉄魚津発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は西魚津、西魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>西魚津到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>西魚津、西魚津です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>西魚津発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は越中中村、越中中村です。お持ちの整理券はご乗車駅を示すものですから、折り曲げたり無くしたりしないよう願います。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>越中中村到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>越中中村、越中中村です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>西魚津発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は越中中村、越中中村です。お持ちの整理券はご乗車駅を示すものですから、折り曲げたり無くしたりしないよう願います。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>越中中村到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>越中中村、越中中村です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>越中中村発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は早月加積、早月加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>早月加積到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>早月加積、早月加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>越中中村発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は早月加積、早月加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>早月加積到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>早月加積、早月加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>早月加積発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。次は浜加積、浜加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>浜加積到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>浜加積、浜加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>早月加積発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。次は浜加積、浜加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>浜加積到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>浜加積、浜加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>浜加積発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は滑川、滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>滑川到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>滑川、滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>浜加積発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は滑川、滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>滑川到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>滑川、滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>滑川発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は中滑川、中滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>中滑川到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>中滑川、中滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>滑川発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は中滑川、中滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>中滑川到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>中滑川、中滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>中滑川発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は西滑川、西滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>西滑川到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>西滑川、西滑川です。お降りの際は足元にご注意ください。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>中滑川発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は西滑川、西滑川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>西滑川到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>西滑川、西滑川です。お降りの際は足元にご注意ください。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>西滑川発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は西加積、西加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>西加積到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>西加積、西加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>西滑川発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は西加積、西加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>西加積到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>西加積、西加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>西加積発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は中加積、中加積です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由な方には席をお譲りください。皆様のご協力をお願いします。</span>後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>中加積到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>中加積、中加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>西加積発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は中加積、中加積です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由な方には席をお譲りください。皆様のご協力をお願いします。</span>後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>中加積到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>中加積、中加積です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>中加積発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は新宮川、新宮川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>新宮川到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>新宮川、新宮川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>中加積発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は新宮川、新宮川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>新宮川到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>新宮川、新宮川です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>新宮川発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。次は上市、上市です。お持ちの整理券はご乗車駅を示すものですから、折り曲げたり無くしたりしないよう願います。</p>
-				</section>
-				<section>
-					<h2>上市到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>上市、上市です。お忘れもの、落としものございませぬようご注意ください。<span class="c-tokyu-announce -attention">このあと終点、電鉄富山まで進行方向が変わります。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>新宮川発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。次は上市、上市です。お持ちの整理券はご乗車駅を示すものですから、折り曲げたり無くしたりしないよう願います。</p>
+			</section>
+			<section>
+				<h2>上市到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>上市、上市です。お忘れもの、落としものございませぬようご注意ください。<span class="c-tokyu-announce -attention">このあと終点、電鉄富山まで進行方向が変わります。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>上市発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は相ノ木、相ノ木です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>相ノ木到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>相ノ木、相ノ木です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>上市発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は相ノ木、相ノ木です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>相ノ木到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>相ノ木、相ノ木です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>相ノ木発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は越中泉、越中泉です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>越中泉到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>越中泉、越中泉です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>相ノ木発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は越中泉、越中泉です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>越中泉到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>越中泉、越中泉です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>越中泉発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。次は寺田、寺田です。<span class="c-tokyu-announce -change">立山線ご利用の方、お乗り換えになります。</span></p>
-				</section>
-				<section>
-					<h2>寺田到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>寺田、寺田です。<span class="c-tokyu-announce -change">立山線ご利用の方、お乗り換えになります。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>越中泉発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。次は寺田、寺田です。<span class="c-tokyu-announce -change">立山線ご利用の方、お乗り換えになります。</span></p>
+			</section>
+			<section>
+				<h2>寺田到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>寺田、寺田です。<span class="c-tokyu-announce -change">立山線ご利用の方、お乗り換えになります。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>寺田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は越中舟橋、越中舟橋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>越中舟橋到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>越中舟橋、越中舟橋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>寺田発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は越中舟橋、越中舟橋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>越中舟橋到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>越中舟橋、越中舟橋です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>越中舟橋発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は越中三郷、越中三郷です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>越中三郷到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>越中三郷、越中三郷です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>越中舟橋発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。本日も地鉄電車をご利用いただきありがとうございます。電鉄富山行きです。次は越中三郷、越中三郷です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>越中三郷到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>越中三郷、越中三郷です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>越中三郷発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は越中荏原、越中荏原です。</p>
-				</section>
-				<section>
-					<h2>越中荏原到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>越中荏原、越中荏原です。開くドアにご注意ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>越中三郷発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は越中荏原、越中荏原です。</p>
+			</section>
+			<section>
+				<h2>越中荏原到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>越中荏原、越中荏原です。開くドアにご注意ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>越中荏原発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は東新庄、東新庄です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>東新庄到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>東新庄、東新庄です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>越中荏原発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。電鉄富山行きです。次は東新庄、東新庄です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>東新庄到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>東新庄、東新庄です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>東新庄発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は新庄田中、新庄田中です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-				<section>
-					<h2>新庄田中到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>新庄田中、新庄田中です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>東新庄発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は新庄田中、新庄田中です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+			<section>
+				<h2>新庄田中到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>新庄田中、新庄田中です。後ろの車両のドアは開きません。お降りの際は、前の車両のいちばん前のドアからお降りください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>新庄田中発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は稲荷町、稲荷町です。<span class="c-tokyu-announce -change">上滝線ご利用の方、お乗り換えになります。</span></p>
-				</section>
-				<section>
-					<h2>稲荷町到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>稲荷町、稲荷町です。すべてのドアが開きます。<span class="c-tokyu-announce -change">上滝線ご利用の方、お乗り換えになります。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>新庄田中発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次は稲荷町、稲荷町です。<span class="c-tokyu-announce -change">上滝線ご利用の方、お乗り換えになります。</span></p>
+			</section>
+			<section>
+				<h2>稲荷町到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>稲荷町、稲荷町です。すべてのドアが開きます。<span class="c-tokyu-announce -change">上滝線ご利用の方、お乗り換えになります。</span></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>稲荷町発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。次は電鉄富山、終点です。お忘れもののないようご支度ください。</p>
-				</section>
-				<section>
-					<h2>電鉄富山到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。電鉄富山、電鉄富山、終点です。<span class="c-tokyu-announce -change">市内電車、地鉄バス、JR線、富山ライトレール線ご利用の方はお乗り換えになります。</span>お忘れものございませんようご注意ください。本日も地鉄電車をご利用いただきありがとうございました。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2013年11月3日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>17480形2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>稲荷町発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。次は電鉄富山、終点です。お忘れもののないようご支度ください。</p>
+			</section>
+			<section>
+				<h2>電鉄富山到着</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。電鉄富山、電鉄富山、終点です。<span class="c-tokyu-announce -change">市内電車、地鉄バス、JR線、富山ライトレール線ご利用の方はお乗り換えになります。</span>お忘れものございませんようご注意ください。本日も地鉄電車をご利用いただきありがとうございました。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>

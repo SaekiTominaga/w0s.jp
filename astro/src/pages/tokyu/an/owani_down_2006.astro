@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -32,120 +34,102 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　中央弘前</span>行</p>
-			<p class="p-tokyu-announce-period">2008年の放送装置IC化まで</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>大鰐停車中</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>本日は弘南鉄道大鰐線をご利用くださいまして、ありがとうございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン列車になっておりますので、係員の居ない駅でお降りのお客様は、いちばん前のドアをご利用くださいますよう、皆様のご協力をお願いいたします。</span></p>
-				</section>
-				<section>
-					<h2>大鰐発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待ち遠さまでした。中央弘前行きの発車です。お降りの際は、お忘れ物ございませんよう、ご注意ください。次の停車駅は宿河原、宿河原、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+	<Announce station="中央弘前" type="local" operation="oneman" period="2008年の放送装置IC化まで" recordDate="2006-09-03" recordCar="7000系2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>大鰐停車中</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>本日は弘南鉄道大鰐線をご利用くださいまして、ありがとうございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン列車になっておりますので、係員の居ない駅でお降りのお客様は、いちばん前のドアをご利用くださいますよう、皆様のご協力をお願いいたします。</span></p>
+			</section>
+			<section>
+				<h2>大鰐発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お待ち遠さまでした。中央弘前行きの発車です。お降りの際は、お忘れ物ございませんよう、ご注意ください。次の停車駅は宿河原、宿河原、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>宿河原発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は鯖石、鯖石、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>宿河原発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は鯖石、鯖石、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>鯖石発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は石川プール前、石川プール前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>鯖石発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は石川プール前、石川プール前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>石川プール前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は石川、石川、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>石川プール前発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は石川、石川、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>石川発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は義塾高校前、義塾高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>石川発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は義塾高校前、義塾高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>義塾高校前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は津軽大沢、津軽大沢、降り口は左側です。整理券をお持ちの方は、駅でご精算ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>義塾高校前発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は津軽大沢、津軽大沢、降り口は左側です。整理券をお持ちの方は、駅でご精算ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>津軽大沢発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は松木平、松木平、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>津軽大沢発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は松木平、松木平、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>松木平発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は小栗山、小栗山、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>松木平発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は小栗山、小栗山、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>小栗山発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は千年、千年、降り口は右側に変わります。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>小栗山発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は千年、千年、降り口は右側に変わります。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>千年発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は城南、城南、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>千年発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は城南、城南、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>城南発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は西弘前、西弘前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>城南発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は西弘前、西弘前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>西弘前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は弘高下、弘高下、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>西弘前発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は弘高下、弘高下、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>弘高下発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お疲れさまでした。次の停車駅は終点、中央弘前、中央弘前です。お降りの際は、お忘れ物ございませんよう、いま一度お手回り品をお確かめください。降り口は右側です。整理券のお客様は、駅でご精算ください。本日は大鰐線をご利用いただきまして、ありがとうございました。またのご乗車をお待ちいたしております。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2006年9月3日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>7000系2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>弘高下発車</h2>
+				<p><span class="c-tokyu-announce -chime">♪</span>お疲れさまでした。次の停車駅は終点、中央弘前、中央弘前です。お降りの際は、お忘れ物ございませんよう、いま一度お手回り品をお確かめください。降り口は右側です。整理券のお客様は、駅でご精算ください。本日は大鰐線をご利用いただきまして、ありがとうございました。またのご乗車をお待ちいたしております。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 
 	<ListNote>
 		<li>

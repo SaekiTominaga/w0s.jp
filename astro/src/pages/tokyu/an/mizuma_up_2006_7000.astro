@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -30,123 +32,104 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通　貝塚</span>行</p>
-			<p class="p-tokyu-announce-car">7000系に搭載されていたタイプ</p>
-			<p class="p-tokyu-announce-period">2007年の7000系引退まで</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>水間発車</h2>
-					<p>長らくの間お待たせいたしました。毎度ご乗車ありがとうございます。貝塚行きでございます。次は三ヶ山口、三ヶ山口でございます。降り口は右側でございます。</p>
-				</section>
-				<section>
-					<h2>三ヶ山口到着</h2>
-					<p>三ヶ山口、三ヶ山口でございます。降り口は右側でございます。</p>
-				</section>
-			</div>
+	<Announce station="貝塚" type="local" cars={['7000系']} period="2007年の7000系引退まで" recordDate="2006-05-07" recordCar="7000系2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>水間発車</h2>
+				<p>長らくの間お待たせいたしました。毎度ご乗車ありがとうございます。貝塚行きでございます。次は三ヶ山口、三ヶ山口でございます。降り口は右側でございます。</p>
+			</section>
+			<section>
+				<h2>三ヶ山口到着</h2>
+				<p>三ヶ山口、三ヶ山口でございます。降り口は右側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>三ヶ山口発車</h2>
-					<p>次は三ツ松、三ツ松でございます。降り口は左側に変わります。</p>
-				</section>
-				<section>
-					<h2>三ツ松到着</h2>
-					<p>三ツ松、三ツ松でございます。降り口は左側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>三ヶ山口発車</h2>
+				<p>次は三ツ松、三ツ松でございます。降り口は左側に変わります。</p>
+			</section>
+			<section>
+				<h2>三ツ松到着</h2>
+				<p>三ツ松、三ツ松でございます。降り口は左側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>三ツ松発車</h2>
-					<p>次は森、森でございます。降り口は右側に変わります。</p>
-				</section>
-				<section>
-					<h2>森到着</h2>
-					<p>ご乗車ありがとうございました。森、森でございます。降り口は右側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>三ツ松発車</h2>
+				<p>次は森、森でございます。降り口は右側に変わります。</p>
+			</section>
+			<section>
+				<h2>森到着</h2>
+				<p>ご乗車ありがとうございました。森、森でございます。降り口は右側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>森発車</h2>
-					<p>次は名越、名越でございます。<span class="c-tokyu-announce -manners">なお、車内は禁煙となっておりますので、お煙草はご遠慮ください。また、携帯電話はほかのお客様にご迷惑となりますので、ご使用にならないようお願いいたします。</span>降り口は続いて右側でございます。</p>
-				</section>
-				<section>
-					<h2>名越到着</h2>
-					<p>ご乗車ありがとうございました。名越、名越でございます。降り口は右側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>森発車</h2>
+				<p>次は名越、名越でございます。<span class="c-tokyu-announce -manners">なお、車内は禁煙となっておりますので、お煙草はご遠慮ください。また、携帯電話はほかのお客様にご迷惑となりますので、ご使用にならないようお願いいたします。</span>降り口は続いて右側でございます。</p>
+			</section>
+			<section>
+				<h2>名越到着</h2>
+				<p>ご乗車ありがとうございました。名越、名越でございます。降り口は右側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>名越発車</h2>
-					<p>次は清児、清児でございます。降り口は続いて右側でございます。</p>
-				</section>
-				<section>
-					<h2>清児到着</h2>
-					<p>清児、清児でございます。降り口は右側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>名越発車</h2>
+				<p>次は清児、清児でございます。降り口は続いて右側でございます。</p>
+			</section>
+			<section>
+				<h2>清児到着</h2>
+				<p>清児、清児でございます。降り口は右側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>清児発車</h2>
-					<p>次は石才、石才でございます。<span class="c-tokyu-announce -cm">関西自動車学院へお越しのお客様は、次でお降りください。</span>なお、車内にお忘れ物のございませんようご注意願います。降り口は続いて右側でございます。</p>
-				</section>
-				<section>
-					<h2>石才到着</h2>
-					<p>ご乗車ありがとうございました。石才、石才でございます。<span class="c-tokyu-announce -cm">関西自動車学院へお越しのお客様は、当駅でお降りください。</span>降り口は右側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>清児発車</h2>
+				<p>次は石才、石才でございます。<span class="c-tokyu-announce -cm">関西自動車学院へお越しのお客様は、次でお降りください。</span>なお、車内にお忘れ物のございませんようご注意願います。降り口は続いて右側でございます。</p>
+			</section>
+			<section>
+				<h2>石才到着</h2>
+				<p>ご乗車ありがとうございました。石才、石才でございます。<span class="c-tokyu-announce -cm">関西自動車学院へお越しのお客様は、当駅でお降りください。</span>降り口は右側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>石才発車</h2>
-					<p>次は近義の里、近義の里でございます。車内にお忘れ物のございませんようご注意願います。降り口は左側に変わります。</p>
-				</section>
-				<section>
-					<h2>近義の里到着</h2>
-					<p>近義の里、近義の里でございます。降り口は左側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>石才発車</h2>
+				<p>次は近義の里、近義の里でございます。車内にお忘れ物のございませんようご注意願います。降り口は左側に変わります。</p>
+			</section>
+			<section>
+				<h2>近義の里到着</h2>
+				<p>近義の里、近義の里でございます。降り口は左側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>近義の里発車</h2>
-					<p>次は貝塚市役所前、貝塚市役所前でございます。<span class="c-tokyu-announce -cm">貝塚市役所、福祉センター、文化情報発信基地コスモスシアターへお越しのお客様は、次でお降りください。</span>降り口は続いて左側でございます。</p>
-				</section>
-				<section>
-					<h2>貝塚市役所前到着</h2>
-					<p>貝塚市役所前、貝塚市役所前でございます。<span class="c-tokyu-announce -cm">貝塚市役所、福祉センター、文化情報発信基地コスモスシアターへお越しのお客様は、当駅でお降りください。</span>降り口は左側でございます。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>近義の里発車</h2>
+				<p>次は貝塚市役所前、貝塚市役所前でございます。<span class="c-tokyu-announce -cm">貝塚市役所、福祉センター、文化情報発信基地コスモスシアターへお越しのお客様は、次でお降りください。</span>降り口は続いて左側でございます。</p>
+			</section>
+			<section>
+				<h2>貝塚市役所前到着</h2>
+				<p>貝塚市役所前、貝塚市役所前でございます。<span class="c-tokyu-announce -cm">貝塚市役所、福祉センター、文化情報発信基地コスモスシアターへお越しのお客様は、当駅でお降りください。</span>降り口は左側でございます。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>貝塚市役所前発車</h2>
-					<p>次は貝塚、貝塚、終点でございます。なお、車内にお忘れ物のございませんようご注意願います。<span class="c-tokyu-announce -change">南海線ご利用のお客様はお乗り換えください。</span></p>
-				</section>
-				<section>
-					<h2>貝塚到着</h2>
-					<p>ご乗車ありがとうございました。まもなく貝塚、貝塚、終点でございます。車内にお忘れ物のございませんよう、もう一度お確かめください。なお、裏が茶色の乗車券、定期券をお持ちのお客様は、自動改札をご利用ください。本日は水間電車をご利用いただきまして、誠にありがとうございました。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2006年5月7日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>7000系2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>貝塚市役所前発車</h2>
+				<p>次は貝塚、貝塚、終点でございます。なお、車内にお忘れ物のございませんようご注意願います。<span class="c-tokyu-announce -change">南海線ご利用のお客様はお乗り換えください。</span></p>
+			</section>
+			<section>
+				<h2>貝塚到着</h2>
+				<p>ご乗車ありがとうございました。まもなく貝塚、貝塚、終点でございます。車内にお忘れ物のございませんよう、もう一度お確かめください。なお、裏が茶色の乗車券、定期券をお持ちのお客様は、自動改札をご利用ください。本日は水間電車をご利用いただきまして、誠にありがとうございました。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>

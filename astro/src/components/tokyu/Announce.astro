@@ -1,0 +1,183 @@
+---
+import dayjs from 'dayjs';
+
+interface Props {
+	station: string; // 行先
+	type: 'local' | 'bkakutei' | 'gkakutei' | 'semiexp' | 'exp' | 'ltd' | 'hibiya' | 'kohnan-rapid' | 'hokutetsu-semiexp' | 'ikk-rapid' | 'oigawa-exp';
+	operation?: 'oneman' | 'twoman';
+	trainNote?: string; // 列車補足
+	cars?: string[]; // 車種
+	period?: string; // 期間
+	through?: string; // 直通先の備考
+	note?: string; // 補足
+	recordDate: string; // 収録日
+	recordCar: string; // 収録車両
+}
+
+const { station, type, operation, trainNote, cars, period, note, through, recordDate, recordCar } = Astro.props;
+
+let typeDisplay = '';
+switch (type) {
+	case 'local':
+	case 'bkakutei':
+	case 'gkakutei': {
+		typeDisplay = '普通';
+		break;
+	}
+	case 'kohnan-rapid': {
+		typeDisplay = '快速';
+		break;
+	}
+	case 'semiexp':
+	case 'hokutetsu-semiexp': {
+		typeDisplay = '準急';
+		break;
+	}
+	case 'exp':
+	case 'oigawa-exp': {
+		typeDisplay = '急行';
+		break;
+	}
+	case 'ltd': {
+		typeDisplay = '特急';
+		break;
+	}
+	case 'hibiya': {
+		typeDisplay = '日比谷線直通';
+		break;
+	}
+	case 'ikk-rapid': {
+		typeDisplay = '快速さくらリレー号';
+		break;
+	}
+	default:
+}
+
+let operationDisplay = '';
+switch (operation) {
+	case 'oneman': {
+		operationDisplay = 'ワンマン';
+		break;
+	}
+	case 'twoman': {
+		operationDisplay = 'ツーマン';
+		break;
+	}
+	default:
+}
+---
+
+<div class="announce">
+	<div class="header">
+		<p class="train"><span class={`c-tokyu-train -${type}`}>{typeDisplay}{operationDisplay}{'　'}{station}</span>行{trainNote !== undefined && <>（{trainNote}）</>}</p>
+		{cars !== undefined && <p class="car">{cars.join('、')}搭載タイプ</p>}
+		{period !== undefined && <p class="period">{period}</p>}
+		{note !== undefined && <p class="note">{note}</p>}
+	</div>
+
+	<slot />
+
+	{through !== undefined && <p class="through">（{through}）</p>}
+
+	<div class="footer">
+		<dl class="data">
+			<div>
+				<dt>収録日</dt>
+				<dd>{dayjs(recordDate).format('YYYY年M月D日')}</dd>
+			</div>
+			<div>
+				<dt>車種</dt>
+				<dd>{recordCar}</dd>
+			</div>
+		</dl>
+	</div>
+</div>
+
+<style>
+	.announce + :global(*) {
+		margin-block-start: calc(var(--stack-margin-base) * 2);
+	}
+
+	/* ===== 収録データ ===== */
+	.header {
+		border: 1px solid var(--color-border-dark);
+		background: var(--color-bg-light);
+		padding: 0.5em min(1.5dvi, 15px);
+		line-height: var(--line-height-narrow);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
+
+		& > :global(*) {
+			margin-inline: auto;
+			inline-size: fit-content;
+		}
+
+		& > :global(* + *) {
+			margin-block-start: calc(var(--stack-margin-base) / 3);
+		}
+	}
+
+	.footer {
+		margin-block-start: 2em;
+
+		& > * {
+			margin-inline: auto;
+			inline-size: fit-content;
+		}
+	}
+
+	/* 行先 */
+	.train {
+		font-size: calc(100% * pow(var(--font-ratio), 2));
+		font-weight: var(--font-weight-bold);
+	}
+
+	/* 車種 */
+	.car {
+	}
+
+	/* 期間 */
+	.period {
+	}
+
+	/* 補足 */
+	.note {
+		color: var(--color-gray);
+
+		&::before {
+			content: '（';
+		}
+
+		&::after {
+			content: '）';
+		}
+	}
+
+	/* 直通先の備考 */
+	.through {
+		margin-block-start: 1em;
+		text-align: center;
+	}
+
+	/* 収録データ */
+	.data {
+		display: block flex;
+		flex-flow: wrap;
+		gap: 0.5em 2em;
+		justify-content: center;
+		border: 1px solid var(--color-border-dark);
+		border-radius: var(--border-radius-normal);
+		background: var(--color-lightorange);
+		padding: 0.5em 15px;
+		line-height: var(--line-height-narrow);
+
+		& > :global(div) {
+			display: block flex;
+			flex-flow: wrap;
+		}
+
+		& :global(dt::after) {
+			margin: 0.25em;
+			content: ':';
+		}
+	}
+</style>

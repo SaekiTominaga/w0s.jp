@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,254 +27,235 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　大垣</span>行</p>
-			<p class="p-tokyu-announce-period">2019年の7700系導入から</p>
-			<p class="p-tokyu-announce-note">サイクルトレイン</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>桑名停車中</h2>
-					<p>養老鉄道をご利用いただき、ありがとうございます。この電車は大垣行きです。発車までしばらくお待ちください。</p>
-					<p lang="en">Thank you for taking Yōrō Railway. This train is bound for Ōgaki. Please wait a moment, until the train departs.</p>
-				</section>
-				<section>
-					<h2>桑名停車中</h2>
-					<p>養老鉄道では、お身体の不自由なお客様やお困りのお客様をお見かけした際は、積極的にお声掛けをして参ります。ご利用のお客様も駅や車内でお困りのお客様を見かけた際は、一言お声掛けをお願いいたします。</p>
-				</section>
-				<section>
-					<h2>桑名発車</h2>
-					<p>お待たせいたしました。養老鉄道をご利用いただき、ありがとうございます。この電車は大垣行き、大垣行きです。<span class="c-tokyu-announce -oneman">この電車はワンマン運転です。</span>次は播磨、播磨です。次の播磨でお降りのお客様は、乗車券を待合所付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。また各車両に優先座席を設けております。ご協力をお願いいたします。</p>
-					<p lang="en">Thank you for waiting and thank you for taking Yōrō Railway. This train is bound for Ōgaki. The next stop is Harima.</p>
-				</section>
-				<section>
-					<h2>播磨到着</h2>
-					<p>播磨、播磨です。右側の扉が開きます。扉にご注意ください。お降りの際、足元にご注意ください。</p>
-					<p lang="en">This is Harima. The doors on the right side will open. Please watch your step when getting off the train.</p>
-				</section>
-			</div>
+	<Announce station="大垣" type="local" operation="oneman" period="2019年の7700系導入から" note="サイクルトレイン" recordDate="2019-05-01" recordCar="7700系3両編成">
+		<AnnounceStation>
+			<section>
+				<h2>桑名停車中</h2>
+				<p>養老鉄道をご利用いただき、ありがとうございます。この電車は大垣行きです。発車までしばらくお待ちください。</p>
+				<p lang="en">Thank you for taking Yōrō Railway. This train is bound for Ōgaki. Please wait a moment, until the train departs.</p>
+			</section>
+			<section>
+				<h2>桑名停車中</h2>
+				<p>養老鉄道では、お身体の不自由なお客様やお困りのお客様をお見かけした際は、積極的にお声掛けをして参ります。ご利用のお客様も駅や車内でお困りのお客様を見かけた際は、一言お声掛けをお願いいたします。</p>
+			</section>
+			<section>
+				<h2>桑名発車</h2>
+				<p>お待たせいたしました。養老鉄道をご利用いただき、ありがとうございます。この電車は大垣行き、大垣行きです。<span class="c-tokyu-announce -oneman">この電車はワンマン運転です。</span>次は播磨、播磨です。次の播磨でお降りのお客様は、乗車券を待合所付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。また各車両に優先座席を設けております。ご協力をお願いいたします。</p>
+				<p lang="en">Thank you for waiting and thank you for taking Yōrō Railway. This train is bound for Ōgaki. The next stop is Harima.</p>
+			</section>
+			<section>
+				<h2>播磨到着</h2>
+				<p>播磨、播磨です。右側の扉が開きます。扉にご注意ください。お降りの際、足元にご注意ください。</p>
+				<p lang="en">This is Harima. The doors on the right side will open. Please watch your step when getting off the train.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>播磨発車</h2>
-					<p>次は下深谷、下深谷です。</p>
-					<p lang="en">The next stop is Shimofukaya.</p>
-				</section>
-				<section>
-					<h2>下深谷到着</h2>
-					<p>下深谷、下深谷です。右側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Shimofukaya. The doors on the right side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>播磨発車</h2>
+				<p>次は下深谷、下深谷です。</p>
+				<p lang="en">The next stop is Shimofukaya.</p>
+			</section>
+			<section>
+				<h2>下深谷到着</h2>
+				<p>下深谷、下深谷です。右側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Shimofukaya. The doors on the right side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>下深谷発車</h2>
-					<p>次は下野代、下野代です。次の下野代でお降りのお客様は、乗車券を待合室付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。<span class="c-tokyu-announce -manners">お客様にお願いいたします。携帯電話はマナーモードにしていただき、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
-					<p lang="en">The next stop is Shimonosiro. <span class="c-tokyu-announce -manners">Attention, please. While on the train, please switch off your mobile phone to silent mode and refrain from speaking on the phone, thank you.</span></p>
-				</section>
-				<section>
-					<h2>下野代到着</h2>
-					<p>下野代、下野代です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Shimonosiro. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>下深谷発車</h2>
+				<p>次は下野代、下野代です。次の下野代でお降りのお客様は、乗車券を待合室付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。<span class="c-tokyu-announce -manners">お客様にお願いいたします。携帯電話はマナーモードにしていただき、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
+				<p lang="en">The next stop is Shimonosiro. <span class="c-tokyu-announce -manners">Attention, please. While on the train, please switch off your mobile phone to silent mode and refrain from speaking on the phone, thank you.</span></p>
+			</section>
+			<section>
+				<h2>下野代到着</h2>
+				<p>下野代、下野代です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Shimonosiro. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>下野代発車</h2>
-					<p>次は多度、多度です。<span class="c-tokyu-announce -attention">本日はサイクルトレインをご利用くださいましてありがとうございます。自転車をお持ち込みのお客様にお願いいたします。車内では自転車が倒れないように充分ご注意ください。</span></p>
-					<p lang="en">The next stop is Tado. <span class="c-tokyu-announce -attention">Thank you for taking the cycle train today. While on the train, please make sure the your bicycle these nor topple then, thank you.</span></p>
-				</section>
-				<section>
-					<h2>多度到着</h2>
-					<p>多度、多度です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Tado. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>下野代発車</h2>
+				<p>次は多度、多度です。<span class="c-tokyu-announce -attention">本日はサイクルトレインをご利用くださいましてありがとうございます。自転車をお持ち込みのお客様にお願いいたします。車内では自転車が倒れないように充分ご注意ください。</span></p>
+				<p lang="en">The next stop is Tado. <span class="c-tokyu-announce -attention">Thank you for taking the cycle train today. While on the train, please make sure the your bicycle these nor topple then, thank you.</span></p>
+			</section>
+			<section>
+				<h2>多度到着</h2>
+				<p>多度、多度です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Tado. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>多度発車</h2>
-					<p>次は美濃松山、松山です。次の美濃松山でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Mino-matsuyama.</p>
-				</section>
-				<section>
-					<h2>美濃松山到着</h2>
-					<p>美濃松山、松山です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Mino-matsuyama. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>多度発車</h2>
+				<p>次は美濃松山、松山です。次の美濃松山でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Mino-matsuyama.</p>
+			</section>
+			<section>
+				<h2>美濃松山到着</h2>
+				<p>美濃松山、松山です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Mino-matsuyama. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>美濃松山発車</h2>
-					<p>次は石津、石津です。次の石津でお降りのお客様は、乗車券を改札口備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Ishizu.</p>
-				</section>
-				<section>
-					<h2>石津到着</h2>
-					<p>石津、石津です。右側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Ishizu. The doors on the right side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>美濃松山発車</h2>
+				<p>次は石津、石津です。次の石津でお降りのお客様は、乗車券を改札口備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Ishizu.</p>
+			</section>
+			<section>
+				<h2>石津到着</h2>
+				<p>石津、石津です。右側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Ishizu. The doors on the right side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>石津発車</h2>
-					<p>次は美濃山崎、山崎です。次の美濃山崎でお降りのお客様は、乗車券を待合所付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Mino-yamazaki.</p>
-				</section>
-				<section>
-					<h2>美濃山崎到着</h2>
-					<p>美濃山崎、山崎です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Mino-yamazaki. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>石津発車</h2>
+				<p>次は美濃山崎、山崎です。次の美濃山崎でお降りのお客様は、乗車券を待合所付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Mino-yamazaki.</p>
+			</section>
+			<section>
+				<h2>美濃山崎到着</h2>
+				<p>美濃山崎、山崎です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Mino-yamazaki. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>美濃山崎発車</h2>
-					<p>次は駒野、駒野です。</p>
-					<p lang="en">The next stop is Komano.</p>
-				</section>
-				<section>
-					<h2>駒野到着</h2>
-					<p>駒野、駒野です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Komano. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>美濃山崎発車</h2>
+				<p>次は駒野、駒野です。</p>
+				<p lang="en">The next stop is Komano.</p>
+			</section>
+			<section>
+				<h2>駒野到着</h2>
+				<p>駒野、駒野です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Komano. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>駒野発車</h2>
-					<p>次は美濃津屋、津屋です。次の美濃津屋でお降りのお客様は、乗車券を待合所付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Mino-tsuya.</p>
-				</section>
-				<section>
-					<h2>美濃津屋到着</h2>
-					<p>美濃津屋、津屋です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Mino-tsuya. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>駒野発車</h2>
+				<p>次は美濃津屋、津屋です。次の美濃津屋でお降りのお客様は、乗車券を待合所付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Mino-tsuya.</p>
+			</section>
+			<section>
+				<h2>美濃津屋到着</h2>
+				<p>美濃津屋、津屋です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Mino-tsuya. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>美濃津屋発車</h2>
-					<p>次は養老、養老です。</p>
-					<p lang="en">The next stop is Yōrō.</p>
-				</section>
-				<section>
-					<h2>養老到着</h2>
-					<p>養老、養老です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Yōrō. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>美濃津屋発車</h2>
+				<p>次は養老、養老です。</p>
+				<p lang="en">The next stop is Yōrō.</p>
+			</section>
+			<section>
+				<h2>養老到着</h2>
+				<p>養老、養老です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Yōrō. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>養老発車</h2>
-					<p>次は美濃高田、高田です。次の美濃高田でお降りのお客様は、乗車券を改札口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Mino-takada.</p>
-				</section>
-				<section>
-					<h2>美濃高田到着</h2>
-					<p>美濃高田、高田です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Mino-takada. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>養老発車</h2>
+				<p>次は美濃高田、高田です。次の美濃高田でお降りのお客様は、乗車券を改札口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Mino-takada.</p>
+			</section>
+			<section>
+				<h2>美濃高田到着</h2>
+				<p>美濃高田、高田です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Mino-takada. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>美濃高田発車</h2>
-					<p>次は烏江、烏江です。次の烏江でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。<span class="c-tokyu-announce -attention">本日はサイクルトレインをご利用くださいましてありがとうございます。自転車をお持ち込みのお客様にお願いいたします。車内では自転車が倒れないように充分ご注意ください。</span></p>
-					<p lang="en">The next stop is Karasue. <span class="c-tokyu-announce -attention">Thank you for taking the cycle train today. While on the train, please make sure the your bicycle these nor topple then, thank you.</span></p>
-				</section>
-				<section>
-					<h2>烏江到着</h2>
-					<p>烏江、烏江です。右側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Karasue. The doors on the right side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>美濃高田発車</h2>
+				<p>次は烏江、烏江です。次の烏江でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。<span class="c-tokyu-announce -attention">本日はサイクルトレインをご利用くださいましてありがとうございます。自転車をお持ち込みのお客様にお願いいたします。車内では自転車が倒れないように充分ご注意ください。</span></p>
+				<p lang="en">The next stop is Karasue. <span class="c-tokyu-announce -attention">Thank you for taking the cycle train today. While on the train, please make sure the your bicycle these nor topple then, thank you.</span></p>
+			</section>
+			<section>
+				<h2>烏江到着</h2>
+				<p>烏江、烏江です。右側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Karasue. The doors on the right side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>烏江発車</h2>
-					<p>次は大外羽、大外羽です。次の大外羽でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。<span class="c-tokyu-announce -manners">お客様にお願いいたします。携帯電話はマナーモードにしていただき、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
-					<p lang="en">The next stop is Ōtoba. <span class="c-tokyu-announce -manners">Attention, please. While on the train, please switch off your mobile phone to silent mode and refrain from speaking on the phone, thank you.</span></p>
-				</section>
-				<section>
-					<h2>大外羽到着</h2>
-					<p>大外羽、大外羽です。右側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Ōtoba. The doors on the right side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>烏江発車</h2>
+				<p>次は大外羽、大外羽です。次の大外羽でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。<span class="c-tokyu-announce -manners">お客様にお願いいたします。携帯電話はマナーモードにしていただき、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
+				<p lang="en">The next stop is Ōtoba. <span class="c-tokyu-announce -manners">Attention, please. While on the train, please switch off your mobile phone to silent mode and refrain from speaking on the phone, thank you.</span></p>
+			</section>
+			<section>
+				<h2>大外羽到着</h2>
+				<p>大外羽、大外羽です。右側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Ōtoba. The doors on the right side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>大外羽発車</h2>
-					<p>次は友江、友江です。次の友江でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Tomoe.</p>
-				</section>
-				<section>
-					<h2>友江到着</h2>
-					<p>友江、友江です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Tomoe. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>大外羽発車</h2>
+				<p>次は友江、友江です。次の友江でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Tomoe.</p>
+			</section>
+			<section>
+				<h2>友江到着</h2>
+				<p>友江、友江です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Tomoe. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>友江発車</h2>
-					<p>次は美濃青柳、青柳です。次の美濃青柳でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
-					<p lang="en">The next stop is Mino-yanagi.</p>
-				</section>
-				<section>
-					<h2>美濃青柳到着</h2>
-					<p>美濃青柳、青柳です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Mino-yanagi. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>友江発車</h2>
+				<p>次は美濃青柳、青柳です。次の美濃青柳でお降りのお客様は、乗車券を出口付近備え付けの乗車券箱にお入れ願います。なお、乗車券をお持ちでないお客様は、いちばん前の運賃箱で精算願います。</p>
+				<p lang="en">The next stop is Mino-yanagi.</p>
+			</section>
+			<section>
+				<h2>美濃青柳到着</h2>
+				<p>美濃青柳、青柳です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Mino-yanagi. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>美濃青柳発車</h2>
-					<p>次は西大垣、西大垣です。</p>
-					<p lang="en">The next stop is Nishi-ōgaki.</p>
-				</section>
-				<section>
-					<h2>西大垣到着</h2>
-					<p>西大垣、西大垣です。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">This is Nishi-ōgaki. The doors on the left side will open.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>美濃青柳発車</h2>
+				<p>次は西大垣、西大垣です。</p>
+				<p lang="en">The next stop is Nishi-ōgaki.</p>
+			</section>
+			<section>
+				<h2>西大垣到着</h2>
+				<p>西大垣、西大垣です。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">This is Nishi-ōgaki. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>西大垣発車</h2>
-					<p>次は大垣、大垣です。この電車は次の大垣までです。<span class="c-tokyu-announce -change">揖斐方面とJR線はお乗り換えです。</span>お忘れもののないようご用意ください。</p>
-					<p lang="en">The next stop is Ōgaki. <span class="c-tokyu-announce -change">Please change here for trains to Ibi and the JR Line.</span></p>
-				</section>
-				<section>
-					<h2>大垣到着</h2>
-					<p>ご乗車ありがとうございました。大垣、大垣です。この電車はこの駅までです。<span class="c-tokyu-announce -change">揖斐方面とJR線はお乗り換えです。</span>お忘れもののないようご注意ください。養老鉄道をご利用いただきありがとうございました。左側の扉が開きます。扉にご注意ください。</p>
-					<p lang="en">Thank you for taking this train. This is Ōgaki. This is the final stop for this train. <span class="c-tokyu-announce -change">Please change here for trains to Ibi and the JR Line.</span> Thank you for taking Yōrō Railway. The doors on the left side will open.</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2019年5月1日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>7700系3両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>西大垣発車</h2>
+				<p>次は大垣、大垣です。この電車は次の大垣までです。<span class="c-tokyu-announce -change">揖斐方面とJR線はお乗り換えです。</span>お忘れもののないようご用意ください。</p>
+				<p lang="en">The next stop is Ōgaki. <span class="c-tokyu-announce -change">Please change here for trains to Ibi and the JR Line.</span></p>
+			</section>
+			<section>
+				<h2>大垣到着</h2>
+				<p>ご乗車ありがとうございました。大垣、大垣です。この電車はこの駅までです。<span class="c-tokyu-announce -change">揖斐方面とJR線はお乗り換えです。</span>お忘れもののないようご注意ください。養老鉄道をご利用いただきありがとうございました。左側の扉が開きます。扉にご注意ください。</p>
+				<p lang="en">Thank you for taking this train. This is Ōgaki. This is the final stop for this train. <span class="c-tokyu-announce -change">Please change here for trains to Ibi and the JR Line.</span> Thank you for taking Yōrō Railway. The doors on the left side will open.</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>
