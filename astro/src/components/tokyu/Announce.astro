@@ -1,5 +1,5 @@
 ---
-import dayjs from 'dayjs';
+import Date from '../Date.astro';
 
 interface Props {
 	station: string; // 行先
@@ -75,15 +75,17 @@ switch (operation) {
 		{note !== undefined && <p class="note">{note}</p>}
 	</div>
 
-	<slot />
+	<div class="main">
+		<slot />
 
-	{through !== undefined && <p class="through">（{through}）</p>}
+		{through !== undefined && <p class="through">（{through}）</p>}
+	</div>
 
 	<div class="footer">
 		<dl class="data">
 			<div>
 				<dt>収録日</dt>
-				<dd>{dayjs(recordDate).format('YYYY年M月D日')}</dd>
+				<dd><Date value={recordDate} /></dd>
 			</div>
 			<div>
 				<dt>車種</dt>
@@ -98,7 +100,6 @@ switch (operation) {
 		margin-block-start: calc(var(--stack-margin-base) * 2);
 	}
 
-	/* ===== 収録データ ===== */
 	.header {
 		border: 1px solid var(--color-border-dark);
 		background: var(--color-bg-light);
@@ -119,7 +120,7 @@ switch (operation) {
 	.footer {
 		margin-block-start: 2em;
 
-		& > * {
+		& > :global(*) {
 			margin-inline: auto;
 			inline-size: fit-content;
 		}
