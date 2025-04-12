@@ -1,0 +1,67 @@
+---
+interface Props {
+	type: 'r' | 'ch' | 'gto' | 'igbt';
+	siv?: number;
+}
+
+const { type, siv } = Astro.props;
+
+let typeDisplay = '';
+switch (type) {
+	case 'r': {
+		typeDisplay = '抵抗制御';
+		break;
+	}
+	case 'ch': {
+		typeDisplay = '界磁チョッパ';
+		break;
+	}
+	case 'gto': {
+		typeDisplay = 'GTO-VVVF';
+		break;
+	}
+	case 'igbt': {
+		typeDisplay = `IGBT-VVVF`;
+		break;
+	}
+	default:
+}
+---
+
+<span class:list={['cont', type !== undefined ? `-${type}` : undefined]}>
+	<span class="type">{typeDisplay}</span>
+	{siv !== undefined && <span class="siv">（{siv}kVA-SIV一体型）</span>}
+</span>
+
+<style>
+	.cont {
+		display: inline flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		/* 抵抗制御 */
+		&.-r {
+			color: var(--color-black);
+		}
+
+		/* 界磁チョッパ */
+		&.-ch {
+			color: var(--color-black);
+		}
+
+		/* GTO-VVVF */
+		&.-gto {
+			color: var(--color-blue);
+		}
+
+		/* IGBT-VVVF */
+		&.-igbt {
+			color: var(--color-red);
+		}
+
+		/* SIV一体型VVVF */
+		&.-igbt:has(.siv) {
+			color: var(--color-darkgreen);
+		}
+	}
+</style>

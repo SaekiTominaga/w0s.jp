@@ -1,0 +1,50 @@
+---
+interface Props {
+	electric: 'dc' | 'ac';
+	model: string;
+	count?: number;
+}
+
+const { electric, model, count } = Astro.props;
+
+let electricDisplay = '';
+switch (electric) {
+	case 'dc': {
+		electricDisplay = '直流';
+		break;
+	}
+	case 'ac': {
+		electricDisplay = '交流';
+		break;
+	}
+	default:
+}
+---
+
+<span class:list={['comp', electric !== undefined ? `-${electric}` : undefined]}>
+	<span class="electric">{electricDisplay}</span>
+	<span class="model">{model}</span>
+	{count !== undefined && <span class="count">（{count}台）</span>}
+</span>
+
+<style>
+	.comp {
+		display: inline flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		/* 直流駆動 */
+		&.-dc {
+			color: var(--color-blue);
+		}
+
+		/* 交流駆動 */
+		&.-ac {
+			color: var(--color-red);
+		}
+	}
+
+	.electric {
+		margin-inline-end: 0.25em;
+	}
+</style>

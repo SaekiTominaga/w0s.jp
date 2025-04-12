@@ -1,0 +1,45 @@
+---
+interface Props {
+	v100?: number;
+	v24?: number;
+	count?: number;
+}
+
+const { v100, v24, count } = Astro.props;
+
+const display: string[] = [];
+if (v100 !== undefined) {
+	display.push(`100V・${v100}Ah`);
+}
+if (v24 !== undefined) {
+	display.push(`24V・${v24}Ah`);
+}
+---
+
+<span class:list={['bt', v100 !== undefined ? '-v100' : undefined, v24 !== undefined ? '-v24' : undefined]}>
+	<span class="type">{display.join(' / ')}</span>
+	{count !== undefined && <span class="count">（{count}台）</span>}
+</span>
+
+<style>
+	.bt {
+		display: inline flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		/* 100V */
+		&.-v100 {
+			color: var(--color-blue);
+		}
+
+		/* 24V */
+		&.-v24 {
+			color: var(--color-red);
+		}
+
+		/* 100V/24V一体型 */
+		&.-v100.-v24 {
+			color: var(--color-darkgreen);
+		}
+	}
+</style>

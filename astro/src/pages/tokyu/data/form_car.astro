@@ -4,6 +4,12 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import MachineForm from '@components/tokyu/MachineForm.astro';
+import MachineFormAps from '@components/tokyu/MachineFormAps.astro';
+import MachineFormBattery from '@components/tokyu/MachineFormBattery.astro';
+import MachineFormComp from '@components/tokyu/MachineFormComp.astro';
+import MachineFormCont from '@components/tokyu/MachineFormCont.astro';
+import MachineFormSeries from '@components/tokyu/MachineFormSeries.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -37,96 +43,69 @@ const slugger = new GithubSlugger();
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7200形</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">デヤ7200 <span class="p-tokyu-form__type -m-dc">cMc</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td><span class="p-tokyu-form__device -ctr-r">抵抗制御</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">50kVA-SIV</span></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
+					<MachineForm>
+						<Fragment slot="series">
+							<MachineFormSeries name="デヤ7200" sign="cMc" electric="dc" />
+						</Fragment>
+						<Fragment slot="cont">
+							<td><MachineFormCont type="r" /></td>
+						</Fragment>
+						<Fragment slot="aps">
+							<td><MachineFormAps type="siv" use="much" capacity={50} /></td>
+						</Fragment>
+						<Fragment slot="cp">
+							<td><MachineFormComp electric="dc" model="HS-20" /></td>
+						</Fragment>
+						<Fragment slot="bt">
+							<td><MachineFormBattery v100={30} /></td>
+						</Fragment>
+					</MachineForm>
 				</Section>
 			</div>
 			<div class="c-flex__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7290形</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">デヤ7290 <span class="p-tokyu-form__type -m-dc">cMc</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td><span class="p-tokyu-form__device -ctr-r">抵抗制御</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-few">7.5kVA-MG</span>、<span class="p-tokyu-form__device -aps-few">5.5kVA-MG</span></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
+					<MachineForm>
+						<Fragment slot="series">
+							<MachineFormSeries name="デヤ7290" sign="cMc" electric="dc" />
+						</Fragment>
+						<Fragment slot="cont">
+							<td><MachineFormCont type="r" /></td>
+						</Fragment>
+						<Fragment slot="aps">
+							<td><MachineFormAps type="mg" use="few" capacity={7.5} />、<MachineFormAps type="mg" use="few" capacity={5.5} /></td>
+						</Fragment>
+						<Fragment slot="cp">
+							<td><MachineFormComp electric="dc" model="HS-20" /></td>
+						</Fragment>
+						<Fragment slot="bt">
+							<td><MachineFormBattery v100={30} /></td>
+						</Fragment>
+					</MachineForm>
 				</Section>
 			</div>
 			<div class="c-flex__item">
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">サヤ7590形</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">サヤ7590 <span class="p-tokyu-form__type -t">T</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
+					<MachineForm>
+						<Fragment slot="series">
+							<MachineFormSeries name="サヤ7590" sign="T" />
+						</Fragment>
+						<Fragment slot="cont">
+							<td></td>
+						</Fragment>
+						<Fragment slot="aps">
+							<td></td>
+						</Fragment>
+						<Fragment slot="cp">
+							<td></td>
+						</Fragment>
+						<Fragment slot="bt">
+							<td></td>
+						</Fragment>
+					</MachineForm>
 				</Section>
 			</div>
 		</div>
@@ -135,1193 +114,966 @@ const slugger = new GithubSlugger();
 	<Section id="series7600">
 		<Fragment slot="heading">7600系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">池上、多摩川線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">池上、多摩川線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">7600形 <span class="p-tokyu-form__type -tc">Tc</span></th>
-								<th scope="col">7670形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">7650形 <span class="p-tokyu-form__type -m-ac">Mc</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">90kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・20Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="7600形" sign="Tc" />
+					<MachineFormSeries name="7670形" sign="M" electric="ac" />
+					<MachineFormSeries name="7650形" sign="Mc" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={90} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={20} /></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series7700">
 		<Fragment slot="heading">7700系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">池上、多摩川線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">池上、多摩川線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">7900形 <span class="p-tokyu-form__type -tc">Tc</span></th>
-								<th scope="col">7800形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">7700形 <span class="p-tokyu-form__type -m-ac">Mc</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span>、<span class="p-tokyu-form__device -bt-24">24V・20Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">池上、多摩川線（7915F）</Fragment>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="7900形" sign="Tc" />
+					<MachineFormSeries name="7800形" sign="M" electric="ac" />
+					<MachineFormSeries name="7700形" sign="Mc" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td><MachineFormBattery v100={30} /></td>
+					<td><MachineFormBattery v100={40} />、<MachineFormBattery v24={20} /></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">クハ7915 <span class="p-tokyu-form__type -tc">Tc</span></th>
-								<th scope="col">デハ7815 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">デハ7715 <span class="p-tokyu-form__type -m-ac">Mc</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-igbt">IGBT-VVVF</span></td>
-								<td rowspan="2"><span class="p-tokyu-form__device -ctr-siv">IGBT-VVVF（140kVA-SIV一体型）</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span>、<span class="p-tokyu-form__device -bt-24">24V・20Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">池上、多摩川線（7915F）</Fragment>
+
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="クハ7915" sign="Tc" />
+					<MachineFormSeries name="デハ7815" sign="M" electric="ac" />
+					<MachineFormSeries name="デハ7715" sign="Mc" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="igbt" /></td>
+					<td rowspan="2"><MachineFormCont type="igbt" siv={140} /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={30} />、<MachineFormBattery v24={20} /></td>
+					<td><MachineFormBattery v100={30} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series8000">
 		<Fragment slot="heading">8000系グループ</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">田園都市線8500系（CP3台編成）</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">田園都市線8500系（CP3台編成）</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">8600形 <span class="p-tokyu-form__type -m-dc">M2c</span></th>
-								<th scope="col">8700形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8900形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">8800形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8700形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8800形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8700形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8900形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">8800形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8500形 <span class="p-tokyu-form__type -m-dc">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="8600形" sign="M2c" electric="dc" />
+					<MachineFormSeries name="8700形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8900形" sign="T" />
+					<MachineFormSeries name="8800形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8700形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8800形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8700形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8900形" sign="T" />
+					<MachineFormSeries name="8800形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8500形" sign="M1c" electric="dc" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HB-2000" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
 
-					<ListNote>
-						<li>18次車以降の空気圧縮機はHS-20形</li>
-					</ListNote>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">田園都市線8500系（CP4台編成・8637F）</Fragment>
+			<ListNote>
+				<li>18次車以降の空気圧縮機は HS-20形</li>
+			</ListNote>
+		</Section>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">デハ8637 <span class="p-tokyu-form__type -m-dc">M2c</span></th>
-								<th scope="col">デハ8797 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">サハ8973 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">デハ0801 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">デハ8798 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">デハ0808 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">デハ0711 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">サハ8980 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">デハ0803 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">デハ8537 <span class="p-tokyu-form__type -m-dc">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">田園都市線8500系（VVVF車組込・8642F）</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">田園都市線8500系（CP4台編成・8637F）</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">デハ8642 <span class="p-tokyu-form__type -m-dc">M2c</span></th>
-								<th scope="col">デハ0710 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">サハ8979 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">デハ0818 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">デハ0718 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">デハ0802 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">デハ8799 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">サハ8974 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">デハ0809 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">デハ8542 <span class="p-tokyu-form__type -m-dc">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">田園都市線8090系</Fragment>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="デハ8637" sign="M2c" electric="dc" />
+					<MachineFormSeries name="デハ8797" sign="M1" electric="dc" />
+					<MachineFormSeries name="サハ8973" sign="T" />
+					<MachineFormSeries name="デハ0801" sign="M2" electric="dc" />
+					<MachineFormSeries name="デハ8798" sign="M1" electric="dc" />
+					<MachineFormSeries name="デハ0808" sign="M2" electric="dc" />
+					<MachineFormSeries name="デハ0711" sign="M1" electric="dc" />
+					<MachineFormSeries name="サハ8980" sign="T" />
+					<MachineFormSeries name="デハ0803" sign="M2" electric="dc" />
+					<MachineFormSeries name="デハ8537" sign="M1c" electric="dc" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">8690形 <span class="p-tokyu-form__type -m-dc">M2c</span></th>
-								<th scope="col">8190形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8390形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">8290形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8190形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8290形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8190形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8390形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">8290形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8590形 <span class="p-tokyu-form__type -m-dc">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">大井町線8090系（先頭車が12〜13次車）</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">田園都市線8500系（VVVF車組込・8642F）</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">8090形 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">8490形 <span class="p-tokyu-form__type -m-dc">M</span></th>
-								<th scope="col">8290形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8190形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8090形 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">140kVA-MG</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-few">10kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000（2台）</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span>、<span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="デハ8642" sign="M2c" electric="dc" />
+					<MachineFormSeries name="デハ0710" sign="M1" electric="dc" />
+					<MachineFormSeries name="サハ8979" sign="T" />
+					<MachineFormSeries name="デハ0818" sign="M2" electric="ac" />
+					<MachineFormSeries name="デハ0718" sign="M1" electric="ac" />
+					<MachineFormSeries name="デハ0802" sign="M2" electric="ac" />
+					<MachineFormSeries name="デハ8799" sign="M1" electric="ac" />
+					<MachineFormSeries name="サハ8974" sign="T" />
+					<MachineFormSeries name="デハ0809" sign="M2" electric="dc" />
+					<MachineFormSeries name="デハ8542" sign="M1c" electric="dc" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 
-					<ListNote>
-						<li>デハ8296の補助電源装置は100kVA-SIV</li>
-					</ListNote>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">大井町線8090系（先頭車が16〜17次車）</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">田園都市線8090系</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">8090形 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">8490形 <span class="p-tokyu-form__type -m-dc">M</span></th>
-								<th scope="col">8290形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8190形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8090形 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-few">10kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000（2台）</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span>、<span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="8690形" sign="M2c" electric="dc" />
+					<MachineFormSeries name="8190形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8390形" sign="T" />
+					<MachineFormSeries name="8290形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8190形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8290形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8190形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8390形" sign="T" />
+					<MachineFormSeries name="8290形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8590形" sign="M1c" electric="dc" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" /></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 
-					<ListNote>
-						<li>デハ8298、8282、8290の補助電源装置は100kVA-SIV</li>
-					</ListNote>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">大井町線8090系（先頭車が8590系）</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">大井町線8090系（先頭車が12〜13次車）</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">8690形 <span class="p-tokyu-form__type -m-dc">M2c</span></th>
-								<th scope="col">8190形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8390形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">8290形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8590形 <span class="p-tokyu-form__type -m-dc">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HB-2000（2台）</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah（2台）</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">大井町線8500系</Fragment>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="8090形" sign="Tc2" />
+					<MachineFormSeries name="8490形" sign="M" electric="dc" />
+					<MachineFormSeries name="8290形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8190形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8090形" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="mg" use="much" capacity={140} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="few" capacity={10} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" count={2} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} />、<MachineFormBattery v24={30} /></td>
+				</Fragment>
+			</MachineForm>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">8600形 <span class="p-tokyu-form__type -m-dc">M2c</span></th>
-								<th scope="col">8700形 <span class="p-tokyu-form__type -m-dc">M1</span></th>
-								<th scope="col">8900形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">8800形 <span class="p-tokyu-form__type -m-dc">M2</span></th>
-								<th scope="col">8500形 <span class="p-tokyu-form__type -m-dc">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-ch">界磁チョッパ</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-few">2kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-24">24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・40Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<ListNote>
+				<li>デハ8296 の補助電源装置は 100kVA-SIV</li>
+			</ListNote>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">大井町線8090系（先頭車が16〜17次車）</Fragment>
+
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="8090形" sign="Tc2" />
+					<MachineFormSeries name="8490形" sign="M" electric="dc" />
+					<MachineFormSeries name="8290形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8190形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8090形" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="few" capacity={10} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" count={2} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={40} />、<MachineFormBattery v24={30} /></td>
+				</Fragment>
+			</MachineForm>
+
+			<ListNote>
+				<li>デハ8298、8282、8290 の補助電源装置は 100kVA-SIV</li>
+			</ListNote>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">大井町線8090系（先頭車が8590系）</Fragment>
+
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="8690形" sign="M2c" electric="dc" />
+					<MachineFormSeries name="8190形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8390形" sign="T" />
+					<MachineFormSeries name="8290形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8590形" sign="M1c" electric="dc" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HB-2000" count={2} /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} count={2} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">大井町線8500系</Fragment>
+
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="8600形" sign="M2c" electric="dc" />
+					<MachineFormSeries name="8700形" sign="M1" electric="dc" />
+					<MachineFormSeries name="8900形" sign="T" />
+					<MachineFormSeries name="8800形" sign="M2" electric="dc" />
+					<MachineFormSeries name="8500形" sign="M1c" electric="dc" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="ch" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="few" capacity={2} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="dc" model="HS-20" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+					<td><MachineFormBattery v24={30} /></td>
+					<td><MachineFormBattery v100={40} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series9000">
 		<Fragment slot="heading">9000系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">東横線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">東横線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">9000形 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">9200形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">9700形 <span class="p-tokyu-form__type -t">T2</span></th>
-								<th scope="col">9300形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">9800形 <span class="p-tokyu-form__type -t">T1</span></th>
-								<th scope="col">9400形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">9600形 <span class="p-tokyu-form__type -m-ac">M0</span></th>
-								<th scope="col">9100形 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">大井町線</Fragment>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="9000形" sign="Tc2" />
+					<MachineFormSeries name="9200形" sign="M" electric="ac" />
+					<MachineFormSeries name="9700形" sign="T2" />
+					<MachineFormSeries name="9300形" sign="M" electric="ac" />
+					<MachineFormSeries name="9800形" sign="T1" />
+					<MachineFormSeries name="9400形" sign="M" electric="ac" />
+					<MachineFormSeries name="9600形" sign="M0" electric="ac" />
+					<MachineFormSeries name="9100形" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">クハ9007 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">デハ9207 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">デハ9407 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">デハ9607 <span class="p-tokyu-form__type -m-ac">M0</span></th>
-								<th scope="col">クハ9107 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">大井町線</Fragment>
+
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="クハ9007" sign="Tc2" />
+					<MachineFormSeries name="デハ9207" sign="M" electric="ac" />
+					<MachineFormSeries name="デハ9407" sign="M" electric="ac" />
+					<MachineFormSeries name="デハ9607" sign="M0" electric="ac" />
+					<MachineFormSeries name="クハ9107" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series1000">
 		<Fragment slot="heading">1000系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">東横線1000系</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">東横線1000系</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">1000形 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">1250形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">1200形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">1350形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">1300形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">1450形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">1400形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">1100形 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">池上、多摩川線1000N′系</Fragment>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="1000形" sign="Tc2" />
+					<MachineFormSeries name="1250形" sign="M2" electric="ac" />
+					<MachineFormSeries name="1200形" sign="M1" electric="ac" />
+					<MachineFormSeries name="1350形" sign="M2" electric="ac" />
+					<MachineFormSeries name="1300形" sign="M1" electric="ac" />
+					<MachineFormSeries name="1450形" sign="M2" electric="ac" />
+					<MachineFormSeries name="1400形" sign="M1" electric="ac" />
+					<MachineFormSeries name="1100形" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">1000形 <span class="p-tokyu-form__type -tc">Tc</span></th>
-								<th scope="col">1200形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">1310形 <span class="p-tokyu-form__type -m-ac">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-10</span></td>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-10</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">池上、多摩川線1000N系</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">池上、多摩川線1000N′系</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">1000形 <span class="p-tokyu-form__type -tc">Tc</span></th>
-								<th scope="col">1200形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">1310形 <span class="p-tokyu-form__type -m-ac">M1c</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">120kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-20（2台）</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="1000形" sign="Tc" />
+					<MachineFormSeries name="1200形" sign="M" electric="ac" />
+					<MachineFormSeries name="1310形" sign="M1c" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-10" /></td>
+					<td><MachineFormComp electric="dc" model="HS-10" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={30} /></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">池上、多摩川線1000N系</Fragment>
+
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="1000形" sign="Tc" />
+					<MachineFormSeries name="1200形" sign="M1" electric="ac" />
+					<MachineFormSeries name="1310形" sign="M1c" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td><MachineFormCont type="gto" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={120} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-20" count={2} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td><MachineFormBattery v100={30} /></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series2000">
 		<Fragment slot="heading">2000系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">田園都市線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">田園都市線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">2000形 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">2250形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">2200形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">2700形 <span class="p-tokyu-form__type -t">T2</span></th>
-								<th scope="col">2350形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">2300形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">2800形 <span class="p-tokyu-form__type -t">T1</span></th>
-								<th scope="col">2450形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">2400形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">2100形 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-gto">GTO-VVVF</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">170kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-20</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-100">100V・30Ah</span></td>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・30Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="2000形" sign="Tc2" />
+					<MachineFormSeries name="2250形" sign="M2" electric="ac" />
+					<MachineFormSeries name="2200形" sign="M1" electric="ac" />
+					<MachineFormSeries name="2700形" sign="T2" />
+					<MachineFormSeries name="2350形" sign="M2" electric="ac" />
+					<MachineFormSeries name="2300形" sign="M1" electric="ac" />
+					<MachineFormSeries name="2800形" sign="T1" />
+					<MachineFormSeries name="2450形" sign="M2" electric="ac" />
+					<MachineFormSeries name="2400形" sign="M1" electric="ac" />
+					<MachineFormSeries name="2100形" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="gto" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={170} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td><MachineFormComp electric="ac" model="HS-20" /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} /></td>
+					<td></td>
+					<td></td>
+					<td><MachineFormBattery v100={30} v24={30} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series3000">
 		<Fragment slot="heading">新3000系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">目黒線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">目黒線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">3000形 <span class="p-tokyu-form__type -tc">Tc2</span></th>
-								<th scope="col">3250形 <span class="p-tokyu-form__type -m-ac">M2</span></th>
-								<th scope="col">3200形 <span class="p-tokyu-form__type -m-ac">M1</span></th>
-								<th scope="col">3500形 <span class="p-tokyu-form__type -t">T</span></th>
-								<th scope="col">3400形 <span class="p-tokyu-form__type -m-ac">M</span></th>
-								<th scope="col">3100形 <span class="p-tokyu-form__type -tc">Tc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-igbt">IGBT-VVVF</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-igbt">IGBT-VVVF</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">210kVA-SIV</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -aps-much">210kVA-SIV</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 C2500</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 C2500</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・60Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td><span class="p-tokyu-form__device -bt-124">100V・60Ah / 24V・30Ah</span></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="3000形" sign="Tc2" />
+					<MachineFormSeries name="3250形" sign="M2" electric="ac" />
+					<MachineFormSeries name="3200形" sign="M1" electric="ac" />
+					<MachineFormSeries name="3500形" sign="T" />
+					<MachineFormSeries name="3400形" sign="M" electric="ac" />
+					<MachineFormSeries name="3100形" sign="Tc1" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td></td>
+					<td><MachineFormCont type="igbt" /></td>
+					<td></td>
+					<td><MachineFormCont type="igbt" /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={210} /></td>
+					<td></td>
+					<td><MachineFormAps type="siv" use="much" capacity={210} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td></td>
+					<td><MachineFormComp electric="ac" model="C2500" /></td>
+					<td></td>
+					<td><MachineFormComp electric="ac" model="C2500" /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td></td>
+					<td><MachineFormBattery v100={60} v24={30} /></td>
+					<td></td>
+					<td><MachineFormBattery v100={60} v24={30} /></td>
+					<td></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="series300">
 		<Fragment slot="heading">300系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">世田谷線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">世田谷線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">300B形 <span class="p-tokyu-form__type -m-ac">Mc2</span></th>
-								<th scope="col">300A形 <span class="p-tokyu-form__type -m-ac">Mc1</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td><span class="p-tokyu-form__device -ctr-igbt">IGBT-VVVF</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td><span class="p-tokyu-form__device -aps-much">20kVA-SIV</span></td>
-								<td><span class="p-tokyu-form__device -aps-much">20kVA-SIV</span></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-dc">直流 HS-5（2台）</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-124">100V・20Ah / 24V・80Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="300B形" sign="Mc2" electric="ac" />
+					<MachineFormSeries name="300A形" sign="Mc1" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td><MachineFormCont type="igbt" /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td><MachineFormAps type="siv" use="much" capacity={20} /></td>
+					<td><MachineFormAps type="siv" use="much" capacity={20} /></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="dc" model="HS-5" count={2} /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={20} v24={80} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 
 	<Section id="seriesY000">
 		<Fragment slot="heading">Y000系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
-				<Section slugger={slugger} depth={2} headingType="c">
-					<Fragment slot="heading">こどもの国線</Fragment>
+		<Section slugger={slugger} depth={2} headingType="c">
+			<Fragment slot="heading">こどもの国線</Fragment>
 
-					<table class="p-tokyu-form">
-						<thead>
-							<tr>
-								<td></td>
-								<th scope="col">Y000形 <span class="p-tokyu-form__type -tc">Tc</span></th>
-								<th scope="col">Y010形 <span class="p-tokyu-form__type -m-ac">Mc</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">制御装置</th>
-								<td></td>
-								<td rowspan="2"><span class="p-tokyu-form__device -ctr-siv">IGBT-VVVF（80kVA-SIV一体型）</span></td>
-							</tr>
-							<tr>
-								<th scope="row">補助電源</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">空気圧縮機</th>
-								<td><span class="p-tokyu-form__device -cp-ac">交流 HS-5（2台）</span></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">蓄電池</th>
-								<td><span class="p-tokyu-form__device -bt-124">100V・60Ah / 24V・30Ah</span></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</Section>
-			</div>
-		</div>
+			<MachineForm>
+				<Fragment slot="series">
+					<MachineFormSeries name="Y000形" sign="Tc" />
+					<MachineFormSeries name="Y010形" sign="Mc" electric="ac" />
+				</Fragment>
+				<Fragment slot="cont">
+					<td></td>
+					<td rowspan="2"><MachineFormCont type="igbt" siv={80} /></td>
+				</Fragment>
+				<Fragment slot="aps">
+					<td></td>
+				</Fragment>
+				<Fragment slot="cp">
+					<td><MachineFormComp electric="ac" model="HS-5" count={2} /></td>
+					<td></td>
+				</Fragment>
+				<Fragment slot="bt">
+					<td><MachineFormBattery v100={60} v24={30} /></td>
+					<td></td>
+				</Fragment>
+			</MachineForm>
+		</Section>
 	</Section>
 </Layout>
