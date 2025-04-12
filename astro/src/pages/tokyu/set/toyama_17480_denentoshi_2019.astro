@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Set from '@components/tokyu/Set.astro';
+import SetPanel from '@components/tokyu/SetPanel.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -24,130 +26,112 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-set">
-		<div class="l-tokyu-set__header">
-			<p class="p-tokyu-set-period">2019年<!-- 12月 -->の17480形追加導入から</p>
-		</div>
-		<div class="l-tokyu-set__main">
-			<div class="p-tokyu-set-panel -push">
-				<object data="/tokyu/set/image/toyama_17480_denentoshi_2019.svg" type="image/svg+xml" width="528" height="1170" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
-					<div id="set-image-alt1">
-						<section>
-							<h2>始発駅</h2>
-							<table>
-								<tbody>
-									<tr>
-										<td>中央林間</td>
-										<td>長津田</td>
-										<td>鷺沼</td>
-										<td>二子玉川</td>
-										<td>渋谷</td>
-										<td>半蔵門</td>
-									</tr>
-									<tr>
-										<td>水天宮前</td>
-										<td></td>
-										<td>清澄白河</td>
-										<td>住吉</td>
-										<td>錦糸町</td>
-										<td>押上</td>
-									</tr>
-								</tbody>
-							</table>
-						</section>
+	<Set period="2019年12月の17480形追加導入から" invDate="2020-11-10" invCar="モハ17487">
+		<SetPanel image="toyama_17480_denentoshi_2019.svg" imageWidth={528} imageHeight={1170}>
+			<section>
+				<h2>始発駅</h2>
 
-						<section>
-							<h2>種別</h2>
-							<table>
-								<tbody>
-									<tr>
-										<td>普通</td>
-										<td>急行</td>
-										<td>特急</td>
-										<td></td>
-										<td>試運転</td>
-										<td>回送</td>
-										<td>臨時</td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-						</section>
+				<table>
+					<tbody>
+						<tr>
+							<td>中央林間</td>
+							<td>長津田</td>
+							<td>鷺沼</td>
+							<td>二子玉川</td>
+							<td>渋谷</td>
+							<td>半蔵門</td>
+						</tr>
+						<tr>
+							<td>水天宮前</td>
+							<td></td>
+							<td>清澄白河</td>
+							<td>住吉</td>
+							<td>錦糸町</td>
+							<td>押上</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
 
-						<section>
-							<h2>行先</h2>
-							<table>
-								<tbody>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>宇奈月温泉</td>
-										<td></td>
-										<td>電鉄黒部</td>
-										<td>立山</td>
-										<td>寺田経由　岩峅寺</td>
-									</tr>
-									<tr>
-										<td>有峰口</td>
-										<td>電鉄富山</td>
-										<td>越中荏原</td>
-										<td>越中舟橋</td>
-										<td>上市</td>
-										<td>中滑川</td>
-										<td>滑川</td>
-										<td>南富山</td>
-									</tr>
-									<tr>
-										<td>電鉄魚津</td>
-										<td>西魚津</td>
-										<td>舌山</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>新黒部</td>
-										<td>南富山経由　岩峅寺</td>
-									</tr>
-									<tr>
-										<td>本宮</td>
-										<td></td>
-										<td>新魚津</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-						</section>
-					</div>
-				</object>
-			</div>
-		</div>
-		<div class="l-tokyu-set__footer">
-			<dl class="p-tokyu-set-data">
-				<div>
-					<dt>調査日</dt>
-					<dd>2020年11月10日</dd>
-				</div>
-				<div>
-					<dt>調査車両</dt>
-					<dd>モハ17487</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+			<section>
+				<h2>種別</h2>
+
+				<table>
+					<tbody>
+						<tr>
+							<td>普通</td>
+							<td>急行</td>
+							<td>特急</td>
+							<td></td>
+							<td>試運転</td>
+							<td>回送</td>
+							<td>臨時</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>行先</h2>
+
+				<table>
+					<tbody>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>宇奈月温泉</td>
+							<td></td>
+							<td>電鉄黒部</td>
+							<td>立山</td>
+							<td>寺田経由　岩峅寺</td>
+						</tr>
+						<tr>
+							<td>有峰口</td>
+							<td>電鉄富山</td>
+							<td>越中荏原</td>
+							<td>越中舟橋</td>
+							<td>上市</td>
+							<td>中滑川</td>
+							<td>滑川</td>
+							<td>南富山</td>
+						</tr>
+						<tr>
+							<td>電鉄魚津</td>
+							<td>西魚津</td>
+							<td>舌山</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>新黒部</td>
+							<td>南富山経由　岩峅寺</td>
+						</tr>
+						<tr>
+							<td>本宮</td>
+							<td></td>
+							<td>新魚津</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</SetPanel>
+	</Set>
 
 	<ListNote>
 		<li>富山地方鉄道の駅名、種別はすべてシール貼り。</li>

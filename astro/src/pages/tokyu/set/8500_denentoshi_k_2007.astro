@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Set from '@components/tokyu/Set.astro';
+import SetPanelDial8500 from '@components/tokyu/SetPanelDial8500.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -24,83 +26,55 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-set">
-		<div class="l-tokyu-set__header">
-			<p class="p-tokyu-set-period">2007年<!-- 4月 -->の準急新設から</p>
-			<p class="p-tokyu-set-note">東武非乗入れ編成の下り方先頭車に設置</p>
-		</div>
-		<div class="l-tokyu-set__main">
-			<div class="p-tokyu-set-panel -dial-8500">
-				<section>
-					<h2>種別</h2>
-					<object data="/tokyu/set/image/8500_denentoshi_k_2007_train.png" type="image/png" width="460" height="460" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
-						<ul id="set-image-alt1">
-							<li>1: 試運転</li>
-							<li>2: 回送</li>
-							<li>3: 普通</li>
-							<li>4: 急行</li>
-							<li>5: 準急</li>
-							<li>6: 臨時</li>
-							<li>7: (空欄)</li>
-							<li>8: (空欄)</li>
-							<li>9: (空欄)</li>
-							<li>10: (空欄)</li>
-						</ul>
-					</object>
-				</section>
+	<Set period="2007年4月の準急新設から" note="東武非乗入れ編成の下り方先頭車に設置" invDate="2009-04-10" invCar="デハ8506">
+		<SetPanelDial8500 trainImage="8500_denentoshi_k_2007_train.png" toImage="8500_denentoshi_k_2007_to.png">
+			<ul slot="train">
+				<li>1: 試運転</li>
+				<li>2: 回送</li>
+				<li>3: 普通</li>
+				<li>4: 急行</li>
+				<li>5: 準急</li>
+				<li>6: 臨時</li>
+				<li>7: (空欄)</li>
+				<li>8: (空欄)</li>
+				<li>9: (空欄)</li>
+				<li>10: (空欄)</li>
+			</ul>
 
-				<section>
-					<h2>行先</h2>
-					<object data="/tokyu/set/image/8500_denentoshi_k_2007_to.png" type="image/png" width="460" height="460" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt2">
-						<ul id="set-image-alt2">
-							<li>1: (空欄)</li>
-							<li>2: (空欄)</li>
-							<li>3: (空欄)</li>
-							<li>4: 中央林間</li>
-							<li>5: (空欄)</li>
-							<li>6: 長津田</li>
-							<li>7: 鷺沼</li>
-							<li>8: 梶が谷</li>
-							<li>9: 二子玉川</li>
-							<li>10: 渋谷</li>
-							<li>11: 青山一丁目</li>
-							<li>12: 永田町</li>
-							<li>13: 半蔵門</li>
-							<li>14: 九段下</li>
-							<li>15: 神保町</li>
-							<li>16: 三越前</li>
-							<li>17: 水天宮前</li>
-							<li>18: あざみ野</li>
-							<li>19: 用賀</li>
-							<li>20: (空欄)</li>
-							<li>31: 溝の口</li>
-							<li>32: 清澄白河</li>
-							<li>33: 住吉</li>
-							<li>34: 錦糸町</li>
-							<li>35: 押上</li>
-							<li>36: (空欄)</li>
-							<li>37: (空欄)</li>
-							<li>38: (空欄)</li>
-							<li>39: (空欄)</li>
-							<li>40: (空欄)</li>
-						</ul>
-					</object>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-set__footer">
-			<dl class="p-tokyu-set-data">
-				<div>
-					<dt>調査日</dt>
-					<dd>2009年4月10日</dd>
-				</div>
-				<div>
-					<dt>調査車両</dt>
-					<dd>デハ8506</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+			<ul slot="to">
+				<li>1: (空欄)</li>
+				<li>2: (空欄)</li>
+				<li>3: (空欄)</li>
+				<li>4: 中央林間</li>
+				<li>5: (空欄)</li>
+				<li>6: 長津田</li>
+				<li>7: 鷺沼</li>
+				<li>8: 梶が谷</li>
+				<li>9: 二子玉川</li>
+				<li>10: 渋谷</li>
+				<li>11: 青山一丁目</li>
+				<li>12: 永田町</li>
+				<li>13: 半蔵門</li>
+				<li>14: 九段下</li>
+				<li>15: 神保町</li>
+				<li>16: 三越前</li>
+				<li>17: 水天宮前</li>
+				<li>18: あざみ野</li>
+				<li>19: 用賀</li>
+				<li>20: (空欄)</li>
+				<li>31: 溝の口</li>
+				<li>32: 清澄白河</li>
+				<li>33: 住吉</li>
+				<li>34: 錦糸町</li>
+				<li>35: 押上</li>
+				<li>36: (空欄)</li>
+				<li>37: (空欄)</li>
+				<li>38: (空欄)</li>
+				<li>39: (空欄)</li>
+				<li>40: (空欄)</li>
+			</ul>
+		</SetPanelDial8500>
+	</Set>
 
 	<ListNote>
 		<li>デハ8542 は行先の #9 が空欄で #20 がシール貼りの<q>二子玉川</q>（2009年4月22日確認）。</li>

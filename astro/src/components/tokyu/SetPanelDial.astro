@@ -1,0 +1,31 @@
+---
+interface Props {
+	image: string;
+}
+
+const { image: imageFileName } = Astro.props;
+
+const imageAltId = crypto.randomUUID();
+---
+
+<div class="panel">
+	<object data={`/tokyu/set/image/${imageFileName}`} type="image/png" role="img" width="640" height="640" class="image" aria-labelledby={imageAltId}>
+		<div id={imageAltId}>
+			<slot />
+		</div>
+	</object>
+</div>
+
+<style>
+	.panel {
+		background: var(--color-lightyellow);
+		padding: 15px;
+		line-height: var(--line-height-narrow);
+	}
+
+	.image {
+		display: block flow;
+		block-size: auto;
+		max-inline-size: 100%;
+	}
+</style>

@@ -1,0 +1,45 @@
+---
+interface Props {
+	image: string;
+	imageWidth: number;
+	imageHeight: number;
+}
+
+const { image: imageFileName, imageWidth, imageHeight } = Astro.props;
+
+const imageAltId = crypto.randomUUID();
+---
+
+<div class="panel">
+	<object data={`/tokyu/set/image/${imageFileName}`} type="image/svg+xml" role="img" width={imageWidth} height={imageHeight} class="image" aria-labelledby={imageAltId}>
+		<div id={imageAltId}>
+			<slot />
+		</div>
+	</object>
+</div>
+
+<style>
+	.panel {
+		line-height: var(--line-height-narrow);
+	}
+
+	.image {
+		display: block flow;
+		block-size: auto;
+		max-inline-size: 100%;
+
+		& :global(section + section) {
+			margin-block-start: 2em;
+		}
+
+		& :global(section > * + *) {
+			margin-block-start: 1em;
+		}
+
+		& :global(:is(th, td)) {
+			border: 1px solid;
+			padding: 0.5em 1em;
+			text-align: center;
+		}
+	}
+</style>
