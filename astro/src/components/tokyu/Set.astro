@@ -12,10 +12,14 @@ const { period, note, invDate, invCar } = Astro.props;
 ---
 
 <div class="set">
-	<div class="header">
-		{period !== undefined && <p class="period">{period}</p>}
-		{note !== undefined && <p class="note">{note}</p>}
-	</div>
+	{
+		(period !== undefined || note !== undefined) && (
+			<div class="header">
+				{period !== undefined && <p class="period">{period}</p>}
+				{note !== undefined && <p class="note">{note}</p>}
+			</div>
+		)
+	}
 
 	<div class="main">
 		<slot />
