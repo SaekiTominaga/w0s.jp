@@ -4,6 +4,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
+import HistoryTable from '@components/tokyu/HistoryTable.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
@@ -353,7 +354,7 @@ if (requestQuery.output !== null) {
 							</p>
 						)}
 
-						<table class="p-tokyu-history-table js-result-table" id="result-table">
+						<HistoryTable class="js-result-table" id="result-table">
 							{requestQuery.output !== 'mob' && (
 								<>
 									<thead>
@@ -508,7 +509,7 @@ if (requestQuery.output !== null) {
 									))}
 								</>
 							)}
-						</table>
+						</HistoryTable>
 					</>
 				)}
 
