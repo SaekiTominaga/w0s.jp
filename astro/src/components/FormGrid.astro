@@ -1,0 +1,36 @@
+---
+interface Props {
+	complex?: boolean;
+}
+
+const { complex } = Astro.props;
+---
+
+<div class:list={['form-grid', complex ? '-complex' : undefined]}>
+	<slot />
+</div>
+
+<style>
+	.form-grid {
+		--_gap-block: 1em;
+		--_gap-inline: 1em;
+
+		display: block grid;
+		grid-template-areas: 'legend contents';
+		grid-template-columns: auto 1fr;
+		gap: var(--_gap-block) var(--_gap-inline);
+
+		@container content (inline-size <= 36em) {
+			grid-template-areas:
+				'legend'
+				'contents';
+			grid-template-columns: auto;
+		}
+
+		/* 複雑なフォームは区切り線を付ける */
+		&.-complex > :global(* + *) {
+			border-block-start: 1px solid var(--color-border-light);
+			padding-block-start: var(--_gap-block);
+		}
+	}
+</style>

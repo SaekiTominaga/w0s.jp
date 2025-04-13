@@ -1,6 +1,8 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Admin.astro';
+import FormGrid from '@components/FormGrid.astro';
+import FormGridGroup from '@components/FormGridGroup.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
@@ -136,131 +138,93 @@ for (const newsPage of newsPageListDto) {
 		<Fragment slot="heading">データ登録</Fragment>
 
 		<form action={Astro.url.pathname} method="post" class="c-stack">
-			<div class="p-form-grid">
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input class="c-input -full js-convert-trim" id="fc-title" name="title" value={requestQuery.title} required="" />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<select class="c-select" id="fc-category" name="category">
-									{
-										categoryMaster.map((category) => (
-											<>
-												{requestQuery.category === category.fk && (
-													<option value={category.fk} selected="">
-														{category.name}
-													</option>
-												)}
-												{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-											</>
-										))
-									}
-								</select>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<select class="c-select" id="fc-priority" name="priority">
-									{
-										priorityMaster.map((priority) => (
-											<>
-												{requestQuery.priority === priority.fk && (
-													<option value={priority.fk} selected="">
-														{priority.name}
-													</option>
-												)}
-												{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-											</>
-										))
-									}
-								</select>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">ブラウザ</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<label class="c-label -check">
-									<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
-									<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
-								>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-selectorwrap" class="c-label">セレクター（包括） <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input class="c-input -full js-convert-trim" id="fc-selectorwrap" name="selectorwrap" value={requestQuery.selector_wrap} required="" />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-selectordate" class="c-label">セレクター（日付） <strong class="c-label-icon -optional">任意</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input class="c-input -full js-convert-trim" id="fc-selectordate" name="selectordate" value={requestQuery.selector_date} />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-selectorcontent" class="c-label">セレクター（内容） <strong class="c-label-icon -optional">任意</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input class="c-input -full js-convert-trim" id="fc-selectorcontent" name="selectorcontent" value={requestQuery.selector_content} />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-			</div>
+			<FormGrid>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} />
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<input class="c-input -full js-convert-trim" id="fc-title" name="title" value={requestQuery.title} required="" />
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<select class="c-select" id="fc-category" name="category">
+							{
+								categoryMaster.map((category) => (
+									<>
+										{requestQuery.category === category.fk && (
+											<option value={category.fk} selected="">
+												{category.name}
+											</option>
+										)}
+										{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
+									</>
+								))
+							}
+						</select>
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<select class="c-select" id="fc-priority" name="priority">
+							{
+								priorityMaster.map((priority) => (
+									<>
+										{requestQuery.priority === priority.fk && (
+											<option value={priority.fk} selected="">
+												{priority.name}
+											</option>
+										)}
+										{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
+									</>
+								))
+							}
+						</select>
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend">ブラウザ</Fragment>
+
+					<div class="c-form-controls">
+						<label class="c-label -check">
+							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
+							<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
+						>
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-selectorwrap" class="c-label">セレクター（包括） <strong class="c-label-icon -required">必須</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<input class="c-input -full js-convert-trim" id="fc-selectorwrap" name="selectorwrap" value={requestQuery.selector_wrap} required="" />
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-selectordate" class="c-label">セレクター（日付） <strong class="c-label-icon -optional">任意</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<input class="c-input -full js-convert-trim" id="fc-selectordate" name="selectordate" value={requestQuery.selector_date} />
+					</div>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-selectorcontent" class="c-label">セレクター（内容） <strong class="c-label-icon -optional">任意</strong></label></Fragment>
+
+					<div class="c-form-controls">
+						<input class="c-input -full js-convert-trim" id="fc-selectorcontent" name="selectorcontent" value={requestQuery.selector_content} />
+					</div>
+				</FormGridGroup>
+			</FormGrid>
 
 			<div class="c-form-controls -submit">
 				{
