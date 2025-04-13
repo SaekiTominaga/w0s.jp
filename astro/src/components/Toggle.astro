@@ -1,0 +1,80 @@
+---
+interface Props {
+	fit?: boolean;
+	open?: boolean;
+	duration?: number;
+}
+
+const { fit, open, duration } = Astro.props;
+---
+
+<details open={open} class:list={['toggle', fit ? '-fit' : undefined, 'js-details-animation']} data-duration={duration}>
+	<summary><slot name="summary" /></summary>
+
+	<div class="contents">
+		<slot />
+	</div>
+</details>
+
+<style>
+	.toggle {
+		--_summary-inline-size: 100%;
+		--_summary-padding: 0.75em;
+		--_icon: polygon(0 42%, 42% 42%, 42% 0, 58% 0, 58% 42%, 100% 42%, 100% 58%, 58% 58%, 58% 100%, 42% 100%, 42% 58%, 0 58%);
+		--_icon-size: 1em;
+		--_icon-gap: 1em;
+
+		& > :global(summary) {
+			box-sizing: border-box;
+			outline-offset: -1px;
+			outline-width: var(--outline-width-bold);
+			contain: layout;
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-small);
+			background: var(--color-white);
+			cursor: default;
+			padding: var(--_summary-padding) var(--_summary-padding) var(--_summary-padding) calc(var(--_summary-padding) + var(--_icon-size) + var(--_icon-gap));
+			inline-size: var(--_summary-inline-size);
+			list-style: none;
+			line-height: var(--line-height-narrow);
+			color: var(--color-darkblue);
+			font-size: calc(100% * pow(var(--font-ratio), 1));
+		}
+
+		& > :global(summary:hover) {
+			box-shadow: 0 0 0.25em var(--color-border-light);
+		}
+
+		& > :global(summary:not(:focus-visible)) {
+			outline: none;
+		}
+
+		& > :global(summary::before) {
+			position: absolute;
+			clip-path: var(--_icon);
+			inset-block: calc((100% - var(--_icon-size)) / 2);
+			inset-inline-start: var(--_summary-padding);
+			border-block-start: var(--_icon-size) solid var(--color-darkblue);
+			inline-size: var(--_icon-size);
+			content: '';
+		}
+
+		& > :global(summary::-webkit-details-marker) {
+			display: none; /* for Safari */
+		}
+
+		&[open],
+		&[data-pre-open='true'] {
+			--_icon: polygon(0 42%, 100% 42%, 100% 58%, 0 58%);
+		}
+
+		&.-fit {
+			--_summary-inline-size: fit-content; /* TODO: Android Chrome で正しく fit されず2行になってしまう */
+			--_icon-gap: 0.75em;
+		}
+	}
+
+	.contents {
+		padding-block-start: 16px;
+	}
+</style>

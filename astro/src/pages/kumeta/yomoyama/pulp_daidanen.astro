@@ -6,6 +6,7 @@ import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
+import Toggle from '@components/Toggle.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -22,16 +23,14 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">大団円イラスト</Fragment>
 
-		<details class="p-toggle js-details-animation">
-			<summary>イラストを見る<small>（※最終話ネタバレ注意）</small></summary>
+		<Toggle>
+			<Fragment slot="summary">イラストを見る<small>（※最終話ネタバレ注意）</small></Fragment>
 
-			<div class="p-toggle__contents">
-				<Embedded border={true}>
-					<Image path="kumeta/yomoyama/pulp15_daidanen.jpg" alt="画像拡大" width={1022} height={734} quality={60} link={true} slot="media" />
-					<Fragment slot="caption">見開きの大団円イラスト（<cite>楽園</cite> 32号 pp.360–361 を加工）</Fragment>
-				</Embedded>
-			</div>
-		</details>
+			<Embedded border={true}>
+				<Image path="kumeta/yomoyama/pulp15_daidanen.jpg" alt="画像拡大" width={1022} height={734} quality={60} link={true} slot="media" />
+				<Fragment slot="caption">見開きの大団円イラスト（<cite>楽園</cite> 32号 pp.360–361 を加工）</Fragment>
+			</Embedded>
+		</Toggle>
 	</Section>
 	<Section slugger={slugger}>
 		<Fragment slot="heading">登場キャラクター一覧</Fragment>
