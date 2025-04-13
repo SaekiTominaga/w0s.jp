@@ -1,18 +1,20 @@
 ---
+import { getIdHash } from '@util/hash';
+
 interface Props {
 	image: string;
 }
 
 const { image: imageFileName } = Astro.props;
 
-const imageAltId = crypto.randomUUID();
+const content = await Astro.slots.render('default');
+
+const imageAltId = getIdHash(content);
 ---
 
 <div class="panel">
 	<object data={`/tokyu/set/image/${imageFileName}`} type="image/png" role="img" width="640" height="640" class="image" aria-labelledby={imageAltId}>
-		<div id={imageAltId}>
-			<slot />
-		</div>
+		<div id={imageAltId} set:html={content} />
 	</object>
 </div>
 

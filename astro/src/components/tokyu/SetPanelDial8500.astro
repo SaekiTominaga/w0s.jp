@@ -1,4 +1,6 @@
 ---
+import { getIdHash } from '@util/hash';
+
 interface Props {
 	trainImage: string;
 	toImage: string;
@@ -6,8 +8,11 @@ interface Props {
 
 const { trainImage: trainImageFileName, toImage: toImageFileName } = Astro.props;
 
-const trainImageAltId = crypto.randomUUID();
-const toImageAltId = crypto.randomUUID();
+const trainContent = await Astro.slots.render('train');
+const trainImageAltId = getIdHash(trainContent);
+
+const toContent = await Astro.slots.render('to');
+const toImageAltId = getIdHash(toContent);
 ---
 
 <div class="panel">
@@ -15,9 +20,7 @@ const toImageAltId = crypto.randomUUID();
 		<h2>種別</h2>
 
 		<object data={`/tokyu/set/image/${trainImageFileName}`} type="image/png" role="img" width="460" height="460" class="image" aria-labelledby={trainImageAltId}>
-			<div id={trainImageAltId}>
-				<slot name="train" />
-			</div>
+			<div id={trainImageAltId} set:html={trainContent} />
 		</object>
 	</section>
 
@@ -25,9 +28,7 @@ const toImageAltId = crypto.randomUUID();
 		<h2>行先</h2>
 
 		<object data={`/tokyu/set/image/${toImageFileName}`} role="img" type="image/png" width="460" height="460" class="image" aria-labelledby={toImageAltId}>
-			<div id={toImageAltId}>
-				<slot name="to" />
-			</div>
+			<div id={toImageAltId} set:html={toContent} />
 		</object>
 	</section>
 </div>

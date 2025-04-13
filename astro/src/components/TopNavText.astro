@@ -1,20 +1,22 @@
 ---
+import { getIdHash } from '@util/hash';
+
 interface Props {
 	heading: string;
 }
 
 const { heading } = Astro.props;
 
-const headingId = crypto.randomUUID();
+const mainContent = await Astro.slots.render('main');
+
+const headingId = getIdHash(mainContent);
 ---
 
 <nav class="top-nav" aria-labelledby={headingId}>
 	<div class="hdg">
 		<h2 id={headingId}>{heading}</h2>
 	</div>
-	<div class="main">
-		<slot name="main" />
-	</div>
+	<div class="main" set:html={mainContent} />
 </nav>
 
 <style>
