@@ -1,6 +1,6 @@
 ---
 import path from 'node:path';
-import Link from '@components/Link.astro';
+import Anchor from '@components/Anchor.astro';
 import List from '@components/List.astro';
 import LocalNav from '@components/content-header&footer/LocalNav.astro';
 import type { StructuredData } from '@type/types.js';
@@ -29,11 +29,11 @@ const astroFilePath = process.env.npm_config_local_prefix !== undefined && astro
 					<div class="p-toggle__contents">
 						<List>
 							{/* prettier-ignore */}
-							<li>コンテンツに関するご意見、ご質問などは当サイトの GitHub リポジトリに <Link href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents" icon={false}>Issue</Link> を立ててください。</li>
+							<li>コンテンツに関するご意見、ご質問などは当サイトの GitHub リポジトリに <Anchor href="https://github.com/SaekiTominaga/w0s.jp/issues/new?labels=contents" icon={false}>Issue</Anchor> を立ててください。</li>
 							{astroFilePath !== undefined && (
 								<>
 									{/* prettier-ignore */}
-									<li>誤字訂正など軽微な修正は GitHub リポジトリ上の<Link href={`https://github.com/SaekiTominaga/w0s.jp/blob/main/${astroFilePath}`} icon={false}>ソースコード</Link>を編集し、Pull Request を送っていただいても構いません。</li>
+									<li>誤字訂正など軽微な修正は GitHub リポジトリ上の<Anchor href={`https://github.com/SaekiTominaga/w0s.jp/blob/main/${astroFilePath}`} icon={false}>ソースコード</Anchor>を編集し、Pull Request を送っていただいても構いません。</li>
 								</>
 							)}
 							{/* prettier-ignore */}

@@ -1,11 +1,11 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Anchor from '@components/Anchor.astro';
 import DateWareki from '@components/DateWareki.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
 import Licence from '@components/tokyu/Licence.astro';
-import Link from '@components/Link.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -42,7 +42,7 @@ const structuredData: StructuredData = {
 		<Fragment slot="heading">概要</Fragment>
 
 		<List>
-			<li>認可、竣功などの日付は原則として<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省および運輸通信省、運輸省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで市販の書籍など2次情報を参照しています。</li>
+			<li>認可、竣功などの日付は原則として<Anchor href="https://www.archives.go.jp/">国立公文書館</Anchor>が所蔵する公文書（鉄道省および運輸通信省、運輸省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで市販の書籍など2次情報を参照しています。</li>
 			<li>日本国有鉄道の発足以降は公文書が断片的にしか残されていないため、その年の年末である<DateWareki value="1949-12-31" />以前に認可申請や届出が行われた車両までを対象とします。ただし期間をまたいで増備が行われたデハ3600形、クハ3670形、クハ3770形（いずれも戦災復旧車）はそれぞれの最終増備車の竣功までを対象としています。すなわち、本ページのデータはおおむね第二次世界大戦後の混乱期が終わるまでの動向ということになります。</li>
 			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
 			<li>

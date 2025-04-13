@@ -1,12 +1,12 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Anchor from '@components/Anchor.astro';
+import AnchorPhoto from '@components/AnchorPhoto.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
-import Link from '@components/Link.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
 import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
@@ -62,7 +62,7 @@ const structuredData: StructuredData = {
 			<tbody>
 				<tr>
 					<td>5000系<small>（デハ5001〜5020）</small></td>
-					<td><Link href="#pe-11" bullet={true}>PE-11A</Link></td>
+					<td><Anchor href="#pe-11" bullet={true}>PE-11A</Anchor></td>
 					<td rowspan="2">東芝</td>
 					<td>1954年</td>
 					<td rowspan="2">直巻 110kW×4</td>
@@ -71,12 +71,12 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>5000系G<small>（デハ5021<NoteRef type="ref" by="pe11-b-5021" />〜）</small></td>
-					<td><Link href="#pe-11" bullet={true}>PE-11B</Link></td>
+					<td><Anchor href="#pe-11" bullet={true}>PE-11B</Anchor></td>
 					<td>1956年</td>
 				</tr>
 				<tr>
 					<td>デハ200形</td>
-					<td><Link href="#ab-54-6mdb" bullet={true}>AB-54-6MDB</Link><NoteRef type="ref" by="ab-54-6mdb-name" /></td>
+					<td><Anchor href="#ab-54-6mdb" bullet={true}>AB-54-6MDB</Anchor><NoteRef type="ref" by="ab-54-6mdb-name" /></td>
 					<td>三菱</td>
 					<td>1955年</td>
 					<td>直巻 38kW×4</td>
@@ -85,7 +85,7 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>6000系<small>（東洋車、A編成）</small></td>
-					<td><Link href="#es753-a" bullet={true}>ACRF-H4100-753A</Link><NoteRef type="ref" by="es753-a-name" /></td>
+					<td><Anchor href="#es753-a" bullet={true}>ACRF-H4100-753A</Anchor><NoteRef type="ref" by="es753-a-name" /></td>
 					<td>東洋</td>
 					<td>1960年</td>
 					<td>複巻 100kW×4</td>
@@ -94,7 +94,7 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>6000系<small>（東芝車、B編成）</small></td>
-					<td><Link href="#mm-101a" bullet={true}>MM-101A</Link><NoteRef type="ref" by="mm-101a-name" /></td>
+					<td><Anchor href="#mm-101a" bullet={true}>MM-101A</Anchor><NoteRef type="ref" by="mm-101a-name" /></td>
 					<td>東芝</td>
 					<td>1960年</td>
 					<td>複巻 85kW×4</td>
@@ -103,7 +103,7 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>6000系<small>（東洋車、C編成）</small></td>
-					<td><Link href="#es753-a" bullet={true}>ACRF-H4120-754A</Link><NoteRef type="ref" by="es754-a-6000-name" /></td>
+					<td><Anchor href="#es753-a" bullet={true}>ACRF-H4120-754A</Anchor><NoteRef type="ref" by="es754-a-6000-name" /></td>
 					<td rowspan="2">東洋</td>
 					<td>1961年</td>
 					<td>複巻 120kW×4</td>
@@ -112,13 +112,13 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>7000系<small>（東洋車、1〜2次車）</small></td>
-					<td><Link href="#es754-a" bullet={true}>ACRF-H860-754A</Link><NoteRef type="ref" by="es754-a-7000-name" /></td>
+					<td><Anchor href="#es754-a" bullet={true}>ACRF-H860-754A</Anchor><NoteRef type="ref" by="es754-a-7000-name" /></td>
 					<td>1962年</td>
 					<td>複巻 60kW×8</td>
 				</tr>
 				<tr>
 					<td>7000系<small>（東洋車、3〜10次車）</small></td>
-					<td><Link href="#es754-a" bullet={true}>ACRF-H860-757A</Link></td>
+					<td><Anchor href="#es754-a" bullet={true}>ACRF-H860-757A</Anchor></td>
 					<td>東洋</td>
 					<td>1963年</td>
 					<td>複巻 60kW×8</td>
@@ -127,7 +127,7 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>7000系<small>（日立車）</small></td>
-					<td><Link href="#mmc-htr-10a" bullet={true}>MMC-HTR-10A</Link><NoteRef type="ref" by="mmc-htr-10a-name" /></td>
+					<td><Anchor href="#mmc-htr-10a" bullet={true}>MMC-HTR-10A</Anchor><NoteRef type="ref" by="mmc-htr-10a-name" /></td>
 					<td>日立</td>
 					<td>1963年</td>
 					<td>複巻 70kW×8</td>
@@ -136,7 +136,7 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>7200系<small>（日立車）</small></td>
-					<td><Link href="#mmc-htr-10b" bullet={true}>MMC-HTR-10B</Link></td>
+					<td><Anchor href="#mmc-htr-10b" bullet={true}>MMC-HTR-10B</Anchor></td>
 					<td>日立</td>
 					<td>1967年</td>
 					<td>複巻 110kW×4</td>
@@ -145,7 +145,7 @@ const structuredData: StructuredData = {
 				</tr>
 				<tr>
 					<td>7200系<small>（東洋車）</small></td>
-					<td><Link href="#es764-a" bullet={true}>ACRF-H4110-764A</Link></td>
+					<td><Anchor href="#es764-a" bullet={true}>ACRF-H4110-764A</Anchor></td>
 					<td>東洋</td>
 					<td>1967年</td>
 					<td>複巻 110kW×4</td>
@@ -156,7 +156,7 @@ const structuredData: StructuredData = {
 			<tbody>
 				<tr>
 					<td>7000系<small>（北陸鉄道譲渡車）</small></td>
-					<td><Link href="#cs-20a" bullet={true}>CS-20A</Link></td>
+					<td><Anchor href="#cs-20a" bullet={true}>CS-20A</Anchor></td>
 					<td>(複数)</td>
 					<td></td>
 					<td>直巻 120kW×4</td>
@@ -232,7 +232,7 @@ const structuredData: StructuredData = {
 
 		<p>ブレーキは発電ブレーキが導入されましたが、惰行中にブレーキハンドルを “準備” 位置に移すと電気ブレーキ回路に微弱な電流を流し、そのときの速度に応じてカム軸位置を追従させることで発電ブレーキのスムーズな立ち上がりを実現、これが<dfn>ノッチ選択</dfn>機能と呼ばれますが、北米の PCC カーなどで導入されていた<dfn><span lang="en">spotting</span>（スポッティング）</dfn>と同じ機構です。また制動力不足の際の空気ブレーキ補足や低速域での電空切り替わりも自動で行われます。断流器は L1 〜 L3 に発電ブレーキ用の L4 が加えられ4個となりました。</p>
 
-		<p>主抵抗器は<a href="/tokyu/machine/aps#clg107">電動発電機（MG）</a>の両脇に配置されて送風機を介し強制空冷される方式で、同様のものは国鉄モハ90形（101系）でも採用されました。譲渡車ではこの部分を改造した例が多く、長野電鉄譲渡車では<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cont/MR_nagano2510.jpg" title="長野電鉄モハ2510"><!-- 撮影日: 2006-08-06 -->自然通風式の抵抗器</LinkPhoto>に換装され MG も移設、また福島交通と熊本電気鉄道の譲渡車は降圧改造による MG 換装により送風機直結方式が取り止められました。</p>
+		<p>主抵抗器は<a href="/tokyu/machine/aps#clg107">電動発電機（MG）</a>の両脇に配置されて送風機を介し強制空冷される方式で、同様のものは国鉄モハ90形（101系）でも採用されました。譲渡車ではこの部分を改造した例が多く、長野電鉄譲渡車では<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cont/MR_nagano2510.jpg" title="長野電鉄モハ2510"><!-- 撮影日: 2006-08-06 -->自然通風式の抵抗器</AnchorPhoto>に換装され MG も移設、また福島交通と熊本電気鉄道の譲渡車は降圧改造による MG 換装により送風機直結方式が取り止められました。</p>
 
 		<p>増備に伴う変更点として、主抵抗器の冷却は当初は室内から空気を取り入れていたのが1956年の 5017F より外気からの取り入れに変更され<NoteRef type="ref" by="rml98" />、また同年の 5021F 以降は主制御器が改良された PE-11B 型となりました。</p>
 
@@ -456,12 +456,12 @@ const structuredData: StructuredData = {
 			</Table>
 
 			<ListNote>
-				<li>東芝レビュー <Link href="https://dl.ndl.go.jp/pid/3253779">1957年4月号（No.87）</Link>、<Link href="https://dl.ndl.go.jp/pid/3253802">1959年3月号（No.110）</Link>、<Link href="https://dl.ndl.go.jp/pid/3253815">1960年3月号（No.122）</Link>のそれぞれ「<cite>電気鉄道</cite>」の章に記載されたデータを元に作成。</li>
+				<li>東芝レビュー <Anchor href="https://dl.ndl.go.jp/pid/3253779">1957年4月号（No.87）</Anchor>、<Anchor href="https://dl.ndl.go.jp/pid/3253802">1959年3月号（No.110）</Anchor>、<Anchor href="https://dl.ndl.go.jp/pid/3253815">1960年3月号（No.122）</Anchor>のそれぞれ「<cite>電気鉄道</cite>」の章に記載されたデータを元に作成。</li>
 			</ListNote>
 
 			<p>上表では省略しましたが1960年以降もほとんどは MM タイプの採用であり、MC タイプは名鉄が7000系や7700系で MC-11C〜E 型を採用したのが唯一の例となります。多くの鉄道事業者では限定的な採用に留まり、ある程度の量産が行われた阪神電鉄も1960年代の昇圧改造で制御器が交換されてしまったのに対し、名鉄が MCM 型それも初期型の MC タイプを大量採用し、ブロアーの交換程度で大きな改造もなく晩年まで使用された<NoteRef type="ref" by="gijyutushi28" />のは日本の鉄道事業者では特異なことです。</p>
 
-			<NoteRefContent id="gijyutushi28"><Link href="http://www15.plala.or.jp/hidekih/gijyutushi28.htm"><cite>電鉄技術史情報２８</cite>（白井昭）</Link></NoteRefContent>
+			<NoteRefContent id="gijyutushi28"><Anchor href="http://www15.plala.or.jp/hidekih/gijyutushi28.htm"><cite>電鉄技術史情報２８</cite>（白井昭）</Anchor></NoteRefContent>
 
 			<div class="c-flex">
 				<div class="c-flex__item">

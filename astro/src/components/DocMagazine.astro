@@ -1,5 +1,5 @@
 ---
-import Link from './Link.astro';
+import Anchor from './Anchor.astro';
 
 interface Props {
 	name: string; // 雑誌名
@@ -30,7 +30,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 <span class="doc">
 	{
 		url !== undefined && (
-			<Link href={url}>
+			<Anchor href={url}>
 				<span class="name">{name}</span>
 				{date !== undefined && (
 					<>
@@ -49,7 +49,7 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 					</>
 				)}
 				<span class="pages">{pageDisplay}</span>
-			</Link>
+			</Anchor>
 		)
 	}
 	{

@@ -1,5 +1,5 @@
 ---
-import Link from './Link.astro';
+import Anchor from './Anchor.astro';
 
 interface Props {
 	href: string;
@@ -10,10 +10,10 @@ const { href, title } = Astro.props;
 ---
 
 <div class="item">
-	<Link href={href}>
+	<Anchor href={href}>
 		<span class="image"><slot name="image" /></span>
 		<span class="title">{title}</span>
-	</Link>
+	</Anchor>
 
 	<div class="text">
 		<slot name="text" />

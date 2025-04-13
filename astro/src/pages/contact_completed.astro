@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Site.astro';
-import Link from '@components/Link.astro';
+import Anchor from '@components/Anchor.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import RequestUtil from '@util/Request.js';
@@ -46,18 +46,18 @@ if (requestQuery.referrer !== null && requestQuery.referrer !== '') {
 	{
 		requestQuery.referrer !== null && requestQuery.referrer !== '' && (
 			<p>
-				<Link href={requestQuery.referrer} bullet={true}>
+				<Anchor href={requestQuery.referrer} bullet={true}>
 					元のページへ戻る
-				</Link>
+				</Anchor>
 			</p>
 		)
 	}
 	{
 		(requestQuery.referrer === null || requestQuery.referrer === '') && (
 			<p>
-				<Link href="/" bullet={true}>
+				<Anchor href="/" bullet={true}>
 					トップページへ戻る
-				</Link>
+				</Anchor>
 			</p>
 		)
 	}

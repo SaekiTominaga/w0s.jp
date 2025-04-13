@@ -1,5 +1,5 @@
 ---
-import Link from '@components/Link.astro';
+import Anchor from '@components/Anchor.astro';
 import type { StructuredDataUrl } from '@type/types';
 
 interface Props {
@@ -22,11 +22,11 @@ const { data, pagePath } = Astro.props;
 				{data.items.map((localNavItem) => (
 					<li>
 						{localNavItem.path !== pagePath && (
-							<Link href={localNavItem.path} bullet={true}>
+							<Anchor href={localNavItem.path} bullet={true}>
 								{localNavItem.name}
-							</Link>
+							</Anchor>
 						)}
-						{localNavItem.path === pagePath && <Link bullet={true}>{localNavItem.name}</Link>}
+						{localNavItem.path === pagePath && <Anchor bullet={true}>{localNavItem.name}</Anchor>}
 					</li>
 				))}
 			</ul>

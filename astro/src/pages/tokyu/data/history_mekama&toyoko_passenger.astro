@@ -1,13 +1,13 @@
 ---
 import dayjs from 'dayjs';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Tokyu.astro';
+import Anchor from '@components/Anchor.astro';
 import DateWareki from '@components/DateWareki.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import DocOfficial from '@components/DocOfficial.astro';
-import GithubSlugger from 'github-slugger';
-import Layout from '@layouts/Tokyu.astro';
 import Licence from '@components/tokyu/Licence.astro';
-import Link from '@components/Link.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/NoteRef.astro';
@@ -44,7 +44,7 @@ const slugger = new GithubSlugger();
 		<Fragment slot="heading">概要</Fragment>
 
 		<List>
-			<li>認可、竣功などの日付は原則として<Link href="https://www.archives.go.jp/">国立公文書館</Link>が所蔵する公文書（鉄道省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで社史のほか、市販の書籍など2次情報を参照しています。</li>
+			<li>認可、竣功などの日付は原則として<Anchor href="https://www.archives.go.jp/">国立公文書館</Anchor>が所蔵する公文書（鉄道省文書）を情報源とします。ただし公文書が残されていないものは出典を明記したうえで社史のほか、市販の書籍など2次情報を参照しています。</li>
 			<li>竣功後の改造は車両称号の変更を伴うものに限ります。</li>
 			<li>目黒蒲田電鉄と東京横浜電鉄の間で複数回異動（別会社なので譲渡、譲受の扱い）が行われた車両が多数存在しますが、表の煩雑化を避けるため本ページではその情報を含めていません。</li>
 			<li>
@@ -738,7 +738,7 @@ const slugger = new GithubSlugger();
 		</Table>
 
 		<ListNote>
-			<li>デハ303→デハ307 の変更は改番届が出されていない（残されていない）が、<DateWareki value="1927-11-30" />に提出された<Link href="https://www.digital.archives.go.jp/item/544125">車両代価の報告書（目電第1713号）</Link>において<q>デハ第三〇三號ハ都合ニヨリ第三〇七號ト變更致候</q>とあるため、その前後に改番が行われたものと判断できる。</li>
+			<li>デハ303→デハ307 の変更は改番届が出されていない（残されていない）が、<DateWareki value="1927-11-30" />に提出された<Anchor href="https://www.digital.archives.go.jp/item/544125">車両代価の報告書（目電第1713号）</Anchor>において<q>デハ第三〇三號ハ都合ニヨリ第三〇七號ト變更致候</q>とあるため、その前後に改番が行われたものと判断できる。</li>
 			<li>クハ1〜4 の電装は認可書類が残されていないため、実施時期は<DocMagazine name="鉄道ピクトリアル" date="1985年1月臨時増刊号" no={442} article="私鉄車両めぐり〔127〕" authors={['荻原俊夫']} pages={[210]} />による。また新旧車号対照は<DocMagazine name="Romance Car" no={17} article="東京急行電鉄2" authors={['川垣恭三']} pages={[10]} />による。</li>
 		</ListNote>
 	</Section>
@@ -1559,7 +1559,7 @@ const slugger = new GithubSlugger();
 
 		<p>竣功届は目黒蒲田電鉄が(旧)東京横浜電鉄と合併した<DateWareki value="1939-10-01" />と、(新)東京横浜電鉄へ商号変更を行った<DateWareki value="1939-10-16" />との狭間の時期に提出されたため、名義は目黒蒲田電鉄となっているものの、実質的には全車が(新)東京横浜電鉄の車両といえるでしょう。なお、現車は5月には在線しており、東横線にて営業運転に入っている様子も記録されています<NoteRef type="ref" by="moha1000-debut" />。</p>
 
-		<NoteRefContent id="moha1000-debut"><Link href="https://blog.w0s.jp/entry/705"><cite>東京横浜電鉄モハ1000形の竣功日の謎</cite></Link></NoteRefContent>
+		<NoteRefContent id="moha1000-debut"><Anchor href="https://blog.w0s.jp/entry/705"><cite>東京横浜電鉄モハ1000形の竣功日の謎</cite></Anchor></NoteRefContent>
 
 		<Table scroll={true}>
 			<colgroup></colgroup>

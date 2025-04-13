@@ -1,5 +1,5 @@
 ---
-import Link from '@components/Link.astro';
+import Anchor from '@components/Anchor.astro';
 
 interface Props {
 	title: string;
@@ -11,10 +11,10 @@ const { title, linkPath, iconPath } = Astro.props;
 ---
 
 <li>
-	<Link href={linkPath} icon={false}>
+	<Anchor href={linkPath} icon={false}>
 		<span class="image"><img src={iconPath} alt="" width="64" height="64" /></span>
 		<span class="title">{title}</span>
-	</Link>
+	</Anchor>
 </li>
 
 <style>

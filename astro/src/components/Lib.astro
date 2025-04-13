@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
 import EmbeddedLink from './EmbeddedLink.astro';
 import ImageAmazon from './ImageAmazon.astro';
-import Link from './Link.astro';
+import Anchor from './Anchor.astro';
 import SelfLink from './SelfLink.astro';
 
 interface Props {
@@ -79,7 +79,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			isbn !== undefined && (
 				<p class="isbn">
 					{/* prettier-ignore */}
-					<Link href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`}>ISBN: <data value={isbn}>{isbn}</data></Link>
+					<Anchor href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`}>ISBN: <data value={isbn}>{isbn}</data></Anchor>
 				</p>
 			)
 		}

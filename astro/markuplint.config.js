@@ -50,12 +50,20 @@ export default {
 	],
 	pretenders: [
 		{
-			selector: 'TopUpdate',
-			as: 'ul',
+			selector: 'Car',
+			as: 'td',
 		},
 		{
-			selector: 'TopUpdateItem',
-			as: 'li',
+			selector: 'CrawlerDiffLine',
+			as: 'tr',
+		},
+		{
+			selector: 'ListTable',
+			as: 'dl',
+		},
+		{
+			selector: 'Table',
+			as: 'table',
 		},
 	],
 	overrideMode: 'merge',
