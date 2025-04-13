@@ -2,6 +2,7 @@
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import Layout from '@layouts/Site.astro';
+import DialogOverlay from '@components/DialogOverlay.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import Step from '@components/Step.astro';
@@ -191,8 +192,5 @@ if (referrer !== null) {
 		</div>
 	</form>
 
-	<dialog class="p-dialog-overlay" id="form-submit-overlay" aria-labelledby="form-submit-overlay-message" aria-describedby="form-submit-overlay-message">
-		<p><img src="/assets/image/loading.svg" alt="" width="38" height="38" /></p>
-		<p id="form-submit-overlay-message">送信中</p>
-	</dialog>
+	<DialogOverlay label="送信中" id="form-submit-overlay" />
 </Layout>

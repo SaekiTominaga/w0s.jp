@@ -1,0 +1,42 @@
+---
+import { getIdHash } from '@util/hash.ts';
+
+interface Props {
+	label: string;
+	id?: string;
+}
+
+const { label, id } = Astro.props;
+
+const labelId = getIdHash('dialog-overlay');
+---
+
+<dialog class="dialog-overlay" id={id} aria-labelledby={labelId} aria-describedby={labelId}>
+	<p><img src="/assets/image/loading.svg" alt="" width="38" height="38" /></p>
+	<p id={labelId}>{label}</p>
+</dialog>
+
+<style>
+	.dialog-overlay {
+		position: fixed;
+		inset: 0;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+		background: transparent;
+		padding: 1em;
+		block-size: 100dvb;
+		inline-size: 100dvi;
+		color: var(--color-white);
+		font-size: 1.2rem;
+
+		&[open] {
+			display: block flex;
+		}
+
+		&::backdrop {
+			background: rgb(0 0 0 / 80%);
+		}
+	}
+</style>
