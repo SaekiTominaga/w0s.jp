@@ -27,6 +27,10 @@
 
 	.contents {
 		grid-column: contents;
+
+		& > :global(* + *) {
+			margin-block-start: calc(var(--stack-margin-base) / 3);
+		}
 	}
 
 	@container content (inline-size > 36em) {
