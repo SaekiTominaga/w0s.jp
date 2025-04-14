@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import Box from '@components/Box.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import List from '@components/List.astro';
@@ -150,7 +151,7 @@ if (requestQuery.output !== null) {
 			<Toggle open={true}>
 				<Fragment slot="summary">説明文</Fragment>
 
-				<div class="p-box">
+				<Box>
 					<List>
 						<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
 						<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
@@ -171,7 +172,7 @@ if (requestQuery.output !== null) {
 							入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
 						</li>
 					</List>
-				</div>
+				</Box>
 			</Toggle>
 		)
 	}
@@ -180,7 +181,7 @@ if (requestQuery.output !== null) {
 			<Toggle>
 				<Fragment slot="summary">説明文</Fragment>
 
-				<div class="p-box">
+				<Box>
 					<List>
 						<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
 						<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
@@ -201,7 +202,7 @@ if (requestQuery.output !== null) {
 							入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
 						</li>
 					</List>
-				</div>
+				</Box>
 			</Toggle>
 		)
 	}
@@ -496,11 +497,11 @@ if (requestQuery.output !== null) {
 				)}
 
 				{searchCount === 0 && (
-					<div class="p-box">
+					<Box>
 						<p>
 							<strong>該当する車両が存在しないか、登録されていません。</strong>
 						</p>
-					</div>
+					</Box>
 				)}
 			</Section>
 		)
