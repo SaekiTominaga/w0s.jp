@@ -129,7 +129,7 @@ for (const resoursePage of resourcePageListDto) {
 	<Section slugger={slugger}>
 		<Fragment slot="heading">データ登録</Fragment>
 
-		<form action={Astro.url.pathname} method="post" class="c-stack">
+		<form action={Astro.url.pathname} method="post">
 			<FormGrid>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label></Fragment>
@@ -248,7 +248,7 @@ for (const resoursePage of resourcePageListDto) {
 						{resourcePageOfCategory.map((resourcePage) => (
 							<tr>
 								<td class="u-cell -wrap-no">
-									<form action={Astro.url.pathname} method="post" class="c-stack">
+									<form action={Astro.url.pathname} method="post">
 										<p>
 											<input type="hidden" name="url" value={resourcePage.url.toString()} />
 											<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
@@ -258,11 +258,11 @@ for (const resoursePage of resourcePageListDto) {
 												削除
 											</button>
 										</p>
-
-										<p>
-											<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
-										</p>
 									</form>
+
+									<p>
+										<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
+									</p>
 								</td>
 								<td>
 									<a href={resourcePage.url} referrerpolicy="no-referrer">

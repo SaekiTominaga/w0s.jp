@@ -30,7 +30,7 @@ const timeEndDisplay = timeStart.format('H') === '0' ? timeEnd?.format('m′s″
 			</dt>
 		)
 	}
-	<dd class="c-stack">
+	<dd>
 		<slot />
 	</dd>
 </div>
@@ -51,5 +51,9 @@ const timeEndDisplay = timeStart.format('H') === '0' ? timeEnd?.format('m′s″
 
 	dd {
 		margin-block-start: 0.5em;
+
+		& > :global(* + *) {
+			margin-block-start: var(--stack-margin-base);
+		}
 	}
 </style>
