@@ -9,7 +9,7 @@ interface Props {
 const { id, full, scroll, font } = Astro.props;
 ---
 
-<div id={id} class:list={['table', full ? '-full' : undefined, scroll ? '-scroll' : undefined, font === 'small' ? '-font-small' : undefined]}>
+<div id={id} class:list={['table', { '-full': full }, { '-scroll': scroll }, { '-font-small': font === 'small' }]}>
 	<table>
 		<slot />
 	</table>

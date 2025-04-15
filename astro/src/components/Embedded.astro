@@ -8,12 +8,12 @@ const { border, captionMeta } = Astro.props;
 ---
 
 <figure>
-	<div class:list={['embedded', border ? '-border' : undefined]}>
+	<div class:list={['embedded', { '-border': border }]}>
 		<slot name="media" />
 	</div>
 	{
 		Astro.slots.has('caption') && (
-			<figcaption class:list={[captionMeta ? '-meta' : undefined]}>
+			<figcaption class:list={[{ '-meta': captionMeta }]}>
 				<slot name="caption" />
 			</figcaption>
 		)

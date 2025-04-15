@@ -29,7 +29,7 @@ if (id !== undefined) {
 }
 ---
 
-<section class:list={['section', `-${headingType}`, box ? '-box' : undefined, className]} id={sectionId}>
+<section class:list={['section', `-${headingType}`, { '-box': box }, className]} id={sectionId}>
 	<div class="hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}

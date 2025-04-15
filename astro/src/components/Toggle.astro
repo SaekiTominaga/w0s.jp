@@ -8,7 +8,7 @@ interface Props {
 const { fit, open, duration } = Astro.props;
 ---
 
-<details open={open} class:list={['toggle', fit ? '-fit' : undefined, 'js-details-animation']} data-duration={duration}>
+<details open={open} class:list={['toggle', { '-fit': fit }, 'js-details-animation']} data-duration={duration}>
 	<summary><slot name="summary" /></summary>
 
 	<div class="contents">

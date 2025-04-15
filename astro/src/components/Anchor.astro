@@ -104,7 +104,7 @@ const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url
 	url === undefined && (
 		<>
 			{/* prettier-ignore */}
-			<a href={href} hreflang={hreflang} lang={lang} aria-current={href === undefined ? 'page' : undefined} class:list={[bullet ? "-bullet" : undefined]}><slot /></a>
+			<a href={href} hreflang={hreflang} lang={lang} aria-current={href === undefined ? 'page' : undefined} class:list={[{ '-bullet': bullet }]}><slot /></a>
 		</>
 	)
 }
@@ -112,7 +112,7 @@ const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url
 	url !== undefined && (
 		<>
 			{/* prettier-ignore */}
-			<a href={url.toString()} rel="external" hreflang={hreflang} lang={lang} class:list={[bullet ? '-bullet' : undefined]}><slot /></a>
+			<a href={url.toString()} rel="external" hreflang={hreflang} lang={lang} class:list={[{ '-bullet': bullet }]}><slot /></a>
 			{icon && typeIcon !== undefined && <img src={`/assets/image/icon/${typeIcon.fileName}`} alt={`(${typeIcon.name})`} width="16" height="16" class="c-link-icon" />}
 			{icon && hostIcon !== undefined && (
 				<>
