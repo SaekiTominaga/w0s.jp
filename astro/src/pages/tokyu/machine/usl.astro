@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import AnchorPhoto from '@components/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
@@ -27,8 +29,8 @@ const slugger = new GithubSlugger();
 	<Section id="olr">
 		<Fragment slot="heading">7200系、7600系の過負荷灯</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">オリジナルタイプ</Fragment>
 
@@ -40,8 +42,8 @@ const slugger = new GithubSlugger();
 
 					<p>主制御器のある車両に取り付けられている過負荷灯は床下にあり、昔ながらの独立タイプです。7600系化された車両は非常通報灯を車体側面に増設しましたが、過負荷灯は床下のままとなっています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">新型タイプ</Fragment>
 
@@ -53,15 +55,15 @@ const slugger = new GithubSlugger();
 
 					<p>デハ7653、デハ7681、デハ7682、デヤ7200は異なる形状をしています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="series8000">
 		<Fragment slot="heading">8000系グループ、7600系、7700系等の床下灯</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">3灯タイプ</Fragment>
 
@@ -75,15 +77,15 @@ const slugger = new GithubSlugger();
 
 					<p>床下灯は3灯で、上から「不緩解」「保安動作」「不足」です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="series9000">
 		<Fragment slot="heading">9000系、2000系等の床下灯</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">4灯タイプ</Fragment>
 
@@ -95,8 +97,8 @@ const slugger = new GithubSlugger();
 
 					<p>2000系までのVVVF新造車、および8500系VVVF車ではブレーキ装置に横付けされており、主制御器のある電動車と先頭車が4灯（「指令器異常」が追加）となりました。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">3灯タイプ</Fragment>
 
@@ -108,7 +110,7 @@ const slugger = new GithubSlugger();
 
 					<p>主制御器のない電動車と付随車は3灯です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

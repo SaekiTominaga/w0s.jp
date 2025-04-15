@@ -4,6 +4,8 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Image from '@components/Image.astro';
 import AnchorPhoto from '@components/AnchorPhoto.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -25,8 +27,8 @@ const structuredData: StructuredData = {
 	<Section id="pantograph">
 		<Fragment slot="heading">菱形パンタグラフ</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="pt43" depth={2} headingType="c">
 					<Fragment slot="heading">PT43</Fragment>
 
@@ -46,8 +48,8 @@ const structuredData: StructuredData = {
 
 					<p>後に旧7000系や旧3000系の一部にも搭載され、現在でも7700系のうちデハ7701、デハ7802に残るほか、クハ7500形から電装化されたデヤ7290の上り方もPT43型が搭載されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="pt44" depth={2} headingType="c">
 					<Fragment slot="heading">PT44</Fragment>
 
@@ -69,8 +71,8 @@ const structuredData: StructuredData = {
 
 					<p>現在、東急に残る個体はPT43型ともどもすべてホーンが2本のタイプとなっていますが、弘南鉄道6000系や福島交通7000系、上田電鉄7200系に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/pt/PT44_horn1.jpg" title="福島交通デハ7111"><!-- 撮影日: 2009-07-22 -->1本ホーンのタイプ</AnchorPhoto>が残っています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="pt44s-c" depth={2} headingType="c">
 					<Fragment slot="heading">PT44S（C型）</Fragment>
 
@@ -93,8 +95,8 @@ const structuredData: StructuredData = {
 						<li>2012年3月24日、搭載車がデハ7806に変わっていることを確認しました。</li>
 					</ListNote>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="pt44s" depth={2} headingType="c">
 					<Fragment slot="heading">PT44S（D型、E型）</Fragment>
 
@@ -113,8 +115,8 @@ const structuredData: StructuredData = {
 
 					<p>2丁パンタ車であるデハ7681、デハ7682のみにみられる特徴として、下り方の個体のみ、避雷器がある側の上枠と下枠の間接部同士を繋ぐ横控管（枕木方向）がありません。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="pt4309" depth={2} headingType="c">
 					<Fragment slot="heading">PT4309（架線検測車・測定用）</Fragment>
 
@@ -131,15 +133,15 @@ const structuredData: StructuredData = {
 
 					<p>7200系架線検測車（デヤ7290）の下り方に設けられている測定用パンタグラフは、8000系グループで使用されているPT4309型となっています。この個体のみ、主ばねにカバーがされていません。なお、7200系や7700系譲渡車の中にも、譲渡後にPT4304型やPT4309型へ載せ替えられた例が存在します。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="single-arm">
 		<Fragment slot="heading">シングルアーム形パンタグラフ</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="pt7108" depth={2} headingType="c">
 					<Fragment slot="heading">PT7108</Fragment>
 
@@ -163,7 +165,7 @@ const structuredData: StructuredData = {
 
 					<p>2007年には7600系のデハ7653、デハ7673もシングルアーム形に交換されましたが、いずれも2010年までに廃車となり、7600系、7700系のシングルアーム形パンタグラフ搭載車は消滅しました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

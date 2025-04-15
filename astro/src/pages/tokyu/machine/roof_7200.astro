@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -33,8 +35,8 @@ const structuredData: StructuredData = {
 	<Section id="cmc-7200">
 		<Fragment slot="heading">デヤ7200形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="cmc-7200-1" depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7200</Fragment>
 
@@ -48,15 +50,15 @@ const structuredData: StructuredData = {
 
 					<p>車央部にはベンチレーターが2台残されており、また両端の乗務員室直上にはそれぞれ逆L字型のSRアンテナがあります。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="cmc-7290">
 		<Fragment slot="heading">デヤ7290形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="cmc-7290-1" depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7290<small>（集電装置換装前）</small></Fragment>
 
@@ -72,8 +74,8 @@ const structuredData: StructuredData = {
 
 					<p>逆L字型のSRアンテナは、下り方の乗務員室直上のほか、上り方集電装置の下り方にも2基増設されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="cmc-7290-2" depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7290<small>（集電装置シングルアーム化）</small></Fragment>
 
@@ -89,15 +91,15 @@ const structuredData: StructuredData = {
 
 					<p>下り方の測定用パンタグラフは検測運転時も用いられることはなくなりましたが、撤去はされず残っています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="t-7590">
 		<Fragment slot="heading">サヤ7590形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="t-7590-1" depth={2} headingType="c">
 					<Fragment slot="heading">サヤ7590</Fragment>
 
@@ -109,7 +111,7 @@ const structuredData: StructuredData = {
 
 					<p>冷房装置が2台配置されており、キセの開口部はすべて下り方に開けられています。冷房装置の両脇には、ほぼ車体全長にわたってランボードが設けられています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

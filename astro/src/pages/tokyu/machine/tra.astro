@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -26,8 +28,8 @@ const slugger = new GithubSlugger();
 	<Section id="door-non-treat">
 		<Fragment slot="heading">扉非扱い制御用</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">大井町線</Fragment>
 
@@ -39,8 +41,8 @@ const slugger = new GithubSlugger();
 
 					<p>東急線で初めてトランスポンダ式装置が導入されたのは1989年で、目蒲線と大井町線の扉非扱い制御用として導入されました。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">池上、多摩川線</Fragment>
 
@@ -57,15 +59,15 @@ const slugger = new GithubSlugger();
 
 					<p>池上線ではワンマン運転に伴い、TASC地点情報伝送を当装置で行っています。なお、7600系の伝送装置は車掌台上部に設置されています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="atc">
 		<Fragment slot="heading">列車情報などの伝送用</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">東横線（1000系まで）</Fragment>
 
@@ -77,8 +79,8 @@ const slugger = new GithubSlugger();
 
 					<p>東横線では1997年のATC導入にあたり、列車制御などの情報伝送をトランスポンダで行っています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">目黒線、こどもの国線（Y000系）</Fragment>
 
@@ -92,8 +94,8 @@ const slugger = new GithubSlugger();
 
 					<p>7000系ワンマン車両を導入していたこどもの国線では、1991年より開扉方向制御にトランスポンダを採用しています。1999〜2000年に導入されたY000系には、新3000系と同じタイプの装置が搭載されました。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">大井町線</Fragment>
 
@@ -107,7 +109,7 @@ const slugger = new GithubSlugger();
 
 					<p>東横線ATC化後に大井町線へ転籍した車両は、しばらく東横時代の装置を搭載したまま運用されていましたが、東横線へ戻った9000系1編成を除き、ほかの大井町車と同じ新型タイプに換装されました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

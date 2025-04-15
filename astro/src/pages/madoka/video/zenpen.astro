@@ -5,6 +5,8 @@ import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
 import Anchor from '@components/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
@@ -115,20 +117,20 @@ const structuredData: StructuredData = {
 
 				<p>魔法少女服の襟の内側が黄色く塗られていたミスを修正。</p>
 
-				<div class="c-grid -medium">
-					<div class="c-grid__item">
+				<Grid column="medium">
+					<GridItem>
 						<Embedded border={true}>
 							<Image path="madoka/video/zenpen_chapter6_00-17-13_trailer.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
 							<Fragment slot="caption">予告編1（後編BD/DVD収録）</Fragment>
 						</Embedded>
-					</div>
-					<div class="c-grid__item">
+					</GridItem>
+					<GridItem>
 						<Embedded border={true}>
 							<Image path="madoka/video/zenpen_chapter6_00-17-13_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
-					</div>
-				</div>
+					</GridItem>
+				</Grid>
 
 				<ListNote>
 					<li>予告編では画面周囲に額縁のようなものが描かれているが、上映版ではなくなっている。また、花びら模様もこのタイミングでは消えている。上映版とパッケージ版の違いはマミの作画のみ。</li>

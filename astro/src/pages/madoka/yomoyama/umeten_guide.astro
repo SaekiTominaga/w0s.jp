@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Box from '@components/Box.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
@@ -21,27 +23,27 @@ const structuredData: StructuredData = {
 	<Section id="guidelist">
 		<Fragment slot="heading">各会場のガイドリスト</Fragment>
 
-		<div class="c-grid -narrow">
-			<div class="c-grid__item">
+		<Grid column="narrow">
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="madoka/yomoyama/umeten_guide_list_tokyo.jpg" alt="画像拡大" width={155} height={220} quality={60} link={true} slot="media" />
 					<Fragment slot="caption">ガイドリスト（東京）</Fragment>
 				</Embedded>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="madoka/yomoyama/umeten_guide_list_osaka.jpg" alt="画像拡大" width={155} height={220} quality={60} link={true} slot="media" />
 					<Fragment slot="caption">ガイドリスト（大阪）</Fragment>
 				</Embedded>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="madoka/yomoyama/umeten_guide_opus_click.jpg" alt="写真拡大" width={147} height={220} quality={60} link={true} slot="media" />
 					<!-- 2016-03-19 057C10068 -->
 					<Fragment slot="caption">マルチメディアガイド機オーパス</Fragment>
 				</Embedded>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="chapter1">

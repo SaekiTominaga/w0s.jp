@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -26,8 +28,8 @@ const slugger = new GithubSlugger();
 	<Section id="trumpet-1">
 		<Fragment slot="heading">トランペット型（1〜5次車）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">1次車（一部を除く）</Fragment>
 
@@ -42,8 +44,8 @@ const slugger = new GithubSlugger();
 
 					<p>この写真は大井町線1次車のうちデハ8101〜8104, 8106、デハ8201〜8202、クハ8001〜8004 に設置されているものです。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">1次車（一部）</Fragment>
 
@@ -56,8 +58,8 @@ const slugger = new GithubSlugger();
 
 					<p>大井町線1次車のうちデハ8105、デハ8203、クハ8005〜8006 は穴の形状が若干異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">5次車</Fragment>
 
@@ -70,15 +72,15 @@ const slugger = new GithubSlugger();
 
 					<p>5次車のうち、東横線の車体更新車を除く車両は穴面積が小さく列数も少ないものでしたが、現在は全車が解体または運用離脱しています。大井町線所属の車体更新車であるデハ8145、デハ8224、クハ8047〜8048 は、色が白くなっていました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="trumpet-6">
 		<Fragment slot="heading">トランペット型（6〜15次車）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">6〜8次車</Fragment>
 
@@ -91,8 +93,8 @@ const slugger = new GithubSlugger();
 
 					<p>6〜8次車では穴面積が拡大されました。車体更新車は撤去されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">9次車</Fragment>
 
@@ -105,8 +107,8 @@ const slugger = new GithubSlugger();
 
 					<p>9次車は、8次車までのタイプと似ているが穴の列数が少なくなりました。車体更新車は撤去されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">10次車</Fragment>
 
@@ -119,8 +121,8 @@ const slugger = new GithubSlugger();
 
 					<p>10次車は穴が再び千鳥配置になりました。車体更新車は撤去されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">11〜14次車など</Fragment>
 
@@ -133,15 +135,15 @@ const slugger = new GithubSlugger();
 
 					<p>8090系を除く11〜14次車と15次車（組込車のみ）は、10次車のタイプと似ていますが穴の列数が多くなりました。11次車の車体更新車は撤去されており、東横線の車両と田園都市線12〜14次車は、後述する新型タイプへ更新されています。15次車（組込車）は、後述するコーン型も併設されています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="cone">
 		<Fragment slot="heading">コーン型</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">15〜20次車と8090系全車両</Fragment>
 
@@ -154,8 +156,8 @@ const slugger = new GithubSlugger();
 
 					<p>15次車からはコーン型の8個配置となり、設置場所は天井中央部から肩部に近いところへ移りました。8090系は全車両がこのタイプですが、8590系も含め1両に6個の設置となっています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">21次車と8945, 8946</Fragment>
 
@@ -168,15 +170,15 @@ const slugger = new GithubSlugger();
 
 					<p>21次車では、穴の行数・列数が多くなりました。東横線所属の室内・車体更新車や、田園都市線所属の車体更新車のうち初期に更新された12次車（サハ8945〜8946）もこのタイプに更新されています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="renewal">
 		<Fragment slot="heading">更新工事</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">田園都市線6〜11次車</Fragment>
 
@@ -189,8 +191,8 @@ const slugger = new GithubSlugger();
 
 					<p>田園都市線所属の6〜11次車は、非常灯が撤去されてその跡地に小型のスピーカーが増設されています。車体更新未施工車においては、従来のタイプとの併設となっています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">田園都市線12〜14次車など</Fragment>
 
@@ -203,7 +205,7 @@ const slugger = new GithubSlugger();
 
 					<p>東横線所属の13次車までの室内・車体更新未施工車、および田園都市線所属の12〜14次車（サハ8945〜8946除く）は新型タイプへの更新が行われ、ケースは直方体に近いものとなりました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

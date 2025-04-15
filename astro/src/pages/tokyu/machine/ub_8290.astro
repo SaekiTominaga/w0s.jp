@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -31,8 +33,8 @@ const structuredData: StructuredData = {
 	<Section id="m2-8290-bs33">
 		<Fragment slot="heading">10kVA SIV 搭載車</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="m2-8290-bs33-s" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -44,8 +46,8 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、遮断器箱（SIV 起動装置）、接地開閉器、空気圧縮機（HB-2000 型、2台）、100V蓄電池です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="m2-8290-bs33-m" depth={2} headingType="c">
 					<Fragment slot="heading">山側</Fragment>
 
@@ -57,8 +59,8 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、<a href="/tokyu/machine/aps#bs33">静止形インバーター（BS-33 型）</a>、負荷接触器、元空気だめ、除湿装置、元空気だめ、除湿装置、ブレーキ制御装置です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="m2-8290-bs33-j" depth={2} headingType="c">
 					<Fragment slot="heading">山側連結部</Fragment>
 
@@ -70,15 +72,15 @@ const structuredData: StructuredData = {
 
 					<p>デハ8490形（2号車）とデハ8290形（3号車）の山側連結部の様子。手前から2本目、MRPの奥にあるジャンパ栓が3芯の冷房用高圧栓（IC3C 型）です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="m2-8290-inv104">
 		<Fragment slot="heading">100kVA SIV（INV-104 型）搭載車</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="m2-8290-inv104-s" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -90,8 +92,8 @@ const structuredData: StructuredData = {
 
 					<p>2000年に100kVAへ換装された車両では、海側の遮断器箱を撤去して<a href="/tokyu/machine/rec#rfe068">RFE068型整流装置</a>が取り付けられ、高圧接触器や電動空気圧縮機が若干移設されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="m2-8290-inv104-m" depth={2} headingType="c">
 					<Fragment slot="heading">山側</Fragment>
 
@@ -103,8 +105,8 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、<a href="/tokyu/machine/aps#inv104">静止形インバーター（INV-104 型）</a>、元空気だめ、除湿装置、元空気だめ、除湿装置、ブレーキ制御装置です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="m2-8290-inv104-j" depth={2} headingType="c">
 					<Fragment slot="heading">山側連結部</Fragment>
 
@@ -116,15 +118,15 @@ const structuredData: StructuredData = {
 
 					<p>二電源化を行った車両編成では、換装された3号車の SIV が3〜5号車の給電を担当するため、2〜3号車間の冷房用繋ぎは不要となりました。なお、8496-8282間のみ冷房栓は撤去されずに残っています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="m2-8290-inv153">
 		<Fragment slot="heading">100kVA SIV（INV-153 型）搭載車</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="m2-8290-inv153-s" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -138,8 +140,8 @@ const structuredData: StructuredData = {
 
 					<p>なお、山側の配置は INV-104 型搭載車とほぼ同様です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="m2-8290-inv153-j" depth={2} headingType="c">
 					<Fragment slot="heading">山側連結部</Fragment>
 
@@ -149,15 +151,15 @@ const structuredData: StructuredData = {
 						<Fragment slot="caption">デハ8494 ｰ デハ8298山側</Fragment>
 					</Embedded>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="m2-8200">
 		<Fragment slot="heading">（参考）10kVA SIV 搭載車・デハ8200形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="m2-820-s" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -171,7 +173,7 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、遮断器箱（SIV起動装置）、接地開閉器、空気圧縮機（HB-2000 型）、100V 蓄電池、空気圧縮機（HB-2000 型）、100V 蓄電池で、デハ8290形と異なり蓄電池が2台搭載されているのが外観上最大の特徴です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

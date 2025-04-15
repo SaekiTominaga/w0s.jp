@@ -2,6 +2,8 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import LayoutTop from '@layouts/content-body/Top.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import ListLink from '@components/ListLink.astro';
 import Section from '@components/Section.astro';
 import TopNavText from '@components/TopNavText.astro';
@@ -23,8 +25,8 @@ const slugger = new GithubSlugger();
 		<Fragment slot="nav">
 			<TopNavText heading="サイトコンテンツ">
 				<Fragment slot="main">
-					<div class="c-grid -wide -hdg-b">
-						<div class="c-grid__item">
+					<Grid column="wide" headingType="b">
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">映像</Fragment>
 
@@ -36,8 +38,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/madoka/video/concept-movie">コンセプトムービー</a></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">メディア紹介</Fragment>
 
@@ -48,8 +50,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/madoka/library/web">Web</a><small>（2011年〜2020年）</small></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">イベント</Fragment>
 
@@ -64,8 +66,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/madoka/event/1kuji">バンプレスト　一番くじ</a></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">よもやま</Fragment>
 
@@ -79,8 +81,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/madoka/yomoyama/monoga-modoka">惑語　魔法少女ものが☆モドカ</a></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">同人誌</Fragment>
 
@@ -94,8 +96,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/madoka/dojin/zaiko">在庫状況</a></li>
 								</ListLink>
 							</Section>
-						</div>
-					</div>
+						</GridItem>
+					</Grid>
 				</Fragment>
 			</TopNavText>
 		</Fragment>

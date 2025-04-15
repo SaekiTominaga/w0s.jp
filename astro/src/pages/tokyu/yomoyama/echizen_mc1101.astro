@@ -5,6 +5,8 @@ import Anchor from '@components/Anchor.astro';
 import DocBook from '@components/DocBook.astro';
 import DocMagazine from '@components/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
@@ -37,15 +39,15 @@ const structuredData: StructuredData = {
 
 		<p>車両によって走り装置の更新や冷房搭載など各種の改造が行われていますが、今回注目するのはMC1101形という車両で、1981年に阪神電鉄で廃車になった車両の車体を譲り受け、各種機器は在来車のものを流用して2両が竣功したものとのことです。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
+		<Grid column="wide">
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="tokyu/yomoyama/echizen_mc1101/MC1102.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
 					<!-- 撮影日: 2009-07-20 -->
 					<Fragment slot="caption">えちぜん鉄道MC1102</Fragment>
 				</Embedded>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 
 		<p>この車種は竣功当初は吊り掛け式だったようですが、京福時代の1998年にカルダン駆動化が行われており、同時に主制御器は MMC-H-10K に換装されました。</p>
 
@@ -99,14 +101,14 @@ const structuredData: StructuredData = {
 
 		<p>これらに書かれているように、第1編成は名鉄3880系で使用されていた主制御器を流用したようです。これはそのまま東急デハ3700形由来のものと思われますが、同じ MMC-H-10 でもえち鉄MC1101形とはタイプが異なります。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
+		<Grid column="wide">
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="tokyu/yomoyama/echizen_mc1101/toyohashi_1956.jpg" width={500} height={356} quality={60} slot="media" />
 					<Fragment slot="caption">豊橋鉄道モ1956</Fragment>
 				</Embedded>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 
 		<ListNote>
 			<li>豊橋鉄道モ1956の写真は <Anchor href="http://js3vxw.cocolog-nifty.com/photos/toyohashi__600v/">JS3VXWの鉄道管理局</Anchor>より許可を得て転載。</li>
@@ -118,22 +120,22 @@ const structuredData: StructuredData = {
 
 		<p>MMC-H-10は、東急ではD型、G型、K型の3種類が使われていました。D型とG型は外観がよく似た3室構造ですが、後期に登場したK型は2室で、蓋形状も曲線がなく角張っているなどの違いがあります。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
+		<Grid column="wide">
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="tokyu/yomoyama/echizen_mc1101/ttm_MMC-H-10G.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
 					<!-- 撮影日: 2006-04-23 -->
 					<Fragment slot="caption">MMC-H-10G（電車とバスの博物館展示品）</Fragment>
 				</Embedded>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
 					<!-- 撮影日: 2009-07-20 -->
 					<Fragment slot="caption">MMC-H-10K（えちぜん鉄道MC1102）</Fragment>
 				</Embedded>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 
 		<p>デハ3700形は東急末期にはG型となっていたようで、鉄道ピクトリアルの東急特集号にこんな記述があります。</p>
 
@@ -284,15 +286,15 @@ const structuredData: StructuredData = {
 
 		<p>さらに前面蓋の向かって右側、MCOS部分にはうっすら<q>3509</q>という車番らしき数字が残っていました。豊橋鉄道渥美線とえちぜん鉄道（京福電鉄）には、3500番台の車両は存在しません。名古屋鉄道にはモ3500形という車両が居たようですが、主制御器はMMC系ではなく、そもそもモ3509は東急譲渡車が入線するずっと前に制御車化されており、可能性はないでしょう。そう考えると東急デハ3509のものでしょうか。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
+		<Grid column="wide">
+			<GridItem>
 				<Embedded border={true}>
 					<Image path="tokyu/yomoyama/echizen_mc1101/MC1102_MMC-H-10K_magnify.jpg" alt="写真拡大" width={500} height={375} quality={60} link={true} slot="media" />
 					<!-- 撮影日: 2009-07-20 -->
 					<Fragment slot="caption">MC1102の主制御器、MCOS蓋拡大</Fragment>
 				</Embedded>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 
 		<p>1939年に東京横浜電鉄モハ1000形として登場した東急デハ3500形の主制御器は、当初はMC-200、MMC-H-200でしたが、1969年よりMMC-H-10Kに更新されたようです。</p>
 

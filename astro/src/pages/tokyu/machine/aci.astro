@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -23,8 +25,8 @@ const structuredData: StructuredData = {
 	<Section id="original">
 		<Fragment slot="heading">オリジナルタイプ（製造時）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="inv049" depth={2} headingType="c">
 					<Fragment slot="heading">INV-049</Fragment>
 
@@ -38,8 +40,8 @@ const structuredData: StructuredData = {
 
 					<p>後述の新型タイプへの更新や車両の廃車により、現在は譲渡先でのみ見ることができます。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="inv088" depth={2} headingType="c">
 					<Fragment slot="heading">INV-088</Fragment>
 
@@ -53,15 +55,15 @@ const structuredData: StructuredData = {
 
 					<p>後述の新型タイプへ置き換えられたため、現在は消滅しています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="renewal2014">
 		<Fragment slot="heading">2014年更新後</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="tc220" depth={2} headingType="c">
 					<Fragment slot="heading">TCE-220</Fragment>
 
@@ -73,7 +75,7 @@ const structuredData: StructuredData = {
 
 					<p>2014年には冷房装置の更新が始まり、床下の制御装置も新型に換装されました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

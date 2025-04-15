@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import AnchorPhoto from '@components/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
@@ -24,8 +26,8 @@ const structuredData: StructuredData = {
 	<Section id="dento">
 		<Fragment slot="heading">田園都市線、こどもの国線</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="dento-2" depth={2} headingType="c">
 					<Fragment slot="heading">8590系、2000系<small>（三菱電機）</small></Fragment>
 
@@ -39,8 +41,8 @@ const structuredData: StructuredData = {
 
 					<p>2002年頃にはATC装置の換装が行われ、三菱電機製の装置が搭載されました。8590系2編成は、2003年の東横線復帰時、およびその後の田都線再転籍時にもそのまま使用されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="kodomo-2" depth={2} headingType="c">
 					<Fragment slot="heading">Y000系<small>（日立製作所）</small></Fragment>
 
@@ -52,15 +54,15 @@ const structuredData: StructuredData = {
 
 					<p>1999年にこどもの国線用として導入されたY000系は、後述する新3000系と同じくATC本体を編成あたり1台とし、下り向き先頭車には増幅器が搭載されています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="toyoko">
 		<Fragment slot="heading">東横線</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="toyoko-1" depth={2} headingType="c">
 					<Fragment slot="heading">8000系（一部）<small>（日立製作所）</small></Fragment>
 
@@ -74,8 +76,8 @@ const structuredData: StructuredData = {
 
 					<p>写真は初期に導入されたタイプであり、8000系のうち東横線先頭車の約半数に搭載されていましたが、廃車の進行に伴い2006年に消滅しました。インドネシアの PT KAI 社に譲渡されたクハ8007, 8008は撤去されずに残っているようです。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="toyoko-2" depth={2} headingType="c">
 					<Fragment slot="heading">8000系、9000系、1000系<small>（日立製作所）</small></Fragment>
 
@@ -87,15 +89,15 @@ const structuredData: StructuredData = {
 
 					<p>1993年度以降の工事車は、点検蓋が2枚になるなど形態が異なります。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="meguro">
 		<Fragment slot="heading">目黒線</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="meguro-1" depth={2} headingType="c">
 					<Fragment slot="heading">新3000系<small>（三菱電機）</small></Fragment>
 
@@ -107,15 +109,15 @@ const structuredData: StructuredData = {
 
 					<p>従来、ATC装置は編成の両先頭車に搭載されるのが一般的でしたが、1999年に導入された新3000系では下り向き先頭車に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/atc/RB1367.jpg" title="クハ3101海側"><!-- 撮影日: 2009-01-04 -->ATC増幅器</AnchorPhoto>（日本信号製）を搭載し、上り向き先頭車の制御部と伝送を行うことで本体を編成中に1台としました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="oimachi-ats">
 		<Fragment slot="heading">大井町線（ATS時代）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="dento-1" depth={2} headingType="c">
 					<Fragment slot="heading">8000系、8090系、9000系<small>（日立製作所）</small></Fragment>
 
@@ -129,15 +131,15 @@ const structuredData: StructuredData = {
 
 					<p>このタイプは、後述のATC-P対応型への更新により、2008年に消滅しました。インドネシアの PT KAI 社に譲渡されたクハ8003, 8004は撤去されずに残っているようです。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="oimachi-atc">
 		<Fragment slot="heading">大井町線（ATC-P化）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="oimachi-1" depth={2} headingType="c">
 					<Fragment slot="heading">8090系（一部）、9000系（一部）<small>（日立製作所）</small></Fragment>
 
@@ -153,7 +155,7 @@ const structuredData: StructuredData = {
 
 					<p>なお、2005年に東横線から転籍した8590系は、東横時代の装置をそのまま使用しています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

@@ -2,6 +2,8 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import LayoutTop from '@layouts/content-body/Top.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import ListLink from '@components/ListLink.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
@@ -26,8 +28,8 @@ const slugger = new GithubSlugger();
 		<Fragment slot="nav">
 			<TopNavText heading="サイトコンテンツ">
 				<Fragment slot="main">
-					<div class="c-grid -wide -hdg-b">
-						<div class="c-grid__item">
+					<Grid column="wide" headingType="b">
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">漫画</Fragment>
 
@@ -40,8 +42,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/kumeta/manga/ebook">電子書籍の非収録コンテンツ</a></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">メディア紹介</Fragment>
 
@@ -53,8 +55,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/kumeta/library/web">Web</a><small>（2007年〜）</small></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">アニメ</Fragment>
 
@@ -64,8 +66,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/kumeta/anime/kakushigoto/storyboard">『劇場編集版　かくしごと』絵コンテ検証</a></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">久米田先生</Fragment>
 
@@ -77,8 +79,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/kumeta/kumeta/x">X アイコン履歴</a><small>（2019年〜2021年）</small></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">よもやま</Fragment>
 
@@ -91,8 +93,8 @@ const slugger = new GithubSlugger();
 									<li><a href="/kumeta/yomoyama/zetsubou_web">アニメ『さよなら絶望先生』公式サイトのアーカイブ</a></li>
 								</ListLink>
 							</Section>
-						</div>
-						<div class="c-grid__item">
+						</GridItem>
+						<GridItem>
 							<Section slugger={slugger} depth={2} headingType="b">
 								<Fragment slot="heading">最新ニュース</Fragment>
 
@@ -105,8 +107,8 @@ const slugger = new GithubSlugger();
 									<li>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Mastodon に流しています。</li>
 								</ListNote>
 							</Section>
-						</div>
-					</div>
+						</GridItem>
+					</Grid>
 				</Fragment>
 			</TopNavText>
 		</Fragment>

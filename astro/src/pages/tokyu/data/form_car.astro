@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import MachineForm from '@components/tokyu/MachineForm.astro';
@@ -38,8 +40,8 @@ const slugger = new GithubSlugger();
 	<Section id="series7200">
 		<Fragment slot="heading">7200系</Fragment>
 
-		<div class="c-flex -hdg-c">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7200形</Fragment>
 
@@ -61,8 +63,8 @@ const slugger = new GithubSlugger();
 						</Fragment>
 					</MachineForm>
 				</Section>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">デヤ7290形</Fragment>
 
@@ -84,8 +86,8 @@ const slugger = new GithubSlugger();
 						</Fragment>
 					</MachineForm>
 				</Section>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<Section slugger={slugger} depth={2} headingType="c">
 					<Fragment slot="heading">サヤ7590形</Fragment>
 
@@ -107,8 +109,8 @@ const slugger = new GithubSlugger();
 						</Fragment>
 					</MachineForm>
 				</Section>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="series7600">

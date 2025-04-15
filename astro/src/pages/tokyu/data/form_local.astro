@@ -1,6 +1,8 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import LocalForm from '@components/tokyu/LocalForm.astro';
@@ -29,8 +31,8 @@ const structuredData: StructuredData = {
 		<Section id="konan-konan" depth={2} headingType="c">
 			<Fragment slot="heading">弘南線</Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
+			<Flex>
+				<FlexItem>
 					<LocalForm stationUp="弘前" stationDown="黒石">
 						<Fragment slot="series">
 							<Series name="デハ7020" sign="Mc" electric="dc" />
@@ -61,8 +63,8 @@ const structuredData: StructuredData = {
 							</Car>
 						</tr>
 					</LocalForm>
-				</div>
-				<div class="c-flex__item">
+				</FlexItem>
+				<FlexItem>
 					<LocalForm stationUp="弘前" stationDown="黒石">
 						<Fragment slot="series">
 							<Series name="デハ7150" sign="Mc" electric="dc" />
@@ -101,8 +103,8 @@ const structuredData: StructuredData = {
 							</Car>
 						</tr>
 					</LocalForm>
-				</div>
-			</div>
+				</FlexItem>
+			</Flex>
 
 			<ListNote>
 				<li>電装品は全車両が東洋電機製造。</li>
@@ -113,8 +115,8 @@ const structuredData: StructuredData = {
 		<Section id="konan-owani" depth={2} headingType="c">
 			<Fragment slot="heading">大鰐線</Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
+			<Flex>
+				<FlexItem>
 					<LocalForm stationUp="大鰐" stationDown="中央弘前">
 						<Fragment slot="series">
 							<Series name="デハ7000" sign="Mc" electric="dc" />
@@ -153,8 +155,8 @@ const structuredData: StructuredData = {
 							</Car>
 						</tr>
 					</LocalForm>
-				</div>
-				<div class="c-flex__item">
+				</FlexItem>
+				<FlexItem>
 					<LocalForm stationUp="大鰐" stationDown="中央弘前">
 						<Fragment slot="series">
 							<Series name="デハ6000" sign="Mc" electric="dc" />
@@ -169,8 +171,8 @@ const structuredData: StructuredData = {
 							</Car>
 						</tr>
 					</LocalForm>
-				</div>
-			</div>
+				</FlexItem>
+			</Flex>
 
 			<ListNote>
 				<li>7000系の電装品は全車両が日立製作所。</li>
@@ -181,8 +183,8 @@ const structuredData: StructuredData = {
 	<Section id="fukushima">
 		<Fragment slot="heading">福島交通</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="福島" stationDown="飯坂温泉">
 					<Fragment slot="series">
 						<Series name="デハ1100" sign="Mc" electric="ac" />
@@ -221,8 +223,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="福島" stationDown="飯坂温泉">
 					<Fragment slot="series">
 						<Series name="デハ1100" sign="Mc" electric="ac" />
@@ -252,8 +254,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="福島" stationDown="飯坂温泉">
 					<Fragment slot="series">
 						<Series name="デハ7100" sign="Mc" electric="dc" />
@@ -268,8 +270,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li>7000系時代、3両編成の中間車は検査時等に組み込み編成が逆転したり、他編成に組み込まれたりすることがあったため、1000系も同様の編成替えが行われる可能性がある。</li>
@@ -280,8 +282,8 @@ const structuredData: StructuredData = {
 	<Section id="chichibu">
 		<Fragment slot="heading">秩父鉄道</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="羽生" stationDown="三峰口">
 					<Fragment slot="series">
 						<Series name="デハ7000" sign="M1c" electric="dc" />
@@ -311,8 +313,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="羽生" stationDown="三峰口">
 					<Fragment slot="series">
 						<Series name="クハ7700" sign="Tc1" />
@@ -397,8 +399,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="羽生" stationDown="三峰口">
 					<Fragment slot="series">
 						<Series name="デハ7800" sign="Mc" electric="dc" />
@@ -437,8 +439,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li><span class="c-tokyu-renewal -body">7001</span>, <span class="c-tokyu-renewal -body">7002</span>, <span class="c-tokyu-renewal -body">7201</span>, <span class="c-tokyu-renewal -body">7202</span>, <span class="c-tokyu-renewal -body">7102</span> は東急時代の車体更新車。</li>
@@ -449,8 +451,8 @@ const structuredData: StructuredData = {
 	<Section id="toyama">
 		<Fragment slot="heading">富山地方鉄道<small>（鉄道線）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="(社)富山／宇奈月♨" stationDown="上市／立山">
 					<Fragment slot="series">
 						<Series name="モハ17480" sign="M1c" electric="dc" />
@@ -481,15 +483,15 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="hokuriku">
 		<Fragment slot="heading">北陸鉄道<small>（石川線）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="野町" stationDown="鶴来">
 					<Fragment slot="series">
 						<Series name="モハ7000" sign="Mc" electric="dc" />
@@ -504,8 +506,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="野町" stationDown="鶴来">
 					<Fragment slot="series">
 						<Series name="モハ7100" sign="Mc" electric="dc" />
@@ -528,8 +530,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="野町" stationDown="鶴来">
 					<Fragment slot="series">
 						<Series name="モハ7200" sign="Mc" electric="dc" />
@@ -552,8 +554,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li>7001, 7011 は非冷房車。</li>
@@ -563,8 +565,8 @@ const structuredData: StructuredData = {
 	<Section id="ueda">
 		<Fragment slot="heading">上田電鉄</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="上田" stationDown="別所温泉">
 					<Fragment slot="series">
 						<Series name="デハ1000" sign="Mc" electric="ac" />
@@ -603,8 +605,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="上田" stationDown="別所温泉">
 					<Fragment slot="series">
 						<Series name="デハ6000" sign="Mc" electric="ac" />
@@ -619,15 +621,15 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="nagano">
 		<Fragment slot="heading">長野電鉄</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="長野" stationDown="信州中野">
 					<Fragment slot="series">
 						<Series name="デハ8510" sign="M2c" electric="dc" />
@@ -701,8 +703,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li><span class="c-tokyu-renewal -body">8503〜8506</span>, <span class="c-tokyu-renewal -body">8513〜8516</span>, <span class="c-tokyu-renewal -body">8551〜8556</span> は東急時代の車体更新車。</li>
@@ -713,8 +715,8 @@ const structuredData: StructuredData = {
 	<Section id="izukyu">
 		<Fragment slot="heading">伊豆急行</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="熱海／伊東" stationDown="伊豆急下田">
 					<Fragment slot="series">
 						<Series name="クハ8000" sign="Tc2" />
@@ -810,8 +812,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="熱海／伊東" stationDown="伊豆急下田">
 					<Fragment slot="series">
 						<Series name="クモハ8250" sign="M2c" electric="dc" />
@@ -897,8 +899,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li><span class="c-tokyu-style -light">8104</span> は軽量車。</li>
@@ -911,8 +913,8 @@ const structuredData: StructuredData = {
 	<Section id="oigawa">
 		<Fragment slot="heading">大井川鐵道<small>（大井川本線）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="金谷" stationDown="千頭">
 					<Fragment slot="series">
 						<Series name="モハ7200" sign="cMc" electric="dc" />
@@ -924,8 +926,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="金谷" stationDown="千頭">
 					<Fragment slot="series">
 						<Series name="モハ7300" sign="cMc" electric="dc" />
@@ -937,8 +939,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li>電装品は 7204 が日立製作所、 7305 が東洋電機製造。</li>
@@ -948,8 +950,8 @@ const structuredData: StructuredData = {
 	<Section id="toyohashi">
 		<Fragment slot="heading">豊橋鉄道<small>（渥美線）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="新豊橋" stationDown="三河田原">
 					<Fragment slot="series">
 						<Series name="ク2800" sign="Tc" />
@@ -1003,8 +1005,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="新豊橋" stationDown="三河田原">
 					<Fragment slot="series">
 						<Series name="ク2800" sign="Tc" />
@@ -1078,8 +1080,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li>電動車の電装品は車号下1桁が 1 〜 6 の12両が日立製作所、 0, 7 〜 9 の8両が東洋電機製造。</li>
@@ -1091,8 +1093,8 @@ const structuredData: StructuredData = {
 	<Section id="yoro">
 		<Fragment slot="heading">養老鉄道</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="大垣" stationDown="揖斐／桑名">
 					<Fragment slot="series">
 						<Series name="モ7700" sign="Mc" electric="ac" />
@@ -1142,8 +1144,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="大垣" stationDown="揖斐／桑名">
 					<Fragment slot="series">
 						<Series name="モ7700" sign="Mc" electric="ac" />
@@ -1180,8 +1182,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li>7701, 7703, 7705, 7706, 7712, 7814, 7803, 7812, 7814, 7912, 7914 は7700系化改造を東急車輛製造（TCC）で実施。</li>
@@ -1192,8 +1194,8 @@ const structuredData: StructuredData = {
 	<Section id="iga">
 		<Fragment slot="heading">伊賀鉄道</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="伊賀上野" stationDown="伊賀神戸">
 					<Fragment slot="series">
 						<Series name="ク100" sign="Tc" />
@@ -1240,15 +1242,15 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="mizuma">
 		<Fragment slot="heading">水間鉄道</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="貝塚" stationDown="水間観音">
 					<Fragment slot="series">
 						<Series name="デハ1000" sign="Mc" electric="dc" />
@@ -1295,8 +1297,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<LocalForm stationUp="貝塚" stationDown="水間観音">
 					<Fragment slot="series">
 						<Series name="デハ7000" sign="Mc" electric="dc" />
@@ -1311,8 +1313,8 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 
 		<ListNote>
 			<li>電装品は全車両が東洋電機製造。</li>
@@ -1324,8 +1326,8 @@ const structuredData: StructuredData = {
 	<Section id="ichibata">
 		<Fragment slot="heading">一畑電車</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<LocalForm stationUp="一畑口" stationDown="(社)出雲市／大社／松江♨">
 					<Fragment slot="series">
 						<Series name="デハ1000" sign="Mc" electric="ac" />
@@ -1356,7 +1358,7 @@ const structuredData: StructuredData = {
 						</Car>
 					</tr>
 				</LocalForm>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 </Layout>

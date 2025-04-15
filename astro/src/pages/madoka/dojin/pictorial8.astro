@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Anchor from '@components/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
 import Image from '@components/Image.astro';
 import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
@@ -74,11 +76,11 @@ const structuredData: StructuredData = {
 			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
 		</ListNote>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
+		<Flex>
+			<FlexItem>
 				<a href="/madoka/dojin/pdf/pictorial8_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
-			</div>
-			<div class="c-flex__item">
+			</FlexItem>
+			<FlexItem>
 				<a href="/madoka/dojin/pdf/pictorial8/v1.0.1.pdf" type="application/pdf" rel="nofollow" class="c-button">
 					<img src="/assets/image/icon/padlock.svg" alt="(認証)" width="16" height="16" class="c-button__icon" /><span class="c-button__text">
 						購入者向け PDF<small>（ver.1.0.1、2018年4月10日更新）</small>
@@ -87,8 +89,8 @@ const structuredData: StructuredData = {
 				<ListNote>
 					<li>認証情報は奥付に記載</li>
 				</ListNote>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="toc">

@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import AnchorPhoto from '@components/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
@@ -24,8 +26,8 @@ const structuredData: StructuredData = {
 	<Section id="hsc">
 		<Fragment slot="heading">電磁直通ブレーキ</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="hd23" depth={2} headingType="c">
 					<Fragment slot="heading">7200系</Fragment>
 
@@ -39,15 +41,15 @@ const structuredData: StructuredData = {
 
 					<p>現在残るデヤ7200、デヤ7290は、運転台を電気指令式のワンハンドルタイプに更新するにあたり、CP圧力制御装置（このCPは Control Pipe の略）を搭載して主幹制御器からの電気信号を直通管（SAP）圧力へ変換しています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="electric">
 		<Fragment slot="heading">電気指令式ブレーキ</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="e6" depth={2} headingType="c">
 					<Fragment slot="heading">8000系グループ、サヤ7590</Fragment>
 
@@ -61,8 +63,8 @@ const structuredData: StructuredData = {
 
 					<p>1998年に新製された軌道検測車サヤ7590は、7200系では唯一HRDブレーキとなり、また<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/abs-7590.jpg" title="サヤ7590山側"><!-- 撮影日: 2010-03-29 -->フラット防止装置（ABS）</AnchorPhoto>が搭載されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="e30" depth={2} headingType="c">
 					<Fragment slot="heading">9000系、1000系、2000系</Fragment>
 
@@ -78,8 +80,8 @@ const structuredData: StructuredData = {
 
 					<p>またデハ1215、クハ1015にはフラット防止装置が搭載されていましたが、クハ1015は上田電鉄への譲渡にあたり撤去されました。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="e53" depth={2} headingType="c">
 					<Fragment slot="heading">7600系、7700系</Fragment>
 
@@ -93,8 +95,8 @@ const structuredData: StructuredData = {
 
 					<p>7700系は4次車より全電気指令式となり、ブレーキ制御装置は換装されました。ほかの車両も7700系は1992年までに、7600系は室内更新時に改造されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="e78" depth={2} headingType="c">
 					<Fragment slot="heading">新3000系</Fragment>
 
@@ -108,8 +110,8 @@ const structuredData: StructuredData = {
 
 					<p>主制御器のない車両は、受量器がない分<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/E78-T.jpg" title="クハ3112山側"><!-- 撮影日: 2008-05-17 -->ユニット箱は小振り</AnchorPhoto>です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="e80" depth={2} headingType="c">
 					<Fragment slot="heading">300系</Fragment>
 
@@ -127,7 +129,7 @@ const structuredData: StructuredData = {
 
 					<p>世田谷線の300系が装備するブレーキ制御装置（上写真）で、下高井戸向きのA車に搭載されています。別置きで受量器（下写真）を装備します。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

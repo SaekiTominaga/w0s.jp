@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
@@ -34,8 +36,8 @@ const structuredData: StructuredData = {
 	<Section id="mc-7650">
 		<Fragment slot="heading">デハ7650形（台車間）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="mc-7650-sea" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -47,8 +49,8 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、24V蓄電池、24V整流装置、VVVF断流器、VVVF継電器、VVVFフィルタリアクトル、接地開閉器、ブレーキ受量器です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="mc-7650-mount" depth={2} headingType="c">
 					<Fragment slot="heading">山側</Fragment>
 
@@ -60,15 +62,15 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、VVVF主制御器（RG617-B-M型）、VVVFフィルタリアクトル、ブレーキ制御装置です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="m-7670">
 		<Fragment slot="heading">デハ7670形（台車間）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="m-7670-sea" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -80,8 +82,8 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、ブレーキ受量器、VVVF断流器、VVVF継電器、接地開閉器、VVVFフィルタリアクトル、空気圧縮機（HS-20型）です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="m-7670-mount" depth={2} headingType="c">
 					<Fragment slot="heading">山側</Fragment>
 
@@ -93,15 +95,15 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、積算電力計、VVVF主制御器（RG614-A-M型）、元空気だめとその奥にVVVFフィルタリアクトル、ブレーキ制御装置です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="tc-7600">
 		<Fragment slot="heading">クハ7600形（台車間）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="tc-7600-sea" depth={2} headingType="c">
 					<Fragment slot="heading">海側</Fragment>
 
@@ -113,8 +115,8 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、SIV起動装置、接地開閉器、SIVフィルタトランス、元空気だめ、空気圧縮機（HS-20型）です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="tc-7600-mount" depth={2} headingType="c">
 					<Fragment slot="heading">山側</Fragment>
 
@@ -126,15 +128,15 @@ const structuredData: StructuredData = {
 
 					<p>主な機器は下り方から順に、整流装置、静止形インバーター（INV-006型）、ブレーキ制御装置、100V蓄電池です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="couple">
 		<Fragment slot="heading">連結部</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="couple7601" depth={2} headingType="c">
 					<Fragment slot="heading">クハ7600形 ｰ デハ7670形間<small>（7601F, 7602F）</small></Fragment>
 
@@ -150,8 +152,8 @@ const structuredData: StructuredData = {
 						<Fragment slot="caption">クハ7601 ｰ デハ7681山側</Fragment>
 					</Embedded>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="couple7603" depth={2} headingType="c">
 					<Fragment slot="heading">クハ7600形 ｰ デハ7670形間<small>（7603F）</small></Fragment>
 
@@ -167,8 +169,8 @@ const structuredData: StructuredData = {
 						<Fragment slot="caption">クハ7603 ｰ デハ7673山側</Fragment>
 					</Embedded>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="couple7661" depth={2} headingType="c">
 					<Fragment slot="heading">デハ7650形 ｰ デハ7670形間<small>（7601F, 7602F）</small></Fragment>
 
@@ -183,8 +185,8 @@ const structuredData: StructuredData = {
 						<Fragment slot="caption">デハ7681 ｰ デハ7661山側</Fragment>
 					</Embedded>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="couple7653" depth={2} headingType="c">
 					<Fragment slot="heading">デハ7650形 ｰ デハ7670形間<small>（7603F）</small></Fragment>
 
@@ -199,7 +201,7 @@ const structuredData: StructuredData = {
 						<Fragment slot="caption">デハ7673 ｰ デハ7653山側</Fragment>
 					</Embedded>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

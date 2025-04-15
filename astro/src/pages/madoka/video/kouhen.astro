@@ -5,6 +5,8 @@ import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
 import Anchor from '@components/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
@@ -122,20 +124,20 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:26:46">
 				<p>杏子とオクタヴィアの奥に並ぶ巨大な槍が少し小さくなった。</p>
 
-				<div class="c-grid -medium">
-					<div class="c-grid__item">
+				<Grid column="medium">
+					<GridItem>
 						<Embedded border={true}>
 							<Image path="madoka/video/kouhen_chapter6_00-26-50_tvcm3.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
 							<Fragment slot="caption">TV CM 3（前編BD/DVD収録）</Fragment>
 						</Embedded>
-					</div>
-					<div class="c-grid__item">
+					</GridItem>
+					<GridItem>
 						<Embedded border={true}>
 							<Image path="madoka/video/kouhen_chapter6_00-26-50_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
-					</div>
-				</div>
+					</GridItem>
+				</Grid>
 
 				<ListNote>
 					<li>TV CM ではオクタヴィアに光が当たっているが、上映版では逆光になっている。上映版とパッケージ版の違いは奥に並ぶ槍の大きさのみ。</li>

@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Anchor from '@components/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
@@ -165,22 +167,22 @@ const structuredData: StructuredData = {
 
 			<p>また、展示エリアを出たところにあるエンドカードゾーンの一角に、6人のキャラクターボードが展示されていました。</p>
 
-			<div class="c-grid -medium">
-				<div class="c-grid__item">
+			<Grid column="medium">
+				<GridItem>
 					<Embedded border={true}>
 						<Image path="madoka/yomoyama/monoga-modoka_kanazawa1.jpg" alt="写真拡大" width={306} height={306} quality={60} link={true} slot="media" />
 						<Fragment slot="caption"><cite>MADOGATARI GALLERY</cite> でのキャラクターボード展示</Fragment>
 						<!-- 2016-12-22 IMG_5289 -->
 					</Embedded>
-				</div>
-				<div class="c-grid__item">
+				</GridItem>
+				<GridItem>
 					<Embedded border={true}>
 						<Image path="madoka/yomoyama/monoga-modoka_kanazawa2.jpg" alt="写真拡大" width={306} height={204} quality={60} link={true} slot="media" />
 						<Fragment slot="caption">キャラクターボードが展示されていたエリアの様子</Fragment>
 						<!-- 2016-12-22 IMG_5296 -->
 					</Embedded>
-				</div>
-			</div>
+				</GridItem>
+			</Grid>
 		</Section>
 	</Section>
 </Layout>
