@@ -4,6 +4,8 @@ import Layout from '@layouts/Site.astro';
 import Anchor from '@components/Anchor.astro';
 import AnchorImageSide from '@components/AnchorImageSide.astro';
 import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Image from '@components/Image.astro';
 import ImageAmazon from '@components/ImageAmazon.astro';
 import ListDescription from '@components/ListDescription.astro';
@@ -95,8 +97,8 @@ const structuredData: StructuredData = {
 
 		<p>ときどき本や雑誌で記事を書いています。</p>
 
-		<ul class="c-grid -wide">
-			<li class="c-grid__item">
+		<Grid column="wide">
+			<GridItem>
 				<AnchorImageSide href="/tokyu/book/tamagawa1067" title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両">
 					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} />
 					<Fragment slot="text">
@@ -104,8 +106,8 @@ const structuredData: StructuredData = {
 						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
 					</Fragment>
 				</AnchorImageSide>
-			</li>
-			<li class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<AnchorImageSide href="/tokyu/book/7700" title="東急7700系形態分類">
 					<Image slot="image" path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} />
 					<Fragment slot="text">
@@ -113,8 +115,8 @@ const structuredData: StructuredData = {
 						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しています。</p>
 					</Fragment>
 				</AnchorImageSide>
-			</li>
-			<li class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<AnchorImageSide href="https://www.amazon.co.jp/dp/480220695X/" title="東急電鉄 1989-2019">
 					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" alt="" width={111} height={160} />
 					<Fragment slot="text">
@@ -122,8 +124,8 @@ const structuredData: StructuredData = {
 						<p>平成時代の東急電車の動向をまとめた本です。「<cite>現役車両ガイド</cite>」の一部の本文解説を担当しました。</p>
 					</Fragment>
 				</AnchorImageSide>
-			</li>
-			<li class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<AnchorImageSide href="/tokyu/book/#tetsupic" title="鉄道ピクトリアル">
 					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
 					<Fragment slot="text">
@@ -131,7 +133,7 @@ const structuredData: StructuredData = {
 						<p>東急電車や譲渡車両に関する記事を書いています。</p>
 					</Fragment>
 				</AnchorImageSide>
-			</li>
-		</ul>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>
