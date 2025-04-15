@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -40,13 +41,13 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>渋谷発車</h2>
-				<p>東急東横線をご利用くださいまして、ありがとうございます。この電車はみなとみらい線直通、急行元町・中華街行きです。次は中目黒、中目黒です。<span class="c-tokyu-announce -change">日比谷線ご利用のお客様は乗り換えです。</span>お出口は右側です。</p>
-				<p lang="en">Thank you for using the Tōkyū Tōyoko Line. This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. The next station is Naka-meguro. <span class="c-tokyu-announce -change">Passengers changing to the Hibiya Line, please transfer at this station.</span></p>
+				<p>東急東横線をご利用くださいまして、ありがとうございます。この電車はみなとみらい線直通、急行元町・中華街行きです。次は中目黒、中目黒です。<AnnoucePhrase type="change">日比谷線ご利用のお客様は乗り換えです。</AnnoucePhrase>お出口は右側です。</p>
+				<p lang="en">Thank you for using the Tōkyū Tōyoko Line. This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. The next station is Naka-meguro. <AnnoucePhrase type="change">Passengers changing to the Hibiya Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>中目黒到着</h2>
-				<p>まもなく中目黒、中目黒です。<span class="c-tokyu-announce -change">日比谷線ご利用のお客様は乗り換えです。</span>お出口は右側です。中目黒を出ますと、学芸大学に停まります。</p>
-				<p lang="en">We will soon make a brief stop at Naka-meguro. <span class="c-tokyu-announce -change">Passengers changing to the Hibiya Line, please transfer at this station.</span> The stop after Naka-meguro, will be Gakugei-daigaku.</p>
+				<p>まもなく中目黒、中目黒です。<AnnoucePhrase type="change">日比谷線ご利用のお客様は乗り換えです。</AnnoucePhrase>お出口は右側です。中目黒を出ますと、学芸大学に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Naka-meguro. <AnnoucePhrase type="change">Passengers changing to the Hibiya Line, please transfer at this station.</AnnoucePhrase> The stop after Naka-meguro, will be Gakugei-daigaku.</p>
 			</section>
 		</AnnounceStation>
 
@@ -56,7 +57,7 @@ const structuredData: StructuredData = {
 				<p>次は学芸大学、学芸大学です。</p>
 				<p lang="en">The next station is Gakugei-daigaku.</p>
 
-				<p><span class="c-tokyu-announce -manners">お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
+				<p><AnnoucePhrase type="manners">お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>学芸大学到着</h2>
@@ -68,42 +69,42 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>学芸大学発車</h2>
-				<p>次は自由が丘、自由が丘です。<span class="c-tokyu-announce -change">大井町線ご利用のお客様は乗り換えです。</span></p>
-				<p lang="en">The next station is Jiyūgaoka. <span class="c-tokyu-announce -change">Passengers changing to the Ōimachi Line, please transfer at this station.</span></p>
+				<p>次は自由が丘、自由が丘です。<AnnoucePhrase type="change">大井町線ご利用のお客様は乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">The next station is Jiyūgaoka. <AnnoucePhrase type="change">Passengers changing to the Ōimachi Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>自由が丘到着</h2>
-				<p>まもなく自由が丘、自由が丘です。<span class="c-tokyu-announce -change">大井町線ご利用のお客様は乗り換えです。</span>自由が丘を出ますと、田園調布に停まります。</p>
-				<p lang="en">We will soon make a brief stop at Jiyūgaoka. <span class="c-tokyu-announce -change">Passengers changing to the Ōimachi Line, please transfer at this station.</span> The stop after Jiyūgaoka, will be Den-en-chōfu.</p>
+				<p>まもなく自由が丘、自由が丘です。<AnnoucePhrase type="change">大井町線ご利用のお客様は乗り換えです。</AnnoucePhrase>自由が丘を出ますと、田園調布に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Jiyūgaoka. <AnnoucePhrase type="change">Passengers changing to the Ōimachi Line, please transfer at this station.</AnnoucePhrase> The stop after Jiyūgaoka, will be Den-en-chōfu.</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>田園調布到着</h2>
-				<p><span class="c-tokyu-announce -manners">お客様にお願いいたします。各車両に優先席が設けてあります。皆様のご理解とご協力を、お願いいたします。</span>この電車はみなとみらい線直通、急行元町・中華街行きです。まもなく田園調布、田園調布です。<span class="c-tokyu-announce -change">目黒線ご利用のお客様は乗り換えです。</span>お出口は右側です。田園調布を出ますと、多摩川に停まります。</p>
-				<p lang="en">This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. We will soon make a brief stop at Den-en-chōfu. <span class="c-tokyu-announce -change">Passengers changing to the Meguro Line, please transfer at this station.</span> The stop after Den-en-chōfu, will be Tamagawa.</p>
+				<p><AnnoucePhrase type="manners">お客様にお願いいたします。各車両に優先席が設けてあります。皆様のご理解とご協力を、お願いいたします。</AnnoucePhrase>この電車はみなとみらい線直通、急行元町・中華街行きです。まもなく田園調布、田園調布です。<AnnoucePhrase type="change">目黒線ご利用のお客様は乗り換えです。</AnnoucePhrase>お出口は右側です。田園調布を出ますと、多摩川に停まります。</p>
+				<p lang="en">This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. We will soon make a brief stop at Den-en-chōfu. <AnnoucePhrase type="change">Passengers changing to the Meguro Line, please transfer at this station.</AnnoucePhrase> The stop after Den-en-chōfu, will be Tamagawa.</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>多摩川到着</h2>
-				<p>まもなく多摩川、多摩川です。<span class="c-tokyu-announce -change">東急多摩川線ご利用のお客様は乗り換えです。</span>多摩川を出ますと、武蔵小杉に停まります。</p>
-				<p lang="en">We will soon make a brief stop at Tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Tōkyū Tamagawa Line, please transfer at this station.</span> The stop after Tamagawa, will be Musashi-kosugi.</p>
+				<p>まもなく多摩川、多摩川です。<AnnoucePhrase type="change">東急多摩川線ご利用のお客様は乗り換えです。</AnnoucePhrase>多摩川を出ますと、武蔵小杉に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Tamagawa. <AnnoucePhrase type="change">Passengers changing to the Tōkyū Tamagawa Line, please transfer at this station.</AnnoucePhrase> The stop after Tamagawa, will be Musashi-kosugi.</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>多摩川発車</h2>
-				<p>次は武蔵小杉、武蔵小杉です。<span class="c-tokyu-announce -change">JR線ご利用のお客様は乗り換えです。</span></p>
-				<p lang="en">The next station is Musashi-kosugi. <span class="c-tokyu-announce -change">Passengers changing to the JR Line, please transfer at this station.</span></p>
+				<p>次は武蔵小杉、武蔵小杉です。<AnnoucePhrase type="change">JR線ご利用のお客様は乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">The next station is Musashi-kosugi. <AnnoucePhrase type="change">Passengers changing to the JR Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>武蔵小杉到着</h2>
-				<p>まもなく武蔵小杉、武蔵小杉です。<span class="c-tokyu-announce -change">JR線ご利用のお客様は乗り換えです。</span>武蔵小杉を出ますと、日吉に停まります。</p>
-				<p lang="en">We will soon make a brief stop at Musashi-kosugi. <span class="c-tokyu-announce -change">Passengers changing to the JR Line, please transfer at this station.</span> The stop after Musashi-kosugi, will be Hiyoshi.</p>
+				<p>まもなく武蔵小杉、武蔵小杉です。<AnnoucePhrase type="change">JR線ご利用のお客様は乗り換えです。</AnnoucePhrase>武蔵小杉を出ますと、日吉に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Musashi-kosugi. <AnnoucePhrase type="change">Passengers changing to the JR Line, please transfer at this station.</AnnoucePhrase> The stop after Musashi-kosugi, will be Hiyoshi.</p>
 			</section>
 		</AnnounceStation>
 
@@ -115,13 +116,13 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>武蔵小杉発車</h2>
-				<p>この電車はみなとみらい線直通、急行元町・中華街行きです。次は日吉、日吉です。<span class="c-tokyu-announce -change">横浜市営地下鉄ご利用のお客様は乗り換えです。</span></p>
-				<p lang="en">This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. The next station is Hiyoshi. <span class="c-tokyu-announce -change">Passengers changing to the Yokohama Municipal Subway, please transfer at this station.</span></p>
+				<p>この電車はみなとみらい線直通、急行元町・中華街行きです。次は日吉、日吉です。<AnnoucePhrase type="change">横浜市営地下鉄ご利用のお客様は乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. The next station is Hiyoshi. <AnnoucePhrase type="change">Passengers changing to the Yokohama Municipal Subway, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>日吉到着</h2>
-				<p>まもなく日吉、日吉です。<span class="c-tokyu-announce -change">横浜市営地下鉄ご利用のお客様は乗り換えです。</span>日吉を出ますと、綱島に停まります。</p>
-				<p lang="en">We will soon make a brief stop at Hiyoshi. <span class="c-tokyu-announce -change">Passengers changing to the Yokohama Municipal Subway, please transfer at this station.</span> The stop after Hiyoshi, will be Tsunashima.</p>
+				<p>まもなく日吉、日吉です。<AnnoucePhrase type="change">横浜市営地下鉄ご利用のお客様は乗り換えです。</AnnoucePhrase>日吉を出ますと、綱島に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Hiyoshi. <AnnoucePhrase type="change">Passengers changing to the Yokohama Municipal Subway, please transfer at this station.</AnnoucePhrase> The stop after Hiyoshi, will be Tsunashima.</p>
 			</section>
 		</AnnounceStation>
 
@@ -136,27 +137,27 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>綱島発車</h2>
-				<p>次は菊名、菊名です。<span class="c-tokyu-announce -change">JR横浜線ご利用のお客様は乗り換えです。</span></p>
-				<p lang="en">The next station is Kikuna. <span class="c-tokyu-announce -change">Passengers changing to the JR Yokohama Line, please transfer at this station.</span></p>
+				<p>次は菊名、菊名です。<AnnoucePhrase type="change">JR横浜線ご利用のお客様は乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">The next station is Kikuna. <AnnoucePhrase type="change">Passengers changing to the JR Yokohama Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>菊名到着</h2>
-				<p>まもなく菊名、菊名です。<span class="c-tokyu-announce -change">JR横浜線ご利用のお客様は乗り換えです。</span>菊名を出ますと、横浜に停まります。</p>
-				<p lang="en">We will soon make a brief stop at Kikuna. <span class="c-tokyu-announce -change">Passengers changing to the JR Yokohama Line, please transfer at this station.</span> The stop after Kikuna, will be Yokohama.</p>
+				<p>まもなく菊名、菊名です。<AnnoucePhrase type="change">JR横浜線ご利用のお客様は乗り換えです。</AnnoucePhrase>菊名を出ますと、横浜に停まります。</p>
+				<p lang="en">We will soon make a brief stop at Kikuna. <AnnoucePhrase type="change">Passengers changing to the JR Yokohama Line, please transfer at this station.</AnnoucePhrase> The stop after Kikuna, will be Yokohama.</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>菊名発車</h2>
-				<p>次は横浜、横浜です。<span class="c-tokyu-announce -change">JR線、京急線、相鉄線、横浜市営地下鉄ご利用のお客様は乗り換えです。</span>お出口は右側です。</p>
-				<p lang="en">The next station is Yokohama. <span class="c-tokyu-announce -change">Passengers changing to the JR Line, the Keikyū Line, the Sōtetsu Line, and the Yokohama Municipal Subway, please transfer at this station.</span></p>
+				<p>次は横浜、横浜です。<AnnoucePhrase type="change">JR線、京急線、相鉄線、横浜市営地下鉄ご利用のお客様は乗り換えです。</AnnoucePhrase>お出口は右側です。</p>
+				<p lang="en">The next station is Yokohama. <AnnoucePhrase type="change">Passengers changing to the JR Line, the Keikyū Line, the Sōtetsu Line, and the Yokohama Municipal Subway, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>横浜到着</h2>
-				<p>まもなく横浜、横浜です。<span class="c-tokyu-announce -change">JR線、京急線、相鉄線、横浜市営地下鉄ご利用のお客様は乗り換えです。</span>お出口は右側です。この電車はみなとみらい線直通、急行元町・中華街行きです。横浜を出ますと、みなとみらいに停まります。東急東横線をご利用くださいまして、ありがとうございました。</p>
+				<p>まもなく横浜、横浜です。<AnnoucePhrase type="change">JR線、京急線、相鉄線、横浜市営地下鉄ご利用のお客様は乗り換えです。</AnnoucePhrase>お出口は右側です。この電車はみなとみらい線直通、急行元町・中華街行きです。横浜を出ますと、みなとみらいに停まります。東急東横線をご利用くださいまして、ありがとうございました。</p>
 				<p lang="en">
-					We will soon make a brief stop at Yokohama. <span class="c-tokyu-announce -change">Passengers changing to the JR Line, the Keikyū Line, the Sōtetsu Line, and the Yokohama Municipal Subway, please transfer at this station.</span> This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. The stop after Yokohama, will be Minatomirai. Thank you for using the Tōkyū Tōyoko Line.
+					We will soon make a brief stop at Yokohama. <AnnoucePhrase type="change">Passengers changing to the JR Line, the Keikyū Line, the Sōtetsu Line, and the Yokohama Municipal Subway, please transfer at this station.</AnnoucePhrase> This train will merge and continue traveling at the Express on the Minatomirai Line to Motomachi-Chūkagai. The stop after Yokohama, will be Minatomirai. Thank you for using the Tōkyū Tōyoko Line.
 				</p>
 			</section>
 		</AnnounceStation>

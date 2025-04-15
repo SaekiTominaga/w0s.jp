@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -43,15 +44,15 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>福島停車中</h2>
-				<p>ご乗車ありがとうございます。<span class="c-tokyu-announce -manners">お客様へお願いいたします。ホームを歩く際や、電車をお待ちの際には、線路への転落防止のため黄色い線より内側をご利用願います。また、優先席付近では携帯電話の電源を切って頂きますよう、お願いいたします。そのほかの場所では、マナーモードに設定のうえ、通話はご遠慮願います。お体の不自由な方、お年寄りには、なるべく席をお譲り願います。</span></p>
+				<p>ご乗車ありがとうございます。<AnnoucePhrase type="manners">お客様へお願いいたします。ホームを歩く際や、電車をお待ちの際には、線路への転落防止のため黄色い線より内側をご利用願います。また、優先席付近では携帯電話の電源を切って頂きますよう、お願いいたします。そのほかの場所では、マナーモードに設定のうえ、通話はご遠慮願います。お体の不自由な方、お年寄りには、なるべく席をお譲り願います。</AnnoucePhrase></p>
 
-				<p><b class="c-tokyu-announce -cmsummary">お風呂工房の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">お風呂工房の宣伝</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>福島発車</h2>
-				<p>ご乗車ありがとうございます。この電車は飯坂温泉行きです。各駅に停まります。<span class="c-tokyu-announce -manners">車内は禁煙となっておりますので、お煙草はご遠慮願います。</span>次は曽根田、曽根田でございます。</p>
+				<p>ご乗車ありがとうございます。この電車は飯坂温泉行きです。各駅に停まります。<AnnoucePhrase type="manners">車内は禁煙となっておりますので、お煙草はご遠慮願います。</AnnoucePhrase>次は曽根田、曽根田でございます。</p>
 
-				<p><b class="c-tokyu-announce -cmsummary">旅館の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">旅館の宣伝</AnnoucePhrase></p>
 
 				<p>まもなく曽根田です。降り口は右側です。</p>
 			</section>
@@ -62,11 +63,11 @@ const structuredData: StructuredData = {
 				<h2>曽根田発車</h2>
 				<p>次は美術館図書館前、美術館図書館前でございます。乗車券をお持ちでない方は、車掌が参りました際にお求め願います。</p>
 
-				<p><b class="c-tokyu-announce -cmsummary">病院の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">病院の宣伝</AnnoucePhrase></p>
 
-				<p><b class="c-tokyu-announce -cmsummary">着物店の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">着物店の宣伝</AnnoucePhrase></p>
 
-				<p>まもなく美術館図書館前です。降り口は右側です。<span class="c-tokyu-announce -door">なお、たいへんご迷惑さまですが、3両目の中ドア、および後ろドア開きませんので、お降りの際はそのほかのドアからお降り願います。</span></p>
+				<p>まもなく美術館図書館前です。降り口は右側です。<AnnoucePhrase type="door">なお、たいへんご迷惑さまですが、3両目の中ドア、および後ろドア開きませんので、お降りの際はそのほかのドアからお降り願います。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -75,9 +76,9 @@ const structuredData: StructuredData = {
 				<h2>美術館図書館前発車</h2>
 				<p>次は岩代清水、岩代清水でございます。</p>
 
-				<p><b class="c-tokyu-announce -cmsummary">眼科医院の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">眼科医院の宣伝</AnnoucePhrase></p>
 
-				<p><b class="c-tokyu-announce -cmsummary">耳鼻咽喉科医院の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">耳鼻咽喉科医院の宣伝</AnnoucePhrase></p>
 
 				<p>まもなく岩代清水です。降り口は左側です。</p>
 			</section>
@@ -88,9 +89,9 @@ const structuredData: StructuredData = {
 				<h2>岩代清水発車</h2>
 				<p>次は泉、泉でございます。</p>
 
-				<p><b class="c-tokyu-announce -cmsummary">皮膚科医院の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">皮膚科医院の宣伝</AnnoucePhrase></p>
 
-				<p><b class="c-tokyu-announce -cmsummary">カジノ店の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">カジノ店の宣伝</AnnoucePhrase></p>
 
 				<p>まもなく泉です。降り口は右側です。</p>
 			</section>
@@ -99,7 +100,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>泉発車</h2>
-				<p>次は上松川、上松川でございます。<span class="c-tokyu-announce -manners">お客様へお願いいたします。優先席付近では携帯電話の電源を切って頂きますよう、お願いいたします。そのほかの場所では、マナーモードに設定のうえ、通話はご遠慮願います。</span></p>
+				<p>次は上松川、上松川でございます。<AnnoucePhrase type="manners">お客様へお願いいたします。優先席付近では携帯電話の電源を切って頂きますよう、お願いいたします。そのほかの場所では、マナーモードに設定のうえ、通話はご遠慮願います。</AnnoucePhrase></p>
 
 				<p>まもなく上松川です。降り口は右側です。</p>
 			</section>
@@ -110,7 +111,7 @@ const structuredData: StructuredData = {
 				<h2>上松川発車</h2>
 				<p>次は笹谷、笹谷でございます。</p>
 
-				<p><b class="c-tokyu-announce -cmsummary">韓国料理店の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">韓国料理店の宣伝</AnnoucePhrase></p>
 
 				<p>まもなく笹谷です。降り口は右側です。</p>
 			</section>
@@ -119,11 +120,11 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>笹谷発車</h2>
-				<p>次は桜水、桜水でございます。<span class="c-tokyu-announce -manners">お体の不自由な方、お年寄りには、なるべく席をお譲り願います。</span></p>
+				<p>次は桜水、桜水でございます。<AnnoucePhrase type="manners">お体の不自由な方、お年寄りには、なるべく席をお譲り願います。</AnnoucePhrase></p>
 
-				<p><b class="c-tokyu-announce -cmsummary">カラオケ店の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">カラオケ店の宣伝</AnnoucePhrase></p>
 
-				<p><b class="c-tokyu-announce -cmsummary">餃子店の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">餃子店の宣伝</AnnoucePhrase></p>
 
 				<p>まもなく桜水です。降り口は右側です。</p>
 			</section>
@@ -136,7 +137,7 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>平野到着</h2>
-				<p>まもなく平野です。降り口は右側です。<span class="c-tokyu-announce -door">なお、たいへんご迷惑さまですが、3両目の中ドア、および後ろドア開きませんので、お降りの際はそのほかのドアからお降り願います。</span></p>
+				<p>まもなく平野です。降り口は右側です。<AnnoucePhrase type="door">なお、たいへんご迷惑さまですが、3両目の中ドア、および後ろドア開きませんので、お降りの際はそのほかのドアからお降り願います。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -145,9 +146,9 @@ const structuredData: StructuredData = {
 				<h2>平野発車</h2>
 				<p>ご乗車ありがとうございます。次は医王寺前、医王寺前でございます。</p>
 
-				<p><b class="c-tokyu-announce -cmsummary">内科・外科・泌尿器科医院の宣伝</b></p>
+				<p><AnnoucePhrase type="cmsummary">内科・外科・泌尿器科医院の宣伝</AnnoucePhrase></p>
 
-				<p>まもなく医王寺前です。降り口は右側です。<span class="c-tokyu-announce -door">なお、たいへんご迷惑さまですが、3両目の中ドア、および後ろドア開きませんので、お降りの際はそのほかのドアからお降り願います。</span></p>
+				<p>まもなく医王寺前です。降り口は右側です。<AnnoucePhrase type="door">なお、たいへんご迷惑さまですが、3両目の中ドア、および後ろドア開きませんので、お降りの際はそのほかのドアからお降り願います。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -169,7 +170,7 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>飯坂温泉到着</h2>
-				<p>まもなく終点、飯坂温泉です。<span class="c-tokyu-announce -attention">降り口は冬期間滑りやすいので、左側になっております。</span>ご乗車ありがとうございました。</p>
+				<p>まもなく終点、飯坂温泉です。<AnnoucePhrase type="attention">降り口は冬期間滑りやすいので、左側になっております。</AnnoucePhrase>ご乗車ありがとうございました。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

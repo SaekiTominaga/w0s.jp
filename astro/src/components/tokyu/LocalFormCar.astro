@@ -1,4 +1,6 @@
 ---
+import CarStyle from './CarStyle.astro';
+
 interface Props {
 	num: string; // 車号
 	count?: number; // 車両振り替えが行われた際、何代目かを示す（豊橋鉄道1800系）
@@ -33,10 +35,7 @@ switch (maker) {
 
 <td>
 	<div class="now">
-		<span class="num">
-			{style === undefined && <>{num}</>}
-			{style !== undefined && <span class:list={['c-tokyu-style', `-${style}`]}>{num}</span>}
-		</span>
+		<span class="num"><CarStyle type={style}>{num}</CarStyle></span>
 		{count !== undefined && <span class="count">[{countDisplay}]</span>}
 		{maker !== undefined && <span class:list={['maker', `-${maker}`]}>({makerDisplay})</span>}
 	</div>

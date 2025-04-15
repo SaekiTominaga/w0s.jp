@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
@@ -30,7 +31,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>十和田市発車</h2>
-				<p>本日は十和田市発、三沢行き列車にご乗車くださいまして、誠にありがとうございます。<span class="c-tokyu-announce -oneman">この列車はワンマン運転をしておりますので、ご用の際には直接、運転士へお申しつけくださいますよう、お願いいたします。</span>次の停車はひがし野団地でございます。</p>
+				<p>本日は十和田市発、三沢行き列車にご乗車くださいまして、誠にありがとうございます。<AnnoucePhrase type="oneman">この列車はワンマン運転をしておりますので、ご用の際には直接、運転士へお申しつけくださいますよう、お願いいたします。</AnnoucePhrase>次の停車はひがし野団地でございます。</p>
 			</section>
 			<section>
 				<h2>ひがし野団地到着</h2>

@@ -1,4 +1,6 @@
 ---
+import CarRenewal from './CarRenewal.astro';
+
 interface Props {
 	num: string; // 東急車号
 	note: string; // 呼称など
@@ -10,7 +12,7 @@ const { num, note, renewal, shintama } = Astro.props;
 ---
 
 <div class="tokyu">
-	<span class="num"><span class:list={['c-tokyu-renewal', renewal !== undefined ? `-${renewal}` : undefined, { '-shintama': shintama }]}>東急{num}</span></span>
+	<span class="num"><CarRenewal type={renewal} shintama={shintama}>東急{num}</CarRenewal></span>
 	<span class="note">({note})</span>
 </div>
 

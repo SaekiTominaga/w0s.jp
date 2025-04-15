@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -66,8 +67,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>溝の口到着</h2>
-				<p>まもなく溝の口です。<span class="c-tokyu-announce -change">JR南武線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a breaf stop at Mizonokuchi. <span class="c-tokyu-announce -change">Passengers changing to the JR Nambu Line, please transfer at this station.</span></p>
+				<p>まもなく溝の口です。<AnnoucePhrase type="change">JR南武線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a breaf stop at Mizonokuchi. <AnnoucePhrase type="change">Passengers changing to the JR Nambu Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -90,8 +91,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>二子玉川到着</h2>
-				<p><span class="c-tokyu-announce -stand">この先揺れますのでご注意ください。</span>まもなく二子玉川です。<span class="c-tokyu-announce -change">田園都市線渋谷方面はお乗り換えです。</span>出口は左側です。この電車は各駅停車大井町行きです。</p>
-				<p lang="en">We will soon make a breaf stop at Futako-tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Den-en-toshi Line for Shibuya, please transfer at this station.</span> This is the local train bound for Ōimachi.</p>
+				<p><AnnoucePhrase type="stand">この先揺れますのでご注意ください。</AnnoucePhrase>まもなく二子玉川です。<AnnoucePhrase type="change">田園都市線渋谷方面はお乗り換えです。</AnnoucePhrase>出口は左側です。この電車は各駅停車大井町行きです。</p>
+				<p lang="en">We will soon make a breaf stop at Futako-tamagawa. <AnnoucePhrase type="change">Passengers changing to the Den-en-toshi Line for Shibuya, please transfer at this station.</AnnoucePhrase> This is the local train bound for Ōimachi.</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

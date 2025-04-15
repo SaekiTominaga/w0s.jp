@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -46,7 +47,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>西太子堂発車</h2>
-				<p><span class="c-tokyu-announce -manners">東急電鉄からのお願いです。オレンジ色の吊り革付近は、お年寄りやお体の不自由なお客様のための優先席です。この場所では、携帯電話の電源をお切りください。車内マナーにご協力をお願いいたします。</span></p>
+				<p><AnnoucePhrase type="manners">東急電鉄からのお願いです。オレンジ色の吊り革付近は、お年寄りやお体の不自由なお客様のための優先席です。この場所では、携帯電話の電源をお切りください。車内マナーにご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>若林到着</h2>
@@ -57,7 +58,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>松陰神社前到着</h2>
-				<p>まもなく松陰神社前です。<span class="c-tokyu-announce -cm">世田谷区役所最寄駅です。</span>出口は中程2ヶ所のドアです。</p>
+				<p>まもなく松陰神社前です。<AnnoucePhrase type="cm">世田谷区役所最寄駅です。</AnnoucePhrase>出口は中程2ヶ所のドアです。</p>
 			</section>
 		</AnnounceStation>
 
@@ -89,7 +90,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>山下到着</h2>
-				<p>まもなく山下です。<span class="c-tokyu-announce -change">小田急線豪徳寺駅をご利用のお客様はお乗り換えです。</span>出口は中程2ヶ所のドアです。</p>
+				<p>まもなく山下です。<AnnoucePhrase type="change">小田急線豪徳寺駅をご利用のお客様はお乗り換えです。</AnnoucePhrase>出口は中程2ヶ所のドアです。</p>
 			</section>
 		</AnnounceStation>
 
@@ -103,7 +104,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>下高井戸到着</h2>
-				<p>まもなく下高井戸、終点です。<span class="c-tokyu-announce -change">京王線はお乗り換えです。</span>出口は右側、すべてのドアです。お降りの際は足元にご注意ください。また、お忘れ物なさいませんようにご注意ください。本日も東急世田谷線をご利用くださいましてありがとうございました。</p>
+				<p>まもなく下高井戸、終点です。<AnnoucePhrase type="change">京王線はお乗り換えです。</AnnoucePhrase>出口は右側、すべてのドアです。お降りの際は足元にご注意ください。また、お忘れ物なさいませんようにご注意ください。本日も東急世田谷線をご利用くださいましてありがとうございました。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

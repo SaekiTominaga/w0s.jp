@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
@@ -36,32 +37,32 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>黒石停車中</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span> 本日は弘南鉄道弘南線をご利用くださいまして、ありがとうございます。この列車は、弘前行きの快速列車です。停車駅は、津軽尾上、平賀、弘前東高前、終点弘前の順に停車いたしますので、お乗り間違えのございませんようご注意ください。<span class="c-tokyu-announce -oneman">この列車は、ワンマン列車になっておりますので、皆様のご協力をお願いいたします。</span><span class="c-tokyu-announce -manners">また、車内での携帯電話は、ご遠慮くださるようお願いいたします。</span></p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase> 本日は弘南鉄道弘南線をご利用くださいまして、ありがとうございます。この列車は、弘前行きの快速列車です。停車駅は、津軽尾上、平賀、弘前東高前、終点弘前の順に停車いたしますので、お乗り間違えのございませんようご注意ください。<AnnoucePhrase type="oneman">この列車は、ワンマン列車になっておりますので、皆様のご協力をお願いいたします。</AnnoucePhrase><AnnoucePhrase type="manners">また、車内での携帯電話は、ご遠慮くださるようお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>黒石発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>お待ち遠さまでした。弘前行き快速列車の発車です。お降りの際は、お忘れ物ございませんよう、ご注意ください。次の停車駅は津軽尾上、津軽尾上、降り口は左側です。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お待ち遠さまでした。弘前行き快速列車の発車です。お降りの際は、お忘れ物ございませんよう、ご注意ください。次の停車駅は津軽尾上、津軽尾上、降り口は左側です。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>津軽尾上発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は平賀、平賀、降り口は左側です。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は平賀、平賀、降り口は左側です。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>平賀発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span><span class="c-tokyu-announce -oneman">この列車は、弘前行きのワンマン列車です。皆様のご協力をお願いいたします。</span>次の停車駅は弘前東高前、弘前東高前、降り口は左側です。<span class="c-tokyu-announce -manners">お客様にお願いいたします。車内での携帯電話は、ご遠慮くださるようお願いいたします。</span></p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase><AnnoucePhrase type="oneman">この列車は、弘前行きのワンマン列車です。皆様のご協力をお願いいたします。</AnnoucePhrase>次の停車駅は弘前東高前、弘前東高前、降り口は左側です。<AnnoucePhrase type="manners">お客様にお願いいたします。車内での携帯電話は、ご遠慮くださるようお願いいたします。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>弘前東高前発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>お疲れさまでした。次の停車駅は終点、弘前、弘前です。お降りの際には、お忘れ物ございませんよう、いま一度お手回り品をお確かめください。降り口は左側です。整理券のお客様は、駅でご精算ください。本日は弘南線をご利用いただきまして、ありがとうございました。またのご乗車をお待ちいたしております。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お疲れさまでした。次の停車駅は終点、弘前、弘前です。お降りの際には、お忘れ物ございませんよう、いま一度お手回り品をお確かめください。降り口は左側です。整理券のお客様は、駅でご精算ください。本日は弘南線をご利用いただきまして、ありがとうございました。またのご乗車をお待ちいたしております。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

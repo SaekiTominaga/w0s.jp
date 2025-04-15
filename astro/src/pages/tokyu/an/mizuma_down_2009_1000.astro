@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
@@ -41,11 +42,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>貝塚停車中</h2>
-				<p>本日も水間鉄道をご利用くださいまして、ありがとうございます。<span class="c-tokyu-announce -oneman">この電車は水間観音行きワンマン運行です。途中停車駅の出口は先頭車両のいちばん前のドアです。運賃は、お降りの際、先頭車両の運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱の、IC読み取り部分にタッチしてください。</span>発車までしばらくお待ちください。</p>
+				<p>本日も水間鉄道をご利用くださいまして、ありがとうございます。<AnnoucePhrase type="oneman">この電車は水間観音行きワンマン運行です。途中停車駅の出口は先頭車両のいちばん前のドアです。運賃は、お降りの際、先頭車両の運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱の、IC読み取り部分にタッチしてください。</AnnoucePhrase>発車までしばらくお待ちください。</p>
 			</section>
 			<section>
 				<h2>貝塚発車</h2>
-				<p>長らくの間お待たせ致しました。毎度ご乗車ありがとうございます。<span class="c-tokyu-announce -oneman">この電車は水間観音行きワンマン運行です。</span>次は貝塚市役所前、貝塚市役所前です。出口は先頭車両いちばん前の右側です。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、先頭車両の運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+				<p>長らくの間お待たせ致しました。毎度ご乗車ありがとうございます。<AnnoucePhrase type="oneman">この電車は水間観音行きワンマン運行です。</AnnoucePhrase>次は貝塚市役所前、貝塚市役所前です。出口は先頭車両いちばん前の右側です。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、先頭車両の運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
 			</section>
 		</AnnounceStation>
 
@@ -80,7 +81,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>名越発車</h2>
-				<p><span class="c-tokyu-announce -oneman">この電車は水間観音行きワンマン運行です。</span>次は森、森です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、整理券と一緒に運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。<span class="c-tokyu-announce -manners">お客様にお願い致します。優先座席付近では、携帯電話の電源をお切りください。それ以外の場所では、マナーモードに設定し、通話はご遠慮ください。また、不審物などを発見されましたら乗務員、または駅員にお知らせください。皆様のご協力をお願いします。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車は水間観音行きワンマン運行です。</AnnoucePhrase>次は森、森です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、整理券と一緒に運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。<AnnoucePhrase type="manners">お客様にお願い致します。優先座席付近では、携帯電話の電源をお切りください。それ以外の場所では、マナーモードに設定し、通話はご遠慮ください。また、不審物などを発見されましたら乗務員、または駅員にお知らせください。皆様のご協力をお願いします。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 

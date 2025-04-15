@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -36,29 +37,29 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>貝塚発車</h2>
-				<p>長らくお待たせいたしました。毎度ご乗車ありがとうございます。水間行きでございます。<span class="c-tokyu-announce -manners">なお、車内は禁煙となっておりますので、お煙草はご遠慮ください。</span> <span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>次は貝塚市役所前、貝塚市役所前でございます。降り口は先頭車両のいちばん前の右側でございます。運賃、および乗車券は、お降りの際に先頭車両いちばん前の運賃箱にお支払い願います。</p>
+				<p>長らくお待たせいたしました。毎度ご乗車ありがとうございます。水間行きでございます。<AnnoucePhrase type="manners">なお、車内は禁煙となっておりますので、お煙草はご遠慮ください。</AnnoucePhrase> <AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>次は貝塚市役所前、貝塚市役所前でございます。降り口は先頭車両のいちばん前の右側でございます。運賃、および乗車券は、お降りの際に先頭車両いちばん前の運賃箱にお支払い願います。</p>
 			</section>
 			<section>
 				<h2>貝塚市役所前到着</h2>
-				<p>貝塚市役所前、貝塚市役所前でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の右側でございます。</p>
+				<p>貝塚市役所前、貝塚市役所前でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の右側でございます。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>貝塚市役所前発車</h2>
-				<p>次は近義の里、近義の里でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の右側でございます。</p>
+				<p>次は近義の里、近義の里でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の右側でございます。</p>
 			</section>
 			<section>
 				<h2>近義の里到着</h2>
-				<p>近義の里、近義の里でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の右側でございます。</p>
+				<p>近義の里、近義の里でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の右側でございます。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>近義の里発車</h2>
-				<p>次は石才、石才でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の右側でございます。両替はお早めに、運賃箱でお願いいたします。1000円札、500円硬貨も自動両替いたします。</p>
+				<p>次は石才、石才でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の右側でございます。両替はお早めに、運賃箱でお願いいたします。1000円札、500円硬貨も自動両替いたします。</p>
 			</section>
 			<section>
 				<h2>石才到着</h2>
@@ -69,7 +70,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>石才発車</h2>
-				<p>次は清児、清児でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の左側でございます。</p>
+				<p>次は清児、清児でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の左側でございます。</p>
 			</section>
 			<section>
 				<h2>清児到着</h2>
@@ -80,7 +81,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>清児発車</h2>
-				<p>次は名越、名越でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の右側でございます。</p>
+				<p>次は名越、名越でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の右側でございます。</p>
 			</section>
 			<section>
 				<h2>名越到着</h2>
@@ -91,11 +92,11 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>名越発車</h2>
-				<p><span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。運賃は、先頭車両いちばん前の運賃箱へお支払いください。</span>次は森、森でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の左側でございます。</p>
+				<p><AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。運賃は、先頭車両いちばん前の運賃箱へお支払いください。</AnnoucePhrase>次は森、森でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の左側でございます。</p>
 			</section>
 			<section>
 				<h2>森到着</h2>
-				<p>森、森でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の左側でございます。</p>
+				<p>森、森でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の左側でございます。</p>
 			</section>
 		</AnnounceStation>
 
@@ -113,11 +114,11 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>三ツ松発車</h2>
-				<p>次は三ヶ山口、三ヶ山口でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の左側でございます。</p>
+				<p>次は三ヶ山口、三ヶ山口でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の左側でございます。</p>
 			</section>
 			<section>
 				<h2>三ヶ山口到着</h2>
-				<p>三ヶ山口、三ヶ山口でございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</span>降り口は先頭車両のいちばん前の左側でございます。</p>
+				<p>三ヶ山口、三ヶ山口でございます。<AnnoucePhrase type="oneman">この列車は、ワンマン運行をしております。後ろ車両のドアは開きませんので、ご注意願います。</AnnoucePhrase>降り口は先頭車両のいちばん前の左側でございます。</p>
 			</section>
 		</AnnounceStation>
 

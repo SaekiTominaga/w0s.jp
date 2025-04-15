@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -34,15 +35,15 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>北熊本発車時</h2>
-				<p>たいへん長らくお待たせいたしました。毎度、電車をご利用頂きありがとうございます。上熊本行きです。お乗り間違えのないようご注意ください。終点、上熊本までの所要時間はおよそ9分です。ドア付近にお立ちのお客様は、ドアの開閉にご注意ください。<span class="c-tokyu-announce -manners">また、携帯電話のご使用はご遠慮ください。皆様の電車です。マナーを大切にしましょう。</span></p>
+				<p>たいへん長らくお待たせいたしました。毎度、電車をご利用頂きありがとうございます。上熊本行きです。お乗り間違えのないようご注意ください。終点、上熊本までの所要時間はおよそ9分です。ドア付近にお立ちのお客様は、ドアの開閉にご注意ください。<AnnoucePhrase type="manners">また、携帯電話のご使用はご遠慮ください。皆様の電車です。マナーを大切にしましょう。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>北熊本発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は坪井川公園、坪井川公園です。電車は整理券方式で運行中です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう運転士側の運賃箱にお入れください。事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、足元・お手回り品にご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は坪井川公園、坪井川公園です。電車は整理券方式で運行中です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう運転士側の運賃箱にお入れください。事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、足元・お手回り品にご注意ください。</p>
 			</section>
 			<section>
 				<h2>坪井川公園到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく坪井川公園、坪井川公園です。降り口左側です。開くドアにご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく坪井川公園、坪井川公園です。降り口左側です。開くドアにご注意ください。</p>
 			</section>
 		</AnnounceStation>
 
@@ -53,11 +54,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>坪井川公園発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は打越、打越です。お客様へお願いいたします。車内・ホームなどで不審物を発見された場合には、運転士または駅係員へご連絡ください。ご協力お願いいたします。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は打越、打越です。お客様へお願いいたします。車内・ホームなどで不審物を発見された場合には、運転士または駅係員へご連絡ください。ご協力お願いいたします。</p>
 			</section>
 			<section>
 				<h2>打越到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく打越、打越です。降り口右側です。開くドアにご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく打越、打越です。降り口右側です。開くドアにご注意ください。</p>
 			</section>
 		</AnnounceStation>
 
@@ -68,11 +69,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>打越発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は池田、池田です。ドア付近にお立ちのお客様は、開くドアにご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は池田、池田です。ドア付近にお立ちのお客様は、開くドアにご注意ください。</p>
 			</section>
 			<section>
 				<h2>池田到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく池田、池田です。降り口右側です。開くドアにご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく池田、池田です。降り口右側です。開くドアにご注意ください。</p>
 			</section>
 		</AnnounceStation>
 
@@ -83,11 +84,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>池田発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は韓々坂、韓々坂です。事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、足元やお手回り品にご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は韓々坂、韓々坂です。事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、足元やお手回り品にご注意ください。</p>
 			</section>
 			<section>
 				<h2>韓々坂到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく韓々坂、韓々坂です。降り口左側です。開くドアにご注意ください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく韓々坂、韓々坂です。降り口左側です。開くドアにご注意ください。</p>
 			</section>
 		</AnnounceStation>
 
@@ -98,11 +99,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>韓々坂発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は上熊本、上熊本、終点です。運賃は、整理券と運賃表をお確かめのうえ、釣り銭の要らないよう、運転士側の運賃箱にお入れください。整理券、回数券は折り曲げず、運賃箱にお入れください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は上熊本、上熊本、終点です。運賃は、整理券と運賃表をお確かめのうえ、釣り銭の要らないよう、運転士側の運賃箱にお入れください。整理券、回数券は折り曲げず、運賃箱にお入れください。</p>
 			</section>
 			<section>
 				<h2>上熊本到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車お疲れさまでした。まもなく上熊本、上熊本、終点です。車内にお忘れ物のないよう、お手回り品にご注意ください。降り口は左側です。開くドアにご注意ください。ご乗車ありがとうございました。上熊本、終点です。またのご利用をお待ちしております。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車お疲れさまでした。まもなく上熊本、上熊本、終点です。車内にお忘れ物のないよう、お手回り品にご注意ください。降り口は左側です。開くドアにご注意ください。ご乗車ありがとうございました。上熊本、終点です。またのご利用をお待ちしております。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

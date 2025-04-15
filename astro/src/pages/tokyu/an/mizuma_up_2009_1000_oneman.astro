@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -40,7 +41,7 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>水間発車</h2>
-				<p>長らくの間お待たせ致しました。毎度ご乗車ありがとうございます。<span class="c-tokyu-announce -oneman">この電車は貝塚行きワンマン運行です。</span>次は三ヶ山口、三ヶ山口です。出口は先頭車両いちばん前の右側です。運賃は、お降りの際にいちばん前の運賃箱にお支払い願います。</p>
+				<p>長らくの間お待たせ致しました。毎度ご乗車ありがとうございます。<AnnoucePhrase type="oneman">この電車は貝塚行きワンマン運行です。</AnnoucePhrase>次は三ヶ山口、三ヶ山口です。出口は先頭車両いちばん前の右側です。運賃は、お降りの際にいちばん前の運賃箱にお支払い願います。</p>
 			</section>
 			<section>
 				<h2>三ヶ山口到着</h2>
@@ -73,7 +74,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>森発車</h2>
-				<p>次は名越、名越です。出口は先頭車両いちばん前の右側です。<span class="c-tokyu-announce -oneman">この電車はワンマン運行です。中ドアは乗車専用となっております。お降りのお客様は、先頭車両いちばん前のドアよりお降りくださいますよう、ご協力お願い致します。運賃は、お降りの際にいちばん前の運賃箱にお支払い願います。</span></p>
+				<p>次は名越、名越です。出口は先頭車両いちばん前の右側です。<AnnoucePhrase type="oneman">この電車はワンマン運行です。中ドアは乗車専用となっております。お降りのお客様は、先頭車両いちばん前のドアよりお降りくださいますよう、ご協力お願い致します。運賃は、お降りの際にいちばん前の運賃箱にお支払い願います。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>名越到着</h2>
@@ -128,11 +129,11 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>貝塚市役所前発車</h2>
-				<p>次は終点、貝塚、貝塚です。お近くのドアからお降りください。<span class="c-tokyu-announce -change">南海線はお乗り換えです。</span>車内にお忘れ物なさいませんよう、ご注意ください。</p>
+				<p>次は終点、貝塚、貝塚です。お近くのドアからお降りください。<AnnoucePhrase type="change">南海線はお乗り換えです。</AnnoucePhrase>車内にお忘れ物なさいませんよう、ご注意ください。</p>
 			</section>
 			<section>
 				<h2>貝塚到着</h2>
-				<p>まもなく終点、貝塚、貝塚です。<span class="c-tokyu-announce -change">南海線はお乗り換えです。</span>回数券をお持ちのお客様は、有人改札をご利用ください。乗車券をお求めになっていないお客様は、改札口で精算願います。車内にお忘れ物なさいませんよう、ご注意ください。本日も水間鉄道をご利用くださいまして、誠にありがとうございました。</p>
+				<p>まもなく終点、貝塚、貝塚です。<AnnoucePhrase type="change">南海線はお乗り換えです。</AnnoucePhrase>回数券をお持ちのお客様は、有人改札をご利用ください。乗車券をお求めになっていないお客様は、改札口で精算願います。車内にお忘れ物なさいませんよう、ご注意ください。本日も水間鉄道をご利用くださいまして、誠にありがとうございました。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -34,15 +35,15 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>北熊本発車時</h2>
-				<p>我が輩、ケロロ軍曹であります。えー、テコポン人の諸君、毎度ケロロ電車をご利用頂きありがとうであります。この電車は上熊本行きー。お乗り間違えの無いようご注意を！終点上熊本までの所要時間はおよそ9分であります。ドア付近にお立ちの人は、ドアの開閉に注意するであります。<span class="c-tokyu-announce -manners">また、携帯電話はマナーモードに設定して、通話は控えるであります。みんなの電車なのでマナーを守って乗らないと、夏美殿に怒られるであります。</span></p>
+				<p>我が輩、ケロロ軍曹であります。えー、テコポン人の諸君、毎度ケロロ電車をご利用頂きありがとうであります。この電車は上熊本行きー。お乗り間違えの無いようご注意を！終点上熊本までの所要時間はおよそ9分であります。ドア付近にお立ちの人は、ドアの開閉に注意するであります。<AnnoucePhrase type="manners">また、携帯電話はマナーモードに設定して、通話は控えるであります。みんなの電車なのでマナーを守って乗らないと、夏美殿に怒られるであります。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>北熊本発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ゲロゲロリ。次は坪井川公園、坪井川公園であります。電車は整理券方式で運行中ー。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう、運転士側の運賃箱にお入れくださいであります。事故防止のため、進行中やむを得ず急ブレーキを掛けることがあるので、足元・お手回り品に注意するでありますよ。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ゲロゲロリ。次は坪井川公園、坪井川公園であります。電車は整理券方式で運行中ー。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう、運転士側の運賃箱にお入れくださいであります。事故防止のため、進行中やむを得ず急ブレーキを掛けることがあるので、足元・お手回り品に注意するでありますよ。</p>
 			</section>
 			<section>
 				<h2>坪井川公園到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ゲッケーロー。ご乗車、感謝であります。まもなく坪井川公園、坪井川公園。降り口は左側、開くドアにご注意であります。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ゲッケーロー。ご乗車、感謝であります。まもなく坪井川公園、坪井川公園。降り口は左側、開くドアにご注意であります。</p>
 			</section>
 		</AnnounceStation>
 
@@ -53,11 +54,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>坪井川公園発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は打越、打越であります。ペコポン人の諸君へお願いであります。車内・ホームなどであやしい物を発見された場合は、運転士または駅係員へ連絡よろしくであります。ご協力お願いするであります。ちなみにー、たまにドロロや小雪殿が潜んでいるかもしれないでありますが、不審者じゃないので心配いらないであります。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は打越、打越であります。ペコポン人の諸君へお願いであります。車内・ホームなどであやしい物を発見された場合は、運転士または駅係員へ連絡よろしくであります。ご協力お願いするであります。ちなみにー、たまにドロロや小雪殿が潜んでいるかもしれないでありますが、不審者じゃないので心配いらないであります。</p>
 			</section>
 			<section>
 				<h2>打越到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車、感謝であります。まもなく打越、打越であります。降り口は右側、開くドアにご注意であります。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車、感謝であります。まもなく打越、打越であります。降り口は右側、開くドアにご注意であります。</p>
 			</section>
 		</AnnounceStation>
 
@@ -68,11 +69,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>打越発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は池田、池田であります。ドア付近にお立ちの人は、開くドアに注意するでありますよ。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は池田、池田であります。ドア付近にお立ちの人は、開くドアに注意するでありますよ。</p>
 			</section>
 			<section>
 				<h2>池田到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車、感謝であります。まもなく池田、池田であります。降り口右側、開くドアにご注意であります。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車、感謝であります。まもなく池田、池田であります。降り口右側、開くドアにご注意であります。</p>
 			</section>
 		</AnnounceStation>
 
@@ -83,11 +84,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>池田発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は韓々坂、韓々坂であります。事故防止のため、進行中やむを得ず急ブレーキを掛けることがあるので、足元・お手回り品に注意するであります。タママ、手に持ったお菓子を落とさないように気をつけるでありますよー。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は韓々坂、韓々坂であります。事故防止のため、進行中やむを得ず急ブレーキを掛けることがあるので、足元・お手回り品に注意するであります。タママ、手に持ったお菓子を落とさないように気をつけるでありますよー。</p>
 			</section>
 			<section>
 				<h2>韓々坂到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ご乗車、感謝であります。まもなく韓々坂、韓々坂であります。降り口左側、開くドアにご注意であります。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車、感謝であります。まもなく韓々坂、韓々坂であります。降り口左側、開くドアにご注意であります。</p>
 			</section>
 		</AnnounceStation>
 
@@ -98,11 +99,11 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>韓々坂発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は上熊本、上熊本、終点であります。運賃は整理券と運賃表をお確かめのうえ、釣り銭のいらないよう、運転士側の運賃箱にお入れくださいであります。整理券、回数券は折り曲げず、運賃箱にお入れくださいであります。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は上熊本、上熊本、終点であります。運賃は整理券と運賃表をお確かめのうえ、釣り銭のいらないよう、運転士側の運賃箱にお入れくださいであります。整理券、回数券は折り曲げず、運賃箱にお入れくださいであります。</p>
 			</section>
 			<section>
 				<h2>上熊本到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>ゲロゲロリ。ケロロ電車へのご乗車、お疲れさまであります。まもなく上熊本、上熊本、終点であります。車内に忘れ物しないようにお手回り品にご注意を。我が輩、こないだ買ったばかりのガンプラを忘れそうになってヒヤッとしたでありますからなぁ。降り口は左側、開くドアにご注意であります。ご乗車、感謝であります。上熊本、終点です。またのご利用を待ってるでありますよ。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ゲロゲロリ。ケロロ電車へのご乗車、お疲れさまであります。まもなく上熊本、上熊本、終点であります。車内に忘れ物しないようにお手回り品にご注意を。我が輩、こないだ買ったばかりのガンプラを忘れそうになってヒヤッとしたでありますからなぁ。降り口は左側、開くドアにご注意であります。ご乗車、感謝であります。上熊本、終点です。またのご利用を待ってるでありますよ。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

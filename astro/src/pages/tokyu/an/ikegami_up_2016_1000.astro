@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
@@ -43,7 +44,7 @@ const structuredData: StructuredData = {
 				<h2>蓮沼到着</h2>
 				<p>本日も東急池上線をご利用くださいまして、ありがとうございます。この電車は五反田行きです。まもなく蓮沼です。出口は左側です。</p>
 
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</AnnoucePhrase></p>
 				<p lang="en">Thank you for using the Tōkyū Ikegami Line. This train is bound for Gotanda. We will soon make a breaf stop at Hasunuma.</p>
 			</section>
 		</AnnounceStation>
@@ -51,10 +52,10 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>池上到着</h2>
-				<p>まもなく池上です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由なお客様には、席をお譲りください。皆様のご協力をお願いいたします。</span></p>
+				<p>まもなく池上です。<AnnoucePhrase type="manners">お年寄りや体の不自由なお客様には、席をお譲りください。皆様のご協力をお願いいたします。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Ikegami.</p>
 
-				<p><span class="c-tokyu-announce -menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</span></p>
+				<p><AnnoucePhrase type="menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -95,7 +96,7 @@ const structuredData: StructuredData = {
 				<h2>石川台到着</h2>
 				<p>まもなく石川台です。出口は左側です。</p>
 
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Ishikawa-dai.</p>
 			</section>
 		</AnnounceStation>
@@ -119,8 +120,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>旗の台到着</h2>
-				<p>まもなく旗の台です。<span class="c-tokyu-announce -cm">昭和大学最寄り駅です。</span><span class="c-tokyu-announce -change">大井町線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a breaf stop at Hatanodai. <span class="c-tokyu-announce -change">Passengers changing to the Ōimachi Line, please transfer at this station.</span></p>
+				<p>まもなく旗の台です。<AnnoucePhrase type="cm">昭和大学最寄り駅です。</AnnoucePhrase><AnnoucePhrase type="change">大井町線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a breaf stop at Hatanodai. <AnnoucePhrase type="change">Passengers changing to the Ōimachi Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -129,7 +130,7 @@ const structuredData: StructuredData = {
 				<h2>荏原中延到着</h2>
 				<p>まもなく荏原中延です。次の駅は電車とホームの間が一部広く空いております。お降りの際は足元にご注意ください。</p>
 
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Ebara-nakanobu.</p>
 			</section>
 		</AnnounceStation>
@@ -140,7 +141,7 @@ const structuredData: StructuredData = {
 				<p>まもなく戸越銀座です。</p>
 				<p lang="en">We will soon make a breaf stop at Togoshi-ginza.</p>
 
-				<p><span class="c-tokyu-announce -menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</span></p>
+				<p><AnnoucePhrase type="menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -155,8 +156,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>五反田到着</h2>
-				<p>まもなく五反田、終点です。次の駅は電車とホームの間が一部広く空いております。お降りの際は足元にご注意ください。<span class="c-tokyu-announce -change">JR山手線、都営浅草線はお乗り換えです。</span>出口は左側です。本日も東急池上線をご利用くださいまして、ありがとうございました。</p>
-				<p lang="en">We will soon be arriving at Gotanda. <span class="c-tokyu-announce -change">Passengers changing to the JR Yamanote Line and the Toei Asakusa Line, please transfer at this station. Thank you for using the Tōkyū Ikegami Line.</span></p>
+				<p>まもなく五反田、終点です。次の駅は電車とホームの間が一部広く空いております。お降りの際は足元にご注意ください。<AnnoucePhrase type="change">JR山手線、都営浅草線はお乗り換えです。</AnnoucePhrase>出口は左側です。本日も東急池上線をご利用くださいまして、ありがとうございました。</p>
+				<p lang="en">We will soon be arriving at Gotanda. <AnnoucePhrase type="change">Passengers changing to the JR Yamanote Line and the Toei Asakusa Line, please transfer at this station. Thank you for using the Tōkyū Ikegami Line.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 	</Announce>

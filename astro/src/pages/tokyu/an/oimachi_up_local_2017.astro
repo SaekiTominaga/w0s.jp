@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -58,15 +59,15 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>二子玉川到着</h2>
-				<p>この先揺れますのでご注意ください。まもなく二子玉川です。<span class="c-tokyu-announce -change">田園都市線渋谷方面はお乗り換えです。</span>出口は左側です。この電車は各駅停車大井町行きです。</p>
-				<p lang="en">We will soon make a breaf stop at Futako-tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Den-en-toshi Line for Shibuya, please transfer at this station.</span> This is the local train bound for Ōimachi.</p>
+				<p>この先揺れますのでご注意ください。まもなく二子玉川です。<AnnoucePhrase type="change">田園都市線渋谷方面はお乗り換えです。</AnnoucePhrase>出口は左側です。この電車は各駅停車大井町行きです。</p>
+				<p lang="en">We will soon make a breaf stop at Futako-tamagawa. <AnnoucePhrase type="change">Passengers changing to the Den-en-toshi Line for Shibuya, please transfer at this station.</AnnoucePhrase> This is the local train bound for Ōimachi.</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>上野毛到着</h2>
-				<p>この電車は各駅停車大井町行きです。<span class="c-tokyu-announce -door">途中の九品仏では、後ろの1両はドアが開きません。前の車両にお移りください。</span>まもなく上野毛です。<span class="c-tokyu-announce -cm">五島美術館最寄り駅です。</span>出口は右側です。</p>
+				<p>この電車は各駅停車大井町行きです。<AnnoucePhrase type="door">途中の九品仏では、後ろの1両はドアが開きません。前の車両にお移りください。</AnnoucePhrase>まもなく上野毛です。<AnnoucePhrase type="cm">五島美術館最寄り駅です。</AnnoucePhrase>出口は右側です。</p>
 				<p lang="en">Thank you for using the Tōkyū Ōimachi Line. This is the local train bound for Ōimachi. We will soon make a breaf stop at Kaminoge.</p>
 			</section>
 		</AnnounceStation>
@@ -74,17 +75,17 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>等々力到着</h2>
-				<p>まもなく等々力です。<span class="c-tokyu-announce -cm">東京都市大学、等々力キャンパス最寄り駅です。</span></p>
+				<p>まもなく等々力です。<AnnoucePhrase type="cm">東京都市大学、等々力キャンパス最寄り駅です。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Todoroki.</p>
 
-				<p><span class="c-tokyu-announce -manners">東急電鉄からのお願いです。携帯電話はマナーモードに設定のうえ、通話はお控えください。車内マナーにご協力をお願いいたします。</span></p>
+				<p><AnnoucePhrase type="manners">東急電鉄からのお願いです。携帯電話はマナーモードに設定のうえ、通話はお控えください。車内マナーにご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>尾山台到着</h2>
-				<p>まもなく尾山台です。<span class="c-tokyu-announce -cm">東京都市大学、世田谷キャンパス最寄り駅です。</span>出口は左側です。</p>
+				<p>まもなく尾山台です。<AnnoucePhrase type="cm">東京都市大学、世田谷キャンパス最寄り駅です。</AnnoucePhrase>出口は左側です。</p>
 				<p lang="en">We will soon make a breaf stop at Oyamadai.</p>
 			</section>
 		</AnnounceStation>
@@ -92,7 +93,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>九品仏到着</h2>
-				<p>まもなく九品仏です。<span class="c-tokyu-announce -door">後ろの1両はドアが開きません。前の車両からお降りください。</span>出口は右側です。</p>
+				<p>まもなく九品仏です。<AnnoucePhrase type="door">後ろの1両はドアが開きません。前の車両からお降りください。</AnnoucePhrase>出口は右側です。</p>
 				<p lang="en">We will soon make a breaf stop at Kuhombutsu.</p>
 			</section>
 		</AnnounceStation>
@@ -100,8 +101,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>自由が丘到着</h2>
-				<p>まもなく自由が丘です。<span class="c-tokyu-announce -change">東横線はお乗り換えです。</span>出口は左側です。</p>
-				<p lang="en">We will soon make a breaf stop at Jiyūgaoka. <span class="c-tokyu-announce -change">Passengers changing to the Tōyoko Line, please transfer at this station.</span></p>
+				<p>まもなく自由が丘です。<AnnoucePhrase type="change">東横線はお乗り換えです。</AnnoucePhrase>出口は左側です。</p>
+				<p lang="en">We will soon make a breaf stop at Jiyūgaoka. <AnnoucePhrase type="change">Passengers changing to the Tōyoko Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -116,8 +117,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>大岡山到着</h2>
-				<p>まもなく大岡山です。<span class="c-tokyu-announce -cm">東急病院最寄り駅です。</span><span class="c-tokyu-announce -change">目黒線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a breaf stop at Ōokayama. <span class="c-tokyu-announce -change">Passengers changing to the Meguro Line, please transfer at this station.</span></p>
+				<p>まもなく大岡山です。<AnnoucePhrase type="cm">東急病院最寄り駅です。</AnnoucePhrase><AnnoucePhrase type="change">目黒線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a breaf stop at Ōokayama. <AnnoucePhrase type="change">Passengers changing to the Meguro Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -132,8 +133,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>旗の台到着</h2>
-				<p>まもなく旗の台です。<span class="c-tokyu-announce -cm">昭和大学最寄り駅です。</span><span class="c-tokyu-announce -change">池上線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a breaf stop at Hatanodai. <span class="c-tokyu-announce -change">Passengers changing to the Ikegami Line, please transfer at this station.</span></p>
+				<p>まもなく旗の台です。<AnnoucePhrase type="cm">昭和大学最寄り駅です。</AnnoucePhrase><AnnoucePhrase type="change">池上線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a breaf stop at Hatanodai. <AnnoucePhrase type="change">Passengers changing to the Ikegami Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -148,8 +149,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>中延到着</h2>
-				<p>まもなく中延です。<span class="c-tokyu-announce -change">都営浅草線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a breaf stop at Nakanobu. <span class="c-tokyu-announce -change">Passengers changing to the Toei Asakusa Line, please transfer at this station.</span></p>
+				<p>まもなく中延です。<AnnoucePhrase type="change">都営浅草線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a breaf stop at Nakanobu. <AnnoucePhrase type="change">Passengers changing to the Toei Asakusa Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -172,9 +173,9 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>大井町到着</h2>
-				<p>まもなく大井町、終点です。<span class="c-tokyu-announce -change">JR京浜東北線、りんかい線はお乗り換えです。</span>お忘れ物無さいませんように、ご注意ください。本日も東急大井町線をご利用くださいまして、ありがとうございました。</p>
+				<p>まもなく大井町、終点です。<AnnoucePhrase type="change">JR京浜東北線、りんかい線はお乗り換えです。</AnnoucePhrase>お忘れ物無さいませんように、ご注意ください。本日も東急大井町線をご利用くださいまして、ありがとうございました。</p>
 				<p lang="en">
-					We will soon be arriving at Ōimachi. This is the last stop of this line. <span class="c-tokyu-announce -change">Passengers changing to the JR Keihin-tōhoku Line and the Rinkai Line, please transfer at this station.</span> Thank you for using the Tōkyū Ōimachi Line.
+					We will soon be arriving at Ōimachi. This is the last stop of this line. <AnnoucePhrase type="change">Passengers changing to the JR Keihin-tōhoku Line and the Rinkai Line, please transfer at this station.</AnnoucePhrase> Thank you for using the Tōkyū Ōimachi Line.
 				</p>
 			</section>
 		</AnnounceStation>

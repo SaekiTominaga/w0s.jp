@@ -1,0 +1,36 @@
+---
+interface Props {
+	type?: 'm' | 't';
+}
+
+const { type } = Astro.props;
+---
+
+<span class:list={['truck', type !== undefined ? `-${type}` : undefined]}><slot /></span>
+
+<style>
+	.truck {
+		display: inline flow-root;
+		border: 1px solid;
+		border-radius: var(--border-radius-normal);
+		background: var(--_bg-color, var(--color-white));
+		padding: 0.25em;
+		vertical-align: 0.125em;
+		line-height: var(--line-height-nowrap);
+		color: var(--_color, var(--color-black));
+		font-size: min(1rem, calc(100% / pow(var(--font-ratio), 2)));
+		font-weight: var(--font-weight-normal);
+
+		/* 動力台車 */
+		&.-m {
+			--_color: var(--color-red);
+			--_bg-color: var(--color-verylightred);
+		}
+
+		/* 付随台車 */
+		&.-t {
+			--_color: var(--color-blue);
+			--_bg-color: var(--color-superlightblue);
+		}
+	}
+</style>

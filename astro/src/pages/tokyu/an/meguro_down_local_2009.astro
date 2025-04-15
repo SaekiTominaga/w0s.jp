@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -52,7 +53,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>不動前〜武蔵小山走行中</h2>
-				<p><span class="c-tokyu-announce -manners">東急電鉄からのお願いです。優先席ではお年寄りやお体の不自由なお客様、妊娠中や乳幼児をお連れのお客様には、席をお譲りください。車内マナーにご協力をお願いいたします。</span></p>
+				<p><AnnoucePhrase type="manners">東急電鉄からのお願いです。優先席ではお年寄りやお体の不自由なお客様、妊娠中や乳幼児をお連れのお客様には、席をお譲りください。車内マナーにご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>武蔵小山到着</h2>
@@ -77,7 +78,7 @@ const structuredData: StructuredData = {
 			</section>
 			<section>
 				<h2>武蔵小山〜西小山走行中</h2>
-				<p><span class="c-tokyu-announce -menu">お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
+				<p><AnnoucePhrase type="menu">お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>西小山到着</h2>
@@ -97,12 +98,12 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>洗足〜大岡山走行中</h2>
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車サイン音が鳴り終わりましたら、ドアが閉まりますので、無理なご乗車はお止めください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。発車サイン音が鳴り終わりましたら、ドアが閉まりますので、無理なご乗車はお止めください。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>大岡山到着</h2>
-				<p>まもなく大岡山です。<span class="c-tokyu-announce -change">大井町線はお乗り換えです。</span>出口は右側です。</p>
-				<p lang="en">We will soon make a brief stop at Ōokayama. <span class="c-tokyu-announce -change">Passengers changing to the Ōimachi Line, please transfer at this station.</span></p>
+				<p>まもなく大岡山です。<AnnoucePhrase type="change">大井町線はお乗り換えです。</AnnoucePhrase>出口は右側です。</p>
+				<p lang="en">We will soon make a brief stop at Ōokayama. <AnnoucePhrase type="change">Passengers changing to the Ōimachi Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -122,20 +123,20 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>奥沢〜田園調布走行中</h2>
-				<p><span class="c-tokyu-announce -manners">お客様にお願いいたします。足を組んだり、前の方に出したりしますと、ほかのお客様のご迷惑となりますので、ご注意ください。</span></p>
+				<p><AnnoucePhrase type="manners">お客様にお願いいたします。足を組んだり、前の方に出したりしますと、ほかのお客様のご迷惑となりますので、ご注意ください。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>田園調布到着</h2>
-				<p>まもなく田園調布です。<span class="c-tokyu-announce -change">東横線中目黒、渋谷方面はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a brief stop at Den-en-chōfu. <span class="c-tokyu-announce -change">Passengers changing to the Tōyoko Line for Nakameguro and Shibuya, please transfer at this station.</span></p>
+				<p>まもなく田園調布です。<AnnoucePhrase type="change">東横線中目黒、渋谷方面はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a brief stop at Den-en-chōfu. <AnnoucePhrase type="change">Passengers changing to the Tōyoko Line for Nakameguro and Shibuya, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>多摩川到着</h2>
-				<p>まもなく多摩川です。<span class="c-tokyu-announce -change">東急多摩川線はお乗り換えです。</span>お降りの際は、足元にご注意ください。</p>
-				<p lang="en">We will soon make a brief stop at Tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Tōkyū Tamagawa Line, please transfer at this station.</span></p>
+				<p>まもなく多摩川です。<AnnoucePhrase type="change">東急多摩川線はお乗り換えです。</AnnoucePhrase>お降りの際は、足元にご注意ください。</p>
+				<p lang="en">We will soon make a brief stop at Tamagawa. <AnnoucePhrase type="change">Passengers changing to the Tōkyū Tamagawa Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -150,8 +151,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>武蔵小杉到着</h2>
-				<p>まもなく武蔵小杉です。<span class="c-tokyu-announce -change">JR線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a brief stop at Musashi-kosugi. <span class="c-tokyu-announce -change">Passengers changing to the JR Line, please transfer at this station.</span></p>
+				<p>まもなく武蔵小杉です。<AnnoucePhrase type="change">JR線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a brief stop at Musashi-kosugi. <AnnoucePhrase type="change">Passengers changing to the JR Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -166,9 +167,9 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>日吉到着</h2>
-				<p>まもなく日吉、終点です。<span class="c-tokyu-announce -change">東横線、横浜市営地下鉄はお乗り換えです。</span>出口は左側です。本日も東急目黒線をご利用くださいまして、ありがとうございました。</p>
+				<p>まもなく日吉、終点です。<AnnoucePhrase type="change">東横線、横浜市営地下鉄はお乗り換えです。</AnnoucePhrase>出口は左側です。本日も東急目黒線をご利用くださいまして、ありがとうございました。</p>
 				<p lang="en">
-					We will soon be arriving at Hiyoshi, the last stop of this line. <span class="c-tokyu-announce -change">Passengers changing to the Tōyoko Line, and the Yokohama Municipal Subway, please transfer at this station.</span> Thank you for using the Tōkyū Meguro Line.
+					We will soon be arriving at Hiyoshi, the last stop of this line. <AnnoucePhrase type="change">Passengers changing to the Tōyoko Line, and the Yokohama Municipal Subway, please transfer at this station.</AnnoucePhrase> Thank you for using the Tōkyū Meguro Line.
 				</p>
 			</section>
 		</AnnounceStation>

@@ -1,5 +1,6 @@
 ---
 import Date from '../Date.astro';
+import Train from './Train.astro';
 
 interface Props {
 	station: string; // 行先
@@ -69,7 +70,7 @@ switch (operation) {
 
 <div class="announce">
 	<div class="header">
-		<p class="train"><span class={`c-tokyu-train -${type}`}>{typeDisplay}{operationDisplay}{'　'}{station}</span>行{trainNote !== undefined && <>（{trainNote}）</>}</p>
+		<p class="train"><Train type={type}>{typeDisplay}{operationDisplay}{'　'}{station}</Train>行{trainNote !== undefined && <>（{trainNote}）</>}</p>
 		{cars !== undefined && <p class="car">{cars.join('、')}搭載タイプ</p>}
 		{period !== undefined && <p class="period">{period}</p>}
 		{note !== undefined && <p class="note">{note}</p>}

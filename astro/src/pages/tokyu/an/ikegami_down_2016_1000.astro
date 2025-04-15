@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
@@ -43,7 +44,7 @@ const structuredData: StructuredData = {
 				<h2>大崎広小路到着</h2>
 				<p>本日も東急池上線をご利用くださいまして、ありがとうございます。この電車は蒲田行きです。まもなく大崎広小路です。出口は右側です。</p>
 
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</AnnoucePhrase></p>
 				<p lang="en">Thank you for using the Tōkyū Ikegami Line. This train is bound for Kamata. We will soon make a breaf stop at Ōsakihirokōji.</p>
 			</section>
 		</AnnounceStation>
@@ -51,7 +52,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>戸越銀座到着</h2>
-				<p>まもなく戸越銀座です。出口は左側です。<span class="c-tokyu-announce -manners">お年寄りや体の不自由なお客様には、席をお譲りください。皆様のご協力をお願いいたします。</span></p>
+				<p>まもなく戸越銀座です。出口は左側です。<AnnoucePhrase type="manners">お年寄りや体の不自由なお客様には、席をお譲りください。皆様のご協力をお願いいたします。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Togoshi-ginza.</p>
 			</section>
 		</AnnounceStation>
@@ -67,10 +68,10 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>旗の台到着</h2>
-				<p>まもなく旗の台です。<span class="c-tokyu-announce -cm">昭和大学最寄り駅です。</span><span class="c-tokyu-announce -change">大井町線はお乗り換えです。</span></p>
-				<p lang="en">We will soon make a breaf stop at Hatanodai. <span class="c-tokyu-announce -change">Passengers changing to the Ōimachi Line, please transfer at this station.</span></p>
+				<p>まもなく旗の台です。<AnnoucePhrase type="cm">昭和大学最寄り駅です。</AnnoucePhrase><AnnoucePhrase type="change">大井町線はお乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">We will soon make a breaf stop at Hatanodai. <AnnoucePhrase type="change">Passengers changing to the Ōimachi Line, please transfer at this station.</AnnoucePhrase></p>
 
-				<p><span class="c-tokyu-announce -menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</span></p>
+				<p><AnnoucePhrase type="menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -79,7 +80,7 @@ const structuredData: StructuredData = {
 				<h2>長原到着</h2>
 				<p>まもなく長原です。</p>
 
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Nagahara.</p>
 			</section>
 		</AnnounceStation>
@@ -113,7 +114,7 @@ const structuredData: StructuredData = {
 				<h2>御嶽山到着</h2>
 				<p>まもなく御嶽山です。出口は左側です。</p>
 
-				<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</span></p>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</AnnoucePhrase></p>
 				<p lang="en">We will soon make a breaf stop at Ontakesan.</p>
 			</section>
 		</AnnounceStation>
@@ -148,15 +149,15 @@ const structuredData: StructuredData = {
 				<p>まもなく蓮沼です。</p>
 				<p lang="en">We will soon make a breaf stop at Hasunuma.</p>
 
-				<p><span class="c-tokyu-announce -menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</span></p>
+				<p><AnnoucePhrase type="menu">お客様にお願いいたします。ドアの開け閉めの際に手を挟まれたり、戸袋に引き込まれないようご注意ください。また、駆け込み乗車はおやめください。</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>蓮沼発車</h2>
-				<p>次は蒲田、終点です。<span class="c-tokyu-announce -change">多摩川線、JR京浜東北線はお乗り換えです。</span>出口は左側です。</p>
-				<p lang="en">The next station is Kamata. This is the last stop of this line. <span class="c-tokyu-announce -change">Passengers changing to the Tamagawa Line and the JR Keihin-tōhoku Line, please transfer at this station.</span></p>
+				<p>次は蒲田、終点です。<AnnoucePhrase type="change">多摩川線、JR京浜東北線はお乗り換えです。</AnnoucePhrase>出口は左側です。</p>
+				<p lang="en">The next station is Kamata. This is the last stop of this line. <AnnoucePhrase type="change">Passengers changing to the Tamagawa Line and the JR Keihin-tōhoku Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>蒲田到着</h2>

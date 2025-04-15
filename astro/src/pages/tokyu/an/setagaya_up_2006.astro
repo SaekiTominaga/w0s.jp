@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -35,7 +36,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>下高井戸発車</h2>
-				<p>本日も東急世田谷線をご利用くださいましてありがとうございます。この電車は三軒茶屋行きです。途中の駅でお降りのお客様は、中程2ヶ所のドアよりお降りください。<span class="c-tokyu-announce -manners">東急電鉄からのお願いです。優先席ではお年寄りやお体の不自由なお客様、妊娠中や乳幼児をお連れのお客様には席をお譲りください。車内マナーにご協力をお願いいたします。</span></p>
+				<p>本日も東急世田谷線をご利用くださいましてありがとうございます。この電車は三軒茶屋行きです。途中の駅でお降りのお客様は、中程2ヶ所のドアよりお降りください。<AnnoucePhrase type="manners">東急電鉄からのお願いです。優先席ではお年寄りやお体の不自由なお客様、妊娠中や乳幼児をお連れのお客様には席をお譲りください。車内マナーにご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>松原到着</h2>
@@ -46,14 +47,14 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>山下到着</h2>
-				<p>まもなく山下です。<span class="c-tokyu-announce -change">小田急線豪徳寺駅をご利用のお客様はお乗り換えです。</span>お降りの際は、足元にご注意ください。</p>
+				<p>まもなく山下です。<AnnoucePhrase type="change">小田急線豪徳寺駅をご利用のお客様はお乗り換えです。</AnnoucePhrase>お降りの際は、足元にご注意ください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>山下発車</h2>
-				<p>この電車は三軒茶屋行きです。途中の駅でお降りのお客様は、中程2ヶ所のドアよりお降りください。<span class="c-tokyu-announce -manners">東急電鉄からのお願いです。吊り革がオレンジ色の優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はお控えください。車内マナーにご協力をお願いいたします。</span></p>
+				<p>この電車は三軒茶屋行きです。途中の駅でお降りのお客様は、中程2ヶ所のドアよりお降りください。<AnnoucePhrase type="manners">東急電鉄からのお願いです。吊り革がオレンジ色の優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はお控えください。車内マナーにご協力をお願いいたします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>宮の坂到着</h2>
@@ -78,7 +79,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>松陰神社前到着</h2>
-				<p>まもなく松陰神社前です。<span class="c-tokyu-announce -cm">世田谷区役所最寄駅です。</span>出口は中程2ヶ所のドアです。</p>
+				<p>まもなく松陰神社前です。<AnnoucePhrase type="cm">世田谷区役所最寄駅です。</AnnoucePhrase>出口は中程2ヶ所のドアです。</p>
 			</section>
 		</AnnounceStation>
 
@@ -99,7 +100,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>三軒茶屋到着</h2>
-				<p>まもなく三軒茶屋、終点です。<span class="c-tokyu-announce -change">田園都市線はお乗り換えです。</span>お忘れ物なさいませんようにご注意ください。本日も東急世田谷線をご利用くださいましてありがとうございました。</p>
+				<p>まもなく三軒茶屋、終点です。<AnnoucePhrase type="change">田園都市線はお乗り換えです。</AnnoucePhrase>お忘れ物なさいませんようにご注意ください。本日も東急世田谷線をご利用くださいましてありがとうございました。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

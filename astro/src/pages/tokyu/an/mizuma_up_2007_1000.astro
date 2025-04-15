@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -73,7 +74,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>森発車</h2>
-				<p>次は名越、名越です。出口は続いて右側です。<span class="c-tokyu-announce -manners">お客様にお願いいたします。優先座席付近では、携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。また、不審物などを発見されましたら乗務員、または駅員にお知らせください。皆様のご協力をお願いします。</span><span class="c-tokyu-announce -menu">ただいま、年末年始の安全総点検期間中です。車内事故防止にご協力お願いします。</span></p>
+				<p>次は名越、名越です。出口は続いて右側です。<AnnoucePhrase type="manners">お客様にお願いいたします。優先座席付近では、携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。また、不審物などを発見されましたら乗務員、または駅員にお知らせください。皆様のご協力をお願いします。</AnnoucePhrase><AnnoucePhrase type="menu">ただいま、年末年始の安全総点検期間中です。車内事故防止にご協力お願いします。</AnnoucePhrase></p>
 			</section>
 			<section>
 				<h2>名越到着</h2>
@@ -117,7 +118,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>近義の里発車</h2>
-				<p>次は貝塚市役所前、貝塚市役所前です。<span class="c-tokyu-announce -cm">貝塚市役所、福祉センター、コスモスシアターへお越しのお客様は、次でお降りください。</span>出口は続いて左側です。</p>
+				<p>次は貝塚市役所前、貝塚市役所前です。<AnnoucePhrase type="cm">貝塚市役所、福祉センター、コスモスシアターへお越しのお客様は、次でお降りください。</AnnoucePhrase>出口は続いて左側です。</p>
 			</section>
 			<section>
 				<h2>貝塚市役所前到着</h2>
@@ -128,11 +129,11 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>貝塚市役所前発車</h2>
-				<p>次は終点、貝塚、貝塚です。<span class="c-tokyu-announce -change">南海線はお乗り換えです。</span>車内にお忘れ物なさいませんよう、ご注意ください。</p>
+				<p>次は終点、貝塚、貝塚です。<AnnoucePhrase type="change">南海線はお乗り換えです。</AnnoucePhrase>車内にお忘れ物なさいませんよう、ご注意ください。</p>
 			</section>
 			<section>
 				<h2>貝塚到着</h2>
-				<p>まもなく終点、貝塚、貝塚です。<span class="c-tokyu-announce -change">南海線はお乗り換えです。</span>回数券、および車内でお買い求め頂いた乗車券は、有人改札をご利用ください。車内にお忘れ物なさいませんよう、ご注意ください。本日も水間鉄道をご利用くださいまして、誠にありがとうございました。</p>
+				<p>まもなく終点、貝塚、貝塚です。<AnnoucePhrase type="change">南海線はお乗り換えです。</AnnoucePhrase>回数券、および車内でお買い求め頂いた乗車券は、有人改札をご利用ください。車内にお忘れ物なさいませんよう、ご注意ください。本日も水間鉄道をご利用くださいまして、誠にありがとうございました。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>

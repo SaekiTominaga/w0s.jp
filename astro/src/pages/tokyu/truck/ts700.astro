@@ -9,6 +9,7 @@ import Image from '@components/Image.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import TruckIcon from '@components/tokyu/TruckIcon.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -56,7 +57,7 @@ const structuredData: StructuredData = {
 			</thead>
 			<tbody>
 				<tr>
-					<td><Anchor href="#ts701-m" bullet={true}>TS-701</Anchor> <span class="c-tokyu-truck -m">動力</span></td>
+					<td><Anchor href="#ts701-m" bullet={true}>TS-701</Anchor> <TruckIcon type="m">動力</TruckIcon></td>
 					<td rowspan="2" class="u-cell -center">1962年</td>
 					<td class="u-cell -center">134両</td>
 					<td>7000系</td>
@@ -64,14 +65,14 @@ const structuredData: StructuredData = {
 					<td></td>
 				</tr>
 				<tr>
-					<td><Anchor href="#ts701-t" bullet={true}>TS-701</Anchor> <span class="c-tokyu-truck -t">付随</span></td>
+					<td><Anchor href="#ts701-t" bullet={true}>TS-701</Anchor> <TruckIcon type="m">付随</TruckIcon></td>
 					<td class="u-cell -center">2両</td>
 					<td>福島交通サハ7300形</td>
 					<td>消滅</td>
 					<td>TS-701 の電装解除化</td>
 				</tr>
 				<tr>
-					<td>TS-707 <span class="c-tokyu-truck -t">付随</span></td>
+					<td>TS-707 <TruckIcon type="m">付随</TruckIcon></td>
 					<td class="u-cell -center">1967年</td>
 					<td class="u-cell -center">23両</td>
 					<td>7200系、7600系</td>
@@ -79,7 +80,7 @@ const structuredData: StructuredData = {
 					<td></td>
 				</tr>
 				<tr>
-					<td><Anchor href="#ts708-t" bullet={true}>TS-708</Anchor> <span class="c-tokyu-truck -t">付随</span></td>
+					<td><Anchor href="#ts708-t" bullet={true}>TS-708</Anchor> <TruckIcon type="m">付随</TruckIcon></td>
 					<td class="u-cell -center">1969年</td>
 					<td class="u-cell -center">52両</td>
 					<td>8000系<small>（1〜5次車）</small>、7200系、7600系</td>
@@ -98,7 +99,7 @@ const structuredData: StructuredData = {
 		<Fragment slot="heading">TS-701 型<small>（PⅢ-701 型）</small></Fragment>
 
 		<Section id="ts701-m" depth={2} headingType="b">
-			<Fragment slot="heading">TS-701 <small class="c-tokyu-truck -m">動力台車</small></Fragment>
+			<Fragment slot="heading">TS-701 <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS701_mizuma7003.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -114,7 +115,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts701-t" depth={2} headingType="b">
-			<Fragment slot="heading">TS-701 <small class="c-tokyu-truck -t">付随台車</small></Fragment>
+			<Fragment slot="heading">TS-701 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS701_fukushima7315.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
@@ -130,7 +131,7 @@ const structuredData: StructuredData = {
 		<Fragment slot="heading">TS-708 型<small>（PⅢ-708 型）</small></Fragment>
 
 		<Section id="ts708-t" depth={2} headingType="b">
-			<Fragment slot="heading">TS-708 <small class="c-tokyu-truck -t">付随台車</small></Fragment>
+			<Fragment slot="heading">TS-708 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
 
 			<Embedded border={true} captionMeta={true}>
 				<Image path="tokyu/truck/TS708_ueda7551.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />

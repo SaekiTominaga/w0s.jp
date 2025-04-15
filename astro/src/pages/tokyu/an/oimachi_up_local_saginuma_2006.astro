@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -61,8 +62,8 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>梶が谷発車</h2>
-				<p>次は溝の口、溝の口です。<span class="c-tokyu-announce -change">JR南武線ご利用のお客様は乗り換えです。</span></p>
-				<p lang="en">The next station is Mizonokuchi. <span class="c-tokyu-announce -change">Passengers changing to the JR Nambu Line, please transfer at this station.</span></p>
+				<p>次は溝の口、溝の口です。<AnnoucePhrase type="change">JR南武線ご利用のお客様は乗り換えです。</AnnoucePhrase></p>
+				<p lang="en">The next station is Mizonokuchi. <AnnoucePhrase type="change">Passengers changing to the JR Nambu Line, please transfer at this station.</AnnoucePhrase></p>
 			</section>
 		</AnnounceStation>
 
@@ -85,7 +86,7 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>二子新地発車</h2>
-				<p>次は二子玉川、二子玉川です。この電車は大井町線直通、大井町行きです。<span class="c-tokyu-announce -change">田園都市線渋谷・半蔵門線方面にお出でのお客様は乗り換えです。</span></p>
+				<p>次は二子玉川、二子玉川です。この電車は大井町線直通、大井町行きです。<AnnoucePhrase type="change">田園都市線渋谷・半蔵門線方面にお出でのお客様は乗り換えです。</AnnoucePhrase></p>
 				<p lang="en">The next station is Futako-tamagawa. This train will merge and continue traveling on the Ōimachi Line to Ōimachi.</p>
 			</section>
 		</AnnounceStation>

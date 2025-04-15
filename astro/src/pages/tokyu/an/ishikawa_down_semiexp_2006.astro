@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
+import AnnoucePhrase from '@components/tokyu/AnnoucePhrase.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,127 +34,127 @@ const structuredData: StructuredData = {
 		<AnnounceStation>
 			<section>
 				<h2>野町発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>お待たせしました。ご乗車ありがとうございます。この列車は、準急列車の鶴来行きワンマン電車です。途中、押野、野々市、曽谷、小柳は停車しませんので、ご注意ください。次は西泉、西泉、ジャンボボール前です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お待たせしました。ご乗車ありがとうございます。この列車は、準急列車の鶴来行きワンマン電車です。途中、押野、野々市、曽谷、小柳は停車しませんので、ご注意ください。次は西泉、西泉、ジャンボボール前です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>西泉到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>西泉、西泉、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>西泉、西泉、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>西泉発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span><span class="c-tokyu-announce -manners">車内は禁煙です。また、車内での携帯電話のご使用は、心臓医療器具を身に付けておられるお客様のご迷惑になりますので、電源をお切りになるなどご協力をお願いいたします。</span>次は新西金沢、新西金沢です。いちばん前のドアからお降りください。<span class="c-tokyu-announce -change">JR北陸線ご利用の方はお乗り換えです。</span></p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase><AnnoucePhrase type="manners">車内は禁煙です。また、車内での携帯電話のご使用は、心臓医療器具を身に付けておられるお客様のご迷惑になりますので、電源をお切りになるなどご協力をお願いいたします。</AnnoucePhrase>次は新西金沢、新西金沢です。いちばん前のドアからお降りください。<AnnoucePhrase type="change">JR北陸線ご利用の方はお乗り換えです。</AnnoucePhrase></p>
 
-				<p><span class="c-tokyu-announce -cm">免許を取るなら北鉄自動車学校。即日入校日は、月・水・木・土曜の4回、学生割引など各種サービスシステムが充実しているのは北鉄自動車学校です。</span></p>
+				<p><AnnoucePhrase type="cm">免許を取るなら北鉄自動車学校。即日入校日は、月・水・木・土曜の4回、学生割引など各種サービスシステムが充実しているのは北鉄自動車学校です。</AnnoucePhrase></p>
 				<p lang="en">The next station is Shin-nishikanazawa.</p>
 			</section>
 			<section>
 				<h2>新西金沢到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>新西金沢、新西金沢、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>新西金沢、新西金沢、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>新西金沢発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>この列車は、準急列車の鶴来行きワンマン電車です。お客様にお願いします。整理券はご乗車駅を示すものですから、駅員の居ない駅からご乗車の際は、整理券をお取り頂き、折り曲げたり紛失されないようお願いします。ご乗車駅の整理券をお持ちでない場合は、始発駅からの運賃を頂くことがありますのでご注意願います。運賃、乗車券はお降りの際、運賃箱の蓋が開いてからお入れ頂き、定期券の方は運転士にはっきりとお見せください。また、お子様をお連れのお客様にお願いします。幼児3人以上お連れの場合は、3人目から小児運賃を頂きますのでご了承願います。次は野々市工大前、野々市工大前です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>この列車は、準急列車の鶴来行きワンマン電車です。お客様にお願いします。整理券はご乗車駅を示すものですから、駅員の居ない駅からご乗車の際は、整理券をお取り頂き、折り曲げたり紛失されないようお願いします。ご乗車駅の整理券をお持ちでない場合は、始発駅からの運賃を頂くことがありますのでご注意願います。運賃、乗車券はお降りの際、運賃箱の蓋が開いてからお入れ頂き、定期券の方は運転士にはっきりとお見せください。また、お子様をお連れのお客様にお願いします。幼児3人以上お連れの場合は、3人目から小児運賃を頂きますのでご了承願います。次は野々市工大前、野々市工大前です。いちばん前のドアからお降りください。</p>
 				<p lang="en">The next station is Nonoichi-kōdaimae.</p>
 			</section>
 			<section>
 				<h2>野々市工大前到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>野々市工大前、野々市工大前、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>野々市工大前、野々市工大前、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>野々市工大前発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span><span class="c-tokyu-announce -manners">運転室、並びに出入り口ドア付近は、運転士のドア開閉の際の安全確認、並びにお客様の乗り降りの妨げとなりますので、お立ちにならないようご注意ください。列車運行の安全確保と速やかな乗り降りにご協力願います。</span>次は馬替、馬替です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase><AnnoucePhrase type="manners">運転室、並びに出入り口ドア付近は、運転士のドア開閉の際の安全確認、並びにお客様の乗り降りの妨げとなりますので、お立ちにならないようご注意ください。列車運行の安全確保と速やかな乗り降りにご協力願います。</AnnoucePhrase>次は馬替、馬替です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>馬替到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>馬替、馬替、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>馬替、馬替、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>馬替発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は額住宅前、額住宅前です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は額住宅前、額住宅前です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>額住宅前到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>額住宅前、額住宅前、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>額住宅前、額住宅前、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>額住宅前発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span><span class="c-tokyu-announce -manners">車内は禁煙です。また、車内での携帯電話のご使用は、心臓医療器具を身に付けておられるお客様のご迷惑になりますので、電源をお切りになるなどご協力をお願いいたします。</span>次は乙丸、乙丸です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase><AnnoucePhrase type="manners">車内は禁煙です。また、車内での携帯電話のご使用は、心臓医療器具を身に付けておられるお客様のご迷惑になりますので、電源をお切りになるなどご協力をお願いいたします。</AnnoucePhrase>次は乙丸、乙丸です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>乙丸到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>乙丸、乙丸、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>乙丸、乙丸、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>乙丸発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>この列車は、準急列車の鶴来行きワンマン電車です。途中、曽谷、小柳は停車いたしませんので、ご注意ください。<span class="c-tokyu-announce -manners">お体の不自由な方やお年寄りに座席をお譲り頂き、車内事故防止にご協力願います。また、列車をご利用の際は、煙草の吸い殻・紙屑などをホームや線路内に捨てないよう、お互いに美しい駅・綺麗な車内作りに心がけましょう。</span>次は四十万、四十万です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>この列車は、準急列車の鶴来行きワンマン電車です。途中、曽谷、小柳は停車いたしませんので、ご注意ください。<AnnoucePhrase type="manners">お体の不自由な方やお年寄りに座席をお譲り頂き、車内事故防止にご協力願います。また、列車をご利用の際は、煙草の吸い殻・紙屑などをホームや線路内に捨てないよう、お互いに美しい駅・綺麗な車内作りに心がけましょう。</AnnoucePhrase>次は四十万、四十万です。いちばん前のドアからお降りください。</p>
 				<p lang="en">The next station is Shijima.</p>
 			</section>
 			<section>
 				<h2>四十万到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>四十万、四十万、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>四十万、四十万、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>四十万発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>運賃、乗車券はお降りの際、運賃箱の蓋が開いてからお入れ頂き、定期券の方は運転士にはっきりとお見せください。次は道法寺、道法寺です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>運賃、乗車券はお降りの際、運賃箱の蓋が開いてからお入れ頂き、定期券の方は運転士にはっきりとお見せください。次は道法寺、道法寺です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>道法寺到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>道法寺、道法寺、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>道法寺、道法寺、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>道法寺発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は井口、井口です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は井口、井口です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>井口到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>井口、井口、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>井口、井口、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>井口発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は日御子、日御子です。いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は日御子、日御子です。いちばん前のドアからお降りください。</p>
 			</section>
 			<section>
 				<h2>日御子到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>日御子、日御子、駅員が居りませんので、いちばん前のドアからお降りください。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>日御子、日御子、駅員が居りませんので、いちばん前のドアからお降りください。</p>
 			</section>
 		</AnnounceStation>
 
 		<AnnounceStation>
 			<section>
 				<h2>日御子発車</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>次は終点、鶴来、鶴来です。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は終点、鶴来、鶴来です。</p>
 				<p lang="en">The next station is Tsurugi.</p>
 			</section>
 			<section>
 				<h2>鶴来到着</h2>
-				<p><span class="c-tokyu-announce -chime">♪</span>鶴来、鶴来、終点です。どなた様もお忘れ物のないようご注意願います。運賃または乗車券は駅員にお渡し頂き、定期券の方は駅員にはっきりとお見せください。また、駅員の居ない駅からご乗車の方は、整理券をお渡しください。本日は北鉄石川線をご利用頂き、ありがとうございました。</p>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>鶴来、鶴来、終点です。どなた様もお忘れ物のないようご注意願います。運賃または乗車券は駅員にお渡し頂き、定期券の方は駅員にはっきりとお見せください。また、駅員の居ない駅からご乗車の方は、整理券をお渡しください。本日は北鉄石川線をご利用頂き、ありがとうございました。</p>
 			</section>
 		</AnnounceStation>
 	</Announce>
