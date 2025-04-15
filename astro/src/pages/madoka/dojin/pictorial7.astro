@@ -45,8 +45,14 @@ const slugger = new GithubSlugger();
 
 		<p>『<cite>魔法少女まどか☆マギカ</cite>』TV シリーズの放送版と Blu-ray / DVD 版の違いをまとめました。一部は放送時期による違い、 Blu-ray 版と DVD 版の違いにも言及しています。</p>
 
-		<div class="c-embed-sidebar -embed-first">
-			<div class="c-embed-sidebar__text">
+		<Flex>
+			<FlexItem>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial7_cover.jpg" alt="表紙画像: イベント会場での展示ブースの中央にあるディスプレイに『まどか☆マギカ』のアニメが流れている様子を写した写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
 				<ListTable>
 					<div>
 						<dt>発行日</dt>
@@ -61,14 +67,8 @@ const slugger = new GithubSlugger();
 						<dd>2,000円</dd>
 					</div>
 				</ListTable>
-			</div>
-			<div class="c-embed-sidebar__embed">
-				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial7_cover.jpg" alt="表紙画像: イベント会場での展示ブースの中央にあるディスプレイに『まどか☆マギカ』のアニメが流れている様子を写した写真" width={170} height={240} quality={60} slot="media" />
-					<Fragment slot="caption">表紙</Fragment>
-				</Embedded>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="buy">

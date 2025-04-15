@@ -1,9 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
-import EmbeddedLink from './EmbeddedLink.astro';
-import ImageAmazon from './ImageAmazon.astro';
 import Anchor from './Anchor.astro';
+import EmbeddedLink from './EmbeddedLink.astro';
+import EmbeddedSidebar from './EmbeddedSidebar.astro';
+import ImageAmazon from './ImageAmazon.astro';
 import SelfLink from './SelfLink.astro';
 
 interface Props {
@@ -88,19 +89,16 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		{amazonAsin === undefined && <slot />}
 		{
 			amazonAsin !== undefined && (
-				<div class="c-embed-sidebar -embed-first">
-					<div class="c-embed-sidebar__embed">
-						<EmbeddedLink href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`} title="Amazon 商品ページ">
-							<Fragment slot="media">
-								{amazonImageId !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} width={amazonImageWidth} height={amazonImageHeight} />}
-								{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />}
-							</Fragment>
-						</EmbeddedLink>
-					</div>
-					<div class="c-embed-sidebar__text">
-						<slot />
-					</div>
-				</div>
+				<EmbeddedSidebar>
+					<EmbeddedLink href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`} title="Amazon 商品ページ" slot="embedded">
+						<Fragment slot="media">
+							{amazonImageId !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} width={amazonImageWidth} height={amazonImageHeight} />}
+							{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />}
+						</Fragment>
+					</EmbeddedLink>
+
+					<slot slot="text" />
+				</EmbeddedSidebar>
 			)
 		}
 	</div>

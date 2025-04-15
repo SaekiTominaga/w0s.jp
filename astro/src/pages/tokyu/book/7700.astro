@@ -26,8 +26,14 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<div class="c-embed-sidebar -embed-first">
-		<div class="c-embed-sidebar__text">
+	<Flex>
+		<FlexItem>
+			<Embedded border={true}>
+				<Image path="tokyu/book/7700_cover.jpg" alt="表紙画像: 7700系の正面写真が12枚並んでいる" width={170} height={240} quality={60} slot="media" />
+				<Fragment slot="caption">表紙</Fragment>
+			</Embedded>
+		</FlexItem>
+		<FlexItem>
 			<ListTable>
 				<div>
 					<dt>発行日</dt>
@@ -52,14 +58,8 @@ const structuredData: StructuredData = {
 					<dd>終了（紙の本は増刷予定なし）</dd>
 				</div>
 			</ListTable>
-		</div>
-		<div class="c-embed-sidebar__embed">
-			<Embedded border={true}>
-				<Image path="tokyu/book/7700_cover.jpg" alt="表紙画像: 7700系の正面写真が12枚並んでいる" width={170} height={240} quality={60} slot="media" />
-				<Fragment slot="caption">表紙</Fragment>
-			</Embedded>
-		</div>
-	</div>
+		</FlexItem>
+	</Flex>
 
 	<Section id="buy">
 		<Fragment slot="heading">購入</Fragment>

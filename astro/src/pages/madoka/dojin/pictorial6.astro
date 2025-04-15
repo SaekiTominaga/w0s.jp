@@ -46,8 +46,14 @@ const slugger = new GithubSlugger();
 
 		<p>多数の協力者のもと、400か所近い差分を解説し、一部は TVCM や特典フィルムなどのデータを使って比較画像を紹介します。</p>
 
-		<div class="c-embed-sidebar -embed-first">
-			<div class="c-embed-sidebar__text">
+		<Flex>
+			<FlexItem>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial6_cover.jpg" alt="表紙画像: [新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
 				<ListTable>
 					<div>
 						<dt>発行日</dt>
@@ -62,14 +68,8 @@ const slugger = new GithubSlugger();
 						<dd>1,000円</dd>
 					</div>
 				</ListTable>
-			</div>
-			<div class="c-embed-sidebar__embed">
-				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial6_cover.jpg" alt="表紙画像: [新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} slot="media" />
-					<Fragment slot="caption">表紙</Fragment>
-				</Embedded>
-			</div>
-		</div>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="buy">

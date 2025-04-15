@@ -1,0 +1,28 @@
+<div class="embedded-sidebar">
+	<div class="embedded">
+		<slot name="embedded" />
+	</div>
+	<div class="text">
+		<slot name="text" />
+	</div>
+</div>
+
+<style>
+	.embedded-sidebar {
+		display: block flex;
+		flex-wrap: wrap;
+		gap: 15px 30px;
+	}
+
+	.embedded {
+	}
+
+	.text {
+		flex: 1 0px;
+		min-inline-size: 50%;
+
+		& > :global(* + *) {
+			margin-block-start: var(--stack-margin-base);
+		}
+	}
+</style>
