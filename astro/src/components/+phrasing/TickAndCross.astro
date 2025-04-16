@@ -1,0 +1,41 @@
+---
+interface Props {
+	type: 'tick' | 'cross';
+}
+
+const { type } = Astro.props;
+---
+
+<span class:list={['tac', `-${type}`]}><slot /></span>
+
+<style>
+	.tac {
+		white-space: nowrap;
+
+		&::before {
+			display: inline flow-root;
+			margin-inline-end: 0.25em;
+			min-inline-size: 1em;
+			text-align: center;
+			text-shadow:
+				0.5px 0.5px,
+				0.5px -0.5px,
+				-0.5px 0.5px,
+				-0.5px -0.5px;
+			color: var(--_color, inherit);
+			content: var(--_symbol, none);
+		}
+
+		/* 肯定 */
+		&.-tick {
+			--_symbol: '✓';
+			--_color: var(--color-green);
+		}
+
+		/* 否定 */
+		&.-cross {
+			--_symbol: '✗';
+			--_color: var(--color-red);
+		}
+	}
+</style>

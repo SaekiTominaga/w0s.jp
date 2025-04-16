@@ -45,47 +45,6 @@ Styleguide 1.2.4
 }
 
 /*
-tick and cross
-
-Markup:
-<span class="c-tac {{modifier_class}}">テキスト</span>
-
-.-tick - 肯定
-.-cross - 否定
-
-Styleguide 1.2.6
-*/
-.c-tac {
-	white-space: nowrap;
-
-	&::before {
-		display: inline flow-root;
-		margin-inline-end: 0.25em;
-		min-inline-size: 1em;
-		text-align: center;
-		text-shadow:
-			0.5px 0.5px,
-			0.5px -0.5px,
-			-0.5px 0.5px,
-			-0.5px -0.5px;
-		color: var(--_color, inherit);
-		content: var(--_symbol, none);
-	}
-
-	/* 肯定 */
-	&.-tick {
-		--_symbol: "✓";
-		--_color: var(--color-green);
-	}
-
-	/* 否定 */
-	&.-cross {
-		--_symbol: "✗";
-		--_color: var(--color-red);
-	}
-}
-
-/*
 コードハイライト
 
 <a href="https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css">Style Sample (github.css)</a>
