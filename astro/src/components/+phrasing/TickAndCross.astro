@@ -6,16 +6,19 @@ interface Props {
 const { type } = Astro.props;
 ---
 
-<span class:list={['tac', `-${type}`]}><slot /></span>
+<span class:list={['tac', `-${type}`]}>
+	<span class="inner">
+		<slot />
+	</span>
+</span>
 
 <style>
 	.tac {
-		white-space: nowrap;
+		display: inline flex;
 
 		&::before {
-			display: inline flow-root;
 			margin-inline-end: 0.25em;
-			min-inline-size: 1em;
+			min-inline-size: 1ic;
 			text-align: center;
 			text-shadow:
 				0.5px 0.5px,
