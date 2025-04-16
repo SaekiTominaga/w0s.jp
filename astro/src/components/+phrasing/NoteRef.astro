@@ -1,4 +1,6 @@
 ---
+import NoteRefX from './NoteRefX.astro'; // このコンポーネント内で <style> を書くと、<a> 要素が直後にコピーされる事象が起こるため分離する
+
 interface Props {
 	type?: 'note' | 'ref';
 	by: string;
@@ -20,4 +22,4 @@ switch (type) {
 }
 ---
 
-<span class="c-footnote-ref"><template class:list={['astro-noteref', `-${type}`]} data-by={by}><a class="js-footnote-reference-popover" data-popover-label="脚注" data-popover-class="p-footnote-popover" data-popover-hide-text="閉じる" data-popover-hide-image-src="/assets/image/footnote-popover-close.svg" data-popover-hide-image-width="24" data-popover-hide-image-height="24">[{typeLabel}<x-number></x-number>]</a></template></span>
+<NoteRefX><template class:list={['astro-noteref', `-${type}`]} data-by={by}><a class="js-footnote-reference-popover" data-popover-label="脚注" data-popover-class="p-footnote-popover" data-popover-hide-text="閉じる" data-popover-hide-image-src="/assets/image/footnote-popover-close.svg" data-popover-hide-image-width="24" data-popover-hide-image-height="24">[{typeLabel}<x-number></x-number>]</a></template></NoteRefX>
