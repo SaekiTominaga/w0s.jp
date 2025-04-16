@@ -9,6 +9,7 @@ import ListOrder from '@components/ListOrder.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import Image from '@components/+phrasing/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -66,18 +67,19 @@ const structuredData: StructuredData = {
 
 		<Flex>
 			<FlexItem>
-				<a href="/tokyu/book/pdf/sample_7700.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
+				<AnchorButton href="/tokyu/book/pdf/sample_7700.pdf" type="pdf">サンプル PDF</AnchorButton>
 			</FlexItem>
 			<FlexItem>
-				<a href="https://w0s.booth.pm/items/2649271" class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">PDF 版（BOOTH）</span></a>
+				<AnchorButton href="https://w0s.booth.pm/items/2649271" type="booth">PDF 版（BOOTH）</AnchorButton>
 			</FlexItem>
 			<FlexItem>
-				<a href="https://www.amazon.co.jp/dp/B07W81K9S5/" class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></a>
-				<ListNote>
-					<li>冊子版とはレイアウトが異なる「リフロー型」</li>
-				</ListNote>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B07W81K9S5/" type="amazon">Kindle 版（Amazon）</AnchorButton>
 			</FlexItem>
 		</Flex>
+
+		<ListNote>
+			<li>Kindle 版は冊子版とはレイアウトが異なる「リフロー型」</li>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">

@@ -1,19 +1,20 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import Anchor from '@components/+phrasing/Anchor.astro';
 import Box from '@components/Box.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
-import Image from '@components/+phrasing/Image.astro';
 import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
 import ListTable from '@components/ListTable.astro';
-import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Image from '@components/+phrasing/Image.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -76,30 +77,23 @@ const structuredData: StructuredData = {
 
 		<Flex>
 			<FlexItem>
-				<a href="/madoka/dojin/pdf/pictorial9_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial9_sample.pdf" type="pdf">サンプル PDF</AnchorButton>
 			</FlexItem>
 			<FlexItem>
-				<a href="https://w0s.booth.pm/items/2649148" class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">冊子版（BOOTH）</span></a>
+				<AnchorButton href="https://w0s.booth.pm/items/2649148" type="booth">冊子版（BOOTH）</AnchorButton>
 			</FlexItem>
 			<FlexItem>
-				<a href="https://www.amazon.co.jp/dp/B07FBKBKBM/" class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></a>
-				<ListNote>
-					<li>画像形式による「固定レイアウト型」</li>
-				</ListNote>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B07FBKBKBM/" type="amazon">Kindle 版（Amazon）</AnchorButton>
 			</FlexItem>
-
 			<FlexItem>
-				<a href="/madoka/dojin/pdf/pictorial9/v1.0.0.pdf" type="application/pdf" rel="nofollow" class="c-button">
-					<img src="/assets/image/icon/padlock.svg" alt="(認証)" width="16" height="16" class="c-button__icon" />
-					<span class="c-button__text">
-						購入者向け PDF<small>（ver.1.0.0、2018年8月11日公開）</small>
-					</span>
-				</a>
-				<ListNote>
-					<li>認証情報は奥付に記載</li>
-				</ListNote>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial9/v1.0.0.pdf" type="pdf" auth={true}>購入者向け PDF【要認証】<small>（ver.1.0.0、2018年8月11日公開）</small></AnchorButton>
 			</FlexItem>
 		</Flex>
+
+		<ListNote>
+			<li>Kindle 版は画像形式による「固定レイアウト型」</li>
+			<li>購入者向け PDF の認証情報は奥付に記載</li>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">

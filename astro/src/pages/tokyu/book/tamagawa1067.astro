@@ -9,6 +9,7 @@ import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import Date from '@components/+phrasing/Date.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
 import Image from '@components/+phrasing/Image.astro';
@@ -56,7 +57,11 @@ const structuredData: StructuredData = {
 	<Section id="buy">
 		<Fragment slot="heading">購入案内</Fragment>
 
-		<p><a href="https://www.amazon.co.jp/dp/B0DRYFG3BG/" class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></a></p>
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B0DRYFG3BG/" type="amazon">Kindle 版（Amazon）</AnchorButton>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="toc">

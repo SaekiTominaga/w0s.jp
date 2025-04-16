@@ -8,6 +8,7 @@ import FormGridGroup from '@components/FormGridGroup.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import Toggle from '@components/Toggle.astro';
+import Button from '@components/+phrasing/Button.astro';
 import HistoryTable from '@components/tokyu/HistoryTable.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
 import { env } from '@util/env.js';
@@ -236,8 +237,8 @@ if (requestQuery.output !== null) {
 							))
 						}
 						<p>
-							<button type="button" class="c-button js-button-checkboxes" data-course="check" data-controls-name="ser[]">全車種を選択</button>
-							<button type="button" class="c-button js-button-checkboxes" data-course="uncheck" data-controls-name="ser[]">全ての選択を解除</button>
+							<Button class="js-button-checkboxes" data-course="check" data-controls-name="ser[]">全車種を選択</Button>
+							<Button class="js-button-checkboxes" data-course="uncheck" data-controls-name="ser[]">全ての選択を解除</Button>
 						</p>
 					</div>
 				</FormGridGroup>

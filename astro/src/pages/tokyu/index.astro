@@ -5,6 +5,7 @@ import TopNavCard from '@components/TopNavCard.astro';
 import TopNavCardItem from '@components/TopNavCardItem.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -30,10 +31,7 @@ const structuredData: StructuredData = {
 		<Fragment slot="update">
 			<TopUpdate id="update" heading="更新履歴">
 				<Fragment slot="notice">
-					<a href="/tokyu/feed" type="application/atom+xml" class="c-button -feed -narrow">
-						<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
-						<span class="c-button__text">新着フィード</span>
-					</a>
+					<AnchorButton href="/tokyu/feed" type="atom" narrow={true}>新着フィード</AnchorButton>
 				</Fragment>
 
 				<TopUpdateItem slot="item" date="2024-12-31">

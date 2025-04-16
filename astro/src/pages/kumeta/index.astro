@@ -10,6 +10,7 @@ import Section from '@components/Section.astro';
 import TopNavText from '@components/TopNavText.astro';
 import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import KumetaTopService from '@components/kumeta/TopService.astro';
 import KumetaTopServiceItem from '@components/kumeta/TopServiceItem.astro';
 import type { StructuredData } from '@type/types.js';
@@ -116,10 +117,7 @@ const slugger = new GithubSlugger();
 		<Fragment slot="update">
 			<TopUpdate id="update" heading="更新履歴">
 				<Fragment slot="notice">
-					<a href="/kumeta/feed" type="application/atom+xml" class="c-button -feed -narrow">
-						<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
-						<span class="c-button__text">新着フィード</span>
-					</a>
+					<AnchorButton href="/kumeta/feed" type="atom" narrow={true}>新着フィード</AnchorButton>
 				</Fragment>
 
 				<TopUpdateItem slot="item" date="2025-03-24">

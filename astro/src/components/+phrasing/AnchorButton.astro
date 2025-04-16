@@ -1,0 +1,118 @@
+---
+interface Props {
+	href: string;
+	type: 'pdf' | 'atom' | 'amazon' | 'booth';
+	auth?: boolean;
+	narrow?: boolean;
+}
+
+const { href, type, auth, narrow } = Astro.props;
+
+let typeAttribute: string | undefined;
+switch (type) {
+	case 'pdf': {
+		typeAttribute = 'application/pdf';
+		break;
+	}
+	case 'atom': {
+		typeAttribute = 'application/atom+xml';
+		break;
+	}
+	default:
+}
+
+const relAttribute: string[] = [];
+if (auth) {
+	relAttribute.push('nofollow');
+}
+
+let iconFileName = '';
+if (auth) {
+	iconFileName = 'padlock.svg';
+} else {
+	switch (type) {
+		case 'pdf': {
+			iconFileName = 'pdf.png';
+			break;
+		}
+		case 'atom': {
+			iconFileName = 'feed.svg';
+			break;
+		}
+		case 'amazon': {
+			iconFileName = 'amazon.png';
+			break;
+		}
+		case 'booth': {
+			iconFileName = 'booth.png';
+			break;
+		}
+		default:
+	}
+}
+---
+
+<a href={href} type={typeAttribute} rel={relAttribute.length >= 1 ? relAttribute.join(' ') : undefined} class:list={['button', type !== undefined ? `-${type}` : undefined, { '-narrow': narrow }]}>
+	<img src={`/assets/image/icon/${iconFileName}`} alt="" width="16" height="16" class="icon" />
+	<span class="text"><slot /></span>
+</a>
+
+<style>
+	.button {
+		--_padding-block: 0.5em;
+		--_padding-inline: 0.75em;
+		--_border-color: var(--color-border-dark);
+		--_color: var(--color-black);
+		--_background: linear-gradient(var(--color-white), var(--color-bg-light));
+		--_font-size: 100%;
+		--_icon-size: 1.25em;
+
+		display: inline flex;
+		gap: 0.5em;
+		align-items: center;
+		justify-content: center;
+		outline-offset: -1px;
+		outline-width: var(--outline-width-bold);
+		border: 1px solid var(--_border-color);
+		border-radius: var(--border-radius-normal);
+		background-image: var(--_background);
+		padding: var(--_padding-block) var(--_padding-inline);
+		text-decoration: none;
+		line-height: var(--line-height-narrow);
+		color: var(--_color);
+		font-size: var(--_font-size);
+		font-weight: var(--font-weight-bold);
+
+		&:hover {
+			box-shadow: 0 0 2px var(--_border-color);
+			color: var(--_color);
+		}
+
+		/* Feed */
+		&.-atom {
+			--_border-color: hsl(41deg 100% 53%);
+			--_color: var(--color-darkgray);
+			--_background: hsl(41deg 100% 93%);
+		}
+
+		/* Amazon */
+		&.-amazon {
+			--_border-color: #c2a24e;
+			--_background: linear-gradient(var(--color-amazon), hsl(44deg 90% 62%));
+		}
+
+		/* 小さく表示 */
+		&.-narrow {
+			--_padding-block: 0.35em;
+			--_font-size: calc(100% / pow(var(--font-ratio), 1));
+		}
+	}
+
+	.icon {
+		block-size: var(--_icon-size);
+		inline-size: var(--_icon-size);
+	}
+
+	.text {
+	}
+</style>
