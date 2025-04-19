@@ -5,6 +5,7 @@ import FormGrid from '@components/FormGrid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -135,14 +136,14 @@ for (const resoursePage of resourcePageListDto) {
 					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label></Fragment>
 
 					<div class="c-form-controls">
-						<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} />
+						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label></Fragment>
 
 					<div class="c-form-controls">
-						<input class="c-input -full js-convert-trim" id="fc-title" name="title" value={requestQuery.title} required="" />
+						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
@@ -199,7 +200,7 @@ for (const resoursePage of resourcePageListDto) {
 					<Fragment slot="legend"><label for="fc-selector" class="c-label">セレクター <strong class="c-label-icon -optional">任意</strong></label></Fragment>
 
 					<div class="c-form-controls">
-						<input class="c-input -full js-convert-trim" id="fc-selector" name="selector" value={requestQuery.selector} />
+						<FormCtrlInput><input name="selector" value={requestQuery.selector} class="js-convert-trim" id="fc-selector" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 			</FormGrid>

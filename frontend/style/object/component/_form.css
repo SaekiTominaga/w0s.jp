@@ -5,59 +5,6 @@ Styleguide 1.4.
 */
 
 /*
-一行入力欄（type="text", type="search", type="date", ...）
-
-Markup:
-<input class="c-input {{modifier_class}}" style="--inline-size: 10em"/>
-
-.-full - 全幅
-.-invalid - エラー時
-
-Styleguide 1.4.1
-*/
-.c-input {
-	--_border-color: var(--color-border-dark);
-	--_color: var(--color-black);
-	--_bg-color: var(--color-white);
-
-	box-sizing: border-box;
-	outline-offset: -1px;
-	outline-width: var(--outline-width-bold);
-	border: 1px solid var(--_border-color);
-	border-radius: var(--border-radius-normal);
-	background: var(--_bg-color);
-	padding: var(--form-control-padding-block);
-	inline-size: var(--inline-size, auto);
-	max-inline-size: 100%;
-	color: var(--_color);
-
-	/* 全幅 */
-	&.-full {
-		inline-size: 100%;
-	}
-
-	&:enabled:read-write {
-		&:hover {
-			--_border-color: var(--outline-color);
-		}
-	}
-
-	&:disabled {
-		--_color: var(--color-gray);
-		--_bg-color: var(--color-bg-verydark);
-	}
-
-	&:read-only {
-		--_color: var(--color-gray);
-		--_bg-color: var(--color-bg-verydark);
-	}
-
-	&:is(.-invalid, [aria-invalid="true"]) {
-		--_border-color: var(--invalid-border-color);
-	}
-}
-
-/*
 スイッチ（type="checkbox" switch）
 
 Markup:
