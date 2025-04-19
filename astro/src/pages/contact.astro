@@ -8,9 +8,9 @@ import FormGridGroup from '@components/FormGridGroup.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import Table from '@components/Table.astro';
-import Button from '@components/+phrasing/Button.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlTextarea from '@components/+phrasing/FormCtrlTextarea.astro';
+import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
@@ -115,14 +115,14 @@ if (referrer !== null) {
 		<div class="js-screen-input">
 			<FormGrid>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="input-name" class="c-label">名前 <strong class="c-label-icon -optional">任意</strong></label></Fragment>
+					<Fragment slot="legend"><label for="input-name" class="c-label">名前 <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput size="24em"><input name="yourname" id="input-name" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="input-email" class="c-label">Eメールアドレス <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="input-email" class="c-label">Eメールアドレス <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput size="24em"><input type="email" name="email" required="" autocomplete="email" id="input-email" class="js-convert-trim js-validation" aria-errormessage="input-validate-email" /></FormCtrlInput>
@@ -130,7 +130,7 @@ if (referrer !== null) {
 					<p hidden="" class="c-fc-invalid" id="input-validate-email"></p>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend" id="label-reply"><span class="c-label">返信の有無 <strong class="c-label-icon -required">必須</strong></span></Fragment>
+					<Fragment slot="legend" id="label-reply"><span class="c-label">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
 
 					<div class="c-form-controls -checkbox js-validation" role="radiogroup" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
 						<label class="c-label -check">
@@ -146,7 +146,7 @@ if (referrer !== null) {
 					<p class="c-fc-note" id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、内容によっては返信しかねる場合があります。</p>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="input-body" class="c-label">内容 <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="input-body" class="c-label">内容 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlTextarea blockSize="16em"><textarea name="body" required="" id="input-body" class="js-convert-trim js-validation js-textarea-auto-size" aria-errormessage="input-validate-body"></textarea></FormCtrlTextarea>

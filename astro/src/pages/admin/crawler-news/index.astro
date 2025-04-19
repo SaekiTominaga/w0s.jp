@@ -8,6 +8,7 @@ import Table from '@components/Table.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
+import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -143,21 +144,21 @@ for (const newsPage of newsPageListDto) {
 		<form action={Astro.url.pathname} method="post">
 			<FormGrid>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlSelect>
@@ -179,7 +180,7 @@ for (const newsPage of newsPageListDto) {
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlSelect>
@@ -211,21 +212,21 @@ for (const newsPage of newsPageListDto) {
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-selectorwrap" class="c-label">セレクター（包括） <strong class="c-label-icon -required">必須</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-selectorwrap" class="c-label">セレクター（包括） <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput><input name="selectorwrap" value={requestQuery.selector_wrap} required="" class="js-convert-trim" id="fc-selectorwrap" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-selectordate" class="c-label">セレクター（日付） <strong class="c-label-icon -optional">任意</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-selectordate" class="c-label">セレクター（日付） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput><input name="selectordate" value={requestQuery.selector_date} class="js-convert-trim" id="fc-selectordate" /></FormCtrlInput>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-selectorcontent" class="c-label">セレクター（内容） <strong class="c-label-icon -optional">任意</strong></label></Fragment>
+					<Fragment slot="legend"><label for="fc-selectorcontent" class="c-label">セレクター（内容） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<div class="c-form-controls">
 						<FormCtrlInput><input name="selectorcontent" value={requestQuery.selector_content} class="js-convert-trim" id="fc-selectorcontent" /></FormCtrlInput>
