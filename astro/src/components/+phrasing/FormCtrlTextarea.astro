@@ -1,52 +1,52 @@
 ---
 interface Props {
-	size?: string;
+	blockSize?: string;
 }
 
-const { size } = Astro.props;
+const { blockSize } = Astro.props;
 ---
 
-<span class="input" style={size !== undefined ? `--_inline-size: ${size}` : undefined}>
+<span class="textarea" style={blockSize !== undefined ? `--_block-size: ${blockSize}` : undefined}>
 	<slot />
 </span>
 
 <style>
-	.input {
-		--_inline-size: auto;
+	.textarea {
+		box-sizing: content-box;
+		display: contents;
+
+		--_block-size: auto;
 		--_border-color: var(--color-border-dark);
 		--_bg-color: var(--color-white);
 		--_color: var(--color-black);
 
-		box-sizing: content-box;
-		display: contents;
-
-		& > :global(input) {
+		& > :global(textarea) {
 			outline-offset: -1px;
 			outline-width: var(--outline-width-bold);
 			border: 1px solid var(--_border-color);
 			border-radius: var(--border-radius-normal);
 			background-color: var(--_bg-color);
 			padding: var(--form-control-padding-block);
+			min-block-size: var(--_block-size, auto);
 			inline-size: 100%;
-			max-inline-size: var(--_inline-size, auto);
 			color: var(--_color);
 		}
 
-		& > :global(input:enabled:read-write:hover) {
+		& > :global(textarea:enabled:read-write:hover) {
 			--_border-color: var(--outline-color);
 		}
 
-		& > :global(input:disabled) {
+		& > :global(textarea:disabled) {
 			--_bg-color: var(--color-bg-verydark);
 			--_color: var(--color-gray);
 		}
 
-		& > :global(input:read-only) {
+		& > :global(textarea:read-only) {
 			--_bg-color: var(--color-bg-verydark);
 			--_color: var(--color-gray);
 		}
 
-		& > :global(input[aria-invalid='true']) {
+		& > :global(textarea[aria-invalid='true']) {
 			--_border-color: var(--invalid-border-color);
 		}
 	}

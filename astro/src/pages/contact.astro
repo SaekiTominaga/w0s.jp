@@ -9,6 +9,7 @@ import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import Table from '@components/Table.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
+import FormCtrlTextarea from '@components/+phrasing/FormCtrlTextarea.astro';
 import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
@@ -146,7 +147,7 @@ if (referrer !== null) {
 					<Fragment slot="legend"><label for="input-body" class="c-label">内容 <strong class="c-label-icon -required">必須</strong></label></Fragment>
 
 					<div class="c-form-controls">
-						<textarea class="c-textarea js-convert-trim js-validation js-textarea-auto-size" name="body" required="" id="input-body" style="--block-size: 16em" aria-errormessage="input-validate-body"></textarea>
+						<FormCtrlTextarea blockSize="16em"><textarea name="body" required="" id="input-body" class="js-convert-trim js-validation js-textarea-auto-size" aria-errormessage="input-validate-body"></textarea></FormCtrlTextarea>
 					</div>
 					<p hidden="" class="c-fc-invalid" id="input-validate-body"></p>
 				</FormGridGroup>
