@@ -1,5 +1,5 @@
 ---
-import ErrorSearch from '@components/error/Search.astro';
+import ErrorSearchForm from '@components/error/SearchForm.astro';
 import ErrorTitle from '@components/error/Title.astro';
 import type { StructuredDataErrorPage } from '@type/types.js';
 
@@ -32,7 +32,7 @@ const { structuredData, search = false } = Astro.props;
 			<main id="content" class="l-content">
 				<slot />
 
-				{search && <ErrorSearch />}
+				{search && <ErrorSearchForm />}
 			</main>
 		</div>
 	</body>
