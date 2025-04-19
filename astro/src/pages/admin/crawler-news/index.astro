@@ -6,6 +6,7 @@ import FormGridGroup from '@components/FormGridGroup.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
+import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -158,40 +159,44 @@ for (const newsPage of newsPageListDto) {
 					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label></Fragment>
 
 					<div class="c-form-controls">
-						<select class="c-select" id="fc-category" name="category">
-							{
-								categoryMaster.map((category) => (
-									<>
-										{requestQuery.category === category.fk && (
-											<option value={category.fk} selected="">
-												{category.name}
-											</option>
-										)}
-										{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-									</>
-								))
-							}
-						</select>
+						<FormCtrlSelect>
+							<select name="category" id="fc-category">
+								{
+									categoryMaster.map((category) => (
+										<>
+											{requestQuery.category === category.fk && (
+												<option value={category.fk} selected="">
+													{category.name}
+												</option>
+											)}
+											{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
+										</>
+									))
+								}
+							</select>
+						</FormCtrlSelect>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label></Fragment>
 
 					<div class="c-form-controls">
-						<select class="c-select" id="fc-priority" name="priority">
-							{
-								priorityMaster.map((priority) => (
-									<>
-										{requestQuery.priority === priority.fk && (
-											<option value={priority.fk} selected="">
-												{priority.name}
-											</option>
-										)}
-										{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-									</>
-								))
-							}
-						</select>
+						<FormCtrlSelect>
+							<select name="priority" id="fc-priority">
+								{
+									priorityMaster.map((priority) => (
+										<>
+											{requestQuery.priority === priority.fk && (
+												<option value={priority.fk} selected="">
+													{priority.name}
+												</option>
+											)}
+											{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
+										</>
+									))
+								}
+							</select>
+						</FormCtrlSelect>
 					</div>
 				</FormGridGroup>
 				<FormGridGroup>
