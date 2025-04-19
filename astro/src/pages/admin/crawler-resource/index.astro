@@ -2,6 +2,7 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Admin.astro';
 import FormGrid from '@components/FormGrid.astro';
+import FormButtons from '@components/FormButtons.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import Section from '@components/Section.astro';
 import Stack from '@components/Stack.astro';
@@ -213,7 +214,7 @@ for (const resoursePage of resourcePageListDto) {
 				</FormGridGroup>
 			</FormGrid>
 
-			<div class="c-form-controls -submit">
+			<FormButtons>
 				{
 					(requestQuery.action_revise_preview || requestQuery.action_revise) && (
 						<p>
@@ -232,7 +233,7 @@ for (const resoursePage of resourcePageListDto) {
 						</p>
 					)
 				}
-			</div>
+			</FormButtons>
 		</form>
 	</Section>
 

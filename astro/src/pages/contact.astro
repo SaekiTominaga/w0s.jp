@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 import Layout from '@layouts/Site.astro';
 import DialogOverlay from '@components/DialogOverlay.astro';
 import FormGrid from '@components/FormGrid.astro';
+import FormButtons from '@components/FormButtons.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
@@ -186,7 +187,7 @@ if (referrer !== null) {
 			</Table>
 		</div>
 
-		<div class="c-form-controls -submit -center">
+		<FormButtons>
 			<p class="js-screen-input" hidden="">
 				<SubmitButton type="button" id="js-confirm-button">入力内容を確認</SubmitButton>
 			</p>
@@ -196,7 +197,7 @@ if (referrer !== null) {
 			<p class="js-screen-confirm">
 				<SubmitButton name="actionsend" value="1" id="js-send-button">送信</SubmitButton>
 			</p>
-		</div>
+		</FormButtons>
 	</form>
 
 	<DialogOverlay label="送信中" id="form-submit-overlay" />
