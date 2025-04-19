@@ -1,3 +1,7 @@
+---
+const note = await Astro.slots.render('note');
+---
+
 <div class="group">
 	<fieldset>
 		<legend class="legend">
@@ -6,6 +10,7 @@
 		<div class="contents">
 			<slot />
 		</div>
+		{note !== undefined && <div class="note" set:html={note} />}
 	</fieldset>
 </div>
 
@@ -31,6 +36,12 @@
 		& > :global(* + *) {
 			margin-block-start: calc(var(--stack-margin-base) / 3);
 		}
+	}
+
+	.note {
+		grid-column: contents;
+		color: var(--color-gray);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
 	}
 
 	@container content (inline-size > 36em) {
