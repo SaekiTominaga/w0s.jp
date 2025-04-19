@@ -8,8 +8,10 @@ import FormGridGroup from '@components/FormGridGroup.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import Table from '@components/Table.astro';
+import Button from '@components/+phrasing/Button.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlTextarea from '@components/+phrasing/FormCtrlTextarea.astro';
+import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
 import RequestUtil from '@util/Request.js';
@@ -183,13 +185,13 @@ if (referrer !== null) {
 
 		<div class="c-form-controls -submit -center">
 			<p class="js-screen-input" hidden="">
-				<button class="c-submit" id="js-confirm-button">入力内容を確認</button>
+				<SubmitButton type="button" id="js-confirm-button">入力内容を確認</SubmitButton>
 			</p>
 			<p class="js-screen-confirm" hidden="">
-				<button type="button" class="c-submit -cancel" id="js-correct-button"> 修正</button>
+				<SubmitButton type="button" style="cancel" id="js-correct-button">修正</SubmitButton>
 			</p>
 			<p class="js-screen-confirm">
-				<button name="actionsend" value="1" class="c-submit" id="js-send-button"> 送信</button>
+				<SubmitButton name="actionsend" value="1" id="js-send-button">送信</SubmitButton>
 			</p>
 		</div>
 	</form>

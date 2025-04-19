@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import { diffLines, type Change as DiffChange } from 'diff';
 import Layout from '@layouts/Admin.astro';
+import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerDiff from '@components/admin/CrawlerDiff.astro';
 import CrawlerDiffLine from '@components/admin/CrawlerDiffLine.astro';
 import { env } from '@util/env.js';
@@ -114,7 +115,7 @@ if (requestQuery.dir !== null) {
 				</p>
 
 				<p>
-					<button class="c-submit">比較</button>
+					<SubmitButton>比較</SubmitButton>
 				</p>
 
 				<ul>

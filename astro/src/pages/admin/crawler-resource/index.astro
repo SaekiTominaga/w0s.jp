@@ -4,7 +4,9 @@ import Layout from '@layouts/Admin.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import Section from '@components/Section.astro';
+import Stack from '@components/Stack.astro';
 import Table from '@components/Table.astro';
+import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
@@ -214,18 +216,18 @@ for (const resoursePage of resourcePageListDto) {
 				{
 					(requestQuery.action_revise_preview || requestQuery.action_revise) && (
 						<p>
-							<button class="c-submit" name="actionrev" value="1">
+							<SubmitButton name="actionrev" value="1">
 								修正
-							</button>
+							</SubmitButton>
 						</p>
 					)
 				}
 				{
 					!requestQuery.action_revise_preview && !requestQuery.action_revise && (
 						<p>
-							<button class="c-submit" name="actionadd" value="1">
+							<SubmitButton name="actionadd" value="1">
 								登録
-							</button>
+							</SubmitButton>
 						</p>
 					)
 				}
@@ -254,21 +256,22 @@ for (const resoursePage of resourcePageListDto) {
 						{resourcePageOfCategory.map((resourcePage) => (
 							<tr>
 								<td class="u-cell -wrap-no">
-									<form action={Astro.url.pathname} method="post">
+									<Stack>
+										<form action={Astro.url.pathname} method="post">
+											<p>
+												<input type="hidden" name="url" value={resourcePage.url.toString()} />
+												<SubmitButton style="compact" name="actionrevpre" value="1" formmethod="get">
+													修正
+												</SubmitButton>
+												<SubmitButton style="compact" name="actiondel" value="1" class="js-button-confirm" data-message="削除しますか?">
+													削除
+												</SubmitButton>
+											</p>
+										</form>
 										<p>
-											<input type="hidden" name="url" value={resourcePage.url.toString()} />
-											<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
-												修正
-											</button>
-											<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
-												削除
-											</button>
+											<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
 										</p>
-									</form>
-
-									<p>
-										<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
-									</p>
+									</Stack>
 								</td>
 								<td>
 									<a href={resourcePage.url} referrerpolicy="no-referrer">
