@@ -5,6 +5,7 @@ import Layout from '@layouts/Tokyu.astro';
 import Box from '@components/Box.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormButtons from '@components/FormButtons.astro';
+import FormInvalid from '@components/FormInvalid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
@@ -225,7 +226,7 @@ if (requestQuery.output !== null) {
 							<span class="c-label__text">旧車号を含む</span></label
 						>
 					</div>
-					<p hidden="" class="c-fc-invalid" id="input-validate-num"></p>
+					<FormInvalid id="input-validate-num" />
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend">車種</Fragment>
@@ -258,8 +259,8 @@ if (requestQuery.output !== null) {
 							<FormCtrlInput size="10em"><input type="date" name="ree" value={requestQuery.register_end} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarend" title="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「終了日」が存在しない日付です。" data-validation-min="「終了日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「終了日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
 						</label>
 					</div>
-					<p hidden="" class="c-fc-invalid" id="input-validate-registarstart"></p>
-					<p hidden="" class="c-fc-invalid" id="input-validate-registarend"></p>
+					<FormInvalid id="input-validate-registarstart" />
+					<FormInvalid id="input-validate-registarend" />
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend" id="label-sort">ソート</Fragment>

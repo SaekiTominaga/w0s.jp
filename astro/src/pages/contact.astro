@@ -5,6 +5,7 @@ import Layout from '@layouts/Site.astro';
 import DialogOverlay from '@components/DialogOverlay.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormButtons from '@components/FormButtons.astro';
+import FormInvalid from '@components/FormInvalid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
@@ -128,7 +129,7 @@ if (referrer !== null) {
 					<div class="c-form-controls">
 						<FormCtrlInput size="24em"><input type="email" name="email" required="" autocomplete="email" id="input-email" class="js-convert-trim js-validation" aria-errormessage="input-validate-email" /></FormCtrlInput>
 					</div>
-					<p hidden="" class="c-fc-invalid" id="input-validate-email"></p>
+					<FormInvalid id="input-validate-email" />
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend" id="label-reply"><span class="c-label">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
@@ -143,7 +144,7 @@ if (referrer !== null) {
 							<span class="c-label__text">不要</span>
 						</label>
 					</div>
-					<p hidden="" class="c-fc-invalid" id="input-validate-reply"></p>
+					<FormInvalid id="input-validate-reply" />
 
 					<div slot="note">
 						<p id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、内容によっては返信しかねる場合があります。</p>
@@ -155,7 +156,7 @@ if (referrer !== null) {
 					<div class="c-form-controls">
 						<FormCtrlTextarea blockSize="16em"><textarea name="body" required="" id="input-body" class="js-convert-trim js-validation js-textarea-auto-size" aria-errormessage="input-validate-body"></textarea></FormCtrlTextarea>
 					</div>
-					<p hidden="" class="c-fc-invalid" id="input-validate-body"></p>
+					<FormInvalid id="input-validate-body" />
 				</FormGridGroup>
 			</FormGrid>
 
