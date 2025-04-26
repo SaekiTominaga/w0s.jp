@@ -140,21 +140,21 @@ for (const resoursePage of resourcePageListDto) {
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlSelect>
 							<select name="category" id="fc-category">
 								{
@@ -171,12 +171,12 @@ for (const resoursePage of resourcePageListDto) {
 								}
 							</select>
 						</FormCtrlSelect>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlSelect>
 							<select name="priority" id="fc-priority">
 								{
@@ -193,24 +193,24 @@ for (const resoursePage of resourcePageListDto) {
 								}
 							</select>
 						</FormCtrlSelect>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend">ブラウザ</Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<label class="c-label -check">
 							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
 							<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
 						>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selector" class="c-label">セレクター <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input name="selector" value={requestQuery.selector} class="js-convert-trim" id="fc-selector" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
 

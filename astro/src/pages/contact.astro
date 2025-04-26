@@ -119,44 +119,55 @@ if (referrer !== null) {
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="input-name" class="c-label">名前 <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput size="24em"><input name="yourname" id="input-name" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="input-email" class="c-label">Eメールアドレス <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput size="24em"><input type="email" name="email" required="" autocomplete="email" id="input-email" class="js-convert-trim js-validation" aria-errormessage="input-validate-email" /></FormCtrlInput>
-					</div>
-					<FormInvalid id="input-validate-email" />
+					</Fragment>
+
+					<Fragment slot="validate">
+						<FormInvalid id="input-validate-email" />
+					</Fragment>
 				</FormGridGroup>
-				<FormGridGroup>
-					<Fragment slot="legend" id="label-reply"><span class="c-label">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
+				<FormGridGroup ctrlType="radio">
+					<Fragment slot="legend"><span class="c-label" id="label-reply">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
 
-					<div class="c-form-controls -checkbox js-validation" role="radiogroup" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
-						<label class="c-label -check">
-							<input type="radio" name="reply" value="yes" required="" />
-							<span class="c-label__text">必要</span>
-						</label>
-						<label class="c-label -check">
-							<input type="radio" name="reply" value="no" required="" />
-							<span class="c-label__text">不要</span>
-						</label>
-					</div>
-					<FormInvalid id="input-validate-reply" />
+					<Fragment slot="contents">
+						<div class="js-validation" role="radiogroup" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
+							<label class="c-label -check">
+								<input type="radio" name="reply" value="yes" required="" />
+								<span class="c-label__text">必要</span>
+							</label>
+							<label class="c-label -check">
+								<input type="radio" name="reply" value="no" required="" />
+								<span class="c-label__text">不要</span>
+							</label>
+						</div>
+					</Fragment>
 
-					<div slot="note">
+					<Fragment slot="validate">
+						<FormInvalid id="input-validate-reply" />
+					</Fragment>
+
+					<Fragment slot="note">
 						<p id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、内容によっては返信しかねる場合があります。</p>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="input-body" class="c-label">内容 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlTextarea blockSize="16em"><textarea name="body" required="" id="input-body" class="js-convert-trim js-validation js-textarea-auto-size" aria-errormessage="input-validate-body"></textarea></FormCtrlTextarea>
-					</div>
-					<FormInvalid id="input-validate-body" />
+					</Fragment>
+
+					<Fragment slot="validate">
+						<FormInvalid id="input-validate-body" />
+					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
 

@@ -147,21 +147,21 @@ for (const newsPage of newsPageListDto) {
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlSelect>
 							<select name="category" id="fc-category">
 								{
@@ -178,12 +178,12 @@ for (const newsPage of newsPageListDto) {
 								}
 							</select>
 						</FormCtrlSelect>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlSelect>
 							<select name="priority" id="fc-priority">
 								{
@@ -200,38 +200,38 @@ for (const newsPage of newsPageListDto) {
 								}
 							</select>
 						</FormCtrlSelect>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend">ブラウザ</Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<label class="c-label -check">
 							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
 							<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
 						>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectorwrap" class="c-label">セレクター（包括） <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input name="selectorwrap" value={requestQuery.selector_wrap} required="" class="js-convert-trim" id="fc-selectorwrap" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectordate" class="c-label">セレクター（日付） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input name="selectordate" value={requestQuery.selector_date} class="js-convert-trim" id="fc-selectordate" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectorcontent" class="c-label">セレクター（内容） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
-					<div class="c-form-controls">
+					<Fragment slot="contents">
 						<FormCtrlInput><input name="selectorcontent" value={requestQuery.selector_content} class="js-convert-trim" id="fc-selectorcontent" /></FormCtrlInput>
-					</div>
+					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
 

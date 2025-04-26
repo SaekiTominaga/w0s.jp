@@ -1,4 +1,11 @@
 ---
+interface Props {
+	ctrlType?: 'checkbox' | 'radio';
+}
+
+const { ctrlType } = Astro.props;
+
+const validate = await Astro.slots.render('validate');
 const note = await Astro.slots.render('note');
 ---
 
@@ -7,10 +14,16 @@ const note = await Astro.slots.render('note');
 		<legend class="legend">
 			<slot name="legend" />
 		</legend>
+
 		<div class="contents">
-			<slot />
+			<div class:list={['ctrl', ctrlType !== undefined ? `-${ctrlType}` : undefined]}>
+				<slot name="contents" />
+			</div>
+
+			{validate !== undefined && <div class="validate" set:html={validate} />}
+
+			{note !== undefined && <div class="note" set:html={note} />}
 		</div>
-		{note !== undefined && <div class="note" set:html={note} />}
 	</fieldset>
 </div>
 
@@ -31,17 +44,14 @@ const note = await Astro.slots.render('note');
 	}
 
 	.contents {
+		--_gap-row: 1em;
+		--_gap-col: 1em;
+
 		grid-column: contents;
 
 		& > :global(* + *) {
 			margin-block-start: calc(var(--stack-margin-base) / 3);
 		}
-	}
-
-	.note {
-		grid-column: contents;
-		color: var(--color-gray);
-		font-size: calc(100% / pow(var(--font-ratio), 1));
 	}
 
 	@container content (inline-size > 36em) {
@@ -54,5 +64,28 @@ const note = await Astro.slots.render('note');
 		.contents {
 			margin-block-start: 0.25em;
 		}
+	}
+
+	.ctrl {
+		--_gap-row: 1em;
+		--_gap-col: 1em;
+
+		display: block flex;
+		flex-flow: wrap;
+		gap: var(--_gap-row) var(--_gap-col);
+		align-items: center;
+
+		/* チェックボックス、ラジオボタン */
+		&:is(.-checkbox, .-radio) {
+			--_gap-row: 0em;
+		}
+	}
+
+	.validate {
+	}
+
+	.note {
+		color: var(--color-gray);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
 	}
 </style>
