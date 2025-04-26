@@ -12,6 +12,7 @@ import Section from '@components/Section.astro';
 import Toggle from '@components/Toggle.astro';
 import Button from '@components/+phrasing/Button.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
+import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import HistoryTable from '@components/tokyu/HistoryTable.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
@@ -222,10 +223,10 @@ if (requestQuery.output !== null) {
 
 					<Fragment slot="contents">
 						<FormCtrlInput size="4em"><input name="num" value={requestQuery.number} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
-						<label class="c-label -check">
+
+						<Label label="旧車号を含む">
 							<input type="checkbox" name="old" value="1" checked={requestQuery.number_old ? 'checked' : undefined} />
-							<span class="c-label__text">旧車号を含む</span></label
-						>
+						</Label>
 					</Fragment>
 
 					<FormInvalid id="input-validate-num" />
@@ -236,10 +237,9 @@ if (requestQuery.output !== null) {
 					<Fragment slot="contents">
 						{
 							carSeries.map((car) => (
-								<label class="c-label -check">
+								<Label label={car.series}>
 									<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== null && requestQuery.series.includes(car.id) ? 'checked' : undefined} />
-									<span class="c-label__text">{car.series}</span>
-								</label>
+								</Label>
 							))
 						}
 						<p>
@@ -252,14 +252,12 @@ if (requestQuery.output !== null) {
 					<Fragment slot="legend">入籍日</Fragment>
 
 					<Fragment slot="contents">
-						<label class="c-label -input">
-							<span class="c-label__text">開始日</span>
+						<Label label="開始日">
 							<FormCtrlInput size="10em"><input type="date" name="res" value={requestQuery.register_start} min="1962-01-25" max="2001-03-24" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarstart" title="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「開始日」が存在しない日付です。" data-validation-min="「開始日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「開始日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
-						</label>
-						<label class="c-label -input">
-							<span class="c-label__text">終了日</span>
+						</Label>
+						<Label label="終了日">
 							<FormCtrlInput size="10em"><input type="date" name="ree" value={requestQuery.register_end} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarend" title="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「終了日」が存在しない日付です。" data-validation-min="「終了日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「終了日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
-						</label>
+						</Label>
 					</Fragment>
 
 					<Fragment slot="validate">
@@ -281,10 +279,9 @@ if (requestQuery.output !== null) {
 									['ann', '呼称'],
 									['reg', '入籍日'],
 								].map(([name, value], index) => (
-									<label class="c-label -check">
+									<Label label={value}>
 										<input type="radio" name="srt" value={name} checked={((requestQuery.sort === null || requestQuery.sort === '') && index === 0) || requestQuery.sort === name ? 'checked' : undefined} />
-										<span class="c-label__text">{value}</span>
-									</label>
+									</Label>
 								))
 							}
 						</div>
@@ -300,10 +297,9 @@ if (requestQuery.output !== null) {
 									['ad', '西暦'],
 									['ja', '和暦'],
 								].map(([name, value], index) => (
-									<label class="c-label -check">
+									<Label label={value}>
 										<input type="radio" name="era" value={name} checked={((requestQuery.era === null || requestQuery.era === '') && index === 0) || requestQuery.era === name ? 'checked' : undefined} />
-										<span class="c-label__text">{value}</span>
-									</label>
+									</Label>
 								))
 							}
 						</div>
@@ -319,10 +315,9 @@ if (requestQuery.output !== null) {
 									['nor', '全列表示'],
 									['mob', '主要列表示（モバイル向け）'],
 								].map(([name, value], index) => (
-									<label class="c-label -check">
+									<Label label={value}>
 										<input type="radio" name="out" value={name} checked={((requestQuery.output === null || requestQuery.output === '') && index === 0) || requestQuery.output === name ? 'checked' : undefined} />
-										<span class="c-label__text">{value}</span>
-									</label>
+									</Label>
 								))
 							}
 						</div>
@@ -347,10 +342,9 @@ if (requestQuery.output !== null) {
 
 						{searchCount >= 2 && (
 							<p>
-								<label class="c-label">
+								<Label label="直上と同じ内容のセルを「〃」で表示する">
 									<w0s-input-switch checked="" storage-key="tokyu-history-ditto" class="c-input-switch js-button-ditto" data-ditto-for="result-table" />
-									<span class="c-label__text">直上と同じ内容のセルを「〃」で表示する</span>
-								</label>
+								</Label>
 							</p>
 						)}
 

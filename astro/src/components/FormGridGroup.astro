@@ -79,6 +79,10 @@ const note = await Astro.slots.render('note');
 		&:is(.-checkbox, .-radio) {
 			--_gap-row: 0em;
 		}
+
+		& > :global([role='radiogroup']) {
+			display: contents;
+		}
 	}
 
 	.validate {

@@ -11,6 +11,7 @@ import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
+import Label from '@components/+phrasing/Label.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -138,21 +139,21 @@ for (const resoursePage of resourcePageListDto) {
 		<form action={Astro.url.pathname} method="post">
 			<FormGrid>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-url" class="c-label">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+					<Fragment slot="legend"><label for="fc-url">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
 						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-title" class="c-label">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+					<Fragment slot="legend"><label for="fc-title">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
 						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-category" class="c-label">カテゴリー <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+					<Fragment slot="legend"><label for="fc-category">カテゴリー <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
 						<FormCtrlSelect>
@@ -174,7 +175,7 @@ for (const resoursePage of resourcePageListDto) {
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-priority" class="c-label">優先度 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+					<Fragment slot="legend"><label for="fc-priority">優先度 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
 						<FormCtrlSelect>
@@ -199,14 +200,13 @@ for (const resoursePage of resourcePageListDto) {
 					<Fragment slot="legend">ブラウザ</Fragment>
 
 					<Fragment slot="contents">
-						<label class="c-label -check">
+						<Label label="ウェブブラウザでアクセスするか">
 							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
-							<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
-						>
+						</Label>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-selector" class="c-label">セレクター <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
+					<Fragment slot="legend"><label for="fc-selector">セレクター <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
 						<FormCtrlInput><input name="selector" value={requestQuery.selector} class="js-convert-trim" id="fc-selector" /></FormCtrlInput>
