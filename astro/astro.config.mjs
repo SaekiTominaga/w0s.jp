@@ -17,7 +17,9 @@ export default defineConfig({
 		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
 	},
 	vite: {
+		/* https://vite.dev/config/build-options.html */
 		build: {
+			cssCodeSplit: false,
 			minify: false,
 		},
 	},
