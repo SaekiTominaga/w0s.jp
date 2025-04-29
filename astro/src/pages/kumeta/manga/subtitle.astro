@@ -1,10 +1,12 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import EmbeddedLink from '@components/EmbeddedLink.astro';
+import ImageAmazon from '@components/+phrasing/ImageAmazon.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
-import ImageAmazon from '@components/ImageAmazon.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -18,17 +20,16 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="nangoku">
-		<H slot="heading"><cite>行け!!南国アイスホッケー部</cite></H>
+		<Fragment slot="heading"><cite>行け!!南国アイスホッケー部</cite></Fragment>
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>本作は話数表記がないため、下表の<q>話数</q>は便宜的に付けたものです。</li>
 			<li>一部の話数は本誌掲載時サブタイトルが設定されていませんでした。下表では単行本のサブタイトルを記載しています。</li>
-		</ul>
+		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -45,14 +46,14 @@ const structuredData: StructuredData = {
 						<td>蘭堂月斗がやってきた!</td>
 						<td>1991年10号</td>
 						<td rowspan="6">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOIO/"><ImageAmazon src="https://m.media-amazon.com/images/I/51UKzd+Y0xL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOIO/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51UKzd+Y0xL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td rowspan="16">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267114/"><ImageAmazon src="https://m.media-amazon.com/images/I/51FtJe+Z10L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267114/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51FtJe+Z10L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>本誌掲載時はサブタイトルなし</td>
 					</tr>
@@ -60,7 +61,7 @@ const structuredData: StructuredData = {
 						<td><data value="2">2</data></td>
 						<td>流血! UWF戦</td>
 						<td>1991年15号</td>
-						<td>巻頭カラー、<LinkExternal href="https://websunday.net/4209/" icon={false}>少年サンデー名作ミュージアム</LinkExternal>で公開、本誌掲載時はサブタイトルなし</td>
+						<td>巻頭カラー、<Anchor href="https://websunday.net/4209/" icon={false}>少年サンデー名作ミュージアム</Link>で公開、本誌掲載時はサブタイトルなし</td>
 					</tr>
 					<tr>
 						<td><data value="3">3</data></td>
@@ -91,9 +92,9 @@ const structuredData: StructuredData = {
 						<td>愛は勝つ!!</td>
 						<td>1991年20・21号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QONE/"><ImageAmazon src="https://m.media-amazon.com/images/I/61hMjgJAYLL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QONE/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61hMjgJAYLL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -150,9 +151,9 @@ const structuredData: StructuredData = {
 						<td>甘く危険な夏のバイト…</td>
 						<td>1991年38号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOKW/"><ImageAmazon src="https://m.media-amazon.com/images/I/519S58f639L._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOKW/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/519S58f639L._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -161,9 +162,9 @@ const structuredData: StructuredData = {
 						<td>2学期だよ!! 芸人集合!</td>
 						<td>1991年39号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267122/"><ImageAmazon src="https://m.media-amazon.com/images/I/31023NN78ZL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267122/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/31023NN78ZL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -226,9 +227,9 @@ const structuredData: StructuredData = {
 						<td>秘技!! 湯けむりシュート</td>
 						<td>1991年51号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QONO/"><ImageAmazon src="https://m.media-amazon.com/images/I/51MllKSp-SL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QONO/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51MllKSp-SL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -297,9 +298,9 @@ const structuredData: StructuredData = {
 						<td>悪魔の棲む学園</td>
 						<td>1992年12号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOMK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51tUYjVqkoL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOMK/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51tUYjVqkoL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -314,9 +315,9 @@ const structuredData: StructuredData = {
 						<td>恐怖のチン停</td>
 						<td>1992年14号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267130/"><ImageAmazon src="https://m.media-amazon.com/images/I/41-mbG2hQoL._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267130/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41-mbG2hQoL._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -377,9 +378,9 @@ const structuredData: StructuredData = {
 						<td>インキンにご注意</td>
 						<td>1992年24号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOLQ/"><ImageAmazon src="https://m.media-amazon.com/images/I/51YfnwcfdjL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">6巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOLQ/" title="6巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51YfnwcfdjL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -448,9 +449,9 @@ const structuredData: StructuredData = {
 						<td>インモー・ジョーンズ　失われたカーク</td>
 						<td>1992年35・36号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOLG/"><ImageAmazon src="https://m.media-amazon.com/images/I/51zHQ-3R9lL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">7巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOLG/" title="7巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51zHQ-3R9lL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -473,9 +474,9 @@ const structuredData: StructuredData = {
 						</td>
 						<td>1992年39号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267149/"><ImageAmazon src="https://m.media-amazon.com/images/I/410-wluKjrS._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267149/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/410-wluKjrS._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -528,9 +529,9 @@ const structuredData: StructuredData = {
 						<td>お兄様VS.せりか</td>
 						<td>1992年47号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QON4/"><ImageAmazon src="https://m.media-amazon.com/images/I/514k6A+pTOL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">8巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QON4/" title="8巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/514k6A+pTOL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -601,9 +602,9 @@ const structuredData: StructuredData = {
 						<td>死神がきた</td>
 						<td>1993年8号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOOS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51UAya42GBL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">9巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOOS/" title="9巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51UAya42GBL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -630,9 +631,9 @@ const structuredData: StructuredData = {
 						<td>記念かるたQ大会</td>
 						<td>1993年13号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267157/"><ImageAmazon src="https://m.media-amazon.com/images/I/41VDcI+E7LL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267157/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41VDcI+E7LL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>センターカラー</td>
 					</tr>
@@ -676,9 +677,9 @@ const structuredData: StructuredData = {
 						<td>スーパーダイエット&amp;エステ</td>
 						<td>1993年19号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOP2/"><ImageAmazon src="https://m.media-amazon.com/images/I/51-iC-mxIkL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">10巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOP2/" title="10巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51-iC-mxIkL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -753,9 +754,9 @@ const structuredData: StructuredData = {
 						</td>
 						<td>1993年32号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOQ6/"><ImageAmazon src="https://m.media-amazon.com/images/I/61mYRNp8jEL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">11巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOQ6/" title="11巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61mYRNp8jEL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -790,9 +791,9 @@ const structuredData: StructuredData = {
 						<td>南国始まって、最大の危機!! なんと、そあらが…①</td>
 						<td>1993年38号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267165/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ibgz-+jOL._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">6巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267165/" title="6巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ibgz-+jOL._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -831,9 +832,9 @@ const structuredData: StructuredData = {
 						<td>王子と月斗</td>
 						<td>1993年44号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOSY/"><ImageAmazon src="https://m.media-amazon.com/images/I/61oYhBassHL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">12巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOSY/" title="12巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61oYhBassHL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -902,9 +903,9 @@ const structuredData: StructuredData = {
 						<td>すごろく上手</td>
 						<td>1994年5号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOR0/"><ImageAmazon src="https://m.media-amazon.com/images/I/61VkLcvCnKL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">13巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOR0/" title="13巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61VkLcvCnKL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -943,9 +944,9 @@ const structuredData: StructuredData = {
 						<td>完全まさつマニュアル</td>
 						<td>1994年11号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267173/"><ImageAmazon src="https://m.media-amazon.com/images/I/41XM68i0lQL._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">7巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267173/" title="7巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41XM68i0lQL._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -978,9 +979,9 @@ const structuredData: StructuredData = {
 						<td>一日保父さん</td>
 						<td>1994年16号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOT8/"><ImageAmazon src="https://m.media-amazon.com/images/I/61uWIBUzgcL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">14巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOT8/" title="14巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61uWIBUzgcL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1049,9 +1050,9 @@ const structuredData: StructuredData = {
 						<td>家なき子</td>
 						<td>1994年28号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QORA/"><ImageAmazon src="https://m.media-amazon.com/images/I/61j0ApFPc-L._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">15巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QORA/" title="15巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61j0ApFPc-L._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1096,9 +1097,9 @@ const structuredData: StructuredData = {
 						<td>月斗のおかあさま</td>
 						<td>1994年35号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267181/"><ImageAmazon src="https://m.media-amazon.com/images/I/515xfVaIBOL._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">8巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267181/" title="8巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/515xfVaIBOL._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1125,9 +1126,9 @@ const structuredData: StructuredData = {
 						<td>キョーフ新聞来る</td>
 						<td>1994年40号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOU2/"><ImageAmazon src="https://m.media-amazon.com/images/I/61ik46GryHL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">16巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOU2/" title="16巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61ik46GryHL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1198,9 +1199,9 @@ const structuredData: StructuredData = {
 						<td>月斗対ロボ月斗</td>
 						<td>1994年51号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOXY/"><ImageAmazon src="https://m.media-amazon.com/images/I/61aBUlzYLXL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">17巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOXY/" title="17巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61aBUlzYLXL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1251,9 +1252,9 @@ const structuredData: StructuredData = {
 						<td>パパのもとへ</td>
 						<td>1995年10号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/409126719X/"><ImageAmazon src="https://m.media-amazon.com/images/I/413JrQPHl4L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">9巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/409126719X/" title="9巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/413JrQPHl4L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1274,9 +1275,9 @@ const structuredData: StructuredData = {
 						<td>虫の世界へ!!</td>
 						<td>1995年13号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOXE/"><ImageAmazon src="https://m.media-amazon.com/images/I/61S4UCRi5FL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">18巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOXE/" title="18巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61S4UCRi5FL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1345,9 +1346,9 @@ const structuredData: StructuredData = {
 						<td>占いによると</td>
 						<td>1995年26号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOZ2/"><ImageAmazon src="https://m.media-amazon.com/images/I/51GJmJBedpL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">19巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOZ2/" title="19巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51GJmJBedpL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1404,9 +1405,9 @@ const structuredData: StructuredData = {
 						<td>夢の怪物</td>
 						<td>1995年36・37号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267203/"><ImageAmazon src="https://m.media-amazon.com/images/I/41HDXb8hR7L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">10巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267203/" title="10巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41HDXb8hR7L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1421,9 +1422,9 @@ const structuredData: StructuredData = {
 						<td>珍作花火大会!?</td>
 						<td>1995年39号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOYI/"><ImageAmazon src="https://m.media-amazon.com/images/I/61pwWwUMWNL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">20巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOYI/" title="20巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61pwWwUMWNL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1498,9 +1499,9 @@ const structuredData: StructuredData = {
 						<td>開運♡なんでもぱんてい団</td>
 						<td>1995年51号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QP0G/"><ImageAmazon src="https://m.media-amazon.com/images/I/61N03MQ6CAL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">21巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QP0G/" title="21巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61N03MQ6CAL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1563,9 +1564,9 @@ const structuredData: StructuredData = {
 						<td>ヘイヘイ、マスター</td>
 						<td>1996年11号</td>
 						<td rowspan="23">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091267408/"><ImageAmazon src="https://m.media-amazon.com/images/I/41ibgcUGYJL._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">11巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091267408/" title="11巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41ibgcUGYJL._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1574,9 +1575,9 @@ const structuredData: StructuredData = {
 						<td>会長選挙</td>
 						<td>1996年12号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOZM/"><ImageAmazon src="https://m.media-amazon.com/images/I/61nQyxcsGzL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">22巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QOZM/" title="22巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61nQyxcsGzL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1645,9 +1646,9 @@ const structuredData: StructuredData = {
 						<td>野生の王国</td>
 						<td>1996年24号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QP10/"><ImageAmazon src="https://m.media-amazon.com/images/I/51gGXu6d9iL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">23巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DE1QP10/" title="23巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51gGXu6d9iL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1712,22 +1713,20 @@ const structuredData: StructuredData = {
 						<td>センターカラー</td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="rootp">
-		<H slot="heading"><cite>√P ルートパラダイス</cite></H>
+		<Fragment slot="heading"><cite>√P ルートパラダイス</cite></Fragment>
 
 		<p>すべて「<cite>ヤングサンデー</cite>」掲載。</p>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>話数表記は本誌掲載時のものです。単行本では第1話を含め、すべて<q>Paradise.N</q>形式に統一されています。</li>
 			<li>本誌掲載時、本作のサブタイトルは設定されていませんでしたが、一部の話数においては単行本化に際して扉ページのアオリ文がサブタイトルとして採用されたため、比較参考としてアオリ文も掲載します。</li>
-		</ul>
+		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -1745,9 +1744,9 @@ const structuredData: StructuredData = {
 						<td>マドンナはキャバクラ嬢</td>
 						<td>1993年 No.15</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH947ES/"><ImageAmazon src="https://m.media-amazon.com/images/I/51xtPUdT5-L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">No1</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH947ES/" title="No1">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51xtPUdT5-L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>巻頭カラー</td>
 					</tr>
@@ -1827,9 +1826,9 @@ const structuredData: StructuredData = {
 						<td>海江田の逆襲</td>
 						<td>1994年 No.2</td>
 						<td rowspan="13">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH947FC/"><ImageAmazon src="https://m.media-amazon.com/images/I/51TCOGPKJKL._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">No2</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH947FC/" title="No2">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51TCOGPKJKL._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -1918,21 +1917,19 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="darling">
-		<H slot="heading"><cite>育ってダーリン!!</cite></H>
+		<Fragment slot="heading"><cite>育ってダーリン!!</cite></Fragment>
 
 		<p>特記のないものは「<cite>週刊少年サンデー超</cite>」掲載（ただし1994年以前は名称が「<cite>週刊少年サンデー増刊号</cite>」）。</p>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>本作の第1話は読切作品として制作されたため、本誌連載時と単行本で話数カウントにズレが生じています。</li>
-		</ul>
+		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" colspan="2" aria-sort="ascending">話数</th>
@@ -1957,16 +1954,16 @@ const structuredData: StructuredData = {
 						<td>男たるもの、いかなる時も女を喜ばせること!!</td>
 						<td>1994年12月号</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091236413/"><ImageAmazon src="https://m.media-amazon.com/images/I/31SXGXWFM8L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091236413/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/31SXGXWFM8L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH9485G/"><ImageAmazon src="https://m.media-amazon.com/images/I/5175-wcUNIL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">A巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH9485G/" title="A巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/5175-wcUNIL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
-						<td>本誌掲載時は読切作品『<cite>だんな様は小学生!!</cite>』、センターカラー、<LinkExternal href="https://websunday.net/4233/" icon={false}>少年サンデー名作ミュージアム</LinkExternal>で公開</td>
+						<td>本誌掲載時は読切作品『<cite>だんな様は小学生!!</cite>』、センターカラー、<Anchor href="https://websunday.net/4233/" icon={false}>少年サンデー名作ミュージアム</Link>で公開</td>
 					</tr>
 					<tr>
 						<td class="u-cell -center"><data value="1">―</data></td>
@@ -2043,9 +2040,9 @@ const structuredData: StructuredData = {
 						<td>1995年10月号</td>
 						<td class="u-cell -center">―</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00DW6CFWK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51snHHOqhtL._SL80_.jpg" alt="" width={49} height={80} /><span class="p-embed-link__title">B巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00DW6CFWK/" title="B巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51snHHOqhtL._SL80_.jpg" width={49} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -2132,17 +2129,15 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="pokapoka">
-		<H slot="heading"><cite>太陽の戦士ポカポカ</cite></H>
+		<Fragment slot="heading"><cite>太陽の戦士ポカポカ</cite></Fragment>
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -2158,9 +2153,9 @@ const structuredData: StructuredData = {
 						<td>また掘っちゃった!!</td>
 						<td>1996年39号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH94XVA/"><ImageAmazon src="https://m.media-amazon.com/images/I/516blyVPOvL._SL80_.jpg" alt="" width={50} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH94XVA/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/516blyVPOvL._SL80_.jpg" width={50} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>巻頭カラー</td>
 					</tr>
@@ -2217,9 +2212,9 @@ const structuredData: StructuredData = {
 						<td>選ばれし勇者</td>
 						<td>1996年48号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH94XYC/"><ImageAmazon src="https://m.media-amazon.com/images/I/51xRKQ9LVlL._SL80_.jpg" alt="" width={50} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH94XYC/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51xRKQ9LVlL._SL80_.jpg" width={50} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -2282,9 +2277,9 @@ const structuredData: StructuredData = {
 						<td>時のゆりかご</td>
 						<td>1997年8号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH94Y14/"><ImageAmazon src="https://m.media-amazon.com/images/I/61lRhZv60lL._SL80_.jpg" alt="" width={50} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH94Y14/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61lRhZv60lL._SL80_.jpg" width={50} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -2347,9 +2342,9 @@ const structuredData: StructuredData = {
 						<td>巨大ロボ　ポカポカ!?</td>
 						<td>1997年18号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH94YAU/"><ImageAmazon src="https://m.media-amazon.com/images/I/6160H80Eh1L._SL80_.jpg" alt="" width={50} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH94YAU/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/6160H80Eh1L._SL80_.jpg" width={50} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -2412,9 +2407,9 @@ const structuredData: StructuredData = {
 						<td>父の手紙!?</td>
 						<td>1997年29号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00BH94YFU/"><ImageAmazon src="https://m.media-amazon.com/images/I/517Gv+U4A+L._SL80_.jpg" alt="" width={50} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00BH94YFU/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/517Gv+U4A+L._SL80_.jpg" width={50} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -2473,21 +2468,19 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="kaizo">
-		<H slot="heading"><cite>かってに改蔵</cite></H>
+		<Fragment slot="heading"><cite>かってに改蔵</cite></Fragment>
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>単行本では巻ごとに話数がリセットされていますが、下表では本誌掲載時と同じく通しの話数を表記しています。</li>
-		</ul>
+		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -2505,18 +2498,18 @@ const structuredData: StructuredData = {
 						<td>改造人間誕生!?</td>
 						<td>1998年21・22号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZHO/"><ImageAmazon src="https://m.media-amazon.com/images/I/51GqC-aYDCL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZHO/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51GqC-aYDCL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220754/"><ImageAmazon src="https://m.media-amazon.com/images/I/31sMkfmj8NL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220754/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/31sMkfmj8NL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/4099417069/">ドラマ CD</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/4099417069/">ドラマ CD</Link>
 						</td>
 					</tr>
 					<tr>
@@ -2594,9 +2587,9 @@ const structuredData: StructuredData = {
 						<td>魅惑のオフィスラヴ!?</td>
 						<td>1998年33号</td>
 						<td rowspan="12">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZGK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51-32QhVCQL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZGK/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51-32QhVCQL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -2669,9 +2662,9 @@ const structuredData: StructuredData = {
 						<td>イッツァ・スモールハート!</td>
 						<td>1998年44号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220762/"><ImageAmazon src="https://m.media-amazon.com/images/I/51FoQO7EPbL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220762/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51FoQO7EPbL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -2688,9 +2681,9 @@ const structuredData: StructuredData = {
 						<td>映画を作ろう!!</td>
 						<td>1998年46号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZME/"><ImageAmazon src="https://m.media-amazon.com/images/I/51d-gyk-sJL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZME/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51d-gyk-sJL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -2772,9 +2765,9 @@ const structuredData: StructuredData = {
 						<td>西から来た女!!</td>
 						<td>1999年8号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZLU/"><ImageAmazon src="https://m.media-amazon.com/images/I/61h3+DKu-8L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZLU/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/61h3+DKu-8L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>中巻</td>
 						<td></td>
@@ -2835,9 +2828,9 @@ const structuredData: StructuredData = {
 						<td>忘れてた<em class="u-emphasis">とも</em>!!</td>
 						<td>1999年16号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220770/"><ImageAmazon src="https://m.media-amazon.com/images/I/51scoDT1r2L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220770/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51scoDT1r2L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -2861,9 +2854,9 @@ const structuredData: StructuredData = {
 						<td>これが大人のやり方だ!!</td>
 						<td>1999年19号</td>
 						<td rowspan="12">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZLK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51WNwR+oJwL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZLK/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51WNwR+oJwL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -2950,9 +2943,9 @@ const structuredData: StructuredData = {
 						<td>意外<s class="u-kumeta-text-decoration-times">に</s>が好き物</td>
 						<td>1999年32号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZM4/"><ImageAmazon src="https://m.media-amazon.com/images/I/51QMfixWwUL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">6巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZM4/" title="6巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51QMfixWwUL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -2999,9 +2992,9 @@ const structuredData: StructuredData = {
 						</td>
 						<td>1999年39号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220789/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ihtt5WXvL._SL80_.jpg" alt="" width={57} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220789/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ihtt5WXvL._SL80_.jpg" width={57} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3039,9 +3032,9 @@ const structuredData: StructuredData = {
 						<td>黄金比をめざせ!!</td>
 						<td>1999年44号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZMY/"><ImageAmazon src="https://m.media-amazon.com/images/I/51egoUzx+1L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">7巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZMY/" title="7巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51egoUzx+1L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3123,9 +3116,9 @@ const structuredData: StructuredData = {
 						<td>ここが変だよ2000年!?</td>
 						<td>2000年4・5号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZO2/"><ImageAmazon src="https://m.media-amazon.com/images/I/51CXCO1BjkL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">8巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZO2/" title="8巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51CXCO1BjkL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3163,9 +3156,9 @@ const structuredData: StructuredData = {
 						<td>めがねっ娘、世にはばかる。</td>
 						<td>2000年10号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220797/"><ImageAmazon src="https://m.media-amazon.com/images/I/51+buU9a+0L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220797/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51+buU9a+0L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3210,9 +3203,9 @@ const structuredData: StructuredData = {
 						<td>ルールールルルー♬</td>
 						<td>2000年16号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZQK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51X2sZBi+pL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">9巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZQK/" title="9巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51X2sZBi+pL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3292,9 +3285,9 @@ const structuredData: StructuredData = {
 						<td>ようこそ! おとなの時間へ</td>
 						<td>2000年29号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZQA/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Wf4bO5FBL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">10巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZQA/" title="10巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Wf4bO5FBL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3325,9 +3318,9 @@ const structuredData: StructuredData = {
 						<td>知った空振り三振!!</td>
 						<td>2000年33号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220800/"><ImageAmazon src="https://m.media-amazon.com/images/I/51pJu1Yhu7L._SL80_.jpg" alt="" width={55} height={80} /><span class="p-embed-link__title">6巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220800/" title="6巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51pJu1Yhu7L._SL80_.jpg" width={55} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3381,9 +3374,9 @@ const structuredData: StructuredData = {
 						<td>アイシテルと言ってくれ</td>
 						<td>2000年41号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZTM/"><ImageAmazon src="https://m.media-amazon.com/images/I/516vzz-+w5L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">11巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZTM/" title="11巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/516vzz-+w5L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>巻頭カラー</td>
@@ -3463,9 +3456,9 @@ const structuredData: StructuredData = {
 						<td>暮れの現金な御挨拶</td>
 						<td>2000年53号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZU6/"><ImageAmazon src="https://m.media-amazon.com/images/I/51AvVo886TL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">12巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZU6/" title="12巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51AvVo886TL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3489,9 +3482,9 @@ const structuredData: StructuredData = {
 						<td>罪深き元旦</td>
 						<td>2001年4・5号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220843/"><ImageAmazon src="https://m.media-amazon.com/images/I/51fknJW-fCL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">7巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220843/" title="7巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51fknJW-fCL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3550,9 +3543,9 @@ const structuredData: StructuredData = {
 						<td>春はキャラ変えの季節です</td>
 						<td>2001年13号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZUG/"><ImageAmazon src="https://m.media-amazon.com/images/I/51WQUuUu1CL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">13巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZUG/" title="13巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51WQUuUu1CL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3632,9 +3625,9 @@ const structuredData: StructuredData = {
 						<td>道標すたろーん</td>
 						<td>2001年25号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH23A/"><ImageAmazon src="https://m.media-amazon.com/images/I/51jkkZNl46L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">14巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH23A/" title="14巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51jkkZNl46L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3651,9 +3644,9 @@ const structuredData: StructuredData = {
 						<td>専用線用者の全容</td>
 						<td>2001年27号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220851/"><ImageAmazon src="https://m.media-amazon.com/images/I/51nLoRGFzkL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">8巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220851/" title="8巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51nLoRGFzkL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3719,9 +3712,9 @@ const structuredData: StructuredData = {
 						<td>北の国から'01〜孤独〜</td>
 						<td>2001年36・37号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZW4/"><ImageAmazon src="https://m.media-amazon.com/images/I/51O3Ar7gVjL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">15巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZW4/" title="15巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51O3Ar7gVjL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3801,9 +3794,9 @@ const structuredData: StructuredData = {
 						<td>偶然崇拝禁止</td>
 						<td>2001年48号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZWO/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ggsrgvV6L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">16巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZWO/" title="16巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ggsrgvV6L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3813,9 +3806,9 @@ const structuredData: StructuredData = {
 						<td>染まってイコー!!</td>
 						<td>2001年49号</td>
 						<td rowspan="20">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/409122086X/"><ImageAmazon src="https://m.media-amazon.com/images/I/51uRkRLhFOL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">9巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/409122086X/" title="9巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51uRkRLhFOL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3888,9 +3881,9 @@ const structuredData: StructuredData = {
 						<td>最後の楽園</td>
 						<td>2002年9号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZXI/"><ImageAmazon src="https://m.media-amazon.com/images/I/51rDtokqUxL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">17巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZXI/" title="17巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51rDtokqUxL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3969,9 +3962,9 @@ const structuredData: StructuredData = {
 						<td>つばを飛ばすな　離れなさい!</td>
 						<td>2002年21・22号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220878/"><ImageAmazon src="https://m.media-amazon.com/images/I/51aCygb5gWL._SL80_.jpg" alt="" width={57} height={80} /><span class="p-embed-link__title">10巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220878/" title="10巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51aCygb5gWL._SL80_.jpg" width={57} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -3981,9 +3974,9 @@ const structuredData: StructuredData = {
 						<td>ガスの元栓閉めたっけ?</td>
 						<td>2002年23号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZYM/"><ImageAmazon src="https://m.media-amazon.com/images/I/51gacmZxW5L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">18巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZYM/" title="18巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51gacmZxW5L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4063,9 +4056,9 @@ const structuredData: StructuredData = {
 						<td>安すぎちゃって困っちゃう♪</td>
 						<td>2002年35号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZZG/"><ImageAmazon src="https://m.media-amazon.com/images/I/514by8lxxpL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">19巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZGZZG/" title="19巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/514by8lxxpL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4131,9 +4124,9 @@ const structuredData: StructuredData = {
 						<td>評価は10段階。</td>
 						<td>2002年45号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091220886/"><ImageAmazon src="https://m.media-amazon.com/images/I/51RXd2pKF1L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">11巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091220886/" title="11巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51RXd2pKF1L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4150,9 +4143,9 @@ const structuredData: StructuredData = {
 						<td>努力×(勝利＋友情)<sup>2</sup></td>
 						<td>2002年47号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH02S/"><ImageAmazon src="https://m.media-amazon.com/images/I/51mPkGi1z6L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">20巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH02S/" title="20巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51mPkGi1z6L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4234,9 +4227,9 @@ const structuredData: StructuredData = {
 						<td>帰ってきた山田さん</td>
 						<td>2003年8号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH032/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Fof3ceSGL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">21巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH032/" title="21巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Fof3ceSGL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4295,9 +4288,9 @@ const structuredData: StructuredData = {
 						<td>生きるべきか、死ぬべきか…ハムレットだって選択肢はありました。</td>
 						<td>2003年16号</td>
 						<td rowspan="22">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091222293/"><ImageAmazon src="https://m.media-amazon.com/images/I/512zbcsXFUL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">12巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091222293/" title="12巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/512zbcsXFUL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4321,9 +4314,9 @@ const structuredData: StructuredData = {
 						<td>仮性は男の悩み</td>
 						<td>2003年19号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH03M/"><ImageAmazon src="https://m.media-amazon.com/images/I/513J5y+7nCL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">22巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH03M/" title="22巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/513J5y+7nCL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4403,9 +4396,9 @@ const structuredData: StructuredData = {
 						<td>シェアしましょ。</td>
 						<td>2003年32号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH05A/"><ImageAmazon src="https://m.media-amazon.com/images/I/51mE3r8IQTL._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">23巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH05A/" title="23巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51mE3r8IQTL._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4464,9 +4457,9 @@ const structuredData: StructuredData = {
 						<td>って、他人じゃん!!</td>
 						<td>2003年41号</td>
 						<td rowspan="20">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091222307/"><ImageAmazon src="https://m.media-amazon.com/images/I/51HqeIiTeXL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">13巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091222307/" title="13巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51HqeIiTeXL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4490,9 +4483,9 @@ const structuredData: StructuredData = {
 						<td>直訴なんて、とても…</td>
 						<td>2003年44号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH050/"><ImageAmazon src="https://m.media-amazon.com/images/I/51iHvc2UgML._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">24巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH050/" title="24巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51iHvc2UgML._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4572,9 +4565,9 @@ const structuredData: StructuredData = {
 						<td>ロッキンホースなバレリーナ?</td>
 						<td>2004年7号</td>
 						<td rowspan="12">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH06E/"><ImageAmazon src="https://m.media-amazon.com/images/I/51--DseCs+L._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">25巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH06E/" title="25巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51--DseCs+L._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4619,9 +4612,9 @@ const structuredData: StructuredData = {
 						<td>ある意味、貝になりたい。</td>
 						<td>2004年13号</td>
 						<td rowspan="17">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/4091222358/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Ehugd2f8L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">14巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/4091222358/" title="14巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Ehugd2f8L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>下巻</td>
 						<td></td>
@@ -4666,9 +4659,9 @@ const structuredData: StructuredData = {
 						<td>鳥肌のつかみは筑紫ネタ…?</td>
 						<td>2004年19号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009JZH06Y/"><ImageAmazon src="https://m.media-amazon.com/images/I/51vmGwv6oML._SL80_.jpg" alt="" width={51} height={80} /><span class="p-embed-link__title">26巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009JZH06Y/" title="26巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51vmGwv6oML._SL80_.jpg" width={51} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -4762,17 +4755,15 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="zetsubou">
-		<H slot="heading"><cite>さよなら絶望先生</cite></H>
+		<Fragment slot="heading"><cite>さよなら絶望先生</cite></Fragment>
 
 		<p>特記のないものは「<cite>週刊少年マガジン</cite>」掲載。</p>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -4789,9 +4780,9 @@ const structuredData: StructuredData = {
 						<td class="u-cell -center">―</td>
 						<td>2005年21号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BCO/"><ImageAmazon src="https://m.media-amazon.com/images/I/51kzspMFTsL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">一集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BCO/" title="一集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51kzspMFTsL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>1期六話、序</td>
 						<td></td>
@@ -4870,9 +4861,9 @@ const structuredData: StructuredData = {
 						<td>今月今夜のこの月が僕の涙で曇りますように</td>
 						<td>2005年32号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BCE/"><ImageAmazon src="https://m.media-amazon.com/images/I/518z8ej2eiL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">二集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BCE/" title="二集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/518z8ej2eiL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>2期十一話</td>
 						<td></td>
@@ -4945,12 +4936,12 @@ const structuredData: StructuredData = {
 						<td>きもすぎて悲しみの市</td>
 						<td>2005年43号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BFG/"><ImageAmazon src="https://m.media-amazon.com/images/I/51hMot6X0jL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">三集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BFG/" title="三集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51hMot6X0jL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
-						<td>センターカラー、<LinkExternal href="https://www.amazon.co.jp/dp/B000VR5WWS/">絶望玉</LinkExternal>（ドラマ CD）</td>
+						<td>センターカラー、<Anchor href="https://www.amazon.co.jp/dp/B000VR5WWS/">絶望玉</Link>（ドラマ CD）</td>
 					</tr>
 					<tr>
 						<td><data value="22">二十二話</data></td>
@@ -5014,7 +5005,7 @@ const structuredData: StructuredData = {
 						<td>2005年53号</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</Link>
 						</td>
 					</tr>
 					<tr>
@@ -5022,9 +5013,9 @@ const structuredData: StructuredData = {
 						<td>青銅のキリステ</td>
 						<td>2006年1号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BJ2/"><ImageAmazon src="https://m.media-amazon.com/images/I/51t2+cQHSQL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">四集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BJ2/" title="四集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51t2+cQHSQL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5077,7 +5068,7 @@ const structuredData: StructuredData = {
 						<td>2006年10号</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</Link>
 						</td>
 					</tr>
 					<tr>
@@ -5099,9 +5090,9 @@ const structuredData: StructuredData = {
 						<td>白い虚構</td>
 						<td>2006年14号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BWO/"><ImageAmazon src="https://m.media-amazon.com/images/I/51N6mkRkBhL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">五集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BWO/" title="五集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51N6mkRkBhL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5174,9 +5165,9 @@ const structuredData: StructuredData = {
 						<td>波に乗ってくるポロロッカ</td>
 						<td>2006年26号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BLA/"><ImageAmazon src="https://m.media-amazon.com/images/I/51hEYhAPSnL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">六集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BLA/" title="六集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51hEYhAPSnL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>2期十二話</td>
 						<td></td>
@@ -5222,7 +5213,7 @@ const structuredData: StructuredData = {
 						<td>2006年32号</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</Link>
 						</td>
 					</tr>
 					<tr>
@@ -5238,7 +5229,7 @@ const structuredData: StructuredData = {
 						<td>2006年34号</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</Link>
 						</td>
 					</tr>
 					<tr>
@@ -5253,9 +5244,9 @@ const structuredData: StructuredData = {
 						<td>縁のある阿呆の一生</td>
 						<td>2006年36・37号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BLU/"><ImageAmazon src="https://m.media-amazon.com/images/I/51+2zzvYNIL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">七集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BLU/" title="七集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51+2zzvYNIL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5273,7 +5264,7 @@ const structuredData: StructuredData = {
 						<td>2006年39号</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</Link>
 						</td>
 					</tr>
 					<tr>
@@ -5282,7 +5273,7 @@ const structuredData: StructuredData = {
 						<td>2006年40号</td>
 						<td></td>
 						<td>
-							<LinkExternal href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</LinkExternal>
+							<Anchor href="https://www.amazon.co.jp/dp/B000UAL914/">ドラマ CD「<cite>絶望劇場</cite>」</Link>
 						</td>
 					</tr>
 					<tr>
@@ -5332,9 +5323,9 @@ const structuredData: StructuredData = {
 						<td>義務と兵隊</td>
 						<td>2006年48号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BOM/"><ImageAmazon src="https://m.media-amazon.com/images/I/51glSUWo-hL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">八集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BOM/" title="八集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51glSUWo-hL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>2期三話</td>
 						<td></td>
@@ -5407,9 +5398,9 @@ const structuredData: StructuredData = {
 						<td>鎌倉妙本寺解雇</td>
 						<td>2007年9号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BP6/"><ImageAmazon src="https://m.media-amazon.com/images/I/51jj7rV1WQL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">九集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BP6/" title="九集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51jj7rV1WQL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>2期十三話</td>
 						<td></td>
@@ -5482,9 +5473,9 @@ const structuredData: StructuredData = {
 						<td>智に働けば角が立つ　情に棹させば流される　意地を通せば窮屈だ　とかくこの世は3すくみ</td>
 						<td>2007年20号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BRE/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ve8UUnc8L._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BRE/" title="十集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ve8UUnc8L._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5557,9 +5548,9 @@ const structuredData: StructuredData = {
 						<td>勝負戦線異状なし</td>
 						<td>2007年32号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BW4/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qoEMTxzxL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十一集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BW4/" title="十一集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qoEMTxzxL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5632,9 +5623,9 @@ const structuredData: StructuredData = {
 						<td>一見の條件</td>
 						<td>2007年43号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765BXS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ytPkS4Y5L._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十二集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765BXS/" title="十二集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ytPkS4Y5L._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>2期十話</td>
 						<td></td>
@@ -5715,9 +5706,9 @@ const structuredData: StructuredData = {
 						<td>渡しの個人主義</td>
 						<td>2008年4・5号</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765C64/"><ImageAmazon src="https://m.media-amazon.com/images/I/517-33yDgwL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十三集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765C64/" title="十三集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/517-33yDgwL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5776,9 +5767,9 @@ const structuredData: StructuredData = {
 						<td>花係の森</td>
 						<td>2008年13号</td>
 						<td>
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765C6O/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Fv8OokbnL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十四集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765C6O/" title="十四集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Fv8OokbnL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>センターカラー、単行本では百三十一話</td>
@@ -5788,9 +5779,9 @@ const structuredData: StructuredData = {
 						<td>おろしや国タイム譚</td>
 						<td>2008年14号</td>
 						<td rowspan="2">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765C64/"><ImageAmazon src="https://m.media-amazon.com/images/I/517-33yDgwL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十三集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765C64/" title="十三集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/517-33yDgwL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>3期二話</td>
 						<td>単行本では百二十九話</td>
@@ -5807,9 +5798,9 @@ const structuredData: StructuredData = {
 						<td>黄砂の女</td>
 						<td>2008年16号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765C6O/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Fv8OokbnL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">十四集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765C6O/" title="十四集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Fv8OokbnL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -5875,9 +5866,9 @@ const structuredData: StructuredData = {
 						<td>余は如何にして真人間となりし乎</td>
 						<td>2008年27号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CCI/"><ImageAmazon src="https://m.media-amazon.com/images/I/51+GJ1N4dLL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">十五集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CCI/" title="十五集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51+GJ1N4dLL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>3期三話</td>
 						<td></td>
@@ -5950,9 +5941,9 @@ const structuredData: StructuredData = {
 						<td>尾州鎮撫隊</td>
 						<td>2008年39号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CM8/"><ImageAmazon src="https://m.media-amazon.com/images/I/51gUAr-vpVL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">十六集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CM8/" title="十六集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51gUAr-vpVL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6025,9 +6016,9 @@ const structuredData: StructuredData = {
 						<td>イキてこそ</td>
 						<td>2008年52号</td>
 						<td rowspan="5">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CNW/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qKmNNajTL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">十七集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CNW/" title="十七集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qKmNNajTL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6073,9 +6064,9 @@ const structuredData: StructuredData = {
 						<td>アーとウルーとビィの冒険</td>
 						<td>2009年7号</td>
 						<td rowspan="5">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CNW/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qKmNNajTL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">十七集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CNW/" title="十七集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qKmNNajTL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>3期五話</td>
 						<td></td>
@@ -6113,9 +6104,9 @@ const structuredData: StructuredData = {
 						<td>強引の窓</td>
 						<td>2009年13号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CO6/"><ImageAmazon src="https://m.media-amazon.com/images/I/51y8EbQVZLL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">十八集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CO6/" title="十八集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51y8EbQVZLL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6188,9 +6179,9 @@ const structuredData: StructuredData = {
 						<td>ウィルス将軍と三人兄弟の医者</td>
 						<td>2009年25号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CZ0/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ZDedOTn3L._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">十九集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CZ0/" title="十九集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ZDedOTn3L._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>3.5期下巻</td>
 						<td></td>
@@ -6263,9 +6254,9 @@ const structuredData: StructuredData = {
 						<td>カンサツ・シティ</td>
 						<td>2009年36号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CWS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51WiPl9cqvL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CWS/" title="二十集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51WiPl9cqvL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6338,9 +6329,9 @@ const structuredData: StructuredData = {
 						<td>スキマの手毬唄</td>
 						<td>2009年49号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CVY/"><ImageAmazon src="https://m.media-amazon.com/images/I/51uH7E0vKbL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十一集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CVY/" title="二十一集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51uH7E0vKbL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6413,9 +6404,9 @@ const structuredData: StructuredData = {
 						<td>知りすぎて普通の男</td>
 						<td>2010年10号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CY6/"><ImageAmazon src="https://m.media-amazon.com/images/I/51dA-NrlsvL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十二集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765CY6/" title="二十二集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51dA-NrlsvL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6488,9 +6479,9 @@ const structuredData: StructuredData = {
 						<td>さまよえるミランダ人</td>
 						<td>2010年22・23号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765D2M/"><ImageAmazon src="https://m.media-amazon.com/images/I/51US5szIPCL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">二十三集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765D2M/" title="二十三集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51US5szIPCL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6563,9 +6554,9 @@ const structuredData: StructuredData = {
 						<td>ニャン京の基督</td>
 						<td>2010年35号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765DBS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51ck1C-fUJL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十四集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765DBS/" title="二十四集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51ck1C-fUJL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>BD-BOX 特典</td>
 						<td></td>
@@ -6638,9 +6629,9 @@ const structuredData: StructuredData = {
 						<td>蔓延元年のハロウィン</td>
 						<td>2010年48号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765D4U/"><ImageAmazon src="https://m.media-amazon.com/images/I/51NrwWHpwYL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十五集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765D4U/" title="二十五集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51NrwWHpwYL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6713,9 +6704,9 @@ const structuredData: StructuredData = {
 						<td>生まれ出づる難民</td>
 						<td>2011年9号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765D5E/"><ImageAmazon src="https://m.media-amazon.com/images/I/513b3GIZKxL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十六集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765D5E/" title="二十六集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/513b3GIZKxL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6788,9 +6779,9 @@ const structuredData: StructuredData = {
 						<td>春は曙。やうやう難くなりゆくやめ際。</td>
 						<td>2011年25号</td>
 						<td rowspan="11">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765DCM/"><ImageAmazon src="https://m.media-amazon.com/images/I/51PTVTKsCCL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十七集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765DCM/" title="二十七集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51PTVTKsCCL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6870,9 +6861,9 @@ const structuredData: StructuredData = {
 						<td>あいまいな日本の形</td>
 						<td>2011年40号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765DGI/"><ImageAmazon src="https://m.media-amazon.com/images/I/51blIkT7EXL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十八集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765DGI/" title="二十八集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51blIkT7EXL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -6945,9 +6936,9 @@ const structuredData: StructuredData = {
 						<td>山なみのあちらにも同じ人がゐる</td>
 						<td>2011年52号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765DJU/"><ImageAmazon src="https://m.media-amazon.com/images/I/51vEpWCh+cL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">二十九集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765DJU/" title="二十九集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51vEpWCh+cL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -7020,9 +7011,9 @@ const structuredData: StructuredData = {
 						<td>入れ替えばや物語</td>
 						<td>2012年15号</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00A765DJA/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Co7rOEM-L._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">三十集</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00A765DJA/" title="三十集">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Co7rOEM-L._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -7091,17 +7082,15 @@ const structuredData: StructuredData = {
 						<td>センターカラー、単行本で2ページ描き足し</td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="jyoshiraku">
-		<H slot="heading"><cite>じょしらく</cite></H>
+		<Fragment slot="heading"><cite>じょしらく</cite></Fragment>
 
 		<p>特記のないものは「<cite>別冊少年マガジン</cite>」掲載。</p>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -7118,18 +7107,18 @@ const structuredData: StructuredData = {
 						<td>犬と猫の災難</td>
 						<td rowspan="2">2009年10月</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNC0/"><ImageAmazon src="https://m.media-amazon.com/images/I/51n0vpK3c5L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">壱巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009KYCNC0/" title="壱巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51n0vpK3c5L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第一席</td>
-						<td>センターカラー、<LinkExternal href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</LinkExternal>付録コミックスにフルカラー収録</td>
+						<td>センターカラー、<Anchor href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</Link>付録コミックスにフルカラー収録</td>
 					</tr>
 					<tr>
 						<td><data value="2">二日目</data></td>
 						<td>叫び指南</td>
 						<td>第一席</td>
-						<td><LinkExternal href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</LinkExternal>付録コミックスにフルカラー収録</td>
+						<td><Anchor href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</Link>付録コミックスにフルカラー収録</td>
 					</tr>
 					<tr>
 						<td><data value="3">三日目</data></td>
@@ -7185,9 +7174,9 @@ const structuredData: StructuredData = {
 						<td>もうやんだか</td>
 						<td>2010年6月</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNCK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51jrVgcLnOL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">弐巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009KYCNCK/" title="弐巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51jrVgcLnOL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第八席</td>
 						<td></td>
@@ -7246,9 +7235,9 @@ const structuredData: StructuredData = {
 						<td>ツリー惨事</td>
 						<td>2011年1月</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNES/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qqmBmKtEL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">参巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B009KYCNES/" title="参巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qqmBmKtEL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第十一席</td>
 						<td></td>
@@ -7307,9 +7296,9 @@ const structuredData: StructuredData = {
 						<td>親子芝居</td>
 						<td>2011年9月</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00C1E2WLS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51WWjauLPEL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">四巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00C1E2WLS/" title="四巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51WWjauLPEL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第十一席</td>
 						<td></td>
@@ -7368,9 +7357,9 @@ const structuredData: StructuredData = {
 						<td>キャラつぶし</td>
 						<td>2012年5月</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00CUDPEJ2/"><ImageAmazon src="https://m.media-amazon.com/images/I/513u+b+U4PL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">伍巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00CUDPEJ2/" title="伍巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/513u+b+U4PL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第十三席</td>
 						<td></td>
@@ -7443,9 +7432,9 @@ const structuredData: StructuredData = {
 						<td>風邪の神送信</td>
 						<td>2013年1月</td>
 						<td rowspan="10">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00HUI0GG8/"><ImageAmazon src="https://m.media-amazon.com/images/I/51-7loT8RNL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">六巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00HUI0GG8/" title="六巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51-7loT8RNL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -7511,7 +7500,7 @@ const structuredData: StructuredData = {
 						<td>終末の極意</td>
 						<td>2013年10月</td>
 						<td></td>
-						<td>センターカラー、<LinkExternal href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</LinkExternal>付録コミックスにフルカラー収録</td>
+						<td>センターカラー、<Anchor href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</Link>付録コミックスにフルカラー収録</td>
 					</tr>
 					<tr>
 						<td><data value="50.1">特別編</data></td>
@@ -7519,20 +7508,18 @@ const structuredData: StructuredData = {
 						<td>2015年8月</td>
 						<td class="u-cell -center">―</td>
 						<td></td>
-						<td><LinkExternal href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</LinkExternal>付録コミックスにフルカラー収録</td>
+						<td><Anchor href="https://www.amazon.co.jp/dp/B00XUAE19S/">アニメ BD BOX</Link>付録コミックスにフルカラー収録</td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="sekadoro">
-		<H slot="heading"><cite>せっかち伯爵と時間どろぼう</cite></H>
+		<Fragment slot="heading"><cite>せっかち伯爵と時間どろぼう</cite></Fragment>
 
 		<p>特記のないものは「<cite>週刊少年マガジン</cite>」掲載。</p>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -7548,9 +7535,9 @@ const structuredData: StructuredData = {
 						<td>せっかち伯爵と時間どろぼう</td>
 						<td>2013年49号</td>
 						<td rowspan="7">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00LC9YFM2/"><ImageAmazon src="https://m.media-amazon.com/images/I/412XP8u9YZL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00LC9YFM2/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/412XP8u9YZL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>巻頭カラー</td>
 					</tr>
@@ -7597,9 +7584,9 @@ const structuredData: StructuredData = {
 						<td>伯爵と七人のヘンタイ</td>
 						<td>2014年6号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00LC9YFOK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Odkv3bNzL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00LC9YFOK/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Odkv3bNzL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -7656,9 +7643,9 @@ const structuredData: StructuredData = {
 						<td>上裸少年漂流記</td>
 						<td>2014年15号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00LP5ET7O/"><ImageAmazon src="https://m.media-amazon.com/images/I/51DNByY+ntL._SL80_.jpg" alt="" width={54} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00LP5ET7O/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51DNByY+ntL._SL80_.jpg" width={54} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -7715,9 +7702,9 @@ const structuredData: StructuredData = {
 						<td>ロストワールド</td>
 						<td>2014年26号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00NGG9TP2/"><ImageAmazon src="https://m.media-amazon.com/images/I/41flCWdPwiL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00NGG9TP2/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41flCWdPwiL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -7778,9 +7765,9 @@ const structuredData: StructuredData = {
 						<td>沼の女神</td>
 						<td>2014年36・37号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00QTN5AUW/"><ImageAmazon src="https://m.media-amazon.com/images/I/418tSPImBXL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00QTN5AUW/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/418tSPImBXL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -7841,9 +7828,9 @@ const structuredData: StructuredData = {
 						<td>せっかち伯爵と時間の囚人</td>
 						<td>2014年47号</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B00TIFKG7K/"><ImageAmazon src="https://m.media-amazon.com/images/I/41kvSTHIAHL._SL80_.jpg" alt="" width={53} height={80} /><span class="p-embed-link__title">6巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B00TIFKG7K/" title="6巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41kvSTHIAHL._SL80_.jpg" width={53} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -7896,21 +7883,19 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="pulp">
-		<H slot="heading"><cite>スタジオパルプ</cite></H>
+		<Fragment slot="heading"><cite>スタジオパルプ</cite></Fragment>
 
 		<p>すべて「<cite>楽園 Le Paradis</cite>」掲載。</p>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>本作はサブタイトルが設定されていない。</li>
-		</ul>
+		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -7926,9 +7911,9 @@ const structuredData: StructuredData = {
 						<td class="u-cell -center">―</td>
 						<td>17号</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07DXK7B7R/"><ImageAmazon src="https://m.media-amazon.com/images/I/51rvYYMMKsL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07DXK7B7R/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51rvYYMMKsL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>センターカラー</td>
 					</tr>
@@ -8024,23 +8009,21 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="kakushigoto">
-		<H slot="heading"><cite>かくしごと</cite></H>
+		<Fragment slot="heading"><cite>かくしごと</cite></Fragment>
 
 		<p>特記のないものは「<cite>月刊少年マガジン</cite>」掲載。</p>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>本作は話数表記がないため、下表の<q>話数</q>は便宜的に付けたものです。</li>
 			<li>サブタイトルがカギ括弧で囲われている話と囲われていない話が混在していますが、下表では括弧なしで統一しています。</li>
 			<li>TV アニメの対照については、18歳編は最終話を除き除外しています。</li>
-		</ul>
+		</ListNote>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -8058,9 +8041,9 @@ const structuredData: StructuredData = {
 						<td class="u-cell -center">―</td>
 						<td>2005年12月</td>
 						<td rowspan="30">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B01GRDKGZW/"><ImageAmazon src="https://m.media-amazon.com/images/I/51W2ihWPntL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B01GRDKGZW/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51W2ihWPntL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第01号</td>
 						<td></td>
@@ -8231,9 +8214,9 @@ const structuredData: StructuredData = {
 						<td>第31号　きめごと</td>
 						<td rowspan="4">2016年6月</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B01M7O7KP9/"><ImageAmazon src="https://m.media-amazon.com/images/I/51m5BW91pIL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B01M7O7KP9/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51m5BW91pIL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>第1弾</td>
@@ -8282,9 +8265,9 @@ const structuredData: StructuredData = {
 						<td class="u-cell -center">―</td>
 						<td>週刊少年マガジン 2016年30号</td>
 						<td>
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07J1DGNRM/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qFn9hnkcL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">7巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07J1DGNRM/" title="7巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qFn9hnkcL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>第1弾</td>
@@ -8295,9 +8278,9 @@ const structuredData: StructuredData = {
 						<td>第39号　ヘア・ギア</td>
 						<td rowspan="5">2016年8月</td>
 						<td rowspan="16">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B01M7O7KP9/"><ImageAmazon src="https://m.media-amazon.com/images/I/51m5BW91pIL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B01M7O7KP9/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51m5BW91pIL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第04号</td>
 						<td></td>
@@ -8389,9 +8372,9 @@ const structuredData: StructuredData = {
 						<td>第4号　コマ割りスケッチ</td>
 						<td rowspan="5">2016年11月</td>
 						<td rowspan="19">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B01N3CRBG8/"><ImageAmazon src="https://m.media-amazon.com/images/I/51WsQR+CAPL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B01N3CRBG8/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51WsQR+CAPL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第04号</td>
 						<td>第2弾</td>
@@ -8501,9 +8484,9 @@ const structuredData: StructuredData = {
 						<td>第24号　徐々に奇妙な防寒</td>
 						<td rowspan="6">2017年3月</td>
 						<td rowspan="19">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B071G5C4Q1/"><ImageAmazon src="https://m.media-amazon.com/images/I/51rtK0hKf0L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B071G5C4Q1/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51rtK0hKf0L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>第2弾</td>
@@ -8613,9 +8596,9 @@ const structuredData: StructuredData = {
 						<td>第43号　全とっかえ役人共</td>
 						<td rowspan="4">2017年7月</td>
 						<td rowspan="19">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07788BKMZ/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qbYpwpynL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07788BKMZ/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qbYpwpynL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第08号</td>
 						<td></td>
@@ -8725,9 +8708,9 @@ const structuredData: StructuredData = {
 						<td>第12号　BE FRILL!</td>
 						<td rowspan="4">2017年12月</td>
 						<td rowspan="16">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07CSQY8YP/"><ImageAmazon src="https://m.media-amazon.com/images/I/51LGrG2N9FL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">6巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07CSQY8YP/" title="6巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51LGrG2N9FL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第09号</td>
 						<td></td>
@@ -8822,9 +8805,9 @@ const structuredData: StructuredData = {
 						<td>第29号　I"S（伊豆）</td>
 						<td rowspan="5">2018年5月</td>
 						<td rowspan="16">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07J1DGNRM/"><ImageAmazon src="https://m.media-amazon.com/images/I/51qFn9hnkcL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">7巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07J1DGNRM/" title="7巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51qFn9hnkcL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>第10号</td>
 						<td></td>
@@ -8919,9 +8902,9 @@ const structuredData: StructuredData = {
 						<td>第45号　おこずかいチャチャ</td>
 						<td rowspan="4">2018年9月</td>
 						<td rowspan="17">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07QQBQZ19/"><ImageAmazon src="https://m.media-amazon.com/images/I/51Nv9LhzDIL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">8巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07QQBQZ19/" title="8巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51Nv9LhzDIL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -9021,9 +9004,9 @@ const structuredData: StructuredData = {
 						<td>第11号　人形の盛り</td>
 						<td rowspan="3">2019年2月</td>
 						<td rowspan="18">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07XBY5XKK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51XRFJbZ3eL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">9巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07XBY5XKK/" title="9巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51XRFJbZ3eL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td>第5弾</td>
@@ -9128,9 +9111,9 @@ const structuredData: StructuredData = {
 						<td>第29号　くりあげくん</td>
 						<td rowspan="3">2019年7月</td>
 						<td rowspan="14">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B0812Z5YXG/"><ImageAmazon src="https://m.media-amazon.com/images/I/51O6jQEcd3L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">10巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B0812Z5YXG/" title="10巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51O6jQEcd3L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -9215,9 +9198,9 @@ const structuredData: StructuredData = {
 						<td>第43号　激烈美化</td>
 						<td rowspan="4">2019年11月</td>
 						<td rowspan="13">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B085L7QSHK/"><ImageAmazon src="https://m.media-amazon.com/images/I/51a1ZM7UOBL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">11巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B085L7QSHK/" title="11巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51a1ZM7UOBL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -9297,9 +9280,9 @@ const structuredData: StructuredData = {
 						<td>第5号　1・2のあーしろう</td>
 						<td rowspan="4">2020年3月</td>
 						<td rowspan="9">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B08CKK45LP/"><ImageAmazon src="https://m.media-amazon.com/images/I/5198TOs+rnL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">12巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B08CKK45LP/" title="12巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/5198TOs+rnL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 						<td></td>
@@ -9360,17 +9343,15 @@ const structuredData: StructuredData = {
 						<td>センターカラー、単行本でカラーページ増量</td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="nankuru">
-		<H slot="heading"><cite>なんくる姉さん</cite></H>
+		<Fragment slot="heading"><cite>なんくる姉さん</cite></Fragment>
 
 		<p>すべて「<cite>ヤングマガジンサード</cite>」掲載。</p>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" aria-sort="ascending">話数</th>
@@ -9386,9 +9367,9 @@ const structuredData: StructuredData = {
 						<td>なんくる姉さん</td>
 						<td>2016年 Vol.3</td>
 						<td rowspan="5">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B01LWE1ZXD/"><ImageAmazon src="https://m.media-amazon.com/images/I/51AdV4vMfLL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B01LWE1ZXD/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51AdV4vMfLL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>巻頭カラー</td>
 					</tr>
@@ -9421,9 +9402,9 @@ const structuredData: StructuredData = {
 						<td>カフーは寝て待て</td>
 						<td>2016年 Vol.8</td>
 						<td>
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07G74YKMS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51RBdqLVrwL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07G74YKMS/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51RBdqLVrwL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td>休載マンガ</td>
 					</tr>
@@ -9432,9 +9413,9 @@ const structuredData: StructuredData = {
 						<td>シンジームヌは救われる</td>
 						<td rowspan="2">2016年 Vol.9</td>
 						<td>
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B01LWE1ZXD/"><ImageAmazon src="https://m.media-amazon.com/images/I/51AdV4vMfLL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B01LWE1ZXD/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51AdV4vMfLL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9442,9 +9423,9 @@ const structuredData: StructuredData = {
 						<td><data value="7">第7ざわ話</data></td>
 						<td>言わぬがファナ</td>
 						<td rowspan="7">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B071WV6QJ7/"><ImageAmazon src="https://m.media-amazon.com/images/I/51UgDysezNL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B071WV6QJ7/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51UgDysezNL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9489,9 +9470,9 @@ const structuredData: StructuredData = {
 						<td>手を合わせてくわっちーさびら</td>
 						<td>2017年 Vol.4</td>
 						<td rowspan="7">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B077Z3S48Q/"><ImageAmazon src="https://m.media-amazon.com/images/I/5189ea6N-kL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">3巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B077Z3S48Q/" title="3巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/5189ea6N-kL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9536,9 +9517,9 @@ const structuredData: StructuredData = {
 						<td>カナースンほど味が出る</td>
 						<td>2017年 Vol.12</td>
 						<td rowspan="6">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07G74YKMS/"><ImageAmazon src="https://m.media-amazon.com/images/I/51RBdqLVrwL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">4巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07G74YKMS/" title="4巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51RBdqLVrwL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9577,9 +9558,9 @@ const structuredData: StructuredData = {
 						<td>ぬちどぅたから島</td>
 						<td>2018年 Vol.7</td>
 						<td rowspan="8">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B07RRW4HP8/"><ImageAmazon src="https://m.media-amazon.com/images/I/51kmz6KqccL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">5巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B07RRW4HP8/" title="5巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/51kmz6KqccL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9626,17 +9607,15 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 	</Section>
 
 	<Section id="shibuya">
-		<H slot="heading"><cite>シブヤニアファミリー</cite></H>
+		<Fragment slot="heading"><cite>シブヤニアファミリー</cite></Fragment>
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<div class="p-table">
-			<table>
+		<Table>
 				<thead>
 					<tr>
 						<th scope="col" rowspan="2" aria-sort="ascending">話数</th>
@@ -9657,9 +9636,9 @@ const structuredData: StructuredData = {
 						<td class="u-cell -center">―</td>
 						<td>2021年47号</td>
 						<td rowspan="21">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B0BC8JM421/"><ImageAmazon src="https://m.media-amazon.com/images/I/41EBmrjiJ7L._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">1巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B0BC8JM421/" title="1巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41EBmrjiJ7L._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9809,9 +9788,9 @@ const structuredData: StructuredData = {
 						<td>小学生は眠らない</td>
 						<td>2022年19号</td>
 						<td rowspan="17">
-							<div class="p-embed-link">
-								<LinkExternal href="https://www.amazon.co.jp/dp/B0C3M2F8HK/"><ImageAmazon src="https://m.media-amazon.com/images/I/41OzNm0OaIL._SL80_.jpg" alt="" width={56} height={80} /><span class="p-embed-link__title">2巻</span></LinkExternal>
-							</div>
+							<EmbeddedLink href="https://www.amazon.co.jp/dp/B0C3M2F8HK/" title="2巻">
+								<ImageAmazon src="https://m.media-amazon.com/images/I/41OzNm0OaIL._SL80_.jpg" width={56} height={80} slot="media" />
+							</EmbeddedLink>
 						</td>
 						<td></td>
 					</tr>
@@ -9890,7 +9869,7 @@ const structuredData: StructuredData = {
 						<td>祝日の名前もう大半覚えてない</td>
 						<td>海の日の小学生</td>
 						<td>2022年34号</td>
-						<td>本誌サブタイは公募により<LinkExternal href="https://x.com/coskyu/status/1545078672477917184">うみ(@coskyu)さんの投稿</LinkExternal>が採用</td>
+						<td>本誌サブタイは公募により<Anchor href="https://x.com/coskyu/status/1545078672477917184">うみ(@coskyu)さんの投稿</Link>が採用</td>
 					</tr>
 					<tr>
 						<td><data value="33">#33</data></td>
@@ -9928,8 +9907,7 @@ const structuredData: StructuredData = {
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
-		</div>
+			</Table>
 
 		<p>以下、連載中</p>
 	</Section>

@@ -1,6 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,87 +28,69 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -oigawa-exp">急行ワンマン　千頭</span>行</p>
-			<p class="p-tokyu-announce-car">7200系に搭載されているタイプ</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>金谷停車中</h2>
-					<p>大井川鐵道をご利用いただきまして、ありがとうございます。この電車は千頭行き急行のワンマン列車です。車内は禁煙です。危険品の持ち込みはお断りいたします。また、お手洗いの設備はございません。発車までしばらくお待ちください。</p>
-				</section>
-				<section>
-					<h2>金谷発車</h2>
-					<p>お待たせいたしました。この電車は千頭行き急行のワンマン列車です。次は新金谷です。</p>
-				</section>
-				<section>
-					<h2>新金谷到着</h2>
-					<p>ご乗車ありがとうございます。まもなく新金谷です。降り口は右側です。お降りの際、運賃または乗車券、急行券は駅係員にお渡しください。</p>
-				</section>
-			</div>
+	<Announce station="千頭" type="oigawa-exp" operation="oneman" cars={['7200系']} recordDate="2015-06-20" recordCar="7200系2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>金谷停車中</h2>
+				<p>大井川鐵道をご利用いただきまして、ありがとうございます。この電車は千頭行き急行のワンマン列車です。車内は禁煙です。危険品の持ち込みはお断りいたします。また、お手洗いの設備はございません。発車までしばらくお待ちください。</p>
+			</section>
+			<section>
+				<h2>金谷発車</h2>
+				<p>お待たせいたしました。この電車は千頭行き急行のワンマン列車です。次は新金谷です。</p>
+			</section>
+			<section>
+				<h2>新金谷到着</h2>
+				<p>ご乗車ありがとうございます。まもなく新金谷です。降り口は右側です。お降りの際、運賃または乗車券、急行券は駅係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>新金谷停車中</h2>
-					<p>ご乗車ありがとうございます。この電車は千頭行き、急行です。ご乗車には普通乗車券の他に電車急行券が必要です。途中停車駅は家山、川根温泉笹間渡です。</p>
-				</section>
-				<section>
-					<h2>新金谷発車</h2>
-					<p>お待たせいたしました。この電車は千頭行き急行のワンマン列車です。次は家山です。</p>
-				</section>
-				<section>
-					<h2>家山到着</h2>
-					<p>ご乗車ありがとうございます。まもなく家山です。降り口は右側です。お降りの際、運賃または乗車券、急行券は駅係員にお渡しください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>新金谷停車中</h2>
+				<p>ご乗車ありがとうございます。この電車は千頭行き、急行です。ご乗車には普通乗車券の他に電車急行券が必要です。途中停車駅は家山、川根温泉笹間渡です。</p>
+			</section>
+			<section>
+				<h2>新金谷発車</h2>
+				<p>お待たせいたしました。この電車は千頭行き急行のワンマン列車です。次は家山です。</p>
+			</section>
+			<section>
+				<h2>家山到着</h2>
+				<p>ご乗車ありがとうございます。まもなく家山です。降り口は右側です。お降りの際、運賃または乗車券、急行券は駅係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>家山停車中</h2>
-					<p>ご乗車ありがとうございます。この電車は千頭行き、急行です。途中停車駅は川根温泉笹間渡です。ご乗車には普通乗車券の他に電車急行券が必要です。</p>
-				</section>
-				<section>
-					<h2>家山発車</h2>
-					<p>次は川根温泉笹間渡です。</p>
-				</section>
-				<section>
-					<h2>川根温泉笹間渡到着</h2>
-					<p>ご乗車ありがとうございます。まもなく川根温泉笹間渡です。降り口は右側です。川根温泉笹間渡では中央の扉は開きません。いちばん前の扉をご利用ください。お降りの際、運賃または乗車券、急行券はいちばん前の運賃箱にお入れください。フリーきっぷをご利用のお客さまは、運転士にお見せください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>家山停車中</h2>
+				<p>ご乗車ありがとうございます。この電車は千頭行き、急行です。途中停車駅は川根温泉笹間渡です。ご乗車には普通乗車券の他に電車急行券が必要です。</p>
+			</section>
+			<section>
+				<h2>家山発車</h2>
+				<p>次は川根温泉笹間渡です。</p>
+			</section>
+			<section>
+				<h2>川根温泉笹間渡到着</h2>
+				<p>ご乗車ありがとうございます。まもなく川根温泉笹間渡です。降り口は右側です。川根温泉笹間渡では中央の扉は開きません。いちばん前の扉をご利用ください。お降りの際、運賃または乗車券、急行券はいちばん前の運賃箱にお入れください。フリーきっぷをご利用のお客さまは、運転士にお見せください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>川根温泉笹間渡停車中</h2>
-					<p>整理券をお取りください。ご乗車の方は整理券をお取りください。この電車は千頭行き、急行です。ご乗車には普通乗車券の他に電車急行料金が必要です。</p>
-				</section>
-				<section>
-					<h2>川根温泉笹間渡発車</h2>
-					<p>次は終点、千頭です。</p>
-				</section>
-				<section>
-					<h2>千頭到着</h2>
-					<p>ご乗車ありがとうございます。まもなく終点、千頭です。お降りの際、車内に落としもの、お忘れものなどなさいませんようお支度ください。また、お足元にご注意ください。接岨峡温泉、井川方面、白沢温泉、寸又峡温泉、閑蔵方面へお越しのお客さまはお乗り換えです。運賃または乗車券、急行券は駅係員にお渡しください。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2015年6月20日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>7200系2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>川根温泉笹間渡停車中</h2>
+				<p>整理券をお取りください。ご乗車の方は整理券をお取りください。この電車は千頭行き、急行です。ご乗車には普通乗車券の他に電車急行料金が必要です。</p>
+			</section>
+			<section>
+				<h2>川根温泉笹間渡発車</h2>
+				<p>次は終点、千頭です。</p>
+			</section>
+			<section>
+				<h2>千頭到着</h2>
+				<p>ご乗車ありがとうございます。まもなく終点、千頭です。お降りの際、車内に落としもの、お忘れものなどなさいませんようお支度ください。また、お足元にご注意ください。接岨峡温泉、井川方面、白沢温泉、寸又峡温泉、閑蔵方面へお越しのお客さまはお乗り換えです。運賃または乗車券、急行券は駅係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 
-	<ul class="p-notes">
+	<ListNote>
 		<li>急行料金不要の臨時列車（2016年以降運転実績あり）は急行券に関する部分がカットされるなど、放送内容が一部異なる。</li>
-	</ul>
+	</ListNote>
 </Layout>

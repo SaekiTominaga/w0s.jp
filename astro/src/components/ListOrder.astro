@@ -1,0 +1,56 @@
+---
+import { JSDOM } from 'jsdom';
+
+const { document } = new JSDOM(await Astro.slots.render('default')).window;
+
+const itemDigit = document.querySelectorAll('body > li').length.toString().length;
+---
+
+<ol class="list" data-digit={itemDigit}>
+	<slot />
+</ol>
+
+<style>
+	.list {
+		margin-inline-start: calc(var(--_digit) + 2ch);
+		counter-reset: item;
+
+		&[data-digit='1'] {
+			--_digit: 1ch;
+		}
+
+		&[data-digit='2'] {
+			--_digit: 2ch;
+		}
+
+		&[data-digit='3'] {
+			--_digit: 3ch;
+		}
+
+		& :global(> li) {
+			counter-increment: item;
+		}
+
+		& :global(> li::marker) {
+			font-family: monospace;
+			content: counter(item) '. ';
+		}
+
+		& > :global(li > ol) {
+			list-style-type: disc;
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+		}
+
+		& > :global(li > ol > li > ol) {
+			margin-inline-start: 2ch;
+			list-style-type: circle;
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+		}
+
+		& > :global(li + li),
+		& > :global(li > ol > li),
+		& > :global(li > ol > li > ol > li) {
+			margin-block-start: 0.25em;
+		}
+	}
+</style>

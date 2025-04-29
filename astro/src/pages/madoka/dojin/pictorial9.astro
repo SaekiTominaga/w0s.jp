@@ -1,12 +1,21 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
-import NoteRef from '@components/NoteRef.astro';
+import Box from '@components/Box.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import ListNote from '@components/ListNote.astro';
+import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Table from '@components/Table.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Image from '@components/+phrasing/Image.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
+import TickAndCross from '@components/+phrasing/TickAndCross.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -34,13 +43,19 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>首都圏をはじめ100か所を超える範囲に展開された、『<cite>マギアレコード</cite>』の美樹さやか駅ポスターの全容を写真で紹介します。また、マギレコの最初の告知（2016年9月）からリリース、そして現在に至るまでに美樹さやかが関わったイベントも振り返ってみました。</p>
 
-		<div class="c-embed-sidebar -embed-first">
-			<div class="c-embed-sidebar__text">
-				<dl class="p-list-table">
+		<Flex>
+			<FlexItem>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial9_cover.jpg" alt="表紙画像: 駅の壁に掲出されたさやかポスターと、ホームに進入する東急電車の写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<ListTable>
 					<div>
 						<dt>発行日</dt>
 						<dd>2018年8月11日</dd>
@@ -53,53 +68,39 @@ const structuredData: StructuredData = {
 						<dt>冊子価格</dt>
 						<dd>2,200円</dd>
 					</div>
-				</dl>
-			</div>
-			<div class="c-embed-sidebar__embed">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="madoka/dojin/pictorial9_cover.jpg" alt="表紙画像: 駅の壁に掲出されたさやかポスターと、ホームに進入する東急電車の写真" width={170} height={240} quality={60} />
-					</div>
-				</figure>
-			</div>
-		</div>
+				</ListTable>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
-		<div class="c-flex -buttons">
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial9_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://w0s.booth.pm/items/2649148" icon={false} class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">冊子版（BOOTH）</span></LinkExternal>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://www.amazon.co.jp/dp/B07FBKBKBM/" icon={false} class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></LinkExternal>
-				<ul class="p-notes">
-					<li>画像形式による「固定レイアウト型」</li>
-				</ul>
-			</div>
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial9_sample.pdf" type="pdf">サンプル PDF</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://w0s.booth.pm/items/2649148" type="booth">冊子版（BOOTH）</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B07FBKBKBM/" type="amazon">Kindle 版（Amazon）</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial9/v1.0.0.pdf" type="pdf" auth={true}>購入者向け PDF【要認証】<small>（ver.1.0.0、2018年8月11日公開）</small></AnchorButton>
+			</FlexItem>
+		</Flex>
 
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial9/v1.0.0.pdf" type="application/pdf" rel="nofollow" class="c-button">
-					<img src="/assets/image/icon/padlock.svg" alt="(認証)" width="16" height="16" class="c-button__icon" />
-					<span class="c-button__text">
-						購入者向け PDF<small>（ver.1.0.0、2018年8月11日公開）</small>
-					</span>
-				</a>
-				<ul class="p-notes">
-					<li>認証情報は奥付に記載</li>
-				</ul>
-			</div>
-		</div>
+		<ListNote>
+			<li>Kindle 版は画像形式による「固定レイアウト型」</li>
+			<li>購入者向け PDF の認証情報は奥付に記載</li>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>マギアレコードと美樹さやか</li>
 			<li>秋葉原駅</li>
 			<li>大阪梅田（梅田駅）</li>
@@ -128,41 +129,39 @@ const structuredData: StructuredData = {
 				</ol>
 			</li>
 			<li>日本橋でんでんタウン</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="errata">
-		<H slot="heading">正誤情報</H>
+		<Fragment slot="heading">正誤情報</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ページ</th>
-						<th scope="col">内容</th>
-						<th scope="col">電子版修正</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>p.3</td>
-						<td><q>セリフで名前が出た例</q>は記載のまどかの魔法少女ストーリー1話とホーム画面でのセリフ4件のほかに、まどかを最大まで魔力解放したときのセリフ（魔力解放③）で<q>さやかちゃんと杏子ちゃんっていう仲間もいるんだよ。この二人、しょっちゅう喧嘩しているけど、とても仲がいいんだ</q>も存在する。</td>
-						<td><span class="c-tac -cross">未対応</span></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.3</td>
+					<td><q>セリフで名前が出た例</q>は記載のまどかの魔法少女ストーリー1話とホーム画面でのセリフ4件のほかに、まどかを最大まで魔力解放したときのセリフ（魔力解放③）で<q>さやかちゃんと杏子ちゃんっていう仲間もいるんだよ。この二人、しょっちゅう喧嘩しているけど、とても仲がいいんだ</q>も存在する。</td>
+					<td><TickAndCross type="cross">未対応</TickAndCross></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="add">
-		<H slot="heading">追加情報</H>
+		<Fragment slot="heading">追加情報</Fragment>
 
 		<p>序章「<cite>マギアレコードと美樹さやか</cite>」の2018年7月1日〜8月10日の出来事です。p.10 に挿入される想定でお読みください。</p>
 
-		<div class="p-box">
+		<Box>
 			<p>7月6日〜13日にゲーム内イベント「<cite>みたまの特訓 ほむら 眼鏡ver.編</cite>」が開催され、ストーリー2〜3話でほむらがまどか、さやかと共に神浜市へ行き、遭遇した魔女と戦うストーリーが展開された。</p>
 
-			<p>7月10日に<LinkExternal href="https://www.nelke.co.jp/stage/magireco/">マギレコの舞台化</LinkExternal>が発表され、20日にはメインキャストが告知された。美樹さやか役の金村美玖氏（けやき坂46）はブログにて<LinkExternal href="https://www.keyakizaka46.com/s/k46o/diary/detail/16507">手書きイラスト付きのエントリー</LinkExternal>を投稿した。</p>
+			<p>7月10日に<Anchor href="https://www.nelke.co.jp/stage/magireco/">マギレコの舞台化</Anchor>が発表され、20日にはメインキャストが告知された。美樹さやか役の金村美玖氏（けやき坂46）はブログにて<Anchor href="https://www.keyakizaka46.com/s/k46o/diary/detail/16507">手書きイラスト付きのエントリー</Anchor>を投稿した。</p>
 
 			<p>7月13日〜20日には「<cite>まどか・マミ・さやか・杏子ピックアップガチャ</cite>」が開催された。</p>
 
@@ -172,13 +171,13 @@ const structuredData: StructuredData = {
 
 			<p>イベントストーリーに登場した魔法少女のうち、ほむらは前述のとおり水着衣装が専用のキャラクターとして実装されており、ホーム画面でのタップ時ランダムセリフで<q>美樹さんの水着、かっこいいですよね。夏の女って感じで。私には似合わないと思うから憧れちゃうな</q>が存在する。まどか、さやか、マミ、杏子、ひなの、れんの6人はショップで水着衣装を入手することができ、他の衣装時とは異なる専用ボイスが用意されている。さやかの名前が挙がったものは、まどかのログイン時セリフ（深夜）で<q>夜は花火大会、さやかちゃんがたくさん用意してくれたんだ</q>、杏子のタップ時ランダムセリフで<q>ちょっーと味見しただけなのに、さやかの奴がうるさくてさ</q>と<q>んー、あっ分かった、さやかの水着、なんかスポーツやってそうだなって引っ掛かってたんだけど、サーフィンだ。似合いそうだろ</q>の計3件がある。</p>
 
-			<p>イベントに合わせて特設サイト<LinkExternal href="https://summercard.magireco.com/">マギレコ サマーカードメーカー</LinkExternal>が開設され、背景や魔法少女<NoteRef by="charactor" />などを選択して暑中見舞いの画像をツイートすることができた<NoteRef by="ogp" />。</p>
+			<p>イベントに合わせて特設サイト<Anchor href="https://summercard.magireco.com/">マギレコ サマーカードメーカー</Anchor>が開設され、背景や魔法少女<NoteRef by="charactor" />などを選択して暑中見舞いの画像をツイートすることができた<NoteRef by="ogp" />。</p>
 
 			<NoteRefContent id="charactor">ゲーム内で水着が用意された魔法少女7人の制服姿（杏子とれんは私服姿）と水着姿の計14種。ちなみに背景は7種、メッセージは6種（文言はいずれも<q>暑中お見舞い申し上げます</q>）、スタンプは9種。8月9日からはゲーム内イベント「<cite>みかづき荘のSummer Vacation</cite>」に合わせて、いろはややちよなど10人が追加されて、合計17人・34種になった。</NoteRefContent>
 
 			<NoteRefContent id="ogp">画像はツイートに直接貼付されるのではなく、OGPが設定されたページのURLをツイートすることにより、Twitterのウェブ画面や公式アプリでのみ画像を閲覧できる方式であった。ちなみにそのURLのページはOGPのためだけに用意されたものでコンテンツは空であり、アクセスした0.5秒後にサマーカードメーカーのトップページへ自動でリダイレクトされるものになっていた。</NoteRefContent>
 
-			<p>8月10日より配信1周年を記念して秋葉原の観光マップ「<cite>アド街っぷ</cite>」とのタイアップキャンペーンが行われた。飲食店10店舗で指定されたメニューを注文することでポストカードが貰えるもので、<LinkExternal href="http://akibakotower.com/queen-dolce/">男装カフェ＆BAR「QUEEN DOLCE」</LinkExternal>ではノンアルコールカクテル「<cite>マーメイド</cite>」またはギャルソンオリジナルカクテルの注文でさやかのポストカードがプレゼントされた。</p>
-		</div>
+			<p>8月10日より配信1周年を記念して秋葉原の観光マップ「<cite>アド街っぷ</cite>」とのタイアップキャンペーンが行われた。飲食店10店舗で指定されたメニューを注文することでポストカードが貰えるもので、<Anchor href="http://akibakotower.com/queen-dolce/">男装カフェ＆BAR「QUEEN DOLCE」</Anchor>ではノンアルコールカクテル「<cite>マーメイド</cite>」またはギャルソンオリジナルカクテルの注文でさやかのポストカードがプレゼントされた。</p>
+		</Box>
 	</Section>
 </Layout>

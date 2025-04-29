@@ -1,0 +1,67 @@
+---
+interface Props {
+	name: string; // 車種名
+	sign: string; // 車種記号（M, Mc, T ...）
+	electric?: 'dc' | 'ac'; // 電流タイプ
+}
+
+const { name, sign, electric } = Astro.props;
+
+let typeClassName: string | undefined;
+if (sign.includes('M')) {
+	switch (electric) {
+		case 'dc': {
+			typeClassName = 'm-dc';
+			break;
+		}
+		case 'ac': {
+			typeClassName = 'm-ac';
+			break;
+		}
+		default:
+	}
+} else if (sign.includes('T')) {
+	typeClassName = 't';
+}
+
+const signDisplay = sign.replaceAll(/[0-9]+/g, (match) => `<span class="u-tokyu-unit">${match}</span>`);
+---
+
+<th scope="col">
+	<div class:list={['series', typeClassName !== undefined ? `-${typeClassName}` : undefined]}>
+		<span class="name">{name}</span>
+		<span class="type" set:html={signDisplay} />
+	</div>
+</th>
+
+<style>
+	.series {
+		display: block flex;
+		flex-direction: column;
+		border: 1px solid var(--_bg-color, var(--color-black));
+		background-color: var(--_bg-color, var(--color-white));
+		padding: 0.125em;
+		color: var(--color-black);
+
+		/* 電動車（直流電動機） */
+		&.-m-dc {
+			--_bg-color: var(--color-paleturquoise);
+		}
+
+		/* 電動車（交流電動機） */
+		&.-m-ac {
+			--_bg-color: var(--color-orange);
+		}
+
+		/* 制御車、付随車 */
+		&.-t {
+			--_bg-color: var(--color-lightgreen);
+		}
+	}
+
+	.name {
+	}
+
+	.type {
+	}
+</style>

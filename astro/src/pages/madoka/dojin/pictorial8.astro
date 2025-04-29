@@ -1,9 +1,16 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import ListNote from '@components/ListNote.astro';
+import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Image from '@components/+phrasing/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -31,15 +38,21 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>大学で『<cite>魔法少女まどか☆マギカ</cite>』の映像比較について登壇した講義録です。</p>
 
 		<p>前半はスライドを用いての解説、後半は担当教員との対談を行いましたが、その様子をテキストにまとめました。</p>
 
-		<div class="c-embed-sidebar -embed-first">
-			<div class="c-embed-sidebar__text">
-				<dl class="p-list-table">
+		<Flex>
+			<FlexItem>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial8_cover.jpg" alt="表紙画像: 教室のスクリーンにスライドを映しながらマイクを持って説明している写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<ListTable>
 					<div>
 						<dt>発行日</dt>
 						<dd>2017年12月30日</dd>
@@ -52,46 +65,33 @@ const structuredData: StructuredData = {
 						<dt>冊子価格</dt>
 						<dd>600円</dd>
 					</div>
-				</dl>
-			</div>
-			<div class="c-embed-sidebar__embed">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="madoka/dojin/pictorial8_cover.jpg" alt="表紙画像: 教室のスクリーンにスライドを映しながらマイクを持って説明している写真" width={170} height={240} quality={60} />
-					</div>
-				</figure>
-			</div>
-		</div>
+				</ListTable>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
-		<ul class="p-notes">
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial8_sample.pdf" type="pdf">サンプル PDF</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial8/v1.0.1.pdf" type="pdf" auth={true}>購入者向け PDF【要認証】<small>（ver.1.0.1、2018年4月10日更新）</small></AnchorButton>
+			</FlexItem>
+		</Flex>
+
+		<ListNote>
 			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
-		</ul>
-
-		<div class="c-flex -buttons">
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial8_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
-			</div>
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial8/v1.0.1.pdf" type="application/pdf" rel="nofollow" class="c-button">
-					<img src="/assets/image/icon/padlock.svg" alt="(認証)" width="16" height="16" class="c-button__icon" /><span class="c-button__text">
-						購入者向け PDF<small>（ver.1.0.1、2018年4月10日更新）</small>
-					</span>
-				</a>
-				<ul class="p-notes">
-					<li>認証情報は奥付に記載</li>
-				</ul>
-			</div>
-		</div>
+			<li>購入者向け PDF の認証情報は奥付に記載</li>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>挨拶</li>
 			<li>自己紹介</li>
 			<li>アジェンダ</li>
@@ -108,14 +108,14 @@ const structuredData: StructuredData = {
 			<li>映像差分を調べる意義</li>
 			<li>「TVシリーズ比較本」宣伝</li>
 			<li>「映像と文学」に繋げる</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="slide">
-		<H slot="heading">スライド</H>
+		<Fragment slot="heading">スライド</Fragment>
 
 		<p>当日、講義で使用したスライドです。</p>
 
-		<p><a href="https://slide.w0s.jp/20171128_madoka_compare/" class="c-link">まどか☆マギカ映像比較</a></p>
+		<p><Anchor href="https://slide.w0s.jp/20171128_madoka_compare/" bullet={true}>まどか☆マギカ映像比較</Anchor></p>
 	</Section>
 </Layout>

@@ -1,0 +1,17 @@
+---
+interface Props {
+	data: string | undefined;
+}
+
+const { data } = Astro.props;
+---
+
+{data !== undefined && <p class="description">{data}</p>}
+
+<style>
+	.description {
+		margin-inline: auto;
+		inline-size: fit-content;
+		max-inline-size: min(50em, 90%);
+	}
+</style>

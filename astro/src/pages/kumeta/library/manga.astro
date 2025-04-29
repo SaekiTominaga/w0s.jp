@@ -2,11 +2,12 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -35,22 +36,22 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">1979年</H>
+		<Fragment slot="heading">1979年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年キング 1979年6月4日号" release="1979-05-04">
 			<LibContent>
 				<LibItem pages={[296]}>キングまんがランド（似顔絵道場）の「<cite>もう一歩で入選の人たち</cite>」に<q>神奈川県　久米田康治</q>の名前</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>デビュー前の11歳の時の読者投稿（ただし同姓同名の別人の可能性はある）</li>
 				<li>入選はしていないので投稿イラストは掲載されていない</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">1988年</H>
+		<Fragment slot="heading">1988年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1988年30号" release="1988-06-22">
 			<LibContent>
@@ -77,7 +78,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1989年</H>
+		<Fragment slot="heading">1989年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1989年25号" release="1989-05-24">
 			<LibContent>
@@ -92,7 +93,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1990年</H>
+		<Fragment slot="heading">1990年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1990年49号" release="1990-11-07">
 			<LibContent>
@@ -117,10 +118,10 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[223, 226]}>「<cite>第27回新人コミック大賞　最終審査発表</cite>」で『<cite>行け!!南国アイスホッケー部</cite>』が入選（p.225 にイラスト、講評付きで掲載）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>他の入選作品: 『<cite>五本足のトンボ</cite>』（山桃浩司）、『<cite>風子！</cite>』（高橋功一郎）</li>
 				<li>審査員: あだち充、小林よしのり、小山ゆう、史村翔、村上もとか</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー増刊 1990年12月号" release="1990-11-30">
@@ -130,7 +131,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1991年</H>
+		<Fragment slot="heading">1991年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1991年10号" release="1991-02-13" tags={['表紙']}>
 			<LibContent>
@@ -185,7 +186,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1992年</H>
+		<Fragment slot="heading">1992年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1992年7号" release="1992-01-22" tags={['表紙', 'カラー']}>
 			<LibContent>
@@ -245,7 +246,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1993年</H>
+		<Fragment slot="heading">1993年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1993年13号" release="1993-03-03" tags={['カラー']}>
 			<LibContent>
@@ -343,7 +344,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1994年</H>
+		<Fragment slot="heading">1994年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1994年12号" release="1994-02-23" tags={['カラー']}>
 			<LibContent>
@@ -417,7 +418,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1995年</H>
+		<Fragment slot="heading">1995年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1995年5・6号" release="1995-01-05" tags={['年賀状']}>
 			<LibContent>
@@ -442,10 +443,10 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[351, 366]}>『<cite>その道のプロ</cite>』（智田うに）扉絵の次ページ（352ページ）欄外に『<cite>行け!!南国アイスホッケー部</cite>』休載のお詫び文掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>「智田うに」は久米田先生の元アシスタントである熊澤智道のペンネーム（『<cite>行け!!南国アイスホッケー部</cite>』1巻カバーそでで登場）。空中浮遊をネタにした原稿がボツになり（<LinkExternal href="https://www.amazon.co.jp/dp/B00A765C6O/">『<cite>さよなら絶望先生</cite>』一四集</LinkExternal>の「<cite>紙ブログ</cite>」で紹介）、急遽代原で掲載されたことが<LinkExternal href="http://tukigamiteta.blog43.fc2.com/blog-entry-69.html#comment_list">本人の発言</LinkExternal>で明かされている。なお、この号の『<cite>行け!!南国アイスホッケー部</cite>』の休載理由は<q>久米田先生急病のため</q>となっていた。</li>
-				<li>余談だが、次号（1995年44号）掲載の『<cite>行け!!南国アイスホッケー部</cite>』第207話「<cite>幸せのペンダント!?</cite>」（<LinkExternal href="https://www.amazon.co.jp/dp/B00DE1QOYI/">単行本20巻</LinkExternal>収録）では漫画家志望の「くまさわくん」が原稿採用されるエピソードが（必然性なく）挟まれている。</li>
-			</ul>
+			<ListNote>
+				<li>「智田うに」は久米田先生の元アシスタントである熊澤智道のペンネーム（『<cite>行け!!南国アイスホッケー部</cite>』1巻カバーそでで登場）。空中浮遊をネタにした原稿がボツになり（<Anchor href="https://www.amazon.co.jp/dp/B00A765C6O/">『<cite>さよなら絶望先生</cite>』一四集</Anchor>の「<cite>紙ブログ</cite>」で紹介）、急遽代原で掲載されたことが<Anchor href="http://tukigamiteta.blog43.fc2.com/blog-entry-69.html#comment_list">本人の発言</Anchor>で明かされている。なお、この号の『<cite>行け!!南国アイスホッケー部</cite>』の休載理由は<q>久米田先生急病のため</q>となっていた。</li>
+				<li>余談だが、次号（1995年44号）掲載の『<cite>行け!!南国アイスホッケー部</cite>』第207話「<cite>幸せのペンダント!?</cite>」（<Anchor href="https://www.amazon.co.jp/dp/B00DE1QOYI/">単行本20巻</Anchor>収録）では漫画家志望の「くまさわくん」が原稿採用されるエピソードが（必然性なく）挟まれている。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ダビスタコミック 4R" release="1995-12" tags={['読切']}>
@@ -461,7 +462,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1996年</H>
+		<Fragment slot="heading">1996年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1996年5・6号" release="1996-01-05" tags={['年賀状']}>
 			<LibContent>
@@ -521,7 +522,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1997年2・3号" release="1996-12-11" tags={['企画']}>
 			<LibContent>
-				<LibItem pages={[11]}>NINTENDO64 に関する宮本茂のインタビュー記事に同席、並んで座る写真が掲載<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00BH94XVA/">『<cite>太陽の戦士ポカポカ</cite>』単行本1巻</LinkExternal>で言及）</small></LibItem>
+				<LibItem pages={[11]}>NINTENDO64 に関する宮本茂のインタビュー記事に同席、並んで座る写真が掲載<small>（<Anchor href="https://www.amazon.co.jp/dp/B00BH94XVA/">『<cite>太陽の戦士ポカポカ</cite>』単行本1巻</Anchor>で言及）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -532,7 +533,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1997年</H>
+		<Fragment slot="heading">1997年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1997年5・6号" release="1997-01-04" tags={['年賀状']}>
 			<LibContent>
@@ -553,9 +554,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[211]} pageNote="5ページ目">コマ上部に北崎先生のコメントが掲載<q>北崎先生のコメント→怖くて聞けません。（編集部）</q></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>本誌では見開きの扉ページが2〜3ページ目に来る配置だったが、単行本では順序が差し替えられた。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ビッグコミックスピリッツ Manpuku! 1997年6月2日増刊号" release="1997-05-02" tags={['企画']}>
@@ -571,7 +572,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1998年</H>
+		<Fragment slot="heading">1998年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1998年21・22号" release="1998-04-22" tags={['表紙']}>
 			<LibContent>
@@ -612,7 +613,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1999年</H>
+		<Fragment slot="heading">1999年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 1999年7号" release="1999-01-13" tags={['企画']}>
 			<LibContent>
@@ -664,7 +665,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2000年</H>
+		<Fragment slot="heading">2000年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2000年6号" release="2000-01-04" tags={['表紙']}>
 			<LibContent>
@@ -718,7 +719,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2000年46号" release="2000-10-11">
 			<LibContent>
-				<LibItem pages={[325]}>「<cite>地丹くんYES-NOクッション</cite>」プレゼント当選者発表、地丹くんFA宣言に参加された『<cite>からくりサーカス</cite>』『<cite>SALAD DAYS</cite>』『<cite>いつも美空</cite>』の紹介<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZTM/">単行本11巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[325]}>「<cite>地丹くんYES-NOクッション</cite>」プレゼント当選者発表、地丹くんFA宣言に参加された『<cite>からくりサーカス</cite>』『<cite>SALAD DAYS</cite>』『<cite>いつも美空</cite>』の紹介<small>（<Anchor href="https://www.amazon.co.jp/dp/B009JZGZTM/">単行本11巻</Anchor>に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -736,7 +737,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2001年</H>
+		<Fragment slot="heading">2001年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2001年16号" release="2001-03">
 			<LibContent>
@@ -765,16 +766,16 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー超（増刊） 2001年7月号" release="2001-06-25" tags={['企画']}>
 			<LibContent>
-				<LibItem pages={[122, 123]}>『<cite>かってに改蔵</cite>』ミニ外伝（4コマ×3本）<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZUG/">単行本13巻</LinkExternal>に加筆のうえ掲載）</small></LibItem>
+				<LibItem pages={[122, 123]}>『<cite>かってに改蔵</cite>』ミニ外伝（4コマ×3本）<small>（<Anchor href="https://www.amazon.co.jp/dp/B009JZGZUG/">単行本13巻</Anchor>に加筆のうえ掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2002年</H>
+		<Fragment slot="heading">2002年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2002年19号" release="2002-04-10" tags={['表紙']}>
 			<LibContent>
-				<LibItem position="表紙">うらら&amp;冬馬<small>（黒川智花&amp;他作品と混じっての掲載、<LinkExternal href="https://www.amazon.co.jp/dp/4091236421/">単行本A巻</LinkExternal>裏表紙で採用）</small></LibItem>
+				<LibItem position="表紙">うらら&amp;冬馬<small>（黒川智花&amp;他作品と混じっての掲載、<Anchor href="https://www.amazon.co.jp/dp/4091236421/">単行本A巻</Anchor>裏表紙で採用）</small></LibItem>
 				<LibItem pages={[328, 330]}>『<cite>育ってダーリン!!</cite>』スペシャル（編集部、ももちゃんによる「<cite>はじまりの事情</cite>」および連載中断前のダイジェストが掲載）</LibItem>
 				<LibItem pages={[331, 348]}>『<cite>育ってダーリン!!</cite>』前編</LibItem>
 			</LibContent>
@@ -796,7 +797,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー超（増刊） 2002年7月号" release="2002-06" tags={['表紙']}>
 			<LibContent>
 				<LibItem position="表紙">下っぱスーツの地丹<small>（他作品と混じっての掲載、当号に『<cite>かってに改蔵</cite>』の掲載はないが読者プレゼントにグッズがある）</small></LibItem>
-				<LibItem pages={[3, 5]}>「<cite>夏休みスケジュールボード</cite>」で『<cite>からくりサーカス</cite>』&amp;『<cite>かってに改蔵</cite>』のカレンダー<small>（『<cite>改蔵</cite>』は8月分で、<LinkExternal href="https://www.amazon.co.jp/dp/B009JZGZU6/">単行本12巻</LinkExternal>表紙イラストをバックに、13巻裏表紙&amp;カバーそでイラストから4点と本号表紙の地丹イラストが掲載）</small></LibItem>
+				<LibItem pages={[3, 5]}>「<cite>夏休みスケジュールボード</cite>」で『<cite>からくりサーカス</cite>』&amp;『<cite>かってに改蔵</cite>』のカレンダー<small>（『<cite>改蔵</cite>』は8月分で、<Anchor href="https://www.amazon.co.jp/dp/B009JZGZU6/">単行本12巻</Anchor>表紙イラストをバックに、13巻裏表紙&amp;カバーそでイラストから4点と本号表紙の地丹イラストが掲載）</small></LibItem>
 				<LibItem pages={[6, 8]}>スペースアドベンチャーグッズ超プレゼント&amp;少年サンデープレゼント出張所で下っぱスーツ地丹のうちわ</LibItem>
 			</LibContent>
 		</LibBook>
@@ -820,10 +821,10 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[8]}>週刊少年サンデー超3月号以降の著者ラインナップに他作家に混じって<q>久米田康治</q>の名前が記載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>2003年3月号〜2004年 Winter 号を確認したが、実際には久米田先生の作品掲載はなかった</li>
 				<li>ちなみに2003年7月号〜11月号には『<cite>海の勇者ライフセイバーズ</cite>』（畑健二郎）が掲載</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー超（増刊） 2003年1月号" release="2002-12">
@@ -833,17 +834,17 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2003年</H>
+		<Fragment slot="heading">2003年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2003年9号" release="2003-01">
 			<LibContent>
 				<LibItem pages={[365]}>『<cite>かってに改蔵</cite>』第224話「<cite>「せっとく」コマンド</cite>」の本編ネタに合わせて扉ページの作者名が<q>久米口康治</q>になっている</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>ひらがなルビも<q>くめぐち</q>だが、英文表記は<q lang="en">KUMETA</q>のまま</li>
 				<li>本編4ページ目の羽美が見ている扉イラストは単行本で差し替え</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2003年12号" release="2003-02-19">
@@ -923,7 +924,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2004年</H>
+		<Fragment slot="heading">2004年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2004年16号" release="2004-03" tags={['表紙']}>
 			<LibContent>
@@ -987,7 +988,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2005年</H>
+		<Fragment slot="heading">2005年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2005年21号" release="2005-04-20">
 			<LibContent>
@@ -1038,12 +1039,12 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2005年48号" release="2005-10-26">
 			<LibContent>
-				<LibItem pages={[443, 447]}>『<cite>もう、しませんから。</cite>』File.56「<cite>さよなら、失踪先生!</cite>」（久米田プロ訪問漫画）<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00L5SYR5A/">単行本3巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[443, 447]}>『<cite>もう、しませんから。</cite>』File.56「<cite>さよなら、失踪先生!</cite>」（久米田プロ訪問漫画）<small>（<Anchor href="https://www.amazon.co.jp/dp/B00L5SYR5A/">単行本3巻</Anchor>に収録）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>話数表記が<q>File.56</q>になっているが、実際は55話目</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2006年4・5号" release="2005-12-28" tags={['企画']}>
@@ -1053,7 +1054,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2006年</H>
+		<Fragment slot="heading">2006年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2006年25号" release="2006-05-24" tags={['表紙', 'カラー']}>
 			<LibContent>
@@ -1076,11 +1077,11 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2007年</H>
+		<Fragment slot="heading">2007年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2007年6号" release="2007-01-10" tags={['畑健二郎']}>
 			<LibContent>
-				<LibItem pages={[193, 208]}>『<cite>ハヤテのごとく!</cite>』第110話「<cite>三千院ランク王国〜ラルフはメカなのか怪獣なのか〜</cite>」第1回キャラクター人気投票結果発表回、最終ページに久米田先生のコメント掲載<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B010F9NR50/">単行本11巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[193, 208]}>『<cite>ハヤテのごとく!</cite>』第110話「<cite>三千院ランク王国〜ラルフはメカなのか怪獣なのか〜</cite>」第1回キャラクター人気投票結果発表回、最終ページに久米田先生のコメント掲載<small>（<Anchor href="https://www.amazon.co.jp/dp/B010F9NR50/">単行本11巻</Anchor>に収録）</small></LibItem>
 				<LibItem pages={[209, 210]}>『<cite>ハヤテのごとく!</cite>』第1回キャラクター人気投票結果発表、4位に<q>久米田康治</q>（112/11753票）がランクイン<small>（単行本11巻 p.72 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
@@ -1156,7 +1157,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2007年38号" release="2007-08-22">
 			<LibContent>
-				<LibItem pages={[501, 505]}>『<cite>もう、しませんから。</cite>』File.141「<cite>うらやましくて絶望した!!</cite>」（生前葬レポート漫画）<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00LIN3UWS/">単行本6巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[501, 505]}>『<cite>もう、しませんから。</cite>』File.141「<cite>うらやましくて絶望した!!</cite>」（生前葬レポート漫画）<small>（<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UWS/">単行本6巻</Anchor>に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1182,13 +1183,13 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2007年48号" release="2007-10">
 			<LibContent>
-				<LibItem pages={[465]}>『<cite>もう、しませんから。</cite>』File.150「<cite>集え、勇者たち</cite>」冒頭カラーページにて漫画家からの150回記念祝いの中に久米田先生のメッセージも掲載<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00LIN3UWS/">単行本6巻</LinkExternal>で File.141 の後に収録）</small></LibItem>
+				<LibItem pages={[465]}>『<cite>もう、しませんから。</cite>』File.150「<cite>集え、勇者たち</cite>」冒頭カラーページにて漫画家からの150回記念祝いの中に久米田先生のメッセージも掲載<small>（<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UWS/">単行本6巻</Anchor>で File.141 の後に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2007年51号" release="2007-11">
 			<LibContent>
-				<LibItem pages={[475]}>『<cite>もう、しませんから。</cite>』File.152「<cite>花園で見せろ、雑草魂!!</cite>」内で西本英雄が糸色望の姿で<q>幻滅した!</q>と嘆いている<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00LIN3UWS/">単行本6巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[475]}>『<cite>もう、しませんから。</cite>』File.152「<cite>花園で見せろ、雑草魂!!</cite>」内で西本英雄が糸色望の姿で<q>幻滅した!</q>と嘆いている<small>（<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UWS/">単行本6巻</Anchor>に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1205,7 +1206,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2008年</H>
+		<Fragment slot="heading">2008年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2008年6号" release="2008-01-09" tags={['カラー', 'アニメ']}>
 			<LibContent>
@@ -1228,7 +1229,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2008年17号" release="2008-03-26">
 			<LibContent>
-				<LibItem pages={[19, 29]}>『<cite>魔画尽町殺人事件（前編）</cite>』（原作: 西本英雄、漫画: 全連載作家）に糸色望登場、ハシラに久米田先生コメント掲載<q>前いたところでは、この手の企画でハブられることが多かったのですが、入れてもらえて良かったです</q><small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00LIN3UTQ/">『<cite>もう、しませんから。</cite>』単行本8巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[19, 29]}>『<cite>魔画尽町殺人事件（前編）</cite>』（原作: 西本英雄、漫画: 全連載作家）に糸色望登場、ハシラに久米田先生コメント掲載<q>前いたところでは、この手の企画でハブられることが多かったのですが、入れてもらえて良かったです</q><small>（<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UTQ/">『<cite>もう、しませんから。</cite>』単行本8巻</Anchor>に収録）</small></LibItem>
 				<LibItem pages={[492]}>『<cite>もう、しませんから。</cite>』File.166「<cite>『ダイヤのA』小学館漫画賞受賞!</cite>」授賞式で久米田先生が寺嶋先生に花束を渡す様子が描かれる<q>サンデー出身の講談社漫画賞受賞者がマガジン出身の小学館漫画賞受賞者に花束を渡す</q></LibItem>
 			</LibContent>
 		</LibBook>
@@ -1291,7 +1292,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2009年</H>
+		<Fragment slot="heading">2009年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="マガジンドラゴン 2009年新春" release="2009-01-07" tags={['表紙', '読切', '企画']} amazonAsin="B001O5OGU0" amazonImageId="61xfpxd0SjL" amazonImageWidth={110} amazonImageHeight={160}>
 			<LibContent>
@@ -1311,7 +1312,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2009年18号" release="2009-04-01" tags={['畑健二郎']}>
 			<LibContent>
-				<LibItem pages={[27, 28]}>『<cite>ハヤテのごとく!</cite>』第2回キャラクター人気投票結果発表!、19位に<q>久米田康治先生</q>（75/16133票）がランクイン<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B010F9NY4E/">単行本21巻</LinkExternal> p.185 に収録）</small></LibItem>
+				<LibItem pages={[27, 28]}>『<cite>ハヤテのごとく!</cite>』第2回キャラクター人気投票結果発表!、19位に<q>久米田康治先生</q>（75/16133票）がランクイン<small>（<Anchor href="https://www.amazon.co.jp/dp/B010F9NY4E/">単行本21巻</Anchor> p.185 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1320,9 +1321,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[239]}>『<cite>懺・さよなら絶望先生</cite>』アニメ広告（カラー）、水島大宙の振り仮名が<q>だいちゅう</q>になっており、『<cite>絶望先生</cite>』連載最終ページ（p.252）で訂正が入る<small>（単行本では削除されたが、アニメ3期十二話で再現）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.amazon.co.jp/dp/B002DZC3YQ/">Pick-up Voice Vol.20</LinkExternal>における神谷、上田、水島のインタビューによるとネタではなく素で間違えられたらしい</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://www.amazon.co.jp/dp/B002DZC3YQ/">Pick-up Voice Vol.20</Anchor>における神谷、上田、水島のインタビューによるとネタではなく素で間違えられたらしい</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="マガジンイーノ 02号" release="2009-06-20" tags={['アニメ']}>
@@ -1334,14 +1335,14 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2009年32号" release="2009-07-08" tags={['企画']}>
 			<LibContent>
-				<LibItem pages={[299, 342]}>サンデー×マガジン50周年企画　クロスライン『<cite>AUSDYN（オースダイン）</cite>』（村枝賢一）に糸色望登場<small>（<LinkExternal href="https://www.amazon.co.jp/dp/4063759423/">『<cite>Z-END</cite>』2巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[299, 342]}>サンデー×マガジン50周年企画　クロスライン『<cite>AUSDYN（オースダイン）</cite>』（村枝賢一）に糸色望登場<small>（<Anchor href="https://www.amazon.co.jp/dp/4063759423/">『<cite>Z-END</cite>』2巻</Anchor>に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2009年32号" release="2009-07-08" tags={['アニメ', '企画']}>
 			<LibContent>
 				<LibItem pages={[7]}>「<cite>『さよなら絶望先生』アニメのお知らせ</cite>」アニメ3期、18集限定版予告（カラー）</LibItem>
-				<LibItem pages={[207, 246]}>サンデー×マガジン50周年企画　クロスライン『<cite>MINEZAAG（マインザーク）</cite>』（村枝賢一）に坪内地丹登場<small>（<LinkExternal href="https://www.amazon.co.jp/dp/4063759423/">『<cite>Z-END</cite>』2巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[207, 246]}>サンデー×マガジン50周年企画　クロスライン『<cite>MINEZAAG（マインザーク）</cite>』（村枝賢一）に坪内地丹登場<small>（<Anchor href="https://www.amazon.co.jp/dp/4063759423/">『<cite>Z-END</cite>』2巻</Anchor>に収録）</small></LibItem>
 				<LibItem pages={[247, 248]}>村枝賢一インタビュー内で望、地丹のキャラクター使用の交渉経緯が語られている</LibItem>
 			</LibContent>
 		</LibBook>
@@ -1350,7 +1351,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem position="表紙">魔梨威<small>（『<cite>どうぶつの国</cite>』など他作品と混じっての掲載）</small></LibItem>
 				<LibItem pages={[3, 5]}>PEACH-PIT 超特大レアポスター（糸色倫イラストの折り込みポスター）</LibItem>
-				<LibItem pages={[539, 546]}>『<cite>じょしらく</cite>』一日目「<cite>犬と猫の災難</cite>」、扉ページ&amp;作者紹介カラー<small>（扉ページの魔梨威イラストのみ<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNC0/">単行本壱巻</LinkExternal> p.1 に収録）</small></LibItem>
+				<LibItem pages={[539, 546]}>『<cite>じょしらく</cite>』一日目「<cite>犬と猫の災難</cite>」、扉ページ&amp;作者紹介カラー<small>（扉ページの魔梨威イラストのみ<Anchor href="https://www.amazon.co.jp/dp/B009KYCNC0/">単行本壱巻</Anchor> p.1 に収録）</small></LibItem>
 				<LibItem pages={[547, 552]}>『<cite>じょしらく</cite>』二日目「<cite>叫び指南</cite>」</LibItem>
 			</LibContent>
 		</LibBook>
@@ -1367,11 +1368,11 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2009年48号" release="2009-10" tags={['表紙', 'カラー', '企画']}>
 			<LibContent>
 				<LibItem position="表紙">望（<q>絶望しつづけて200回! 一教師絶望</q>）<small>（優木まおみ&amp;他作品と混じっての掲載、イラストは単行本十六集表紙の流用、優木まおみのキャッチコピー<q>全男子待望</q>の“望”と『<cite>絶望先生</cite>』のキャッチコピー<q>一教師絶望</q>の“望”が重なるデザイン）</small></LibItem>
-				<LibItem pages={[14, 28]}>連載200回記念『<cite>さよなら絶望先生</cite>』第二百話「<cite>長い長いさっしん</cite>」、見開き扉ページカラー<small>（扉ページは<LinkExternal href="https://www.amazon.co.jp/dp/B00A765CVY/">単行本二一集</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[14, 28]}>連載200回記念『<cite>さよなら絶望先生</cite>』第二百話「<cite>長い長いさっしん</cite>」、見開き扉ページカラー<small>（扉ページは<Anchor href="https://www.amazon.co.jp/dp/B00A765CVY/">単行本二一集</Anchor>に収録）</small></LibItem>
 				<LibItem pages={[16]}>「<cite>絶望スポーツ號外</cite>」200回御礼クオカードプレゼント、アニメ三期終了、『<cite>じょしらく</cite>』連載中</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>
 					扉ページには以下の「<cite>いろは歌</cite>」替え歌が掲載されていたが、単行本では削除
 					<blockquote>
@@ -1382,23 +1383,23 @@ const slugger = new GithubSlugger();
 浅キ夢見ジ　酔ヒモセズ</pre>
 					</blockquote>
 				</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2010年</H>
+		<Fragment slot="heading">2010年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2010年2月号" release="2010-01" tags={['表紙', 'カラー']} amazonAsin="B00315IMGA" amazonImageId="61QerU2yvqL" amazonImageWidth={110} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="表紙">魔梨威&amp;木胡桃</LibItem>
 				<LibItem pages={[3, 5]}>「<cite>別マガ単行本のお知らせ</cite>」じょしらく1巻（カラー）</LibItem>
-				<LibItem pages={[636, 649]}>『<cite>じょしらく</cite>』六日目「<cite>こがね袋</cite>」、扉ページカラー、直筆による新年の挨拶<q>雑誌が続くようにがんばる。(久)</q><q>今年はがんばります。できるだけがんばります。ヤス</q><small>（七福神のイラストのみ<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNC0/">単行本壱巻</LinkExternal> p.2 に収録）</small></LibItem>
+				<LibItem pages={[636, 649]}>『<cite>じょしらく</cite>』六日目「<cite>こがね袋</cite>」、扉ページカラー、直筆による新年の挨拶<q>雑誌が続くようにがんばる。(久)</q><q>今年はがんばります。できるだけがんばります。ヤス</q><small>（七福神のイラストのみ<Anchor href="https://www.amazon.co.jp/dp/B009KYCNC0/">単行本壱巻</Anchor> p.2 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2010年3月号" release="2010-02">
 			<LibContent>
-				<LibItem pages={[112]}>創刊半年企画「<cite>どうぶつよんこま</cite>」（連載作家による4コマ漫画）にヤス先生の「<cite>メスらく</cite>」が掲載<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNCK/">単行本弐巻</LinkExternal> p.125 に収録）</small></LibItem>
+				<LibItem pages={[112]}>創刊半年企画「<cite>どうぶつよんこま</cite>」（連載作家による4コマ漫画）にヤス先生の「<cite>メスらく</cite>」が掲載<small>（<Anchor href="https://www.amazon.co.jp/dp/B009KYCNCK/">単行本弐巻</Anchor> p.125 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1446,7 +1447,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="コミックビーム 2010年10月号" release="2010-09-12">
 			<LibContent>
-				<LibItem pages={[305, 306]}>『<cite>夜は千の眼を持つ</cite>』第133回にてショート漫画「<cite>さよなら絶望頓知</cite>」掲載（『<cite>さよなら絶望先生</cite>』のあからさまなパロディ）<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B01MSL6ITG/">単行本『<cite>明日の夜は千の眼を持つ</cite>』</LinkExternal>の第37話「<cite>も一つ夜千ショート・フラッシュ!!</cite>」に収録）</small></LibItem>
+				<LibItem pages={[305, 306]}>『<cite>夜は千の眼を持つ</cite>』第133回にてショート漫画「<cite>さよなら絶望頓知</cite>」掲載（『<cite>さよなら絶望先生</cite>』のあからさまなパロディ）<small>（<Anchor href="https://www.amazon.co.jp/dp/B01MSL6ITG/">単行本『<cite>明日の夜は千の眼を持つ</cite>』</Anchor>の第37話「<cite>も一つ夜千ショート・フラッシュ!!</cite>」に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1461,26 +1462,26 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[10, 11]}>「<cite>別マガ PR ムービー作ってくださいコンテスト</cite>」結果発表、ヤス先生・久米田先生のコメント、新房昭之監督の総評が掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.youtube.com/watch?v=lX7iA3XLBcg">久米田康治賞「<cite>零日目　ロボットマスクちゃん</cite>」</LinkExternal>（かねきれい）、<LinkExternal href="https://www.youtube.com/watch?v=4wmJ2INqj9M">ヤス賞「<cite>touchikubi</cite>」</LinkExternal>（吉田ハラレマ）</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://www.youtube.com/watch?v=lX7iA3XLBcg">久米田康治賞「<cite>零日目　ロボットマスクちゃん</cite>」</Anchor>（かねきれい）、<Anchor href="https://www.youtube.com/watch?v=4wmJ2INqj9M">ヤス賞「<cite>touchikubi</cite>」</Anchor>（吉田ハラレマ）</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2011年2月号" release="2011-01-08" tags={['表紙']} amazonAsin="B004GI13FS" amazonImageId="6120TLYNhPL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="表紙">魔梨威<small>（『<cite>進撃の巨人</cite>』と混じっての掲載）</small></LibItem>
 				<LibItem pages={[2, 3]}>「<cite>別マガコミックスのお知らせ</cite>」（カラー）</LibItem>
 				<LibItem pages={[4, 5]}>「<cite>じょしらく噺家ごっこ</cite>」セット全員サービス（扇子&amp;手拭い）</LibItem>
-				<LibItem pages={[6, 7]}>「<cite>じょしらく問答</cite>」（久米田&amp;ヤス先生による一問一答）<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNES/">単行本参巻</LinkExternal> pp.124–125 に収録）</small></LibItem>
+				<LibItem pages={[6, 7]}>「<cite>じょしらく問答</cite>」（久米田&amp;ヤス先生による一問一答）<small>（<Anchor href="https://www.amazon.co.jp/dp/B009KYCNES/">単行本参巻</Anchor> pp.124–125 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2011年11号" release="2011-02-09" tags={['アニメ']}>
 			<LibContent>
-				<LibItem pages={[9]}>『<cite>かってに改蔵</cite>』アニメ特報（キャスト発表）、久米田先生コメント<q>なんで今なんですかね。（中略）うちじゃ考えられないって(笑)</q><small>（<LinkExternal href="https://websunday.net/5620/">まんが家 BACKSTAGE 久米田康治 Vol.40</LinkExternal>に掲載）</small></LibItem>
+				<LibItem pages={[9]}>『<cite>かってに改蔵</cite>』アニメ特報（キャスト発表）、久米田先生コメント<q>なんで今なんですかね。（中略）うちじゃ考えられないって(笑)</q><small>（<Anchor href="https://websunday.net/5620/">まんが家 BACKSTAGE 久米田康治 Vol.40</Anchor>に掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1520,7 +1521,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2011年6月号" release="2011-05">
 			<LibContent>
-				<LibItem pages={[559]}>「<cite>ジョシペディア　Ver.1.02</cite>」キャラクター毎のあらすじ（5月号と比べて各キャラの説明文を全体的に削減、木胡桃の説明文に「好きなうまい棒の銘柄」追加、丸京の説明文に「選挙に出馬」追加、覆面を項目ごと削除、「野武内科」〜「肌アレンジャー」を追加などの変更がある）<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B009KYCNES/">単行本参巻</LinkExternal> pp.126–127 に収録されているが、キャライラストは差し替え、説明文も再度アップデート）</small></LibItem>
+				<LibItem pages={[559]}>「<cite>ジョシペディア　Ver.1.02</cite>」キャラクター毎のあらすじ（5月号と比べて各キャラの説明文を全体的に削減、木胡桃の説明文に「好きなうまい棒の銘柄」追加、丸京の説明文に「選挙に出馬」追加、覆面を項目ごと削除、「野武内科」〜「肌アレンジャー」を追加などの変更がある）<small>（<Anchor href="https://www.amazon.co.jp/dp/B009KYCNES/">単行本参巻</Anchor> pp.126–127 に収録されているが、キャライラストは差し替え、説明文も再度アップデート）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1543,7 +1544,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2012年2月号" release="2012-01-07" tags={['表紙']} amazonAsin="B006MI8JQQ" amazonImageId="61FnrnVD7-L" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
@@ -1611,9 +1612,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[4, 5]}>『<cite>じょしらく</cite>』TV アニメ通信、『<cite>じょしらじ</cite>』情報、「<cite>お後がよろしくって…よ</cite>」リリース情報、人力車イベント情報（カラー）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>人力車イベントの詳細は<LinkExternal href="https://king-cr.jp/special/joshiraku/news/news11.html">『<cite>じょしらく</cite>』公式サイトのお知らせ</LinkExternal>や<LinkExternal href="https://ameblo.jp/kosugiya/entry-11323192971.html">小杉屋によるブログ記事</LinkExternal>を参照</li>
-			</ul>
+			<ListNote>
+				<li>人力車イベントの詳細は<Anchor href="https://king-cr.jp/special/joshiraku/news/news11.html">『<cite>じょしらく</cite>』公式サイトのお知らせ</Anchor>や<Anchor href="https://ameblo.jp/kosugiya/entry-11323192971.html">小杉屋によるブログ記事</Anchor>を参照</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2012年10月号" release="2012-09-07">
@@ -1636,7 +1637,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2013年</H>
+		<Fragment slot="heading">2013年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="別冊少年マガジン 2013年3月号" release="2013-02" tags={['表紙']}>
 			<LibContent>
@@ -1652,7 +1653,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2013年35号" release="2013-07-31" tags={['読切', 'カラー']}>
 			<LibContent>
-				<LibItem pages={[241, 264]}>読切『<cite>東風（不）見聞録</cite>』、冒頭2ページカラー<small>（<LinkExternal href="https://websunday.net/5621/">サンデーまんが家 BACKSTAGE 第41回</LinkExternal>でもう一つのオチが掲載）</small></LibItem>
+				<LibItem pages={[241, 264]}>読切『<cite>東風（不）見聞録</cite>』、冒頭2ページカラー<small>（<Anchor href="https://websunday.net/5621/">サンデーまんが家 BACKSTAGE 第41回</Anchor>でもう一つのオチが掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1699,9 +1700,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="表紙">サンジェルマン伯爵<small>（集合イラスト）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>2016年に<LinkExternal href="https://www.comiczin.jp/info/comic/index.cgi?no=5937">「<cite>悔画展</cite>」の COMIC ZIN 店舗特典（イラストカード）</LinkExternal>で全身イラストが公開された。</li>
-			</ul>
+			<ListNote>
+				<li>2016年に<Anchor href="https://www.comiczin.jp/info/comic/index.cgi?no=5937">「<cite>悔画展</cite>」の COMIC ZIN 店舗特典（イラストカード）</Anchor>で全身イラストが公開された。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="マガジン SPECIAL 2014年1号" release="2013-12-20" tags={['企画']}>
@@ -1712,7 +1713,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2014年</H>
+		<Fragment slot="heading">2014年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="マガジン SPECIAL 2014年2号" release="2014-01-20">
 			<LibContent>
@@ -1733,7 +1734,7 @@ const slugger = new GithubSlugger();
 				<LibItem position="表紙">サンジェルマン伯爵<small>（『<cite>七つの大罪</cite>』など他作品と混じっての掲載、イラストは週刊少年マガジン 2013年49号表紙の流用）</small></LibItem>
 				<LibItem pages={[9]}>「<cite>サンジェルマンの超長定規 featuring コテカ</cite>」（応募者全員サービス）の紹介ページ（カラー）</LibItem>
 				<LibItem pages={[80]}>「<cite>サンジェルマンの超長定規 featuring コテカ</cite>」の説明ページ</LibItem>
-				<LibItem pages={[81, 84]}>『<cite>せっかち伯爵と時間どろぼう</cite>』出張掲載「<cite>4Pでわかる上人類講座</cite>」<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B00LC9YFOK/">単行本2巻</LinkExternal>に収録）</small></LibItem>
+				<LibItem pages={[81, 84]}>『<cite>せっかち伯爵と時間どろぼう</cite>』出張掲載「<cite>4Pでわかる上人類講座</cite>」<small>（<Anchor href="https://www.amazon.co.jp/dp/B00LC9YFOK/">単行本2巻</Anchor>に収録）</small></LibItem>
 				<LibItem pages={[85, 89]}>『<cite>まんがたり! No.007</cite>』（野中コウ）で久米田康治ゲスト</LibItem>
 				<LibItem pages={[666]}>アンケートプレゼントとして『<cite>七つの大罪</cite>』『<cite>UQ HOLDER</cite>』に混じり『<cite>せっかち伯爵と時間どろぼう</cite>』1話16ページ目<small>（<q>私の名はサンジェルマン伯爵</q>と自己紹介するページ）</small>の複製原画</LibItem>
 			</LibContent>
@@ -1769,9 +1770,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[448]}>「<cite>よんこま!</cite>」に4コマ漫画「<cite>堕センションは8万〜</cite>」掲載<small>（お題の「南国」にちなんだ下ネタのオチ）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>『<cite>せっかち伯爵と時間どろぼう</cite>』の単行本には収録されなかったが、4巻の店舗特典ペーパーで再掲された。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2014年36・37号" release="2014-08-06">
@@ -1831,7 +1832,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2015年</H>
+		<Fragment slot="heading">2015年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジン 2015年6号" release="2015-01-05" tags={['表紙', '読切']} amazonAsin="B00R3BMQKQ" amazonImageId="61K6W2O9nYL" amazonImageWidth={110} amazonImageHeight={160}>
 			<LibContent>
@@ -1848,7 +1849,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="楽園 Le Paradis 17号" release="2015-02-28" tags={['カラー']}>
 			<LibContent>
-				<LibItem pages={[213, 229]}>『<cite>スタジオパルプ</cite>』Act1.、最終ページに映写機を操作するひろ子のカラーイラスト掲載<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B07DXK7B7R/">単行本1巻</LinkExternal> p.25 に収録）</small></LibItem>
+				<LibItem pages={[213, 229]}>『<cite>スタジオパルプ</cite>』Act1.、最終ページに映写機を操作するひろ子のカラーイラスト掲載<small>（<Anchor href="https://www.amazon.co.jp/dp/B07DXK7B7R/">単行本1巻</Anchor> p.25 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1880,7 +1881,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジン 2015年36号" release="2015-08-03">
 			<LibContent>
-				<LibItem pages={[353, 364]}>『<cite>アニメ監獄学園を創った男たち</cite>』第2話で『<cite>じょしらく</cite>』アニメ化時のエピソードに言及、久米田先生がアニメ放送を観ての発言が紹介<small>（2016年に発売された<LinkExternal href="https://www.amazon.co.jp/dp/B01C5ETJPU/">単行本</LinkExternal>にも収録）</small></LibItem>
+				<LibItem pages={[353, 364]}>『<cite>アニメ監獄学園を創った男たち</cite>』第2話で『<cite>じょしらく</cite>』アニメ化時のエピソードに言及、久米田先生がアニメ放送を観ての発言が紹介<small>（2016年に発売された<Anchor href="https://www.amazon.co.jp/dp/B01C5ETJPU/">単行本</Anchor>にも収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1893,24 +1894,24 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2016年1月号" release="2015-12-04" tags={['表紙', 'カラー']} amazonAsin="B018SD2K3U" amazonImageId="61FnexVb9AL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>RiN</cite>』など他作品と混じっての掲載）</small></LibItem>
-				<LibItem pages={[261, 292]}>『<cite>かくしごと</cite>』第1話、扉ページカラー<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B01GRDKGZW/">単行本1巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem pages={[261, 292]}>『<cite>かくしごと</cite>』第1話、扉ページカラー<small>（<Anchor href="https://www.amazon.co.jp/dp/B01GRDKGZW/">単行本1巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[293]}>「<cite>後藤可久士の「描く仕事」!!</cite>」予告（読者質問コーナー）</LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2016年</H>
+		<Fragment slot="heading">2016年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2016年2月号" release="2016-01-06" tags={['表紙']} amazonAsin="B019W1P54I" amazonImageId="61zCxNqAjML" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="紙版表紙">可久士&amp;姫<small>（『<cite>修羅の刻　昭和編</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
-				<LibItem position="電子版表紙">可久士&amp;姫<small>（イラストは2016年1月号扉ページの流用、<LinkExternal href="https://www.amazon.co.jp/dp/B01GRDKGZW/">単行本1巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem position="電子版表紙">可久士&amp;姫<small>（イラストは2016年1月号扉ページの流用、<Anchor href="https://www.amazon.co.jp/dp/B01GRDKGZW/">単行本1巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[285]}>「<cite>後藤可久士の「描く仕事」!!</cite>」第1回</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>電子版には『<cite>修羅の刻　昭和編</cite>』が収録されていないため、紙版と電子版では表紙が異なる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2016年9号" release="2016-01-27" tags={['表紙', '読切', 'カラー']}>
@@ -1954,15 +1955,15 @@ const slugger = new GithubSlugger();
 				<LibItem position="特別付録">『<cite>かくしごと</cite>』&amp;『<cite>なんくる姉さん</cite>』クリアファイル<small>（『<cite>かくしごと</cite>』イラストは月刊少年マガジン 2016年3月号扉ページの流用）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>電子版はクリアファイル付録なし、表紙掲載なし</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2016年6月号" release="2016-05-06" tags={['表紙', 'カラー', 'イベント']}>
 			<LibContent>
 				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>さよなら私のクラマー</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
-				<LibItem pages={[294, 320]}>『<cite>かくしごと</cite>』扉ページカラー<q>娘を愛す、娘はアイス</q><small>（<LinkExternal href="https://www.amazon.co.jp/dp/B01M7O7KP9/">単行本2巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem pages={[294, 320]}>『<cite>かくしごと</cite>』扉ページカラー<q>娘を愛す、娘はアイス</q><small>（<Anchor href="https://www.amazon.co.jp/dp/B01M7O7KP9/">単行本2巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[321]}>「<cite>後藤可久士の「描く仕事」!!</cite>」第4回</LibItem>
 				<LibItem pages={[322]}>『<cite>かくしごと</cite>』1巻発売記念サイン会、画集「<cite>悔画展</cite>」、原画展「<cite>一挙後悔中</cite>」の広告</LibItem>
 			</LibContent>
@@ -1976,9 +1977,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[31, 32]}>『<cite>かくしごと</cite>』1巻発売記念サイン会、プロモーションビデオ、画集「<cite>悔画展</cite>」、原画展「<cite>一挙後悔中</cite>」などの広告</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>電子版には『<cite>龍帥の翼　史記・留侯世家異伝</cite>』が収録されていないため、紙版と電子版では表紙が異なる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジンサード 2016年 Vol.7" release="2016-06-06" tags={['表紙', 'カラー', 'イベント']} amazonAsin="B01GFTJ1YA" amazonImageId="51yKpuadnjL" amazonImageWidth={111} amazonImageHeight={160}>
@@ -1991,7 +1992,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年マガジン 2016年30号" release="2016-06-22">
 			<LibContent>
-				<LibItem pages={[263, 270]}>出張連載『<cite>かくしごと</cite>』〜愛と笑いの漫画家パパ×娘物語〜<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B07J1DGNRM/">単行本7巻</LinkExternal>に「<cite>おさらい</cite>」として収録）</small></LibItem>
+				<LibItem pages={[263, 270]}>出張連載『<cite>かくしごと</cite>』〜愛と笑いの漫画家パパ×娘物語〜<small>（<Anchor href="https://www.amazon.co.jp/dp/B07J1DGNRM/">単行本7巻</Anchor>に「<cite>おさらい</cite>」として収録）</small></LibItem>
 				<LibItem pages={[271]}>『<cite>かくしごと</cite>』1巻、プロモーションビデオ、画集「<cite>悔画展</cite>」の広告</LibItem>
 			</LibContent>
 		</LibBook>
@@ -2004,7 +2005,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジンサード 2016年 Vol.8" release="2016-07">
 			<LibContent>
-				<LibItem pages={[349, 352]}>『<cite>なんくる姉さん</cite>』休載マンガ（第5.5ざわ目「<cite>カフーは寝て待て</cite>」）<small>（目次ページには通常の連載と同じ扱いで掲載、<LinkExternal href="https://www.amazon.co.jp/dp/B07G74YKMS/">単行本4巻</LinkExternal>に「<cite>特別掲載</cite>」の形で収録）</small></LibItem>
+				<LibItem pages={[349, 352]}>『<cite>なんくる姉さん</cite>』休載マンガ（第5.5ざわ目「<cite>カフーは寝て待て</cite>」）<small>（目次ページには通常の連載と同じ扱いで掲載、<Anchor href="https://www.amazon.co.jp/dp/B07G74YKMS/">単行本4巻</Anchor>に「<cite>特別掲載</cite>」の形で収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2032,13 +2033,13 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem position="紙版表紙">可久士&amp;姫<small>（『<cite>龍帥の翼　史記・留侯世家異伝</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
 				<LibItem position="電子版表紙">可久士&amp;姫<small>（『<cite>さよなら私のクラマー</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
-				<LibItem pages={[520, 552]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B071G5C4Q1/">単行本4巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem pages={[520, 552]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<Anchor href="https://www.amazon.co.jp/dp/B071G5C4Q1/">単行本4巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[553]}>『<cite>かくしごと</cite>』2巻、『<cite>なんくる姉さん</cite>』1巻広告</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>電子版には『<cite>龍帥の翼　史記・留侯世家異伝</cite>』が収録されていないため、紙版と電子版では表紙が異なる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジンサード 2016年 Vol.12" release="2016-11-05" tags={['表紙']} amazonAsin="B01MQCXJVV" amazonImageId="61X+dNzLcSL" amazonImageWidth={111} amazonImageHeight={160}>
@@ -2050,12 +2051,12 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2017年1月号" release="2016-12-06" tags={['表紙', 'カラー']}>
 			<LibContent>
 				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>ましろのおと</cite>』など他作品と混じっての掲載、イラストは可久士が月刊少年マガジン 2016年1月号表紙の流用、姫が同号扉ページの流用）</small></LibItem>
-				<LibItem pages={[3, 36]}>『<cite>かくしごと</cite>』扉ページカラー（Weekend House Alley をバックに可久士&amp;姫が歩くイラスト）<small>（単行本未収録、<LinkExternal href="https://www.youtube.com/watch?v=cHYeFFGcjdc&t=21s">TV アニメ OP</LinkExternal> に採用）</small></LibItem>
+				<LibItem pages={[3, 36]}>『<cite>かくしごと</cite>』扉ページカラー（Weekend House Alley をバックに可久士&amp;姫が歩くイラスト）<small>（単行本未収録、<Anchor href="https://www.youtube.com/watch?v=cHYeFFGcjdc&t=21s">TV アニメ OP</Anchor> に採用）</small></LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジンサード 2017年 Vol.4" release="2017-03-06" tags={['表紙']} amazonAsin="B06XCLXR8V" amazonImageId="61INdouKcWL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
@@ -2075,15 +2076,15 @@ const slugger = new GithubSlugger();
 				<LibItem position="電子版表紙">可久士&amp;姫<small>（『<cite>終わりのセラフ</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>電子版には『<cite>龍帥の翼　史記・留侯世家異伝</cite>』が収録されていないため、紙版と電子版では表紙が異なる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2017年11月号" release="2017-10-06" tags={['表紙', 'カラー']}>
 			<LibContent>
 				<LibItem position="表紙">姫<small>（『<cite>ましろのおと</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
-				<LibItem pages={[391, 426]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B07788BKMZ/">単行本5巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem pages={[391, 426]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<Anchor href="https://www.amazon.co.jp/dp/B07788BKMZ/">単行本5巻</Anchor>表紙で採用）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2096,7 +2097,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2018年</H>
+		<Fragment slot="heading">2018年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2018年3月号" release="2018-02-06">
 			<LibContent>
@@ -2112,7 +2113,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="楽園 Le Paradis 26号" release="2018-02-28" tags={['カラー']}>
 			<LibContent>
-				<LibItem pages={[3]}>総扉イラスト（カラー）、ひろ子&amp;高橋&amp;小林<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B07DXK7B7R/">単行本1巻</LinkExternal> p.1 に収録）</small></LibItem>
+				<LibItem pages={[3]}>総扉イラスト（カラー）、ひろ子&amp;高橋&amp;小林<small>（<Anchor href="https://www.amazon.co.jp/dp/B07DXK7B7R/">単行本1巻</Anchor> p.1 に収録）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2121,22 +2122,22 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[454]}>目次ページの<q>もうすぐエイプリルフール。先生たちに起こった嘘みたいな出来事を教えてください。</q>に対して『<cite>天野めぐみはスキだらけ!</cite>』のねこぐち先生が<q>久米田先生に漫画のネタにして頂けたことです。信じられん…!</q>と回答</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>2月14日に発売された週刊少年サンデー 2018年12号の読切で、本棚に『<cite>天野めぐみはスキだらけ!</cite>』の単行本が並んで描かれていたことと思われる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2018年6月号" release="2018-05-02" tags={['表紙', 'カラー']} amazonAsin="B07CMYGMJJ" amazonImageId="61ELt+4qXvL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="紙版表紙">可久士&amp;姫<small>（『<cite>龍帥の翼　史記・留侯世家異伝</cite>』など他作品と混じっての掲載、イラストは可久士が月刊少年マガジン 2016年1月号表紙の流用、姫が同号扉ページの流用）</small></LibItem>
 				<LibItem position="電子版表紙">浜辺の可久士&amp;姫</LibItem>
-				<LibItem pages={[3, 36]}>『<cite>かくしごと</cite>』扉ページカラー<small>（本号電子版表紙と同じ、<LinkExternal href="https://www.amazon.co.jp/dp/B07CSQY8YP/">単行本6巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem pages={[3, 36]}>『<cite>かくしごと</cite>』扉ページカラー<small>（本号電子版表紙と同じ、<Anchor href="https://www.amazon.co.jp/dp/B07CSQY8YP/">単行本6巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[37]}>『<cite>かくしごと</cite>』6巻広告</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>電子版には『<cite>龍帥の翼　史記・留侯世家異伝</cite>』が収録されていないため、紙版と電子版では表紙が異なる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジンサード 2018年 Vol.9" release="2018-08-06" tags={['表紙', 'カラー']} amazonAsin="B07G32L9BZ" amazonImageId="91N7iRG4Z4L" amazonImageWidth={111} amazonImageHeight={160}>
@@ -2158,7 +2159,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2019年</H>
+		<Fragment slot="heading">2019年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ヤングマガジンサード 2019年 Vol.4" release="2019-03-06">
 			<LibContent>
@@ -2175,9 +2176,9 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2019年10月号" release="2019-09-06" tags={['表紙', 'カラー']}>
 			<LibContent>
 				<LibItem position="表紙">姫<small>（『<cite>終わりのセラフ</cite>』など他作品と混じっての掲載、イラストは月刊少年マガジン 2016年1月号扉ページの流用）</small></LibItem>
-				<LibItem pages={[3, 40]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B07XBY5XKK/">単行本9巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem pages={[3, 40]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<Anchor href="https://www.amazon.co.jp/dp/B07XBY5XKK/">単行本9巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[41]}>『<cite>かくしごと</cite>』9巻広告</LibItem>
-				<LibItem pages={[761]} pageNote="表3"><LinkExternal href="https://web.archive.org/web/20191026001100/http://news.kodansha.co.jp/7316">「<cite>これが俺の好きな漫画！</cite>」Twitter キャンペーン</LinkExternal>広告</LibItem>
+				<LibItem pages={[761]} pageNote="表3"><Anchor href="https://web.archive.org/web/20191026001100/http://news.kodansha.co.jp/7316">「<cite>これが俺の好きな漫画！</cite>」Twitter キャンペーン</Anchor>広告</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2207,7 +2208,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2020年</H>
+		<Fragment slot="heading">2020年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="楽園 Le Paradis 32号" release="2020-02-29">
 			<LibContent>
@@ -2224,22 +2225,22 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2020年5月号" release="2020-04-06" tags={['表紙', 'アニメ']}>
 			<LibContent>
-				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>龍帥の翼　史記・留侯世家異伝</cite>』など他作品と混じっての掲載、イラストは<LinkExternal href="https://www.amazon.co.jp/dp/B07QQBQZ19/">単行本8巻</LinkExternal>表紙の流用）</small></LibItem>
-				<LibItem pages={[3, 36]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B085L7QSHK/">単行本11巻</LinkExternal>表紙で採用）</small></LibItem>
+				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>龍帥の翼　史記・留侯世家異伝</cite>』など他作品と混じっての掲載、イラストは<Anchor href="https://www.amazon.co.jp/dp/B07QQBQZ19/">単行本8巻</Anchor>表紙の流用）</small></LibItem>
+				<LibItem pages={[3, 36]}>『<cite>かくしごと</cite>』扉ページカラー<small>（<Anchor href="https://www.amazon.co.jp/dp/B085L7QSHK/">単行本11巻</Anchor>表紙で採用）</small></LibItem>
 				<LibItem pages={[4, 5]}>『<cite>かくしごと</cite>』TV アニメ特集、大槻ケンヂコメント</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2020年6月号" release="2020-05-02" tags={['表紙', 'アニメ']}>
 			<LibContent>
-				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>ましろのおと</cite>』など他作品と混じっての掲載、イラストは<LinkExternal href="https://www.amazon.co.jp/dp/B01N3CRBG8/">単行本3巻</LinkExternal>表紙の流用）</small></LibItem>
+				<LibItem position="表紙">可久士&amp;姫<small>（『<cite>ましろのおと</cite>』など他作品と混じっての掲載、イラストは<Anchor href="https://www.amazon.co.jp/dp/B01N3CRBG8/">単行本3巻</Anchor>表紙の流用）</small></LibItem>
 				<LibItem pages={[231, 232]}>『<cite>かくしごと</cite>』TV アニメ特集、高橋李依インタビュー（カラー）</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2020年7月号" release="2020-06-05" tags={['表紙', 'アニメ']}>
 			<LibContent>
-				<LibItem position="表紙">姫<small>（『<cite>ノラガミ</cite>』など他作品と混じっての掲載、イラストは<LinkExternal href="https://www.amazon.co.jp/dp/B01N3CRBG8/">単行本3巻</LinkExternal>表紙の流用）</small></LibItem>
+				<LibItem position="表紙">姫<small>（『<cite>ノラガミ</cite>』など他作品と混じっての掲載、イラストは<Anchor href="https://www.amazon.co.jp/dp/B01N3CRBG8/">単行本3巻</Anchor>表紙の流用）</small></LibItem>
 				<LibItem pages={[293]}>『<cite>かくしごと</cite>』Blu-ray&amp;DVD 第1巻、コラボ CD などの広告（カラー）</LibItem>
 			</LibContent>
 		</LibBook>
@@ -2252,7 +2253,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2021年</H>
+		<Fragment slot="heading">2021年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2021年9号" release="2021-01-27" tags={['畑健二郎']}>
 			<LibContent>
@@ -2342,7 +2343,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2022年</H>
+		<Fragment slot="heading">2022年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2022年16号" release="2022-03-16" tags={['表紙']}>
 			<LibContent>
@@ -2371,7 +2372,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2023年</H>
+		<Fragment slot="heading">2023年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2023年16号" release="2023-03-15" tags={['表紙']}>
 			<LibContent>
@@ -2384,14 +2385,14 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[14, 15]}>『<cite>ホビーの楽園!!</cite>』の「<cite>夢の最強ラインナップを考えよう! 週刊少年サンデー編</cite>」企画でお笑いタレント・川島明から『<cite>行け!!南国アイスホッケー部</cite>』の名前が挙がる（カラー）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>読売テレビで2023年4月2日（1日深夜）に放送された<LinkExternal href="https://www.ytv.co.jp/manganuma/">『<cite>川島・山内のマンガ沼</cite>』</LinkExternal>第112巻の紹介記事</li>
-			</ul>
+			<ListNote>
+				<li>読売テレビで2023年4月2日（1日深夜）に放送された<Anchor href="https://www.ytv.co.jp/manganuma/">『<cite>川島・山内のマンガ沼</cite>』</Anchor>第112巻の紹介記事</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2023年30号" release="2023-06-21" tags={['表紙']}>
 			<LibContent>
-				<LibItem position="表紙">制服姿の振り向き逸子<small>（『<cite>トニカクカワイイ</cite>』など他作品と混じっての掲載、イラストは<LinkExternal href="https://www.amazon.co.jp/dp/B0BC8JM421/">単行本1巻</LinkExternal>表紙の流用）</small></LibItem>
+				<LibItem position="表紙">制服姿の振り向き逸子<small>（『<cite>トニカクカワイイ</cite>』など他作品と混じっての掲載、イラストは<Anchor href="https://www.amazon.co.jp/dp/B0BC8JM421/">単行本1巻</Anchor>表紙の流用）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2400,22 +2401,22 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[5]}>「<cite>うる星やつら45周年記念特別企画</cite>」にラムちゃんイラスト色紙寄稿（カラー）<q>みんなのもとにラムちゃんが現れますように　今からでも</q></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>ボツイラストが<LinkExternal href="https://x.com/shibuyanear/status/1694963216110239961">『<cite>シブヤニアファミリー</cite>』公式 X アカウント</LinkExternal>で公開</li>
-			</ul>
+			<ListNote>
+				<li>ボツイラストが<Anchor href="https://x.com/shibuyanear/status/1694963216110239961">『<cite>シブヤニアファミリー</cite>』公式 X アカウント</Anchor>で公開</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2024年</H>
+		<Fragment slot="heading">2024年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2024年7号" release="2024-01-10" tags={['企画']}>
 			<LibContent>
 				<LibItem pages={[13]}>「<cite>名探偵コナン30周年記念企画</cite>」に江戸川コナンのイラスト色紙寄稿（カラー）<q>30年続いた真実はひとつ!!</q></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.conanten-30th.jp/">名探偵コナン展</LinkExternal>の各会場で実物が展示</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://www.conanten-30th.jp/">名探偵コナン展</Anchor>の各会場で実物が展示</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2024年16号" release="2024-03-13" tags={['表紙']}>
@@ -2424,9 +2425,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[3]}>表紙風集合イラストに逸子<small>（逸子のイラストは週刊少年サンデー 2023年16号表紙の流用）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>表紙イラストの全体像が<LinkExternal href="https://x.com/shibuyanear/status/1767842280197804321">『<cite>シブヤニアファミリー</cite>』公式 X アカウント</LinkExternal>で公開</li>
-			</ul>
+			<ListNote>
+				<li>表紙イラストの全体像が<Anchor href="https://x.com/shibuyanear/status/1767842280197804321">『<cite>シブヤニアファミリー</cite>』公式 X アカウント</Anchor>で公開</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2024年18号" release="2024-03-27" tags={['企画']}>
@@ -2440,15 +2441,15 @@ const slugger = new GithubSlugger();
 				<LibItem position="背表紙">クイズ「<cite>描いたのだ〜れだ?</cite>」に久米田先生による “<cite>にせまんがか</cite>” が掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>背表紙画像が<LinkExternal href="https://x.com/shonen_sunday/status/1775177250192900578">少年サンデー編集部 X アカウント</LinkExternal>で公開</li>
+			<ListNote>
+				<li>背表紙画像が<Anchor href="https://x.com/shonen_sunday/status/1775177250192900578">少年サンデー編集部 X アカウント</Anchor>で公開</li>
 				<li>クイズの回答が翌週の2024年20号目次ページに記載</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2024年27号" release="2024-05-29" tags={['表紙']}>
 			<LibContent>
-				<LibItem position="表紙">制服姿の振り向き逸子<small>（江端妃咲と混じっての掲載、イラストは<LinkExternal href="https://www.amazon.co.jp/dp/B0BC8JM421/">単行本1巻</LinkExternal>および週刊少年サンデー 2023年30号表紙の流用）</small></LibItem>
+				<LibItem position="表紙">制服姿の振り向き逸子<small>（江端妃咲と混じっての掲載、イラストは<Anchor href="https://www.amazon.co.jp/dp/B0BC8JM421/">単行本1巻</Anchor>および週刊少年サンデー 2023年30号表紙の流用）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2463,9 +2464,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="表紙">逸子<small>（サンデー文化祭2024 の集合イラスト）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>2024年9月8日に開催された<LinkExternal href="https://web.archive.org/web/20240828010038/https://websunday.net/62720/">サンデー文化祭2024</LinkExternal>のイベント会場では<LinkExternal href="https://x.com/shonen_sunday/status/1832585626086252938">入場口でのアーチ展示</LinkExternal>のほか、パネルコーナーで完成イラストの単独展示があった。</li>
-			</ul>
+			<ListNote>
+				<li>2024年9月8日に開催された<Anchor href="https://web.archive.org/web/20240828010038/https://websunday.net/62720/">サンデー文化祭2024</Anchor>のイベント会場では<Anchor href="https://x.com/shonen_sunday/status/1832585626086252938">入場口でのアーチ展示</Anchor>のほか、パネルコーナーで完成イラストの単独展示があった。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2024年49号" release="2024-10-30" tags={['企画']}>
@@ -2473,10 +2474,10 @@ const slugger = new GithubSlugger();
 				<LibItem position="背表紙">クイズ「<cite>描いたのだ〜れだ?</cite>」に久米田先生による “<cite>ごおくのべんざ</cite>” が掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>背表紙画像が<LinkExternal href="https://x.com/shonen_sunday/status/1851284594383077484">少年サンデー編集部 X アカウント</LinkExternal>で公開</li>
+			<ListNote>
+				<li>背表紙画像が<Anchor href="https://x.com/shonen_sunday/status/1851284594383077484">少年サンデー編集部 X アカウント</Anchor>で公開</li>
 				<li>クイズの回答が翌週の2024年50号目次ページに記載</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="週刊少年サンデー 2024年53号" release="2024-11-27" tags={['企画']}>
@@ -2487,17 +2488,17 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊少年マガジン 2025年1月号" release="2024-12-06" tags={['企画']}>
 			<LibContent>
-				<LibItem pages={[4]}>創刊50周年の集合イラストに可久士と姫<small>（<LinkExternal href="https://www.amazon.co.jp/dp/B01N3CRBG8/">単行本3巻</LinkExternal>表紙の流用）</small></LibItem>
+				<LibItem pages={[4]}>創刊50周年の集合イラストに可久士と姫<small>（<Anchor href="https://www.amazon.co.jp/dp/B01N3CRBG8/">単行本3巻</Anchor>表紙の流用）</small></LibItem>
 				<LibItem pages={[6]}>50周年記念サイン色紙（可久士、姫、十丸院、羅砂、一子）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>集合イラスト、色紙ともに<LinkExternal href="https://50th.gmaga.co/">月刊少年マガジン50周年記念サイト</LinkExternal>で公開</li>
-			</ul>
+			<ListNote>
+				<li>集合イラスト、色紙ともに<Anchor href="https://50th.gmaga.co/">月刊少年マガジン50周年記念サイト</Anchor>で公開</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2025年</H>
+		<Fragment slot="heading">2025年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ゲッサン 2025年2月号　別冊付録「あだち充画業55周年記念!」" release="2025-01-10" tags={['描き下ろし']}>
 			<LibContent>
@@ -2512,11 +2513,11 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">調査中</H>
+		<Fragment slot="heading">調査中</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>週刊少年サンデー 1992年30号の「<cite>ガチャガチャカンパニー</cite>」で募集した「<cite>ウソペンネーム</cite>」の選定結果発表は行われたのか? 週刊少年サンデー1992年31号〜40号を確認したが、発見できなかった。</li>
-			<li>1999年、雑誌に久米田先生の仕事環境の紹介ページがカラーで掲載されたらしい<small>（<LinkExternal href="http://tukigamiteta.blog43.fc2.com/blog-entry-104.html">もう、いーかげんなおはなし 「かってに改蔵」連載中に行われた企画について</LinkExternal>）</small>。週刊少年サンデー1998年36・37号〜2000年7号、および週刊少年サンデー超（増刊）1999年1月号〜2000年1月号を確認したが、それらしき記事は発見できなかった。1998年に週刊少年サンデーの企画「<cite>突撃!!プロテク研究所</cite>」で久米田先生の仕事場の写真が掲載されたことがあり（ただしこちらはモノクロページ）、それと混同されているのか、それともサンデー以外の雑誌なのか引き続き調査したい。</li>
-		</ul>
+			<li>1999年、雑誌に久米田先生の仕事環境の紹介ページがカラーで掲載されたらしい<small>（<Anchor href="http://tukigamiteta.blog43.fc2.com/blog-entry-104.html">もう、いーかげんなおはなし 「かってに改蔵」連載中に行われた企画について</Anchor>）</small>。週刊少年サンデー1998年36・37号〜2000年7号、および週刊少年サンデー超（増刊）1999年1月号〜2000年1月号を確認したが、それらしき記事は発見できなかった。1998年に週刊少年サンデーの企画「<cite>突撃!!プロテク研究所</cite>」で久米田先生の仕事場の写真が掲載されたことがあり（ただしこちらはモノクロページ）、それと混同されているのか、それともサンデー以外の雑誌なのか引き続き調査したい。</li>
+		</List>
 	</Section>
 </Layout>

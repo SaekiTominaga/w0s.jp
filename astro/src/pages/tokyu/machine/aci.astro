@@ -1,9 +1,11 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import Image from '@components/+phrasing/Image.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -21,65 +23,59 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="original">
-		<H slot="heading">オリジナルタイプ（製造時）</H>
+		<Fragment slot="heading">オリジナルタイプ（製造時）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="inv049" depth={2} headingType="c">
-					<H slot="heading">INV-049</H>
+					<Fragment slot="heading">INV-049</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aci/INV049.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-07-18 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ1022（5次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aci/INV049.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-07-18 -->
+						<Fragment slot="caption">クハ1022（5次車）海側</Fragment>
+					</Embedded>
 
 					<p>1988年に登場した1000系では冷房装置がインバーター制御になりました。従来はサーモスタットにより冷房能力を段階的に切り替える方式でしたが、本形式からは各車の床下にマイコン制御による無段階切替を行う制御箱（東芝製）が設けられ、無段階制御を行っています。</p>
 
 					<p>後述の新型タイプへの更新や車両の廃車により、現在は譲渡先でのみ見ることができます。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="inv088" depth={2} headingType="c">
-					<H slot="heading">INV-088</H>
+					<Fragment slot="heading">INV-088</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aci/INV088.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-02-14 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ2251（1次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aci/INV088.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-02-14 -->
+						<Fragment slot="caption">デハ2251（1次車）海側</Fragment>
+					</Embedded>
 
 					<p>1992年に登場した2000系も、1000系と同じ方式の無段階可変制御を行っています。20m大型車のため冷房装置が4台搭載となった関係で、制御装置は1000系と異なるタイプが採用されました。</p>
 
 					<p>後述の新型タイプへ置き換えられたため、現在は消滅しています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="renewal2014">
-		<H slot="heading">2014年更新後</H>
+		<Fragment slot="heading">2014年更新後</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="tc220" depth={2} headingType="c">
-					<H slot="heading">TCE-220</H>
+					<Fragment slot="heading">TCE-220</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/aci/TCE220.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2019-04-26 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9021（1次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/aci/TCE220.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2019-04-26 -->
+						<Fragment slot="caption">クハ9021（1次車）海側</Fragment>
+					</Embedded>
 
 					<p>2014年には冷房装置の更新が始まり、床下の制御装置も新型に換装されました。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

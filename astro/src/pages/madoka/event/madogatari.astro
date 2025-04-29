@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/Madoka.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -11,122 +12,120 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<div class="p-table">
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">地域</th>
-					<th scope="col" aria-sort="ascending">期間</th>
-					<th scope="col">場所</th>
-					<th scope="col">備考</th>
-					<th scope="col">紹介サイト</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">東京</th>
-					<td>2015年11月27日(金)〜12月2日(水)</td>
-					<td>3331 Arts Chiyoda</td>
-					<td>11月29日、ベルサール秋葉原でキャストトークステージ</td>
-					<td>
-						<ul>
-							<li><LinkExternal href="http://www.madogatari.jp/tokyo/" icon={false}>公式ページ</LinkExternal></li>
-							<li><LinkExternal href="http://www.shaft-web.co.jp/madogatari.html" icon={false}>SHAFT</LinkExternal></li>
-							<li><LinkExternal href="https://www.animatetimes.com/news/details.php?id=1448627089" icon={false}>アニメイトタイムズ（内覧会）</LinkExternal></li>
-							<li><LinkExternal href="https://www.animatetimes.com/news/details.php?id=1449147045" icon={false}>アニメイトタイムズ（終了後報告）</LinkExternal></li>
-							<li><LinkExternal href="https://www.animatetimes.com/news/details.php?id=1449234188" icon={false}>アニメイトタイムズ（コンセプトムービー）</LinkExternal></li>
-							<li><LinkExternal href="http://kai-you.net/article/23633" icon={false}>KAI-YOU.net</LinkExternal></li>
-							<li><LinkExternal href="http://blog.2ji-iro.jp/archives/58053" icon={false}>なな情報局</LinkExternal></li>
-							<li><LinkExternal href="https://www.anime-recorder.com/ArticleDetail.aspx?seq_no=5815" icon={false}>アニメレコーダー（終了後報告）</LinkExternal></li>
-							<li><LinkExternal href="http://gs.dengeki.com/news/53219/" icon={false}>電撃G's magazine.com（終了後報告）</LinkExternal></li>
-							<li><LinkExternal href="https://1hatahata.blogspot.jp/2016/01/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</LinkExternal></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">大阪</th>
-					<td>2015年12月22日(火)〜27日(日)</td>
-					<td>ハービスホール</td>
-					<td>来場者特典: クリスマスカード（12月24日、25日のみ）</td>
-					<td>
-						<ul>
-							<li><LinkExternal href="http://www.madogatari.jp/osaka/" icon={false}>公式ページ</LinkExternal></li>
-							<li><LinkExternal href="https://gigazine.net/news/20151222-madogatari-exhibition-osaka/" icon={false}>GIGAZINE</LinkExternal></li>
-							<li><LinkExternal href="http://www.hochi.co.jp/entertainment/20151222-OHT1T50078.html" icon={false}>スポーツ報知</LinkExternal></li>
-							<li><LinkExternal href="https://news.mynavi.jp/article/20151222-a703/" icon={false}>マイナビニュース</LinkExternal></li>
-							<li><LinkExternal href="https://www.animatetimes.com/news/details.php?id=1450790952" icon={false}>アニメイトタイムズ</LinkExternal></li>
-							<li><LinkExternal href="https://www.anime-recorder.com/ArticleDetail.aspx?seq_no=6143" icon={false}>アニメレコーダー</LinkExternal></li>
-							<li><LinkExternal href="https://1hatahata.blogspot.jp/2016/01/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</LinkExternal></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">札幌</th>
-					<td>2016年2月9日(火)〜14日(日)</td>
-					<td>サッポロファクトリーホール</td>
-					<td>来場者特典: バレンタインカード、クリアファイル</td>
-					<td>
-						<ul>
-							<li><LinkExternal href="http://www.madogatari.jp/sapporo/" icon={false}>公式ページ</LinkExternal></li>
-							<li><LinkExternal href="http://sapporofactory.jp/sp/event/atrium/1511300209/" icon={false}>サッポロファクトリー</LinkExternal></li>
-							<li><LinkExternal href="http://www.hochi.co.jp/entertainment/20160205-OHT1T50080.html" icon={false}>スポーツ報知（雪像）</LinkExternal></li>
-							<li><LinkExternal href="http://hobby.dengeki.com/news/161273/" icon={false}>電撃ホビーウェブ</LinkExternal></li>
-							<li><LinkExternal href="http://www.hochi.co.jp/entertainment/20160209-OHT1T50118.html" icon={false}>スポーツ報知</LinkExternal></li>
-							<li><LinkExternal href="https://news.mynavi.jp/article/20160210-a084/" icon={false}>マイナビニュース</LinkExternal></li>
-							<li><LinkExternal href="https://www.animatetimes.com/news/details.php?id=1455067017" icon={false}>アニメイトタイムズ</LinkExternal></li>
-							<li><LinkExternal href="https://www.moview.jp/958942144.html" icon={false}>MOVIEW</LinkExternal></li>
-							<li><LinkExternal href="https://1hatahata.blogspot.jp/2016/02/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</LinkExternal></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">名古屋</th>
-					<td>2016年5月4日(水・祝)〜8日(日)</td>
-					<td>名古屋市中小企業振興会館・第1ファッション展示場</td>
-					<td>ヒロイン総選挙、MADOGATARIくじ、来場者特典: アニバーサリーカード</td>
-					<td>
-						<ul>
-							<li><LinkExternal href="http://www.madogatari.jp/nagoya/" icon={false}>公式ページ</LinkExternal></li>
-							<li><LinkExternal href="https://news.mynavi.jp/article/20160219-a591/" icon={false}>マイナビニュース</LinkExternal></li>
-							<li><LinkExternal href="https://www.animatetimes.com/news/details.php?id=1455884249" icon={false}>アニメイトタイムズ</LinkExternal></li>
-							<li><LinkExternal href="https://1hatahata.blogspot.jp/2016/06/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</LinkExternal></li>
-							<li><a href="https://blog.w0s.jp/entry/464">富永日記帳（個人ブログ）</a></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">東京アンコール</th>
-					<td>2016年9月22日(木・祝)〜25日(日)</td>
-					<td>TEPIA イベントホール</td>
-					<td>名台詞投票、来場者特典: アニバーサリーイラスト（蒼樹うめ／VOFAN）、<LinkExternal href="http://www.cosplaycossan.com/madogatari" icon={false}>COSSAN meets MADOGATARI展</LinkExternal>（25日のみ）</td>
-					<td>
-						<ul>
-							<li><LinkExternal href="http://www.madogatari.jp/tokyo_encore/" icon={false}>公式ページ</LinkExternal></li>
-							<li><LinkExternal href="https://prtimes.jp/main/html/rd/p/000000142.000016356.html" icon={false}>PR TIMES（No.1ヒロインイラスト）</LinkExternal></li>
-							<li><LinkExternal href="https://prtimes.jp/main/html/rd/p/000000150.000016356.html" icon={false}>PR TIMES（日程）</LinkExternal></li>
-							<li><LinkExternal href="https://prtimes.jp/main/html/rd/p/000000154.000016356.html" icon={false}>PR TIMES（メインビジュアル）</LinkExternal></li>
-							<li><LinkExternal href="https://prtimes.jp/main/html/rd/p/000000205.000016356.html" icon={false}>PR TIMES（クビキリサイクル）</LinkExternal></li>
-							<li><LinkExternal href="https://prtimes.jp/main/html/rd/p/000000210.000016356.html" icon={false}>PR TIMES（来場企画）</LinkExternal></li>
-							<li><LinkExternal href="https://news.mynavi.jp/article/20160722-a512/" icon={false}>マイナビニュース</LinkExternal></li>
-							<li><LinkExternal href="http://www.hochi.co.jp/entertainment/20160922-OHT1T50082.html" icon={false}>スポーツ報知</LinkExternal></li>
-							<li><LinkExternal href="http://www.hochi.co.jp/entertainment/20160925-OHT1T50080.html" icon={false}>スポーツ報知（コスプレ）</LinkExternal></li>
-							<li><LinkExternal href="http://highland.hatenablog.com/entry/2016/09/27/165510" icon={false}>highland's diary（個人ブログ）</LinkExternal></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">金沢（GALLERY）</th>
-					<td>2016年12月22日(木)〜25日(日)</td>
-					<td>金沢21世紀美術館</td>
-					<td></td>
-					<td>
-						<ul>
-							<li><LinkExternal href="http://www.madogatari.jp/madogatari_gallery/" icon={false}>公式ページ</LinkExternal></li>
-							<li><LinkExternal href="https://prtimes.jp/main/html/rd/p/000000210.000016356.html" icon={false}>PR TIMES</LinkExternal></li>
-						</ul>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<Table>
+		<thead>
+			<tr>
+				<th scope="col">地域</th>
+				<th scope="col" aria-sort="ascending">期間</th>
+				<th scope="col">場所</th>
+				<th scope="col">備考</th>
+				<th scope="col">紹介サイト</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">東京</th>
+				<td>2015年11月27日(金)〜12月2日(水)</td>
+				<td>3331 Arts Chiyoda</td>
+				<td>11月29日、ベルサール秋葉原でキャストトークステージ</td>
+				<td>
+					<ul>
+						<li><Anchor href="http://www.madogatari.jp/tokyo/" icon={false}>公式ページ</Anchor></li>
+						<li><Anchor href="http://www.shaft-web.co.jp/madogatari.html" icon={false}>SHAFT</Anchor></li>
+						<li><Anchor href="https://www.animatetimes.com/news/details.php?id=1448627089" icon={false}>アニメイトタイムズ（内覧会）</Anchor></li>
+						<li><Anchor href="https://www.animatetimes.com/news/details.php?id=1449147045" icon={false}>アニメイトタイムズ（終了後報告）</Anchor></li>
+						<li><Anchor href="https://www.animatetimes.com/news/details.php?id=1449234188" icon={false}>アニメイトタイムズ（コンセプトムービー）</Anchor></li>
+						<li><Anchor href="http://kai-you.net/article/23633" icon={false}>KAI-YOU.net</Anchor></li>
+						<li><Anchor href="http://blog.2ji-iro.jp/archives/58053" icon={false}>なな情報局</Anchor></li>
+						<li><Anchor href="https://www.anime-recorder.com/ArticleDetail.aspx?seq_no=5815" icon={false}>アニメレコーダー（終了後報告）</Anchor></li>
+						<li><Anchor href="http://gs.dengeki.com/news/53219/" icon={false}>電撃G's magazine.com（終了後報告）</Anchor></li>
+						<li><Anchor href="https://1hatahata.blogspot.jp/2016/01/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</Anchor></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">大阪</th>
+				<td>2015年12月22日(火)〜27日(日)</td>
+				<td>ハービスホール</td>
+				<td>来場者特典: クリスマスカード（12月24日、25日のみ）</td>
+				<td>
+					<ul>
+						<li><Anchor href="http://www.madogatari.jp/osaka/" icon={false}>公式ページ</Anchor></li>
+						<li><Anchor href="https://gigazine.net/news/20151222-madogatari-exhibition-osaka/" icon={false}>GIGAZINE</Anchor></li>
+						<li><Anchor href="http://www.hochi.co.jp/entertainment/20151222-OHT1T50078.html" icon={false}>スポーツ報知</Anchor></li>
+						<li><Anchor href="https://news.mynavi.jp/article/20151222-a703/" icon={false}>マイナビニュース</Anchor></li>
+						<li><Anchor href="https://www.animatetimes.com/news/details.php?id=1450790952" icon={false}>アニメイトタイムズ</Anchor></li>
+						<li><Anchor href="https://www.anime-recorder.com/ArticleDetail.aspx?seq_no=6143" icon={false}>アニメレコーダー</Anchor></li>
+						<li><Anchor href="https://1hatahata.blogspot.jp/2016/01/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</Anchor></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">札幌</th>
+				<td>2016年2月9日(火)〜14日(日)</td>
+				<td>サッポロファクトリーホール</td>
+				<td>来場者特典: バレンタインカード、クリアファイル</td>
+				<td>
+					<ul>
+						<li><Anchor href="http://www.madogatari.jp/sapporo/" icon={false}>公式ページ</Anchor></li>
+						<li><Anchor href="http://sapporofactory.jp/sp/event/atrium/1511300209/" icon={false}>サッポロファクトリー</Anchor></li>
+						<li><Anchor href="http://www.hochi.co.jp/entertainment/20160205-OHT1T50080.html" icon={false}>スポーツ報知（雪像）</Anchor></li>
+						<li><Anchor href="http://hobby.dengeki.com/news/161273/" icon={false}>電撃ホビーウェブ</Anchor></li>
+						<li><Anchor href="http://www.hochi.co.jp/entertainment/20160209-OHT1T50118.html" icon={false}>スポーツ報知</Anchor></li>
+						<li><Anchor href="https://news.mynavi.jp/article/20160210-a084/" icon={false}>マイナビニュース</Anchor></li>
+						<li><Anchor href="https://www.animatetimes.com/news/details.php?id=1455067017" icon={false}>アニメイトタイムズ</Anchor></li>
+						<li><Anchor href="https://www.moview.jp/958942144.html" icon={false}>MOVIEW</Anchor></li>
+						<li><Anchor href="https://1hatahata.blogspot.jp/2016/02/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</Anchor></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">名古屋</th>
+				<td>2016年5月4日(水・祝)〜8日(日)</td>
+				<td>名古屋市中小企業振興会館・第1ファッション展示場</td>
+				<td>ヒロイン総選挙、MADOGATARIくじ、来場者特典: アニバーサリーカード</td>
+				<td>
+					<ul>
+						<li><Anchor href="http://www.madogatari.jp/nagoya/" icon={false}>公式ページ</Anchor></li>
+						<li><Anchor href="https://news.mynavi.jp/article/20160219-a591/" icon={false}>マイナビニュース</Anchor></li>
+						<li><Anchor href="https://www.animatetimes.com/news/details.php?id=1455884249" icon={false}>アニメイトタイムズ</Anchor></li>
+						<li><Anchor href="https://1hatahata.blogspot.jp/2016/06/madogatari.html" icon={false}>取り残されたオタク亭（個人ブログ）</Anchor></li>
+						<li><a href="https://blog.w0s.jp/entry/464">富永日記帳（個人ブログ）</a></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">東京アンコール</th>
+				<td>2016年9月22日(木・祝)〜25日(日)</td>
+				<td>TEPIA イベントホール</td>
+				<td>名台詞投票、来場者特典: アニバーサリーイラスト（蒼樹うめ／VOFAN）、<Anchor href="http://www.cosplaycossan.com/madogatari" icon={false}>COSSAN meets MADOGATARI展</Anchor>（25日のみ）</td>
+				<td>
+					<ul>
+						<li><Anchor href="http://www.madogatari.jp/tokyo_encore/" icon={false}>公式ページ</Anchor></li>
+						<li><Anchor href="https://prtimes.jp/main/html/rd/p/000000142.000016356.html" icon={false}>PR TIMES（No.1ヒロインイラスト）</Anchor></li>
+						<li><Anchor href="https://prtimes.jp/main/html/rd/p/000000150.000016356.html" icon={false}>PR TIMES（日程）</Anchor></li>
+						<li><Anchor href="https://prtimes.jp/main/html/rd/p/000000154.000016356.html" icon={false}>PR TIMES（メインビジュアル）</Anchor></li>
+						<li><Anchor href="https://prtimes.jp/main/html/rd/p/000000205.000016356.html" icon={false}>PR TIMES（クビキリサイクル）</Anchor></li>
+						<li><Anchor href="https://prtimes.jp/main/html/rd/p/000000210.000016356.html" icon={false}>PR TIMES（来場企画）</Anchor></li>
+						<li><Anchor href="https://news.mynavi.jp/article/20160722-a512/" icon={false}>マイナビニュース</Anchor></li>
+						<li><Anchor href="http://www.hochi.co.jp/entertainment/20160922-OHT1T50082.html" icon={false}>スポーツ報知</Anchor></li>
+						<li><Anchor href="http://www.hochi.co.jp/entertainment/20160925-OHT1T50080.html" icon={false}>スポーツ報知（コスプレ）</Anchor></li>
+						<li><Anchor href="http://highland.hatenablog.com/entry/2016/09/27/165510" icon={false}>highland's diary（個人ブログ）</Anchor></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">金沢（GALLERY）</th>
+				<td>2016年12月22日(木)〜25日(日)</td>
+				<td>金沢21世紀美術館</td>
+				<td></td>
+				<td>
+					<ul>
+						<li><Anchor href="http://www.madogatari.jp/madogatari_gallery/" icon={false}>公式ページ</Anchor></li>
+						<li><Anchor href="https://prtimes.jp/main/html/rd/p/000000210.000016356.html" icon={false}>PR TIMES</Anchor></li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</Table>
 </Layout>

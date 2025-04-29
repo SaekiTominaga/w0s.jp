@@ -1,10 +1,17 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import ListNote from '@components/ListNote.astro';
+import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Table from '@components/Table.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Image from '@components/+phrasing/Image.astro';
+import TickAndCross from '@components/+phrasing/TickAndCross.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -32,13 +39,19 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>マギレコ中国版、繁中版、北米版のゲーム概要、イベントレポート、街頭広告の掲出例などを紹介します。</p>
 
-		<div class="c-embed-sidebar -embed-first">
-			<div class="c-embed-sidebar__text">
-				<dl class="p-list-table">
+		<Flex>
+			<FlexItem>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial11_cover.jpg" alt="表紙画像: 複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<ListTable>
 					<div>
 						<dt>発行日</dt>
 						<dd>2019年8月12日</dd>
@@ -51,42 +64,35 @@ const structuredData: StructuredData = {
 						<dt>冊子価格</dt>
 						<dd>2,000円</dd>
 					</div>
-				</dl>
-			</div>
-			<div class="c-embed-sidebar__embed">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="madoka/dojin/pictorial11_cover.jpg" alt="表紙画像: 複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} quality={60} />
-					</div>
-				</figure>
-			</div>
-		</div>
+				</ListTable>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
-		<div class="c-flex -buttons">
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial11_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://w0s.booth.pm/items/2649174" icon={false} class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">冊子版（BOOTH）</span></LinkExternal>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://www.amazon.co.jp/dp/B07W4WBBBR/" icon={false} class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></LinkExternal>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial11_sample.pdf" type="pdf">サンプル PDF</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://w0s.booth.pm/items/2649174" type="booth">冊子版（BOOTH）</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B07W4WBBBR/" type="amazon">Kindle 版（Amazon）</AnchorButton>
+			</FlexItem>
+		</Flex>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>Kindle 版は画像形式による「固定レイアウト型」</li>
-		</ul>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>
 				中国版『<span lang="zh-Hans">魔法纪录 魔法少女小圆外传</span>』
 				<ol>
@@ -114,29 +120,27 @@ const structuredData: StructuredData = {
 					<li><span lang="en">Anime Expo 2019</span>（2019年7月）</li>
 				</ol>
 			</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="errata">
-		<H slot="heading">正誤情報</H>
+		<Fragment slot="heading">正誤情報</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ページ</th>
-						<th scope="col">内容</th>
-						<th scope="col">電子版修正</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>p.22</td>
-						<td>バス、タクシーのラッピング広告期間について<q>2019年4月下旬から6月頃まで台湾の台北でバス、タクシーのラッピング広告が行われた。</q>となっているが、実際は7月下旬頃まで行われていた模様。</td>
-						<td><span class="c-tac -tick">済み</span></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.22</td>
+					<td>バス、タクシーのラッピング広告期間について<q>2019年4月下旬から6月頃まで台湾の台北でバス、タクシーのラッピング広告が行われた。</q>となっているが、実際は7月下旬頃まで行われていた模様。</td>
+					<td><TickAndCross type="tick">済み</TickAndCross></td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

@@ -2,11 +2,11 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
 import LibNewspaper from '@components/LibNewspaper.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,7 +33,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="毎日新聞" release="2011-01-21">
 			<LibContent>
@@ -76,9 +76,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="3面（文化）">茶話アニメ「<cite>魔法少女の成長物語</cite>」（藤津亮太）、鹿目家の母娘の関係に焦点を当てた考察。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>2018年発行の<LinkExternal href="https://www.amazon.co.jp/dp/B07D9QS816/">新聞に載ったアニメレビュー</LinkExternal>にも収録。</li>
-			</ul>
+			<ListNote>
+				<li>2018年発行の<Anchor href="https://www.amazon.co.jp/dp/B07D9QS816/">新聞に載ったアニメレビュー</Anchor>にも収録。</li>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2011-06-04" npClass="朝刊">
@@ -124,9 +124,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="7面">「<cite>なぜ人気? 「魔法少女まどか☆マギカ</cite>」」（石崎森人）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://futoko.publishers.fm/issue/409/">ウェブ記事</LinkExternal>で1面、7面の情報が無料で閲覧可能。</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://futoko.publishers.fm/issue/409/">ウェブ記事</Anchor>で1面、7面の情報が無料で閲覧可能。</li>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2011-10-04" npClass="朝刊">
@@ -191,7 +191,7 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="中日新聞" release="2012-03-16" npClass="朝刊">
 			<LibContent>
@@ -267,7 +267,7 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2013年</H>
+		<Fragment slot="heading">2013年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞（名古屋）" release="2013-03-27" npClass="朝刊">
 			<LibContent>
@@ -310,9 +310,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="13面（文化）">「<cite>かわいさとシリアス 混沌の魅力</cite>」[新編]紹介、新房昭之コメント。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.sankei.com/entertainments/news/131116/ent1311160004-n1.html">産経ニュース</LinkExternal>で全文が公開されている。</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://www.sankei.com/entertainments/news/131116/ent1311160004-n1.html">産経ニュース</Anchor>で全文が公開されている。</li>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="産経新聞（大阪）" release="2013-11-25" npClass="朝刊">
@@ -334,11 +334,11 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2014年</H>
+		<Fragment slot="heading">2014年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2014-02-21" npClass="朝刊">
 			<LibContent>
-				<LibItem position="32面（地域）">「<cite>アニメの画像歩いてゲット</cite>」東京都杉並区で行われている<LinkExternal href="https://web.archive.org/web/20140313184014/http://www.chuosen-rr.com/aniwalk.html">アニ×ウォーク</LinkExternal>の記事。</LibItem>
+				<LibItem position="32面（地域）">「<cite>アニメの画像歩いてゲット</cite>」東京都杉並区で行われている<Anchor href="https://web.archive.org/web/20140313184014/http://www.chuosen-rr.com/aniwalk.html">アニ×ウォーク</Anchor>の記事。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -380,7 +380,7 @@ const slugger = new GithubSlugger();
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="千歳民報" release="2014-07-28" npClass="朝刊">
 			<LibContent>
-				<LibItem position="11面（社会）">「<cite>アニメフェア始まる　新千歳の夏休みイベント</cite>」<LinkExternal href="http://www.new-chitose-airport.jp/ja/corporate/press/pdf/pdf-20140725_natuyasumi.pdf">新千歳空港アニメフェア2014</LinkExternal>の記事。ラッピングカー（ランボルギーニ）の写真掲載。</LibItem>
+				<LibItem position="11面（社会）">「<cite>アニメフェア始まる　新千歳の夏休みイベント</cite>」<Anchor href="http://www.new-chitose-airport.jp/ja/corporate/press/pdf/pdf-20140725_natuyasumi.pdf">新千歳空港アニメフェア2014</Anchor>の記事。ラッピングカー（ランボルギーニ）の写真掲載。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -409,7 +409,7 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2015年</H>
+		<Fragment slot="heading">2015年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="産経新聞（東京）" release="2015-01-08" npClass="朝刊">
 			<LibContent>
@@ -419,19 +419,19 @@ const slugger = new GithubSlugger();
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-03-13" npClass="朝刊">
 			<LibContent>
-				<LibItem position="37面（社会）">SUGOI JAPAN で<LinkExternal href="http://sugoi-japan.jp/2015/result.html">グランプリに選ばれた</LinkExternal>こと。</LibItem>
+				<LibItem position="37面（社会）">SUGOI JAPAN で<Anchor href="http://sugoi-japan.jp/2015/result.html">グランプリに選ばれた</Anchor>こと。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-03-21" npClass="朝刊">
 			<LibContent>
-				<LibItem position="5面"><LinkExternal href="https://web.archive.org/web/20151012214219/http://sugoi-japan.jp/2015">SUGOI JAPAN</LinkExternal><em>「<cite>初代グランプリは「魔法少女まどか☆マギカ」</cite>」</em>岩上敦宏、久保田光俊コメント掲載。</LibItem>
+				<LibItem position="5面"><Anchor href="https://web.archive.org/web/20151012214219/http://sugoi-japan.jp/2015">SUGOI JAPAN</Anchor><em>「<cite>初代グランプリは「魔法少女まどか☆マギカ」</cite>」</em>岩上敦宏、久保田光俊コメント掲載。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-03-31" npClass="popstyle">
 			<LibContent>
-				<LibItem position="3面"><LinkExternal href="https://web.archive.org/web/20151012214219/http://sugoi-japan.jp/2015">SUGOI JAPAN</LinkExternal>「<cite>グランプリは「魔法少女まどか☆マギカ」</cite>」表彰式での岩上敦宏、久保田光俊の写真。</LibItem>
+				<LibItem position="3面"><Anchor href="https://web.archive.org/web/20151012214219/http://sugoi-japan.jp/2015">SUGOI JAPAN</Anchor>「<cite>グランプリは「魔法少女まどか☆マギカ」</cite>」表彰式での岩上敦宏、久保田光俊の写真。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -472,16 +472,16 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2016年</H>
+		<Fragment slot="heading">2016年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="Frankfurter Allgemeine" release="2016-01-15">
 			<LibContent>
 				<LibItem position="Feuilleton 11面">「<cite lang="de">Eine Mädchentragödie</cite>」ドイツでのDVD発売に伴う『<cite>まどか☆マギカ</cite>』作品紹介。新編の場面ショット掲載（カラー）。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>17日付けで Web サイトでも記事が公開、<LinkExternal href="http://www.faz.net/aktuell/feuilleton/kino/anime-madoka-magica-eine-maedchentragoedie-14014295.html" lang="de" hreflang="de">Animé „Madoka Magica“: Eine Mädchentragödie - Kino - FAZ</LinkExternal>。</li>
-			</ul>
+			<ListNote>
+				<li>17日付けで Web サイトでも記事が公開、<Anchor href="http://www.faz.net/aktuell/feuilleton/kino/anime-madoka-magica-eine-maedchentragoedie-14014295.html" lang="de" hreflang="de">Animé „Madoka Magica“: Eine Mädchentragödie - Kino - FAZ</Anchor>。</li>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="スポーツ報知" release="2016-02-06">
@@ -534,7 +534,7 @@ const slugger = new GithubSlugger();
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞（東京）" release="2016-03-11" npClass="夕刊">
 			<LibContent>
-				<LibItem position="4面（文化）">スペイン映画<LinkExternal href="http://www.bitters.co.jp/magicalgirl/">『<cite>マジカル・ガール</cite>』</LinkExternal>の紹介で、ベルムト監督が影響を受けた作品として『<cite>まどか☆マギカ</cite>』の名が挙がる。</LibItem>
+				<LibItem position="4面（文化）">スペイン映画<Anchor href="http://www.bitters.co.jp/magicalgirl/">『<cite>マジカル・ガール</cite>』</Anchor>の紹介で、ベルムト監督が影響を受けた作品として『<cite>まどか☆マギカ</cite>』の名が挙がる。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -567,9 +567,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="25面">「<cite>「MADOGATARI展」名古屋で開幕</cite>」3面シアターでコンセプトムービーを上映中の写真。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>レイアウトは大阪と中部が同じ、東京は異なる。読売新聞中部支社版は21面。</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="The Japan News" release="2016-07-30">
@@ -615,7 +615,7 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="fumufumu J（新潟日報社のこども新聞）" release="2017-02-12" npClass="vol.43">
 			<LibContent>
@@ -637,7 +637,7 @@ const slugger = new GithubSlugger();
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2017-05-15" npClass="夕刊">
 			<LibContent>
-				<LibItem position="9面">5月3日に NHK BS プレミアムで放送された<LinkExternal href="https://web.archive.org/web/20170517133312/http://www.nhk.or.jp/anime/anime100/program/">ニッポンアニメ100 発表！あなたが選ぶアニメ ベスト100</LinkExternal>で『<cite>まどか☆マギカ</cite>』（TVシリーズ）が3位になったこと。</LibItem>
+				<LibItem position="9面">5月3日に NHK BS プレミアムで放送された<Anchor href="https://web.archive.org/web/20170517133312/http://www.nhk.or.jp/anime/anime100/program/">ニッポンアニメ100 発表！あなたが選ぶアニメ ベスト100</Anchor>で『<cite>まどか☆マギカ</cite>』（TVシリーズ）が3位になったこと。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -678,16 +678,16 @@ const slugger = new GithubSlugger();
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2018年</H>
+		<Fragment slot="heading">2018年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2018-10-29" npClass="朝刊">
 			<LibContent>
 				<LibItem position="27面（広告）"><em>「<cite>――明かされる百江なぎさの過去</cite>」</em>マギアレコード、なぎさ全面広告（カラー）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>中部版は25面、大阪版は29面、北海道版、北陸版、西部版は未確認。</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2018-10-29" npClass="朝刊">
@@ -695,17 +695,17 @@ const slugger = new GithubSlugger();
 				<LibItem position="20面（広告）"><em>「<cite>明かされる百江なぎさの過去――</cite>」</em>マギアレコード、なぎさ全面広告（カラー）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>北海道版は17面、大阪版は28面、西部版は22面、名古屋版は未確認。</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2019年</H>
+		<Fragment slot="heading">2019年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="日刊スポーツ" release="2019-01-19">
 			<LibContent>
-				<LibItem position="8面">「<cite>メドベ&amp;ザギトワ日本CMでコラボ</cite>」21日から放送されるマギレコCM出演について。本文は<LinkExternal href="https://www.nikkansports.com/sports/news/201901180000877.html">ウェブ記事</LinkExternal>より多少削減されている。</LibItem>
+				<LibItem position="8面">「<cite>メドベ&amp;ザギトワ日本CMでコラボ</cite>」21日から放送されるマギレコCM出演について。本文は<Anchor href="https://www.nikkansports.com/sports/news/201901180000877.html">ウェブ記事</Anchor>より多少削減されている。</LibItem>
 			</LibContent>
 		</LibNewspaper>
 	</Section>

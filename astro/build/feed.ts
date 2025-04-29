@@ -16,9 +16,9 @@ const INFO = [
 	{
 		htmlPath: 'tokyu/index.html',
 		selector: {
-			wrap: '#update .p-top-update-list > li',
-			date: '.p-top-update-list__date > time',
-			content: '.p-top-update-list__info',
+			wrap: '#update .list > li',
+			date: '.date > time',
+			content: '.info',
 		},
 		feedTemplate: 'template/xml/feed_tokyu.ejs',
 		feedPath: 'tokyu/feed.atom',
@@ -26,9 +26,9 @@ const INFO = [
 	{
 		htmlPath: 'kumeta/index.html',
 		selector: {
-			wrap: '#update .p-top-update-list > li',
-			date: '.p-top-update-list__date > time',
-			content: '.p-top-update-list__info',
+			wrap: '#update .list > li',
+			date: '.date > time',
+			content: '.info',
 		},
 		feedTemplate: 'template/xml/feed_kumeta.ejs',
 		feedPath: 'kumeta/feed.atom',
@@ -36,9 +36,9 @@ const INFO = [
 	{
 		htmlPath: 'madoka/index.html',
 		selector: {
-			wrap: '#update .p-top-update-list > li',
-			date: '.p-top-update-list__date > time',
-			content: '.p-top-update-list__info',
+			wrap: '#update .list > li',
+			date: '.date > time',
+			content: '.info',
 		},
 		feedTemplate: 'template/xml/feed_madoka.ejs',
 		feedPath: 'madoka/feed.atom',

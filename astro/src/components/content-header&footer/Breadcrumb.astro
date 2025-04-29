@@ -1,0 +1,46 @@
+---
+import type { StructuredDataUrl } from '@type/types';
+
+interface Props {
+	data: StructuredDataUrl[] | undefined;
+}
+
+const { data } = Astro.props;
+---
+
+{
+	data !== undefined && (
+		<nav class="breadcrumb" aria-label="パンくず">
+			{data.map((breadcrumbItem, index) => (
+				<>
+					{index === 0 && <a href={breadcrumbItem.path}>ホーム</a>}
+					{index >= 1 && (
+						<>
+							<span class="separator">&gt;</span>
+							<a href={breadcrumbItem.path}>{breadcrumbItem.name}</a>
+						</>
+					)}
+				</>
+			))}
+			<span class="separator">&gt;</span>
+			<a aria-current="page">現在のページ</a>
+		</nav>
+	)
+}
+
+<style>
+	.breadcrumb {
+		display: block flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		line-height: var(--line-height-narrow);
+
+		& > :global(:any-link) {
+			outline-offset: var(--outline-offset-linkonly);
+		}
+	}
+
+	.separator {
+		font-family: var(--font-monospace);
+	}
+</style>

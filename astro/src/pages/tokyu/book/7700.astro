@@ -1,10 +1,16 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import ListNote from '@components/ListNote.astro';
+import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Image from '@components/+phrasing/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -21,9 +27,15 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<div class="c-embed-sidebar -embed-first">
-		<div class="c-embed-sidebar__text">
-			<dl class="p-list-table">
+	<Flex>
+		<FlexItem>
+			<Embedded border={true}>
+				<Image path="tokyu/book/7700_cover.jpg" alt="表紙画像: 7700系の正面写真が12枚並んでいる" width={170} height={240} quality={60} slot="media" />
+				<Fragment slot="caption">表紙</Fragment>
+			</Embedded>
+		</FlexItem>
+		<FlexItem>
+			<ListTable>
 				<div>
 					<dt>発行日</dt>
 					<dd>2019年8月12日</dd>
@@ -46,40 +58,34 @@ const structuredData: StructuredData = {
 					<dt>書店販売</dt>
 					<dd>終了（紙の本は増刷予定なし）</dd>
 				</div>
-			</dl>
-		</div>
-		<div class="c-embed-sidebar__embed">
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/book/7700_cover.jpg" alt="表紙画像: 7700系の正面写真が12枚並んでいる" width={170} height={240} quality={60} />
-				</div>
-			</figure>
-		</div>
-	</div>
+			</ListTable>
+		</FlexItem>
+	</Flex>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
-		<div class="c-flex -buttons">
-			<div class="c-flex__item">
-				<a href="/tokyu/book/pdf/sample_7700.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://w0s.booth.pm/items/2649271" icon={false} class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">PDF 版（BOOTH）</span></LinkExternal>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://www.amazon.co.jp/dp/B07W81K9S5/" icon={false} class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></LinkExternal>
-				<ul class="p-notes">
-					<li>冊子版とはレイアウトが異なる「リフロー型」</li>
-				</ul>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="/tokyu/book/pdf/sample_7700.pdf" type="pdf">サンプル PDF</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://w0s.booth.pm/items/2649271" type="booth">PDF 版（BOOTH）</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B07W81K9S5/" type="amazon">Kindle 版（Amazon）</AnchorButton>
+			</FlexItem>
+		</Flex>
+
+		<ListNote>
+			<li>Kindle 版は冊子版とはレイアウトが異なる「リフロー型」</li>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>はじめに</li>
 			<li>車両一覧</li>
 			<li>年表</li>
@@ -300,43 +306,41 @@ const structuredData: StructuredData = {
 					</li>
 				</ol>
 			</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="errata">
-		<H slot="heading">正誤情報</H>
+		<Fragment slot="heading">正誤情報</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ページ</th>
-						<th scope="col">章</th>
-						<th scope="col">内容</th>
-						<th scope="col">電子版修正</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>p.2</td>
-						<td>年表</td>
-						<td>「1995年10月11日〜12日　サハ7953〜7964が東急車輛製造へ入場のため甲種輸送（長津田→逗子）」の車号は「サハ7963〜7964」が正しい。</td>
-						<td>ver.1.0.2</td>
-					</tr>
-					<tr>
-						<td>p.13</td>
-						<td>車外 - 側面</td>
-						<td>「車端部のジャッキアップポイント」の上写真キャプションの車号「7801-7701山側」は「7813-7713山側」が正しい。</td>
-						<td>ver.1.0.1</td>
-					</tr>
-					<tr>
-						<td>p.33</td>
-						<td>車内 - 側面</td>
-						<td>「側窓の手掛けストッパーと窓戸錠跡」の写真キャプションが (上)、 (下) となっているが、正しくは (左)、 (右) 。</td>
-						<td>ver.1.0.1</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">ページ</th>
+					<th scope="col">章</th>
+					<th scope="col">内容</th>
+					<th scope="col">電子版修正</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>p.2</td>
+					<td>年表</td>
+					<td>「1995年10月11日〜12日　サハ7953〜7964が東急車輛製造へ入場のため甲種輸送（長津田→逗子）」の車号は「サハ7963〜7964」が正しい。</td>
+					<td>ver.1.0.2</td>
+				</tr>
+				<tr>
+					<td>p.13</td>
+					<td>車外 - 側面</td>
+					<td>「車端部のジャッキアップポイント」の上写真キャプションの車号「7801-7701山側」は「7813-7713山側」が正しい。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+				<tr>
+					<td>p.33</td>
+					<td>車内 - 側面</td>
+					<td>「側窓の手掛けストッパーと窓戸錠跡」の写真キャプションが (上)、 (下) となっているが、正しくは (左)、 (右) 。</td>
+					<td>ver.1.0.1</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

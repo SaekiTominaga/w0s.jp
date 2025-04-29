@@ -1,0 +1,25 @@
+---
+import NoteRefX from './NoteRefX.astro'; // このコンポーネント内で <style> を書くと、<a> 要素が直後にコピーされる事象が起こるため分離する
+
+interface Props {
+	type?: 'note' | 'ref';
+	by: string;
+}
+
+const { type = 'note', by } = Astro.props;
+
+let typeLabel = '';
+switch (type) {
+	case 'note': {
+		typeLabel = '注';
+		break;
+	}
+	case 'ref': {
+		typeLabel = '文献';
+		break;
+	}
+	default:
+}
+---
+
+<NoteRefX><template class:list={['astro-noteref', `-${type}`]} data-by={by}><a class="js-footnote-reference-popover" data-popover-label="脚注" data-popover-hide-text="閉じる" data-popover-hide-image-src="/assets/image/footnote-popover-close.svg" data-popover-hide-image-width="24" data-popover-hide-image-height="24">[{typeLabel}<x-number></x-number>]</a></template></NoteRefX>

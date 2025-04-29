@@ -1,12 +1,14 @@
 ---
 import dayjs from 'dayjs';
-import Layout from '@layouts/W0s.astro';
+import GithubSlugger from 'github-slugger';
+import Layout from '@layouts/Site.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import CodeBlock from '@components/CodeBlock.astro';
-import LinkExternal from '@components/LinkExternal.astro';
-import H from '@components/H.astro';
-import NoteRef from '@components/NoteRef.astro';
+import List from '@components/List.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -15,142 +17,149 @@ const structuredData: StructuredData = {
 	dateModified: dayjs('2025-02-09'),
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
+
+const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="notice">
-		<H slot="heading">おことわり</H>
+		<Fragment slot="heading">おことわり</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>本ページで記載することは特記のない限り <a href="https://w0s.jp/"><code>w0s.jp</code></a> および <a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
 			<li>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい改修は度々実施しているが、本ドキュメントは常に追従できるとは限らない。</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="history">
-		<H slot="heading">歴史</H>
+		<Fragment slot="heading">歴史</Fragment>
 
-		<dl class="p-list-description">
-			<dt>2001年2月</dt>
-			<dd>
-				<p>前身のサイトを開設。<LinkExternal href="https://web.archive.org/web/20010202073300/http://www.cool.ne.jp/">COOL ONLINE</LinkExternal>の無料会員枠を利用（容量20MB）。<q>地域コミュニティ</q>を謳っており、登録の際にまず都市を選択、それによってサブドメインが振り分けられた（e.g. <code>tokyo.cool.ne.jp</code>）。</p>
-			</dd>
-			<dt>2001年6月<!-- 1日 --></dt>
-			<dd>
-				<p>掲載写真の増大により容量面で厳しくなり、<LinkExternal href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/">goo フリーホームページ</LinkExternal>に移転（容量50MB）。URL は <code is:raw>http://users.goo.ne.jp/${userId}</code> 形式だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
-			</dd>
-			<dt>2002年3月<!-- 26日 --></dt>
-			<dd>
-				<p><LinkExternal href="http://www.nurs.or.jp/">ネットワーク利用技術研究会（NURS）</LinkExternal>に移転。レンタルサーバーではなく研究・実験目的のサーバーであり、Telnet が制限なしに使えたので、root 権限が必要なこと以外は割となんでもできた。</p>
-			</dd>
-			<dt>2012年2月<!-- 12日 --></dt>
-			<dd>
-				<p>NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<LinkExternal href="https://www.inetd.co.jp/">アイネットディー</LinkExternal>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。</p>
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2001年2月</Fragment>
 
-				<NoteRefContent id="nurs-cookie"><LinkExternal href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - <cite>共用SSLサーバの危険性が理解されていない</cite></LinkExternal>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</NoteRefContent>
-			</dd>
-			<dt>2017年1月</dt>
-			<dd>
-				<p>常時 TLS の波に乗り<LinkExternal href="https://vps.sakura.ad.jp/">さくらの VPS</LinkExternal> に移転。<LinkExternal href="https://letsencrypt.org/">Let's Encrypt</LinkExternal>を利用して TLS 対応を行う。</p>
-			</dd>
-		</dl>
+			<p>前身のサイトを開設。<Anchor href="https://web.archive.org/web/20010202073300/http://www.cool.ne.jp/">COOL ONLINE</Anchor>の無料会員枠を利用（容量20MB）。<q>地域コミュニティ</q>を謳っており、登録の際にまず都市を選択、それによってサブドメインが振り分けられた（e.g. <code>tokyo.cool.ne.jp</code>）。</p>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2001年6月<!-- 1日 --></Fragment>
+
+			<p>掲載写真の増大により容量面で厳しくなり、<Anchor href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/">goo フリーホームページ</Anchor>に移転（容量50MB）。URL は <code is:raw>http://users.goo.ne.jp/${userId}</code> 形式だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2002年3月<!-- 26日 --></Fragment>
+
+			<p><Anchor href="http://www.nurs.or.jp/">ネットワーク利用技術研究会（NURS）</Anchor>に移転。レンタルサーバーではなく研究・実験目的のサーバーであり、Telnet が制限なしに使えたので、root 権限が必要なこと以外は割となんでもできた。</p>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2012年2月<!-- 12日 --></Fragment>
+
+			<p>NURS はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<Anchor href="https://www.inetd.co.jp/">アイネットディー</Anchor>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。</p>
+
+			<NoteRefContent id="nurs-cookie"><Anchor href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - <cite>共用SSLサーバの危険性が理解されていない</cite></Anchor>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</NoteRefContent>
+		</Section>
+
+		<Section slugger={slugger} depth={2} headingType="d">
+			<Fragment slot="heading">2017年1月</Fragment>
+
+			<p>常時 TLS の波に乗り<Anchor href="https://vps.sakura.ad.jp/">さくらの VPS</Anchor> に移転。<Anchor href="https://letsencrypt.org/">Let's Encrypt</Anchor>を利用して TLS 対応を行う。</p>
+		</Section>
 	</Section>
 
 	<Section id="server">
-		<H slot="heading">サーバー構成</H>
+		<Fragment slot="heading">サーバー構成</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">ドメイン</th>
-						<th scope="col">用途</th>
-						<th scope="col">サーバー実行環境</th>
-						<th scope="col">フレームワーク</th>
-						<th scope="col">RDBMS</th>
-						<th scope="col">ソース</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a href="https://w0s.jp/"><code>w0s.jp</code></a></td>
-						<td>個人サイト</td>
-						<td rowspan="4"><LinkExternal href="https://nodejs.org/" icon={false}>Node.js</LinkExternal> + <LinkExternal href="https://pm2.keymetrics.io/" icon={false}>PM2</LinkExternal></td>
-						<td><LinkExternal href="https://expressjs.com/" icon={false}>Express</LinkExternal>, <LinkExternal href="https://astro.build/" icon={false}>Astro</LinkExternal></td>
-						<td class="u-cell -center">―</td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external" aria-label="w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>静的コンテンツ中心</td>
-					</tr>
-					<tr>
-						<td><a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a></td>
-						<td>ブログ</td>
-						<td><LinkExternal href="https://hono.dev/" icon={false}>Hono</LinkExternal></td>
-						<td><LinkExternal href="https://sqlite.org/" icon={false}>SQLite</LinkExternal></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/blog.w0s.jp" rel="external" aria-label="blog.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a></td>
-						<td>画像、動画、音声の配信</td>
-						<td><LinkExternal href="https://hono.dev/" icon={false}>Hono</LinkExternal></td>
-						<td><LinkExternal href="https://sqlite.org/" icon={false}>SQLite</LinkExternal></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/media.w0s.jp" rel="external" aria-label="media.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>画像は URL パラメーターにより動的生成</td>
-					</tr>
-					<tr>
-						<td><code>report.w0s.jp</code></td>
-						<td>エラーレポート収集</td>
-						<td><LinkExternal href="https://hono.dev/" icon={false}>Hono</LinkExternal></td>
-						<td><LinkExternal href="https://sqlite.org/" icon={false}>SQLite</LinkExternal></td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/report.w0s.jp" rel="external" aria-label="report.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="https://labs.w0s.jp/"><code>labs.w0s.jp</code></a></td>
-						<td>Web 技術の遊び場</td>
-						<td rowspan="2"><LinkExternal href="https://httpd.apache.org/" icon={false}>Apache</LinkExternal> + <LinkExternal href="https://www.php.net/" icon={false}>PHP</LinkExternal></td>
-						<td class="u-cell -center">―</td>
-						<td class="u-cell -center">―</td>
-						<td class="u-cell -center">
-							<a href="https://github.com/SaekiTominaga/labs.w0s.jp" rel="external" aria-label="labs.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
-						</td>
-						<td>HTTP でもアクセス可</td>
-					</tr>
-					<tr>
-						<td><code>analytics.w0s.jp</code></td>
-						<td>アクセス解析</td>
-						<td class="u-cell -center">―</td>
-						<td><LinkExternal href="https://www.mysql.com/" icon={false}>MySQL</LinkExternal></td>
-						<td class="u-cell -center">―</td>
-						<td><LinkExternal href="https://matomo.org/">Matomo Analytics</LinkExternal> を利用</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<thead>
+				<tr>
+					<th scope="col">ドメイン</th>
+					<th scope="col">用途</th>
+					<th scope="col">サーバー実行環境</th>
+					<th scope="col">フレームワーク</th>
+					<th scope="col">RDBMS</th>
+					<th scope="col">ソース</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="https://w0s.jp/"><code>w0s.jp</code></a></td>
+					<td>個人サイト</td>
+					<td rowspan="4"><Anchor href="https://nodejs.org/" icon={false}>Node.js</Anchor> + <Anchor href="https://pm2.keymetrics.io/" icon={false}>PM2</Anchor></td>
+					<td><Anchor href="https://expressjs.com/" icon={false}>Express</Anchor>, <Anchor href="https://astro.build/" icon={false}>Astro</Anchor></td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external" aria-label="w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td>静的コンテンツ中心</td>
+				</tr>
+				<tr>
+					<td><a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a></td>
+					<td>ブログ</td>
+					<td><Anchor href="https://hono.dev/" icon={false}>Hono</Anchor></td>
+					<td><Anchor href="https://sqlite.org/" icon={false}>SQLite</Anchor></td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/blog.w0s.jp" rel="external" aria-label="blog.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a></td>
+					<td>画像、動画、音声の配信</td>
+					<td><Anchor href="https://hono.dev/" icon={false}>Hono</Anchor></td>
+					<td><Anchor href="https://sqlite.org/" icon={false}>SQLite</Anchor></td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/media.w0s.jp" rel="external" aria-label="media.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td>画像は URL パラメーターにより動的生成</td>
+				</tr>
+				<tr>
+					<td><code>report.w0s.jp</code></td>
+					<td>エラーレポート収集</td>
+					<td><Anchor href="https://hono.dev/" icon={false}>Hono</Anchor></td>
+					<td><Anchor href="https://sqlite.org/" icon={false}>SQLite</Anchor></td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/report.w0s.jp" rel="external" aria-label="report.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="https://labs.w0s.jp/"><code>labs.w0s.jp</code></a></td>
+					<td>Web 技術の遊び場</td>
+					<td rowspan="2"><Anchor href="https://httpd.apache.org/" icon={false}>Apache</Anchor> + <Anchor href="https://www.php.net/" icon={false}>PHP</Anchor></td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">
+						<a href="https://github.com/SaekiTominaga/labs.w0s.jp" rel="external" aria-label="labs.w0s.jp の GitHub"><img src="/assets/image/icon/github.svg" alt="GitHub" width="24" height="24" /></a>
+					</td>
+					<td>HTTP でもアクセス可</td>
+				</tr>
+				<tr>
+					<td><code>analytics.w0s.jp</code></td>
+					<td>アクセス解析</td>
+					<td class="u-cell -center">―</td>
+					<td><Anchor href="https://www.mysql.com/" icon={false}>MySQL</Anchor></td>
+					<td class="u-cell -center">―</td>
+					<td><Anchor href="https://matomo.org/">Matomo Analytics</Anchor> を利用</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="html">
-		<H slot="heading">HTML</H>
+		<Fragment slot="heading">HTML</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>
-				静的ファイルを事前に生成するページは、<code>w0s.jp</code> では <LinkExternal href="https://astro.build/">Astro</LinkExternal> を使用、一方 <code>blog.w0s.jp</code> では自作の Node.js プログラムにテンプレート言語として <LinkExternal href="https://ejs.co/">EJS</LinkExternal> を組み合わせているが、そのままだと HTML のインデントが不揃いになってしまう。周知のとおりブラウザにはソースの表示機能があり、これはユーザースタイルシートを設定する場合などに欠かせない。昨今ではソースを開発者ツールで見るユーザーも多いと思うが、公共施設のパソコンなど開発者ツールの機能が封じられているケースもあるため、生の HTML を綺麗に整形しておくことは重要なことと考えている。さらに事前に圧縮ファイルを生成しておくことで通信量の削減にも繋がるため、ビルドに際して以下の処理を挟んでいる。
+				静的ファイルを事前に生成するページは、<code>w0s.jp</code> では <Anchor href="https://astro.build/">Astro</Anchor> を使用、一方 <code>blog.w0s.jp</code> では自作の Node.js プログラムにテンプレート言語として <Anchor href="https://ejs.co/">EJS</Anchor> を組み合わせているが、そのままだと HTML のインデントが不揃いになってしまう。周知のとおりブラウザにはソースの表示機能があり、これはユーザースタイルシートを設定する場合などに欠かせない。昨今ではソースを開発者ツールで見るユーザーも多いと思うが、公共施設のパソコンなど開発者ツールの機能が封じられているケースもあるため、生の HTML を綺麗に整形しておくことは重要なことと考えている。さらに事前に圧縮ファイルを生成しておくことで通信量の削減にも繋がるため、ビルドに際して以下の処理を挟んでいる。
 				<ul>
-					<li><LinkExternal href="https://prettier.io/">Prettier</LinkExternal>で HTML ファイルを整形</li>
-					<li><LinkExternal href="https://github.com/dzek69/brotli-cli">brotli-cli</LinkExternal>で Brotli 圧縮したファイル（e.g. <code>index.html.br</code>）を出力</li>
+					<li><Anchor href="https://prettier.io/">Prettier</Anchor>で HTML ファイルを整形</li>
+					<li><Anchor href="https://github.com/dzek69/brotli-cli">brotli-cli</Anchor>で Brotli 圧縮したファイル（e.g. <code>index.html.br</code>）を出力</li>
 				</ul>
 			</li>
 			<li>
-				<LinkExternal href="https://markuplint.dev/">Markuplint</LinkExternal>を使用したチェックを実施している。Markuplint の設定には<LinkExternal href="https://markuplint.dev/ja/docs/guides/presets">公式のプリセット</LinkExternal>が用意されているが、以下に挙げる理由からあえてそれらを使うことはせず、<LinkExternal href="https://github.com/SaekiTominaga/w0s/tree/main/packages/markuplint">当サイト向けに改めて定義した設定ファイル</LinkExternal>を使用している。
+				<Anchor href="https://markuplint.dev/">Markuplint</Anchor>を使用したチェックを実施している。Markuplint の設定には<Anchor href="https://markuplint.dev/ja/docs/guides/presets">公式のプリセット</Anchor>が用意されているが、以下に挙げる理由からあえてそれらを使うことはせず、<Anchor href="https://github.com/SaekiTominaga/w0s/tree/main/packages/markuplint">当サイト向けに改めて定義した設定ファイル</Anchor>を使用している。
 				<ul>
 					<li>すべてのルールについてその効果を把握したい（公式のプリセットに頼るとその確認が疎かになってしまう）。</li>
 					<li><code>markuplint:recommended</code> より厳しいルールを適用させたい箇所が複数存在する。</li>
@@ -159,92 +168,92 @@ const structuredData: StructuredData = {
 			</li>
 			<li>HTML ページの MIME タイプは <code>text/html</code> としている。コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、今や <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef type="ref" by="xhtml-blog" />。</li>
 			<li>ウェブページの URL に拡張子が含まれるのは好ましくないので<NoteRef type="ref" by="ext" />、拡張子なしの URL でアクセスできるようにしている。</li>
-		</ul>
+		</List>
 
 		<NoteRefContent id="xhtml-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></a>（2024年4月）</NoteRefContent>
 
-		<NoteRefContent id="ext"><span lang="en"><LinkExternal href="https://www.w3.org/Provider/Style/URI" hreflang="en"><cite>Cool URIs don't change</cite></LinkExternal> (Tim Berners-Lee, 1998)</span></NoteRefContent>
+		<NoteRefContent id="ext"><span lang="en"><Anchor href="https://www.w3.org/Provider/Style/URI" hreflang="en"><cite>Cool URIs don't change</cite></Anchor> (Tim Berners-Lee, 1998)</span></NoteRefContent>
 
 		<Section id="html-redirect" depth={2} headingType="c">
-			<H slot="heading">3xx リダイレクトページ</H>
+			<Fragment slot="heading">3xx リダイレクトページ</Fragment>
 
 			<p>URL が変更になった場合は 301 Moved Permanently、フォームの POST 送信後には 303 See Other などいくつかのケースでは HTTP レスポンス 3xx でリダイレクトを設定している。</p>
 
-			<p><LinkExternal href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の <cite lang="en">6.4. Redirection 3xx</cite></LinkExternal>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際にブラウザの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されるケースが存在する<NoteRef by="3xx-error" />。</p>
+			<p><Anchor href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4">RFC 7231 の <cite lang="en">6.4. Redirection 3xx</cite></Anchor>では、ステータスコード 3xx で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.4">the user agent <mark>MAY</mark> automatically redirect its request to the URI</q>と書かれており（あくまで <em lang="en">MAY</em> であることに注目）、実際にブラウザの環境によっては自動リダイレクトが行われず、レスポンスボディの内容が画面に表示されるケースが存在する<NoteRef by="3xx-error" />。</p>
 
 			<NoteRefContent id="3xx-error">Android Firefox ではアプリ連携された URL に 3xx でリダイレクトすると、当該アプリが自動で起動するが、ブラウザでは 3xx のレスポンスボディが表示された状態になる。（2022年2月現在、Android Firefox 96 にて確認）</NoteRefContent>
 
-			<p><code>w0s.jp</code> で使用している Node.js フレームワークの Express では、<LinkExternal href="https://expressjs.com/en/5x/api.html#res.redirect"><code>res.redirect()</code></LinkExternal> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code lang="en" is:raw>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${path}"&gt;${path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <LinkExternal href="https://github.com/expressjs/express/issues/5058">Issue を上げており</LinkExternal>、それに対する <LinkExternal href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</LinkExternal>が、2025年2月現在マージはされていない。そのためこの機能は使わず、<LinkExternal href="https://expressjs.com/en/5x/api.html#res.send"><code>res.send()</code></LinkExternal> メソッドにて独自の HTML を返すようにカスタマイズしている。</p>
+			<p><code>w0s.jp</code> で使用している Node.js フレームワークの Express では、<Anchor href="https://expressjs.com/en/5x/api.html#res.redirect"><code>res.redirect()</code></Anchor> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code lang="en" is:raw>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${path}"&gt;${path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <Anchor href="https://github.com/expressjs/express/issues/5058">Issue を上げており</Anchor>、それに対する <Anchor href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</Anchor>が、2025年2月現在マージはされていない。そのためこの機能は使わず、<Anchor href="https://expressjs.com/en/5x/api.html#res.send"><code>res.send()</code></Anchor> メソッドにて独自の HTML を返すようにカスタマイズしている。</p>
 
-			<p>同じ理由で <code>blog.w0s.jp</code> でも Hono の <LinkExternal href="https://hono.dev/docs/api/context#redirect"><code>c.redirect()</code></LinkExternal> メソッドは使わず、<LinkExternal href="https://hono.dev/docs/api/context#html"><code>c.html()</code></LinkExternal> メソッドの第2～3引数を活用する形で実装している。</p>
+			<p>同じ理由で <code>blog.w0s.jp</code> でも Hono の <Anchor href="https://hono.dev/docs/api/context#redirect"><code>c.redirect()</code></Anchor> メソッドは使わず、<Anchor href="https://hono.dev/docs/api/context#html"><code>c.html()</code></Anchor> メソッドの第2～3引数を活用する形で実装している。</p>
 		</Section>
 
 		<Section id="html-clienterror" depth={2} headingType="c">
-			<H slot="heading">4xx クライアントエラーページ</H>
+			<Fragment slot="heading">4xx クライアントエラーページ</Fragment>
 
 			<p><code>404 Not Found</code> のエラーページには JavaScript で以下の機能を組み込んでいる。</p>
 
-			<ul class="p-list">
-				<li>同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが張られている）は管理者へ通知する。<LinkExternal href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-same-referrer">検知プログラムは GitHub で公開</LinkExternal>している。</li>
+			<List>
+				<li>同一ドメインのリファラーがあった場合（= サイト内から無効なリンクが張られている）は管理者へ通知する。<Anchor href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-same-referrer">検知プログラムは GitHub で公開</Anchor>している。</li>
 				<li>直近の有効な祖先ディレクトリへのリンクを提示する。（e.g. <code>/foo/bar</code> へのリクエストに対し、そのレスポンスコードが 404 で <code>/foo/</code> が 200 の場合、<code>/foo/</code> のリンクを提示）</li>
-			</ul>
+			</List>
 		</Section>
 	</Section>
 
 	<Section id="style">
-		<H slot="heading">スタイルシート<small>（CSS）</small></H>
+		<Fragment slot="heading">スタイルシート<small>（CSS）</small></Fragment>
 
-		<ul class="p-list">
-			<li>CSS ファイルのビルドには <LinkExternal href="https://postcss.org/">PostCSS</LinkExternal>を使用している。これはブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるパフォーマンス向上が目的であり、標準化の見込みのないプラグインは使っていない。将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</li>
-			<li>ビルド過程で <LinkExternal href="https://cssnano.github.io/cssnano/">CSSNANO</LinkExternal>を適用しているが、minify 処理が目的ではなくコメントの除去など最小限の最適化のみを行っている。以前は minify 処理も行っていたが、IE 11 のサポート終了によりすべてのメジャーブラウザが Brotli に対応する状況になったことから、通信量の削減効果は薄くなったと考えている<NoteRef type="ref" by="css-minify-blog" />。</li>
-			<li><LinkExternal href="https://stylelint.io/">Stylelint</LinkExternal>を使用したチェックを実施している。<LinkExternal href="https://github.com/SaekiTominaga/config/tree/main/packages/stylelint">設定ファイルは GitHub で公開</LinkExternal>している。</li>
-		</ul>
+		<List>
+			<li>CSS ファイルのビルドには <Anchor href="https://postcss.org/">PostCSS</Anchor>を使用している。これはブラウザが対応していない機能の先行使用、あるいはファイルをまとめることによるパフォーマンス向上が目的であり、標準化の見込みのないプラグインは使っていない。将来的には変換前のコードをそのままブラウザに読み込ませても問題ないようにすることが目標である。</li>
+			<li>ビルド過程で <Anchor href="https://cssnano.github.io/cssnano/">CSSNANO</Anchor>を適用しているが、minify 処理が目的ではなくコメントの除去など最小限の最適化のみを行っている。以前は minify 処理も行っていたが、IE 11 のサポート終了によりすべてのメジャーブラウザが Brotli に対応する状況になったことから、通信量の削減効果は薄くなったと考えている<NoteRef type="ref" by="css-minify-blog" />。</li>
+			<li><Anchor href="https://stylelint.io/">Stylelint</Anchor>を使用したチェックを実施している。<Anchor href="https://github.com/SaekiTominaga/config/tree/main/packages/stylelint">設定ファイルは GitHub で公開</Anchor>している。</li>
+		</List>
 
 		<NoteRefContent id="css-minify-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></a>（2022年6月）</NoteRefContent>
 
 		<Section id="style-print" depth={2} headingType="c">
-			<H slot="heading">印刷用スタイル</H>
+			<Fragment slot="heading">印刷用スタイル</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので <code>@print</code> を使って完全な白（<code>#ffffff</code>）に設定している。</li>
-			</ul>
+			</List>
 		</Section>
 
 		<Section id="style-reader" depth={2} headingType="c">
-			<H slot="heading">リーダー表示</H>
+			<Fragment slot="heading">リーダー表示</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダー表示を実装している。</li>
-				<li>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<LinkExternal href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</LinkExternal>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。Chrome など他ブラウザでも拡張機能が公開されている。</li>
-			</ul>
+				<li>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<Anchor href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</Anchor>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。Chrome など他ブラウザでも拡張機能が公開されている。</li>
+			</List>
 		</Section>
 
 		<Section id="style-darkmode" depth={2} headingType="c">
-			<H slot="heading">ダークモード</H>
+			<Fragment slot="heading">ダークモード</Fragment>
 
-			<ul class="p-list">
+			<List>
 				<li>制作者スタイルシートでいわゆるダークモードを提供するサイトが多いが、本来そのような機能はブラウザが提供すべきものと考えており、本サイトにおいて背景色などの切り替え機構を提供するつもりはない。</li>
 				<li>Edge は2024年にページカラーをカスタマイズする機能を実装している<NoteRef type="ref" by="edge-color-blog" />。そのような機能を持たないブラウザを使っている方はアドオンを探すなり、ユーザースタイルシートを書くなりして各自で対応して欲しい。</li>
-			</ul>
+			</List>
 
 			<NoteRefContent id="edge-color-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/724"><cite>Edge の新しいページカラー設定と `background-color` や `border` 使用時のアクセシビリティ</cite></a>（2024年10月）</NoteRefContent>
 		</Section>
 	</Section>
 
 	<Section id="script">
-		<H slot="heading">スクリプト<small>（JavaScript）</small></H>
+		<Fragment slot="heading">スクリプト<small>（JavaScript）</small></Fragment>
 
 		<p>基本的な考え方として JavaScript は補助的な使用とし、スクリプトの一部ないし全部が動かない環境でもコンテンツの閲覧、操作に支障がないようにしている。フィード全文配信などスクリプトが動かないケースは往々にして存在するため、当サイトのようなテキストと画像による表現が中心の Web サイトは現代においてもスクリプト無効で閲覧できるようにするのはメリットが大きいと考えている。</p>
 
-		<ul class="p-list">
-			<li>ソースコードは TypeScript による記述とし、コンパイルには <LinkExternal href="https://www.rollupjs.org/">Rollup</LinkExternal> を使用している。</li>
+		<List>
+			<li>ソースコードは TypeScript による記述とし、コンパイルには <Anchor href="https://www.rollupjs.org/">Rollup</Anchor> を使用している。</li>
 			<li>外部サービスに関係した機能など一部を除き ES modules で作成しており、本来であれば機能ごとに別れたファイルを <code>import</code> / <code>export</code> を使ってそのままブラウザに読ませることができるのだが、実際には HTTP/2 通信下であっても画面描画への影響が体感できるほど大きかったため、ビルド時にファイル結合を行うようにしている。</li>
-		</ul>
+		</List>
 
 		<Section id="script-error" depth={2} headingType="c">
-			<H slot="heading">エラー検知</H>
+			<Fragment slot="heading">エラー検知</Fragment>
 
-			<p>作成したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、<code>error</code> イベントを検知し通知する機能を組み込んでいる。この<LinkExternal href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-js-error">検知プログラムは GitHub で公開</LinkExternal>しているが、簡略化したコード例を下記に示す。</p>
+			<p>作成したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というより、サーバーサイドプログラムとは異なりブラウザには様々な設定項目があり、Bot 等も含めたあらゆる環境を想定したテストを行うことなど不可能だと考えている。もとより前述のとおりスクリプトが動かなくてもコンテンツの閲覧には支障がないため、テストはそこそこで良いと割り切り、せめて発生してしまったエラーは把握できるよう、<code>error</code> イベントを検知し通知する機能を組み込んでいる。この<Anchor href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-js-error">検知プログラムは GitHub で公開</Anchor>しているが、簡略化したコード例を下記に示す。</p>
 
 			<CodeBlock
 				code={`window.addEventListener('error', (ev) => {
@@ -265,34 +274,34 @@ const structuredData: StructuredData = {
 
 			<p>これにより、事前確認が難しい以下のようなケースで発生したエラーも検知することができる。</p>
 
-			<ul class="p-list">
+			<List>
 				<li>古いブラウザ</li>
 				<li>ブラウザの設定やアドオンに起因するもの</li>
 				<li>検索エンジンのロボットなどブラウザ以外の環境</li>
-			</ul>
+			</List>
 		</Section>
 	</Section>
 
 	<Section id="bitmap">
-		<H slot="heading">ビットマップ画像<small>（JPEG, PNG）</small></H>
+		<Fragment slot="heading">ビットマップ画像<small>（JPEG, PNG）</small></Fragment>
 
 		<p>昨今、高解像度ディスプレイの普及や WebP, AVIF など新フォーマットの登場により、環境に合わせて画像表示を最適化しようとすれば多くの出し分けが必要になってきている。当サイトでは基本的に以下5種類の画像を <code>&lt;picture&gt;</code> 要素を使って提示している。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>AVIF</li>
 			<li>AVIF @2x</li>
 			<li>WebP</li>
 			<li>WebP @2x</li>
 			<li>JPEG<small>（WebP 未対応環境は減少しているため JPEG の @2x 画像は用意しない）</small></li>
-		</ul>
+		</List>
 
 		<p>これらの画像は <code>/path/to/image.jpg?type=avif;w=360;h=240;quality=30</code> のように URL パラメーターでサイズや画質を指定して動的生成している。詳細は画像を配置している <a href="https://media.w0s.jp/"><code>media.w0s.jp</code></a> にドキュメントを置いているが、ドキュメントで触れていないポイントについて以下に述べる。</p>
 
-		<ul class="p-list">
-			<li>URL パラメーターの区切り文字は一般的な <code>&amp;</code> だけでなく <code>;</code> にも対応しており、原則として後者を利用する。これは HTML4 時代に <LinkExternal href="https://www.w3.org/TR/2018/SPSD-html401-20180327/appendix/notes.html#h-B.2.2" lang="en"><cite>B.2.2 Ampersands in URI attribute values</cite></LinkExternal>で推奨されていたテクニックである。設定は Hono のミドルウェアに <LinkExternal href="https://github.com/ljharb/qs">qs</LinkExternal>のライブラリを適用することで実現している。</li>
-			<li>画像生成は <LinkExternal href="https://sharp.pixelplumbing.com/">sharp</LinkExternal>を利用しているが、AVIF への変換処理は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは問題があるため AVIF の初回リクエストに限っては代替として WebP を動的生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたら <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの、<LinkExternal href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</LinkExternal>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。</li>
+		<List>
+			<li>URL パラメーターの区切り文字は一般的な <code>&amp;</code> だけでなく <code>;</code> にも対応しており、原則として後者を利用する。これは HTML4 時代に <Anchor href="https://www.w3.org/TR/2018/SPSD-html401-20180327/appendix/notes.html#h-B.2.2" lang="en"><cite>B.2.2 Ampersands in URI attribute values</cite></Anchor>で推奨されていたテクニックである。設定は Hono のミドルウェアに <Anchor href="https://github.com/ljharb/qs">qs</Anchor>のライブラリを適用することで実現している。</li>
+			<li>画像生成は <Anchor href="https://sharp.pixelplumbing.com/">sharp</Anchor>を利用しているが、AVIF への変換処理は JPEG や WebP と比較して遅く、多数の画像を埋め込んだページでは問題があるため AVIF の初回リクエストに限っては代替として WebP を動的生成して返し、別途バッチ処理で AVIF を生成するようにしている。この場合、ブラウザ視点では「<code>&lt;source type="image/avif"&gt;</code> の画像をリクエストしたら <code>image/webp</code> が返ってきた」という状態になる。一見違和感があるものの、<Anchor href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">HTML 仕様における <code>&lt;source&gt;</code> 要素の定義</Anchor>では <q lang="en" cite="https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element">The type attribute gives the type of the images in the source set, to allow the user agent to skip to the next source element if it does not support the given type.</q> とされているため問題なく、どのブラウザも正常に動作する。</li>
 			<li>
-				一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。一方で <LinkExternal href="https://www.rfc-editor.org/rfc/rfc7231#section-4.2.1">RFC 7231 の <cite lang="en">4.2.1. Safe Methods</cite></LinkExternal>では <q lang="en" cite="https://www.rfc-editor.org/rfc/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
+				一般論として GET リクエストでファイル生成という副作用を及ぼすのは好ましいことではなく、可能なら POST や PUT リクエストを使うべきだろう。一方で <Anchor href="https://www.rfc-editor.org/rfc/rfc7231#section-4.2.1">RFC 7231 の <cite lang="en">4.2.1. Safe Methods</cite></Anchor>では <q lang="en" cite="https://www.rfc-editor.org/rfc/rfc7231#section-4.2.1">This definition of safe methods does not prevent an implementation from including behavior that is potentially harmful, that is not entirely read-only, or that causes side effects while invoking a safe method.</q> と書かれており、
 				<ul>
 					<li>副作用を起こす実装が禁止されているものではない</li>
 					<li>アクセスログのように GET でサーバー内にファイルを追加・更新する機能は一般的に存在する</li>
@@ -300,34 +309,34 @@ const structuredData: StructuredData = {
 				</ul>
 				といった理由から GET リクエストでファイル生成を行うようにしている。
 			</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="favicon">
-		<H slot="heading">ファビコン<small>（<code>favicon.ico</code>）</small></H>
+		<Fragment slot="heading">ファビコン<small>（<code>favicon.ico</code>）</small></Fragment>
 
 		<p>ファビコンは SVG 形式で提供している。</p>
 
-		<p><LinkExternal href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</LinkExternal>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっているが、あくまで URL が <code lang="en">/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はない。そのため SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef type="ref" by="favicon-svg-blog" />。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>
+		<p><Anchor href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</Anchor>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっているが、あくまで URL が <code lang="en">/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はない。そのため SVG 形式のファビコンファイルを <code>/favicon.ico</code> に配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef type="ref" by="favicon-svg-blog" />。ただし以下のデメリットがある（いずれも2024年6月現在）。</p>
 
 		<NoteRefContent id="favicon-svg-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/656"><cite>SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</cite></a>（2021年10月）</NoteRefContent>
 
-		<ul class="p-list">
+		<List>
 			<li>Safari は最新のバージョン 17 系においても SVG ファビコンに対応していない</li>
-			<li>Android 版 Firefox も同様に対応しておらず、そればかりか <LinkExternal href="https://ogp.me/">The Open Graph protocol</LinkExternal>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう</li>
-			<li>検索サービス <LinkExternal href="https://duckduckgo.com/">DuckDuckGo</LinkExternal>での検索結果においてファビコン表示が行われない</li>
-		</ul>
+			<li>Android 版 Firefox も同様に対応しておらず、そればかりか <Anchor href="https://ogp.me/">The Open Graph protocol</Anchor>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう</li>
+			<li>検索サービス <Anchor href="https://duckduckgo.com/">DuckDuckGo</Anchor>での検索結果においてファビコン表示が行われない</li>
+		</List>
 	</Section>
 
 	<Section id="csp">
-		<H slot="heading">CSP</H>
+		<Fragment slot="heading">CSP</Fragment>
 
-		<ul class="p-list">
+		<List>
 			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシートやユーザースクリプト、アドオン等によるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
 			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定している。</li>
 			<li>それ以外のディレクティブは <code>Content-Security-Policy</code> で設定している。</li>
-			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<LinkExternal href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/node/src/controller/csp.ts">ソースコードは GitHub で公開</LinkExternal>している<NoteRef type="ref" by="csp-blog" />。</li>
-		</ul>
+			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<Anchor href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/node/src/controller/csp.ts">ソースコードは GitHub で公開</Anchor>している<NoteRef type="ref" by="csp-blog" />。</li>
+		</List>
 
 		<NoteRefContent id="csp-blog">ブログ記事 <a href="https://blog.w0s.jp/entry/730"><cite>Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</cite></a>（2025年1月）</NoteRefContent>
 	</Section>

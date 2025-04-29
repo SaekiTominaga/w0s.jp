@@ -1,0 +1,111 @@
+---
+import Anchor from './Anchor.astro';
+
+interface Props {
+	name: string; // 雑誌名
+	date?: string; // 年月や特集名
+	no?: number | number[]; // 通巻
+	article: string; // 記事タイトル
+	authors?: string[]; // 記事の著者
+	pages: number[]; // ページ数
+	url?: string; // Web ページの URL
+}
+
+const { name, date, no, article, authors, pages, url } = Astro.props;
+
+let noDisplay: string | undefined;
+if (no !== undefined) {
+	noDisplay = `No.${typeof no === 'number' ? String(no) : no.join('・')}`;
+}
+
+let authorsDisplay: string | undefined;
+if (authors !== undefined) {
+	authorsDisplay = authors.join('、');
+}
+
+const [startPage, endPage] = pages;
+const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
+---
+
+<span class="doc">
+	{
+		url !== undefined && (
+			<Anchor href={url}>
+				<span class="name">{name}</span>
+				{date !== undefined && (
+					<>
+						<span class="date">{date}</span>
+					</>
+				)}
+				{no !== undefined && (
+					<>
+						<span class="no">{noDisplay}</span>
+					</>
+				)}
+				<cite class="article">{article}</cite>
+				{authorsDisplay !== undefined && (
+					<>
+						<span class="author">{authorsDisplay}</span>
+					</>
+				)}
+				<span class="pages">{pageDisplay}</span>
+			</Anchor>
+		)
+	}
+	{
+		url === undefined && (
+			<>
+				<span class="name">{name}</span>
+				{date !== undefined && (
+					<>
+						<span class="date">{date}</span>
+					</>
+				)}
+				{no !== undefined && (
+					<>
+						<span class="no">{noDisplay}</span>
+					</>
+				)}
+				<cite class="article">{article}</cite>
+				{authorsDisplay !== undefined && (
+					<>
+						<span class="author">{authorsDisplay}</span>
+					</>
+				)}
+				<span class="pages">{pageDisplay}</span>
+			</>
+		)
+	}
+</span>
+
+<style>
+	.doc {
+		--_space-width: 0.25em;
+	}
+
+	/* 記事タイトル */
+	.article {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '「';
+		}
+
+		&::after {
+			content: '」';
+		}
+	}
+
+	/* 記事の著者名 */
+	.author {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '（';
+		}
+
+		&::after {
+			content: '）';
+		}
+	}
+</style>

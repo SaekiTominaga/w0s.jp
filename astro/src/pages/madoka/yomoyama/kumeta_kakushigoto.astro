@@ -4,7 +4,8 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
 import AmazonItem from '@components/AmazonItem.astro';
-import H from '@components/H.astro';
+import Box from '@components/Box.astro';
+import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,26 +34,26 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">作品概要</H>
+		<Fragment slot="heading">作品概要</Fragment>
 
 		<p>「<cite>月刊少年マガジン</cite>」において2015年から連載されている作品であり、2020年にはTVアニメ化も予定されています。</p>
 	</Section>
 
 	<Section id="manga">
-		<H slot="heading">漫画</H>
+		<Fragment slot="heading">漫画</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">第36号　採ってもラッキーマン</H>
+			<Fragment slot="heading">第36号　採ってもラッキーマン</Fragment>
 
 			<p>2019年11月15日　単行本「第10巻」発売</p>
 
 			<p>5ページ目（第10巻の80ページ）</p>
 
-			<div class="p-box">
-				<ul class="p-list">
+			<Box>
+				<List>
 					<li>十丸院が想像するタイトルロゴの一つが『まどか☆マギカ』TV シリーズのロゴに酷似している。</li>
-				</ul>
-			</div>
+				</List>
+			</Box>
 
 			<Amazon headingLevel={4}>
 				<AmazonItem asin="B0812Z5YXG" title="単行本 第10巻" date="2019-11-15" imageId="51O6jQEcd3L" imageWidth={113} imageHeight={160} />

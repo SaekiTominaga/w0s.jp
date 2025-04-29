@@ -1,0 +1,66 @@
+---
+import CarStyle from './+phrasing/CarStyle.astro';
+
+interface Props {
+	num: string; // 車号
+	count?: number; // 車両振り替えが行われた際、何代目かを示す（豊橋鉄道1800系）
+	style?: 'light'; // 車体構造（8000系グループ）
+	maker?: 'hitachi' | 'toyo'; // 電装品メーカー（7000系、7200系）
+}
+
+const { num, count, style, maker } = Astro.props;
+
+let countDisplay: string | undefined;
+switch (count) {
+	case 2: {
+		countDisplay = 'Ⅱ';
+		break;
+	}
+	default:
+}
+
+let makerDisplay: string | undefined;
+switch (maker) {
+	case 'hitachi': {
+		makerDisplay = 'H';
+		break;
+	}
+	case 'toyo': {
+		makerDisplay = 'T';
+		break;
+	}
+	default:
+}
+---
+
+<td>
+	<div class="now">
+		<span class="num"><CarStyle type={style}>{num}</CarStyle></span>
+		{count !== undefined && <span class="count">[{countDisplay}]</span>}
+		{maker !== undefined && <span class:list={['maker', `-${maker}`]}>({makerDisplay})</span>}
+	</div>
+	<slot name="old" />
+	<slot name="tokyu" />
+</td>
+
+<style>
+	.now {
+		display: block flow;
+	}
+
+	/* 車号 */
+	.num {
+		font-size: 120%;
+		font-weight: var(--font-weight-bold);
+	}
+
+	/* 車両振り替えが行われた際、何代目かを示す（豊橋鉄道1800系） */
+	.count {
+		font-size: 75%;
+	}
+
+	/* 電装品メーカー（7000系、7200系） */
+	.maker {
+		font-size: 75%;
+	}
+</style>

@@ -1,0 +1,44 @@
+---
+interface Props {
+	cite?: string;
+}
+
+const { cite } = Astro.props;
+---
+
+<figure>
+	<blockquote cite={cite}>
+		<slot name="quote" />
+	</blockquote>
+	<figcaption>
+		<slot name="cite" />
+	</figcaption>
+</figure>
+
+<style>
+	blockquote {
+		border-width: 1px 5px;
+		border-style: solid;
+		border-radius: var(--border-radius-large);
+		border-color: var(--color-green);
+		background: var(--color-white);
+		padding: 1em min(1dvi, 1em);
+
+		& > :global(* + *) {
+			margin-block-start: var(--stack-margin-base);
+		}
+	}
+
+	figcaption {
+		margin-inline-start: auto;
+		padding-inline-start: 10%;
+		inline-size: fit-content;
+		line-height: var(--line-height-narrow);
+		color: var(--color-gray);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
+
+		blockquote + & {
+			margin-block-start: 0.5em;
+		}
+	}
+</style>

@@ -1,6 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Set from '@components/tokyu/Set.astro';
+import SetPanel from '@components/tokyu/SetPanel.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -26,105 +29,87 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-set">
-		<div class="l-tokyu-set__header">
-			<p class="p-tokyu-set-period">2012年に始まったタッチパネル式への更新から</p>
-		</div>
-		<div class="l-tokyu-set__main">
-			<div class="p-tokyu-set-panel -push">
-				<object data="/tokyu/set/image/9000_oimachi_2012.svg" type="image/svg+xml" width="528" height="1170" class="p-tokyu-set-panel__image" role="img" aria-labelledby="set-image-alt1">
-					<div id="set-image-alt1">
-						<section>
-							<h2>始発駅</h2>
-							<table>
-								<tbody>
-									<tr>
-										<td>大井町</td>
-										<td>溝の口</td>
-										<td>大岡山</td>
-										<td>自由が丘</td>
-									</tr>
-									<tr>
-										<td>中央林間</td>
-										<td>長津田</td>
-										<td>鷺沼</td>
-										<td>梶が谷</td>
-									</tr>
-									<tr>
-										<td>二子玉川</td>
-										<td>あざみ野</td>
-										<td></td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-						</section>
+	<Set period="2012年に始まったタッチパネル式への更新から" invDate="2012-03-04" invCar="クハ9108">
+		<SetPanel image="9000_oimachi_2012.svg" imageWidth={528} imageHeight={1170}>
+			<section>
+				<h2>始発駅</h2>
 
-						<section>
-							<h2>種別</h2>
-							<table>
-								<tbody>
-									<tr>
-										<td>B各停</td>
-										<td>急行</td>
-										<td>G各停</td>
-										<td>訓練車</td>
-									</tr>
-									<tr>
-										<td>貸切</td>
-										<td>回送</td>
-										<td>臨時</td>
-										<td>試運転</td>
-									</tr>
-								</tbody>
-							</table>
-						</section>
+				<table>
+					<tbody>
+						<tr>
+							<td>大井町</td>
+							<td>溝の口</td>
+							<td>大岡山</td>
+							<td>自由が丘</td>
+						</tr>
+						<tr>
+							<td>中央林間</td>
+							<td>長津田</td>
+							<td>鷺沼</td>
+							<td>梶が谷</td>
+						</tr>
+						<tr>
+							<td>二子玉川</td>
+							<td>あざみ野</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
 
-						<section>
-							<h2>行先</h2>
-							<table>
-								<tbody>
-									<tr>
-										<td>大井町</td>
-										<td>溝の口</td>
-										<td>大岡山</td>
-										<td>自由が丘</td>
-									</tr>
-									<tr>
-										<td>中央林間</td>
-										<td>長津田</td>
-										<td>鷺沼</td>
-										<td>梶が谷</td>
-									</tr>
-									<tr>
-										<td>二子玉川</td>
-										<td>あざみ野</td>
-										<td></td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-						</section>
-					</div>
-				</object>
-			</div>
-		</div>
-		<div class="l-tokyu-set__footer">
-			<dl class="p-tokyu-set-data">
-				<div>
-					<dt>調査日</dt>
-					<dd>2012年3月4日</dd>
-				</div>
-				<div>
-					<dt>調査車両</dt>
-					<dd>クハ9108</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+			<section>
+				<h2>種別</h2>
 
-	<ul class="p-notes">
+				<table>
+					<tbody>
+						<tr>
+							<td>B各停</td>
+							<td>急行</td>
+							<td>G各停</td>
+							<td>訓練車</td>
+						</tr>
+						<tr>
+							<td>貸切</td>
+							<td>回送</td>
+							<td>臨時</td>
+							<td>試運転</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>行先</h2>
+
+				<table>
+					<tbody>
+						<tr>
+							<td>大井町</td>
+							<td>溝の口</td>
+							<td>大岡山</td>
+							<td>自由が丘</td>
+						</tr>
+						<tr>
+							<td>中央林間</td>
+							<td>長津田</td>
+							<td>鷺沼</td>
+							<td>梶が谷</td>
+						</tr>
+						<tr>
+							<td>二子玉川</td>
+							<td>あざみ野</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</SetPanel>
+	</Set>
+
+	<ListNote>
 		<li>2019年4月26日、9020系も駅名・種別は同じ内容であることを複数の車両で確認。<small>（<q>状態画面</q>の右側に<q>自動放送</q>ボタンが配置されている違いはある）</small></li>
 		<li>2019年4月29日、9000系の複数の車両で変更がないことを確認。</li>
-	</ul>
+	</ListNote>
 </Layout>

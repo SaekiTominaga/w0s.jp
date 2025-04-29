@@ -1,0 +1,161 @@
+---
+import Anchor from './Anchor.astro';
+
+interface Props {
+	name: string; // 図書名
+	authors: string[]; // 著者、出版社
+	year: number; // 発行年
+	article?: string | string[]; // 記事タイトル
+	pages: number[]; // ページ数
+	url?: string; // Web ページの URL
+	linkScope?: 'name' | 'page'; // リンクの対象範囲（図書全体 or 当該ページのみ）省略時は図書全体
+	lang?: string;
+}
+
+const { name, authors, year, article, pages, url, linkScope = 'name', lang } = Astro.props;
+
+const authorsDisplay = authors.join('、');
+
+let articleDisplay: string | undefined;
+if (article !== undefined) {
+	articleDisplay = typeof article === 'string' ? article : article.join(' – ');
+}
+
+const [startPage, endPage] = pages;
+const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;
+---
+
+<span class="doc">
+	{
+		url !== undefined && linkScope === 'name' && (
+			<>
+				<Anchor href={url}>
+					{/* prettier-ignore */}
+					<cite class="name" lang={lang}>{name}</cite>
+					<span class="meta">
+						{/* prettier-ignore */}
+						<span class="author" lang={lang}>{authorsDisplay}</span>
+						{/* prettier-ignore */}
+						<time datetime={String(year)} class="date">{year}年</time>
+					</span>
+				</Anchor>
+				{article !== undefined && (
+					<>
+						{/* prettier-ignore */}
+						<span class="article" lang={lang}>{articleDisplay}</span>
+					</>
+				)}
+				<span class="pages">{pageDisplay}</span>
+			</>
+		)
+	}
+	{
+		url !== undefined && linkScope === 'page' && (
+			<Anchor href={url}>
+				{/* prettier-ignore */}
+				<cite class="name" lang={lang}>{name}</cite>
+				<span class="meta">
+					{/* prettier-ignore */}
+					<span class="author" lang={lang}>{authorsDisplay}</span>
+					{/* prettier-ignore */}
+					<time datetime={String(year)} class="date">{year}年</time>
+				</span>
+				{article !== undefined && (
+					<>
+						{/* prettier-ignore */}
+						<span class="article" lang={lang}>{articleDisplay}</span>
+					</>
+				)}
+				<span class="pages">{pageDisplay}</span>
+			</Anchor>
+		)
+	}
+	{
+		url === undefined && (
+			<>
+				{/* prettier-ignore */}
+				<cite class="name" lang={lang}>{name}</cite>
+				<span class="meta">
+					{/* prettier-ignore */}
+					<span class="author" lang={lang}>{authorsDisplay}</span>
+					{/* prettier-ignore */}
+					<time datetime={String(year)} class="date">{year}年</time>
+				</span>
+				{article !== undefined && (
+					<>
+						{/* prettier-ignore */}
+						<span class="article" lang={lang}>{articleDisplay}</span>
+					</>
+				)}
+				<span class="pages">{pageDisplay}</span>
+			</>
+		)
+	}
+</span>
+
+<style>
+	.doc {
+		--_space-width: 0.25em;
+	}
+
+	/* 図書名 */
+	.name {
+		font-style: normal;
+
+		&::before {
+			content: '『';
+		}
+
+		&::after {
+			content: '』';
+		}
+	}
+
+	/* 本の発行年、著者名などのメタ情報 */
+	.meta {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			margin-inline-end: calc(0px - var(--_space-width));
+			content: '（';
+		}
+
+		&::after {
+			margin-inline-start: calc(0px - var(--_space-width));
+			content: '）';
+		}
+	}
+
+	.author {
+		/* 全角スペース相当の間隔を開ける */
+		&:not(:last-child) {
+			&::after {
+				margin-inline-end: -0.5em;
+				content: '\3000';
+			}
+		}
+	}
+
+	.date {
+		/* 全角スペース相当の間隔を開ける */
+		&:not(:last-child) {
+			&::after {
+				margin-inline-end: -0.5em;
+				content: '\3000';
+			}
+		}
+	}
+
+	/* 記事タイトル */
+	.article {
+		margin-inline: calc(0px - var(--_space-width));
+
+		&::before {
+			content: '「';
+		}
+
+		&::after {
+			content: '」';
+		}
+	}
+</style>

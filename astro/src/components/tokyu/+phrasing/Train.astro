@@ -1,0 +1,44 @@
+---
+interface Props {
+	type: 'local' | 'bkakutei' | 'gkakutei' | 'semiexp' | 'exp' | 'ltd' | 'hibiya' | 'kohnan-rapid' | 'hokutetsu-semiexp' | 'ikk-rapid' | 'oigawa-exp';
+}
+
+const { type } = Astro.props;
+---
+
+<span class:list={['train', `-${type}`]}><slot /></span>
+
+<style>
+	.train {
+		/* 普通 */
+		&.-local {
+			color: var(--color-black);
+		}
+
+		/* G各停、準急、伊豆急快速 */
+		&.-gkakutei,
+		&.-semiexp,
+		&.-ikk-rapid {
+			color: #007e00; /* --color-bg-light に対してコントラスト比 4.5:1 を満たす限界値 */
+		}
+
+		/* B各停、日比谷線直通 */
+		&.-bkakutei,
+		&.-hibiya {
+			color: var(--color-blue);
+		}
+
+		/* 急行、弘南快速、大井川急行、北鉄準急 */
+		&.-exp,
+		&.-kohnan-rapid,
+		&.-oigawa-exp,
+		&.-hokutetsu-semiexp {
+			color: #db0000; /* --color-bg-light に対してコントラスト比 4.5:1 を満たす限界値 */
+		}
+
+		/* 特急 */
+		&.-ltd {
+			color: #ff4200; /* --color-bg-light に対してコントラスト比 3:1 を満たす限界値 */
+		}
+	}
+</style>

@@ -1,0 +1,81 @@
+---
+interface Props {
+	title: string;
+	data: Map<number, string | undefined>;
+	prefix: string;
+	refPrefix: string;
+}
+
+const { title, data, prefix, refPrefix } = Astro.props;
+---
+
+{
+	data.size > 0 && (
+		<section class="footnote">
+			<h2 class="hdg">{title}</h2>
+
+			<ul class="list">
+				{[...data].map(([no, html]) => (
+					<li>
+						<span class="no">{no}.</span>
+						<p class="content">
+							<span id={`${prefix}${no}`} set:html={html} />
+							<a href={`#${refPrefix}${no}`} class="backref">
+								↩ 戻る
+							</a>
+						</p>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+}
+
+<style>
+	.footnote {
+		border: 1px solid var(--color-bg-light);
+		border-radius: var(--border-radius-large);
+		background: var(--color-bg-light);
+		padding: 1em;
+		font-size: calc(100% / pow(var(--font-ratio), 1));
+	}
+
+	.hdg {
+	}
+
+	.list {
+		display: block table;
+		margin-block-start: 0.25em;
+
+		& > :global(li) {
+			display: table-row;
+		}
+
+		& > :global(li:not(:first-child) > *) {
+			border-block-start: 0.5em solid transparent;
+		}
+	}
+
+	.no,
+	.content {
+		display: table-cell;
+		vertical-align: top;
+	}
+
+	.no {
+		padding-block-start: 0.5em;
+		text-align: end;
+		white-space: nowrap;
+	}
+
+	.content {
+		padding-block-start: 0.5em;
+		padding-inline-start: 0.5em;
+		inline-size: 100%;
+	}
+
+	.backref {
+		margin-inline-start: 1em;
+		font-size: calc(100% / pow(var(--font-ratio), 2));
+	}
+</style>

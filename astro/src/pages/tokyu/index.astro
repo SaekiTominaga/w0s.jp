@@ -1,6 +1,11 @@
 ---
 import Layout from '@layouts/Tokyu.astro';
+import LayoutTop from '@layouts/content-body/Top.astro';
+import TopNavCard from '@components/TopNavCard.astro';
+import TopNavCardItem from '@components/TopNavCardItem.astro';
 import TopUpdate from '@components/TopUpdate.astro';
+import TopUpdateItem from '@components/TopUpdateItem.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -11,101 +16,55 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
-	<nav id="contents" aria-labelledby="landmark-contents-label">
-		<h2 id="landmark-contents-label">サイトコンテンツ</h2>
+	<LayoutTop>
+		<Fragment slot="nav">
+			<TopNavCard heading="サイトコンテンツ">
+				<TopNavCardItem title="車両データ" description="車歴表、編成表などの車両関連データ" linkHref="/tokyu/data/" />
+				<TopNavCardItem title="車両機器" description="制御装置をはじめとする車両搭載機器" linkHref="/tokyu/machine/" />
+				<TopNavCardItem title="台車" description="高性能車の台車バリエーション" linkHref="/tokyu/truck/" />
+				<TopNavCardItem title="よもやま話" description="車両や車両機器の四方山話" linkHref="/tokyu/yomoyama/" />
+				<TopNavCardItem title="自動放送" description="車内で流れる自動放送フレーズの紹介" linkHref="/tokyu/an/" />
+				<TopNavCardItem title="設定器" description="行先設定器のボタン（ダイヤル）配列" linkHref="/tokyu/set/" />
+				<TopNavCardItem title="鉄道本執筆" description="鉄道関係で執筆に関わった本の紹介と補足" linkHref="/tokyu/book/" />
+			</TopNavCard>
+		</Fragment>
+		<Fragment slot="update">
+			<TopUpdate id="update" heading="更新履歴">
+				<Fragment slot="notice">
+					<AnchorButton href="/tokyu/feed" type="atom" narrow={true}>新着フィード</AnchorButton>
+				</Fragment>
 
-		<ul class="p-top-nav-card">
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/data/">
-					<div class="p-top-nav-card__title">車両データ</div>
-					<p class="p-top-nav-card__description">車歴表、編成表などの車両関連データ</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/machine/">
-					<div class="p-top-nav-card__title">車両機器</div>
-					<p class="p-top-nav-card__description">制御装置をはじめとする車両搭載機器</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/truck/">
-					<div class="p-top-nav-card__title">台車</div>
-					<p class="p-top-nav-card__description">高性能車の台車バリエーション</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/yomoyama/">
-					<div class="p-top-nav-card__title">よもやま話</div>
-					<p class="p-top-nav-card__description">車両や車両機器の四方山話</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/an/">
-					<div class="p-top-nav-card__title">自動放送</div>
-					<p class="p-top-nav-card__description">車内で流れる自動放送フレーズの紹介</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/set/">
-					<div class="p-top-nav-card__title">設定器</div>
-					<p class="p-top-nav-card__description">行先設定器のボタン（ダイヤル）配列</p>
-				</a>
-			</li>
-			<li class="p-top-nav-card__box">
-				<a href="/tokyu/book/">
-					<div class="p-top-nav-card__title">鉄道本執筆</div>
-					<p class="p-top-nav-card__description">鉄道関係で執筆に関わった本の紹介と補足</p>
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-	<section class="p-top-update" id="update">
-		<header class="p-top-update__header">
-			<div class="p-top-update__hdg">
-				<h2>更新履歴</h2>
-			</div>
-
-			<div class="p-top-update__notice">
-				<a href="/tokyu/feed" type="application/atom+xml" class="c-button -feed">
-					<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
-					<span class="c-button__text">新着フィード</span>
-				</a>
-			</div>
-		</header>
-		<div class="p-top-update__main">
-			<ul class="p-top-update-list">
-				<TopUpdate date="2024-12-31">
+				<TopUpdateItem slot="item" date="2024-12-31">
 					<p>車両履歴に<a href="/tokyu/data/history_tamagawa">玉川電気鉄道、玉川線</a>を追加</p>
 					<p>関連して書籍「<a href="/tokyu/book/tamagawa1067"><cite>公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</cite></a>」を発行</p>
-				</TopUpdate>
-				<TopUpdate date="2024-08-20">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-08-20">
 					<p>車両履歴に<a href="/tokyu/data/history_tokyu#kuha3660">クハ3660形の車両履歴</a>に使用開始日の情報を追記</p>
-				</TopUpdate>
-				<TopUpdate date="2024-08-17">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-08-17">
 					<p><a href="/tokyu/data/history_mekama&toyoko_passenger#kiha1">キハ1形の車両履歴</a>に五日市鉄道への譲渡前の貸し渡しの具体的な期間と申請・認可日を追記、同様に<a href="/tokyu/data/count_mekama&toyoko_passenger">車種別車両数推移</a>も修正</p>
-				</TopUpdate>
-				<TopUpdate date="2024-08-13">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-08-13">
 					<p>車種別車両数推移に<a href="/tokyu/data/count_mekama&toyoko_passenger">目黒蒲田電鉄、東京横浜電鉄　旅客車</a>を追加</p>
-				</TopUpdate>
-				<TopUpdate date="2024-08-08">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-08-08">
 					<p>車両履歴に<a href="/tokyu/data/history_tokyu">東京急行電鉄（1949年以前）</a>を追加</p>
-				</TopUpdate>
-				<TopUpdate date="2024-06-19">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-06-19">
 					<p><a href="/tokyu/data/history_mekama&toyoko_passenger#kiha1">キハ1形の車両履歴</a>に五日市鉄道への譲渡前の貸し渡しを追記</p>
-				</TopUpdate>
-				<TopUpdate date="2024-05-19">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-05-19">
 					<p>車両履歴に<a href="/tokyu/data/history_mekama&toyoko_passenger">目黒蒲田電鉄、東京横浜電鉄　旅客車</a>、<a href="/tokyu/data/history_mekama&toyoko_freight">目黒蒲田電鉄、東京横浜電鉄　機関車&amp;貨車</a>、<a href="/tokyu/data/history_ikegami">池上電気鉄道</a>を追加</p>
-				</TopUpdate>
-				<TopUpdate date="2024-04-12">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-04-12">
 					<p><a href="/tokyu/machine/#cont">制御装置</a>の各ページを作成</p>
-				</TopUpdate>
-				<TopUpdate date="2024-04-01">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2024-04-01">
 					<p>サイト名を「<cite>東急電車形態研究</cite>」から「<cite>東急電車資料室</cite>」へ変更</p>
 
 					<p>これまで車両機器をはじめとした形態分類を紹介するコンテンツが中心で、主に高性能車（旧5000系）以降をターゲットにしていましたが、近年は旧性能車も含めて形態に限らず調査対象を広く取る活動をしているため、今後サイト名が実態と乖離しないよう変更した次第です。</p>
-				</TopUpdate>
-			</ul>
-		</div>
-	</section>
+				</TopUpdateItem>
+			</TopUpdate>
+		</Fragment>
+	</LayoutTop>
 </Layout>

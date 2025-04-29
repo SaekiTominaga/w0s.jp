@@ -1,0 +1,50 @@
+---
+import Anchor from './+phrasing/Anchor.astro';
+
+interface Props {
+	href: string;
+	title?: string;
+}
+
+const { href, title } = Astro.props;
+---
+
+<div class="embeded-link">
+	<Anchor href={href} icon={title !== undefined}>
+		<slot name="media" />
+		{title !== undefined && <span class="title">{title}</span>}
+	</Anchor>
+</div>
+
+<style>
+	.embeded-link {
+		line-height: var(--line-height-narrow);
+		font-size: calc(100% / pow(var(--font-ratio), 1));
+
+		& > :global(:any-link) {
+			outline: none;
+		}
+
+		& > :global(:any-link > img) {
+			outline-offset: -1px;
+			border: 1px solid var(--color-black);
+		}
+
+		& > :global(:any-link:focus > img) {
+			outline: var(--outline-width-bold) solid var(--outline-color);
+		}
+	}
+
+	.title {
+		outline-offset: var(--outline-offset);
+
+		&::before {
+			display: block flow;
+			content: '';
+		}
+
+		:global(:any-link:focus) > & {
+			outline: var(--outline-width) solid var(--outline-color);
+		}
+	}
+</style>

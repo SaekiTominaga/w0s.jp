@@ -1,10 +1,15 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import Image from '@components/+phrasing/Image.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import VideoDiff from '@components/VideoDiff.astro';
+import VideoDiffItem from '@components/VideoDiffItem.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -19,758 +24,501 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="1">
-		<H slot="heading">第1期『<cite>さよなら絶望先生</cite>』</H>
+		<Fragment slot="heading">第1期『<cite>さよなら絶望先生</cite>』</Fragment>
 
 		<Section id="1-1" depth={2} headingType="b">
-			<H slot="heading">一話「<cite>さよなら絶望先生</cite>」</H>
+			<Fragment slot="heading">一話「<cite>さよなら絶望先生</cite>」</Fragment>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.amazon.co.jp/dp/B000T6FGA4/">DVD 第一集</LinkExternal>には映像特典として「<cite>前田君オンエアver.</cite>」が収録されていますが、実際の放送時の映像とは異なり、パッケージ用に変更されたバージョンに対して前田君のハメコミ部分のみを再現したものとなります。</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://www.amazon.co.jp/dp/B000T6FGA4/">DVD 第一集</Anchor>には映像特典として「<cite>前田君オンエアver.</cite>」が収録されていますが、実際の放送時の映像とは異なり、パッケージ用に変更されたバージョンに対して前田君のハメコミ部分のみを再現したものとなります。</li>
+			</ListNote>
 
 			<Section id="1-1-avan" depth={3} headingType="c">
-				<H slot="heading">アバン</H>
+				<Fragment slot="heading">アバン</Fragment>
 
-				<dl class="p-video-diff">
-					<div>
-						<dt>0′00″</dt>
-						<dd class="c-stack">
-							<p>説明文が<q>本編をお楽しみいただく前に</q>→<q>本編をご覧頂く前に</q>に変更</p>
-						</dd>
-					</div>
-				</dl>
+				<VideoDiff>
+					<VideoDiffItem timeStart="00:00:00">
+						<p>説明文が<q>本編をお楽しみいただく前に</q>→<q>本編をご覧頂く前に</q>に変更</p>
+					</VideoDiffItem>
+				</VideoDiff>
 			</Section>
 
 			<Section id="1-1-op" depth={3} headingType="c">
-				<H slot="heading">オープニング</H>
+				<Fragment slot="heading">オープニング</Fragment>
 
 				<p>変更点なし</p>
 			</Section>
 
 			<Section id="1-1-a" depth={3} headingType="c">
-				<H slot="heading">A パート</H>
+				<Fragment slot="heading">A パート</Fragment>
 
-				<dl class="p-video-diff">
-					<div>
-						<dt>2′46″</dt>
-						<dd class="c-stack">
-							<p>可符香のスカート部分の前田君モザイクが削除。</p>
+				<VideoDiff>
+					<VideoDiffItem timeStart="00:02:46">
+						<p>可符香のスカート部分の前田君モザイクが削除。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-02-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-02-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>2′52″</dt>
-						<dd class="c-stack">
-							<p>可符香のスカート部分の前田君モザイクが削除。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>2′54″</dt>
-						<dd class="c-stack">
-							<p>可符香のスカート部分の前田君モザイクが削除。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>3′14″</dt>
-						<dd class="c-stack">
-							<p>うろペンの静止画が挿入。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>3′16″</dt>
-						<dd class="c-stack">
-							<p>櫻井女史の静止画が挿入。</p>
-						</dd>
-						<dd class="c-stack">
-							<p>望の静止画が暗くなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>4′38″</dt>
-						<dd class="c-stack">
-							<p><q>桃色右大臣</q><q>桃色大魔王</q><q>桃色若社長</q>の文字色が黒から橙に変更（なお、 4′32″ の<q>桃色ガブリエル</q>は放送版も橙色）。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-02-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-02-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:02:52">
+						<p>可符香のスカート部分の前田君モザイクが削除。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:02:54">
+						<p>可符香のスカート部分の前田君モザイクが削除。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:03:14">
+						<p>うろペンの静止画が挿入。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:03:16">
+						<p>櫻井女史の静止画が挿入。</p>
+						<p>望の静止画が暗くなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:04:38">
+						<p><q>桃色右大臣</q><q>桃色大魔王</q><q>桃色若社長</q>の文字色が黒から橙に変更（なお、 4′32″ の<q>桃色ガブリエル</q>は放送版も橙色）。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-04-43.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-04-43.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>5′57″</dt>
-						<dd class="c-stack">
-							<p><q>絶望した</q>直前の4カットで望の目の虹彩の色が薄くなり、瞳孔が分かりやすくなった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-04-43.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-04-43.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:05:57">
+						<p><q>絶望した</q>直前の4カットで望の目の虹彩の色が薄くなり、瞳孔が分かりやすくなった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-05-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-05-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>6′53″</dt>
-						<dd class="c-stack">
-							<p>背景にうろペンが追加。それに伴い、望がフレームインするタイミングと動作速度が遅くなった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-05-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-05-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:06:53">
+						<p>背景にうろペンが追加。それに伴い、望がフレームインするタイミングと動作速度が遅くなった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-06-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-06-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>8′20″</dt>
-						<dd class="c-stack">
-							<p>放送版では望の右腕の袖先まで着物の柄が描かれていたが、無地に変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>8′27″</dt>
-						<dd class="c-stack">
-							<p>放送版では望の右腕の袖先まで着物の柄が描かれていたが、無地に変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>8′48″</dt>
-						<dd class="c-stack">
-							<p>校舎の時計の前田君の回転方向が時計回りから反時計回りに変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>9′12″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>ゆとり教育で若者は土曜の半ドンで生まれる恋を失ったのです。</q>が大きくなった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-06-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-06-57.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:08:20">
+						<p>放送版では望の右腕の袖先まで着物の柄が描かれていたが、無地に変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:08:27">
+						<p>放送版では望の右腕の袖先まで着物の柄が描かれていたが、無地に変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:08:48">
+						<p>校舎の時計の前田君の回転方向が時計回りから反時計回りに変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:09:12">
+						<p>黒板文字<q>ゆとり教育で若者は土曜の半ドンで生まれる恋を失ったのです。</q>が大きくなった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-09-12.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-09-12.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>10′46″</dt>
-						<dd class="c-stack">
-							<p><q>「あ、そうだ!」</q>が<q>「麻生だ」</q>に変更。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-09-12.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-09-12.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:10:46">
+						<p><q>「あ、そうだ!」</q>が<q>「麻生だ」</q>に変更。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-10-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-10-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>10′57″</dt>
-						<dd class="c-stack">
-							<p><q>「ま、待ちなさい」</q>が<q>「ま、街がない」</q>に変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>11′11″</dt>
-						<dd class="c-stack">
-							<p>黒板の<q>糸　色望</q>の文字がやや左下がりになっていたのを修正。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-10-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-10-46.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:10:57">
+						<p><q>「ま、待ちなさい」</q>が<q>「ま、街がない」</q>に変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:11:11">
+						<p>黒板の<q>糸　色望</q>の文字がやや左下がりになっていたのを修正。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-11-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-11-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-				</dl>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-11-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-11-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+				</VideoDiff>
 			</Section>
 
 			<Section id="1-1-b" depth={3} headingType="c">
-				<H slot="heading">B パート</H>
+				<Fragment slot="heading">B パート</Fragment>
 
-				<dl class="p-video-diff">
-					<div>
-						<dt>11′28″</dt>
-						<dd class="c-stack">
-							<p>金曜ロードショーのパロディシーンでコウノトリの飛び方を連続した動きに変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>12′8″</dt>
-						<dd class="c-stack">
-							<p>左上のモブキャラの向きを変更（斜め右→右）。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>12′10″</dt>
-						<dd class="c-stack">
-							<p>奈美以外の3人の女子生徒が描き直された。前田君モザイクの位置も変わり、途中で外れてゆくようになった。</p>
+				<VideoDiff>
+					<VideoDiffItem timeStart="00:11:28">
+						<p>金曜ロードショーのパロディシーンでコウノトリの飛び方を連続した動きに変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:08">
+						<p>左上のモブキャラの向きを変更（斜め右→右）。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:10">
+						<p>奈美以外の3人の女子生徒が描き直された。前田君モザイクの位置も変わり、途中で外れてゆくようになった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-12-11.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-12-11.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>12′13″</dt>
-						<dd class="c-stack">
-							<p>奥に女子生徒が2人増加。千里、晴美、あびる作画修正。あびるの包帯が増えた。湯に浮かぶおもちゃのアヒルの位置が一部変更。前田君モザイクが外れてゆくようになった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-12-11.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-12-11.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:13">
+						<p>奥に女子生徒が2人増加。千里、晴美、あびる作画修正。あびるの包帯が増えた。湯に浮かぶおもちゃのアヒルの位置が一部変更。前田君モザイクが外れてゆくようになった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-12-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-12-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>12′17″</dt>
-						<dd class="c-stack">
-							<p>3人の女子生徒の身体に泡が追加。前田君モザイクが外れてゆくようになった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>12′24″</dt>
-						<dd class="c-stack">
-							<p>左側の女子生徒は後ろ姿だったが横向きに変更、胸と腰回りに葉っぱが追加。前田君モザイクが外れてゆくようになった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-12-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-12-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:17">
+						<p>3人の女子生徒の身体に泡が追加。前田君モザイクが外れてゆくようになった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:24">
+						<p>左側の女子生徒は後ろ姿だったが横向きに変更、胸と腰回りに葉っぱが追加。前田君モザイクが外れてゆくようになった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-12-20.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-12-20.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>12′31″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>中古のギャルゲーには手を出さないという処女信仰</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>12′34″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>ビックカメラで友達に会ってLR同時押し</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>12′48″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>パジャマパーティーなんて一生縁がない。</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>12′55″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>秒速5センチメートルの抜け毛</q>のフォントが変わった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>13′21″</dt>
-						<dd class="c-stack">
-							<p>黒板文字が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>13′37″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>このランパブのオーナーは万乗先生ですか?</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>13′40″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>まんが甲子園でも出席つきますか?</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>13′49″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>アイドルなのか声優なのかはっきししてください。　千里</q>他が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>13′58″</dt>
-						<dd class="c-stack">
-							<p>校舎の時計の前田君はゆっくり回転していたが、高速回転するようになった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>14′12″</dt>
-						<dd class="c-stack">
-							<p>シルエットの望が若干右側に移動。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>14′35″</dt>
-						<dd class="c-stack">
-							<p>シルエットの望が若干右側に移動。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>14′47″</dt>
-						<dd class="c-stack">
-							<p>望が TV で野球を見るカットの背景が白色ベースだったものが、ピンク色に多数の犬が描かれた模様に変更。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-12-20.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-12-20.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:31">
+						<p>黒板文字<q>中古のギャルゲーには手を出さないという処女信仰</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:34">
+						<p>黒板文字<q>ビックカメラで友達に会ってLR同時押し</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:48">
+						<p>黒板文字<q>パジャマパーティーなんて一生縁がない。</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:12:55">
+						<p>黒板文字<q>秒速5センチメートルの抜け毛</q>のフォントが変わった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:13:21">
+						<p>黒板文字が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:13:37">
+						<p>黒板文字<q>このランパブのオーナーは万乗先生ですか?</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:13:40">
+						<p>黒板文字<q>まんが甲子園でも出席つきますか?</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:13:49">
+						<p>黒板文字<q>アイドルなのか声優なのかはっきししてください。　千里</q>他が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:13:58">
+						<p>校舎の時計の前田君はゆっくり回転していたが、高速回転するようになった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:14:12">
+						<p>シルエットの望が若干右側に移動。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:14:35">
+						<p>シルエットの望が若干右側に移動。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:14:47">
+						<p>望が TV で野球を見るカットの背景が白色ベースだったものが、ピンク色に多数の犬が描かれた模様に変更。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-14-47.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-14-47.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>14′49″</dt>
-						<dd class="c-stack">
-							<p>背景が無地の白色だったものが、青色に模様入りのものに変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>14′53″</dt>
-						<dd class="c-stack">
-							<p>シルエットの望が若干右側に移動。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>15′23″</dt>
-						<dd class="c-stack">
-							<p>シルエットの望が若干右側に移動（立ち上がったときの窓枠との被りを減らすため?）。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>15′42″</dt>
-						<dd class="c-stack">
-							<p><q>めんどくさい人　毎日きたら　どうしよう・・・</q>が<q>ストーカーの　八割は　顔見知り</q>に変更。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-14-47.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-14-47.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:14:49">
+						<p>背景が無地の白色だったものが、青色に模様入りのものに変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:14:53">
+						<p>シルエットの望が若干右側に移動。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:15:23">
+						<p>シルエットの望が若干右側に移動（立ち上がったときの窓枠との被りを減らすため?）。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:15:42">
+						<p><q>めんどくさい人　毎日きたら　どうしよう・・・</q>が<q>ストーカーの　八割は　顔見知り</q>に変更。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-15-42.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-15-42.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>16′06″</dt>
-						<dd class="c-stack">
-							<p>画面全体が若干引き気味になった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>16′10″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>学級目標　人の家のおにぎりの形を笑わない。</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>16′18″</dt>
-						<dd class="c-stack">
-							<p>モブ生徒達が暗くなった。黒板文字<q>72%の人が始めてのおしゃれが懐中時計と答えました</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>16′37″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>○6番目のチャクラ　×6匹目のチャトラン</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>16′40″</dt>
-						<dd class="c-stack">
-							<p>画面全体が若干引き気味になった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>16′49″</dt>
-						<dd class="c-stack">
-							<p>黒板文字<q>社民党がついに「女投げ」という言葉にかみついた。</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>16′53″</dt>
-						<dd class="c-stack">
-							<p>望と影郎、および後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-15-42.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-15-42.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:06">
+						<p>画面全体が若干引き気味になった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:10">
+						<p>黒板文字<q>学級目標　人の家のおにぎりの形を笑わない。</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:18">
+						<p>モブ生徒達が暗くなった。黒板文字<q>72%の人が始めてのおしゃれが懐中時計と答えました</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:37">
+						<p>黒板文字<q>○6番目のチャクラ　×6匹目のチャトラン</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:40">
+						<p>画面全体が若干引き気味になった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:49">
+						<p>黒板文字<q>社民党がついに「女投げ」という言葉にかみついた。</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:16:53">
+						<p>望と影郎、および後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-16-53.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-16-53.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>17′3″</dt>
-						<dd class="c-stack">
-							<p>望と後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった（16′53″の絵とは異なる）。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>17′12″</dt>
-						<dd class="c-stack">
-							<p>望の着物の柄が無地になっていたのが修正。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>17′14″</dt>
-						<dd class="c-stack">
-							<p>望の着物の柄が無地になっていたのが修正。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-16-53.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-16-53.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:17:03">
+						<p>望と後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった（16′53″の絵とは異なる）。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:17:12">
+						<p>望の着物の柄が無地になっていたのが修正。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:17:14">
+						<p>望の着物の柄が無地になっていたのが修正。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-17-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-17-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>17′20″</dt>
-						<dd class="c-stack">
-							<p>望の着物の色が変更。黒板文字<q>人類のヒエラルキー</q>の文字と図が大きくなった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-17-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-17-14.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:17:20">
+						<p>望の着物の色が変更。黒板文字<q>人類のヒエラルキー</q>の文字と図が大きくなった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-17-23.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-17-23.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>18′17″</dt>
-						<dd class="c-stack">
-							<p><q>ふふ、　クセに　なっちゃう・・・</q>がアポクリン汗腺の説明文に変更。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-17-23.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-17-23.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:18:17">
+						<p><q>ふふ、　クセに　なっちゃう・・・</q>がアポクリン汗腺の説明文に変更。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-18-17.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-18-17.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>18′22″</dt>
-						<dd class="c-stack">
-							<p>望と准、および後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった（16′53″や 17′3″の絵とは異なる）。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>18′27″</dt>
-						<dd class="c-stack">
-							<p>モブ生徒達が暗くなった。黒板文字<q>この世こそセカンドライフ</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>19′20″</dt>
-						<dd class="c-stack">
-							<p>進路絶望調査の紙を持つ望の手の影が薄くなった。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-18-17.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-18-17.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:18:22">
+						<p>望と准、および後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった（16′53″や 17′3″の絵とは異なる）。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:18:27">
+						<p>モブ生徒達が暗くなった。黒板文字<q>この世こそセカンドライフ</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:19:20">
+						<p>進路絶望調査の紙を持つ望の手の影が薄くなった。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-19-21.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-19-21.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-					<div>
-						<dt>19′47″</dt>
-						<dd class="c-stack">
-							<p>モブ生徒達が暗くなった。黒板文字<q>フィンランドで虫歯になるという留学。</q>が大きくなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>20′0″</dt>
-						<dd class="c-stack">
-							<p>望と後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵は放送版では 16′53″ のものに酷似していたが、パッケージ版では描き直された。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>20′23″</dt>
-						<dd class="c-stack">
-							<p>壁に貼られた進路絶望調査の一部の文字色が濃くなったり大きくなったりする変更が行われた。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>20′34″</dt>
-						<dd class="c-stack">
-							<p>壁に貼られた進路絶望調査の一部の文字色が濃くなった。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>20′39″</dt>
-						<dd class="c-stack">
-							<p>望と可符香、および後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった（16′53″や 17′3″、18′22″、20′0″の絵とは異なる）。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>20′51″</dt>
-						<dd class="c-stack">
-							<p>廊下の窓に前田君が追加。</p>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-19-21.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-19-21.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:19:47">
+						<p>モブ生徒達が暗くなった。黒板文字<q>フィンランドで虫歯になるという留学。</q>が大きくなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:20:00">
+						<p>望と後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵は放送版では 16′53″ のものに酷似していたが、パッケージ版では描き直された。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:20:23">
+						<p>壁に貼られた進路絶望調査の一部の文字色が濃くなったり大きくなったりする変更が行われた。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:20:34">
+						<p>壁に貼られた進路絶望調査の一部の文字色が濃くなった。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:20:39">
+						<p>望と可符香、および後ろ姿のモブ生徒達が小さくなった。また、黒板に描かれた『<cite>神奈川沖浪裏</cite>』（富嶽三十六景）の絵が大きくなった（16′53″や 17′3″、18′22″、20′0″の絵とは異なる）。黒板の上に掲示された額縁が大きくなり、そこに書かれた文字のフォントも変更。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:20:51">
+						<p>廊下の窓に前田君が追加。</p>
 
-							<div class="c-flex">
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-20-51.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">TV 放送版</figcaption>
-									</figure>
-								</div>
-								<div class="c-flex__item">
-									<figure>
-										<div class="p-embed -border">
-											<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-20-51.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} />
-										</div>
-										<figcaption class="c-caption">DVD 版</figcaption>
-									</figure>
-								</div>
-							</div>
-						</dd>
-					</div>
-				</dl>
+						<Flex>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_tv_00-20-51.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">TV 放送版</Fragment>
+								</Embedded>
+							</FlexItem>
+							<FlexItem>
+								<Embedded border={true}>
+									<Image path="kumeta/anime/zetsubou/diff/tv1_dvd_00-20-51.jpg" alt="画像拡大" width={320} height={180} quality={60} link={true} slot="media" />
+									<Fragment slot="caption">DVD 版</Fragment>
+								</Embedded>
+							</FlexItem>
+						</Flex>
+					</VideoDiffItem>
+				</VideoDiff>
 			</Section>
 
 			<Section id="1-1-ed" depth={3} headingType="c">
-				<H slot="heading">エンディング</H>
+				<Fragment slot="heading">エンディング</Fragment>
 
-				<dl class="p-video-diff">
-					<div>
-						<dt>22′19″</dt>
-						<dd class="c-stack">
-							<p>キャストクレジットに<q>音無芽留　？</q>が追加。臼井影郎と新井智恵の間隔を拡大。</p>
-						</dd>
-					</div>
-					<div>
-						<dt>22′47″</dt>
-						<dd class="c-stack">
-							<p>クレジットに<q>テロップワーク　尾石達也</q>が追加。</p>
-						</dd>
-					</div>
-				</dl>
+				<VideoDiff>
+					<VideoDiffItem timeStart="00:22:19">
+						<p>キャストクレジットに<q>音無芽留　？</q>が追加。臼井影郎と新井智恵の間隔を拡大。</p>
+					</VideoDiffItem>
+					<VideoDiffItem timeStart="00:22:47">
+						<p>クレジットに<q>テロップワーク　尾石達也</q>が追加。</p>
+					</VideoDiffItem>
+				</VideoDiff>
 			</Section>
 		</Section>
 	</Section>

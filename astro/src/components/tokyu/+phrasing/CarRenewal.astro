@@ -1,0 +1,39 @@
+---
+interface Props {
+	type?: 'body' | 'room' | 'board';
+	shintama?: boolean;
+}
+
+const { type, shintama } = Astro.props;
+---
+
+<span class:list={['renewal', type !== undefined ? `-${type}` : undefined, { '-shintama': shintama }]}><slot /></span>
+
+<style>
+	.renewal {
+		/* 車体更新 */
+		&.-body {
+			text-decoration: underline wavy;
+			color: var(--color-blue);
+		}
+
+		/* 室内更新 */
+		&.-room {
+			text-decoration: underline dashed;
+			color: #e40000; /* 新玉川線復旧車の背景色に対してコントラスト比 4.5:1 を満たす限界値 */
+		}
+
+		/* 化粧板修繕 */
+		&.-board {
+			text-decoration: underline;
+			color: var(--color-green);
+		}
+
+		/* 新玉川線復旧（8000系） */
+		&.-shintama {
+			border: solid #dfd;
+			border-width: 1px 0;
+			background-color: #dfd;
+		}
+	}
+</style>

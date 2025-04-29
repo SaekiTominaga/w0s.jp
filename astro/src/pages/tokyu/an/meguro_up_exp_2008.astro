@@ -1,6 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
+import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -33,114 +36,94 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -exp">急行ワンマン　西高島平</span>行</p>
-			<p class="p-tokyu-announce-period">2008年の日吉延伸から</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>日吉停車中</h2>
-					<p>ご案内いたします。この電車は目黒方面、三田線直通、急行西高島平行きです。<span class="c-tokyu-announce -change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</span>元住吉には停まりません。停まる駅は、武蔵小杉、多摩川、田園調布、大岡山、武蔵小山、目黒です。目黒から先は、各駅に停車いたします。発車までしばらくお待ちください。</p>
-					<p lang="en">This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
-				</section>
-				<section>
-					<h2>日吉発車前</h2>
-					<p>お待たせいたしました。まもなく発車いたします。</p>
-				</section>
-				<section>
-					<h2>日吉発車</h2>
-					<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は目黒方面、三田線直通、急行西高島平行きです。<span class="c-tokyu-announce -change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</span>停まる駅は、武蔵小杉、多摩川、田園調布、大岡山、武蔵小山、目黒です。目黒から先は、各駅に停車いたします。</p>
-					<p lang="en">Thank you for using the Tōkyū Meguro Line. This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
-				</section>
-				<section>
-					<h2>武蔵小杉到着</h2>
-					<p>まもなく武蔵小杉です。<span class="c-tokyu-announce -change">JR線はお乗り換えです。</span>武蔵小杉の次は多摩川に停まります。新丸子には停まりません。</p>
-					<p lang="en">We will soon make a brief stop at Musashi-kosugi. <span class="c-tokyu-announce -change">Passengers changing to the JR Line, please transfer at this station.</span> The stop after Musashi-kosugi, will be Tamagawa.</p>
-				</section>
-			</div>
+	<Announce station="西高島平" type="exp" operation="oneman" period="2008年の日吉延伸から" through="地下鉄三田線へ直通" recordDate="2008-06-22" recordCar="3000系6両編成">
+		<AnnounceStation>
+			<section>
+				<h2>日吉停車中</h2>
+				<p>ご案内いたします。この電車は目黒方面、三田線直通、急行西高島平行きです。<AnnoucePhrase type="change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</AnnoucePhrase>元住吉には停まりません。停まる駅は、武蔵小杉、多摩川、田園調布、大岡山、武蔵小山、目黒です。目黒から先は、各駅に停車いたします。発車までしばらくお待ちください。</p>
+				<p lang="en">This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
+			</section>
+			<section>
+				<h2>日吉発車前</h2>
+				<p>お待たせいたしました。まもなく発車いたします。</p>
+			</section>
+			<section>
+				<h2>日吉発車</h2>
+				<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は目黒方面、三田線直通、急行西高島平行きです。<AnnoucePhrase type="change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</AnnoucePhrase>停まる駅は、武蔵小杉、多摩川、田園調布、大岡山、武蔵小山、目黒です。目黒から先は、各駅に停車いたします。</p>
+				<p lang="en">Thank you for using the Tōkyū Meguro Line. This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
+			</section>
+			<section>
+				<h2>武蔵小杉到着</h2>
+				<p>まもなく武蔵小杉です。<AnnoucePhrase type="change">JR線はお乗り換えです。</AnnoucePhrase>武蔵小杉の次は多摩川に停まります。新丸子には停まりません。</p>
+				<p lang="en">We will soon make a brief stop at Musashi-kosugi. <AnnoucePhrase type="change">Passengers changing to the JR Line, please transfer at this station.</AnnoucePhrase> The stop after Musashi-kosugi, will be Tamagawa.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>武蔵小杉発車</h2>
-					<p>この電車は目黒方面、三田線直通、急行西高島平行きです。<span class="c-tokyu-announce -change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</span></p>
-					<p lang="en">This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
+		<AnnounceStation>
+			<section>
+				<h2>武蔵小杉発車</h2>
+				<p>この電車は目黒方面、三田線直通、急行西高島平行きです。<AnnoucePhrase type="change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</AnnoucePhrase></p>
+				<p lang="en">This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
 
-					<p><span class="c-tokyu-announce -oneman">この電車はワンマン運転を行っております。発車サイン音が鳴り終わりましたら、ドアが閉まりますので、無理なご乗車はお止めください。</span></p>
-				</section>
-				<section>
-					<h2>多摩川到着</h2>
-					<p>まもなく多摩川です。<span class="c-tokyu-announce -change">東急多摩川線はお乗り換えです。</span>お降りの際は、足元にご注意ください。多摩川の次は田園調布に停まります。出口は左側です。</p>
-					<p lang="en">We will soon make a brief stop at Tamagawa. <span class="c-tokyu-announce -change">Passengers changing to the Tōkyū Tamagawa Line, please transfer at this station.</span> The stop after Tamagawa, will be Den-en-chōfu.</p>
-				</section>
-			</div>
+				<p><AnnoucePhrase type="oneman">この電車はワンマン運転を行っております。発車サイン音が鳴り終わりましたら、ドアが閉まりますので、無理なご乗車はお止めください。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>多摩川到着</h2>
+				<p>まもなく多摩川です。<AnnoucePhrase type="change">東急多摩川線はお乗り換えです。</AnnoucePhrase>お降りの際は、足元にご注意ください。多摩川の次は田園調布に停まります。出口は左側です。</p>
+				<p lang="en">We will soon make a brief stop at Tamagawa. <AnnoucePhrase type="change">Passengers changing to the Tōkyū Tamagawa Line, please transfer at this station.</AnnoucePhrase> The stop after Tamagawa, will be Den-en-chōfu.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>田園調布到着</h2>
-					<p>まもなく田園調布です。<span class="c-tokyu-announce -change">東横線はお乗り換えです。</span>田園調布の次は大岡山に停まります。奥沢には停まりません。</p>
-					<p lang="en">We will soon make a brief stop at Den-en-chōfu. <span class="c-tokyu-announce -change">Passengers changing to the Tōyoko Line, please transfer at this station.</span> The stop after Den-en-chōfu, will be Ōokayama.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>田園調布到着</h2>
+				<p>まもなく田園調布です。<AnnoucePhrase type="change">東横線はお乗り換えです。</AnnoucePhrase>田園調布の次は大岡山に停まります。奥沢には停まりません。</p>
+				<p lang="en">We will soon make a brief stop at Den-en-chōfu. <AnnoucePhrase type="change">Passengers changing to the Tōyoko Line, please transfer at this station.</AnnoucePhrase> The stop after Den-en-chōfu, will be Ōokayama.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>田園調布発車</h2>
-					<p><span class="c-tokyu-announce -manners">東急電鉄からのお願いです。優先席ではお年寄りやお体の不自由なお客様、妊娠中や乳幼児をお連れのお客様には、席をお譲りください。車内マナーにご協力をお願いいたします。</span></p>
-				</section>
-				<section>
-					<h2>田園調布〜大岡山走行中</h2>
-					<p><span class="c-tokyu-announce -menu">お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</span></p>
-				</section>
-				<section>
-					<h2>大岡山到着</h2>
-					<p>まもなく大岡山です。<span class="c-tokyu-announce -change">大井町線はお乗り換えです。</span>大岡山の次は武蔵小山に停まります。洗足、西小山には停まりません。出口は右側です。</p>
-					<p lang="en">We will soon make a brief stop at Ōokayama. <span class="c-tokyu-announce -change">Passengers changing to the Ōimachi Line, please transfer at this station.</span> The stop after Ōokayama, will be Musashi-koyama.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>田園調布発車</h2>
+				<p><AnnoucePhrase type="manners">東急電鉄からのお願いです。優先席ではお年寄りやお体の不自由なお客様、妊娠中や乳幼児をお連れのお客様には、席をお譲りください。車内マナーにご協力をお願いいたします。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>田園調布〜大岡山走行中</h2>
+				<p><AnnoucePhrase type="menu">お客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はご遠慮ください。ご協力をお願いいたします。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>大岡山到着</h2>
+				<p>まもなく大岡山です。<AnnoucePhrase type="change">大井町線はお乗り換えです。</AnnoucePhrase>大岡山の次は武蔵小山に停まります。洗足、西小山には停まりません。出口は右側です。</p>
+				<p lang="en">We will soon make a brief stop at Ōokayama. <AnnoucePhrase type="change">Passengers changing to the Ōimachi Line, please transfer at this station.</AnnoucePhrase> The stop after Ōokayama, will be Musashi-koyama.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>大岡山発車</h2>
-					<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は目黒方面、三田線直通、急行西高島平行きです。目黒から先は、各駅に停車いたします。</p>
-					<p lang="en">Thank you for using the Tōkyū Meguro Line. This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
-				</section>
-				<section>
-					<h2>武蔵小山到着</h2>
-					<p>まもなく武蔵小山です。武蔵小山の次は目黒に停まります。不動前には停まりません。出口は左側です。</p>
-					<p lang="en">We will soon make a brief stop at Musashi-koyama. The stop after Musashi-koyama, will be Meguro.</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>大岡山発車</h2>
+				<p>本日も東急目黒線をご利用くださいまして、ありがとうございます。この電車は目黒方面、三田線直通、急行西高島平行きです。目黒から先は、各駅に停車いたします。</p>
+				<p lang="en">Thank you for using the Tōkyū Meguro Line. This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
+			</section>
+			<section>
+				<h2>武蔵小山到着</h2>
+				<p>まもなく武蔵小山です。武蔵小山の次は目黒に停まります。不動前には停まりません。出口は左側です。</p>
+				<p lang="en">We will soon make a brief stop at Musashi-koyama. The stop after Musashi-koyama, will be Meguro.</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>武蔵小山発車</h2>
-					<p>この電車は目黒方面、三田線直通、急行西高島平行きです。<span class="c-tokyu-announce -change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</span>目黒から先は、各駅に停車いたします。</p>
-					<p lang="en">This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
+		<AnnounceStation>
+			<section>
+				<h2>武蔵小山発車</h2>
+				<p>この電車は目黒方面、三田線直通、急行西高島平行きです。<AnnoucePhrase type="change">南北線ご利用のお客様は、白金高輪駅でお乗り換えください。</AnnoucePhrase>目黒から先は、各駅に停車いたします。</p>
+				<p lang="en">This train will merge and continue traveling at the Express on the Mita Line to Nishi-takashimadaira.</p>
 
-					<p><span class="c-tokyu-announce -manners">お客様にお願いいたします。足を組んだり、前の方に出したりしますと、ほかのお客様のご迷惑となりますので、ご注意ください。</span></p>
-				</section>
-				<section>
-					<h2>目黒到着</h2>
-					<p>まもなく目黒です。<span class="c-tokyu-announce -change">JR山手線はお乗り換えです。</span>出口は右側です。本日も東急目黒線をご利用くださいまして、ありがとうございました。</p>
-					<p lang="en">We will soon make a brief stop at Meguro. <span class="c-tokyu-announce -change">Passengers changing to the JR Yamanote Line, please transfer at this station.</span> Thank you for using the Tōkyū Meguro Line.</p>
-				</section>
-			</div>
-
-			<p class="p-tokyu-announce-through-note">（地下鉄三田線へ直通）</p>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2008年6月22日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>3000系6両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+				<p><AnnoucePhrase type="manners">お客様にお願いいたします。足を組んだり、前の方に出したりしますと、ほかのお客様のご迷惑となりますので、ご注意ください。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>目黒到着</h2>
+				<p>まもなく目黒です。<AnnoucePhrase type="change">JR山手線はお乗り換えです。</AnnoucePhrase>出口は右側です。本日も東急目黒線をご利用くださいまして、ありがとうございました。</p>
+				<p lang="en">We will soon make a brief stop at Meguro. <AnnoucePhrase type="change">Passengers changing to the JR Yamanote Line, please transfer at this station.</AnnoucePhrase> Thank you for using the Tōkyū Meguro Line.</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>

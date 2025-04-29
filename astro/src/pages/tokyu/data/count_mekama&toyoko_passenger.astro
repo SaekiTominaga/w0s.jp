@@ -1,12 +1,13 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import DateWareki from '@components/DateWareki.astro';
-import H from '@components/H.astro';
-import LinkExternal from '@components/LinkExternal.astro';
-import NoteRef from '@components/NoteRef.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import DateWareki from '@components/+phrasing/DateWareki.astro';
+import List from '@components/List.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -22,13 +23,13 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>目黒蒲田電鉄と東京横浜電鉄は<DateWareki value="1939" />の合併以前も両社間で車両の融通が図られており、譲受／譲渡および借り受け／貸し渡しがそれぞれ複数回行われています。そのため車両数の変遷を知るには入籍日や廃車日のデータだけではなく、それら車両の移動を含めた動向を考慮する必要があります。</p>
 
-		<p>ここでは<LinkExternal href="https://www.archives.go.jp/">国立公文書館</LinkExternal>が所蔵する公文書（鉄道省文書）を元に両社の車両数推移をまとめました。</p>
+		<p>ここでは<Anchor href="https://www.archives.go.jp/">国立公文書館</Anchor>が所蔵する公文書（鉄道省文書）を元に両社の車両数推移をまとめました。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>新製、改造、および他鉄道事業者（目蒲⇔東横間以外）からの譲受の日付は竣功届が提出された日とします（入籍日ではありません）。</li>
 			<li>他鉄道事業者（目蒲⇔東横間以外）への譲渡の日付は<DateWareki value="1929-12" />以前の事例は認可日、届出制となったそれ以降は譲渡届が提出された日とします。</li>
 			<li>目蒲⇔東横間の譲受、譲渡の日付は譲渡先において竣功届が提出された日とします（実際の車両の移動日とは限りません）。</li>
@@ -54,1310 +55,1304 @@ const structuredData: StructuredData = {
 					<li>芝浦：芝浦製作所<small>（現：東芝）</small></li>
 				</ul>
 			</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="mekama">
-		<H slot="heading">目黒蒲田電鉄</H>
+		<Fragment slot="heading">目黒蒲田電鉄</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup span="2"></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="14"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" colspan="2">出来事</th>
-						<th scope="colgroup" rowspan="2">総車両数</th>
-						<th scope="colgroup" colspan="14">車種別両数</th>
-					</tr>
-					<tr>
-						<th scope="col">時期</th>
-						<th scope="col">内容</th>
-						<th scope="col">デハ1&amp;6</th>
-						<th scope="col">デハ20</th>
-						<th scope="col">デハ30</th>
-						<th scope="col">デハ100</th>
-						<th scope="col">デハ40&amp;モハ25</th>
-						<th scope="col">デハ200</th>
-						<th scope="col">デハ300&amp;クハ1</th>
-						<th scope="col">モハ500</th>
-						<th scope="col">モハ510</th>
-						<th scope="col">(池)モハ15</th>
-						<th scope="col">(池)モハ30</th>
-						<th scope="col">(池)モハ120</th>
-						<th scope="col">(池)モハ130</th>
-						<th scope="col">モハ150</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row"><DateWareki value="1923-02-22" /></th>
-						<th scope="row">デハ1–5 新製</th>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1923-03-11" /></th>
-						<th scope="row">目黒―丸子間開通</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1923-10-04" /></th>
-						<th scope="row">デハ6–10 新製</th>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1923-11-01" /></th>
-						<th scope="row">丸子―蒲田間開通</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1924" />春</th>
-						<th scope="row">鉄道省よりデハ6260形4両を借入<NoteRef by="deha6260" /></th>
-						<td class="u-cell -end">14</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1924-11-30" /></th>
-						<th scope="row">デハ21–24 鉄道省より譲受</th>
-						<td class="u-cell -end">14</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1925-05-21" /></th>
-						<th scope="row">デハ31–38 鉄道省より譲受</th>
-						<td class="u-cell -end">22</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926-03-08" /></th>
-						<th scope="row">デハ101–105 東横より譲受<NoteRef by="1926-03-08" /></th>
-						<td class="u-cell -end">27</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926-03-13" /></th>
-						<th scope="row">デハ8–10、デハ32–38 東横へ譲渡</th>
-						<td class="u-cell -end">17</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926" />初夏(?)</th>
-						<th scope="row">デハ41–44 鉄道省より譲受<NoteRef by="deha41" /></th>
-						<td class="u-cell -end">21</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926-07-06" /></th>
-						<th scope="row">デハ106–112 新製</th>
-						<td class="u-cell -end">28</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-03-12" /></th>
-						<th scope="row">デハ201–206 新製</th>
-						<td class="u-cell -end">34</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-05-14" /></th>
-						<th scope="row">デハ43–44 福武へ譲渡</th>
-						<td class="u-cell -end">32</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-07-06" /></th>
-						<th scope="row">大井町―大岡山間開通</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1927-09-13" /></th>
-						<th scope="row">デハ32, 35, 38 東横より譲受</th>
-						<td rowspan="2" class="u-cell -end">29</td>
-						<td rowspan="2" class="u-cell -end">7</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">6</td>
-						<td rowspan="2" class="u-cell -end">2</td>
-						<td rowspan="2" class="u-cell -end">6</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ107–112 東横へ譲渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-09-29" /></th>
-						<th scope="row">デハ301–305、クハ1–5 新製</th>
-						<td class="u-cell -end">39</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-10-22" /></th>
-						<th scope="row">デハ1–7 東横へ譲渡</th>
-						<td class="u-cell -end">32</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2">1928年度冬(?)</th>
-						<th scope="row">デハ1–10 東横より譲受</th>
-						<td rowspan="2" class="u-cell -end">35</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">2</td>
-						<td rowspan="2" class="u-cell -end">6</td>
-						<td rowspan="2" class="u-cell -end">9</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ101–106、デハ306 東横へ譲渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1928-12-27" /></th>
-						<th scope="row">モハ501–505 新製</th>
-						<td class="u-cell -end">40</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1929-05-31" /></th>
-						<th scope="row">モハ204–206 東横へ譲渡</th>
-						<td class="u-cell -end">37</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1929-10-14" /></th>
-						<th scope="row">モハ31, 32, 38 駿豆へ譲渡</th>
-						<td class="u-cell -end">34</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1929-10-16" /></th>
-						<th scope="row">モハ35 芝浦へ譲渡</th>
-						<td class="u-cell -end">33</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1929-11-01" /></th>
-						<th scope="row">自由ヶ丘―二子玉川間開通</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1929-12-25" /></th>
-						<th scope="row">大岡山―自由ヶ丘間開通</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1930-03" />(?)</th>
-						<th scope="row">モハ41 芝浦へ譲渡</th>
-						<td class="u-cell -end">32</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1932-03-31" /></th>
-						<th scope="row">モハ306 東横より借受</th>
-						<td rowspan="2" class="u-cell -end">30</td>
-						<td rowspan="2" class="u-cell -end">7</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">5</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ8–10 東横へ貸渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1932-05-24" /></th>
-						<th scope="row">モハ514–515 新製</th>
-						<td class="u-cell -end">32</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1932-08-15" /></th>
-						<th scope="row">モハ306 東横からの借受終了</th>
-						<td rowspan="2" class="u-cell -end">34</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">9</td>
-						<td rowspan="2" class="u-cell -end">5</td>
-						<td rowspan="2" class="u-cell -end">2</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ8–10 東横への貸渡終了</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1934-10-01" /></th>
-						<th scope="row">池上電気鉄道を合併</th>
-						<td class="u-cell -end">56</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-02-25" /></th>
-						<th scope="row">モハ18 越中へ譲渡</th>
-						<td class="u-cell -end">55</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-06-24" /></th>
-						<th scope="row">モハ17 野上へ譲渡</th>
-						<td class="u-cell -end">54</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-08" /></th>
-						<th scope="row">モハ542, 544–546 新製</th>
-						<td class="u-cell -end">58</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-09-26" /></th>
-						<th scope="row">モハ547–551 新製</th>
-						<td class="u-cell -end">63</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">11</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-11-01" /></th>
-						<th scope="row">雪ヶ谷―新奥沢間廃止</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1936-02-10" /></th>
-						<th scope="row">モハ101–104、モハ306、モハ510–512 東横より借受</th>
-						<td rowspan="2" class="u-cell -end">64</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">5</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">2</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">5</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ200–202、モハ542, 544–546 東横へ貸渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-03-26" /></th>
-						<th scope="row">モハ552, 554–562 新製</th>
-						<td class="u-cell -end">74</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">20</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-05-15" /></th>
-						<th scope="row">モハ36–39 東横へ譲渡（半鋼体化でサハ1–4 へ改造）</th>
-						<td class="u-cell -end">70</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">20</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1937-07-31" /></th>
-						<th scope="row">モハ101–104、モハ306、モハ510–512 東横からの借受終了</th>
-						<td rowspan="2" class="u-cell -end">69</td>
-						<td rowspan="2" class="u-cell -end">10</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">9</td>
-						<td rowspan="2" class="u-cell -end">5</td>
-						<td rowspan="2" class="u-cell -end">21</td>
-						<td rowspan="2" class="u-cell -end">2</td>
-						<td rowspan="2" class="u-cell -end">6</td>
-						<td rowspan="2" class="u-cell -end">5</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ200–202、モハ542, 544–546 東横への貸渡終了</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1937-11-08" /></th>
-						<th scope="row">東京横浜電鉄所属車両運転認可</th>
-						<td colspan="15"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1937-12-29" /></th>
-						<th scope="row">モハ21、モハ25、モハ30–31, 35 半鋼体化（モハ150形化）</th>
-						<td class="u-cell -end">69</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">21</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1938-03-01" /></th>
-						<th scope="row">モハ15–16 江ノ電へ譲渡</th>
-						<td class="u-cell -end">67</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">21</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-					</tr>
-				</tbody>
-			</table>
+		<Table scroll={true}>
+			<colgroup span="2"></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="14"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" colspan="2">出来事</th>
+					<th scope="colgroup" rowspan="2">総車両数</th>
+					<th scope="colgroup" colspan="14">車種別両数</th>
+				</tr>
+				<tr>
+					<th scope="col">時期</th>
+					<th scope="col">内容</th>
+					<th scope="col">デハ1&amp;6</th>
+					<th scope="col">デハ20</th>
+					<th scope="col">デハ30</th>
+					<th scope="col">デハ100</th>
+					<th scope="col">デハ40&amp;モハ25</th>
+					<th scope="col">デハ200</th>
+					<th scope="col">デハ300&amp;クハ1</th>
+					<th scope="col">モハ500</th>
+					<th scope="col">モハ510</th>
+					<th scope="col">(池)モハ15</th>
+					<th scope="col">(池)モハ30</th>
+					<th scope="col">(池)モハ120</th>
+					<th scope="col">(池)モハ130</th>
+					<th scope="col">モハ150</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row"><DateWareki value="1923-02-22" /></th>
+					<th scope="row">デハ1–5 新製</th>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1923-03-11" /></th>
+					<th scope="row">目黒―丸子間開通</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1923-10-04" /></th>
+					<th scope="row">デハ6–10 新製</th>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1923-11-01" /></th>
+					<th scope="row">丸子―蒲田間開通</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1924" />春</th>
+					<th scope="row">鉄道省よりデハ6260形4両を借入<NoteRef by="deha6260" /></th>
+					<td class="u-cell -end">14</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1924-11-30" /></th>
+					<th scope="row">デハ21–24 鉄道省より譲受</th>
+					<td class="u-cell -end">14</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1925-05-21" /></th>
+					<th scope="row">デハ31–38 鉄道省より譲受</th>
+					<td class="u-cell -end">22</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926-03-08" /></th>
+					<th scope="row">デハ101–105 東横より譲受<NoteRef by="1926-03-08" /></th>
+					<td class="u-cell -end">27</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926-03-13" /></th>
+					<th scope="row">デハ8–10、デハ32–38 東横へ譲渡</th>
+					<td class="u-cell -end">17</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926" />初夏(?)</th>
+					<th scope="row">デハ41–44 鉄道省より譲受<NoteRef by="deha41" /></th>
+					<td class="u-cell -end">21</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926-07-06" /></th>
+					<th scope="row">デハ106–112 新製</th>
+					<td class="u-cell -end">28</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-03-12" /></th>
+					<th scope="row">デハ201–206 新製</th>
+					<td class="u-cell -end">34</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-05-14" /></th>
+					<th scope="row">デハ43–44 福武へ譲渡</th>
+					<td class="u-cell -end">32</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-07-06" /></th>
+					<th scope="row">大井町―大岡山間開通</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1927-09-13" /></th>
+					<th scope="row">デハ32, 35, 38 東横より譲受</th>
+					<td rowspan="2" class="u-cell -end">29</td>
+					<td rowspan="2" class="u-cell -end">7</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">6</td>
+					<td rowspan="2" class="u-cell -end">2</td>
+					<td rowspan="2" class="u-cell -end">6</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ107–112 東横へ譲渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-09-29" /></th>
+					<th scope="row">デハ301–305、クハ1–5 新製</th>
+					<td class="u-cell -end">39</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-10-22" /></th>
+					<th scope="row">デハ1–7 東横へ譲渡</th>
+					<td class="u-cell -end">32</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2">1928年度冬(?)</th>
+					<th scope="row">デハ1–10 東横より譲受</th>
+					<td rowspan="2" class="u-cell -end">35</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">2</td>
+					<td rowspan="2" class="u-cell -end">6</td>
+					<td rowspan="2" class="u-cell -end">9</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ101–106、デハ306 東横へ譲渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1928-12-27" /></th>
+					<th scope="row">モハ501–505 新製</th>
+					<td class="u-cell -end">40</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1929-05-31" /></th>
+					<th scope="row">モハ204–206 東横へ譲渡</th>
+					<td class="u-cell -end">37</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1929-10-14" /></th>
+					<th scope="row">モハ31, 32, 38 駿豆へ譲渡</th>
+					<td class="u-cell -end">34</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1929-10-16" /></th>
+					<th scope="row">モハ35 芝浦へ譲渡</th>
+					<td class="u-cell -end">33</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1929-11-01" /></th>
+					<th scope="row">自由ヶ丘―二子玉川間開通</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1929-12-25" /></th>
+					<th scope="row">大岡山―自由ヶ丘間開通</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1930-03" />(?)</th>
+					<th scope="row">モハ41 芝浦へ譲渡</th>
+					<td class="u-cell -end">32</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1932-03-31" /></th>
+					<th scope="row">モハ306 東横より借受</th>
+					<td rowspan="2" class="u-cell -end">30</td>
+					<td rowspan="2" class="u-cell -end">7</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">5</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ8–10 東横へ貸渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1932-05-24" /></th>
+					<th scope="row">モハ514–515 新製</th>
+					<td class="u-cell -end">32</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1932-08-15" /></th>
+					<th scope="row">モハ306 東横からの借受終了</th>
+					<td rowspan="2" class="u-cell -end">34</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">9</td>
+					<td rowspan="2" class="u-cell -end">5</td>
+					<td rowspan="2" class="u-cell -end">2</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ8–10 東横への貸渡終了</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1934-10-01" /></th>
+					<th scope="row">池上電気鉄道を合併</th>
+					<td class="u-cell -end">56</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-02-25" /></th>
+					<th scope="row">モハ18 越中へ譲渡</th>
+					<td class="u-cell -end">55</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-06-24" /></th>
+					<th scope="row">モハ17 野上へ譲渡</th>
+					<td class="u-cell -end">54</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-08" /></th>
+					<th scope="row">モハ542, 544–546 新製</th>
+					<td class="u-cell -end">58</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-09-26" /></th>
+					<th scope="row">モハ547–551 新製</th>
+					<td class="u-cell -end">63</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">11</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-11-01" /></th>
+					<th scope="row">雪ヶ谷―新奥沢間廃止</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1936-02-10" /></th>
+					<th scope="row">モハ101–104、モハ306、モハ510–512 東横より借受</th>
+					<td rowspan="2" class="u-cell -end">64</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">5</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">2</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">5</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ200–202、モハ542, 544–546 東横へ貸渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-03-26" /></th>
+					<th scope="row">モハ552, 554–562 新製</th>
+					<td class="u-cell -end">74</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">20</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-05-15" /></th>
+					<th scope="row">モハ36–39 東横へ譲渡（半鋼体化でサハ1–4 へ改造）</th>
+					<td class="u-cell -end">70</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">20</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1937-07-31" /></th>
+					<th scope="row">モハ101–104、モハ306、モハ510–512 東横からの借受終了</th>
+					<td rowspan="2" class="u-cell -end">69</td>
+					<td rowspan="2" class="u-cell -end">10</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">9</td>
+					<td rowspan="2" class="u-cell -end">5</td>
+					<td rowspan="2" class="u-cell -end">21</td>
+					<td rowspan="2" class="u-cell -end">2</td>
+					<td rowspan="2" class="u-cell -end">6</td>
+					<td rowspan="2" class="u-cell -end">5</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ200–202、モハ542, 544–546 東横への貸渡終了</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1937-11-08" /></th>
+					<th scope="row">東京横浜電鉄所属車両運転認可</th>
+					<td colspan="15"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1937-12-29" /></th>
+					<th scope="row">モハ21、モハ25、モハ30–31, 35 半鋼体化（モハ150形化）</th>
+					<td class="u-cell -end">69</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">21</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1938-03-01" /></th>
+					<th scope="row">モハ15–16 江ノ電へ譲渡</th>
+					<td class="u-cell -end">67</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">21</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="deha6260">借り入れの認可申請書類には目黒蒲田電鉄における車号は記載されておらず、この時点では鉄道省車号のまま運用された可能性がありますが、本表では便宜上「デハ20形」としてカウントしています。</NoteRefContent>
+		<NoteRefContent id="deha6260">借り入れの認可申請書類には目黒蒲田電鉄における車号は記載されておらず、この時点では鉄道省車号のまま運用された可能性がありますが、本表では便宜上「デハ20形」としてカウントしています。</NoteRefContent>
 
-			<NoteRefContent id="1926-03-08">東京横浜電鉄における竣功（<DateWareki value="1925-12-07" />）と同時に目黒蒲田電鉄への譲渡申請が行われたため、事実上は目蒲への新製投入であったものと思われます。</NoteRefContent>
+		<NoteRefContent id="1926-03-08">東京横浜電鉄における竣功（<DateWareki value="1925-12-07" />）と同時に目黒蒲田電鉄への譲渡申請が行われたため、事実上は目蒲への新製投入であったものと思われます。</NoteRefContent>
 
-			<NoteRefContent id="deha41">書類上は鉄道省より10両を譲り受けたうえで6両を未使用のまま阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡していますが、本表では実際に運用された両数を重視するためその6両分は除外しています。</NoteRefContent>
-		</div>
+		<NoteRefContent id="deha41">書類上は鉄道省より10両を譲り受けたうえで6両を未使用のまま阪神急行電鉄<small>（現：阪急電鉄）</small>へ譲渡していますが、本表では実際に運用された両数を重視するためその6両分は除外しています。</NoteRefContent>
 	</Section>
 
 	<Section id="toyoko">
-		<H slot="heading">東京横浜電鉄</H>
+		<Fragment slot="heading">東京横浜電鉄</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup span="2"></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="8"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" colspan="2">出来事</th>
-						<th scope="colgroup" rowspan="2">総車両数</th>
-						<th scope="colgroup" colspan="8">車種別両数</th>
-					</tr>
-					<tr>
-						<th scope="col">時期</th>
-						<th scope="col">内容</th>
-						<th scope="col">デハ1&amp;6</th>
-						<th scope="col">デハ30</th>
-						<th scope="col">デハ100</th>
-						<th scope="col">デハ200</th>
-						<th scope="col">デハ300</th>
-						<th scope="col">モハ510</th>
-						<th scope="col">キハ1</th>
-						<th scope="col">サハ1</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row"><DateWareki value="1925-12-07" /></th>
-						<th scope="row">デハ101–105 新製</th>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926-02-14" /></th>
-						<th scope="row">丸子多摩川―神奈川間開通</th>
-						<td colspan="9"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926-03-08" /></th>
-						<th scope="row">デハ101–105 目蒲へ譲渡</th>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1926-03-13" /></th>
-						<th scope="row">デハ8–10、デハ32–38 目蒲より譲受</th>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">7</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-08-28" /></th>
-						<th scope="row">渋谷―丸子多摩川間開通</th>
-						<td colspan="9"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-09-06" /></th>
-						<th scope="row">デハ33–34, 36–37 駿豆へ譲渡</th>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1927-09-13" /></th>
-						<th scope="row">デハ107–112 目蒲より譲受</th>
-						<td rowspan="2" class="u-cell -end">9</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">6</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ32, 35, 38 目蒲へ譲渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1927-10-22" /></th>
-						<th scope="row">デハ1–7 目蒲より譲受</th>
-						<td class="u-cell -end">16</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1928-05-18" /></th>
-						<th scope="row">神奈川―高島間開通</th>
-						<td colspan="9"></td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2">1928年度冬(?)</th>
-						<th scope="row">デハ101–106、デハ306 目蒲より譲受</th>
-						<td rowspan="2" class="u-cell -end">13</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">12</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">デハ1–10 目蒲へ譲渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1929-05-31" /></th>
-						<th scope="row">モハ204–206 目蒲より譲受</th>
-						<td class="u-cell -end">16</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1932-03-31" /></th>
-						<th scope="row">高島町―桜木町間開通</th>
-						<td colspan="9"></td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1932-03-31" /></th>
-						<th scope="row">モハ8–10 目蒲より借受</th>
-						<td rowspan="2" class="u-cell -end">18</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">12</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ306 目蒲へ貸渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1932-05-24" /></th>
-						<th scope="row">モハ510–512 新製</th>
-						<td class="u-cell -end">21</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1932-08-15" /></th>
-						<th scope="row">モハ8–10 借受終了</th>
-						<td rowspan="2" class="u-cell -end">19</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">12</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ306 貸渡終了</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1932-11-24" /></th>
-						<th scope="row">モハ516–520 新製</th>
-						<td class="u-cell -end">24</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1934-05-18" /></th>
-						<th scope="row">モハ521–522, 524–529 新製</th>
-						<td class="u-cell -end">32</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">16</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-04-30" /></th>
-						<th scope="row">モハ530–532, 534–536 新製</th>
-						<td class="u-cell -end">38</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">22</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1935-05-18" /></th>
-						<th scope="row">モハ537–541 新製</th>
-						<td class="u-cell -end">43</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">27</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1936-02-10" /></th>
-						<th scope="row">モハ200–202、モハ542, 544–546 目蒲より借受</th>
-						<td rowspan="2" class="u-cell -end">42</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">8</td>
-						<td rowspan="2" class="u-cell -end">6</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">28</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ101–104、モハ306、モハ510–512 目蒲へ貸渡</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-03-26" /></th>
-						<th scope="row">モハ564–565 新製</th>
-						<td class="u-cell -end">44</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">30</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-05-08" /></th>
-						<th scope="row">キハ1–2 新製</th>
-						<td class="u-cell -end">46</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">30</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-05-15" /></th>
-						<th scope="row">モハ36–39 目蒲より譲受（半鋼体化でサハ1–4 へ改造）</th>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">30</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-05-28" /></th>
-						<th scope="row">キハ3–6 新製</th>
-						<td class="u-cell -end">54</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">30</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1936-05-29" /></th>
-						<th scope="row">キハ7–8 新製</th>
-						<td class="u-cell -end">56</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">30</td>
-						<td class="u-cell -end">8</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row" rowspan="2"><DateWareki value="1937-07-31" /></th>
-						<th scope="row">モハ200–202、モハ542, 544–546 目蒲からの借受終了</th>
-						<td rowspan="2" class="u-cell -end">57</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">0</td>
-						<td rowspan="2" class="u-cell -end">12</td>
-						<td rowspan="2" class="u-cell -end">3</td>
-						<td rowspan="2" class="u-cell -end">1</td>
-						<td rowspan="2" class="u-cell -end">29</td>
-						<td rowspan="2" class="u-cell -end">8</td>
-						<td rowspan="2" class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row">モハ101–104、モハ306、モハ510–512 目蒲への貸渡終了</th>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1937-11-08" /></th>
-						<th scope="row">目黒蒲田電鉄所属車両運転認可</th>
-						<td colspan="9"></td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1938-11" /></th>
-						<th scope="row">キハ2, 8 五日市へ貸渡（そのまま翌年3月に譲渡）</th>
-						<td class="u-cell -end">56</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">29</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1938-12" /></th>
-						<th scope="row">キハ6 神中へ譲渡</th>
-						<td class="u-cell -end">54</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">29</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1939-07-06" /></th>
-						<th scope="row">キハ3 神中へ譲渡</th>
-						<td class="u-cell -end">53</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">29</td>
-						<td class="u-cell -end">4</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1939-09-25" /></th>
-						<th scope="row">キハ1, 4 神中へ貸渡（そのまま翌年9月に譲渡）</th>
-						<td class="u-cell -end">51</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">29</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">4</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup span="2"></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="8"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" colspan="2">出来事</th>
+					<th scope="colgroup" rowspan="2">総車両数</th>
+					<th scope="colgroup" colspan="8">車種別両数</th>
+				</tr>
+				<tr>
+					<th scope="col">時期</th>
+					<th scope="col">内容</th>
+					<th scope="col">デハ1&amp;6</th>
+					<th scope="col">デハ30</th>
+					<th scope="col">デハ100</th>
+					<th scope="col">デハ200</th>
+					<th scope="col">デハ300</th>
+					<th scope="col">モハ510</th>
+					<th scope="col">キハ1</th>
+					<th scope="col">サハ1</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row"><DateWareki value="1925-12-07" /></th>
+					<th scope="row">デハ101–105 新製</th>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926-02-14" /></th>
+					<th scope="row">丸子多摩川―神奈川間開通</th>
+					<td colspan="9"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926-03-08" /></th>
+					<th scope="row">デハ101–105 目蒲へ譲渡</th>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1926-03-13" /></th>
+					<th scope="row">デハ8–10、デハ32–38 目蒲より譲受</th>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">7</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-08-28" /></th>
+					<th scope="row">渋谷―丸子多摩川間開通</th>
+					<td colspan="9"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-09-06" /></th>
+					<th scope="row">デハ33–34, 36–37 駿豆へ譲渡</th>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1927-09-13" /></th>
+					<th scope="row">デハ107–112 目蒲より譲受</th>
+					<td rowspan="2" class="u-cell -end">9</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">6</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ32, 35, 38 目蒲へ譲渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1927-10-22" /></th>
+					<th scope="row">デハ1–7 目蒲より譲受</th>
+					<td class="u-cell -end">16</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1928-05-18" /></th>
+					<th scope="row">神奈川―高島間開通</th>
+					<td colspan="9"></td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2">1928年度冬(?)</th>
+					<th scope="row">デハ101–106、デハ306 目蒲より譲受</th>
+					<td rowspan="2" class="u-cell -end">13</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">12</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">デハ1–10 目蒲へ譲渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1929-05-31" /></th>
+					<th scope="row">モハ204–206 目蒲より譲受</th>
+					<td class="u-cell -end">16</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1932-03-31" /></th>
+					<th scope="row">高島町―桜木町間開通</th>
+					<td colspan="9"></td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1932-03-31" /></th>
+					<th scope="row">モハ8–10 目蒲より借受</th>
+					<td rowspan="2" class="u-cell -end">18</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">12</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ306 目蒲へ貸渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1932-05-24" /></th>
+					<th scope="row">モハ510–512 新製</th>
+					<td class="u-cell -end">21</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1932-08-15" /></th>
+					<th scope="row">モハ8–10 借受終了</th>
+					<td rowspan="2" class="u-cell -end">19</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">12</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ306 貸渡終了</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1932-11-24" /></th>
+					<th scope="row">モハ516–520 新製</th>
+					<td class="u-cell -end">24</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1934-05-18" /></th>
+					<th scope="row">モハ521–522, 524–529 新製</th>
+					<td class="u-cell -end">32</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">16</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-04-30" /></th>
+					<th scope="row">モハ530–532, 534–536 新製</th>
+					<td class="u-cell -end">38</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">22</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1935-05-18" /></th>
+					<th scope="row">モハ537–541 新製</th>
+					<td class="u-cell -end">43</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">27</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1936-02-10" /></th>
+					<th scope="row">モハ200–202、モハ542, 544–546 目蒲より借受</th>
+					<td rowspan="2" class="u-cell -end">42</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">8</td>
+					<td rowspan="2" class="u-cell -end">6</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">28</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ101–104、モハ306、モハ510–512 目蒲へ貸渡</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-03-26" /></th>
+					<th scope="row">モハ564–565 新製</th>
+					<td class="u-cell -end">44</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">30</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-05-08" /></th>
+					<th scope="row">キハ1–2 新製</th>
+					<td class="u-cell -end">46</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">30</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-05-15" /></th>
+					<th scope="row">モハ36–39 目蒲より譲受（半鋼体化でサハ1–4 へ改造）</th>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">30</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-05-28" /></th>
+					<th scope="row">キハ3–6 新製</th>
+					<td class="u-cell -end">54</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">30</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1936-05-29" /></th>
+					<th scope="row">キハ7–8 新製</th>
+					<td class="u-cell -end">56</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">30</td>
+					<td class="u-cell -end">8</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2"><DateWareki value="1937-07-31" /></th>
+					<th scope="row">モハ200–202、モハ542, 544–546 目蒲からの借受終了</th>
+					<td rowspan="2" class="u-cell -end">57</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">0</td>
+					<td rowspan="2" class="u-cell -end">12</td>
+					<td rowspan="2" class="u-cell -end">3</td>
+					<td rowspan="2" class="u-cell -end">1</td>
+					<td rowspan="2" class="u-cell -end">29</td>
+					<td rowspan="2" class="u-cell -end">8</td>
+					<td rowspan="2" class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row">モハ101–104、モハ306、モハ510–512 目蒲への貸渡終了</th>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1937-11-08" /></th>
+					<th scope="row">目黒蒲田電鉄所属車両運転認可</th>
+					<td colspan="9"></td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1938-11" /></th>
+					<th scope="row">キハ2, 8 五日市へ貸渡（そのまま翌年3月に譲渡）</th>
+					<td class="u-cell -end">56</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">29</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1938-12" /></th>
+					<th scope="row">キハ6 神中へ譲渡</th>
+					<td class="u-cell -end">54</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">29</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1939-07-06" /></th>
+					<th scope="row">キハ3 神中へ譲渡</th>
+					<td class="u-cell -end">53</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">29</td>
+					<td class="u-cell -end">4</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1939-09-25" /></th>
+					<th scope="row">キハ1, 4 神中へ貸渡（そのまま翌年9月に譲渡）</th>
+					<td class="u-cell -end">51</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">29</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">4</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="new-toyoko">
-		<H slot="heading">目黒蒲田電鉄 → (新)東京横浜電鉄</H>
+		<Fragment slot="heading">目黒蒲田電鉄 → (新)東京横浜電鉄</Fragment>
 
-		<div class="p-table -scroll">
-			<table>
-				<colgroup span="2"></colgroup>
-				<colgroup></colgroup>
-				<colgroup span="13"></colgroup>
-				<thead>
-					<tr>
-						<th scope="colgroup" colspan="2">出来事</th>
-						<th scope="colgroup" rowspan="2">総車両数</th>
-						<th scope="colgroup" colspan="13">車種別両数</th>
-					</tr>
-					<tr>
-						<th scope="col">時期</th>
-						<th scope="col">内容</th>
-						<th scope="col">モハ1</th>
-						<th scope="col">モハ20</th>
-						<th scope="col">モハ100</th>
-						<th scope="col">モハ200</th>
-						<th scope="col">モハ300</th>
-						<th scope="col">モハ500</th>
-						<th scope="col">モハ510</th>
-						<th scope="col">(池)モハ30</th>
-						<th scope="col">(池)モハ120</th>
-						<th scope="col">(池)モハ130</th>
-						<th scope="col">キハ1</th>
-						<th scope="col">モハ150&amp;サハ1</th>
-						<th scope="col">モハ1000</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row"><DateWareki value="1939-10-01" /></th>
-						<th scope="row">目黒蒲田電鉄と東京横浜電鉄が合併</th>
-						<td class="u-cell -end">118</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">0</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1939-10-12" /></th>
-						<th scope="row">モハ1001-1022 新製</th>
-						<td class="u-cell -end">140</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">2</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">22</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1940-09-27" /></th>
-						<th scope="row">キハ5, 7 神中へ譲渡</th>
-						<td class="u-cell -end">138</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">9</td>
-						<td class="u-cell -end">22</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1941-04-24" /></th>
-						<th scope="row">モハ22–24, 32–33 半鋼体化（モハ150形化）</th>
-						<td class="u-cell -end">138</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">1</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">14</td>
-						<td class="u-cell -end">22</td>
-					</tr>
-					<tr>
-						<th scope="row">不明</th>
-						<th scope="row">モハ34 半鋼体化（モハ150形化）</th>
-						<td class="u-cell -end">138</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">15</td>
-						<td class="u-cell -end">22</td>
-					</tr>
-					<tr>
-						<th scope="row"><DateWareki value="1942" />春</th>
-						<th scope="row">モハ1–10 神中へ譲渡</th>
-						<td class="u-cell -end">128</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">12</td>
-						<td class="u-cell -end">6</td>
-						<td class="u-cell -end">10</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">50</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">5</td>
-						<td class="u-cell -end">3</td>
-						<td class="u-cell -end">0</td>
-						<td class="u-cell -end">15</td>
-						<td class="u-cell -end">22</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table scroll={true}>
+			<colgroup span="2"></colgroup>
+			<colgroup></colgroup>
+			<colgroup span="13"></colgroup>
+			<thead>
+				<tr>
+					<th scope="colgroup" colspan="2">出来事</th>
+					<th scope="colgroup" rowspan="2">総車両数</th>
+					<th scope="colgroup" colspan="13">車種別両数</th>
+				</tr>
+				<tr>
+					<th scope="col">時期</th>
+					<th scope="col">内容</th>
+					<th scope="col">モハ1</th>
+					<th scope="col">モハ20</th>
+					<th scope="col">モハ100</th>
+					<th scope="col">モハ200</th>
+					<th scope="col">モハ300</th>
+					<th scope="col">モハ500</th>
+					<th scope="col">モハ510</th>
+					<th scope="col">(池)モハ30</th>
+					<th scope="col">(池)モハ120</th>
+					<th scope="col">(池)モハ130</th>
+					<th scope="col">キハ1</th>
+					<th scope="col">モハ150&amp;サハ1</th>
+					<th scope="col">モハ1000</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row"><DateWareki value="1939-10-01" /></th>
+					<th scope="row">目黒蒲田電鉄と東京横浜電鉄が合併</th>
+					<td class="u-cell -end">118</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">0</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1939-10-12" /></th>
+					<th scope="row">モハ1001-1022 新製</th>
+					<td class="u-cell -end">140</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">2</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">22</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1940-09-27" /></th>
+					<th scope="row">キハ5, 7 神中へ譲渡</th>
+					<td class="u-cell -end">138</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">9</td>
+					<td class="u-cell -end">22</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1941-04-24" /></th>
+					<th scope="row">モハ22–24, 32–33 半鋼体化（モハ150形化）</th>
+					<td class="u-cell -end">138</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">1</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">14</td>
+					<td class="u-cell -end">22</td>
+				</tr>
+				<tr>
+					<th scope="row">不明</th>
+					<th scope="row">モハ34 半鋼体化（モハ150形化）</th>
+					<td class="u-cell -end">138</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">15</td>
+					<td class="u-cell -end">22</td>
+				</tr>
+				<tr>
+					<th scope="row"><DateWareki value="1942" />春</th>
+					<th scope="row">モハ1–10 神中へ譲渡</th>
+					<td class="u-cell -end">128</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">12</td>
+					<td class="u-cell -end">6</td>
+					<td class="u-cell -end">10</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">50</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">5</td>
+					<td class="u-cell -end">3</td>
+					<td class="u-cell -end">0</td>
+					<td class="u-cell -end">15</td>
+					<td class="u-cell -end">22</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

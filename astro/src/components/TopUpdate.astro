@@ -1,18 +1,58 @@
 ---
-import dayjs from 'dayjs';
-
 interface Props {
-	date: string;
+	id: string;
+	heading: string;
 }
 
-const { date } = Astro.props;
-
-const dateDayjs = dayjs(date);
+const { id, heading } = Astro.props;
 ---
 
-<li>
-	<div class="p-top-update-list__date"><time datetime={dateDayjs.format('YYYY-MM-DD')}>{dateDayjs.format('YYYY年M月D日')}</time></div>
-	<div class="p-top-update-list__info">
-		<slot />
+<section class="top-update" id={id}>
+	<header class="header">
+		<div class="hdg">
+			<h2>{heading}</h2>
+		</div>
+
+		<div class="notice">
+			<slot name="notice" />
+		</div>
+	</header>
+	<div class="main">
+		<ul class="list">
+			<slot name="item" />
+		</ul>
 	</div>
-</li>
+</section>
+
+<style>
+	.top-update {
+	}
+
+	.header {
+		display: block flex;
+		flex-flow: wrap;
+		gap: 0.25em 1em;
+		align-items: baseline;
+		justify-content: space-between;
+	}
+
+	.hdg {
+		line-height: var(--line-height-narrow);
+		font-size: calc(100% * pow(var(--font-ratio), 2));
+	}
+
+	.notice {
+	}
+
+	.main {
+		margin-block-start: 0.125em;
+	}
+
+	.list {
+		container-type: inline-size;
+		border: 2px solid var(--color-border-light);
+		border-radius: var(--border-radius-normal);
+		background: var(--color-white);
+		overflow: hidden;
+	}
+</style>

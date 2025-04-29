@@ -1,11 +1,15 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import DocMagazine from '@components/DocMagazine.astro';
-import H from '@components/H.astro';
-import Image from '@components/Image.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
+import Embedded from '@components/Embedded.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
+import Image from '@components/+phrasing/Image.astro';
+import TruckIcon from '@components/tokyu/+phrasing/TruckIcon.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -34,177 +38,169 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>東急車輛製造では1970年代にボルスタレス台車の開発に着手し、軸梁式の TS-1001 型とペデスタル式の TS-1002 型を製作。さらに TS-1002 型を基に、基礎ブレーキ装置をユニットブレーキから当時電動車で一般的だった踏面式に変更した TS-1003 型を製作し、デハ6202 に履かせて各種試験を行いました。</p>
 
 		<p>これらの試験ののち、1986年の9000系にて量産台車が採用され、以降の鉄道線車両の標準となっています。</p>
 
-		<div class="p-table -full">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">形式</th>
-						<th scope="col">製造初年</th>
-						<th scope="col">最多履数</th>
-						<th scope="col">履用車両</th>
-						<th scope="col">現状</th>
-						<th scope="col">備考</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>TS-1001</td>
-						<td class="u-cell -center">1977年</td>
-						<td class="u-cell -center">1両</td>
-						<td>8000系<small>（デハ8402）</small></td>
-						<td>消滅</td>
-						<td>試作台車</td>
-					</tr>
-					<tr>
-						<td>TS-1002</td>
-						<td class="u-cell -center">1977年</td>
-						<td class="u-cell -center">1両</td>
-						<td>デハ3550形<small>（デハ3552）</small></td>
-						<td>消滅</td>
-						<td>試作台車</td>
-					</tr>
-					<tr>
-						<td>TS-1003 <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1982年</td>
-						<td class="u-cell -center">1両</td>
-						<td>6000系<small>（デハ6202）</small></td>
-						<td>消滅</td>
-						<td>試作台車</td>
-					</tr>
-					<tr>
-						<td><a href="#ts1004-m" class="c-link">TS-1004</a> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1986年</td>
-						<td class="u-cell -center">59両</td>
-						<td>9000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#ts1005-t" class="c-link">TS-1005</a> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1986年</td>
-						<td class="u-cell -center">58両</td>
-						<td>9000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#ts1006-m" class="c-link">TS-1006</a> <span class="c-tokyu-truck -m">動力</span></td>
-						<td rowspan="2" class="u-cell -center">1988年</td>
-						<td class="u-cell -center">82両</td>
-						<td>1000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#ts1006a" class="c-link">TS-1006A</a> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1両</td>
-						<td>1000系<small>（デハ1362）</small></td>
-						<td>消滅</td>
-						<td>TS-1006 の改造</td>
-					</tr>
-					<tr>
-						<td><a href="#ts1007-t" class="c-link">TS-1007</a> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1987年</td>
-						<td class="u-cell -center">32両</td>
-						<td>1000系</td>
-						<td>現役</td>
-						<td>デハ1350形からの付随車化改造車1両を含む</td>
-					</tr>
-					<tr>
-						<td><a href="#ts1010-m" class="c-link">TS-1010</a> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1992年</td>
-						<td class="u-cell -center">18両</td>
-						<td>2000系→9020系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#ts1011-t" class="c-link">TS-1011</a> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1992年</td>
-						<td class="u-cell -center">12両</td>
-						<td>2000系→9020系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#ts1019-m" class="c-link">TS-1019</a> <span class="c-tokyu-truck -m">動力</span></td>
-						<td class="u-cell -center">1999年</td>
-						<td class="u-cell -center">42両</td>
-						<td>新3000系、Y000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td><a href="#ts1020-t" class="c-link">TS-1020</a> <span class="c-tokyu-truck -t">付随</span></td>
-						<td class="u-cell -center">1999年</td>
-						<td class="u-cell -center">42両</td>
-						<td>新3000系、Y000系</td>
-						<td>現役</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table full={true}>
+			<thead>
+				<tr>
+					<th scope="col">形式</th>
+					<th scope="col">製造初年</th>
+					<th scope="col">最多履数</th>
+					<th scope="col">履用車両</th>
+					<th scope="col">現状</th>
+					<th scope="col">備考</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>TS-1001</td>
+					<td class="u-cell -center">1977年</td>
+					<td class="u-cell -center">1両</td>
+					<td>8000系<small>（デハ8402）</small></td>
+					<td>消滅</td>
+					<td>試作台車</td>
+				</tr>
+				<tr>
+					<td>TS-1002</td>
+					<td class="u-cell -center">1977年</td>
+					<td class="u-cell -center">1両</td>
+					<td>デハ3550形<small>（デハ3552）</small></td>
+					<td>消滅</td>
+					<td>試作台車</td>
+				</tr>
+				<tr>
+					<td>TS-1003 <TruckIcon type="m">動力</TruckIcon></td>
+					<td class="u-cell -center">1982年</td>
+					<td class="u-cell -center">1両</td>
+					<td>6000系<small>（デハ6202）</small></td>
+					<td>消滅</td>
+					<td>試作台車</td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1004-m" bullet={true}>TS-1004</Anchor> <TruckIcon type="m">動力</TruckIcon></td>
+					<td class="u-cell -center">1986年</td>
+					<td class="u-cell -center">59両</td>
+					<td>9000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1005-t" bullet={true}>TS-1005</Anchor> <TruckIcon type="m">付随</TruckIcon></td>
+					<td class="u-cell -center">1986年</td>
+					<td class="u-cell -center">58両</td>
+					<td>9000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1006-m" bullet={true}>TS-1006</Anchor> <TruckIcon type="m">動力</TruckIcon></td>
+					<td rowspan="2" class="u-cell -center">1988年</td>
+					<td class="u-cell -center">82両</td>
+					<td>1000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1006a" bullet={true}>TS-1006A</Anchor> <TruckIcon type="m">動力</TruckIcon></td>
+					<td class="u-cell -center">1両</td>
+					<td>1000系<small>（デハ1362）</small></td>
+					<td>消滅</td>
+					<td>TS-1006 の改造</td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1007-t" bullet={true}>TS-1007</Anchor> <TruckIcon type="m">付随</TruckIcon></td>
+					<td class="u-cell -center">1987年</td>
+					<td class="u-cell -center">32両</td>
+					<td>1000系</td>
+					<td>現役</td>
+					<td>デハ1350形からの付随車化改造車1両を含む</td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1010-m" bullet={true}>TS-1010</Anchor> <TruckIcon type="m">動力</TruckIcon></td>
+					<td class="u-cell -center">1992年</td>
+					<td class="u-cell -center">18両</td>
+					<td>2000系→9020系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1011-t" bullet={true}>TS-1011</Anchor> <TruckIcon type="m">付随</TruckIcon></td>
+					<td class="u-cell -center">1992年</td>
+					<td class="u-cell -center">12両</td>
+					<td>2000系→9020系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1019-m" bullet={true}>TS-1019</Anchor> <TruckIcon type="m">動力</TruckIcon></td>
+					<td class="u-cell -center">1999年</td>
+					<td class="u-cell -center">42両</td>
+					<td>新3000系、Y000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><Anchor href="#ts1020-t" bullet={true}>TS-1020</Anchor> <TruckIcon type="m">付随</TruckIcon></td>
+					<td class="u-cell -center">1999年</td>
+					<td class="u-cell -center">42両</td>
+					<td>新3000系、Y000系</td>
+					<td>現役</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>TS-1011, TS-1002 型の製造年は<DocMagazine name="東急車輛技報" no={37} article="TS-1003型ボルスタレス台車について—その1—" authors={['児玉邦彦', '山根徹雄']} pages={[13]} />より。</li>
 			<li>TS-1003 〜 TS-1007 型の製造初年は<DocMagazine name="鉄道ピクトリアル" date="1989年10月号" no={518} article="国鉄・JRおよびメーカー別の台車リスト(Ⅲ)" pages={[109]} />より。</li>
 			<li>TS-1010 〜 TS-1011, TS-1020 型の製造初年は車両入籍日からの推定。</li>
 			<li>TS-1019 型の製造初年は現車調査による。</li>
-		</ul>
+		</ListNote>
 	</Section>
 
 	<Section id="ts1004">
-		<H slot="heading">TS-1004 型</H>
+		<Fragment slot="heading">TS-1004 型</Fragment>
 
 		<Section id="ts1004-m" depth={2} headingType="b">
-			<H slot="heading">TS-1004 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-1004 <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1004_9208.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2016-10-23 -->
-				</div>
-				<figcaption class="c-caption -meta">デハ9208（3次車）上り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1004_9208.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2016-10-23 -->
+				<Fragment slot="caption">デハ9208（3次車）上り方山側</Fragment>
+			</Embedded>
 
 			<p>1986年登場の9000系が履く台車は、従来の <a href="/tokyu/truck/ts800">TS-800 系</a>を踏襲してペデスタル式の軸受けとなっているほか、軸箱も共通ですが、側梁の彎曲は浅くなっています。牽引装置（回転装置）は中心ピンに通した牽引梁と緩衝ゴムによって構成されます。</p>
 
 			<p>ボルスタ付き台車と比較してもっとも目立つ外観の違いは側梁中央部のボルスタアンカーがないことで、代わりに突き出た横梁の2本の丸棒が目立ちます。3次車の途中から（9010F 以降）はこの横梁間の繋ぎ梁の溶接方が変更され、よりスマートな見栄えになりました。</p>
 
-			<p>また、1990年代初頭には電食軽減の対策が採られており、接地開閉器から接地装置までの配線インピーダンスの均等化や車体間との絶縁強化などのほか、デハ9200形とデハ9600形（すなわち編成両端の M 車）の台車のうち、向かって左側の軸受にフランスのフェラーズ社<small>（現：メルセン）</small>製による<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1004_9209_ge-axle.jpg" title="デハ9209 上り方山側"><!-- 撮影日: 2010-04-01 -->軸端式の接地装置</LinkPhoto>が追設されています。</p>
+			<p>また、1990年代初頭には電食軽減の対策が採られており、接地開閉器から接地装置までの配線インピーダンスの均等化や車体間との絶縁強化などのほか、デハ9200形とデハ9600形（すなわち編成両端の M 車）の台車のうち、向かって左側の軸受にフランスのフェラーズ社<small>（現：メルセン）</small>製による<AnchorPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1004_9209_ge-axle.jpg" title="デハ9209 上り方山側"><!-- 撮影日: 2010-04-01 -->軸端式の接地装置</AnchorPhoto>が追設されています。</p>
 
 			<p>本来9000系用として製造された台車ですが、譲渡車両においては1000系に転用された例もあり、一畑電車デハ1002 が前期型を、伊賀鉄道モ205 および一畑電車デハ1001, 1003 が後期型を履用しています。</p>
 		</Section>
 	</Section>
 
 	<Section id="ts1005">
-		<H slot="heading">TS-1005 型</H>
+		<Fragment slot="heading">TS-1005 型</Fragment>
 
 		<Section id="ts1005-t" depth={2} headingType="b">
-			<H slot="heading">TS-1005 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-1005 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1005_9007.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-02-14 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ9007（2次車）上り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1005_9007.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-02-14 -->
+				<Fragment slot="caption">クハ9007（2次車）上り方山側</Fragment>
+			</Embedded>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1005_9109.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2011-10-09 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ9109（3次車）上り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1005_9109.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2011-10-09 -->
+				<Fragment slot="caption">クハ9109（3次車）上り方山側</Fragment>
+			</Embedded>
 
 			<p>9000系の付随台車で、基礎ブレーキ装置は従来の8000系と同じく、動力台車の片押式踏面ブレーキに対してディスクブレーキとなっています。</p>
 
@@ -217,79 +213,70 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts1006">
-		<H slot="heading">TS-1006 型</H>
+		<Fragment slot="heading">TS-1006 型</Fragment>
 
 		<Section id="ts1006-m" depth={2} headingType="b">
-			<H slot="heading">TS-1006 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-1006 <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1006_1223.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-06-17 -->
-				</div>
-				<figcaption class="c-caption -meta">デハ1223（4次車）上り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1006_1223.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-06-17 -->
+				<Fragment slot="caption">デハ1223（4次車）上り方山側</Fragment>
+			</Embedded>
 
 			<p>地下鉄日比谷線乗入れ用として1988年に導入された1000系は、先代の乗入れ車である7000系と同じく床面高さが他の車種より 45mm 低い 1125mm となっています。そのため9000系の台車と比較すると、軸ばね寸法が変更されて側梁の位置が低くなったほか、肩部の形状が異なるなど若干の差異がみられます。</p>
 		</Section>
 
 		<Section id="ts1006a" depth={2} headingType="b">
-			<H slot="heading">TS-1006A <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-1006A <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1006A_1362.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2006-04-09 -->
-				</div>
-				<figcaption class="c-caption -meta">デハ1362（3次車）上り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1006A_1362.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2006-04-09 -->
+				<Fragment slot="caption">デハ1362（3次車）上り方山側</Fragment>
+			</Embedded>
 
 			<p>2003年の東横線 1010F 組替えに伴い、長らく営業を外れていたデハ1362、デハ1363 が復帰しましたが、このうちデハ1362 の台車は TS-1006A 型とされ、復帰当初は側梁の向かって右側に改造銘板が設置されていました。</p>
 		</Section>
 	</Section>
 
 	<Section id="ts1007">
-		<H slot="heading">TS-1007 型</H>
+		<Fragment slot="heading">TS-1007 型</Fragment>
 
 		<Section id="ts1007-t" depth={2} headingType="b">
-			<H slot="heading">TS-1007 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-1007 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1007_1101.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-03-01 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ1101（1次車）上り方山側</figcaption>
-			</figure>
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1007_1015.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2006-03-03 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ1015（4次車）上り方海側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1007_1101.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-03-01 -->
+				<Fragment slot="caption">クハ1101（1次車）上り方山側</Fragment>
+			</Embedded>
+
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1007_1015.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2006-03-03 -->
+				<Fragment slot="caption">クハ1015（4次車）上り方海側</Fragment>
+			</Embedded>
 
 			<p>1000系の付随台車で、動力台車と同じく高さを抑えて日比谷線乗入れに対応しています。</p>
 
 			<p>東横線クハ1000形、クハ1100形の台車には後年になって側梁両端にコイルばねによる踏面清掃装置が追設されました。池上線、多摩川線の1000系はその後も設置が行われず、2014年に始まった1000系1500番台の転籍に際しても当初はわざわざ撤去が行われたくらいでしたが、こちらも後に運転台方台車のみ追設工事が行われました。</p>
 
-			<p>2枚目写真は<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/abs_1015.jpg" title="クハ1015 山側"><!-- 撮影日: 2007-11-11 -->フラット防止装置</LinkPhoto>を搭載していたクハ1015 のもので、検知装置が設置されており、軸箱も特殊な形状となっていました。当車は2008年に上田電鉄に譲渡されましたが、譲渡に際しフラット防止装置は撤去され、台車軸箱も通常タイプに復旧されています。</p>
+			<p>2枚目写真は<AnchorPhoto href="https://media.w0s.jp/image/tokyu/truck/abs_1015.jpg" title="クハ1015 山側"><!-- 撮影日: 2007-11-11 -->フラット防止装置</AnchorPhoto>を搭載していたクハ1015 のもので、検知装置が設置されており、軸箱も特殊な形状となっていました。当車は2008年に上田電鉄に譲渡されましたが、譲渡に際しフラット防止装置は撤去され、台車軸箱も通常タイプに復旧されています。</p>
 		</Section>
 	</Section>
 
 	<Section id="ts1010">
-		<H slot="heading">TS-1010 型</H>
+		<Fragment slot="heading">TS-1010 型</Fragment>
 
 		<Section id="ts1010-m" depth={2} headingType="b">
-			<H slot="heading">TS-1010 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-1010 <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1010_2453.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-06-18 -->
-				</div>
-				<figcaption class="c-caption -meta">デハ2453（2次車）上り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1010_2453.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-06-18 -->
+				<Fragment slot="caption">デハ2453（2次車）上り方山側</Fragment>
+			</Embedded>
 
 			<p>田玉線の増発対策として1992年に導入された2000系の台車は、側梁形状などに9000系の面影が残るものの、軸受け部を中心に改良が成されており、印象は大きく異なります。</p>
 
@@ -300,26 +287,22 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts1011">
-		<H slot="heading">TS-1011 型</H>
+		<Fragment slot="heading">TS-1011 型</Fragment>
 
 		<Section id="ts1011-t" depth={2} headingType="b">
-			<H slot="heading">TS-1011 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-1011 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1011_2101.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-03-01 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ2101（1次車）下り方海側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1011_2101.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-03-01 -->
+				<Fragment slot="caption">クハ2101（1次車）下り方海側</Fragment>
+			</Embedded>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1011_9022.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2019-05-19 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ9022（1次車）下り方山側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1011_9022.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2019-05-19 -->
+				<Fragment slot="caption">クハ9022（1次車）下り方山側</Fragment>
+			</Embedded>
 
 			<p>2000系の付随台車で、9000系、1000系と同じく基礎ブレーキ装置は動力台車の片押式踏面ブレーキに対してディスクブレーキとなっています。従来、先頭台車の排障器はペデスタル部に取り付けられていましたが、軸箱支持方式が変更されたため側梁から伸びるものとなりました。</p>
 
@@ -330,44 +313,40 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ts1019">
-		<H slot="heading">TS-1019 型</H>
+		<Fragment slot="heading">TS-1019 型</Fragment>
 
 		<Section id="ts1019-m" depth={2} headingType="b">
-			<H slot="heading">TS-1019 <small class="c-tokyu-truck -m">動力台車</small></H>
+			<Fragment slot="heading">TS-1019 <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1019_3404.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-01-31 -->
-				</div>
-				<figcaption class="c-caption -meta">デハ3404（2次車）下り方海側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1019_3404.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-01-31 -->
+				<Fragment slot="caption">デハ3404（2次車）下り方海側</Fragment>
+			</Embedded>
 
-			<p>1999年に登場した新3000系の電動車に使用されている台車です。軸箱支持は軸梁式となり、固定軸距は従来より 100mm 短縮され 2100mm となりました。また当形式から基礎ブレーキ装置が変更され、対応する付随台車ともに片押式踏面の<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1019_3407_unitbrake.jpg" title="デハ3407 上り方山側"><!-- 撮影日: 2009-06-18 -->ユニットブレーキ</LinkPhoto>となりました。軸受は <a href="/tokyu/truck/ts300#ts332">TS-332 型</a>に続いて密封式が採用されています。</p>
+			<p>1999年に登場した新3000系の電動車に使用されている台車です。軸箱支持は軸梁式となり、固定軸距は従来より 100mm 短縮され 2100mm となりました。また当形式から基礎ブレーキ装置が変更され、対応する付随台車ともに片押式踏面の<AnchorPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1019_3407_unitbrake.jpg" title="デハ3407 上り方山側"><!-- 撮影日: 2009-06-18 -->ユニットブレーキ</AnchorPhoto>となりました。軸受は <a href="/tokyu/truck/ts300#ts332">TS-332 型</a>に続いて密封式が採用されています。</p>
 
-			<p>同じ年に登場したこどもの国線用Y000系にも同形式の台車が使用されていますが、路線に急カーブを抱えているため<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1019_Y011_wheel.jpg" title="デハY011 上り方山側"><!-- 撮影日: 2009-02-22 -->防音車輪</LinkPhoto>が使用されています。</p>
+			<p>同じ年に登場したこどもの国線用Y000系にも同形式の台車が使用されていますが、路線に急カーブを抱えているため<AnchorPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1019_Y011_wheel.jpg" title="デハY011 上り方山側"><!-- 撮影日: 2009-02-22 -->防音車輪</AnchorPhoto>が使用されています。</p>
 		</Section>
 	</Section>
 
 	<Section id="ts1020">
-		<H slot="heading">TS-1020 型</H>
+		<Fragment slot="heading">TS-1020 型</Fragment>
 
 		<Section id="ts1020-t" depth={2} headingType="b">
-			<H slot="heading">TS-1020 <small class="c-tokyu-truck -t">付随台車</small></H>
+			<Fragment slot="heading">TS-1020 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/truck/TS1020_3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} />
-					<!-- 撮影日: 2009-01-31 -->
-				</div>
-				<figcaption class="c-caption -meta">クハ3104（2次車）下り方海側</figcaption>
-			</figure>
+			<Embedded border={true} captionMeta={true}>
+				<Image path="tokyu/truck/TS1020_3104.jpg" alt="写真拡大" width={1022} height={341} quality={80} link={true} slot="media" />
+				<!-- 撮影日: 2009-01-31 -->
+				<Fragment slot="caption">クハ3104（2次車）下り方海側</Fragment>
+			</Embedded>
 
 			<p>新3000系、Y000系の付随台車で、基礎ブレーキ装置は動力台車と同一です。そのため、違いとしては主電動機や軸端取付接地装置を搭載していない程度で、外観はほぼ同じものとなっています。</p>
 
 			<p>クハ3100形の一部とクハY000形全車には、TS-1000 系台車としては初めて軌条塗油器が設置されました。TS-800 系台車と同じく、油噴口を左右の軸箱部からバーで支える方式ですが、設置位置が低くなっています。また、TS-800 系履用車では先頭車に塗油器を載せる場合、油噴口は連結面方台車に設けられていましたが、本形式では運転台方台車となっています。</p>
 
-			<p>2007年にはクハY000形に<LinkPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1020_Y002_FM01.jpg" title="クハY002 下り方山側"><!-- 撮影日: 2007-03-21 -->摩擦緩和システム（FRIMOS: Friction Moderating System）</LinkPhoto>が追設され、連結面方台車に噴射口の架台が取り付けられています。</p>
+			<p>2007年にはクハY000形に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/truck/TS1020_Y002_FM01.jpg" title="クハY002 下り方山側"><!-- 撮影日: 2007-03-21 -->摩擦緩和システム（FRIMOS: Friction Moderating System）</AnchorPhoto>が追設され、連結面方台車に噴射口の架台が取り付けられています。</p>
 		</Section>
 	</Section>
 </Layout>

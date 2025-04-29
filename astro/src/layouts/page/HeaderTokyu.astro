@@ -1,0 +1,43 @@
+---
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import HeaderGlobalNav from '@components/header/GlobalNav.astro';
+import HeaderSearchForm from '@components/header/SearchForm.astro';
+import HeaderSite from '@components/header/Site.astro';
+
+interface Props {
+	pagePath: string;
+	top?: boolean;
+}
+
+const { pagePath, top = false } = Astro.props;
+---
+
+<header id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			<HeaderSite top={top} href="/tokyu/" name="東急電車資料室" summary="目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト" />
+		</div>
+		<div class="l-header__utility">
+			<div class="l-header__feed">
+				<AnchorButton href="/tokyu/feed" type="atom">新着フィード</AnchorButton>
+			</div>
+			<div class="l-header__search">
+				<HeaderSearchForm />
+			</div>
+		</div>
+	</div>
+	<div class="l-header__gnav">
+		<HeaderGlobalNav
+			pagePath={pagePath}
+			data={[
+				{ path: '/tokyu/data/', name: '車両データ' },
+				{ path: '/tokyu/machine/', name: '車両機器' },
+				{ path: '/tokyu/truck/', name: '台車' },
+				{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
+				{ path: '/tokyu/an/', name: '自動放送' },
+				{ path: '/tokyu/set/', name: '設定器' },
+				{ path: '/tokyu/book/', name: '鉄道本執筆' },
+			]}
+		/>
+	</div>
+</header>

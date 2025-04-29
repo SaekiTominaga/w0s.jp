@@ -1,9 +1,11 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import Image from '@components/+phrasing/Image.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -21,7 +23,7 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>7700系の床下は、東洋電機製造 SIV 装備車や IGBT-VVVF 車など異端車の存在によりいくつかのバリエーションが存在しますが、クハ7900形の山側、各種空気だめや情報伝送装置のある部分はとくに車両ごとの差違が際立っています。</p>
 
@@ -31,203 +33,179 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="air">
-		<H slot="heading">元空気指令車（1〜3次車）</H>
+		<Fragment slot="heading">元空気指令車（1〜3次車）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="c7901" depth={2} headingType="c">
-					<H slot="heading">クハ7901</H>
+					<Fragment slot="heading">クハ7901</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7901m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-01 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7901（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7901m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-01 -->
+						<Fragment slot="caption">クハ7901（1次車）</Fragment>
+					</Embedded>
 
 					<p>ブレーキ制御装置より下り方の主な機器は順に、元空気だめ、情報伝送装置、床下灯、識別票、速度計補償器、除湿装置です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7902" depth={2} headingType="c">
-					<H slot="heading">クハ7902</H>
+					<Fragment slot="heading">クハ7902</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7902m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-01 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7902（1次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7902m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-01 -->
+						<Fragment slot="caption">クハ7902（1次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7903" depth={2} headingType="c">
-					<H slot="heading">クハ7903</H>
+					<Fragment slot="heading">クハ7903</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7903m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7903（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7903m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-29 -->
+						<Fragment slot="caption">クハ7903（2次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7905" depth={2} headingType="c">
-					<H slot="heading">クハ7905</H>
+					<Fragment slot="heading">クハ7905</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7905m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-04-12 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7905（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7905m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-04-12 -->
+						<Fragment slot="caption">クハ7905（2次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7906" depth={2} headingType="c">
-					<H slot="heading">クハ7906</H>
+					<Fragment slot="heading">クハ7906</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7906m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7906（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7906m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-29 -->
+						<Fragment slot="caption">クハ7906（2次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7907" depth={2} headingType="c">
-					<H slot="heading">クハ7907</H>
+					<Fragment slot="heading">クハ7907</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7907m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-01 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7907（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7907m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-01 -->
+						<Fragment slot="caption">クハ7907（3次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7908" depth={2} headingType="c">
-					<H slot="heading">クハ7908</H>
+					<Fragment slot="heading">クハ7908</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7908m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-04-05 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7908（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7908m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-04-05 -->
+						<Fragment slot="caption">クハ7908（2次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7910" depth={2} headingType="c">
-					<H slot="heading">クハ7910</H>
+					<Fragment slot="heading">クハ7910</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7910m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-29 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7910（3次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7910m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-29 -->
+						<Fragment slot="caption">クハ7910（3次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7901と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="electric">
-		<H slot="heading">改造当初からの電気指令車（4〜5次車）</H>
+		<Fragment slot="heading">改造当初からの電気指令車（4〜5次車）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="c7912" depth={2} headingType="c">
-					<H slot="heading">クハ7912</H>
+					<Fragment slot="heading">クハ7912</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7912m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-08 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7912（4次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7912m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-08 -->
+						<Fragment slot="caption">クハ7912（4次車）</Fragment>
+					</Embedded>
 
 					<p>ブレーキ制御装置より下り方の主な機器は順に、元空気だめ、情報伝送装置、床下灯、速度計補償器、除湿装置、識別票です。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7913" depth={2} headingType="c">
-					<H slot="heading">クハ7913</H>
+					<Fragment slot="heading">クハ7913</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7913m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-23 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7913（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7913m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-23 -->
+						<Fragment slot="caption">クハ7913（5次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7912と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="c7914" depth={2} headingType="c">
-					<H slot="heading">クハ7914</H>
+					<Fragment slot="heading">クハ7914</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7914m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-08 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7914（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7914m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-08 -->
+						<Fragment slot="caption">クハ7914（5次車）</Fragment>
+					</Embedded>
 
 					<p>クハ7912と同じ配置ですが、管やコックなどの細部は異なります。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="t-7950">
-		<H slot="heading">サハ7950形からの改造車（5次車）</H>
+		<Fragment slot="heading">サハ7950形からの改造車（5次車）</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="c7915" depth={2} headingType="c">
-					<H slot="heading">クハ7915</H>
+					<Fragment slot="heading">クハ7915</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/ub/7915m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} />
-							<!-- 撮影日: 2008-03-23 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ7915（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/ub/7915m.jpg" alt="写真拡大" width={485} height={122} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-03-23 -->
+						<Fragment slot="caption">クハ7915（5次車）</Fragment>
+					</Embedded>
 
 					<p>ブレーキ制御装置より下り方の主な機器は順に、元空気だめ、除湿装置、情報伝送装置、床下灯、速度計補償器、識別票です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

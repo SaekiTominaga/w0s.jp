@@ -1,0 +1,53 @@
+---
+interface Props {
+	blockSize?: string;
+}
+
+const { blockSize } = Astro.props;
+---
+
+<span class="textarea" style={blockSize !== undefined ? `--_block-size: ${blockSize}` : undefined}>
+	<slot />
+</span>
+
+<style>
+	.textarea {
+		--_block-size: auto;
+		--_border-color: var(--color-border-dark);
+		--_bg-color: var(--color-white);
+		--_color: var(--color-black);
+
+		box-sizing: content-box;
+		display: contents;
+
+		& > :global(textarea) {
+			outline-offset: -1px;
+			outline-width: var(--outline-width-bold);
+			border: 1px solid var(--_border-color);
+			border-radius: var(--border-radius-normal);
+			background-color: var(--_bg-color);
+			padding: var(--form-control-padding);
+			min-block-size: var(--_block-size, auto);
+			inline-size: 100%;
+			color: var(--_color);
+		}
+
+		& > :global(textarea:enabled:read-write:hover) {
+			--_border-color: var(--outline-color);
+		}
+
+		& > :global(textarea:disabled) {
+			--_bg-color: var(--color-bg-verydark);
+			--_color: var(--color-gray);
+		}
+
+		& > :global(textarea:read-only) {
+			--_bg-color: var(--color-bg-verydark);
+			--_color: var(--color-gray);
+		}
+
+		& > :global(textarea[aria-invalid='true']) {
+			--_border-color: var(--invalid-border-color);
+		}
+	}
+</style>

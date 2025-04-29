@@ -1,12 +1,18 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import Date from '@components/Date.astro';
-import DateWareki from '@components/DateWareki.astro';
-import H from '@components/H.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
+import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Date from '@components/+phrasing/Date.astro';
+import DateWareki from '@components/+phrasing/DateWareki.astro';
+import Image from '@components/+phrasing/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -23,9 +29,15 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<div class="c-embed-sidebar -embed-first">
-		<div class="c-embed-sidebar__text">
-			<dl class="p-list-table">
+	<Flex>
+		<FlexItem>
+			<Embedded border={true}>
+				<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙画像: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} slot="media" />
+				<Fragment slot="caption">表紙</Fragment>
+			</Embedded>
+		</FlexItem>
+		<FlexItem>
+			<ListTable>
 				<div>
 					<dt>発行日</dt>
 					<dd><Date value="2024-12-31" /></dd>
@@ -34,31 +46,28 @@ const structuredData: StructuredData = {
 					<dt>価格</dt>
 					<dd>1,000円（税込）</dd>
 				</div>
-			</dl>
+			</ListTable>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>本書は電子書籍のみの販売</li>
-			</ul>
-		</div>
-		<div class="c-embed-sidebar__embed">
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙画像: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} />
-				</div>
-			</figure>
-		</div>
-	</div>
+			</ListNote>
+		</FlexItem>
+	</Flex>
 
 	<Section id="buy">
-		<H slot="heading">購入案内</H>
+		<Fragment slot="heading">購入案内</Fragment>
 
-		<p><LinkExternal href="https://www.amazon.co.jp/dp/B0DRYFG3BG/" icon={false} class="c-button -amazon"><img src="/assets/image/icon/amazon.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">Kindle 版（Amazon）</span></LinkExternal></p>
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="https://www.amazon.co.jp/dp/B0DRYFG3BG/" type="amazon">Kindle 版（Amazon）</AnchorButton>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li><a href="#introduction">はじめに</a></li>
 			<li>
 				第1章　開通前の車両計画と諸元
@@ -95,28 +104,28 @@ const structuredData: StructuredData = {
 					<li>貨車の軌間改造</li>
 				</ol>
 			</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="introduction">
-		<H slot="heading">本文冒頭抜粋</H>
+		<Fragment slot="heading">本文冒頭抜粋</Fragment>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>本文冒頭の「<cite>はじめに</cite>」を抜粋します。</li>
-		</ul>
+		</ListNote>
 
 		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920-09" />までの13年間、1,067mmの狭軌で営業が行われていました。明治、大正期の私鉄研究には一般に『<cite>鉄道省文書</cite>』と呼ばれる公文書（許認可書類）の調査が欠かせないのですが、玉電狭軌車の許認可書類は一部しか残されていないためその全容は謎に包まれており、車両番号すら明確には分かっていないのが現状です。</p>
 
 		<p>一方、昨今になって国立国会図書館をはじめとする図書館資料のデジタル化が進んだことでこれまでに知られていなかった資料の発見が相次ぎ、様々なことが明らかになってきています。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>電動客車のみならず電気機関車で乗客を輸送する計画があった</li>
 			<li>電動客車のメーカーは定説では大半が高橋鐵工場とされてきたが、同社が旅客車の製造に関わった可能性は低い</li>
 			<li>電動客車は車体サイズや形態に少なくとも4種類のバリエーションが存在した</li>
 			<li>付随客車の一部は新製ではなく他路線から譲り受けた</li>
 			<li>旅客車22両のほかに予備の台車を輸入しており、その一部は車体も作られた可能性がある</li>
 			<li>一部の車両は改軌の実施を待たずに譲渡された</li>
-		</ul>
+		</List>
 
 		<p>本書では公文書のほか、統計資料、会社の営業報告書、雑誌記事、新聞報道などをもとに、狭軌時代の車両について解明を試みます。</p>
 	</Section>

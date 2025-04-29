@@ -1,15 +1,19 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import DocBook from '@components/DocBook.astro';
-import DocMagazine from '@components/DocMagazine.astro';
-import H from '@components/H.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
-import NoteRef from '@components/NoteRef.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
+import DocBook from '@components/+phrasing/DocBook.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import Image from '@components/+phrasing/Image.astro';
+import ListNote from '@components/ListNote.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -38,197 +42,187 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>1954年に登場した旧5000系は旧来の吊り掛け式電車とは一線を画した高性能車で、東急電車で初めて発電ブレーキを搭載するなど制御まわりも革新されました。</p>
 
 		<p>続く旧6000系では複巻電動機による電力回生ブレーキが導入されましたが、その分巻界磁電流の制御は電機メーカーによりそれぞれ異なった特徴的な方式が採用、旧7000系や7200系でも同様に2種類の方式が混在した状況の中、それぞれが独自に改良を重ねてゆく試行錯誤の様子が覗えるものとなっています。</p>
 
-		<div class="p-table -full">
-			<table>
-				<caption>高性能車の主制御器一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col">搭載車種</th>
-						<th scope="col">形式</th>
-						<th scope="col">製造所</th>
-						<th scope="col">登場年</th>
-						<th scope="col">DCM 接続</th>
-						<th scope="col">組合せ制御</th>
-						<th scope="col">弱め界磁</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>5000系<small>（デハ5001〜5020）</small></td>
-						<td><a href="#pe-11" class="c-link">PE-11A</a></td>
-						<td rowspan="2">東芝</td>
-						<td>1954年</td>
-						<td rowspan="2">直巻 110kW×4</td>
-						<td rowspan="2">直並列</td>
-						<td rowspan="2">カム軸</td>
-					</tr>
-					<tr>
-						<td>5000系G<small>（デハ5021<NoteRef type="ref" by="pe11-b-5021" />〜）</small></td>
-						<td><a href="#pe-11" class="c-link">PE-11B</a></td>
-						<td>1956年</td>
-					</tr>
-					<tr>
-						<td>デハ200形</td>
-						<td><a href="#ab-54-6mdb" class="c-link">AB-54-6MDB</a><NoteRef type="ref" by="ab-54-6mdb-name" /></td>
-						<td>三菱</td>
-						<td>1955年</td>
-						<td>直巻 38kW×4</td>
-						<td>永久並列</td>
-						<td class="u-cell -center">―</td>
-					</tr>
-					<tr>
-						<td>6000系<small>（東洋車、A編成）</small></td>
-						<td><a href="#es753-a" class="c-link">ACRF-H4100-753A</a><NoteRef type="ref" by="es753-a-name" /></td>
-						<td>東洋</td>
-						<td>1960年</td>
-						<td>複巻 100kW×4</td>
-						<td>永久直列</td>
-						<td>FR</td>
-					</tr>
-					<tr>
-						<td>6000系<small>（東芝車、B編成）</small></td>
-						<td><a href="#mm-101a" class="c-link">MM-101A</a><NoteRef type="ref" by="mm-101a-name" /></td>
-						<td>東芝</td>
-						<td>1960年</td>
-						<td>複巻 85kW×4</td>
-						<td>永久直列</td>
-						<td>ブースター</td>
-					</tr>
-					<tr>
-						<td>6000系<small>（東洋車、C編成）</small></td>
-						<td><a href="#es753-a" class="c-link">ACRF-H4120-754A</a><NoteRef type="ref" by="es754-a-6000-name" /></td>
-						<td rowspan="2">東洋</td>
-						<td>1961年</td>
-						<td>複巻 120kW×4</td>
-						<td rowspan="2">永久直列</td>
-						<td rowspan="2">FR</td>
-					</tr>
-					<tr>
-						<td>7000系<small>（東洋車、1〜2次車）</small></td>
-						<td><a href="#es754-a" class="c-link">ACRF-H860-754A</a><NoteRef type="ref" by="es754-a-7000-name" /></td>
-						<td>1962年</td>
-						<td>複巻 60kW×8</td>
-					</tr>
-					<tr>
-						<td>7000系<small>（東洋車、3〜10次車）</small></td>
-						<td><a href="#es754-a" class="c-link">ACRF-H860-757A</a></td>
-						<td>東洋</td>
-						<td>1963年</td>
-						<td>複巻 60kW×8</td>
-						<td>永久直列</td>
-						<td>FR</td>
-					</tr>
-					<tr>
-						<td>7000系<small>（日立車）</small></td>
-						<td><a href="#mmc-htr-10a" class="c-link">MMC-HTR-10A</a><NoteRef type="ref" by="mmc-htr-10a-name" /></td>
-						<td>日立</td>
-						<td>1963年</td>
-						<td>複巻 70kW×8</td>
-						<td>直並列</td>
-						<td>カム軸</td>
-					</tr>
-					<tr>
-						<td>7200系<small>（日立車）</small></td>
-						<td><a href="#mmc-htr-10b" class="c-link">MMC-HTR-10B</a></td>
-						<td>日立</td>
-						<td>1967年</td>
-						<td>複巻 110kW×4</td>
-						<td>直並列</td>
-						<td>カム軸</td>
-					</tr>
-					<tr>
-						<td>7200系<small>（東洋車）</small></td>
-						<td><a href="#es764-a" class="c-link">ACRF-H4110-764A</a></td>
-						<td>東洋</td>
-						<td>1967年</td>
-						<td>複巻 110kW×4</td>
-						<td>直並列</td>
-						<td>FR</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<td>7000系<small>（北陸鉄道譲渡車）</small></td>
-						<td><a href="#cs-20a" class="c-link">CS-20A</a></td>
-						<td>(複数)</td>
-						<td></td>
-						<td>直巻 120kW×4</td>
-						<td>直並列</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		<Table full={true}>
+			<caption>高性能車の主制御器一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col">搭載車種</th>
+					<th scope="col">形式</th>
+					<th scope="col">製造所</th>
+					<th scope="col">登場年</th>
+					<th scope="col">DCM 接続</th>
+					<th scope="col">組合せ制御</th>
+					<th scope="col">弱め界磁</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>5000系<small>（デハ5001〜5020）</small></td>
+					<td><Anchor href="#pe-11" bullet={true}>PE-11A</Anchor></td>
+					<td rowspan="2">東芝</td>
+					<td>1954年</td>
+					<td rowspan="2">直巻 110kW×4</td>
+					<td rowspan="2">直並列</td>
+					<td rowspan="2">カム軸</td>
+				</tr>
+				<tr>
+					<td>5000系G<small>（デハ5021<NoteRef type="ref" by="pe11-b-5021" />〜）</small></td>
+					<td><Anchor href="#pe-11" bullet={true}>PE-11B</Anchor></td>
+					<td>1956年</td>
+				</tr>
+				<tr>
+					<td>デハ200形</td>
+					<td><Anchor href="#ab-54-6mdb" bullet={true}>AB-54-6MDB</Anchor><NoteRef type="ref" by="ab-54-6mdb-name" /></td>
+					<td>三菱</td>
+					<td>1955年</td>
+					<td>直巻 38kW×4</td>
+					<td>永久並列</td>
+					<td class="u-cell -center">―</td>
+				</tr>
+				<tr>
+					<td>6000系<small>（東洋車、A編成）</small></td>
+					<td><Anchor href="#es753-a" bullet={true}>ACRF-H4100-753A</Anchor><NoteRef type="ref" by="es753-a-name" /></td>
+					<td>東洋</td>
+					<td>1960年</td>
+					<td>複巻 100kW×4</td>
+					<td>永久直列</td>
+					<td>FR</td>
+				</tr>
+				<tr>
+					<td>6000系<small>（東芝車、B編成）</small></td>
+					<td><Anchor href="#mm-101a" bullet={true}>MM-101A</Anchor><NoteRef type="ref" by="mm-101a-name" /></td>
+					<td>東芝</td>
+					<td>1960年</td>
+					<td>複巻 85kW×4</td>
+					<td>永久直列</td>
+					<td>ブースター</td>
+				</tr>
+				<tr>
+					<td>6000系<small>（東洋車、C編成）</small></td>
+					<td><Anchor href="#es753-a" bullet={true}>ACRF-H4120-754A</Anchor><NoteRef type="ref" by="es754-a-6000-name" /></td>
+					<td rowspan="2">東洋</td>
+					<td>1961年</td>
+					<td>複巻 120kW×4</td>
+					<td rowspan="2">永久直列</td>
+					<td rowspan="2">FR</td>
+				</tr>
+				<tr>
+					<td>7000系<small>（東洋車、1〜2次車）</small></td>
+					<td><Anchor href="#es754-a" bullet={true}>ACRF-H860-754A</Anchor><NoteRef type="ref" by="es754-a-7000-name" /></td>
+					<td>1962年</td>
+					<td>複巻 60kW×8</td>
+				</tr>
+				<tr>
+					<td>7000系<small>（東洋車、3〜10次車）</small></td>
+					<td><Anchor href="#es754-a" bullet={true}>ACRF-H860-757A</Anchor></td>
+					<td>東洋</td>
+					<td>1963年</td>
+					<td>複巻 60kW×8</td>
+					<td>永久直列</td>
+					<td>FR</td>
+				</tr>
+				<tr>
+					<td>7000系<small>（日立車）</small></td>
+					<td><Anchor href="#mmc-htr-10a" bullet={true}>MMC-HTR-10A</Anchor><NoteRef type="ref" by="mmc-htr-10a-name" /></td>
+					<td>日立</td>
+					<td>1963年</td>
+					<td>複巻 70kW×8</td>
+					<td>直並列</td>
+					<td>カム軸</td>
+				</tr>
+				<tr>
+					<td>7200系<small>（日立車）</small></td>
+					<td><Anchor href="#mmc-htr-10b" bullet={true}>MMC-HTR-10B</Anchor></td>
+					<td>日立</td>
+					<td>1967年</td>
+					<td>複巻 110kW×4</td>
+					<td>直並列</td>
+					<td>カム軸</td>
+				</tr>
+				<tr>
+					<td>7200系<small>（東洋車）</small></td>
+					<td><Anchor href="#es764-a" bullet={true}>ACRF-H4110-764A</Anchor></td>
+					<td>東洋</td>
+					<td>1967年</td>
+					<td>複巻 110kW×4</td>
+					<td>直並列</td>
+					<td>FR</td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<td>7000系<small>（北陸鉄道譲渡車）</small></td>
+					<td><Anchor href="#cs-20a" bullet={true}>CS-20A</Anchor></td>
+					<td>(複数)</td>
+					<td></td>
+					<td>直巻 120kW×4</td>
+					<td>直並列</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="pe11-b-5021"><DocMagazine name="鉄道ファン" date="1985年3月号" no={287} article="30才を迎えた“青ガエル”　東急5000系のあゆみ" authors={['宮田道一', '荻原俊夫']} pages={[45]} /></NoteRefContent>
+		<NoteRefContent id="pe11-b-5021"><DocMagazine name="鉄道ファン" date="1985年3月号" no={287} article="30才を迎えた“青ガエル”　東急5000系のあゆみ" authors={['宮田道一', '荻原俊夫']} pages={[45]} /></NoteRefContent>
 
-			<NoteRefContent id="ab-54-6mdb-name"><DocMagazine name="電気鉄道" date="1955年9月号" no={88} article="東京急行玉川線の連接車" authors={['白石安之']} pages={[12]} url="https://dl.ndl.go.jp/pid/2313824/1/9" /></NoteRefContent>
+		<NoteRefContent id="ab-54-6mdb-name"><DocMagazine name="電気鉄道" date="1955年9月号" no={88} article="東京急行玉川線の連接車" authors={['白石安之']} pages={[12]} url="https://dl.ndl.go.jp/pid/2313824/1/9" /></NoteRefContent>
 
-			<NoteRefContent id="es753-a-name"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
+		<NoteRefContent id="es753-a-name"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
 
-			<NoteRefContent id="mm-101a-name"><DocMagazine name="東芝レビュー" date="1960年8月号" no={127} article="新製品紹介" pages={[949]} url="https://dl.ndl.go.jp/pid/3253820/1/53" /></NoteRefContent>
+		<NoteRefContent id="mm-101a-name"><DocMagazine name="東芝レビュー" date="1960年8月号" no={127} article="新製品紹介" pages={[949]} url="https://dl.ndl.go.jp/pid/3253820/1/53" /></NoteRefContent>
 
-			<NoteRefContent id="es754-a-6000-name"><DocMagazine name="鉄道ピクトリアル" date="1972年9月号" no={269} article="私鉄車両めぐり〔93〕東京急行電鉄の車両" authors={['荻原二郎', '久原秀雄', '宮田道一']} pages={[78]} /></NoteRefContent>
+		<NoteRefContent id="es754-a-6000-name"><DocMagazine name="鉄道ピクトリアル" date="1972年9月号" no={269} article="私鉄車両めぐり〔93〕東京急行電鉄の車両" authors={['荻原二郎', '久原秀雄', '宮田道一']} pages={[78]} /></NoteRefContent>
 
-			<NoteRefContent id="es754-a-7000-name"><DocMagazine name="電気車の科学" date="1962年1月号" no={165} article="東京急行の7000形オールステンレス・カーについて (1)" authors={['白石安之']} pages={[10]} /></NoteRefContent>
+		<NoteRefContent id="es754-a-7000-name"><DocMagazine name="電気車の科学" date="1962年1月号" no={165} article="東京急行の7000形オールステンレス・カーについて (1)" authors={['白石安之']} pages={[10]} /></NoteRefContent>
 
-			<NoteRefContent id="mmc-htr-10a-name"><DocMagazine name="日立評論" date="1965年5月号" article="東京急行電鉄株式会社納7000形電車用停車用電力回生ブレーキ付電気品" authors={['今泉藤麿', '樋口徹', '神谷清']} pages={[45]} url="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1965%2f05%2f1965_05_08%2epdf" /></NoteRefContent>
-		</div>
+		<NoteRefContent id="mmc-htr-10a-name"><DocMagazine name="日立評論" date="1965年5月号" article="東京急行電鉄株式会社納7000形電車用停車用電力回生ブレーキ付電気品" authors={['今泉藤麿', '樋口徹', '神谷清']} pages={[45]} url="https://hitachirev-pdfsearch.himdx.net/cgi-bin/rev/search/jp/index.cgi?rm=thumbnail;url=https%3a%2f%2fwww%2ehitachihyoron%2ecom%2fjp%2fpdf%2f1965%2f05%2f1965_05_08%2epdf" /></NoteRefContent>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>機器形式は脚注のあるものを除き現車調査による。</li>
 			<li><q>東芝</q>は東京芝浦電気の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略。</li>
 			<li>旧7000系の東洋電機車には ACRF-H860-759A 型も存在したようだが、詳細は不明。現車調査では発見できていない。</li>
 			<li>機器の登場年は東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。</li>
-		</ul>
+		</ListNote>
 	</Section>
 
 	<Section id="pe-11">
-		<H slot="heading">PE-11A<small>（旧5000系・デハ5001〜5020）</small>、PE-11B<small>（旧5000系・デハ5021〜、5200系）</small></H>
+		<Fragment slot="heading">PE-11A<small>（旧5000系・デハ5001〜5020）</small>、PE-11B<small>（旧5000系・デハ5021〜、5200系）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/PE11A_nagano2510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-12-09 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器、PE11-A】</b>長野電鉄モハ2510（東急デハ5015）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/PE11B_kumamoto5102A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-05-06 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器、PE11-B】</b>熊本電気鉄道モハ5102A（東急デハ5032）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/JP15-A_gakunan5102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-11-15 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>岳南鉄道モハ5002（東急デハ5028）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2010-06-20 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主抵抗器&amp;MG】</b>松本電気鉄道モハ5005（東急デハ5055）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/PE11A_nagano2510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-12-09 -->
+					<Fragment slot="caption"><b>【主制御器、PE11-A】</b>長野電鉄モハ2510（東急デハ5015）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/PE11B_kumamoto5102A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-05-06 -->
+					<Fragment slot="caption"><b>【主制御器、PE11-B】</b>熊本電気鉄道モハ5102A（東急デハ5032）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/JP15-A_gakunan5102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-11-15 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>岳南鉄道モハ5002（東急デハ5028）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2010-06-20 -->
+					<Fragment slot="caption"><b>【主抵抗器&amp;MG】</b>松本電気鉄道モハ5005（東急デハ5055）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>黎明期の高性能車両として名高い旧5000系ですが、制御装置は東京芝浦電気<small>（現：東芝）</small>の MPE 型が使用されました。MPE 型制御装置はカム軸が抵抗短絡用と直並列切り換えや弱め界磁用などの2軸に分かれており、これらをフリーホイールを介し一つの電動機で操作するタイプであり、同じ年の京阪神急行電鉄<small>（現：阪急電鉄）</small>1000形にも導入されています。PE-11 型の運転上の主な特徴としては「弱め界磁」「マスコン操作による高加速」「発電ブレーキと制動ノッチ選択」が挙げられます。</p>
 
@@ -240,7 +234,7 @@ const structuredData: StructuredData = {
 
 		<p>ブレーキは発電ブレーキが導入されましたが、惰行中にブレーキハンドルを “準備” 位置に移すと電気ブレーキ回路に微弱な電流を流し、そのときの速度に応じてカム軸位置を追従させることで発電ブレーキのスムーズな立ち上がりを実現、これが<dfn>ノッチ選択</dfn>機能と呼ばれますが、北米の PCC カーなどで導入されていた<dfn><span lang="en">spotting</span>（スポッティング）</dfn>と同じ機構です。また制動力不足の際の空気ブレーキ補足や低速域での電空切り替わりも自動で行われます。断流器は L1 〜 L3 に発電ブレーキ用の L4 が加えられ4個となりました。</p>
 
-		<p>主抵抗器は<a href="/tokyu/machine/aps#clg107">電動発電機（MG）</a>の両脇に配置されて送風機を介し強制空冷される方式で、同様のものは国鉄モハ90形（101系）でも採用されました。譲渡車ではこの部分を改造した例が多く、長野電鉄譲渡車では<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cont/MR_nagano2510.jpg" title="長野電鉄モハ2510"><!-- 撮影日: 2006-08-06 -->自然通風式の抵抗器</LinkPhoto>に換装され MG も移設、また福島交通と熊本電気鉄道の譲渡車は降圧改造による MG 換装により送風機直結方式が取り止められました。</p>
+		<p>主抵抗器は<a href="/tokyu/machine/aps#clg107">電動発電機（MG）</a>の両脇に配置されて送風機を介し強制空冷される方式で、同様のものは国鉄モハ90形（101系）でも採用されました。譲渡車ではこの部分を改造した例が多く、長野電鉄譲渡車では<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cont/MR_nagano2510.jpg" title="長野電鉄モハ2510"><!-- 撮影日: 2006-08-06 -->自然通風式の抵抗器</AnchorPhoto>に換装され MG も移設、また福島交通と熊本電気鉄道の譲渡車は降圧改造による MG 換装により送風機直結方式が取り止められました。</p>
 
 		<p>増備に伴う変更点として、主抵抗器の冷却は当初は室内から空気を取り入れていたのが1956年の 5017F より外気からの取り入れに変更され<NoteRef type="ref" by="rml98" />、また同年の 5021F 以降は主制御器が改良された PE-11B 型となりました。</p>
 
@@ -250,17 +244,15 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="ab-54-6mdb">
-		<H slot="heading">AB-54-6MDB<small>（デハ200形）</small></H>
+		<Fragment slot="heading">AB-54-6MDB<small>（デハ200形）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-					</div>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1955年に登場した軌道線（玉川線）用デハ200形はそれまでの手動進段車とは一線を画し、間接制御による自動進段式となりました。</p>
 
@@ -282,46 +274,38 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="es753-a">
-		<H slot="heading">ACRF-H4100-753A<small>（旧6000系・A編成）</small>、ACRF-H4120-754A<small>（旧6000系・C編成）</small></H>
+		<Fragment slot="heading">ACRF-H4100-753A<small>（旧6000系・A編成）</small>、ACRF-H4120-754A<small>（旧6000系・C編成）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/ES754A_konan6006.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-04-30 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>弘南鉄道デハ6006（東急デハ6006）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/RG305-B_konan6006.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-07-23 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁調整器】</b>弘南鉄道デハ6006（東急デハ6006）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/SA_konan6008.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-09-03 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>弘南鉄道デハ6008（東急デハ6008）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_konan6008.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-09-03 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【限流抵抗器&amp;主抵抗器】</b>弘南鉄道デハ6008（東急デハ6008）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/ES754A_konan6006.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-04-30 -->
+					<Fragment slot="caption"><b>【主制御器】</b>弘南鉄道デハ6006（東急デハ6006）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/RG305-B_konan6006.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-07-23 -->
+					<Fragment slot="caption"><b>【界磁調整器】</b>弘南鉄道デハ6006（東急デハ6006）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/SA_konan6008.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-09-03 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>弘南鉄道デハ6008（東急デハ6008）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_konan6008.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-09-03 -->
+					<Fragment slot="caption"><b>【限流抵抗器&amp;主抵抗器】</b>弘南鉄道デハ6008（東急デハ6008）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1960年に登場した旧6000系は主電動機に複巻電動機を使用した平坦線向け電力回生ブレーキ電車で、東急電鉄の鉄道線車両では初めて電動車が2両ユニット構成となりましたが、主電動機は<a href="/tokyu/truck/ts300#ts315">台車</a>の中央にひとつ搭載され2軸駆動を行うモノモータータイプのため、ユニット車でありながら主制御器が担当する主電動機は4台となります。また主電動機は永久直列とされ、組み合わせ制御は行われません。</p>
 
@@ -336,7 +320,7 @@ const structuredData: StructuredData = {
 		<p>現在は弘南鉄道大鰐線にC編成が1編成のみが残っていますが、本線で動くことはまずありません。</p>
 
 		<Section id="tdk-fr" depth={2} headingType="c" box={true}>
-			<H slot="heading">磁気増幅器制御の整流子型界磁調整器による弱め界磁制御</H>
+			<Fragment slot="heading">磁気増幅器制御の整流子型界磁調整器による弱め界磁制御</Fragment>
 
 			<p>抵抗制御車の力行において、速度上昇に伴い主電動機の回転が速くなるにつれ逆起電力が増加してゆきますが、低速域では抵抗を徐々に減らしてゆくことで主電動機に流れる電流を調整し、一定の加速度を維持します。すべての抵抗が短絡した後は、本来であれば回転力の伸びが大幅に低下し加速度が落ちてゆくところ、界磁に流れる電流を弱めて逆起電力を減らすことでその低下度を抑えることができ、これを<dfn>弱め界磁制御</dfn>と呼びます。</p>
 
@@ -350,45 +334,35 @@ const structuredData: StructuredData = {
 
 			<NoteRefContent id="rj626"><DocMagazine name="鉄道ジャーナル" date="2018年12月号" no={626} article="譲渡車両の知られざる現実　福島交通飯坂線1000系導入秘話" authors={['三浦祥兒']} pages={[58]} url="https://www.amazon.co.jp/dp/B07HSK3H4M/" /></NoteRefContent>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cont/RG305-B_fukushima7105.jpg" alt="写真拡大" width={360} height={360} quality={60} link={true} />
-							<!-- 撮影日: 2017-08-26 -->
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">旧7000系の界磁調整器<br />（福島交通デハ7105 ← 東急デハ7158）</span>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cont/TA_fukushima7105.jpg" alt="写真拡大" width={360} height={240} quality={60} link={true} />
-							<!-- 撮影日: 2017-08-26 -->
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">旧7000系の磁気増幅器ユニット（IC 化後）、左端が FR 用<br />（福島交通デハ7105 ← 東急デハ7158）</span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true}>
+						<Image path="tokyu/machine/cont/RG305-B_fukushima7105.jpg" alt="写真拡大" width={360} height={360} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2017-08-26 -->
+						<Fragment slot="caption">旧7000系の界磁調整器（福島交通デハ7105 ← 東急デハ7158） </Fragment>
+					</Embedded>
+				</FlexItem>
+				<FlexItem>
+					<Embedded border={true}>
+						<Image path="tokyu/machine/cont/TA_fukushima7105.jpg" alt="写真拡大" width={360} height={240} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2017-08-26 -->
+						<Fragment slot="caption">旧7000系の磁気増幅器ユニット（IC 化後）、左端が FR 用（福島交通デハ7105 ← 東急デハ7158） </Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 		</Section>
 	</Section>
 
 	<Section id="mm-101a">
-		<H slot="heading">MM-101A<small>（旧6000系・B編成）</small></H>
+		<Fragment slot="heading">MM-101A<small>（旧6000系・B編成）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" />
-					</div>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>旧6000系は<a href="#es753-a">前述</a>のとおり電機品メーカーにより制御方式に違いがあり、東洋電機車（A, C編成）では分巻界磁電流を界磁調整器で制御していたのに対し、東芝車（B編成）では<a href="/tokyu/machine/aps#clg320">電動発電機（MG）</a>の軸端に設置されたブースターによる制御が行われていた違いがあります。このブースターはアンプリスタット（磁気増幅器）によってその界磁電流が制御されます。</p>
 
@@ -403,7 +377,7 @@ const structuredData: StructuredData = {
 		<p>旧6000系B編成は晩年 VVVF インバーター制御の試験車として改造され、この制御装置は1984年に消滅しました。</p>
 
 		<Section id="mcm" depth={2} headingType="c" box={true}>
-			<H slot="heading">東芝 MCM パッケージ型主制御器</H>
+			<Fragment slot="heading">東芝 MCM パッケージ型主制御器</Fragment>
 
 			<p>旧6000系B編成の主制御器は東芝の資料によると <dfn>MCM 型</dfn>として区分されていますが<NoteRef type="ref" by="toshiba127" />、本来の MCM 型の特徴とはかなり違いがあります。</p>
 
@@ -421,137 +395,121 @@ const structuredData: StructuredData = {
 
 			<p>同年の東急6000系向けでは断流器を横付けする大きな変化があったためか、型番が MM-101 と3桁数字になったものの、その後の製品は MM-11, MM-12, ……と2桁に戻っています。ここまでの採用例を一覧にしてみましょう。</p>
 
-			<div class="p-table">
-				<table>
-					<caption>初期の東芝 MCM 型主制御器</caption>
-					<thead>
-						<tr>
-							<th scope="col">型式</th>
-							<th scope="col">製造初年</th>
-							<th scope="col">搭載車種</th>
-							<th scope="col">特徴</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>MC-1A</td>
-							<td>1956年</td>
-							<td>阪神電気鉄道 1121形（1130）</td>
-							<td>ジェットカー試験車</td>
-						</tr>
-						<tr>
-							<td>MC-2A</td>
-							<td>1956年</td>
-							<td>神戸市交通局 1150形（1153〜1158）</td>
-							<td>和製 PCC カー</td>
-						</tr>
-						<tr>
-							<td>MC-3A</td>
-							<td>1958年</td>
-							<td>阪神電気鉄道 5001形</td>
-							<td>ジェットカー試作車、永久並列接続</td>
-						</tr>
-						<tr>
-							<td>MC-11A</td>
-							<td>1958年</td>
-							<td>名古屋鉄道 5500系（1次車）</td>
-							<td>冷房車</td>
-						</tr>
-						<tr>
-							<td>MC-11B</td>
-							<td>1959年</td>
-							<td>名古屋鉄道 5500系（2次車）</td>
-							<td>冷房車</td>
-						</tr>
-						<tr>
-							<td>MM-10A</td>
-							<td>1959年</td>
-							<td>阪神電気鉄道 5101形、5201形</td>
-							<td>ジェットカー量産車</td>
-						</tr>
-						<tr>
-							<td>MM-10B</td>
-							<td>1959年</td>
-							<td>福井鉄道 200形</td>
-							<td>連接車</td>
-						</tr>
-						<tr>
-							<td>MM-101A</td>
-							<td>1959年</td>
-							<td>東京急行電鉄 6000系（B編成）</td>
-							<td>電力回生ブレーキ</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<Table>
+				<caption>初期の東芝 MCM 型主制御器</caption>
+				<thead>
+					<tr>
+						<th scope="col">型式</th>
+						<th scope="col">製造初年</th>
+						<th scope="col">搭載車種</th>
+						<th scope="col">特徴</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>MC-1A</td>
+						<td>1956年</td>
+						<td>阪神電気鉄道 1121形（1130）</td>
+						<td>ジェットカー試験車</td>
+					</tr>
+					<tr>
+						<td>MC-2A</td>
+						<td>1956年</td>
+						<td>神戸市交通局 1150形（1153〜1158）</td>
+						<td>和製 PCC カー</td>
+					</tr>
+					<tr>
+						<td>MC-3A</td>
+						<td>1958年</td>
+						<td>阪神電気鉄道 5001形</td>
+						<td>ジェットカー試作車、永久並列接続</td>
+					</tr>
+					<tr>
+						<td>MC-11A</td>
+						<td>1958年</td>
+						<td>名古屋鉄道 5500系（1次車）</td>
+						<td>冷房車</td>
+					</tr>
+					<tr>
+						<td>MC-11B</td>
+						<td>1959年</td>
+						<td>名古屋鉄道 5500系（2次車）</td>
+						<td>冷房車</td>
+					</tr>
+					<tr>
+						<td>MM-10A</td>
+						<td>1959年</td>
+						<td>阪神電気鉄道 5101形、5201形</td>
+						<td>ジェットカー量産車</td>
+					</tr>
+					<tr>
+						<td>MM-10B</td>
+						<td>1959年</td>
+						<td>福井鉄道 200形</td>
+						<td>連接車</td>
+					</tr>
+					<tr>
+						<td>MM-101A</td>
+						<td>1959年</td>
+						<td>東京急行電鉄 6000系（B編成）</td>
+						<td>電力回生ブレーキ</td>
+					</tr>
+				</tbody>
+			</Table>
 
-			<ul class="p-notes">
-				<li>東芝レビュー <LinkExternal href="https://dl.ndl.go.jp/pid/3253779">1957年4月号（No.87）</LinkExternal>、<LinkExternal href="https://dl.ndl.go.jp/pid/3253802">1959年3月号（No.110）</LinkExternal>、<LinkExternal href="https://dl.ndl.go.jp/pid/3253815">1960年3月号（No.122）</LinkExternal>のそれぞれ「<cite>電気鉄道</cite>」の章に記載されたデータを元に作成。</li>
-			</ul>
+			<ListNote>
+				<li>東芝レビュー <Anchor href="https://dl.ndl.go.jp/pid/3253779">1957年4月号（No.87）</Anchor>、<Anchor href="https://dl.ndl.go.jp/pid/3253802">1959年3月号（No.110）</Anchor>、<Anchor href="https://dl.ndl.go.jp/pid/3253815">1960年3月号（No.122）</Anchor>のそれぞれ「<cite>電気鉄道</cite>」の章に記載されたデータを元に作成。</li>
+			</ListNote>
 
 			<p>上表では省略しましたが1960年以降もほとんどは MM タイプの採用であり、MC タイプは名鉄が7000系や7700系で MC-11C〜E 型を採用したのが唯一の例となります。多くの鉄道事業者では限定的な採用に留まり、ある程度の量産が行われた阪神電鉄も1960年代の昇圧改造で制御器が交換されてしまったのに対し、名鉄が MCM 型それも初期型の MC タイプを大量採用し、ブロアーの交換程度で大きな改造もなく晩年まで使用された<NoteRef type="ref" by="gijyutushi28" />のは日本の鉄道事業者では特異なことです。</p>
 
-			<NoteRefContent id="gijyutushi28"><LinkExternal href="http://www15.plala.or.jp/hidekih/gijyutushi28.htm"><cite>電鉄技術史情報２８</cite>（白井昭）</LinkExternal></NoteRefContent>
+			<NoteRefContent id="gijyutushi28"><Anchor href="http://www15.plala.or.jp/hidekih/gijyutushi28.htm"><cite>電鉄技術史情報２８</cite>（白井昭）</Anchor></NoteRefContent>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cont/MC-11_meitetsu7028.jpg" alt="写真拡大" width={360} height={180} quality={60} link={true} />
-							<!-- 撮影日: 2023-10-21 -->
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">東芝 MC-11 型（名古屋鉄道モ7028）</span>
-						</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cont/MM-10B_fukui203-1.jpg" alt="写真拡大" width={360} height={180} quality={60} link={true} />
-							<!-- 撮影日: 2009-07-20 -->
-						</div>
-						<figcaption class="c-caption">
-							<span class="c-caption__title">東芝 MM-10 型（福井鉄道モハ203-1）</span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true}>
+						<Image path="tokyu/machine/cont/MC-11_meitetsu7028.jpg" alt="写真拡大" width={360} height={180} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2023-10-21 -->
+						<Fragment slot="caption">東芝 MC-11 型（名古屋鉄道モ7028）</Fragment>
+					</Embedded>
+				</FlexItem>
+				<FlexItem>
+					<Embedded border={true}>
+						<Image path="tokyu/machine/cont/MM-10B_fukui203-1.jpg" alt="写真拡大" width={360} height={180} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-07-20 -->
+						<Fragment slot="caption">東芝 MM-10 型（福井鉄道モハ203-1）</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 		</Section>
 	</Section>
 
 	<Section id="es754-a">
-		<H slot="heading">ACRF-H860-754A<small>（旧7000系・東洋車 1〜2次車）</small>、ACRF-H860-757A<small>（旧7000系・東洋車 3〜10次車）</small></H>
+		<Fragment slot="heading">ACRF-H860-754A<small>（旧7000系・東洋車 1〜2次車）</small>、ACRF-H860-757A<small>（旧7000系・東洋車 3〜10次車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/ES754A_mizuma7003.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-09-02 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>水間鉄道デハ7003（東急デハ7012）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/RG305-B_konan7021.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-07-23 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁調整器】</b>弘南鉄道デハ7021（東急デハ7158）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/SA_mizuma1001.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-11-25 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>水間鉄道デハ1001（東急デハ7010）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/ES754A_mizuma7003.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-09-02 -->
+					<Fragment slot="caption"><b>【主制御器】</b>水間鉄道デハ7003（東急デハ7012）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/RG305-B_konan7021.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-07-23 -->
+					<Fragment slot="caption"><b>【界磁調整器】</b>弘南鉄道デハ7021（東急デハ7158）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/SA_mizuma1001.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-11-25 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>水間鉄道デハ1001（東急デハ7010）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1962年に登場したオールステンレスカー・旧7000系は1〜2次車の時点では旧6000系東洋電機車のシステムが踏襲されています。主電動機は永久直列（直並列制御なし）で分巻界磁電流の制御は界磁調整器（FR）で行うといった基本的な制御方式は変わっていませんが、旧6000系は1電動機2軸駆動方式だったのに対し、旧7000系は<a href="/tokyu/truck/ts700#ts701">パイオニアⅢ台車</a>を履用し主電動機は1軸ごとにある一般的な方式のため、ひとつの主制御器には8台の主電動機が接続されます。</p>
 
@@ -561,46 +519,38 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-10a">
-		<H slot="heading">MMC-HTR-10A<small>（旧7000系・日立車）</small></H>
+		<Fragment slot="heading">MMC-HTR-10A<small>（旧7000系・日立車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-10A_konan7040.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-04-30 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>弘南鉄道デハ7040（東急デハ7040）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/FC_konan7034.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-10-07 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁制御器】</b>弘南鉄道デハ7034（東急デハ7034）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_konan7034.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-10-07 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>弘南鉄道デハ7034（東急デハ7034）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_konan7032.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-05-05 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主抵抗器ほか】</b>弘南鉄道デハ7032（東急デハ7032）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-10A_konan7040.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-04-30 -->
+					<Fragment slot="caption"><b>【主制御器】</b>弘南鉄道デハ7040（東急デハ7040）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/FC_konan7034.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-10-07 -->
+					<Fragment slot="caption"><b>【界磁制御器】</b>弘南鉄道デハ7034（東急デハ7034）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_konan7034.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-10-07 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>弘南鉄道デハ7034（東急デハ7034）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_konan7032.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-05-05 -->
+					<Fragment slot="caption"><b>【主抵抗器ほか】</b>弘南鉄道デハ7032（東急デハ7032）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>旧7000系は当初は電機品が東洋電機製造によるものでしたが、1963年の5次車より日立製作所が参入し、以降は東洋電機車とともに増備が行われました。</p>
 
@@ -618,46 +568,38 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-10b">
-		<H slot="heading">MMC-HTR-10B<small>（7200系・日立車）</small></H>
+		<Fragment slot="heading">MMC-HTR-10B<small>（7200系・日立車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-10B_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2010-03-16 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デヤ7290（2次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/FC-CH-5B_toyohashi1803.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-04-01 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁制御器】</b>豊橋鉄道モ1803（東急デハ7210）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_toyohashi1806.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-12-11 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>豊橋鉄道モ1806（東急デハ7205）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_toyohashi1804.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-09-17 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主抵抗器ほか】</b>豊橋鉄道モ1804（東急デハ7212）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-10B_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2010-03-16 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デヤ7290（2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/FC-CH-5B_toyohashi1803.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-04-01 -->
+					<Fragment slot="caption"><b>【界磁制御器】</b>豊橋鉄道モ1803（東急デハ7210）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_toyohashi1806.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-12-11 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>豊橋鉄道モ1806（東急デハ7205）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_toyohashi1804.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-09-17 -->
+					<Fragment slot="caption"><b>【主抵抗器ほか】</b>豊橋鉄道モ1804（東急デハ7212）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1967年に登場した7200系は、旧7000系と同じく電機メーカーが日立製作所の車両と東洋電機製造の車両が存在します。日立車のシステム自体は旧7000系日立車を踏襲していますが、ユニット車ではなく 1M 方式に戻ったため主電動機は4台制御となりました。</p>
 
@@ -671,46 +613,38 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="es764-a">
-		<H slot="heading">ACRF-H4110-764A<small>（7200系・東洋電機車）</small></H>
+		<Fragment slot="heading">ACRF-H4110-764A<small>（7200系・東洋電機車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/ES764-A_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-01-26 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>上田電鉄モハ7255（東急デハ7258）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/RG303-B_ueda7254.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-01-27 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁調整器】</b>上田電鉄モハ7254（東急デハ7254）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/SA_ueda7252.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-05-03 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>上田電鉄モハ7252（東急デハ7252）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-03-29 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主抵抗器ほか】</b>上田交通モハ7255（東急デハ7258）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/ES764-A_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-01-26 -->
+					<Fragment slot="caption"><b>【主制御器】</b>上田電鉄モハ7255（東急デハ7258）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/RG303-B_ueda7254.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-01-27 -->
+					<Fragment slot="caption"><b>【界磁調整器】</b>上田電鉄モハ7254（東急デハ7254）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/SA_ueda7252.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-05-03 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>上田電鉄モハ7252（東急デハ7252）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-03-29 -->
+					<Fragment slot="caption"><b>【主抵抗器ほか】</b>上田交通モハ7255（東急デハ7258）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>7200系の東洋電機製造車は、弱め界磁制御に界磁調整器（FR）を用いた方式は踏襲しつつも、旧7000系までの永久直列制御から日立車と同じく直並列制御を行うように変更されています。</p>
 		{/* <p>旧7000系と異なり日立車と東洋電機車の混結は日常的に行われ、現在も大井川鐵道で見られます。</p> */}
@@ -718,46 +652,38 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="cs-20a">
-		<H slot="heading">CS-20A<small>（旧7000系北陸鉄道譲渡車）</small></H>
+		<Fragment slot="heading">CS-20A<small>（旧7000系北陸鉄道譲渡車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CS20A_hokuriku7102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2023-10-22 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>北陸鉄道モハ7102（東急デハ7056）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/SA_hokuriku7201.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-11-23 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>北陸鉄道モハ7201（東急デハ7136）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/WFL_hokuriku7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2023-03-02 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【弱め界磁リアクトル】</b>北陸鉄道モハ7202（東急デハ7138）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_hokuriku7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2023-10-22 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主抵抗器】</b>北陸鉄道モハ7202（東急デハ7138）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CS20A_hokuriku7102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2023-10-22 -->
+					<Fragment slot="caption"><b>【主制御器】</b>北陸鉄道モハ7102（東急デハ7056）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/SA_hokuriku7201.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-11-23 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>北陸鉄道モハ7201（東急デハ7136）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/WFL_hokuriku7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2023-03-02 -->
+					<Fragment slot="caption"><b>【弱め界磁リアクトル】</b>北陸鉄道モハ7202（東急デハ7138）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_hokuriku7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2023-10-22 -->
+					<Fragment slot="caption"><b>【主抵抗器】</b>北陸鉄道モハ7202（東急デハ7138）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>旧7000系のうち北陸鉄道石川線に譲渡された車両は台車や床下機器、集電装置など主要機器の多くが換装され、主制御器は JR 103系初期車（試作車を除く）の CS20A 型となりました。</p>
 

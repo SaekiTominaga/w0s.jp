@@ -50,8 +50,20 @@ export default {
 	],
 	pretenders: [
 		{
-			selector: 'TopUpdate',
-			as: 'li',
+			selector: 'Car',
+			as: 'td',
+		},
+		{
+			selector: 'CrawlerDiffLine',
+			as: 'tr',
+		},
+		{
+			selector: 'ListTable',
+			as: 'dl',
+		},
+		{
+			selector: 'Table',
+			as: 'table',
 		},
 	],
 	overrideMode: 'merge',
@@ -60,6 +72,11 @@ export default {
 		'**/*.astro': {
 			rules: {
 				'no-empty-palpable-content': false,
+			},
+		},
+		'dist/client/**/*.html': {
+			rules: {
+				'class-naming': false,
 			},
 		},
 		'src/pages/tokyu/data/history/index.astro': {

@@ -1,0 +1,28 @@
+<ul class="list">
+	<slot />
+</ul>
+
+<style>
+	.list {
+		margin-inline-start: 2ch;
+		list-style-type: disc;
+
+		& > :global(li > ul) {
+			margin-inline-start: 2ch;
+			list-style-type: circle;
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+		}
+
+		& > :global(li > ul > li > ul) {
+			margin-inline-start: 2ch;
+			list-style-type: square;
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+		}
+
+		& > :global(li + li),
+		& > :global(li > ul > li),
+		& > :global(li > ul > li > ul > li) {
+			margin-block-start: 0.25em;
+		}
+	}
+</style>

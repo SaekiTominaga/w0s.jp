@@ -1,0 +1,35 @@
+<span class="note-ref"><slot /></span>
+
+<style>
+	.note-ref {
+		vertical-align: super;
+		font-size: calc(100% / pow(var(--font-ratio), 2));
+
+		& > :global(a) {
+			--_border-color: transparent;
+			--_bg-color: transparent;
+
+			border: 1px solid var(--_border-color);
+			background-color: var(--_bg-color);
+			white-space: nowrap;
+			text-decoration-skip-ink: none; /* JS 無効環境向け */
+		}
+
+		& > :global(a:target) {
+			--_border-color: var(--color-red);
+			--_bg-color: var(--color-verylightred);
+		}
+
+		& > :global(a[role='button']) {
+			/* JS 有効時のみ */
+			outline-offset: calc(0px - var(--outline-width));
+			cursor: default;
+			text-decoration: none;
+			color: var(--link-color);
+		}
+
+		& > :global(a[role='button']:focus:not(:focus-visible)) {
+			outline: none;
+		}
+	}
+</style>

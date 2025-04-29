@@ -1,6 +1,8 @@
 ---
-import Layout from '@layouts/W0s.astro';
-import LinkBullet from '@components/LinkBullet.astro';
+import Layout from '@layouts/Site.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import Step from '@components/Step.astro';
+import StepItem from '@components/StepItem.astro';
 import RequestUtil from '@util/Request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
@@ -33,25 +35,29 @@ if (requestQuery.referrer !== null && requestQuery.referrer !== '') {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} contentFooter={false} pageSidebar={false} ad={false}>
-	<ol class="p-step">
-		<li><span class="p-step__text">入力</span></li>
-		<li><span class="p-step__text">確認</span></li>
-		<li><em class="p-step__text -current">完了</em></li>
-	</ol>
+	<Step>
+		<StepItem name="入力" />
+		<StepItem name="確認" />
+		<StepItem name="完了" current={true} />
+	</Step>
 
 	<p>問い合わせを受け付けました。</p>
 
 	{
 		requestQuery.referrer !== null && requestQuery.referrer !== '' && (
 			<p>
-				<LinkBullet href={requestQuery.referrer}>元のページへ戻る</LinkBullet>
+				<Anchor href={requestQuery.referrer} bullet={true}>
+					元のページへ戻る
+				</Anchor>
 			</p>
 		)
 	}
 	{
 		(requestQuery.referrer === null || requestQuery.referrer === '') && (
 			<p>
-				<LinkBullet href="/">トップページへ戻る</LinkBullet>
+				<Anchor href="/" bullet={true}>
+					トップページへ戻る
+				</Anchor>
 			</p>
 		)
 	}

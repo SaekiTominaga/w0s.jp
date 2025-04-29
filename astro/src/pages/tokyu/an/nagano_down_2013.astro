@@ -1,6 +1,9 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
+import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -25,226 +28,207 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　信州中野</span>行</p>
-			<p class="p-tokyu-announce-car">8500系に搭載されているタイプ</p>
-			<p class="p-tokyu-announce-period">2012年の屋代線廃止から</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>長野停車中</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせをいたしました。本日は長野電鉄をご利用くださいまして、ありがとうございます。この列車は、各駅停車信州中野行きです。<span class="c-tokyu-announce -manners">お客様にお願いいたします。車内は禁煙になっております。お煙草はご遠慮ください。</span>次は市役所前、市役所前です。</p>
-				</section>
-				<section>
-					<h2>長野発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待たせをいたしました。本日は長野電鉄をご利用くださいまして、ありがとうございます。この列車は、各駅停車信州中野行きです。<span class="c-tokyu-announce -manners">お客様にお願いいたします。車内は禁煙になっております。お煙草はご遠慮ください。</span>次は市役所前、市役所前です。</p>
-				</section>
-				<section>
-					<h2>市役所前到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく市役所前です。</p>
-				</section>
-			</div>
+	<Announce station="信州中野" type="local" operation="oneman" cars={['8500系']} period="2012年の屋代線廃止から" recordDate="2013-01-02" recordCar="8500系3両編成">
+		<AnnounceStation>
+			<section>
+				<h2>長野停車中</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お待たせをいたしました。本日は長野電鉄をご利用くださいまして、ありがとうございます。この列車は、各駅停車信州中野行きです。<AnnoucePhrase type="manners">お客様にお願いいたします。車内は禁煙になっております。お煙草はご遠慮ください。</AnnoucePhrase>次は市役所前、市役所前です。</p>
+			</section>
+			<section>
+				<h2>長野発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お待たせをいたしました。本日は長野電鉄をご利用くださいまして、ありがとうございます。この列車は、各駅停車信州中野行きです。<AnnoucePhrase type="manners">お客様にお願いいたします。車内は禁煙になっております。お煙草はご遠慮ください。</AnnoucePhrase>次は市役所前、市役所前です。</p>
+			</section>
+			<section>
+				<h2>市役所前到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく市役所前です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>市役所前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は権堂、権堂です。</p>
-				</section>
-				<section>
-					<h2>権堂到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく権堂です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>市役所前発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は権堂、権堂です。</p>
+			</section>
+			<section>
+				<h2>権堂到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく権堂です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>権堂発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は善光寺下、善光寺下です。</p>
-				</section>
-				<section>
-					<h2>善光寺下到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく善光寺下です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>権堂発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は善光寺下、善光寺下です。</p>
+			</section>
+			<section>
+				<h2>善光寺下到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく善光寺下です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>善光寺下発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は本郷、本郷です。</p>
-				</section>
-				<section>
-					<h2>本郷到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく本郷です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>善光寺下発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は本郷、本郷です。</p>
+			</section>
+			<section>
+				<h2>本郷到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく本郷です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>本郷発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は桐原、桐原です。</p>
-				</section>
-				<section>
-					<h2>桐原到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく桐原です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>本郷発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は桐原、桐原です。</p>
+			</section>
+			<section>
+				<h2>桐原到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく桐原です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>桐原発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は信濃吉田、信濃吉田です。</p>
-				</section>
-				<section>
-					<h2>信濃吉田到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく信濃吉田です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>桐原発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は信濃吉田、信濃吉田です。</p>
+			</section>
+			<section>
+				<h2>信濃吉田到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく信濃吉田です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>信濃吉田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は朝陽、朝陽です。<span class="c-tokyu-announce -manners">車内での携帯電話のご使用は、周りのお客様の迷惑となりますので、ご遠慮いただきますよう、お願いいたします。</span></p>
-				</section>
-				<section>
-					<h2>朝陽到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく朝陽です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>信濃吉田発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は朝陽、朝陽です。<AnnoucePhrase type="manners">車内での携帯電話のご使用は、周りのお客様の迷惑となりますので、ご遠慮いただきますよう、お願いいたします。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>朝陽到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく朝陽です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>朝陽発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は附属中学前、附属中学前です。</p>
-				</section>
-				<section>
-					<h2>附属中学前到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく附属中学前です。乗車券はお降りの際、係員にお渡しください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>朝陽発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は附属中学前、附属中学前です。</p>
+			</section>
+			<section>
+				<h2>附属中学前到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく附属中学前です。乗車券はお降りの際、係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>附属中学前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は柳原、柳原です。</p>
-				</section>
-				<section>
-					<h2>柳原到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく柳原です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>附属中学前発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は柳原、柳原です。</p>
+			</section>
+			<section>
+				<h2>柳原到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく柳原です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>柳原発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は村山、村山です。</p>
-				</section>
-				<section>
-					<h2>村山到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく村山です。乗車券はお降りの際、係員にお渡しください。係員が不在の場合は乗車券回収箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>柳原発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は村山、村山です。</p>
+			</section>
+			<section>
+				<h2>村山到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく村山です。乗車券はお降りの際、係員にお渡しください。係員が不在の場合は乗車券回収箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>村山発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は日野、日野です。</p>
-				</section>
-				<section>
-					<h2>日野到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく日野です。乗車券は駅出口の乗車券回収箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>村山発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は日野、日野です。</p>
+			</section>
+			<section>
+				<h2>日野到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく日野です。乗車券は駅出口の乗車券回収箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>日野発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は須坂、須坂です。お降りのお客様は、お忘れ物などございませんよう、お支度ください。</p>
-				</section>
-				<section>
-					<h2>須坂到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく須坂です。お降りのお客様は、お忘れ物などなさいませんよう、お気を付けください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>日野発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は須坂、須坂です。お降りのお客様は、お忘れ物などございませんよう、お支度ください。</p>
+			</section>
+			<section>
+				<h2>須坂到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく須坂です。お降りのお客様は、お忘れ物などなさいませんよう、お気を付けください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>須坂発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございます。この列車は、各駅停車信州中野行きです。次は北須坂、北須坂です。<span class="c-tokyu-announce -manners">駆け込み乗車は危険なばかりでなく、ほかのお客様の迷惑にもなりますので、お止めください。</span></p>
-				</section>
-				<section>
-					<h2>北須坂到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく北須坂です。乗車券はお降りの際、係員にお渡しください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>須坂発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございます。この列車は、各駅停車信州中野行きです。次は北須坂、北須坂です。<AnnoucePhrase type="manners">駆け込み乗車は危険なばかりでなく、ほかのお客様の迷惑にもなりますので、お止めください。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>北須坂到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく北須坂です。乗車券はお降りの際、係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>北須坂発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は小布施、小布施です。</p>
-				</section>
-				<section>
-					<h2>小布施到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく小布施です。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>北須坂発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は小布施、小布施です。</p>
+			</section>
+			<section>
+				<h2>小布施到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく小布施です。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>小布施発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は都住、都住です。</p>
-				</section>
-				<section>
-					<h2>都住到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく都住です。乗車券はお降りの際、係員にお渡しください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>小布施発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は都住、都住です。</p>
+			</section>
+			<section>
+				<h2>都住到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく都住です。乗車券はお降りの際、係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>都住発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は桜沢、桜沢です。</p>
-				</section>
-				<section>
-					<h2>桜沢到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく桜沢です。乗車券はお降りの際、係員にお渡しください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>都住発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は桜沢、桜沢です。</p>
+			</section>
+			<section>
+				<h2>桜沢到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく桜沢です。乗車券はお降りの際、係員にお渡しください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>桜沢発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は延徳、延徳です。</p>
-				</section>
-				<section>
-					<h2>延徳到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>まもなく延徳です。乗車券は駅出口の乗車券回収箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>桜沢発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は延徳、延徳です。</p>
+			</section>
+			<section>
+				<h2>延徳到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>まもなく延徳です。乗車券は駅出口の乗車券回収箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>延徳発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は信州中野、信州中野です。この列車は、信州中野止まりです。どなた様も、お忘れ物などございませんよう、お支度ください。</p>
-				</section>
-				<section>
-					<h2>信州中野到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく信州中野、信州中野です。この列車は、信州中野止まりです。どなた様も、お忘れ物などなさいませんよう、お気を付けください。本日は長野電鉄をご利用くださいましてありがとうございました。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2013年1月2日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>8500系3両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>延徳発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は信州中野、信州中野です。この列車は、信州中野止まりです。どなた様も、お忘れ物などございませんよう、お支度ください。</p>
+			</section>
+			<section>
+				<h2>信州中野到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく信州中野、信州中野です。この列車は、信州中野止まりです。どなた様も、お忘れ物などなさいませんよう、お気を付けください。本日は長野電鉄をご利用くださいましてありがとうございました。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 </Layout>

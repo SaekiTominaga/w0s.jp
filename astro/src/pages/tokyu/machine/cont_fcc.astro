@@ -1,12 +1,18 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import DocMagazine from '@components/DocMagazine.astro';
-import H from '@components/H.astro';
-import Image from '@components/Image.astro';
-import NoteRef from '@components/NoteRef.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
+import Image from '@components/+phrasing/Image.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -35,132 +41,122 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>1969年に登場した8000系では<dfn>界磁チョッパ制御</dfn>が導入されました。電機子電流（直巻界磁）は従来と同じく電動カム軸による抵抗制御が用いられる一方で、他励界磁電流（分巻界磁）の制御にサイリスタチョッパが使用されたもので、</p>
-		<ul class="p-list">
+		<List>
 			<li>力行時の抵抗制御（低速時の全界磁領域）では、複巻電動機の他励界磁電流を電機子電流に比例させることで直巻特性を与えられる</li>
 			<li>チョッパ制御が行われる弱め界磁制御時と電力回生ブレーキ時において、応答速度の向上と界磁電流の連続変化によりスムーズな加減速が実現できる</li>
-		</ul>
+		</List>
 		<p>といったメリットがあります。</p>
 
 		<p>採用車種としては8000系グループ（8000系、8500系、8090系）のみに留まったものの、20年間も続いた増備により全盛期は東急電鉄の在籍車両の過半数を占め、VVVF インバーター制御が普及するまでの代表的な制御方式となりました。</p>
 
-		<div class="p-table -full">
-			<table>
-				<caption>界磁チョッパ制御車の主制御器一覧</caption>
-				<thead>
-					<tr>
-						<th scope="col" rowspan="2">搭載車種</th>
-						<th scope="col" colspan="2">形式</th>
-						<th scope="col" rowspan="2">製造所</th>
-						<th scope="col" rowspan="2">登場年</th>
-						<th scope="col" rowspan="2">DCM 接続</th>
-						<th scope="col" rowspan="2">備考</th>
-					</tr>
-					<tr>
-						<th scope="col">主制御器</th>
-						<th scope="col">界磁チョッパ</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>8000系<small>（1〜4次車）</small></td>
-						<td><a href="#mmc-htr-20a" class="c-link">MMC-HTR-20A</a></td>
-						<td>形式表記なし</td>
-						<td>日立</td>
-						<td>1969年</td>
-						<td>複巻 130kW×8</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>8000系G<small>（5〜11次車）</small></td>
-						<td><a href="#mmc-htr-20c" class="c-link">MMC-HTR-20C</a></td>
-						<td>CH-SF101A, B</td>
-						<td>日立</td>
-						<td>1974年</td>
-						<td>複巻 130kW×8</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>8000系G<small>（12〜16次車）</small></td>
-						<td rowspan="2"><a href="#mmc-htr-20f" class="c-link">MMC-HTR-20F</a></td>
-						<td>CH-SF101C</td>
-						<td>日立</td>
-						<td>1980年</td>
-						<td rowspan="2">複巻 130kW×8</td>
-						<td>16次車は組込のみ</td>
-					</tr>
-					<tr>
-						<td>8000系G<small>（16〜20次車）</small></td>
-						<td>CH-SF111</td>
-						<td>日立</td>
-						<td>1984年</td>
-						<td>16次車は編成のみ</td>
-					</tr>
-					<tr>
-						<td>8000系G<small>（単 M 車）</small></td>
-						<td><a href="#mmc-htr-10d" class="c-link">MMC-HTR-10D</a></td>
-						<td>ユニット準ず</td>
-						<td>日立</td>
-						<td>1982年<NoteRef by="mmc-htr-10d-date" /></td>
-						<td>複巻 130kW×4</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		<Table full={true}>
+			<caption>界磁チョッパ制御車の主制御器一覧</caption>
+			<thead>
+				<tr>
+					<th scope="col" rowspan="2">搭載車種</th>
+					<th scope="col" colspan="2">形式</th>
+					<th scope="col" rowspan="2">製造所</th>
+					<th scope="col" rowspan="2">登場年</th>
+					<th scope="col" rowspan="2">DCM 接続</th>
+					<th scope="col" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">主制御器</th>
+					<th scope="col">界磁チョッパ</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>8000系<small>（1〜4次車）</small></td>
+					<td><Anchor href="#mmc-htr-20a" bullet={true}>MMC-HTR-20A</Anchor></td>
+					<td>形式表記なし</td>
+					<td>日立</td>
+					<td>1969年</td>
+					<td>複巻 130kW×8</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>8000系G<small>（5〜11次車）</small></td>
+					<td><Anchor href="#mmc-htr-20c" bullet={true}>MMC-HTR-20C</Anchor></td>
+					<td>CH-SF101A, B</td>
+					<td>日立</td>
+					<td>1974年</td>
+					<td>複巻 130kW×8</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>8000系G<small>（12〜16次車）</small></td>
+					<td rowspan="2"><Anchor href="#mmc-htr-20f" bullet={true}>MMC-HTR-20F</Anchor></td>
+					<td>CH-SF101C</td>
+					<td>日立</td>
+					<td>1980年</td>
+					<td rowspan="2">複巻 130kW×8</td>
+					<td>16次車は組込のみ</td>
+				</tr>
+				<tr>
+					<td>8000系G<small>（16〜20次車）</small></td>
+					<td>CH-SF111</td>
+					<td>日立</td>
+					<td>1984年</td>
+					<td>16次車は編成のみ</td>
+				</tr>
+				<tr>
+					<td>8000系G<small>（単 M 車）</small></td>
+					<td><Anchor href="#mmc-htr-10d" bullet={true}>MMC-HTR-10D</Anchor></td>
+					<td>ユニット準ず</td>
+					<td>日立</td>
+					<td>1982年<NoteRef by="mmc-htr-10d-date" /></td>
+					<td>複巻 130kW×4</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
 
-			<NoteRefContent id="mmc-htr-10d-date">実際の機器の製造初年は1981年。</NoteRefContent>
-		</div>
+		<NoteRefContent id="mmc-htr-10d-date">実際の機器の製造初年は1981年。</NoteRefContent>
 
-		<ul class="p-notes">
+		<ListNote>
 			<li>機器形式は現車調査による。</li>
 			<li><q>日立</q>は日立製作所の略。</li>
 			<li>機器の登場年は東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。なお、製造銘板で実際の製造初年が判明しているものについては脚注にて補足している。</li>
-		</ul>
+		</ListNote>
 	</Section>
 
 	<Section id="mmc-htr-20a">
-		<H slot="heading">MMC-HTR-20A<small>（8000系1〜4次車）</small></H>
+		<Fragment slot="heading">MMC-HTR-20A<small>（8000系1〜4次車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-20A_8117.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-11-20 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8117（2次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CHS_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-07-21 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁チョッパ装置】</b>デハ8102（1次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-08-18 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>デハ8102（1次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_izukyu8107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2023-10-20 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【限流抵抗器&amp;主抵抗器】</b>伊豆急行モハ8107（東急デハ8115）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-20A_8117.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-11-20 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8117（2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CHS_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-07-21 -->
+					<Fragment slot="caption"><b>【界磁チョッパ装置】</b>デハ8102（1次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_8102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-08-18 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>デハ8102（1次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_izukyu8107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2023-10-20 -->
+					<Fragment slot="caption"><b>【限流抵抗器&amp;主抵抗器】</b>伊豆急行モハ8107（東急デハ8115）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1968年の7200系による現車試験<NoteRef type="ref" by="hitachi50" />の後、8000系に最初に搭載されたのは MMC-HTR-20A 型で、4次車までがこのタイプとなっています。8500系、8090系を含む8000系グループでは23年間にわたる増備の中で制御装置のマイナーチェンジが何度か行われていますが、基本的な機器構成は VVVF 車を除き同一で、M<span class="u-tokyu-unit">1</span> 車の海側に界磁チョッパ装置、主制御器、断流器箱が横並びで配置され、山側には多数の抵抗器がずらっと並ぶ配置となっています。</p>
 
@@ -173,7 +169,7 @@ const structuredData: StructuredData = {
 		<p>東急線からは2008年までに消滅しましたが、国内では伊豆急行の譲渡車で多数が活躍しています。</p>
 
 		<Section id="8000-m1" depth={2} headingType="c" box={true}>
-			<H slot="heading">8000系グループの単独 M<span class="u-tokyu-unit">1</span> 系車</H>
+			<Fragment slot="heading">8000系グループの単独 M<span class="u-tokyu-unit">1</span> 系車</Fragment>
 
 			<p>8000系はもともと新玉川線完成時に⑥両編成にて使用される想定で製造され、電動車は M<span class="u-tokyu-unit">1</span>–M<span class="u-tokyu-unit">2</span> で2両ユニットを組む構成ですが、1〜4次車の登場当初は東横線にて 3M2T の⑤両編成で運用されていました。この場合、電動車が奇数両になりますから、うち1両は MCOS 操作により M<span class="u-tokyu-unit">1</span> 車（デハ8100形）のみの単独制御となります。主電動機の接続は4台で、並列段には進まず直列制御のみとなり、電力回生ブレーキの有効速度はユニット車の直並列渡りに相当する約 45km/h までとなります（通常のユニット車は約 22km/h）。また運転特性を合わせるため、2ノッチ時もユニット車は強制的に3ノッチ投入で並列段に入るよう設定されました。</p>
 
@@ -183,50 +179,40 @@ const structuredData: StructuredData = {
 
 			<p>譲渡車では、伊豆急行に譲渡された8000系第1陣のうち2両編成車が 1M1T 構成とされ、伊豆急下田寄りのクモハ8151（東急デハ8155、11-1次車）が当初単独 M<span class="u-tokyu-unit">1</span>c 車とされましたが、運用開始後まもなくして相方の電装化に伴いユニット車となりました。また、モデルカーとされたデハ8723（7-2次車）は伊豆急行クモハ8152 として単独 M<span class="u-tokyu-unit">1</span>c 車のまま出場したものの、現地での営業入りまでにユニット化されています。</p>
 
-			<figure class="c-fit">
-				<div class="p-embed -border">
-					<Image path="tokyu/machine/cont/tokyu8103.jpg" alt="" width={360} height={240} quality={60} />
-					<!-- 撮影日: 2005-08-14 -->
-				</div>
-				<figcaption class="c-caption">
-					<span class="c-caption__title">大井町線で最後まで残った単独 M<span class="u-tokyu-unit">1</span> 車のデハ8103</span>
-				</figcaption>
-			</figure>
+			<Embedded border={true}>
+				<Image path="tokyu/machine/cont/tokyu8103.jpg" alt="" width={360} height={240} quality={60} slot="media" />
+				<!-- 撮影日: 2005-08-14 -->
+				<Fragment slot="caption">大井町線で最後まで残った単独 M<span class="u-tokyu-unit">1</span> 車のデハ8103 </Fragment>
+			</Embedded>
 		</Section>
 	</Section>
 
 	<Section id="mmc-htr-20c">
-		<H slot="heading">MMC-HTR-20C<small>（8000系5〜11次車、8500系6〜11次車）</small></H>
+		<Fragment slot="heading">MMC-HTR-20C<small>（8000系5〜11次車、8500系6〜11次車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-20C_8519.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-04-27 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8519（8次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CH-SF101C_8736.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-02-10 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁チョッパ装置】</b>デハ8736（9-1次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_8514.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-11-19 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱】</b>デハ8514（7-1次車）海側</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-20C_8519.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-04-27 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8519（8次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CH-SF101C_8736.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-02-10 -->
+					<Fragment slot="caption"><b>【界磁チョッパ装置】</b>デハ8736（9-1次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_8514.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-11-19 -->
+					<Fragment slot="caption"><b>【断流器箱】</b>デハ8514（7-1次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1974年の5次車は田園都市線（大井町 – すずかけ台）向けに④両編成で登場しましたが、2M2T で 編成中に M<span class="u-tokyu-unit">1</span> 車が1両しかないためデハ8100形が2丁パンタとされ、MT 比が低いため主抵抗器が容量増加により従来の8個に対して10個に増やされるなど、さまざまなバリエーションがあった8000系グループの中でもとくに異端のシステムとされました。</p>
 
@@ -242,37 +228,31 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-20f">
-		<H slot="heading">MMC-HTR-20F<small>（8000系12〜18次車、8500系12〜20次車、8090系12〜20次車）</small></H>
+		<Fragment slot="heading">MMC-HTR-20F<small>（8000系12〜18次車、8500系12〜20次車、8090系12〜20次車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-20F_8181.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-06-08 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8181（16-2次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/CH-SF111_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-06-08 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【界磁チョッパ装置、GTO】</b>デハ8497（16-2次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/URB-PH_8180.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-08-18 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【断流器箱、小型】</b>デハ8180（16-2次車）海側</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-20F_8181.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-06-08 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8181（16-2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/CH-SF111_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-06-08 -->
+					<Fragment slot="caption"><b>【界磁チョッパ装置、GTO】</b>デハ8497（16-2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/URB-PH_8180.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-08-18 -->
+					<Fragment slot="caption"><b>【断流器箱、小型】</b>デハ8180（16-2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1980年に12次車として登場した8090系ではカム段数を増加（直列 13→15段、並列全界磁 11→13段）させた MMC-HTR-20F 型となりました。8000系、8500系も同様に変更され、<a href="#mmc-htr-10d">単独 M 車</a>を除き20次車まで続きます。界磁チョッパ装置も IC 化の推進などの改良が行われたものの<NoteRef type="ref" by="pic387" />、この時点では外観に変更はありません（写真は省略）。</p>
 
@@ -290,28 +270,24 @@ const structuredData: StructuredData = {
 	</Section>
 
 	<Section id="mmc-htr-10d">
-		<H slot="heading">MMC-HTR-10D<small>（8000系グループ・単 M 車）</small></H>
+		<Fragment slot="heading">MMC-HTR-10D<small>（8000系グループ・単 M 車）</small></Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MMC-HTR-10D_8495.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-06-08 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【主制御器】</b>デハ8495（16-2次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cont/MR_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-12-03 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【限流抵抗器&amp;主抵抗器】</b>デハ8497（16-2次車）山側</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MMC-HTR-10D_8495.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-06-08 -->
+					<Fragment slot="caption"><b>【主制御器】</b>デハ8495（16-2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cont/MR_8497.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-12-03 -->
+					<Fragment slot="caption"><b>【限流抵抗器&amp;主抵抗器】</b>デハ8497（16-2次車）山側</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>1981年度の13次車では、東横線の編成増強に伴う⑥連→⑦連化ないし⑦連→⑧連化が一部の編成で行われ、単独 M 車のデハ8400形が登場しました<NoteRef by="deha8400-kaiban" />。同時期に8090系の 8093F〜8095F が⑧両編成で新製され、同様に新登場のデハ8490形が組み込まれています。</p>
 

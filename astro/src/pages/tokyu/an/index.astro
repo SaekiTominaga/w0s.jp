@@ -2,8 +2,10 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import ListLink from '@components/ListLink.astro';
 import Section from '@components/Section.astro';
+import IndexTable from '@components/tokyu/IndexTable.astro';
+import IndexTableLinks from '@components/tokyu/+phrasing/IndexTableLinks.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -20,12 +22,12 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="tokyu">
-		<H slot="heading">東急電鉄</H>
+		<Fragment slot="heading">東急電鉄</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">東横線</H>
+			<Fragment slot="heading">東横線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -39,41 +41,41 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_up_local_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_up_local_2011">2011年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_up_exp_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_up_exp_2011">2011年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_up_ltd_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_up_ltd_2011">2011年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_up_hibiya_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_up_hibiya_2011">2011年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_down_local_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_down_local_2011">2011年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_down_exp_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_down_exp_2011">2011年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_down_ltd_2011">2011年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_down_ltd_2011">2011年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyoko_down_hibiya_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyoko_down_hibiya_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">目黒線</H>
+			<Fragment slot="heading">目黒線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -85,45 +87,45 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/meguro_up_local_2006">2006年</a>
 								<a href="/tokyu/an/meguro_up_local_2009">2009年</a>
-								<a href="/tokyu/an/meguro_up_local_2020">2020年</a></span
-							>
+								<a href="/tokyu/an/meguro_up_local_2020">2020年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/meguro_up_exp_2006">2006年</a>
 								<a href="/tokyu/an/meguro_up_exp_2008">2008年</a>
-								<a href="/tokyu/an/meguro_up_exp_2020">2020年</a></span
-							>
+								<a href="/tokyu/an/meguro_up_exp_2020">2020年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/meguro_down_local_2006">2006年</a>
 								<a href="/tokyu/an/meguro_down_local_2009">2009年</a>
-								<a href="/tokyu/an/meguro_down_local_2020">2020年</a></span
-							>
+								<a href="/tokyu/an/meguro_down_local_2020">2020年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/meguro_down_exp_2006">2006年</a>
 								<a href="/tokyu/an/meguro_down_exp_2008">2008年</a>
-								<a href="/tokyu/an/meguro_down_exp_2020">2020年</a></span
-							>
+								<a href="/tokyu/an/meguro_down_exp_2020">2020年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">田園都市線</H>
+			<Fragment slot="heading">田園都市線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -136,33 +138,36 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/dento_up_local_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/dento_up_local_2006">2006年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/dento_up_semiexp_2009">2009年</a> <a href="/tokyu/an/dento_up_semiexp_2013">2013年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/dento_up_semiexp_2009">2009年</a>
+								<a href="/tokyu/an/dento_up_semiexp_2013">2013年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/dento_up_exp_2005">2005年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/dento_up_exp_2005">2005年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/dento_down_local_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/dento_down_local_2006">2006年</a></IndexTableLinks>
 						</td>
 						<td></td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/dento_down_exp_2005">2005年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/dento_down_exp_2005">2005年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">大井町線</H>
+			<Fragment slot="heading">大井町線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -174,37 +179,37 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/oimachi_up_local_2006">2006年</a>
 								<a href="/tokyu/an/oimachi_up_local_2009">2009年</a>
-								<a href="/tokyu/an/oimachi_up_local_2017">2017年</a></span
-							>
+								<a href="/tokyu/an/oimachi_up_local_2017">2017年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/oimachi_up_local_saginuma_2006">2006年</a> <a href="/tokyu/an/oimachi_up_local_saginuma_2009">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/oimachi_up_local_saginuma_2006">2006年</a> <a href="/tokyu/an/oimachi_up_local_saginuma_2009">2009年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/oimachi_down_local_2006">2006年</a>
 								<a href="/tokyu/an/oimachi_down_local_2009">2009年</a>
-								<a href="/tokyu/an/oimachi_down_local_2017">2017年</a></span
-							>
+								<a href="/tokyu/an/oimachi_down_local_2017">2017年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/oimachi_down_local_saginuma_2006">2006年</a> <a href="/tokyu/an/oimachi_down_local_saginuma_2009">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/oimachi_down_local_saginuma_2006">2006年</a> <a href="/tokyu/an/oimachi_down_local_saginuma_2009">2009年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">池上線</H>
+			<Fragment slot="heading">池上線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -216,33 +221,41 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ikegami_up_2004_7700">2004年</a> <a href="/tokyu/an/ikegami_up_2016_7700">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/ikegami_up_2004_7700">2004年</a>
+								<a href="/tokyu/an/ikegami_up_2016_7700">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ikegami_up_2014_1500">2014年</a> <a href="/tokyu/an/ikegami_up_2016_1000">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/ikegami_up_2014_1500">2014年</a>
+								<a href="/tokyu/an/ikegami_up_2016_1000">2016年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/ikegami_down_2004_7700">2004年</a>
-
-								<a href="/tokyu/an/ikegami_down_2015_7700">2015年</a></span
-							>
+								<a href="/tokyu/an/ikegami_down_2015_7700">2015年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ikegami_down_2014_1500">2014年</a> <a href="/tokyu/an/ikegami_down_2016_1000">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/ikegami_down_2014_1500">2014年</a>
+								<a href="/tokyu/an/ikegami_down_2016_1000">2016年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">東急多摩川線</H>
+			<Fragment slot="heading">東急多摩川線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -254,29 +267,41 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/tamagawa_up_2004_7700">2004年</a> <a href="/tokyu/an/tamagawa_up_2016_7700">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/tamagawa_up_2004_7700">2004年</a>
+								<a href="/tokyu/an/tamagawa_up_2016_7700">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/tamagawa_up_2014_1500">2014年</a> <a href="/tokyu/an/tamagawa_up_2016_1000">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/tamagawa_up_2014_1500">2014年</a>
+								<a href="/tokyu/an/tamagawa_up_2016_1000">2016年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/tamagawa_down_2006_7700">2006年</a> <a href="/tokyu/an/tamagawa_down_2016_7700">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/tamagawa_down_2006_7700">2006年</a>
+								<a href="/tokyu/an/tamagawa_down_2016_7700">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/tamagawa_down_2014_1500">2014年</a> <a href="/tokyu/an/tamagawa_down_2016_1000">2016年</a></span>
+							<IndexTableLinks>
+								<a href="/tokyu/an/tamagawa_down_2014_1500">2014年</a>
+								<a href="/tokyu/an/tamagawa_down_2016_1000">2016年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">こどもの国線</H>
+			<Fragment slot="heading">こどもの国線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -287,23 +312,23 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/kodomo_up_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/kodomo_up_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/kodomo_down_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/kodomo_down_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">世田谷線</H>
+			<Fragment slot="heading">世田谷線</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -315,40 +340,40 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/setagaya_up_2006">2006年</a>
 								<a href="/tokyu/an/setagaya_up_2015">2015年</a>
-								<a href="/tokyu/an/setagaya_up_2016">2016年</a></span
-							>
+								<a href="/tokyu/an/setagaya_up_2016">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/setagaya_up_kamimachi_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/setagaya_up_kamimachi_2006">2006年</a> </IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/setagaya_down_2006">2006年1月</a>
 								<a href="/tokyu/an/setagaya_down_2006_2">2006年4月</a>
 								<a href="/tokyu/an/setagaya_down_2015">2015年</a>
-								<a href="/tokyu/an/setagaya_down_2016">2016年</a></span
-							>
+								<a href="/tokyu/an/setagaya_down_2016">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td></td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 	</Section>
 
 	<Section id="transfer">
-		<H slot="heading">譲渡車両</H>
+		<Fragment slot="heading">譲渡車両</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">十和田観光電鉄<small>（2012年廃線）</small></H>
+			<Fragment slot="heading">十和田観光電鉄<small>（2012年廃線）</small></Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -359,22 +384,22 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toutetsu_up_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toutetsu_up_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toutetsu_down_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toutetsu_down_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">弘南鉄道（弘南線）</H>
+			<Fragment slot="heading">弘南鉄道（弘南線）</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -389,36 +414,36 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/konan_up_2006">2006年</a>
 								<a href="/tokyu/an/konan_up_2008">2008年</a>
-								<a href="/tokyu/an/konan_up_2016">2016年</a></span
-							>
+								<a href="/tokyu/an/konan_up_2016">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/konan_up_rapid_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/konan_up_rapid_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/konan_down_2006">2006年</a>
 								<a href="/tokyu/an/konan_down_2008">2008年</a>
-								<a href="/tokyu/an/konan_down_2016">2016年</a></span
-							>
+								<a href="/tokyu/an/konan_down_2016">2016年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/konan_down_rapid_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/konan_down_rapid_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">弘南鉄道（大鰐線）</H>
+			<Fragment slot="heading">弘南鉄道（大鰐線）</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -433,38 +458,38 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/owani_up_2006">2006年</a>
 								<a href="/tokyu/an/owani_up_2008">2008年</a>
 								<a href="/tokyu/an/owani_up_2009">2009年</a>
-								<a href="/tokyu/an/owani_up_flyingwitch_2016">2016年（ふらいんぐうぃっち）</a></span
-							>
+								<a href="/tokyu/an/owani_up_flyingwitch_2016">2016年（ふらいんぐうぃっち）</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/owani_up_rapid_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/owani_up_rapid_2006">2006年</a> </IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/owani_down_2006">2006年</a>
 								<a href="/tokyu/an/owani_down_2008">2008年</a>
 								<a href="/tokyu/an/owani_down_2016">2016年</a>
-								<a href="/tokyu/an/owani_down_flyingwitch_2016">2016年（ふらいんぐうぃっち）</a></span
-							>
+								<a href="/tokyu/an/owani_down_flyingwitch_2016">2016年（ふらいんぐうぃっち）</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/owani_down_rapid_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/owani_down_rapid_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">福島交通</H>
+			<Fragment slot="heading">福島交通</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -483,56 +508,56 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/iizaka_up_2006_7000_2r">2006年1月</a>
 								<a href="/tokyu/an/iizaka_up_2006_2_7000_2r">2006年4月</a>
-								<a href="/tokyu/an/iizaka_up_2008_7000_2r">2008年</a></span
-							>
+								<a href="/tokyu/an/iizaka_up_2008_7000_2r">2008年</a>
+							</IndexTableLinks>
 						</td>
 						<td></td>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/iizaka_up_2006_7000_3r">2006年1月</a>
 								<a href="/tokyu/an/iizaka_up_2008_7000_3r">2008年</a>
-								<a href="/tokyu/an/iizaka_up_2012_7000_3r">2012年</a></span
-							>
+								<a href="/tokyu/an/iizaka_up_2012_7000_3r">2012年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iizaka_up_2017_1000_2r">2017年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iizaka_up_2017_1000_2r">2017年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iizaka_up_2017_1000_3r">2017年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iizaka_up_2017_1000_3r">2017年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/iizaka_down_2006_7000_2r">2006年</a>
 								<a href="/tokyu/an/iizaka_down_2008_7000_2r">2008年</a>
-								<a href="/tokyu/an/iizaka_down_2011_7000_2r">2011年</a></span
-							>
+								<a href="/tokyu/an/iizaka_down_2011_7000_2r">2011年</a>
+							</IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iizaka_down_sakuramizu_2007_7000_2r">2007年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iizaka_down_sakuramizu_2007_7000_2r">2007年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iizaka_down_2006_7000_3r">2006年</a> <a href="/tokyu/an/iizaka_down_2012_7000_3r">2012年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iizaka_down_2006_7000_3r">2006年</a> <a href="/tokyu/an/iizaka_down_2012_7000_3r">2012年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iizaka_down_2017_1000_2r">2017年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iizaka_down_2017_1000_2r">2017年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iizaka_down_2017_1000_3r">2017年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iizaka_down_2017_1000_3r">2017年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">秩父鉄道</H>
+			<Fragment slot="heading">秩父鉄道</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -546,22 +571,22 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/chichibu_up_2009">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/chichibu_up_2009">2009年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/chichibu_down_2009">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/chichibu_down_2009">2009年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">富山地方鉄道</H>
+			<Fragment slot="heading">富山地方鉄道</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="3"></td>
@@ -582,34 +607,34 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyama_up_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyama_up_2013">2013年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyama_tateyama_up_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyama_tateyama_up_2013">2013年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyama_fujikoshi-kamitaki_up_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyama_fujikoshi-kamitaki_up_2013">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyama_down_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyama_down_2013">2013年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyama_tateyama_down_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyama_tateyama_down_2013">2013年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/toyama_fujikoshi-kamitaki_down_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/toyama_fujikoshi-kamitaki_down_2013">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">北陸鉄道（石川線）</H>
+			<Fragment slot="heading">北陸鉄道（石川線）</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -624,28 +649,28 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ishikawa_up_2007">2007年</a> <a href="/tokyu/an/ishikawa_up_2015">2015年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/ishikawa_up_2007">2007年</a> <a href="/tokyu/an/ishikawa_up_2015">2015年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ishikawa_up_semiexp_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/ishikawa_up_semiexp_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ishikawa_down_2006">2006年</a> <a href="/tokyu/an/ishikawa_down_2015">2015年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/ishikawa_down_2006">2006年</a> <a href="/tokyu/an/ishikawa_down_2015">2015年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/ishikawa_down_semiexp_2006">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/ishikawa_down_semiexp_2006">2006年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">上田電鉄</H>
+			<Fragment slot="heading">上田電鉄</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -662,34 +687,34 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/bessho_up_2006_7200">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/bessho_up_2006_7200">2006年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/bessho_up_2009_1000">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/bessho_up_2009_1000">2009年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/bessho_up_2013_1000_twoman">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/bessho_up_2013_1000_twoman">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/bessho_down_2006_7200">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/bessho_down_2006_7200">2006年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/bessho_down_2009_1000">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/bessho_down_2009_1000">2009年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/bessho_down_2013_1000_twoman">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/bessho_down_2013_1000_twoman">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">長野電鉄</H>
+			<Fragment slot="heading">長野電鉄</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -703,22 +728,22 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/nagano_up_2006">2006年</a> <a href="/tokyu/an/nagano_up_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/nagano_up_2006">2006年</a> <a href="/tokyu/an/nagano_up_2013">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/nagano_down_2006">2006年</a> <a href="/tokyu/an/nagano_down_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/nagano_down_2006">2006年</a> <a href="/tokyu/an/nagano_down_2013">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">伊豆急行</H>
+			<Fragment slot="heading">伊豆急行</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -733,26 +758,26 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/izukyu_up_2006_ito">2006年（伊東行）</a> <a href="/tokyu/an/izukyu_up_2006_atami">2006年（熱海行）</a></span>
+							<IndexTableLinks><a href="/tokyu/an/izukyu_up_2006_ito">2006年（伊東行）</a> <a href="/tokyu/an/izukyu_up_2006_atami">2006年（熱海行）</a></IndexTableLinks>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/izukyu_down_2006">2006年</a> <a href="/tokyu/an/izukyu_down_2017">2017年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/izukyu_down_2006">2006年</a> <a href="/tokyu/an/izukyu_down_2017">2017年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/izukyu_down_rapid_2007">2007年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/izukyu_down_rapid_2007">2007年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">大井川鐵道（大井川本線）</H>
+			<Fragment slot="heading">大井川鐵道（大井川本線）</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -767,28 +792,28 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/oigawa_up_2015">2015年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/oigawa_up_2015">2015年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/oigawa_up_exp_2015">2015年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/oigawa_up_exp_2015">2015年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/oigawa_down_2015">2015年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/oigawa_down_2015">2015年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/oigawa_down_exp_2015">2015年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/oigawa_down_exp_2015">2015年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">養老鉄道</H>
+			<Fragment slot="heading">養老鉄道</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="2"></td>
@@ -803,28 +828,28 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/yoro_ibi_up_2019">2019年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/yoro_ibi_up_2019">2019年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/yoro_kuwana_up_2019">2019年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/yoro_kuwana_up_2019">2019年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/yoro_ibi_down_2019">2019年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/yoro_ibi_down_2019">2019年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/yoro_kuwana_down_2019">2019年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/yoro_kuwana_down_2019">2019年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">伊賀鉄道</H>
+			<Fragment slot="heading">伊賀鉄道</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -835,22 +860,22 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iga_up_2012">2012年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iga_up_2012">2012年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/iga_down_2013">2013年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/iga_down_2013">2013年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">水間鉄道</H>
+			<Fragment slot="heading">水間鉄道</Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td rowspan="3"></td>
@@ -874,44 +899,44 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_up_2006_7000">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_up_2006_7000">2006年</a></IndexTableLinks>
 						</td>
 						<td></td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_up_2007_1000">2007年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_up_2007_1000">2007年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_up_2009_1000_oneman">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_up_2009_1000_oneman">2009年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_up_2009_1000">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_up_2009_1000">2009年</a></IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_down_2006_7000">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_down_2006_7000">2006年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_down_2006_7000_oneman">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_down_2006_7000_oneman">2006年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_down_2006_1000">2006年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_down_2006_1000">2006年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_down_2007_1000_oneman">2007年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_down_2007_1000_oneman">2007年</a></IndexTableLinks>
 						</td>
 						<td>
-							<span class="p-tokyu-index-table__link"><a href="/tokyu/an/mizuma_down_2009_1000">2009年</a></span>
+							<IndexTableLinks><a href="/tokyu/an/mizuma_down_2009_1000">2009年</a></IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">熊本電気鉄道（菊池線）<small>（2016年東急譲渡車引退）</small></H>
+			<Fragment slot="heading">熊本電気鉄道（菊池線）<small>（2016年東急譲渡車引退）</small></Fragment>
 
-			<table class="p-tokyu-index-table">
+			<IndexTable>
 				<thead>
 					<tr>
 						<td></td>
@@ -922,36 +947,36 @@ const slugger = new GithubSlugger();
 					<tr>
 						<th scope="row">上り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/kikuchi_up_2006">2006年</a>
 								<a href="/tokyu/an/kikuchi_up_2009">2009年</a>
 								<a href="/tokyu/an/kikuchi_up_keroro_2012">2012年（ケロロ電車）</a>
-								<a href="/tokyu/an/kikuchi_up_2015">2015年</a></span
-							>
+								<a href="/tokyu/an/kikuchi_up_2015">2015年</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">下り</th>
 						<td>
-							<span class="p-tokyu-index-table__link">
+							<IndexTableLinks>
 								<a href="/tokyu/an/kikuchi_down_2006">2006年</a>
 								<a href="/tokyu/an/kikuchi_down_2008">2008年</a>
-								<a href="/tokyu/an/kikuchi_down_keroro_2012">2012年（ケロロ電車）</a></span
-							>
+								<a href="/tokyu/an/kikuchi_down_keroro_2012">2012年（ケロロ電車）</a>
+							</IndexTableLinks>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</IndexTable>
 		</Section>
 	</Section>
 
 	<Section id="etc">
-		<H slot="heading">その他の自動放送関連コンテンツ</H>
+		<Fragment slot="heading">その他の自動放送関連コンテンツ</Fragment>
 
-		<ul class="p-links -index">
+		<ListLink index={true}>
 			<li><a href="/tokyu/an/menu">メニュー放送一覧</a></li>
 			<li><a href="/tokyu/an/iketama_compare">池上、多摩川線 車種別放送内容比較</a></li>
 			<li><a href="/tokyu/an/sound">自動放送音声</a></li>
-		</ul>
+		</ListLink>
 	</Section>
 </Layout>

@@ -1,8 +1,8 @@
 ---
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -14,74 +14,72 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="genga-zenkouhen">
-		<H slot="heading">劇場版　魔法少女まどか☆マギカ複製原画展（前後編）</H>
+		<Fragment slot="heading">劇場版　魔法少女まどか☆マギカ複製原画展（前後編）</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">地域</th>
-						<th scope="col" aria-sort="ascending">期間</th>
-						<th scope="col">場所</th>
-						<th scope="col">紹介サイト</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">大阪</th>
-						<td>2013年9月26日(木)〜29日(日)</td>
-						<td>うめきた・グランフロント大阪北館 ナレッジキャピタル地下1階イベントラボ</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/osaka.html" icon={false}>公式ページ</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">福岡</th>
-						<td>2013年10月3日(木)〜6日(日)</td>
-						<td>ホークスタウンモール 1階特設会場</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/fukuoka.html" icon={false}>公式ページ</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">東京</th>
-						<td>2013年10月19日(土)〜11月4日(月・祝)</td>
-						<td>六本木ヒルズ展望台（森タワー52階東京シティビュー内）</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/tokyo.html" icon={false}>公式ページ</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">名古屋</th>
-						<td>2013年10月24日(木)〜29日(火)</td>
-						<td>名古屋丸栄 8階大催事場</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/nagoya.html" icon={false}>公式ページ</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">札幌</th>
-						<td>2013年11月8日(金)〜10日(日)</td>
-						<td>ノルベサ 3階特設会場</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/sapporo.html" icon={false}>公式ページ</LinkExternal></li>
-								<li><LinkExternal href="http://www.mediamagic.co.jp/madoka-sapporo/" icon={false}>MediaMagic</LinkExternal></li>
-								<li><LinkExternal href="https://www.facebook.com/madoka.sapporo" icon={false}>Facebook</LinkExternal></li>
-								<li><LinkExternal href="https://sapporo.keizai.biz/headline/1936/" icon={false}>札幌経済新聞</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">地域</th>
+					<th scope="col" aria-sort="ascending">期間</th>
+					<th scope="col">場所</th>
+					<th scope="col">紹介サイト</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">大阪</th>
+					<td>2013年9月26日(木)〜29日(日)</td>
+					<td>うめきた・グランフロント大阪北館 ナレッジキャピタル地下1階イベントラボ</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/osaka.html" icon={false}>公式ページ</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">福岡</th>
+					<td>2013年10月3日(木)〜6日(日)</td>
+					<td>ホークスタウンモール 1階特設会場</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/fukuoka.html" icon={false}>公式ページ</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">東京</th>
+					<td>2013年10月19日(土)〜11月4日(月・祝)</td>
+					<td>六本木ヒルズ展望台（森タワー52階東京シティビュー内）</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/tokyo.html" icon={false}>公式ページ</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">名古屋</th>
+					<td>2013年10月24日(木)〜29日(火)</td>
+					<td>名古屋丸栄 8階大催事場</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/nagoya.html" icon={false}>公式ページ</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">札幌</th>
+					<td>2013年11月8日(金)〜10日(日)</td>
+					<td>ノルベサ 3階特設会場</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://www.mpsinc.co.jp/madoka-magica-event/genga/outline/sapporo.html" icon={false}>公式ページ</Anchor></li>
+							<li><Anchor href="http://www.mediamagic.co.jp/madoka-sapporo/" icon={false}>MediaMagic</Anchor></li>
+							<li><Anchor href="https://www.facebook.com/madoka.sapporo" icon={false}>Facebook</Anchor></li>
+							<li><Anchor href="https://sapporo.keizai.biz/headline/1936/" icon={false}>札幌経済新聞</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

@@ -1,8 +1,17 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Admin.astro';
-import H from '@components/H.astro';
+import FormGrid from '@components/FormGrid.astro';
+import FormButtons from '@components/FormButtons.astro';
+import FormGridGroup from '@components/FormGridGroup.astro';
 import Section from '@components/Section.astro';
+import Stack from '@components/Stack.astro';
+import Table from '@components/Table.astro';
+import SubmitButton from '@components/+phrasing/SubmitButton.astro';
+import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
+import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
+import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
+import Label from '@components/+phrasing/Label.astro';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -125,188 +134,162 @@ for (const resoursePage of resourcePageListDto) {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">データ登録</H>
+		<Fragment slot="heading">データ登録</Fragment>
 
-		<form action={Astro.url.pathname} method="post" class="c-stack">
-			<div class="p-form-grid">
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-url" class="c-label">URL <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input type="url" class="c-input -full js-convert-trim" id="fc-url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-title" class="c-label">タイトル <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input class="c-input -full js-convert-trim" id="fc-title" name="title" value={requestQuery.title} required="" />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-category" class="c-label">カテゴリー <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<select class="c-select" id="fc-category" name="category">
-									{
-										categoryMaster.map((category) => (
-											<>
-												{requestQuery.category === category.fk && (
-													<option value={category.fk} selected="">
-														{category.name}
-													</option>
-												)}
-												{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-											</>
-										))
-									}
-								</select>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-priority" class="c-label">優先度 <strong class="c-label-icon -required">必須</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<select class="c-select" id="fc-priority" name="priority">
-									{
-										priorityMaster.map((priority) => (
-											<>
-												{requestQuery.priority === priority.fk && (
-													<option value={priority.fk} selected="">
-														{priority.name}
-													</option>
-												)}
-												{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-											</>
-										))
-									}
-								</select>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">ブラウザ</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<label class="c-label -check">
-									<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
-									<span class="c-label__text">ウェブブラウザでアクセスするか</span></label
-								>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				<div class="p-form-grid__group">
-					<fieldset>
-						<legend class="p-form-grid__legend">
-							<label for="fc-selector" class="c-label">セレクター <strong class="c-label-icon -optional">任意</strong></label>
-						</legend>
-						<div class="p-form-grid__contents">
-							<div class="c-form-controls">
-								<input class="c-input -full js-convert-trim" id="fc-selector" name="selector" value={requestQuery.selector} />
-							</div>
-						</div>
-					</fieldset>
-				</div>
-			</div>
+		<form action={Astro.url.pathname} method="post">
+			<FormGrid>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-url">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-			<div class="c-form-controls -submit">
+					<Fragment slot="contents">
+						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
+					</Fragment>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-title">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+
+					<Fragment slot="contents">
+						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
+					</Fragment>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-category">カテゴリー <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+
+					<Fragment slot="contents">
+						<FormCtrlSelect>
+							<select name="category" id="fc-category">
+								{
+									categoryMaster.map((category) => (
+										<>
+											{requestQuery.category === category.fk && (
+												<option value={category.fk} selected="">
+													{category.name}
+												</option>
+											)}
+											{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
+										</>
+									))
+								}
+							</select>
+						</FormCtrlSelect>
+					</Fragment>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-priority">優先度 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+
+					<Fragment slot="contents">
+						<FormCtrlSelect>
+							<select name="priority" id="fc-priority">
+								{
+									priorityMaster.map((priority) => (
+										<>
+											{requestQuery.priority === priority.fk && (
+												<option value={priority.fk} selected="">
+													{priority.name}
+												</option>
+											)}
+											{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
+										</>
+									))
+								}
+							</select>
+						</FormCtrlSelect>
+					</Fragment>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend">ブラウザ</Fragment>
+
+					<Fragment slot="contents">
+						<Label label="ウェブブラウザでアクセスするか">
+							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
+						</Label>
+					</Fragment>
+				</FormGridGroup>
+				<FormGridGroup>
+					<Fragment slot="legend"><label for="fc-selector">セレクター <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
+
+					<Fragment slot="contents">
+						<FormCtrlInput><input name="selector" value={requestQuery.selector} class="js-convert-trim" id="fc-selector" /></FormCtrlInput>
+					</Fragment>
+				</FormGridGroup>
+			</FormGrid>
+
+			<FormButtons>
 				{
 					(requestQuery.action_revise_preview || requestQuery.action_revise) && (
 						<p>
-							<button class="c-submit" name="actionrev" value="1">
+							<SubmitButton name="actionrev" value="1">
 								修正
-							</button>
+							</SubmitButton>
 						</p>
 					)
 				}
 				{
 					!requestQuery.action_revise_preview && !requestQuery.action_revise && (
 						<p>
-							<button class="c-submit" name="actionadd" value="1">
+							<SubmitButton name="actionadd" value="1">
 								登録
-							</button>
+							</SubmitButton>
 						</p>
 					)
 				}
-			</div>
+			</FormButtons>
 		</form>
 	</Section>
 
 	{
 		[...resourcePageList].map(([categoryName, resourcePageOfCategory]) => (
 			<Section slugger={slugger}>
-				<H slot="heading">{categoryName}</H>
+				<Fragment slot="heading">{categoryName}</Fragment>
 
-				<div class="p-table -scroll">
-					<table>
-						<thead>
+				<Table scroll={true}>
+					<thead>
+						<tr>
+							<td />
+							<th scope="col">対象ページ</th>
+							<th scope="col">優先</th>
+							<th scope="col">🌐</th>
+							<th scope="col">セレクター</th>
+							<th scope="col">ハッシュ値</th>
+							<th scope="col">エラー</th>
+						</tr>
+					</thead>
+					<tbody>
+						{resourcePageOfCategory.map((resourcePage) => (
 							<tr>
-								<td />
-								<th scope="col">対象ページ</th>
-								<th scope="col">優先</th>
-								<th scope="col">🌐</th>
-								<th scope="col">セレクター</th>
-								<th scope="col">ハッシュ値</th>
-								<th scope="col">エラー</th>
-							</tr>
-						</thead>
-						<tbody>
-							{resourcePageOfCategory.map((resourcePage) => (
-								<tr>
-									<td class="u-cell -wrap-no">
-										<form action={Astro.url.pathname} method="post" class="c-stack">
+								<td class="u-cell -wrap-no">
+									<Stack>
+										<form action={Astro.url.pathname} method="post">
 											<p>
 												<input type="hidden" name="url" value={resourcePage.url.toString()} />
-												<button name="actionrevpre" value="1" formmethod="get" class="c-submit -compact">
+												<SubmitButton style="compact" name="actionrevpre" value="1" formmethod="get">
 													修正
-												</button>
-												<button name="actiondel" value="1" class="c-submit -compact js-button-confirm" data-message="削除しますか?">
+												</SubmitButton>
+												<SubmitButton style="compact" name="actiondel" value="1" class="js-button-confirm" data-message="削除しますか?">
 													削除
-												</button>
-											</p>
-
-											<p>
-												<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
+												</SubmitButton>
 											</p>
 										</form>
-									</td>
-									<td>
-										<a href={resourcePage.url} referrerpolicy="no-referrer">
-											{resourcePage.title}
-										</a>
-										<p style="margin-block-start: 0.5em; font-size: 80%">{resourcePage.url}</p>
-									</td>
-									<td class="u-cell -center">{resourcePage.priority}</td>
-									<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
-									<td class="u-cell -wrap-anywhere">{resourcePage.selector}</td>
-									<td>{resourcePage.content_hash}</td>
-									<td class="u-cell -center">{resourcePage.error && <strong style="color: red">✗</strong>}</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+										<p>
+											<a href={`/admin/crawler-resource/diff?dir=${resourcePage.url.hostname}${encodeURIComponent(resourcePage.url.pathname.replace(/\/[^/]*$/g, ''))}`}>差分チェック</a>
+										</p>
+									</Stack>
+								</td>
+								<td>
+									<a href={resourcePage.url} referrerpolicy="no-referrer">
+										{resourcePage.title}
+									</a>
+									<p style="margin-block-start: 0.5em; font-size: 80%">{resourcePage.url}</p>
+								</td>
+								<td class="u-cell -center">{resourcePage.priority}</td>
+								<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
+								<td class="u-cell -wrap-anywhere">{resourcePage.selector}</td>
+								<td>{resourcePage.content_hash}</td>
+								<td class="u-cell -center">{resourcePage.error && <strong style="color: red">✗</strong>}</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
 			</Section>
 		))
 	}

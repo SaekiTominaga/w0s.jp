@@ -1,9 +1,11 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import Image from '@components/+phrasing/Image.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -21,111 +23,97 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="bce">
-		<H slot="heading">ブレーキ制御装置</H>
+		<Fragment slot="heading">ブレーキ制御装置</Fragment>
 
 		<p>HSC-R最後の採用となった7200系も、2000年の目蒲線分断とともに大多数が東急を去り、現在では検測や入換などに使用されるデヤ7200、デヤ7290、サヤ7590の3両を残すのみとなっています。このうち1997年に新製されたサヤ7590は電気指令車なため、空気指令式は2両のみです。</p>
 
 		<p>ブレーキ制御装置はHD23型で、左下には7000系までのA動作弁に代わって取り付けられた<dfn>M非常弁</dfn>があります。これは保守軽減のため、自動ブレーキの作用を非常ブレーキ（EB）のみとしたものです。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/HD23.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-12 -->
-					</div>
-					<figcaption class="c-caption">HD23型ブレーキ制御装置（デヤ7200）</figcaption>
-				</figure>
-			</div>
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/GR3.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-06-09 -->
-					</div>
-					<figcaption class="c-caption">参考比較: 旧7000系のブレーキ制御装置（福島交通デハ7111）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Grid column="wide">
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/HD23.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-12 -->
+					<Fragment slot="caption">HD23型ブレーキ制御装置（デヤ7200）</Fragment>
+				</Embedded>
+			</GridItem>
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/GR3.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-06-09 -->
+					<Fragment slot="caption">参考比較: 旧7000系のブレーキ制御装置（福島交通デハ7111）</Fragment>
+				</Embedded>
+			</GridItem>
+		</Grid>
 
 		<p>なお、1987年に旧7000系を改造した7700系が登場しましたが、3次車までは既存のHSCブレーキのままワンハンドルマスコン化されたため、常用帯の自動ブレーキが廃止され、A動作弁をM非常弁に交換されていました。後に4次車以降に合わせて電気指令化が成されています。</p>
 	</Section>
 
 	<Section id="air">
-		<H slot="heading">空気管</H>
+		<Fragment slot="heading">空気管</Fragment>
 
 		<p>山側に配される引通し空気管は、元空気だめ管（MRP）、ブレーキ管（BP）、直通管（SAP）の3本あり、それぞれコック部分が白、赤、緑に塗り分けられています。</p>
 
 		<p>前述のとおり、空気指令車はデヤ7200とデヤ7290の2両のみとなってしまったため、すべての空気管が連結された様子は、両車が2連を組んだ時にしか見ることができません。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/cocks.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-14 -->
-					</div>
-					<figcaption class="c-caption">3本の空気管（デヤ7200）</figcaption>
-				</figure>
-			</div>
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/connect.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2008-01-04 -->
-					</div>
-					<figcaption class="c-caption">空気管がすべて連結された様子（デヤ7200+デヤ7290）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Grid column="wide">
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/cocks.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-14 -->
+					<Fragment slot="caption">3本の空気管（デヤ7200）</Fragment>
+				</Embedded>
+			</GridItem>
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/connect.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-01-04 -->
+					<Fragment slot="caption">空気管がすべて連結された様子（デヤ7200+デヤ7290）</Fragment>
+				</Embedded>
+			</GridItem>
+		</Grid>
 
 		<p>ちなみに、BP(赤)とSAP(緑)の間にあるジャンパ連結器は低圧27芯の<dfn>YL3-27型</dfn>で、7200系と7600系のみが装備する珍しいタイプです。</p>
 	</Section>
 
 	<Section id="alumi7200">
-		<H slot="heading">7200系アルミ車</H>
+		<Fragment slot="heading">7200系アルミ車</Fragment>
 
 		<p>現存する7200系空気指令車2両は、アルミ試作車として1967年に製造された2次車です。1991年には両運転台化などの改造が成され、動力車（デハ7200）および電気検測車（デヤ7290）として派手な塗装を施されました。なお、デハ7200は1996年にデヤ7200に改称されています。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/sakusei.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2003-02-23 -->
-					</div>
-					<figcaption class="c-caption">デヤ7290+デハ7706-デハ7806-クハ7906+デヤ7200</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Grid column="wide">
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/sakusei.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2003-02-23 -->
+					<Fragment slot="caption">デヤ7290+デハ7706-デハ7806-クハ7906+デヤ7200</Fragment>
+				</Embedded>
+			</GridItem>
+		</Grid>
 
 		<p>写真は、池上、多摩川線所属車の車輪削正回送のため編成両端に連結された様子です。一時期、削正作業を元住吉検車区で行っていたことがあり、目黒線を走行するシーンを捉えたものです。</p>
 	</Section>
 
 	<Section id="konan-7000">
-		<H slot="heading">弘南鉄道の4両編成</H>
+		<Fragment slot="heading">弘南鉄道の4両編成</Fragment>
 
 		<p>元7000系が活躍する青森県の弘南鉄道弘南線では、休校日を除く平日朝の1往復（黒石駅7時20分発）のみ4両編成での運転となっており、黒石駅で車両の増解結が行われます。日常的にみられる空気指令車同士の連結・解放作業としては唯一のものです。</p>
 
-		<div class="c-grid -wide">
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/konan_connect_m.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-09-07 -->
-					</div>
-					<figcaption class="c-caption">空気管側連結部（弘南鉄道デハ7152+デハ7011）</figcaption>
-				</figure>
-			</div>
-			<div class="c-grid__item">
-				<figure>
-					<div class="p-embed -border">
-						<Image path="tokyu/yomoyama/hsc/konan_connect_s.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} />
-						<!-- 撮影日: 2009-04-24 -->
-					</div>
-					<figcaption class="c-caption">電気栓側連結部（弘南鉄道デハ7011+デハ7153）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Grid column="wide">
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/konan_connect_m.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-09-07 -->
+					<Fragment slot="caption">空気管側連結部（弘南鉄道デハ7152+デハ7011）</Fragment>
+				</Embedded>
+			</GridItem>
+			<GridItem>
+				<Embedded border={true}>
+					<Image path="tokyu/yomoyama/hsc/konan_connect_s.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-04-24 -->
+					<Fragment slot="caption">電気栓側連結部（弘南鉄道デハ7011+デハ7153）</Fragment>
+				</Embedded>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

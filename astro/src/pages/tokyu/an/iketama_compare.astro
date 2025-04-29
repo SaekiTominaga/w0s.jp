@@ -1,7 +1,9 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import Box from '@components/Box.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -20,95 +22,95 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="oneman">
-		<H slot="heading">ワンマン運転の案内放送</H>
+		<Fragment slot="heading">ワンマン運転の案内放送</Fragment>
 
 		<p>池上線、多摩川線では、始発駅と旗の台、雪が谷大塚発車時にワンマン運転の案内放送が行われますが、このうち旗の台発車時においては、1000系のみ<q>お降りになりましたら…</q>の文言が用いられています。以下に下り列車の例を示します。</p>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">7600系、7700系</H>
+					<Fragment slot="heading">7600系、7700系</Fragment>
 
-					<div class="p-box">
+					<Box>
 						<p>次は長原、長原です。</p>
 
 						<p>この電車はワンマン運転を行っております。発車ベルが鳴り終わりましたらドアが閉まりますので、無理なご乗車はお止めください。</p>
-					</div>
+					</Box>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">1000系</H>
+					<Fragment slot="heading">1000系</Fragment>
 
-					<div class="p-box">
+					<Box>
 						<p>次は長原、長原です。</p>
 
 						<p>この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</p>
-					</div>
+					</Box>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="yukigaya">
-		<H slot="heading">雪が谷大塚行きの注意放送</H>
+		<Fragment slot="heading">雪が谷大塚行きの注意放送</Fragment>
 
 		<p>池上線雪が谷大塚止まりの列車は、下り列車のみ一部駅の停車中に注意放送が流れます。7600系、7700系は旗の台と石川台、1000系は旗の台のみですが、車内放送に続いて車外放送も流れるのが特徴です。以下に旗の台停車中の例を示します。</p>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">7600系、7700系</H>
+					<Fragment slot="heading">7600系、7700系</Fragment>
 
-					<div class="p-box">
+					<Box>
 						<p>この電車は雪が谷大塚止まりです。</p>
-					</div>
+					</Box>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">1000系</H>
+					<Fragment slot="heading">1000系</Fragment>
 
-					<div class="p-box">
+					<Box>
 						<p>この電車は雪が谷大塚止まりです。</p>
 
 						<p><b>（車外放送）</b>この電車は雪が谷大塚止まりです。</p>
-					</div>
+					</Box>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="iketama">
-		<H slot="heading">池上線 – 多摩川線直通列車の案内放送</H>
+		<Fragment slot="heading">池上線 – 多摩川線直通列車の案内放送</Fragment>
 
 		<p>蒲田駅で折り返し池上線 – 多摩川線を通し運転する列車は、始発駅発車時などに蒲田折り返し後の行先を案内しますが、7600系、7700系は後に続くはずのワンマン案内が省略されます。以下に五反田発、蒲田折り返し、多摩川行き列車における旗の台発車時の例を示します。</p>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">7600系、7700系</H>
+					<Fragment slot="heading">7600系、7700系</Fragment>
 
-					<div class="p-box">
+					<Box>
 						<p>次は長原、長原です。</p>
 
 						<p>この電車は蒲田より多摩川線多摩川行きとなります。</p>
-					</div>
+					</Box>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">1000系</H>
+					<Fragment slot="heading">1000系</Fragment>
 
-					<div class="p-box">
+					<Box>
 						<p>次は長原、長原です。</p>
 
 						<p>この電車は蒲田より多摩川線多摩川行きとなります。</p>
 
 						<p>この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</p>
-					</div>
+					</Box>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

@@ -1,0 +1,28 @@
+---
+import Breadcrumb from '@components/content-header&footer/Breadcrumb.astro';
+import Description from '@components/content-header&footer/Description.astro';
+import LocalNav from '@components/content-header&footer/LocalNav.astro';
+import Title from '@components/content-header&footer/Title.astro';
+import Toc from '@components/content-header&footer/Toc.astro';
+import type { StructuredData } from '@type/types.js';
+
+interface Props {
+	pagePath: string;
+	structuredData: StructuredData;
+	tocData?: Map<string, string>;
+}
+
+const { pagePath, structuredData, tocData } = Astro.props;
+---
+
+<div class="l-content__header">
+	<Breadcrumb data={structuredData.breadcrumb} />
+
+	<Title title={structuredData.title} heading={structuredData.heading} subHeading={structuredData.subHeading} dateModified={structuredData.dateModified} />
+
+	<LocalNav data={structuredData.localNav} pagePath={pagePath} />
+
+	<Description data={structuredData.description} />
+
+	<Toc data={tocData} direction={structuredData.tocDirection} />
+</div>

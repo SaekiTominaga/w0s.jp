@@ -1,8 +1,8 @@
 ---
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -14,129 +14,125 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="event">
-		<H slot="heading">魔法少女まどか☆マギカ展</H>
+		<Fragment slot="heading">魔法少女まどか☆マギカ展</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">地域</th>
-						<th scope="col" aria-sort="ascending">期間</th>
-						<th scope="col">場所</th>
-						<th scope="col">紹介サイト</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">池袋</th>
-						<td>2011年12月27日(火)〜12月31日(土)</td>
-						<td>サンシャインシティ 文化会館2階 Dホール</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://web.archive.org/web/20120108065131/http://www.mpsinc.co.jp/madoka-magica-event/outline/tokyo.html" icon={false}>公式ページ</LinkExternal></li>
-								<li><LinkExternal href="http://ascii.jp/elem/000/000/659/659217/" icon={false}>ASCII.jp</LinkExternal></li>
-								<li><LinkExternal href="http://aug333.blog75.fc2.com/blog-entry-476.html" icon={false}>ちょっと気になっただけです。</LinkExternal></li>
-								<li><LinkExternal href="http://aterahira.seesaa.net/article/243273673.html" icon={false}>あてらひら♪</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">大阪</th>
-						<td>2012年2月10日(金)〜12日(日)</td>
-						<td>ATCホール</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://web.archive.org/web/20120210011039/http://www.mpsinc.co.jp/madoka-magica-event/outline/osaka.html" icon={false}>公式ページ</LinkExternal></li>
-								<li><LinkExternal href="http://mixi.jp/list_diary.pl?id=10127183&year=2012&month=2&day=15" icon={false}>からあげ＠くらげーさんの日記</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">名古屋</th>
-						<td>2012年3月20日(火・祝)〜25日(日)</td>
-						<td>吹上ホール</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://web.archive.org/web/20120320100523/http://www.mpsinc.co.jp/madoka-magica-event/outline/nagoya.html" icon={false}>公式ページ</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">広島</th>
-						<td>2013年3月30日(土)〜31日(日)</td>
-						<td>広島アニプリズム</td>
-						<td>
-							<ul>
-								<li>
-									<LinkExternal href="https://web.archive.org/web/20130314012956/http://www.mpsinc.co.jp/madoka-magica-event/outline/hiroshima.html" icon={false}>公式ページ</LinkExternal>
-								</li>
-							</ul>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">地域</th>
+					<th scope="col" aria-sort="ascending">期間</th>
+					<th scope="col">場所</th>
+					<th scope="col">紹介サイト</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">池袋</th>
+					<td>2011年12月27日(火)〜12月31日(土)</td>
+					<td>サンシャインシティ 文化会館2階 Dホール</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://web.archive.org/web/20120108065131/http://www.mpsinc.co.jp/madoka-magica-event/outline/tokyo.html" icon={false}>公式ページ</Anchor></li>
+							<li><Anchor href="http://ascii.jp/elem/000/000/659/659217/" icon={false}>ASCII.jp</Anchor></li>
+							<li><Anchor href="http://aug333.blog75.fc2.com/blog-entry-476.html" icon={false}>ちょっと気になっただけです。</Anchor></li>
+							<li><Anchor href="http://aterahira.seesaa.net/article/243273673.html" icon={false}>あてらひら♪</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">大阪</th>
+					<td>2012年2月10日(金)〜12日(日)</td>
+					<td>ATCホール</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://web.archive.org/web/20120210011039/http://www.mpsinc.co.jp/madoka-magica-event/outline/osaka.html" icon={false}>公式ページ</Anchor></li>
+							<li><Anchor href="http://mixi.jp/list_diary.pl?id=10127183&year=2012&month=2&day=15" icon={false}>からあげ＠くらげーさんの日記</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">名古屋</th>
+					<td>2012年3月20日(火・祝)〜25日(日)</td>
+					<td>吹上ホール</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://web.archive.org/web/20120320100523/http://www.mpsinc.co.jp/madoka-magica-event/outline/nagoya.html" icon={false}>公式ページ</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">広島</th>
+					<td>2013年3月30日(土)〜31日(日)</td>
+					<td>広島アニプリズム</td>
+					<td>
+						<ul>
+							<li>
+								<Anchor href="https://web.archive.org/web/20130314012956/http://www.mpsinc.co.jp/madoka-magica-event/outline/hiroshima.html" icon={false}>公式ページ</Anchor>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="event-shinpen">
-		<H slot="heading">劇場版　魔法少女まどか☆マギカ展（新編）</H>
+		<Fragment slot="heading">劇場版　魔法少女まどか☆マギカ展（新編）</Fragment>
 
-		<div class="p-table">
-			<table>
-				<thead>
-					<tr>
-						<th scope="col">地域</th>
-						<th scope="col" aria-sort="ascending">期間</th>
-						<th scope="col">場所</th>
-						<th scope="col">紹介サイト</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">池袋</th>
-						<td>2014年5月3日(土)〜6日(火・祝)</td>
-						<td>池袋サンシャインシティ ワールドインポートマート4階 展示ホールA</td>
-						<td>
-							<ul>
-								<li><a href="https://blog.w0s.jp/entry/349">富永日記帳</a></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">大阪</th>
-						<td>2014年5月17日(土)〜18日(日)</td>
-						<td>ATCホール（大阪南港）</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://web.archive.org/web/20140728145340/http://www.mpsinc.co.jp/madoka-magica-event/outline/osaka.html" icon={false}>公式ページ</LinkExternal></li>
-								<li><LinkExternal href="http://mixi.jp/list_diary.pl?id=10127183&year=2014&month=6&day=19" icon={false}>からあげ＠くらげーさんの日記</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">新潟</th>
-						<td>2014年7月26日(土)〜8月10日(日)</td>
-						<td>新潟市マンガ・アニメ情報館</td>
-						<td>
-							<ul>
-								<li>
-									<LinkExternal href="https://web.archive.org/web/20140728063742/http://www.mpsinc.co.jp/madoka-magica-event/outline/niigata.html" icon={false}>公式ページ</LinkExternal>
-								</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">名古屋</th>
-						<td>2014年9月27日(土)〜9月28日(日)</td>
-						<td>名古屋市国際展示場 ポートメッセなごや 第1展示場</td>
-						<td>
-							<ul>
-								<li><LinkExternal href="https://www.mpsinc.co.jp/madoka-magica-event/outline/nagoya.html" icon={false}>公式ページ</LinkExternal></li>
-							</ul>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">地域</th>
+					<th scope="col" aria-sort="ascending">期間</th>
+					<th scope="col">場所</th>
+					<th scope="col">紹介サイト</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">池袋</th>
+					<td>2014年5月3日(土)〜6日(火・祝)</td>
+					<td>池袋サンシャインシティ ワールドインポートマート4階 展示ホールA</td>
+					<td>
+						<ul>
+							<li><a href="https://blog.w0s.jp/entry/349">富永日記帳</a></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">大阪</th>
+					<td>2014年5月17日(土)〜18日(日)</td>
+					<td>ATCホール（大阪南港）</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://web.archive.org/web/20140728145340/http://www.mpsinc.co.jp/madoka-magica-event/outline/osaka.html" icon={false}>公式ページ</Anchor></li>
+							<li><Anchor href="http://mixi.jp/list_diary.pl?id=10127183&year=2014&month=6&day=19" icon={false}>からあげ＠くらげーさんの日記</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">新潟</th>
+					<td>2014年7月26日(土)〜8月10日(日)</td>
+					<td>新潟市マンガ・アニメ情報館</td>
+					<td>
+						<ul>
+							<li>
+								<Anchor href="https://web.archive.org/web/20140728063742/http://www.mpsinc.co.jp/madoka-magica-event/outline/niigata.html" icon={false}>公式ページ</Anchor>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">名古屋</th>
+					<td>2014年9月27日(土)〜9月28日(日)</td>
+					<td>名古屋市国際展示場 ポートメッセなごや 第1展示場</td>
+					<td>
+						<ul>
+							<li><Anchor href="https://www.mpsinc.co.jp/madoka-magica-event/outline/nagoya.html" icon={false}>公式ページ</Anchor></li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 </Layout>

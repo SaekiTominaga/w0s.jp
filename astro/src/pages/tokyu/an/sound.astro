@@ -2,7 +2,8 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import Box from '@components/Box.astro';
+import Embedded from '@components/Embedded.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -22,286 +23,258 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="tokyu">
-		<H slot="heading">東急電鉄</H>
+		<Fragment slot="heading">東急電鉄</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">東横線</H>
+			<Fragment slot="heading">東横線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">通勤特急列車の英語放送</H>
+				<Fragment slot="heading">通勤特急列車の英語放送</Fragment>
 
 				<p>ラッシュ時に運転される通勤特急列車では、基本的に英語放送が省略されますが、始発駅停車中のみ流れる場合があります。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/toyoko_down_stop_shibuya_comltd.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/toyoko_down_stop_shibuya_comltd.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>東急東横線をご利用くださいまして、ありがとうございます。この電車はみなとみらい線直通、通勤特急元町・中華街行きです。</p>
 					<p lang="en">Thank you for using the Tōkyū Tōyoko Line. This train will merge and continue traveling at the Commuter Limited Express on the Minatomirai Line to Motomachi-Chūkagai.</p>
-				</div>
+				</Box>
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">日比谷線直通、種別案内が<q>各駅停車</q>のみ</H>
+				<Fragment slot="heading">日比谷線直通、種別案内が<q>各駅停車</q>のみ</Fragment>
 
 				<p>上り日比谷線直通列車における武蔵小杉駅停車中の案内では、東急車のみ種別案内に<q>日比谷線直通</q>が含まれていませんでした。2008年の横浜市交グリーンライン開業に伴う変更で修正されています。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/toyoko_up_stop_kosugi_hibiya.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/toyoko_up_stop_kosugi_hibiya.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>東急東横線をご利用くださいまして、ありがとうございます。この電車は各駅停車南千住行きです。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">目黒線</H>
+			<Fragment slot="heading">目黒線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">下り奥沢止まりの放送</H>
+				<Fragment slot="heading">下り奥沢止まりの放送</Fragment>
 
 				<p>下り奥沢行きのうち、上りホームの3番線に到着する列車では、下車しない場合もいったん改札を出る必要がありました。これは2006年の急行運転開始前のバージョンです。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/meguro_down_next_okusawa.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/meguro_down_next_okusawa.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>次は奥沢、奥沢です。お出口は左側に変わります。この電車は次の奥沢止まりです。田園調布、武蔵小杉方面にお出でのお客様は、改札を通り、一番線へお回りください。</p>
 					<p lang="en">The next station is Okusawa. This is the last stop of this line. Passengers changing to the platform-1 for Den-en-chōfu and Musashi-kosugi, please transfer at this station.</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">田園都市線</H>
+			<Fragment slot="heading">田園都市線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">準急列車の放送</H>
+				<Fragment slot="heading">準急列車の放送</Fragment>
 
 				<p>平日朝間に上りのみ設定されている準急列車の放送のうち、通過駅のある区間は急行列車に似た内容となっていますが、二子玉川到着時のみ各駅停車になる旨の案内が行われます。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/dento_up_soon_nikotama_semiexp.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/dento_up_soon_nikotama_semiexp.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>この電車は半蔵門線、東武伊勢崎線直通、準急久喜行きです。まもなく二子玉川、二子玉川です。大井町線ご利用のお客様は乗り換えです。お出口は右側です。二子玉川から渋谷までと、半蔵門線内の各駅に停まります。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">大井町線</H>
+			<Fragment slot="heading">大井町線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">お立ちのお客様は、吊り革・手摺りにお掴まりください。</H>
+				<Fragment slot="heading">お立ちのお客様は、吊り革・手摺りにお掴まりください。</Fragment>
 
 				<p>カーブの続く上野毛〜二子玉川間では、立客向けの注意放送が行われていました。同様の案内は東横線の一部区間でも行われていましたが、現在ではこどもの国線の始発駅発車時に残るのみとなっています。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/oimachi_down_next_futakotamagawa.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/oimachi_down_next_futakotamagawa.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>次は二子玉川、二子玉川、終点です。お立ちのお客様は、吊り革・手摺りにお掴まりください。</p>
 					<p lang="en">The next station is Futako-tamagawa. This is the last stop of this line.</p>
-				</div>
+				</Box>
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">路線名を言わない</H>
+				<Fragment slot="heading">路線名を言わない</Fragment>
 
 				<p>2009年の溝の口延伸以前、鷺沼始発の大井町線直通列車は、始発駅発車時の案内で路線名を省略し、<q>東急線</q>と放送されていました。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/oimachi_up_next_miyazakidai.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/oimachi_up_next_miyazakidai.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>東急線をご利用くださいまして、ありがとうございます。この電車は大井町線直通、大井町行きです。次は宮前平、宮前平です。</p>
 					<p lang="en">Thank you for using the Tokyu Line. This train will merge and continue traveling on the Ōimachi Line to Ōimachi. The next station is Miyamaedaira.</p>
-				</div>
+				</Box>
 			</Section>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">不自然な間のある放送</H>
+				<Fragment slot="heading">不自然な間のある放送</Fragment>
 
 				<p>大井町線旗の台駅はもともと2面2線の対向式ホームで、上り列車は北千束発車時の自動放送で<q>お出口は左側に変わります。</q>と案内していました。駅改良工事に伴い2006年に開扉方向が変わった際、当該部分が削除されましたが、その際に前後の切り詰めを行わなかったため、放送途中に不自然な間が生じていました。後に自動放送休止期間を経て、2009年の溝の口延伸の際に全面的な更新が成されています。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/oimachi_up_next_hatanodai.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/oimachi_up_next_hatanodai.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>次は旗の台、旗の台です。 …（4秒ほどの間）… 池上線ご利用のお客様は乗り換えです。</p>
 					<p lang="en">The next station is Hatanodai. Passengers changing to the Ikegami Line, please transfer at this station.</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">池上線</H>
+			<Fragment slot="heading">池上線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">1000系ワンマン案内、<q>お降りになりましたら…</q></H>
+				<Fragment slot="heading">1000系ワンマン案内、<q>お降りになりましたら…</q></Fragment>
 
 				<p>池上、多摩川線では、主要駅発車時に<q>発車ベルが鳴り終わりましたら…</q>というワンマン運転の案内が流れますが、1000系のうち旗の台発車時のみは異なる文言となっています。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/ikegami_down_next_nagahara.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/ikegami_down_next_nagahara.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>次は長原、長原です。</p>
 					<p lang="en">この電車はワンマン運転を行っております。お降りになりましたら、電車から離れてお歩きください。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">世田谷線</H>
+			<Fragment slot="heading">世田谷線</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">携帯電話マナー放送、<q>オレンジ色の吊り革付近は、…</q></H>
+				<Fragment slot="heading">携帯電話マナー放送、<q>オレンジ色の吊り革付近は、…</q></Fragment>
 
 				<p>下り西太子堂発車時に流れる携帯電話マナー放送は、上り列車の<q>吊り革がオレンジ色の優先席付近では…</q>に対し、異なる文言となっています。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/setagaya_down_nishitaishido.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/setagaya_down_nishitaishido.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>東急電鉄からのお願いです。オレンジ色の吊り革付近は、お年寄りやお体の不自由なお客様のための優先席です。この場所では、携帯電話の電源をお切りください。車内マナーにご協力をお願いいたします。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 	</Section>
 
 	<Section id="transfer">
-		<H slot="heading">譲渡車両</H>
+		<Fragment slot="heading">譲渡車両</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">弘南鉄道（弘南線）</H>
+			<Fragment slot="heading">弘南鉄道（弘南線）</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">テープ時代の放送</H>
+				<Fragment slot="heading">テープ時代の放送</Fragment>
 
 				<p>2008年の放送装置IC化以前の放送で、現在とは印象が異なるものです。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/konan_up_next_higashikomae.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/konan_up_next_higashikomae.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>次の停車駅は弘前東高前、弘前東高前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">福島交通</H>
+			<Fragment slot="heading">福島交通</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">飯坂温泉駅降車ホーム使用休止</H>
+				<Fragment slot="heading">飯坂温泉駅降車ホーム使用休止</Fragment>
 
 				<p>冬季は飯坂温泉駅の降車専用ホームが使用休止されるため、乗車ホームが降車兼用となります。到着時の案内文言はしばしば変更されており、ここでは2007年の放送装置IC化直前のバージョンを紹介します。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/iizaka_down_soon_iizaka.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/iizaka_down_soon_iizaka.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>まもなく終点、飯坂温泉です。降り口は冬期間降車ホームが滑りやすいので、左側になっております。ご乗車ありがとうございました。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">伊豆急行</H>
+			<Fragment slot="heading">伊豆急行</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">快速列車の放送</H>
+				<Fragment slot="heading">快速列車の放送</Fragment>
 
 				<p>伊豆急行線では多客期などに臨時快速が運転されますが、近年は東急から譲渡された8000系が使われています。一部で停車駅案内を行うほか、通過駅がある場合に限り<q>次の停車駅は…</q>と案内されます。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/izukyu_down_next_kogen.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/izukyu_down_next_kogen.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>お待たせいたしました。本日は伊豆急線をご利用くださいまして、ありがとうございます。快速列車の伊豆急下田行きです。停車駅は、伊豆高原、伊豆熱川、伊豆稲取、今井浜海岸、河津、蓮台寺、伊豆急下田です。それ以外の駅には停車しませんので、お気を付けください。次の停車駅は伊豆高原、伊豆高原です。車内は禁煙になっております。お煙草はご遠慮ください。携帯電話をお持ちのお客様にお願いいたします。優先席付近では携帯電話の電源をお切りください。それ以外の場所ではマナーモードに設定のうえ、通話はお控えください。ご協力お願いいたします。</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">北陸鉄道（石川線）</H>
+			<Fragment slot="heading">北陸鉄道（石川線）</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">英語案内付きの放送</H>
+				<Fragment slot="heading">英語案内付きの放送</Fragment>
 
 				<p>北陸鉄道石川線では、主要駅の次駅放送に英語案内が含まれます。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/ishikawa_down_next_tsurugi.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/ishikawa_down_next_tsurugi.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>この列車は、加賀一の宮行きワンマン電車です。次は鶴来、鶴来です。それぞれの車両、前と後ろのドアが開きます。</p>
 					<p lang="en">The next station is Tsurugi.</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">熊本電気鉄道（菊池線）</H>
+			<Fragment slot="heading">熊本電気鉄道（菊池線）</Fragment>
 
 			<Section slugger={slugger} depth={3} headingType="c">
-				<H slot="heading">男性声による放送</H>
+				<Fragment slot="heading">男性声による放送</Fragment>
 
 				<p>熊本電気鉄道では、珍しく男性声による放送が行われています。また一部区間で宣伝放送が行われていましたが、2008年に中止されています。</p>
 
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<audio src="https://media.w0s.jp/audio/tokyu/announce/kikuchi_up_next_kankanzaka.m4a" controls="" preload="none"></audio>
-					</div>
-				</figure>
+				<Embedded>
+					<audio src="https://media.w0s.jp/audio/tokyu/announce/kikuchi_up_next_kankanzaka.m4a" controls="" preload="none" slot="media"></audio>
+				</Embedded>
 
-				<div class="p-box">
+				<Box>
 					<p>次は韓々坂、韓々坂です。お年寄りや、体の不自由な方に席を譲りましょう。皆さまの電車です、マナーを大切にしましょう。</p>
 
 					<p>（※「熊本電鉄旅行センター」の宣伝）</p>
-				</div>
+				</Box>
 			</Section>
 		</Section>
 	</Section>

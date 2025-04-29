@@ -1,0 +1,125 @@
+---
+import Date from '../+phrasing/Date.astro';
+
+interface Props {
+	period?: string; // 期間
+	note?: string; // 補足
+	invDate?: string; // 調査日
+	invCar?: string; // 調査車両
+}
+
+const { period, note, invDate, invCar } = Astro.props;
+---
+
+<div class="set">
+	{
+		(period !== undefined || note !== undefined) && (
+			<div class="header">
+				{period !== undefined && <p class="period">{period}</p>}
+				{note !== undefined && <p class="note">{note}</p>}
+			</div>
+		)
+	}
+
+	<div class="main">
+		<slot />
+	</div>
+
+	{
+		invDate !== undefined && invCar !== undefined && (
+			<div class="footer">
+				<dl class="data">
+					<div>
+						<dt>調査日</dt>
+						<dd>
+							<Date value={invDate} />
+						</dd>
+					</div>
+					<div>
+						<dt>調査車両</dt>
+						<dd>{invCar}</dd>
+					</div>
+				</dl>
+			</div>
+		)
+	}
+</div>
+
+<style>
+	.set {
+		inline-size: fit-content;
+
+		& + :global(*) {
+			margin-block-start: calc(var(--stack-margin-base) * 2);
+		}
+	}
+
+	.header {
+		line-height: var(--line-height-narrow);
+
+		& > :global(*) {
+			margin-inline: auto;
+			inline-size: fit-content;
+		}
+
+		& > :global(* + *) {
+			margin-block-start: calc(var(--stack-margin-base) / 3);
+		}
+	}
+
+	.main {
+		margin-block-start: 1em;
+
+		& > :global(*) {
+			margin-inline: auto;
+			inline-size: fit-content;
+		}
+	}
+
+	.footer {
+		margin-block-start: 3em;
+
+		& > :global(*) {
+			margin-inline: auto;
+			inline-size: fit-content;
+		}
+	}
+
+	/* 設置期間 */
+	.period {
+	}
+
+	/* 補足 */
+	.note {
+		&::before {
+			content: '（';
+		}
+
+		&::after {
+			content: '）';
+		}
+	}
+
+	/* 調査データ */
+	.data {
+		display: block flex;
+		flex-flow: wrap;
+		gap: 0.5em 2em;
+		justify-content: center;
+		border: 1px solid var(--color-border-dark);
+		border-radius: var(--border-radius-normal);
+		background: var(--color-white);
+		padding: 0.5em 15px;
+		line-height: var(--line-height-narrow);
+
+		& > :global(div) {
+			display: block flex;
+			flex-flow: wrap;
+		}
+
+		& :global(dt::after) {
+			margin: 0.25em;
+			content: ':';
+		}
+	}
+</style>

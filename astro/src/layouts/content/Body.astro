@@ -1,0 +1,19 @@
+---
+import Footnote from '@components/Footnote.astro';
+
+interface Props {
+	html: string;
+	footnoteNoteData: Map<number, string | undefined>;
+	footnoteReferenceData: Map<number, string | undefined>;
+}
+
+const { html, footnoteNoteData, footnoteReferenceData } = Astro.props;
+---
+
+<div class="l-content__body">
+	<Fragment set:html={html} />
+
+	<Footnote title="注釈" data={footnoteNoteData} prefix="fn-note" refPrefix="nr-note" />
+
+	<Footnote title="参考文献" data={footnoteReferenceData} prefix="fn-ref" refPrefix="nr-ref" />
+</div>

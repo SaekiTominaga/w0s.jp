@@ -1,6 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
+import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -30,99 +34,80 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　水間</span>行</p>
-			<p class="p-tokyu-announce-car">1000形に搭載されているタイプ</p>
-			<p class="p-tokyu-announce-period">2009年のPiTaPa導入・ワンマン化から</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>貝塚停車中</h2>
-					<p>本日も水間鉄道をご利用くださいまして、ありがとうございます。この電車は水間観音行きです。発車までしばらくお待ちください。</p>
-				</section>
-				<section>
-					<h2>貝塚停車中</h2>
-					<p>本日も水間鉄道をご利用くださいまして、ありがとうございます。<span class="c-tokyu-announce -oneman">この電車は水間観音行きワンマン運行です。途中停車駅の出口は先頭車両のいちばん前のドアです。運賃は、お降りの際、先頭車両の運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱の、IC読み取り部分にタッチしてください。</span>発車までしばらくお待ちください。</p>
-				</section>
-				<section>
-					<h2>貝塚発車</h2>
-					<p>長らくの間お待たせ致しました。毎度ご乗車ありがとうございます。<span class="c-tokyu-announce -oneman">この電車は水間観音行きワンマン運行です。</span>次は貝塚市役所前、貝塚市役所前です。出口は先頭車両いちばん前の右側です。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、先頭車両の運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+	<Announce station="水間" type="local" operation="oneman" cars={['1000形']} period="2009年のPiTaPa導入・ワンマン化から" recordDate="2009-06-05" recordCar="1000形2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>貝塚停車中</h2>
+				<p>本日も水間鉄道をご利用くださいまして、ありがとうございます。この電車は水間観音行きです。発車までしばらくお待ちください。</p>
+			</section>
+			<section>
+				<h2>貝塚停車中</h2>
+				<p>本日も水間鉄道をご利用くださいまして、ありがとうございます。<AnnoucePhrase type="oneman">この電車は水間観音行きワンマン運行です。途中停車駅の出口は先頭車両のいちばん前のドアです。運賃は、お降りの際、先頭車両の運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱の、IC読み取り部分にタッチしてください。</AnnoucePhrase>発車までしばらくお待ちください。</p>
+			</section>
+			<section>
+				<h2>貝塚発車</h2>
+				<p>長らくの間お待たせ致しました。毎度ご乗車ありがとうございます。<AnnoucePhrase type="oneman">この電車は水間観音行きワンマン運行です。</AnnoucePhrase>次は貝塚市役所前、貝塚市役所前です。出口は先頭車両いちばん前の右側です。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、先頭車両の運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>貝塚市役所前発車</h2>
-					<p>次は近義の里、近義の里です。出口は先頭車両いちばん前の右側です。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>貝塚市役所前発車</h2>
+				<p>次は近義の里、近義の里です。出口は先頭車両いちばん前の右側です。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>近義の里発車</h2>
-					<p>次は石才、石才です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>近義の里発車</h2>
+				<p>次は石才、石才です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>石才発車</h2>
-					<p>次は清児、清児です。出口は先頭車両いちばん前の左側です。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>石才発車</h2>
+				<p>次は清児、清児です。出口は先頭車両いちばん前の左側です。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>清児発車</h2>
-					<p>次は名越、名越です。出口は先頭車両いちばん前の右側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>清児発車</h2>
+				<p>次は名越、名越です。出口は先頭車両いちばん前の右側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>名越発車</h2>
-					<p><span class="c-tokyu-announce -oneman">この電車は水間観音行きワンマン運行です。</span>次は森、森です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、整理券と一緒に運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。<span class="c-tokyu-announce -manners">お客様にお願い致します。優先座席付近では、携帯電話の電源をお切りください。それ以外の場所では、マナーモードに設定し、通話はご遠慮ください。また、不審物などを発見されましたら乗務員、または駅員にお知らせください。皆様のご協力をお願いします。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>名越発車</h2>
+				<p><AnnoucePhrase type="oneman">この電車は水間観音行きワンマン運行です。</AnnoucePhrase>次は森、森です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。予め小銭をご用意いただき、運賃はお降りの際、整理券と一緒に運賃箱に投入願います。両替は、早めにお済ませください。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。<AnnoucePhrase type="manners">お客様にお願い致します。優先座席付近では、携帯電話の電源をお切りください。それ以外の場所では、マナーモードに設定し、通話はご遠慮ください。また、不審物などを発見されましたら乗務員、または駅員にお知らせください。皆様のご協力をお願いします。</AnnoucePhrase></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>森発車</h2>
-					<p>次は三ツ松、三ツ松です。出口は先頭車両いちばん前の右側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>森発車</h2>
+				<p>次は三ツ松、三ツ松です。出口は先頭車両いちばん前の右側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>三ツ松発車</h2>
-					<p>次は三ヶ山口、三ヶ山口です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>三ツ松発車</h2>
+				<p>次は三ヶ山口、三ヶ山口です。出口は先頭車両いちばん前の左側に変わります。後ろの車両のドアは開きませんのでご注意ください。運賃はお降りの際、整理券と一緒に運賃箱に投入願います。定期券は、運転士に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、お降りの際にいちばん前にある運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>三ヶ山口発車</h2>
-					<p>次は終点、水間観音、水間観音です。水間観音駅では、ホーム側全てのドアが開きます。お近くのドアからお降りください。運賃は、整理券と一緒に駅設置の運賃箱でお願い致します。定期券は、駅係員に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、駅設置の運賃箱のIC読み取り部分にタッチしてください。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2009年6月5日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>1000形2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>三ヶ山口発車</h2>
+				<p>次は終点、水間観音、水間観音です。水間観音駅では、ホーム側全てのドアが開きます。お近くのドアからお降りください。運賃は、整理券と一緒に駅設置の運賃箱でお願い致します。定期券は、駅係員に分かり易くお示し願います。PiTaPaカードでご乗車のお客様は、駅設置の運賃箱のIC読み取り部分にタッチしてください。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 
-	<ul class="p-notes">
+	<ListNote>
 		<li>現在は途中駅到着時に<q>まもなく……</q>の放送も流れることが多い。また、三ヶ山口→水間観音においては発車時の<q>次は……</q>は流れず、到着時の<q>まもなく</q>のみが流れる。</li>
-	</ul>
+	</ListNote>
 </Layout>

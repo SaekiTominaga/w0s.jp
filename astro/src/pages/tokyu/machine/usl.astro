@@ -2,9 +2,11 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
-import Image from '@components/Image.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import Image from '@components/+phrasing/Image.astro';
+import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -25,100 +27,90 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="olr">
-		<H slot="heading">7200系、7600系の過負荷灯</H>
+		<Fragment slot="heading">7200系、7600系の過負荷灯</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">オリジナルタイプ</H>
+					<Fragment slot="heading">オリジナルタイプ</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-09-16 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ7662（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-09-16 -->
+						<Fragment slot="caption">デハ7662（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>主制御器のある車両に取り付けられている過負荷灯は床下にあり、昔ながらの独立タイプです。7600系化された車両は非常通報灯を車体側面に増設しましたが、過負荷灯は床下のままとなっています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">新型タイプ</H>
+					<Fragment slot="heading">新型タイプ</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-09-07 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7200（2次車）海側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-09-07 -->
+						<Fragment slot="caption">デヤ7200（2次車）海側</Fragment>
+					</Embedded>
 
 					<p>デハ7653、デハ7681、デハ7682、デヤ7200は異なる形状をしています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="series8000">
-		<H slot="heading">8000系グループ、7600系、7700系等の床下灯</H>
+		<Fragment slot="heading">8000系グループ、7600系、7700系等の床下灯</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">3灯タイプ</H>
+					<Fragment slot="heading">3灯タイプ</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-08-13 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8591（20次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-08-13 -->
+						<Fragment slot="caption">デハ8591（20次車）山側</Fragment>
+					</Embedded>
 
-					<p>8000系で車体側面に設けられた<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/usl/8000_bcl.jpg" title="デハ8408"><!-- 撮影日: 2005-08-10 -->BC不緩解灯</LinkPhoto>は、8500系では床下設置となりました。以降、8090系を除くすべての新造・改造形式は、車体にBC不緩解灯を持ちません。</p>
+					<p>8000系で車体側面に設けられた<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/usl/8000_bcl.jpg" title="デハ8408"><!-- 撮影日: 2005-08-10 -->BC不緩解灯</AnchorPhoto>は、8500系では床下設置となりました。以降、8090系を除くすべての新造・改造形式は、車体にBC不緩解灯を持ちません。</p>
 
 					<p>床下灯は3灯で、上から「不緩解」「保安動作」「不足」です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="series9000">
-		<H slot="heading">9000系、2000系等の床下灯</H>
+		<Fragment slot="heading">9000系、2000系等の床下灯</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">4灯タイプ</H>
+					<Fragment slot="heading">4灯タイプ</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-10-21 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1218（4次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-10-21 -->
+						<Fragment slot="caption">デハ1218（4次車）山側</Fragment>
+					</Embedded>
 
 					<p>2000系までのVVVF新造車、および8500系VVVF車ではブレーキ装置に横付けされており、主制御器のある電動車と先頭車が4灯（「指令器異常」が追加）となりました。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section slugger={slugger} depth={2} headingType="c">
-					<H slot="heading">3灯タイプ</H>
+					<Fragment slot="heading">3灯タイプ</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} />
-							<!-- 撮影日: 2006-08-19 -->
-						</div>
-						<figcaption class="c-caption -meta">サハ9706（2次車）山側</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2006-08-19 -->
+						<Fragment slot="caption">サハ9706（2次車）山側</Fragment>
+					</Embedded>
 
 					<p>主制御器のない電動車と付随車は3灯です。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

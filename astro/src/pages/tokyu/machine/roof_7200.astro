@@ -1,9 +1,11 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import Image from '@components/+phrasing/Image.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -31,44 +33,40 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="cmc-7200">
-		<H slot="heading">デヤ7200形</H>
+		<Fragment slot="heading">デヤ7200形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="cmc-7200-1" depth={2} headingType="c">
-					<H slot="heading">デヤ7200</H>
+					<Fragment slot="heading">デヤ7200</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7200.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2011-11-10 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7200（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7200.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2011-11-10 -->
+						<Fragment slot="caption">デヤ7200（2次車）</Fragment>
+					</Embedded>
 
 					<p>両側の車端部に集電装置（菱形パンタグラフ）が設置されており、それぞれの車央方には避雷器があります。上り方の集電装置から延びる配管は、下り方集電装置からのもの共々、下り方妻面から床下へ繋がっています。</p>
 
 					<p>車央部にはベンチレーターが2台残されており、また両端の乗務員室直上にはそれぞれ逆L字型のSRアンテナがあります。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="cmc-7290">
-		<H slot="heading">デヤ7290形</H>
+		<Fragment slot="heading">デヤ7290形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="cmc-7290-1" depth={2} headingType="c">
-					<H slot="heading">デヤ7290<small>（集電装置換装前）</small></H>
+					<Fragment slot="heading">デヤ7290<small>（集電装置換装前）</small></Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-07-09 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7290（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-07-09 -->
+						<Fragment slot="caption">デヤ7290（2次車）</Fragment>
+					</Embedded>
 
 					<p>両側の車端部に菱形パンタグラフが設置されており、それぞれの上り方には避雷器があります。下り方の測定用パンタグラフから上り方へ向かって延びる配管は、車央部付近で車体に埋め込まれます。上り方の集電用パンタグラフから延びる配管は、上り方妻面から床下へ繋がっています。</p>
 
@@ -76,18 +74,16 @@ const structuredData: StructuredData = {
 
 					<p>逆L字型のSRアンテナは、下り方の乗務員室直上のほか、上り方集電装置の下り方にも2基増設されています。</p>
 				</Section>
-			</div>
-			<div class="c-grid__item">
+			</GridItem>
+			<GridItem>
 				<Section id="cmc-7290-2" depth={2} headingType="c">
-					<H slot="heading">デヤ7290<small>（集電装置シングルアーム化）</small></H>
+					<Fragment slot="heading">デヤ7290<small>（集電装置シングルアーム化）</small></Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7290_PT7108.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2011-11-10 -->
-						</div>
-						<figcaption class="c-caption -meta">デヤ7290（2次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7290_PT7108.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2011-11-10 -->
+						<Fragment slot="caption">デヤ7290（2次車）</Fragment>
+					</Embedded>
 
 					<p>2010年に明電舎製の新型検測装置<dfn>CATENARY EYE（カテナリーアイ）</dfn>が搭載されました。これは観測ドームと上り方の集電用パンタグラフの間に配置され、集電用パンタグラフはシングルアーム式に換装されました。</p>
 
@@ -95,29 +91,27 @@ const structuredData: StructuredData = {
 
 					<p>下り方の測定用パンタグラフは検測運転時も用いられることはなくなりましたが、撤去はされず残っています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 
 	<Section id="t-7590">
-		<H slot="heading">サヤ7590形</H>
+		<Fragment slot="heading">サヤ7590形</Fragment>
 
-		<div class="c-grid -wide -hdg-c">
-			<div class="c-grid__item">
+		<Grid column="wide" headingType="c">
+			<GridItem>
 				<Section id="t-7590-1" depth={2} headingType="c">
-					<H slot="heading">サヤ7590</H>
+					<Fragment slot="heading">サヤ7590</Fragment>
 
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/roof/7590.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2011-11-10 -->
-						</div>
-						<figcaption class="c-caption -meta">サヤ7590（5次車）</figcaption>
-					</figure>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/roof/7590.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2011-11-10 -->
+						<Fragment slot="caption">サヤ7590（5次車）</Fragment>
+					</Embedded>
 
 					<p>冷房装置が2台配置されており、キセの開口部はすべて下り方に開けられています。冷房装置の両脇には、ほぼ車体全長にわたってランボードが設けられています。</p>
 				</Section>
-			</div>
-		</div>
+			</GridItem>
+		</Grid>
 	</Section>
 </Layout>

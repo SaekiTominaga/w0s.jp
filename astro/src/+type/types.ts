@@ -42,7 +42,7 @@ export interface StructuredDataErrorPage {
 	readonly moduleScripts?: string[];
 }
 
-interface StructuredDataUrl {
+export interface StructuredDataUrl {
 	readonly path: string;
 	readonly name: string;
 }

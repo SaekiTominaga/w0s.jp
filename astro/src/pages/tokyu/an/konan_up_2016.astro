@@ -1,6 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
+import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -29,115 +33,97 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　弘前</span>行</p>
-			<p class="p-tokyu-announce-period">2016年の「<cite>弘前医療福祉大学</cite>」案内放送開始から</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>黒石停車中</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span> 本日は弘南鉄道弘南線をご利用くださいまして、ありがとうございます。<span class="c-tokyu-announce -oneman">この列車は、ワンマン列車になっておりますので、係員が居ない駅でお降りの際には、いちばん前のドアをご利用くださいますよう、皆様のご協力をお願いいたします。</span><span class="c-tokyu-announce -manners">また、車内での携帯電話は、ご遠慮くださるようお願いいたします。</span></p>
-				</section>
-				<section>
-					<h2>黒石発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お待ち遠さまでした。弘前行きの発車です。お降りの際は、お忘れ物ございませんよう、ご注意ください。次の停車駅は境松、境松、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+	<Announce station="弘前" type="local" operation="oneman" period="2016年の「弘前医療福祉大学」案内放送開始から" recordDate="2016-09-11" recordCar="7000系2両編成">
+		<AnnounceStation>
+			<section>
+				<h2>黒石停車中</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase> 本日は弘南鉄道弘南線をご利用くださいまして、ありがとうございます。<AnnoucePhrase type="oneman">この列車は、ワンマン列車になっておりますので、係員が居ない駅でお降りの際には、いちばん前のドアをご利用くださいますよう、皆様のご協力をお願いいたします。</AnnoucePhrase><AnnoucePhrase type="manners">また、車内での携帯電話は、ご遠慮くださるようお願いいたします。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>黒石発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お待ち遠さまでした。弘前行きの発車です。お降りの際は、お忘れ物ございませんよう、ご注意ください。次の停車駅は境松、境松、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>境松発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は田舎館、田舎館、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>境松発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は田舎館、田舎館、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>田舎館発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は田んぼアート、田んぼアート、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>田舎館発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は田んぼアート、田んぼアート、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>田んぼアート発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span><span class="c-tokyu-announce -oneman">この列車は、弘前行きのワンマン列車です。皆様のご協力をお願いいたします。</span>次の停車駅は尾上高校前、尾上高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>田んぼアート発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase><AnnoucePhrase type="oneman">この列車は、弘前行きのワンマン列車です。皆様のご協力をお願いいたします。</AnnoucePhrase>次の停車駅は尾上高校前、尾上高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>尾上高校前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は津軽尾上、津軽尾上、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>尾上高校前発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は津軽尾上、津軽尾上、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>津軽尾上発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は柏農高校前、柏農高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>津軽尾上発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は柏農高校前、柏農高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>柏農高校前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は平賀、平賀、降り口は左側です。整理券のお客様は、駅でご精算ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>柏農高校前発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は平賀、平賀、降り口は左側です。整理券のお客様は、駅でご精算ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>平賀発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は館田、館田、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。<span class="c-tokyu-announce -manners">お客様にお願いいたします。車内での携帯電話は、ご遠慮くださるようお願いいたします。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>平賀発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は館田、館田、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。<AnnoucePhrase type="manners">お客様にお願いいたします。車内での携帯電話は、ご遠慮くださるようお願いいたします。</AnnoucePhrase></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>館田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は新里、新里、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>館田発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は新里、新里、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>新里発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は運動公園前、運動公園前、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。<span class="c-tokyu-announce -cm">弘前医療福祉大学、弘前医療福祉大学短期大学部へお越しの方は、こちらでお降りください。</span></p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>新里発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は運動公園前、運動公園前、降り口は右側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。<AnnoucePhrase type="cm">弘前医療福祉大学、弘前医療福祉大学短期大学部へお越しの方は、こちらでお降りください。</AnnoucePhrase></p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>運動公園前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次の停車駅は弘前東高校前、弘前東高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>運動公園前発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次の停車駅は弘前東高校前、弘前東高校前、降り口は左側です。お降りのお客様は、いちばん前のドアをご利用ください。きっぷは運賃箱にお入れください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>弘前東高前発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>お疲れさまでした。次の停車駅は終点、弘前、弘前です。お降りの際には、お忘れ物ございませんよう、いま一度お手回り品をお確かめください。降り口は右側です。整理券のお客様は、駅でご精算ください。本日は弘南線をご利用いただきまして、ありがとうございました。またのご乗車をお待ちいたしております。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2016年9月11日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>7000系2両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>弘前東高前発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>お疲れさまでした。次の停車駅は終点、弘前、弘前です。お降りの際には、お忘れ物ございませんよう、いま一度お手回り品をお確かめください。降り口は右側です。整理券のお客様は、駅でご精算ください。本日は弘南線をご利用いただきまして、ありがとうございました。またのご乗車をお待ちいたしております。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 
-	<ul class="p-notes">
+	<ListNote>
 		<li>
 			上記のほか、駅停車中に以下の放送がいずれか片方、または両方流れる場合があります。
 			<ul>
@@ -146,5 +132,5 @@ const structuredData: StructuredData = {
 			</ul>
 		</li>
 		<li>2008年の放送装置 IC 化以降、弘前東高前駅のことを<q>弘前東高<em>校</em>前</q>と放送しています。</li>
-	</ul>
+	</ListNote>
 </Layout>

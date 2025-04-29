@@ -2,11 +2,11 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,7 +33,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">2010年</H>
+		<Fragment slot="heading">2010年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2010年12月号" release="2010-10-30" amazonAsin="B00474KL90" amazonImageId="61XR55tA6hL" amazonImageWidth={124} amazonImageHeight={160}>
 			<LibContent>
@@ -127,7 +127,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="オトナアニメ　Vol.19" release="2011-01-08" isbn="978-4-86248-679-0" amazonAsin="4862486797" amazonImageId="61nmwSf8AWL" amazonImageWidth={115} amazonImageHeight={160}>
 			<LibContent>
@@ -154,7 +154,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[118, 123]}>「<cite>Creation Archive 魔法少女まどか☆マギカ</cite>」まどか&amp;ほむら&amp;マミ&amp;キュゥべえのイラスト（高橋美香）、杏子を除く4人とキュゥべえのキャラクター紹介、岸田隆宏の一言コメント、蒼樹うめキャラクター原案集。</LibItem>
 				<LibItem pages={[136]}>2〜5話の番組情報（サブタイトル、あらすじが非公開のため欄外に掲載）。</LibItem>
 				<LibItem pages={[151]}>「<cite>新房昭之とおシゴトな仲間達</cite>」冒頭で『<cite>魔法少女まどか☆マギカ</cite>』に関する話題。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=4EJF1o-Ah5E">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=4EJF1o-Ah5E">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -256,9 +256,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[48, 53]}><em>「<cite>『魔法少女まどか☆マギカ』新房昭之インタビュー</cite>」</em>3話、5話の絵コンテ、オープニングのまどか変身シーン原画掲載。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="Febri　Vol.5" release="2011-03-28" amazonAsin="B004QGYZHI" amazonImageId="51KCW4Sk6KL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -321,9 +321,9 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2011年5月号" release="2011-04-09" amazonAsin="B004U5MOZK" amazonImageId="61Blr2Rn9GL" amazonImageWidth={123} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[124]}>「<cite>新房昭之とおシゴトな仲間達</cite>」（最終回）で虚淵玄との対談。「奇跡」の取り扱い、<LinkExternal href="https://www.amazon.co.jp/dp/B00E1C77IQ/">サンデルの政治哲学</LinkExternal>との関係性などについて。</LibItem>
+				<LibItem pages={[124]}>「<cite>新房昭之とおシゴトな仲間達</cite>」（最終回）で虚淵玄との対談。「奇跡」の取り扱い、<Anchor href="https://www.amazon.co.jp/dp/B00E1C77IQ/">サンデルの政治哲学</Anchor>との関係性などについて。</LibItem>
 				<LibItem position="特別付録"><em>「<cite>描き下ろしB2ポスター&amp;特集記事「魔法少女まどか☆マギカ」</cite>」</em>まどか&amp;眼鏡ほむらのイラスト（住本悦子）、虚淵玄、新房昭之による第10話までの振り返り。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=8PPpUkaAehc">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=8PPpUkaAehc">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -348,9 +348,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[10, 11]}>「<cite>虚淵玄　緊急インタビュー</cite>」で『<cite>まどか☆マギカ</cite>』についても語られる。放送前に「虚淵玄」の名前が出たことは予定外だったこと、新房さんは『<cite>ジョジョの奇妙な冒険</cite>』のような能力者バトルを期待していたらしいこと、結末は自分なりにハッピーエンドであることなど。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>発売日は正確でない可能性。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="娘TYPE　2011年6月号" release="2011-04-30" amazonAsin="B004WOTBP0" amazonImageId="61O-EUL9JZL" amazonImageWidth={122} amazonImageHeight={160}>
@@ -422,7 +422,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2011年7月号" release="2011-06-10" amazonAsin="B0052YKEFK" amazonImageId="61v2FN6qNPL" amazonImageWidth={124} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="別冊付録">「<cite>for promise</cite>」（加藤英美里×新房昭之、劇団イヌカレー×宮本幸裕、虚淵玄のインタビュー）</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=gWoOr_LtRYU">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=gWoOr_LtRYU">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -433,9 +433,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[19]}>同上、虚淵玄インタビュー。Twitter で気を遣ったこと、10話のループ設定など。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>SWITCH 編集部から通販で雑誌を買うと、表紙のイラストの A2 ポスターが付いてきた。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2011年8月号" release="2011-06-30" amazonAsin="B0055OKZ9M" amazonImageId="619ldq5b52L" amazonImageWidth={124} amazonImageHeight={160}>
@@ -508,7 +508,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="PLANETS SPECIAL 2011 夏休みの終わりに" release="2011-08-31" amazonAsin="4905325021" amazonImageId="41DPAb9gh3L" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[40, 51]}>「<cite>「父殺し（の不可能性）」から「父赦し」へ―3.11後の世界とその意味</cite>」（宮台真司）のインタビューの中で散発的に言及される。</LibItem>
-				<LibItem pages={[94, 105]}>「<cite>誌上ニコ生 PLANETS</cite>」で『<cite>まどか☆マギカ</cite>』特集（石岡良治×黒瀬陽平×坂上秋成+司会: 宇野常寛）。2011年5月4日に<LinkExternal href="http://live.nicovideo.jp/watch/lv47398722">ニコ生で放送された番組</LinkExternal>の誌面版。冒頭に ramco によるイラスト掲載。</LibItem>
+				<LibItem pages={[94, 105]}>「<cite>誌上ニコ生 PLANETS</cite>」で『<cite>まどか☆マギカ</cite>』特集（石岡良治×黒瀬陽平×坂上秋成+司会: 宇野常寛）。2011年5月4日に<Anchor href="http://live.nicovideo.jp/watch/lv47398722">ニコ生で放送された番組</Anchor>の誌面版。冒頭に ramco によるイラスト掲載。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -594,8 +594,8 @@ const slugger = new GithubSlugger();
 				<LibItem><em>劇場プロジェクト発表</em></LibItem>
 				<LibItem position="表紙">アルティメットまどか、リボンほむら、キュゥべえのイラスト（蒼樹うめ）。</LibItem>
 				<LibItem pages={[16, 23]}><em>「<cite>魔法少女達の伝説</cite>」</em>ほむら&amp;さやか&amp;杏子&amp;マミのイラスト（潮月一也）、新房昭之×蒼樹うめ×虚淵玄×岩上敦宏のインタビュー、庵野秀明、佐孝仁司、松井玲奈のコメント。</LibItem>
-				<LibItem pages={[202, 205]}><LinkExternal href="https://webnewtype.com/special/animeaward/2011/">ニュータイプアニメアワード2011</LinkExternal>（12冠達成）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=6HgSGpiCjHc">発売 CM</LinkExternal></LibItem>
+				<LibItem pages={[202, 205]}><Anchor href="https://webnewtype.com/special/animeaward/2011/">ニュータイプアニメアワード2011</Anchor>（12冠達成）。</LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=6HgSGpiCjHc">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -656,9 +656,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[72, 77]}><em>『魔法少女まどか☆マギカ』新房昭之インタビュー</em>　9話、10話の絵コンテ、10話まどほむ抱きつきシーンの原画掲載。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲（原画、絵コンテは増減している）。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="B.L.T.　2012年2月号" release="2011-12-16" amazonAsin="B006IAZA4W" amazonImageId="61Dlcm49EfL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -681,7 +681,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメディア　2012年2月号" release="2012-01-10" amazonAsin="B006OAKCHG" amazonImageId="61QI+eiV6NL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
@@ -693,7 +693,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem pages={[7, 8]}>制服まどか、ほむら、メガネほむらのピンナップ（イラスト: 牧孝雄）。</LibItem>
 				<LibItem position="付録">クリアファイル2枚セット。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=hBodT8Gsdl0">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=hBodT8Gsdl0">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -772,7 +772,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[127, 134]}>「<cite>第6回声優アワード　受賞者大発表!</cite>」（主演女優賞: 悠木碧、助演女優賞: 加藤英美里）両名ともコメント掲載。</LibItem>
 				<LibItem position="付録">NEWTYPE SCHOOL CALENDAR 2012-2013（10-11月「魔法少女まどか☆マギカ」マミ、まどか、さやか イラスト: 松本元気）。</LibItem>
 				<LibItem position="とじこみ付録">NEWTYPE SCHOOL CALENDAR 2012-2013 スペシャルシール（キュゥべえ、まどか、ほむら、マミ、さやか、杏子）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=oybwMQcSgyI">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=oybwMQcSgyI">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -803,12 +803,12 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="カイト　Vol.4" release="2012-03-30" isbn="978-4-86225-823-6" amazonAsin="4862258239" amazonImageId="51QvtFSIlcL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[6, 12]}><em>「<cite>小池一夫×虚淵玄 『魔法少女まどか☆マギカ』の世界とキャラクターを語る!</cite>」</em><LinkExternal href="https://live.nicovideo.jp/watch/lv77366564">ニコニコ生放送で2012年1月29日に行われた対談</LinkExternal>の書き起こし。キャラクターの命名、1〜3話の構成の根拠、世界観をキャラクター化（キュゥべえ）したこと、執筆にあたり影響を受けた作品など。</LibItem>
+				<LibItem pages={[6, 12]}><em>「<cite>小池一夫×虚淵玄 『魔法少女まどか☆マギカ』の世界とキャラクターを語る!</cite>」</em><Anchor href="https://live.nicovideo.jp/watch/lv77366564">ニコニコ生放送で2012年1月29日に行われた対談</Anchor>の書き起こし。キャラクターの命名、1〜3話の構成の根拠、世界観をキャラクター化（キュゥべえ）したこと、執筆にあたり影響を受けた作品など。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>2013年発行の<LinkExternal href="https://www.amazon.co.jp/dp/4862258654/"><cite>小池一夫対談集　キャラクター60年</cite></LinkExternal>に再録。</li>
-			</ul>
+			<ListNote>
+				<li>2013年発行の<Anchor href="https://www.amazon.co.jp/dp/4862258654/"><cite>小池一夫対談集　キャラクター60年</cite></Anchor>に再録。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="電撃G's magazine　2012年5月号" release="2012-03-30" amazonAsin="B007IV4RLW" amazonImageId="61+QTjeMi+L" amazonImageWidth={132} amazonImageHeight={160}>
@@ -868,7 +868,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2012年6月号" release="2012-05-10" amazonAsin="B007WTUTSA" amazonImageId="61aqjBStksL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="付録">クリアファイル5枚セット（うち1枚が『<cite>魔法少女まどか☆マギカ</cite>』）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=6y2yshsEIwA">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=6y2yshsEIwA">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1092,7 +1092,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2012年11月号" release="2012-10-10" amazonAsin="B009H753BI" amazonImageId="514eOER2UxL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="付録"><em>B2ポスター&amp;特集「劇場版　魔法少女まどか☆マギカ」</em>5人のイラスト（住本悦子）、新房昭之インタビュー。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=SZ9X-4m_wPk">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=SZ9X-4m_wPk">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1216,7 +1216,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[46, 49]}><em>「<cite>奇跡の軌跡</cite>」</em>まどか&amp;アルティメットまどかが抱き合うイラスト（寺尾洋之）、新房昭之×寺尾洋之のインタビュー。劇場版に関わるきっかけやマミの変身シーンの話など。</LibItem>
 				<LibItem pages={[170]}>「<cite>新房昭之の恐縮ですが……</cite>」で高橋祐馬（アニプレックス宣伝プロデューサー）との対談。芳文社本社ビルの『<cite>ひだまりスケッチ×ハニカム</cite>』と『<cite>劇場版魔法少女まどか☆マギカ</cite>』コラボ垂れ幕の話題。</LibItem>
 				<LibItem position="付録">ILLUSTRATION CALENDAR 2013（5-6月「魔法少女まどか☆マギカ」） まどか&amp;アルティメットまどか（寺尾洋之）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=1t8bjJ_5sW0">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=1t8bjJ_5sW0">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1234,12 +1234,12 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2013年</H>
+		<Fragment slot="heading">2013年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2013年2月号" release="2013-01-10" amazonAsin="B00ARJ2ESK" amazonImageId="51IfYsvmWUL" amazonImageWidth={124} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="付録">アルティメットまどか&amp;まどか&amp;ほむら&amp;マミ&amp;さやか&amp;杏子のB3ポスター（寺尾洋之）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=PyJhZLibcQE">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=PyJhZLibcQE">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1356,7 +1356,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2013年9月号" release="2013-07-30" amazonAsin="B00DVMU93M" amazonImageId="61V2Dd35Y5L" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[99]}><em>「<cite>進撃の美人たち</cite>」</em> [新編] の紹介記事。</LibItem>
-				<LibItem pages={[113]}>「<cite>劇場版まどか☆マギカ【番外編】宝物語</cite>」<LinkExternal href="http://1kuji.bpnavi.jp/item/558">一番くじ 劇場版　魔法少女まどか☆マギカ</LinkExternal>のきゅんキャラびねっと紹介。</LibItem>
+				<LibItem pages={[113]}>「<cite>劇場版まどか☆マギカ【番外編】宝物語</cite>」<Anchor href="http://1kuji.bpnavi.jp/item/558">一番くじ 劇場版　魔法少女まどか☆マギカ</Anchor>のきゅんキャラびねっと紹介。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1416,7 +1416,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2013年10月号" release="2013-09-10" amazonAsin="B00ET8MVJC" amazonImageId="6199qxdSc3L" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="別冊付録">「<cite>マジカル☆ニュータイプ</cite>」[新編]情報、新房昭之×草川啓造×大沼心の座談会。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=4HbAjF77XmM">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=4HbAjF77XmM">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1433,9 +1433,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[103, 102]}>新房昭之インタビュー。最初の脚本からまどかの出番を増やしたこと、TVシリーズ12話のまどほむ空間は『<cite>2001年宇宙の旅</cite>』の白い部屋のイメージがあったこと、作品に反映されなかった設定の話など。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>ページ番号が逆になっているのは、本記事のみ裏表紙から続く形で逆向きに読ませる作りになっているため。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="smart　2013年11月号" release="2013-09-24" amazonAsin="B00EUGDIJ0" amazonImageId="51UBhasoCSL" amazonImageWidth={109} amazonImageHeight={160}>
@@ -1574,7 +1574,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="MdN　2013年12月号" release="2013-11-06" amazonAsin="B00GD3NX8Y" amazonImageId="61pVWryIAUL" amazonImageWidth={121} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[40, 41]}>「<cite>終わりのあとの始まり 印刷の魔法をもう一度信じてみる?</cite>」で「<cite>劇場版　魔法少女まどか☆マギカ 総集編 Keyanimation ClearFile</cite>」の紹介（談: 浅見啓介）。</LibItem>
-				<LibItem><LinkExternal href="https://books.mdn.co.jp/magazine/3213101012/">公式ページ</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://books.mdn.co.jp/magazine/3213101012/">公式ページ</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1653,7 +1653,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2014年1月号" release="2013-12-10" amazonAsin="B00GUP6QU2" amazonImageId="61AN-e9TRQL" amazonImageWidth={123} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="別冊付録"><em>「<cite>……in dream</cite>」</em>谷口淳一郎、寺尾洋之×谷口淳一郎×山村洋貴、宮本幸裕×泥犬のインタビュー。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=Ktz6Y9oGIM8">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=Ktz6Y9oGIM8">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1671,7 +1671,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2014年</H>
+		<Fragment slot="heading">2014年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2014年2月号" release="2014-01-10" amazonAsin="B00HFD3P0M" amazonImageId="61t0wA+LD3L" amazonImageWidth={124} amazonImageHeight={160}>
 			<LibContent>
@@ -1696,7 +1696,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="ストレンジャーソレント　2014年4月号" release="2014-03-01" amazonAsin="B00IPCVMN4" amazonImageId="61zhBjEBUEL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[265, 269]}><em>「<cite>ストレンジャーソレント特別対談！ 虚淵玄×小池一夫 『魔法少女まどか☆マギカ　叛逆の物語』を語る</cite>」</em><LinkExternal href="https://live.nicovideo.jp/watch/lv162841750">ニコニコ生放送で2013年12月22日に行われた対談</LinkExternal>の書き起こし。</LibItem>
+				<LibItem pages={[265, 269]}><em>「<cite>ストレンジャーソレント特別対談！ 虚淵玄×小池一夫 『魔法少女まどか☆マギカ　叛逆の物語』を語る</cite>」</em><Anchor href="https://live.nicovideo.jp/watch/lv162841750">ニコニコ生放送で2013年12月22日に行われた対談</Anchor>の書き起こし。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1711,15 +1711,15 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[74, 79]}><em>『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』新房昭之インタビュー</em>　ほむら変身シーンの原画が掲載。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="MdN　2014年5月号" release="2014-04-05" amazonAsin="B00J496WUA" amazonImageId="51sgs+ia4RL" amazonImageWidth={118} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[48, 55]}>「<cite>デザイナーのもとに眠っていたラフや別案と出会う</cite>」で [新編] Blu-ray パッケージの紹介。染谷洋平インタビュー。</LibItem>
-				<LibItem><LinkExternal href="https://books.mdn.co.jp/magazine/3214101005/">公式ページ</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://books.mdn.co.jp/magazine/3214101005/">公式ページ</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1733,7 +1733,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2014年5月号" release="2014-04-10" amazonAsin="B00J4T7KII" amazonImageId="61YjouHyNyL" amazonImageWidth={123} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[9, 10]}>アルティメットまどか&amp;悪魔ほむらのピンナップ（菊田幸一）</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=A4jIvFs1idk">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=A4jIvFs1idk">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1761,7 +1761,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem position="表紙">アラサーマミ（イラスト: あらたまい）</LibItem>
 				<LibItem position="キャッチコピー">「巴マミの平凡な日常 最新コミックス②8月11日発売!!」（※背表紙は「巴マミの平凡な日常 ドアプレート付き!!」）</LibItem>
-				<LibItem position="付録">『<cite>巴マミの平凡な日常</cite>』ドアプレート（現物写真 <LinkExternal href="https://twitpic.com/e9pmx9">その1</LinkExternal>、<LinkExternal href="https://twitpic.com/e9pn4b">その2</LinkExternal>）</LibItem>
+				<LibItem position="付録">『<cite>巴マミの平凡な日常</cite>』ドアプレート（現物写真 <Anchor href="https://twitpic.com/e9pmx9">その1</Anchor>、<Anchor href="https://twitpic.com/e9pn4b">その2</Anchor>）</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1772,7 +1772,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[140, 141]}>「<cite>終わりのあとの始まり 印刷の魔法をもう一度信じてみる?</cite>」で「<cite>劇場版　魔法少女まどか☆マギカ 総集編 Keyanimation ClearFile</cite>」の紹介（談: 浅見啓介）。（2013年12月号の再録）</LibItem>
 			</LibContent>
 
-			<p><LinkExternal href="https://books.mdn.co.jp/books/3214102001/">公式ページ</LinkExternal></p>
+			<p><Anchor href="https://books.mdn.co.jp/books/3214102001/">公式ページ</Anchor></p>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.16　2014年11月号" release="2014-10-10" amazonAsin="B00MX42KGS" amazonImageId="614xzoC4JNL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -1804,7 +1804,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2015年</H>
+		<Fragment slot="heading">2015年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.18　2015年3月号" release="2015-02-10" amazonAsin="B00S9X6I88" amazonImageId="61FGoVstVoL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
@@ -1823,14 +1823,14 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2015年5月号" release="2015-04-10" amazonAsin="B00URAYHSO" amazonImageId="51G7y+oRCfL" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[7, 8]}>アルティメットまどか、新魔法少女服(?)まどかのピンナップ（蒼樹うめ）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=3E6ewo6BaVQ">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=3E6ewo6BaVQ">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="MdN　2015年6月号" release="2015-05-07" amazonAsin="B00TYLC14E" amazonImageId="51kGnuqlEML" amazonImageWidth={121} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[64, 67]}>「<cite>少女の表現史</cite>」で鹿目まどか紹介（談: 篠田利隆）。</LibItem>
-				<LibItem><LinkExternal href="https://books.mdn.co.jp/magazine/3215101006/">公式ページ</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://books.mdn.co.jp/magazine/3215101006/">公式ページ</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1841,9 +1841,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="付録">表紙イラストクリアファイル</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>『<cite>魔獣編</cite>』連載開始。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2015年7月号" release="2015-06-10" amazonAsin="B00Y27U13I" amazonImageId="61QLgqAwPIL" amazonImageWidth={125} amazonImageHeight={160}>
@@ -1882,7 +1882,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem pages={[7]}>「<cite>蒼樹うめ展</cite>」開催情報とキービジュアル掲載。</LibItem>
 				<LibItem pages={[102]}>「<cite>フォントのショーケース</cite>」で「<cite>蒼樹うめ展</cite>」キービジュアルのタイトルロゴやキャッチコピーのフォント解説。</LibItem>
-				<LibItem><LinkExternal href="https://books.mdn.co.jp/magazine/3215101011/">公式ページ</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://books.mdn.co.jp/magazine/3215101011/">公式ページ</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1904,7 +1904,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem pages={[176]}><em>「<cite>"魔法少女"の可能性</cite>」</em>新房昭之、久保田光俊による『<cite>コンセプトムービー</cite>』に関するインタビュー。</LibItem>
 				<LibItem position="付録">バレエまどか&amp;マミ&amp;制服ほむらのB2ポスター（潮月一也）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=d0Ct1MXx2JE">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=d0Ct1MXx2JE">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1915,7 +1915,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2016年</H>
+		<Fragment slot="heading">2016年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ゲームラボ　2016年2月号" release="2016-01-16" amazonAsin="B000DZID9C" amazonImageId="616KMBlvFNL" amazonImageWidth={114} amazonImageHeight={160}>
 			<LibContent>
@@ -1940,7 +1940,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2016年4月号" release="2016-03-10" amazonAsin="B01BY5LRFG" amazonImageId="61j8rMpPPyL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="付録">B2ポスター: マミ、アルティメットまどか、悪魔ほむら（谷口淳一郎）。</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=c4YPtbsolOY">発売 CM</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=c4YPtbsolOY">発売 CM</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1961,7 +1961,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="MdN　2016年6月号" release="2016-05-06" amazonAsin="B01E50ROE0" amazonImageId="61WbBcCzXQL" amazonImageWidth={121} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[73]}>「<cite>惚れる悪の造形</cite>」でキュゥべえ紹介。</LibItem>
-				<LibItem><LinkExternal href="https://books.mdn.co.jp/magazine/3216101006/">公式ページ</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://books.mdn.co.jp/magazine/3216101006/">公式ページ</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2001,7 +2001,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.30　2017年3月号" release="2017-02-09" amazonAsin="B01N382U5A" amazonImageId="51ouabljNLL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
@@ -2021,7 +2021,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem pages={[102]}>「<cite>PORTFOLIO NO.46 BALCOLONY.</cite>」で制作実績として MADOGATARI 展キービジュアルやウェブサイトデザイン紹介。</LibItem>
 				<LibItem pages={[107]}>同じく BALCOLONY. 社で MADOGATARI 展のデザインを担当した野条友史のコメント。</LibItem>
-				<LibItem><LinkExternal href="https://books.mdn.co.jp/magazine/3217101005/">公式ページ</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://books.mdn.co.jp/magazine/3217101005/">公式ページ</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2033,7 +2033,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2017年8月号" release="2017-07-10" amazonAsin="B072KPNKV4" amazonImageId="61GH8caDhaL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[144, 145]}>「<cite>音楽と映像が、融合した日</cite>」 <LinkExternal href="https://smemusictheater.jp/">MUSIC THEATER 2017</LinkExternal>のレポート記事。バックにアニメ作品の映像が流れるライブで、『<cite>まどか☆マギカ</cite>』関連では「<cite>コネクト</cite>」「<cite>Magia</cite>」の2曲が流れた。</LibItem>
+				<LibItem pages={[144, 145]}>「<cite>音楽と映像が、融合した日</cite>」 <Anchor href="https://smemusictheater.jp/">MUSIC THEATER 2017</Anchor>のレポート記事。バックにアニメ作品の映像が流れるライブで、『<cite>まどか☆マギカ</cite>』関連では「<cite>コネクト</cite>」「<cite>Magia</cite>」の2曲が流れた。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2086,19 +2086,19 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2018年</H>
+		<Fragment slot="heading">2018年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="コンプティーク　2018年2月号" release="2018-01-10" amazonAsin="B0788XQ6WR" amazonImageId="61AhnR30wkL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[114, 117]}>マギアレコードの紹介記事。鶴乃★5解放「<cite>魔法少女の新たな力が解放される!</cite>」、<LinkExternal href="http://www.bpnavi.jp/kuji/item/2281">一番くじマギレコ第2弾</LinkExternal>の情報、メモリア紹介。</LibItem>
-				<LibItem pages={[177]}>スマートフォン用ゲーム<LinkExternal href="http://lastperiod.happyelements.co.jp/">『<cite>ラストピリオド</cite>』</LinkExternal>とのコラボイベント紹介。アルティメットまどか、マミ（キュゥべえ衣装Ver）イラスト。</LibItem>
+				<LibItem pages={[114, 117]}>マギアレコードの紹介記事。鶴乃★5解放「<cite>魔法少女の新たな力が解放される!</cite>」、<Anchor href="http://www.bpnavi.jp/kuji/item/2281">一番くじマギレコ第2弾</Anchor>の情報、メモリア紹介。</LibItem>
+				<LibItem pages={[177]}>スマートフォン用ゲーム<Anchor href="http://lastperiod.happyelements.co.jp/">『<cite>ラストピリオド</cite>』</Anchor>とのコラボイベント紹介。アルティメットまどか、マミ（キュゥべえ衣装Ver）イラスト。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="コンプティーク　2018年3月号" release="2018-02-10" amazonAsin="B0794Y8FKT" amazonImageId="610M0X8mqKL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[118, 119]}>マギアレコードの紹介記事。やちよ★5解放「<cite>背負った想いが新たな力を導く</cite>」。</LibItem>
-				<LibItem pages={[160, 161]}>スマートフォン用ゲーム<LinkExternal href="http://www.projecttokyodolls.jp/">『<cite>プロジェクト東京ドールズ</cite>』</LinkExternal>とのコラボイベント紹介。まどか、ほむら、マミの衣装を着たキャラクターのコラボカード。</LibItem>
+				<LibItem pages={[160, 161]}>スマートフォン用ゲーム<Anchor href="http://www.projecttokyodolls.jp/">『<cite>プロジェクト東京ドールズ</cite>』</Anchor>とのコラボイベント紹介。まどか、ほむら、マミの衣装を着たキャラクターのコラボカード。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2150,7 +2150,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2019年</H>
+		<Fragment slot="heading">2019年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2019年4月号" release="2019-03-09" amazonAsin="B07NRF18Y5" amazonImageId="510BJziYb7L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
@@ -2184,54 +2184,54 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ　2020年1月号" release="2019-12-10" amazonAsin="B081KQ4M5D" amazonImageId="61YGvlChxeL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[66, 67]}><em>「<cite>ウワサの街で…</cite>」</em>TVアニメ・マギアレコードの紹介記事。いろは&amp;黒江のイラスト（<LinkExternal href="https://x.com/shaft_official/status/1204709708239474688">原画: 山村洋貴</LinkExternal>）、宮本幸裕インタビュー（黒江について、ウワサ空間のデザインにJ.A.シーザーが参加していること、章ごとに監督が異なることなど）。</LibItem>
+				<LibItem pages={[66, 67]}><em>「<cite>ウワサの街で…</cite>」</em>TVアニメ・マギアレコードの紹介記事。いろは&amp;黒江のイラスト（<Anchor href="https://x.com/shaft_official/status/1204709708239474688">原画: 山村洋貴</Anchor>）、宮本幸裕インタビュー（黒江について、ウワサ空間のデザインにJ.A.シーザーが参加していること、章ごとに監督が異なることなど）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2020年1月号" release="2019-12-10" amazonAsin="B081KQLJGT" amazonImageId="51AL5oOS67L" amazonImageWidth={128} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[82, 83]}><em>「<cite>表情豊かな少女たちの姿</cite>」</em>TVアニメ・マギアレコードの紹介記事。いろは&amp;やちよのイラスト（<LinkExternal href="https://x.com/shaft_official/status/1204709708239474688">原画: 杉山延寛</LinkExternal>）、久保田光俊インタビュー（ゲームの企画段階から関わっていた、『<cite>まどか</cite>』の続きではなく新作のTVアニメとして作っているなど）。</LibItem>
+				<LibItem pages={[82, 83]}><em>「<cite>表情豊かな少女たちの姿</cite>」</em>TVアニメ・マギアレコードの紹介記事。いろは&amp;やちよのイラスト（<Anchor href="https://x.com/shaft_official/status/1204709708239474688">原画: 杉山延寛</Anchor>）、久保田光俊インタビュー（ゲームの企画段階から関わっていた、『<cite>まどか</cite>』の続きではなく新作のTVアニメとして作っているなど）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年2月号" release="2019-12-27" amazonAsin="B0833S9ZFQ" amazonImageId="517K-MZeW2L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[9, 10]}>いろは&amp;小さいキュゥべえのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1210492551179862016">原画: 秋葉徹</LinkExternal>）。</LibItem>
+				<LibItem pages={[9, 10]}>いろは&amp;小さいキュゥべえのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1210492551179862016">原画: 秋葉徹</Anchor>）。</LibItem>
 				<LibItem pages={[79]}>「<cite>2020年冬のチュウ目作品23選</cite>」でTVアニメ・マギアレコードの紹介。</LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2020年</H>
+		<Fragment slot="heading">2020年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2020年2月号" release="2020-01-10" amazonAsin="B082PPJCM6" amazonImageId="51Ginn8ofbL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[44, 45]}>「<cite>秘々解明</cite>」TVアニメ・マギアレコードの紹介記事。いろは&amp;うい&amp;みたま&amp;小さいキュゥべえのイラスト（<LinkExternal href="https://x.com/shaft_official/status/1215575061479821312">原画: 高野晃久</LinkExternal>）、麻倉もものコメント。</LibItem>
+				<LibItem pages={[44, 45]}>「<cite>秘々解明</cite>」TVアニメ・マギアレコードの紹介記事。いろは&amp;うい&amp;みたま&amp;小さいキュゥべえのイラスト（<Anchor href="https://x.com/shaft_official/status/1215575061479821312">原画: 高野晃久</Anchor>）、麻倉もものコメント。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年3月号" release="2020-01-30" amazonAsin="B0848KP7QM" amazonImageId="51Q1wCDVYjL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">やちよのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1222824376799678465">原画: 秋葉徹</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">やちよのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1222824376799678465">原画: 秋葉徹</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ　2020年3月号" release="2020-02-10" amazonAsin="B083XTGVLJ" amazonImageId="61vXBjQjc1L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[62, 63]}>「<cite>やさしい孤高</cite>」TVアニメ・マギアレコードの紹介記事。やちよイラスト（<LinkExternal href="https://x.com/shaft_official/status/1226852281993154561">原画: 宮嶋仁志</LinkExternal>）、雨宮天のインタビュー（第6話までの振り返りなど）。</LibItem>
+				<LibItem pages={[62, 63]}>「<cite>やさしい孤高</cite>」TVアニメ・マギアレコードの紹介記事。やちよイラスト（<Anchor href="https://x.com/shaft_official/status/1226852281993154561">原画: 宮嶋仁志</Anchor>）、雨宮天のインタビュー（第6話までの振り返りなど）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2020年3月号" release="2020-02-10" amazonAsin="B083XVFP4M" amazonImageId="51uwAsPac-L" amazonImageWidth={121} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[34, 37]}>「<cite>Source of Rumor</cite>」TVアニメ・マギアレコードの紹介記事。いろは&amp;フェリシアのイラスト（<LinkExternal href="https://x.com/shaft_official/status/1226852281993154561">原画: 宮嶋仁志</LinkExternal>）、佐倉綾音インタビュー（『<cite>まどか</cite>』1話に出演していたことなど）。</LibItem>
+				<LibItem pages={[34, 37]}>「<cite>Source of Rumor</cite>」TVアニメ・マギアレコードの紹介記事。いろは&amp;フェリシアのイラスト（<Anchor href="https://x.com/shaft_official/status/1226852281993154561">原画: 宮嶋仁志</Anchor>）、佐倉綾音インタビュー（『<cite>まどか</cite>』1話に出演していたことなど）。</LibItem>
 				<LibItem position="折り込みポスター">いろは&amp;フェリシア（原画: 宮嶋仁志）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年4月号" release="2020-02-29" amazonAsin="B084WMGWYP" amazonImageId="61ATxCfuoYL" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">鶴乃のピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1233700879460515841">原画: 渥美智也</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">鶴乃のピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1233700879460515841">原画: 渥美智也</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2240,26 +2240,26 @@ const slugger = new GithubSlugger();
 				<LibItem position="裏表紙">ドレス姿のいろは&amp;やちよ&amp;鶴乃。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>本の中身は未確認。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ　2020年4月号" release="2020-03-10" amazonAsin="B084Z4K3BG" amazonImageId="61iorSBt9sL" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">いろは&amp;さなのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1237355188203077632">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">いろは&amp;さなのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1237355188203077632">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2020年4月号" release="2020-03-10" amazonAsin="B084Z4K32C" amazonImageId="61l7I7Gbr7L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[34, 37]}>「<cite>Their branch point</cite>」やちよ&amp;みふゆ&amp;マミのイラスト（<LinkExternal href="https://x.com/shaft_official/status/1237355188203077632">原画: Izumi Takuya（漢字表記不明）</LinkExternal>）、雨宮天インタビュー。</LibItem>
+				<LibItem pages={[34, 37]}>「<cite>Their branch point</cite>」やちよ&amp;みふゆ&amp;マミのイラスト（<Anchor href="https://x.com/shaft_official/status/1237355188203077632">原画: Izumi Takuya（漢字表記不明）</Anchor>）、雨宮天インタビュー。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年5月号" release="2020-03-30" amazonAsin="B086D88XL9" amazonImageId="51R-5b5xHkL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">ホーリーマミのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1244588014136745984">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">ホーリーマミのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1244588014136745984">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -2272,43 +2272,43 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年6月号" release="2020-04-30" amazonAsin="B087Q2W7MX" amazonImageId="61AJ9JBbGzL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">フェリシアのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1255839038914744320">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">フェリシアのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1255839038914744320">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年7月号" release="2020-05-29" amazonAsin="B0897F5LC6" amazonImageId="61KX1ncCAiL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">さなのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1266695964200275968">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">さなのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1266695964200275968">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年8月号" release="2020-06-30" amazonAsin="B08BWT8BQ1" amazonImageId="61O0lul+4TL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">みふゆのピンナップイラスト（<LinkExternal href="https://x.com/shaft_official/status/1278987717406154753">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">みふゆのピンナップイラスト（<Anchor href="https://x.com/shaft_official/status/1278987717406154753">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年9月号" release="2020-07-30" amazonAsin="B08CWJ4WFY" amazonImageId="61Z8Nhz5QAL" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">里見灯花のピンナップイラスト（<LinkExternal href="https://x.com/MegamiMAGAZINE/status/1288011537613901830">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">里見灯花のピンナップイラスト（<Anchor href="https://x.com/MegamiMAGAZINE/status/1288011537613901830">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2020年10月号" release="2020-08-28" amazonAsin="B08FTLNM7L" amazonImageId="61ScgQI3DpL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="掲載ページ未確認">さやかのピンナップイラスト（<LinkExternal href="https://x.com/MegamiMAGAZINE/status/1298545722594226176">原画未確認</LinkExternal>）。</LibItem>
+				<LibItem position="掲載ページ未確認">さやかのピンナップイラスト（<Anchor href="https://x.com/MegamiMAGAZINE/status/1298545722594226176">原画未確認</Anchor>）。</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ダ・ヴィンチ　2020年10月号" release="2020-09-04" amazonAsin="B08F6TF7MK" amazonImageId="51sDX7GUblL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem position="表紙">まどか、いろは（原画: 谷口淳一郎）</LibItem>
-				<LibItem pages={[168, 177]}><em>「<cite>特別企画　マギアレコード魔法少女まどか☆マギカ外伝</cite>」</em>スタッフインタビュー、キャスト座談会。このうち、「<cite>ダ・ヴィンチニュース</cite>」のサイトで<LinkExternal href="https://ddnavi.com/interview/668574/a/">劇団イヌカレーが語るクリエイティブの原点</LinkExternal>、<LinkExternal href="https://ddnavi.com/interview/668197/a/">みかづき荘座談会</LinkExternal>、<LinkExternal href="https://ddnavi.com/interview/668561/a/">見滝原魔法少女座談会</LinkExternal>が公開されている。</LibItem>
+				<LibItem pages={[168, 177]}><em>「<cite>特別企画　マギアレコード魔法少女まどか☆マギカ外伝</cite>」</em>スタッフインタビュー、キャスト座談会。このうち、「<cite>ダ・ヴィンチニュース</cite>」のサイトで<Anchor href="https://ddnavi.com/interview/668574/a/">劇団イヌカレーが語るクリエイティブの原点</Anchor>、<Anchor href="https://ddnavi.com/interview/668197/a/">みかづき荘座談会</Anchor>、<Anchor href="https://ddnavi.com/interview/668561/a/">見滝原魔法少女座談会</Anchor>が公開されている。</LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2021年</H>
+		<Fragment slot="heading">2021年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="リスアニ!　Vol.43.1「ClariS音楽大全“クラリスアニ！”」" release="2021-02-17" isbn="978-4-7897-7320-1" amazonAsin="4789773205" amazonImageId="515eM01TpCL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>

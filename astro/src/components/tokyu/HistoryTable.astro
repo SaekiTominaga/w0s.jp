@@ -1,0 +1,54 @@
+---
+interface Props {
+	class?: string;
+	id?: string;
+}
+
+const { class: className, id } = Astro.props;
+---
+
+<table class:list={['history-table', className]} id={id}>
+	<slot />
+</table>
+
+<style>
+	.history-table {
+		--_padding-block: 0.75em;
+		--_color: var(--color-black);
+		--_bg-color: var(--color-white);
+		--_text-align: start;
+
+		inline-size: 100%;
+		line-height: var(--line-height-narrow);
+
+		& > :global(:is(thead + tbody, tbody + tbody)) {
+			border-block-start: 2px solid;
+		}
+
+		& :global(:is(td, th)) {
+			border: 1px solid;
+			background: var(--_bg-color);
+			background-clip: padding-box; /* for Firefox, Safari (<thead> sticky) */
+			padding: var(--_padding-block) min(1dvi, 5px);
+			text-align: var(--_text-align);
+			color: var(--_color);
+			font-size: clamp(calc(100% / pow(var(--font-ratio), 1)), 2svi, 100%);
+		}
+
+		& > :global(thead) {
+			--_bg-color: var(--color-bg-light);
+			--_text-align: center;
+
+			position: sticky;
+			inset-block-start: 0;
+		}
+
+		& > :global(tbody) {
+			--_padding-block: 0.25em;
+		}
+
+		& :global(tr.-hover) {
+			--_bg-color: var(--color-lightpink);
+		}
+	}
+</style>

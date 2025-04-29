@@ -2,11 +2,12 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -35,7 +36,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">1993年</H>
+		<Fragment slot="heading">1993年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="鉄道ジャーナル 1993年3月号（No.317）" release="1993-01-21">
 			<LibContent>
@@ -56,7 +57,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1996年</H>
+		<Fragment slot="heading">1996年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="モダンリビング 1996年11月号（No.109）" release="1996-10-07">
 			<LibContent>
@@ -65,17 +66,17 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1998年</H>
+		<Fragment slot="heading">1998年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="インモラル壱号" release="1998-04" amazonAsin="B08MTL3ZGN" amazonImageId="71b2wzVUNJL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[167]}>あとがきで久米田先生やクメタプロダクションのメンバーとのエピソードが紹介</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li><strong>成人向け漫画</strong></li>
-				<li>著者は久米田先生の元アシスタント。<LinkExternal href="https://web.archive.org/web/20120804171939/http://www.naisyo-sakusen.com/SU/framepage01.htm">個人サイト「<cite>スパークうたまろのホームページ</cite>」復刻版</LinkExternal>のプロフィールページに経歴が掲載。</li>
-			</ul>
+				<li>著者は久米田先生の元アシスタント。<Anchor href="https://web.archive.org/web/20120804171939/http://www.naisyo-sakusen.com/SU/framepage01.htm">個人サイト「<cite>スパークうたまろのホームページ</cite>」復刻版</Anchor>のプロフィールページに経歴が掲載。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="コミッカーズ 1998年8月号" release="1998">
@@ -85,21 +86,21 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">1999年</H>
+		<Fragment slot="heading">1999年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="制服大征服" release="1999" amazonAsin="B08MTDLJTG" amazonImageId="712xgOXp5gL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[167]}>あとがきで『<cite>行け!!南国アイスホッケー部</cite>』ネタ</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li><strong>成人向け漫画</strong></li>
-				<li>著者は久米田先生の元アシスタント。<LinkExternal href="https://web.archive.org/web/20120804171939/http://www.naisyo-sakusen.com/SU/framepage01.htm">個人サイト「<cite>スパークうたまろのホームページ</cite>」復刻版</LinkExternal>のプロフィールページに経歴が掲載。</li>
-			</ul>
+				<li>著者は久米田先生の元アシスタント。<Anchor href="https://web.archive.org/web/20120804171939/http://www.naisyo-sakusen.com/SU/framepage01.htm">個人サイト「<cite>スパークうたまろのホームページ</cite>」復刻版</Anchor>のプロフィールページに経歴が掲載。</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2000年</H>
+		<Fragment slot="heading">2000年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="コミック・ファン 2000年8号" release="2000-03-15" tags={['インタビュー']}>
 			<LibContent>
@@ -114,7 +115,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2002年</H>
+		<Fragment slot="heading">2002年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="『吼えろペン』4巻" release="2002-04" isbn="4-09-157024-0" amazonAsin="B00BEPFQHW" amazonImageId="816za-Yj5TL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -129,7 +130,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2003年</H>
+		<Fragment slot="heading">2003年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ガンダムグッズエース（ガンダムエース2003年9月号増刊）" release="2003-07-15" tags={['インタビュー']} amazonAsin="B00X65OCO6" amazonImageId="21nkU7WtY+L" amazonImageWidth={119} amazonImageHeight={160}>
 			<LibContent>
@@ -160,7 +161,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2004年</H>
+		<Fragment slot="heading">2004年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="サイゾー 2004年3月号" release="2004-02-18">
 			<LibContent>
@@ -183,7 +184,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2005年</H>
+		<Fragment slot="heading">2005年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="空想科学「漫画」読本 4" release="2005-03" isbn="4-537-25266-9" amazonAsin="4537252669" amazonImageId="51CEW7KBXFL" amazonImageWidth={108} amazonImageHeight={160}>
 			<LibContent>
@@ -205,7 +206,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2006年</H>
+		<Fragment slot="heading">2006年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="『ハヤテのごとく!』5巻" release="2006-01-14" tags={['畑健二郎']} isbn="4-09-120030-3" amazonAsin="B010F9NK2K" amazonImageId="51asAezAGcL" amazonImageWidth={102} amazonImageHeight={160}>
 			<LibContent>
@@ -262,7 +263,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2007年</H>
+		<Fragment slot="heading">2007年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="季刊エス 18号（2007年春号）" release="2007-03-15" tags={['インタビュー']} amazonAsin="B000NQRURM" amazonImageId="61AGdzNgJiL" amazonImageWidth={117} amazonImageHeight={160}>
 			<LibContent>
@@ -284,7 +285,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="少年サンデー公式ガイド　ハヤテのごとく!" release="2007-06-08" tags={['畑健二郎']} isbn="978-4-09-121115-6" amazonAsin="4091211151" amazonImageId="31QJYTAZ97L" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[59, 66]}>「<cite>Backstage the combat butler</cite>」（まんが家Back Stage 選りすぐり）振り返りコメントで久米田師匠とのエピソード複数掲載（<LinkExternal href="https://websunday.net/5943/">Vol.14</LinkExternal>, <LinkExternal href="https://websunday.net/6006/">Vol.77</LinkExternal>, <LinkExternal href="https://websunday.net/6011/">Vol.82</LinkExternal>）</LibItem>
+				<LibItem pages={[59, 66]}>「<cite>Backstage the combat butler</cite>」（まんが家Back Stage 選りすぐり）振り返りコメントで久米田師匠とのエピソード複数掲載（<Anchor href="https://websunday.net/5943/">Vol.14</Anchor>, <Anchor href="https://websunday.net/6006/">Vol.77</Anchor>, <Anchor href="https://websunday.net/6011/">Vol.82</Anchor>）</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -333,7 +334,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="声優グランプリ 2007年9月号" release="2007-08-10" tags={['アニメ']} amazonAsin="B000TESRNY" amazonImageId="51AQmwY4L4L" amazonImageWidth={117} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[36, 37]}>夏のTVアニメ新番組インタビューで神谷浩史インタビュー</LibItem>
-				<LibItem pages={[100]}>『<cite>さよなら絶望先生</cite>』アフレコレポート、キャストコメント（<LinkExternal href="https://web.archive.org/web/20080516101231/http://www.seigura.com/news/news/150">Web 記事</LinkExternal>）</LibItem>
+				<LibItem pages={[100]}>『<cite>さよなら絶望先生</cite>』アフレコレポート、キャストコメント（<Anchor href="https://web.archive.org/web/20080516101231/http://www.seigura.com/news/news/150">Web 記事</Anchor>）</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -358,7 +359,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2007年10月号" release="2007-09-10" tags={['アニメ', '版権イラスト']} amazonAsin="B000V9HBEI" amazonImageId="61XFcGZqtNL" amazonImageWidth={116} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[68, 69]}>「<cite>【さよなら絶望先生】絶賛絶望中</cite>」神谷浩史×野中藍×谷井あすかインタビュー、望&amp;可符香&amp;霧のイラスト（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou/gallery/gallery04.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[68, 69]}>「<cite>【さよなら絶望先生】絶賛絶望中</cite>」神谷浩史×野中藍×谷井あすかインタビュー、望&amp;可符香&amp;霧のイラスト（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou/gallery/gallery04.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -384,7 +385,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="コンプH's Vol.6" release="2007-09-26" tags={['アニメ', '版権イラスト']} amazonAsin="B000W4L4FE" amazonImageId="61z6FvxXNdL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[56, 57]}>『<cite>さよなら絶望先生</cite>』野中藍×新谷良子インタビュー</LibItem>
-				<LibItem pages={[83, 84]}>浴衣姿の可符香&amp;千里のピンナップ（原画: 守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou/gallery/gallery05.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[83, 84]}>浴衣姿の可符香&amp;千里のピンナップ（原画: 守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou/gallery/gallery05.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -402,7 +403,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="ニュータイプ・ロマンス 2007年11月号(秋)" release="2007-10-25" tags={['アニメ', '版権イラスト']} amazonAsin="B000X439R4" amazonImageId="61oFrgQE2cL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[71]}>『<cite>さよなら絶望先生</cite>』望&amp;交のイラスト（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou/gallery/gallery06.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[71]}>『<cite>さよなら絶望先生</cite>』望&amp;交のイラスト（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou/gallery/gallery06.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[146, 147]}>「<cite>オフショット*グラビア</cite>」神谷浩史が糸色望風の和装をしたグラビア写真</LibItem>
 			</LibContent>
 		</LibBook>
@@ -451,7 +452,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="ニュータイプ・ロマンス 2008年1月号(冬)" release="2007-12-20" tags={['アニメ', '版権イラスト']} amazonAsin="B0010VFVZ2" amazonImageId="616XbXuJ1ZL" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[71]}>『<cite>俗・さよなら絶望先生</cite>』望&amp;命&amp;景のイラスト（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou2/gallery/03.html">アニメ公式サイト</LinkExternal>にも掲載、イラストレーターの名前は公式サイトでは山村洋貴になっている）</small></LibItem>
+				<LibItem pages={[71]}>『<cite>俗・さよなら絶望先生</cite>』望&amp;命&amp;景のイラスト（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou2/gallery/03.html">アニメ公式サイト</Anchor>にも掲載、イラストレーターの名前は公式サイトでは山村洋貴になっている）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -470,7 +471,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="メカビ 2008年冬号" release="2007-12-26" tags={['アニメ', '版権イラスト']} isbn="978-4-06-378863-1" amazonAsin="4063788636" amazonImageId="51JsKzU+GlL" amazonImageWidth={123} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="表紙">即売会の望&amp;絶望少女達のイラスト（原画: 守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou2/gallery/01.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem position="表紙">即売会の望&amp;絶望少女達のイラスト（原画: 守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou2/gallery/01.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[12, 17]}>『<cite>俗・さよなら絶望先生</cite>』新房昭之インタビュー</LibItem>
 			</LibContent>
 		</LibBook>
@@ -482,7 +483,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2008年</H>
+		<Fragment slot="heading">2008年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="マンガ・エロティクス・エフ Vol.49" release="2008-01-09" tags={['描き下ろし']} isbn="978-4-7783-2052-2" amazonAsin="4778320522" amazonImageId="51Lc-T6DdEL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -505,28 +506,28 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="オトナアニメ Vol.7" release="2008-01-23" tags={['アニメ', '版権イラスト']} isbn="978-4-86248-228-0" amazonAsin="4862482287" amazonImageId="51PxN1uT1ZL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="表紙">望&amp;交&amp;万世橋のイラスト（山村洋貴）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou2/gallery/02.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem position="表紙">望&amp;交&amp;万世橋のイラスト（山村洋貴）<small>（<Anchor href="https://king-cr.jp/special/zetsubou2/gallery/02.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[2, 17]}>『<cite>さよなら絶望先生</cite>』野中藍×小林ゆう×井上麻里奈インタビュー、龍輪直征による各話解説など</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="コンプH's Vol.8" release="2008-01-26" tags={['アニメ', '版権イラスト']} amazonAsin="B0011XLF7C" amazonImageId="61nGBIqkgaL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[103, 104]}>半裸に包帯姿のあびるのピンナップ（山村洋貴）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou2/gallery/05.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[103, 104]}>半裸に包帯姿のあびるのピンナップ（山村洋貴）<small>（<Anchor href="https://king-cr.jp/special/zetsubou2/gallery/05.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[141]}>『<cite>俗・さよなら絶望先生</cite>』井上麻里奈インタビュー（最初はマ太郎でオファーがあったことなど）</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン 2008年3月号" release="2008-01-30" tags={['アニメ', '版権イラスト']} amazonAsin="B0012Q3C6U" amazonImageId="61IJZWqxz3L" amazonImageWidth={117} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[15, 16]}>『<cite>俗・さよなら絶望先生</cite>』プールサイドでの可符香&amp;千里&amp;マ太郎のピンナップ（原画: 守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou2/gallery/06.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[15, 16]}>『<cite>俗・さよなら絶望先生</cite>』プールサイドでの可符香&amp;千里&amp;マ太郎のピンナップ（原画: 守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou2/gallery/06.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[52]}>「<cite>ラブリーおバカさん♥</cite>」で『<cite>俗・さよなら絶望先生</cite>』特集</LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2008年3月号" release="2008-02-09" tags={['アニメ', '描き下ろし']} amazonAsin="B0012RQMAC" amazonImageId="61muPSLfKiL" amazonImageWidth={117} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[198]}>「<cite>霞んのアニメ弁当</cite>」第24回で糸色望用弁当<small>（<LinkExternal href="https://web.archive.org/web/20190130100833/https://blogs.yahoo.co.jp/kasumin_yorosiku/51763071.html">制作者のブログ記事</LinkExternal>）</small></LibItem>
+				<LibItem pages={[198]}>「<cite>霞んのアニメ弁当</cite>」第24回で糸色望用弁当<small>（<Anchor href="https://web.archive.org/web/20190130100833/https://blogs.yahoo.co.jp/kasumin_yorosiku/51763071.html">制作者のブログ記事</Anchor>）</small></LibItem>
 				<LibItem position="付録">表紙アヌメージョ、糸色望イラスト（原画: 久米田康治）</LibItem>
 			</LibContent>
 		</LibBook>
@@ -543,21 +544,21 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[223]}>「<cite>from STAFF ROOM</cite>」のスタッフコメントでデザイナーSが『<cite>さよなら絶望放送</cite>』で絶望レジー賞（第21回放送分）を受賞したことに触れられる<small>（『<cite>さよなら絶望放送</cite>』第25回の「<cite>絶望の谷谷 Bista</cite>」コーナーで紹介）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>『<cite>さよなら絶望放送</cite>』携帯版の第87回（2009年5月20日配信）では絶望レジー賞の受賞経験のある伊藤ケンタウロスが月刊ニュータイプの編集部に勤めていたこと、デザインの仕事を探していることを白状している。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="PASH! 2008年3月号" release="2008-02-09" tags={['アニメ', '版権イラスト', 'ラジオ']} amazonAsin="B0012XAC52" amazonImageId="51YgKuj1s8L" amazonImageWidth={117} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[58, 59]}>『<cite>俗・さよなら絶望先生</cite>』特集記事</LibItem>
-				<LibItem pages={[79, 80]}>望のイラストのとじ込みポスター（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou2/gallery/04.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[79, 80]}>望のイラストのとじ込みポスター（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou2/gallery/04.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[94, 95]}>『<cite>さよなら絶望放送</cite>』神谷浩史×新谷良子インタビュー、漫画レポート<small>（第21回「<cite>暗黙のメルヘン</cite>」&amp;第22回「<cite>特典世界</cite>」更新分）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="TV ANIMATION 【俗・】さよなら絶望先生　絶望案内正本" release="2008-02-15" tags={['作品公式', 'アニメ', 'ラジオ']} isbn="978-4-06-375450-6" amazonAsin="4063754502" amazonImageId="51PJg194YvL" amazonImageWidth={108} amazonImageHeight={160}>
-			<ul class="p-list">
+			<List>
 				<li>壱時間目: 登場人物解説1</li>
 				<li>弐時間目: 『【俗・】さよなら絶望先生』回顧録</li>
 				<li>参時間目: 総天然色素材</li>
@@ -571,7 +572,7 @@ const slugger = new GithubSlugger();
 				<li>拾壱時間目: 懺悔部屋2 スペシャルインタビュー2<small>（神谷浩史×野中藍×井上麻里奈×小林ゆう×新谷良子の座談会）</small></li>
 				<li>拾弐時間目: グッズコレクション</li>
 				<li>拾参時間目: イベントリポート<small>（『<cite>さよなら絶望放送</cite>』第19回〜第20回の収録現場取材）</small></li>
-			</ul>
+			</List>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="CONTINUE Vol.38" release="2008-02-16" tags={['アニメ']} isbn="978-4-7783-1118-6" amazonAsin="4778311183" amazonImageId="51Jj71fJ2yL" amazonImageWidth={120} amazonImageHeight={160}>
@@ -645,7 +646,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="声優グランプリ 2008年5月号" release="2008-04-10" tags={['アニメ']} amazonAsin="B0015S8X82" amazonImageId="618AKWztl7L" amazonImageWidth={117} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[91]}>『<cite>俗・さよなら絶望先生</cite>』アフレコレポート、キャストコメント（神谷浩史、野中藍、井上麻里奈、小林ゆう、後藤邑子、沢城みゆき、真田アサミ、新谷良子）<small>（<LinkExternal href="https://web.archive.org/web/20080514073431/http://seigura.com/news/news/555">声優グランプリの Web ページ</LinkExternal>にも最終回収録後のコメントが掲載されていたが、誌面のものとは若干異なる）</small></LibItem>
+				<LibItem pages={[91]}>『<cite>俗・さよなら絶望先生</cite>』アフレコレポート、キャストコメント（神谷浩史、野中藍、井上麻里奈、小林ゆう、後藤邑子、沢城みゆき、真田アサミ、新谷良子）<small>（<Anchor href="https://web.archive.org/web/20080514073431/http://seigura.com/news/news/555">声優グランプリの Web ページ</Anchor>にも最終回収録後のコメントが掲載されていたが、誌面のものとは若干異なる）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -741,9 +742,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[54, 57]}>「<cite lang="zh-Hant">久米田老師特別専訪</cite>」台湾でのトークショーレポート、久米田康治インタビュー</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>台湾の雑誌</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="hon-nin Vol.08" release="2008-09-09" tags={['インタビュー']} isbn="978-4-7783-1145-2" amazonAsin="4778311450" amazonImageId="51G+Ydq42OL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -799,9 +800,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[175]}>提供バックイラスト集で『<cite>ひだまりスケッチ×365</cite>』第12話の久米田先生イラスト掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>エンドカードイラストは<LinkExternal href="https://www.tbs.co.jp/anime/hidamari/2nd/08special/illust.html#illust12">アニメ公式サイトに掲載</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li>エンドカードイラストは<Anchor href="https://www.tbs.co.jp/anime/hidamari/2nd/08special/illust.html#illust12">アニメ公式サイトに掲載</Anchor></li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="映画秘宝 2009年1月号" release="2008-11-21" tags={['音楽']} amazonAsin="B001J0RN8M" amazonImageId="51voHtXDAML" amazonImageWidth={113} amazonImageHeight={160}>
@@ -830,7 +831,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2009年</H>
+		<Fragment slot="heading">2009年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="『もう、しませんから。』8巻" release="2009-03-17" isbn="978-4-06-384116-9" amazonAsin="B00LIN3UTQ" amazonImageId="510zWwPwDrL" amazonImageWidth={107} amazonImageHeight={160}>
 			<LibContent>
@@ -861,7 +862,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2009年6月号" release="2009-05-09" tags={['アニメ', '版権イラスト']} amazonAsin="B002738W1C" amazonImageId="61Qra2bVJpL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[73]}>『<cite>懺・さよなら絶望先生</cite>』神谷浩史インタビュー、望&amp;千里&amp;まといのイラスト（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/01.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[73]}>『<cite>懺・さよなら絶望先生</cite>』神谷浩史インタビュー、望&amp;千里&amp;まといのイラスト（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/01.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -873,7 +874,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2009年7月号" release="2009-06-10" tags={['アニメ', '版権イラスト']} amazonAsin="B002B69HL4" amazonImageId="61K+DXQo3pL" amazonImageWidth={126} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[28, 29]}>「<cite>絶対新房宣言!</cite>」龍輪直之インタビュー、七夕祭りのイラスト（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/02.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[28, 29]}>「<cite>絶対新房宣言!</cite>」龍輪直之インタビュー、七夕祭りのイラスト（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/02.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[32, 33]}>新房昭之×神谷浩史の対談</LibItem>
 				<LibItem pages={[34]}>久保田光俊インタビュー</LibItem>
 			</LibContent>
@@ -963,20 +964,20 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="ニュータイプ・ロマンス 2009年8月号(夏)" release="2009-07-18" tags={['版権イラスト']} amazonAsin="B002DZC3NW" amazonImageId="61iJlsbT6PL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[26, 27]}>「<cite>エンドレスサマー</cite>」プールサイドでの望&amp;久藤&amp;青山&amp;木野のイラスト（山村洋貴）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/03.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[26, 27]}>「<cite>エンドレスサマー</cite>」プールサイドでの望&amp;久藤&amp;青山&amp;木野のイラスト（山村洋貴）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/03.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2009年9月号" release="2009-08-10" tags={['版権イラスト']} amazonAsin="B002ISQKE2" amazonImageId="61EOsOKYPrL" amazonImageWidth={121} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[19, 20]}>『<cite>懺・さよなら絶望先生</cite>』図書室で本を読む望&amp;交&amp;久藤のピンナップ（守岡英行）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/05.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[19, 20]}>『<cite>懺・さよなら絶望先生</cite>』図書室で本を読む望&amp;交&amp;久藤のピンナップ（守岡英行）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/05.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="PASH! 2009年9月号" release="2009-08-10" tags={['アニメ', '版権イラスト']} amazonAsin="B002GZYJ22" amazonImageId="61uCOVtqG9L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[46, 47]}>藤吉晴美が教える少女的絶望先生の楽しみ方『<cite>懺・さよなら絶望先生</cite>』男子生徒のキャラ紹介（水島大宙、寺島拓篤、上田燿司、杉田智和によるコメント掲載）</LibItem>
-				<LibItem position="とじ込みポスター">久藤&amp;青山&amp;芳賀&amp;木野&amp;望のイラスト（山村洋貴）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/04.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem position="とじ込みポスター">久藤&amp;青山&amp;芳賀&amp;木野&amp;望のイラスト（山村洋貴）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/04.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1019,19 +1020,19 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2009年11月号" release="2009-10-10" tags={['アニメ']} amazonAsin="B002PIHHQA" amazonImageId="61FCPwlOJaL" amazonImageWidth={124} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem position="付属">『<cite>懺・さよなら絶望先生</cite>』クリアファイル<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/05.html">2009年9月号</LinkExternal> / <LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/02.html">2009年7月号</LinkExternal>のイラスト）</small></LibItem>
+				<LibItem position="付属">『<cite>懺・さよなら絶望先生</cite>』クリアファイル<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/05.html">2009年9月号</Anchor> / <Anchor href="https://king-cr.jp/special/zetsubou3/gallery/02.html">2009年7月号</Anchor>のイラスト）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="声優グランプリ 2009年11月号" release="2009-10-10" tags={['音楽']} amazonAsin="B002P4V4TU" amazonImageId="61G0xe0fylL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[36, 39]}><LinkExternal href="https://anisama.tv/2009/">Animelo Summer Live 2009 —RE:BRIDGE—</LinkExternal>のレポート<small>（2日目に「大槻ケンヂと絶望少女達」が出演）</small></LibItem>
+				<LibItem pages={[36, 39]}><Anchor href="https://anisama.tv/2009/">Animelo Summer Live 2009 —RE:BRIDGE—</Anchor>のレポート<small>（2日目に「大槻ケンヂと絶望少女達」が出演）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ニュータイプ・ロマンス 2009年12月号(秋)" release="2009-10-20" tags={['版権イラスト']} amazonAsin="B002PDDTRQ" amazonImageId="61sQFxkT2lL" amazonImageWidth={124} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[7, 8]}>『<cite>懺・さよなら絶望先生</cite>』の折り込みピンナップ「<cite>絶望少年隊見参</cite>」望&amp;久藤&amp;木野&amp;青山&amp;芳賀&amp;臼井のイラスト（山村洋貴）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/06.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[7, 8]}>『<cite>懺・さよなら絶望先生</cite>』の折り込みピンナップ「<cite>絶望少年隊見参</cite>」望&amp;久藤&amp;木野&amp;青山&amp;芳賀&amp;臼井のイラスト（山村洋貴）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/06.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1080,7 +1081,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="TV ANIMATION【懺・】さよなら絶望先生　絶望読本" release="2009-12-17" tags={['作品公式', 'インタビュー', 'アニメ']} isbn="978-4-06-375801-6" amazonAsin="406375801X" amazonImageId="51fBC6MLoQL" amazonImageWidth={107} amazonImageHeight={160}>
-			<ul class="p-list">
+			<List>
 				<li>壱時間目: 登場人物紹介に絶望した〜!（壱）</li>
 				<li>弐時間目: 絶望回顧録に絶望した〜!</li>
 				<li>参時間目: 登場人物紹介に絶望した〜!（弐）</li>
@@ -1090,12 +1091,12 @@ const slugger = new GithubSlugger();
 				<li>七時間目: 懺悔部屋に絶望した〜!（壱）<small>（久米田康治×新房昭之の対談、原作スタッフMAEDA×アニメスタッフTの覆面座談会）</small></li>
 				<li>八時間目: 懺悔部屋に絶望した〜!（弐）<small>（神谷浩史インタビュー、野中藍×井上麻里奈インタビュー、谷井あすか×真田アサミ×小林ゆう×新谷良子の座談会、久本康×米田治の対談）</small></li>
 				<li>九時間目: 読ませる気のない読み物に絶望した〜!（弐）</li>
-			</ul>
+			</List>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ニュータイプ・ロマンス 2010年2月号(冬)" release="2009-12-19" tags={['アニメ', '版権イラスト']} amazonAsin="B002X8EJ1I" amazonImageId="61WMJfWnqpL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[10]}>ツヤツヤポートレートカレンダー（山村洋貴）<small>（<LinkExternal href="https://king-cr.jp/special/zetsubou3/gallery/07.html">アニメ公式サイト</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem pages={[10]}>ツヤツヤポートレートカレンダー（山村洋貴）<small>（<Anchor href="https://king-cr.jp/special/zetsubou3/gallery/07.html">アニメ公式サイト</Anchor>にも掲載）</small></LibItem>
 				<LibItem pages={[48, 49]}>『<cite>懺・さよなら絶望先生</cite>』望&amp;久藤&amp;木野&amp;青山のイラスト（2008年4月号掲載のものと同じ）</LibItem>
 				<LibItem position="裏表紙">『<cite>懺・さよなら絶望先生</cite>』第四集・特装版広告</LibItem>
 			</LibContent>
@@ -1108,7 +1109,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2010年</H>
+		<Fragment slot="heading">2010年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="プリンスアニメージュ 2010年winter" release="2010-02-02" tags={['アニメ']} isbn="978-4-19-720293-5" amazonAsin="4197202938" amazonImageId="61L5V29tIqL" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
@@ -1149,7 +1150,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニサマ公式メモリアル" release="2010-08-27" tags={['音楽']} isbn="978-4-05-404685-6" amazonAsin="4054046851" amazonImageId="51W334EGQNL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[74, 83]}><LinkExternal href="https://anisama.tv/2009/"><cite>Animelo Summer Live 2009 —RE:BRIDGE—</cite></LinkExternal>2日目のレポート<small>（「大槻ケンヂと絶望少女達」が出演）</small></LibItem>
+				<LibItem pages={[74, 83]}><Anchor href="https://anisama.tv/2009/"><cite>Animelo Summer Live 2009 —RE:BRIDGE—</cite></Anchor>2日目のレポート<small>（「大槻ケンヂと絶望少女達」が出演）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1194,7 +1195,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="明日の夜は千の眼を持つ" release="2011-01-29" isbn="978-4-04-726941-5" amazonAsin="4047269417" amazonImageId="61HPckgvbuL" amazonImageWidth={108} amazonImageHeight={160}>
 			<LibContent>
@@ -1224,9 +1225,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[107]}>「<cite>俺（私）はこのマンガがアニメで観たいんだ!</cite>」に回答（『<cite>テルマエ・ロマエ</cite>』と『<cite>進撃の巨人</cite>』を挙げている）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>巻末（p.111）の読者プレゼントで久米田先生のサイン色紙もあるが、紙面では<q>制作中</q>での掲載だった。後日<LinkExternal href="https://ameblo.jp/otonaanime/entry-10858531567.html">オトナアニメ編集部のブログで画像が公開</LinkExternal>されている。</li>
-			</ul>
+			<ListNote>
+				<li>巻末（p.111）の読者プレゼントで久米田先生のサイン色紙もあるが、紙面では<q>制作中</q>での掲載だった。後日<Anchor href="https://ameblo.jp/otonaanime/entry-10858531567.html">オトナアニメ編集部のブログで画像が公開</Anchor>されている。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="戦国大戦 —1560 尾張の風雲児— 天下布武への道　〜攻略絵巻　春の陣〜" release="2011-03-30" tags={['ゲーム']} isbn="978-4-04-727260-6" amazonAsin="4047272604" amazonImageId="61gs1CJisuL" amazonImageWidth={132} amazonImageHeight={160}>
@@ -1259,9 +1260,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[198]}>読者プレゼントにインタビューイの色紙<small>（久米田: 改蔵&amp;羽美&amp;地丹、新房: 改蔵、龍輪: 改蔵&amp;地丹、高山: 文字中心だが地丹の簡易なイラスト付き）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>読者プレゼントの色紙のうち、久米田先生のものは2022年7月に<LinkExternal href="https://x.com/shibuyanear/status/1547491091024191489">『<cite>シブヤニアファミリー</cite>』公式 Twitter<small>（現：X）</small>アカウントの企画</LinkExternal>でもプレゼントされた</li>
-			</ul>
+			<ListNote>
+				<li>読者プレゼントの色紙のうち、久米田先生のものは2022年7月に<Anchor href="https://x.com/shibuyanear/status/1547491091024191489">『<cite>シブヤニアファミリー</cite>』公式 Twitter<small>（現：X）</small>アカウントの企画</Anchor>でもプレゼントされた</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="大阪芸術大学　大学漫画 Vol.19" release="2011-07-29" tags={['畑健二郎']} isbn="978-4-86225-775-8" amazonAsin="4862257755" amazonImageId="61RWsB2SceL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -1309,9 +1310,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[97, 112]}>「<cite>新房昭之のアニメスタイル</cite>」で新房昭之インタビュー（p.97: 平面構成、p.103: 劇団イヌカレー登用）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>Amazon の表紙画像は実際のものとは異なる。正しい表紙は<LinkExternal href="http://animestyle.jp/shop/archives/207">アニメスタイル ONLINE SHOP</LinkExternal>を参照</li>
-			</ul>
+			<ListNote>
+				<li>Amazon の表紙画像は実際のものとは異なる。正しい表紙は<Anchor href="http://animestyle.jp/shop/archives/207">アニメスタイル ONLINE SHOP</Anchor>を参照</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="プレイボーイ 2011年No.48" release="2011-11">
@@ -1327,7 +1328,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="女性自身 2012年2月14日号" release="2012">
 			<LibContent>
@@ -1346,9 +1347,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[125]}>「<cite>吉田尚記の大人向けアニメWiki</cite>」其の一三「<cite>二次元&amp;女子×落語</cite>」にて『<cite>じょしらく</cite>』紹介</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://x.com/TVjoshiraku/status/211368031568404481">アニメ公式 Twitter<small>（現：X）</small>アカウント（女子落語協会）による告知</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://x.com/TVjoshiraku/status/211368031568404481">アニメ公式 Twitter<small>（現：X）</small>アカウント（女子落語協会）による告知</Anchor></li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="娘TYPE 2012年8月号" release="2012-06-30" tags={['アニメ']} amazonAsin="B008CPXFV6" amazonImageId="61spL+uSToL" amazonImageWidth={124} amazonImageHeight={160}>
@@ -1384,9 +1385,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[258, 263]}>新房昭之×劇団イヌカレーの対談（筆談）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>本書は雑誌「<cite>キャラ☆メル</cite>」「<cite>キャラ☆メル Febri</cite>」（現在の「<cite>Febri</cite>」）での対談企画「<cite>新房部屋</cite>」（2007年〜2012年分）を単行本化したもの</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="成程　とじこみ図録「12人のイコルソマニア」" release="2012-07-31" tags={['描き下ろし']} isbn="978-4-592-71044-8" amazonAsin="B00KB1FANU" amazonImageId="41agwDaBp-L" amazonImageWidth={109} amazonImageHeight={160}>
@@ -1400,9 +1401,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[74, 75]}>TVアニメ『<cite>じょしらく</cite>』紹介ページ、メインキャラ5人のイラスト（イラスト: 大木良一）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>誌面には<q lang="en">illustrated by RYOUICHI OOKI</q>とクレジットされているが、直谷たかしが発売日に<LinkExternal href="https://x.com/naoyatakashi/status/233781935418265601"><q>本日発売のニュータイプに版権描きました</q></LinkExternal>と投稿しているため記載ミスの可能性がある。</li>
-			</ul>
+			<ListNote>
+				<li>誌面には<q lang="en">illustrated by RYOUICHI OOKI</q>とクレジットされているが、直谷たかしが発売日に<Anchor href="https://x.com/naoyatakashi/status/233781935418265601"><q>本日発売のニュータイプに版権描きました</q></Anchor>と投稿しているため記載ミスの可能性がある。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="声優グランプリ 2012年9月号" release="2012-08-10" tags={['アニメ']} amazonAsin="B008J2WXR4" amazonImageId="61opFZ9PmLL" amazonImageWidth={127} amazonImageHeight={160}>
@@ -1453,9 +1454,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[4]}>アニメ『<cite>じょしらく</cite>』Blu-ray&DVD 壱巻広告</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>巻頭エセー（p.3）に桃黒亭一門が登場した関係での広告掲載と思われる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ひきこもりはなぜ「治る」のか? （文庫版）" release="2012-10-10" tags={['描き下ろし']} isbn="978-4-480-42995-7" amazonAsin="4480429956" amazonImageId="51hjt+Z2TPL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -1483,7 +1484,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2013年</H>
+		<Fragment slot="heading">2013年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメスタイル 003（2013.03）" release="2013-03-27" tags={['アニメ']} isbn="978-4-89610-543-8" amazonAsin="4896105435" amazonImageId="51mamzDin2L" amazonImageWidth={114} amazonImageHeight={160}>
 			<LibContent>
@@ -1568,9 +1569,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[256, 260]}>「<cite>拝啓あだち充様</cite>」Vol.24、久米田康治インタビュー前編</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>pp.244–255 には挿絵を担当している小説『<cite>ラフ</cite>』Vol.7 も掲載</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="毎月あだち充 Vol.33" release="2013-12-27" tags={['インタビュー']} isbn="978-4-09-119326-1" amazonAsin="4091193269" amazonImageId="617EMW3Fz+L" amazonImageWidth={113} amazonImageHeight={160}>
@@ -1578,13 +1579,13 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[266, 270]}>「<cite>拝啓あだち充様</cite>」Vol.25、久米田康治インタビュー後篇</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>pp.254–265 には挿絵を担当している小説『<cite>ラフ</cite>』Vol.8 も掲載</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2014年</H>
+		<Fragment slot="heading">2014年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="りぽぐら!" release="2014-01-06" tags={['描き下ろし']} isbn="978-4-06-182897-1" amazonAsin="4061828975" amazonImageId="51gDfTzdCbL" amazonImageWidth={98} amazonImageHeight={160}>
 			<LibContent>
@@ -1632,7 +1633,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2015年</H>
+		<Fragment slot="heading">2015年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="少年サンデー '90セレクション　前期" release="2015-04-24" tags={['インタビュー']} isbn="978-4-09-119762-7" amazonAsin="4091197620" amazonImageId="61daM9GirgL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -1690,9 +1691,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[102]}>「<cite>エンドカード Gallery</cite>」で『<cite>アルスラーン戦記</cite>』第四章の久米田先生イラスト掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>エンドカードイラストは<LinkExternal href="https://x.com/arslan_anime/status/592244288295055361">アニメ公式 Twitter<small>（現：X）</small>アカウントで紹介</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li>エンドカードイラストは<Anchor href="https://x.com/arslan_anime/status/592244288295055361">アニメ公式 Twitter<small>（現：X）</small>アカウントで紹介</Anchor></li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="人気マンガ・アニメのトラウマ最終回100" release="2015-10-26" isbn="978-4-86537-044-7" amazonAsin="4865370447" amazonImageId="51OQoUE74vL" amazonImageWidth={110} amazonImageHeight={160}>
@@ -1723,7 +1724,7 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="骨董靴工房アッシェンプッテルの来客簿" release="2015-12-16" tags={['描き下ろし']} isbn="978-4-06-139929-7" amazonAsin="4061399292" amazonImageId="41PGEWqDJaL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem>装画、冒頭カラーイラスト、「<cite>靴屋の王子</cite>」「<cite>傷だらけのお姫さま</cite>」扉イラストを担当</LibItem>
-				<LibItem><LinkExternal href="https://www.youtube.com/watch?v=rvolN-LHleM">発売記念 PV</LinkExternal></LibItem>
+				<LibItem><Anchor href="https://www.youtube.com/watch?v=rvolN-LHleM">発売記念 PV</Anchor></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1732,20 +1733,20 @@ const slugger = new GithubSlugger();
 
 			<LibContent>
 				<LibItem pages={[272]}>TV アニメキービジュアル</LibItem>
-				<LibItem pages={[273]}><LinkExternal href="https://www.amazon.co.jp/dp/B00AT30KA8/">CD「<cite>お後がよろしくって…よ！</cite>」</LinkExternal>ジャケット、<LinkExternal href="https://www.amazon.co.jp/dp/B00AT30KA8/">ラジオCD「<cite>ガールズ落語ラジオ　じょしらじ　其ノ弐</cite>」</LinkExternal>ジャケット</LibItem>
+				<LibItem pages={[273]}><Anchor href="https://www.amazon.co.jp/dp/B00AT30KA8/">CD「<cite>お後がよろしくって…よ！</cite>」</Anchor>ジャケット、<Anchor href="https://www.amazon.co.jp/dp/B00AT30KA8/">ラジオCD「<cite>ガールズ落語ラジオ　じょしらじ　其ノ弐</cite>」</Anchor>ジャケット</LibItem>
 				<LibItem pages={[274]}>Blu-ray&amp;DVD 全巻購入特典　アニメイト</LibItem>
 				<LibItem pages={[275]}>Blu-ray&amp;DVD 全巻購入特典　ソフマップ</LibItem>
 				<LibItem pages={[276]}>田中将賀のコメント、メインキャラとマスク（覆面）の計6人分の表情色見本、本紙掲載イラストのうち「<cite>お後がよろしくって…よ！</cite>」以外の4枚の線画・ラフ</LibItem>
 				<LibItem pages={[307]}>本紙カバーイラスト</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>Blu-ray&amp;DVD 全巻購入特典のイラストは<LinkExternal href="https://king-cr.jp/special/joshiraku/news/news06.html">公式サイトの法人別購入特典ページ</LinkExternal>にてサンプルが公開</li>
-			</ul>
+			<ListNote>
+				<li>Blu-ray&amp;DVD 全巻購入特典のイラストは<Anchor href="https://king-cr.jp/special/joshiraku/news/news06.html">公式サイトの法人別購入特典ページ</Anchor>にてサンプルが公開</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2016年</H>
+		<Fragment slot="heading">2016年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="人気マンガ・アニメのトラウマ最終回100　極限編" release="2016-02-25" isbn="978-4-86537-052-2" amazonAsin="4865370528" amazonImageId="91iEj5qALwL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
@@ -1760,9 +1761,9 @@ const slugger = new GithubSlugger();
 				<LibItem>第7話あとがきに『<cite>監獄学園</cite>』原作担当のMウラ（三浦敏広）のエピソードで『<cite>じょしらく</cite>』時のことにも言及</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>TV アニメ『<cite>監獄学園</cite>』の監督は『<cite>じょしらく</cite>』と同じ水島努</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="田中将賀ぴあ" release="2016-03-29" tags={['アニメ']} isbn="978-4-8356-2572-0" amazonAsin="4835625722" amazonImageId="510vclIfgPL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -1780,9 +1781,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[228, 230]}>『<cite>さよなら絶望先生</cite>』二百六十八話（単行本未収録話）について<q cite="urn:ISBN:978-4-904676-80-6">収録しなかった作者の態度は、「著作権」と「オリジナリティ」を本質的に区別している。</q>と評価</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>「<cite>消されたマンガ</cite>」（2013年発行）の再録</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="骨董靴工房アッシェンプッテルの来客簿　ハイヒールは嘘つきのはじまり" release="2016-04-16" tags={['描き下ろし']} isbn="978-4-06-139941-9" amazonAsin="4061399411" amazonImageId="51mE29KT9VL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -1833,7 +1834,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="人気マンガ・アニメのトラウマ最終回100　総集編" release="2017-01" isbn="978-4-86537-070-6" amazonAsin="4865370706" amazonImageId="71NRy9r0A+L" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -1841,10 +1842,10 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[189]}>アニメ『<cite>俗・さよなら絶望先生</cite>』の最終回が紹介<small>（BS11 の「<cite>ANIME+</cite>」において縦長映像が流れる放送事故が起こった件）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>『<cite>かってに改蔵</cite>』は「<cite>人気マンガ・アニメのトラウマ最終回100</cite>」（2015年）の再録</li>
 				<li>アニメ『<cite>俗・さよなら絶望先生</cite>』は「<cite>人気マンガ・アニメのトラウマ最終回100　極限編</cite>」（2016年）の再録</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="spoon.2Di Vol.24" release="2017-03-31" tags={['アニメ']} isbn="978-4-04-898298-6" amazonAsin="4048982982" amazonImageId="61tR8oRlcwL" amazonImageWidth={126} amazonImageHeight={160}>
@@ -1890,7 +1891,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2018年</H>
+		<Fragment slot="heading">2018年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="佐倉綾音写真集「さくらのおと」" release="2018-01-29" tags={['描き下ろし']} isbn="978-4-06-511169-7" amazonAsin="4065111692" amazonImageId="41ke-WT5XDL" amazonImageWidth={120} amazonImageHeight={160}>
 			<p>ワンピースを着た佐倉綾音のカラーイラストを寄稿</p>
@@ -1901,7 +1902,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2019年</H>
+		<Fragment slot="heading">2019年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="新房昭之×シャフト　クロニクル" release="2019-11-23" tags={['インタビュー']} isbn="978-4-8354-5701-7" amazonAsin="4835457013" amazonImageId="510waYsj0oL" amazonImageWidth={119} amazonImageHeight={160}>
 			<LibContent>
@@ -1910,7 +1911,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2020年</H>
+		<Fragment slot="heading">2020年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ 2020年4月号" release="2020-03-10" tags={['アニメ', '版権イラスト']} amazonAsin="B084Z4K32C" amazonImageId="61l7I7Gbr7L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
@@ -1926,7 +1927,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ 2020年5月号" release="2020-04-10" tags={['アニメ', '版権イラスト']} amazonAsin="B086C33WW3" amazonImageId="61WLH+Uh37L" amazonImageWidth={127} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[56, 57]}>TVアニメ『<cite>かくしごと</cite>』可久士と姫のイラスト（山本周平）、村野佑太インタビュー<small>（<LinkExternal href="https://x.com/kakushigoto_pr/status/1248445599340363776">アニメ公式 Twitter<small>（現：X）</small>アカウントによる告知</LinkExternal>）</small></LibItem>
+				<LibItem pages={[56, 57]}>TVアニメ『<cite>かくしごと</cite>』可久士と姫のイラスト（山本周平）、村野佑太インタビュー<small>（<Anchor href="https://x.com/kakushigoto_pr/status/1248445599340363776">アニメ公式 Twitter<small>（現：X）</small>アカウントによる告知</Anchor>）</small></LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1986,7 +1987,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2021年</H>
+		<Fragment slot="heading">2021年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="Manga Day To Day(下)" release="2021-03-25" tags={['描き下ろし']} isbn="978-4-06-522020-7" amazonAsin="B08Z3K8RD1" amazonImageId="51IAR1045vL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -2017,9 +2018,9 @@ const slugger = new GithubSlugger();
 				<LibItem>展示会の原画やイラストを収録、末尾には年表掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>原画やイラストの収録内容は実際の展示とは差異がある。詳細はブログ記事「<a href="https://blog.w0s.jp/entry/649"><cite>久米田康治「全曝し展」原画、下書き等の展示リスト</cite></a>」にまとめた。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="spoon.2Di Vol.75" release="2021-06-30" tags={['アニメ']} isbn="978-4-04-898442-3" amazonAsin="B09891CMZW" amazonImageId="61yVSyyb2HS" amazonImageWidth={160} amazonImageHeight={124}>
@@ -2055,7 +2056,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2022年</H>
+		<Fragment slot="heading">2022年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="人気マンガ・アニメのトラウマ最終回　総集編" release="2022-01-14" isbn="978-4-86537-229-8" amazonAsin="4865372296" amazonImageId="81brfnqPUaL" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
@@ -2063,9 +2064,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[56]}>アニメ『<cite>俗・さよなら絶望先生</cite>』の最終回が紹介<small>（BS11 の「<cite>ANIME+</cite>」において縦長映像が流れる放送事故が起こった件）</small></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>どちらも「<cite>人気マンガ・アニメのトラウマ最終回100　極限編</cite>」（2016年）の再録</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="『トニカクカワイイ』19巻" release="2022-02-18" tags={['畑健二郎']} isbn="978-4-09-850871-6" amazonAsin="B09RMKMKCV" amazonImageId="51yZco5sB5L" amazonImageWidth={102} amazonImageHeight={160}>
@@ -2096,7 +2097,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2023年</H>
+		<Fragment slot="heading">2023年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="私は元気です　病める時も健やかなる時も腐る時もイキる時も泣いた時も病める時も。" release="2023-09-12" tags={['アニメ', '音楽']} isbn="978-4-16-391738-2" amazonAsin="B0CHDWNGK6" amazonImageId="81JoxecsP0L" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
@@ -2109,19 +2110,19 @@ const slugger = new GithubSlugger();
 				<LibItem>会場展示イラストと久米田先生からのコメントを収録</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>イラストと久米田先生コメントは<LinkExternal href="https://www.youtube.com/watch?v=jJbvMVN7Yy4">久米田康治 draws 野宮真貴「東京は夜の七時」| EGAKU #21</LinkExternal>で公開</li>
+			<ListNote>
+				<li>イラストと久米田先生コメントは<Anchor href="https://www.youtube.com/watch?v=jJbvMVN7Yy4">久米田康治 draws 野宮真貴「東京は夜の七時」| EGAKU #21</Anchor>で公開</li>
 				<li>会場でイラスト脇に掲示された「<cite>撮影秘話</cite>」（スタッフによるミニコメント）は非収録</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">調査中</H>
+		<Fragment slot="heading">調査中</Fragment>
 
-		<ul class="p-list">
-			<li>1990年代後半の雑誌でパソコンにおける漫画執筆の特集があり、久米田先生が登場しているらしい<small>（<LinkExternal href="https://x.com/1970Chione/status/1447166381024178182">目撃情報</LinkExternal><!-- ちおね@長崎 2nd　2021-10-10 20:45　90年代後半の何かの雑誌で、「BOOMTOWN」の頃の内田美奈子先生と、「南国アイスホッケー部」の頃の「久米田康治先生が特集で出てて、パソコンで漫画描けるのか…とか思ったことは覚えてる。あの頃の、絵描き系の圧倒的Mac率がすごかった。 -->）</small>。</li>
-			<li>2001年頃、雑誌に『<cite>かってに改蔵</cite>』のアニメ設定資料が掲載されたらしい<small>（<LinkExternal href="http://tukigamiteta.blog43.fc2.com/blog-entry-104.html">もう、いーかげんなおはなし 「かってに改蔵」連載中に行われた企画について</LinkExternal>）</small>。</li>
-		</ul>
+		<List>
+			<li>1990年代後半の雑誌でパソコンにおける漫画執筆の特集があり、久米田先生が登場しているらしい<small>（<Anchor href="https://x.com/1970Chione/status/1447166381024178182">目撃情報</Anchor><!-- ちおね@長崎 2nd　2021-10-10 20:45　90年代後半の何かの雑誌で、「BOOMTOWN」の頃の内田美奈子先生と、「南国アイスホッケー部」の頃の「久米田康治先生が特集で出てて、パソコンで漫画描けるのか…とか思ったことは覚えてる。あの頃の、絵描き系の圧倒的Mac率がすごかった。 -->）</small>。</li>
+			<li>2001年頃、雑誌に『<cite>かってに改蔵</cite>』のアニメ設定資料が掲載されたらしい<small>（<Anchor href="http://tukigamiteta.blog43.fc2.com/blog-entry-104.html">もう、いーかげんなおはなし 「かってに改蔵」連載中に行われた企画について</Anchor>）</small>。</li>
+		</List>
 	</Section>
 </Layout>

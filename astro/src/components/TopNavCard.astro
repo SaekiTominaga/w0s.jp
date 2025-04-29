@@ -1,0 +1,28 @@
+---
+import { getIdHash } from '@util/hash';
+
+interface Props {
+	heading?: string;
+}
+
+const { heading } = Astro.props;
+
+const content = await Astro.slots.render('default');
+
+const headingId = heading !== undefined ? getIdHash(content) : undefined;
+---
+
+<nav class="top-nav-card" aria-labelledby={headingId}>
+	{heading !== undefined && <h2 id={headingId}>{heading}</h2>}
+
+	<ul class="list" set:html={content} />
+</nav>
+
+<style>
+	.list {
+		display: block grid;
+		grid-template-columns: repeat(auto-fill, minmax(15.3em, 1fr));
+		gap: 15px;
+		container-type: inline-size;
+	}
+</style>

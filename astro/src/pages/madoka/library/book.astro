@@ -2,11 +2,11 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -33,16 +33,16 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="@2.5" release="2011-03-31" isbn="978-4-04-894080-1" amazonAsin="4048940805" amazonImageId="51+ojV0aDoL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem pages={[34, 41]}><em>「『魔法少女まどか☆マギカ』」</em>岩上敦宏インタビュー。脚本制作時の話など。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>本書は2011年3月31日の発売だが、インタビューは12話までの放送が終了していることを前提とした会話であり、また10話までの本編画像も掲載されているため、震災前に取材、編集が行われたものと思われる。</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="BLACK PAST" release="2011-06-12" amazonAsin="B008F6Y5LG" amazonImageId="51TSD8MDIEL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -76,9 +76,9 @@ const slugger = new GithubSlugger();
 				<LibItem>TVシリーズのキャラクター設定、異空間設定、武器・小物設定、美術設定ほか。「<cite>劇団イヌカレー　イメージノート</cite>」付属。</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>2014年3月には<LinkExternal href="https://www.amazon.co.jp/dp/4896109163/">新装版</LinkExternal>が発売されている。</li>
-			</ul>
+			<ListNote>
+				<li>2014年3月には<Anchor href="https://www.amazon.co.jp/dp/4896109163/">新装版</Anchor>が発売されている。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="100人がしゃべり倒す! 「魔法少女まどか☆マギカ」" release="2011-10-14" isbn="978-4-7966-8525-2" amazonAsin="4796685251" amazonImageId="61v0hG6jFpL" amazonImageWidth={115} amazonImageHeight={160}>
@@ -107,7 +107,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="平成23年度[第15回]文化庁メディア芸術祭受賞作品集" release="2012-02-01">
 			<LibContent>
@@ -206,7 +206,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2013年</H>
+		<Fragment slot="heading">2013年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="魔法少女まどか☆マギカ　KEY ANIMATION NOTE extra 始まりの物語／永遠の物語" release="2013-02-28" amazonAsin="4896106768" amazonImageId="51X1+Ul732L" amazonImageWidth={111} amazonImageHeight={160}>
 			<LibContent>
@@ -241,11 +241,11 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="小池一夫対談集　キャラクター60年" release="2013-08-24" isbn="978-4-86225-865-6" amazonAsin="4862258654" amazonImageId="51TFFALVXGL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem>小池一夫×虚淵玄の対談（<LinkExternal href="https://live.nicovideo.jp/watch/lv77366564">ニコニコ生放送で2012年1月29日に行われた対談</LinkExternal>の書き起こし）。キャラクターの命名、1〜3話の構成の根拠、世界観をキャラクター化（キュゥべえ）したこと、執筆にあたり影響を受けた作品など。</LibItem>
+				<LibItem>小池一夫×虚淵玄の対談（<Anchor href="https://live.nicovideo.jp/watch/lv77366564">ニコニコ生放送で2012年1月29日に行われた対談</Anchor>の書き起こし）。キャラクターの命名、1〜3話の構成の根拠、世界観をキャラクター化（キュゥべえ）したこと、執筆にあたり影響を受けた作品など。</LibItem>
 			</LibContent>
-			<ul class="p-notes">
-				<li>内容は雑誌<LinkExternal href="https://www.amazon.co.jp/dp/4862258239/">「<cite>カイト vol.4</cite>」</LinkExternal>の再掲。また、2014年6月には分冊化のうえ<LinkExternal href="https://www.amazon.co.jp/dp/B00LC2A81G/">電子書籍版</LinkExternal>が発売されている。</li>
-			</ul>
+			<ListNote>
+				<li>内容は雑誌<Anchor href="https://www.amazon.co.jp/dp/4862258239/">「<cite>カイト vol.4</cite>」</Anchor>の再掲。また、2014年6月には分冊化のうえ<Anchor href="https://www.amazon.co.jp/dp/B00LC2A81G/">電子書籍版</Anchor>が発売されている。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="魔法少女まどか☆マギカぴあ" release="2013-10-12" isbn="978-4-8356-2267-5" amazonAsin="4835622677" amazonImageId="61RCQrbFshL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -270,12 +270,12 @@ const slugger = new GithubSlugger();
 		<LibBook slugger={slugger} headingLevel={3} title="pixiv×魔法少女まどか☆マギカ ILLUST COLLECTION" release="2013-12-29" amazonAsin="B00HUOL3TG" amazonImageId="51qlWGHOiaL" amazonImageWidth={160} amazonImageHeight={160}>
 			<LibContent>
 				<LibItem>pixivにて『<cite>劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語</cite>』の公開を記念して開催されたイラストコンテストの受賞作品、全61作品を収録。</LibItem>
-				<LibItem><LinkExternal href="https://goods.pixiv.net/c85/">コミックマーケット85（2013年12月）の pixiv ブース</LinkExternal>にて販売。</LibItem>
+				<LibItem><Anchor href="https://goods.pixiv.net/c85/">コミックマーケット85（2013年12月）の pixiv ブース</Anchor>にて販売。</LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2014年</H>
+		<Fragment slot="heading">2014年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="劇場版魔法少女まどか☆マギカ [新編]叛逆の物語　公式ガイドブック　only you." release="2014-04-12" isbn="978-4-8322-4429-0" amazonAsin="4832244299" amazonImageId="61oIrxBA5xL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -316,7 +316,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2015年</H>
+		<Fragment slot="heading">2015年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="いま、幸福について語ろう　宮台真司「幸福学」対談集" release="2015-02-25" isbn="978-4-86436-599-4" amazonAsin="4864365997" amazonImageId="51Gd9zGrLpL" amazonImageWidth={107} amazonImageHeight={160}>
 			<LibContent>
@@ -357,7 +357,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2016年</H>
+		<Fragment slot="heading">2016年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="「MADOGATARI展」図録" release="2016-09-22" amazonAsin="B01LZLCCFB" amazonImageId="51jKmWdTPXL" amazonImageWidth={112} amazonImageHeight={160}>
 			<LibContent>
@@ -379,7 +379,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="PRO-VISION English Communication Ⅰ NEW EDITION" release="2017-02-25" isbn="978-4-342-04122-8" amazonAsin="4342041227" amazonImageId="510muQzSkYL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -396,7 +396,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2018年</H>
+		<Fragment slot="heading">2018年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ホビージャパン フィギュアJAPANマニアックス（ホビージャパンムック 857）" release="2018-04-03" isbn="978-4-7986-1667-4" amazonAsin="4798616672" amazonImageId="51eIq9wMQYL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
@@ -422,7 +422,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="「MBSアニメフェス2018」パンフレット" release="2018-10-06" amazonAsin="B087C4SRCW" amazonImageId="51EWDEpqepL" amazonImageWidth={160} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem>2018年10月6日に大阪城ホールで開催された<LinkExternal href="https://www.mbs.jp/animefes/">MBSアニメフェス2018</LinkExternal>のパンフレット。</LibItem>
+				<LibItem>2018年10月6日に大阪城ホールで開催された<Anchor href="https://www.mbs.jp/animefes/">MBSアニメフェス2018</Anchor>のパンフレット。</LibItem>
 				<LibItem>まどか&amp;キュゥべえの描き下ろしイラスト掲載（潮月一也）。</LibItem>
 				<LibItem>TVシリーズの生アフレコを行った加藤英美里、悠木碧、喜多村英梨のインタビュー（3ページ）。</LibItem>
 				<LibItem>「<cite>かかわり</cite>」「<cite>コネクト</cite>」のライブを行った TrySail のインタビュー（1ページ）。</LibItem>
@@ -437,7 +437,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 	<Section slugger={slugger}>
-		<H slot="heading">2019年</H>
+		<Fragment slot="heading">2019年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="谷口淳一郎　アニメーション画集" release="2019-01-19" isbn="978-4-902948-25-7" amazonAsin="4902948257" amazonImageId="511cGO68yuL" amazonImageWidth={118} amazonImageHeight={160}>
 			<LibContent>
@@ -453,7 +453,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="「MBSアニメヒストリアー平成ー」パンフレット" release="2019-03-17">
 			<LibContent>
-				<LibItem>2019年3月17日に幕張メッセで開催された<LinkExternal href="https://www.mbs.jp/anime-historia/">MBSアニメヒストリアー平成ー supported by LIVE DAM STADIUM</LinkExternal>のパンフレット。</LibItem>
+				<LibItem>2019年3月17日に幕張メッセで開催された<Anchor href="https://www.mbs.jp/anime-historia/">MBSアニメヒストリアー平成ー supported by LIVE DAM STADIUM</Anchor>のパンフレット。</LibItem>
 				<LibItem>登壇者から悠木碧、斎藤千和のインタビュー（それぞれ2ページ）。</LibItem>
 				<LibItem>また、『<cite>まどか☆マギカ</cite>』プロデューサーとして久保田光俊のインタビュー（1ページ）。企画立ち上げ時、東日本大震災、[新編]悪魔ほむらの再アフレコなどの振り返り。続編は制作準備中とのこと。</LibItem>
 			</LibContent>
@@ -476,7 +476,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="マギアレコード　魔法少女変身原画集　Vol.1" release="2019-12-27" amazonAsin="B0834SSCMR" amazonImageId="51okJd8J-nL" amazonImageWidth={113} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem>原画集。<LinkExternal href="https://www.aniplexplus.com/itemjTNSiCGd">Aniplex+ の商品ページ</LinkExternal>にサンプル掲載。</LibItem>
+				<LibItem>原画集。<Anchor href="https://www.aniplexplus.com/itemjTNSiCGd">Aniplex+ の商品ページ</Anchor>にサンプル掲載。</LibItem>
 			</LibContent>
 		</LibBook>
 	</Section>

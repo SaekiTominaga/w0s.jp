@@ -1,0 +1,30 @@
+---
+import FooterAds from '@components/footer/Ads.astro';
+import FooterNav from '@components/footer/Nav.astro';
+import FooterSocial from '@components/footer/Social.astro';
+
+interface Props {
+	pagePath: string;
+	ad?: boolean;
+}
+
+const { pagePath, ad = true } = Astro.props;
+---
+
+<footer id="footer" class="l-footer">
+	<div class="l-footer__nav">
+		<FooterNav pagePath={pagePath} />
+	</div>
+
+	<div class="l-footer__social">
+		<FooterSocial pagePath={pagePath} />
+	</div>
+
+	{
+		ad && (
+			<div class="l-footer__ads">
+				<FooterAds />
+			</div>
+		)
+	}
+</footer>

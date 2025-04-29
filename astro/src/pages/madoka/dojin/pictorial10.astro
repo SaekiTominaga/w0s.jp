@@ -1,10 +1,17 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import H from '@components/H.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
+import ListOrder from '@components/ListOrder.astro';
+import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import Image from '@components/+phrasing/Image.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -32,15 +39,21 @@ const structuredData: StructuredData = {
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section id="introduction">
-		<H slot="heading">概要</H>
+		<Fragment slot="heading">概要</Fragment>
 
 		<p>韓国でこれまでに行われた劇場版上映の様子をまとめました。</p>
 
 		<p>2018年に行われた [新編] の全国公開レポートを中心に、興行統計からの考察や韓国版映像の比較などを紹介。また2012年と2013年にソウルで行われた特別上映会の貴重な写真も掲載しています。</p>
 
-		<div class="c-embed-sidebar -embed-first">
-			<div class="c-embed-sidebar__text">
-				<dl class="p-list-table">
+		<Flex>
+			<FlexItem>
+				<Embedded border={true}>
+					<Image path="madoka/dojin/pictorial10_cover.jpg" alt="表紙画像: 建物内にある[新編]の告知イラストが書かれた大きなポスターと、券売機ディスプレイに流れる[新編]映像の写真" width={170} height={240} quality={60} slot="media" />
+					<Fragment slot="caption">表紙</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<ListTable>
 					<div>
 						<dt>発行日</dt>
 						<dd>2018年8月11日</dd>
@@ -53,45 +66,35 @@ const structuredData: StructuredData = {
 						<dt>冊子価格</dt>
 						<dd>800円</dd>
 					</div>
-				</dl>
-			</div>
-			<div class="c-embed-sidebar__embed">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="madoka/dojin/pictorial10_cover.jpg" alt="表紙画像: 建物内にある[新編]の告知イラストが書かれた大きなポスターと、券売機ディスプレイに流れる[新編]映像の写真" width={170} height={240} quality={60} />
-					</div>
-				</figure>
-			</div>
-		</div>
+				</ListTable>
+			</FlexItem>
+		</Flex>
 	</Section>
 
 	<Section id="buy">
-		<H slot="heading">購入</H>
+		<Fragment slot="heading">購入</Fragment>
 
-		<div class="c-flex -buttons">
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial10_sample.pdf" type="application/pdf" class="c-button"><img src="/assets/image/icon/pdf.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">サンプル PDF</span></a>
-			</div>
-			<div class="c-flex__item">
-				<LinkExternal href="https://w0s.booth.pm/items/2649161" icon={false} class="c-button"><img src="/assets/image/icon/booth.png" alt="" width="16" height="16" class="c-button__icon" /><span class="c-button__text">冊子版（BOOTH）</span></LinkExternal>
-			</div>
-			<div class="c-flex__item">
-				<a href="/madoka/dojin/pdf/pictorial10/v1.0.0.pdf" type="application/pdf" rel="nofollow" class="c-button">
-					<img src="/assets/image/icon/padlock.svg" alt="(認証)" width="16" height="16" class="c-button__icon" /><span class="c-button__text">
-						購入者向け PDF<small>（ver.1.0.0、2018年8月11日公開）</small>
-					</span>
-				</a>
-				<ul class="p-notes">
-					<li>認証情報は奥付に記載</li>
-				</ul>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial10_sample.pdf" type="pdf">サンプル PDF</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="https://w0s.booth.pm/items/2649161" type="booth">冊子版（BOOTH）</AnchorButton>
+			</FlexItem>
+			<FlexItem>
+				<AnchorButton href="/madoka/dojin/pdf/pictorial10/v1.0.0.pdf" type="pdf" auth={true}>購入者向け PDF【要認証】<small>（ver.1.0.0、2018年8月11日公開）</small></AnchorButton>
+			</FlexItem>
+		</Flex>
+
+		<ListNote>
+			<li>購入者向け PDF の認証情報は奥付に記載</li>
+		</ListNote>
 	</Section>
 
 	<Section id="toc">
-		<H slot="heading">目次</H>
+		<Fragment slot="heading">目次</Fragment>
 
-		<ol class="p-list">
+		<ListOrder>
 			<li>
 				韓国における『まどか☆マギカ』劇場版上映
 				<ol>
@@ -116,34 +119,28 @@ const structuredData: StructuredData = {
 					<li>【コラム】予告映像バリエーション</li>
 				</ol>
 			</li>
-		</ol>
+		</ListOrder>
 	</Section>
 
 	<Section id="add">
-		<H slot="heading">追加情報</H>
+		<Fragment slot="heading">追加情報</Fragment>
 
 		<p>p.12 <q>日本国外でのイベント上映の動向までは把握していないが、少なくとも一般上映において劇場でパッケージ版映像が流れたのは世界でも初めて、かつ今のところは唯一の例と思われる。</q>の部分に関する補足です。2014年4月の Blu-ray, DVD 発売以降、海外でイベント上映が行われたのは下記の2件を把握しています。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>
 				2014年7月5日〜14日に中国・上海で開催された「<cite>CCG EXPO 2014</cite>」の関連イベントとして、期間中に複数の映画館にて [前編] [後編] も含めた3部作の上映が行われました。
 				<ul>
-					<li>
-						<LinkExternal href="https://web.archive.org/web/20161114000219/http://www.ccgexpo.cn/events/24">イベント公式サイトの告知</LinkExternal>
-					</li>
-					<li>
-						<LinkExternal href="https://www.weibo.com/2539961154/Bc0Cvh2ms">「<span lang="zh-Hans">上海发布</span>」の新浪微博アカウントによるタイムテーブル</LinkExternal>
-					</li>
+					<li><Anchor href="https://web.archive.org/web/20161114000219/http://www.ccgexpo.cn/events/24">イベント公式サイトの告知</Anchor></li>
+					<li><Anchor href="https://www.weibo.com/2539961154/Bc0Cvh2ms">「<span lang="zh-Hans">上海发布</span>」の新浪微博アカウントによるタイムテーブル</Anchor></li>
 				</ul>
 			</li>
 			<li>
 				2014年12月5日〜7日にシンガポールで開催された「<cite>AFA 2014</cite>」の関連イベントとして、同月9〜11日に上映が行われました。
 				<ul>
-					<li>
-						<LinkExternal href="https://sgcafe.com/2014/12/aniplex-show-idolmster-movie-madoka-magica-rebellion-anohana-movie-singapore-afa/">日本のサブカル情報を発信している「<cite>SGCafe</cite>」による記事</LinkExternal>
-					</li>
+					<li><Anchor href="https://sgcafe.com/2014/12/aniplex-show-idolmster-movie-madoka-magica-rebellion-anohana-movie-singapore-afa/">日本のサブカル情報を発信している「<cite>SGCafe</cite>」による記事</Anchor></li>
 				</ul>
 			</li>
-		</ul>
+		</List>
 	</Section>
 </Layout>

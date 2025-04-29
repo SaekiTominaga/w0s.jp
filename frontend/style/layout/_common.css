@@ -95,11 +95,18 @@
 }
 
 .l-content__header {
+	& > * + * {
+		margin-block-start: calc(var(--stack-margin-base) * 2);
+	}
 }
 
 .l-content__body {
 	.l-content__header + & {
 		margin-block-start: 80px;
+	}
+
+	:is(&, & form) > * + * {
+		margin-block-start: var(--stack-margin-base);
 	}
 }
 
@@ -115,6 +122,10 @@
 			inline-size: min(30em, 100%);
 			content: "";
 		}
+	}
+
+	& > * + * {
+		margin-block-start: calc(var(--stack-margin-base) * 2);
 	}
 }
 

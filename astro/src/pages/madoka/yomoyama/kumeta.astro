@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
+import ListLink from '@components/ListLink.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -13,11 +14,11 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<ul class="p-links -index">
+	<ListLink index={true}>
 		<li><a href="/madoka/yomoyama/kumeta_kaizo"><cite>かってに改蔵</cite></a>（漫画、ラジオ）</li>
 		<li><a href="/madoka/yomoyama/kumeta_zetsubou"><cite>さよなら絶望先生</cite></a>（漫画、ラジオ）</li>
 		<li><a href="/madoka/yomoyama/kumeta_joshiraku"><cite>じょしらく</cite></a>（漫画、TVアニメ、ラジオ）</li>
 		<li><a href="/madoka/yomoyama/kumeta_sekadoro"><cite>せっかち伯爵と時間どろぼう</cite></a>（漫画）</li>
 		<li><a href="/madoka/yomoyama/kumeta_kakushigoto"><cite>かくしごと</cite></a>（漫画）</li>
-	</ul>
+	</ListLink>
 </Layout>

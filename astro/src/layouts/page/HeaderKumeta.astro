@@ -1,0 +1,27 @@
+---
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import HeaderSearchForm from '@components/header/SearchForm.astro';
+import HeaderSite from '@components/header/Site.astro';
+
+interface Props {
+	top?: boolean;
+}
+
+const { top = false } = Astro.props;
+---
+
+<header id="header" class="l-header">
+	<div class="l-header__main">
+		<div class="l-header__site">
+			<HeaderSite top={top} href="/kumeta/" name="久米田康治データベース" summary="漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト" />
+		</div>
+		<div class="l-header__utility">
+			<div class="l-header__feed">
+				<AnchorButton href="/kumeta/feed" type="atom">新着フィード</AnchorButton>
+			</div>
+			<div class="l-header__search">
+				<HeaderSearchForm />
+			</div>
+		</div>
+	</div>
+</header>

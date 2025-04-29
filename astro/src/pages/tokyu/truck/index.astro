@@ -1,6 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import ListLink from '@components/ListLink.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -14,11 +15,11 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<ul class="p-links -index">
+	<ListLink index={true}>
 		<li><a href="/tokyu/truck/ts300">TS-300 系</a></li>
 		<li><a href="/tokyu/truck/ts700">TS-700 系（パイオニアⅢ）</a></li>
 		<li><a href="/tokyu/truck/ts800">TS-800 系</a></li>
 		<li><a href="/tokyu/truck/ts1000">TS-1000 系（ボルスタレス）</a></li>
 		<li><a href="/tokyu/truck/etc">東急車輛、J-TREC 製以外の台車</a></li>
-	</ul>
+	</ListLink>
 </Layout>

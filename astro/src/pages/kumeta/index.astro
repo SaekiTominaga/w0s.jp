@@ -1,10 +1,18 @@
 ---
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import LayoutTop from '@layouts/content-body/Top.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import ListLink from '@components/ListLink.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import TopNavText from '@components/TopNavText.astro';
 import TopUpdate from '@components/TopUpdate.astro';
+import TopUpdateItem from '@components/TopUpdateItem.astro';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import KumetaTopService from '@components/kumeta/TopService.astro';
+import KumetaTopServiceItem from '@components/kumeta/TopServiceItem.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -17,141 +25,120 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
-	<nav class="p-top-nav" id="contents" aria-labelledby="landmark-contents-label">
-		<header class="p-top-nav__header">
-			<div class="p-top-nav__hdg">
-				<h2 id="landmark-contents-label">サイトコンテンツ</h2>
-			</div>
-		</header>
-		<div class="p-top-nav__main">
-			<div class="c-grid -top-nav">
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<H slot="heading">漫画</H>
+	<LayoutTop>
+		<Fragment slot="nav">
+			<TopNavText heading="サイトコンテンツ">
+				<Fragment slot="main">
+					<Grid column="wide" headingType="b">
+						<GridItem>
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">漫画</Fragment>
 
-						<ul class="p-links -index">
-							<li><a href="/kumeta/manga/list">作品リスト</a><small>（1988年〜）</small></li>
-							<li><a href="/kumeta/manga/subtitle">連載作品サブタイトル</a><small>（1991年〜）</small></li>
-							<li><a href="/kumeta/manga/color">本誌カラー掲載回</a><small>（1991年〜）</small></li>
-							<li><a href="/kumeta/manga/comment">本誌目次コメント</a><small>（1992年〜）</small></li>
-							<li><a>コンビニコミック</a><small>（2004年〜2015年）</small></li>
-							<li><a href="/kumeta/manga/ebook">電子書籍の非収録コンテンツ</a></li>
-						</ul>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<H slot="heading">メディア紹介</H>
+								<ListLink index={true}>
+									<li><a href="/kumeta/manga/list">作品リスト</a><small>（1988年〜）</small></li>
+									<li><a href="/kumeta/manga/subtitle">連載作品サブタイトル</a><small>（1991年〜）</small></li>
+									<li><a href="/kumeta/manga/color">本誌カラー掲載回</a><small>（1991年〜）</small></li>
+									<li><a href="/kumeta/manga/comment">本誌目次コメント</a><small>（1992年〜）</small></li>
+									<li><a>コンビニコミック</a><small>（2004年〜2015年）</small></li>
+									<li><a href="/kumeta/manga/ebook">電子書籍の非収録コンテンツ</a></li>
+								</ListLink>
+							</Section>
+						</GridItem>
+						<GridItem>
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">メディア紹介</Fragment>
 
-						<ul class="p-links -index">
-							<li><a href="/kumeta/library/manga">漫画雑誌</a><small>（1979年〜）</small></li>
-							<li><a href="/kumeta/library/book">図書、一般雑誌</a><small>（1993年〜）</small></li>
-							<li><a href="/kumeta/library/newspaper">新聞</a><small>（2002年〜）</small></li>
-							<li><a href="/kumeta/library/freepaper">フリーペーパー</a><small>（2003年〜）</small></li>
-							<li><a href="/kumeta/library/web">Web</a><small>（2007年〜）</small></li>
-						</ul>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<H slot="heading">アニメ</H>
+								<ListLink index={true}>
+									<li><a href="/kumeta/library/manga">漫画雑誌</a><small>（1979年〜）</small></li>
+									<li><a href="/kumeta/library/book">図書、一般雑誌</a><small>（1993年〜）</small></li>
+									<li><a href="/kumeta/library/newspaper">新聞</a><small>（2002年〜）</small></li>
+									<li><a href="/kumeta/library/freepaper">フリーペーパー</a><small>（2003年〜）</small></li>
+									<li><a href="/kumeta/library/web">Web</a><small>（2007年〜）</small></li>
+								</ListLink>
+							</Section>
+						</GridItem>
+						<GridItem>
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">アニメ</Fragment>
 
-						<ul class="p-links -index">
-							<li><a href="/kumeta/anime/zetsubou/diff">『さよなら絶望先生』放送版とパッケージ版の比較</a></li>
-							<li><a>『かくしごと』放送版とパッケージ版の比較</a></li>
-							<li><a href="/kumeta/anime/kakushigoto/storyboard">『劇場編集版　かくしごと』絵コンテ検証</a></li>
-						</ul>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<H slot="heading">久米田先生</H>
+								<ListLink index={true}>
+									<li><a href="/kumeta/anime/zetsubou/diff">『さよなら絶望先生』放送版とパッケージ版の比較</a></li>
+									<li><a>『かくしごと』放送版とパッケージ版の比較</a></li>
+									<li><a href="/kumeta/anime/kakushigoto/storyboard">『劇場編集版　かくしごと』絵コンテ検証</a></li>
+								</ListLink>
+							</Section>
+						</GridItem>
+						<GridItem>
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">久米田先生</Fragment>
 
-						<ul class="p-links -index">
-							<li><a>年表</a><small>（1988年〜）</small></li>
-							<li><a>イベント登壇、サイン会</a><small>（1992年〜）</small></li>
-							<li><a href="/kumeta/kumeta/interview">インタビュー</a><small>（1996年〜）</small></li>
-							<li><a href="/kumeta/kumeta/media">メディア出演</a><small>（2003年〜）</small></li>
-							<li><a href="/kumeta/kumeta/x">X アイコン履歴</a><small>（2019年〜2021年）</small></li>
-						</ul>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<H slot="heading">よもやま</H>
+								<ListLink index={true}>
+									<li><a>年表</a><small>（1988年〜）</small></li>
+									<li><a>イベント登壇、サイン会</a><small>（1992年〜）</small></li>
+									<li><a href="/kumeta/kumeta/interview">インタビュー</a><small>（1996年〜）</small></li>
+									<li><a href="/kumeta/kumeta/media">メディア出演</a><small>（2003年〜）</small></li>
+									<li><a href="/kumeta/kumeta/x">X アイコン履歴</a><small>（2019年〜2021年）</small></li>
+								</ListLink>
+							</Section>
+						</GridItem>
+						<GridItem>
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">よもやま</Fragment>
 
-						<ul class="p-links -index">
-							<li><a href="/kumeta/yomoyama/mangaka">“近所の売れないまんが家” 登場履歴</a><small>（1991年〜）</small></li>
-							<li><a href="/kumeta/yomoyama/kuigaten">「悔画展」収録イラスト一覧</a><small>（2016年）</small></li>
-							<li><a href="/kumeta/yomoyama/zensarashi_slideshow">「全曝し展」の様子</a><small>（2021年）</small></li>
-							<li><a href="/kumeta/yomoyama/zensarashi_badge">「全曝し展」トレーディング著者缶バッジの出典</a></li>
-							<li><a href="/kumeta/yomoyama/pulp_daidanen">『スタジオパルプ』最終話　大団円イラストキャラ</a></li>
-							<li><a href="/kumeta/yomoyama/zetsubou_web">アニメ『さよなら絶望先生』公式サイトのアーカイブ</a></li>
-						</ul>
-					</Section>
-				</div>
-				<div class="c-grid__item">
-					<Section slugger={slugger} depth={2} headingType="b">
-						<H slot="heading">最新ニュース</H>
+								<ListLink index={true}>
+									<li><a href="/kumeta/yomoyama/mangaka">“近所の売れないまんが家” 登場履歴</a><small>（1991年〜）</small></li>
+									<li><a href="/kumeta/yomoyama/kuigaten">「悔画展」収録イラスト一覧</a><small>（2016年）</small></li>
+									<li><a href="/kumeta/yomoyama/zensarashi_slideshow">「全曝し展」の様子</a><small>（2021年）</small></li>
+									<li><a href="/kumeta/yomoyama/zensarashi_badge">「全曝し展」トレーディング著者缶バッジの出典</a></li>
+									<li><a href="/kumeta/yomoyama/pulp_daidanen">『スタジオパルプ』最終話　大団円イラストキャラ</a></li>
+									<li><a href="/kumeta/yomoyama/zetsubou_web">アニメ『さよなら絶望先生』公式サイトのアーカイブ</a></li>
+								</ListLink>
+							</Section>
+						</GridItem>
+						<GridItem>
+							<Section slugger={slugger} depth={2} headingType="b">
+								<Fragment slot="heading">最新ニュース</Fragment>
 
-						<ul class="p-kumeta-top-news">
-							<li>
-								<LinkExternal href="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" icon={false}>
-									<span class="p-kumeta-top-news__image"><img src="/kumeta/image/icon_google-calendar.png" alt="" width="64" height="64" /></span>
-									<span class="p-kumeta-top-news__text">Google カレンダー</span>
-								</LinkExternal>
-							</li>
-							<li>
-								<LinkExternal href="https://mastodon.social/@kumeta_news" icon={false}>
-									<span class="p-kumeta-top-news__image"><img src="/assets/image/icon/mastodon.svg" alt="" width="61" height="64" /></span>
-									<span class="p-kumeta-top-news__text">Mastodon</span></LinkExternal
-								>
-							</li>
-						</ul>
+								<KumetaTopService>
+									<KumetaTopServiceItem title="Google カレンダー" linkPath="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" iconPath="/kumeta/image/icon_google-calendar.png" />
+									<KumetaTopServiceItem title="Mastodon" linkPath="https://mastodon.social/@kumeta_news" iconPath="/assets/image/icon/mastodon.svg" />
+								</KumetaTopService>
 
-						<ul class="p-notes">
-							<li>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Mastodon に流しています。</li>
-						</ul>
-					</Section>
-				</div>
-			</div>
-		</div>
-	</nav>
+								<ListNote>
+									<li>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Mastodon に流しています。</li>
+								</ListNote>
+							</Section>
+						</GridItem>
+					</Grid>
+				</Fragment>
+			</TopNavText>
+		</Fragment>
 
-	<section class="p-top-update" id="update">
-		<header class="p-top-update__header">
-			<div class="p-top-update__hdg">
-				<h2>更新履歴</h2>
-			</div>
+		<Fragment slot="update">
+			<TopUpdate id="update" heading="更新履歴">
+				<Fragment slot="notice">
+					<AnchorButton href="/kumeta/feed" type="atom" narrow={true}>新着フィード</AnchorButton>
+				</Fragment>
 
-			<div class="p-top-update__notice">
-				<a href="/kumeta/feed" type="application/atom+xml" class="c-button -feed">
-					<img src="/assets/image/icon/feed.svg" alt="" width="16" height="16" class="c-button__icon" />
-					<span class="c-button__text">新着フィード</span>
-				</a>
-			</div>
-		</header>
-		<div class="p-top-update__main">
-			<ul class="p-top-update-list">
-				<TopUpdate date="2025-04-19">
+				<TopUpdateItem slot="item" date="2025-04-19">
 					<p><a href="/kumeta/library/book">メディア紹介 — 図書、一般雑誌</a>に「アニメディア 2007年7月号」「月刊ニュータイプ 2007年7月号」を追加</p>
 					<p><a href="/kumeta/library/newspaper">メディア紹介 — 新聞</a>に「新潟日報 2007年6月22日 朝刊」を追加</p>
-				</TopUpdate>
-				<TopUpdate date="2025-03-24">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2025-03-24">
 					<p><a href="/kumeta/library/manga">メディア紹介 — 漫画雑誌</a>に「週刊少年サンデー 2025年16号」を追加</p>
 					<p><a href="/kumeta/library/book">メディア紹介 — 図書、一般雑誌</a>に「アニメージュ 2007年8月号」「アニメディア 2007年8月号」を追加</p>
-				</TopUpdate>
-				<TopUpdate date="2025-02-18">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2025-02-18">
 					<p><a href="/kumeta/library/manga">メディア紹介 — 漫画雑誌</a>に「ゲッサン 2025年2月号」を追加</p>
 					<p><a href="/kumeta/library/book">メディア紹介 — 図書、一般雑誌</a>に「アニメージュ 2010年10月号」「アニメージュ 2013年9月号」「アニメージュ 2013年12月号」を追加</p>
-				</TopUpdate>
-				<TopUpdate date="2025-01-10">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2025-01-10">
 					<p><a href="/kumeta/anime/zetsubou/diff">『さよなら絶望先生』放送版とパッケージ版の比較</a>に 0′00″, 14′12″, 14′35″, 14′53″, 15′23″, 16′06″, 16′40″の差分データを追加</p>
-				</TopUpdate>
-				<TopUpdate date="2025-01-08">
+				</TopUpdateItem>
+				<TopUpdateItem slot="item" date="2025-01-08">
 					<p><a href="/kumeta/yomoyama/zensarashi_badge">「全曝し展」トレーディング著者缶バッジの出典</a>を作成</p>
-				</TopUpdate>
-			</ul>
-		</div>
-	</section>
+				</TopUpdateItem>
+			</TopUpdate>
+		</Fragment>
+	</LayoutTop>
 </Layout>

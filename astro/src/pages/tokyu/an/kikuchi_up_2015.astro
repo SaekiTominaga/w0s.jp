@@ -1,6 +1,10 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
+import Announce from '@components/tokyu/Announce.astro';
+import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
+import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
+import ListNote from '@components/ListNote.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -28,91 +32,73 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<div class="l-tokyu-announce">
-		<div class="l-tokyu-announce__header">
-			<p class="p-tokyu-announce-train"><span class="c-tokyu-train -local">普通ワンマン　上熊本</span>行</p>
-			<p class="p-tokyu-announce-period">2015年の放送装置更新から、2016年の5100形引退まで</p>
-		</div>
-		<div class="l-tokyu-announce__main">
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>北熊本発車時</h2>
-					<p>たいへん長らくお待たせいたしました。毎度、電車をご利用頂きありがとうございます。上熊本行きです。お乗り間違えのないようご注意ください。終点、上熊本までの所要時間はおよそ9分です。ドア付近のお客様はドアの開閉にご注意ください。<span class="c-tokyu-announce -manners">また、携帯電話のご使用もご遠慮ください。</span></p>
-				</section>
-				<section>
-					<h2>北熊本発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は坪井川公園、坪井川公園です。<span class="c-tokyu-announce -oneman">電車はワンマン運転中です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう先頭車両一番前の運賃箱へお支払いください。ICカード利用の方は、先頭車両一番前の運賃箱に設置の降車リーダーにタッチしてください。複数人や割引運賃の方は、タッチする前に乗務員までお知らせください。</span>事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、お足元やお手回り品にご注意ください。</p>
-				</section>
-				<section>
-					<h2>坪井川公園到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく坪井川公園、坪井川公園です。左側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
-				</section>
-			</div>
+	<Announce station="上熊本" type="local" operation="oneman" period="2015年の放送装置更新から、2016年の5100形引退まで" recordDate="2015-04-12" recordCar="5100形1両編成">
+		<AnnounceStation>
+			<section>
+				<h2>北熊本発車時</h2>
+				<p>たいへん長らくお待たせいたしました。毎度、電車をご利用頂きありがとうございます。上熊本行きです。お乗り間違えのないようご注意ください。終点、上熊本までの所要時間はおよそ9分です。ドア付近のお客様はドアの開閉にご注意ください。<AnnoucePhrase type="manners">また、携帯電話のご使用もご遠慮ください。</AnnoucePhrase></p>
+			</section>
+			<section>
+				<h2>北熊本発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は坪井川公園、坪井川公園です。<AnnoucePhrase type="oneman">電車はワンマン運転中です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう先頭車両一番前の運賃箱へお支払いください。ICカード利用の方は、先頭車両一番前の運賃箱に設置の降車リーダーにタッチしてください。複数人や割引運賃の方は、タッチする前に乗務員までお知らせください。</AnnoucePhrase>事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、お足元やお手回り品にご注意ください。</p>
+			</section>
+			<section>
+				<h2>坪井川公園到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく坪井川公園、坪井川公園です。左側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>坪井川公園発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は打越、打越です。お客様へお願いいたします。車内・ホームなどで不審物を発見された場合には、運転士または駅係員へご連絡ください。ご協力をお願いいたします。</p>
-				</section>
-				<section>
-					<h2>打越到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく打越、打越です。右側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>坪井川公園発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は打越、打越です。お客様へお願いいたします。車内・ホームなどで不審物を発見された場合には、運転士または駅係員へご連絡ください。ご協力をお願いいたします。</p>
+			</section>
+			<section>
+				<h2>打越到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく打越、打越です。右側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>打越発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は池田、池田です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう先頭車両一番前の運賃箱へお支払いください。ICカードご利用の方は、運賃箱に設置の降車リーダーにタッチしてください。複数人精算の方は、カードをタッチする前に乗務員へお知らせください。右側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
-				</section>
-				<section>
-					<h2>池田到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく池田、池田です。右側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>打越発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は池田、池田です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう先頭車両一番前の運賃箱へお支払いください。ICカードご利用の方は、運賃箱に設置の降車リーダーにタッチしてください。複数人精算の方は、カードをタッチする前に乗務員へお知らせください。右側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
+			</section>
+			<section>
+				<h2>池田到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく池田、池田です。右側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>池田発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>次は韓々坂、韓々坂です。事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、お足元やお手回り品にご注意ください。</p>
-				</section>
-				<section>
-					<h2>韓々坂到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく韓々坂、韓々坂です。左側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。両替の必要なお客様は、お早めの両替をお願いいたします。</p>
-				</section>
-			</div>
+		<AnnounceStation>
+			<section>
+				<h2>池田発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>次は韓々坂、韓々坂です。事故防止のため、進行中やむを得ず急ブレーキを掛けることがありますので、お足元やお手回り品にご注意ください。</p>
+			</section>
+			<section>
+				<h2>韓々坂到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく韓々坂、韓々坂です。左側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。両替の必要なお客様は、お早めの両替をお願いいたします。</p>
+			</section>
+		</AnnounceStation>
 
-			<div class="p-tokyu-announce-station">
-				<section>
-					<h2>韓々坂発車</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。次は上熊本、上熊本、終点です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう先頭車両一番前の運賃箱へお支払いください。ICカードご利用の方は、運賃箱に設置の降車リーダーにタッチしてください。複数人精算の方は、カードをタッチする前に乗務員へお知らせください。なお、小銭のご用意はお早めにお願いいたします。整理券、回数券は折り曲げず、運賃箱にお入れください。</p>
-				</section>
-				<section>
-					<h2>上熊本到着</h2>
-					<p><span class="c-tokyu-announce -chime">♪</span>ご乗車ありがとうございました。まもなく上熊本、上熊本、終点です。車内にお忘れ物のないよう、もう一度お手回り品をご確認ください。左側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。ご乗車ありがとうございました。またのご利用をお待ちしております。</p>
-				</section>
-			</div>
-		</div>
-		<div class="l-tokyu-announce__footer">
-			<dl class="p-tokyu-announce-data">
-				<div>
-					<dt>収録日</dt>
-					<dd>2015年4月12日</dd>
-				</div>
-				<div>
-					<dt>車種</dt>
-					<dd>5100形1両編成</dd>
-				</div>
-			</dl>
-		</div>
-	</div>
+		<AnnounceStation>
+			<section>
+				<h2>韓々坂発車</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。次は上熊本、上熊本、終点です。運賃は整理券と運賃表をお確かめのうえ、釣銭の要らないよう先頭車両一番前の運賃箱へお支払いください。ICカードご利用の方は、運賃箱に設置の降車リーダーにタッチしてください。複数人精算の方は、カードをタッチする前に乗務員へお知らせください。なお、小銭のご用意はお早めにお願いいたします。整理券、回数券は折り曲げず、運賃箱にお入れください。</p>
+			</section>
+			<section>
+				<h2>上熊本到着</h2>
+				<p><AnnoucePhrase type="chime">♪</AnnoucePhrase>ご乗車ありがとうございました。まもなく上熊本、上熊本、終点です。車内にお忘れ物のないよう、もう一度お手回り品をご確認ください。左側のドアが開きます。ドア付近のお客様は開くドアにご注意ください。ご乗車ありがとうございました。またのご利用をお待ちしております。</p>
+			</section>
+		</AnnounceStation>
+	</Announce>
 
-	<ul class="p-notes">
+	<ListNote>
 		<li>
 			上記のほか、途中駅停車中に以下の放送が流れます。
 			<ul>
 				<li><q>お待たせいたしました。上熊本行きです。整理券をお取りください。定期券、回数券の方も整理券をお取りください。</q></li>
 			</ul>
 		</li>
-	</ul>
+	</ListNote>
 </Layout>

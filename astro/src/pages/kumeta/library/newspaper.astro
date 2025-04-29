@@ -2,11 +2,12 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
 import LibNewspaper from '@components/LibNewspaper.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -35,7 +36,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">2002年</H>
+		<Fragment slot="heading">2002年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2002-03-23" npClass="夕刊">
 			<LibContent>
@@ -45,21 +46,21 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2006年</H>
+		<Fragment slot="heading">2006年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2006-04-16" npClass="朝刊">
 			<LibContent>
-				<LibItem position="14面">「<cite>ササキバラ・ゴウ　コミックガイド</cite>」にて『<cite>さよなら絶望先生</cite>』紹介<small>（<LinkExternal href="https://web.archive.org/web/20060426054235/http://book.asahi.com/comic/TKY200604190336.html">アサヒ・コムBOOK</LinkExternal>にも一時期掲載されていた）</small></LibItem>
+				<LibItem position="14面">「<cite>ササキバラ・ゴウ　コミックガイド</cite>」にて『<cite>さよなら絶望先生</cite>』紹介<small>（<Anchor href="https://web.archive.org/web/20060426054235/http://book.asahi.com/comic/TKY200604190336.html">アサヒ・コムBOOK</Anchor>にも一時期掲載されていた）</small></LibItem>
 			</LibContent>
 		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2007年</H>
+		<Fragment slot="heading">2007年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2007-01-31" npClass="夕刊">
 			<LibContent>
-				<LibItem position="5面">「<cite>「鈴木先生」が話題　武富健治さん</cite>」教師作品の関連として『<cite>さよなら絶望先生</cite>』も紹介、第一話の<q>金ぎたない世の中に絶望した!!</q>のコマ掲載<small>（<LinkExternal href="https://web.archive.org/web/20070207123159/https://www.yomiuri.co.jp/book/news/20070131bk01.htm">YOMIURI ONLINE</LinkExternal>にも一時期掲載されていた）</small></LibItem>
+				<LibItem position="5面">「<cite>「鈴木先生」が話題　武富健治さん</cite>」教師作品の関連として『<cite>さよなら絶望先生</cite>』も紹介、第一話の<q>金ぎたない世の中に絶望した!!</q>のコマ掲載<small>（<Anchor href="https://web.archive.org/web/20070207123159/https://www.yomiuri.co.jp/book/news/20070131bk01.htm">YOMIURI ONLINE</Anchor>にも一時期掲載されていた）</small></LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -104,7 +105,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2008年</H>
+		<Fragment slot="heading">2008年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカン" release="2008-01-02" npClass="Vol.49 2008年新年号" tags={['アニメ']}>
 			<LibContent>
@@ -145,7 +146,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2009年</H>
+		<Fragment slot="heading">2009年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2009-01-01" npClass="朝刊">
 			<LibContent>
@@ -179,7 +180,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2010年</H>
+		<Fragment slot="heading">2010年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2010-04-28" npClass="Vol.43" tags={['ラジオ']}>
 			<LibContent>
@@ -198,9 +199,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="10面">「<cite>山村高淑のサブカルサプリ</cite>」で『<cite>かってに改蔵</cite>』が紹介、埼玉県内の舞台設定に言及</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>著者の所属する北海道大学のサイトで<LinkExternal href="https://hdl.handle.net/2115/53071">紙面が公開</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li>著者の所属する北海道大学のサイトで<Anchor href="https://hdl.handle.net/2115/53071">紙面が公開</Anchor></li>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2010-06-28" npClass="夕刊">
@@ -211,7 +212,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="アニカンR" release="2011-06-01" npClass="Vol.129" tags={['アニメ']}>
 			<LibContent>
@@ -224,14 +225,14 @@ const slugger = new GithubSlugger();
 				<LibItem position="8–9面">赤松健×畑健二郎の対談の中で「毎回アフレコに行っていた」「女性声優と飲みに行った」などの話が挙がる</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="http://blog.yomiuri.co.jp/popstyle/2011/09/post-2d6d.html">popstyle ブログでの紹介</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="http://blog.yomiuri.co.jp/popstyle/2011/09/post-2d6d.html">popstyle ブログでの紹介</Anchor></li>
+			</ListNote>
 		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2012-01-26" npClass="夕刊">
 			<LibContent>
@@ -253,7 +254,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2015年</H>
+		<Fragment slot="heading">2015年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2015-07-27" npClass="夕刊">
 			<LibContent>
@@ -272,15 +273,15 @@ const slugger = new GithubSlugger();
 				<LibItem>折り込みポスターの裏面に他作品に混じって『<cite>さよなら絶望先生</cite>』1期キービジュアルも掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>シャフト設立40周年イベント<LinkExternal href="https://www.madogatari.jp/">MADOGATARI展</LinkExternal>の会場とコミケットで販売されたもの（タブロイド紙だがイベントのグッズ扱いで正式な新聞ではない）</li>
-				<li>2016年8月〜12月の期間限定で<LinkExternal href="https://prtimes.jp/main/html/rd/p/000000739.000001227.html">電子版も発売</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li>シャフト設立40周年イベント<Anchor href="https://www.madogatari.jp/">MADOGATARI展</Anchor>の会場とコミケットで販売されたもの（タブロイド紙だがイベントのグッズ扱いで正式な新聞ではない）</li>
+				<li>2016年8月〜12月の期間限定で<Anchor href="https://prtimes.jp/main/html/rd/p/000000739.000001227.html">電子版も発売</Anchor></li>
+			</ListNote>
 		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞（熊本版）" release="2017-09-08" npClass="朝刊">
 			<LibContent>
@@ -296,7 +297,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2020年</H>
+		<Fragment slot="heading">2020年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2020-04-19" npClass="夕刊" tags={['インタビュー']}>
 			<LibContent>
@@ -306,7 +307,7 @@ const slugger = new GithubSlugger();
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2020-05-06" npClass="夕刊">
 			<LibContent>
-				<LibItem position="1面">『<cite>MANGA Day to Day</cite>』の紹介記事<small>（<LinkExternal href="https://www.asahi.com/articles/ASP56358TP4XUTIL071.html">朝日新聞デジタル</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem position="1面">『<cite>MANGA Day to Day</cite>』の紹介記事<small>（<Anchor href="https://www.asahi.com/articles/ASP56358TP4XUTIL071.html">朝日新聞デジタル</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -324,7 +325,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2021年</H>
+		<Fragment slot="heading">2021年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2021-03-21" tags={['音楽']}>
 			<LibContent>
@@ -349,9 +350,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="18面">「<cite>高橋李依「『じわじわ』願ってます」</cite>」映画『<cite>かくしごと</cite>』舞台挨拶レポート、登壇者写真掲載（声優陣5人のみ）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>同日の中日スポーツは休刊で代わりに「特別販売版」が発行されたようだが、そちらへの掲載可否は未確認</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="中日スポーツ" release="2021-07-18" tags={['アニメ']}>
@@ -374,27 +375,27 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2023年</H>
+		<Fragment slot="heading">2023年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2023-03-28" npClass="夕刊">
 			<LibContent>
-				<LibItem position="12面">「<cite>腕磨く姿に共感応援</cite>」週刊少年ジャンプ掲載『<cite>あかね噺</cite>』の紹介記事だが、落語漫画つながりで『<cite>じょしらく</cite>』も紹介<small>（<LinkExternal href="https://www.nikkei.com/article/DGKKZO69644980Y3A320C2BE0P00/">Web 記事（有料会員限定）</LinkExternal>にも掲載）</small></LibItem>
+				<LibItem position="12面">「<cite>腕磨く姿に共感応援</cite>」週刊少年ジャンプ掲載『<cite>あかね噺</cite>』の紹介記事だが、落語漫画つながりで『<cite>じょしらく</cite>』も紹介<small>（<Anchor href="https://www.nikkei.com/article/DGKKZO69644980Y3A320C2BE0P00/">Web 記事（有料会員限定）</Anchor>にも掲載）</small></LibItem>
 			</LibContent>
 		</LibNewspaper>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2024年</H>
+		<Fragment slot="heading">2024年</Fragment>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日新聞" release="2024-04-30" npClass="朝刊">
 			<LibContent>
 				<LibItem position="24面（TV欄）">『<cite>踊る！さんま御殿!!</cite>』の紹介文に<q>職質される人気漫画家</q></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.ntv.co.jp/goten/articles/32dxmld9epjxplcgbp.html">「人によく怒られる有名人」特集</LinkExternal>で久米田先生が同番組2回目の出演</li>
+			<ListNote>
+				<li><Anchor href="https://www.ntv.co.jp/goten/articles/32dxmld9epjxplcgbp.html">「人によく怒られる有名人」特集</Anchor>で久米田先生が同番組2回目の出演</li>
 				<li>一例として朝日新聞の朝刊を挙げたが、他の多くの新聞の TV 欄でも同様の内容が夕刊を含めて掲載</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="読売新聞" release="2024-06-21" npClass="夕刊">
@@ -402,10 +403,10 @@ const slugger = new GithubSlugger();
 				<LibItem position="9面">「<cite>レクサス窃盗容疑　逮捕</cite>」久米田先生所有のレクサスが2023年2月に盗難に遭い、容疑者2人が逮捕された事件の報道（被害者実名報道）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>当事件は産経新聞による独自報道で <LinkExternal href="https://www.sankei.com/article/20240621-DONL7TAZ3RJ5LMVTM7DDYPG22M/">6月21日10:00に発表</LinkExternal>された。当日の夕刊への掲載が確認できたのはこの読売新聞と次に挙げる北國新聞のみだが、翌日には多くの新聞（スポーツ紙を含む）に掲載された。</li>
+			<ListNote>
+				<li>当事件は産経新聞による独自報道で <Anchor href="https://www.sankei.com/article/20240621-DONL7TAZ3RJ5LMVTM7DDYPG22M/">6月21日10:00に発表</Anchor>された。当日の夕刊への掲載が確認できたのはこの読売新聞と次に挙げる北國新聞のみだが、翌日には多くの新聞（スポーツ紙を含む）に掲載された。</li>
 				<li>当事件は当日の TV ニュース番組やラジオ番組中のニュースコーナー等でも報道され、その一部は本記事のように被害者実名報道が行われた。</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="北國新聞" release="2024-06-21" npClass="夕刊">
@@ -470,7 +471,7 @@ const slugger = new GithubSlugger();
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="東京新聞" release="2024-06-23" npClass="朝刊">
 			<LibContent>
-				<LibItem position="20面">「<cite>狙われる国産高級車</cite>」レクサス盗難事件の手口に関してより深掘りした記事（被害者実名報道）、同内容が <LinkExternal href="https://www.tokyo-np.co.jp/article/335359">Web 記事</LinkExternal>でも公開</LibItem>
+				<LibItem position="20面">「<cite>狙われる国産高級車</cite>」レクサス盗難事件の手口に関してより深掘りした記事（被害者実名報道）、同内容が <Anchor href="https://www.tokyo-np.co.jp/article/335359">Web 記事</Anchor>でも公開</LibItem>
 			</LibContent>
 		</LibNewspaper>
 
@@ -479,9 +480,9 @@ const slugger = new GithubSlugger();
 				<LibItem position="21面">「<cite>30代2男性不起訴</cite>」レクサス盗難事件の容疑者が不起訴になった記事（被害者実名報道）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>6月21日に報道されたレクサス盗難事件の続報で <LinkExternal href="https://www.sankei.com/article/20240802-KJUC6DXJLVPU7HE2HL2QRI4OFE/">8月2日の夜に発表</LinkExternal>された。</li>
-			</ul>
+			<ListNote>
+				<li>6月21日に報道されたレクサス盗難事件の続報で <Anchor href="https://www.sankei.com/article/20240802-KJUC6DXJLVPU7HE2HL2QRI4OFE/">8月2日の夜に発表</Anchor>された。</li>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="日本経済新聞" release="2024-08-03" npClass="夕刊">
@@ -495,10 +496,10 @@ const slugger = new GithubSlugger();
 				<LibItem position="40面（TV欄）">『<cite>踊る！さんま御殿!!</cite>』の紹介文に<q>売れたくて絵を変えた人気漫画家悲しい告白</q></LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://www.ntv.co.jp/goten/articles/3250d1gen2jm3xjyth.html">「流行りに乗りたい人vs流行りに乗らない人」特集</LinkExternal>で久米田先生が同番組3回目の出演</li>
+			<ListNote>
+				<li><Anchor href="https://www.ntv.co.jp/goten/articles/3250d1gen2jm3xjyth.html">「流行りに乗りたい人vs流行りに乗らない人」特集</Anchor>で久米田先生が同番組3回目の出演</li>
 				<li>一例として朝日新聞の朝刊を挙げたが、他の多くの新聞の TV 欄でも同様の内容が夕刊を含めて掲載</li>
-			</ul>
+			</ListNote>
 		</LibNewspaper>
 
 		<LibNewspaper slugger={slugger} headingLevel={3} title="朝日中高生新聞" release="2024-11-03">
@@ -509,13 +510,13 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">調査中</H>
+		<Fragment slot="heading">調査中</Fragment>
 
-		<ul class="p-list">
-			<li><q cite="https://x.com/23720/status/15032124387">そういえば新聞を読み直していたら、絶望先生の作者の名前が見えた気がしたけど、同姓同名の気のせい？</q><LinkExternal href="https://x.com/23720/status/15032124387">2010年5月30日 18:49 投稿</LinkExternal></li>
-			<li><q cite="https://x.com/yaeee212/status/63502934339616768">電車待ってたら隣の男の人の新聞に絶望先生の文字 なんだとっ</q><LinkExternal href="https://x.com/yaeee212/status/63502934339616768">2011年4月28日 16:20 投稿</LinkExternal></li>
-			<li><q cite="https://x.com/yuki_snow05/status/217448049985859584">絶望先生が新聞に載ってたー</q><LinkExternal href="https://x.com/yuki_snow05/status/217448049985859584">2012年6月26日 11:43 投稿</LinkExternal></li>
-			<li><q cite="https://x.com/gypsy324/status/585490152736325632">鈴木先生特集の新聞記事に絶望先生も出てるあたりが、なんていうか俺の縮図かこれ</q><LinkExternal href="https://x.com/gypsy324/status/585490152736325632">2015年4月8日 02:11 投稿</LinkExternal></li>
-		</ul>
+		<List>
+			<li><q cite="https://x.com/23720/status/15032124387">そういえば新聞を読み直していたら、絶望先生の作者の名前が見えた気がしたけど、同姓同名の気のせい？</q><Anchor href="https://x.com/23720/status/15032124387">2010年5月30日 18:49 投稿</Anchor></li>
+			<li><q cite="https://x.com/yaeee212/status/63502934339616768">電車待ってたら隣の男の人の新聞に絶望先生の文字 なんだとっ</q><Anchor href="https://x.com/yaeee212/status/63502934339616768">2011年4月28日 16:20 投稿</Anchor></li>
+			<li><q cite="https://x.com/yuki_snow05/status/217448049985859584">絶望先生が新聞に載ってたー</q><Anchor href="https://x.com/yuki_snow05/status/217448049985859584">2012年6月26日 11:43 投稿</Anchor></li>
+			<li><q cite="https://x.com/gypsy324/status/585490152736325632">鈴木先生特集の新聞記事に絶望先生も出てるあたりが、なんていうか俺の縮図かこれ</q><Anchor href="https://x.com/gypsy324/status/585490152736325632">2015年4月8日 02:11 投稿</Anchor></li>
+		</List>
 	</Section>
 </Layout>

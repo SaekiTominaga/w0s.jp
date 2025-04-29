@@ -2,14 +2,18 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
-import DocMagazine from '@components/DocMagazine.astro';
-import H from '@components/H.astro';
-import Image from '@components/Image.astro';
-import LinkExternal from '@components/LinkExternal.astro';
-import LinkPhoto from '@components/LinkPhoto.astro';
-import NoteRef from '@components/NoteRef.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
+import Embedded from '@components/Embedded.astro';
+import Flex from '@components/Flex.astro';
+import FlexItem from '@components/FlexItem.astro';
+import Image from '@components/+phrasing/Image.astro';
+import ListNote from '@components/ListNote.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -28,163 +32,157 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<div class="p-table -full">
-		<table>
-			<colgroup span="3"></colgroup>
-			<colgroup span="2"></colgroup>
-			<colgroup></colgroup>
-			<thead>
-				<tr>
-					<th scope="colgroup" colspan="2">圧縮機</th>
-					<th scope="colgroup" colspan="2">電動機</th>
-					<th scope="colgroup" rowspan="2">主な搭載車両</th>
-				</tr>
-				<tr>
-					<th scope="col">形式</th>
-					<th scope="col">変位容積</th>
-					<th scope="col">形式</th>
-					<th scope="col">電圧</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><a href="#d2n" class="c-link">D2N</a></td>
-					<td>?</td>
-					<td>?</td>
-					<td>DC 750V / 1500V</td>
-					<td>3000形グループ、熊本電気鉄道5000形</td>
-				</tr>
-				<tr>
-					<td><a href="#3ys" class="c-link">3YS</a></td>
-					<td>1,000ℓ/min<NoteRef by="tkk5000-pamphlet" /></td>
-					<td>SE551</td>
-					<td>DC 1500V</td>
-					<td>5000系、5200系</td>
-				</tr>
-				<tr>
-					<td><a href="#c1000" class="c-link">C1000</a></td>
-					<td>1,194ℓ/min<NoteRef type="ref" by="denkisha145" /></td>
-					<td>MH80</td>
-					<td>DC 1500V</td>
-					<td>6000系、7000系、7200系</td>
-				</tr>
-				<tr>
-					<td><a href="#hb1500" class="c-link">HB1500</a></td>
-					<td>1,590ℓ/min</td>
-					<td>CM1515</td>
-					<td>DC 1500V</td>
-					<td>7200系、7000系、サハ7950形</td>
-				</tr>
-				<tr>
-					<td rowspan="2"><a href="#hb2000" class="c-link">HB2000</a></td>
-					<td rowspan="2">2,130ℓ/min</td>
-					<td>CM2015</td>
-					<td rowspan="2">DC 1500V</td>
-					<td rowspan="2">8000系グループ<small>（17次車以前）</small></td>
-				</tr>
-				<tr>
-					<td>EFO-H30</td>
-				</tr>
-				<tr>
-					<td rowspan="3"><a href="#hs20" class="c-link">HS20</a></td>
-					<td rowspan="2">2,100ℓ/min</td>
-					<td>A1544</td>
-					<td rowspan="2">AC 440V</td>
-					<td>9000系、1000系<small>（N、N′除く）</small>、2000系→9020系、クハ7915</td>
-				</tr>
-				<tr>
-					<td>TFC221</td>
-					<td>クハ9010</td>
-				</tr>
-				<tr>
-					<td>2,130ℓ/min</td>
-					<td>D1215</td>
-					<td>DC 1500V</td>
-					<td>7600系、8000系グループ<small>（18次車以降）</small>、7700系、1000N系</td>
-				</tr>
-				<tr>
-					<td rowspan="2"><a href="#hs10" class="c-link">HS10</a></td>
-					<td>1,175ℓ/min</td>
-					<td>D6515</td>
-					<td>DC 1500V</td>
-					<td>1000N′系、伊賀鉄道200系</td>
-				</tr>
-				<tr>
-					<td>1,120ℓ/min</td>
-					<td>?</td>
-					<td>AC 440V</td>
-					<td>福島交通1000系</td>
-				</tr>
-				<tr>
-					<td rowspan="2"><a href="#hs5" class="c-link">HS5</a></td>
-					<td>600ℓ/min<NoteRef type="ref" by="nabuco62" /></td>
-					<td>D3360</td>
-					<td>DC 600V</td>
-					<td>デハ70形、300系</td>
-				</tr>
-				<tr>
-					<td>610ℓ/min<NoteRef type="ref" by="pic675" /></td>
-					<td>?</td>
-					<td>AC 440V</td>
-					<td>Y000系</td>
-				</tr>
-				<tr>
-					<td><a href="#c2500" class="c-link">C2500L</a></td>
-					<td>2,463ℓ/min<NoteRef type="ref" by="sharyogijyutu218" /></td>
-					<td>A1744</td>
-					<td>AC 440V</td>
-					<td>新3000系</td>
-				</tr>
-				<tr>
-					<td><a href="#c2000m" class="c-link">C2000M</a></td>
-					<td>2,100ℓ/min<NoteRef type="ref" by="nabuco57" /></td>
-					<td>?</td>
-					<td>DC 1500V</td>
-					<td>富山地方鉄道17480形</td>
-				</tr>
-			</tbody>
-		</table>
+	<Table full={true}>
+		<colgroup span="3"></colgroup>
+		<colgroup span="2"></colgroup>
+		<colgroup></colgroup>
+		<thead>
+			<tr>
+				<th scope="colgroup" colspan="2">圧縮機</th>
+				<th scope="colgroup" colspan="2">電動機</th>
+				<th scope="colgroup" rowspan="2">主な搭載車両</th>
+			</tr>
+			<tr>
+				<th scope="col">形式</th>
+				<th scope="col">変位容積</th>
+				<th scope="col">形式</th>
+				<th scope="col">電圧</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><Anchor href="#d2n" bullet={true}>D2N</Anchor></td>
+				<td>?</td>
+				<td>?</td>
+				<td>DC 750V / 1500V</td>
+				<td>3000形グループ、熊本電気鉄道5000形</td>
+			</tr>
+			<tr>
+				<td><Anchor href="#3ys" bullet={true}>3YS</Anchor></td>
+				<td>1,000ℓ/min<NoteRef by="tkk5000-pamphlet" /></td>
+				<td>SE551</td>
+				<td>DC 1500V</td>
+				<td>5000系、5200系</td>
+			</tr>
+			<tr>
+				<td><Anchor href="#c1000" bullet={true}>C1000</Anchor></td>
+				<td>1,194ℓ/min<NoteRef type="ref" by="denkisha145" /></td>
+				<td>MH80</td>
+				<td>DC 1500V</td>
+				<td>6000系、7000系、7200系</td>
+			</tr>
+			<tr>
+				<td><Anchor href="#hb1500" bullet={true}>HB1500</Anchor></td>
+				<td>1,590ℓ/min</td>
+				<td>CM1515</td>
+				<td>DC 1500V</td>
+				<td>7200系、7000系、サハ7950形</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><Anchor href="#hb2000" bullet={true}>HB2000</Anchor></td>
+				<td rowspan="2">2,130ℓ/min</td>
+				<td>CM2015</td>
+				<td rowspan="2">DC 1500V</td>
+				<td rowspan="2">8000系グループ<small>（17次車以前）</small></td>
+			</tr>
+			<tr>
+				<td>EFO-H30</td>
+			</tr>
+			<tr>
+				<td rowspan="3"><Anchor href="#hs20" bullet={true}>HS20</Anchor></td>
+				<td rowspan="2">2,100ℓ/min</td>
+				<td>A1544</td>
+				<td rowspan="2">AC 440V</td>
+				<td>9000系、1000系<small>（N、N′除く）</small>、2000系→9020系、クハ7915</td>
+			</tr>
+			<tr>
+				<td>TFC221</td>
+				<td>クハ9010</td>
+			</tr>
+			<tr>
+				<td>2,130ℓ/min</td>
+				<td>D1215</td>
+				<td>DC 1500V</td>
+				<td>7600系、8000系グループ<small>（18次車以降）</small>、7700系、1000N系</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><Anchor href="#hs10" bullet={true}>HS10</Anchor></td>
+				<td>1,175ℓ/min</td>
+				<td>D6515</td>
+				<td>DC 1500V</td>
+				<td>1000N′系、伊賀鉄道200系</td>
+			</tr>
+			<tr>
+				<td>1,120ℓ/min</td>
+				<td>?</td>
+				<td>AC 440V</td>
+				<td>福島交通1000系</td>
+			</tr>
+			<tr>
+				<td rowspan="2"><Anchor href="#hs5" bullet={true}>HS5</Anchor></td>
+				<td>600ℓ/min<NoteRef type="ref" by="nabuco62" /></td>
+				<td>D3360</td>
+				<td>DC 600V</td>
+				<td>デハ70形、300系</td>
+			</tr>
+			<tr>
+				<td>610ℓ/min<NoteRef type="ref" by="pic675" /></td>
+				<td>?</td>
+				<td>AC 440V</td>
+				<td>Y000系</td>
+			</tr>
+			<tr>
+				<td><Anchor href="#c2500" bullet={true}>C2500L</Anchor></td>
+				<td>2,463ℓ/min<NoteRef type="ref" by="sharyogijyutu218" /></td>
+				<td>A1744</td>
+				<td>AC 440V</td>
+				<td>新3000系</td>
+			</tr>
+			<tr>
+				<td><Anchor href="#c2000m" bullet={true}>C2000M</Anchor></td>
+				<td>2,100ℓ/min<NoteRef type="ref" by="nabuco57" /></td>
+				<td>?</td>
+				<td>DC 1500V</td>
+				<td>富山地方鉄道17480形</td>
+			</tr>
+		</tbody>
+	</Table>
 
-		<NoteRefContent id="tkk5000-pamphlet">「<cite>T.K.K.超軽量電車5000型</cite>」（パンフレット）より。ただし、現車調査において 1,175ℓ/min の固体も存在することを確認しています。後の増備で増加したのか、それとも資料ではおおよその値を示しているに過ぎないのかは不明です。</NoteRefContent>
+	<NoteRefContent id="tkk5000-pamphlet">「<cite>T.K.K.超軽量電車5000型</cite>」（パンフレット）より。ただし、現車調査において 1,175ℓ/min の固体も存在することを確認しています。後の増備で増加したのか、それとも資料ではおおよその値を示しているに過ぎないのかは不明です。</NoteRefContent>
 
-		<NoteRefContent id="denkisha145"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
+	<NoteRefContent id="denkisha145"><DocMagazine name="電気車の科学" date="1960年5月号" no={145} article="東京急行新ステンレスカー6000形について" authors={['白石安之']} pages={[17]} /></NoteRefContent>
 
-		<NoteRefContent id="nabuco62"><DocMagazine name="ナブコ技報" date="1986年7月号" no={62} article="HS5電動空気圧縮機装置" pages={[53]} /></NoteRefContent>
+	<NoteRefContent id="nabuco62"><DocMagazine name="ナブコ技報" date="1986年7月号" no={62} article="HS5電動空気圧縮機装置" pages={[53]} /></NoteRefContent>
 
-		<NoteRefContent id="pic675"><DocMagazine name="鉄道ピクトリアル" date="1999年10月号" no={675} article="横浜高速鉄道Y000系" authors={['服部典夫', '佐藤浩規']} pages={[64]} /></NoteRefContent>
+	<NoteRefContent id="pic675"><DocMagazine name="鉄道ピクトリアル" date="1999年10月号" no={675} article="横浜高速鉄道Y000系" authors={['服部典夫', '佐藤浩規']} pages={[64]} /></NoteRefContent>
 
-		<NoteRefContent id="sharyogijyutu218"><DocMagazine name="車両技術" date="1999年9月号" no={218} article="東京急行電鉄3000系車両" authors={['神尾純一', '門田吉人']} pages={[49]} /></NoteRefContent>
+	<NoteRefContent id="sharyogijyutu218"><DocMagazine name="車両技術" date="1999年9月号" no={218} article="東京急行電鉄3000系車両" authors={['神尾純一', '門田吉人']} pages={[49]} /></NoteRefContent>
 
-		<NoteRefContent id="nabuco57"><DocMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7]} /></NoteRefContent>
-	</div>
+	<NoteRefContent id="nabuco57"><DocMagazine name="ナブコ技報" date="1984年1月号" no={57} article="低騒音空気圧縮機の開発" authors={['小椋聡']} pages={[7]} /></NoteRefContent>
 
-	<ul class="p-notes">
+	<ListNote>
 		<li>圧縮機変位容積で脚注のないものは現車調査による。</li>
-	</ul>
+	</ListNote>
 
 	<Section id="d2n">
-		<H slot="heading">D2N</H>
+		<Fragment slot="heading">D2N</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/D2N_510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-19 -->
-					</div>
-					<figcaption class="c-caption -meta">モハ510 復元車</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/D2N_kumamoto5102A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-05-06 -->
-					</div>
-					<figcaption class="c-caption -meta">熊本電気鉄道モハ5102A（東急デハ5032）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/D2N_510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-19 -->
+					<Fragment slot="caption">モハ510 復元車</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/D2N_kumamoto5102A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-05-06 -->
+					<Fragment slot="caption">熊本電気鉄道モハ5102A（東急デハ5032）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>モハ510形（デハ3450形）の一部をはじめ旧性能車に広く搭載されていたギヤ式の CP で、当初から昇圧を見込み複電圧対応として製作されました。そのため1952年〜1958年にかけての鉄道線 1500V 昇圧後も引き続き使用され、1993年のデハ3450形、デヤ3000形引退まで長く使用されました。また、唯一の電気機関車であったデキ1形（デキ3021 形）も本タイプを搭載していました。</p>
 
@@ -194,50 +192,44 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="3ys">
-		<H slot="heading">3YS</H>
+		<Fragment slot="heading">3YS</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/3YS_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2010-03-21 -->
-					</div>
-					<figcaption class="c-caption -meta">松本電気鉄道モハ5005（東急デハ5055）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/3YS_nagano2510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2007-05-05 -->
-					</div>
-					<figcaption class="c-caption -meta">長野電鉄モハ2510（東急デハ5015）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/3YS_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2010-03-21 -->
+					<Fragment slot="caption">松本電気鉄道モハ5005（東急デハ5055）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/3YS_nagano2510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-05-05 -->
+					<Fragment slot="caption">長野電鉄モハ2510（東急デハ5015）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
-		<p>旧5000系グループで採用された CP は従来のギヤ式に変わり、独立した電動機と圧縮機がベルトで結合された方式となりました。CP を裏側から見ると<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/3YS_gakunan5004_belt.jpg" title="岳南鉄道モハ5004"><!-- 撮影日: 2006-11-25 -->プーリーとベルトの様子</LinkPhoto>が窺えますが、圧縮機側の大プーリーは冷却ファンの羽根を兼ねていることが分かります。</p>
+		<p>旧5000系グループで採用された CP は従来のギヤ式に変わり、独立した電動機と圧縮機がベルトで結合された方式となりました。CP を裏側から見ると<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/3YS_gakunan5004_belt.jpg" title="岳南鉄道モハ5004"><!-- 撮影日: 2006-11-25 -->プーリーとベルトの様子</AnchorPhoto>が窺えますが、圧縮機側の大プーリーは冷却ファンの羽根を兼ねていることが分かります。</p>
 
-		<p>長野電鉄に譲渡された車両は A 基準対応化や、信州中野―湯田中間の急勾配対策による2両固定編成の主電動機交換などのほか、各種の冬季対策も行われ、 CP には覆いが被せられました。そのため、一見しただけでは他の床下機器に紛れて CP だと判別しづらい様相になっています。なお、下部には<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/3YS_nagano2510_bottom.jpg" title="長野電鉄モハ2510"><!-- 撮影日: 2009-09-08 -->通気口</LinkPhoto>が設けられています。</p>
+		<p>長野電鉄に譲渡された車両は A 基準対応化や、信州中野―湯田中間の急勾配対策による2両固定編成の主電動機交換などのほか、各種の冬季対策も行われ、 CP には覆いが被せられました。そのため、一見しただけでは他の床下機器に紛れて CP だと判別しづらい様相になっています。なお、下部には<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/3YS_nagano2510_bottom.jpg" title="長野電鉄モハ2510"><!-- 撮影日: 2009-09-08 -->通気口</AnchorPhoto>が設けられています。</p>
 
 		<p>本タイプを搭載した車両は岳南鉄道譲渡車を最後に2002年までにすべて引退しましたが、現在も静態保存車に残っています。</p>
 	</Section>
 
 	<Section id="c1000">
-		<H slot="heading">C1000</H>
+		<Fragment slot="heading">C1000</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/C1000_konan6005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-09-03 -->
-					</div>
-					<figcaption class="c-caption -meta">弘南鉄道デハ6005（東急デハ6005）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/C1000_konan6005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-09-03 -->
+					<Fragment slot="caption">弘南鉄道デハ6005（東急デハ6005）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p><a href="#3ys">3YS 型</a>の改良タイプであり、旧6000系から7200系（デハ7300形）まで搭載され、後にデハ3450形やデハ3500形などにも広く普及しました。</p>
 
@@ -245,37 +237,31 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="hb1500">
-		<H slot="heading">HB1500</H>
+		<Fragment slot="heading">HB1500</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB1500_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2005-03-29 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【7200系タイプ】</b>上田交通モハ7255（東急デハ7258）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB1500_fukushima7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2013-07-07 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【7000系タイプ】</b>福島交通デハ7202（東急デハ7125）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB1500_hokuriku7211.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-04-13 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【京阪タイプ】</b>北陸鉄道クハ7211（東急デハ7137）</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB1500_ueda7255.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2005-03-29 -->
+					<Fragment slot="caption"><b>【7200系タイプ】</b>上田交通モハ7255（東急デハ7258）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB1500_fukushima7202.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2013-07-07 -->
+					<Fragment slot="caption"><b>【7000系タイプ】</b>福島交通デハ7202（東急デハ7125）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB1500_hokuriku7211.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-04-13 -->
+					<Fragment slot="caption"><b>【京阪タイプ】</b>北陸鉄道クハ7211（東急デハ7137）</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p><a href="#3ys">3YS 型</a>、<a href="#c1000">C1000 型</a>からさらに構造が変わり、電動機と圧縮機をゴム可とう継手で繋ぎ、高圧・低圧それぞれ2つのシリンダを対向に配したもの（水平対向4気筒）となりました。この基本構造は後の <a href="#hb2000">HB2000 型</a>や <a href="#hs20">HS20 型</a>にも引き継がれています。</p>
 
@@ -283,52 +269,44 @@ const slugger = new GithubSlugger();
 
 		<p>現在では徐々に数を減らしているとはいえ、豊橋鉄道、大井川鐵道などで7200系タイプが、弘南鉄道、水間鉄道で7000系タイプがまだ多数活躍しています。ただし水間鉄道デハ1008 は7000系ながら7200系タイプを搭載しています。</p>
 
-		<p>なお、旧7000系のうち北陸鉄道譲渡車は床下機器が一新され、このうち CP は後に京阪電気鉄道の発生品<NoteRef type="ref" by="pic701" />への再交換がなされたのですが、奇しくも HB1500 型を搭載することになりました。ただし東急とは表裏逆向きに取り付けられており、また<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HB1500_ueda7255_back.jpg" title="上田電鉄モハ7255">東急タイプの HB1500 型の裏側</LinkPhoto>と比較すると電動機が異なるほか、フレームの電動機側の下端が斜めにカットされた形状になっている特徴が分かります。</p>
+		<p>なお、旧7000系のうち北陸鉄道譲渡車は床下機器が一新され、このうち CP は後に京阪電気鉄道の発生品<NoteRef type="ref" by="pic701" />への再交換がなされたのですが、奇しくも HB1500 型を搭載することになりました。ただし東急とは表裏逆向きに取り付けられており、また<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HB1500_ueda7255_back.jpg" title="上田電鉄モハ7255">東急タイプの HB1500 型の裏側</AnchorPhoto>と比較すると電動機が異なるほか、フレームの電動機側の下端が斜めにカットされた形状になっている特徴が分かります。</p>
 
 		<NoteRefContent id="pic701"><DocMagazine name="鉄道ピクトリアル" date="2001年5月臨時増刊号" no={701} article="現有私鉄概説　北陸鉄道" authors={['山本宏之']} pages={[88]} /></NoteRefContent>
 	</Section>
 
 	<Section id="hb2000">
-		<H slot="heading">HB2000</H>
+		<Fragment slot="heading">HB2000</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_8879.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-04-05 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【神鋼電機】</b>デハ8879（15次車）海側</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_8281.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2008-09-06 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【日立製作所】</b>デハ8281（16-2次車）海側 #1</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_izukyu8252.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2006-05-28 -->
-					</div>
-					<figcaption class="c-caption -meta"><b>【神鋼電機、反転】</b>伊豆急行クモハ8252（東急デハ8049）</figcaption>
-				</figure>
-			</div>
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/HB2000_8881_frame.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2009-05-22 -->
-					</div>
-					<figcaption class="c-caption -meta">デハ8881（15次車）海側</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_8879.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-04-05 -->
+					<Fragment slot="caption"><b>【神鋼電機】</b>デハ8879（15次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_8281.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2008-09-06 -->
+					<Fragment slot="caption"><b>【日立製作所】</b>デハ8281（16-2次車）海側 #1</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_izukyu8252.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2006-05-28 -->
+					<Fragment slot="caption"><b>【神鋼電機、反転】</b>伊豆急行クモハ8252（東急デハ8049）</Fragment>
+				</Embedded>
+			</FlexItem>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/HB2000_8881_frame.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2009-05-22 -->
+					<Fragment slot="caption">デハ8881（15次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>8000系に搭載された HB2000 型の基本構造は7200系で採用された <a href="#hb1500">HB1500 型</a>と同様ですが、容積や出力がアップされています。</p>
 
@@ -344,31 +322,27 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="hs20">
-		<H slot="heading">HS20</H>
+		<Fragment slot="heading">HS20</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">誘導電動機<small>（HS20-1）</small></H>
+			<Fragment slot="heading">誘導電動機<small>（HS20-1）</small></Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS20_9101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-01-24 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9101（1次車）海側</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS20_9010.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2013-06-16 -->
-						</div>
-						<figcaption class="c-caption -meta">クハ9010（3次車）海側</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS20_9101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-01-24 -->
+						<Fragment slot="caption">クハ9101（1次車）海側</Fragment>
+					</Embedded>
+				</FlexItem>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS20_9010.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2013-06-16 -->
+						<Fragment slot="caption">クハ9010（3次車）海側</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 
 			<p>低騒音、小型軽量化、低振動化を図るために開発された機種で、弁部から発生する音を軽減したり、フレーム構造を廃して圧縮機と電動機を直結したりすることにより、 <a href="#hb2000">HB2000 型</a>と比較して重量 40% 減、車内騒音値 11% 減を達成しています<NoteRef type="ref" by="nabuco57-2" />。</p>
 
@@ -376,27 +350,25 @@ const slugger = new GithubSlugger();
 
 			<p>現車試験の後、1986年デビューの9000系で本格採用され、2000系までの新造車に搭載されています。また <a href="#hb1500">HB1500 型</a>を搭載していたクハ7915 も先頭化改造からしばらくして本タイプに換装されました。</p>
 
-			<p>電動機は交流駆動とされ、 SIV から出力された三相交流が直接供給されます。隣接して<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS20_cm_9001.jpg" title="クハ9001 海側"><!-- 撮影日: 2007-09-15 -->起動装置</LinkPhoto>を備えますが、<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS20_cm_9009.jpg" title="クハ9009 海側"><!-- 撮影日: 2010-03-31 -->9000系3次車以降の起動装置</LinkPhoto>は小型化されています。</p>
+			<p>電動機は交流駆動とされ、 SIV から出力された三相交流が直接供給されます。隣接して<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS20_cm_9001.jpg" title="クハ9001 海側"><!-- 撮影日: 2007-09-15 -->起動装置</AnchorPhoto>を備えますが、<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS20_cm_9009.jpg" title="クハ9009 海側"><!-- 撮影日: 2010-03-31 -->9000系3次車以降の起動装置</AnchorPhoto>は小型化されています。</p>
 
 			<p>クハ9010 の CP は1992年に<dfn>双固定子誘導電動機（SIM モーター）</dfn>を使ったものに交換されました<NoteRef by="sim" />。これは始動時のみローターバーの抵抗を高くして、ローターに流れる誘導電流を抑えることで始動電流の抑制を図ったものであり、電動機（TFC221 型）の特性は通常の誘導電動機タイプとほぼ同一となっています。当時、東武鉄道など量産が行われた事業者もありましたが、東急電鉄では現車試験を続けている中で旅客車両の新造が1993年〜1999年の6年間途絶えたためか、 HS20 型の SIM タイプは量産されないまま、クハ9010 の CP も2013年の大井町線転籍直後に通常タイプに戻されて消滅しました。</p>
 
-			<NoteRefContent id="sim">SIM とは開発元である佐竹製作所（現在の<LinkExternal href="https://satake-japan.co.jp/">株式会社サタケ</LinkExternal>）から名称を取った SATAKE Induction Motor の略です。1989年に開発され、1992年に東急電車にて初めて実車搭載がなされました。装置の詳細は<DocMagazine name="電気車の科学" date="1993年10月号" no={546} article="SIMモータ式空気圧縮機の実用化について" authors={['宮田道一', '尾崎正明']} pages={[36, 39]} />や<DocMagazine name="自動化技術" date="1993年11月号" article="車載用双固定子形誘導電動機式空気圧縮機の実用化" authors={['丸山博正']} pages={[56, 59]} url="https://dl.ndl.go.jp/pid/2322419/1/46" />に、また開発時のエピソードは<LinkExternal href="https://satake-japan.co.jp/news/new-release/news120418-2.html">新幹線E5系に採用された時のニュースリリース</LinkExternal>に掲載されています。</NoteRefContent>
+			<NoteRefContent id="sim">SIM とは開発元である佐竹製作所（現在の<Anchor href="https://satake-japan.co.jp/">株式会社サタケ</Anchor>）から名称を取った SATAKE Induction Motor の略です。1989年に開発され、1992年に東急電車にて初めて実車搭載がなされました。装置の詳細は<DocMagazine name="電気車の科学" date="1993年10月号" no={546} article="SIMモータ式空気圧縮機の実用化について" authors={['宮田道一', '尾崎正明']} pages={[36, 39]} />や<DocMagazine name="自動化技術" date="1993年11月号" article="車載用双固定子形誘導電動機式空気圧縮機の実用化" authors={['丸山博正']} pages={[56, 59]} url="https://dl.ndl.go.jp/pid/2322419/1/46" />に、また開発時のエピソードは<Anchor href="https://satake-japan.co.jp/news/new-release/news120418-2.html">新幹線E5系に採用された時のニュースリリース</Anchor>に掲載されています。</NoteRefContent>
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">直流電動機<small>（HS20G）</small></H>
+			<Fragment slot="heading">直流電動機<small>（HS20G）</small></Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS20_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-12-29 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ8641（18-2次車）海側</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS20_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-12-29 -->
+						<Fragment slot="caption">デハ8641（18-2次車）海側</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 
 			<p>7600系や8000系グループ18次車以降も HS20 型が採用されましたが、こちらは直流駆動式とされました。</p>
 
@@ -405,31 +377,27 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section id="hs10">
-		<H slot="heading">HS10</H>
+		<Fragment slot="heading">HS10</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">直流電動機</H>
+			<Fragment slot="heading">直流電動機</Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS10_1223.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-04-17 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ1223（4次車）海側</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS10_iga101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-12-20 -->
-						</div>
-						<figcaption class="c-caption -meta">伊賀鉄道ク101（東急クハ1010）</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS10_1223.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-04-17 -->
+						<Fragment slot="caption">デハ1223（4次車）海側</Fragment>
+					</Embedded>
+				</FlexItem>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS10_iga101.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-12-20 -->
+						<Fragment slot="caption">伊賀鉄道ク101（東急クハ1010）</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 
 			<p><a href="#hs20">HS20 型</a>を元に開発された小容量タイプで、全体的にコンパクトになり、ちりこしが横向きに配されるなど印象も異なります。</p>
 
@@ -441,41 +409,37 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">誘導電動機</H>
+			<Fragment slot="heading">誘導電動機</Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS10_fukushima1208.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-04-17 -->
-						</div>
-						<figcaption class="c-caption -meta">福島交通クハ1208（東急デハ1257）</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS10_fukushima1208.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-04-17 -->
+						<Fragment slot="caption">福島交通クハ1208（東急デハ1257）</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 
 			<p>1000系の福島交通譲渡車はクハ1200形の CP が新品の HS10 型に換装されました。この際、種車と同じく交流駆動とされ、東急では見られなかった誘導電動機による HS10 型となっています。</p>
 		</Section>
 	</Section>
 
 	<Section id="hs5">
-		<H slot="heading">HS5</H>
+		<Fragment slot="heading">HS5</Fragment>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">直流電動機<small>（HS5）</small></H>
+			<Fragment slot="heading">直流電動機<small>（HS5）</small></Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS5_310B.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-02-22 -->
-						</div>
-						<figcaption class="c-caption -meta">デハ310B（2次車）山側 #2</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS5_310B.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-02-22 -->
+						<Fragment slot="caption">デハ310B（2次車）山側 #2</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 
 			<p>路面電車など小型車両用に開発されたもので、シリンダ配列は <a href="#hs10">HS10 型</a>までの水平対向4気筒から V型2気筒へ変更されています。</p>
 
@@ -483,65 +447,61 @@ const slugger = new GithubSlugger();
 		</Section>
 
 		<Section slugger={slugger} depth={2} headingType="b">
-			<H slot="heading">誘導電動機<small>（HS5-1）</small></H>
+			<Fragment slot="heading">誘導電動機<small>（HS5-1）</small></Fragment>
 
-			<div class="c-flex">
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS5_Y001.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2008-04-06 -->
-						</div>
-						<figcaption class="c-caption -meta">クハY001（1次車）海側 #1</figcaption>
-					</figure>
-				</div>
-				<div class="c-flex__item">
-					<figure class="c-fit">
-						<div class="p-embed -border">
-							<Image path="tokyu/machine/cp/HS5_Y002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-							<!-- 撮影日: 2009-03-22 -->
-						</div>
-						<figcaption class="c-caption -meta">クハY002（2次車）海側 #1</figcaption>
-					</figure>
-				</div>
-			</div>
+			<Flex>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS5_Y001.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2008-04-06 -->
+						<Fragment slot="caption">クハY001（1次車）海側 #1</Fragment>
+					</Embedded>
+				</FlexItem>
+				<FlexItem>
+					<Embedded border={true} captionMeta={true}>
+						<Image path="tokyu/machine/cp/HS5_Y002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<!-- 撮影日: 2009-03-22 -->
+						<Fragment slot="caption">クハY002（2次車）海側 #1</Fragment>
+					</Embedded>
+				</FlexItem>
+			</Flex>
 
 			<p>こどもの国線用のY000系には交流駆動タイプが搭載されています。本体は枕木方向に配されており、圧縮機が外側を向いているので2気筒である様子がよく分かります。</p>
 
-			<p>向かって右隣（上り方）に<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS5_CM16_Y003.jpg" title="クハY003 海側"><!-- 撮影日: 2009-03-22 -->起動装置</LinkPhoto>を備えています。</p>
+			<p>向かって右隣（上り方）に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/HS5_CM16_Y003.jpg" title="クハY003 海側"><!-- 撮影日: 2009-03-22 -->起動装置</AnchorPhoto>を備えています。</p>
 		</Section>
 	</Section>
 
 	<Section id="c2500">
-		<H slot="heading">C2500L</H>
+		<Fragment slot="heading">C2500L</Fragment>
 
-		<figure class="c-fit">
-			<div class="p-embed -border">
-				<Image path="tokyu/machine/cp/C2500L_3510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-				<!-- 撮影日: 2007-08-19 -->
-			</div>
-			<figcaption class="c-caption -meta">サハ3510（2次車）海側</figcaption>
-		</figure>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/C2500L_3510.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2007-08-19 -->
+					<Fragment slot="caption">サハ3510（2次車）海側</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>新3000系に搭載されたもので、シリンダは <a href="#hs20">HS20 型</a>などの対向4気筒から直列3気筒となり、ちりこしの右側に低圧2、高圧1 が一列に並んだ様相が特徴です。</p>
 
-		<p>向かって左隣（下り方）に<LinkPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/C2500L_CM15_3510.jpg" title="サハ3510 海側"><!-- 撮影日: 2007-08-19 -->起動装置</LinkPhoto>を備えています。</p>
+		<p>向かって左隣（下り方）に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/cp/C2500L_CM15_3510.jpg" title="サハ3510 海側"><!-- 撮影日: 2007-08-19 -->起動装置</AnchorPhoto>を備えています。</p>
 	</Section>
 
 	<Section id="c2000m">
-		<H slot="heading">C2000M</H>
+		<Fragment slot="heading">C2000M</Fragment>
 
-		<div class="c-flex">
-			<div class="c-flex__item">
-				<figure class="c-fit">
-					<div class="p-embed -border">
-						<Image path="tokyu/machine/cp/C2000M_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} />
-						<!-- 撮影日: 2013-11-03 -->
-					</div>
-					<figcaption class="c-caption -meta">富山地方鉄道モハ17482</figcaption>
-				</figure>
-			</div>
-		</div>
+		<Flex>
+			<FlexItem>
+				<Embedded border={true} captionMeta={true}>
+					<Image path="tokyu/machine/cp/C2000M_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<!-- 撮影日: 2013-11-03 -->
+					<Fragment slot="caption">富山地方鉄道モハ17482</Fragment>
+				</Embedded>
+			</FlexItem>
+		</Flex>
 
 		<p>富山地方鉄道に譲渡された8590系は、モハ17482形（東急デハ8690形）の CP が同鉄道の他車種の多くに使用されている C2000M 型に交換されました。</p>
 

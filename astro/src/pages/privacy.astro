@@ -1,8 +1,8 @@
 ---
 import dayjs from 'dayjs';
-import Layout from '@layouts/W0s.astro';
-import H from '@components/H.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import Layout from '@layouts/Site.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -17,41 +17,41 @@ const structuredData: StructuredData = {
 	<p>本ページでは <a href="https://w0s.jp/"><code>w0s.jp</code></a> および <a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a> 内のコンテンツにおいて、外部サービスの Cookie を使用している箇所、および Cookie を使っておらずともプライバシー上重要な点について説明します。</p>
 
 	<Section id="youtube">
-		<H slot="heading">YouTube 動画</H>
+		<Fragment slot="heading">YouTube 動画</Fragment>
 
 		<p>一部のページでは YouTube 動画を埋め込んでいます。</p>
 
-		<ul class="p-list">
-			<li>埋め込み動画は<LinkExternal href="https://support.google.com/youtube/answer/171780?hl=ja#zippy=%2C%E3%83%97%E3%83%A9%E3%82%A4%E3%83%90%E3%82%B7%E3%83%BC%E5%BC%B7%E5%8C%96%E3%83%A2%E3%83%BC%E3%83%89%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B">プライバシー強化モード</LinkExternal>を使用しています。</li>
+		<List>
+			<li>埋め込み動画は<Anchor href="https://support.google.com/youtube/answer/171780?hl=ja#zippy=%2C%E3%83%97%E3%83%A9%E3%82%A4%E3%83%90%E3%82%B7%E3%83%BC%E5%BC%B7%E5%8C%96%E3%83%A2%E3%83%BC%E3%83%89%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B">プライバシー強化モード</Anchor>を使用しています。</li>
 			<li>埋め込まれた動画を再生すると Google LLC が管理するドメイン (<code>www.youtube-nocookie.com</code>) に対してサードパーティ Cookie がセットされます。</li>
 			<li>ブラウザの設定で<em>ファーストパーティ Cookie やサードパーティ Cookie をブロックしていても動画の再生は可能です</em>。</li>
 			<li>埋め込み動画の直下には YouTube 動画ページへのリンクを張っているため、<em>埋め込み動画が再生できない環境でも動画ページに移動することは可能です</em>。</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="amazon">
-		<H slot="heading">Amazon アソシエイト</H>
+		<Fragment slot="heading">Amazon アソシエイト</Fragment>
 
 		<p>一部のページでは Amazon 商品へのリンクがあります。</p>
 
-		<ul class="p-list">
-			<li>これらは原則的に<dfn>Amazon.co.jp アソシエイト</dfn>のリンクとなっており、当サイトの閲覧者がこのリンクを経由して商品が購入された場合に、アマゾンジャパン合同会社が定める <LinkExternal href="https://affiliate.amazon.co.jp/help/operating/agreement">Amazonアソシエイト・プログラム運営規約</LinkExternal>により当サイトの管理者が紹介料を獲得します。</li>
+		<List>
+			<li>これらは原則的に<dfn>Amazon.co.jp アソシエイト</dfn>のリンクとなっており、当サイトの閲覧者がこのリンクを経由して商品が購入された場合に、アマゾンジャパン合同会社が定める <Anchor href="https://affiliate.amazon.co.jp/help/operating/agreement">Amazonアソシエイト・プログラム運営規約</Anchor>により当サイトの管理者が紹介料を獲得します。</li>
 			<li>アソシエイトリンクの表示に際して Cookie や類似のストレージ機能は使用されません。そのため、ブラウザの設定で <em>Cookie をブロックしていてもリンクの表示内容や URL は変わりません</em>。</li>
-		</ul>
+		</List>
 	</Section>
 
 	<Section id="ads">
-		<H slot="heading">Google AdSense<small>（コンテンツ連動型広告）</small></H>
+		<Fragment slot="heading">Google AdSense<small>（コンテンツ連動型広告）</small></Fragment>
 
 		<p>本ページを含む多くのページで下部のフッターに広告を掲示しています。</p>
 
-		<ul class="p-list">
+		<List>
 			<li>この広告は Google LLC などの第三者配信事業者が Cookie を使用して、あなたがそのウェブサイトや他のウェブサイトに過去にアクセスした際の情報に基づいて配信されます。</li>
 			<li>Google LLC が広告 Cookie を使用することにより、あなたがそのサイトや他のサイトにアクセスした際の情報に基づいて、Google LLC やそのパートナーが適切な広告を表示します。</li>
 			<li>広告のあるページでは、ファーストパーティ Cookie、および Google LLC が管理するドメイン (<code>doubleclick.net</code>) に対してサードパーティ Cookie がセットされます。</li>
-			<li><LinkExternal href="https://myadcenter.google.com/personalizationoff">マイ アド センター</LinkExternal>で広告のパーソナライズをオプトアウトすることができます。また、<LinkExternal href="https://optout.aboutads.info/" lang="en">WebChoices: Digital Advertising Alliance's Consumer Choice Tool for Web US</LinkExternal> でパーソナライズ広告に使われる第三者配信事業者の Cookie を無効にできるようです。<small>（※当サイトの管理者はその効果を検証していません）</small></li>
+			<li><Anchor href="https://myadcenter.google.com/personalizationoff">マイ アド センター</Anchor>で広告のパーソナライズをオプトアウトすることができます。また、<Anchor href="https://optout.aboutads.info/" lang="en">WebChoices: Digital Advertising Alliance's Consumer Choice Tool for Web US</Anchor> でパーソナライズ広告に使われる第三者配信事業者の Cookie を無効にできるようです。<small>（※当サイトの管理者はその効果を検証していません）</small></li>
 			<li>ブラウザの設定で <em>ファーストパーティ Cookie やサードパーティ Cookie をブロックしていても広告は表示されます</em>。</li>
 			<li>ブラウザの設定やアドブロック等で<em>広告を表示しない状態にしていてもページの閲覧には支障ありません</em>。</li>
-		</ul>
+		</List>
 	</Section>
 </Layout>

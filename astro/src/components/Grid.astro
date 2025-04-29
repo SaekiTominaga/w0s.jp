@@ -1,0 +1,51 @@
+---
+interface Props {
+	column: 'wide' | 'medium' | 'narrow' | number;
+	headingType?: 'a' | 'b' | 'c' | 'd';
+}
+
+const { column, headingType } = Astro.props;
+---
+
+<div class:list={['grid', typeof column === 'string' ? `-${column}` : undefined, headingType !== undefined ? `-hdg-${headingType}` : undefined]} style={typeof column === 'number' ? `--_min-inline-size: ${column}px` : undefined}>
+	<slot />
+</div>
+
+<style>
+	.grid {
+		--_gap-row: 1em;
+		--_gap-col: 50px;
+		--_min-inline-size: auto;
+
+		display: block grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(var(--_min-inline-size), 100%), 1fr));
+		gap: var(--_gap-row) var(--_gap-col);
+
+		/* 2カラム */
+		&.-wide {
+			--_min-inline-size: 360px;
+		}
+
+		/* 3カラム */
+		&.-medium {
+			--_min-inline-size: 240px;
+		}
+
+		/* 4カラム */
+		&.-narrow {
+			--_min-inline-size: 180px;
+		}
+
+		&.-hdg-a {
+			--_gap-row: 4.5rem;
+		}
+
+		&.-hdg-b {
+			--_gap-row: 3.75rem;
+		}
+
+		&.-hdg-c {
+			--_gap-row: 3rem;
+		}
+	}
+</style>

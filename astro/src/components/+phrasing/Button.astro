@@ -1,0 +1,34 @@
+---
+interface Props {
+	class: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<button type="button" class:list={['button', className]} {...Astro.props}><slot /></button>
+
+<style>
+	.button {
+		--_border-color: var(--color-border-dark);
+
+		outline-offset: -1px;
+		outline-width: var(--outline-width-bold);
+		border: 1px solid var(--_border-color);
+		border-radius: var(--border-radius-normal);
+		background-image: linear-gradient(var(--color-white), var(--color-bg-light));
+		padding: 0.5em 0.75em;
+		line-height: var(--line-height-narrow);
+		color: var(--color-black);
+		font-weight: var(--font-weight-bold);
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+
+		&:hover {
+			box-shadow: 0 0 2px var(--_border-color);
+			color: var(--_color);
+		}
+	}
+</style>

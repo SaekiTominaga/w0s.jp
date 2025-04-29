@@ -3,8 +3,8 @@
  */
 const URL_PARAM_TAG = 'tag'; // URL パラメーター・タグのキー
 
-const librarySectionElements = document.querySelectorAll<HTMLElement>('.l-content__main > section');
-const libraryElements = document.querySelectorAll<HTMLElement>('.p-library');
+const librarySectionElements = document.querySelectorAll<HTMLElement>('.l-content__body > section');
+const libraryElements = document.querySelectorAll<HTMLElement>('.js-library');
 const tagButtonElements = document.querySelectorAll<HTMLButtonElement>('.js-library-tag');
 
 /**
@@ -27,16 +27,14 @@ const narrowDown = (tagName?: string): void => {
 	if (tagName !== undefined) {
 		/* 当該タグ以外の要素を非表示にする */
 		Array.from(libraryElements)
-			.filter((element) =>
-				Array.from(element.querySelectorAll('.p-library .p-library__tags > li')).every((liElement) => liElement.textContent?.trim() !== tagName),
-			)
+			.filter((element) => Array.from(element.querySelectorAll('.js-library-tag')).every((tagElement) => tagElement.textContent?.trim() !== tagName))
 			.forEach((element) => {
 				element.hidden = true;
 			});
 
 		/* セクション内の表示要素が 0 件になった場合はセクションごと非表示にする */
 		Array.from(librarySectionElements)
-			.filter((element) => element.querySelectorAll('.p-library:not([hidden])').length === 0)
+			.filter((element) => element.querySelectorAll('.js-library:not([hidden])').length === 0)
 			.forEach((element) => {
 				element.hidden = true;
 			});
@@ -93,7 +91,7 @@ const click = (ev: Event): void => {
 	}
 
 	/* 押された当該ボタンのあるセクションまでスクロールする */
-	tagButtonElement.closest('.p-library')?.scrollIntoView();
+	tagButtonElement.closest('.js-library')?.scrollIntoView();
 
 	/* URL の書き換え */
 	url.hash = '';

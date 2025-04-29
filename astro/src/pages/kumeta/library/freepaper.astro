@@ -2,11 +2,11 @@
 import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
-import H from '@components/H.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import LinkExternal from '@components/LinkExternal.astro';
+import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '@type/types.js';
 
@@ -35,7 +35,7 @@ const slugger = new GithubSlugger();
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
-		<H slot="heading">2003年</H>
+		<Fragment slot="heading">2003年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.70" distribution="2003-12-01">
 			<LibContent>
@@ -51,7 +51,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2007年</H>
+		<Fragment slot="heading">2007年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="A-STATION 2007年8月号" distribution="2007-07-30" tags={['アニメ']}>
 			<LibContent>
@@ -93,7 +93,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2008年</H>
+		<Fragment slot="heading">2008年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.17 夏号" distribution="2008-08-15" tags={['アニメ']}>
 			<LibContent>
@@ -109,7 +109,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2009年</H>
+		<Fragment slot="heading">2009年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.21 夏号" distribution="2009-08-14" tags={['アニメ']}>
 			<LibContent>
@@ -117,9 +117,9 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[1, 4]}>『<cite>懺・さよなら絶望先生</cite>』新房昭之インタビュー、非公式アニメコミック第四話、大槻ケンヂインタビュー</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</LinkExternal>で公開。</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</Anchor>で公開。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.23 冬号" distribution="2009-12-29" tags={['アニメ']}>
@@ -127,14 +127,14 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[16]}>『<cite>懺・さよなら絶望先生</cite>』DVD 広告</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</LinkExternal>で公開。</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</Anchor>で公開。</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2011年</H>
+		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ 2011 Spring Vol.28" distribution="2011" tags={['アニメ']}>
 			<LibContent>
@@ -145,7 +145,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2012年</H>
+		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃTV Vol.8" distribution="2012-06-10" tags={['アニメ']}>
 			<LibContent>
@@ -160,9 +160,9 @@ const slugger = new GithubSlugger();
 				<LibItem>参：制作陣・出演者ノ言葉。（久米田康治、ヤス、水島努、佐倉綾音、山本希望、小岩井ことり、南條愛乃、後藤沙緒里）</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li>2012年6月30日、7月1日に秋葉原で行われた<LinkExternal href="https://king-cr.jp/special/joshiraku/news/news02.html">無料配布イベント2DAYS</LinkExternal>で配布。</li>
-			</ul>
+			<ListNote>
+				<li>2012年6月30日、7月1日に秋葉原で行われた<Anchor href="https://king-cr.jp/special/joshiraku/news/news02.html">無料配布イベント2DAYS</Anchor>で配布。</li>
+			</ListNote>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="声優きゃらびぃ Vol.7" distribution="2012-08-10" tags={['アニメ']}>
@@ -176,14 +176,14 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[32, 33]}>『<cite>じょしらく</cite>』山本希望×小岩井ことりインタビュー</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://weekly.ascii.jp/elem/000/002/611/2611297/">紹介ページ</LinkExternal></li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://weekly.ascii.jp/elem/000/002/611/2611297/">紹介ページ</Anchor></li>
+			</ListNote>
 		</LibBook>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2017年</H>
+		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.392" distribution="2017-05-05" tags={['描き下ろし']}>
 			<LibContent>
@@ -193,7 +193,7 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2020年</H>
+		<Fragment slot="heading">2020年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.457" distribution="2020-01-20" tags={['アニメ']}>
 			<LibContent>
@@ -203,21 +203,21 @@ const slugger = new GithubSlugger();
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2022年</H>
+		<Fragment slot="heading">2022年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="異質力奇譚" distribution="2020-03" tags={['描き下ろし']}>
 			<LibContent>
 				<LibItem>6ページの大学紹介漫画</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>和光大学の冊子（オープンキャンパス等で配布）</li>
-			</ul>
+			</ListNote>
 		</LibBook>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2023年</H>
+		<Fragment slot="heading">2023年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="WAKO UNIVERSITY 2024" distribution="2023-05" tags={['描き下ろし', 'インタビュー']}>
 			<LibContent>
@@ -225,16 +225,16 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[5, 6]}>久米田康治インタビュー</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
+			<ListNote>
 				<li>和光大学の2024年度大学案内（オープンキャンパス等で配布）</li>
-				<li>表紙イラストは<LinkExternal href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</LinkExternal>で公開</li>
-				<li>掲載のインタビューは<LinkExternal href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</LinkExternal>とは異なる（「<cite>5つの質問</cite>」は同一）</li>
-			</ul>
+				<li>表紙イラストは<Anchor href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</Anchor>で公開</li>
+				<li>掲載のインタビューは<Anchor href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</Anchor>とは異なる（「<cite>5つの質問</cite>」は同一）</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 
 	<Section slugger={slugger}>
-		<H slot="heading">2024年</H>
+		<Fragment slot="heading">2024年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="GCLマガジン" distribution="2024-09-26" tags={['描き下ろし', 'インタビュー']}>
 			<LibContent>
@@ -243,10 +243,10 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[6, 7]}>『<cite>違う冬のぼくら</cite>』紹介、イラスト掲載</LibItem>
 			</LibContent>
 
-			<ul class="p-notes">
-				<li><LinkExternal href="https://tgs.nikkeibp.co.jp/tgs/2024/jp/">東京ゲームショウ2024</LinkExternal> の「講談社ゲームクリエイターズラボ」ブースで配布</li>
-				<li>表紙イラストは<LinkExternal href="https://creatorslab.kodansha.co.jp/topics/2673/">プレスリリース</LinkExternal>で公開</li>
-			</ul>
+			<ListNote>
+				<li><Anchor href="https://tgs.nikkeibp.co.jp/tgs/2024/jp/">東京ゲームショウ2024</Anchor> の「講談社ゲームクリエイターズラボ」ブースで配布</li>
+				<li>表紙イラストは<Anchor href="https://creatorslab.kodansha.co.jp/topics/2673/">プレスリリース</Anchor>で公開</li>
+			</ListNote>
 		</LibBook>
 	</Section>
 </Layout>
