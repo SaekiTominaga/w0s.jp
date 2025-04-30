@@ -9,28 +9,30 @@ const { type } = Astro.props;
 <strong class:list={['label-icon', `-${type}`]}><slot /></strong>
 
 <style>
-	.label-icon {
-		--_bg-color: var(--color-gray);
-		--_color: var(--color-white);
-
-		display: inline flow-root;
-		border: 1px solid var(--bg-color);
-		border-radius: var(--border-radius-large);
-		background-color: var(--_bg-color);
-		padding: 0.375em 0.5em;
-		line-height: var(--line-height-nowrap);
-		white-space: nowrap;
-		color: var(--_color);
-		font-size: calc(100% / pow(var(--font-ratio), 3));
-
-		&.-optional {
+	@layer component {
+		.label-icon {
+			--_bg-color: var(--color-gray);
 			--_color: var(--color-white);
-			--_bg-color: var(--color-green);
-		}
 
-		&.-required {
-			--_color: var(--color-white);
-			--_bg-color: var(--color-red);
+			display: inline flow-root;
+			border: 1px solid var(--bg-color);
+			border-radius: var(--border-radius-large);
+			background-color: var(--_bg-color);
+			padding: 0.375em 0.5em;
+			line-height: var(--line-height-nowrap);
+			white-space: nowrap;
+			color: var(--_color);
+			font-size: calc(100% / pow(var(--font-ratio), 3));
+
+			&.-optional {
+				--_color: var(--color-white);
+				--_bg-color: var(--color-green);
+			}
+
+			&.-required {
+				--_color: var(--color-white);
+				--_bg-color: var(--color-red);
+			}
 		}
 	}
 </style>

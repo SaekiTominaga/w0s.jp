@@ -24,48 +24,50 @@ const { type } = Astro.props;
 }
 
 <style>
-	.announce-phrase {
-		/* 放送開始時のチャイム */
-		&.-chime {
-		}
+	@layer component {
+		.announce-phrase {
+			/* 放送開始時のチャイム */
+			&.-chime {
+			}
 
-		/* マナー */
-		&.-manners {
-			color: var(--color-green);
-		}
+			/* マナー */
+			&.-manners {
+				color: var(--color-green);
+			}
 
-		/* メニュー、非扱、その他注意 */
-		&:is(.-menu, .-door, .-attention) {
-			color: var(--color-red);
-		}
+			/* メニュー、非扱、その他注意 */
+			&:is(.-menu, .-door, .-attention) {
+				color: var(--color-red);
+			}
 
-		/* ワンマン */
-		&.-oneman {
-			color: var(--color-blue);
-		}
+			/* ワンマン */
+			&.-oneman {
+				color: var(--color-blue);
+			}
 
-		/* 乗換 */
-		&.-change {
-			color: var(--color-lightpurple);
-		}
+			/* 乗換 */
+			&.-change {
+				color: var(--color-lightpurple);
+			}
 
-		/* 立客、宣伝 */
-		&:is(.-stand, .-cm) {
-			color: var(--color-skyblue);
-		}
+			/* 立客、宣伝 */
+			&:is(.-stand, .-cm) {
+				color: var(--color-skyblue);
+			}
 
-		/* 宣伝放送概略 */
-		&.-cmsummary {
-			display: inline flow-root;
-			border: 1px solid;
-			padding: 0.125em 0.5em;
-			color: var(--color-skyblue);
-			font-size: calc(100% / pow(var(--font-ratio), 1));
-			font-weight: var(--font-weight-normal);
+			/* 宣伝放送概略 */
+			&.-cmsummary {
+				display: inline flow-root;
+				border: 1px solid;
+				padding: 0.125em 0.5em;
+				color: var(--color-skyblue);
+				font-size: calc(100% / pow(var(--font-ratio), 1));
+				font-weight: var(--font-weight-normal);
 
-			&::before {
-				margin-inline-end: 0.125em;
-				content: '※';
+				&::before {
+					margin-inline-end: 0.125em;
+					content: '※';
+				}
 			}
 		}
 	}

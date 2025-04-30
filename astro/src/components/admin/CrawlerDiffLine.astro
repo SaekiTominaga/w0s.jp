@@ -11,28 +11,30 @@ const { type } = Astro.props;
 </tr>
 
 <style>
-	.line {
-		--_bg-color: var(--color-white);
+	@layer component {
+		.line {
+			--_bg-color: var(--color-white);
 
-		background: var(--_bg-color);
-		color: var(--color-black);
-		font-size: calc(100% / pow(var(--font-ratio), 2));
+			background: var(--_bg-color);
+			color: var(--color-black);
+			font-size: calc(100% / pow(var(--font-ratio), 2));
 
-		&.-added {
-			--_bg-color: #e6ffec;
-		}
+			&.-added {
+				--_bg-color: #e6ffec;
+			}
 
-		&.-removed {
-			--_bg-color: #ffebe9;
-		}
+			&.-removed {
+				--_bg-color: #ffebe9;
+			}
 
-		& :global(td) {
-			padding: 0.25em 0.5em;
-		}
+			& :global(td) {
+				padding: 0.25em 0.5em;
+			}
 
-		& :global(td:first-child) {
-			text-align: center;
-			font-weight: var(--font-weight-bold);
+			& :global(td:first-child) {
+				text-align: center;
+				font-weight: var(--font-weight-bold);
+			}
 		}
 	}
 </style>

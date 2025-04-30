@@ -97,89 +97,91 @@ switch (operation) {
 </div>
 
 <style>
-	.announce + :global(*) {
-		margin-block-start: calc(var(--stack-margin-base) * 2);
-	}
-
-	.header {
-		border: 1px solid var(--color-border-dark);
-		background: var(--color-bg-light);
-		padding: 0.5em min(1.5dvi, 15px);
-		line-height: var(--line-height-narrow);
-		font-size: calc(100% / pow(var(--font-ratio), 1));
-
-		& > :global(*) {
-			margin-inline: auto;
-			inline-size: fit-content;
+	@layer component {
+		.announce + :global(*) {
+			margin-block-start: calc(var(--stack-margin-base) * 2);
 		}
 
-		& > :global(* + *) {
-			margin-block-start: calc(var(--stack-margin-base) / 3);
-		}
-	}
+		.header {
+			border: 1px solid var(--color-border-dark);
+			background: var(--color-bg-light);
+			padding: 0.5em min(1.5dvi, 15px);
+			line-height: var(--line-height-narrow);
+			font-size: calc(100% / pow(var(--font-ratio), 1));
 
-	.footer {
-		margin-block-start: 2em;
+			& > :global(*) {
+				margin-inline: auto;
+				inline-size: fit-content;
+			}
 
-		& > :global(*) {
-			margin-inline: auto;
-			inline-size: fit-content;
-		}
-	}
-
-	/* 行先 */
-	.train {
-		font-size: calc(100% * pow(var(--font-ratio), 2));
-		font-weight: var(--font-weight-bold);
-	}
-
-	/* 車種 */
-	.car {
-	}
-
-	/* 期間 */
-	.period {
-	}
-
-	/* 補足 */
-	.note {
-		color: var(--color-gray);
-
-		&::before {
-			content: '（';
+			& > :global(* + *) {
+				margin-block-start: calc(var(--stack-margin-base) / 3);
+			}
 		}
 
-		&::after {
-			content: '）';
+		.footer {
+			margin-block-start: 2em;
+
+			& > :global(*) {
+				margin-inline: auto;
+				inline-size: fit-content;
+			}
 		}
-	}
 
-	/* 直通先の備考 */
-	.through {
-		margin-block-start: 1em;
-		text-align: center;
-	}
+		/* 行先 */
+		.train {
+			font-size: calc(100% * pow(var(--font-ratio), 2));
+			font-weight: var(--font-weight-bold);
+		}
 
-	/* 収録データ */
-	.data {
-		display: block flex;
-		flex-flow: wrap;
-		gap: 0.5em 2em;
-		justify-content: center;
-		border: 1px solid var(--color-border-dark);
-		border-radius: var(--border-radius-normal);
-		background: var(--color-lightorange);
-		padding: 0.5em 15px;
-		line-height: var(--line-height-narrow);
+		/* 車種 */
+		.car {
+		}
 
-		& > :global(div) {
+		/* 期間 */
+		.period {
+		}
+
+		/* 補足 */
+		.note {
+			color: var(--color-gray);
+
+			&::before {
+				content: '（';
+			}
+
+			&::after {
+				content: '）';
+			}
+		}
+
+		/* 直通先の備考 */
+		.through {
+			margin-block-start: 1em;
+			text-align: center;
+		}
+
+		/* 収録データ */
+		.data {
 			display: block flex;
 			flex-flow: wrap;
-		}
+			gap: 0.5em 2em;
+			justify-content: center;
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-normal);
+			background: var(--color-lightorange);
+			padding: 0.5em 15px;
+			line-height: var(--line-height-narrow);
 
-		& :global(dt::after) {
-			margin: 0.25em;
-			content: ':';
+			& > :global(div) {
+				display: block flex;
+				flex-flow: wrap;
+			}
+
+			& :global(dt::after) {
+				margin: 0.25em;
+				content: ':';
+			}
 		}
 	}
 </style>

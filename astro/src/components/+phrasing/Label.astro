@@ -23,52 +23,54 @@ const switchCtrl = document.querySelector('w0s-input-switch') !== null;
 </label>
 
 <style>
-	.label {
-		display: inline flex;
-		flex-wrap: wrap;
-		gap: 0.5em;
-		align-items: center;
+	@layer component {
+		.label {
+			display: inline flex;
+			flex-wrap: wrap;
+			gap: 0.5em;
+			align-items: center;
 
-		/* 一行入力欄 */
-		&.-text {
+			/* 一行入力欄 */
+			&.-text {
+			}
+
+			/* チェックボックス、ラジオボタン */
+			&:is(.-checkbox, .-radio) {
+				--_border-color: transparent;
+				--_bg-color: transparent;
+
+				margin-block: calc(var(--form-control-padding-block) / 2);
+				border: 1px solid var(--_border-color);
+				border-radius: var(--border-radius-normal);
+				background: var(--_bg-color);
+				padding: calc(var(--form-control-padding-block) / 2);
+
+				&:hover {
+					--_border-color: var(--color-superlightblue);
+					--_bg-color: var(--color-superlightblue);
+				}
+
+				&:focus-within {
+					--_border-color: var(--color-superlightblue);
+					--_bg-color: var(--color-superlightblue);
+
+					outline: var(--outline-width-bold) solid var(--outline-color);
+				}
+
+				:global([aria-invalid='true']) > & {
+					--_border-color: var(--invalid-border-color);
+					--_bg-color: var(--color-verylightred);
+				}
+
+				& :global(input) {
+					outline: none;
+					block-size: 1em;
+					inline-size: 1em;
+				}
+			}
 		}
 
-		/* チェックボックス、ラジオボタン */
-		&:is(.-checkbox, .-radio) {
-			--_border-color: transparent;
-			--_bg-color: transparent;
-
-			margin-block: calc(var(--form-control-padding-block) / 2);
-			border: 1px solid var(--_border-color);
-			border-radius: var(--border-radius-normal);
-			background: var(--_bg-color);
-			padding: calc(var(--form-control-padding-block) / 2);
-
-			&:hover {
-				--_border-color: var(--color-superlightblue);
-				--_bg-color: var(--color-superlightblue);
-			}
-
-			&:focus-within {
-				--_border-color: var(--color-superlightblue);
-				--_bg-color: var(--color-superlightblue);
-
-				outline: var(--outline-width-bold) solid var(--outline-color);
-			}
-
-			:global([aria-invalid='true']) > & {
-				--_border-color: var(--invalid-border-color);
-				--_bg-color: var(--color-verylightred);
-			}
-
-			& :global(input) {
-				outline: none;
-				block-size: 1em;
-				inline-size: 1em;
-			}
+		.text {
 		}
-	}
-
-	.text {
 	}
 </style>

@@ -21,27 +21,29 @@ const imageAltId = getIdHash(content);
 </div>
 
 <style>
-	.panel {
-		line-height: var(--line-height-narrow);
-	}
-
-	.image {
-		display: block flow;
-		block-size: auto;
-		max-inline-size: 100%;
-
-		& :global(section + section) {
-			margin-block-start: 2em;
+	@layer component {
+		.panel {
+			line-height: var(--line-height-narrow);
 		}
 
-		& :global(section > * + *) {
-			margin-block-start: 1em;
-		}
+		.image {
+			display: block flow;
+			block-size: auto;
+			max-inline-size: 100%;
 
-		& :global(:is(th, td)) {
-			border: 1px solid;
-			padding: 0.5em 1em;
-			text-align: center;
+			& :global(section + section) {
+				margin-block-start: 2em;
+			}
+
+			& :global(section > * + *) {
+				margin-block-start: 1em;
+			}
+
+			& :global(:is(th, td)) {
+				border: 1px solid;
+				padding: 0.5em 1em;
+				text-align: center;
+			}
 		}
 	}
 </style>

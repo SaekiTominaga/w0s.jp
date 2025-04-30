@@ -11,43 +11,45 @@ const { size } = Astro.props;
 </span>
 
 <style>
-	.input {
-		--_inline-size: auto;
-		--_border-color: var(--color-border-dark);
-		--_bg-color: var(--color-white);
-		--_color: var(--color-black);
+	@layer component {
+		.input {
+			--_inline-size: auto;
+			--_border-color: var(--color-border-dark);
+			--_bg-color: var(--color-white);
+			--_color: var(--color-black);
 
-		box-sizing: content-box;
-		display: contents;
+			box-sizing: content-box;
+			display: contents;
 
-		& > :global(input) {
-			outline-offset: -1px;
-			outline-width: var(--outline-width-bold);
-			border: 1px solid var(--_border-color);
-			border-radius: var(--border-radius-normal);
-			background-color: var(--_bg-color);
-			padding: var(--form-control-padding);
-			inline-size: 100%;
-			max-inline-size: var(--_inline-size, auto);
-			color: var(--_color);
-		}
+			& > :global(input) {
+				outline-offset: -1px;
+				outline-width: var(--outline-width-bold);
+				border: 1px solid var(--_border-color);
+				border-radius: var(--border-radius-normal);
+				background-color: var(--_bg-color);
+				padding: var(--form-control-padding);
+				inline-size: 100%;
+				max-inline-size: var(--_inline-size, auto);
+				color: var(--_color);
+			}
 
-		& > :global(input:enabled:read-write:hover) {
-			--_border-color: var(--outline-color);
-		}
+			& > :global(input:enabled:read-write:hover) {
+				--_border-color: var(--outline-color);
+			}
 
-		& > :global(input:disabled) {
-			--_bg-color: var(--color-bg-verydark);
-			--_color: var(--color-gray);
-		}
+			& > :global(input:disabled) {
+				--_bg-color: var(--color-bg-verydark);
+				--_color: var(--color-gray);
+			}
 
-		& > :global(input:read-only) {
-			--_bg-color: var(--color-bg-verydark);
-			--_color: var(--color-gray);
-		}
+			& > :global(input:read-only) {
+				--_bg-color: var(--color-bg-verydark);
+				--_color: var(--color-gray);
+			}
 
-		& > :global(input[aria-invalid='true']) {
-			--_border-color: var(--invalid-border-color);
+			& > :global(input[aria-invalid='true']) {
+				--_border-color: var(--invalid-border-color);
+			}
 		}
 	}
 </style>

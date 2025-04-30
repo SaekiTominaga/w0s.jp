@@ -34,32 +34,34 @@ const toImageAltId = getIdHash(toContent);
 </div>
 
 <style>
-	.panel {
-		display: block grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 15px;
-		background: var(--color-lightyellow);
-		padding: 15px;
-		line-height: var(--line-height-narrow);
+	@layer component {
+		.panel {
+			display: block grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 15px;
+			background: var(--color-lightyellow);
+			padding: 15px;
+			line-height: var(--line-height-narrow);
 
-		@container content (inline-size <= 30em) {
-			grid-template-columns: 1fr;
-			gap: 30px;
+			@container content (inline-size <= 30em) {
+				grid-template-columns: 1fr;
+				gap: 30px;
+			}
+
+			& :global(h2) {
+				margin-block-end: 10px;
+				padding-inline-start: 0.5em;
+				text-align: center;
+				letter-spacing: 0.5em;
+				font-size: 18px;
+				font-weight: var(--font-weight-bold);
+			}
 		}
 
-		& :global(h2) {
-			margin-block-end: 10px;
-			padding-inline-start: 0.5em;
-			text-align: center;
-			letter-spacing: 0.5em;
-			font-size: 18px;
-			font-weight: var(--font-weight-bold);
+		.image {
+			display: block flow;
+			block-size: auto;
+			max-inline-size: 100%;
 		}
-	}
-
-	.image {
-		display: block flow;
-		block-size: auto;
-		max-inline-size: 100%;
 	}
 </style>

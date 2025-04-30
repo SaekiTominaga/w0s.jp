@@ -34,34 +34,36 @@ switch (type) {
 </span>
 
 <style>
-	.cont {
-		display: inline flex;
-		flex-wrap: wrap;
-		justify-content: center;
+	@layer component {
+		.cont {
+			display: inline flex;
+			flex-wrap: wrap;
+			justify-content: center;
 
-		/* 抵抗制御 */
-		&.-r {
-			color: var(--color-black);
-		}
+			/* 抵抗制御 */
+			&.-r {
+				color: var(--color-black);
+			}
 
-		/* 界磁チョッパ */
-		&.-ch {
-			color: var(--color-black);
-		}
+			/* 界磁チョッパ */
+			&.-ch {
+				color: var(--color-black);
+			}
 
-		/* GTO-VVVF */
-		&.-gto {
-			color: var(--color-blue);
-		}
+			/* GTO-VVVF */
+			&.-gto {
+				color: var(--color-blue);
+			}
 
-		/* IGBT-VVVF */
-		&.-igbt {
-			color: var(--color-red);
-		}
+			/* IGBT-VVVF */
+			&.-igbt {
+				color: var(--color-red);
+			}
 
-		/* SIV一体型VVVF */
-		&.-igbt:has(.siv) {
-			color: var(--color-darkgreen);
+			/* SIV一体型VVVF */
+			&.-igbt:has(.siv) {
+				color: var(--color-darkgreen);
+			}
 		}
 	}
 </style>

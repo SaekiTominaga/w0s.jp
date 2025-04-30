@@ -3,31 +3,33 @@
 </span>
 
 <style>
-	.select {
-		--_border-color: var(--color-border-dark);
-		--_bg-color: var(--color-white);
-		--_color: var(--color-black);
+	@layer component {
+		.select {
+			--_border-color: var(--color-border-dark);
+			--_bg-color: var(--color-white);
+			--_color: var(--color-black);
 
-		box-sizing: content-box;
-		display: contents;
+			box-sizing: content-box;
+			display: contents;
 
-		& > :global(select) {
-			outline-offset: -1px;
-			outline-width: var(--outline-width-bold);
-			border: 1px solid var(--_border-color);
-			border-radius: var(--border-radius-normal);
-			background-color: var(--_bg-color);
-			padding: calc(var(--form-control-padding) * 1.25) var(--form-control-padding);
-			color: var(--_color);
-		}
+			& > :global(select) {
+				outline-offset: -1px;
+				outline-width: var(--outline-width-bold);
+				border: 1px solid var(--_border-color);
+				border-radius: var(--border-radius-normal);
+				background-color: var(--_bg-color);
+				padding: calc(var(--form-control-padding) * 1.25) var(--form-control-padding);
+				color: var(--_color);
+			}
 
-		& > :global(select:enabled:hover) {
-			--_border-color: var(--outline-color);
-		}
+			& > :global(select:enabled:hover) {
+				--_border-color: var(--outline-color);
+			}
 
-		& > :global(select:disabled) {
-			--_bg-color: var(--color-bg-verydark);
-			--_color: var(--color-gray);
+			& > :global(select:disabled) {
+				--_bg-color: var(--color-bg-verydark);
+				--_color: var(--color-gray);
+			}
 		}
 	}
 </style>

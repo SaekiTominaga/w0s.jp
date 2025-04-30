@@ -3,28 +3,30 @@
 </table>
 
 <style>
-	.index-table {
-		background: var(--color-white);
-		line-height: var(--line-height-normal);
-		color: var(--color-black);
-		font-size: clamp(100%, 4svi, calc(100% * pow(var(--font-ratio), 1)));
+	@layer component {
+		.index-table {
+			background: var(--color-white);
+			line-height: var(--line-height-normal);
+			color: var(--color-black);
+			font-size: clamp(100%, 4svi, calc(100% * pow(var(--font-ratio), 1)));
 
-		& :global(:is(td, th)) {
-			border: 1px solid var(--color-border-light);
-			padding: 0.5em min(1dvi, 10px);
-			line-break: strict; /* 「1000N′系」対策 */
-		}
+			& :global(:is(td, th)) {
+				border: 1px solid var(--color-border-light);
+				padding: 0.5em min(1dvi, 10px);
+				line-break: strict; /* 「1000N′系」対策 */
+			}
 
-		& :global(th) {
-			font-weight: var(--font-weight-normal);
-		}
+			& :global(th) {
+				font-weight: var(--font-weight-normal);
+			}
 
-		& > :global(thead) {
-			background-color: var(--color-superlightgreen);
-		}
+			& > :global(thead) {
+				background-color: var(--color-superlightgreen);
+			}
 
-		& > :global(thead th) {
-			text-align: center;
+			& > :global(thead th) {
+				text-align: center;
+			}
 		}
 	}
 </style>

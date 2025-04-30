@@ -18,16 +18,18 @@ const { title, linkPath, iconPath } = Astro.props;
 </li>
 
 <style>
-	.image {
-		display: inline flex;
-		align-items: center;
-		margin-block-end: 0.5em;
-	}
+	@layer component {
+		.image {
+			display: inline flex;
+			align-items: center;
+			margin-block-end: 0.5em;
+		}
 
-	.title {
-		&::before {
-			display: block flow;
-			content: '';
+		.title {
+			&::before {
+				display: block flow;
+				content: '';
+			}
 		}
 	}
 </style>

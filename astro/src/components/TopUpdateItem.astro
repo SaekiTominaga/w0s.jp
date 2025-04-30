@@ -18,40 +18,42 @@ const dateDayjs = dayjs(date);
 </li>
 
 <style>
-	li {
-		--_padding: 15px;
-
-		display: block grid;
-		grid-template-areas: 'date info';
-		grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
-
-		&:not(:first-child) {
-			border-block-start: 1px dotted var(--color-border-light);
-		}
-	}
-
-	.date {
-		grid-column: date;
-		background: var(--color-bg-verylight);
-		padding: var(--_padding);
-	}
-
-	.info {
-		grid-column: info;
-		padding: var(--_padding);
-	}
-
-	@container (inline-size <= 40rem) {
+	@layer component {
 		li {
-			grid-template-areas:
-				'date'
-				'info';
-			grid-template-columns: 1fr;
+			--_padding: 15px;
+
+			display: block grid;
+			grid-template-areas: 'date info';
+			grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+
+			&:not(:first-child) {
+				border-block-start: 1px dotted var(--color-border-light);
+			}
 		}
 
 		.date {
-			padding-block: calc(var(--_padding) / 2);
-			font-weight: var(--font-weight-bold);
+			grid-column: date;
+			background: var(--color-bg-verylight);
+			padding: var(--_padding);
+		}
+
+		.info {
+			grid-column: info;
+			padding: var(--_padding);
+		}
+
+		@container (inline-size <= 40rem) {
+			li {
+				grid-template-areas:
+					'date'
+					'info';
+				grid-template-columns: 1fr;
+			}
+
+			.date {
+				padding-block: calc(var(--_padding) / 2);
+				font-weight: var(--font-weight-bold);
+			}
 		}
 	}
 </style>

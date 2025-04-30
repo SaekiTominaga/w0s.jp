@@ -79,33 +79,35 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 </span>
 
 <style>
-	.doc {
-		--_space-width: 0.25em;
-	}
-
-	/* 記事タイトル */
-	.article {
-		margin-inline: calc(0px - var(--_space-width));
-
-		&::before {
-			content: '「';
+	@layer component {
+		.doc {
+			--_space-width: 0.25em;
 		}
 
-		&::after {
-			content: '」';
+		/* 記事タイトル */
+		.article {
+			margin-inline: calc(0px - var(--_space-width));
+
+			&::before {
+				content: '「';
+			}
+
+			&::after {
+				content: '」';
+			}
 		}
-	}
 
-	/* 記事の著者名 */
-	.author {
-		margin-inline: calc(0px - var(--_space-width));
+		/* 記事の著者名 */
+		.author {
+			margin-inline: calc(0px - var(--_space-width));
 
-		&::before {
-			content: '（';
-		}
+			&::before {
+				content: '（';
+			}
 
-		&::after {
-			content: '）';
+			&::after {
+				content: '）';
+			}
 		}
 	}
 </style>

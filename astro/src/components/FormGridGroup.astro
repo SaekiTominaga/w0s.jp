@@ -28,68 +28,70 @@ const note = await Astro.slots.render('note');
 </div>
 
 <style>
-	.group {
-		display: block grid;
-		grid-template-columns: subgrid;
-		grid-column: legend / contents;
+	@layer component {
+		.group {
+			display: block grid;
+			grid-template-columns: subgrid;
+			grid-column: legend / contents;
 
-		& > :global(fieldset) {
-			display: contents;
+			& > :global(fieldset) {
+				display: contents;
+			}
 		}
-	}
 
-	.legend {
-		grid-column: legend;
-		font-weight: var(--font-weight-bold);
-	}
-
-	.contents {
-		--_gap-row: 1em;
-		--_gap-col: 1em;
-
-		grid-column: contents;
-
-		& > :global(* + *) {
-			margin-block-start: calc(var(--stack-margin-base) / 3);
-		}
-	}
-
-	@container content (inline-size > 36em) {
 		.legend {
-			margin-block-start: calc(0.5em + 1px);
+			grid-column: legend;
+			font-weight: var(--font-weight-bold);
 		}
-	}
 
-	@container content (inline-size <= 36em) {
 		.contents {
-			margin-block-start: 0.25em;
-		}
-	}
+			--_gap-row: 1em;
+			--_gap-col: 1em;
 
-	.ctrl {
-		--_gap-row: 1em;
-		--_gap-col: 1em;
+			grid-column: contents;
 
-		display: block flex;
-		flex-flow: wrap;
-		gap: var(--_gap-row) var(--_gap-col);
-		align-items: center;
-
-		/* チェックボックス、ラジオボタン */
-		&:is(.-checkbox, .-radio) {
-			--_gap-row: 0em;
+			& > :global(* + *) {
+				margin-block-start: calc(var(--stack-margin-base) / 3);
+			}
 		}
 
-		& > :global([role='radiogroup']) {
-			display: contents;
+		@container content (inline-size > 36em) {
+			.legend {
+				margin-block-start: calc(0.5em + 1px);
+			}
 		}
-	}
 
-	.validate {
-	}
+		@container content (inline-size <= 36em) {
+			.contents {
+				margin-block-start: 0.25em;
+			}
+		}
 
-	.note {
-		color: var(--color-gray);
-		font-size: calc(100% / pow(var(--font-ratio), 1));
+		.ctrl {
+			--_gap-row: 1em;
+			--_gap-col: 1em;
+
+			display: block flex;
+			flex-flow: wrap;
+			gap: var(--_gap-row) var(--_gap-col);
+			align-items: center;
+
+			/* チェックボックス、ラジオボタン */
+			&:is(.-checkbox, .-radio) {
+				--_gap-row: 0em;
+			}
+
+			& > :global([role='radiogroup']) {
+				display: contents;
+			}
+		}
+
+		.validate {
+		}
+
+		.note {
+			color: var(--color-gray);
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+		}
 	}
 </style>

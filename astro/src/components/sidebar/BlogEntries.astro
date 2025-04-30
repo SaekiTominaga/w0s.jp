@@ -9,75 +9,77 @@
 </aside>
 
 <style>
-	.blog-entries {
-		--_heading-offset: calc(-0.5em * var(--line-height-narrow));
+	@layer component {
+		.blog-entries {
+			--_heading-offset: calc(-0.5em * var(--line-height-narrow));
 
-		border: 1px solid var(--color-border-dark);
-		border-radius: var(--border-radius-normal) var(--border-radius-normal) 0 0;
-	}
-
-	.hdg {
-		position: relative;
-		inset-block-start: var(--_heading-offset);
-		margin-inline: 10px;
-		background-color: var(--page-bg-color);
-		padding: 0 0.5em;
-		inline-size: fit-content;
-
-		& + :global(*) {
-			margin-block-start: var(--_heading-offset);
-		}
-	}
-
-	.link {
-		--_padding-block: 0.5em;
-		--_padding-inline: 0.5em;
-		--_bg-color: var(--color-verylightblue);
-
-		& :global(a) {
-			display: block flow;
-			contain: content;
-			outline-offset: -1px;
-			outline-width: var(--outline-width-bold);
-			background: var(--_bg-color);
-			padding: var(--_padding-block) var(--_padding-inline);
-			min-block-size: 2em;
-			font-size: calc(100% / pow(var(--font-ratio), 1));
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-normal) var(--border-radius-normal) 0 0;
 		}
 
-		& :global(:any-link) {
-			--_bg-color: var(--color-white);
-			--_icon-color: var(--color-lightgray); /* アイコンの色 */
-			--_icon-inline-size: 0.67em; /* アイコンの幅 */
-			--_icon-block-size: 1em; /* アイコンの高さ */
-			--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
+		.hdg {
+			position: relative;
+			inset-block-start: var(--_heading-offset);
+			margin-inline: 10px;
+			background-color: var(--page-bg-color);
+			padding: 0 0.5em;
+			inline-size: fit-content;
 
-			padding-inline-end: calc(var(--_icon-gap) + var(--_icon-inline-size) + var(--_padding-inline));
-			text-decoration: none;
+			& + :global(*) {
+				margin-block-start: var(--_heading-offset);
+			}
 		}
 
-		& :global(:any-link::after) {
-			position: absolute;
-			clip-path: var(--shape-link-arrow);
-			inset-block-start: calc(50% - var(--_icon-block-size) / 2);
-			inset-inline-end: var(--_padding-inline);
-			border-block-start: var(--_icon-block-size) solid var(--_icon-color);
-			inline-size: var(--_icon-inline-size);
-			content: '';
-		}
+		.link {
+			--_padding-block: 0.5em;
+			--_padding-inline: 0.5em;
+			--_bg-color: var(--color-verylightblue);
 
-		& > :global(li + li) {
-			border-block-start: 1px dotted var(--color-border-dark);
-		}
+			& :global(a) {
+				display: block flow;
+				contain: content;
+				outline-offset: -1px;
+				outline-width: var(--outline-width-bold);
+				background: var(--_bg-color);
+				padding: var(--_padding-block) var(--_padding-inline);
+				min-block-size: 2em;
+				font-size: calc(100% / pow(var(--font-ratio), 1));
+			}
 
-		/* 奇数行 */
-		& > :global(li:nth-child(2n + 1) :any-link) {
-			--_bg-color: var(--color-bg-superlight);
-		}
+			& :global(:any-link) {
+				--_bg-color: var(--color-white);
+				--_icon-color: var(--color-lightgray); /* アイコンの色 */
+				--_icon-inline-size: 0.67em; /* アイコンの幅 */
+				--_icon-block-size: 1em; /* アイコンの高さ */
+				--_icon-gap: 0.75em; /* テキストとアイコンの間隔 */
 
-		& > :global(li :any-link:hover) {
-			--_bg-color: var(--color-lightyellow);
-			--_icon-color: var(--color-gray);
+				padding-inline-end: calc(var(--_icon-gap) + var(--_icon-inline-size) + var(--_padding-inline));
+				text-decoration: none;
+			}
+
+			& :global(:any-link::after) {
+				position: absolute;
+				clip-path: var(--shape-link-arrow);
+				inset-block-start: calc(50% - var(--_icon-block-size) / 2);
+				inset-inline-end: var(--_padding-inline);
+				border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+				inline-size: var(--_icon-inline-size);
+				content: '';
+			}
+
+			& > :global(li + li) {
+				border-block-start: 1px dotted var(--color-border-dark);
+			}
+
+			/* 奇数行 */
+			& > :global(li:nth-child(2n + 1) :any-link) {
+				--_bg-color: var(--color-bg-superlight);
+			}
+
+			& > :global(li :any-link:hover) {
+				--_bg-color: var(--color-lightyellow);
+				--_icon-color: var(--color-gray);
+			}
 		}
 	}
 </style>

@@ -70,49 +70,51 @@ switch (possess) {
 </span>
 
 <style>
-	.doc {
-		--_space-width: 0.25em;
-	}
-
-	/* 行政機関名（鉄道省、運輸省……） */
-	.government {
-		all: unset;
-		margin-inline-end: calc(0px - var(--_space-width));
-
-		&::before {
-			content: '【';
+	@layer component {
+		.doc {
+			--_space-width: 0.25em;
 		}
 
-		&::after {
-			content: '】';
-		}
-	}
+		/* 行政機関名（鉄道省、運輸省……） */
+		.government {
+			all: unset;
+			margin-inline-end: calc(0px - var(--_space-width));
 
-	/* 全角スペース相当の間隔を開ける */
-	.no {
-		&::before {
-			margin-inline-start: -0.5em;
-			content: '\3000';
-		}
-	}
+			&::before {
+				content: '【';
+			}
 
-	.date {
-		&::before {
-			margin-inline-start: -0.5em;
-			content: '\3000';
-		}
-	}
-
-	/* 記事タイトル */
-	.article {
-		margin-inline-start: calc(0px - var(--_space-width));
-
-		&::before {
-			content: '「';
+			&::after {
+				content: '】';
+			}
 		}
 
-		&::after {
-			content: '」';
+		/* 全角スペース相当の間隔を開ける */
+		.no {
+			&::before {
+				margin-inline-start: -0.5em;
+				content: '\3000';
+			}
+		}
+
+		.date {
+			&::before {
+				margin-inline-start: -0.5em;
+				content: '\3000';
+			}
+		}
+
+		/* 記事タイトル */
+		.article {
+			margin-inline-start: calc(0px - var(--_space-width));
+
+			&::before {
+				content: '「';
+			}
+
+			&::after {
+				content: '」';
+			}
 		}
 	}
 </style>

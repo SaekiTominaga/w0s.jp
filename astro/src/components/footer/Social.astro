@@ -40,34 +40,36 @@ const { pagePath } = Astro.props;
 </ul>
 
 <style>
-	.social {
-		display: block flex;
-		flex-flow: row wrap;
-		gap: 24px;
-		text-align: center;
-		font-size: calc(100% / pow(var(--font-ratio), 2));
+	@layer component {
+		.social {
+			display: block flex;
+			flex-flow: row wrap;
+			gap: 24px;
+			text-align: center;
+			font-size: calc(100% / pow(var(--font-ratio), 2));
 
-		@container footer-social (inline-size >= 600px) {
-			justify-content: flex-end;
+			@container footer-social (inline-size >= 600px) {
+				justify-content: flex-end;
+			}
+
+			& :global(:any-link) {
+				outline-offset: var(--outline-offset-linkonly);
+			}
 		}
 
-		& :global(:any-link) {
-			outline-offset: var(--outline-offset-linkonly);
+		.image {
+			display: inline flex;
+			align-items: center;
+			padding-block-end: 0.5em;
 		}
-	}
 
-	.image {
-		display: inline flex;
-		align-items: center;
-		padding-block-end: 0.5em;
-	}
+		.text {
+			inline-size: fit-content;
 
-	.text {
-		inline-size: fit-content;
-
-		&::before {
-			display: block flow;
-			content: '';
+			&::before {
+				display: block flow;
+				content: '';
+			}
 		}
 	}
 </style>

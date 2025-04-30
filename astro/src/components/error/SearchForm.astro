@@ -14,29 +14,31 @@ import SearchCtrl from '@components/SearchCtrl.astro';
 </search>
 
 <style>
-	.search-form {
-		display: block grid;
-		grid-template-areas:
-			'legend'
-			'ctrl';
-		grid-template-columns: min(30em, 100%);
-		gap: 0.25em;
-		justify-content: center;
-		margin-block-start: 10dvb;
-		line-height: var(--line-height-narrow);
+	@layer component {
+		.search-form {
+			display: block grid;
+			grid-template-areas:
+				'legend'
+				'ctrl';
+			grid-template-columns: min(30em, 100%);
+			gap: 0.25em;
+			justify-content: center;
+			margin-block-start: 10dvb;
+			line-height: var(--line-height-narrow);
 
-		& > :global(fieldset) {
-			display: contents;
+			& > :global(fieldset) {
+				display: contents;
+			}
 		}
-	}
 
-	.legend {
-		grid-area: legend;
-		font-weight: var(--font-weight-bold);
-	}
+		.legend {
+			grid-area: legend;
+			font-weight: var(--font-weight-bold);
+		}
 
-	.ctrl {
-		grid-area: ctrl;
-		font-size: calc(100% * pow(var(--font-ratio), 3));
+		.ctrl {
+			grid-area: ctrl;
+			font-size: calc(100% * pow(var(--font-ratio), 3));
+		}
 	}
 </style>
