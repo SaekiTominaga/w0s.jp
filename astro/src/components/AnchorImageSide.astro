@@ -20,71 +20,73 @@ const { href } = Astro.props;
 </div>
 
 <style>
-	.item {
-		--_gap: 15px;
-		--_bullet-inline-size: 0.45em;
-		--_bullet-block-size: 0.75em;
-		--_bullet-color: var(--link-color-bullet);
-		--_bullet-gap: 0.5em;
+	@layer component {
+		.item {
+			--_gap: 15px;
+			--_bullet-inline-size: 0.45em;
+			--_bullet-block-size: 0.75em;
+			--_bullet-color: var(--link-color-bullet);
+			--_bullet-gap: 0.5em;
 
-		display: block flow-root; /* for Safari */
-		contain: layout;
-		line-height: var(--line-height-narrow);
-		font-size: calc(100% * pow(var(--font-ratio), 2));
+			display: block flow-root; /* for Safari */
+			contain: layout;
+			line-height: var(--line-height-narrow);
+			font-size: calc(100% * pow(var(--font-ratio), 2));
 
-		& > :any-link {
-			outline: none;
-		}
-	}
-
-	.image {
-		float: inline-start;
-		margin-inline-end: calc(var(--_gap) + var(--_bullet-inline-size) + var(--_bullet-gap));
-		max-inline-size: 50%;
-
-		:focus & {
-			outline: var(--outline-width-bold) solid var(--outline-color);
-			outline-offset: -1px;
+			& > :any-link {
+				outline: none;
+			}
 		}
 
-		:any-link:hover & {
-			box-shadow: 0 0 5px var(--color-border-dark);
+		.image {
+			float: inline-start;
+			margin-inline-end: calc(var(--_gap) + var(--_bullet-inline-size) + var(--_bullet-gap));
+			max-inline-size: 50%;
+
+			:focus & {
+				outline: var(--outline-width-bold) solid var(--outline-color);
+				outline-offset: -1px;
+			}
+
+			:any-link:hover & {
+				box-shadow: 0 0 5px var(--color-border-dark);
+			}
+
+			& :global(img) {
+				display: block flow;
+				border: 1px solid var(--color-black);
+				block-size: auto;
+				max-inline-size: 100%;
+			}
 		}
 
-		& :global(img) {
-			display: block flow;
-			border: 1px solid var(--color-black);
-			block-size: auto;
-			max-inline-size: 100%;
+		.title {
+			margin-inline-start: calc(0px - var(--_bullet-inline-size) - var(--_bullet-gap));
+
+			:focus & {
+				outline: var(--outline-width) solid var(--outline-color);
+				outline-offset: var(--outline-offset-linkonly);
+			}
+
+			:any-link:hover & {
+				--_bullet-color: var(--link-color-hover);
+			}
+
+			&::before {
+				display: inline flow-root;
+				clip-path: var(--shape-link-triangle);
+				margin-inline-end: var(--_bullet-gap);
+				border-block-start: var(--_bullet-block-size) solid var(--_bullet-color);
+				inline-size: var(--_bullet-inline-size);
+				content: '';
+			}
 		}
-	}
 
-	.title {
-		margin-inline-start: calc(0px - var(--_bullet-inline-size) - var(--_bullet-gap));
-
-		:focus & {
-			outline: var(--outline-width) solid var(--outline-color);
-			outline-offset: var(--outline-offset-linkonly);
+		.text {
+			margin-block-start: 0.5em;
+			overflow: hidden;
+			line-height: var(--line-height-normal);
+			font-size: calc(100% / pow(var(--font-ratio), 2));
 		}
-
-		:any-link:hover & {
-			--_bullet-color: var(--link-color-hover);
-		}
-
-		&::before {
-			display: inline flow-root;
-			clip-path: var(--shape-link-triangle);
-			margin-inline-end: var(--_bullet-gap);
-			border-block-start: var(--_bullet-block-size) solid var(--_bullet-color);
-			inline-size: var(--_bullet-inline-size);
-			content: '';
-		}
-	}
-
-	.text {
-		margin-block-start: 0.5em;
-		overflow: hidden;
-		line-height: var(--line-height-normal);
-		font-size: calc(100% / pow(var(--font-ratio), 2));
 	}
 </style>

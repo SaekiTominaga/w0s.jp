@@ -13,32 +13,34 @@ const { type } = Astro.props;
 </span>
 
 <style>
-	.tac {
-		display: inline flex;
+	@layer component {
+		.tac {
+			display: inline flex;
 
-		&::before {
-			margin-inline-end: 0.25em;
-			min-inline-size: 1ic;
-			text-align: center;
-			text-shadow:
-				0.5px 0.5px,
-				0.5px -0.5px,
-				-0.5px 0.5px,
-				-0.5px -0.5px;
-			color: var(--_color, inherit);
-			content: var(--_symbol, none);
-		}
+			&::before {
+				margin-inline-end: 0.25em;
+				min-inline-size: 1ic;
+				text-align: center;
+				text-shadow:
+					0.5px 0.5px,
+					0.5px -0.5px,
+					-0.5px 0.5px,
+					-0.5px -0.5px;
+				color: var(--_color, inherit);
+				content: var(--_symbol, none);
+			}
 
-		/* 肯定 */
-		&.-tick {
-			--_symbol: '✓';
-			--_color: var(--color-green);
-		}
+			/* 肯定 */
+			&.-tick {
+				--_symbol: '✓';
+				--_color: var(--color-green);
+			}
 
-		/* 否定 */
-		&.-cross {
-			--_symbol: '✗';
-			--_color: var(--color-red);
+			/* 否定 */
+			&.-cross {
+				--_symbol: '✗';
+				--_color: var(--color-red);
+			}
 		}
 	}
 </style>

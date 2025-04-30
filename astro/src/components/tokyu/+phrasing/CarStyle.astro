@@ -9,10 +9,12 @@ const { type } = Astro.props;
 <span class:list={['style', type !== undefined ? `-${type}` : undefined]}><slot /></span>
 
 <style>
-	.style {
-		/* 軽量車（8000系、8500系） */
-		&.-light {
-			text-decoration: underline double;
+	@layer component {
+		.style {
+			/* 軽量車（8000系、8500系） */
+			&.-light {
+				text-decoration: underline double;
+			}
 		}
 	}
 </style>

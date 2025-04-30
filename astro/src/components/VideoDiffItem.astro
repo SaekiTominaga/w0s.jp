@@ -36,24 +36,26 @@ const timeEndDisplay = timeStart.format('H') === '0' ? timeEnd?.format('m′s″
 </div>
 
 <style>
-	div {
-		padding: 1em min(1dvi, 1em);
-	}
+	@layer component {
+		div {
+			padding: 1em min(1dvi, 1em);
+		}
 
-	div + div {
-		border-block-start: 1px solid;
-	}
+		div + div {
+			border-block-start: 1px solid;
+		}
 
-	dt {
-		font-size: calc(100% * pow(var(--font-ratio), 1));
-		font-weight: var(--font-weight-bold);
-	}
+		dt {
+			font-size: calc(100% * pow(var(--font-ratio), 1));
+			font-weight: var(--font-weight-bold);
+		}
 
-	dd {
-		margin-block-start: 0.5em;
+		dd {
+			margin-block-start: 0.5em;
 
-		& > :global(* + *) {
-			margin-block-start: var(--stack-margin-base);
+			& > :global(* + *) {
+				margin-block-start: var(--stack-margin-base);
+			}
 		}
 	}
 </style>

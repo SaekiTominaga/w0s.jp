@@ -9,13 +9,15 @@ const { id } = Astro.props;
 <p class="invalid" hidden="" id={id}></p>
 
 <style>
-	.invalid {
-		color: var(--color-red);
-		font-size: calc(100% / pow(var(--font-ratio), 1));
+	@layer component {
+		.invalid {
+			color: var(--color-red);
+			font-size: calc(100% / pow(var(--font-ratio), 1));
 
-		&::before {
-			margin-inline-end: 0.25em;
-			content: '⚠';
+			&::before {
+				margin-inline-end: 0.25em;
+				content: '⚠';
+			}
 		}
 	}
 </style>

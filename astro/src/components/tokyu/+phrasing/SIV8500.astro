@@ -9,33 +9,35 @@ const { type } = Astro.props;
 <span class:list={['siv', `-${type}`]}><slot /></span>
 
 <style>
-	.siv {
-		background-color: var(--_bg-color);
-		text-decoration: underline var(--_text-decoration-style);
-		text-decoration-color: var(--_bg-color);
+	@layer component {
+		.siv {
+			background-color: var(--_bg-color);
+			text-decoration: underline var(--_text-decoration-style);
+			text-decoration-color: var(--_bg-color);
 
-		/* BS-482 */
-		&.-bs482 {
-			--_bg-color: var(--color-yellow);
-			--_text-decoration-style: double;
-		}
+			/* BS-482 */
+			&.-bs482 {
+				--_bg-color: var(--color-yellow);
+				--_text-decoration-style: double;
+			}
 
-		/* INV-008 */
-		&.-inv008 {
-			--_bg-color: var(--color-pink);
-			--_text-decoration-style: dotted;
-		}
+			/* INV-008 */
+			&.-inv008 {
+				--_bg-color: var(--color-pink);
+				--_text-decoration-style: dotted;
+			}
 
-		/* INV-029 */
-		&.-inv029 {
-			--_bg-color: var(--color-verylightgreen);
-			--_text-decoration-style: dashed;
-		}
+			/* INV-029 */
+			&.-inv029 {
+				--_bg-color: var(--color-verylightgreen);
+				--_text-decoration-style: dashed;
+			}
 
-		/* INV-095 */
-		&.-inv095 {
-			--_bg-color: var(--color-lightblue);
-			--_text-decoration-style: wavy;
+			/* INV-095 */
+			&.-inv095 {
+				--_bg-color: var(--color-lightblue);
+				--_text-decoration-style: wavy;
+			}
 		}
 	}
 </style>

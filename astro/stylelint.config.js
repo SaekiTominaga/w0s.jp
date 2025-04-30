@@ -13,5 +13,18 @@ export default {
 			},
 		],
 		'selector-class-pattern': /^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$/,
+
+		'order/order': [
+			[
+				'custom-properties',
+				'declarations',
+				{
+					type: 'at-rule',
+					name: 'supports',
+					hasBlock: true,
+				},
+				'rules',
+			],
+		],
 	},
 };

@@ -20,47 +20,49 @@ const { data, direction } = Astro.props;
 }
 
 <style>
-	.toc {
-		--_direction: column;
-		--_icon-inline-size: 0.75em; /* アイコンの幅 */
-		--_icon-block-size: calc(var(--_icon-inline-size) * 0.75); /* アイコンの高さ */
-		--_icon-color: var(--color-gray); /* アイコンの色 */
-		--_icon-gap: 0.5em; /* アイコンと後続テキストの間隔 */
+	@layer component {
+		.toc {
+			--_direction: column;
+			--_icon-inline-size: 0.75em; /* アイコンの幅 */
+			--_icon-block-size: calc(var(--_icon-inline-size) * 0.75); /* アイコンの高さ */
+			--_icon-color: var(--color-gray); /* アイコンの色 */
+			--_icon-gap: 0.5em; /* アイコンと後続テキストの間隔 */
 
-		display: block flex;
-		flex-flow: var(--_direction) wrap;
-		gap: 0.75em 1.5em;
-		border: 1px solid var(--color-border-dark);
-		border-radius: var(--border-radius-normal);
-		background: var(--color-bg-superlight);
-		padding: 1.25em min(1.25dvi, 1.25em);
-		line-height: var(--line-height-narrow);
+			display: block flex;
+			flex-flow: var(--_direction) wrap;
+			gap: 0.75em 1.5em;
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-normal);
+			background: var(--color-bg-superlight);
+			padding: 1.25em min(1.25dvi, 1.25em);
+			line-height: var(--line-height-narrow);
 
-		&.-row {
-			--_direction: row;
-		}
+			&.-row {
+				--_direction: row;
+			}
 
-		& > :global(li) {
-			margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
-			font-size: calc(100% * pow(var(--font-ratio), 1));
-		}
+			& > :global(li) {
+				margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
+				font-size: calc(100% * pow(var(--font-ratio), 1));
+			}
 
-		& :global(:any-link) {
-			margin-inline-start: calc(0px - var(--_icon-inline-size) - var(--_icon-gap));
-			outline-offset: var(--outline-offset-linkonly);
-		}
+			& :global(:any-link) {
+				margin-inline-start: calc(0px - var(--_icon-inline-size) - var(--_icon-gap));
+				outline-offset: var(--outline-offset-linkonly);
+			}
 
-		& :global(:any-link::before) {
-			display: inline flow-root;
-			clip-path: var(--shape-pagelink-triangle);
-			margin-inline-end: var(--_icon-gap);
-			border-block-start: var(--_icon-block-size) solid var(--_icon-color);
-			inline-size: var(--_icon-inline-size);
-			content: '';
-		}
+			& :global(:any-link::before) {
+				display: inline flow-root;
+				clip-path: var(--shape-pagelink-triangle);
+				margin-inline-end: var(--_icon-gap);
+				border-block-start: var(--_icon-block-size) solid var(--_icon-color);
+				inline-size: var(--_icon-inline-size);
+				content: '';
+			}
 
-		& :global(:any-link:hover) {
-			--_icon-color: var(--link-color-hover);
+			& :global(:any-link:hover) {
+				--_icon-color: var(--link-color-hover);
+			}
 		}
 	}
 </style>

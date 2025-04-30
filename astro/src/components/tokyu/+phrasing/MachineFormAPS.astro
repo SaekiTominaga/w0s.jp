@@ -24,19 +24,21 @@ switch (type) {
 <span class:list={['aps', use !== undefined ? `-${use}` : undefined]}>{capacity}kVA-{typeDisplay}</span>
 
 <style>
-	.aps {
-		display: inline flex;
-		flex-wrap: wrap;
-		justify-content: center;
+	@layer component {
+		.aps {
+			display: inline flex;
+			flex-wrap: wrap;
+			justify-content: center;
 
-		/* 大容量 */
-		&.-much {
-			color: var(--color-blue);
-		}
+			/* 大容量 */
+			&.-much {
+				color: var(--color-blue);
+			}
 
-		/* 小容量 */
-		&.-few {
-			color: var(--color-red);
+			/* 小容量 */
+			&.-few {
+				color: var(--color-red);
+			}
 		}
 	}
 </style>

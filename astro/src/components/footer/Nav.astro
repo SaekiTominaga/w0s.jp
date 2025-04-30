@@ -23,20 +23,22 @@ const { pagePath } = Astro.props;
 </ul>
 
 <style>
-	.nav {
-		--_flex-direction: column;
+	@layer component {
+		.nav {
+			--_flex-direction: column;
 
-		display: block flex;
-		flex-flow: var(--_flex-direction) wrap;
-		gap: 1em 2em;
-		justify-content: flex-start;
+			display: block flex;
+			flex-flow: var(--_flex-direction) wrap;
+			gap: 1em 2em;
+			justify-content: flex-start;
 
-		@container footer-nav (inline-size >= 30em) {
-			--_flex-direction: row;
-		}
+			@container footer-nav (inline-size >= 30em) {
+				--_flex-direction: row;
+			}
 
-		& :any-link {
-			outline-offset: var(--outline-offset-linkonly);
+			& :any-link {
+				outline-offset: var(--outline-offset-linkonly);
+			}
 		}
 	}
 </style>

@@ -28,23 +28,25 @@ switch (electric) {
 </span>
 
 <style>
-	.comp {
-		display: inline flex;
-		flex-wrap: wrap;
-		justify-content: center;
+	@layer component {
+		.comp {
+			display: inline flex;
+			flex-wrap: wrap;
+			justify-content: center;
 
-		/* 直流駆動 */
-		&.-dc {
-			color: var(--color-blue);
+			/* 直流駆動 */
+			&.-dc {
+				color: var(--color-blue);
+			}
+
+			/* 交流駆動 */
+			&.-ac {
+				color: var(--color-red);
+			}
 		}
 
-		/* 交流駆動 */
-		&.-ac {
-			color: var(--color-red);
+		.electric {
+			margin-inline-end: 0.25em;
 		}
-	}
-
-	.electric {
-		margin-inline-end: 0.25em;
 	}
 </style>

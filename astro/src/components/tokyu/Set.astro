@@ -46,80 +46,82 @@ const { period, note, invDate, invCar } = Astro.props;
 </div>
 
 <style>
-	.set {
-		inline-size: fit-content;
-
-		& + :global(*) {
-			margin-block-start: calc(var(--stack-margin-base) * 2);
-		}
-	}
-
-	.header {
-		line-height: var(--line-height-narrow);
-
-		& > :global(*) {
-			margin-inline: auto;
+	@layer component {
+		.set {
 			inline-size: fit-content;
+
+			& + :global(*) {
+				margin-block-start: calc(var(--stack-margin-base) * 2);
+			}
 		}
 
-		& > :global(* + *) {
-			margin-block-start: calc(var(--stack-margin-base) / 3);
-		}
-	}
+		.header {
+			line-height: var(--line-height-narrow);
 
-	.main {
-		margin-block-start: 1em;
+			& > :global(*) {
+				margin-inline: auto;
+				inline-size: fit-content;
+			}
 
-		& > :global(*) {
-			margin-inline: auto;
-			inline-size: fit-content;
-		}
-	}
-
-	.footer {
-		margin-block-start: 3em;
-
-		& > :global(*) {
-			margin-inline: auto;
-			inline-size: fit-content;
-		}
-	}
-
-	/* 設置期間 */
-	.period {
-	}
-
-	/* 補足 */
-	.note {
-		&::before {
-			content: '（';
+			& > :global(* + *) {
+				margin-block-start: calc(var(--stack-margin-base) / 3);
+			}
 		}
 
-		&::after {
-			content: '）';
+		.main {
+			margin-block-start: 1em;
+
+			& > :global(*) {
+				margin-inline: auto;
+				inline-size: fit-content;
+			}
 		}
-	}
 
-	/* 調査データ */
-	.data {
-		display: block flex;
-		flex-flow: wrap;
-		gap: 0.5em 2em;
-		justify-content: center;
-		border: 1px solid var(--color-border-dark);
-		border-radius: var(--border-radius-normal);
-		background: var(--color-white);
-		padding: 0.5em 15px;
-		line-height: var(--line-height-narrow);
+		.footer {
+			margin-block-start: 3em;
 
-		& > :global(div) {
+			& > :global(*) {
+				margin-inline: auto;
+				inline-size: fit-content;
+			}
+		}
+
+		/* 設置期間 */
+		.period {
+		}
+
+		/* 補足 */
+		.note {
+			&::before {
+				content: '（';
+			}
+
+			&::after {
+				content: '）';
+			}
+		}
+
+		/* 調査データ */
+		.data {
 			display: block flex;
 			flex-flow: wrap;
-		}
+			gap: 0.5em 2em;
+			justify-content: center;
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-normal);
+			background: var(--color-white);
+			padding: 0.5em 15px;
+			line-height: var(--line-height-narrow);
 
-		& :global(dt::after) {
-			margin: 0.25em;
-			content: ':';
+			& > :global(div) {
+				display: block flex;
+				flex-flow: wrap;
+			}
+
+			& :global(dt::after) {
+				margin: 0.25em;
+				content: ':';
+			}
 		}
 	}
 </style>

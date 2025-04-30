@@ -94,68 +94,70 @@ const pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.
 </span>
 
 <style>
-	.doc {
-		--_space-width: 0.25em;
-	}
-
-	/* 図書名 */
-	.name {
-		font-style: normal;
-
-		&::before {
-			content: '『';
+	@layer component {
+		.doc {
+			--_space-width: 0.25em;
 		}
 
-		&::after {
-			content: '』';
-		}
-	}
+		/* 図書名 */
+		.name {
+			font-style: normal;
 
-	/* 本の発行年、著者名などのメタ情報 */
-	.meta {
-		margin-inline: calc(0px - var(--_space-width));
+			&::before {
+				content: '『';
+			}
 
-		&::before {
-			margin-inline-end: calc(0px - var(--_space-width));
-			content: '（';
-		}
-
-		&::after {
-			margin-inline-start: calc(0px - var(--_space-width));
-			content: '）';
-		}
-	}
-
-	.author {
-		/* 全角スペース相当の間隔を開ける */
-		&:not(:last-child) {
 			&::after {
-				margin-inline-end: -0.5em;
-				content: '\3000';
+				content: '』';
 			}
 		}
-	}
 
-	.date {
-		/* 全角スペース相当の間隔を開ける */
-		&:not(:last-child) {
+		/* 本の発行年、著者名などのメタ情報 */
+		.meta {
+			margin-inline: calc(0px - var(--_space-width));
+
+			&::before {
+				margin-inline-end: calc(0px - var(--_space-width));
+				content: '（';
+			}
+
 			&::after {
-				margin-inline-end: -0.5em;
-				content: '\3000';
+				margin-inline-start: calc(0px - var(--_space-width));
+				content: '）';
 			}
 		}
-	}
 
-	/* 記事タイトル */
-	.article {
-		margin-inline: calc(0px - var(--_space-width));
-
-		&::before {
-			content: '「';
+		.author {
+			/* 全角スペース相当の間隔を開ける */
+			&:not(:last-child) {
+				&::after {
+					margin-inline-end: -0.5em;
+					content: '\3000';
+				}
+			}
 		}
 
-		&::after {
-			content: '」';
+		.date {
+			/* 全角スペース相当の間隔を開ける */
+			&:not(:last-child) {
+				&::after {
+					margin-inline-end: -0.5em;
+					content: '\3000';
+				}
+			}
+		}
+
+		/* 記事タイトル */
+		.article {
+			margin-inline: calc(0px - var(--_space-width));
+
+			&::before {
+				content: '「';
+			}
+
+			&::after {
+				content: '」';
+			}
 		}
 	}
 </style>

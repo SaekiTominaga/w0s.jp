@@ -35,33 +35,35 @@ const signDisplay = sign.replaceAll(/[0-9]+/g, (match) => `<span class="u-tokyu-
 </th>
 
 <style>
-	.series {
-		display: block flex;
-		flex-direction: column;
-		border: 1px solid var(--_bg-color, var(--color-black));
-		background-color: var(--_bg-color, var(--color-white));
-		padding: 0.125em;
-		color: var(--color-black);
+	@layer component {
+		.series {
+			display: block flex;
+			flex-direction: column;
+			border: 1px solid var(--_bg-color, var(--color-black));
+			background-color: var(--_bg-color, var(--color-white));
+			padding: 0.125em;
+			color: var(--color-black);
 
-		/* 電動車（直流電動機） */
-		&.-m-dc {
-			--_bg-color: var(--color-paleturquoise);
+			/* 電動車（直流電動機） */
+			&.-m-dc {
+				--_bg-color: var(--color-paleturquoise);
+			}
+
+			/* 電動車（交流電動機） */
+			&.-m-ac {
+				--_bg-color: var(--color-orange);
+			}
+
+			/* 制御車、付随車 */
+			&.-t {
+				--_bg-color: var(--color-lightgreen);
+			}
 		}
 
-		/* 電動車（交流電動機） */
-		&.-m-ac {
-			--_bg-color: var(--color-orange);
+		.name {
 		}
 
-		/* 制御車、付随車 */
-		&.-t {
-			--_bg-color: var(--color-lightgreen);
+		.type {
 		}
-	}
-
-	.name {
-	}
-
-	.type {
 	}
 </style>

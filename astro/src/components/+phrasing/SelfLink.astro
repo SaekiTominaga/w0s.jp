@@ -9,12 +9,14 @@ const { id } = Astro.props;
 <a href={`#${encodeURIComponent(id)}`}>§</a>
 
 <style>
-	a {
-		display: inline flex;
-		justify-content: center;
-		outline-width: var(--outline-width-bold);
-		min-inline-size: var(--self-link-size);
-		text-decoration: none;
-		font-family: var(--font-yu-gothic);
+	@layer component {
+		a {
+			display: inline flex;
+			justify-content: center;
+			outline-width: var(--outline-width-bold);
+			min-inline-size: var(--self-link-size);
+			text-decoration: none;
+			font-family: var(--font-yu-gothic);
+		}
 	}
 </style>

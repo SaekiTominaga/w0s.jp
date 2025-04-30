@@ -29,38 +29,40 @@ const { top, href, name, summary } = Astro.props;
 }
 
 <style>
-	.site {
-		display: block flex;
-		flex-direction: column;
-		gap: 0.25em;
-	}
+	@layer component {
+		.site {
+			display: block flex;
+			flex-direction: column;
+			gap: 0.25em;
+		}
 
-	.name {
-		text-shadow: 0.05em 0.05em 0.1em var(--color-border-light);
-		color: #f00;
-		font: 700 2rem / var(--line-height-narrow) var(--font-yu-mincho);
-		font-feature-settings: 'palt';
+		.name {
+			text-shadow: 0.05em 0.05em 0.1em var(--color-border-light);
+			color: #f00;
+			font: 700 2rem / var(--line-height-narrow) var(--font-yu-mincho);
+			font-feature-settings: 'palt';
 
-		& :any-link {
-			--_padding: 0.05em;
+			& :any-link {
+				--_padding: 0.05em;
 
-			display: inline flow-root;
-			margin: calc(0px - var(--_padding));
-			outline-offset: 0;
-			outline-width: var(--outline-width-bold);
-			border-radius: var(--border-radius-small); /* outline を柔らかくする */
-			padding: var(--_padding);
-			text-decoration: none;
-			color: inherit;
+				display: inline flow-root;
+				margin: calc(0px - var(--_padding));
+				outline-offset: 0;
+				outline-width: var(--outline-width-bold);
+				border-radius: var(--border-radius-small); /* outline を柔らかくする */
+				padding: var(--_padding);
+				text-decoration: none;
+				color: inherit;
 
-			&:hover {
-				text-shadow: 0 0 1em var(--color-border-dark);
+				&:hover {
+					text-shadow: 0 0 1em var(--color-border-dark);
+				}
 			}
 		}
-	}
 
-	.summary {
-		color: var(--color-gray);
-		font-size: calc(100% / pow(var(--font-ratio), 2));
+		.summary {
+			color: var(--color-gray);
+			font-size: calc(100% / pow(var(--font-ratio), 2));
+		}
 	}
 </style>

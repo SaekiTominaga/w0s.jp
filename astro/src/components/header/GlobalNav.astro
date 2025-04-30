@@ -34,56 +34,58 @@ const { pagePath, data } = Astro.props;
 </nav>
 
 <style>
-	.global-nav {
-		--_border-width: 1px;
+	@layer component {
+		.global-nav {
+			--_border-width: 1px;
 
-		display: block flex;
-		flex-flow: wrap;
-		margin-block: calc(0px - var(--_border-width) / 2);
-		margin-inline: calc(var(--_border-width) / 2);
-
-		& > :global(li) {
 			display: block flex;
-			flex: auto;
-			margin: calc(0px - var(--_border-width) / 2);
-			border: 1px solid var(--color-border-light);
-		}
-	}
+			flex-flow: wrap;
+			margin-block: calc(0px - var(--_border-width) / 2);
+			margin-inline: calc(var(--_border-width) / 2);
 
-	.link {
-		--_border-color: transparent;
-		--_border-width: 0px;
-		--_color: var(--color-darkgray);
-		--_background: var(--color-white);
-
-		flex: 100%;
-		contain: content;
-		outline-offset: calc(1px - var(--outline-width-bold));
-		outline-width: var(--outline-width-bold);
-		border-block-end: var(--_border-width) solid var(--_border-color);
-		background: var(--_background);
-		padding: 0.5em 0.25em calc(0.5em - var(--_border-width));
-		text-align: center;
-		text-decoration: none;
-		color: var(--_color);
-		font-size: clamp(100%, 2.5svi, calc(100% * pow(var(--font-ratio), 2)));
-
-		&:any-link {
-			--_background: linear-gradient(var(--color-white), var(--color-bg-light));
-
-			&:hover {
-				--_background: linear-gradient(var(--color-bg-light), var(--color-white));
-
-				color: var(--_color);
+			& > :global(li) {
+				display: block flex;
+				flex: auto;
+				margin: calc(0px - var(--_border-width) / 2);
+				border: 1px solid var(--color-border-light);
 			}
 		}
 
-		&[aria-current] {
-			--_border-width: 2px;
-			--_border-color: var(--color-red);
+		.link {
+			--_border-color: transparent;
+			--_border-width: 0px;
+			--_color: var(--color-darkgray);
+			--_background: var(--color-white);
 
-			&:focus {
-				--_border-width: 3px; /* フォーカスリングとの関係 */
+			flex: 100%;
+			contain: content;
+			outline-offset: calc(1px - var(--outline-width-bold));
+			outline-width: var(--outline-width-bold);
+			border-block-end: var(--_border-width) solid var(--_border-color);
+			background: var(--_background);
+			padding: 0.5em 0.25em calc(0.5em - var(--_border-width));
+			text-align: center;
+			text-decoration: none;
+			color: var(--_color);
+			font-size: clamp(100%, 2.5svi, calc(100% * pow(var(--font-ratio), 2)));
+
+			&:any-link {
+				--_background: linear-gradient(var(--color-white), var(--color-bg-light));
+
+				&:hover {
+					--_background: linear-gradient(var(--color-bg-light), var(--color-white));
+
+					color: var(--_color);
+				}
+			}
+
+			&[aria-current] {
+				--_border-width: 2px;
+				--_border-color: var(--color-red);
+
+				&:focus {
+					--_border-width: 3px; /* フォーカスリングとの関係 */
+				}
 			}
 		}
 	}
