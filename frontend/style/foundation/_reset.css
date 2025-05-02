@@ -43,7 +43,8 @@ dialog {
   * https://html.spec.whatwg.org/multipage/rendering.html#phrasing-content-3
   */
 :is(cite, dfn, em) {
-	&:lang(ja, zh) {
+	&:is(:lang(ja), :lang(zh)) /* :lang() 複数指定は Chrome 未対応 https://caniuse.com/mdn-css_selectors_lang_argument_list */
+	{
 		font-style: normal;
 	}
 }
