@@ -152,66 +152,26 @@ if (requestQuery.output !== null) {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	{
-		requestQuery.output === null && (
-			<Toggle open={true}>
-				<Fragment slot="summary">説明文</Fragment>
+	<Toggle open={requestQuery.output === null}>
+		<Fragment slot="summary">説明文</Fragment>
 
-				<Box>
-					<List>
-						<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
-						<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
-						<li>
-							「車号」では次に挙げる記号を使うことで特殊な検索ができます。
-							<ul>
-								<li>「.」（ピリオド）は任意の1文字に相当します。</li>
-								<li>「*」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
-								<li>
-									たとえば、デハ8700形の全車両を表示するには、車種の「8500系」にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。
-								</li>
-							</ul>
-						</li>
-						<li>
-							改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば、車号に『<kbd>7001</kbd>』と入力し、「旧車号を含む」にチェックを入れて検索しても、7700系化後の車号はヒットしません。
-						</li>
-						<li>
-							入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
-						</li>
-					</List>
-				</Box>
-			</Toggle>
-		)
-	}
-	{
-		requestQuery.output !== null && (
-			<Toggle>
-				<Fragment slot="summary">説明文</Fragment>
-
-				<Box>
-					<List>
-						<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
-						<li>全車両を見る場合は「車号」を未入力かつ「車種」を未選択の状態で検索してください。</li>
-						<li>
-							「車号」では次に挙げる記号を使うことで特殊な検索ができます。
-							<ul>
-								<li>「.」（ピリオド）は任意の1文字に相当します。</li>
-								<li>「*」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
-								<li>
-									たとえば、デハ8700形の全車両を表示するには、車種の「8500系」にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。
-								</li>
-							</ul>
-						</li>
-						<li>
-							改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば、車号に『<kbd>7001</kbd>』と入力し、「旧車号を含む」にチェックを入れて検索しても、7700系化後の車号はヒットしません。
-						</li>
-						<li>
-							入籍日、改番日の参考資料については、<a href="/tokyu/data/history/ref">出典一覧</a>を参照ください。
-						</li>
-					</List>
-				</Box>
-			</Toggle>
-		)
-	}
+		<Box>
+			<List>
+				<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
+				<li>全車両を見る場合は<q>車号</q>を未入力かつ<q>車種</q>を未選択の状態で検索してください。</li>
+				<li>
+					<q>車号</q>では次に挙げる記号を使うことで特殊な検索ができます。
+					<ul>
+						<li>「<kbd>.</kbd>」（ピリオド）は任意の1文字に相当します。</li>
+						<li>「<kbd>*</kbd>」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
+						<li>たとえばデハ8700形の全車両を表示するには、車種の<q>8500系</q>にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</li>
+					</ul>
+				</li>
+				<li>改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば車号に『<kbd>7001</kbd>』と入力し、<q>旧車号を含む</q>にチェックを入れて検索しても、7700系化後のデータはヒットしません。</li>
+				<li>入籍日、改番日の参考資料は<a href="/tokyu/data/history/ref">出典一覧</a>に記しています。</li>
+			</List>
+		</Box>
+	</Toggle>
 
 	<Section slugger={slugger}>
 		<Fragment slot="heading">検索条件入力</Fragment>
@@ -225,7 +185,7 @@ if (requestQuery.output !== null) {
 						<FormCtrlInput size="4em"><input name="num" value={requestQuery.number} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
 
 						<Label label="旧車号を含む">
-							<input type="checkbox" name="old" value="1" checked={requestQuery.number_old ? 'checked' : undefined} />
+							<input type="checkbox" name="old" value="1" checked={requestQuery.number_old} />
 						</Label>
 					</Fragment>
 
@@ -240,13 +200,13 @@ if (requestQuery.output !== null) {
 						{
 							carSeries.map((car) => (
 								<Label label={car.series}>
-									<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== null && requestQuery.series.includes(car.id) ? 'checked' : undefined} />
+									<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== null && requestQuery.series.includes(car.id)} />
 								</Label>
 							))
 						}
 						<p>
 							<Button class="js-button-checkboxes" data-course="check" data-controls-name="ser[]">全車種を選択</Button>
-							<Button class="js-button-checkboxes" data-course="uncheck" data-controls-name="ser[]">全ての選択を解除</Button>
+							<Button class="js-button-checkboxes" data-course="uncheck" data-controls-name="ser[]">すべての選択を解除</Button>
 						</p>
 					</Fragment>
 				</FormGridGroup>
@@ -282,7 +242,7 @@ if (requestQuery.output !== null) {
 									['reg', '入籍日'],
 								].map(([name, value], index) => (
 									<Label label={value}>
-										<input type="radio" name="srt" value={name} checked={((requestQuery.sort === null || requestQuery.sort === '') && index === 0) || requestQuery.sort === name ? 'checked' : undefined} />
+										<input type="radio" name="srt" value={name} checked={((requestQuery.sort === null || requestQuery.sort === '') && index === 0) || requestQuery.sort === name} />
 									</Label>
 								))
 							}
@@ -300,7 +260,7 @@ if (requestQuery.output !== null) {
 									['ja', '和暦'],
 								].map(([name, value], index) => (
 									<Label label={value}>
-										<input type="radio" name="era" value={name} checked={((requestQuery.era === null || requestQuery.era === '') && index === 0) || requestQuery.era === name ? 'checked' : undefined} />
+										<input type="radio" name="era" value={name} checked={((requestQuery.era === null || requestQuery.era === '') && index === 0) || requestQuery.era === name} />
 									</Label>
 								))
 							}
@@ -318,7 +278,7 @@ if (requestQuery.output !== null) {
 									['mob', '主要列表示（モバイル向け）'],
 								].map(([name, value], index) => (
 									<Label label={value}>
-										<input type="radio" name="out" value={name} checked={((requestQuery.output === null || requestQuery.output === '') && index === 0) || requestQuery.output === name ? 'checked' : undefined} />
+										<input type="radio" name="out" value={name} checked={((requestQuery.output === null || requestQuery.output === '') && index === 0) || requestQuery.output === name} />
 									</Label>
 								))
 							}
@@ -344,7 +304,7 @@ if (requestQuery.output !== null) {
 
 						{searchCount >= 2 && (
 							<p>
-								<Label label="直上と同じ内容のセルを「〃」で表示する">
+								<Label label="直上と同じ内容のセルを「〃」で表示">
 									<w0s-input-switch checked="" storage-key="tokyu-history-ditto" class="js-button-ditto" data-ditto-for="result-table" />
 								</Label>
 							</p>
@@ -372,7 +332,7 @@ if (requestQuery.output !== null) {
 											{carOfSeries.map((car) => (
 												<>
 													{car.changes.length <= 1 && (
-														<tr data-car-num={car.number}>
+														<tr>
 															{/* prettier-ignore */}
 															<td class="u-cell -center">{car.sign}{car.number}</td>
 															<td class="u-cell -center">{car.series}</td>
@@ -404,7 +364,7 @@ if (requestQuery.output !== null) {
 															{car.changes.map((change, index) => (
 																<>
 																	{index === 0 && (
-																		<tr data-car-num={car.number}>
+																		<tr>
 																			{/* prettier-ignore */}
 																			<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
 																			{/* prettier-ignore */}
@@ -427,7 +387,7 @@ if (requestQuery.output !== null) {
 																		</tr>
 																	)}
 																	{index >= 1 && (
-																		<tr data-car-num={car.number}>
+																		<tr>
 																			{/* prettier-ignore */}
 																			<td class="u-cell -center">{change.sign}{change.number}</td>
 																			<td class="u-cell -center">{change.date}</td>
@@ -458,7 +418,7 @@ if (requestQuery.output !== null) {
 											{carOfSeries.map((car) => (
 												<>
 													{car.changes.length <= 1 && (
-														<tr data-car-num={car.number}>
+														<tr>
 															{/* prettier-ignore */}
 															<td class="u-cell -center">{car.sign}{car.number}</td>
 															<td class="u-cell -center">{car.annual}</td>
@@ -478,7 +438,7 @@ if (requestQuery.output !== null) {
 															{car.changes.map((change, index) => (
 																<>
 																	{index === 0 && (
-																		<tr data-car-num={car.number}>
+																		<tr>
 																			{/* prettier-ignore */}
 																			<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
 																			{/* prettier-ignore */}
@@ -490,7 +450,7 @@ if (requestQuery.output !== null) {
 																		</tr>
 																	)}
 																	{index >= 1 && (
-																		<tr data-car-num={car.number}>
+																		<tr>
 																			{/* prettier-ignore */}
 																			<td class="u-cell -center">{car.sign}{car.number}</td>
 																		</tr>

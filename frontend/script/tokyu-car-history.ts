@@ -1,6 +1,5 @@
 import { convert } from '@w0s/string-convert';
 import TableCellDitto from '@w0s/table-cell-ditto';
-import TokyuCarHistoryResultTableTrHover from './unique/TokyuCarHistoryResultTableTrHover.js';
 
 /**
  * 東急電車資料室 - 車歴表
@@ -48,11 +47,5 @@ if (resultTableElement !== null) {
 			},
 			{ passive: true },
 		);
-	}
-
-	/* 表の列をマウスオーバーしたとき、クラス名を付与してCSSでスタイルを設定できるようにする */
-	for (const trElement of resultTableElement.querySelectorAll<HTMLTableRowElement>('tbody > tr')) {
-		const resultTableTrHover = new TokyuCarHistoryResultTableTrHover(trElement);
-		resultTableTrHover.connected();
 	}
 }
