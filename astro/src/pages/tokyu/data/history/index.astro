@@ -29,7 +29,7 @@ interface RequestQuery {
 	register_end: string | null;
 	sort: string | null;
 	era: string | null;
-	output: string | null;
+	output: boolean;
 }
 
 interface ViewChange {
@@ -81,7 +81,7 @@ const requestQuery: RequestQuery = {
 	register_end: RequestUtil.string(requestParams.get('ree')),
 	sort: RequestUtil.string(requestParams.get('srt')),
 	era: RequestUtil.string(requestParams.get('era')),
-	output: RequestUtil.string(requestParams.get('out')),
+	output: RequestUtil.boolean(requestParams.get('out')),
 };
 
 const dao = new TokyuCarHistoryDao(env('SQLITE_TOKYU_CAR_HISTORY'));
@@ -108,7 +108,7 @@ const dateFormat = (date: Date): string => {
 const cars: ViewCar[][] = [];
 let searchCount = 0; // 検索条件にマッチした車両数
 
-if (requestQuery.output !== null) {
+if (requestQuery.output) {
 	const carsDto = await dao.getCarData(requestQuery.number?.replaceAll('.', '_').replaceAll('*', '%') ?? null, requestQuery.number_old, requestQuery.series, requestQuery.register_start, requestQuery.register_end, requestQuery.sort);
 
 	searchCount = carsDto.length;
@@ -152,7 +152,7 @@ if (requestQuery.output !== null) {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<Toggle open={requestQuery.output === null}>
+	<Toggle open={!requestQuery.output}>
 		<Fragment slot="summary">説明文</Fragment>
 
 		<Box>
@@ -267,34 +267,16 @@ if (requestQuery.output !== null) {
 						</div>
 					</Fragment>
 				</FormGridGroup>
-				<FormGridGroup ctrlType="radio">
-					<Fragment slot="legend"><span id="label-output">出力</span></Fragment>
-
-					<Fragment slot="contents">
-						<div role="radiogroup" aria-labelledby="label-output">
-							{
-								[
-									['nor', '全列表示'],
-									['mob', '主要列表示（モバイル向け）'],
-								].map(([name, value], index) => (
-									<Label label={value}>
-										<input type="radio" name="out" value={name} checked={((requestQuery.output === null || requestQuery.output === '') && index === 0) || requestQuery.output === name} />
-									</Label>
-								))
-							}
-						</div>
-					</Fragment>
-				</FormGridGroup>
 			</FormGrid>
 
 			<FormButtons>
-				<p><SubmitButton>検索</SubmitButton></p>
+				<p><SubmitButton name="out" value="nor">検索</SubmitButton></p>
 			</FormButtons>
 		</form>
 	</Section>
 
 	{
-		requestQuery.output !== null && (
+		requestQuery.output && (
 			<Section slugger={slugger} class="js-autofocus">
 				<Fragment slot="heading">検索結果</Fragment>
 
@@ -311,160 +293,94 @@ if (requestQuery.output !== null) {
 						)}
 
 						<HistoryTable class="js-result-table" id="result-table">
-							{requestQuery.output !== 'mob' && (
-								<>
-									<thead>
-										<tr>
-											<th scope="col">車号</th>
-											<th scope="col">車種</th>
-											<th scope="col">形式</th>
-											<th scope="col">呼称</th>
-											<th scope="col">入籍日</th>
-											<th scope="col">旧車号</th>
-											<th scope="col">改番日</th>
-											<th scope="col">更新</th>
-											<th scope="col">新車号、譲渡車号</th>
-											<th scope="col">車齢</th>
-										</tr>
-									</thead>
-									{cars.map((carOfSeries) => (
-										<tbody>
-											{carOfSeries.map((car) => (
-												<>
-													{car.changes.length <= 1 && (
-														<tr>
-															{/* prettier-ignore */}
-															<td class="u-cell -center">{car.sign}{car.number}</td>
-															<td class="u-cell -center">{car.series}</td>
-															<td class="u-cell -center">{car.type}</td>
-															<td class="u-cell -center">{car.annual}</td>
-															<td class="u-cell -center">{car.register}</td>
-															{car.changes.length === 0 && (
-																<>
-																	<td />
-																	<td />
-																</>
-															)}
-															{car.changes.length >= 1 && (
-																<>
-																	{/* prettier-ignore */}
-																	<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
-																	<td class="u-cell -center">{car.changes[0].date}</td>
-																</>
-															)}
-															<td>{car.renewal}</td>
-															<td>{car.transfer}</td>
-															{/* prettier-ignore */}
-															<td class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
-														</tr>
-													)}
-
-													{car.changes.length >= 2 && (
+							<thead>
+								<tr>
+									<th scope="col">車号</th>
+									<th scope="col">車種</th>
+									<th scope="col">形式</th>
+									<th scope="col">呼称</th>
+									<th scope="col">入籍日</th>
+									<th scope="col">旧車号</th>
+									<th scope="col">改番日</th>
+									<th scope="col">更新</th>
+									<th scope="col">新車号、譲渡車号</th>
+									<th scope="col">車齢</th>
+								</tr>
+							</thead>
+							{cars.map((carOfSeries) => (
+								<tbody>
+									{carOfSeries.map((car) => (
+										<>
+											{car.changes.length <= 1 && (
+												<tr>
+													{/* prettier-ignore */}
+													<td class="u-cell -center">{car.sign}{car.number}</td>
+													<td class="u-cell -center">{car.series}</td>
+													<td class="u-cell -center">{car.type}</td>
+													<td class="u-cell -center">{car.annual}</td>
+													<td class="u-cell -center">{car.register}</td>
+													{car.changes.length === 0 && (
 														<>
-															{car.changes.map((change, index) => (
-																<>
-																	{index === 0 && (
-																		<tr>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.series}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.type}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.annual}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.register}</td>
-																			{/* prettier-ignore */}
-																			<td class="u-cell -center">{change.sign}{change.number}</td>
-																			<td class="u-cell -center">{change.date}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.renewal}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.transfer}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
-																		</tr>
-																	)}
-																	{index >= 1 && (
-																		<tr>
-																			{/* prettier-ignore */}
-																			<td class="u-cell -center">{change.sign}{change.number}</td>
-																			<td class="u-cell -center">{change.date}</td>
-																		</tr>
-																	)}
-																</>
-															))}
+															<td />
+															<td />
 														</>
 													)}
-												</>
-											))}
-										</tbody>
-									))}
-								</>
-							)}
-							{requestQuery.output === 'mob' && (
-								<>
-									<thead>
-										<tr>
-											<th scope="col">車号</th>
-											<th scope="col">呼称</th>
-											<th scope="col">入籍日</th>
-											<th scope="col">旧車号</th>
-										</tr>
-									</thead>
-									{cars.map((carOfSeries) => (
-										<tbody>
-											{carOfSeries.map((car) => (
-												<>
-													{car.changes.length <= 1 && (
-														<tr>
-															{/* prettier-ignore */}
-															<td class="u-cell -center">{car.sign}{car.number}</td>
-															<td class="u-cell -center">{car.annual}</td>
-															<td class="u-cell -center">{car.register}</td>
-															{car.changes.length === 0 && <td />}
-															{car.changes.length >= 1 && (
-																<>
-																	{/* prettier-ignore */}
-																	<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
-																</>
-															)}
-														</tr>
-													)}
-
-													{car.changes.length >= 2 && (
+													{car.changes.length >= 1 && (
 														<>
-															{car.changes.map((change, index) => (
-																<>
-																	{index === 0 && (
-																		<tr>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.annual}</td>
-																			{/* prettier-ignore */}
-																			<td rowspan={car.changes.length} class="u-cell -center">{car.register}</td>
-																			{/* prettier-ignore */}
-																			<td class="u-cell -center">{change.sign}{change.number}</td>
-																		</tr>
-																	)}
-																	{index >= 1 && (
-																		<tr>
-																			{/* prettier-ignore */}
-																			<td class="u-cell -center">{car.sign}{car.number}</td>
-																		</tr>
-																	)}
-																</>
-															))}
+															{/* prettier-ignore */}
+															<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
+															<td class="u-cell -center">{car.changes[0].date}</td>
 														</>
 													)}
+													<td>{car.renewal}</td>
+													<td>{car.transfer}</td>
+													{/* prettier-ignore */}
+													<td class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
+												</tr>
+											)}
+
+											{car.changes.length >= 2 && (
+												<>
+													{car.changes.map((change, index) => (
+														<>
+															{index === 0 && (
+																<tr>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.series}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.type}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.annual}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.register}</td>
+																	{/* prettier-ignore */}
+																	<td class="u-cell -center">{change.sign}{change.number}</td>
+																	<td class="u-cell -center">{change.date}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.renewal}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.transfer}</td>
+																	{/* prettier-ignore */}
+																	<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
+																</tr>
+															)}
+															{index >= 1 && (
+																<tr>
+																	{/* prettier-ignore */}
+																	<td class="u-cell -center">{change.sign}{change.number}</td>
+																	<td class="u-cell -center">{change.date}</td>
+																</tr>
+															)}
+														</>
+													))}
 												</>
-											))}
-										</tbody>
+											)}
+										</>
 									))}
-								</>
-							)}
+								</tbody>
+							))}
 						</HistoryTable>
 					</>
 				)}
