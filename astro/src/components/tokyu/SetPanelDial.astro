@@ -1,5 +1,5 @@
 ---
-import { getIdHash } from '@util/hash';
+import { getId } from '@util/crypto';
 
 interface Props {
 	image: string;
@@ -9,7 +9,7 @@ const { image: imageFileName } = Astro.props;
 
 const content = await Astro.slots.render('default');
 
-const imageAltId = getIdHash(content);
+const imageAltId = getId(content);
 ---
 
 <div class="panel">

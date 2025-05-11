@@ -1,5 +1,5 @@
 ---
-import { getIdHash } from '@util/hash';
+import { getId } from '@util/crypto';
 
 interface Props {
 	heading: string;
@@ -9,7 +9,7 @@ const { heading } = Astro.props;
 
 const mainContent = await Astro.slots.render('main');
 
-const headingId = getIdHash(mainContent);
+const headingId = getId(mainContent);
 ---
 
 <nav class="top-nav" aria-labelledby={headingId}>

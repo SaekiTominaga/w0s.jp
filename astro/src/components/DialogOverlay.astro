@@ -1,5 +1,5 @@
 ---
-import { getIdHash } from '@util/hash.ts';
+import { getId } from '@util/crypto';
 
 interface Props {
 	label: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const { label, id } = Astro.props;
 
-const labelId = getIdHash('dialog-overlay');
+const labelId = getId('dialog-overlay');
 ---
 
 <dialog class="dialog-overlay" id={id} aria-labelledby={labelId} aria-describedby={labelId}>
