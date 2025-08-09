@@ -1,5 +1,5 @@
 import type { AstroGlobal } from 'astro';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import Log4js from 'log4js';
 import { env } from './env.js';
 
