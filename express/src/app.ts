@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import basicAuth from 'basic-auth';
 import compression from 'compression';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
