@@ -1,5 +1,5 @@
+import { loadEnvFile } from 'node:process';
 import type { AstroGlobal } from 'astro';
-import dotenv from 'dotenv';
 import Log4js from 'log4js';
 import { env } from './env.js';
 
@@ -19,9 +19,7 @@ interface Options {
 export const init = (Astro: AstroGlobal, options: Options): { logger: Log4js.Logger } => {
 	Astro.response.headers.set('Content-Type', 'text/html;charset=utf-8');
 
-	dotenv.config({
-		path: !options.dev ? '../.env.production' : '../.env.development',
-	});
+	loadEnvFile(!options.dev ? '../.env.production' : '../.env.development');
 
 	/* Logger */
 	Log4js.configure(env('LOGGER'));

@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { loadEnvFile } from 'node:process';
 import basicAuth from 'basic-auth';
 import compression from 'compression';
-import dotenv from 'dotenv';
 import express, { type NextFunction, type Request, type Response } from 'express';
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
@@ -15,9 +15,7 @@ import config from './config/express.js';
 import { env } from './util/env.js';
 import { csp, reportingEndpoints } from './util/httpHeader.js';
 
-dotenv.config({
-	path: process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development',
-});
+loadEnvFile(process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development');
 
 /* Logger */
 Log4js.configure(env('LOGGER'));
