@@ -5,11 +5,12 @@ export default {
 		'\\.astro$': '@markuplint/astro-parser',
 	},
 	excludeFiles: [
-		/* markuplint@4.11.4 + @markuplint/astro-parser@4.6.14 で 200KB 超えの巨大なファイルはエラーが出るため暫定的に除外 */
-		'src/pages/kumeta/manga/comment.astro', // 258KB
-		'src/pages/kumeta/manga/subtitle.astro', // 285KB
-		'src/pages/madoka/library/magazine.astro', // 202KB
-		'src/pages/madoka/yomoyama/namae.astro', // 308 KB
+		/* markuplint@4.13.1 + @markuplint/astro-parser@4.6.21 で巨大なファイルはエラーが出るため暫定的に除外 */
+		'src/pages/kumeta/library/book.astro', // 165 KB
+		'src/pages/kumeta/manga/comment.astro', // 251 KB
+		'src/pages/kumeta/manga/subtitle.astro', // 286 KB
+		'src/pages/madoka/library/magazine.astro', // 202 KB
+		'src/pages/madoka/yomoyama/namae.astro', // 287 KB
 	],
 	rules: {
 		'disallowed-element': ['base', 'style', 'h5', 'h6', 'hr', 'i', 'u', 'area'],
@@ -58,6 +59,10 @@ export default {
 			as: 'tr',
 		},
 		{
+			selector: 'Label',
+			as: 'label',
+		},
+		{
 			selector: 'ListTable',
 			as: 'dl',
 		},
@@ -68,21 +73,29 @@ export default {
 	],
 	overrideMode: 'merge',
 	overrides: {
-		/* markuplint@4.11.4 + @markuplint/astro-parser@4.6.14 でエラーが出るため暫定的に無効化 */
-		'**/*.astro': {
+		/* markuplint@4.13.1 + @markuplint/astro-parser@4.6.21 でエラーが出るため暫定的に無効化 */
+		'src/pages/**/*.astro': {
 			rules: {
 				'no-empty-palpable-content': false,
 			},
-		},
-		'dist/client/**/*.html': {
-			rules: {
-				'class-naming': false,
-			},
+			nodeRules: [
+				{
+					selector: 'input, textarea',
+					rules: {
+						'require-accessible-name': false,
+					},
+				},
+			],
 		},
 		'src/pages/tokyu/data/history/index.astro': {
 			rules: {
 				'no-orphaned-end-tag': false,
 				'permitted-contents': false,
+			},
+		},
+		'dist/client/**/*.html': {
+			rules: {
+				'class-naming': false,
 			},
 		},
 	},
