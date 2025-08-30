@@ -30,6 +30,7 @@ interface RequestQuery {
 	selector_wrap: string | null;
 	selector_date: string | null;
 	selector_content: string | null;
+	base_url: string | null;
 	action_add: boolean;
 	action_revise: boolean;
 	action_revise_preview: boolean;
@@ -57,6 +58,7 @@ const requestQuery: RequestQuery = {
 	selector_wrap: RequestUtil.string(requestBody?.get('selectorwrap')),
 	selector_date: RequestUtil.string(requestBody?.get('selectordate')),
 	selector_content: RequestUtil.string(requestBody?.get('selectorcontent')),
+	base_url: RequestUtil.string(requestBody?.get('baseurl')),
 	action_add: RequestUtil.boolean(requestBody?.get('actionadd')),
 	action_revise: RequestUtil.boolean(requestBody?.get('actionrev')),
 	action_revise_preview: RequestUtil.boolean(requestParams.get('actionrevpre')),
@@ -95,8 +97,8 @@ if (requestQuery.action_add) {
 } else if (requestQuery.action_revise) {
 	/* 修正実行 */
 
-	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.selector_wrap !== null) {
-		await dao.update(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector_wrap, requestQuery.selector_date, requestQuery.selector_content);
+	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.selector_wrap !== null && requestQuery.base_url !== null) {
+		await dao.update(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector_wrap, requestQuery.selector_date, requestQuery.selector_content, requestQuery.base_url);
 		logger.info('データ更新', requestQuery.url);
 
 		return response303(Astro.request);
@@ -172,7 +174,7 @@ for (const newsPage of newsPageListDto) {
 					<Fragment slot="legend"><label for="fc-url">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" readonly={requestQuery.action_revise_preview || requestQuery.action_revise} class="js-convert-trim" id="fc-url" /></FormCtrlInput>
+						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" class="js-convert-trim" id="fc-url" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
@@ -257,6 +259,8 @@ for (const newsPage of newsPageListDto) {
 					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
+
+			<p><input type="hidden" name="baseurl" value={requestQuery.url} /></p>
 
 			<FormButtons>
 				{
