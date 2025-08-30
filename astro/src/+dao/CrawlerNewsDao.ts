@@ -151,6 +151,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	 * @param selectorWrap - セレクター文字列（包括要素）
 	 * @param selectorDate - 包括要素からのセレクター文字列（日付）
 	 * @param selectorContent - 包括要素からのセレクター文字列（内容）
+	 * @param baseUrl - 元 URL
 	 */
 	async update(
 		url: string,
@@ -161,6 +162,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 		selectorWrap: string,
 		selectorDate: string | null,
 		selectorContent: string | null,
+		baseUrl: string,
 	): Promise<void> {
 		const dbh = await this.getDbh();
 
@@ -170,6 +172,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				UPDATE
 					d_news
 				SET
+					url = :url,
 					title = :title,
 					class = :category,
 					priority = :priority,
@@ -178,9 +181,10 @@ export default class CrawlerNewsDao extends CrawlerDao {
 					selector_date = :selector_date,
 					selector_content = :selector_content
 				WHERE
-					url = :url
+					url = :baseurl
 			`);
 			await sth.run({
+				':url': url,
 				':title': title,
 				':category': category,
 				':priority': priority,
@@ -188,7 +192,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				':selector_wrap': selectorWrap,
 				':selector_date': DbUtil.emptyToNull(selectorDate),
 				':selector_content': DbUtil.emptyToNull(selectorContent),
-				':url': url,
+				':baseurl': baseUrl,
 			});
 			await sth.finalize();
 

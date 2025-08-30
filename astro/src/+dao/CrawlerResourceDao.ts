@@ -134,8 +134,9 @@ export default class CrawlerResourceDao extends CrawlerDao {
 	 * @param priority - 優先度
 	 * @param browser - ウェブブラウザでアクセスするか
 	 * @param selector - セレクター文字列
+	 * @param baseUrl - 元 URL
 	 */
-	async update(url: string, title: string, category: number, priority: number, browser: boolean, selector: string | null): Promise<void> {
+	async update(url: string, title: string, category: number, priority: number, browser: boolean, selector: string | null, baseUrl: string): Promise<void> {
 		const dbh = await this.getDbh();
 
 		await dbh.exec('BEGIN');
@@ -144,21 +145,23 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				UPDATE
 					d_resource
 				SET
+					url = :url,
 					title = :title,
 					category = :category,
 					priority = :priority,
 					browser = :browser,
 					selector = :selector
 				WHERE
-					url = :url
+					url = :baseurl
 			`);
 			await sth.run({
+				':url': url,
 				':title': title,
 				':category': category,
 				':priority': priority,
 				':browser': browser,
 				':selector': DbUtil.emptyToNull(selector),
-				':url': url,
+				':baseurl': baseUrl,
 			});
 			await sth.finalize();
 
