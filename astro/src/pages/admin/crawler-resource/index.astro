@@ -4,6 +4,7 @@ import Layout from '@layouts/Admin.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormButtons from '@components/FormButtons.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
+import FormValidateMsg from '@components/FormValidateMsg.astro';
 import Section from '@components/Section.astro';
 import Stack from '@components/Stack.astro';
 import Table from '@components/Table.astro';
@@ -12,6 +13,8 @@ import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
+import configCrawlerResource from '@config/crawler-resource.js';
+import configSqlite from '@config/sqlite.js';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
@@ -59,13 +62,31 @@ const requestQuery: RequestQuery = {
 
 const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
 
+const validateMessages: string[] = [];
 if (requestQuery.action_add) {
 	/* 登録 */
 	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null) {
-		await dao.insert(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector);
-		logger.info('データ登録', requestQuery.url);
+		try {
+			await dao.insert(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector);
+			logger.info('データ登録', requestQuery.url);
 
-		return response303(Astro.request);
+			return response303(Astro.request);
+		} catch (e) {
+			if (!(e instanceof Error)) {
+				throw e;
+			}
+
+			// @ts-expect-error: ts(2339)
+			switch (e.errno) {
+				case configSqlite.errno.uniqueConstraint: {
+					validateMessages.push(configCrawlerResource.validator.unique);
+					break;
+				}
+				default: {
+					throw e;
+				}
+			}
+		}
 	}
 } else if (requestQuery.action_revise) {
 	/* 修正実行 */
@@ -137,6 +158,8 @@ for (const resoursePage of resourcePageListDto) {
 		<Fragment slot="heading">データ登録</Fragment>
 
 		<form action={Astro.url.pathname} method="post">
+			<FormValidateMsg msgs={validateMessages} />
+
 			<FormGrid>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-url">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>

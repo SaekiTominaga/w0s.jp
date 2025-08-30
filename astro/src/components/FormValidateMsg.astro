@@ -1,0 +1,36 @@
+---
+interface Props {
+	msgs: string[];
+}
+
+const { msgs } = Astro.props;
+---
+
+{
+	msgs.length > 0 && (
+		<div class="validate">
+			<p>
+				<strong>
+					<data value={msgs.length}>{msgs.length}個</data>のエラーがあります。
+				</strong>
+			</p>
+
+			<ul>
+				{msgs.map((msg) => (
+					<li>{msg}</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+
+<style>
+	@layer component {
+		.validate {
+			border: 1px solid var(--color-red);
+			border-radius: var(--border-radius-large);
+			background: var(--color-verylightred);
+			padding: 1em;
+		}
+	}
+</style>
