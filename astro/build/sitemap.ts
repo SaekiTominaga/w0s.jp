@@ -82,7 +82,7 @@ const entries = await Promise.all(
 		/* DOM 化 */
 		const { document } = new JSDOM(html).window;
 
-		const modifiedAt = document.querySelector<HTMLTimeElement>('.p-title time')?.dateTime;
+		const modifiedAt = document.querySelector<HTMLTimeElement>('.l-content__header .updated > time')?.dateTime;
 
 		return {
 			pagePathAbsoluteUrl: getPageUrl(filePath.substring(directory.length)), // U+002F (/) から始まるパス絶対 URL
