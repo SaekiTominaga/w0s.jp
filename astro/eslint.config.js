@@ -12,6 +12,14 @@ export default [
 		ignores: ['dist', 'src/pages/kumeta/manga/subtitle.astro'],
 	},
 	{
+		files: ['**/*.ts'],
+		languageOptions: {
+			parserOptions: {
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+	},
+	{
 		files: ['**/*.astro'],
 		languageOptions: {
 			parser: parserAstro,
