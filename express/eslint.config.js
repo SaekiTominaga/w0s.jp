@@ -9,6 +9,14 @@ export default [
 		ignores: ['dist/**/*.js'],
 	},
 	{
+		files: ['**/*.ts'],
+		languageOptions: {
+			parserOptions: {
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+	},
+	{
 		files: ['src/app.ts'],
 		rules: {
 			'@typescript-eslint/no-unsafe-call': 'off', // Github Actions 環境ではエラーになる

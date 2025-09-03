@@ -21,7 +21,7 @@ export default class RequestUtil {
 	 * @returns Converted
 	 */
 	static string(request: unknown): string | null {
-		return typeof request === 'string' ? String(request) : null;
+		return typeof request === 'string' ? request : null;
 	}
 
 	/**

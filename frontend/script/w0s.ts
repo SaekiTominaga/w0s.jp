@@ -11,9 +11,9 @@ import InputSwitch from '@w0s/input-switch';
 import reportJsError from '@w0s/report-js-error';
 import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
-import adsense from './unique/adsense.js';
-import SidebarBlogNewly from './unique/SidebarBlogNewly.js';
-import TableTheadStickey from './component/TableTheadStickey.js';
+import adsense from './unique/adsense.ts';
+import SidebarBlogNewly from './unique/SidebarBlogNewly.ts';
+import TableTheadStickey from './component/TableTheadStickey.ts';
 
 /**
  * w0s.jp（エラーページを除く）
