@@ -9,6 +9,14 @@ export default [
 		ignores: ['public/assets/script/*.js', 'public/assets/script/*.mjs'],
 	},
 	{
+		files: ['**/*.ts'],
+		languageOptions: {
+			parserOptions: {
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+	},
+	{
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',
