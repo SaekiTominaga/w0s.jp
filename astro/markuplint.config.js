@@ -7,6 +7,7 @@ export default {
 	excludeFiles: [
 		/* markuplint@4.13.1 + @markuplint/astro-parser@4.6.21 で巨大なファイルはエラーが出るため暫定的に除外 */
 		'src/pages/kumeta/library/book.astro', // 165 KB
+		'src/pages/kumeta/library/manga.astro', // 177 KB
 		'src/pages/kumeta/manga/comment.astro', // 251 KB
 		'src/pages/kumeta/manga/subtitle.astro', // 286 KB
 		'src/pages/madoka/library/magazine.astro', // 202 KB
@@ -57,6 +58,10 @@ export default {
 		{
 			selector: 'CrawlerDiffLine',
 			as: 'tr',
+		},
+		{
+			selector: 'ListDescription',
+			as: 'dl',
 		},
 		{
 			selector: 'Label',
