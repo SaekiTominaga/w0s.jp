@@ -8,10 +8,11 @@ interface Props {
 	depth?: number;
 	headingType?: 'a' | 'b' | 'c' | 'd';
 	box?: boolean;
+	autofocus?: boolean;
 	class?: string;
 }
 
-const { slugger, id, depth = 1, headingType = 'a', box = false, class: className } = Astro.props;
+const { slugger, id, depth = 1, headingType = 'a', box = false, autofocus = false, class: className } = Astro.props;
 
 const headingHtml = await Astro.slots.render('heading');
 
@@ -29,7 +30,7 @@ if (id !== undefined) {
 }
 ---
 
-<section class:list={['section', `-${headingType}`, { '-box': box }, className]} id={sectionId}>
+<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${headingType}`, { '-box': box }, className]} id={sectionId}>
 	<div class="hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
