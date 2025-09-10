@@ -7,10 +7,12 @@ import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
 import ListDescription from '@components/ListDescription.astro';
 import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import AnchorIcon from '@components/+phrasing/AnchorIcon.astro';
 import Image from '@components/+phrasing/Image.astro';
 import ImageAmazon from '@components/+phrasing/ImageAmazon.astro';
+import TickAndCross from '@components/+phrasing/TickAndCross.astro';
 import type { StructuredData } from '@type/types.js';
 
 const structuredData: StructuredData = {
@@ -61,38 +63,81 @@ const structuredData: StructuredData = {
 	<Section id="service">
 		<Fragment slot="heading">利用サービス</Fragment>
 
-		<ul>
-			<li>
-				<AnchorIcon fileName="mastodon.svg" />
-				<Anchor href="https://fedibird.com/@SaekiTominaga">Mastodon</Anchor>
-			</li>
-			<li>
-				<AnchorIcon fileName="bluesky.svg" />
-				<Anchor href="https://bsky.app/profile/w0s.jp" icon={false}>Bluesky</Anchor>
-			</li>
-			<li>
-				<AnchorIcon fileName="x.png" />
-				<Anchor href="https://x.com/SaekiTominaga" icon={false}>X</Anchor>
-			</li>
-			<li>
-				<AnchorIcon fileName="instagram.png" />
-				<Anchor href="https://www.instagram.com/saekitominaga/" icon={false}>Instagram</Anchor>
-			</li>
-			<li>
-				<AnchorIcon fileName="youtube.svg" />
-				<Anchor href="https://www.youtube.com/@SaekiTominaga" icon={false}>YouTube</Anchor>
-			</li>
-			<li>
-				<AnchorIcon fileName="github.svg" />
-				<Anchor href="https://github.com/SaekiTominaga" icon={false}>GitHub</Anchor>
-			</li>
-			<li>
-				<AnchorIcon fileName="amazon.png" />
-				<Anchor href="https://www.amazon.co.jp/~/e/B07FBRDDJN" icon={false}>Amazon（著者ページ）</Anchor>
-			</li>
-		</ul>
-
-		<p>Web 関係の投稿は Mastodon、趣味の投稿は Bluesky で使い分けています。X<small>（旧：Twitter）</small>は自分のアカウントであることを証明するためにリンクは残していますが、日常的な使用は止めています。</p>
+		<Table>
+			<thead>
+				<tr>
+					<th scope="col">サービス名</th>
+					<th scope="col">Web</th>
+					<th scope="col">東急電車</th>
+					<th scope="col">久米田作品</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="mastodon.svg" />
+						<Anchor href="https://fedibird.com/@SaekiTominaga">Mastodon</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="bluesky.svg" />
+						<Anchor href="https://bsky.app/profile/w0s.jp" icon={false}>Bluesky</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="instagram.png" />
+						<Anchor href="https://www.instagram.com/saekitominaga/" icon={false}>Instagram</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="youtube.svg" />
+						<Anchor href="https://www.youtube.com/@SaekiTominaga" icon={false}>YouTube</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="x.png" />
+						<Anchor href="https://x.com/SaekiTominaga" icon={false}>X</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="amazon.png" />
+						<Anchor href="https://www.amazon.co.jp/~/e/B07FBRDDJN" icon={false}>Amazon 著者ページ</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="cross">未出版</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="tick">商業/個人</TickAndCross></td>
+					<td class="u-cell -center"><TickAndCross type="cross">未出版</TickAndCross></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="github.svg" />
+						<Anchor href="https://github.com/SaekiTominaga" icon={false}>GitHub</Anchor>
+					</th>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">―</td>
+				</tr>
+			</tbody>
+		</Table>
 	</Section>
 
 	<Section id="write">
