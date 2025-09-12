@@ -10,6 +10,7 @@ import Anchor from '@components/+phrasing/Anchor.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
 import DocBook from '@components/+phrasing/DocBook.astro';
 import DocMagazine from '@components/+phrasing/DocMagazine.astro';
+import DocNewspaper from '@components/+phrasing/DocNewspaper.astro';
 import DocOfficial from '@components/+phrasing/DocOfficial.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import Licence from '@components/tokyu/Licence.astro';
@@ -19,7 +20,7 @@ const structuredData: StructuredData = {
 	title: '玉川電気鉄道、玉川線　車歴表（1949年以前）',
 	heading: '玉川電気鉄道、玉川線　車歴表',
 	subHeading: '1949年以前',
-	dateModified: dayjs('2024-12-31'),
+	dateModified: dayjs('2025-09-12'),
 	description: '玉川電気鉄道の開通（1907年）から東京横浜電鉄への合併（1938年）、東京急行電鉄成立（1942年）を経て1949年までの車両のうごきをまとめました。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
@@ -209,9 +210,7 @@ const structuredData: StructuredData = {
 
 		<p>玉川電気鉄道は東京市電の貨車乗り入れのため<DateWareki value="1920-09" />に軌間 1,067mm から 1,372mm への改軌が行われ、旅客車両は総取り替えとなりました。</p>
 
-		<p>最初に用意された15両は4輪単車で、定員は狭軌時代の電動車と同じ40人。従来は電動車、付随車あわせて22両だったものが電動車のみ15両となったため、改軌に前後して複線化工事が進む中、同年末に<a href="#passenger16-30">ボギー車</a>が増備されるまでの間は一時的に輸送力は低下していたことになります。</p>
-
-		<p>車体側面は鉄道馬車の名残とも言われる裾絞りがなくなった垂直タイプで、出入口はオープンデッキながら正面窓が付いています。</p>
+		<p>最初に用意された15両は4輪単車で、定員は狭軌時代の電動車と同じ40人。車体側面は鉄道馬車の名残とも言われる裾絞りがなくなった垂直タイプで、出入口はオープンデッキながら正面窓が付いています。</p>
 
 		<p>改軌を目前に控えた<DateWareki value="1920-08-26" />に構造認可を受けますが、アメリカ・<span lang="en">J.G. Brill</span> 社に発注していた手ブレーキ装置が届かないため12両分（車号は不明）は仮に国内品を取り付けることとし、力率が減少するため仮使用許可を申請、<DateWareki value="1920-12" />に落成しています。</p>
 
@@ -603,9 +602,11 @@ const structuredData: StructuredData = {
 	<Section id="passenger16-30">
 		<Fragment slot="heading"><small>玉川／東横</small>電動客車 16～30 → <small>東急</small>デハ1形</Fragment>
 
-		<p>改軌にやや遅れて製造されたボギー車で、<a href="#passenger1-15">4輪単車（1～15号車）</a>と比較すると定員は40人から70人へ、車体長（バンパー末端まで）は 8,181mm から 11,734mm へと大型化しています。</p>
+		<p>玉川電気鉄道では初めてのボギー車で、<a href="#passenger1-15">4輪単車（1～15号車）</a>と比較すると定員は40人から70人へ、車体長（バンパー末端まで）は 8,181mm から 11,734mm へと大型化しています。最初に製造された16～21号車は出入口が初めてドア付きとなったのですが、増備車である22号車以降はオープンデッキに戻り、車体長さも若干短くなっています。また25号車以降は窓配置が変更されるなどの軽微な変化があります。</p>
 
-		<p>最初に製造された16～21号車は出入口が初めてドア付きとなったのですが、増備車である22号車以降はオープンデッキに戻り、車体長さも若干短くなっています。また25号車以降は窓配置が変更されるなどの軽微な変化があります。</p>
+		<p>第1陣は<DateWareki value="1920-09" />の改軌にやや遅れて構造認可申請が提出されており、その年の12月以降に順次検査が行われているのですが、改軌直前の時点では<a href="#passenger1-15">4輪単車</a>と同時に運転開始する予定だった証言もあります<NoteRef type="ref" by="yorozu19200816" />。許認可文書は必ずしも実態に即したものとは限らず、鉄軌道事業者によっては書類上の竣功前に運転されるケースも存在したのですが、もし本グループが書類どおり年末以降に使用開始されたのだとすると、改軌前の旅客車22両でも輸送力不足に悩まされていた中で数か月間は単車15両のみでの運用が行われていたことになります。</p>
+
+		<NoteRefContent id="yorozu19200816"><DocNewspaper name="萬朝報" date="1920-08-16" pages={[3]} article="玉川電車も　工事が一向捗らない日曜日の混雑" /></NoteRefContent>
 
 		<p>東京急行電鉄の成立に際しては4輪単車が全廃されていたため、このグループを1号車からの付番に変更してデハ1形を名乗り、後に車体更新で全車が<a href="#deha80">デハ80形</a>に統合されました。</p>
 
