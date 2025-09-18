@@ -4,7 +4,7 @@ import parserAstro from 'astro-eslint-parser';
 import { configs as pluginAstroConfigs } from 'eslint-plugin-astro';
 import w0sConfig from '@w0s/eslint-config';
 
-/** @type {import("@typescript-eslint/utils/ts-eslint").FlatConfig.ConfigArray} */
+/** @type {import("eslint").Linter.Config[]} */
 export default [
 	...w0sConfig,
 	...pluginAstroConfigs.recommended,
@@ -65,6 +65,7 @@ export default [
 					},
 				},
 			],
+			'@typescript-eslint/no-extraneous-class': 'off',
 		},
 	},
 	{
