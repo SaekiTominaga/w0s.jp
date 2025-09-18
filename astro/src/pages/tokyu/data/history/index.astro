@@ -17,7 +17,7 @@ import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import HistoryTable from '@components/tokyu/HistoryTable.astro';
 import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
 import { env } from '@util/env.js';
-import RequestUtil from '@util/Request.js';
+import { getParams as getRequestParams, string as requestString, strings as requestStrings, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
@@ -71,17 +71,17 @@ ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const slugger = new GithubSlugger();
 
-const requestParams = RequestUtil.getParams(Astro.url);
+const requestParams = getRequestParams(Astro.url);
 
 const requestQuery: RequestQuery = {
-	number: RequestUtil.string(requestParams.get('num')),
-	number_old: RequestUtil.boolean(requestParams.get('old')),
-	series: RequestUtil.strings(requestParams.getAll('ser[]')),
-	register_start: RequestUtil.string(requestParams.get('res')),
-	register_end: RequestUtil.string(requestParams.get('ree')),
-	sort: RequestUtil.string(requestParams.get('srt')),
-	era: RequestUtil.string(requestParams.get('era')),
-	output: RequestUtil.boolean(requestParams.get('out')),
+	number: requestString(requestParams.get('num')),
+	number_old: requestBoolean(requestParams.get('old')),
+	series: requestStrings(requestParams.getAll('ser[]')),
+	register_start: requestString(requestParams.get('res')),
+	register_end: requestString(requestParams.get('ree')),
+	sort: requestString(requestParams.get('srt')),
+	era: requestString(requestParams.get('era')),
+	output: requestBoolean(requestParams.get('out')),
 };
 
 const dao = new TokyuCarHistoryDao(env('SQLITE_TOKYU_CAR_HISTORY'));

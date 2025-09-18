@@ -17,7 +17,7 @@ import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import { response303, response400 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
-import RequestUtil from '@util/Request.js';
+import { string as requestString, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
@@ -44,12 +44,12 @@ if (Astro.request.method === 'POST') {
 	const requestBody = await Astro.request.formData();
 
 	const requestQuery: RequestQuery = {
-		name: RequestUtil.string(requestBody.get('yourname')),
-		email: RequestUtil.string(requestBody.get('email')),
-		reply: RequestUtil.string(requestBody.get('reply')),
-		body: RequestUtil.string(requestBody.get('body')),
-		referrer: RequestUtil.string(requestBody.get('referrer')),
-		action_send: RequestUtil.boolean(requestBody.get('actionsend')),
+		name: requestString(requestBody.get('yourname')),
+		email: requestString(requestBody.get('email')),
+		reply: requestString(requestBody.get('reply')),
+		body: requestString(requestBody.get('body')),
+		referrer: requestString(requestBody.get('referrer')),
+		action_send: requestBoolean(requestBody.get('actionsend')),
 	};
 
 	if (requestQuery.action_send) {
