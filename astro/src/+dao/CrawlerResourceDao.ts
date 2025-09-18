@@ -1,4 +1,4 @@
-import DbUtil from '@util/Db.js';
+import { emptyToNull as dbEmptyToNull } from '@util/db.js';
 import CrawlerDao from '@dao/CrawlerDao.js';
 
 interface ResourcePage {
@@ -114,7 +114,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				':category': category,
 				':priority': priority,
 				':browser': browser,
-				':selector': DbUtil.emptyToNull(selector),
+				':selector': dbEmptyToNull(selector),
 			});
 			await sth.finalize();
 
@@ -160,7 +160,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				':category': category,
 				':priority': priority,
 				':browser': browser,
-				':selector': DbUtil.emptyToNull(selector),
+				':selector': dbEmptyToNull(selector),
 				':baseurl': baseUrl,
 			});
 			await sth.finalize();
