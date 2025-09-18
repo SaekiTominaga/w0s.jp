@@ -16,8 +16,8 @@ reportJsError('https://report.w0s.jp/report/report/js', {
 		colno: 'columnNumber',
 	},
 	fetchContentType: 'application/json',
-	allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/],
-	denyUAs: [/Googlebot\/2.1;/],
+	allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
+	denyUAs: [/Googlebot\/2.1;/u],
 });
 
 /* リファラーレポート */

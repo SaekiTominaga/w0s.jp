@@ -65,6 +65,7 @@ export default [
 					},
 				},
 			],
+			'@typescript-eslint/no-extraneous-class': 'off',
 		},
 	},
 	{
