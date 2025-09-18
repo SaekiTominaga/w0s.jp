@@ -34,7 +34,6 @@ export default [
 			'no-multi-assign': 'off',
 			'no-underscore-dangle': 'off',
 			'no-var': 'off',
-			'@typescript-eslint/no-unused-vars': 'off',
 		},
 	},
 	{
