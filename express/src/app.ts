@@ -8,11 +8,11 @@ import express, { type NextFunction, type Request, type Response } from 'express
 import htpasswd from 'htpasswd-js';
 import Log4js from 'log4js';
 import { isMatch } from 'matcher';
+import { env } from '@w0s/env-value-type';
 import { escape } from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
 import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
 import config from './config/express.ts';
-import { env } from './util/env.ts';
 import { csp, reportingEndpoints } from './util/httpHeader.ts';
 
 loadEnvFile(process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development');

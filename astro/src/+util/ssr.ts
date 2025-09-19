@@ -1,7 +1,7 @@
 import { loadEnvFile } from 'node:process';
 import type { AstroGlobal } from 'astro';
 import Log4js from 'log4js';
-import { env } from './env.ts';
+import { env } from '@w0s/env-value-type';
 
 interface Options {
 	dev: boolean;
