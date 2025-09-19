@@ -2,7 +2,7 @@
 
 import w0sConfig from '@w0s/eslint-config';
 
-/** @type {import("@typescript-eslint/utils/ts-eslint").FlatConfig.ConfigArray} */
+/** @type {import("eslint").Linter.Config[]} */
 export default [
 	...w0sConfig,
 	{
@@ -34,7 +34,6 @@ export default [
 			'no-multi-assign': 'off',
 			'no-underscore-dangle': 'off',
 			'no-var': 'off',
-			'@typescript-eslint/no-unused-vars': 'off',
 		},
 	},
 	{

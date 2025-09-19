@@ -6,9 +6,9 @@ import PageFooter from '@layouts/page/Footer.astro';
 import ContentHeader from '@layouts/content/Header.astro';
 import ContentMain from '@layouts/content/Body.astro';
 import type { StructuredData } from '@type/types.js';
-import { getNoteData, getReferenceData } from '@util/Footnote.js';
+import { getNoteData, getReferenceData } from '@util/footnote.js';
 import { getPageUrl } from '@util/ssr.js';
-import TocUtil from '@util/Toc.js';
+import { getData as getTocData } from '@util/toc.js';
 
 interface Props {
 	astroFilePath: string | undefined;
@@ -23,7 +23,7 @@ const rendered = await Astro.slots.render('default');
 const dom = new JSDOM(rendered);
 const { document } = dom.window;
 
-const tocData = TocUtil.getData(document);
+const tocData = getTocData(document);
 const footnoteNoteData = getNoteData(document);
 const footnoteReferenceData = getReferenceData(document);
 

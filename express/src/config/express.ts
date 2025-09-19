@@ -169,12 +169,12 @@ export default {
 	redirect: [
 		{
 			/* 2013-04-01 実施（恒久維持） */
-			from: /^\/sty\/([a-z0-9_/]+)$/,
+			from: /^\/sty\/([a-z0-9_\/]+)$/v,
 			to: '/tokyu/machine/$1',
 		},
 		{
 			/* 2013-04-01 実施（恒久維持） */
-			from: /^\/an\/([a-z0-9_/]+)$/,
+			from: /^\/an\/([a-z0-9_\/]+)$/v,
 			to: '/tokyu/an/$1',
 		},
 		{
@@ -184,12 +184,12 @@ export default {
 		},
 		{
 			/* 2018-04-22 実施（恒久維持） */
-			from: /^\/madoka-magica\/coterie\/the-cycle-pictorial_([6-8])$/,
+			from: /^\/madoka-magica\/coterie\/the-cycle-pictorial_([6-8])$/v,
 			to: '/madoka/dojin/pictorial$1',
 		},
 		{
 			/* 2018-04-22 実施（恒久維持） */
-			from: /^\/madoka-magica\/dojin\/pictorial(1?[0-9])$/,
+			from: /^\/madoka-magica\/dojin\/pictorial(1?[0-9])$/v,
 			to: '/madoka/dojin/pictorial$1',
 		},
 		{
@@ -199,7 +199,7 @@ export default {
 		},
 		{
 			/* 2021-04-19 実施（恒久維持） */
-			from: /^\/diary\/([1-9][0-9]{0,2})$/,
+			from: /^\/diary\/([1-9][0-9]{0,2})$/v,
 			to: 'https://blog.w0s.jp/entry/$1',
 		},
 		{
@@ -209,7 +209,7 @@ export default {
 		},
 		{
 			/* 2024-04-12 実施 */
-			from: /^\/tokyu\/sty\/truck_([a-z0-9]+)$/,
+			from: /^\/tokyu\/sty\/truck_([a-z0-9]+)$/v,
 			to: '/tokyu/truck/$1',
 		},
 		{
@@ -264,12 +264,12 @@ export default {
 		},
 		{
 			/* 2024-04-12 実施 */
-			from: /^\/tokyu\/sty\/ub_([a-z0-9_]+)$/,
+			from: /^\/tokyu\/sty\/ub_([a-z0-9_]+)$/v,
 			to: '/tokyu/machine/ub_$1',
 		},
 		{
 			/* 2024-04-12 実施 */
-			from: /^\/tokyu\/sty\/roof_([a-z0-9]+)$/,
+			from: /^\/tokyu\/sty\/roof_([a-z0-9]+)$/v,
 			to: '/tokyu/machine/roof_$1',
 		},
 		{

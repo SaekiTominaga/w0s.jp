@@ -2,7 +2,7 @@ import crypto from 'node:crypto';
 
 const base64UrlEncode = (str: string): string => {
 	const base64 = btoa(str);
-	return base64.replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
+	return base64.replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/v, '');
 };
 
 export const getId = (str?: string): string => {

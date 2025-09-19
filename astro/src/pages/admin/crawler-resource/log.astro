@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import Layout from '@layouts/Admin.astro';
 import { env } from '@util/env.js';
-import RequestUtil from '@util/Request.js';
+import { getParams as getRequestParams, string as requestString } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
@@ -19,11 +19,11 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
-const requestParams = RequestUtil.getParams(Astro.url);
+const requestParams = getRequestParams(Astro.url);
 
 const requestQuery: RequestQuery = {
-	dir: RequestUtil.string(requestParams.get('dir')),
-	file: RequestUtil.string(requestParams.get('file')),
+	dir: requestString(requestParams.get('dir')),
+	file: requestString(requestParams.get('file')),
 };
 
 if (requestQuery.dir !== null && requestQuery.file !== null) {

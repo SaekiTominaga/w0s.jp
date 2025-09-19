@@ -17,7 +17,7 @@ import configSqlite from '@config/sqlite.js';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import { env } from '@util/env.js';
 import { response303 } from '@util/httpResponse.js';
-import RequestUtil from '@util/Request.js';
+import { getParams as getRequestParams, string as requestString, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
@@ -46,23 +46,23 @@ const structuredData: StructuredData = {
 
 const slugger = new GithubSlugger();
 
-const requestParams = RequestUtil.getParams(Astro.url);
+const requestParams = getRequestParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
 
 const requestQuery: RequestQuery = {
-	url: RequestUtil.string(requestParams.get('url') ?? requestBody?.get('url')),
-	title: RequestUtil.string(requestBody?.get('title')),
-	category: RequestUtil.number(requestBody?.get('category')),
-	priority: RequestUtil.number(requestBody?.get('priority')),
-	browser: RequestUtil.boolean(requestBody?.get('browser')),
-	selector_wrap: RequestUtil.string(requestBody?.get('selectorwrap')),
-	selector_date: RequestUtil.string(requestBody?.get('selectordate')),
-	selector_content: RequestUtil.string(requestBody?.get('selectorcontent')),
-	base_url: RequestUtil.string(requestBody?.get('baseurl')),
-	action_add: RequestUtil.boolean(requestBody?.get('actionadd')),
-	action_revise: RequestUtil.boolean(requestBody?.get('actionrev')),
-	action_revise_preview: RequestUtil.boolean(requestParams.get('actionrevpre')),
-	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
+	url: requestString(requestParams.get('url') ?? requestBody?.get('url')),
+	title: requestString(requestBody?.get('title')),
+	category: requestNumber(requestBody?.get('category')),
+	priority: requestNumber(requestBody?.get('priority')),
+	browser: requestBoolean(requestBody?.get('browser')),
+	selector_wrap: requestString(requestBody?.get('selectorwrap')),
+	selector_date: requestString(requestBody?.get('selectordate')),
+	selector_content: requestString(requestBody?.get('selectorcontent')),
+	base_url: requestString(requestBody?.get('baseurl')),
+	action_add: requestBoolean(requestBody?.get('actionadd')),
+	action_revise: requestBoolean(requestBody?.get('actionrev')),
+	action_revise_preview: requestBoolean(requestParams.get('actionrevpre')),
+	action_delete: requestBoolean(requestBody?.get('actiondel')),
 };
 
 const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));

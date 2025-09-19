@@ -1,0 +1,43 @@
+---
+import DateWareki from './DateWareki.astro';
+
+interface Props {
+	name: string; // 新聞名
+	date: string; // 年月日（YYYY-MM-DD, YYYY-MM, YYYY）
+	pages: [number, number?]; // ページ数
+	article: string; // 記事タイトル
+}
+
+const { name, date: dateStr, article, pages } = Astro.props;
+
+const [startPage, endPage] = pages;
+const pageDisplay = endPage !== undefined ? `${startPage}–${endPage}面` : `${startPage}面`;
+---
+
+<span class="doc">
+	<span class="name">{name}</span>
+	<DateWareki value={dateStr} class="date" />
+	<span class="pages">{pageDisplay}</span>
+	<span class="article"><cite>{article}</cite></span>
+</span>
+
+<style>
+	@layer component {
+		.doc {
+			--_space-width: 0.25em;
+		}
+
+		/* 記事タイトル */
+		.article {
+			margin-inline: calc(0px - var(--_space-width));
+
+			&::before {
+				content: '「';
+			}
+
+			&::after {
+				content: '」';
+			}
+		}
+	}
+</style>

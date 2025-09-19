@@ -20,7 +20,7 @@ let sectionId = '';
 if (id !== undefined) {
 	sectionId = id;
 } else {
-	const headingText = headingHtml.replaceAll(/<.+?>/g, '');
+	const headingText = headingHtml.replaceAll(/<.+?>/gv, '');
 
 	if (slugger !== undefined) {
 		sectionId = slugger.slug(headingText);
