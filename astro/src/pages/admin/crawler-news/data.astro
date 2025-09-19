@@ -5,7 +5,7 @@ import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerNewsDataDao from '@dao/CrawlerNewsDataDao.js';
 import { response303 } from '@util/httpResponse.js';
 import { env } from '@util/env.js';
-import RequestUtil from '@util/Request.js';
+import { getParams as getRequestParams, string as requestString, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
@@ -23,13 +23,13 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/admin/crawler-news/', name: 'ウェブ巡回（ニュース）' }],
 };
 
-const requestParams = RequestUtil.getParams(Astro.url);
+const requestParams = getRequestParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
 
 const requestQuery: RequestQuery = {
-	url: RequestUtil.string(requestParams.get('url') ?? requestBody?.get('url')),
-	id: RequestUtil.string(requestBody?.get('id')),
-	action_delete: RequestUtil.boolean(requestBody?.get('actiondel')),
+	url: requestString(requestParams.get('url') ?? requestBody?.get('url')),
+	id: requestString(requestBody?.get('id')),
+	action_delete: requestBoolean(requestBody?.get('actiondel')),
 };
 
 const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));

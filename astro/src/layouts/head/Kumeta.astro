@@ -1,6 +1,6 @@
 ---
 import type { StructuredData } from '@type/types.js';
-import StructuredDataUtil from '@util/StructuredData.js';
+import { getJsonLd as getStructuredDataJsonLd } from '@util/structuredData.js';
 
 interface Props {
 	pagePath: string;
@@ -9,7 +9,7 @@ interface Props {
 
 const { pagePath, structuredData } = Astro.props;
 
-const jsonLd = StructuredDataUtil.getJsonLd(structuredData, { site: import.meta.env.SITE });
+const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.SITE });
 ---
 
 <head>

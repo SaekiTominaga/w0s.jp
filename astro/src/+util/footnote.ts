@@ -1,3 +1,5 @@
+type Data = Map<number, string | undefined>;
+
 const getData = (
 	document: Document,
 	options: {
@@ -5,8 +7,8 @@ const getData = (
 		noteRefIdPrefix: string;
 		footnoteIdPrefix: string;
 	},
-): Map<number, string | undefined> => {
-	const data = new Map<number, string | undefined>();
+): Data => {
+	const data: Data = new Map();
 
 	document.querySelectorAll<HTMLTemplateElement>(options.selector).forEach((noterefTemplate, index) => {
 		const no = index + 1;
@@ -46,7 +48,7 @@ const getData = (
  *
  * @returns 注釈データ
  */
-export const getNoteData = (document: Document): Map<number, string | undefined> =>
+export const getNoteData = (document: Document): Data =>
 	getData(document, {
 		selector: '.astro-noteref.-note',
 		noteRefIdPrefix: 'nr-note',
@@ -60,7 +62,7 @@ export const getNoteData = (document: Document): Map<number, string | undefined>
  *
  * @returns 参考文献データ
  */
-export const getReferenceData = (document: Document): Map<number, string | undefined> =>
+export const getReferenceData = (document: Document): Data =>
 	getData(document, {
 		selector: '.astro-noteref.-ref',
 		noteRefIdPrefix: 'nr-ref',
