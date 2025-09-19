@@ -5,7 +5,7 @@ const base64UrlEncode = (str: string): string => {
 	return base64.replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/v, '');
 };
 
-export const getId = (str?: string): string => {
+export const getHTMLId = (str?: string): string => {
 	if (str !== undefined) {
 		const hash = crypto.createHash('md5');
 		hash.update(str);
