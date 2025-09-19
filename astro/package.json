@@ -8,6 +8,7 @@
 		"build": "astro build",
 		"postbuild": "conc \"npm run _postbuild-feed\" \"npm run _postbuild-sitemap\" \"npm run _postbuild-format\" && npm run _postbuild-compress",
 		"lint": "eslint src/**/*.{astro,ts}",
+		"test": "node --experimental-test-coverage --test src/**/*.test.ts",
 		"node-lint": "eslint build/*.ts",
 		"html-src-lint": "markuplint src/pages/**/*.astro",
 		"html-dist-lint": "markuplint dist/client/**/*.html",

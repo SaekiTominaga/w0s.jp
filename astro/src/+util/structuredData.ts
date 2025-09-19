@@ -1,7 +1,18 @@
-import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem } from '@type/types.js';
+import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '@type/types.js';
 
 interface Options {
 	site: string;
+}
+
+interface JsonLd {
+	'@context': 'https://schema.org/';
+	'@type': string;
+	breadcrumb?: SchemaOrgBreadcrumbList;
+	dateModified?: string;
+	headline: string;
+	description?: string;
+	image?: string;
+	mainEntity?: SchemaOrgPerson | SchemaOrgOrganization;
 }
 
 /**
@@ -13,7 +24,7 @@ interface Options {
  *
  * @returns JSON-LD データ
  */
-export const getJsonLd = (structuredData: StructuredData, options: Options): object | undefined => {
+export const getJsonLd = (structuredData: StructuredData, options: Options): JsonLd | undefined => {
 	if (structuredData.breadcrumb === undefined && structuredData.description === undefined) {
 		/* パンくずも Description もないページは JSON-LD を出力する意味合いが薄い */
 		return undefined;
@@ -43,26 +54,25 @@ export const getJsonLd = (structuredData: StructuredData, options: Options): obj
 		};
 	}
 
-	const webPage = new Map<string, string | string[] | object>([
-		['@context', 'https://schema.org/'],
-		['@type', structuredData['schema-type'] ?? 'WebPage'],
-	]);
+	const jsonLd = {} as JsonLd;
+	jsonLd['@context'] = 'https://schema.org/';
+	jsonLd['@type'] = structuredData['schema-type'] ?? 'WebPage';
 	if (breadcrumbList !== undefined) {
-		webPage.set('breadcrumb', breadcrumbList);
+		jsonLd.breadcrumb = breadcrumbList;
 	}
 	if (structuredData.dateModified !== undefined) {
-		webPage.set('dateModified', structuredData.dateModified.format('YYYYMMDDTHHmm'));
+		jsonLd.dateModified = structuredData.dateModified.format('YYYYMMDDTHHmm');
 	}
-	webPage.set('headline', structuredData.title);
+	jsonLd.headline = structuredData.title;
 	if (structuredData.description !== undefined) {
-		webPage.set('description', structuredData.description);
+		jsonLd.description = structuredData.description;
 	}
 	if (structuredData.image !== undefined) {
-		webPage.set('image', structuredData.image);
+		jsonLd.image = structuredData.image;
 	}
 	if (structuredData.mainEntity !== undefined) {
-		webPage.set('mainEntity', structuredData.mainEntity);
+		jsonLd.mainEntity = structuredData.mainEntity;
 	}
 
-	return Object.fromEntries(webPage);
+	return jsonLd;
 };

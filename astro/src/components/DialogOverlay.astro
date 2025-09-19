@@ -1,5 +1,5 @@
 ---
-import { getId } from '@util/crypto';
+import { getHTMLId } from '@util/crypto';
 
 interface Props {
 	label: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const { label, id } = Astro.props;
 
-const labelId = getId('dialog-overlay');
+const labelId = getHTMLId('dialog-overlay');
 ---
 
 <dialog class="dialog-overlay" id={id} aria-labelledby={labelId} aria-describedby={labelId}>

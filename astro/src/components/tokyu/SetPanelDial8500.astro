@@ -1,5 +1,5 @@
 ---
-import { getId } from '@util/crypto';
+import { getHTMLId } from '@util/crypto';
 
 interface Props {
 	trainImage: string;
@@ -9,10 +9,10 @@ interface Props {
 const { trainImage: trainImageFileName, toImage: toImageFileName } = Astro.props;
 
 const trainContent = await Astro.slots.render('train');
-const trainImageAltId = getId(trainContent);
+const trainImageAltId = getHTMLId(trainContent);
 
 const toContent = await Astro.slots.render('to');
-const toImageAltId = getId(toContent);
+const toImageAltId = getHTMLId(toContent);
 ---
 
 <div class="panel">
