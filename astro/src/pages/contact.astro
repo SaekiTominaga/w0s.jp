@@ -22,12 +22,12 @@ import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	name: string | null;
-	email: string | null;
-	reply: string | null;
-	body: string | null;
-	referrer: string | null;
-	action_send: boolean;
+	name: string | undefined;
+	email: string | undefined;
+	reply: string | undefined;
+	body: string | undefined;
+	referrer: string | undefined;
+	actionSend: boolean;
 }
 
 export const prerender = false;
@@ -49,10 +49,10 @@ if (Astro.request.method === 'POST') {
 		reply: requestString(requestBody.get('reply')),
 		body: requestString(requestBody.get('body')),
 		referrer: requestString(requestBody.get('referrer')),
-		action_send: requestBoolean(requestBody.get('actionsend')),
+		actionSend: requestBoolean(requestBody.get('actionsend')),
 	};
 
-	if (requestQuery.action_send) {
+	if (requestQuery.actionSend) {
 		/* Origin ヘッダーのチェック（bot 阻止） */
 		Astro.response.headers.append('Vary', 'Origin');
 
