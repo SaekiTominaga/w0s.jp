@@ -8,7 +8,7 @@ import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	referrer: string | null;
+	referrer: string | undefined;
 }
 
 export const prerender = false;
@@ -26,10 +26,10 @@ const requestQuery: RequestQuery = {
 	referrer: requestString(requestSearchParams.get('referrer')),
 };
 
-if (requestQuery.referrer !== null && requestQuery.referrer !== '') {
+if (requestQuery.referrer !== undefined && requestQuery.referrer !== '') {
 	if (!requestQuery.referrer.startsWith('/')) {
 		logger.warn(`Invalid referrer value <${requestQuery.referrer}>`);
-		requestQuery.referrer = null;
+		requestQuery.referrer = undefined;
 	}
 }
 ---
