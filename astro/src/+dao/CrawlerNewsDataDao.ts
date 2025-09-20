@@ -1,11 +1,11 @@
-import dayjs, { type Dayjs } from 'dayjs';
+import { sqliteToJS, prepareSelect, prepareDelete } from '@w0s/sqlite-utility';
 import CrawlerDao from '@dao/CrawlerDao.js';
 
 interface NewsData {
 	id: string;
-	date: Dayjs | null;
+	date: Date | undefined;
 	content: string;
-	refer_url: string | null;
+	referUrl: string | undefined;
 }
 
 /**
@@ -29,6 +29,10 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 
 		const dbh = await this.getDbh();
 
+		const { sqlWhere, bindParams } = prepareSelect({
+			url: url,
+		});
+
 		const sth = await dbh.prepare(`
 			SELECT
 				uuid,
@@ -38,24 +42,22 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 			FROM
 				d_news_data
 			WHERE
-				url = :url
+				${sqlWhere}
 			ORDER BY
 				date DESC
 		`);
-		await sth.run({
-			':url': url,
-		});
+		await sth.run(bindParams);
 
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const newsData: NewsData[] = [];
 		for (const row of rows) {
 			newsData.push({
-				id: row.uuid,
-				date: row.date !== null ? dayjs.unix(row.date) : null,
-				content: row.content,
-				refer_url: row.refer_url,
+				id: sqliteToJS(row.uuid),
+				date: sqliteToJS(row.date, 'date'),
+				content: sqliteToJS(row.content),
+				referUrl: sqliteToJS(row.refer_url),
 			});
 		}
 
@@ -72,15 +74,17 @@ export default class CrawlerNewsDataDao extends CrawlerDao {
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlWhere, bindParams } = prepareDelete({
+				uuid: id,
+			});
+
 			const sth = await dbh.prepare(`
 				DELETE FROM
 					d_news_data
 				WHERE
-					uuid = :uuid
+					${sqlWhere}
 			`);
-			await sth.run({
-				':uuid': id,
-			});
+			await sth.run(bindParams);
 			await sth.finalize();
 
 			await dbh.exec('COMMIT');

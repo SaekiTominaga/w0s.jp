@@ -1,4 +1,4 @@
-import { emptyToNull as dbEmptyToNull } from '@util/db.js';
+import { sqliteToJS, prepareSelect, prepareInsert, prepareUpdate, prepareDelete } from '@w0s/sqlite-utility';
 import CrawlerDao from '@dao/CrawlerDao.js';
 
 interface ResourcePage {
@@ -7,8 +7,8 @@ interface ResourcePage {
 	category: string;
 	priority: string;
 	browser: boolean;
-	selector: string | null;
-	content_hash: string;
+	selector: string | undefined;
+	contentHash: string;
 	error: boolean;
 }
 
@@ -18,7 +18,7 @@ interface ReviseData {
 	category: number;
 	priority: number;
 	browser: boolean;
-	selector: string | null;
+	selector: string | undefined;
 }
 
 /**
@@ -66,20 +66,20 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				r.title
 		`);
 
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const resourcePage: ResourcePage[] = [];
 		for (const row of rows) {
 			resourcePage.push({
-				url: row.url,
-				title: row.title,
-				category: row.category,
-				priority: row.priority,
-				browser: Boolean(row.browser),
-				selector: row.selector,
-				content_hash: row.content_hash,
-				error: Boolean(row.error),
+				url: sqliteToJS(row.url),
+				title: sqliteToJS(row.title),
+				category: sqliteToJS(row.category),
+				priority: sqliteToJS(row.priority),
+				browser: sqliteToJS(row.browser, 'boolean'),
+				selector: sqliteToJS(row.selector),
+				contentHash: sqliteToJS(row.content_hash),
+				error: sqliteToJS(row.error, 'boolean'),
 			});
 		}
 
@@ -89,33 +89,36 @@ export default class CrawlerResourceDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを登録する
 	 *
-	 * @param url - URL
-	 * @param title - タイトル
-	 * @param category - カテゴリー
-	 * @param priority - 優先度
-	 * @param browser - ウェブブラウザでアクセスするか
-	 * @param selector - セレクター文字列
+	 * @param data - 登録データ
+	 * @param data.url - URL
+	 * @param data.title - タイトル
+	 * @param data.category - カテゴリー
+	 * @param data.priority - 優先度
+	 * @param data.browser - ウェブブラウザでアクセスするか
+	 * @param data.selector - セレクター文字列
 	 */
-	async insert(url: string, title: string, category: number, priority: number, browser: boolean, selector: string | null): Promise<void> {
+	async insert(data: { url: string; title: string; category: number; priority: number; browser: boolean; selector: string | undefined }): Promise<void> {
 		const dbh = await this.getDbh();
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlInto, sqlValues, bindParams } = prepareInsert({
+				url: data.url,
+				title: data.title,
+				category: data.category,
+				priority: data.priority,
+				browser: data.browser,
+				selector: data.selector,
+			});
+
 			const sth = await dbh.prepare(`
 				INSERT INTO
 					d_resource
-					(url, title, category, priority, browser, selector)
+					${sqlInto}
 				VALUES
-					(:url, :title, :category, :priority, :browser, :selector)
+					${sqlValues}
 			`);
-			await sth.run({
-				':url': url,
-				':title': title,
-				':category': category,
-				':priority': priority,
-				':browser': browser,
-				':selector': dbEmptyToNull(selector),
-			});
+			await sth.run(bindParams);
 			await sth.finalize();
 
 			await dbh.exec('COMMIT');
@@ -128,41 +131,51 @@ export default class CrawlerResourceDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを更新する
 	 *
-	 * @param url - URL
-	 * @param title - タイトル
-	 * @param category - カテゴリー
-	 * @param priority - 優先度
-	 * @param browser - ウェブブラウザでアクセスするか
-	 * @param selector - セレクター文字列
-	 * @param baseUrl - 元 URL
+	 * @param data - 更新データ
+	 * @param data.url - URL
+	 * @param data.title - タイトル
+	 * @param data.category - カテゴリー
+	 * @param data.priority - 優先度
+	 * @param data.browser - ウェブブラウザでアクセスするか
+	 * @param data.selector - セレクター文字列
+	 * @param data.baseUrl - 元 URL
 	 */
-	async update(url: string, title: string, category: number, priority: number, browser: boolean, selector: string | null, baseUrl: string): Promise<void> {
+	async update(data: {
+		url: string;
+		title: string;
+		category: number;
+		priority: number;
+		browser: boolean;
+		selector: string | undefined;
+		baseUrl: string;
+	}): Promise<void> {
 		const dbh = await this.getDbh();
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlSet, sqlWhere, bindParams } = prepareUpdate(
+				{
+					url: data.url,
+					title: data.title,
+					category: data.category,
+					priority: data.priority,
+					browser: data.browser,
+					selector: data.selector,
+				},
+				{
+					url: data.baseUrl,
+				},
+			);
+
 			const sth = await dbh.prepare(`
 				UPDATE
 					d_resource
 				SET
-					url = :url,
-					title = :title,
-					category = :category,
-					priority = :priority,
-					browser = :browser,
-					selector = :selector
+					${sqlSet}
 				WHERE
-					url = :baseurl
+					${sqlWhere}
 			`);
-			await sth.run({
-				':url': url,
-				':title': title,
-				':category': category,
-				':priority': priority,
-				':browser': browser,
-				':selector': dbEmptyToNull(selector),
-				':baseurl': baseUrl,
-			});
+			await sth.run(bindParams);
 			await sth.finalize();
 
 			await dbh.exec('COMMIT');
@@ -182,15 +195,17 @@ export default class CrawlerResourceDao extends CrawlerDao {
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlWhere, bindParams } = prepareDelete({
+				url: url,
+			});
+
 			const sth = await dbh.prepare(`
 				DELETE FROM
 					d_resource
 				WHERE
-					url = :url
+					${sqlWhere}
 			`);
-			await sth.run({
-				':url': url,
-			});
+			await sth.run(bindParams);
 			await sth.finalize();
 
 			await dbh.exec('COMMIT');
@@ -207,7 +222,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 	 *
 	 * @returns 巡回情報データ
 	 */
-	async getReviseData(url: string): Promise<ReviseData | null> {
+	async getReviseData(url: string): Promise<ReviseData | undefined> {
 		interface Select {
 			title: string;
 			category: number;
@@ -217,6 +232,10 @@ export default class CrawlerResourceDao extends CrawlerDao {
 		}
 
 		const dbh = await this.getDbh();
+
+		const { sqlWhere, bindParams } = prepareSelect({
+			url: url,
+		});
 
 		const sth = await dbh.prepare(`
 			SELECT
@@ -228,26 +247,24 @@ export default class CrawlerResourceDao extends CrawlerDao {
 			FROM
 				d_resource
 			WHERE
-				url = :url
+				${sqlWhere}
 		`);
-		await sth.bind({
-			':url': url,
-		});
+		await sth.bind(bindParams);
 
 		const row: Select | undefined = await sth.get();
 		await sth.finalize();
 
 		if (row === undefined) {
-			return null;
+			return undefined;
 		}
 
 		return {
-			url: url,
-			title: row.title,
-			category: row.category,
-			priority: row.priority,
-			browser: Boolean(row.browser),
-			selector: row.selector,
+			url: sqliteToJS(url),
+			title: sqliteToJS(row.title),
+			category: sqliteToJS(row.category),
+			priority: sqliteToJS(row.priority),
+			browser: sqliteToJS(row.browser, 'boolean'),
+			selector: sqliteToJS(row.selector),
 		};
 	}
 }

@@ -18,22 +18,22 @@ import configCrawlerResource from '@config/crawler-resource.js';
 import configSqlite from '@config/sqlite.js';
 import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
 import { response303 } from '@util/httpResponse.js';
-import { getParams as getRequestParams, string as requestString, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
+import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	url: string | null;
-	title: string | null;
-	category: number | null;
-	priority: number | null;
+	url: string | undefined;
+	title: string | undefined;
+	category: number | undefined;
+	priority: number | undefined;
 	browser: boolean;
-	selector: string | null;
-	base_url: string | null;
-	action_add: boolean;
-	action_revise: boolean;
-	action_revise_preview: boolean;
-	action_delete: boolean;
+	selector: string | undefined;
+	baseUrl: string | undefined;
+	actionAdd: boolean;
+	actionRevise: boolean;
+	actionRevisePreview: boolean;
+	actionDelete: boolean;
 }
 
 export const prerender = false;
@@ -54,22 +54,29 @@ const requestQuery: RequestQuery = {
 	category: requestNumber(requestBody?.get('category')),
 	priority: requestNumber(requestBody?.get('priority')),
 	browser: requestBoolean(requestBody?.get('browser')),
-	selector: requestString(requestBody?.get('selector')),
-	base_url: requestString(requestBody?.get('baseurl')),
-	action_add: requestBoolean(requestBody?.get('actionadd')),
-	action_revise: requestBoolean(requestBody?.get('actionrev')),
-	action_revise_preview: requestBoolean(requestParams.get('actionrevpre')),
-	action_delete: requestBoolean(requestBody?.get('actiondel')),
+	selector: requestStringEmpty(requestBody?.get('selector')),
+	baseUrl: requestString(requestBody?.get('baseurl')),
+	actionAdd: requestBoolean(requestBody?.get('actionadd')),
+	actionRevise: requestBoolean(requestBody?.get('actionrev')),
+	actionRevisePreview: requestBoolean(requestParams.get('actionrevpre')),
+	actionDelete: requestBoolean(requestBody?.get('actiondel')),
 };
 
 const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
 
 const validateMessages: string[] = [];
-if (requestQuery.action_add) {
+if (requestQuery.actionAdd) {
 	/* 登録 */
-	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null) {
+	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined) {
 		try {
-			await dao.insert(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector);
+			await dao.insert({
+				url: requestQuery.url,
+				title: requestQuery.title,
+				category: requestQuery.category,
+				priority: requestQuery.priority,
+				browser: requestQuery.browser,
+				selector: requestQuery.selector,
+			});
 			logger.info('データ登録', requestQuery.url);
 
 			return response303(Astro.request);
@@ -90,28 +97,36 @@ if (requestQuery.action_add) {
 			}
 		}
 	}
-} else if (requestQuery.action_revise) {
+} else if (requestQuery.actionRevise) {
 	/* 修正実行 */
-	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.base_url !== null) {
+	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.baseUrl !== undefined) {
 		logger.debug(requestQuery);
-		await dao.update(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector, requestQuery.base_url);
+		await dao.update({
+			url: requestQuery.url,
+			title: requestQuery.title,
+			category: requestQuery.category,
+			priority: requestQuery.priority,
+			browser: requestQuery.browser,
+			selector: requestQuery.selector,
+			baseUrl: requestQuery.baseUrl,
+		});
 		logger.info('データ更新', requestQuery.url);
 
 		return response303(Astro.request);
 	}
-} else if (requestQuery.action_delete) {
+} else if (requestQuery.actionDelete) {
 	/* 削除 */
-	if (requestQuery.url !== null) {
+	if (requestQuery.url !== undefined) {
 		await dao.delete(requestQuery.url);
 		logger.info('データ削除', requestQuery.url);
 	}
 
 	return response303(Astro.request);
-} else if (requestQuery.action_revise_preview) {
+} else if (requestQuery.actionRevisePreview) {
 	/* 修正データ選択 */
-	if (requestQuery.url !== null) {
+	if (requestQuery.url !== undefined) {
 		const reviseData = await dao.getReviseData(requestQuery.url);
-		if (reviseData !== null) {
+		if (reviseData !== undefined) {
 			requestQuery.title = reviseData.title;
 			requestQuery.category = reviseData.category;
 			requestQuery.priority = reviseData.priority;
@@ -133,7 +148,7 @@ const resourcePageList = new Map<
 		title: string;
 		priority: string;
 		browser: boolean;
-		selector: string | null;
+		selector: string | undefined;
 		content_hash: string;
 		error: boolean;
 	}[]
@@ -148,7 +163,7 @@ for (const resoursePage of resourcePageListDto) {
 		priority: resoursePage.priority,
 		browser: resoursePage.browser,
 		selector: resoursePage.selector,
-		content_hash: resoursePage.content_hash,
+		content_hash: resoursePage.contentHash,
 		error: resoursePage.error,
 	});
 
@@ -244,7 +259,7 @@ for (const resoursePage of resourcePageListDto) {
 
 			<FormButtons>
 				{
-					(requestQuery.action_revise_preview || requestQuery.action_revise) && (
+					(requestQuery.actionRevisePreview || requestQuery.actionRevise) && (
 						<p>
 							<SubmitButton name="actionrev" value="1">
 								修正
@@ -253,7 +268,7 @@ for (const resoursePage of resourcePageListDto) {
 					)
 				}
 				{
-					!requestQuery.action_revise_preview && !requestQuery.action_revise && (
+					!requestQuery.actionRevisePreview && !requestQuery.actionRevise && (
 						<p>
 							<SubmitButton name="actionadd" value="1">
 								登録

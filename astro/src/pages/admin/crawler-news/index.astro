@@ -17,24 +17,24 @@ import configCrawlerNews from '@config/crawler-news.js';
 import configSqlite from '@config/sqlite.js';
 import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
 import { response303 } from '@util/httpResponse.js';
-import { getParams as getRequestParams, string as requestString, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
+import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	url: string | null;
-	title: string | null;
-	category: number | null;
-	priority: number | null;
+	url: string | undefined;
+	title: string | undefined;
+	category: number | undefined;
+	priority: number | undefined;
 	browser: boolean;
-	selector_wrap: string | null;
-	selector_date: string | null;
-	selector_content: string | null;
-	base_url: string | null;
-	action_add: boolean;
-	action_revise: boolean;
-	action_revise_preview: boolean;
-	action_delete: boolean;
+	selectorWrap: string | undefined;
+	selectorDate: string | undefined;
+	selectorContent: string | undefined;
+	baseUrl: string | undefined;
+	actionAdd: boolean;
+	actionRevise: boolean;
+	actionRevisePreview: boolean;
+	actionDelete: boolean;
 }
 
 export const prerender = false;
@@ -55,25 +55,33 @@ const requestQuery: RequestQuery = {
 	category: requestNumber(requestBody?.get('category')),
 	priority: requestNumber(requestBody?.get('priority')),
 	browser: requestBoolean(requestBody?.get('browser')),
-	selector_wrap: requestString(requestBody?.get('selectorwrap')),
-	selector_date: requestString(requestBody?.get('selectordate')),
-	selector_content: requestString(requestBody?.get('selectorcontent')),
-	base_url: requestString(requestBody?.get('baseurl')),
-	action_add: requestBoolean(requestBody?.get('actionadd')),
-	action_revise: requestBoolean(requestBody?.get('actionrev')),
-	action_revise_preview: requestBoolean(requestParams.get('actionrevpre')),
-	action_delete: requestBoolean(requestBody?.get('actiondel')),
+	selectorWrap: requestString(requestBody?.get('selectorwrap')),
+	selectorDate: requestStringEmpty(requestBody?.get('selectordate')),
+	selectorContent: requestStringEmpty(requestBody?.get('selectorcontent')),
+	baseUrl: requestString(requestBody?.get('baseurl')),
+	actionAdd: requestBoolean(requestBody?.get('actionadd')),
+	actionRevise: requestBoolean(requestBody?.get('actionrev')),
+	actionRevisePreview: requestBoolean(requestParams.get('actionrevpre')),
+	actionDelete: requestBoolean(requestBody?.get('actiondel')),
 };
 
 const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
 
 const validateMessages: string[] = [];
-if (requestQuery.action_add) {
+if (requestQuery.actionAdd) {
 	/* 登録 */
-
-	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.selector_wrap !== null) {
+	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined) {
 		try {
-			await dao.insert(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector_wrap, requestQuery.selector_date, requestQuery.selector_content);
+			await dao.insert({
+				url: requestQuery.url,
+				title: requestQuery.title,
+				category: requestQuery.category,
+				priority: requestQuery.priority,
+				browser: requestQuery.browser,
+				selectorWrap: requestQuery.selectorWrap,
+				selectorDate: requestQuery.selectorDate,
+				selectorContent: requestQuery.selectorContent,
+			});
 			logger.info('データ登録', requestQuery.url);
 
 			return response303(Astro.request);
@@ -94,43 +102,54 @@ if (requestQuery.action_add) {
 			}
 		}
 	}
-} else if (requestQuery.action_revise) {
+} else if (requestQuery.actionRevise) {
 	/* 修正実行 */
-
-	if (requestQuery.url !== null && requestQuery.title !== null && requestQuery.category !== null && requestQuery.priority !== null && requestQuery.selector_wrap !== null && requestQuery.base_url !== null) {
-		await dao.update(requestQuery.url, requestQuery.title, requestQuery.category, requestQuery.priority, requestQuery.browser, requestQuery.selector_wrap, requestQuery.selector_date, requestQuery.selector_content, requestQuery.base_url);
+	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined && requestQuery.baseUrl !== undefined) {
+		await dao.update({
+			url: requestQuery.url,
+			title: requestQuery.title,
+			category: requestQuery.category,
+			priority: requestQuery.priority,
+			browser: requestQuery.browser,
+			selectorWrap: requestQuery.selectorWrap,
+			selectorDate: requestQuery.selectorDate,
+			selectorContent: requestQuery.selectorContent,
+			baseUrl: requestQuery.baseUrl,
+		});
 		logger.info('データ更新', requestQuery.url);
 
 		return response303(Astro.request);
 	}
-} else if (requestQuery.action_delete) {
+} else if (requestQuery.actionDelete) {
 	/* 削除 */
-	if (requestQuery.url !== null) {
+	if (requestQuery.url !== undefined) {
 		await dao.delete(requestQuery.url);
 		logger.info('データ削除', requestQuery.url);
 
 		return response303(Astro.request);
 	}
-} else if (requestQuery.action_revise_preview) {
+} else if (requestQuery.actionRevisePreview) {
 	/* 修正データ選択 */
-	if (requestQuery.url !== null) {
+	if (requestQuery.url !== undefined) {
 		const reviseData = await dao.getReviseData(requestQuery.url);
-		if (reviseData !== null) {
+		if (reviseData !== undefined) {
 			requestQuery.title = reviseData.title;
 			requestQuery.category = reviseData.category;
 			requestQuery.priority = reviseData.priority;
 			requestQuery.browser = reviseData.browser;
-			requestQuery.selector_wrap = reviseData.selector_wrap;
-			requestQuery.selector_date = reviseData.selector_date;
-			requestQuery.selector_content = reviseData.selector_content;
+			requestQuery.selectorWrap = reviseData.selectorWrap;
+			requestQuery.selectorDate = reviseData.selectorDate;
+			requestQuery.selectorContent = reviseData.selectorVontent;
 		}
 	}
 }
 
 /* 初期表示 */
-const categoryMaster = await dao.getCategoryMaster(); // カテゴリー情報
-const priorityMaster = await dao.getPriorityMaster(); // 優先度情報
-const newsPageListDto = await dao.getNewsPageList(); // 巡回ページデータ
+const [categoryMaster, priorityMaster, newsPageListDto] = await Promise.all([
+	dao.getCategoryMaster(), // カテゴリー情報
+	dao.getPriorityMaster(), // 優先度情報
+	dao.getNewsPageList(), // 巡回ページデータ
+]);
 
 const newsPageList: Map<
 	string,
@@ -139,9 +158,9 @@ const newsPageList: Map<
 		title: string;
 		priority: string;
 		browser: boolean;
-		selector_wrap: string;
-		selector_date: string | null;
-		selector_content: string | null;
+		selectorWrap: string;
+		selectorDate: string | undefined;
+		selectorContent: string | undefined;
 	}[]
 > = new Map();
 for (const newsPage of newsPageListDto) {
@@ -153,9 +172,9 @@ for (const newsPage of newsPageListDto) {
 		title: newsPage.title,
 		priority: newsPage.priority,
 		browser: newsPage.browser,
-		selector_wrap: newsPage.selector_wrap,
-		selector_date: newsPage.selector_date,
-		selector_content: newsPage.selector_content,
+		selectorWrap: newsPage.selectorWrap,
+		selectorDate: newsPage.selectorDate,
+		selectorContent: newsPage.selectorContent,
 	});
 
 	newsPageList.set(categoryName, newsPageOfCategoryView);
@@ -241,21 +260,21 @@ for (const newsPage of newsPageListDto) {
 					<Fragment slot="legend"><label for="fc-selectorwrap">セレクター（包括） <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selectorwrap" value={requestQuery.selector_wrap} required="" class="js-convert-trim" id="fc-selectorwrap" /></FormCtrlInput>
+						<FormCtrlInput><input name="selectorwrap" value={requestQuery.selectorWrap} required="" class="js-convert-trim" id="fc-selectorwrap" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectordate">セレクター（日付） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selectordate" value={requestQuery.selector_date} class="js-convert-trim" id="fc-selectordate" /></FormCtrlInput>
+						<FormCtrlInput><input name="selectordate" value={requestQuery.selectorDate} class="js-convert-trim" id="fc-selectordate" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectorcontent">セレクター（内容） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selectorcontent" value={requestQuery.selector_content} class="js-convert-trim" id="fc-selectorcontent" /></FormCtrlInput>
+						<FormCtrlInput><input name="selectorcontent" value={requestQuery.selectorContent} class="js-convert-trim" id="fc-selectorcontent" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
@@ -264,7 +283,7 @@ for (const newsPage of newsPageListDto) {
 
 			<FormButtons>
 				{
-					(requestQuery.action_revise_preview || requestQuery.action_revise) && (
+					(requestQuery.actionRevisePreview || requestQuery.actionRevise) && (
 						<p>
 							<SubmitButton name="actionrev" value="1">
 								修正
@@ -273,7 +292,7 @@ for (const newsPage of newsPageListDto) {
 					)
 				}
 				{
-					!requestQuery.action_revise_preview && !requestQuery.action_revise && (
+					!requestQuery.actionRevisePreview && !requestQuery.actionRevise && (
 						<p>
 							<SubmitButton name="actionadd" value="1">
 								登録
@@ -330,9 +349,9 @@ for (const newsPage of newsPageListDto) {
 								</td>
 								<td>{newsPage.priority}</td>
 								<td>{newsPage.browser && <>✔</>}</td>
-								<td class="u-cell -wrap-anywhere">{newsPage.selector_wrap}</td>
-								<td class="u-cell -wrap-anywhere">{newsPage.selector_date}</td>
-								<td class="u-cell -wrap-anywhere">{newsPage.selector_content}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selectorWrap}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selectorDate}</td>
+								<td class="u-cell -wrap-anywhere">{newsPage.selectorContent}</td>
 							</tr>
 						))}
 					</tbody>

@@ -15,7 +15,7 @@ interface PriorityMaster {
  * ウェブ巡回
  */
 export default class CrawlerDao {
-	#dbh: sqlite.Database | null = null;
+	#dbh: sqlite.Database | undefined;
 
 	readonly #filepath: string;
 
@@ -37,7 +37,7 @@ export default class CrawlerDao {
 	 * @returns DB 接続情報
 	 */
 	async getDbh(): Promise<sqlite.Database> {
-		if (this.#dbh !== null) {
+		if (this.#dbh !== undefined) {
 			return this.#dbh;
 		}
 
@@ -74,7 +74,7 @@ export default class CrawlerDao {
 				sort
 		`);
 
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const categories: CategoryMaster[] = [];
@@ -111,7 +111,7 @@ export default class CrawlerDao {
 				fk
 		`);
 
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const priorities: PriorityMaster[] = [];
