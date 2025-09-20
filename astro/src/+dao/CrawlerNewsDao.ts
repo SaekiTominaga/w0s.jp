@@ -1,5 +1,5 @@
+import { sqliteToJS, prepareSelect, prepareInsert, prepareUpdate, prepareDelete } from '@w0s/sqlite-utility';
 import CrawlerDao from '@dao/CrawlerDao.js';
-import { emptyToNull as dbEmptyToNull } from '@util/db.js';
 
 interface NewsPage {
 	url: string;
@@ -7,9 +7,9 @@ interface NewsPage {
 	category: string;
 	priority: string;
 	browser: boolean;
-	selector_wrap: string;
-	selector_date: string | null;
-	selector_content: string | null;
+	selectorWrap: string;
+	selectorDate: string | undefined;
+	selectorContent: string | undefined;
 }
 
 interface ReviseData {
@@ -18,9 +18,9 @@ interface ReviseData {
 	category: number;
 	priority: number;
 	browser: boolean;
-	selector_wrap: string;
-	selector_date: string | null;
-	selector_content: string | null;
+	selectorWrap: string;
+	selectorDate: string | undefined;
+	selectorVontent: string | undefined;
 }
 
 /**
@@ -68,20 +68,20 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				n.title
 		`);
 
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const newsPage: NewsPage[] = [];
 		for (const row of rows) {
 			newsPage.push({
-				url: row.url,
-				title: row.title,
-				category: row.category,
-				priority: row.priority,
-				browser: Boolean(row.browser),
-				selector_wrap: row.selector_wrap,
-				selector_date: row.selector_date,
-				selector_content: row.selector_content,
+				url: sqliteToJS(row.url),
+				title: sqliteToJS(row.title),
+				category: sqliteToJS(row.category),
+				priority: sqliteToJS(row.priority),
+				browser: sqliteToJS(row.browser, 'boolean'),
+				selectorWrap: sqliteToJS(row.selector_wrap),
+				selectorDate: sqliteToJS(row.selector_date),
+				selectorContent: sqliteToJS(row.selector_content),
 			});
 		}
 
@@ -91,46 +91,49 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを登録する
 	 *
-	 * @param url - URL
-	 * @param title - タイトル
-	 * @param category - カテゴリー
-	 * @param priority - 優先度
-	 * @param browser - ウェブブラウザでアクセスするか
-	 * @param selectorWrap - セレクター文字列（包括要素）
-	 * @param selectorDate - 包括要素からのセレクター文字列（日付）
-	 * @param selectorContent - 包括要素からのセレクター文字列（内容）
+	 * @param data - 登録データ
+	 * @param data.url - URL
+	 * @param data.title - タイトル
+	 * @param data.category - カテゴリー
+	 * @param data.priority - 優先度
+	 * @param data.browser - ウェブブラウザでアクセスするか
+	 * @param data.selectorWrap - セレクター文字列（包括要素）
+	 * @param data.selectorDate - 包括要素からのセレクター文字列（日付）
+	 * @param data.selectorContent - 包括要素からのセレクター文字列（内容）
 	 */
-	async insert(
-		url: string,
-		title: string,
-		category: number,
-		priority: number,
-		browser: boolean,
-		selectorWrap: string,
-		selectorDate: string | null,
-		selectorContent: string | null,
-	): Promise<void> {
+	async insert(data: {
+		url: string;
+		title: string;
+		category: number;
+		priority: number;
+		browser: boolean;
+		selectorWrap: string;
+		selectorDate: string | undefined;
+		selectorContent: string | undefined;
+	}): Promise<void> {
 		const dbh = await this.getDbh();
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlInto, sqlValues, bindParams } = prepareInsert({
+				url: data.url,
+				title: data.title,
+				class: data.category,
+				priority: data.priority,
+				browser: data.browser,
+				selector_wrap: data.selectorWrap,
+				selector_date: data.selectorDate,
+				selector_content: data.selectorContent,
+			});
+
 			const sth = await dbh.prepare(`
 				INSERT INTO
 					d_news
-					(url, title, class, priority, browser, selector_wrap, selector_date, selector_content)
+					${sqlInto}
 				VALUES
-					(:url, :title, :category, :priority, :browser, :selector_wrap, :selector_date, :selector_content)
+					${sqlValues}
 			`);
-			await sth.run({
-				':url': url,
-				':title': title,
-				':category': category,
-				':priority': priority,
-				':browser': browser,
-				':selector_wrap': selectorWrap,
-				':selector_date': dbEmptyToNull(selectorDate),
-				':selector_content': dbEmptyToNull(selectorContent),
-			});
+			await sth.run(bindParams);
 			await sth.finalize();
 
 			await dbh.exec('COMMIT');
@@ -143,57 +146,57 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	/**
 	 * 巡回ページデータを更新する
 	 *
-	 * @param url - URL
-	 * @param title - タイトル
-	 * @param category - カテゴリー
-	 * @param priority - 優先度
-	 * @param browser - ウェブブラウザでアクセスするか
-	 * @param selectorWrap - セレクター文字列（包括要素）
-	 * @param selectorDate - 包括要素からのセレクター文字列（日付）
-	 * @param selectorContent - 包括要素からのセレクター文字列（内容）
-	 * @param baseUrl - 元 URL
+	 * @param data - 更新データ
+	 * @param data.url - URL
+	 * @param data.title - タイトル
+	 * @param data.category - カテゴリー
+	 * @param data.priority - 優先度
+	 * @param data.browser - ウェブブラウザでアクセスするか
+	 * @param data.selectorWrap - セレクター文字列（包括要素）
+	 * @param data.selectorDate - 包括要素からのセレクター文字列（日付）
+	 * @param data.selectorContent - 包括要素からのセレクター文字列（内容）
+	 * @param data.baseUrl - 元 URL
 	 */
-	async update(
-		url: string,
-		title: string,
-		category: number,
-		priority: number,
-		browser: boolean,
-		selectorWrap: string,
-		selectorDate: string | null,
-		selectorContent: string | null,
-		baseUrl: string,
-	): Promise<void> {
+	async update(data: {
+		url: string;
+		title: string;
+		category: number;
+		priority: number;
+		browser: boolean;
+		selectorWrap: string;
+		selectorDate: string | undefined;
+		selectorContent: string | undefined;
+		baseUrl: string;
+	}): Promise<void> {
 		const dbh = await this.getDbh();
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlSet, sqlWhere, bindParams } = prepareUpdate(
+				{
+					url: data.url,
+					title: data.title,
+					class: data.category,
+					priority: data.priority,
+					browser: data.browser,
+					selector_wrap: data.selectorWrap,
+					selector_date: data.selectorDate,
+					selector_content: data.selectorContent,
+				},
+				{
+					url: data.baseUrl,
+				},
+			);
+
 			const sth = await dbh.prepare(`
 				UPDATE
 					d_news
 				SET
-					url = :url,
-					title = :title,
-					class = :category,
-					priority = :priority,
-					browser = :browser,
-					selector_wrap = :selector_wrap,
-					selector_date = :selector_date,
-					selector_content = :selector_content
+					${sqlSet}
 				WHERE
-					url = :baseurl
+					${sqlWhere}
 			`);
-			await sth.run({
-				':url': url,
-				':title': title,
-				':category': category,
-				':priority': priority,
-				':browser': browser,
-				':selector_wrap': selectorWrap,
-				':selector_date': dbEmptyToNull(selectorDate),
-				':selector_content': dbEmptyToNull(selectorContent),
-				':baseurl': baseUrl,
-			});
+			await sth.run(bindParams);
 			await sth.finalize();
 
 			await dbh.exec('COMMIT');
@@ -213,26 +216,30 @@ export default class CrawlerNewsDao extends CrawlerDao {
 
 		await dbh.exec('BEGIN');
 		try {
+			const { sqlWhere, bindParams } = prepareDelete({
+				url: url,
+			});
+
 			const newsSth = await dbh.prepare(`
 				DELETE FROM
 					d_news
 				WHERE
-					url = :url
+					${sqlWhere}
 			`);
-			await newsSth.run({
-				':url': url,
-			});
+			await newsSth.run(bindParams);
 			await newsSth.finalize();
+
+			const { sqlWhere: sqlWhereData, bindParams: bindParamsData } = prepareDelete({
+				url: url,
+			});
 
 			const newsDataSth = await dbh.prepare(`
 				DELETE FROM
 					d_news_data
 				WHERE
-					url = :url
+					${sqlWhereData}
 			`);
-			await newsDataSth.run({
-				':url': url,
-			});
+			await newsDataSth.run(bindParamsData);
 			await newsDataSth.finalize();
 
 			await dbh.exec('COMMIT');
@@ -249,7 +256,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 	 *
 	 * @returns 巡回情報データ
 	 */
-	async getReviseData(url: string): Promise<ReviseData | null> {
+	async getReviseData(url: string): Promise<ReviseData | undefined> {
 		interface Select {
 			title: string;
 			category: number;
@@ -261,6 +268,10 @@ export default class CrawlerNewsDao extends CrawlerDao {
 		}
 
 		const dbh = await this.getDbh();
+
+		const { sqlWhere, bindParams } = prepareSelect({
+			url: url,
+		});
 
 		const sth = await dbh.prepare(`
 			SELECT
@@ -274,28 +285,26 @@ export default class CrawlerNewsDao extends CrawlerDao {
 			FROM
 				d_news
 			WHERE
-				url = :url
+				${sqlWhere}
 		`);
-		await sth.bind({
-			':url': url,
-		});
+		await sth.bind(bindParams);
 
-		const row: Select | undefined = await sth.get();
+		const row = await sth.get<Select>();
 		await sth.finalize();
 
 		if (row === undefined) {
-			return null;
+			return undefined;
 		}
 
 		return {
-			url: url,
-			title: row.title,
-			category: row.category,
-			priority: row.priority,
-			browser: Boolean(row.browser),
-			selector_wrap: row.selector_wrap,
-			selector_date: row.selector_date,
-			selector_content: row.selector_content,
+			url: sqliteToJS(url),
+			title: sqliteToJS(row.title),
+			category: sqliteToJS(row.category),
+			priority: sqliteToJS(row.priority),
+			browser: sqliteToJS(row.browser, 'boolean'),
+			selectorWrap: sqliteToJS(row.selector_wrap),
+			selectorDate: sqliteToJS(row.selector_date),
+			selectorVontent: sqliteToJS(row.selector_content),
 		};
 	}
 }

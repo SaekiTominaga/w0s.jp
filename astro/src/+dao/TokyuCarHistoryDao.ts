@@ -22,15 +22,15 @@ interface Car {
 	register: Date;
 	renewal: string;
 	scrap: boolean;
-	transfer: string | null;
-	change: Change[] | null;
+	transfer: string | undefined;
+	change: Change[] | undefined;
 }
 
 /**
  * 東急電車資料室・車歴表
  */
 export default class TokyuCarHistoryDao {
-	#dbh: sqlite.Database | null = null;
+	#dbh: sqlite.Database | undefined;
 
 	readonly #filepath: string;
 
@@ -52,7 +52,7 @@ export default class TokyuCarHistoryDao {
 	 * @returns DB 接続情報
 	 */
 	async getDbh(): Promise<sqlite.Database> {
-		if (this.#dbh !== null) {
+		if (this.#dbh !== undefined) {
 			return this.#dbh;
 		}
 
@@ -89,7 +89,7 @@ export default class TokyuCarHistoryDao {
 				display,
 				display_cargroup
 		`);
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const carSeries: Series[] = [];
@@ -116,12 +116,12 @@ export default class TokyuCarHistoryDao {
 	 * @returns 車両情報
 	 */
 	async getCarData(
-		number: string | null,
+		number: string | undefined,
 		numberOld: boolean,
-		seriesList: string[] | null,
-		registerStart: string | null,
-		registerEnd: string | null,
-		sort: string | null,
+		seriesList: string[] | undefined,
+		registerStart: string | undefined,
+		registerEnd: string | undefined,
+		sort: string | undefined,
 	): Promise<Car[]> {
 		interface Select {
 			num: string;
@@ -168,7 +168,7 @@ export default class TokyuCarHistoryDao {
 		`;
 
 		/* 検索条件 */
-		if (number !== null && number !== '') {
+		if (number !== undefined && number !== '') {
 			if (numberOld) {
 				sql += ' AND (c.num LIKE :num OR ch.before_num LIKE :before_num)';
 			} else {
@@ -182,10 +182,10 @@ export default class TokyuCarHistoryDao {
 				.map((_value, index) => `:series_${String(index)}`)
 				.join(',')})`;
 		}
-		if (registerStart !== null && registerStart !== '') {
+		if (registerStart !== undefined && registerStart !== '') {
 			sql += ' AND c.register_date >= :register_start';
 		}
-		if (registerEnd !== null && registerEnd !== '') {
+		if (registerEnd !== undefined && registerEnd !== '') {
 			sql += ' AND c.register_date <= :register_end';
 		}
 
@@ -210,28 +210,28 @@ export default class TokyuCarHistoryDao {
 		const sth = await dbh.prepare(sql);
 
 		const bindParams = new Map<string, string | number>();
-		if (number !== null && number !== '') {
+		if (number !== undefined && number !== '') {
 			bindParams.set(':num', number);
 			if (numberOld) {
 				bindParams.set(':before_num', number);
 			}
 		}
-		if (seriesList !== null) {
+		if (seriesList !== undefined) {
 			seriesList.forEach((series, index) => {
 				bindParams.set(`:series_${String(index)}`, series);
 			});
 		}
-		if (registerStart !== null && registerStart !== '') {
+		if (registerStart !== undefined && registerStart !== '') {
 			bindParams.set(':register_start', Number(dayjs(registerStart).format('YYYYMMDD')));
 		}
-		if (registerEnd !== null && registerEnd !== '') {
+		if (registerEnd !== undefined && registerEnd !== '') {
 			bindParams.set(':register_end', Number(dayjs(registerEnd).format('YYYYMMDD')));
 		}
 		if (bindParams.size > 0) {
 			await sth.bind(Object.fromEntries(bindParams));
 		}
 
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const carDataList: Car[] = [];
@@ -249,8 +249,8 @@ export default class TokyuCarHistoryDao {
 				register: new Date(Number(registerStr.substring(0, 4)), Number(registerStr.substring(4, 6)) - 1, Number(registerStr.substring(6, 8))),
 				renewal: row.renewal,
 				scrap: Boolean(row.scrap),
-				transfer: row.transfer,
-				change: changeDataList.get(row.num) ?? null,
+				transfer: row.transfer ?? undefined,
+				change: changeDataList.get(row.num) ?? undefined,
 			};
 
 			carDataList.push(carData);
@@ -290,7 +290,7 @@ export default class TokyuCarHistoryDao {
 			ORDER BY
 				c.change_date
 		`);
-		const rows: Select[] = await sth.all();
+		const rows = await sth.all<Select[]>();
 		await sth.finalize();
 
 		const changeDataMap = new Map<string, Change[]>();

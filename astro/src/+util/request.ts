@@ -17,7 +17,19 @@ export const getParams = (url: URL): URLSearchParams => new URLSearchParamsCusto
  *
  * @returns Converted
  */
-export const string = (request: unknown): string | null => (typeof request === 'string' ? request : null);
+export const string = (request: unknown): string | undefined => (typeof request === 'string' ? request : undefined);
+
+/**
+ * Convert to string type (if empty string to undefined)
+ *
+ * @param request - Request string
+ *
+ * @returns Converted
+ */
+export const stringEmpty = (request: unknown): string | undefined => {
+	const requestString = string(request);
+	return requestString !== '' ? requestString : undefined;
+};
 
 /**
  * Convert to string[] type
@@ -35,7 +47,7 @@ export const strings = (request: unknown): string[] => (Array.isArray(request) ?
  *
  * @returns Converted
  */
-export const number = (request: unknown): number | null => (typeof request === 'string' ? Number(request) : null);
+export const number = (request: unknown): number | undefined => (typeof request === 'string' ? Number(request) : undefined);
 
 /**
  * Convert to boolean type
@@ -53,5 +65,5 @@ export const boolean = (request: unknown): boolean => Boolean(request);
  *
  * @returns Converted
  */
-export const dateYYYYMM = (request: unknown): Dayjs | null =>
-	typeof request === 'string' ? dayjs(new Date(Number(request.substring(0, 4)), Number(request.substring(5, 7)) - 1)) : null;
+export const dateYYYYMM = (request: unknown): Dayjs | undefined =>
+	typeof request === 'string' ? dayjs(new Date(Number(request.substring(0, 4)), Number(request.substring(5, 7)) - 1)) : undefined;

@@ -11,7 +11,7 @@ import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	dir: string | null;
+	dir: string | undefined;
 	diff: string[];
 }
 
@@ -33,7 +33,7 @@ const requestQuery: RequestQuery = {
 const diffs: DiffChange[] = [];
 const fileList: string[] = [];
 
-if (requestQuery.dir !== null) {
+if (requestQuery.dir !== undefined) {
 	const dir = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestQuery.dir}`;
 	if (fs.existsSync(dir)) {
 		if (requestQuery.diff.length >= 2) {

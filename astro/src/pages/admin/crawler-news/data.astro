@@ -1,4 +1,5 @@
 ---
+import dayjs from 'dayjs';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
 import Table from '@components/Table.astro';
@@ -10,9 +11,9 @@ import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	url: string | null;
-	id: string | null;
-	action_delete: boolean;
+	url: string | undefined;
+	id: string | undefined;
+	actionDelete: boolean;
 }
 
 export const prerender = false;
@@ -29,14 +30,14 @@ const requestBody = Astro.request.method === 'POST' ? await Astro.request.formDa
 const requestQuery: RequestQuery = {
 	url: requestString(requestParams.get('url') ?? requestBody?.get('url')),
 	id: requestString(requestBody?.get('id')),
-	action_delete: requestBoolean(requestBody?.get('actiondel')),
+	actionDelete: requestBoolean(requestBody?.get('actiondel')),
 };
 
 const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
 
-if (requestQuery.action_delete) {
+if (requestQuery.actionDelete) {
 	/* 削除 */
-	if (requestQuery.id !== null) {
+	if (requestQuery.id !== undefined) {
 		await dao.delete(requestQuery.id);
 		logger.info('データ削除', requestQuery.id);
 
@@ -45,7 +46,7 @@ if (requestQuery.action_delete) {
 }
 
 /* 初期表示 */
-const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
+const newsDataList = requestQuery.url !== undefined ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
@@ -79,14 +80,14 @@ const newsDataList = requestQuery.url !== null ? await dao.getNewsDataList(reque
 								</p>
 							</form>
 						</td>
-						<td>{newsData.date !== null && <time datetime={newsData.date.format('YYYY-MM-DD')}>{newsData.date.format('YYYY年M月D日')}</time>}</td>
+						<td>{newsData.date !== undefined && <time datetime={dayjs(newsData.date).format('YYYY-MM-DD')}>{dayjs(newsData.date).format('YYYY年M月D日')}</time>}</td>
 						<td>
-							{newsData.refer_url !== null && (
-								<a href={newsData.refer_url} referrerpolicy="no-referrer">
+							{newsData.referUrl !== undefined && (
+								<a href={newsData.referUrl} referrerpolicy="no-referrer">
 									{newsData.content}
 								</a>
 							)}
-							{newsData.refer_url === null && <>{newsData.content}</>}
+							{newsData.referUrl === undefined && <>{newsData.content}</>}
 						</td>
 					</tr>
 				))

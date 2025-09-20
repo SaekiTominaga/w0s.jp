@@ -22,13 +22,13 @@ import { init as ssrInit } from '@util/ssr.js';
 import type { StructuredData } from '@type/types.js';
 
 interface RequestQuery {
-	number: string | null;
-	number_old: boolean;
-	series: string[] | null;
-	register_start: string | null;
-	register_end: string | null;
-	sort: string | null;
-	era: string | null;
+	number: string | undefined;
+	numberOld: boolean;
+	series: string[] | undefined;
+	registerStart: string | undefined;
+	registerEnd: string | undefined;
+	sort: string | undefined;
+	era: string | undefined;
 	output: boolean;
 }
 
@@ -49,7 +49,7 @@ interface ViewCar {
 	renewal: string;
 	age: number;
 	scrap: boolean;
-	transfer: string | null;
+	transfer: string | undefined;
 }
 
 export const prerender = false;
@@ -75,10 +75,10 @@ const requestParams = getRequestParams(Astro.url);
 
 const requestQuery: RequestQuery = {
 	number: requestString(requestParams.get('num')),
-	number_old: requestBoolean(requestParams.get('old')),
+	numberOld: requestBoolean(requestParams.get('old')),
 	series: requestStrings(requestParams.getAll('ser[]')),
-	register_start: requestString(requestParams.get('res')),
-	register_end: requestString(requestParams.get('ree')),
+	registerStart: requestString(requestParams.get('res')),
+	registerEnd: requestString(requestParams.get('ree')),
 	sort: requestString(requestParams.get('srt')),
 	era: requestString(requestParams.get('era')),
 	output: requestBoolean(requestParams.get('out')),
@@ -109,14 +109,14 @@ const cars: ViewCar[][] = [];
 let searchCount = 0; // 検索条件にマッチした車両数
 
 if (requestQuery.output) {
-	const carsDto = await dao.getCarData(requestQuery.number?.replaceAll('.', '_').replaceAll('*', '%') ?? null, requestQuery.number_old, requestQuery.series, requestQuery.register_start, requestQuery.register_end, requestQuery.sort);
+	const carsDto = await dao.getCarData(requestQuery.number?.replaceAll('.', '_').replaceAll('*', '%'), requestQuery.numberOld, requestQuery.series, requestQuery.registerStart, requestQuery.registerEnd, requestQuery.sort);
 
 	searchCount = carsDto.length;
 
 	let beforeSeries = '';
 	for (const car of carsDto) {
 		const changes: ViewChange[] = [];
-		if (car.change !== null) {
+		if (car.change !== undefined) {
 			for (const change of car.change) {
 				changes.push({
 					number: change.number,
@@ -185,7 +185,7 @@ if (requestQuery.output) {
 						<FormCtrlInput size="4em"><input name="num" value={requestQuery.number} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
 
 						<Label label="旧車号を含む">
-							<input type="checkbox" name="old" value="1" checked={requestQuery.number_old} />
+							<input type="checkbox" name="old" value="1" checked={requestQuery.numberOld} />
 						</Label>
 					</Fragment>
 
@@ -200,7 +200,7 @@ if (requestQuery.output) {
 						{
 							carSeries.map((car) => (
 								<Label label={car.series}>
-									<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== null && requestQuery.series.includes(car.id)} />
+									<input type="checkbox" name="ser[]" value={car.id} checked={requestQuery.series !== undefined && requestQuery.series.includes(car.id)} />
 								</Label>
 							))
 						}
@@ -215,10 +215,10 @@ if (requestQuery.output) {
 
 					<Fragment slot="contents">
 						<Label label="開始日">
-							<FormCtrlInput size="10em"><input type="date" name="res" value={requestQuery.register_start} min="1962-01-25" max="2001-03-24" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarstart" title="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「開始日」が存在しない日付です。" data-validation-min="「開始日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「開始日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
+							<FormCtrlInput size="10em"><input type="date" name="res" value={requestQuery.registerStart} min="1962-01-25" max="2001-03-24" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarstart" title="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「開始日」が存在しない日付です。" data-validation-min="「開始日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「開始日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
 						</Label>
 						<Label label="終了日">
-							<FormCtrlInput size="10em"><input type="date" name="ree" value={requestQuery.register_end} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarend" title="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「終了日」が存在しない日付です。" data-validation-min="「終了日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「終了日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
+							<FormCtrlInput size="10em"><input type="date" name="ree" value={requestQuery.registerEnd} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarend" title="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「終了日」が存在しない日付です。" data-validation-min="「終了日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「終了日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
 						</Label>
 					</Fragment>
 
