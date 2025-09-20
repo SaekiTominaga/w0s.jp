@@ -69,7 +69,7 @@ export default class CrawlerDao {
 				fk,
 				name
 			FROM
-				m_class
+				m_category
 			ORDER BY
 				sort
 		`);

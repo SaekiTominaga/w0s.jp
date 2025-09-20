@@ -58,10 +58,10 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				n.selector_content AS selector_content
 			FROM
 				d_news n,
-				m_class c,
+				m_category c,
 				m_priority p
 			WHERE
-				n.class = c.fk AND
+				n.category = c.fk AND
 				n.priority = p.fk
 			ORDER BY
 				c.sort,
@@ -118,7 +118,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 			const { sqlInto, sqlValues, bindParams } = prepareInsert({
 				url: data.url,
 				title: data.title,
-				class: data.category,
+				category: data.category,
 				priority: data.priority,
 				browser: data.browser,
 				selector_wrap: data.selectorWrap,
@@ -176,7 +176,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 				{
 					url: data.url,
 					title: data.title,
-					class: data.category,
+					category: data.category,
 					priority: data.priority,
 					browser: data.browser,
 					selector_wrap: data.selectorWrap,
@@ -276,7 +276,7 @@ export default class CrawlerNewsDao extends CrawlerDao {
 		const sth = await dbh.prepare(`
 			SELECT
 				title,
-				class AS category,
+				category,
 				priority,
 				browser,
 				selector_wrap,
