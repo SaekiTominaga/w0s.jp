@@ -56,7 +56,7 @@ export default class CrawlerResourceDao extends CrawlerDao {
 				r.error AS error
 			FROM
 				d_resource r,
-				m_class c,
+				m_category c,
 				m_priority p
 			WHERE
 				r.category = c.fk AND
