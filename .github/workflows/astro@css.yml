@@ -1,10 +1,10 @@
-name: Node.js files in the Astro project
+name: CSS in the Astro project
 
 on:
   pull_request:
     paths:
-      - 'astro/build/**/*.ts'
-      - 'astro/eslint.config.js'
+      - 'astro/src/**/*.astro'
+      - 'astro/stylelint.config.js'
   workflow_dispatch:
 
 permissions: {}
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  css:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -25,4 +25,4 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci
-      - run: npm run node-lint -w '@w0s.jp/astro'
+      - run: npm run css-lint -w '@w0s.jp/astro'

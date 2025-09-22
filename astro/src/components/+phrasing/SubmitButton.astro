@@ -1,7 +1,7 @@
 ---
 interface Props {
 	type?: 'button' | 'reset';
-	style?: 'compact' | 'cancel';
+	buttonStyle?: 'compact' | 'cancel';
 	name?: string;
 	value?: string;
 	formmethod?: 'get' | 'post';
@@ -9,10 +9,10 @@ interface Props {
 	class?: string;
 }
 
-const { type, style, name, value, formmethod, id, class: className } = Astro.props;
+const { type, buttonStyle, name, value, formmethod, id, class: className } = Astro.props;
 ---
 
-<button class:list={['submit', style !== undefined ? `-${style}` : undefined, className]} type={type} name={name} value={value} formmethod={formmethod} id={id} {...Astro.props}><slot /></button>
+<button class:list={['submit', buttonStyle !== undefined ? `-${buttonStyle}` : undefined, className]} type={type} name={name} value={value} formmethod={formmethod} id={id} {...Astro.props}><slot /></button>
 
 <style>
 	@layer component {
