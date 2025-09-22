@@ -12,7 +12,7 @@ export default {
 				severity: 'warning',
 			},
 		],
-		'selector-class-pattern': /^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$/,
+		'selector-class-pattern': /^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$/v,
 
 		'order/order': [
 			[
@@ -27,4 +27,12 @@ export default {
 			],
 		],
 	},
+	overrides: [
+		{
+			files: ['src/pages/**/*.astro'],
+			rules: {
+				'custom-property-empty-line-before': null,
+			},
+		},
+	],
 };
