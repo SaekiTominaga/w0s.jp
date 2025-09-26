@@ -7,7 +7,6 @@ import express, { type NextFunction, type Request, type Response } from 'express
 // @ts-expect-error: ts(7016)
 import htpasswd from 'htpasswd-js';
 import Log4js from 'log4js';
-import { isMatch } from 'matcher';
 import { env } from '@w0s/env-value-type';
 import { escape } from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
@@ -69,7 +68,13 @@ app.use(
 	}),
 	async (req, res, next) => {
 		/* Basic Authentication */
-		const basic = config.static.authBasic.find((auth) => isMatch(req.url, auth.urls));
+		const basic = config.static.authBasic.find((auth) =>
+			auth.pathPatterns.some((pathPattern) =>
+				new URLPattern({
+					pathname: pathPattern,
+				}).test({ pathname: req.url }),
+			),
+		);
 		if (basic !== undefined) {
 			const credentials = basicAuth(req);
 
