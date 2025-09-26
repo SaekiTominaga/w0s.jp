@@ -135,32 +135,32 @@ export default {
 		},
 		authBasic: [
 			{
-				urls: ['/admin/*'],
+				pathPatterns: ['/admin/*'],
 				realm: 'Admin',
 				htpasswd: 'basic-admin.txt',
 			},
 			{
-				urls: ['/madoka/dojin/pdf/pictorial6/*'],
+				pathPatterns: ['/madoka/dojin/pdf/pictorial6/*'],
 				realm: 'The Cycle Pictorial 6',
 				htpasswd: 'basic-madoka-pictorial6.txt',
 			},
 			{
-				urls: ['/madoka/dojin/pdf/pictorial7/*'],
+				pathPatterns: ['/madoka/dojin/pdf/pictorial7/*'],
 				realm: 'The Cycle Pictorial 7',
 				htpasswd: 'basic-madoka-pictorial7.txt',
 			},
 			{
-				urls: ['/madoka/dojin/pdf/pictorial8/*'],
+				pathPatterns: ['/madoka/dojin/pdf/pictorial8/*'],
 				realm: 'The Cycle Pictorial 8',
 				htpasswd: 'basic-madoka-pictorial8.txt',
 			},
 			{
-				urls: ['/madoka/dojin/pdf/pictorial9/*'],
+				pathPatterns: ['/madoka/dojin/pdf/pictorial9/*'],
 				realm: 'The Cycle Pictorial 9',
 				htpasswd: 'basic-madoka-pictorial9.txt',
 			},
 			{
-				urls: ['/madoka/dojin/pdf/pictorial10/*'],
+				pathPatterns: ['/madoka/dojin/pdf/pictorial10/*'],
 				realm: 'The Cycle Pictorial 10',
 				htpasswd: 'basic-madoka-pictorial10.txt',
 			},
