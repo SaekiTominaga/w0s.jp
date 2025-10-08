@@ -27,8 +27,8 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 	{structuredData.opensearch !== undefined && <link rel="search" href={structuredData.opensearch.path} type="application/opensearchdescription+xml" title={structuredData.opensearch.name} />}
 
 	<script src="/assets/script/trusted-types.js" defer="" is:inline></script>
-	<script src="/assets/script/w0s.mjs" type="module"></script>
-	{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" />)}
+	<script src="/assets/script/w0s.mjs" type="module" is:inline></script>
+	{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" is:inline />)}
 	<script src="https://analytics.w0s.jp/matomo/matomo.js" async="" is:inline></script>
 	<script src="/assets/script/analytics.js" defer="" is:inline></script>
 
@@ -49,5 +49,5 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 		)
 	}
 
-	{jsonLd !== undefined && <script type="application/ld+json" set:html={JSON.stringify(jsonLd, undefined, '\t')} />}
+	{jsonLd !== undefined && <script type="application/ld+json" set:html={JSON.stringify(jsonLd, undefined, '\t')} is:inline />}
 </head>

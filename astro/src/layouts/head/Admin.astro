@@ -18,8 +18,8 @@ const { structuredData } = Astro.props;
 	<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
 
 	<script src="/assets/script/trusted-types.js" defer="" is:inline></script>
-	<script src="/assets/script/w0s.mjs" type="module"></script>
-	{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" />)}
+	<script src="/assets/script/w0s.mjs" type="module" is:inline></script>
+	{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" is:inline />)}
 
 	<title>{structuredData.title}</title>
 </head>
