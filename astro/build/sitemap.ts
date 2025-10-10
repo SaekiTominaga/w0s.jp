@@ -6,7 +6,6 @@ import ejs from 'ejs';
 import { glob } from 'glob';
 import { JSDOM } from 'jsdom';
 import slash from 'slash';
-import xmlFormat from 'xml-formatter';
 
 /**
  * サイトマップファイル生成
@@ -113,14 +112,7 @@ const sitemap = await ejs.renderFile(template, {
 	entries: entries,
 });
 
-const sitemapFormatted = xmlFormat(sitemap, {
-	/* https://github.com/chrisbottin/xml-formatter#options */
-	indentation: '\t',
-	collapseContent: true,
-	lineSeparator: '\n',
-});
-
 /* 出力 */
 const sitemapPath = `${directory}/${outputPath}`;
-await fs.promises.writeFile(sitemapPath, sitemapFormatted);
+await fs.promises.writeFile(sitemapPath, sitemap);
 console.info(`Sitemap created: ${sitemapPath}`);
