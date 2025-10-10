@@ -6,7 +6,6 @@ import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
 import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
-import xmlFormat from 'xml-formatter';
 
 /**
  * フィードファイル生成
@@ -52,12 +51,6 @@ const PRETTIER_OPTIONS_HTML: PrettierOptions = {
 	singleQuote: true,
 	useTabs: true,
 };
-
-const XML_FORMAT_OPTIONS = {
-	indentation: '\t',
-	collapseContent: true,
-	lineSeparator: '\n',
-}; // https://github.com/chrisbottin/xml-formatter#options
 
 /* 引数処理 */
 const argsParsedValues = parseArgs({
@@ -148,12 +141,9 @@ await Promise.all(
 			entries: entries,
 		});
 
-		/* 整形 */
-		const feedFormatted = xmlFormat(feed, XML_FORMAT_OPTIONS);
-
 		/* 出力 */
 		const feedPath = `${directory}/${feedInfo.feedPath}`;
-		await fs.promises.writeFile(feedPath, feedFormatted);
+		await fs.promises.writeFile(feedPath, feed);
 		console.info(`Feed file created: ${feedPath}`);
 	}),
 );
