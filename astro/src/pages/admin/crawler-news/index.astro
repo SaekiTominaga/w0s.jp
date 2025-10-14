@@ -324,7 +324,7 @@ for (const newsPage of newsPageListDto) {
 					<tbody>
 						{newsPageOfCategory.map((newsPage) => (
 							<tr>
-								<td class="u-cell -wrap-no">
+								<td>
 									<form action={Astro.url.pathname} method="post">
 										<p>
 											<SubmitButton buttonStyle="compact" name="actionrevpre" value="1" formmethod="get">
@@ -349,9 +349,9 @@ for (const newsPage of newsPageListDto) {
 								</td>
 								<td>{newsPage.priority}</td>
 								<td>{newsPage.browser && <>✔</>}</td>
-								<td class="u-cell -wrap-anywhere">{newsPage.selectorWrap}</td>
-								<td class="u-cell -wrap-anywhere">{newsPage.selectorDate}</td>
-								<td class="u-cell -wrap-anywhere">{newsPage.selectorContent}</td>
+								<td>{newsPage.selectorWrap}</td>
+								<td>{newsPage.selectorDate}</td>
+								<td>{newsPage.selectorContent}</td>
 							</tr>
 						))}
 					</tbody>
