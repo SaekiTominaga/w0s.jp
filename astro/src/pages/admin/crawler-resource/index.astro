@@ -300,7 +300,7 @@ for (const resoursePage of resourcePageListDto) {
 					<tbody>
 						{resourcePageOfCategory.map((resourcePage) => (
 							<tr>
-								<td class="u-cell -wrap-no">
+								<td>
 									<Stack>
 										<form action={Astro.url.pathname} method="post">
 											<p>
@@ -326,7 +326,7 @@ for (const resoursePage of resourcePageListDto) {
 								</td>
 								<td class="u-cell -center">{resourcePage.priority}</td>
 								<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
-								<td class="u-cell -wrap-anywhere">{resourcePage.selector}</td>
+								<td>{resourcePage.selector}</td>
 								<td>{resourcePage.content_hash}</td>
 								<td class="u-cell -center">{resourcePage.error && <strong style="color: var(--color-red)">✗</strong>}</td>
 							</tr>
