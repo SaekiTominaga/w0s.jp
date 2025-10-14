@@ -40,7 +40,7 @@ const { id, full, scroll, font } = Astro.props;
 				--_caption-text-align: start;
 
 				@media not print {
-					--_text-wrap: nowrap;
+					--_text-wrap-mode: nowrap;
 
 					padding-block-end: 2px; /* 横スクロールバー上部の空き */
 					overflow-x: auto;
@@ -73,7 +73,7 @@ const { id, full, scroll, font } = Astro.props;
 				background-color: var(--_bg-color);
 				padding: 0.75em min(1dvi, 10px);
 				text-align: var(--_text-align);
-				white-space: var(--_text-wrap);
+				text-wrap-mode: var(--_text-wrap-mode);
 				color: var(--_color);
 				font-size: clamp(calc(var(--_font-size-base) / pow(var(--font-ratio), 1)), 2svi, var(--_font-size-base));
 			}
