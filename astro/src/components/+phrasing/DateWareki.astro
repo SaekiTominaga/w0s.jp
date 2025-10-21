@@ -9,9 +9,9 @@ interface Props {
 
 const { value, class: className } = Astro.props;
 
-let beforeWarekiDisplay: string | undefined = undefined;
-let warekiDisplay: string | undefined = undefined;
-let afterWarekiDisplay: string | undefined = undefined;
+let beforeWarekiDisplay: string | undefined;
+let warekiDisplay: string | undefined;
+let afterWarekiDisplay: string | undefined;
 
 if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/v.test(value)) {
 	beforeWarekiDisplay = value.substring(0, 4);
