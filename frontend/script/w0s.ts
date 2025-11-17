@@ -65,11 +65,11 @@ formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
 
 /* <thead> の sticky スクロール量調整 */
 if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
-	for (const tableElement of document.querySelectorAll<HTMLTableElement>('.p-table')) {
+	document.querySelectorAll<HTMLTableElement>('.p-table').forEach((tableElement) => {
 		if (tableElement.querySelector(':scope > :is(tbody, tfood) [id]') !== null) {
 			new TableTheadStickey(tableElement).init();
 		}
-	}
+	});
 }
 
 /* 日記新着記事 */
@@ -84,7 +84,7 @@ document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
 });
 
 /* 入力値の変換 */
-for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim')) {
+document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim').forEach((formCtrlElement) => {
 	formCtrlElement.addEventListener(
 		'change',
 		() => {
@@ -94,7 +94,7 @@ for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLT
 		},
 		{ passive: true },
 	);
-}
+});
 
 /* 入力バリデーション（エラー時はメッセージを画面表示する） */
 formControlValidation(document.querySelectorAll('.js-validation'));

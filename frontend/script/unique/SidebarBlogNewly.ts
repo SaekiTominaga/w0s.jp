@@ -59,7 +59,7 @@ export default class SidebarBlogNewly {
 	#insert(entries: BlogNewlyJson[]): void {
 		const fragment = document.createDocumentFragment();
 
-		for (const entry of entries) {
+		entries.forEach((entry) => {
 			const templateElementClone = this.#templateElement.content.cloneNode(true) as DocumentFragment;
 
 			const aElement = templateElementClone.querySelector('a');
@@ -69,7 +69,7 @@ export default class SidebarBlogNewly {
 			}
 
 			fragment.appendChild(templateElementClone);
-		}
+		});
 
 		this.#templateElement.parentNode?.appendChild(fragment);
 	}

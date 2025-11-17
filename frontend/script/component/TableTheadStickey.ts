@@ -21,9 +21,9 @@ export default class {
 	init(): void {
 		this.#setScrollSnap();
 
-		for (const pageAnchorElement of document.querySelectorAll('a[href^="#"]')) {
+		document.querySelectorAll('a[href^="#"]').forEach((pageAnchorElement) => {
 			pageAnchorElement.addEventListener('click', this.#pageAnchorClickEventListener, { passive: true });
-		}
+		});
 	}
 
 	/**
