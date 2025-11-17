@@ -185,7 +185,7 @@ const slugger = new GithubSlugger();
 
 			<p><code>w0s.jp</code> で使用している Node.js フレームワークの Express では、<Anchor href="https://expressjs.com/en/5x/api.html#res.redirect"><code>res.redirect()</code></Anchor> メソッドでリダイレクト設定を行うことができるが、この場合レスポンスボディは <code lang="en" is:raw>&lt;p&gt;Moved Permanently. Redirecting to &lt;a href="${path}"&gt;${path}&lt;/a&gt;&lt;/p&gt;</code> のように、DOCTYPE や <code>&lt;title&gt;</code> 要素のない不正な HTML となってしまう。これについては <Anchor href="https://github.com/expressjs/express/issues/5058">Issue を上げており</Anchor>、それに対する <Anchor href="https://github.com/expressjs/express/pull/5167">Pull Request も提出されている</Anchor>が、2025年2月現在マージはされていない。そのためこの機能は使わず、<Anchor href="https://expressjs.com/en/5x/api.html#res.send"><code>res.send()</code></Anchor> メソッドにて独自の HTML を返すようにカスタマイズしている。</p>
 
-			<p>同じ理由で <code>blog.w0s.jp</code> でも Hono の <Anchor href="https://hono.dev/docs/api/context#redirect"><code>c.redirect()</code></Anchor> メソッドは使わず、<Anchor href="https://hono.dev/docs/api/context#html"><code>c.html()</code></Anchor> メソッドの第2～3引数を活用する形で実装している。</p>
+			<p>同じ理由で <code>blog.w0s.jp</code> でも Hono の <Anchor href="https://hono.dev/docs/api/context#redirect"><code>c.redirect()</code></Anchor> メソッドは使わず、<Anchor href="https://hono.dev/docs/api/context#html"><code>c.html()</code></Anchor> メソッドの第2〜3引数を活用する形で実装している。</p>
 		</Section>
 
 		<Section id="html-clienterror" depth={2} headingType="c">
