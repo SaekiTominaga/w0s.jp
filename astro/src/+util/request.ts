@@ -56,7 +56,7 @@ export const number = (request: unknown): number | undefined => (typeof request 
  *
  * @returns Converted
  */
-export const boolean = (request: unknown): boolean => Boolean(request);
+export const boolean = Boolean;
 
 /**
  * Convert to Dayjs type (YYYY-MM)
