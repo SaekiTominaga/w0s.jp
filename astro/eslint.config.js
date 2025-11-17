@@ -68,6 +68,12 @@ export default [
 		},
 	},
 	{
+		files: ['src/+dao/**/*.ts'],
+		rules: {
+			'functional/no-loop-statements': 'off',
+		},
+	},
+	{
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',
