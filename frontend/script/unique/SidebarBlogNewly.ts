@@ -56,7 +56,7 @@ export default class SidebarBlogNewly {
 	 *
 	 * @param entries - 日記エントリーのデータ
 	 */
-	#insert(entries: BlogNewlyJson[]): void {
+	#insert(entries: readonly Readonly<BlogNewlyJson>[]): void {
 		const fragment = document.createDocumentFragment();
 
 		entries.forEach((entry) => {

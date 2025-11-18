@@ -16,7 +16,7 @@ interface Options {
  *
  * @returns 共通で使用されるデータ
  */
-export const init = (Astro: AstroGlobal, options: Options): { logger: Log4js.Logger } => {
+export const init = (Astro: AstroGlobal, options: Readonly<Options>): { logger: Log4js.Logger } => {
 	Astro.response.headers.set('Content-Type', 'text/html;charset=utf-8');
 
 	loadEnvFile(!options.dev ? '../.env.production' : '../.env.development');
