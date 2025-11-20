@@ -35,25 +35,22 @@ if (argsParsedValues.outDir === undefined) {
 if (argsParsedValues.config === undefined) {
 	throw new Error('Argument `config` not specified');
 }
-const filesPath = slash(`${argsParsedValues.inDir}/**/*.svg`);
+const inDirectory = slash(argsParsedValues.inDir);
 const outDirectory = slash(argsParsedValues.outDir);
 const configFilePath = slash(argsParsedValues.config);
 
-const config = await loadConfig(configFilePath);
-
-const files = await Array.fromAsync(fs.promises.glob(filesPath));
+const [targetFiles, svgoConfig] = await Promise.all([Array.fromAsync(fs.promises.glob(`${inDirectory}/**/*.svg`)), loadConfig(configFilePath)]);
 
 await Promise.all(
-	files.map(async (filePath) => {
+	targetFiles.map(slash).map(async (filePath) => {
 		/* ファイル読み込み */
 		const fileData = (await fs.promises.readFile(filePath)).toString();
 
 		/* SVG 最適化 */
-		const optimized = optimize(fileData.replace(/<svg version="([0-9.]+)"/v, '<svg').replace(' id="レイヤー_1"', ''), config);
+		const optimized = optimize(fileData.replace(/<svg version="([0-9.]+)"/v, '<svg').replace(' id="レイヤー_1"', ''), svgoConfig);
 
-		// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-		const outFileParsed = path.parse(filePath.replace(new RegExp(`^${argsParsedValues.inDir}`, 'v'), outDirectory));
-		const outExtension = outFileParsed.dir === outDirectory && outFileParsed.base === 'favicon.svg' ? '.ico' : '.svg'; // favicon.svg のみ favicon.ico にリネームする
+		const outFileParsed = path.parse(filePath.replace(new RegExp(`^${inDirectory}`, 'v'), outDirectory));
+		const outExtension = outFileParsed.dir === outDirectory && outFileParsed.base === 'favicon.svg' ? '.ico' : '.svg'; // `favicon.svg` のみ `favicon.ico` にリネームする
 		const outPath = `${outFileParsed.dir}/${outFileParsed.name}${outExtension}`;
 
 		/* 出力 */
