@@ -3,7 +3,6 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { glob } from 'glob';
 import { JSDOM } from 'jsdom';
 import slash from 'slash';
 
@@ -44,11 +43,11 @@ const ignores = argsParsedValues.ignore;
 const template = slash(argsParsedValues.template);
 const outputPath = slash(argsParsedValues.output ?? 'sitemap.xml');
 
-const filesPath = `${directory}/**/*.html`;
-
-const fileList = await glob(filesPath, {
-	ignore: ignores?.map((filePath) => `${directory}/${filePath}`) ?? [],
-});
+const fileList = await Array.fromAsync(
+	fs.promises.glob(`${directory}/**/*.html`, {
+		exclude: ignores?.map((filePath) => `${directory}/${filePath}`) ?? [],
+	}),
+);
 
 /**
  * 実ファイルパスを元にレスポンス URL のパスを取得する
