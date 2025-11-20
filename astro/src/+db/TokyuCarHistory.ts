@@ -15,17 +15,15 @@ export default class {
 
 	/**
 	 * @param filePath - DB ファイルパス
-	 * @param options - オプション
 	 */
-	constructor(filePath: string, options?: Readonly<Pick<SQLite.Options, 'readonly'>>) {
+	constructor(filePath: string) {
 		this.#logger = Log4js.getLogger('db - tokyu-car-history');
 
 		const sqlite = new SQLite(filePath, {
 			/* https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md#new-databasepath-options */
-			readonly: options?.readonly ?? false,
+			readonly: true,
 			fileMustExist: true,
 		});
-		sqlite.pragma('journal_mode = WAL');
 
 		this.#db = new Kysely<DB>({
 			dialect: new SqliteDialect({
