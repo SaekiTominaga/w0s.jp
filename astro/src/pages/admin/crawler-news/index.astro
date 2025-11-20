@@ -15,7 +15,7 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import configCrawlerNews from '@config/crawler-news.js';
 import configSqlite from '@config/sqlite.js';
-import CrawlerNewsDao from '@dao/CrawlerNewsDao.js';
+import CrawlerNewsDao from '@db/CrawlerNews.js';
 import { response303 } from '@util/httpResponse.js';
 import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
 import { init as ssrInit } from '@util/ssr.js';
@@ -73,14 +73,14 @@ if (requestQuery.actionAdd) {
 	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined) {
 		try {
 			await dao.insert({
-				url: requestQuery.url,
+				url: new URL(requestQuery.url),
 				title: requestQuery.title,
 				category: requestQuery.category,
 				priority: requestQuery.priority,
 				browser: requestQuery.browser,
-				selectorWrap: requestQuery.selectorWrap,
-				selectorDate: requestQuery.selectorDate,
-				selectorContent: requestQuery.selectorContent,
+				selector_wrap: requestQuery.selectorWrap,
+				selector_date: requestQuery.selectorDate,
+				selector_content: requestQuery.selectorContent,
 			});
 			logger.info('データ登録', requestQuery.url);
 
@@ -105,17 +105,19 @@ if (requestQuery.actionAdd) {
 } else if (requestQuery.actionRevise) {
 	/* 修正実行 */
 	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined && requestQuery.baseUrl !== undefined) {
-		await dao.update({
-			url: requestQuery.url,
-			title: requestQuery.title,
-			category: requestQuery.category,
-			priority: requestQuery.priority,
-			browser: requestQuery.browser,
-			selectorWrap: requestQuery.selectorWrap,
-			selectorDate: requestQuery.selectorDate,
-			selectorContent: requestQuery.selectorContent,
-			baseUrl: requestQuery.baseUrl,
-		});
+		await dao.update(
+			{
+				url: new URL(requestQuery.url),
+				title: requestQuery.title,
+				category: requestQuery.category,
+				priority: requestQuery.priority,
+				browser: requestQuery.browser,
+				selector_wrap: requestQuery.selectorWrap,
+				selector_date: requestQuery.selectorDate,
+				selector_content: requestQuery.selectorContent,
+			},
+			requestQuery.baseUrl,
+		);
 		logger.info('データ更新', requestQuery.url);
 
 		return response303(Astro.request);
@@ -137,9 +139,9 @@ if (requestQuery.actionAdd) {
 			requestQuery.category = reviseData.category;
 			requestQuery.priority = reviseData.priority;
 			requestQuery.browser = reviseData.browser;
-			requestQuery.selectorWrap = reviseData.selectorWrap;
-			requestQuery.selectorDate = reviseData.selectorDate;
-			requestQuery.selectorContent = reviseData.selectorVontent;
+			requestQuery.selectorWrap = reviseData.selector_wrap;
+			requestQuery.selectorDate = reviseData.selector_date;
+			requestQuery.selectorContent = reviseData.selector_content;
 		}
 	}
 }
@@ -154,7 +156,7 @@ const [categoryMaster, priorityMaster, newsPageListDto] = await Promise.all([
 const newsPageList: Map<
 	string,
 	{
-		url: string;
+		url: URL;
 		title: string;
 		priority: string;
 		browser: boolean;
@@ -172,9 +174,9 @@ for (const newsPage of newsPageListDto) {
 		title: newsPage.title,
 		priority: newsPage.priority,
 		browser: newsPage.browser,
-		selectorWrap: newsPage.selectorWrap,
-		selectorDate: newsPage.selectorDate,
-		selectorContent: newsPage.selectorContent,
+		selectorWrap: newsPage.selector_wrap,
+		selectorDate: newsPage.selector_date,
+		selectorContent: newsPage.selector_content,
 	});
 
 	newsPageList.set(categoryName, newsPageOfCategoryView);
@@ -335,7 +337,7 @@ for (const newsPage of newsPageListDto) {
 											</SubmitButton>
 										</p>
 										<p>
-											<input type="hidden" name="url" value={newsPage.url} />
+											<input type="hidden" name="url" value={newsPage.url.toString()} />
 										</p>
 									</form>
 								</td>
