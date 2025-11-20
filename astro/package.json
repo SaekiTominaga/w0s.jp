@@ -5,18 +5,13 @@
 	"scripts": {
 		"dev": "astro dev",
 		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"stylelint src/components/**/*.astro\" \"npm run build -w @w0s.jp/frontend\"",
-		"build": "astro build",
-		"postbuild": "conc \"npm run _postbuild-feed\" \"npm run _postbuild-sitemap\" \"npm run _postbuild-format\" && npm run _postbuild-compress",
-		"lint": "eslint src/**/*.{astro,ts}",
-		"test": "node --experimental-test-coverage --test src/**/*.test.ts",
-		"css-lint": "stylelint src/**/*.astro",
-		"node-lint": "eslint build/*.ts",
-		"html-src-lint": "markuplint src/pages/**/*.astro",
-		"html-dist-lint": "markuplint dist/client/**/*.html",
-		"_postbuild-feed": "node --experimental-strip-types build/feed.ts -d dist/client",
-		"_postbuild-sitemap": "node --experimental-strip-types build/sitemap.ts -d dist/client --ignore 4** --ignore 5** --ignore admin -t template/xml/sitemap.ejs",
-		"_postbuild-format": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.html dist/client/assets/astro/*.css",
-		"_postbuild-compress": "brotli-cli compress -g dist/client/**/*.{html,atom} -g dist/client/assets/astro/*.css -m text"
+		"build": "astro build && conc \"npm run build:feed\" \"npm run build:sitemap\"",
+		"build:feed": "node build/feed.ts -d dist/client",
+		"build:sitemap": "node build/sitemap.ts -d dist/client --ignore 4** --ignore 5** --ignore admin -t template/xml/sitemap.ejs",
+		"postbuild": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.html dist/client/assets/astro/*.css && brotli-cli compress -g dist/client/**/*.{html,atom} -g dist/client/assets/astro/*.css -m text",
+		"lint:src": "conc \"eslint build/**/*.ts src/**/*.{astro,ts}\" \"markuplint src/pages/**/*.astro\" \"stylelint src/**/*.astro\"",
+		"lint:dist": "markuplint dist/client/**/*.html",
+		"test": "node --experimental-test-coverage --test src/**/*.test.ts"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.5",
