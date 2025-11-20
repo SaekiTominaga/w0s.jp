@@ -3,15 +3,12 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"predev": "rimraf -g \"../public/assets/{script,style}/*.br\"",
-		"dev": "conc \"postcss style/*.css --base style -d ../public/assets/style -w\" \"rollup -c -w --environment build:development\"",
+		"predev": "rimraf -g \"../public/**/*.svg.br\" \"../public/assets/{script,style}/*.br\"",
+		"dev": "conc \"postcss style/*.css --base style -d ../public/assets/style -w\" \"rollup -c -w --environment build:development\" \"node build/svg.ts -i image -o ../public -c svgo.config.js -w\"",
 		"prebuild": "npm run lint && rimraf -g \"../public/**/*.{svg,svg.br}\" \"../public/favicon.{ico,ico.br}\" \"../public/assets/{script,style}/*\"",
-		"build": "conc \"npm run css\" \"npm run js\" \"npm run svg\"",
+		"build": "conc \"postcss style/*.css --base style -d ../public/assets/style\" \"rollup -c --environment build:production\" \"node build/svg.ts -i image -o ../public -c svgo.config.js\"",
 		"postbuild": "prettier --config ../.prettierrc.mjs -w \"../public/assets/script/*.{js,mjs}\" \"../public/assets/style/*.css\" && brotli-cli compress -g \"../public/assets/script/*.{js,mjs}\" \"../public/assets/style/*.css\" \"../public/**/*.svg\" \"../public/favicon.ico\" -m text",
-		"lint": "conc \"tsc --project script --noEmit\" \"eslint build/**/*.ts script/**/*.ts\" \"stylelint style/**/*.css\"",
-		"css": "postcss style/*.css --base style -d ../public/assets/style",
-		"js": "rollup -c --environment build:production",
-		"svg": "node --experimental-strip-types build/svg.ts -i image -o ../public -c svgo.config.js"
+		"lint": "conc \"tsc --project script --noEmit\" \"eslint build/**/*.ts script/**/*.ts\" \"stylelint style/**/*.css\""
 	},
 	"dependencies": {
 		"@w0s/button-checkboxes": "^3.0.1",
@@ -30,6 +27,7 @@
 		"@w0s/string-convert": "^3.0.2",
 		"@w0s/table-cell-ditto": "^4.1.1",
 		"@w0s/textarea-auto-size": "^4.0.1",
+		"chokidar": "^4.0.3",
 		"slash": "^5.1.0",
 		"svgo": "^4.0.0"
 	},
