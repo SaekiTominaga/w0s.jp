@@ -1,9 +1,12 @@
-name: CSS files
+name: Frontend build target files (CSS, JavaScript, SVG)
 
 on:
   pull_request:
     paths:
+      - 'frontend/build/**/*.ts'
+      - 'frontend/script/**/*.ts'
       - 'frontend/style/**/*.css'
+      - 'frontend/eslint.config.js'
       - 'frontend/package.json'
       - 'frontend/stylelint.config.js'
       - 'package.json'
@@ -27,4 +30,4 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci
-      - run: npm run css-lint -w '@w0s.jp/frontend'
+      - run: npm run lint -w '@w0s.jp/frontend'
