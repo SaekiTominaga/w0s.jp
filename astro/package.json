@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "astro dev",
-		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"stylelint src/components/**/*.astro\" \"npm run css-prod -w @w0s.jp/frontend\" \"npm run js-prod -w @w0s.jp/frontend\" \"npm run svg -w @w0s.jp/frontend\"",
+		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"stylelint src/components/**/*.astro\" \"npm run build -w @w0s.jp/frontend\"",
 		"build": "astro build",
 		"postbuild": "conc \"npm run _postbuild-feed\" \"npm run _postbuild-sitemap\" \"npm run _postbuild-format\" && npm run _postbuild-compress",
 		"lint": "eslint src/**/*.{astro,ts}",
@@ -43,7 +43,7 @@
 		"log4js": "^6.9.1",
 		"md5": "^2.3.0",
 		"nodemailer": "^7.0.10",
-		"prettier": "^3.5.3",
+		"prettier": "^3.6.2",
 		"slash": "^5.1.0"
 	},
 	"devDependencies": {

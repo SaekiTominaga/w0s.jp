@@ -3,22 +3,15 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"precss-dev": "rimraf ../public/assets/style/*.br -g",
-		"css-dev": "postcss style/*.css --base style -d ../public/assets/style -w",
-		"precss-prod": "npm run css-lint && rimraf ../public/assets/style/* -g",
-		"css-prod": "postcss style/*.css --base style -d ../public/assets/style",
-		"postcss-prod": "prettier --config ../.prettierrc.mjs -w ../public/assets/style/*.css && brotli-cli compress -g ../public/assets/style/*.css -m text",
-		"css-lint": "stylelint style/**/*.css",
-		"prejs-dev": "rimraf ../public/assets/script/*.br -g",
-		"js-dev": "rollup -c -w --environment build:development",
-		"prejs-prod": "tsc --project script --noEmit && npm run js-lint && rimraf ../public/assets/script/* -g",
-		"js-prod": "rollup -c --environment build:production",
-		"postjs-prod": "brotli-cli compress -g ../public/assets/script/*.{js,mjs} -m text",
-		"js-lint": "eslint script/**/*.ts",
-		"presvg": "rimraf ../public/**/*.svg ../public/**/*.svg.br ../public/favicon.ico ../public/favicon.ico.br -g",
-		"svg": "node --experimental-strip-types build/svg.ts -i image -o ../public -c svgo.config.js",
-		"postsvg": "brotli-cli compress -g ../public/**/*.svg -g ../public/favicon.ico -m text",
-		"node-lint": "eslint build/*.ts"
+		"predev": "rimraf -g \"../public/assets/{script,style}/*.br\"",
+		"dev": "conc \"postcss style/*.css --base style -d ../public/assets/style -w\" \"rollup -c -w --environment build:development\"",
+		"prebuild": "npm run lint && rimraf -g \"../public/**/*.{svg,svg.br}\" \"../public/favicon.{ico,ico.br}\" \"../public/assets/{script,style}/*\"",
+		"build": "conc \"npm run css\" \"npm run js\" \"npm run svg\"",
+		"postbuild": "prettier --config ../.prettierrc.mjs -w \"../public/assets/script/*.{js,mjs}\" \"../public/assets/style/*.css\" && brotli-cli compress -g \"../public/assets/script/*.{js,mjs}\" \"../public/assets/style/*.css\" \"../public/**/*.svg\" \"../public/favicon.ico\" -m text",
+		"lint": "conc \"tsc --project script --noEmit\" \"eslint build/**/*.ts script/**/*.ts\" \"stylelint style/**/*.css\"",
+		"css": "postcss style/*.css --base style -d ../public/assets/style",
+		"js": "rollup -c --environment build:production",
+		"svg": "node --experimental-strip-types build/svg.ts -i image -o ../public -c svgo.config.js"
 	},
 	"dependencies": {
 		"@w0s/button-checkboxes": "^3.0.1",
@@ -41,17 +34,17 @@
 		"svgo": "^4.0.0"
 	},
 	"devDependencies": {
-		"@rollup/plugin-commonjs": "^28.0.9",
+		"@rollup/plugin-commonjs": "^29.0.0",
 		"@rollup/plugin-node-resolve": "^16.0.3",
 		"@rollup/plugin-typescript": "^12.3.0",
 		"@types/trusted-types": "^2.0.7",
 		"cssnano": "^7.1.2",
-		"cssnano-preset-lite": "^4.0.3",
-		"postcss": "^8.5.1",
-		"postcss-cli": "^11.0.0",
-		"postcss-custom-media": "^11.0.5",
-		"postcss-import": "^16.1.0",
-		"postcss-nesting": "^13.0.1",
-		"rollup": "^4.53.2"
+		"cssnano-preset-lite": "^4.0.4",
+		"postcss": "^8.5.6",
+		"postcss-cli": "^11.0.1",
+		"postcss-custom-media": "^11.0.6",
+		"postcss-import": "^16.1.1",
+		"postcss-nesting": "^13.0.2",
+		"rollup": "^4.53.3"
 	}
 }
