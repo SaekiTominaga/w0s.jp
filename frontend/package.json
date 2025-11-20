@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"predev": "rimraf -g \"../public/assets/{script,style}/*.br\"",
+		"predev": "rimraf -g \"../public/**/*.svg.br\" \"../public/assets/{script,style}/*.br\"",
 		"dev": "conc \"postcss style/*.css --base style -d ../public/assets/style -w\" \"rollup -c -w --environment build:development\" \"node build/svg.ts -i image -o ../public -c svgo.config.js -w\"",
 		"prebuild": "npm run lint && rimraf -g \"../public/**/*.{svg,svg.br}\" \"../public/favicon.{ico,ico.br}\" \"../public/assets/{script,style}/*\"",
 		"build": "conc \"postcss style/*.css --base style -d ../public/assets/style\" \"rollup -c --environment build:production\" \"node build/svg.ts -i image -o ../public -c svgo.config.js\"",
