@@ -1,11 +1,15 @@
-name: Node.js files in the Astro project
+name: Astro project
 
 on:
   pull_request:
     paths:
       - 'astro/build/**/*.ts'
+      - 'astro/src/**/*.astro'
+      - 'astro/src/**/*.ts'
       - 'astro/eslint.config.js'
+      - 'astro/markuplint.config.js'
       - 'astro/package.json'
+      - 'astro/stylelint.config.js'
       - 'package.json'
   workflow_dispatch:
 
@@ -27,4 +31,16 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci
-      - run: npm run node-lint -w '@w0s.jp/astro'
+      - run: npm run lint:src -w '@w0s.jp/astro'
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: npm test -w '@w0s.jp/astro'
