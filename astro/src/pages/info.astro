@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Site.astro';
-import AnchorImageSide from '@components/AnchorImageSide.astro';
+import BookItem from '@components/BookItem.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
@@ -143,47 +143,47 @@ const structuredData: StructuredData = {
 	<Section id="write">
 		<Fragment slot="heading">執筆</Fragment>
 
-		<p>ときどき本や雑誌で記事を書いています。</p>
-
 		<Grid column="wide">
 			<GridItem>
-				<AnchorImageSide href="https://www.amazon.co.jp/dp/4802216769/">
-					<Fragment slot="title">私鉄車両ディテールガイド　東急9000系・1000系・2000系</Fragment>
+				<BookItem title="私鉄車両ディテールガイド　東急9000系・1000系・2000系" summary="イカロス・ムック、2025年11月発売">
 					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/811MJUZeFoL._SL160_.jpg" alt="" width={115} height={160} />
-					<Fragment slot="text">
-						<p><b>イカロス・ムック、2025年11月発売</b></p>
+					<Fragment slot="link">
+						<Anchor href="https://www.amazon.co.jp/dp/4802216769/">Amazon 商品ページ</Anchor>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tamagawa1067">
-					<Fragment slot="title">公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</Fragment>
-					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2024年12月発売</b></p>
+				<BookItem title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両" summary="自費出版、2024年12月発売">
+					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" alt="" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/tamagawa1067">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/7700">
-					<Fragment slot="title">東急7700系形態分類</Fragment>
+				<BookItem title="東急7700系形態分類" summary="自費出版、2019年8月発売">
 					<Image slot="image" path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2019年8月発売</b></p>
-						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しています。</p>
+					<Fragment slot="details">
+						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/7700">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/#tetsupic">
-					<Fragment slot="title">鉄道ピクトリアル</Fragment>
+				<BookItem title="鉄道ピクトリアル各号">
 					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>商業雑誌</b></p>
-						<p>東急電車や譲渡車両に関する記事を書いています。</p>
+					<Fragment slot="details">
+						<p>ときどき東急電車や譲渡車両に関する記事を書いています。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/#tetsupic">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 		</Grid>
 	</Section>

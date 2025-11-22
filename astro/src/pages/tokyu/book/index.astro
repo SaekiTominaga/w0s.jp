@@ -2,9 +2,11 @@
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import AnchorImageSide from '@components/AnchorImageSide.astro';
+import BookItem from '@components/BookItem.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
 import Section from '@components/Section.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import Image from '@components/+phrasing/Image.astro';
 import ImageAmazon from '@components/+phrasing/ImageAmazon.astro';
 import type { StructuredData } from '@type/types.js';
@@ -24,45 +26,45 @@ const structuredData: StructuredData = {
 
 		<Grid column="wide">
 			<GridItem>
-				<AnchorImageSide href="https://www.amazon.co.jp/dp/4802216769/">
-					<Fragment slot="title">私鉄車両ディテールガイド　東急9000系・1000系・2000系</Fragment>
+				<BookItem title="私鉄車両ディテールガイド　東急9000系・1000系・2000系" summary="イカロス・ムック、2025年11月発売">
 					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/811MJUZeFoL._SL160_.jpg" alt="" width={115} height={160} />
-					<Fragment slot="text">
-						<p><b>イカロス・ムック、2025年11月発売</b></p>
+					<Fragment slot="link">
+						<Anchor href="https://www.amazon.co.jp/dp/4802216769/">Amazon 商品ページ</Anchor>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tamagawa1067">
-					<Fragment slot="title">公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</Fragment>
-					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2024年12月発売</b></p>
+				<BookItem title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両" summary="自費出版、2024年12月発売">
+					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" alt="" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/tamagawa1067">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/7700">
-					<Fragment slot="title">東急7700系形態分類</Fragment>
+				<BookItem title="東急7700系形態分類" summary="自費出版、2019年8月発売">
 					<Image slot="image" path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2019年8月発売</b></p>
-
+					<Fragment slot="details">
 						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/7700">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="https://www.amazon.co.jp/dp/480220695X/">
-					<Fragment slot="title">東急電鉄 1989-2019</Fragment>
+				<BookItem title="東急電鉄 1989-2019" summary="イカロス・ムック、2019年8月発売">
 					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" alt="" width={111} height={160} />
-					<Fragment slot="text">
-						<p><b>イカロス・ムック、2019年8月発売</b></p>
-
+					<Fragment slot="details">
 						<p>平成時代の東急電車の動向をまとめた本です。「<cite>現役車両ガイド</cite>」の一部の本文解説を担当しました。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="https://www.amazon.co.jp/dp/480220695X/">Amazon 商品ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 		</Grid>
 	</Section>
@@ -72,44 +74,48 @@ const structuredData: StructuredData = {
 
 		<Grid column="wide">
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic851/tokyu_transfer">
-					<Fragment slot="title">地方私鉄へ譲渡された元東急の車両の近況</Fragment>
+				<BookItem title="地方私鉄へ譲渡された元東急の車両の近況" summary="2011年8月号 【特集】地方私鉄の現状">
 					<Image slot="image" path="tokyu/book/tetsupic851_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2011年8月号 【特集】地方私鉄の現状</b></p>
+					<Fragment slot="details">
 						<p>旧7000系、旧8000系、1000系など譲渡車両の概要を紹介しています。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/tetsupic851/tokyu_transfer">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic789/mizuma1000">
-					<Fragment slot="title">水間鉄道1000形改造車デビュー</Fragment>
+				<BookItem title="水間鉄道1000形改造車デビュー" summary="2007年5月号 【特集】連接車">
 					<Image slot="image" path="tokyu/book/tetsupic789_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2007年5月号 【特集】連接車</b></p>
+					<Fragment slot="details">
 						<p>水間鉄道1000形のデビューにあたり、7000系からの改造箇所を紹介しています。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/tetsupic789/mizuma1000">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic749/mm21">
-					<Fragment slot="title">みなとみらい線　開業前後の動き</Fragment>
+				<BookItem title="みなとみらい線　開業前後の動き" summary="2004年7月臨時増刊号 【特集】東京急行電鉄">
 					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2004年7月臨時増刊号 【特集】東京急行電鉄</b></p>
+					<Fragment slot="details">
 						<p>当時の車両動向を紹介。また桜木町廃止日、MM線開業日の様子を追いました。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/tetsupic749/mm21">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic749/ttm">
-					<Fragment slot="title">リニューアルオープンした電車とバスの博物館</Fragment>
+				<BookItem title="リニューアルオープンした電車とバスの博物館" summary="2004年7月臨時増刊号 【特集】東京急行電鉄">
 					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2004年7月臨時増刊号 【特集】東京急行電鉄</b></p>
+					<Fragment slot="details">
 						<p>展示車両紹介、高津から宮崎台への移動劇のデータなど。</p>
 					</Fragment>
-				</AnchorImageSide>
+					<Fragment slot="link">
+						<Anchor href="/tokyu/book/tetsupic749/ttm">紹介ページ</Anchor>
+					</Fragment>
+				</BookItem>
 			</GridItem>
 		</Grid>
 	</Section>

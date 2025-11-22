@@ -1,0 +1,123 @@
+---
+interface Props {
+	title: string;
+	summary?: string;
+}
+
+const { title, summary } = Astro.props;
+---
+
+<div class="item-container">
+	<div class="item">
+		<dic class="text">
+			<p class="title"><cite>{title}</cite></p>
+			{
+				summary !== undefined && (
+					<p class="summary">
+						<b>{summary}</b>
+					</p>
+				)
+			}
+			{
+				Astro.slots.has('details') && (
+					<div class="details">
+						<slot name="details" />
+					</div>
+				)
+			}
+			<p class="link">
+				<slot name="link" />
+			</p>
+		</dic>
+		<div class="image"><slot name="image" /></div>
+	</div>
+</div>
+
+<style>
+	@layer component {
+		.item-container {
+			--_stack-margin-base: 1rem;
+
+			container: book-item / inline-size;
+			line-height: var(--line-height-narrow);
+		}
+
+		.item {
+			display: block grid;
+			grid-template-areas: 'image text';
+			grid-template-columns: auto 1fr;
+			gap: 15px;
+
+			@container book-item (inline-size <= calc(160px + 1px * 2 + 15px + 10em)) {
+				grid-template-areas:
+					'text'
+					'image';
+			}
+		}
+
+		.text {
+			grid-area: text;
+		}
+
+		.image {
+			grid-area: image;
+
+			& :global(img) {
+				display: block flow;
+				border: 1px solid var(--color-black);
+				block-size: auto;
+				max-inline-size: 100%;
+			}
+		}
+
+		* + .summary {
+			margin-block-start: calc(var(--_stack-margin-base) / 4);
+		}
+
+		* + .details,
+		* + .link {
+			margin-block-start: var(--_stack-margin-base);
+		}
+
+		.details + .link {
+			margin-block-start: calc(var(--_stack-margin-base) / 2);
+		}
+
+		.title {
+			font-size: calc(100% * pow(var(--font-ratio), 1));
+			font-weight: var(--font-weight-bold);
+		}
+
+		.summary {
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+
+			& :global(b) {
+				font-weight: var(--font-weight-normal);
+			}
+		}
+
+		.link {
+			--_bullet-inline-size: 0.45em;
+			--_bullet-block-size: 0.75em;
+			--_bullet-color: var(--link-color-bullet);
+			--_bullet-gap: 0.5em;
+
+			& :global(:any-link) {
+				outline-offset: var(--outline-offset-linkonly);
+			}
+
+			& :global(:any-link:hover) {
+				--_bullet-color: var(--link-color-hover);
+			}
+
+			& :global(:any-link::before) {
+				display: inline flow-root;
+				clip-path: var(--shape-link-triangle);
+				margin-inline-end: var(--_bullet-gap);
+				border-block-start: var(--_bullet-block-size) solid var(--_bullet-color);
+				inline-size: var(--_bullet-inline-size);
+				content: '';
+			}
+		}
+	}
+</style>
