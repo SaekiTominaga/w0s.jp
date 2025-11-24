@@ -11,10 +11,23 @@ interface Entry {
  * 更新情報を取得する
  *
  * @param fileName XML ファイル名
+ * @param filter フィルター情報（条件にマッチしたデータのみを返す）
+ * @param filter.year 何年前までのデータを表示するか
+ * @param filter.month 何か月前までのデータを表示するか
+ * @param filter.day 何日前までのデータを表示するか
+ * @param filter.limit 最大表示件数
  *
  * @returns 更新情報
  */
-export const getEntryData = async (fileName: string): Promise<readonly Readonly<Entry>[]> => {
+export const getEntryData = async (
+	fileName: string,
+	filter?: {
+		year?: number;
+		month?: number;
+		day?: number;
+		limit: number;
+	},
+): Promise<readonly Readonly<Entry>[]> => {
 	const data = (await fs.promises.readFile(`update/${fileName}`)).toString();
 
 	const validated = XMLValidator.validate(data);
@@ -23,11 +36,6 @@ export const getEntryData = async (fileName: string): Promise<readonly Readonly<
 	}
 
 	const parsed = new XMLParser().parse(data) as Readonly<Update>;
-
-	const baseDate = new Date();
-	baseDate.setFullYear(new Date().getFullYear() - 1); // 1年前
-
-	const MAX_ENTRY_COUNT = 5; // 最大表示件数
 
 	const entries = parsed.update.entry
 		/* 日付を Date に変換 */
@@ -39,9 +47,21 @@ export const getEntryData = async (fileName: string): Promise<readonly Readonly<
 				updated: updated,
 				content: entry.content,
 			};
-		})
-		/* 件数と更新日でフィルターする */
-		.filter((entry, index) => entry.updated > baseDate || index < MAX_ENTRY_COUNT);
+		});
 
-	return entries;
+	if (filter === undefined) {
+		return entries;
+	}
+
+	/* 件数と更新日でフィルターする */
+	const compareDate = new Date();
+	if (filter.year !== undefined) {
+		compareDate.setFullYear(new Date().getFullYear() - filter.year);
+	} else if (filter.month !== undefined) {
+		compareDate.setMonth(new Date().getMonth() - filter.month);
+	} else if (filter.day !== undefined) {
+		compareDate.setDate(new Date().getDate() - filter.day);
+	}
+
+	return entries.filter((entry, index) => entry.updated > compareDate || index < filter.limit);
 };
