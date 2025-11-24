@@ -1,4 +1,4 @@
-export interface Entry {
+interface Entry {
 	updated: string;
 	content: string;
 }

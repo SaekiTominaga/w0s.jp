@@ -1,6 +1,11 @@
 import fs from 'node:fs';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
-import type { Entry, Update } from '../../update/update.d.ts';
+import type { Update } from '../../update/update.d.ts';
+
+interface Entry {
+	updated: Date;
+	content: string;
+}
 
 /**
  * 更新情報を取得する
@@ -24,13 +29,19 @@ export const getEntryData = async (fileName: string): Promise<readonly Readonly<
 
 	const MAX_ENTRY_COUNT = 5; // 最大表示件数
 
-	/* 件数と更新日でフィルターする */
-	const entries = parsed.update.entry.filter((entry, index) => {
-		const [year, month, day] = entry.updated.split('-').map(Number);
-		const updated = new Date(year, month - 1, day);
+	const entries = parsed.update.entry
+		/* 日付を Date に変換 */
+		.map((entry): Entry => {
+			const [year, month, day] = entry.updated.split('-').map(Number);
+			const updated = new Date(year, month - 1, day);
 
-		return updated > baseDate || index < MAX_ENTRY_COUNT;
-	});
+			return {
+				updated: updated,
+				content: entry.content,
+			};
+		})
+		/* 件数と更新日でフィルターする */
+		.filter((entry, index) => entry.updated > baseDate || index < MAX_ENTRY_COUNT);
 
 	return entries;
 };

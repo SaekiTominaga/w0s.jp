@@ -9,12 +9,9 @@ import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import TopNavText from '@components/TopNavText.astro';
 import TopUpdate from '@components/TopUpdate.astro';
-import TopUpdateItem from '@components/TopUpdateItem.astro';
-import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import KumetaTopService from '@components/kumeta/TopService.astro';
 import KumetaTopServiceItem from '@components/kumeta/TopServiceItem.astro';
 import type { StructuredData } from '@type/types.js';
-import { getEntryData } from '@util/update.ts';
 
 const structuredData: StructuredData = {
 	type: 'website',
@@ -23,8 +20,6 @@ const structuredData: StructuredData = {
 };
 
 const slugger = new GithubSlugger();
-
-const updateEntries = await getEntryData('kumeta.xml');
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
@@ -118,13 +113,7 @@ const updateEntries = await getEntryData('kumeta.xml');
 		</Fragment>
 
 		<Fragment slot="update">
-			<TopUpdate id="update" heading="更新履歴">
-				<Fragment slot="notice">
-					<AnchorButton href="/kumeta/feed" type="atom" narrow={true}>新着フィード</AnchorButton>
-				</Fragment>
-
-				{updateEntries.map(({ updated, content }) => <TopUpdateItem slot="item" date={updated} set:html={content} />)}
-			</TopUpdate>
+			<TopUpdate id="update" feedHref="/kumeta/feed" updateFile="kumeta.xml" />
 		</Fragment>
 	</LayoutTop>
 </Layout>
