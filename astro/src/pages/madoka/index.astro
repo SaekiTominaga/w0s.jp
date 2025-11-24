@@ -11,6 +11,7 @@ import TopUpdate from '@components/TopUpdate.astro';
 import TopUpdateItem from '@components/TopUpdateItem.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import type { StructuredData } from '@type/types.js';
+import { getEntryData } from '@util/update.ts';
 
 const structuredData: StructuredData = {
 	type: 'website',
@@ -19,6 +20,8 @@ const structuredData: StructuredData = {
 };
 
 const slugger = new GithubSlugger();
+
+const updateEntries = await getEntryData('madoka.xml');
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
@@ -109,21 +112,7 @@ const slugger = new GithubSlugger();
 					<AnchorButton href="/madoka/feed" type="atom" narrow={true}>新着フィード</AnchorButton>
 				</Fragment>
 
-				<TopUpdateItem slot="item" date="2024-04-02">
-					<p><a href="/madoka/library/web">メディア紹介 — Web</a> を新規作成</p>
-				</TopUpdateItem>
-				<TopUpdateItem slot="item" date="2023-06-20">
-					<p><a href="/madoka/library/book">メディア紹介 — 図書</a>に「<cite>日本TVアニメーション大全</cite>」（2014年）を追加</p>
-				</TopUpdateItem>
-				<TopUpdateItem slot="item" date="2021-01-02">
-					<p><a href="/madoka/dojin/zaiko">過去に発行した同人誌</a>の BOOTH 販売を開始</p>
-				</TopUpdateItem>
-				<TopUpdateItem slot="item" date="2020-08-22">
-					<p><a href="/madoka/video/kouhen">『[後編]永遠の物語』上映版とパッケージ版の比較</a>に差分データ1件（14′13″）を追加</p>
-				</TopUpdateItem>
-				<TopUpdateItem slot="item" date="2019-11-25">
-					<p><a href="/madoka/dojin/pictorial7">円環ピクトリアル No.7 【特集】TVシリーズ　放送版とパッケージ版の比較</a>に第12話の追加差分データ6件を追加</p>
-				</TopUpdateItem>
+				{updateEntries.map(({ updated, content }) => <TopUpdateItem slot="item" date={updated} set:html={content} />)}
 			</TopUpdate>
 		</Fragment>
 	</LayoutTop>
