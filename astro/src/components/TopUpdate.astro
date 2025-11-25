@@ -50,7 +50,7 @@ const updateEntries = (
 	{
 		updateHref !== undefined && (
 			<footer>
-				<p class="link">
+				<p class="more-link">
 					<a href={updateHref}>これ以前の更新履歴</a>
 				</p>
 			</footer>
@@ -69,72 +69,73 @@ const updateEntries = (
 			gap: 0.25em 1em;
 			align-items: baseline;
 			justify-content: space-between;
-
-			& .hdg {
-				line-height: var(--line-height-narrow);
-				font-size: calc(100% * pow(var(--font-ratio), 2));
-			}
-
-			& .notice {
-			}
 		}
 
 		.main {
 			margin-block-start: 0.125em;
+		}
 
-			& .list {
-				container-type: inline-size;
-				border: 2px solid var(--color-border-light);
-				border-radius: var(--border-radius-normal);
-				background: var(--color-white);
-				overflow: hidden;
+		footer {
+		}
 
-				& > li {
-					--_padding: 15px;
+		.hdg {
+			line-height: var(--line-height-narrow);
+			font-size: calc(100% * pow(var(--font-ratio), 2));
+		}
 
-					display: block grid;
-					grid-template-areas: 'date info';
-					grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+		.notice {
+		}
 
-					&:not(:first-child) {
-						border-block-start: 1px dotted var(--color-border-light);
-					}
-				}
-			}
+		.list {
+			container-type: inline-size;
+			border: 2px solid var(--color-border-light);
+			border-radius: var(--border-radius-normal);
+			background: var(--color-white);
+			overflow: hidden;
 
-			& .date {
-				grid-column: date;
-				background: var(--color-bg-verylight);
-				padding: var(--_padding);
-			}
+			& > li {
+				--_padding: 15px;
 
-			& .info {
-				grid-column: info;
-				padding: var(--_padding);
-			}
+				display: block grid;
+				grid-template-areas: 'date info';
+				grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
 
-			@container (inline-size <= 40rem) {
-				& .list {
-					& > li {
-						grid-template-areas:
-							'date'
-							'info';
-						grid-template-columns: 1fr;
-					}
-				}
-
-				& .date {
-					padding-block: calc(var(--_padding) / 2);
-					font-weight: var(--font-weight-bold);
+				&:not(:first-child) {
+					border-block-start: 1px dotted var(--color-border-light);
 				}
 			}
 		}
 
-		footer {
-			& .link {
-				margin-inline-start: auto;
-				inline-size: fit-content;
+		.date {
+			grid-column: date;
+			background: var(--color-bg-verylight);
+			padding: var(--_padding);
+		}
+
+		.info {
+			grid-column: info;
+			padding: var(--_padding);
+		}
+
+		@container (inline-size <= 40rem) {
+			.list {
+				& > li {
+					grid-template-areas:
+						'date'
+						'info';
+					grid-template-columns: 1fr;
+				}
 			}
+
+			.date {
+				padding-block: calc(var(--_padding) / 2);
+				font-weight: var(--font-weight-bold);
+			}
+		}
+
+		.more-link {
+			margin-inline-start: auto;
+			inline-size: fit-content;
 		}
 	}
 </style>
