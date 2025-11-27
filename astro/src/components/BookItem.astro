@@ -1,16 +1,51 @@
 ---
 interface Props {
+	sectionDepth: 1 | 2 | 3 | 4 | 5;
 	title: string;
 	summary?: string;
 }
 
-const { title, summary } = Astro.props;
+const { sectionDepth, title, summary } = Astro.props;
 ---
 
 <div class="item-container">
 	<div class="item">
 		<dic class="text">
-			<p class="title"><cite>{title}</cite></p>
+			{
+				sectionDepth === 1 && (
+					<h2 class="title">
+						<cite>{title}</cite>
+					</h2>
+				)
+			}
+			{
+				sectionDepth === 2 && (
+					<h3 class="title">
+						<cite>{title}</cite>
+					</h3>
+				)
+			}
+			{
+				sectionDepth === 3 && (
+					<h4 class="title">
+						<cite>{title}</cite>
+					</h4>
+				)
+			}
+			{
+				sectionDepth === 4 && (
+					<h5 class="title">
+						<cite>{title}</cite>
+					</h5>
+				)
+			}
+			{
+				sectionDepth === 5 && (
+					<h6 class="title">
+						<cite>{title}</cite>
+					</h6>
+				)
+			}
 			{
 				summary !== undefined && (
 					<p class="summary">
