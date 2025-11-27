@@ -1,0 +1,30 @@
+---
+import { getHTMLId } from '@util/crypto';
+
+const headingId = getHTMLId();
+---
+
+<aside class="cm" aria-labelledby={headingId}>
+	<h2 id={headingId}>著書の紹介</h2>
+
+	<slot />
+</aside>
+
+<style>
+	@layer component {
+		.cm {
+			border: 1px solid var(--color-border-dark);
+			border-radius: var(--border-radius-normal);
+			background: var(--color-white);
+			padding: 1em;
+
+			& > :global(* + *) {
+				margin-block-start: var(--stack-margin-base);
+			}
+		}
+
+		h2 {
+			line-height: var(--line-height-narrow);
+		}
+	}
+</style>

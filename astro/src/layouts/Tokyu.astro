@@ -3,6 +3,7 @@ import { JSDOM } from 'jsdom';
 import Head from '@layouts/head/Tokyu.astro';
 import PageHeader from '@layouts/page/HeaderTokyu.astro';
 import PageSidebar from '@layouts/page/Sidebar.astro';
+import PageCM from '@layouts/page/CMTokyu.astro';
 import PageFooter from '@layouts/page/Footer.astro';
 import ContentHeader from '@layouts/content/Header.astro';
 import ContentMain from '@layouts/content/Body.astro';
@@ -66,6 +67,8 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 					</main>
 				)
 			}
+
+			<PageCM />
 
 			<PageFooter pagePath={pagePath} ad={ad} />
 		</div>
