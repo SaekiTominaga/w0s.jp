@@ -1,16 +1,51 @@
 ---
 interface Props {
+	sectionDepth: 1 | 2 | 3 | 4 | 5;
 	title: string;
 	summary?: string;
 }
 
-const { title, summary } = Astro.props;
+const { sectionDepth, title, summary } = Astro.props;
 ---
 
 <div class="item-container">
 	<div class="item">
 		<dic class="text">
-			<p class="title"><cite>{title}</cite></p>
+			{
+				sectionDepth === 1 && (
+					<h2 class="title">
+						<cite>{title}</cite>
+					</h2>
+				)
+			}
+			{
+				sectionDepth === 2 && (
+					<h3 class="title">
+						<cite>{title}</cite>
+					</h3>
+				)
+			}
+			{
+				sectionDepth === 3 && (
+					<h4 class="title">
+						<cite>{title}</cite>
+					</h4>
+				)
+			}
+			{
+				sectionDepth === 4 && (
+					<h5 class="title">
+						<cite>{title}</cite>
+					</h5>
+				)
+			}
+			{
+				sectionDepth === 5 && (
+					<h6 class="title">
+						<cite>{title}</cite>
+					</h6>
+				)
+			}
 			{
 				summary !== undefined && (
 					<p class="summary">
@@ -48,7 +83,7 @@ const { title, summary } = Astro.props;
 			grid-template-columns: auto 1fr;
 			gap: 15px;
 
-			@container book-item (inline-size <= calc(160px + 1px * 2 + 15px + 10em)) {
+			@container book-item (inline-size <= calc(160px + 1px * 2 + 15px + 8em)) {
 				grid-template-areas:
 					'text'
 					'image';
@@ -57,6 +92,19 @@ const { title, summary } = Astro.props;
 
 		.text {
 			grid-area: text;
+
+			& > * + .summary {
+				margin-block-start: calc(var(--_stack-margin-base) / 4);
+			}
+
+			& > * + .details,
+			& > * + .link {
+				margin-block-start: var(--_stack-margin-base);
+			}
+
+			& > .details + .link {
+				margin-block-start: calc(var(--_stack-margin-base) / 2);
+			}
 		}
 
 		.image {
@@ -68,19 +116,6 @@ const { title, summary } = Astro.props;
 				block-size: auto;
 				max-inline-size: 100%;
 			}
-		}
-
-		* + .summary {
-			margin-block-start: calc(var(--_stack-margin-base) / 4);
-		}
-
-		* + .details,
-		* + .link {
-			margin-block-start: var(--_stack-margin-base);
-		}
-
-		.details + .link {
-			margin-block-start: calc(var(--_stack-margin-base) / 2);
 		}
 
 		.title {
@@ -102,7 +137,10 @@ const { title, summary } = Astro.props;
 			--_bullet-color: var(--link-color-bullet);
 			--_bullet-gap: 0.5em;
 
+			margin-inline-start: calc(var(--_bullet-inline-size) + var(--_bullet-gap));
+
 			& :global(:any-link) {
+				margin-inline-start: calc(0px - var(--_bullet-inline-size) - var(--_bullet-gap));
 				outline-offset: var(--outline-offset-linkonly);
 			}
 
