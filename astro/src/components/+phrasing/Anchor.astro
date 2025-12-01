@@ -5,8 +5,10 @@ interface Props {
 	href?: string;
 	hreflang?: string;
 	type?: string;
-	icon?: boolean;
 	lang?: string;
+	id?: string;
+	'aria-labelledby'?: string[];
+	icon?: boolean;
 	bullet?: boolean;
 }
 
@@ -83,7 +85,7 @@ const HOST_ICONS: HostIcon[] = [
 	},
 ];
 
-const { href, hreflang, type, icon = true, lang, bullet } = Astro.props;
+const { href, hreflang, type, lang, id, 'aria-labelledby': ariaLabelledby, icon = true, bullet } = Astro.props;
 
 let url: URL | undefined;
 
@@ -106,7 +108,7 @@ const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url
 	url === undefined && (
 		<>
 			{/* prettier-ignore */}
-			<a href={href} hreflang={hreflang} lang={lang} aria-current={href === undefined ? 'page' : undefined} class:list={[{ '-bullet': bullet }]}><slot /></a>
+			<a href={href} hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-current={href === undefined ? 'page' : undefined} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>
 		</>
 	)
 }
@@ -114,7 +116,7 @@ const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url
 	url !== undefined && (
 		<>
 			{/* prettier-ignore */}
-			<a href={url.toString()} rel="external" hreflang={hreflang} lang={lang} class:list={[{ '-bullet': bullet }]}><slot /></a>
+			<a href={url.toString()} rel="external" hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>
 			{icon && typeIcon !== undefined && (
 				<small class="type">
 					<AnchorIcon fileName={typeIcon.fileName} alt={typeIcon.name} />

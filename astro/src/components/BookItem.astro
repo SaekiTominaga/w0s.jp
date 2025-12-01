@@ -1,11 +1,29 @@
 ---
+import { getHTMLId } from '@util/crypto';
+import Anchor from './+phrasing/Anchor.astro';
+
 interface Props {
 	sectionDepth: 1 | 2 | 3 | 4 | 5;
 	title: string;
 	summary?: string;
+	link: string;
 }
 
-const { sectionDepth, title, summary } = Astro.props;
+const { sectionDepth, title, summary, link: linkHref } = Astro.props;
+
+let linkText: string;
+if (linkHref.startsWith('https://blog.w0s.jp/')) {
+	linkText = '告知記事';
+} else if (linkHref.startsWith('https://www.amazon.co.jp/')) {
+	linkText = 'Amazon 商品ページ';
+} else {
+	linkText = '紹介ページ';
+}
+
+const detailsContent = await Astro.slots.render('details');
+
+const headingId = getHTMLId(`${title}${detailsContent}`);
+const linkId = getHTMLId(`${linkHref}${detailsContent}`);
 ---
 
 <div class="item-container">
@@ -13,35 +31,35 @@ const { sectionDepth, title, summary } = Astro.props;
 		<dic class="text">
 			{
 				sectionDepth === 1 && (
-					<h2 class="title">
+					<h2 class="title" id={headingId}>
 						<cite>{title}</cite>
 					</h2>
 				)
 			}
 			{
 				sectionDepth === 2 && (
-					<h3 class="title">
+					<h3 class="title" id={headingId}>
 						<cite>{title}</cite>
 					</h3>
 				)
 			}
 			{
 				sectionDepth === 3 && (
-					<h4 class="title">
+					<h4 class="title" id={headingId}>
 						<cite>{title}</cite>
 					</h4>
 				)
 			}
 			{
 				sectionDepth === 4 && (
-					<h5 class="title">
+					<h5 class="title" id={headingId}>
 						<cite>{title}</cite>
 					</h5>
 				)
 			}
 			{
 				sectionDepth === 5 && (
-					<h6 class="title">
+					<h6 class="title" id={headingId}>
 						<cite>{title}</cite>
 					</h6>
 				)
@@ -53,15 +71,9 @@ const { sectionDepth, title, summary } = Astro.props;
 					</p>
 				)
 			}
-			{
-				Astro.slots.has('details') && (
-					<div class="details">
-						<slot name="details" />
-					</div>
-				)
-			}
+			{Astro.slots.has('details') && <div class="details" set:html={detailsContent} />}
 			<p class="link">
-				<slot name="link" />
+				<Anchor href={linkHref} id={linkId} aria-labelledby={[linkId, headingId]}>{linkText}</Anchor>
 			</p>
 		</dic>
 		<div class="image"><slot name="image" /></div>
