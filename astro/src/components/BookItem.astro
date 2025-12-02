@@ -73,7 +73,7 @@ const linkId = getHTMLId(`${linkHref}${detailsContent}`);
 			}
 			{Astro.slots.has('details') && <div class="details" set:html={detailsContent} />}
 			<p class="link">
-				<Anchor href={linkHref} id={linkId} aria-labelledby={[linkId, headingId]}>{linkText}</Anchor>
+				<Anchor href={linkHref} id={linkId} aria-labelledby={[linkId, headingId]} bullet={true}>{linkText}</Anchor>
 			</p>
 		</dic>
 		<div class="image"><slot name="image" /></div>
@@ -144,30 +144,6 @@ const linkId = getHTMLId(`${linkHref}${detailsContent}`);
 		}
 
 		.link {
-			--_bullet-inline-size: 0.45em;
-			--_bullet-block-size: 0.75em;
-			--_bullet-color: var(--link-color-bullet);
-			--_bullet-gap: 0.5em;
-
-			margin-inline-start: calc(var(--_bullet-inline-size) + var(--_bullet-gap));
-
-			& :global(:any-link) {
-				margin-inline-start: calc(0px - var(--_bullet-inline-size) - var(--_bullet-gap));
-				outline-offset: var(--outline-offset-linkonly);
-			}
-
-			& :global(:any-link:hover) {
-				--_bullet-color: var(--link-color-hover);
-			}
-
-			& :global(:any-link::before) {
-				display: inline flow-root;
-				clip-path: var(--shape-link-triangle);
-				margin-inline-end: var(--_bullet-gap);
-				border-block-start: var(--_bullet-block-size) solid var(--_bullet-color);
-				inline-size: var(--_bullet-inline-size);
-				content: '';
-			}
 		}
 	}
 </style>

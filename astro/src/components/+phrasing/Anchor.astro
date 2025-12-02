@@ -139,35 +139,36 @@ const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url
 <style>
 	@layer component {
 		a.-bullet {
-			--_icon-clip-path: var(--shape-link-triangle);
-			--_icon-inline-size: 0.45em;
-			--_icon-block-size: 0.75em;
-			--_icon-color: var(--color-gray);
+			--_bullet-clip-path: var(--shape-link-triangle);
+			--_bullet-inline-size: 0.45em;
+			--_bullet-block-size: 0.75em;
+			--_bullet-color: var(--color-gray);
+			--_bullet-gap: 0.5em;
 
 			&:any-link {
-				&::before {
-					display: inline flow-root;
-					clip-path: var(--_icon-clip-path);
-					margin-inline-end: 0.5em;
-					border-block-start: var(--_icon-block-size) solid var(--_icon-color);
-					inline-size: var(--_icon-inline-size);
-					content: '';
-				}
-
 				/* 他ページ */
 				&:not([href^='#']) {
-					--_icon-color: var(--link-color-bullet);
+					--_bullet-color: var(--link-color-bullet);
 				}
 
 				/* 同一ページ */
 				&[href^='#'] {
-					--_icon-clip-path: var(--shape-pagelink-triangle);
-					--_icon-inline-size: 0.75em;
-					--_icon-block-size: 0.5625em;
+					--_bullet-clip-path: var(--shape-pagelink-triangle);
+					--_bullet-inline-size: 0.75em;
+					--_bullet-block-size: 0.5625em;
 				}
 
 				&:hover {
-					--_icon-color: var(--link-color-hover);
+					--_bullet-color: var(--link-color-hover);
+				}
+
+				&::before {
+					display: inline flow-root;
+					clip-path: var(--_bullet-clip-path);
+					margin-inline-end: var(--_bullet-gap);
+					border-block-start: var(--_bullet-block-size) solid var(--_bullet-color);
+					inline-size: var(--_bullet-inline-size);
+					content: '';
 				}
 			}
 		}
