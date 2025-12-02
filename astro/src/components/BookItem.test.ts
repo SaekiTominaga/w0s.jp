@@ -27,10 +27,10 @@ test('base', async () => {
 	const image = root.querySelector('.image');
 
 	expect(title?.tagName).toBe('H2');
-	expect(title?.querySelector('cite')?.textContent).toBe('title');
-	expect(summary?.querySelector('b')?.textContent).toBe('summary');
+	expect(title?.querySelector(':scope > cite')?.textContent).toBe('title');
+	expect(summary?.querySelector(':scope > b')?.textContent).toBe('summary');
 	expect(details?.innerHTML.trim()).toBe('<p>details</p>');
-	expect(link?.querySelector('a')?.textContent).toBe('紹介ページ');
+	expect(link?.querySelector(':scope > a')?.textContent).toBe('紹介ページ');
 	expect(image?.innerHTML.trim()).toBe('<img>');
 });
 
