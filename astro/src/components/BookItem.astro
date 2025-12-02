@@ -20,6 +20,8 @@ if (linkHref.startsWith('https://blog.w0s.jp/entry/')) {
 	linkText = '紹介ページ';
 }
 
+const Heading = `h${sectionDepth + 1}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
 const headingId = getHTMLId();
 const linkId = getHTMLId();
 ---
@@ -27,41 +29,9 @@ const linkId = getHTMLId();
 <section class="item-container">
 	<div class="item">
 		<div class="text">
-			{
-				sectionDepth === 1 && (
-					<h2 class="title" id={headingId}>
-						<cite>{title}</cite>
-					</h2>
-				)
-			}
-			{
-				sectionDepth === 2 && (
-					<h3 class="title" id={headingId}>
-						<cite>{title}</cite>
-					</h3>
-				)
-			}
-			{
-				sectionDepth === 3 && (
-					<h4 class="title" id={headingId}>
-						<cite>{title}</cite>
-					</h4>
-				)
-			}
-			{
-				sectionDepth === 4 && (
-					<h5 class="title" id={headingId}>
-						<cite>{title}</cite>
-					</h5>
-				)
-			}
-			{
-				sectionDepth === 5 && (
-					<h6 class="title" id={headingId}>
-						<cite>{title}</cite>
-					</h6>
-				)
-			}
+			<Heading class="title" id={headingId}>
+				<cite>{title}</cite>
+			</Heading>
 			{
 				summary !== undefined && (
 					<p class="summary">
