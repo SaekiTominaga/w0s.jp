@@ -12,15 +12,13 @@ interface Props {
 const { sectionDepth, title, summary, link: linkHref } = Astro.props;
 
 let linkText: string;
-if (linkHref.startsWith('https://blog.w0s.jp/')) {
+if (linkHref.startsWith('https://blog.w0s.jp/entry/')) {
 	linkText = '告知記事';
-} else if (linkHref.startsWith('https://www.amazon.co.jp/')) {
+} else if (linkHref.startsWith('https://www.amazon.co.jp/dp/')) {
 	linkText = 'Amazon 商品ページ';
 } else {
 	linkText = '紹介ページ';
 }
-
-const detailsContent = await Astro.slots.render('details');
 
 const headingId = getHTMLId();
 const linkId = getHTMLId();
@@ -71,7 +69,13 @@ const linkId = getHTMLId();
 					</p>
 				)
 			}
-			{Astro.slots.has('details') && <div class="details" set:html={detailsContent} />}
+			{
+				Astro.slots.has('details') && (
+					<div class="details">
+						<slot name="details" />
+					</div>
+				)
+			}
 			<p class="link">
 				<Anchor href={linkHref} id={linkId} aria-labelledby={[linkId, headingId]} bullet={true}>{linkText}</Anchor>
 			</p>
