@@ -68,6 +68,12 @@ export default [
 		},
 	},
 	{
+		files: ['src/components/**/*.test.ts'],
+		rules: {
+			'@typescript-eslint/no-unsafe-argument': 'off',
+		},
+	},
+	{
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',
