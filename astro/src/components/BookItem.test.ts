@@ -31,7 +31,7 @@ test('base', async () => {
 	expect(summary?.querySelector('b')?.textContent).toBe('summary');
 	expect(details?.innerHTML.trim()).toBe('<p>details</p>');
 	expect(link?.querySelector('a')?.textContent).toBe('紹介ページ');
-	expect(image?.innerHTML).toBe('<img>');
+	expect(image?.innerHTML.trim()).toBe('<img>');
 });
 
 test('heading - h3', async () => {
