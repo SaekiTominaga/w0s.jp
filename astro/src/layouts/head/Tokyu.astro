@@ -9,6 +9,8 @@ interface Props {
 
 const { pagePath, structuredData } = Astro.props;
 
+const blogNewlyJsonName = 'railway';
+
 const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.SITE });
 ---
 
@@ -23,6 +25,8 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 	<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
 	<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
 
+	<link rel="preload" href=`https://blog.w0s.jp/json/newly_${blogNewlyJsonName}.json` as="fetch" crossorigin="" />
+
 	<link rel="icon" href="/favicon.ico" type="image/svg+xml" sizes="any" />
 	<link rel="alternate icon" href="/favicon.png" type="image/png" sizes="32x32" />
 
@@ -36,7 +40,7 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 
 	<title>{structuredData.title}</title>
 
-	<meta name="w0s:blog:newly" content="railway" />
+	<meta name="w0s:blog:newly" content=`${blogNewlyJsonName}` />
 	{structuredData.description !== undefined && <meta name="description" content={structuredData.description} />}
 	{
 		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && (
