@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "astro dev",
+		"dev": "conc \"astro dev\" \"vitest --coverage --watch\"",
 		"prebuild": "conc \"astro check\" \"tsc --noEmit\" \"stylelint src/components/**/*.astro\" \"npm run build -w @w0s.jp/frontend\"",
 		"build": "astro build && conc \"npm run build:feed\" \"npm run build:sitemap\"",
 		"build:feed": "node build/feed.ts -d dist/client",
