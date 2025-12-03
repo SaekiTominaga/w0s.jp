@@ -12,7 +12,7 @@ import reportJsError from '@w0s/report-js-error';
 import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
 import adsense from './unique/adsense.ts';
-import SidebarBlogNewly from './unique/SidebarBlogNewly.ts';
+import { blogNewly } from './unique/sidebar.ts';
 import TableTheadStickey from './component/TableTheadStickey.ts';
 
 /**
@@ -73,10 +73,7 @@ if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
 }
 
 /* 日記新着記事 */
-const sidebarBlogNewlyTemplateElement = document.getElementById('sidebar-blog-newly-template') as HTMLTemplateElement | null;
-if (sidebarBlogNewlyTemplateElement !== null) {
-	await new SidebarBlogNewly(sidebarBlogNewlyTemplateElement).init();
-}
+await blogNewly(document.getElementById('sidebar-blog-newly-template'));
 
 /* 指定位置スクロール */
 document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
