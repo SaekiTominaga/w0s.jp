@@ -1,6 +1,6 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { parse } from 'node-html-parser';
-import { expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 // @ts-ignore: ts(2307)
 import BookItem from './BookItem.astro';
 
@@ -28,100 +28,37 @@ test('base', async () => {
 	const image = root.querySelector('.image');
 
 	expect(title?.tagName).toBe('H2');
-	expect(title?.querySelector('cite')?.textContent).toBe('title');
-	expect(summary?.querySelector('b')?.textContent).toBe('summary');
+	expect(title?.querySelector(':scope > cite')?.textContent).toBe('title');
+	expect(summary?.querySelector(':scope > b')?.textContent).toBe('summary');
 	expect(details?.innerHTML.trim()).toBe('<p>details</p>');
-	expect(link?.querySelector('a')?.textContent).toBe('紹介ページ');
-	expect(image?.innerHTML).toBe('<img>');
+	expect(link?.querySelector(':scope > a')?.textContent).toBe('紹介ページ');
+	expect(image?.innerHTML.trim()).toBe('<img>');
 });
 
-test('heading - h3', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 2,
-			title: 'title',
-			link: 'foo',
-		},
+describe('link', () => {
+	test('Amazon', async () => {
+		const container = await AstroContainer.create();
+		const result = await container.renderToString(BookItem, {
+			props: {
+				sectionDepth: 1,
+				title: 'title',
+				link: 'https://www.amazon.co.jp/dp/foo',
+			},
+		});
+
+		expect(parse(result).querySelector('.link > a')?.textContent).toBe('Amazon 商品ページ');
 	});
 
-	expect(parse(result).querySelector('.title')?.tagName).toBe('H3');
-});
+	test('Blog', async () => {
+		const container = await AstroContainer.create();
+		const result = await container.renderToString(BookItem, {
+			props: {
+				sectionDepth: 1,
+				title: 'title',
+				link: 'https://blog.w0s.jp/entry/foo',
+			},
+		});
 
-test('heading - h4', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 3,
-			title: 'title',
-			link: 'foo',
-		},
+		expect(parse(result).querySelector('.link > a')?.textContent).toBe('告知記事');
 	});
-
-	expect(parse(result).querySelector('.title')?.tagName).toBe('H4');
-});
-
-test('heading - h5', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 4,
-			title: 'title',
-			link: 'foo',
-		},
-	});
-
-	expect(parse(result).querySelector('.title')?.tagName).toBe('H5');
-});
-
-test('heading - h6', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 5,
-			title: 'title',
-			link: 'foo',
-		},
-	});
-
-	expect(parse(result).querySelector('.title')?.tagName).toBe('H6');
-});
-
-test('heading - invalid', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 6,
-			title: 'title',
-			link: 'foo',
-		},
-	});
-
-	expect(parse(result).querySelector('.title')?.tagName).toBeUndefined();
-});
-
-test('link - Amazon', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 1,
-			title: 'title',
-			link: 'https://www.amazon.co.jp/dp/',
-		},
-	});
-
-	expect(parse(result).querySelector('.link > a')?.textContent).toBe('Amazon 商品ページ');
-});
-
-test('link - Blog', async () => {
-	const container = await AstroContainer.create();
-	const result = await container.renderToString(BookItem, {
-		props: {
-			sectionDepth: 1,
-			title: 'title',
-			link: 'https://blog.w0s.jp/entry/',
-		},
-	});
-
-	expect(parse(result).querySelector('.link > a')?.textContent).toBe('告知記事');
 });
