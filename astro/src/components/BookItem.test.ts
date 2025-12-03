@@ -1,6 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { parse } from 'node-html-parser';
 import { describe, expect, test } from 'vitest';
+// @ts-ignore: ts(2307)
 import BookItem from './BookItem.astro';
 
 test('base', async () => {
