@@ -2,14 +2,19 @@ import path from 'node:path';
 import slash from 'slash';
 
 /**
- * 実ファイルパスを元にレスポンス URL のパスを取得する
+ * 実ファイルパスを元にレスポンス URL を取得する
  *
  * @param filePath - 実ファイルパス
  *
- * @returns  レスポンス URL のパス（ルート相対パス）
+ * @returns レスポンス URL（パス絶対 URL）
  */
 export const getPageUrl = (filePath: string): string => {
-	const parsed = path.parse(slash(filePath));
+	const filePathUnix = slash(filePath);
+	if (!filePathUnix.startsWith('/')) {
+		throw new Error('The file path must begin with a slash.');
+	}
+
+	const parsed = path.parse(slash(filePathUnix));
 	const dir = parsed.dir === '/' ? '' : parsed.dir;
 
 	if (['index.html'].includes(parsed.base)) {

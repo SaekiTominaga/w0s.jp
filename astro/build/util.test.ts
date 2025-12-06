@@ -8,12 +8,21 @@ await test('getPageUrl', async (t) => {
 		assert.equal(getPageUrl('/foo/index.html'), '/foo/');
 	});
 
-	await t.test('Extension', () => {
+	await t.test('extension', () => {
 		assert.equal(getPageUrl('/foo.html'), '/foo');
 		assert.equal(getPageUrl('/foo.xhtml'), '/foo.xhtml');
 	});
 
 	await t.test('Windows path', () => {
 		assert.equal(getPageUrl('\\foo\\bar.html'), '/foo/bar');
+	});
+
+	await t.test('invalid path', () => {
+		assert.throws(
+			() => {
+				getPageUrl('foo');
+			},
+			{ name: 'Error', message: 'The file path must begin with a slash.' },
+		);
 	});
 });
