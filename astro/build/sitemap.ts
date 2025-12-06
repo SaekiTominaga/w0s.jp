@@ -55,21 +55,21 @@ const entries = await Promise.all(
 		const modifiedAt = document.querySelector<HTMLTimeElement>('.l-content__header .updated > time')?.dateTime;
 
 		return {
-			pagePathAbsoluteUrl: getPageUrl(filePath.substring(directory.length)), // U+002F (/) から始まるパス絶対 URL
-			modified_at: modifiedAt !== undefined ? dayjs(modifiedAt) : undefined,
+			pagePath: getPageUrl(filePath.substring(directory.length)), // U+002F (/) から始まるパス絶対 URL
+			modifiedAt: modifiedAt !== undefined ? dayjs(modifiedAt) : undefined,
 		};
 	}),
 );
 
 entries.sort((a, b) => {
-	const aDate = a.modified_at?.unix() ?? 0;
-	const bDate = b.modified_at?.unix() ?? 0;
+	const aDate = a.modifiedAt?.unix() ?? 0;
+	const bDate = b.modifiedAt?.unix() ?? 0;
 	if (aDate !== bDate) {
 		return bDate - aDate;
 	}
 
-	const aPath = a.pagePathAbsoluteUrl;
-	const bPath = b.pagePathAbsoluteUrl;
+	const aPath = a.pagePath;
+	const bPath = b.pagePath;
 	if (aPath < bPath) {
 		return -1;
 	} else if (aPath > bPath) {
