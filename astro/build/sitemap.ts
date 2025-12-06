@@ -1,10 +1,9 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
-import slash from 'slash';
+import { getPageUrl } from './util.ts';
 
 /**
  * サイトマップファイル生成
@@ -38,40 +37,13 @@ if (argsParsedValues.directory === undefined) {
 if (argsParsedValues.template === undefined) {
 	throw new Error('Argument `template` not specified');
 }
-const directory = slash(argsParsedValues.directory);
-const ignores = argsParsedValues.ignore;
-const template = slash(argsParsedValues.template);
-const outputPath = slash(argsParsedValues.output ?? 'sitemap.xml');
+const { directory, ignore: ignores, template, output } = argsParsedValues;
 
 const fileList = await Array.fromAsync(
 	fs.promises.glob(`${directory}/**/*.html`, {
-		exclude: ignores?.map((filePath) => `${directory}/${filePath}`) ?? [],
+		exclude: ignores?.map((filePath) => `${directory}/${filePath}`),
 	}),
 );
-
-/**
- * 実ファイルパスを元にレスポンス URL のパスを取得する
- *
- * @param filePath - 実ファイルパス
- *
- * @returns  レスポンス URL のパス（ルート相対パス）
- */
-const getPageUrl = (filePath: string): string => {
-	const parsed = path.parse(slash(filePath));
-	const dir = parsed.dir === '/' ? '' : parsed.dir;
-
-	if (['index.html'].includes(parsed.base)) {
-		/* インデックスファイルはファイル名を省略する */
-		return `${dir}/`;
-	}
-
-	if (['.html'].includes(parsed.ext)) {
-		/* 指定された拡張子を除去する */
-		return `${dir}/${parsed.name}`;
-	}
-
-	return `${dir}/${parsed.name}${parsed.ext}`;
-};
 
 const entries = await Promise.all(
 	fileList.map(async (filePath) => {
@@ -112,6 +84,6 @@ const sitemap = await ejs.renderFile(template, {
 });
 
 /* 出力 */
-const sitemapPath = `${directory}/${outputPath}`;
+const sitemapPath = `${directory}/${output ?? 'sitemap.xml'}`;
 await fs.promises.writeFile(sitemapPath, sitemap);
 console.info(`Sitemap created: ${sitemapPath}`);
