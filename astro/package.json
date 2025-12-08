@@ -9,7 +9,7 @@
 		"build:feed": "node build/feed.ts -d dist/client",
 		"build:sitemap": "node build/sitemap.ts -d dist/client --ignore 4** --ignore 5** --ignore admin -t template/xml/sitemap.ejs",
 		"postbuild": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.html dist/client/assets/astro/*.css && brotli-cli compress -g dist/client/**/*.{html,atom} -g dist/client/assets/astro/*.css -m text",
-		"lint:src": "conc \"eslint @types/**/*.d.ts build/**/*.ts src/**/*.{astro,ts}\" \"markuplint src/pages/**/*.astro\" \"stylelint src/**/*.astro\"",
+		"lint:src": "conc \"eslint @types/*.d.ts build/**/*.ts src/**/*.{astro,ts}\" \"markuplint src/pages/**/*.astro\" \"stylelint src/**/*.astro\"",
 		"lint:dist": "markuplint dist/client/**/*.html",
 		"test": "conc \"node --experimental-test-coverage --test build/**/*.test.ts src/+util/*.test.ts\" \"vitest run\""
 	},
