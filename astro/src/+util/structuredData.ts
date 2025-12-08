@@ -1,4 +1,4 @@
-import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '@type/types.js';
+import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '@type/util.ts';
 
 interface Options {
 	site: string;

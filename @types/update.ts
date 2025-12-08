@@ -3,8 +3,8 @@ interface Entry {
 	content: string;
 }
 
-export interface Update {
+export type Update = Readonly<{
 	update: Readonly<{
 		entry: readonly Readonly<Entry>[];
 	}>;
-}
+}>;
