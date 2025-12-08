@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { Kysely, sql, SqliteDialect } from 'kysely';
 import Log4js from 'log4js';
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
-import type { DB } from '../../../@types/db_tokyuhistory.ts';
+import type { DB } from '../../../@types/db_tokyuhistory.d.ts';
 
 /**
  * 東急電車資料室・車歴表

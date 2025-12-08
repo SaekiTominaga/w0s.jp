@@ -9,7 +9,7 @@ export default [
 	...w0sConfig,
 	...pluginAstroConfigs.recommended,
 	{
-		ignores: ['dist', 'src/pages/kumeta/manga/subtitle.astro'],
+		ignores: ['@types', 'dist', 'src/pages/kumeta/manga/subtitle.astro'],
 	},
 	{
 		files: ['**/*.ts'],
