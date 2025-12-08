@@ -1,6 +1,6 @@
 import { jsToSQLiteAssignment, jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
 import type { Insertable } from 'kysely';
-import type { DResource } from '../../../@types/db_crawler';
+import type { DResource } from '../../../@types/db_crawler.ts';
 import DatabaseCrawler from './DatabaseCrawler.ts';
 
 /**

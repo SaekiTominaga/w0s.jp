@@ -7,7 +7,7 @@ import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
 import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
-import type { Update } from '../update/update.d.ts';
+import type { Update } from '../../@types/update.ts';
 
 /**
  * フィードファイル生成
@@ -59,7 +59,7 @@ await Promise.all(
 		const data = (await fs.promises.readFile(feedInfo.srcPath)).toString();
 
 		/* DOM 化 */
-		const parsed = new XMLParser().parse(data) as Readonly<Update>;
+		const parsed = new XMLParser().parse(data) as Update;
 
 		/* HTML から必要なデータを取得 */
 		const entries: {

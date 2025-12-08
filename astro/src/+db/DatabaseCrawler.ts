@@ -1,7 +1,7 @@
 import SQLite from 'better-sqlite3';
 import { Kysely, SqliteDialect } from 'kysely';
 import { sqliteToJS } from '@w0s/sqlite-utility';
-import type { DB, MCategory, MPriority } from '../../../@types/db_crawler';
+import type { DB, MCategory, MPriority } from '../../../@types/db_crawler.ts';
 
 /**
  * ウェブ巡回

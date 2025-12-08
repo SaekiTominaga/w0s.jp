@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
-import type { Update } from '../../update/update.d.ts';
+import type { Update } from '../../../@types/update.ts';
 
 interface Entry {
 	updated: Date;
@@ -35,7 +35,7 @@ export const getEntryData = async (
 		throw new Error(validated.err.msg);
 	}
 
-	const parsed = new XMLParser().parse(data) as Readonly<Update>;
+	const parsed = new XMLParser().parse(data) as Update;
 
 	const entries = parsed.update.entry
 		/* 日付を Date に変換 */
