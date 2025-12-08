@@ -1,6 +1,6 @@
 import { jsToSQLiteAssignment, jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
 import type { Insertable } from 'kysely';
-import type { DNews } from '../../../@types/db_crawler.ts';
+import type { DNews } from '../../../@types/db_crawler.d.ts';
 import DatabaseCrawler from './DatabaseCrawler.ts';
 
 /**

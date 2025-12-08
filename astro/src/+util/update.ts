@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
-import type { Update } from '../../../@types/update.ts';
+import type { Update } from '../../../@types/update.d.ts';
 
 interface Entry {
 	updated: Date;

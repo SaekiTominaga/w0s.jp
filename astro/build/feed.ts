@@ -7,7 +7,7 @@ import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
 import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
-import type { Update } from '../../@types/update.ts';
+import type { Update } from '../../@types/update.d.ts';
 
 /**
  * フィードファイル生成
