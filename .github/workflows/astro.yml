@@ -3,9 +3,9 @@ name: Astro project
 on:
   pull_request:
     paths:
-      - 'astro/build/**/*.ts'
-      - 'astro/src/**/*.astro'
-      - 'astro/src/**/*.ts'
+      - 'astro/@types/**'
+      - 'astro/build/**'
+      - 'astro/src/**'
       - 'astro/eslint.config.js'
       - 'astro/markuplint.config.js'
       - 'astro/package.json'
@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci
-      - run: npm run lint:src -w '@w0s.jp/astro'
+      - run: npm run lint -w '@w0s.jp/astro'
   test:
     runs-on: ubuntu-latest
     permissions:
