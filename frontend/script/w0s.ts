@@ -18,17 +18,26 @@ import TableTheadStickey from './component/TableTheadStickey.ts';
 /**
  * w0s.jp（エラーページを除く）
  */
-reportJsError('https://report.w0s.jp/report/js', {
-	fetchParam: {
-		documentURL: 'documentURL',
-		message: 'message',
-		filename: 'jsURL',
-		lineno: 'lineNumber',
-		colno: 'columnNumber',
+reportJsError({
+	fetch: {
+		endpoint: 'https://report.w0s.jp/report/js',
+		param: {
+			documentURL: 'documentURL',
+			message: 'message',
+			filename: 'jsURL',
+			lineno: 'lineNumber',
+			colno: 'columnNumber',
+		},
+		contentType: 'application/json',
 	},
-	fetchContentType: 'application/json',
-	allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
-	denyUAs: [/Googlebot\/2.1;/u],
+	validate: {
+		filename: {
+			allows: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
+		},
+		ua: {
+			denys: [/Googlebot\/2.1;/u],
+		},
+	},
 });
 
 /* <input type="switch"> */
