@@ -16,10 +16,10 @@ import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import HistoryTable from '@components/tokyu/HistoryTable.astro';
-import TokyuCarHistoryDao from '@dao/TokyuCarHistoryDao.js';
-import { getParams as getRequestParams, string as requestString, strings as requestStrings, boolean as requestBoolean } from '@util/request.js';
-import { init as ssrInit } from '@util/ssr.js';
-import type { StructuredData } from '@type/types.js';
+import TokyuCarHistoryDao from '@db/TokyuCarHistory.js';
+import { getParams as getRequestParams, string as requestString, strings as requestStrings, boolean as requestBoolean } from '@util/request.ts';
+import { init as ssrInit } from '@util/ssr.ts';
+import type { StructuredData } from '../../../../../@types/util.d.ts';
 
 interface RequestQuery {
 	number: string | undefined;
@@ -43,7 +43,7 @@ interface ViewCar {
 	sign: string;
 	series: string;
 	type: string;
-	annual: string;
+	annual: string | undefined;
 	register: string;
 	changes: ViewChange[];
 	renewal: string;

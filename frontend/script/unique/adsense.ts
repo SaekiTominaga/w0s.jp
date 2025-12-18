@@ -12,7 +12,7 @@ declare global {
  */
 const adsense = (
 	targetElementOrElements: NodeListOf<Element> | HTMLCollectionOf<Element> | Element | null,
-	intersectionObserverOptions?: IntersectionObserverInit,
+	intersectionObserverOptions?: Readonly<IntersectionObserverInit>,
 ): void => {
 	if (targetElementOrElements === null) {
 		return;
@@ -38,9 +38,9 @@ const adsense = (
 	if (targetElementOrElements instanceof Element) {
 		observer.observe(targetElementOrElements);
 	} else {
-		for (const element of targetElementOrElements) {
+		[...targetElementOrElements].forEach((element) => {
 			observer.observe(element);
-		}
+		});
 	}
 };
 export default adsense;

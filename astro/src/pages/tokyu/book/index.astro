@@ -1,13 +1,13 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import AnchorImageSide from '@components/AnchorImageSide.astro';
+import BookItem from '@components/BookItem.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
 import Section from '@components/Section.astro';
 import Image from '@components/+phrasing/Image.astro';
 import ImageAmazon from '@components/+phrasing/ImageAmazon.astro';
-import type { StructuredData } from '@type/types.js';
+import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	type: 'website',
@@ -24,45 +24,36 @@ const structuredData: StructuredData = {
 
 		<Grid column="wide">
 			<GridItem>
-				<AnchorImageSide href="https://www.amazon.co.jp/dp/4802216769/">
-					<Fragment slot="title">私鉄車両ディテールガイド　東急9000系・1000系・2000系</Fragment>
-					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/811MJUZeFoL._SL160_.jpg" alt="" width={115} height={160} />
-					<Fragment slot="text">
-						<p><b>イカロス・ムック、2025年11月発売</b></p>
+				<BookItem sectionDepth={2} title="私鉄車両ディテールガイド　東急9000系・1000系・2000系" summary="イカロス・ムック、2025年11月発売" link="https://www.amazon.co.jp/dp/4802216769/">
+					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/811MJUZeFoL._SL160_.jpg" alt="表紙: 上部に黒文字で書名、下部に赤帯を巻いた9000系の先頭部写真 " width={115} height={160} />
+					<Fragment slot="details">
+						<p>東急9000系、1000系、2000系のデビュー以来の動向、形態分類、設計者インタビューなどを担当しました。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tamagawa1067">
-					<Fragment slot="title">公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</Fragment>
-					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2024年12月発売</b></p>
+				<BookItem sectionDepth={2} title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両" summary="自費出版、2024年12月発売" link="/tokyu/book/tamagawa1067">
+					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/7700">
-					<Fragment slot="title">東急7700系形態分類</Fragment>
-					<Image slot="image" path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2019年8月発売</b></p>
-
+				<BookItem sectionDepth={2} title="東急7700系形態分類" summary="自費出版、2019年8月発売" link="/tokyu/book/7700">
+					<Image slot="image" path="tokyu/book/7700_cover.jpg" alt="表紙: 上部に赤文字で書名、下部に7700系の正面写真が12枚並んでいる" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="https://www.amazon.co.jp/dp/480220695X/">
-					<Fragment slot="title">東急電鉄 1989-2019</Fragment>
-					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" alt="" width={111} height={160} />
-					<Fragment slot="text">
-						<p><b>イカロス・ムック、2019年8月発売</b></p>
-
+				<BookItem sectionDepth={2} title="東急電鉄 1989–2019" summary="イカロス・ムック、2019年8月発売" link="https://www.amazon.co.jp/dp/480220695X/">
+					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/51uD92OAjNL._SL160_.jpg" alt="上部に赤文字で書名、下部に2020系、8000系、9000系の写真が3枚" width={111} height={160} />
+					<Fragment slot="details">
 						<p>平成時代の東急電車の動向をまとめた本です。「<cite>現役車両ガイド</cite>」の一部の本文解説を担当しました。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 		</Grid>
 	</Section>
@@ -72,44 +63,36 @@ const structuredData: StructuredData = {
 
 		<Grid column="wide">
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic851/tokyu_transfer">
-					<Fragment slot="title">地方私鉄へ譲渡された元東急の車両の近況</Fragment>
-					<Image slot="image" path="tokyu/book/tetsupic851_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2011年8月号 【特集】地方私鉄の現状</b></p>
+				<BookItem sectionDepth={2} title="地方私鉄へ譲渡された元東急の車両の近況" summary="2011年8月号 【特集】地方私鉄の現状" link="/tokyu/book/tetsupic851/tokyu_transfer">
+					<Image slot="image" path="tokyu/book/tetsupic851_cover.jpg" alt="表紙: 上部に誌名と特集名、下部に東急(旧)5000系（東急グリーン塗装）の正面がちの駅停車中写真" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>旧7000系、旧8000系、1000系など譲渡車両の概要を紹介しています。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic789/mizuma1000">
-					<Fragment slot="title">水間鉄道1000形改造車デビュー</Fragment>
-					<Image slot="image" path="tokyu/book/tetsupic789_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2007年5月号 【特集】連接車</b></p>
+				<BookItem sectionDepth={2} title="水間鉄道1000形改造車デビュー" summary="2007年5月号 【特集】連接車" link="/tokyu/book/tetsupic789/mizuma1000">
+					<Image slot="image" path="tokyu/book/tetsupic789_cover.jpg" alt="表紙: 上部に誌名と特集名、下部に新旧の小田急ロマンスカーの写真が3枚、うち1枚は連節部を中心とした側面写真" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>水間鉄道1000形のデビューにあたり、7000系からの改造箇所を紹介しています。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic749/mm21">
-					<Fragment slot="title">みなとみらい線　開業前後の動き</Fragment>
-					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2004年7月臨時増刊号 【特集】東京急行電鉄</b></p>
+				<BookItem sectionDepth={2} title="みなとみらい線　開業前後の動き" summary="2004年7月臨時増刊号 【特集】東京急行電鉄" link="/tokyu/book/tetsupic749/mm21">
+					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" alt="表紙: 上部に誌名と特集名、下部に5050系の正面がちの走行写真" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>当時の車両動向を紹介。また桜木町廃止日、MM線開業日の様子を追いました。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tetsupic749/ttm">
-					<Fragment slot="title">リニューアルオープンした電車とバスの博物館</Fragment>
-					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>2004年7月臨時増刊号 【特集】東京急行電鉄</b></p>
+				<BookItem sectionDepth={2} title="リニューアルオープンした電車とバスの博物館" summary="2004年7月臨時増刊号 【特集】東京急行電鉄" link="/tokyu/book/tetsupic749/ttm">
+					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" alt="表紙: 上部に誌名と特集名、下部に5050系の正面がちの走行写真" width={114} height={160} quality={60} />
+					<Fragment slot="details">
 						<p>展示車両紹介、高津から宮崎台への移動劇のデータなど。</p>
 					</Fragment>
-				</AnchorImageSide>
+				</BookItem>
 			</GridItem>
 		</Grid>
 	</Section>

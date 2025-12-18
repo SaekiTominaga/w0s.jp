@@ -1,4 +1,4 @@
-import ClosestHTMLPage from '@w0s/closest-html-page';
+import closestHTMLPage from '@w0s/closest-html-page';
 import reportJsError from '@w0s/report-js-error';
 import reportSameReferrer from '@w0s/report-same-referrer';
 
@@ -7,40 +7,55 @@ import reportSameReferrer from '@w0s/report-same-referrer';
  */
 
 /* JS エラーレポート */
-reportJsError('https://report.w0s.jp/report/report/js', {
-	fetchParam: {
-		documentURL: 'documentURL',
-		message: 'message',
-		filename: 'jsURL',
-		lineno: 'lineNumber',
-		colno: 'columnNumber',
+reportJsError({
+	fetch: {
+		endpoint: 'https://report.w0s.jp/report/js',
+		param: {
+			documentURL: 'documentURL',
+			message: 'message',
+			filename: 'jsURL',
+			lineno: 'lineNumber',
+			colno: 'columnNumber',
+		},
+		contentType: 'application/json',
 	},
-	fetchContentType: 'application/json',
-	allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
-	denyUAs: [/Googlebot\/2.1;/u],
+	validate: {
+		filename: {
+			allows: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
+		},
+		ua: {
+			denys: [/Googlebot\/2.1;/u],
+		},
+	},
 });
 
 /* リファラーレポート */
-await reportSameReferrer('https://report.w0s.jp/report/referrer', {
-	fetchParam: {
-		documentURL: 'documentURL',
-		referrer: 'referrer',
+await reportSameReferrer({
+	fetch: {
+		endpoint: 'https://report.w0s.jp/report/referrer',
+		param: {
+			documentURL: 'documentURL',
+			referrer: 'referrer',
+		},
+		contentType: 'application/json',
 	},
-	fetchContentType: 'application/json',
-	same: ['https://blog.w0s.jp'],
+	validate: {
+		referrer: {
+			sames: ['https://blog.w0s.jp'],
+		},
+	},
 });
 
 /* 祖先ページの埋め込み */
-const closestHTMLPage = new ClosestHTMLPage({
+const { closestHTMLPageData } = await closestHTMLPage(undefined, {
 	maxFetchCount: 6,
 	fetchOptions: { redirect: 'manual' },
 	mimeTypes: ['text/html', 'application/xhtml+xml'],
 });
 
-await closestHTMLPage.fetch();
-const { url, title } = closestHTMLPage;
+if (closestHTMLPageData !== undefined) {
+	const { url, title } = closestHTMLPageData;
 
-if (url !== null && title !== null) {
 	const messageElement = document.getElementById('parentpage-msg');
 	const anchorElement = document.getElementById('parentpage-anchor') as HTMLAnchorElement | null;
 
@@ -48,6 +63,6 @@ if (url !== null && title !== null) {
 		messageElement.hidden = false;
 
 		anchorElement.href = url;
-		anchorElement.textContent = title;
+		anchorElement.textContent = title ?? url;
 	}
 }

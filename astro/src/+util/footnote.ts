@@ -2,11 +2,11 @@ type Data = Map<number, string | undefined>;
 
 const getData = (
 	document: Document,
-	options: {
+	options: Readonly<{
 		selector: string;
 		noteRefIdPrefix: string;
 		footnoteIdPrefix: string;
-	},
+	}>,
 ): Data => {
 	const data: Data = new Map();
 

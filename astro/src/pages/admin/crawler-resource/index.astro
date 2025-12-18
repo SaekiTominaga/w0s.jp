@@ -16,11 +16,11 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import configCrawlerResource from '@config/crawler-resource.js';
 import configSqlite from '@config/sqlite.js';
-import CrawlerResourceDao from '@dao/CrawlerResourceDao.js';
-import { response303 } from '@util/httpResponse.js';
-import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.js';
-import { init as ssrInit } from '@util/ssr.js';
-import type { StructuredData } from '@type/types.js';
+import CrawlerResourceDao from '@db/CrawlerResource.js';
+import { response303 } from '@util/httpResponse.ts';
+import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.ts';
+import { init as ssrInit } from '@util/ssr.ts';
+import type { StructuredData } from '../../../../@types/util.d.ts';
 
 interface RequestQuery {
 	url: string | undefined;
@@ -70,7 +70,7 @@ if (requestQuery.actionAdd) {
 	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined) {
 		try {
 			await dao.insert({
-				url: requestQuery.url,
+				url: new URL(requestQuery.url),
 				title: requestQuery.title,
 				category: requestQuery.category,
 				priority: requestQuery.priority,
@@ -101,15 +101,17 @@ if (requestQuery.actionAdd) {
 	/* 修正実行 */
 	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.baseUrl !== undefined) {
 		logger.debug(requestQuery);
-		await dao.update({
-			url: requestQuery.url,
-			title: requestQuery.title,
-			category: requestQuery.category,
-			priority: requestQuery.priority,
-			browser: requestQuery.browser,
-			selector: requestQuery.selector,
-			baseUrl: requestQuery.baseUrl,
-		});
+		await dao.update(
+			{
+				url: new URL(requestQuery.url),
+				title: requestQuery.title,
+				category: requestQuery.category,
+				priority: requestQuery.priority,
+				browser: requestQuery.browser,
+				selector: requestQuery.selector,
+			},
+			requestQuery.baseUrl,
+		);
 		logger.info('データ更新', requestQuery.url);
 
 		return response303(Astro.request);
@@ -149,8 +151,8 @@ const resourcePageList = new Map<
 		priority: string;
 		browser: boolean;
 		selector: string | undefined;
-		content_hash: string;
-		error: boolean;
+		content_hash: string | undefined;
+		error: number;
 	}[]
 >();
 for (const resoursePage of resourcePageListDto) {
@@ -158,12 +160,12 @@ for (const resoursePage of resourcePageListDto) {
 
 	const resourcePageOfCategoryView = resourcePageList.get(categoryName) ?? [];
 	resourcePageOfCategoryView.push({
-		url: new URL(resoursePage.url),
+		url: resoursePage.url,
 		title: resoursePage.title,
 		priority: resoursePage.priority,
 		browser: resoursePage.browser,
 		selector: resoursePage.selector,
-		content_hash: resoursePage.contentHash,
+		content_hash: resoursePage.content_hash,
 		error: resoursePage.error,
 	});
 
@@ -328,7 +330,7 @@ for (const resoursePage of resourcePageListDto) {
 								<td class="u-cell -center">{resourcePage.browser && <>✔</>}</td>
 								<td>{resourcePage.selector}</td>
 								<td>{resourcePage.content_hash}</td>
-								<td class="u-cell -center">{resourcePage.error && <strong style="color: var(--color-red)">✗</strong>}</td>
+								<td class="u-cell -center">{resourcePage.error > 0 && <strong style="color: var(--color-red)">✗</strong>}</td>
 							</tr>
 						))}
 					</tbody>

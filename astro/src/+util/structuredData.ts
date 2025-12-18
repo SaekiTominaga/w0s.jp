@@ -1,4 +1,4 @@
-import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '@type/types.js';
+import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '../../@types/util.d.ts';
 
 interface Options {
 	site: string;
@@ -24,7 +24,7 @@ interface JsonLd {
  *
  * @returns JSON-LD データ
  */
-export const getJsonLd = (structuredData: StructuredData, options: Options): JsonLd | undefined => {
+export const getJsonLd = (structuredData: Readonly<StructuredData>, options: Readonly<Options>): JsonLd | undefined => {
 	if (structuredData.breadcrumb === undefined && structuredData.description === undefined) {
 		/* パンくずも Description もないページは JSON-LD を出力する意味合いが薄い */
 		return undefined;

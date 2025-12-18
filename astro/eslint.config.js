@@ -68,6 +68,13 @@ export default [
 		},
 	},
 	{
+		files: ['src/components/**/*.test.ts'],
+		rules: {
+			'@typescript-eslint/ban-ts-comment': 'off',
+			'@typescript-eslint/no-unsafe-argument': 'off',
+		},
+	},
+	{
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',

@@ -1,0 +1,125 @@
+---
+import { getHTMLId } from '@util/crypto.ts';
+import Anchor from './+phrasing/Anchor.astro';
+
+interface Props {
+	sectionDepth: 1 | 2 | 3 | 4 | 5;
+	title: string;
+	summary?: string;
+	link: string;
+}
+
+const { sectionDepth, title, summary, link: linkHref } = Astro.props;
+
+let linkText: string;
+if (linkHref.startsWith('https://blog.w0s.jp/entry/')) {
+	linkText = '告知記事';
+} else if (linkHref.startsWith('https://www.amazon.co.jp/dp/')) {
+	linkText = 'Amazon 商品ページ';
+} else {
+	linkText = '紹介ページ';
+}
+
+const Heading = `h${sectionDepth + 1}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+const headingId = getHTMLId();
+const linkId = getHTMLId();
+---
+
+<section class="item-container">
+	<div class="item">
+		<div class="text">
+			<Heading class="title" id={headingId}>
+				<cite>{title}</cite>
+			</Heading>
+			{
+				summary !== undefined && (
+					<p class="summary">
+						<b>{summary}</b>
+					</p>
+				)
+			}
+			{
+				Astro.slots.has('details') && (
+					<div class="details">
+						<slot name="details" />
+					</div>
+				)
+			}
+			<p class="link">
+				<Anchor href={linkHref} id={linkId} aria-labelledby={[linkId, headingId]} icon={false} bullet={true}>{linkText}</Anchor>
+			</p>
+		</div>
+		<figure class="image">
+			<slot name="image" />
+		</figure>
+	</div>
+</section>
+
+<style>
+	@layer component {
+		.item-container {
+			--_stack-margin-base: 1rem;
+
+			container: book-item / inline-size;
+			line-height: var(--line-height-narrow);
+		}
+
+		.item {
+			display: block grid;
+			grid-template-areas: 'image text';
+			grid-template-columns: auto 1fr;
+			gap: 15px;
+
+			@container book-item (inline-size <= calc(160px + 1px * 2 + 15px + 8em)) {
+				grid-template-areas:
+					'text'
+					'image';
+			}
+		}
+
+		.text {
+			grid-area: text;
+
+			& > * + .summary {
+				margin-block-start: calc(var(--_stack-margin-base) / 4);
+			}
+
+			& > * + .details,
+			& > * + .link {
+				margin-block-start: var(--_stack-margin-base);
+			}
+
+			& > .details + .link {
+				margin-block-start: calc(var(--_stack-margin-base) / 2);
+			}
+		}
+
+		.image {
+			grid-area: image;
+
+			& :global(img) {
+				display: block flow;
+				border: 1px solid var(--color-black);
+				block-size: auto;
+				max-inline-size: 100%;
+			}
+		}
+
+		.title {
+			font-size: calc(100% * pow(var(--font-ratio), 1));
+			font-weight: var(--font-weight-bold);
+		}
+
+		.summary {
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+
+			& :global(b) {
+				font-weight: var(--font-weight-normal);
+			}
+		}
+
+		.link {
+		}
+	}
+</style>

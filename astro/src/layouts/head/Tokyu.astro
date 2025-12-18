@@ -1,6 +1,6 @@
 ---
-import type { StructuredData } from '@type/types.js';
-import { getJsonLd as getStructuredDataJsonLd } from '@util/structuredData.js';
+import { getJsonLd as getStructuredDataJsonLd } from '@util/structuredData.ts';
+import type { StructuredData } from '../../../@types/util.d.ts';
 
 interface Props {
 	pagePath: string;
@@ -23,8 +23,10 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 	<link rel="alternate stylesheet" href="/assets/style/layout_reader.css" title="リーダー表示" />
 	<link rel="stylesheet" href="/assets/style/layout_reader.css" media="print" />
 
+	<link rel="preload" href="https://blog.w0s.jp/json/newly_railway.json" as="fetch" crossorigin="" id="blog-newly-json" />
+
 	<link rel="icon" href="/favicon.ico" type="image/svg+xml" sizes="any" />
-	<link rel="alternate icon" href="/favicon.png" type="image/png" sizes="32x32" />
+	<link rel="alternate icon" href="/favicon.png" type="image/png" sizes="48x48" />
 
 	{structuredData.opensearch !== undefined && <link rel="search" href={structuredData.opensearch.path} type="application/opensearchdescription+xml" title={structuredData.opensearch.name} />}
 
@@ -36,7 +38,6 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 
 	<title>{structuredData.title}</title>
 
-	<meta name="w0s:blog:newly" content="railway" />
 	{structuredData.description !== undefined && <meta name="description" content={structuredData.description} />}
 	{
 		(structuredData.type === undefined || structuredData.type !== 'website') && structuredData.image !== undefined && (

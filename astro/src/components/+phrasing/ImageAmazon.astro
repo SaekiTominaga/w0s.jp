@@ -6,10 +6,11 @@ interface Props {
 	alt?: string;
 	width?: number;
 	height?: number;
+	fetchPriority?: 'high' | 'low' | 'auto';
 	class?: string;
 }
 
-const { src, alt = '', width, height, class: className } = Astro.props;
+const { src, alt = '', width, height, fetchPriority, class: className } = Astro.props;
 
 let imageUrl: URL;
 try {
@@ -34,4 +35,4 @@ try {
 }
 ---
 
-<img src={src} srcset={`${imageUrl2x} 2x`} alt={alt} width={width} height={height} class:list={className} />
+<img src={src} srcset={`${imageUrl2x} 2x`} alt={alt} width={width} height={height} fetchpriority={fetchPriority} class:list={className} />

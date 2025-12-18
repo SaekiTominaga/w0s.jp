@@ -12,23 +12,32 @@ import reportJsError from '@w0s/report-js-error';
 import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
 import adsense from './unique/adsense.ts';
-import SidebarBlogNewly from './unique/SidebarBlogNewly.ts';
+import { blogNewly } from './unique/sidebar.ts';
 import TableTheadStickey from './component/TableTheadStickey.ts';
 
 /**
  * w0s.jp（エラーページを除く）
  */
-reportJsError('https://report.w0s.jp/report/js', {
-	fetchParam: {
-		documentURL: 'documentURL',
-		message: 'message',
-		filename: 'jsURL',
-		lineno: 'lineNumber',
-		colno: 'columnNumber',
+reportJsError({
+	fetch: {
+		endpoint: 'https://report.w0s.jp/report/js',
+		param: {
+			documentURL: 'documentURL',
+			message: 'message',
+			filename: 'jsURL',
+			lineno: 'lineNumber',
+			colno: 'columnNumber',
+		},
+		contentType: 'application/json',
 	},
-	fetchContentType: 'application/json',
-	allowFilenames: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
-	denyUAs: [/Googlebot\/2.1;/u],
+	validate: {
+		filename: {
+			allows: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
+		},
+		ua: {
+			denys: [/Googlebot\/2.1;/u],
+		},
+	},
 });
 
 /* <input type="switch"> */
@@ -65,18 +74,15 @@ formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
 
 /* <thead> の sticky スクロール量調整 */
 if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
-	for (const tableElement of document.querySelectorAll<HTMLTableElement>('.p-table')) {
+	document.querySelectorAll<HTMLTableElement>('.p-table').forEach((tableElement) => {
 		if (tableElement.querySelector(':scope > :is(tbody, tfood) [id]') !== null) {
 			new TableTheadStickey(tableElement).init();
 		}
-	}
+	});
 }
 
 /* 日記新着記事 */
-const sidebarBlogNewlyTemplateElement = document.getElementById('sidebar-blog-newly-template') as HTMLTemplateElement | null;
-if (sidebarBlogNewlyTemplateElement !== null) {
-	await new SidebarBlogNewly(sidebarBlogNewlyTemplateElement).init();
-}
+await blogNewly(document.getElementById('sidebar-blog-newly-template'));
 
 /* 指定位置スクロール */
 document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
@@ -84,7 +90,7 @@ document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
 });
 
 /* 入力値の変換 */
-for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim')) {
+document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim').forEach((formCtrlElement) => {
 	formCtrlElement.addEventListener(
 		'change',
 		() => {
@@ -94,7 +100,7 @@ for (const formCtrlElement of document.querySelectorAll<HTMLInputElement | HTMLT
 		},
 		{ passive: true },
 	);
-}
+});
 
 /* 入力バリデーション（エラー時はメッセージを画面表示する） */
 formControlValidation(document.querySelectorAll('.js-validation'));

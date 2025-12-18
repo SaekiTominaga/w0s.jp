@@ -2,10 +2,12 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
+import { XMLParser } from 'fast-xml-parser';
 import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
 import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
+import type { Update } from '../../@types/update.d.ts';
 
 /**
  * フィードファイル生成
@@ -13,32 +15,17 @@ import slash from 'slash';
 
 const INFO = [
 	{
-		htmlPath: 'tokyu/index.html',
-		selector: {
-			wrap: '#update .list > li',
-			date: '.date > time',
-			content: '.info',
-		},
+		srcPath: 'update/tokyu.xml',
 		feedTemplate: 'template/xml/feed_tokyu.ejs',
 		feedPath: 'tokyu/feed.atom',
 	},
 	{
-		htmlPath: 'kumeta/index.html',
-		selector: {
-			wrap: '#update .list > li',
-			date: '.date > time',
-			content: '.info',
-		},
+		srcPath: 'update/kumeta.xml',
 		feedTemplate: 'template/xml/feed_kumeta.ejs',
 		feedPath: 'kumeta/feed.atom',
 	},
 	{
-		htmlPath: 'madoka/index.html',
-		selector: {
-			wrap: '#update .list > li',
-			date: '.date > time',
-			content: '.info',
-		},
+		srcPath: 'update/madoka.xml',
 		feedTemplate: 'template/xml/feed_madoka.ejs',
 		feedPath: 'madoka/feed.atom',
 	},
@@ -69,10 +56,10 @@ const directory = slash(argsParsedValues.directory);
 
 await Promise.all(
 	INFO.map(async (feedInfo) => {
-		const html = (await fs.promises.readFile(`${directory}/${feedInfo.htmlPath}`)).toString();
+		const data = (await fs.promises.readFile(feedInfo.srcPath)).toString();
 
 		/* DOM 化 */
-		const { document } = new JSDOM(html).window;
+		const parsed = new XMLParser().parse(data) as Update;
 
 		/* HTML から必要なデータを取得 */
 		const entries: {
@@ -84,34 +71,34 @@ await Promise.all(
 		}[] = [];
 
 		await Promise.all(
-			[...document.querySelectorAll(feedInfo.selector.wrap)].map(async (wrapElement) => {
-				const dateElement = wrapElement.querySelector<HTMLTimeElement>(feedInfo.selector.date);
-				if (dateElement === null) {
-					console.warn('Date element does not exist');
+			parsed.update.entry.map(async (entry) => {
+				const [year, month, day] = entry.updated.split('-').map(Number);
+				if (year === undefined || month === undefined || day === undefined) {
+					console.warn(`<updated> element content is invalid: ${entry.updated}`);
 					return;
 				}
 
-				const contentElement = wrapElement.querySelector(feedInfo.selector.content);
-				if (contentElement === null) {
-					console.warn('Content element does not exist');
-					return;
-				}
+				const updated = new Date(year, month - 1, day);
+				const { content } = entry;
 
-				const title = contentElement.textContent
-					?.split('\n')
+				const { document } = new JSDOM(content).window;
+
+				const title = document.body.textContent
+					?.trim()
+					.replaceAll(/\n+/gv, '\n')
+					.split('\n')
 					.map((line) => line.trim())
-					.join('');
+					.join(' / ');
 				if (title === undefined || title === '') {
 					console.warn('Content element is empty');
 					return;
 				}
 
-				const updated = new Date(`${dateElement.dateTime}T00:00`);
-				const content = contentElement.innerHTML;
-
 				const contentFormatted = (await format(content, PRETTIER_OPTIONS_HTML)).trim();
 
-				const internalLinkURLs = [...contentElement.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')].map((anchorElement) => anchorElement.href);
+				const internalLinkURLs = [...document.body.querySelectorAll('a[href^="/"]')].map(
+					(anchorElement) => (anchorElement as unknown as HTMLAnchorElement).href,
+				);
 
 				const md5 = crypto.createHash('md5');
 				md5.update(`${String(updated.getTime() / 1000)}${internalLinkURLs.join('')}`);

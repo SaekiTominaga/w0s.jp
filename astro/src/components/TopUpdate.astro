@@ -1,27 +1,61 @@
 ---
+import dayjs from 'dayjs';
+import AnchorButton from '@components/+phrasing/AnchorButton.astro';
+import { getEntryData } from '@util/update.ts';
+
 interface Props {
 	id: string;
-	heading: string;
+	updateFile: string;
+	feedHref: string;
+	updateHref?: string;
 }
 
-const { id, heading } = Astro.props;
+const { id, updateFile, feedHref, updateHref } = Astro.props;
+
+const updateEntries = (
+	await getEntryData(updateFile, {
+		year: 1,
+		limit: 5,
+	})
+).map((entry) => ({
+	updated: dayjs(entry.updated),
+	content: entry.content,
+}));
 ---
 
 <section class="top-update" id={id}>
-	<header class="header">
+	<header>
 		<div class="hdg">
-			<h2>{heading}</h2>
+			<h2>更新履歴</h2>
 		</div>
 
 		<div class="notice">
-			<slot name="notice" />
+			<AnchorButton href={feedHref} type="atom" narrow={true}>新着フィード</AnchorButton>
 		</div>
 	</header>
 	<div class="main">
 		<ul class="list">
-			<slot name="item" />
+			{
+				updateEntries.map(({ updated, content }) => (
+					<li>
+						<div class="date">
+							<time datetime={updated.format('YYYY-MM-DD')}>{updated.format('YYYY年M月D日')}</time>
+						</div>
+						<div class="info" set:html={content} />
+					</li>
+				))
+			}
 		</ul>
 	</div>
+	{
+		updateHref !== undefined && (
+			<footer>
+				<p class="more-link">
+					<a href={updateHref}>これ以前の更新履歴</a>
+				</p>
+			</footer>
+		)
+	}
 </section>
 
 <style>
@@ -29,12 +63,19 @@ const { id, heading } = Astro.props;
 		.top-update {
 		}
 
-		.header {
+		header {
 			display: block flex;
 			flex-flow: wrap;
 			gap: 0.25em 1em;
 			align-items: baseline;
 			justify-content: space-between;
+		}
+
+		.main {
+			margin-block-start: 0.125em;
+		}
+
+		footer {
 		}
 
 		.hdg {
@@ -45,16 +86,56 @@ const { id, heading } = Astro.props;
 		.notice {
 		}
 
-		.main {
-			margin-block-start: 0.125em;
-		}
-
 		.list {
 			container-type: inline-size;
 			border: 2px solid var(--color-border-light);
 			border-radius: var(--border-radius-normal);
 			background: var(--color-white);
 			overflow: hidden;
+
+			& > li {
+				--_padding: 15px;
+
+				display: block grid;
+				grid-template-areas: 'date info';
+				grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+
+				&:not(:first-child) {
+					border-block-start: 1px dotted var(--color-border-light);
+				}
+			}
+		}
+
+		.date {
+			grid-column: date;
+			background: var(--color-bg-verylight);
+			padding: var(--_padding);
+		}
+
+		.info {
+			grid-column: info;
+			padding: var(--_padding);
+		}
+
+		@container (inline-size <= 40rem) {
+			.list {
+				& > li {
+					grid-template-areas:
+						'date'
+						'info';
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.date {
+				padding-block: calc(var(--_padding) / 2);
+				font-weight: var(--font-weight-bold);
+			}
+		}
+
+		.more-link {
+			margin-inline-start: auto;
+			inline-size: fit-content;
 		}
 	}
 </style>

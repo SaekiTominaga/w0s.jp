@@ -7,10 +7,10 @@ import PageFooter from '@layouts/page/Footer.astro';
 import ContentHeader from '@layouts/content/Header.astro';
 import ContentMain from '@layouts/content/Body.astro';
 import ContentFooter from '@layouts/content/Footer.astro';
-import type { StructuredData } from '@type/types.js';
-import { getNoteData, getReferenceData } from '@util/footnote.js';
-import { getPageUrl } from '@util/ssr.js';
-import { getData as getTocData } from '@util/toc.js';
+import { getNoteData, getReferenceData } from '@util/footnote.ts';
+import { getPageUrl } from '@util/ssr.ts';
+import { getData as getTocData } from '@util/toc.ts';
+import type { StructuredData } from '../../@types/util.d.ts';
 
 interface Props {
 	astroFilePath: string | undefined;
@@ -18,11 +18,10 @@ interface Props {
 	top?: boolean;
 	toc?: boolean;
 	contentFooter?: boolean;
-	pageSidebar?: boolean;
 	ad?: boolean;
 }
 
-const { astroFilePath, structuredData, top = false, toc = true, contentFooter = true, pageSidebar = true, ad = true } = Astro.props;
+const { astroFilePath, structuredData, top = false, toc = true, contentFooter = true, ad = true } = Astro.props;
 
 const pagePath = getPageUrl(Astro.url, astroFilePath);
 
@@ -44,28 +43,13 @@ const mainHtml = `${document.head.innerHTML}${document.body.innerHTML}`;
 		<div class="l-page">
 			<PageHeader top={top} />
 
-			{
-				pageSidebar && (
-					<>
-						<main id="content" class="l-content">
-							{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
-							<ContentMain html={mainHtml} footnoteNoteData={footnoteNoteData} footnoteReferenceData={footnoteReferenceData} />
-							{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
-						</main>
+			<main id="content" class="l-content">
+				{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
+				<ContentMain html={mainHtml} footnoteNoteData={footnoteNoteData} footnoteReferenceData={footnoteReferenceData} />
+				{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
+			</main>
 
-						<PageSidebar />
-					</>
-				)
-			}
-			{
-				!pageSidebar && (
-					<main id="content" class="l-content -nosidebar">
-						{!top && <ContentHeader pagePath={pagePath} structuredData={structuredData} tocData={tocData} />}
-						<ContentMain html={mainHtml} footnoteNoteData={footnoteNoteData} footnoteReferenceData={footnoteReferenceData} />
-						{contentFooter && <ContentFooter pagePath={pagePath} astroFilePath={astroFilePath} structuredData={structuredData} />}
-					</main>
-				)
-			}
+			<PageSidebar />
 
 			<PageFooter pagePath={pagePath} ad={ad} />
 		</div>

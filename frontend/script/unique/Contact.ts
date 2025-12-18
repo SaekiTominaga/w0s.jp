@@ -92,16 +92,16 @@ export default class Contact {
 		switch (location.hash.substring(1)) {
 			/* 確認画面 */
 			case this.#CONFIRM_HASH:
-				for (const inputScreenElement of this.#inputScreenElements) {
+				this.#inputScreenElements.forEach((inputScreenElement) => {
 					inputScreenElement.hidden = true;
-				}
-				for (const confirmScreenElement of this.#confirmScreenElements) {
-					confirmScreenElement.hidden = false;
-				}
+				});
+				this.#confirmScreenElements.forEach((confirmScreenElement) => {
+					confirmScreenElement.hidden = true;
+				});
 				this.#sendButtonElement.disabled = false;
 
 				/* 入力内容を出力する */
-				for (const confirmOutputElement of this.#confirmOutputElements) {
+				this.#confirmOutputElements.forEach((confirmOutputElement) => {
 					const formCtrlName = confirmOutputElement.dataset['ctrlName'];
 					if (formCtrlName === undefined) {
 						throw new Error('Attribute: `data-ctrl-name` is not set.');
@@ -132,19 +132,19 @@ export default class Contact {
 							if (value === '') {
 								/* ラジオボタン（未選択時）またはチェックボックス群 */
 								const labelTextList: string[] = [];
-								for (const formCtrlRlrmrnt of Array.from(formCtrls as RadioNodeList).filter(
-									(formCtrl: Node): boolean => (formCtrl as HTMLInputElement).checked,
-								)) {
-									labelTextList.push(Contact.#getLabelTextFormControl(formCtrlRlrmrnt as HTMLInputElement));
-								}
+								Array.from(formCtrls as RadioNodeList)
+									.filter((formCtrl: Node): boolean => (formCtrl as HTMLInputElement).checked)
+									.forEach((formCtrlElement) => {
+										labelTextList.push(Contact.#getLabelTextFormControl(formCtrlElement as HTMLInputElement));
+									});
 								value = labelTextList.join('、');
 							} else {
 								/* ラジオボタン（選択時） */
-								for (const formCtrlElement of Array.from(formCtrls as RadioNodeList).filter(
-									(formCtrl: Node): boolean => (formCtrl as HTMLInputElement).value === value,
-								)) {
-									value = Contact.#getLabelTextFormControl(formCtrlElement as HTMLInputElement);
-								}
+								Array.from(formCtrls as RadioNodeList)
+									.filter((formCtrlElement) => (formCtrlElement as HTMLInputElement).value === value)
+									.forEach((formCtrlElement) => {
+										value = Contact.#getLabelTextFormControl(formCtrlElement as HTMLInputElement);
+									});
 							}
 
 							break;
@@ -152,18 +152,18 @@ export default class Contact {
 					}
 
 					confirmOutputElement.textContent = value;
-				}
+				});
 
 				break;
 
 			/* 入力画面 */
 			default:
-				for (const inputScreenElement of this.#inputScreenElements) {
+				this.#inputScreenElements.forEach((inputScreenElement) => {
 					inputScreenElement.hidden = false;
-				}
-				for (const confirmScreenElement of this.#confirmScreenElements) {
+				});
+				this.#confirmScreenElements.forEach((confirmScreenElement) => {
 					confirmScreenElement.hidden = true;
-				}
+				});
 				this.#sendButtonElement.disabled = true;
 		}
 	}
@@ -196,12 +196,12 @@ export default class Contact {
 		}
 
 		const labelTextList: string[] = [];
-		for (const labelElement of labelElements) {
+		labelElements.forEach((labelElement) => {
 			const labelText = labelElement.textContent;
 			if (labelText !== null) {
 				labelTextList.push(labelText);
 			}
-		}
+		});
 
 		return labelTextList.join(', ');
 	}

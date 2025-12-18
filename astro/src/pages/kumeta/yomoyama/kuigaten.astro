@@ -10,7 +10,7 @@ import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
-import type { StructuredData } from '@type/types.js';
+import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '久米田康治画集「悔画展」収録イラスト一覧',
@@ -25,7 +25,7 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Amazon headingLevel={2}>
+	<Amazon>
 		<AmazonItem asin="406364992X" title="久米田康治画集　悔画展" imageId="51m9Oqxw9kL" imageWidth={112} imageHeight={160} />
 	</Amazon>
 

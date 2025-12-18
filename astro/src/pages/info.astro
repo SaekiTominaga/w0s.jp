@@ -1,7 +1,7 @@
 ---
 import dayjs from 'dayjs';
 import Layout from '@layouts/Site.astro';
-import AnchorImageSide from '@components/AnchorImageSide.astro';
+import BookItem from '@components/BookItem.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
@@ -13,12 +13,12 @@ import AnchorIcon from '@components/+phrasing/AnchorIcon.astro';
 import Image from '@components/+phrasing/Image.astro';
 import ImageAmazon from '@components/+phrasing/ImageAmazon.astro';
 import TickAndCross from '@components/+phrasing/TickAndCross.astro';
-import type { StructuredData } from '@type/types.js';
+import type { StructuredData } from '../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	'schema-type': 'ProfilePage',
 	title: '制作者',
-	dateModified: dayjs('2025-08-31'),
+	dateModified: dayjs('2025-12-09'),
 	image: 'https://media.w0s.jp/image/info_profile.jpg',
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 	mainEntity: {
@@ -118,6 +118,26 @@ const structuredData: StructuredData = {
 					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
 					<td class="u-cell -center"><TickAndCross type="cross">不活用</TickAndCross></td>
 				</tr>
+			</tbody>
+			<tbody>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="github.svg" />
+						<Anchor href="https://github.com/SaekiTominaga" icon={false}>GitHub</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">―</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<AnchorIcon fileName="npm.png" />
+						<Anchor href="https://www.npmjs.com/~saekitominaga" icon={false}>npm</Anchor>
+					</th>
+					<td class="u-cell -center"><TickAndCross type="tick">活用</TickAndCross></td>
+					<td class="u-cell -center">―</td>
+					<td class="u-cell -center">―</td>
+				</tr>
 				<tr>
 					<th scope="row">
 						<AnchorIcon fileName="amazon.png" />
@@ -127,64 +147,64 @@ const structuredData: StructuredData = {
 					<td class="u-cell -center"><TickAndCross type="tick">商業/個人</TickAndCross></td>
 					<td class="u-cell -center"><TickAndCross type="cross">未出版</TickAndCross></td>
 				</tr>
-				<tr>
-					<th scope="row">
-						<AnchorIcon fileName="github.svg" />
-						<Anchor href="https://github.com/SaekiTominaga" icon={false}>GitHub</Anchor>
-					</th>
-					<td class="u-cell -center">―</td>
-					<td class="u-cell -center">―</td>
-					<td class="u-cell -center">―</td>
-				</tr>
 			</tbody>
 		</Table>
 	</Section>
 
 	<Section id="write">
-		<Fragment slot="heading">執筆</Fragment>
+		<Fragment slot="heading">著書、寄稿</Fragment>
 
-		<p>ときどき本や雑誌で記事を書いています。</p>
+		<Section id="write-tokyu" depth={2} headingType="b">
+			<Fragment slot="heading">東急電車</Fragment>
 
-		<Grid column="wide">
-			<GridItem>
-				<AnchorImageSide href="https://www.amazon.co.jp/dp/4802216769/">
-					<Fragment slot="title">私鉄車両ディテールガイド　東急9000系・1000系・2000系</Fragment>
-					<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/811MJUZeFoL._SL160_.jpg" alt="" width={115} height={160} />
-					<Fragment slot="text">
-						<p><b>イカロス・ムック、2025年11月発売</b></p>
-					</Fragment>
-				</AnchorImageSide>
-			</GridItem>
-			<GridItem>
-				<AnchorImageSide href="/tokyu/book/tamagawa1067">
-					<Fragment slot="title">公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両</Fragment>
-					<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2024年12月発売</b></p>
-						<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
-					</Fragment>
-				</AnchorImageSide>
-			</GridItem>
-			<GridItem>
-				<AnchorImageSide href="/tokyu/book/7700">
-					<Fragment slot="title">東急7700系形態分類</Fragment>
-					<Image slot="image" path="tokyu/book/7700_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>自費出版、2019年8月発売</b></p>
-						<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しています。</p>
-					</Fragment>
-				</AnchorImageSide>
-			</GridItem>
-			<GridItem>
-				<AnchorImageSide href="/tokyu/book/#tetsupic">
-					<Fragment slot="title">鉄道ピクトリアル</Fragment>
-					<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" width={114} height={160} quality={60} />
-					<Fragment slot="text">
-						<p><b>商業雑誌</b></p>
-						<p>東急電車や譲渡車両に関する記事を書いています。</p>
-					</Fragment>
-				</AnchorImageSide>
-			</GridItem>
-		</Grid>
+			<Grid column="wide">
+				<GridItem>
+					<BookItem sectionDepth={3} title="私鉄車両ディテールガイド　東急9000系・1000系・2000系" summary="イカロス・ムック、2025年11月発売" link="https://www.amazon.co.jp/dp/4802216769/">
+						<ImageAmazon slot="image" src="https://m.media-amazon.com/images/I/811MJUZeFoL._SL160_.jpg" alt="表紙: 上部に黒文字で書名、下部に赤帯を巻いた9000系の先頭部写真 " width={115} height={160} />
+						<Fragment slot="details">
+							<p>東急9000系、1000系、2000系のデビュー以来の動向、形態分類、設計者インタビューなどを担当しました。</p>
+						</Fragment>
+					</BookItem>
+				</GridItem>
+				<GridItem>
+					<BookItem sectionDepth={3} title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両" summary="自費出版、2024年12月発売" link="/tokyu/book/tamagawa1067">
+						<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={114} height={160} quality={60} />
+						<Fragment slot="details">
+							<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
+						</Fragment>
+					</BookItem>
+				</GridItem>
+				<GridItem>
+					<BookItem sectionDepth={3} title="東急7700系形態分類" summary="自費出版、2019年8月発売" link="/tokyu/book/7700">
+						<Image slot="image" path="tokyu/book/7700_cover.jpg" alt="表紙: 上部に赤文字で書名、下部に7700系の正面写真が12枚並んでいる" width={114} height={160} quality={60} />
+						<Fragment slot="details">
+							<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
+						</Fragment>
+					</BookItem>
+				</GridItem>
+				<GridItem>
+					<BookItem sectionDepth={3} title="鉄道ピクトリアル" link="/tokyu/book/#tetsupic">
+						<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" alt="表紙: 上部に誌名と特集名、下部に5050系の正面がちの走行写真" width={114} height={160} quality={60} />
+						<Fragment slot="details">
+							<p>ときどき東急電車や譲渡車両に関する記事を書いています。</p>
+						</Fragment>
+					</BookItem>
+				</GridItem>
+			</Grid>
+		</Section>
+		<Section id="write-kumeta" depth={2} headingType="b">
+			<Fragment slot="heading">久米田康治作品</Fragment>
+
+			<Grid column="wide">
+				<GridItem>
+					<BookItem sectionDepth={3} title="もにも〜ど3" summary="シャフト批評合同誌（同人誌）、2025年11月発刊" link="https://blog.w0s.jp/entry/753">
+						<Image slot="image" path="info_moni-mode3_cover.png" alt="表紙: 黄緑色の背景、中央部に「GO!!・50!!」の文字とそれを囲む正円形の装飾、右下には羽ばたく鳥が複数舞っている" width={114} height={160} />
+						<Fragment slot="details">
+							<p>「<cite>インタビューと制作資料で振り返るシャフト×久米田康治作品</cite>」と題して『<cite>さよなら絶望先生</cite>』や『<cite>かってに改蔵</cite>』などのアニメ関連資料を紹介する記事を寄稿しました。</p>
+						</Fragment>
+					</BookItem>
+				</GridItem>
+			</Grid>
+		</Section>
 	</Section>
 </Layout>
