@@ -92,8 +92,8 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 				<EmbeddedSidebar>
 					<EmbeddedLink href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`} title="Amazon 商品ページ" slot="embedded">
 						<Fragment slot="media">
-							{amazonImageId !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} width={amazonImageWidth} height={amazonImageHeight} />}
-							{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="" width="113" height="160" />}
+							{amazonImageId !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} alt="表紙" width={amazonImageWidth} height={amazonImageHeight} />}
+							{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="表紙画像なし" width="113" height="160" />}
 						</Fragment>
 					</EmbeddedLink>
 
