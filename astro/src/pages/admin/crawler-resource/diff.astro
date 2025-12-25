@@ -48,7 +48,8 @@ if (requestQuery.dir !== undefined) {
 			/* 差分チェック */
 			const [file1, file2] = await Promise.all([fs.promises.readFile(`${dir}/${requestQuery.diff.at(0)}`), fs.promises.readFile(`${dir}/${requestQuery.diff.at(1)}`)]);
 
-			let file1String: string, file2String: string;
+			let file1String: string;
+			let file2String: string;
 			if (requestQuery.format) {
 				[file1String, file2String] = await Promise.all([format(file1.toString(), PRETTIER_OPTIONS_HTML), format(file2.toString(), PRETTIER_OPTIONS_HTML)]);
 			} else {
