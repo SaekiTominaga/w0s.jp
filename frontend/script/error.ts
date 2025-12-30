@@ -1,33 +1,13 @@
 import closestHTMLPage from '@w0s/closest-html-page';
-import reportJsError from '@w0s/report-js-error';
 import reportSameReferrer from '@w0s/report-same-referrer';
+import reportJsError from './util/reportJsError.ts';
 
 /**
  * 403, 404, 410 ページ
  */
 
 /* JS エラーレポート */
-reportJsError({
-	fetch: {
-		endpoint: 'https://report.w0s.jp/report/js',
-		param: {
-			documentURL: 'documentURL',
-			message: 'message',
-			filename: 'jsURL',
-			lineno: 'lineNumber',
-			colno: 'columnNumber',
-		},
-		contentType: 'application/json',
-	},
-	validate: {
-		filename: {
-			allows: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
-		},
-		ua: {
-			denys: [/Googlebot\/2.1;/u],
-		},
-	},
-});
+reportJsError();
 
 /* リファラーレポート */
 await reportSameReferrer({

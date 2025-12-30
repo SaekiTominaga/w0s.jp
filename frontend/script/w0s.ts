@@ -8,12 +8,12 @@ import formControlValidation from '@w0s/form-control-validation';
 import formSubmitOverlay from '@w0s/form-submit-overlay';
 import inputDateToText from '@w0s/input-date-to-text';
 import InputSwitch from '@w0s/input-switch';
-import reportJsError from '@w0s/report-js-error';
 import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
 import TableTheadStickey from './component/TableTheadStickey.ts';
 import adsense from './unique/adsense.ts';
 import { blogNewly } from './unique/sidebar.ts';
+import reportJsError from './util/reportJsError.ts';
 import trustedTypes from './util/trustedTypes.ts';
 
 /**
@@ -21,27 +21,7 @@ import trustedTypes from './util/trustedTypes.ts';
  */
 
 /* JS エラーレポート */
-reportJsError({
-	fetch: {
-		endpoint: 'https://report.w0s.jp/report/js',
-		param: {
-			documentURL: 'documentURL',
-			message: 'message',
-			filename: 'jsURL',
-			lineno: 'lineNumber',
-			colno: 'columnNumber',
-		},
-		contentType: 'application/json',
-	},
-	validate: {
-		filename: {
-			allows: [/^https:\/\/w0s\.jp\/assets\/script\/.+\.m?js$/u],
-		},
-		ua: {
-			denys: [/Googlebot\/2.1;/u],
-		},
-	},
-});
+reportJsError();
 
 /* Trusted Types */
 trustedTypes();
