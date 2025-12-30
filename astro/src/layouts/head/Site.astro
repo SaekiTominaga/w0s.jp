@@ -25,7 +25,6 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 
 	{structuredData.opensearch !== undefined && <link rel="search" href={structuredData.opensearch.path} type="application/opensearchdescription+xml" title={structuredData.opensearch.name} />}
 
-	<script src="/assets/script/trusted-types.js" defer="" is:inline></script>
 	<script src="/assets/script/w0s.mjs" type="module" is:inline></script>
 	{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" is:inline />)}
 	<script src="https://analytics.w0s.jp/matomo/matomo.js" async="" is:inline></script>
