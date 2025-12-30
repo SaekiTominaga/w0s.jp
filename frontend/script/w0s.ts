@@ -11,13 +11,16 @@ import InputSwitch from '@w0s/input-switch';
 import reportJsError from '@w0s/report-js-error';
 import { convert } from '@w0s/string-convert';
 import textareaAutoSize from '@w0s/textarea-auto-size';
+import TableTheadStickey from './component/TableTheadStickey.ts';
 import adsense from './unique/adsense.ts';
 import { blogNewly } from './unique/sidebar.ts';
-import TableTheadStickey from './component/TableTheadStickey.ts';
+import trustedTypes from './util/trustedTypes.ts';
 
 /**
  * w0s.jp（エラーページを除く）
  */
+
+/* JS エラーレポート */
 reportJsError({
 	fetch: {
 		endpoint: 'https://report.w0s.jp/report/js',
@@ -39,6 +42,9 @@ reportJsError({
 		},
 	},
 });
+
+/* Trusted Types */
+trustedTypes();
 
 /* <input type="switch"> */
 if (document.querySelector('w0s-input-switch') !== null) {
