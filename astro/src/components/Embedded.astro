@@ -40,7 +40,6 @@ const { border, captionMeta } = Astro.props;
 			}
 
 			& > :global(:any-link::before) {
-				box-sizing: border-box;
 				display: block flow;
 				position: absolute;
 				inset: 1px;
@@ -56,6 +55,7 @@ const { border, captionMeta } = Astro.props;
 			}
 
 			& :global(:is(img, video)) {
+				box-sizing: revert;
 				display: inline flow-root;
 				border: var(--_border-width) solid var(--color-black);
 				block-size: auto;
@@ -76,7 +76,6 @@ const { border, captionMeta } = Astro.props;
 			& :global(iframe) {
 				--_margin-inline: 0px; /* 左右の空き（空きがないとタップによるスクロールに支障が起こるため） */
 
-				box-sizing: border-box;
 				display: block flow;
 				margin-inline: auto;
 				border: var(--_border-width) solid var(--color-black);
