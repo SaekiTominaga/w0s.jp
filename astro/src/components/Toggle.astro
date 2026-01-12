@@ -31,11 +31,10 @@ const { fit, open, duration } = Astro.props;
 				contain: layout;
 				border: 1px solid var(--color-border-dark);
 				border-radius: var(--border-radius-small);
-				background: var(--color-white);
+				background-color: var(--color-white);
 				cursor: default;
 				padding: var(--_summary-padding) var(--_summary-padding) var(--_summary-padding) calc(var(--_summary-padding) + var(--_icon-size) + var(--_icon-gap));
 				inline-size: var(--_summary-inline-size);
-				list-style: none;
 				line-height: var(--line-height-narrow);
 				color: var(--color-darkblue);
 				font-size: calc(100% * pow(var(--font-ratio), 1));
@@ -57,10 +56,6 @@ const { fit, open, duration } = Astro.props;
 				border-block-start: var(--_icon-size) solid var(--color-darkblue);
 				inline-size: var(--_icon-size);
 				content: '';
-			}
-
-			& > :global(summary::-webkit-details-marker) {
-				display: none; /* for Safari */
 			}
 
 			&[open],
