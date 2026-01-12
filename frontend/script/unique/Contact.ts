@@ -96,7 +96,7 @@ export default class Contact {
 					inputScreenElement.hidden = true;
 				});
 				this.#confirmScreenElements.forEach((confirmScreenElement) => {
-					confirmScreenElement.hidden = true;
+					confirmScreenElement.hidden = false;
 				});
 				this.#sendButtonElement.disabled = false;
 
