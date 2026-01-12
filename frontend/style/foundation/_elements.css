@@ -1,9 +1,3 @@
-*,
-::before,
-::after {
-	box-sizing: border-box;
-}
-
 :root {
 	--_color: var(--page-color);
 	--_bg-color: var(--page-bg-color);
@@ -37,7 +31,6 @@ body {
 
 :any-link {
 	outline-offset: var(--outline-offset);
-	text-decoration-thickness: from-font;
 
 	/* for iOS Firefox auto link https://github.com/mozilla-mobile/firefox-ios/issues/8511 */
 	&[href^="tel:"] {
@@ -66,10 +59,6 @@ body {
 
 pre {
 	tab-size: 2;
-
-	@media print {
-		text-wrap-mode: wrap; /* default value: `white-space: pre` */
-	}
 }
 
 em {
@@ -124,10 +113,6 @@ code:not([class]) {
 
 var {
 	font-family: serif;
-
-	&:lang(ja) {
-		font-style: normal;
-	}
 }
 
 mark {
