@@ -176,7 +176,11 @@ const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url
 		:is(.type, .domain) {
 			word-break: break-all;
 			color: var(--color-gray);
-			font-size: calc(100% / pow(var(--font-ratio), 1));
+			font-size: calc(100% * var(--_font-size-ratio, 1));
+
+			&:not(:has(img)) {
+				--_font-size-ratio: calc(1 / pow(var(--font-ratio), 1));
+			}
 		}
 
 		.domain {
