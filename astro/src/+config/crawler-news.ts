@@ -1,5 +1,5 @@
 export default {
 	validator: {
-		unique: 'そのタイトルはすでに登録されています。',
+		unique: 'その URL ないしタイトルはすでに登録されています。',
 	},
 };
