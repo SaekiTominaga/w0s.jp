@@ -1,4 +1,5 @@
 ---
+import { SqliteError } from 'better-sqlite3';
 import GithubSlugger from 'github-slugger';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
@@ -15,7 +16,6 @@ import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import configCrawlerResource from '@config/crawler-resource.js';
-import configSqlite from '@config/sqlite.js';
 import CrawlerResourceDao from '@db/CrawlerResource.js';
 import { response303 } from '@util/httpResponse.ts';
 import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.ts';
@@ -81,13 +81,13 @@ if (requestQuery.actionAdd) {
 
 			return response303(Astro.request);
 		} catch (e) {
-			if (!(e instanceof Error)) {
+			if (!(e instanceof SqliteError)) {
 				throw e;
 			}
 
-			// @ts-expect-error: ts(2339)
-			switch (e.errno) {
-				case configSqlite.errno.uniqueConstraint: {
+			switch (e.code) {
+				case 'SQLITE_CONSTRAINT_PRIMARYKEY':
+				case 'SQLITE_CONSTRAINT_UNIQUE': {
 					validateMessages.push(configCrawlerResource.validator.unique);
 					break;
 				}
@@ -100,21 +100,37 @@ if (requestQuery.actionAdd) {
 } else if (requestQuery.actionRevise) {
 	/* 修正実行 */
 	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.baseUrl !== undefined) {
-		logger.debug(requestQuery);
-		await dao.update(
-			{
-				url: new URL(requestQuery.url),
-				title: requestQuery.title,
-				category: requestQuery.category,
-				priority: requestQuery.priority,
-				browser: requestQuery.browser,
-				selector: requestQuery.selector,
-			},
-			requestQuery.baseUrl,
-		);
-		logger.info('データ更新', requestQuery.url);
+		try {
+			await dao.update(
+				{
+					url: new URL(requestQuery.url),
+					title: requestQuery.title,
+					category: requestQuery.category,
+					priority: requestQuery.priority,
+					browser: requestQuery.browser,
+					selector: requestQuery.selector,
+				},
+				requestQuery.baseUrl,
+			);
+			logger.info('データ更新', requestQuery.url);
 
-		return response303(Astro.request);
+			return response303(Astro.request);
+		} catch (e) {
+			if (!(e instanceof SqliteError)) {
+				throw e;
+			}
+
+			switch (e.code) {
+				case 'SQLITE_CONSTRAINT_PRIMARYKEY':
+				case 'SQLITE_CONSTRAINT_UNIQUE': {
+					validateMessages.push(configCrawlerResource.validator.unique);
+					break;
+				}
+				default: {
+					throw e;
+				}
+			}
+		}
 	}
 } else if (requestQuery.actionDelete) {
 	/* 削除 */
