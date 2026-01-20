@@ -21,6 +21,7 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 		const query = this.db
 			.selectFrom(['d_news as n', 'm_category as c', 'm_priority as p'])
 			.select([
+				'n.random_id as random_id',
 				'n.url as url',
 				'n.title as title',
 				'c.name as category',
@@ -38,6 +39,7 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 		const rows = await query.execute();
 
 		return rows.map((row) => ({
+			random_id: sqliteToJS(row.random_id),
 			url: sqliteToJS(row.url, 'url'),
 			title: sqliteToJS(row.title),
 			category: sqliteToJS(row.category),
@@ -54,8 +56,9 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 	 *
 	 * @param data - 登録データ
 	 */
-	async insert(data: Readonly<Insertable<Omit<DNews, 'error'>>>): Promise<void> {
+	async insert(data: Readonly<Insertable<Omit<DNews, 'random_id' | 'error'>>>): Promise<void> {
 		let query = this.db.insertInto('d_news');
+		// @ts-expect-error: ts(2345) 将来的に INSERT 文に DEFAULT 値が扱えるようになれば解消可能
 		query = query.values({
 			url: jsToSQLiteAssignment(data.url),
 			title: jsToSQLiteAssignment(data.title),
@@ -77,7 +80,7 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 	 * @param data - 更新データ
 	 * @param baseUrl - 元 URL
 	 */
-	async update(data: Readonly<Omit<DNews, 'error'>>, baseUrl: string): Promise<void> {
+	async update(data: Readonly<Omit<DNews, 'random_id' | 'error'>>, baseUrl: string): Promise<void> {
 		const query = this.db
 			.updateTable('d_news')
 			.set({
@@ -92,17 +95,19 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 			})
 			.where('url', '=', jsToSQLiteComparison(baseUrl));
 
+		query.compile();
+
 		await query.executeTakeFirst();
 	}
 
 	/**
 	 * 巡回ページデータを削除する
 	 *
-	 * @param url - 削除対象の URL
+	 * @param id - 削除対象のニュース ID
 	 */
-	async delete(url: string): Promise<void> {
-		const queryNews = this.db.deleteFrom('d_news').where('url', '=', jsToSQLiteComparison(url));
-		const queryNewsData = this.db.deleteFrom('d_news_data').where('url', '=', jsToSQLiteComparison(url));
+	async delete(id: string): Promise<void> {
+		const queryNews = this.db.deleteFrom('d_news').where('random_id', '=', jsToSQLiteComparison(id));
+		const queryNewsData = this.db.deleteFrom('d_news_data').where('news_id', '=', jsToSQLiteComparison(id));
 
 		await queryNewsData.execute();
 		await queryNews.executeTakeFirst(); // FOREIGN KEY の関係で d_news_data より後に削除する必要がある
@@ -111,15 +116,15 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 	/**
 	 * 修正する巡回ページデータを取得する
 	 *
-	 * @param url - 対象データの URL
+	 * @param id - 対象データのニュース ID
 	 *
 	 * @returns 巡回情報データ
 	 */
-	async getReviseData(url: string): Promise<Omit<DNews, 'error'> | undefined> {
+	async getReviseData(id: string): Promise<Omit<DNews, 'random_id' | 'error'> | undefined> {
 		const query = this.db
 			.selectFrom('d_news')
-			.select(['title', 'category', 'priority', 'browser', 'selector_wrap', 'selector_date', 'selector_content'])
-			.where('url', '=', jsToSQLiteComparison(url));
+			.select(['url', 'title', 'category', 'priority', 'browser', 'selector_wrap', 'selector_date', 'selector_content'])
+			.where('random_id', '=', jsToSQLiteComparison(id));
 
 		const row = await query.executeTakeFirst();
 		if (row === undefined) {
@@ -127,7 +132,7 @@ export default class CrawlerNewsDao extends DatabaseCrawler {
 		}
 
 		return {
-			url: sqliteToJS(url, 'url'),
+			url: sqliteToJS(row.url, 'url'),
 			title: sqliteToJS(row.title),
 			category: sqliteToJS(row.category),
 			priority: sqliteToJS(row.priority),

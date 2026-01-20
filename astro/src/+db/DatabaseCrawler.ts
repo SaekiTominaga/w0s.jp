@@ -1,5 +1,6 @@
 import SQLite from 'better-sqlite3';
-import { Kysely, SqliteDialect } from 'kysely';
+import { Kysely, SqliteDialect, type LogEvent } from 'kysely';
+import Log4js from 'log4js';
 import { sqliteToJS } from '@w0s/sqlite-utility';
 import type { DB, MCategory, MPriority } from '../../../@types/db_crawler.d.ts';
 
@@ -7,6 +8,8 @@ import type { DB, MCategory, MPriority } from '../../../@types/db_crawler.d.ts';
  * ウェブ巡回
  */
 export default class CrawlerDao {
+	readonly #logger: Log4js.Logger;
+
 	protected readonly db: Kysely<DB>;
 
 	/**
@@ -14,6 +17,8 @@ export default class CrawlerDao {
 	 * @param options - オプション
 	 */
 	constructor(filePath: string, options?: Readonly<Pick<SQLite.Options, 'readonly'>>) {
+		this.#logger = Log4js.getLogger('db - crawler');
+
 		const sqlite = new SQLite(filePath, {
 			/* https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md#new-databasepath-options */
 			readonly: options?.readonly ?? false,
@@ -25,6 +30,17 @@ export default class CrawlerDao {
 			dialect: new SqliteDialect({
 				database: sqlite,
 			}),
+			log: (event: LogEvent) => {
+				switch (event.level) {
+					case 'error': {
+						this.#logger.error(event.query.sql, event.query.parameters);
+						break;
+					}
+					default: {
+						this.#logger.info(event.query.sql, event.query.parameters);
+					}
+				}
+			},
 		});
 	}
 

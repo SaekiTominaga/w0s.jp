@@ -11,7 +11,7 @@ import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 interface RequestQuery {
-	url: string | undefined;
+	newsId: string | undefined;
 	id: string | undefined;
 	actionDelete: boolean;
 }
@@ -28,7 +28,7 @@ const requestParams = getRequestParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
 
 const requestQuery: RequestQuery = {
-	url: requestString(requestParams.get('url') ?? requestBody?.get('url')),
+	newsId: requestString(requestParams.get('newsid') ?? requestBody?.get('newsid')),
 	id: requestString(requestBody?.get('id')),
 	actionDelete: requestBoolean(requestBody?.get('actiondel')),
 };
@@ -41,16 +41,27 @@ if (requestQuery.actionDelete) {
 		await dao.delete(requestQuery.id);
 		logger.info('データ削除', requestQuery.id);
 
-		return response303(Astro.request, `?url=${requestQuery.url}`);
+		return response303(Astro.request, `?newsid=${requestQuery.newsId}`);
 	}
 }
 
 /* 初期表示 */
-const newsDataList = requestQuery.url !== undefined ? await dao.getNewsDataList(requestQuery.url) : []; // 新着データ
+const [news, newsDataList] = await Promise.all([
+	dao.getNews(requestQuery.newsId), // ニュースデータ
+	requestQuery.newsId !== undefined ? await dao.getNewsDataList(requestQuery.newsId) : [], // 新着データ
+]);
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<p><a href={requestQuery.url} referrerpolicy="no-referrer">{requestQuery.url}</a></p>
+	{
+		news !== undefined && (
+			<p>
+				<a href={news.url} referrerpolicy="no-referrer">
+					{news.title} &lt;<code>{news.url}</code>&gt;
+				</a>
+			</p>
+		)
+	}
 
 	<Table>
 		<thead>
@@ -72,11 +83,11 @@ const newsDataList = requestQuery.url !== undefined ? await dao.getNewsDataList(
 									</SubmitButton>
 								</p>
 								<p>
-									<input type="hidden" name="url" value={requestQuery.url} />
+									<input type="hidden" name="newsid" value={requestQuery.newsId} />
 								</p>
 
 								<p>
-									<input type="hidden" name="id" value={newsData.uuid} />
+									<input type="hidden" name="id" value={newsData.random_id} />
 								</p>
 							</form>
 						</td>

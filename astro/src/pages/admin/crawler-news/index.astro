@@ -1,4 +1,5 @@
 ---
+import { SqliteError } from 'better-sqlite3';
 import GithubSlugger from 'github-slugger';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
@@ -14,7 +15,6 @@ import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import configCrawlerNews from '@config/crawler-news.js';
-import configSqlite from '@config/sqlite.js';
 import CrawlerNewsDao from '@db/CrawlerNews.js';
 import { response303 } from '@util/httpResponse.ts';
 import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.ts';
@@ -22,6 +22,7 @@ import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 interface RequestQuery {
+	id: string | undefined;
 	url: string | undefined;
 	title: string | undefined;
 	category: number | undefined;
@@ -50,7 +51,8 @@ const requestParams = getRequestParams(Astro.url);
 const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
 
 const requestQuery: RequestQuery = {
-	url: requestString(requestParams.get('url') ?? requestBody?.get('url')),
+	id: requestString(requestParams.get('id') ?? requestBody?.get('id')),
+	url: requestString(requestBody?.get('url')),
 	title: requestString(requestBody?.get('title')),
 	category: requestNumber(requestBody?.get('category')),
 	priority: requestNumber(requestBody?.get('priority')),
@@ -86,13 +88,12 @@ if (requestQuery.actionAdd) {
 
 			return response303(Astro.request);
 		} catch (e) {
-			if (!(e instanceof Error)) {
+			if (!(e instanceof SqliteError)) {
 				throw e;
 			}
 
-			// @ts-expect-error: ts(2339)
-			switch (e.errno) {
-				case configSqlite.errno.uniqueConstraint: {
+			switch (e.code) {
+				case 'SQLITE_CONSTRAINT_UNIQUE': {
 					validateMessages.push(configCrawlerNews.validator.unique);
 					break;
 				}
@@ -105,36 +106,54 @@ if (requestQuery.actionAdd) {
 } else if (requestQuery.actionRevise) {
 	/* 修正実行 */
 	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined && requestQuery.baseUrl !== undefined) {
-		await dao.update(
-			{
-				url: new URL(requestQuery.url),
-				title: requestQuery.title,
-				category: requestQuery.category,
-				priority: requestQuery.priority,
-				browser: requestQuery.browser,
-				selector_wrap: requestQuery.selectorWrap,
-				selector_date: requestQuery.selectorDate,
-				selector_content: requestQuery.selectorContent,
-			},
-			requestQuery.baseUrl,
-		);
-		logger.info('データ更新', requestQuery.url);
+		try {
+			await dao.update(
+				{
+					url: new URL(requestQuery.url),
+					title: requestQuery.title,
+					category: requestQuery.category,
+					priority: requestQuery.priority,
+					browser: requestQuery.browser,
+					selector_wrap: requestQuery.selectorWrap,
+					selector_date: requestQuery.selectorDate,
+					selector_content: requestQuery.selectorContent,
+				},
+				requestQuery.baseUrl,
+			);
+			logger.info('データ更新', requestQuery.url);
 
-		return response303(Astro.request);
+			return response303(Astro.request);
+		} catch (e) {
+			if (!(e instanceof SqliteError)) {
+				throw e;
+			}
+
+			switch (e.code) {
+				case 'SQLITE_CONSTRAINT_UNIQUE': {
+					validateMessages.push(configCrawlerNews.validator.unique);
+					break;
+				}
+				default: {
+					throw e;
+				}
+			}
+		}
 	}
 } else if (requestQuery.actionDelete) {
 	/* 削除 */
-	if (requestQuery.url !== undefined) {
-		await dao.delete(requestQuery.url);
-		logger.info('データ削除', requestQuery.url);
+	if (requestQuery.id !== undefined) {
+		await dao.delete(requestQuery.id);
+		logger.info('データ削除', requestQuery.id);
 
 		return response303(Astro.request);
 	}
 } else if (requestQuery.actionRevisePreview) {
 	/* 修正データ選択 */
-	if (requestQuery.url !== undefined) {
-		const reviseData = await dao.getReviseData(requestQuery.url);
+	console.debug('修正データ選択', requestQuery);
+	if (requestQuery.id !== undefined) {
+		const reviseData = await dao.getReviseData(requestQuery.id);
 		if (reviseData !== undefined) {
+			requestQuery.url = reviseData.url.toString();
 			requestQuery.title = reviseData.title;
 			requestQuery.category = reviseData.category;
 			requestQuery.priority = reviseData.priority;
@@ -156,6 +175,7 @@ const [categoryMaster, priorityMaster, newsPageListDto] = await Promise.all([
 const newsPageList: Map<
 	string,
 	{
+		randomId: string;
 		url: URL;
 		title: string;
 		priority: string;
@@ -170,6 +190,7 @@ for (const newsPage of newsPageListDto) {
 
 	const newsPageOfCategoryView = newsPageList.get(categoryName) ?? [];
 	newsPageOfCategoryView.push({
+		randomId: newsPage.random_id,
 		url: newsPage.url,
 		title: newsPage.title,
 		priority: newsPage.priority,
@@ -337,12 +358,12 @@ for (const newsPage of newsPageListDto) {
 											</SubmitButton>
 										</p>
 										<p>
-											<input type="hidden" name="url" value={newsPage.url.toString()} />
+											<input type="hidden" name="id" value={newsPage.randomId} />
 										</p>
 									</form>
 								</td>
 								<td>
-									<a href={`/admin/crawler-news/data?url=${newsPage.url}`}>{newsPage.title}</a>
+									<a href={`/admin/crawler-news/data?newsid=${newsPage.randomId}`}>{newsPage.title}</a>
 									<p style="margin-block-start: 0.5em; font-size: 80%">
 										<a href={newsPage.url} referrerpolicy="no-referrer">
 											{newsPage.url}
