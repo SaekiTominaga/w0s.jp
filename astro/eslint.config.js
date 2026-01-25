@@ -18,6 +18,9 @@ export default [
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
+		rules: {
+			'import/no-extraneous-dependencies': ['error', { packageDir: ['../', './'] }],
+		},
 	},
 	{
 		files: ['**/*.astro'],
@@ -38,6 +41,7 @@ export default [
 			'import/default': 'off', // parser.parse is not a function
 			'import/namespace': 'off', // parser.parse is not a function
 			'import/no-deprecated': 'off', // parser.parse is not a function
+			'import/no-extraneous-dependencies': ['error', { packageDir: ['../', './'] }],
 			'import/no-named-as-default': 'off', // parser.parse is not a function
 			'import/no-named-as-default-member': 'off', // parser.parse is not a function
 			'import/no-unresolved': 'off',
