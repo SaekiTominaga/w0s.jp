@@ -18,6 +18,14 @@ export default [
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
+		rules: {
+			'import/no-extraneous-dependencies': [
+				'error',
+				{
+					packageDir: ['../', './'],
+				},
+			],
+		},
 	},
 	{
 		files: ['**/*.astro'],
@@ -35,11 +43,18 @@ export default [
 			'no-irregular-whitespace': 'off',
 			'no-undef-init': 'off',
 			'no-useless-return': 'off',
-			'import/default': 'off', // parser.parse is not a function
-			'import/namespace': 'off', // parser.parse is not a function
-			'import/no-deprecated': 'off', // parser.parse is not a function
-			'import/no-named-as-default': 'off', // parser.parse is not a function
-			'import/no-named-as-default-member': 'off', // parser.parse is not a function
+			'import/default': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
+			'import/named': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
+			'import/namespace': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
+			'import/no-deprecated': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
+			'import/no-extraneous-dependencies': [
+				'error',
+				{
+					packageDir: ['../', './'],
+				},
+			],
+			'import/no-named-as-default': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
+			'import/no-named-as-default-member': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/no-unresolved': 'off',
 			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',

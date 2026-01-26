@@ -10,7 +10,7 @@ import Log4js from 'log4js';
 import { env } from '@w0s/env-value-type';
 import { escape } from '@w0s/html-escape';
 // @ts-expect-error: ts(7016)
-import { handler as ssrHandler } from '@w0s.jp/astro/dist/server/entry.mjs';
+import { handler as ssrHandler } from '../../astro/dist/server/entry.mjs';
 import config from './config/express.ts';
 import { csp, reportingEndpoints } from './util/httpHeader.ts';
 
