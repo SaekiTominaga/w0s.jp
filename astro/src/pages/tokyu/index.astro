@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '@layouts/Tokyu.astro';
 import LayoutTop from '@layouts/content-body/Top.astro';
 import TopNavCard from '@components/TopNavCard.astro';
@@ -11,6 +12,8 @@ const structuredData: StructuredData = {
 	title: '東急電車資料室',
 	description: '目蒲デハ1形から東急(新)3000系までの車両を研究する個人サイト',
 };
+
+const updateCollection = await getCollection('updateTokyu');
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} top={true}>
@@ -27,7 +30,7 @@ const structuredData: StructuredData = {
 			</TopNavCard>
 		</Fragment>
 		<Fragment slot="update">
-			<TopUpdate id="update" updateFile="tokyu.xml" feedHref="/tokyu/feed" />
+			<TopUpdate id="update" collection={updateCollection} feedHref="/tokyu/feed" />
 		</Fragment>
 	</LayoutTop>
 </Layout>

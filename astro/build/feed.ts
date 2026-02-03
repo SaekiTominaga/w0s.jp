@@ -2,12 +2,11 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
 import dayjs from 'dayjs';
-import { XMLParser } from 'fast-xml-parser';
 import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
+import { load as yamlLoad } from 'js-yaml';
 import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
-import type { Update } from '../../@types/update.d.ts';
 
 /**
  * フィードファイル生成
@@ -15,17 +14,17 @@ import type { Update } from '../../@types/update.d.ts';
 
 const INFO = [
 	{
-		srcPath: 'update/tokyu.xml',
+		srcPath: 'update/tokyu.yaml',
 		feedTemplate: 'template/xml/feed_tokyu.ejs',
 		feedPath: 'tokyu/feed.atom',
 	},
 	{
-		srcPath: 'update/kumeta.xml',
+		srcPath: 'update/kumeta.yaml',
 		feedTemplate: 'template/xml/feed_kumeta.ejs',
 		feedPath: 'kumeta/feed.atom',
 	},
 	{
-		srcPath: 'update/madoka.xml',
+		srcPath: 'update/madoka.yaml',
 		feedTemplate: 'template/xml/feed_madoka.ejs',
 		feedPath: 'madoka/feed.atom',
 	},
@@ -56,10 +55,22 @@ const directory = slash(argsParsedValues.directory);
 
 await Promise.all(
 	INFO.map(async (feedInfo) => {
-		const data = (await fs.promises.readFile(feedInfo.srcPath)).toString();
+		const fileData = (await fs.promises.readFile(feedInfo.srcPath)).toString();
 
 		/* DOM 化 */
-		const parsed = new XMLParser().parse(data) as Update;
+		const parsed = (
+			yamlLoad(fileData) as {
+				id: string;
+				updated: Date;
+				content: string;
+			}[]
+		).map(({ updated, content }) =>
+			/* タイムゾーンを変更 */
+			({
+				updated: new Date(updated.getTime() + updated.getTimezoneOffset() * 60 * 1000),
+				content,
+			}),
+		);
 
 		/* HTML から必要なデータを取得 */
 		const entries: {
@@ -71,16 +82,7 @@ await Promise.all(
 		}[] = [];
 
 		await Promise.all(
-			parsed.update.entry.map(async (entry) => {
-				const [year, month, day] = entry.updated.split('-').map(Number);
-				if (year === undefined || month === undefined || day === undefined) {
-					console.warn(`<updated> element content is invalid: ${entry.updated}`);
-					return;
-				}
-
-				const updated = new Date(year, month - 1, day);
-				const { content } = entry;
-
+			parsed.map(async ({ updated, content }) => {
 				const { document } = new JSDOM(content).window;
 
 				const title = document.body.textContent
