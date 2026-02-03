@@ -1,26 +1,29 @@
 ---
+import type { getCollection } from 'astro:content';
 import dayjs from 'dayjs';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import { getEntryData } from '@util/update.ts';
 
 interface Props {
 	id: string;
-	updateFile: string;
+	collection: Awaited<ReturnType<typeof getCollection<'updateKumeta'> | typeof getCollection<'updateMadoka'> | typeof getCollection<'updateTokyu'>>>;
 	feedHref: string;
 	updateHref?: string;
 }
 
-const { id, updateFile, feedHref, updateHref } = Astro.props;
+const { id, collection, feedHref, updateHref } = Astro.props;
 
-const updateEntries = (
-	await getEntryData(updateFile, {
-		year: 1,
-		limit: 5,
+const updateEntries = collection
+	.filter(({ data }, index) => {
+		/* 件数と更新日でフィルターする */
+		const compareDate = new Date();
+		compareDate.setFullYear(compareDate.getFullYear() - 1);
+
+		return data.updated > compareDate || index < 5;
 	})
-).map((entry) => ({
-	updated: dayjs(entry.updated),
-	content: entry.content,
-}));
+	.map(({ data }) => ({
+		updated: dayjs(data.updated),
+		content: data.content,
+	}));
 ---
 
 <section class="top-update" id={id}>

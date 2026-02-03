@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import LayoutTop from '@layouts/content-body/Top.astro';
@@ -15,6 +16,8 @@ const structuredData: StructuredData = {
 	title: 'まどか資料館',
 	description: '『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト',
 };
+
+const updateCollection = await getCollection('updateMadoka');
 
 const slugger = new GithubSlugger();
 ---
@@ -102,7 +105,7 @@ const slugger = new GithubSlugger();
 		</Fragment>
 
 		<Fragment slot="update">
-			<TopUpdate id="update" updateFile="madoka.xml" feedHref="/madoka/feed" />
+			<TopUpdate id="update" collection={updateCollection} feedHref="/madoka/feed" />
 		</Fragment>
 	</LayoutTop>
 </Layout>

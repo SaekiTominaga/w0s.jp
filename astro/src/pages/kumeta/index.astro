@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import LayoutTop from '@layouts/content-body/Top.astro';
@@ -18,6 +19,8 @@ const structuredData: StructuredData = {
 	title: '久米田康治データベース',
 	description: '漫画家・久米田康治先生の作品データや周辺動向を紹介するファンサイト',
 };
+
+const updateCollection = await getCollection('updateKumeta');
 
 const slugger = new GithubSlugger();
 ---
@@ -113,7 +116,7 @@ const slugger = new GithubSlugger();
 		</Fragment>
 
 		<Fragment slot="update">
-			<TopUpdate id="update" updateFile="kumeta.xml" feedHref="/kumeta/feed" />
+			<TopUpdate id="update" collection={updateCollection} feedHref="/kumeta/feed" />
 		</Fragment>
 	</LayoutTop>
 </Layout>
