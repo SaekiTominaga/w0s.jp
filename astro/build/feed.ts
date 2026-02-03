@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
+import { Parser, HtmlRenderer } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
@@ -64,13 +65,17 @@ await Promise.all(
 				updated: Date;
 				content: string;
 			}[]
-		).map(({ updated, content }) =>
-			/* タイムゾーンを変更 */
-			({
+		).map(({ updated, content }) => {
+			const contentParsed = new Parser().parse(content);
+			const contentHtml = new HtmlRenderer().render(contentParsed);
+
+			return {
+				/* タイムゾーンを変更 */
 				updated: new Date(updated.getTime() + updated.getTimezoneOffset() * 60 * 1000),
-				content,
-			}),
-		);
+				/* Markdown → HTML */
+				content: contentHtml,
+			};
+		});
 
 		/* HTML から必要なデータを取得 */
 		const entries: {
