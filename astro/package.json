@@ -12,12 +12,12 @@
 		"lint": "pnpm run /^lint:.*/",
 		"lint:html": "markuplint src/pages/**/*.astro",
 		"lint:css": "stylelint src/**/*.astro",
-		"lint:js": "eslint @types/*.d.ts build/**/*.ts src/**/*.{astro,ts}",
+		"lint:js": "astro sync && eslint @types/*.d.ts build/**/*.ts src/**/*.{astro,ts}",
 		"lint-html-dist": "markuplint dist/client/**/*.html",
 		"pretest": "tsc --noEmit",
 		"test": "pnpm run /^test:.*/",
 		"test:node": "node --experimental-test-coverage --test build/**/*.test.ts src/+util/*.test.ts",
-		"test:vitest": "vitest run"
+		"test:vitest": "astro sync && vitest run"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.6",
