@@ -14,10 +14,10 @@
 		"lint:css": "stylelint src/**/*.astro",
 		"lint:js": "astro sync && eslint @types/*.d.ts build/**/*.ts src/**/*.{astro,ts}",
 		"lint-html-dist": "markuplint dist/client/**/*.html",
-		"pretest": "tsc --noEmit",
+		"pretest": "astro sync && tsc --noEmit",
 		"test": "pnpm run /^test:.*/",
 		"test:node": "node --experimental-test-coverage --test build/**/*.test.ts src/+util/*.test.ts",
-		"test:vitest": "astro sync && vitest run"
+		"test:vitest": "vitest run"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.6",
