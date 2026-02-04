@@ -25,6 +25,20 @@ const updateEntries = collection
 		const contentParsed = new Parser().parse(data.content);
 		const contentHtml = new HtmlRenderer().render(contentParsed);
 
+		const contentWalker = contentParsed.walker();
+
+		let event = contentWalker.next();
+		while (event !== null) {
+			const { node } = event;
+			const { type: nodeType } = node;
+
+			if (!['text', 'html_inline', 'link', 'code', 'document', 'paragraph'].includes(nodeType)) {
+				throw new Error(`許可されていない Markdown 構文 <${nodeType}> が使用: ${data.content}`);
+			}
+
+			event = contentWalker.next();
+		}
+
 		return {
 			/* Date → Dayjs */
 			updated: dayjs(data.updated),
