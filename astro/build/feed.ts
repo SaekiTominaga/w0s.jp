@@ -33,9 +33,9 @@ export const markdownRendar = (mdStr: string) => {
 	const parsed = new Parser().parse(mdStr);
 	const html = new HtmlRenderer().render(parsed);
 
-	const contentWalker = parsed.walker();
+	const walker = parsed.walker();
 
-	let event = contentWalker.next();
+	let event = walker.next();
 
 	const title: string[] = [];
 	const linkDestinations = new Set<string>();
@@ -56,7 +56,7 @@ export const markdownRendar = (mdStr: string) => {
 			}
 		}
 
-		event = contentWalker.next();
+		event = walker.next();
 	}
 
 	return {
