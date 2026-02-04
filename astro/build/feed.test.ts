@@ -1,20 +1,31 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
-import { markdown, yaml } from './feed.ts';
+import { markdownRendar, yaml } from './feed.ts';
 
 await test('markdown', async (t) => {
-	const parsed = markdown(`
-text[link1](/path/to/1)
+	const rendard = markdownRendar(`
+text1[link1](/path/to/1)
 
-text[link2](/path/to/2)
+text2[\`link2\`](/path/to/2)
+
+text3[<cite>link3</cite>](/path/to/3)
 `);
 
 	await t.test('content', () => {
-		assert.equal(parsed.html, '<p>text<a href="/path/to/1">link1</a></p>\n<p>text<a href="/path/to/2">link2</a></p>');
+		assert.equal(
+			rendard.html,
+			`<p>text1<a href="/path/to/1">link1</a></p>
+<p>text2<a href="/path/to/2"><code>link2</code></a></p>
+<p>text3<a href="/path/to/3"><cite>link3</cite></a></p>`,
+		);
+	});
+
+	await t.test('title', () => {
+		assert.equal(rendard.title, 'text1link1 / text2link2 / text3link3');
 	});
 
 	await t.test('linkDestination', () => {
-		assert.equal(parsed.linkDestinations.length, 2);
+		assert.equal(rendard.linkDestinations.length, 3);
 	});
 });
 

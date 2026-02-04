@@ -4,7 +4,6 @@ import { parseArgs } from 'node:util';
 import { Parser, HtmlRenderer } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { JSDOM } from 'jsdom';
 import { load as yamlLoad } from 'js-yaml';
 import slash from 'slash';
 
@@ -30,18 +29,31 @@ const INFO = [
 	},
 ];
 
-export const markdown = (mdStr: string) => {
+export const markdownRendar = (mdStr: string) => {
 	const parsed = new Parser().parse(mdStr);
 	const html = new HtmlRenderer().render(parsed);
 
 	const contentWalker = parsed.walker();
 
 	let event = contentWalker.next();
+
+	const title: string[] = [];
 	const linkDestinations = new Set<string>();
 	// eslint-disable-next-line functional/no-loop-statements
 	while (event !== null) {
-		if (event.entering && event.node.type === 'link' && event.node.destination !== null) {
-			linkDestinations.add(event.node.destination);
+		if (event.entering) {
+			const { node } = event;
+			const { type: nodeType } = node;
+
+			if (nodeType === 'paragraph') {
+				title.push('');
+			} else if ((nodeType === 'text' || nodeType === 'code') && node.literal !== null) {
+				title.splice(-1, 1, `${title.at(-1) ?? ''}${node.literal}`);
+			}
+
+			if (nodeType === 'link' && node.destination !== null) {
+				linkDestinations.add(node.destination);
+			}
 		}
 
 		event = contentWalker.next();
@@ -49,6 +61,7 @@ export const markdown = (mdStr: string) => {
 
 	return {
 		html: html.trim(),
+		title: title.join(' / '),
 		linkDestinations: Array.from(linkDestinations),
 	};
 };
@@ -60,37 +73,28 @@ export const yaml = (yamlStr: string) =>
 			updated: Date;
 			content: string;
 		}[]
-	)
-		.map(({ updated: updatedUTC, content }) => {
-			const { html: contentHtml, linkDestinations } = markdown(content);
+	).map(({ updated: updatedUTC, content }) => {
+		const { html: contentHtml, title, linkDestinations } = markdownRendar(content);
 
-			const { document } = new JSDOM(contentHtml).window;
-			const title = document.body.textContent?.trim().split('\n').join(' / ');
-			if (title === undefined || title === '') {
-				console.warn('Content element is empty');
-				return undefined;
-			}
+		const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
 
-			const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
+		const md5 = crypto.createHash('md5');
+		md5.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
+		const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
-			const md5 = crypto.createHash('md5');
-			md5.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
-			const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
-
-			return {
-				/* タイトル */
-				title: title,
-				/* ID に使うユニークな値 */
-				unique: unique,
-				/* タイムゾーンを変更 */
-				updated: dayjs(updated),
-				/* 本文中にあるリンクの宛先 */
-				links: linkDestinations,
-				/* Markdown → HTML */
-				content: contentHtml,
-			};
-		})
-		.filter((entry) => entry !== undefined);
+		return {
+			/* タイトル */
+			title: title,
+			/* ID に使うユニークな値 */
+			unique: unique,
+			/* タイムゾーンを変更 */
+			updated: dayjs(updated),
+			/* 本文中にあるリンクの宛先 */
+			links: linkDestinations,
+			/* Markdown → HTML */
+			content: contentHtml,
+		};
+	});
 
 if (import.meta.url === slash(`file:///${process.argv.at(1) ?? ''}`)) {
 	/* 引数処理 */
