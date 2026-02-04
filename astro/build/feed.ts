@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 import ejs from 'ejs';
 import { JSDOM } from 'jsdom';
 import { load as yamlLoad } from 'js-yaml';
-import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
 
 /**
@@ -31,113 +30,96 @@ const INFO = [
 	},
 ];
 
-const PRETTIER_OPTIONS_HTML: PrettierOptions = {
-	parser: 'html',
-	endOfLine: 'lf',
-	printWidth: 9999,
-	singleQuote: true,
-	useTabs: true,
+export const markdown = (mdStr: string) => {
+	const parsed = new Parser().parse(mdStr);
+	const html = new HtmlRenderer().render(parsed);
+
+	const contentWalker = parsed.walker();
+
+	let event = contentWalker.next();
+	const linkDestinations = new Set<string>();
+	// eslint-disable-next-line functional/no-loop-statements
+	while (event !== null) {
+		if (event.entering && event.node.type === 'link' && event.node.destination !== null) {
+			linkDestinations.add(event.node.destination);
+		}
+
+		event = contentWalker.next();
+	}
+
+	return {
+		html: html.trim(),
+		linkDestinations: Array.from(linkDestinations),
+	};
 };
 
-/* 引数処理 */
-const argsParsedValues = parseArgs({
-	options: {
-		directory: {
-			type: 'string',
-			short: 'd',
-		},
-	},
-}).values;
+export const yaml = (yamlStr: string) =>
+	(
+		yamlLoad(yamlStr) as {
+			id: string;
+			updated: Date;
+			content: string;
+		}[]
+	)
+		.map(({ updated: updatedUTC, content }) => {
+			const { html: contentHtml, linkDestinations } = markdown(content);
 
-if (argsParsedValues.directory === undefined) {
-	throw new Error('Argument `directory` not specified');
-}
-const directory = slash(argsParsedValues.directory);
+			const { document } = new JSDOM(contentHtml).window;
+			const title = document.body.textContent?.trim().split('\n').join(' / ');
+			if (title === undefined || title === '') {
+				console.warn('Content element is empty');
+				return undefined;
+			}
 
-await Promise.all(
-	INFO.map(async (feedInfo) => {
-		const fileData = (await fs.promises.readFile(feedInfo.srcPath)).toString();
+			const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
 
-		/* DOM 化 */
-		const parsed = (
-			yamlLoad(fileData) as {
-				id: string;
-				updated: Date;
-				content: string;
-			}[]
-		).map(({ updated, content }) => {
-			const contentParsed = new Parser().parse(content);
-			const contentHtml = new HtmlRenderer().render(contentParsed);
+			const md5 = crypto.createHash('md5');
+			md5.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
+			const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
 			return {
+				/* タイトル */
+				title: title,
+				/* ID に使うユニークな値 */
+				unique: unique,
 				/* タイムゾーンを変更 */
-				updated: new Date(updated.getTime() + updated.getTimezoneOffset() * 60 * 1000),
+				updated: dayjs(updated),
+				/* 本文中にあるリンクの宛先 */
+				links: linkDestinations,
 				/* Markdown → HTML */
 				content: contentHtml,
 			};
-		});
+		})
+		.filter((entry) => entry !== undefined);
 
-		/* HTML から必要なデータを取得 */
-		const entries: {
-			title: string;
-			unique: string;
-			updated: dayjs.Dayjs;
-			links: string[];
-			content: string;
-		}[] = [];
+if (import.meta.url === slash(`file:///${process.argv.at(1) ?? ''}`)) {
+	/* 引数処理 */
+	const argsParsedValues = parseArgs({
+		options: {
+			directory: {
+				type: 'string',
+				short: 'd',
+			},
+		},
+	}).values;
 
-		await Promise.all(
-			parsed.map(async ({ updated, content }) => {
-				const { document } = new JSDOM(content).window;
+	if (argsParsedValues.directory === undefined) {
+		throw new Error('Argument `directory` not specified');
+	}
+	const directory = slash(argsParsedValues.directory);
 
-				const title = document.body.textContent
-					?.trim()
-					.replaceAll(/\n+/gv, '\n')
-					.split('\n')
-					.map((line) => line.trim())
-					.join(' / ');
-				if (title === undefined || title === '') {
-					console.warn('Content element is empty');
-					return;
-				}
+	await Promise.all(
+		INFO.map(async (feedInfo) => {
+			const entries = yaml((await fs.promises.readFile(feedInfo.srcPath)).toString());
 
-				const contentFormatted = (await format(content, PRETTIER_OPTIONS_HTML)).trim();
+			const feed = await ejs.renderFile(feedInfo.feedTemplate, {
+				entries: entries,
+			});
 
-				const internalLinkURLs = [...document.body.querySelectorAll('a[href^="/"]')].map(
-					(anchorElement) => (anchorElement as unknown as HTMLAnchorElement).href,
-				);
-
-				const md5 = crypto.createHash('md5');
-				md5.update(`${String(updated.getTime() / 1000)}${internalLinkURLs.join('')}`);
-				const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
-
-				entries.push({
-					title: title,
-					unique: unique,
-					updated: dayjs(updated),
-					links: internalLinkURLs,
-					content: contentFormatted,
-				});
-			}),
-		);
-
-		entries.sort((a, b) => {
-			const aDate = a.updated.unix();
-			const bDate = b.updated.unix();
-			if (aDate !== bDate) {
-				return bDate - aDate;
-			}
-
-			return 0;
-		});
-
-		const feed = await ejs.renderFile(feedInfo.feedTemplate, {
-			entries: entries,
-		});
-
-		/* 出力 */
-		const feedPath = `${directory}/${feedInfo.feedPath}`;
-		await fs.promises.writeFile(feedPath, feed);
-		console.info(`Feed file created: ${feedPath}`);
-	}),
-);
+			/* 出力 */
+			const feedPath = `${directory}/${feedInfo.feedPath}`;
+			await fs.promises.writeFile(feedPath, feed);
+			console.info(`Feed file created: ${feedPath}`);
+		}),
+	);
+}
