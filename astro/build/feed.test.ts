@@ -57,8 +57,8 @@ await test('yaml', async (t) => {
 	});
 
 	await t.test('updated', () => {
-		assert.equal(entries.at(0)?.updated.format('YYYY-MM-DDTHH:mm:ssZ'), '2026-01-01T00:00:00+09:00');
-		assert.equal(entries.at(1)?.updated.format('YYYY-MM-DDTHH:mm:ssZ'), '2026-01-02T00:00:00+09:00');
+		assert.equal(entries.at(0)?.updated.format('YYYY-MM-DDTHH:mm:ss'), '2026-01-01T00:00:00');
+		assert.equal(entries.at(1)?.updated.format('YYYY-MM-DDTHH:mm:ss'), '2026-01-02T00:00:00');
 	});
 
 	await t.test('links', () => {
