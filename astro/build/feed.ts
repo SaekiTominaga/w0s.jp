@@ -1,11 +1,10 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
+import { Parser, HtmlRenderer } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { JSDOM } from 'jsdom';
 import { load as yamlLoad } from 'js-yaml';
-import { format, type Options as PrettierOptions } from 'prettier';
 import slash from 'slash';
 
 /**
@@ -30,109 +29,101 @@ const INFO = [
 	},
 ];
 
-const PRETTIER_OPTIONS_HTML: PrettierOptions = {
-	parser: 'html',
-	endOfLine: 'lf',
-	printWidth: 9999,
-	singleQuote: true,
-	useTabs: true,
-};
+export const markdownRendar = (mdStr: string) => {
+	const parsed = new Parser().parse(mdStr);
+	const html = new HtmlRenderer().render(parsed);
 
-/* 引数処理 */
-const argsParsedValues = parseArgs({
-	options: {
-		directory: {
-			type: 'string',
-			short: 'd',
-		},
-	},
-}).values;
+	const walker = parsed.walker();
 
-if (argsParsedValues.directory === undefined) {
-	throw new Error('Argument `directory` not specified');
-}
-const directory = slash(argsParsedValues.directory);
+	let event = walker.next();
 
-await Promise.all(
-	INFO.map(async (feedInfo) => {
-		const fileData = (await fs.promises.readFile(feedInfo.srcPath)).toString();
+	const title: string[] = [];
+	const linkDestinations = new Set<string>();
+	// eslint-disable-next-line functional/no-loop-statements
+	while (event !== null) {
+		if (event.entering) {
+			const { node } = event;
+			const { type: nodeType } = node;
 
-		/* DOM 化 */
-		const parsed = (
-			yamlLoad(fileData) as {
-				id: string;
-				updated: Date;
-				content: string;
-			}[]
-		).map(({ updated, content }) =>
-			/* タイムゾーンを変更 */
-			({
-				updated: new Date(updated.getTime() + updated.getTimezoneOffset() * 60 * 1000),
-				content,
-			}),
-		);
-
-		/* HTML から必要なデータを取得 */
-		const entries: {
-			title: string;
-			unique: string;
-			updated: dayjs.Dayjs;
-			links: string[];
-			content: string;
-		}[] = [];
-
-		await Promise.all(
-			parsed.map(async ({ updated, content }) => {
-				const { document } = new JSDOM(content).window;
-
-				const title = document.body.textContent
-					?.trim()
-					.replaceAll(/\n+/gv, '\n')
-					.split('\n')
-					.map((line) => line.trim())
-					.join(' / ');
-				if (title === undefined || title === '') {
-					console.warn('Content element is empty');
-					return;
-				}
-
-				const contentFormatted = (await format(content, PRETTIER_OPTIONS_HTML)).trim();
-
-				const internalLinkURLs = [...document.body.querySelectorAll('a[href^="/"]')].map(
-					(anchorElement) => (anchorElement as unknown as HTMLAnchorElement).href,
-				);
-
-				const md5 = crypto.createHash('md5');
-				md5.update(`${String(updated.getTime() / 1000)}${internalLinkURLs.join('')}`);
-				const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
-
-				entries.push({
-					title: title,
-					unique: unique,
-					updated: dayjs(updated),
-					links: internalLinkURLs,
-					content: contentFormatted,
-				});
-			}),
-		);
-
-		entries.sort((a, b) => {
-			const aDate = a.updated.unix();
-			const bDate = b.updated.unix();
-			if (aDate !== bDate) {
-				return bDate - aDate;
+			if (nodeType === 'paragraph') {
+				title.push('');
+			} else if ((nodeType === 'text' || nodeType === 'code') && node.literal !== null) {
+				title.splice(-1, 1, `${title.at(-1) ?? ''}${node.literal}`);
 			}
 
-			return 0;
-		});
+			if (nodeType === 'link' && node.destination !== null) {
+				linkDestinations.add(node.destination);
+			}
+		}
 
-		const feed = await ejs.renderFile(feedInfo.feedTemplate, {
-			entries: entries,
-		});
+		event = walker.next();
+	}
 
-		/* 出力 */
-		const feedPath = `${directory}/${feedInfo.feedPath}`;
-		await fs.promises.writeFile(feedPath, feed);
-		console.info(`Feed file created: ${feedPath}`);
-	}),
-);
+	return {
+		html: html.trim(),
+		title: title.join(' / '),
+		linkDestinations: Array.from(linkDestinations),
+	};
+};
+
+export const yaml = (yamlStr: string) =>
+	(
+		yamlLoad(yamlStr) as {
+			id: string;
+			updated: Date;
+			content: string;
+		}[]
+	).map(({ updated: updatedUTC, content }) => {
+		const { html: contentHtml, title, linkDestinations } = markdownRendar(content);
+
+		const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
+
+		const md5 = crypto.createHash('md5');
+		md5.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
+		const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
+
+		return {
+			/* タイトル */
+			title: title,
+			/* ID に使うユニークな値 */
+			unique: unique,
+			/* タイムゾーンを変更 */
+			updated: dayjs(updated),
+			/* 本文中にあるリンクの宛先 */
+			links: linkDestinations,
+			/* Markdown → HTML */
+			content: contentHtml,
+		};
+	});
+
+if (import.meta.url === slash(`file:///${process.argv.at(1) ?? ''}`)) {
+	/* 引数処理 */
+	const argsParsedValues = parseArgs({
+		options: {
+			directory: {
+				type: 'string',
+				short: 'd',
+			},
+		},
+	}).values;
+
+	if (argsParsedValues.directory === undefined) {
+		throw new Error('Argument `directory` not specified');
+	}
+	const directory = slash(argsParsedValues.directory);
+
+	await Promise.all(
+		INFO.map(async (feedInfo) => {
+			const entries = yaml((await fs.promises.readFile(feedInfo.srcPath)).toString());
+
+			const feed = await ejs.renderFile(feedInfo.feedTemplate, {
+				entries: entries,
+			});
+
+			/* 出力 */
+			const feedPath = `${directory}/${feedInfo.feedPath}`;
+			await fs.promises.writeFile(feedPath, feed);
+			console.info(`Feed file created: ${feedPath}`);
+		}),
+	);
+}

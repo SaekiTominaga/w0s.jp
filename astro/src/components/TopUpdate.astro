@@ -1,5 +1,6 @@
 ---
 import type { getCollection } from 'astro:content';
+import { Parser, HtmlRenderer } from 'commonmark';
 import dayjs from 'dayjs';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 
@@ -20,10 +21,31 @@ const updateEntries = collection
 
 		return data.updated > compareDate || index < 5;
 	})
-	.map(({ data }) => ({
-		updated: dayjs(data.updated),
-		content: data.content,
-	}));
+	.map(({ data }) => {
+		const contentParsed = new Parser().parse(data.content);
+		const contentHtml = new HtmlRenderer().render(contentParsed);
+
+		const contentWalker = contentParsed.walker();
+
+		let event = contentWalker.next();
+		while (event !== null) {
+			const { node } = event;
+			const { type: nodeType } = node;
+
+			if (!['text', 'html_inline', 'link', 'code', 'document', 'paragraph'].includes(nodeType)) {
+				throw new Error(`許可されていない Markdown 構文 <${nodeType}> が使用: ${data.content}`);
+			}
+
+			event = contentWalker.next();
+		}
+
+		return {
+			/* Date → Dayjs */
+			updated: dayjs(data.updated),
+			/* Markdown → HTML */
+			content: contentHtml,
+		};
+	});
 ---
 
 <section class="top-update" id={id}>
