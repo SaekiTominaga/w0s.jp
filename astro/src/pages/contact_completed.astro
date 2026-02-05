@@ -14,7 +14,7 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
-let referrer = new URL(Astro.request.url).searchParams.get('referrer') ?? undefined;
+let referrer = Astro.url.searchParams.get('referrer') ?? undefined;
 if (referrer !== undefined && referrer !== '') {
 	if (!referrer.startsWith('/')) {
 		logger.warn(`Invalid referrer value: ${referrer}`);
