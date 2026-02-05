@@ -1,54 +1,49 @@
 ---
 import dayjs from 'dayjs';
+import { actions } from 'astro:actions';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
 import Table from '@components/Table.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerNewsDataDao from '@db/CrawlerNewsData.js';
-import { response303 } from '@util/httpResponse.ts';
-import { getParams as getRequestParams, string as requestString, boolean as requestBoolean } from '@util/request.ts';
+import { response303, response400 } from '@util/httpResponse.ts';
+import { getParams as getRequestParams } from '@util/request.ts';
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
-
-interface RequestQuery {
-	newsId: string | undefined;
-	id: string | undefined;
-	actionDelete: boolean;
-}
 
 export const prerender = false;
 const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
-	title: 'ウェブ巡回（ニュース）',
+	title: 'ウェブ巡回（ニュースデータ）',
 	breadcrumb: [{ path: '/admin/crawler-news/', name: 'ウェブ巡回（ニュース）' }],
 };
 
-const requestParams = getRequestParams(Astro.url);
-const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
+const actionResult = Astro.getActionResult(actions.crawlerNews.deleteNewsData);
+if (actionResult !== undefined) {
+	const { data, error } = actionResult;
 
-const requestQuery: RequestQuery = {
-	newsId: requestString(requestParams.get('newsid') ?? requestBody?.get('newsid')),
-	id: requestString(requestBody?.get('id')),
-	actionDelete: requestBoolean(requestBody?.get('actiondel')),
-};
+	if (data !== undefined) {
+		logger.info('データ削除', data.id);
 
-const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
+		return response303(Astro.request, `?newsid=${data.newsId}`);
+	}
 
-if (requestQuery.actionDelete) {
-	/* 削除 */
-	if (requestQuery.id !== undefined) {
-		await dao.delete(requestQuery.id);
-		logger.info('データ削除', requestQuery.id);
+	if (error !== undefined) {
+		logger.warn(error.message);
 
-		return response303(Astro.request, `?newsid=${requestQuery.newsId}`);
+		return response400();
 	}
 }
 
 /* 初期表示 */
+const newsId = getRequestParams(Astro.url).get('newsid') ?? undefined;
+
+const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
+
 const [news, newsDataList] = await Promise.all([
-	dao.getNews(requestQuery.newsId), // ニュースデータ
-	requestQuery.newsId !== undefined ? await dao.getNewsDataList(requestQuery.newsId) : [], // 新着データ
+	dao.getNews(newsId), // ニュースデータ
+	newsId !== undefined ? dao.getNewsDataList(newsId) : undefined, // 新着データ
 ]);
 ---
 
@@ -73,32 +68,24 @@ const [news, newsDataList] = await Promise.all([
 		</thead>
 		<tbody>
 			{
-				newsDataList.map((newsData) => (
+				(newsDataList ?? []).map((newsData) => (
 					<tr>
 						<td>
-							<form action={Astro.url.pathname} method="post">
+							<form action={actions.crawlerNews.deleteNewsData} method="post">
 								<p>
 									<SubmitButton buttonStyle="compact" name="actiondel" value="1" class="js-button-confirm" data-message="削除しますか?">
 										削除
 									</SubmitButton>
-								</p>
-								<p>
-									<input type="hidden" name="newsid" value={requestQuery.newsId} />
-								</p>
-
-								<p>
+									<input type="hidden" name="newsid" value={newsId} />
 									<input type="hidden" name="id" value={newsData.random_id} />
 								</p>
 							</form>
 						</td>
 						<td>{newsData.date !== undefined && <time datetime={dayjs(newsData.date).format('YYYY-MM-DD')}>{dayjs(newsData.date).format('YYYY年M月D日')}</time>}</td>
 						<td>
-							{newsData.refer_url !== undefined && (
-								<a href={newsData.refer_url} referrerpolicy="no-referrer">
-									{newsData.content}
-								</a>
-							)}
-							{newsData.refer_url === undefined && <>{newsData.content}</>}
+							<a href={newsData.refer_url} referrerpolicy="no-referrer">
+								{newsData.content}
+							</a>
 						</td>
 					</tr>
 				))
