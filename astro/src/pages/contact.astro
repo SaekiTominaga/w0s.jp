@@ -1,13 +1,14 @@
 ---
-import ejs from 'ejs';
-import nodemailer from 'nodemailer';
-import { env } from '@w0s/env-value-type';
+import { actions } from 'astro:actions';
+import type { z } from 'astro/zod';
 import Layout from '@layouts/Site.astro';
 import DialogOverlay from '@components/DialogOverlay.astro';
 import FormGrid from '@components/FormGrid.astro';
 import FormButtons from '@components/FormButtons.astro';
 import FormInvalid from '@components/FormInvalid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
+import FormValidateMsg from '@components/FormValidateMsg.astro';
+import Stack from '@components/Stack.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import Table from '@components/Table.astro';
@@ -17,18 +18,8 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import { response303, response400 } from '@util/httpResponse.ts';
-import { string as requestString, boolean as requestBoolean } from '@util/request.ts';
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
-
-interface RequestQuery {
-	name: string | undefined;
-	email: string | undefined;
-	reply: string | undefined;
-	body: string | undefined;
-	referrer: string | undefined;
-	actionSend: boolean;
-}
 
 export const prerender = false;
 const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
@@ -40,67 +31,30 @@ const structuredData: StructuredData = {
 	moduleScripts: ['contact.mjs'],
 };
 
-if (Astro.request.method === 'POST') {
-	const requestBody = await Astro.request.formData();
+let requestFormdata: FormData | undefined;
+let validateMessages: string[] = [];
 
-	const requestQuery: RequestQuery = {
-		name: requestString(requestBody.get('yourname')),
-		email: requestString(requestBody.get('email')),
-		reply: requestString(requestBody.get('reply')),
-		body: requestString(requestBody.get('body')),
-		referrer: requestString(requestBody.get('referrer')),
-		actionSend: requestBoolean(requestBody.get('actionsend')),
-	};
+const actionResult = Astro.getActionResult(actions.contact.post);
+if (actionResult !== undefined) {
+	Astro.response.headers.append('Vary', 'Origin');
 
-	if (requestQuery.actionSend) {
-		/* Origin ヘッダーのチェック（bot 阻止） */
-		Astro.response.headers.append('Vary', 'Origin');
+	const { data, error } = actionResult;
 
-		const requestOrigin = Astro.request.headers.get('Origin');
-		if (requestOrigin === null || !env('CONTACT_ALLOW_ORIGINS', 'string[]').includes(requestOrigin)) {
-			logger.warn('Origin header error', requestOrigin);
+	if (data !== undefined) {
+		logger.info('Message sent: %s', data.mailSentInfo.messageId);
+
+		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
+	}
+
+	if (error !== undefined) {
+		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+			requestFormdata = await Astro.request.formData();
+			validateMessages = (error.issues as z.ZodIssue[]).map((issue) => issue.message);
+		} else {
+			logger.warn(error.message);
+
 			return response400();
 		}
-
-		/* メール送信 */
-		const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
-			requestQuery: requestQuery,
-			ip: Astro.clientAddress,
-			ua: Astro.request.headers.get('User-Agent'),
-		});
-
-		const transporter = nodemailer.createTransport({
-			host: env('MAIL_SMTP'),
-			port: env('MAIL_PORT', 'number'),
-			auth: {
-				user: env('MAIL_USER'),
-				pass: env('MAIL_PASSWORD'),
-			},
-		});
-
-		const info = await transporter.sendMail({
-			from: env('MAIL_FROM'),
-			to: env('MAIL_TO'),
-			subject: 'w0s.jp 問い合わせ',
-			html: html,
-		});
-
-		logger.info('Message sent: %s', info.messageId);
-
-		return response303(Astro.request, `/contact_completed?referrer=${requestQuery.referrer}`);
-	}
-}
-
-let referrerRootRelativePath = ''; // リファラーのいわゆるルート相対パス部分
-const referrer = Astro.request.headers.get('Referer');
-if (referrer !== null) {
-	try {
-		const referrerUrl = new URL(referrer);
-		if (Astro.url.hostname === referrerUrl.hostname) {
-			referrerRootRelativePath = `${referrerUrl.pathname}${referrerUrl.search}`;
-		}
-	} catch {
-		logger.warn(`Invalid referrer value <${referrer}>`);
 	}
 }
 ---
@@ -114,88 +68,92 @@ if (referrer !== null) {
 		<StepItem name="完了" />
 	</Step>
 
-	<form method="post" novalidate="" class="js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
+	<form action={actions.contact.post} method="post" novalidate="" class="js-submit-overlay" id="contact-form" data-overlayed-by="form-submit-overlay">
 		<div class="js-screen-input">
-			<FormGrid>
-				<FormGridGroup>
-					<Fragment slot="legend"><label for="input-name">名前 <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
+			<Stack>
+				<FormValidateMsg msgs={validateMessages} />
 
-					<Fragment slot="contents">
-						<FormCtrlInput size="24em"><input name="yourname" id="input-name" /></FormCtrlInput>
-					</Fragment>
-				</FormGridGroup>
-				<FormGridGroup>
-					<Fragment slot="legend"><label for="input-email">Eメールアドレス <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+				<FormGrid>
+					<FormGridGroup>
+						<Fragment slot="legend"><label for="input-name">名前 <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
-					<Fragment slot="contents">
-						<FormCtrlInput size="24em"><input type="email" name="email" required="" autocomplete="email" id="input-email" class="js-convert-trim js-validation" aria-errormessage="input-validate-email" /></FormCtrlInput>
-					</Fragment>
+						<Fragment slot="contents">
+							<FormCtrlInput size="24em"><input name="yourname" value={requestFormdata?.get('yourname')?.toString()} id="input-name" /></FormCtrlInput>
+						</Fragment>
+					</FormGridGroup>
+					<FormGridGroup>
+						<Fragment slot="legend"><label for="input-email">Eメールアドレス <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<Fragment slot="validate">
-						<FormInvalid id="input-validate-email" />
-					</Fragment>
-				</FormGridGroup>
-				<FormGridGroup ctrlType="radio">
-					<Fragment slot="legend"><span id="label-reply">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
+						<Fragment slot="contents">
+							<FormCtrlInput size="24em"><input type="email" name="email" value={requestFormdata?.get('email')?.toString()} required="" autocomplete="email" id="input-email" class="js-convert-trim js-validation" aria-errormessage="input-validate-email" /></FormCtrlInput>
+						</Fragment>
 
-					<Fragment slot="contents">
-						<div class="js-validation" role="radiogroup" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
-							<Label label="必要">
-								<input type="radio" name="reply" value="yes" required="" />
-							</Label>
-							<Label label="不要">
-								<input type="radio" name="reply" value="no" required="" />
-							</Label>
-						</div>
-					</Fragment>
+						<Fragment slot="validate">
+							<FormInvalid id="input-validate-email" />
+						</Fragment>
+					</FormGridGroup>
+					<FormGridGroup ctrlType="radio">
+						<Fragment slot="legend"><span id="label-reply">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
 
-					<Fragment slot="validate">
-						<FormInvalid id="input-validate-reply" />
-					</Fragment>
+						<Fragment slot="contents">
+							<div class="js-validation" role="radiogroup" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
+								<Label label="必要">
+									<input type="radio" name="reply" value="yes" checked={requestFormdata?.get('reply') === 'yes'} required="" />
+								</Label>
+								<Label label="不要">
+									<input type="radio" name="reply" value="no" checked={requestFormdata?.get('reply') === 'no'} required="" />
+								</Label>
+							</div>
+						</Fragment>
 
-					<Fragment slot="note">
-						<p id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、内容によっては返信しかねる場合があります。</p>
-					</Fragment>
-				</FormGridGroup>
-				<FormGridGroup>
-					<Fragment slot="legend"><label for="input-body">内容 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
+						<Fragment slot="validate">
+							<FormInvalid id="input-validate-reply" />
+						</Fragment>
 
-					<Fragment slot="contents">
-						<FormCtrlTextarea blockSize="16em"><textarea name="body" required="" id="input-body" class="js-convert-trim js-validation js-textarea-auto-size" aria-errormessage="input-validate-body"></textarea></FormCtrlTextarea>
-					</Fragment>
+						<Fragment slot="note">
+							<p id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、内容によっては返信しかねる場合があります。</p>
+						</Fragment>
+					</FormGridGroup>
+					<FormGridGroup>
+						<Fragment slot="legend"><label for="input-body">内容 <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
-					<Fragment slot="validate">
-						<FormInvalid id="input-validate-body" />
-					</Fragment>
-				</FormGridGroup>
-			</FormGrid>
+						<Fragment slot="contents">
+							<FormCtrlTextarea blockSize="16em"><textarea name="body" required="" id="input-body" class="js-convert-trim js-validation js-textarea-auto-size" aria-errormessage="input-validate-body">{requestFormdata?.get('body')}</textarea></FormCtrlTextarea>
+						</Fragment>
 
-			<p><input type="hidden" name="referrer" value={referrerRootRelativePath} /></p>
+						<Fragment slot="validate">
+							<FormInvalid id="input-validate-body" />
+						</Fragment>
+					</FormGridGroup>
+				</FormGrid>
+			</Stack>
 		</div>
 
 		<div class="js-screen-confirm" hidden="">
-			<Table full={true}>
-				<tbody>
-					<tr>
-						<th scope="row">名前</th>
-						<td class="js-confirm-output" data-ctrl-name="yourname"></td>
-					</tr>
-					<tr>
-						<th scope="row">Eメールアドレス</th>
-						<td class="js-confirm-output" data-ctrl-name="email"></td>
-					</tr>
-					<tr>
-						<th scope="row">返信の有無</th>
-						<td class="js-confirm-output" data-ctrl-name="reply"></td>
-					</tr>
-					<tr>
-						<th scope="row">内容</th>
-						<td>
-							<pre class="js-confirm-output" data-ctrl-name="body"></pre>
-						</td>
-					</tr>
-				</tbody>
-			</Table>
+			<Stack>
+				<Table full={true}>
+					<tbody>
+						<tr>
+							<th scope="row">名前</th>
+							<td class="js-confirm-output" data-ctrl-name="yourname"></td>
+						</tr>
+						<tr>
+							<th scope="row">Eメールアドレス</th>
+							<td class="js-confirm-output" data-ctrl-name="email"></td>
+						</tr>
+						<tr>
+							<th scope="row">返信の有無</th>
+							<td class="js-confirm-output" data-ctrl-name="reply"></td>
+						</tr>
+						<tr>
+							<th scope="row">内容</th>
+							<td>
+								<pre class="js-confirm-output" data-ctrl-name="body"></pre>
+							</td>
+						</tr>
+					</tbody>
+				</Table>
+			</Stack>
 		</div>
 
 		<FormButtons>
@@ -206,7 +164,7 @@ if (referrer !== null) {
 				<SubmitButton type="button" buttonStyle="cancel" id="js-correct-button">修正</SubmitButton>
 			</p>
 			<p class="js-screen-confirm">
-				<SubmitButton name="actionsend" value="1" id="js-send-button">送信</SubmitButton>
+				<SubmitButton id="js-send-button">送信</SubmitButton>
 			</p>
 		</FormButtons>
 	</form>

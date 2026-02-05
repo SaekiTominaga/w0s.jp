@@ -1,15 +1,10 @@
 ---
 import Layout from '@layouts/Site.astro';
-import Anchor from '@components/+phrasing/Anchor.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
-import { string as requestString } from '@util/request.ts';
+import Anchor from '@components/+phrasing/Anchor.astro';
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
-
-interface RequestQuery {
-	referrer: string | undefined;
-}
 
 export const prerender = false;
 const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
@@ -19,17 +14,11 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
-const requestUrl = new URL(Astro.request.url);
-const requestSearchParams = requestUrl.searchParams;
-
-const requestQuery: RequestQuery = {
-	referrer: requestString(requestSearchParams.get('referrer')),
-};
-
-if (requestQuery.referrer !== undefined && requestQuery.referrer !== '') {
-	if (!requestQuery.referrer.startsWith('/')) {
-		logger.warn(`Invalid referrer value <${requestQuery.referrer}>`);
-		requestQuery.referrer = undefined;
+let referrer = new URL(Astro.request.url).searchParams.get('referrer') ?? undefined;
+if (referrer !== undefined && referrer !== '') {
+	if (!referrer.startsWith('/')) {
+		logger.warn(`Invalid referrer value: ${referrer}`);
+		referrer = undefined;
 	}
 }
 ---
@@ -44,16 +33,16 @@ if (requestQuery.referrer !== undefined && requestQuery.referrer !== '') {
 	<p>問い合わせを受け付けました。</p>
 
 	{
-		requestQuery.referrer !== null && requestQuery.referrer !== '' && (
+		referrer !== undefined && (
 			<p>
-				<Anchor href={requestQuery.referrer} bullet={true}>
+				<Anchor href={referrer} bullet={true}>
 					元のページへ戻る
 				</Anchor>
 			</p>
 		)
 	}
 	{
-		(requestQuery.referrer === null || requestQuery.referrer === '') && (
+		referrer === undefined && (
 			<p>
 				<Anchor href="/" bullet={true}>
 					トップページへ戻る
