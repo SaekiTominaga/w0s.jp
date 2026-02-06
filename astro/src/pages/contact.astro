@@ -32,7 +32,7 @@ const structuredData: StructuredData = {
 };
 
 let requestFormdata: FormData | undefined;
-let validateMessages: string[] = [];
+const validateMessages: string[] = [];
 
 const actionResult = Astro.getActionResult(actions.contact.post);
 if (actionResult !== undefined) {
@@ -42,17 +42,15 @@ if (actionResult !== undefined) {
 
 	if (data !== undefined) {
 		logger.info('Message sent: %s', data.mailSentInfo.messageId);
-
 		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
 	}
 
 	if (error !== undefined) {
 		if (error.type === 'AstroActionInputError' && 'issues' in error) {
 			requestFormdata = await Astro.request.formData();
-			validateMessages = (error.issues as z.ZodIssue[]).map((issue) => issue.message);
+			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
 		} else {
 			logger.warn(error.message);
-
 			return response400();
 		}
 	}
