@@ -1,4 +1,6 @@
 ---
+import { actions } from 'astro:actions';
+import type { z } from 'astro/zod';
 import { SqliteError } from 'better-sqlite3';
 import GithubSlugger from 'github-slugger';
 import { env } from '@w0s/env-value-type';
@@ -43,121 +45,83 @@ const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース）',
 };
 
-const slugger = new GithubSlugger();
-
-const requestParams = getRequestParams(Astro.url);
-const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
-
-const requestQuery: RequestQuery = {
-	url: requestString(requestParams.get('url') ?? requestBody?.get('url')),
-	title: requestString(requestBody?.get('title')),
-	category: requestNumber(requestBody?.get('category')),
-	priority: requestNumber(requestBody?.get('priority')),
-	browser: requestBoolean(requestBody?.get('browser')),
-	selector: requestStringEmpty(requestBody?.get('selector')),
-	baseUrl: requestString(requestBody?.get('baseurl')),
-	actionAdd: requestBoolean(requestBody?.get('actionadd')),
-	actionRevise: requestBoolean(requestBody?.get('actionrev')),
-	actionRevisePreview: requestBoolean(requestParams.get('actionrevpre')),
-	actionDelete: requestBoolean(requestBody?.get('actiondel')),
-};
-
-const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
-
+let requestFormdata: FormData | undefined;
 const validateMessages: string[] = [];
-if (requestQuery.actionAdd) {
-	/* 登録 */
-	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined) {
-		try {
-			await dao.insert({
-				url: new URL(requestQuery.url),
-				title: requestQuery.title,
-				category: requestQuery.category,
-				priority: requestQuery.priority,
-				browser: requestQuery.browser,
-				selector: requestQuery.selector,
-			});
-			logger.info('データ登録', requestQuery.url);
 
-			return response303(Astro.request);
-		} catch (e) {
-			if (!(e instanceof SqliteError)) {
-				throw e;
-			}
+const insertActionResult = Astro.getActionResult(actions.crawlerresource.insert);
+if (insertActionResult !== undefined) {
+	const { data, error } = insertActionResult;
 
-			switch (e.code) {
-				case 'SQLITE_CONSTRAINT_PRIMARYKEY':
-				case 'SQLITE_CONSTRAINT_UNIQUE': {
-					validateMessages.push(configCrawlerResource.validator.unique);
-					break;
-				}
-				default: {
-					throw e;
-				}
-			}
+	if (data !== undefined) {
+		if (data.errorMessage === undefined) {
+			logger.info('データ登録', data.url);
+			return response303(Astro.request, Astro.url.pathname);
 		}
-	}
-} else if (requestQuery.actionRevise) {
-	/* 修正実行 */
-	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.baseUrl !== undefined) {
-		try {
-			await dao.update(
-				{
-					url: new URL(requestQuery.url),
-					title: requestQuery.title,
-					category: requestQuery.category,
-					priority: requestQuery.priority,
-					browser: requestQuery.browser,
-					selector: requestQuery.selector,
-				},
-				requestQuery.baseUrl,
-			);
-			logger.info('データ更新', requestQuery.url);
 
-			return response303(Astro.request);
-		} catch (e) {
-			if (!(e instanceof SqliteError)) {
-				throw e;
-			}
-
-			switch (e.code) {
-				case 'SQLITE_CONSTRAINT_PRIMARYKEY':
-				case 'SQLITE_CONSTRAINT_UNIQUE': {
-					validateMessages.push(configCrawlerResource.validator.unique);
-					break;
-				}
-				default: {
-					throw e;
-				}
-			}
-		}
-	}
-} else if (requestQuery.actionDelete) {
-	/* 削除 */
-	if (requestQuery.url !== undefined) {
-		await dao.delete(requestQuery.url);
-		logger.info('データ削除', requestQuery.url);
+		requestFormdata = await Astro.request.formData();
+		validateMessages.push(data.errorMessage);
 	}
 
-	return response303(Astro.request);
-} else if (requestQuery.actionRevisePreview) {
-	/* 修正データ選択 */
-	if (requestQuery.url !== undefined) {
-		const reviseData = await dao.getReviseData(requestQuery.url);
-		if (reviseData !== undefined) {
-			requestQuery.title = reviseData.title;
-			requestQuery.category = reviseData.category;
-			requestQuery.priority = reviseData.priority;
-			requestQuery.browser = reviseData.browser;
-			requestQuery.selector = reviseData.selector;
+	if (error !== undefined) {
+		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+			requestFormdata = await Astro.request.formData();
+			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+		} else {
+			logger.warn(error.message);
+			return response400();
 		}
 	}
 }
 
+const updateActionResult = Astro.getActionResult(actions.crawlerresource.update);
+if (updateActionResult !== undefined) {
+	const { data, error } = updateActionResult;
+
+	if (data !== undefined) {
+		if (data.errorMessage === undefined) {
+			logger.info('データ更新', data.url);
+			return response303(Astro.request, Astro.url.pathname);
+		}
+
+		requestFormdata = await Astro.request.formData();
+		validateMessages.push(data.errorMessage);
+	}
+
+	if (error !== undefined) {
+		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+			requestFormdata = await Astro.request.formData();
+			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+		} else {
+			logger.warn(error.message);
+			return response400();
+		}
+	}
+}
+
+const deleteActionResult = Astro.getActionResult(actions.crawlerresource.delete);
+if (deleteActionResult !== undefined) {
+	const { data, error } = deleteActionResult;
+
+	if (data !== undefined) {
+		logger.info('データ削除', data.url);
+		return response303(Astro.request, Astro.url.pathname);
+	}
+
+	if (error !== undefined) {
+		logger.warn(error.message);
+		return response400();
+	}
+}
+
+const slugger = new GithubSlugger();
+
 /* 初期表示 */
-const categoryMaster = await dao.getCategoryMaster(); // カテゴリー情報
-const priorityMaster = await dao.getPriorityMaster(); // 優先度情報
-const resourcePageListDto = await dao.getResourcePageList(); // 巡回ページデータ
+const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
+const [categoryMaster, priorityMaster, resourcePageListDto] = await Promise.all([
+	dao.getCategoryMaster(), // カテゴリー情報
+	dao.getPriorityMaster(), // 優先度情報
+	dao.getResourcePageList(), // 巡回ページデータ
+]);
 
 const resourcePageList = new Map<
 	string,
@@ -187,13 +151,17 @@ for (const resoursePage of resourcePageListDto) {
 
 	resourcePageList.set(categoryName, resourcePageOfCategoryView);
 }
+
+const requestParams = getRequestParams(Astro.url);
+const requestParamUrl = requestParams.get('url') ?? undefined;
+const reviseData = requestParamUrl !== undefined ? await dao.getReviseData(requestParamUrl) : undefined;
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
 		<Fragment slot="heading">データ登録</Fragment>
 
-		<form action={Astro.url.pathname} method="post">
+		<form action={reviseData === undefined && updateActionResult === undefined ? actions.crawlerresource.insert : actions.crawlerresource.update} method="post">
 			<FormValidateMsg msgs={validateMessages} />
 
 			<FormGrid>
@@ -201,14 +169,14 @@ for (const resoursePage of resourcePageListDto) {
 					<Fragment slot="legend"><label for="fc-url">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" class="js-convert-trim" id="fc-url" /></FormCtrlInput>
+						<FormCtrlInput><input type="url" name="url" value={requestFormdata?.get('url')?.toString() ?? reviseData?.url.toString()} required="" class="js-convert-trim" id="fc-url" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-title">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
+						<FormCtrlInput><input name="title" value={requestFormdata?.get('title')?.toString() ?? reviseData?.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
@@ -219,14 +187,9 @@ for (const resoursePage of resourcePageListDto) {
 							<select name="category" id="fc-category">
 								{
 									categoryMaster.map((category) => (
-										<>
-											{requestQuery.category === category.fk && (
-												<option value={category.fk} selected="">
-													{category.name}
-												</option>
-											)}
-											{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-										</>
+										<option value={category.fk} selected={Number(requestFormdata?.get('category') ?? reviseData?.category) === category.fk}>
+											{category.name}
+										</option>
 									))
 								}
 							</select>
@@ -241,14 +204,9 @@ for (const resoursePage of resourcePageListDto) {
 							<select name="priority" id="fc-priority">
 								{
 									priorityMaster.map((priority) => (
-										<>
-											{requestQuery.priority === priority.fk && (
-												<option value={priority.fk} selected="">
-													{priority.name}
-												</option>
-											)}
-											{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-										</>
+										<option value={priority.fk} selected={Number(requestFormdata?.get('priority') ?? reviseData?.priority) === priority.fk}>
+											{priority.name}
+										</option>
 									))
 								}
 							</select>
@@ -260,7 +218,7 @@ for (const resoursePage of resourcePageListDto) {
 
 					<Fragment slot="contents">
 						<Label label="ウェブブラウザでアクセスするか">
-							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
+							<input type="checkbox" name="browser" value="1" checked={Boolean(requestFormdata?.get('browser') ?? reviseData?.browser)} />
 						</Label>
 					</Fragment>
 				</FormGridGroup>
@@ -268,32 +226,18 @@ for (const resoursePage of resourcePageListDto) {
 					<Fragment slot="legend"><label for="fc-selector">セレクター <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selector" value={requestQuery.selector} class="js-convert-trim" id="fc-selector" /></FormCtrlInput>
+						<FormCtrlInput><input name="selector" value={requestFormdata?.get('selector')?.toString() ?? reviseData?.selector} class="js-convert-trim" id="fc-selector" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
 
-			<p><input type="hidden" name="baseurl" value={requestQuery.url} /></p>
+			<p><input type="hidden" name="baseurl" value={requestFormdata?.get('url')?.toString() ?? reviseData?.url.toString()} /></p>
 
 			<FormButtons>
-				{
-					(requestQuery.actionRevisePreview || requestQuery.actionRevise) && (
-						<p>
-							<SubmitButton name="actionrev" value="1">
-								修正
-							</SubmitButton>
-						</p>
-					)
-				}
-				{
-					!requestQuery.actionRevisePreview && !requestQuery.actionRevise && (
-						<p>
-							<SubmitButton name="actionadd" value="1">
-								登録
-							</SubmitButton>
-						</p>
-					)
-				}
+				<p>
+					{reviseData === undefined && updateActionResult === undefined && <SubmitButton>登録</SubmitButton>}
+					{(reviseData !== undefined || updateActionResult !== undefined) && <SubmitButton>修正</SubmitButton>}
+				</p>
 			</FormButtons>
 		</form>
 	</Section>
@@ -320,13 +264,13 @@ for (const resoursePage of resourcePageListDto) {
 							<tr>
 								<td>
 									<Stack>
-										<form action={Astro.url.pathname} method="post">
+										<form method="post">
 											<p>
 												<input type="hidden" name="url" value={resourcePage.url.toString()} />
-												<SubmitButton buttonStyle="compact" name="actionrevpre" value="1" formmethod="get">
+												<SubmitButton formmethod="get" buttonStyle="compact">
 													修正
 												</SubmitButton>
-												<SubmitButton buttonStyle="compact" name="actiondel" value="1" class="js-button-confirm" data-message="削除しますか?">
+												<SubmitButton formaction={actions.crawlerresource.delete} buttonStyle="compact" class="js-button-confirm" data-message="削除しますか?">
 													削除
 												</SubmitButton>
 											</p>

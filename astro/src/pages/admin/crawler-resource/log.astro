@@ -6,40 +6,24 @@ import { getParams as getRequestParams, string as requestString } from '@util/re
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
-interface RequestQuery {
-	dir: string | undefined;
-	file: string | undefined;
-}
-
 export const prerender = false;
 const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
-	title: 'ウェブ巡回（リソース）',
+	title: 'ウェブ巡回（リソースファイル）',
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
 const requestParams = getRequestParams(Astro.url);
+const requestParamDir = requestParams.get('dir') ?? undefined;
+const requestParamFile = requestParams.get('file') ?? undefined;
 
-const requestQuery: RequestQuery = {
-	dir: requestString(requestParams.get('dir')),
-	file: requestString(requestParams.get('file')),
-};
-
-if (requestQuery.dir !== undefined && requestQuery.file !== undefined) {
-	const filePath = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestQuery.dir}/${requestQuery.file}`;
+if (requestParamDir !== undefined && requestParamFile !== undefined) {
+	const filePath = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestParamDir}/${requestParamFile}`;
 
 	/* ソースコード閲覧 */
-	try {
-		const file = (await fs.promises.readFile(filePath)).toString();
-		return new Response(file);
-	} catch (e) {
-		if (e instanceof SyntaxError) {
-			logger.warn(e.message);
-		} else {
-			logger.error(e);
-		}
-	}
+	const file = (await fs.promises.readFile(filePath)).toString();
+	return new Response(file);
 }
 ---
 
