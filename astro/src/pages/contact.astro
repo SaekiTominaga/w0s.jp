@@ -40,11 +40,6 @@ if (actionResult !== undefined) {
 
 	const { data, error } = actionResult;
 
-	if (data !== undefined) {
-		logger.info('Message sent: %s', data.mailSentInfo.messageId);
-		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
-	}
-
 	if (error !== undefined) {
 		if (error.type === 'AstroActionInputError' && 'issues' in error) {
 			requestFormdata = await Astro.request.formData();
@@ -53,6 +48,11 @@ if (actionResult !== undefined) {
 			logger.warn(error.message);
 			return response400();
 		}
+	}
+
+	if (data !== undefined) {
+		logger.info('Message sent: %s', data.mailSentInfo.messageId);
+		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
 	}
 }
 ---

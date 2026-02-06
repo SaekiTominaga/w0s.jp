@@ -23,15 +23,13 @@ const deleteActionResult = Astro.getActionResult(actions.crawlernews.newsdatadel
 if (deleteActionResult !== undefined) {
 	const { data, error } = deleteActionResult;
 
-	if (data !== undefined) {
-		logger.info('データ削除', data.id);
-		return response303(Astro.request, `?newsid=${data.newsId}`);
-	}
-
 	if (error !== undefined) {
 		logger.warn(error.message);
 		return response400();
 	}
+
+	logger.info('データ削除', data.id);
+	return response303(Astro.request, `?newsid=${data.newsId}`);
 }
 
 /* 初期表示 */
