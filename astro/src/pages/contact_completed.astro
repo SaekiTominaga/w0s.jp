@@ -3,6 +3,7 @@ import Layout from '@layouts/Site.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
+import { getParams as getRequestParams } from '@util/request.ts';
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
 
@@ -14,12 +15,13 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
-let referrer = Astro.url.searchParams.get('referrer') ?? undefined;
-if (referrer !== undefined && referrer !== '') {
-	if (!referrer.startsWith('/')) {
-		logger.warn(`Invalid referrer value: ${referrer}`);
-		referrer = undefined;
-	}
+const requestParams = getRequestParams(Astro.url);
+const requestParamReferrer = requestParams.get('referrer') ?? undefined;
+
+let referrer = requestParamReferrer;
+if (requestParamReferrer !== undefined && requestParamReferrer !== '' && !requestParamReferrer.startsWith('/')) {
+	logger.warn(`Invalid referrer value: ${requestParamReferrer}`);
+	referrer = undefined;
 }
 ---
 

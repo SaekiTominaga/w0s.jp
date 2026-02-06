@@ -2,9 +2,9 @@ import { defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 import { SqliteError } from 'better-sqlite3';
 import { env } from '@w0s/env-value-type';
-import configCrawlerNews from '@config/crawler-news.js';
-import CrawlerNewsDao from '@db/CrawlerNews';
-import CrawlerNewsDataDao from '@db/CrawlerNewsData';
+import configCrawlerNews from '@config/crawler-news.ts';
+import CrawlerNewsDao from '@db/CrawlerNews.ts';
+import CrawlerNewsDataDao from '@db/CrawlerNewsData.ts';
 
 export const crawlerNews = {
 	/* サイトデータ登録 */

@@ -5,7 +5,7 @@ import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
 import Table from '@components/Table.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
-import CrawlerNewsDataDao from '@db/CrawlerNewsData.js';
+import CrawlerNewsDataDao from '@db/CrawlerNewsData.ts';
 import { response303, response400 } from '@util/httpResponse.ts';
 import { getParams as getRequestParams } from '@util/request.ts';
 import { init as ssrInit } from '@util/ssr.ts';
@@ -35,13 +35,14 @@ if (deleteActionResult !== undefined) {
 }
 
 /* 初期表示 */
-const newsId = getRequestParams(Astro.url).get('newsid') ?? undefined;
+const requestParams = getRequestParams(Astro.url);
+const requestParamNewsId = requestParams.get('newsid') ?? undefined;
 
 const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
 
 const [news, newsDataList] = await Promise.all([
-	dao.getNews(newsId), // ニュースデータ
-	newsId !== undefined ? dao.getNewsDataList(newsId) : undefined, // 新着データ
+	dao.getNews(requestParamNewsId), // ニュースデータ
+	requestParamNewsId !== undefined ? dao.getNewsDataList(requestParamNewsId) : undefined, // 新着データ
 ]);
 ---
 
@@ -74,7 +75,7 @@ const [news, newsDataList] = await Promise.all([
 									<SubmitButton formaction={actions.crawlernews.newsdatadelete} buttonStyle="compact" class="js-button-confirm" data-message="削除しますか?">
 										削除
 									</SubmitButton>
-									<input type="hidden" name="newsid" value={newsId} />
+									<input type="hidden" name="newsid" value={requestParamNewsId} />
 									<input type="hidden" name="id" value={newsData.random_id} />
 								</p>
 							</form>
