@@ -19,19 +19,17 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/admin/crawler-news/', name: 'ウェブ巡回（ニュース）' }],
 };
 
-const actionResult = Astro.getActionResult(actions.crawlerNews.deleteNewsData);
-if (actionResult !== undefined) {
-	const { data, error } = actionResult;
+const deleteActionResult = Astro.getActionResult(actions.crawlernews.newsdatadelete);
+if (deleteActionResult !== undefined) {
+	const { data, error } = deleteActionResult;
 
 	if (data !== undefined) {
 		logger.info('データ削除', data.id);
-
 		return response303(Astro.request, `?newsid=${data.newsId}`);
 	}
 
 	if (error !== undefined) {
 		logger.warn(error.message);
-
 		return response400();
 	}
 }
@@ -71,9 +69,9 @@ const [news, newsDataList] = await Promise.all([
 				(newsDataList ?? []).map((newsData) => (
 					<tr>
 						<td>
-							<form action={actions.crawlerNews.deleteNewsData} method="post">
+							<form method="post">
 								<p>
-									<SubmitButton buttonStyle="compact" name="actiondel" value="1" class="js-button-confirm" data-message="削除しますか?">
+									<SubmitButton formaction={actions.crawlernews.newsdatadelete} buttonStyle="compact" class="js-button-confirm" data-message="削除しますか?">
 										削除
 									</SubmitButton>
 									<input type="hidden" name="newsid" value={newsId} />

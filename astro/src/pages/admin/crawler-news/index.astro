@@ -1,5 +1,6 @@
 ---
-import { SqliteError } from 'better-sqlite3';
+import { actions } from 'astro:actions';
+import type { z } from 'astro/zod';
 import GithubSlugger from 'github-slugger';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
@@ -14,29 +15,11 @@ import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlSelect from '@components/+phrasing/FormCtrlSelect.astro';
 import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
-import configCrawlerNews from '@config/crawler-news.js';
 import CrawlerNewsDao from '@db/CrawlerNews.js';
-import { response303 } from '@util/httpResponse.ts';
-import { getParams as getRequestParams, string as requestString, stringEmpty as requestStringEmpty, number as requestNumber, boolean as requestBoolean } from '@util/request.ts';
+import { response303, response400 } from '@util/httpResponse.ts';
+import { getParams as getRequestParams } from '@util/request.ts';
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
-
-interface RequestQuery {
-	id: string | undefined;
-	url: string | undefined;
-	title: string | undefined;
-	category: number | undefined;
-	priority: number | undefined;
-	browser: boolean;
-	selectorWrap: string | undefined;
-	selectorDate: string | undefined;
-	selectorContent: string | undefined;
-	baseUrl: string | undefined;
-	actionAdd: boolean;
-	actionRevise: boolean;
-	actionRevisePreview: boolean;
-	actionDelete: boolean;
-}
 
 export const prerender = false;
 const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
@@ -45,127 +28,80 @@ const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
 };
 
-const slugger = new GithubSlugger();
-
-const requestParams = getRequestParams(Astro.url);
-const requestBody = Astro.request.method === 'POST' ? await Astro.request.formData() : undefined;
-
-const requestQuery: RequestQuery = {
-	id: requestString(requestParams.get('id') ?? requestBody?.get('id')),
-	url: requestString(requestBody?.get('url')),
-	title: requestString(requestBody?.get('title')),
-	category: requestNumber(requestBody?.get('category')),
-	priority: requestNumber(requestBody?.get('priority')),
-	browser: requestBoolean(requestBody?.get('browser')),
-	selectorWrap: requestString(requestBody?.get('selectorwrap')),
-	selectorDate: requestStringEmpty(requestBody?.get('selectordate')),
-	selectorContent: requestStringEmpty(requestBody?.get('selectorcontent')),
-	baseUrl: requestString(requestBody?.get('baseurl')),
-	actionAdd: requestBoolean(requestBody?.get('actionadd')),
-	actionRevise: requestBoolean(requestBody?.get('actionrev')),
-	actionRevisePreview: requestBoolean(requestParams.get('actionrevpre')),
-	actionDelete: requestBoolean(requestBody?.get('actiondel')),
-};
-
-const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
-
+let requestFormdata: FormData | undefined;
 const validateMessages: string[] = [];
-if (requestQuery.actionAdd) {
-	/* 登録 */
-	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined) {
-		try {
-			await dao.insert({
-				url: new URL(requestQuery.url),
-				title: requestQuery.title,
-				category: requestQuery.category,
-				priority: requestQuery.priority,
-				browser: requestQuery.browser,
-				selector_wrap: requestQuery.selectorWrap,
-				selector_date: requestQuery.selectorDate,
-				selector_content: requestQuery.selectorContent,
-			});
-			logger.info('データ登録', requestQuery.url);
 
-			return response303(Astro.request);
-		} catch (e) {
-			if (!(e instanceof SqliteError)) {
-				throw e;
-			}
+const insertActionResult = Astro.getActionResult(actions.crawlernews.newsinsert);
+if (insertActionResult !== undefined) {
+	const { data, error } = insertActionResult;
 
-			switch (e.code) {
-				case 'SQLITE_CONSTRAINT_UNIQUE': {
-					validateMessages.push(configCrawlerNews.validator.unique);
-					break;
-				}
-				default: {
-					throw e;
-				}
-			}
+	if (data !== undefined) {
+		if (data.errorMessage === undefined) {
+			logger.info('データ登録', data.url);
+			return response303(Astro.request, Astro.url.pathname);
 		}
-	}
-} else if (requestQuery.actionRevise) {
-	/* 修正実行 */
-	if (requestQuery.url !== undefined && requestQuery.title !== undefined && requestQuery.category !== undefined && requestQuery.priority !== undefined && requestQuery.selectorWrap !== undefined && requestQuery.baseUrl !== undefined) {
-		try {
-			await dao.update(
-				{
-					url: new URL(requestQuery.url),
-					title: requestQuery.title,
-					category: requestQuery.category,
-					priority: requestQuery.priority,
-					browser: requestQuery.browser,
-					selector_wrap: requestQuery.selectorWrap,
-					selector_date: requestQuery.selectorDate,
-					selector_content: requestQuery.selectorContent,
-				},
-				requestQuery.baseUrl,
-			);
-			logger.info('データ更新', requestQuery.url);
 
-			return response303(Astro.request);
-		} catch (e) {
-			if (!(e instanceof SqliteError)) {
-				throw e;
-			}
-
-			switch (e.code) {
-				case 'SQLITE_CONSTRAINT_UNIQUE': {
-					validateMessages.push(configCrawlerNews.validator.unique);
-					break;
-				}
-				default: {
-					throw e;
-				}
-			}
-		}
+		requestFormdata = await Astro.request.formData();
+		validateMessages.push(data.errorMessage);
 	}
-} else if (requestQuery.actionDelete) {
-	/* 削除 */
-	if (requestQuery.id !== undefined) {
-		await dao.delete(requestQuery.id);
-		logger.info('データ削除', requestQuery.id);
 
-		return response303(Astro.request);
-	}
-} else if (requestQuery.actionRevisePreview) {
-	/* 修正データ選択 */
-	console.debug('修正データ選択', requestQuery);
-	if (requestQuery.id !== undefined) {
-		const reviseData = await dao.getReviseData(requestQuery.id);
-		if (reviseData !== undefined) {
-			requestQuery.url = reviseData.url.toString();
-			requestQuery.title = reviseData.title;
-			requestQuery.category = reviseData.category;
-			requestQuery.priority = reviseData.priority;
-			requestQuery.browser = reviseData.browser;
-			requestQuery.selectorWrap = reviseData.selector_wrap;
-			requestQuery.selectorDate = reviseData.selector_date;
-			requestQuery.selectorContent = reviseData.selector_content;
+	if (error !== undefined) {
+		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+			requestFormdata = await Astro.request.formData();
+			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+		} else {
+			logger.warn(error.message);
+			return response400();
 		}
 	}
 }
 
+const updateActionResult = Astro.getActionResult(actions.crawlernews.newsupdate);
+if (updateActionResult !== undefined) {
+	const { data, error } = updateActionResult;
+
+	if (data !== undefined) {
+		if (data.errorMessage === undefined) {
+			logger.info('データ更新', data.url);
+			return response303(Astro.request, Astro.url.pathname);
+		}
+
+		requestFormdata = await Astro.request.formData();
+		validateMessages.push(data.errorMessage);
+	}
+
+	if (error !== undefined) {
+		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+			requestFormdata = await Astro.request.formData();
+			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+		} else {
+			logger.warn(error.message);
+			return response400();
+		}
+	}
+}
+
+const deleteActionResult = Astro.getActionResult(actions.crawlernews.newsdelete);
+if (deleteActionResult !== undefined) {
+	const { data, error } = deleteActionResult;
+
+	if (data !== undefined) {
+		logger.info('データ削除', data.id);
+		return response303(Astro.request, Astro.url.pathname);
+	}
+
+	if (error !== undefined) {
+		logger.warn(error.message);
+		return response400();
+	}
+}
+
+const slugger = new GithubSlugger();
+
 /* 初期表示 */
+const newsId = getRequestParams(Astro.url).get('id') ?? undefined;
+
+const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
 const [categoryMaster, priorityMaster, newsPageListDto] = await Promise.all([
 	dao.getCategoryMaster(), // カテゴリー情報
 	dao.getPriorityMaster(), // 優先度情報
@@ -202,13 +138,15 @@ for (const newsPage of newsPageListDto) {
 
 	newsPageList.set(categoryName, newsPageOfCategoryView);
 }
+
+const reviseData = newsId !== undefined ? await dao.getReviseData(newsId) : undefined;
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Section slugger={slugger}>
 		<Fragment slot="heading">データ登録</Fragment>
 
-		<form action={Astro.url.pathname} method="post">
+		<form action={newsId === undefined && updateActionResult === undefined ? actions.crawlernews.newsinsert : actions.crawlernews.newsupdate} method="post">
 			<FormValidateMsg msgs={validateMessages} />
 
 			<FormGrid>
@@ -216,14 +154,14 @@ for (const newsPage of newsPageListDto) {
 					<Fragment slot="legend"><label for="fc-url">URL <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input type="url" name="url" value={requestQuery.url} required="" class="js-convert-trim" id="fc-url" /></FormCtrlInput>
+						<FormCtrlInput><input type="url" name="url" value={requestFormdata?.get('url')?.toString() ?? reviseData?.url.toString()} required="" class="js-convert-trim" id="fc-url" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-title">タイトル <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="title" value={requestQuery.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
+						<FormCtrlInput><input name="title" value={requestFormdata?.get('title')?.toString() ?? reviseData?.title} required="" class="js-convert-trim" id="fc-title" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
@@ -234,14 +172,9 @@ for (const newsPage of newsPageListDto) {
 							<select name="category" id="fc-category">
 								{
 									categoryMaster.map((category) => (
-										<>
-											{requestQuery.category === category.fk && (
-												<option value={category.fk} selected="">
-													{category.name}
-												</option>
-											)}
-											{requestQuery.category !== category.fk && <option value={category.fk}>{category.name}</option>}
-										</>
+										<option value={category.fk} selected={Number(requestFormdata?.get('category') ?? reviseData?.category) === category.fk}>
+											{category.name}
+										</option>
 									))
 								}
 							</select>
@@ -256,14 +189,9 @@ for (const newsPage of newsPageListDto) {
 							<select name="priority" id="fc-priority">
 								{
 									priorityMaster.map((priority) => (
-										<>
-											{requestQuery.priority === priority.fk && (
-												<option value={priority.fk} selected="">
-													{priority.name}
-												</option>
-											)}
-											{requestQuery.priority !== priority.fk && <option value={priority.fk}>{priority.name}</option>}
-										</>
+										<option value={priority.fk} selected={Number(requestFormdata?.get('priority') ?? reviseData?.priority) === priority.fk}>
+											{priority.name}
+										</option>
 									))
 								}
 							</select>
@@ -275,7 +203,7 @@ for (const newsPage of newsPageListDto) {
 
 					<Fragment slot="contents">
 						<Label label="ウェブブラウザでアクセスするか">
-							<input type="checkbox" name="browser" value="1" checked={requestQuery.browser} />
+							<input type="checkbox" name="browser" value="1" checked={Boolean(requestFormdata?.get('browser') ?? reviseData?.browser)} />
 						</Label>
 					</Fragment>
 				</FormGridGroup>
@@ -283,46 +211,32 @@ for (const newsPage of newsPageListDto) {
 					<Fragment slot="legend"><label for="fc-selectorwrap">セレクター（包括） <FormLabelIcon type="required">必須</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selectorwrap" value={requestQuery.selectorWrap} required="" class="js-convert-trim" id="fc-selectorwrap" /></FormCtrlInput>
+						<FormCtrlInput><input name="selectorwrap" value={requestFormdata?.get('selectorwrap')?.toString() ?? reviseData?.selector_wrap} required="" class="js-convert-trim" id="fc-selectorwrap" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectordate">セレクター（日付） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selectordate" value={requestQuery.selectorDate} class="js-convert-trim" id="fc-selectordate" /></FormCtrlInput>
+						<FormCtrlInput><input name="selectordate" value={requestFormdata?.get('selectordate')?.toString() ?? reviseData?.selector_date} class="js-convert-trim" id="fc-selectordate" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-selectorcontent">セレクター（内容） <FormLabelIcon type="optional">任意</FormLabelIcon></label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput><input name="selectorcontent" value={requestQuery.selectorContent} class="js-convert-trim" id="fc-selectorcontent" /></FormCtrlInput>
+						<FormCtrlInput><input name="selectorcontent" value={requestFormdata?.get('selectorcontent')?.toString() ?? reviseData?.selector_content} class="js-convert-trim" id="fc-selectorcontent" /></FormCtrlInput>
 					</Fragment>
 				</FormGridGroup>
 			</FormGrid>
 
-			<p><input type="hidden" name="baseurl" value={requestQuery.url} /></p>
+			<p><input type="hidden" name="baseurl" value={requestFormdata?.get('url')?.toString() ?? reviseData?.url.toString()} /></p>
 
 			<FormButtons>
-				{
-					(requestQuery.actionRevisePreview || requestQuery.actionRevise) && (
-						<p>
-							<SubmitButton name="actionrev" value="1">
-								修正
-							</SubmitButton>
-						</p>
-					)
-				}
-				{
-					!requestQuery.actionRevisePreview && !requestQuery.actionRevise && (
-						<p>
-							<SubmitButton name="actionadd" value="1">
-								登録
-							</SubmitButton>
-						</p>
-					)
-				}
+				<p>
+					{newsId === undefined && updateActionResult === undefined && <SubmitButton>登録</SubmitButton>}
+					{(newsId !== undefined || updateActionResult !== undefined) && <SubmitButton>修正</SubmitButton>}
+				</p>
 			</FormButtons>
 		</form>
 	</Section>
@@ -348,16 +262,14 @@ for (const newsPage of newsPageListDto) {
 						{newsPageOfCategory.map((newsPage) => (
 							<tr>
 								<td>
-									<form action={Astro.url.pathname} method="post">
+									<form method="post">
 										<p>
-											<SubmitButton buttonStyle="compact" name="actionrevpre" value="1" formmethod="get">
+											<SubmitButton formmethod="get" buttonStyle="compact">
 												修正
 											</SubmitButton>
-											<SubmitButton buttonStyle="compact" name="actiondel" value="1" class="js-button-confirm" data-message="削除しますか?">
+											<SubmitButton formaction={actions.crawlernews.newsdelete} buttonStyle="compact" class="js-button-confirm" data-message="削除しますか?">
 												削除
 											</SubmitButton>
-										</p>
-										<p>
 											<input type="hidden" name="id" value={newsPage.randomId} />
 										</p>
 									</form>
