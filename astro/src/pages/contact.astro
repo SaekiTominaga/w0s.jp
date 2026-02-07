@@ -1,6 +1,5 @@
 ---
-import { actions } from 'astro:actions';
-import type { z } from 'astro/zod';
+import { actions, isInputError } from 'astro:actions';
 import Layout from '@layouts/Site.astro';
 import DialogOverlay from '@components/DialogOverlay.astro';
 import FormGrid from '@components/FormGrid.astro';
@@ -41,16 +40,14 @@ if (actionResult !== undefined) {
 	const { data, error } = actionResult;
 
 	if (error !== undefined) {
-		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+		if (isInputError(error)) {
 			requestFormdata = await Astro.request.formData();
-			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
 			logger.warn(error.message);
 			return response400();
 		}
-	}
-
-	if (data !== undefined) {
+	} else {
 		logger.info('Message sent: %s', data.mailSentInfo.messageId);
 		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
 	}

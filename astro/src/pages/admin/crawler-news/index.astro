@@ -1,6 +1,5 @@
 ---
-import { actions } from 'astro:actions';
-import type { z } from 'astro/zod';
+import { actions, isInputError } from 'astro:actions';
 import GithubSlugger from 'github-slugger';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
@@ -36,16 +35,14 @@ if (insertActionResult !== undefined) {
 	const { data, error } = insertActionResult;
 
 	if (error !== undefined) {
-		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+		if (isInputError(error)) {
 			requestFormdata = await Astro.request.formData();
-			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
 			logger.warn(error.message);
 			return response400();
 		}
-	}
-
-	if (data !== undefined) {
+	} else {
 		if (data.errorMessage === undefined) {
 			logger.info('データ登録', data.url);
 			return response303(Astro.request, Astro.url.pathname);
@@ -61,16 +58,14 @@ if (updateActionResult !== undefined) {
 	const { data, error } = updateActionResult;
 
 	if (error !== undefined) {
-		if (error.type === 'AstroActionInputError' && 'issues' in error) {
+		if (isInputError(error)) {
 			requestFormdata = await Astro.request.formData();
-			validateMessages.push(...(error.issues as z.ZodIssue[]).map((issue) => issue.message));
+			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
 			logger.warn(error.message);
 			return response400();
 		}
-	}
-
-	if (data !== undefined) {
+	} else {
 		if (data.errorMessage === undefined) {
 			logger.info('データ更新', data.url);
 			return response303(Astro.request, Astro.url.pathname);
@@ -88,10 +83,10 @@ if (deleteActionResult !== undefined) {
 	if (error !== undefined) {
 		logger.warn(error.message);
 		return response400();
+	} else {
+		logger.info('データ削除', data.id);
+		return response303(Astro.request, Astro.url.pathname);
 	}
-
-	logger.info('データ削除', data.id);
-	return response303(Astro.request, Astro.url.pathname);
 }
 
 const slugger = new GithubSlugger();

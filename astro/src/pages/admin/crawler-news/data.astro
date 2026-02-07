@@ -26,10 +26,10 @@ if (deleteActionResult !== undefined) {
 	if (error !== undefined) {
 		logger.warn(error.message);
 		return response400();
+	} else {
+		logger.info('データ削除', data.id);
+		return response303(Astro.request, `?newsid=${data.newsId}`);
 	}
-
-	logger.info('データ削除', data.id);
-	return response303(Astro.request, `?newsid=${data.newsId}`);
 }
 
 /* 初期表示 */
