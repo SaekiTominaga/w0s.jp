@@ -8,31 +8,22 @@ import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerDiff from '@components/admin/CrawlerDiff.astro';
 import CrawlerDiffLine from '@components/admin/CrawlerDiffLine.astro';
-import { getParams as getRequestParams, string as requestString, strings as requestStrings, boolean as requestBoolean } from '@util/request.ts';
+import { getParams as getRequestParams } from '@util/request.ts';
 import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
-
-interface RequestQuery {
-	dir: string | undefined;
-	diff: string[];
-	format: boolean;
-}
 
 export const prerender = false;
 const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
-	title: 'ウェブ巡回（リソース）',
+	title: 'ウェブ巡回（リソース差分）',
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
 const requestParams = getRequestParams(Astro.url);
-
-const requestQuery: RequestQuery = {
-	dir: requestString(requestParams.get('dir')),
-	diff: requestStrings(requestParams.getAll('diff[]')),
-	format: requestBoolean(requestParams.get('format')),
-};
+const requestParamDir = requestParams.get('dir') ?? undefined;
+const requestParamDiff = requestParams.getAll('diff[]');
+const requestParamFormat = Boolean(requestParams.get('format'));
 
 const PRETTIER_OPTIONS_HTML: PrettierOptions = {
 	parser: 'html',
@@ -41,16 +32,16 @@ const PRETTIER_OPTIONS_HTML: PrettierOptions = {
 const diffs: DiffChange[] = [];
 const fileList: string[] = [];
 
-if (requestQuery.dir !== undefined) {
-	const dir = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestQuery.dir}`;
+if (requestParamDir !== undefined) {
+	const dir = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestParamDir}`;
 	if (fs.existsSync(dir)) {
-		if (requestQuery.diff.length >= 2) {
+		if (requestParamDiff.length >= 2) {
 			/* 差分チェック */
-			const [file1, file2] = await Promise.all([fs.promises.readFile(`${dir}/${requestQuery.diff.at(0)}`), fs.promises.readFile(`${dir}/${requestQuery.diff.at(1)}`)]);
+			const [file1, file2] = await Promise.all([fs.promises.readFile(`${dir}/${requestParamDiff.at(0)}`), fs.promises.readFile(`${dir}/${requestParamDiff.at(1)}`)]);
 
 			let file1String: string;
 			let file2String: string;
-			if (requestQuery.format) {
+			if (requestParamFormat) {
 				[file1String, file2String] = await Promise.all([format(file1.toString(), PRETTIER_OPTIONS_HTML), format(file2.toString(), PRETTIER_OPTIONS_HTML)]);
 			} else {
 				file1String = file1.toString();
@@ -81,7 +72,7 @@ if (requestQuery.dir !== undefined) {
 				}
 			});
 
-			logger.debug('Diff mode', requestQuery.diff, diffs);
+			logger.debug('Diff mode', requestParamDiff, diffs);
 		}
 
 		/* 初期表示 */
@@ -128,11 +119,11 @@ if (requestQuery.dir !== undefined) {
 		fileList.length >= 1 && (
 			<form>
 				<p>
-					<input type="hidden" name="dir" value={requestQuery.dir} />
+					<input type="hidden" name="dir" value={requestParamDir} />
 				</p>
 				<p>
 					<Label label="HTML 整形">
-						<input type="checkbox" name="format" value="1" checked={requestQuery.format} />
+						<input type="checkbox" name="format" value="1" checked={requestParamFormat} />
 					</Label>
 				</p>
 
@@ -144,9 +135,9 @@ if (requestQuery.dir !== undefined) {
 					{fileList.map((file) => (
 						<li>
 							<label>
-								<input type="checkbox" name="diff[]" value={file} checked={requestQuery.diff.includes(file)} /> {file}
+								<input type="checkbox" name="diff[]" value={file} checked={requestParamDiff.includes(file)} /> <code>{file}</code>
 							</label>
-							(<a href={`/admin/crawler-resource/log?dir=${requestQuery.dir};file=${file}`}>ソースコード</a>)
+							(<a href={`log?dir=${requestParamDir};file=${file}`}>ソースコード</a>)
 						</li>
 					))}
 				</ul>
