@@ -84,10 +84,10 @@ if (deleteActionResult !== undefined) {
 	if (error !== undefined) {
 		logger.warn(error.message);
 		return response400();
-	} else {
-		logger.info('データ削除', data.url);
-		return response303(Astro.request, Astro.url.pathname);
 	}
+
+	logger.info('データ削除', data.url);
+	return response303(Astro.request, Astro.url.pathname);
 }
 
 const slugger = new GithubSlugger();
