@@ -86,6 +86,7 @@ const updateEntries = collection
 <style>
 	@layer component {
 		.top-update {
+			line-height: var(--line-height-normal);
 		}
 
 		header {
@@ -97,7 +98,7 @@ const updateEntries = collection
 		}
 
 		.main {
-			margin-block-start: 0.125em;
+			margin-block-start: 0.25em;
 		}
 
 		footer {
@@ -115,36 +116,40 @@ const updateEntries = collection
 			container-type: inline-size;
 			border: 2px solid var(--color-border-light);
 			border-radius: var(--border-radius-normal);
-			background: var(--color-white);
+			background-color: var(--color-white);
 			overflow: hidden;
 
-			& > li {
+			& > :global(li) {
 				--_padding: 15px;
 
 				display: block grid;
 				grid-template-areas: 'date info';
 				grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+			}
 
-				&:not(:first-child) {
-					border-block-start: 1px dotted var(--color-border-light);
-				}
+			& > :global(li:not(:first-child)) {
+				border-block-start: 1px dotted var(--color-border-light);
 			}
 		}
 
 		.date {
 			grid-column: date;
-			background: var(--color-bg-verylight);
+			background-color: var(--color-bg-verylight);
 			padding: var(--_padding);
 		}
 
 		.info {
 			grid-column: info;
 			padding: var(--_padding);
+
+			& > :global(* + *) {
+				margin-block-start: 1em;
+			}
 		}
 
 		@container (inline-size <= 40rem) {
 			.list {
-				& > li {
+				& > :global(li) {
 					grid-template-areas:
 						'date'
 						'info';
