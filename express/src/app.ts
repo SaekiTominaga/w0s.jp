@@ -17,7 +17,7 @@ import { csp, reportingEndpoints } from './util/httpHeader.ts';
 loadEnvFile(process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development');
 
 /* Logger */
-Log4js.configure(env('LOGGER'));
+Log4js.configure(`${env('ROOT')}/${env('LOG4JS_CONF')}`);
 const logger = Log4js.getLogger();
 
 /* Express */
@@ -82,7 +82,7 @@ app.use(
 			const result = (await htpasswd.authenticate({
 				username: credentials?.name,
 				password: credentials?.pass,
-				file: `${env('AUTH_DIRECTORY')}/${basic.htpasswd}`,
+				file: `${env('AUTH_DIR')}/${basic.htpasswd}`,
 			})) as boolean;
 
 			if (!result) {
@@ -198,7 +198,7 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-
 });
 
 /* HTTP Server */
-const port = env('PORT', 'number');
+const port = env('EXPRESS_PORT', 'number');
 app.listen(port, () => {
 	logger.info(`Server is running on http://localhost:${String(port)}`);
 });

@@ -12,36 +12,32 @@ import { getPageUrl } from './util.ts';
 /* 引数処理 */
 const argsParsedValues = parseArgs({
 	options: {
-		directory: {
+		templatePath: {
 			type: 'string',
-			short: 'd',
+			short: 't',
+		},
+		outDir: {
+			type: 'string',
+			short: 'o',
 		},
 		ignore: {
 			type: 'string',
 			multiple: true,
 		},
-		template: {
-			type: 'string',
-			short: 't',
-		},
-		output: {
-			type: 'string',
-			short: 'o',
-		},
 	},
 }).values;
 
-if (argsParsedValues.directory === undefined) {
-	throw new Error('Argument `directory` not specified');
+if (argsParsedValues.templatePath === undefined) {
+	throw new Error('Argument `templateDir` not specified');
 }
-if (argsParsedValues.template === undefined) {
-	throw new Error('Argument `template` not specified');
+if (argsParsedValues.outDir === undefined) {
+	throw new Error('Argument `outDir` not specified');
 }
-const { directory, ignore: ignores, template, output } = argsParsedValues;
+const { templatePath, outDir, ignore: ignores } = argsParsedValues;
 
 const fileList = await Array.fromAsync(
-	fs.promises.glob(`${directory}/**/*.html`, {
-		exclude: ignores?.map((filePath) => `${directory}/${filePath}`),
+	fs.promises.glob(`${outDir}/**/*.html`, {
+		exclude: ignores?.map((filePath) => `${outDir}/${filePath}`),
 	}),
 );
 
@@ -55,7 +51,7 @@ const entries = await Promise.all(
 		const modifiedAt = document.querySelector<HTMLTimeElement>('.l-content__header .updated > time')?.dateTime;
 
 		return {
-			pagePath: getPageUrl(filePath.substring(directory.length)), // U+002F (/) から始まるパス絶対 URL
+			pagePath: getPageUrl(filePath.substring(outDir.length)), // U+002F (/) から始まるパス絶対 URL
 			modifiedAt: modifiedAt !== undefined ? dayjs(modifiedAt) : undefined,
 		};
 	}),
@@ -79,11 +75,11 @@ entries.sort((a, b) => {
 	return 0;
 });
 
-const sitemap = await ejs.renderFile(template, {
+const sitemap = await ejs.renderFile(templatePath, {
 	entries: entries,
 });
 
 /* 出力 */
-const sitemapPath = `${directory}/${output ?? 'sitemap.xml'}`;
+const sitemapPath = `${outDir}/sitemap.xml`;
 await fs.promises.writeFile(sitemapPath, sitemap);
-console.info(`Sitemap created: ${sitemapPath}`);
+console.info(`Sitemap file created: ${sitemapPath}`);

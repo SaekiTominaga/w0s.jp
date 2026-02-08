@@ -41,7 +41,7 @@ export const contact = {
 			}
 
 			/* メール送信 */
-			const html = await ejs.renderFile('../astro/template/mail/contact.ejs', {
+			const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
 				input: input,
 				ip: context.clientAddress,
 				ua: requestHeaders.get('User-Agent'),

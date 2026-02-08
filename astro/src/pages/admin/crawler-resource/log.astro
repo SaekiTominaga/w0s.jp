@@ -17,7 +17,7 @@ const requestParamDir = requestParams.get('dir') ?? undefined;
 const requestParamFile = requestParams.get('file') ?? undefined;
 
 if (requestParamDir !== undefined && requestParamFile !== undefined) {
-	const filePath = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestParamDir}/${requestParamFile}`;
+	const filePath = `${env('ROOT')}/${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestParamDir}/${requestParamFile}`;
 
 	/* ソースコード閲覧 */
 	const file = (await fs.promises.readFile(filePath)).toString();
