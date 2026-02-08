@@ -84,7 +84,7 @@ const requestQuery: RequestQuery = {
 	output: requestBoolean(requestParams.get('out')),
 };
 
-const dao = new TokyuCarHistoryDao(`${env('SQLITE_DIR')}/${env('SQLITE_TOKYU_CAR_HISTORY')}`);
+const dao = new TokyuCarHistoryDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_TOKYU_CAR_HISTORY')}`);
 
 const carSeries = await dao.getCarSeries();
 

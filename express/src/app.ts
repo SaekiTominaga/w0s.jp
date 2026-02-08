@@ -17,7 +17,7 @@ import { csp, reportingEndpoints } from './util/httpHeader.ts';
 loadEnvFile(process.env['NODE_ENV'] === 'production' ? '../.env.production' : '../.env.development');
 
 /* Logger */
-Log4js.configure(`${env('ROOT')}/${env('LOG4JS_CONF')}`);
+Log4js.configure(`${env('ROOT')}/${env('EXPRESS_LOG4JS_CONF')}`);
 const logger = Log4js.getLogger();
 
 /* Express */
@@ -82,7 +82,7 @@ app.use(
 			const result = (await htpasswd.authenticate({
 				username: credentials?.name,
 				password: credentials?.pass,
-				file: `${env('AUTH_DIR')}/${basic.htpasswd}`,
+				file: `${env('ROOT')}/${env('AUTH_DIR')}/${basic.htpasswd}`,
 			})) as boolean;
 
 			if (!result) {
