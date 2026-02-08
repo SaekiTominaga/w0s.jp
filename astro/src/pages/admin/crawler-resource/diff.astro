@@ -33,7 +33,7 @@ const diffs: DiffChange[] = [];
 const fileList: string[] = [];
 
 if (requestParamDir !== undefined) {
-	const dir = `${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestParamDir}`;
+	const dir = `${env('ROOT')}/${env('CRAWLER_RESOURCE_LOG_DIR')}/${requestParamDir}`;
 	if (fs.existsSync(dir)) {
 		if (requestParamDiff.length >= 2) {
 			/* 差分チェック */

@@ -14,17 +14,17 @@ import slash from 'slash';
 const INFO = [
 	{
 		srcPath: 'update/tokyu.yaml',
-		feedTemplate: 'template/xml/feed_tokyu.ejs',
+		feedTemplate: 'feed_tokyu.ejs',
 		feedPath: 'tokyu/feed.atom',
 	},
 	{
 		srcPath: 'update/kumeta.yaml',
-		feedTemplate: 'template/xml/feed_kumeta.ejs',
+		feedTemplate: 'feed_kumeta.ejs',
 		feedPath: 'kumeta/feed.atom',
 	},
 	{
 		srcPath: 'update/madoka.yaml',
-		feedTemplate: 'template/xml/feed_madoka.ejs',
+		feedTemplate: 'feed_madoka.ejs',
 		feedPath: 'madoka/feed.atom',
 	},
 ];
@@ -100,28 +100,35 @@ if (import.meta.url === slash(`file:///${process.argv.at(1) ?? ''}`)) {
 	/* 引数処理 */
 	const argsParsedValues = parseArgs({
 		options: {
-			directory: {
+			outDir: {
 				type: 'string',
-				short: 'd',
+				short: 'o',
+			},
+			templateDir: {
+				type: 'string',
+				short: 't',
 			},
 		},
 	}).values;
 
-	if (argsParsedValues.directory === undefined) {
-		throw new Error('Argument `directory` not specified');
+	if (argsParsedValues.templateDir === undefined) {
+		throw new Error('Argument `templateDir` not specified');
 	}
-	const directory = slash(argsParsedValues.directory);
+	if (argsParsedValues.outDir === undefined) {
+		throw new Error('Argument `outDir` not specified');
+	}
+	const { templateDir, outDir } = argsParsedValues;
 
 	await Promise.all(
 		INFO.map(async (feedInfo) => {
 			const entries = yaml((await fs.promises.readFile(feedInfo.srcPath)).toString());
 
-			const feed = await ejs.renderFile(feedInfo.feedTemplate, {
+			const feed = await ejs.renderFile(`${templateDir}/${feedInfo.feedTemplate}`, {
 				entries: entries,
 			});
 
 			/* 出力 */
-			const feedPath = `${directory}/${feedInfo.feedPath}`;
+			const feedPath = `${outDir}/${feedInfo.feedPath}`;
 			await fs.promises.writeFile(feedPath, feed);
 			console.info(`Feed file created: ${feedPath}`);
 		}),

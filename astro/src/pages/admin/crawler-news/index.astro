@@ -92,7 +92,7 @@ if (deleteActionResult !== undefined) {
 const slugger = new GithubSlugger();
 
 /* 初期表示 */
-const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
+const dao = new CrawlerNewsDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 const [categoryMaster, priorityMaster, newsPageListDto] = await Promise.all([
 	dao.getCategoryMaster(), // カテゴリー情報
 	dao.getPriorityMaster(), // 優先度情報

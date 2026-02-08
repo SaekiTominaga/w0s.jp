@@ -36,7 +36,7 @@ if (deleteActionResult !== undefined) {
 const requestParams = getRequestParams(Astro.url);
 const requestParamNewsId = requestParams.get('newsid') ?? undefined;
 
-const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
+const dao = new CrawlerNewsDataDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 
 const [news, newsDataList] = await Promise.all([
 	dao.getNews(requestParamNewsId), // ニュースデータ

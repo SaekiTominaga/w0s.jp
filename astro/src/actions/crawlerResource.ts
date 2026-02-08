@@ -18,7 +18,7 @@ export const crawlerResource = {
 			selector: z.string().optional(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerResourceDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			try {
 				await dao.insert({
 					url: new URL(input.url),
@@ -65,7 +65,7 @@ export const crawlerResource = {
 			baseurl: z.string(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerResourceDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			try {
 				await dao.update(
 					{
@@ -109,7 +109,7 @@ export const crawlerResource = {
 			url: z.string().url(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerResourceDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerResourceDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			await dao.delete(input.url);
 
 			return {

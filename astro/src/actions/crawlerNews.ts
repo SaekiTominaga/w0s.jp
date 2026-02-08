@@ -21,7 +21,7 @@ export const crawlerNews = {
 			selectorcontent: z.string().optional(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerNewsDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			try {
 				await dao.insert({
 					url: new URL(input.url),
@@ -71,7 +71,7 @@ export const crawlerNews = {
 			baseurl: z.string(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerNewsDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			try {
 				await dao.update(
 					{
@@ -116,7 +116,7 @@ export const crawlerNews = {
 			id: z.string(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerNewsDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerNewsDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			await dao.delete(input.id);
 
 			return {
@@ -132,7 +132,7 @@ export const crawlerNews = {
 			id: z.string(),
 		}),
 		handler: async (input) => {
-			const dao = new CrawlerNewsDataDao(env('SQLITE_CRAWLER'));
+			const dao = new CrawlerNewsDataDao(`${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 			await dao.delete(input.id);
 
 			return {

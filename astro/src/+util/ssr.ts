@@ -22,7 +22,7 @@ export const init = (Astro: AstroGlobal, options: Readonly<Options>): { logger: 
 	loadEnvFile(!options.dev ? '../.env.production' : '../.env.development');
 
 	/* Logger */
-	Log4js.configure(env('LOGGER'));
+	Log4js.configure(`${env('ROOT')}/${env('LOG4JS_CONF')}`);
 	const logger = Log4js.getLogger(Astro.url.pathname);
 
 	return { logger };
