@@ -1,14 +1,12 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
 const config = {
 	singleQuote: true,
-	plugins: [require.resolve('prettier-plugin-astro')],
+	plugins: ['prettier-plugin-astro', 'prettier-plugin-ejs'],
 
 	overrides: [
 		{
-			files: '*.html',
+			files: ['*.html', '*.ejs'],
 			options: {
+				parser: 'html',
 				printWidth: 9999,
 			},
 		},
