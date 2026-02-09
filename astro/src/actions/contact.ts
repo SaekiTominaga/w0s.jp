@@ -44,7 +44,7 @@ export const contact = {
 			const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
 				input: input,
 				ip: context.clientAddress,
-				ua: requestHeaders.get('User-Agent'),
+				headers: requestHeaders,
 			});
 
 			const transporter = nodemailer.createTransport({

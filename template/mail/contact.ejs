@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 	<head>
 		<style>
@@ -20,16 +20,25 @@
 			}
 
 			pre {
-				white-space: pre-wrap;
-				font-family: inherit;
+				text-wrap-mode: wrap;
+				font-family: unset;
+			}
+
+			dl {
+				display: block table;
+			}
+
+			dl > div {
+				display: table-row;
+			}
+
+			dt,
+			dd {
+				display: table-cell;
 			}
 
 			dt {
 				font-weight: bold;
-			}
-
-			dd {
-				margin-inline-start: 1em;
 			}
 		</style>
 	</head>
@@ -58,12 +67,18 @@
 		</table>
 
 		<dl>
-			<dt>IP アドレス</dt>
-			<dd>
-				<a href="https://ja.asuka.io/whois/<%= ip %>"><%= ip %></a>
-			</dd>
-			<dt>ユーザーエージェント</dt>
-			<dd><%= ua %></dd>
+			<div>
+				<dt>IP Address</dt>
+				<dd>
+					<a href="https://ja.asuka.io/whois/<%= ip %>"><%= ip %></a>
+				</dd>
+			</div>
+			<%_ for ([key, value] of headers.entries()) { _%>
+			<div>
+				<dt><%= key %></dt>
+				<dd><%= value %></dd>
+			</div>
+			<%_ } _%>
 		</dl>
 	</body>
 </html>
