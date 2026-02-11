@@ -31,12 +31,12 @@ export const contact = {
 		handler: async (input, context) => {
 			const requestHeaders = context.request.headers;
 
-			/* Origin ヘッダーのチェック（bot 阻止） */
-			const requestOrigin = requestHeaders.get('Origin');
-			if (requestOrigin === null || !env('CONTACT_ALLOW_ORIGINS', 'string[]').includes(requestOrigin)) {
+			/* bot 阻止 */
+			const fetchMode = requestHeaders.get('Sec-Fetch-Mode');
+			if (fetchMode !== null && fetchMode === 'cors') {
 				throw new ActionError({
 					code: 'BAD_REQUEST',
-					message: requestOrigin !== null ? `\`Origin\` header error: ${requestOrigin}` : '`Origin` header is empty',
+					message: `\`Sec-Fetch-Mode\` header error: ${fetchMode}`,
 				});
 			}
 

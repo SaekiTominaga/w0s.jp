@@ -35,8 +35,6 @@ const validateMessages: string[] = [];
 
 const actionResult = Astro.getActionResult(actions.contact.post);
 if (actionResult !== undefined) {
-	Astro.response.headers.append('Vary', 'Origin');
-
 	const { data, error } = actionResult;
 
 	if (error !== undefined) {
