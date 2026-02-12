@@ -1,0 +1,35 @@
+---
+interface Props {
+	form: string;
+	name: string;
+	value: string;
+}
+
+const { form, name, value } = Astro.props;
+---
+
+<button form={form} name={name} value={value} title="ソート">
+	<svg width="16" height="13.855" viewBox="0 0 16 13.855">
+		<path d="M 8 13.855 L 0 0 L 16 0 Z" fill="currentColor"></path>
+	</svg>
+</button>
+
+<style>
+	@layer component {
+		button {
+			display: inline flex;
+			margin: 0.25em;
+			outline-offset: -1px;
+			outline-width: var(--outline-width-bold);
+			border: 1px solid;
+			border-radius: var(--border-radius-normal);
+			background-color: var(--color-white);
+			padding: 5px;
+			color: var(--color-black);
+
+			&:hover {
+				color: var(--color-darkgray);
+			}
+		}
+	}
+</style>
