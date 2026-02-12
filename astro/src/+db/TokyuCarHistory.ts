@@ -141,7 +141,7 @@ export default class {
 				query = query.orderBy('c.annual'); // 呼称
 				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'ann': // 呼称
+			case 'annual': // 呼称
 				query = query.orderBy('se.register'); // 車種
 				query = query.orderBy('c.annual'); // 呼称
 				query = query.orderBy('si.sort'); // 車種記号
