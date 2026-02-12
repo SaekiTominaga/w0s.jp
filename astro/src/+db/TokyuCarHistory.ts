@@ -1,9 +1,9 @@
 import SQLite from 'better-sqlite3';
 import dayjs from 'dayjs';
-import { Kysely, sql, SqliteDialect } from 'kysely';
+import { Kysely, SqliteDialect } from 'kysely';
 import Log4js from 'log4js';
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
-import type { DB } from '../../../@types/db_tokyuhistory.d.ts';
+import type { DB } from '../../../@types/db_tokyu-car-history.d.ts';
 
 /**
  * 東急電車資料室・車歴表
@@ -38,24 +38,24 @@ export default class {
 	 * @returns 車種情報
 	 */
 	async getCarSeries(): Promise<{ id: string; series: string }[]> {
-		let query = this.#db.selectFrom('m_series').select(['fk', sql<string>`REPLACE(REPLACE(retire, 1, '旧'), 0, '') || name`.as('series')]);
-
-		query = query.orderBy('display');
-		query = query.orderBy('display_cargroup');
+		const query = this.#db.selectFrom('m_series').select(['fk', 'name']).orderBy('register');
 
 		const rows = await query.execute();
 
+		const compiled = query.compile();
+		this.#logger.debug(compiled.sql, compiled.parameters);
+
 		return rows.map((row) => ({
 			id: sqliteToJS(row.fk),
-			series: sqliteToJS(row.series), // TODO:
+			series: sqliteToJS(row.name),
 		}));
 	}
 
 	/**
 	 * 車両情報を取得する
 	 *
-	 * @param number - 車号
-	 * @param numberOld - 旧車号を含むか
+	 * @param number - 番号
+	 * @param numberOld - 旧番号を含むか
 	 * @param seriesList - 車種
 	 * @param registerStart - 入籍日（開始日）
 	 * @param registerEnd - 入籍日（終了日）
@@ -78,7 +78,7 @@ export default class {
 			type: string;
 			annual: string | undefined;
 			register: Date;
-			renewal: string;
+			renewal: string | undefined;
 			scrap: boolean;
 			transfer: string | undefined;
 			change:
@@ -91,25 +91,25 @@ export default class {
 		}[]
 	> {
 		let query = this.#db
-			.selectFrom(['d_car as c', 'm_series as s', 'm_type as t', 'm_renewal as r', 'm_sign as i', 'v_annual as a'])
+			.selectFrom(['d_car as c', 'm_series as se', 'm_type as ty', 'm_sign as si', 'v_annual as an'])
+			.leftJoin('d_change as ch', 'c.num', 'ch.now_num')
+			.leftJoin('m_renewal as re', 'c.renewal', 're.fk')
 			.select([
 				'c.num as num',
-				'i.name as sign',
-				's.name as series',
-				't.name as type',
-				'a.annual as annual',
+				'si.name as sign',
+				'se.name as series',
+				'ty.name as type',
+				'an.annual as annual',
 				'c.register_date as register',
-				'r.name as renewal',
+				're.name as renewal',
 				'c.scrap as scrap',
 				'c.transfer as transfer',
 			])
 			.distinct()
-			.leftJoin('d_change as ch', 'c.num', 'ch.now_num')
-			.whereRef('c.type', '=', 't.fk')
-			.whereRef('t.series', '=', 's.fk')
-			.whereRef('c.renewal', '=', 'r.fk')
-			.whereRef('t.sign', '=', 'i.fk')
-			.whereRef('c.num', '=', 'a.num');
+			.whereRef('c.type', '=', 'ty.fk')
+			.whereRef('ty.series', '=', 'se.fk')
+			.whereRef('ty.sign', '=', 'si.fk')
+			.whereRef('c.num', '=', 'an.num');
 
 		/* 検索条件 */
 		if (number !== undefined && number !== '') {
@@ -120,44 +120,42 @@ export default class {
 			}
 		}
 		if (seriesList !== undefined) {
-			query = query.where('s.fk', 'in', seriesList); // TODO: jsToSQLiteComparison() を付けたい
+			query = query.where('se.fk', 'in', seriesList); // TODO: jsToSQLiteComparison() を付けたい
 		}
 		if (registerStart !== undefined && registerStart !== '') {
-			query = query.where('c.register_date', '>=', Number(dayjs(registerStart).format('YYYYMMDD')));
+			query = query.where('c.register_date', '>=', dayjs(registerStart).format('YYYY-MM-DD'));
 		}
 		if (registerEnd !== undefined && registerEnd !== '') {
-			query = query.where('c.register_date', '<=', Number(dayjs(registerEnd).format('YYYYMMDD')));
+			query = query.where('c.register_date', '<=', dayjs(registerEnd).format('YYYY-MM-DD'));
 		}
 
 		/* ソート */
 		switch (sort) {
-			case 'num': // 車号ソート（車号）
-				query = query.orderBy('c.num');
+			case 'num': // 番号
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'typ': // 形式ソート（車種、形式、呼称、車号）
-				query = query.orderBy('s.display');
-				query = query.orderBy('t.name');
-				query = query.orderBy('c.annual');
-				query = query.orderBy('c.num');
+			case 'type': // 形式
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('ty.name'); // 形式
+				query = query.orderBy('c.annual'); // 呼称
+				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'ann': // 呼称ソート（車種、呼称、車種記号、形式、車号）
-				query = query.orderBy('s.display');
-				query = query.orderBy('c.annual');
-				query = query.orderBy('i.sort');
-				query = query.orderBy('c.type');
-				query = query.orderBy('c.num');
+			case 'annual': // 呼称
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('c.annual'); // 呼称
+				query = query.orderBy('si.sort'); // 車種記号
+				query = query.orderBy('c.type'); // 形式
+				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'reg': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
-				query = query.orderBy('c.register_date');
-				query = query.orderBy('s.display');
-				query = query.orderBy('c.annual');
-				query = query.orderBy('i.sort');
-				query = query.orderBy('c.type');
-				query = query.orderBy('c.num');
-				break;
-			default: // 車種別車号ソート（車種、車号）
-				query = query.orderBy('s.display');
-				query = query.orderBy('c.num');
+			case 'regist':
+			default: // 入籍日
+				query = query.orderBy('c.register_date'); // 入籍日
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('c.annual'); // 呼称
+				query = query.orderBy('si.sort'); // 車種記号
+				query = query.orderBy('c.type'); // 形式
+				query = query.orderBy('c.num'); // 番号
 		}
 
 		const rows = await query.execute();
@@ -167,22 +165,18 @@ export default class {
 
 		const changeDataList = await this.#getCarChangeData();
 
-		return rows.map((row) => {
-			const registerStr = String(row.register);
-
-			return {
-				number: sqliteToJS(row.num),
-				sign: sqliteToJS(row.sign),
-				series: sqliteToJS(row.series),
-				type: sqliteToJS(row.type),
-				annual: sqliteToJS(row.annual),
-				register: new Date(Number(registerStr.substring(0, 4)), Number(registerStr.substring(4, 6)) - 1, Number(registerStr.substring(6, 8))),
-				renewal: sqliteToJS(row.renewal),
-				scrap: sqliteToJS(row.scrap, 'boolean'),
-				transfer: sqliteToJS(row.transfer),
-				change: changeDataList.get(row.num) ?? undefined,
-			};
-		});
+		return rows.map((row) => ({
+			number: sqliteToJS(row.num),
+			sign: sqliteToJS(row.sign),
+			series: sqliteToJS(row.series),
+			type: sqliteToJS(row.type),
+			annual: sqliteToJS(row.annual),
+			register: new Date(Number(row.register.substring(0, 4)), Number(row.register.substring(5, 7)) - 1, Number(row.register.substring(8, 10))),
+			renewal: sqliteToJS(row.renewal),
+			scrap: sqliteToJS(row.scrap, 'boolean'),
+			transfer: sqliteToJS(row.transfer),
+			change: changeDataList.get(row.num) ?? undefined,
+		}));
 	}
 
 	/**
@@ -222,16 +216,13 @@ export default class {
 		>();
 
 		rows.forEach((row) => {
-			const nowNumber = row.now_num;
-			const dateStr = String(row.date);
-
-			const changeDataList = changeDataMap.get(nowNumber) ?? [];
+			const changeDataList = changeDataMap.get(row.now_num) ?? [];
 			changeDataList.push({
 				number: row.before_num,
 				sign: row.sign,
-				date: new Date(Number(dateStr.substring(0, 4)), Number(dateStr.substring(4, 6)) - 1, Number(dateStr.substring(6, 8))),
+				date: new Date(Number(row.date.substring(0, 4)), Number(row.date.substring(5, 7)) - 1, Number(row.date.substring(8, 10))),
 			});
-			changeDataMap.set(nowNumber, changeDataList);
+			changeDataMap.set(row.now_num, changeDataList);
 		});
 
 		return changeDataMap;

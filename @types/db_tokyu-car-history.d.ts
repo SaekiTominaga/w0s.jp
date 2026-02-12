@@ -9,8 +9,8 @@ export interface DCar {
 	type: string;
 	annual: number;
 	annual_display: string | undefined;
-	register_date: number; // YYYYMMDD
-	renewal: number;
+	register_date: string; // YYYY-MM-DD
+	renewal: number | undefined;
 	scrap: boolean;
 	transfer: string | undefined;
 	note: string | undefined;
@@ -20,7 +20,7 @@ export interface DChange {
 	now_num: string;
 	before_num: string;
 	before_type: string;
-	change_date: number; // YYYYMMDD
+	change_date: string; // YYYY-MM-DD
 }
 
 export interface MRenewal {
@@ -31,11 +31,8 @@ export interface MRenewal {
 export interface MSeries {
 	fk: string;
 	name: string;
-	display: number;
-	display_cargroup: number;
-	first_manufacture: number; // YYYY
+	register: string; // YYYY-MM-DD
 	company: number;
-	retire: number;
 }
 
 export interface MSign {
