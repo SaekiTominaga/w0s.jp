@@ -31,11 +31,8 @@ export interface MRenewal {
 export interface MSeries {
 	fk: string;
 	name: string;
-	display: number;
-	display_cargroup: number;
-	first_manufacture: number; // YYYY
+	register: string; // YYYY-MM-DD
 	company: number;
-	retire: number;
 }
 
 export interface MSign {

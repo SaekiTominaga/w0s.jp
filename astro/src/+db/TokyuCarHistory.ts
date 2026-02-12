@@ -38,10 +38,7 @@ export default class {
 	 * @returns 車種情報
 	 */
 	async getCarSeries(): Promise<{ id: string; series: string }[]> {
-		let query = this.#db.selectFrom('m_series').select(['fk', sql<string>`REPLACE(REPLACE(retire, 1, '旧'), 0, '') || name`.as('series')]);
-
-		query = query.orderBy('display');
-		query = query.orderBy('display_cargroup');
+		const query = this.#db.selectFrom('m_series').select(['fk', 'name']).orderBy('register');
 
 		const rows = await query.execute();
 
@@ -50,7 +47,7 @@ export default class {
 
 		return rows.map((row) => ({
 			id: sqliteToJS(row.fk),
-			series: sqliteToJS(row.series), // TODO:
+			series: sqliteToJS(row.name),
 		}));
 	}
 
@@ -138,13 +135,13 @@ export default class {
 				query = query.orderBy('c.num');
 				break;
 			case 'typ': // 形式ソート（車種、形式、呼称、車号）
-				query = query.orderBy('se.display');
+				query = query.orderBy('se.register');
 				query = query.orderBy('ty.name');
 				query = query.orderBy('c.annual');
 				query = query.orderBy('c.num');
 				break;
 			case 'ann': // 呼称ソート（車種、呼称、車種記号、形式、車号）
-				query = query.orderBy('se.display');
+				query = query.orderBy('se.register');
 				query = query.orderBy('c.annual');
 				query = query.orderBy('si.sort');
 				query = query.orderBy('c.type');
@@ -152,14 +149,14 @@ export default class {
 				break;
 			case 'reg': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
 				query = query.orderBy('c.register_date');
-				query = query.orderBy('se.display');
+				query = query.orderBy('se.register');
 				query = query.orderBy('c.annual');
 				query = query.orderBy('si.sort');
 				query = query.orderBy('c.type');
 				query = query.orderBy('c.num');
 				break;
 			default: // 車種別車号ソート（車種、車号）
-				query = query.orderBy('se.display');
+				query = query.orderBy('se.register');
 				query = query.orderBy('c.num');
 		}
 
