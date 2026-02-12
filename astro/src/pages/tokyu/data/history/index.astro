@@ -10,7 +10,6 @@ import FormInvalid from '@components/FormInvalid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
-import Toggle from '@components/Toggle.astro';
 import Button from '@components/+phrasing/Button.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import Label from '@components/+phrasing/Label.astro';
@@ -91,13 +90,11 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<Toggle open={cars === undefined}>
-		<Fragment slot="summary">説明文</Fragment>
+	<Section slugger={slugger}>
+		<Fragment slot="heading">検索条件入力</Fragment>
 
 		<Box>
 			<List>
-				<li>旧7000系〜新3000系、300系までの車両が登録されています。新5000系以降は検索できません。</li>
-				<li>全車両を見る場合は<q>車号</q>を未入力かつ<q>車種</q>を未選択の状態で検索してください。</li>
 				<li>
 					<q>車号</q>では次に挙げる記号を使うことで特殊な検索ができます。
 					<ul>
@@ -106,14 +103,15 @@ const slugger = new GithubSlugger();
 						<li>たとえばデハ8700形の全車両を表示するには、車種の<q>8500系</q>にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</li>
 					</ul>
 				</li>
-				<li>改造によって車種に変更が生じた車両では、改造前後の紐付けができません。たとえば車号に『<kbd>7001</kbd>』と入力し、<q>旧車号を含む</q>にチェックを入れて検索しても、7700系化後のデータはヒットしません。</li>
+				<li>
+					改造によって車種に変更が生じた車両では、改造前後の紐付けができません。
+					<ul>
+						<li>車号に『<kbd>7001</kbd>』と入力し、<q>旧車号を含む</q>にチェックを入れて検索しても、7700系化後のデータはヒットしません。</li>
+					</ul>
+				</li>
 				<li>入籍日、改番日の参考資料は<a href="/tokyu/data/history/ref">出典一覧</a>に記しています。</li>
 			</List>
 		</Box>
-	</Toggle>
-
-	<Section slugger={slugger}>
-		<Fragment slot="heading">検索条件入力</Fragment>
 
 		<form>
 			<FormGrid complex={true}>
