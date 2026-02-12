@@ -17,7 +17,7 @@ interface Car {
 		sign: string;
 		date: string;
 	}[];
-	renewal: string;
+	renewal: string | undefined;
 	age: number;
 	scrap: boolean;
 	transfer: string | undefined;
@@ -50,11 +50,11 @@ const dateFormat = (date: Date, era: string | undefined): string => {
 export const GET = (async ({ request }) => {
 	const requestParams = getRequestParams(new URL(request.url));
 
-	const requestParamNumber = requestParams.get('number');
-	const requestParamNumberOld = Boolean(requestParams.get('number-old'));
+	const requestParamNumber = requestParams.get('num');
+	const requestParamNumberOld = Boolean(requestParams.get('old'));
 	const requestParamSeries = requestParams.getAll('series');
-	const requestParamRegisterStart = requestParams.get('register-start') ?? undefined;
-	const requestParamRegisterEnd = requestParams.get('register-end') ?? undefined;
+	const requestParamRegistStart = requestParams.get('regist-start') ?? undefined;
+	const requestParamRegistEnd = requestParams.get('regist-end') ?? undefined;
 	const requestParamSort = requestParams.get('sort') ?? undefined;
 	const requestParamEra = requestParams.get('era') ?? undefined;
 
@@ -63,9 +63,9 @@ export const GET = (async ({ request }) => {
 	const carsDto = await dao.getCarData(
 		requestParamNumber?.replaceAll('.', '_').replaceAll('*', '%'),
 		requestParamNumberOld,
-		requestParamSeries,
-		requestParamRegisterStart,
-		requestParamRegisterEnd,
+		requestParamSeries.length === 0 ? (await dao.getCarSeries()).map((data) => data.id) : requestParamSeries, // 車種未指定時は全車種を対象とする
+		requestParamRegistStart,
+		requestParamRegistEnd,
 		requestParamSort,
 	);
 

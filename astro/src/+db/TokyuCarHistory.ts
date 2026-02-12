@@ -134,7 +134,7 @@ export default class {
 			case 'num': // 車号ソート（車号）
 				query = query.orderBy('c.num');
 				break;
-			case 'typ': // 形式ソート（車種、形式、呼称、車号）
+			case 'type': // 形式ソート（車種、形式、呼称、車号）
 				query = query.orderBy('se.register');
 				query = query.orderBy('ty.name');
 				query = query.orderBy('c.annual');
@@ -147,7 +147,7 @@ export default class {
 				query = query.orderBy('c.type');
 				query = query.orderBy('c.num');
 				break;
-			case 'reg': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
+			case 'regist': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
 				query = query.orderBy('c.register_date');
 				query = query.orderBy('se.register');
 				query = query.orderBy('c.annual');

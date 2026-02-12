@@ -25,8 +25,8 @@ import type { StructuredData } from '../../../../../@types/util.d.ts';
 export const prerender = false;
 
 const structuredData: StructuredData = {
-	title: '東急電車　車歴表',
-	heading: '車歴表',
+	title: '東急電車　車歴検索',
+	heading: '車歴検索',
 	description: '旧7000系から新3000系までの入籍日、改造履歴などを検索できるシステムです。',
 	dateModified: dayjs('2010-03-31'),
 	breadcrumb: [
@@ -37,18 +37,17 @@ const structuredData: StructuredData = {
 	opensearch: { path: '/tokyu/data/history/search', name: '東急電車　車歴検索' },
 };
 
-ssrInit(Astro, { dev: import.meta.env.DEV });
+const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const requestParams = getRequestParams(Astro.url);
 
 const requestParamNumber = requestParams.get('num') ?? undefined;
 const requestParamNumberOld = Boolean(requestParams.get('old'));
-const requestParamSeries = requestParams.getAll('ser[]');
-const requestParamRegisterStart = requestParams.get('res') ?? undefined;
-const requestParamRegisterEnd = requestParams.get('ree') ?? undefined;
-const requestParamSort = requestParams.get('srt') ?? undefined;
+const requestParamSeries = requestParams.getAll('series');
+const requestParamRegistStart = requestParams.get('regist-start') ?? undefined;
+const requestParamRegistEnd = requestParams.get('regist-end') ?? undefined;
+const requestParamSort = requestParams.get('sort') ?? undefined;
 const requestParamEra = requestParams.get('era') ?? undefined;
-const requestParamSearch = Boolean(requestParams.get('out'));
 
 const dao = new TokyuCarHistoryDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_TOKYU_CAR_HISTORY')}`);
 
@@ -56,19 +55,32 @@ const carSeries = await dao.getCarSeries();
 
 let cars: APIResponseJson | undefined = undefined;
 
-if (requestParamSearch) {
+if (requestParamNumber !== undefined) {
 	const endpointParams = new URLSearchParams();
-	endpointParams.set('number', requestParamNumber ?? '');
-	endpointParams.set('number-old', String(requestParamNumberOld));
+	if (requestParamNumber !== '') {
+		endpointParams.set('num', requestParamNumber);
+	}
+	if (requestParamNumberOld) {
+		endpointParams.set('old', 'on');
+	}
 	requestParamSeries.forEach((value) => {
 		endpointParams.append('series', value);
 	});
-	endpointParams.set('register-start', requestParamRegisterStart ?? '');
-	endpointParams.set('register-end', requestParamRegisterEnd ?? '');
-	endpointParams.set('sort', requestParamSort ?? '');
-	endpointParams.set('era', requestParamEra ?? '');
+	if (requestParamRegistStart !== undefined && requestParamRegistStart !== '') {
+		endpointParams.set('regist-start', requestParamRegistStart);
+	}
+	if (requestParamRegistEnd !== undefined && requestParamRegistEnd !== '') {
+		endpointParams.set('regist-end', requestParamRegistEnd);
+	}
+	if (requestParamSort !== undefined) {
+		endpointParams.set('sort', requestParamSort);
+	}
+	if (requestParamEra !== undefined) {
+		endpointParams.set('era', requestParamEra);
+	}
 
 	const endpoint = `${Astro.url.origin}/api/tokyu/car-history?${endpointParams.toString()}`;
+	logger.info(`Endpoint: ${endpoint}`);
 
 	cars = await (await fetch(endpoint)).json();
 }
@@ -112,7 +124,7 @@ const slugger = new GithubSlugger();
 						<FormCtrlInput size="4em"><input name="num" value={requestParamNumber} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
 
 						<Label label="旧車号を含む">
-							<input type="checkbox" name="old" value="1" checked={requestParamNumberOld} />
+							<input type="checkbox" name="old" checked={requestParamNumberOld} />
 						</Label>
 					</Fragment>
 
@@ -127,13 +139,13 @@ const slugger = new GithubSlugger();
 						{
 							carSeries.map((car) => (
 								<Label label={car.series}>
-									<input type="checkbox" name="ser[]" value={car.id} checked={requestParamSeries.includes(car.id)} />
+									<input type="checkbox" name="series" value={car.id} checked={requestParamSeries.includes(car.id)} />
 								</Label>
 							))
 						}
 						<p>
-							<Button class="js-button-checkboxes" data-course="check" data-controls-name="ser[]">全車種を選択</Button>
-							<Button class="js-button-checkboxes" data-course="uncheck" data-controls-name="ser[]">すべての選択を解除</Button>
+							<Button class="js-button-checkboxes" data-course="check" data-controls-name="series">全車種を選択</Button>
+							<Button class="js-button-checkboxes" data-course="uncheck" data-controls-name="series">すべての選択を解除</Button>
 						</p>
 					</Fragment>
 				</FormGridGroup>
@@ -142,10 +154,10 @@ const slugger = new GithubSlugger();
 
 					<Fragment slot="contents">
 						<Label label="開始日">
-							<FormCtrlInput size="10em"><input type="date" name="res" value={requestParamRegisterStart} min="1962-01-25" max="2001-03-24" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarstart" title="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「開始日」が存在しない日付です。" data-validation-min="「開始日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「開始日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
+							<FormCtrlInput size="10em"><input type="date" name="regist-start" value={requestParamRegistStart} min="1962-01-25" max="2001-03-24" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarstart" title="「開始日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「開始日」が存在しない日付です。" data-validation-min="「開始日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「開始日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
 						</Label>
 						<Label label="終了日">
-							<FormCtrlInput size="10em"><input type="date" name="ree" value={requestParamRegisterEnd} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarend" title="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「終了日」が存在しない日付です。" data-validation-min="「終了日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「終了日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
+							<FormCtrlInput size="10em"><input type="date" name="regist-end" value={requestParamRegistEnd} min="1962-01-25" max="2001-03-24" style="--inline-size: 8em" class="js-validation js-input-date-to-text" aria-errormessage="input-validate-registarend" title="「終了日」は YYYY-MM-DD 形式で入力してください。" data-validation-noexist="「終了日」が存在しない日付です。" data-validation-min="「終了日」は1962年1月25日以降を入力してください。旧7000系〜新3000系、300系でそれ以前に入籍した車両は存在しません。" data-validation-max="「終了日」は2001年3月24日以前を入力してください。旧7000系〜新3000系、300系でそれ以降に入籍した車両は存在しません。" /></FormCtrlInput>
 						</Label>
 					</Fragment>
 
@@ -162,14 +174,14 @@ const slugger = new GithubSlugger();
 						<div role="radiogroup" aria-labelledby="label-sort">
 							{
 								[
-									['snu', '車号（車種別）'],
+									['snum', '車号（車種別）'],
 									['num', '車号（車種混合）'],
-									['typ', '形式'],
-									['ann', '呼称'],
-									['reg', '入籍日'],
+									['type', '形式'],
+									['annual', '呼称'],
+									['regist', '入籍日'],
 								].map(([name, value], index) => (
 									<Label label={value}>
-										<input type="radio" name="srt" value={name} checked={((requestParamSort === undefined || requestParamSort === '') && index === 0) || requestParamSort === name} />
+										<input type="radio" name="sort" value={name} checked={((requestParamSort === undefined || requestParamSort === '') && index === 0) || requestParamSort === name} />
 									</Label>
 								))
 							}
@@ -197,7 +209,7 @@ const slugger = new GithubSlugger();
 			</FormGrid>
 
 			<FormButtons>
-				<p><SubmitButton name="out" value="nor">検索</SubmitButton></p>
+				<p><SubmitButton>検索</SubmitButton></p>
 			</FormButtons>
 		</form>
 	</Section>
