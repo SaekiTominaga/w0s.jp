@@ -93,41 +93,31 @@ const slugger = new GithubSlugger();
 	<Section slugger={slugger}>
 		<Fragment slot="heading">検索条件入力</Fragment>
 
-		<Box>
-			<List>
-				<li>
-					<q>番号</q>では次に挙げる記号を使うことで特殊な検索ができます。
-					<ul>
-						<li>「<kbd>.</kbd>」（ピリオド）は任意の1文字に相当します。</li>
-						<li>「<kbd>*</kbd>」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
-						<li>たとえばデハ8700形の全車両を表示するには、車種の<q>8500系</q>にチェックを入れたうえで、番号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</li>
-					</ul>
-				</li>
-				<li>
-					改造によって車種に変更が生じた車両では、改造前後の紐付けができません。
-					<ul>
-						<li>番号に『<kbd>7001</kbd>』と入力し、<q>旧番号を含む</q>にチェックを入れて検索しても、7700系化後のデータはヒットしません。</li>
-					</ul>
-				</li>
-				<li>入籍日、改番日の参考資料は<a href="/tokyu/data/history/ref">出典一覧</a>に記しています。</li>
-			</List>
-		</Box>
-
 		<form>
 			<FormGrid complex={true}>
 				<FormGridGroup>
 					<Fragment slot="legend"><label for="fc-num">番号</label></Fragment>
 
 					<Fragment slot="contents">
-						<FormCtrlInput size="4em"><input name="num" value={requestParamNumber} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
+						<FormCtrlInput size="4em"><input name="num" value={requestParamNumber} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-describedby="input-description-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
 
-						<Label label="旧番号を含む">
+						<Label label="旧番号を含む（車種変更を伴わない改番のみ）">
 							<input type="checkbox" name="old" checked={requestParamNumberOld} />
 						</Label>
 					</Fragment>
 
 					<Fragment slot="validate">
 						<FormInvalid id="input-validate-num" />
+					</Fragment>
+
+					<Fragment slot="note">
+						<div id="input-description-num">
+							<p>以下の記号で特殊な検索ができます。たとえばデハ8700形の全車両を表示するには『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</p>
+							<ul>
+								<li>「<kbd>.</kbd>」（ピリオド）は任意の1文字に相当</li>
+								<li>「<kbd>*</kbd>」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当</li>
+							</ul>
+						</div>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup ctrlType="checkbox">
@@ -169,7 +159,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="legend"><span id="label-sort">ソート</span></Fragment>
 
 					<Fragment slot="contents">
-						<div role="radiogroup" aria-labelledby="label-sort">
+						<div role="radiogroup" aria-labelledby="label-sort" aria-describedby="input-description-sort">
 							{
 								[
 									['num', '番号'],
@@ -183,6 +173,10 @@ const slugger = new GithubSlugger();
 								))
 							}
 						</div>
+					</Fragment>
+
+					<Fragment slot="note">
+						<p id="input-description-sort"><q>入籍日</q>以外は車種内でのソートとなります。</p>
 					</Fragment>
 				</FormGridGroup>
 				<FormGridGroup ctrlType="radio">
@@ -218,7 +212,9 @@ const slugger = new GithubSlugger();
 
 				{hitLength >= 1 && (
 					<>
-						<p>{hitLength}件ヒットしました。</p>
+						<p>
+							<data value={hitLength}>{hitLength}件</data>ヒットしました。なお入籍日、改番日の参考資料は<a href="/tokyu/data/history/ref">出典一覧</a>に記しています。
+						</p>
 
 						{hitLength >= 2 && (
 							<p>
@@ -247,72 +243,38 @@ const slugger = new GithubSlugger();
 								<tbody>
 									{carOfSeries.map((car) => (
 										<>
-											{car.changes.length <= 1 && (
-												<tr>
-													{/* prettier-ignore */}
-													<td class="u-cell -center">{car.sign}{car.number}</td>
-													<td class="u-cell -center">{car.series}</td>
-													<td class="u-cell -center">{car.type}</td>
-													<td class="u-cell -center">{car.annual}</td>
-													<td class="u-cell -center">{car.register}</td>
-													{car.changes.length === 0 && (
-														<>
-															<td />
-															<td />
-														</>
-													)}
-													{car.changes.length >= 1 && (
-														<>
-															{/* prettier-ignore */}
-															<td class="u-cell -center">{car.changes[0].sign}{car.changes[0].number}</td>
-															<td class="u-cell -center">{car.changes[0].date}</td>
-														</>
-													)}
-													<td>{car.renewal}</td>
-													<td>{car.transfer}</td>
-													{/* prettier-ignore */}
-													<td class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
-												</tr>
-											)}
-
-											{car.changes.length >= 2 && (
+											<tr>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined} class="u-cell -center">{car.sign}{car.number}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined} class="u-cell -center">{car.series}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined} class="u-cell -center">{car.type}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined} class="u-cell -center">{car.annual}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined} class="u-cell -center">{car.register}</td>
+												{/* prettier-ignore */}
+												<td class="u-cell -center">{car.changes.at(0)?.sign}{car.changes.at(0)?.number}</td>
+												<td class="u-cell -center">{car.changes.at(0)?.date}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined}>{car.renewal}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined}>{car.transfer}</td>
+												{/* prettier-ignore */}
+												<td rowspan={car.changes.length >= 2 ? car.changes.length : undefined} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
+											</tr>
+											{car.changes.map((change, index) => (
 												<>
-													{car.changes.map((change, index) => (
-														<>
-															{index === 0 && (
-																<tr>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.sign}{car.number}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.series}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.type}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.annual}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.register}</td>
-																	{/* prettier-ignore */}
-																	<td class="u-cell -center">{change.sign}{change.number}</td>
-																	<td class="u-cell -center">{change.date}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length}>{car.renewal}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length}>{car.transfer}</td>
-																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
-																</tr>
-															)}
-															{index >= 1 && (
-																<tr>
-																	{/* prettier-ignore */}
-																	<td class="u-cell -center">{change.sign}{change.number}</td>
-																	<td class="u-cell -center">{change.date}</td>
-																</tr>
-															)}
-														</>
-													))}
+													{index >= 1 && (
+														<tr>
+															{/* prettier-ignore */}
+															<td class="u-cell -center">{change.sign}{change.number}</td>
+															<td class="u-cell -center">{change.date}</td>
+														</tr>
+													)}
 												</>
-											)}
+											))}
 										</>
 									))}
 								</tbody>
