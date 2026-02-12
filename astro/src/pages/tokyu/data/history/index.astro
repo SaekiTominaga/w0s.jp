@@ -17,8 +17,6 @@ import TableSortButton from '@components/+phrasing/TableSortButton.astro';
 import HistoryTable from '@components/tokyu/HistoryTable.astro';
 import TokyuCarHistoryDao from '@db/TokyuCarHistory.js';
 import type { ResponseJson as APIResponseJson } from '@api/tokyu/car-history.ts';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../../@types/util.d.ts';
 
 export const prerender = false;
@@ -36,17 +34,13 @@ const structuredData: StructuredData = {
 	opensearch: { path: '/tokyu/data/history/search', name: '東急電車　車歴検索' },
 };
 
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
-
-const requestParams = getRequestParams(Astro.url);
-
-const requestParamNumber = requestParams.get('num') ?? undefined;
-const requestParamNumberOld = Boolean(requestParams.get('old'));
-const requestParamSeries = requestParams.getAll('series');
-const requestParamRegistStart = requestParams.get('regist-start') ?? undefined;
-const requestParamRegistEnd = requestParams.get('regist-end') ?? undefined;
-const requestParamSort = requestParams.get('sort') ?? undefined;
-const requestParamEra = requestParams.get('era') ?? undefined;
+const requestParamNumber = Astro.locals.requestParams.get('num') ?? undefined;
+const requestParamNumberOld = Boolean(Astro.locals.requestParams.get('old'));
+const requestParamSeries = Astro.locals.requestParams.getAll('series');
+const requestParamRegistStart = Astro.locals.requestParams.get('regist-start') ?? undefined;
+const requestParamRegistEnd = Astro.locals.requestParams.get('regist-end') ?? undefined;
+const requestParamSort = Astro.locals.requestParams.get('sort') ?? undefined;
+const requestParamEra = Astro.locals.requestParams.get('era') ?? undefined;
 
 const dao = new TokyuCarHistoryDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_TOKYU_CAR_HISTORY')}`);
 
@@ -79,7 +73,7 @@ if (requestParamNumber !== undefined) {
 	}
 
 	const endpoint = `${Astro.url.origin}/api/tokyu/car-history?${endpointParams.toString()}`;
-	logger.info(`Endpoint: ${endpoint}`);
+	Astro.locals.logger.info(`Endpoint: ${endpoint}`);
 
 	cars = await (await fetch(endpoint)).json();
 }

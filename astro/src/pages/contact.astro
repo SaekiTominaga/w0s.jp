@@ -17,11 +17,9 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import { response303, response400 } from '@util/httpResponse.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	'schema-type': 'ContactPage',
@@ -42,11 +40,11 @@ if (actionResult !== undefined) {
 			requestFormdata = await Astro.request.formData();
 			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
-			logger.warn(error.message);
+			Astro.locals.logger.warn(error.message);
 			return response400();
 		}
 	} else {
-		logger.info('Message sent: %s', data.mailSentInfo.messageId);
+		Astro.locals.logger.info('Message sent: %s', data.mailSentInfo.messageId);
 		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
 	}
 }

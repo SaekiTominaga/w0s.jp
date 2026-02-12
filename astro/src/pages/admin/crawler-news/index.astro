@@ -16,12 +16,9 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import CrawlerNewsDao from '@db/CrawlerNews.ts';
 import { response303, response400 } from '@util/httpResponse.ts';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
@@ -39,12 +36,12 @@ if (insertActionResult !== undefined) {
 			requestFormdata = await Astro.request.formData();
 			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
-			logger.warn(error.message);
+			Astro.locals.logger.warn(error.message);
 			return response400();
 		}
 	} else {
 		if (data.errorMessage === undefined) {
-			logger.info('データ登録', data.url);
+			Astro.locals.logger.info('データ登録', data.url);
 			return response303(Astro.request, Astro.url.pathname);
 		}
 
@@ -62,12 +59,12 @@ if (updateActionResult !== undefined) {
 			requestFormdata = await Astro.request.formData();
 			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
-			logger.warn(error.message);
+			Astro.locals.logger.warn(error.message);
 			return response400();
 		}
 	} else {
 		if (data.errorMessage === undefined) {
-			logger.info('データ更新', data.url);
+			Astro.locals.logger.info('データ更新', data.url);
 			return response303(Astro.request, Astro.url.pathname);
 		}
 
@@ -81,11 +78,11 @@ if (deleteActionResult !== undefined) {
 	const { data, error } = deleteActionResult;
 
 	if (error !== undefined) {
-		logger.warn(error.message);
+		Astro.locals.logger.warn(error.message);
 		return response400();
 	}
 
-	logger.info('データ削除', data.id);
+	Astro.locals.logger.info('データ削除', data.id);
 	return response303(Astro.request, Astro.url.pathname);
 }
 
@@ -130,8 +127,7 @@ for (const newsPage of newsPageListDto) {
 	newsPageList.set(categoryName, newsPageOfCategoryView);
 }
 
-const requestParams = getRequestParams(Astro.url);
-const requestParamNewsId = requestParams.get('id') ?? undefined;
+const requestParamNewsId = Astro.locals.requestParams.get('id') ?? undefined;
 const reviseData = requestParamNewsId !== undefined ? await dao.getReviseData(requestParamNewsId) : undefined;
 ---
 

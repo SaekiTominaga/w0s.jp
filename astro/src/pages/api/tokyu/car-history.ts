@@ -1,9 +1,7 @@
-import { loadEnvFile } from 'node:process';
 import type { APIRoute } from 'astro';
 import dayjs from 'dayjs';
 import { env } from '@w0s/env-value-type';
 import TokyuCarHistoryDao from '@db/TokyuCarHistory.js';
-import { getParams as getRequestParams } from '@util/request.ts';
 
 interface Car {
 	number: string;
@@ -27,8 +25,6 @@ export type ResponseJson = Car[][];
 
 export const prerender = false;
 
-loadEnvFile(!import.meta.env.DEV ? '../.env.production' : '../.env.development');
-
 /**
  * 日付データを表示用に整形する
  *
@@ -47,16 +43,14 @@ const dateFormat = (date: Date, era: string | undefined): string => {
 	return dayjs(date).format('YYYY-MM-DD');
 };
 
-export const GET = (async ({ request }) => {
-	const requestParams = getRequestParams(new URL(request.url));
-
-	const requestParamNumber = requestParams.get('num');
-	const requestParamNumberOld = Boolean(requestParams.get('old'));
-	const requestParamSeries = requestParams.getAll('series');
-	const requestParamRegistStart = requestParams.get('regist-start') ?? undefined;
-	const requestParamRegistEnd = requestParams.get('regist-end') ?? undefined;
-	const requestParamSort = requestParams.get('sort') ?? undefined;
-	const requestParamEra = requestParams.get('era') ?? undefined;
+export const GET = (async ({ locals }) => {
+	const requestParamNumber = locals.requestParams.get('num');
+	const requestParamNumberOld = Boolean(locals.requestParams.get('old'));
+	const requestParamSeries = locals.requestParams.getAll('series');
+	const requestParamRegistStart = locals.requestParams.get('regist-start') ?? undefined;
+	const requestParamRegistEnd = locals.requestParams.get('regist-end') ?? undefined;
+	const requestParamSort = locals.requestParams.get('sort') ?? undefined;
+	const requestParamEra = locals.requestParams.get('era') ?? undefined;
 
 	const dao = new TokyuCarHistoryDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_TOKYU_CAR_HISTORY')}`);
 

@@ -8,22 +8,18 @@ import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerDiff from '@components/admin/CrawlerDiff.astro';
 import CrawlerDiffLine from '@components/admin/CrawlerDiffLine.astro';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース差分）',
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
-const requestParams = getRequestParams(Astro.url);
-const requestParamDir = requestParams.get('dir') ?? undefined;
-const requestParamDiff = requestParams.getAll('diff[]');
-const requestParamFormat = Boolean(requestParams.get('format'));
+const requestParamDir = Astro.locals.requestParams.get('dir') ?? undefined;
+const requestParamDiff = Astro.locals.requestParams.getAll('diff[]');
+const requestParamFormat = Boolean(Astro.locals.requestParams.get('format'));
 
 const PRETTIER_OPTIONS_HTML: PrettierOptions = {
 	parser: 'html',
@@ -72,7 +68,7 @@ if (requestParamDir !== undefined) {
 				}
 			});
 
-			logger.debug('Diff mode', requestParamDiff, diffs);
+			Astro.locals.logger.debug('Diff mode', requestParamDiff, diffs);
 		}
 
 		/* 初期表示 */
