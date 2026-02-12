@@ -9,8 +9,8 @@ export interface DCar {
 	type: string;
 	annual: number;
 	annual_display: string | undefined;
-	register_date: number; // YYYYMMDD
-	renewal: number;
+	register_date: string; // YYYY-MM-DD
+	renewal: number | undefined;
 	scrap: boolean;
 	transfer: string | undefined;
 	note: string | undefined;
@@ -20,7 +20,7 @@ export interface DChange {
 	now_num: string;
 	before_num: string;
 	before_type: string;
-	change_date: number; // YYYYMMDD
+	change_date: string; // YYYY-MM-DD
 }
 
 export interface MRenewal {
