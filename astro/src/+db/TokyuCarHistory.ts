@@ -54,8 +54,8 @@ export default class {
 	/**
 	 * 車両情報を取得する
 	 *
-	 * @param number - 車号
-	 * @param numberOld - 旧車号を含むか
+	 * @param number - 番号
+	 * @param numberOld - 旧番号を含むか
 	 * @param seriesList - 車種
 	 * @param registerStart - 入籍日（開始日）
 	 * @param registerEnd - 入籍日（終了日）
@@ -131,33 +131,31 @@ export default class {
 
 		/* ソート */
 		switch (sort) {
-			case 'num': // 車号ソート（車号）
-				query = query.orderBy('c.num');
+			case 'num': // 番号
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'type': // 形式ソート（車種、形式、呼称、車号）
-				query = query.orderBy('se.register');
-				query = query.orderBy('ty.name');
-				query = query.orderBy('c.annual');
-				query = query.orderBy('c.num');
+			case 'type': // 形式
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('ty.name'); // 形式
+				query = query.orderBy('c.annual'); // 呼称
+				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'ann': // 呼称ソート（車種、呼称、車種記号、形式、車号）
-				query = query.orderBy('se.register');
-				query = query.orderBy('c.annual');
-				query = query.orderBy('si.sort');
-				query = query.orderBy('c.type');
-				query = query.orderBy('c.num');
+			case 'ann': // 呼称
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('c.annual'); // 呼称
+				query = query.orderBy('si.sort'); // 車種記号
+				query = query.orderBy('c.type'); // 形式
+				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'regist': // 入籍日ソート（入籍日、車種、呼称、車種記号、形式、車号）
-				query = query.orderBy('c.register_date');
-				query = query.orderBy('se.register');
-				query = query.orderBy('c.annual');
-				query = query.orderBy('si.sort');
-				query = query.orderBy('c.type');
-				query = query.orderBy('c.num');
-				break;
-			default: // 車種別車号ソート（車種、車号）
-				query = query.orderBy('se.register');
-				query = query.orderBy('c.num');
+			case 'regist':
+			default: // 入籍日
+				query = query.orderBy('c.register_date'); // 入籍日
+				query = query.orderBy('se.register'); // 車種
+				query = query.orderBy('c.annual'); // 呼称
+				query = query.orderBy('si.sort'); // 車種記号
+				query = query.orderBy('c.type'); // 形式
+				query = query.orderBy('c.num'); // 番号
 		}
 
 		const rows = await query.execute();

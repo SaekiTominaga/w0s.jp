@@ -96,17 +96,17 @@ const slugger = new GithubSlugger();
 		<Box>
 			<List>
 				<li>
-					<q>車号</q>では次に挙げる記号を使うことで特殊な検索ができます。
+					<q>番号</q>では次に挙げる記号を使うことで特殊な検索ができます。
 					<ul>
 						<li>「<kbd>.</kbd>」（ピリオド）は任意の1文字に相当します。</li>
 						<li>「<kbd>*</kbd>」（アスタリスク）は任意数（0文字含む）の連続した文字列に相当します。</li>
-						<li>たとえばデハ8700形の全車両を表示するには、車種の<q>8500系</q>にチェックを入れたうえで、車号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</li>
+						<li>たとえばデハ8700形の全車両を表示するには、車種の<q>8500系</q>にチェックを入れたうえで、番号に『<kbd>.7..</kbd>』または『<kbd>.7*</kbd>』と入力します。</li>
 					</ul>
 				</li>
 				<li>
 					改造によって車種に変更が生じた車両では、改造前後の紐付けができません。
 					<ul>
-						<li>車号に『<kbd>7001</kbd>』と入力し、<q>旧車号を含む</q>にチェックを入れて検索しても、7700系化後のデータはヒットしません。</li>
+						<li>番号に『<kbd>7001</kbd>』と入力し、<q>旧番号を含む</q>にチェックを入れて検索しても、7700系化後のデータはヒットしません。</li>
 					</ul>
 				</li>
 				<li>入籍日、改番日の参考資料は<a href="/tokyu/data/history/ref">出典一覧</a>に記しています。</li>
@@ -116,12 +116,12 @@ const slugger = new GithubSlugger();
 		<form>
 			<FormGrid complex={true}>
 				<FormGridGroup>
-					<Fragment slot="legend"><label for="fc-num">車号</label></Fragment>
+					<Fragment slot="legend"><label for="fc-num">番号</label></Fragment>
 
 					<Fragment slot="contents">
 						<FormCtrlInput size="4em"><input name="num" value={requestParamNumber} maxlength={4} pattern="[0-37-9０-３７-９yYｙＹ\.．\*＊][0-9０-９\.．\*＊]{0,2}[0-9０-９aAａＡbBｂＢ\.．\*＊]?" id="fc-num" aria-errormessage="input-validate-num" class="js-convert-tokyu-car-histroy-num js-validation" title="検索対象の車種は旧7000系から新3000系までです。" /></FormCtrlInput>
 
-						<Label label="旧車号を含む">
+						<Label label="旧番号を含む">
 							<input type="checkbox" name="old" checked={requestParamNumberOld} />
 						</Label>
 					</Fragment>
@@ -172,14 +172,13 @@ const slugger = new GithubSlugger();
 						<div role="radiogroup" aria-labelledby="label-sort">
 							{
 								[
-									['snum', '車号（車種別）'],
-									['num', '車号（車種混合）'],
+									['num', '番号'],
 									['type', '形式'],
 									['annual', '呼称'],
 									['regist', '入籍日'],
-								].map(([name, value], index) => (
+								].map(([name, value]) => (
 									<Label label={value}>
-										<input type="radio" name="sort" value={name} checked={((requestParamSort === undefined || requestParamSort === '') && index === 0) || requestParamSort === name} />
+										<input type="radio" name="sort" value={name} checked={((requestParamSort === undefined || requestParamSort === '') && name === 'regist') || requestParamSort === name} />
 									</Label>
 								))
 							}
@@ -232,15 +231,15 @@ const slugger = new GithubSlugger();
 						<HistoryTable class="js-result-table" id="result-table">
 							<thead>
 								<tr>
-									<th scope="col">車号</th>
+									<th scope="col">番号</th>
 									<th scope="col">車種</th>
 									<th scope="col">形式</th>
 									<th scope="col">呼称</th>
 									<th scope="col">入籍日</th>
-									<th scope="col">旧車号</th>
+									<th scope="col">旧番号</th>
 									<th scope="col">改番日</th>
 									<th scope="col">更新</th>
-									<th scope="col">新車号、譲渡車号</th>
+									<th scope="col">新番号、譲渡番号</th>
 									<th scope="col">車齢</th>
 								</tr>
 							</thead>
@@ -296,9 +295,9 @@ const slugger = new GithubSlugger();
 																	<td class="u-cell -center">{change.sign}{change.number}</td>
 																	<td class="u-cell -center">{change.date}</td>
 																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.renewal}</td>
+																	<td rowspan={car.changes.length}>{car.renewal}</td>
 																	{/* prettier-ignore */}
-																	<td rowspan={car.changes.length} class="u-cell -center">{car.transfer}</td>
+																	<td rowspan={car.changes.length}>{car.transfer}</td>
 																	{/* prettier-ignore */}
 																	<td rowspan={car.changes.length} class="u-cell -center">{car.scrap && <>解体</>}{!car.scrap && <>{car.age}年</>}</td>
 																</tr>
