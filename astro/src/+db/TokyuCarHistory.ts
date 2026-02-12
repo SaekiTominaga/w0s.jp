@@ -1,6 +1,6 @@
 import SQLite from 'better-sqlite3';
 import dayjs from 'dayjs';
-import { Kysely, sql, SqliteDialect } from 'kysely';
+import { Kysely, SqliteDialect } from 'kysely';
 import Log4js from 'log4js';
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
 import type { DB } from '../../../@types/db_tokyu-car-history.d.ts';
