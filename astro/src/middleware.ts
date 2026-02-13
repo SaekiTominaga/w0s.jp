@@ -23,7 +23,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	const response = await next();
 
 	const { status, statusText, headers, body } = response;
-	headers.set('Content-Type', 'text/html;charset=utf-8');
+
+	const contentType = headers.get('Content-Type');
+	if (contentType !== null && ['text/html'].includes(contentType)) {
+		headers.set('Content-Type', `${contentType};charset=utf-8`);
+	}
 
 	return new Response(body, {
 		status: status,
