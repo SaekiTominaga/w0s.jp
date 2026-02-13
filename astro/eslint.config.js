@@ -38,10 +38,8 @@ export default [
 		},
 		rules: {
 			'consistent-return': 'off',
-			'dot-notation': 'off',
 			'no-console': 'off',
 			'no-irregular-whitespace': 'off',
-			'no-undef-init': 'off',
 			'no-useless-return': 'off',
 			'import/default': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/named': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
@@ -56,7 +54,6 @@ export default [
 			'import/no-named-as-default': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/no-named-as-default-member': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/no-unresolved': 'off',
-			'import/prefer-default-export': 'off',
 			'jsdoc/require-param-type': 'off',
 			'jsdoc/require-returns-type': 'off',
 		},
@@ -65,7 +62,6 @@ export default [
 		files: ['src/**/*.ts'],
 		rules: {
 			'no-console': 'off',
-			'@typescript-eslint/dot-notation': 'off',
 		},
 	},
 	{

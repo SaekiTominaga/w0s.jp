@@ -7,7 +7,7 @@ interface Props {
 
 const { pages, pageNote, position } = Astro.props;
 
-let pageDisplay: string | undefined = undefined;
+let pageDisplay: string | undefined;
 if (pages !== undefined) {
 	const [startPage, endPage] = pages;
 	pageDisplay = endPage !== undefined ? `pp.${startPage}–${endPage}` : `p.${startPage}`;

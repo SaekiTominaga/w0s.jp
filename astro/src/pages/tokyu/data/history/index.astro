@@ -47,7 +47,7 @@ const dao = new TokyuCarHistoryDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('S
 
 const carSeries = await dao.getCarSeries();
 
-let cars: APIResponseJson | undefined = undefined;
+let cars: APIResponseJson | undefined;
 
 if (requestParamNumber !== undefined) {
 	const endpointParams = new URLSearchParams();
