@@ -6,17 +6,18 @@ import Anchor from '@components/+phrasing/Anchor.astro';
 import type { StructuredData } from '../../@types/util.d.ts';
 
 export const prerender = false;
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: '問い合わせ（完了）',
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
-const requestParamReferrer = Astro.locals.requestParams.get('referrer') ?? undefined;
+const requestParamReferrer = requestParams.get('referrer') ?? undefined;
 
 let referrer = requestParamReferrer;
 if (requestParamReferrer !== undefined && requestParamReferrer !== '' && !requestParamReferrer.startsWith('/')) {
-	Astro.locals.logger.warn(`Invalid referrer value: ${requestParamReferrer}`);
+	logger.warn(`Invalid referrer value: ${requestParamReferrer}`);
 	referrer = undefined;
 }
 ---

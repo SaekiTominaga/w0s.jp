@@ -10,6 +10,7 @@ import { response303, response400 } from '@util/httpResponse.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュースデータ）',
@@ -21,16 +22,16 @@ if (deleteActionResult !== undefined) {
 	const { data, error } = deleteActionResult;
 
 	if (error !== undefined) {
-		Astro.locals.logger.warn(error.message);
+		logger.warn(error.message);
 		return response400();
 	}
 
-	Astro.locals.logger.info('データ削除', data.id);
+	logger.info('データ削除', data.id);
 	return response303(Astro.request, `?newsid=${data.newsId}`);
 }
 
 /* 初期表示 */
-const requestParamNewsId = Astro.locals.requestParams.get('newsid') ?? undefined;
+const requestParamNewsId = requestParams.get('newsid') ?? undefined;
 
 const dao = new CrawlerNewsDataDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
 

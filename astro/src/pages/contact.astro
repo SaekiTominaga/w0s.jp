@@ -20,6 +20,7 @@ import { response303, response400 } from '@util/httpResponse.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
 
 export const prerender = false;
+const { logger } = Astro.locals;
 
 const structuredData: StructuredData = {
 	'schema-type': 'ContactPage',
@@ -40,11 +41,11 @@ if (actionResult !== undefined) {
 			requestFormdata = await Astro.request.formData();
 			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
-			Astro.locals.logger.warn(error.message);
+			logger.warn(error.message);
 			return response400();
 		}
 	} else {
-		Astro.locals.logger.info('Message sent: %s', data.mailSentInfo.messageId);
+		logger.info('Message sent: %s', data.mailSentInfo.messageId);
 		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
 	}
 }

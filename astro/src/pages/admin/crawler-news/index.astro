@@ -19,6 +19,7 @@ import { response303, response400 } from '@util/httpResponse.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
@@ -36,12 +37,12 @@ if (insertActionResult !== undefined) {
 			requestFormdata = await Astro.request.formData();
 			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
-			Astro.locals.logger.warn(error.message);
+			logger.warn(error.message);
 			return response400();
 		}
 	} else {
 		if (data.errorMessage === undefined) {
-			Astro.locals.logger.info('データ登録', data.url);
+			logger.info('データ登録', data.url);
 			return response303(Astro.request, Astro.url.pathname);
 		}
 
@@ -59,12 +60,12 @@ if (updateActionResult !== undefined) {
 			requestFormdata = await Astro.request.formData();
 			validateMessages.push(...error.issues.map((issue) => issue.message));
 		} else {
-			Astro.locals.logger.warn(error.message);
+			logger.warn(error.message);
 			return response400();
 		}
 	} else {
 		if (data.errorMessage === undefined) {
-			Astro.locals.logger.info('データ更新', data.url);
+			logger.info('データ更新', data.url);
 			return response303(Astro.request, Astro.url.pathname);
 		}
 
@@ -78,11 +79,11 @@ if (deleteActionResult !== undefined) {
 	const { data, error } = deleteActionResult;
 
 	if (error !== undefined) {
-		Astro.locals.logger.warn(error.message);
+		logger.warn(error.message);
 		return response400();
 	}
 
-	Astro.locals.logger.info('データ削除', data.id);
+	logger.info('データ削除', data.id);
 	return response303(Astro.request, Astro.url.pathname);
 }
 
@@ -127,7 +128,7 @@ for (const newsPage of newsPageListDto) {
 	newsPageList.set(categoryName, newsPageOfCategoryView);
 }
 
-const requestParamNewsId = Astro.locals.requestParams.get('id') ?? undefined;
+const requestParamNewsId = requestParams.get('id') ?? undefined;
 const reviseData = requestParamNewsId !== undefined ? await dao.getReviseData(requestParamNewsId) : undefined;
 ---
 

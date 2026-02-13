@@ -22,9 +22,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
 	const response = await next();
 
-	response.headers.set('Content-Type', 'text/html;charset=utf-8');
+	const { headers } = response;
+	headers.set('Content-Type', 'text/html;charset=utf-8');
 
 	return new Response(await response.text(), {
-		headers: response.headers,
+		headers: headers,
 	});
 });

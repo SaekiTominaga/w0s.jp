@@ -11,15 +11,16 @@ import CrawlerDiffLine from '@components/admin/CrawlerDiffLine.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース差分）',
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
-const requestParamDir = Astro.locals.requestParams.get('dir') ?? undefined;
-const requestParamDiff = Astro.locals.requestParams.getAll('diff[]');
-const requestParamFormat = Boolean(Astro.locals.requestParams.get('format'));
+const requestParamDir = requestParams.get('dir') ?? undefined;
+const requestParamDiff = requestParams.getAll('diff[]');
+const requestParamFormat = Boolean(requestParams.get('format'));
 
 const PRETTIER_OPTIONS_HTML: PrettierOptions = {
 	parser: 'html',
@@ -68,7 +69,7 @@ if (requestParamDir !== undefined) {
 				}
 			});
 
-			Astro.locals.logger.debug('Diff mode', requestParamDiff, diffs);
+			logger.debug('Diff mode', requestParamDiff, diffs);
 		}
 
 		/* 初期表示 */
