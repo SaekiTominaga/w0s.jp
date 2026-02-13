@@ -17,11 +17,10 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import { response303, response400 } from '@util/httpResponse.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
+const { logger } = Astro.locals;
 
 const structuredData: StructuredData = {
 	'schema-type': 'ContactPage',

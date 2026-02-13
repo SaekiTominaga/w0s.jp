@@ -7,12 +7,10 @@ import Table from '@components/Table.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerNewsDataDao from '@db/CrawlerNewsData.ts';
 import { response303, response400 } from '@util/httpResponse.ts';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュースデータ）',
@@ -33,7 +31,6 @@ if (deleteActionResult !== undefined) {
 }
 
 /* 初期表示 */
-const requestParams = getRequestParams(Astro.url);
 const requestParamNewsId = requestParams.get('newsid') ?? undefined;
 
 const dao = new CrawlerNewsDataDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);

@@ -17,11 +17,10 @@ import TableSortButton from '@components/+phrasing/TableSortButton.astro';
 import HistoryTable from '@components/tokyu/HistoryTable.astro';
 import TokyuCarHistoryDao from '@db/TokyuCarHistory.js';
 import type { ResponseJson as APIResponseJson } from '@api/tokyu/car-history.ts';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../../@types/util.d.ts';
 
 export const prerender = false;
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: '東急電車　車歴検索',
@@ -35,10 +34,6 @@ const structuredData: StructuredData = {
 	moduleScripts: ['tokyu-car-history.mjs'],
 	opensearch: { path: '/tokyu/data/history/search', name: '東急電車　車歴検索' },
 };
-
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
-
-const requestParams = getRequestParams(Astro.url);
 
 const requestParamNumber = requestParams.get('num') ?? undefined;
 const requestParamNumberOld = Boolean(requestParams.get('old'));

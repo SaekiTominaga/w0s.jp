@@ -8,19 +8,16 @@ import Label from '@components/+phrasing/Label.astro';
 import SubmitButton from '@components/+phrasing/SubmitButton.astro';
 import CrawlerDiff from '@components/admin/CrawlerDiff.astro';
 import CrawlerDiffLine from '@components/admin/CrawlerDiffLine.astro';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソース差分）',
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
-const requestParams = getRequestParams(Astro.url);
 const requestParamDir = requestParams.get('dir') ?? undefined;
 const requestParamDiff = requestParams.getAll('diff[]');
 const requestParamFormat = Boolean(requestParams.get('format'));

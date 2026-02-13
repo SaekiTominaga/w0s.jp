@@ -3,19 +3,16 @@ import Layout from '@layouts/Site.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: '問い合わせ（完了）',
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
-const requestParams = getRequestParams(Astro.url);
 const requestParamReferrer = requestParams.get('referrer') ?? undefined;
 
 let referrer = requestParamReferrer;

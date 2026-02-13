@@ -2,17 +2,16 @@
 import fs from 'node:fs';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
-import { getParams as getRequestParams } from '@util/request.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
+const { requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（リソースファイル）',
 	breadcrumb: [{ path: '/admin/crawler-resource/', name: 'ウェブ巡回（リソース）' }],
 };
 
-const requestParams = getRequestParams(Astro.url);
 const requestParamDir = requestParams.get('dir') ?? undefined;
 const requestParamFile = requestParams.get('file') ?? undefined;
 

@@ -16,12 +16,10 @@ import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
 import Label from '@components/+phrasing/Label.astro';
 import CrawlerNewsDao from '@db/CrawlerNews.ts';
 import { response303, response400 } from '@util/httpResponse.ts';
-import { getParams as getRequestParams } from '@util/request.ts';
-import { init as ssrInit } from '@util/ssr.ts';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 export const prerender = false;
-const { logger } = ssrInit(Astro, { dev: import.meta.env.DEV });
+const { logger, requestParams } = Astro.locals;
 
 const structuredData: StructuredData = {
 	title: 'ウェブ巡回（ニュース）',
@@ -130,7 +128,6 @@ for (const newsPage of newsPageListDto) {
 	newsPageList.set(categoryName, newsPageOfCategoryView);
 }
 
-const requestParams = getRequestParams(Astro.url);
 const requestParamNewsId = requestParams.get('id') ?? undefined;
 const reviseData = requestParamNewsId !== undefined ? await dao.getReviseData(requestParamNewsId) : undefined;
 ---
