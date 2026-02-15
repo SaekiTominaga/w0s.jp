@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
+import * as cheerio from 'cheerio';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { JSDOM } from 'jsdom';
 import { getPageUrl } from './util.ts';
 
 /**
@@ -43,12 +43,9 @@ const fileList = await Array.fromAsync(
 
 const entries = await Promise.all(
 	fileList.map(async (filePath) => {
-		const html = (await fs.promises.readFile(filePath)).toString();
+		const $ = cheerio.load(await fs.promises.readFile(filePath));
 
-		/* DOM 化 */
-		const { document } = new JSDOM(html).window;
-
-		const modifiedAt = document.querySelector<HTMLTimeElement>('.l-content__header .updated > time')?.dateTime;
+		const modifiedAt = $('.l-content__header .updated > time').attr('datetime');
 
 		return {
 			pagePath: getPageUrl(filePath.substring(outDir.length)), // U+002F (/) から始まるパス絶対 URL
