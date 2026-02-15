@@ -1,9 +1,9 @@
 ---
-import { JSDOM } from 'jsdom';
+import * as cheerio from 'cheerio';
 
-const { document } = new JSDOM(await Astro.slots.render('default')).window;
+const $ = cheerio.load(await Astro.slots.render('default'));
 
-const itemDigit = document.querySelectorAll('body > li').length.toString().length;
+const itemDigit = $('body > li').length.toString().length;
 ---
 
 <ol class="list" data-digit={itemDigit}>
