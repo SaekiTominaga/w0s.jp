@@ -36,43 +36,42 @@ const { title, data, prefix, refPrefix } = Astro.props;
 		.footnote {
 			border: 1px solid var(--color-bg-light);
 			border-radius: var(--border-radius-large);
-			background: var(--color-bg-light);
+			background-color: var(--color-bg-light);
 			padding: 1em;
 			font-size: calc(100% / pow(var(--font-ratio), 1));
+
+			& > * + * {
+				margin-block-start: 1em;
+			}
 		}
 
 		.hdg {
 		}
 
 		.list {
-			display: block table;
-			margin-block-start: 0.25em;
+			display: block grid;
+			grid-template-columns: auto 1fr;
+			gap: 1em 0.5em;
 
 			& > :global(li) {
-				display: table-row;
+				display: block grid;
+				grid-template-columns: subgrid;
+				grid-column: 1 / -1;
 			}
 
 			& > :global(li:not(:first-child) > *) {
-				border-block-start: 0.5em solid transparent;
 			}
 		}
 
 		.no,
 		.content {
-			display: table-cell;
-			vertical-align: top;
 		}
 
 		.no {
-			padding-block-start: 0.5em;
 			text-align: end;
-			text-wrap-mode: nowrap;
 		}
 
 		.content {
-			padding-block-start: 0.5em;
-			padding-inline-start: 0.5em;
-			inline-size: 100%;
 		}
 
 		.backref {

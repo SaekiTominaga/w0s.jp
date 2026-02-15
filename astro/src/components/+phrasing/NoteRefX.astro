@@ -3,27 +3,24 @@
 <style>
 	@layer component {
 		.note-ref {
+			display: inline flow-root;
 			vertical-align: super;
 			font-size: calc(100% / pow(var(--font-ratio), 2));
 
 			& > :global(a) {
-				--_border-color: transparent;
-				--_bg-color: transparent;
-
-				border: 1px solid var(--_border-color);
-				background-color: var(--_bg-color);
-				text-wrap-mode: nowrap;
+				outline-offset: calc(0px - var(--outline-width-bold));
+				outline-width: var(--outline-width-bold);
+				padding: 0.25em;
 				text-decoration-skip-ink: none; /* JS 無効環境向け */
 			}
 
 			& > :global(a:target) {
-				--_border-color: var(--color-red);
-				--_bg-color: var(--color-verylightred);
+				border: 1px solid var(--color-red);
+				background-color: var(--color-verylightred);
 			}
 
 			& > :global(a[role='button' i]) {
 				/* JS 有効時のみ */
-				outline-offset: calc(0px - var(--outline-width));
 				cursor: default;
 				text-decoration: none;
 				color: var(--link-color);
