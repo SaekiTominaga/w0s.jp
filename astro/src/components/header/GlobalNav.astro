@@ -47,44 +47,40 @@ const { pagePath, data } = Astro.props;
 				display: block flex;
 				flex: auto;
 				margin: calc(0px - var(--_border-width) / 2);
-				border: 1px solid var(--color-border-light);
+				border: var(--_border-width) solid var(--color-border-light);
 			}
 		}
 
 		.link {
-			--_border-color: transparent;
-			--_border-width: 0px;
-			--_color: var(--color-darkgray);
-			--_background: var(--color-white);
+			--_link-border-width: 0px;
 
 			flex: 100%;
-			contain: content;
+			contain: content; /* フォーカスリングとの関係 */
 			outline-offset: calc(1px - var(--outline-width-bold));
 			outline-width: var(--outline-width-bold);
-			border-block-end: var(--_border-width) solid var(--_border-color);
-			background: var(--_background);
-			padding: 0.5em 0.25em calc(0.5em - var(--_border-width));
+			background-color: var(--color-white);
+			padding: 0.5em 0.25em calc(0.5em - var(--_link-border-width));
 			text-align: center;
 			text-decoration: none;
-			color: var(--_color);
+			color: var(--color-darkgray);
 			font-size: clamp(100%, 2.5svi, calc(100% * pow(var(--font-ratio), 2)));
 
 			&:any-link {
-				--_background: linear-gradient(var(--color-white), var(--color-bg-light));
+				background-image: linear-gradient(var(--color-white), var(--color-bg-light));
 
 				&:hover {
-					--_background: linear-gradient(var(--color-bg-light), var(--color-white));
-
-					color: var(--_color);
+					background-image: linear-gradient(var(--color-bg-light), var(--color-white));
+					color: var(--color-darkgray);
 				}
 			}
 
 			&[aria-current] {
-				--_border-width: 2px;
-				--_border-color: var(--color-red);
+				--_link-border-width: 2px;
+
+				border-block-end: var(--_link-border-width) solid var(--color-red);
 
 				&:focus {
-					--_border-width: 3px; /* フォーカスリングとの関係 */
+					--_link-border-width: 3px; /* フォーカスリングとの関係 */
 				}
 			}
 		}
