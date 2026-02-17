@@ -6,6 +6,18 @@ import { env } from '@w0s/env-value-type';
 import URLSearchParamsCustomSeparator from '@w0s/urlsearchparams-custom-separator';
 
 export const onRequest = defineMiddleware(async (context, next) => {
+	if (!context.isPrerendered) {
+		loadEnvFile(!import.meta.env.DEV ? '../.env.production' : '../.env.development');
+
+		/* Logger */
+		Log4js.configure(`${env('ROOT')}/${env('ASTRO_LOG4JS_CONF')}`);
+		const logger = Log4js.getLogger(context.url.pathname);
+		context.locals.logger = logger;
+
+		/* URLSearchParams */
+		context.locals.requestParams = new URLSearchParamsCustomSeparator(context.url, [';']).searchParams;
+	}
+
 	const response = await next();
 	const { status, statusText, headers, body } = response;
 
@@ -32,16 +44,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
 				headers: headers,
 			});
 		}
-	} else {
-		loadEnvFile(!import.meta.env.DEV ? '../.env.production' : '../.env.development');
-
-		/* Logger */
-		Log4js.configure(`${env('ROOT')}/${env('ASTRO_LOG4JS_CONF')}`);
-		const logger = Log4js.getLogger(context.url.pathname);
-		context.locals.logger = logger;
-
-		/* URLSearchParams */
-		context.locals.requestParams = new URLSearchParamsCustomSeparator(context.url, [';']).searchParams;
 	}
 
 	return new Response(body, {
