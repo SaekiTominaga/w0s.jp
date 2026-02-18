@@ -13,19 +13,23 @@ const itemDigit = $('body > li').length.toString().length;
 <style>
 	@layer component {
 		.list {
+			--_digit: attr(data-digit ch, 1ch);
+
 			margin-inline-start: calc(var(--_digit) + 2ch);
 			counter-reset: item;
 
-			&[data-digit='1'] {
-				--_digit: 1ch;
-			}
+			@supports not (x: attr(x ch)) {
+				&[data-digit='1'] {
+					--_digit: 1ch;
+				}
 
-			&[data-digit='2'] {
-				--_digit: 2ch;
-			}
+				&[data-digit='2'] {
+					--_digit: 2ch;
+				}
 
-			&[data-digit='3'] {
-				--_digit: 3ch;
+				&[data-digit='3'] {
+					--_digit: 3ch;
+				}
 			}
 
 			& :global(> li) {
