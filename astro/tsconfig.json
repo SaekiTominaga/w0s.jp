@@ -3,15 +3,24 @@
 	"include": [".astro/types.d.ts", "src/**/*.astro", "src/**/*.ts"],
 	"exclude": ["dist"],
 	"compilerOptions": {
+		/* Type Checking */
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedParameters": true,
+
 		/* Modules */
-		"baseUrl": ".",
 		"paths": {
-			"@api/*": ["src/pages/api/*"],
-			"@components/*": ["src/components/*"],
-			"@layouts/*": ["src/layouts/*"],
-			"@config/*": ["src/+config/*"],
-			"@db/*": ["src/+db/*"],
-			"@util/*": ["src/+util/*"]
+			"@api/*": ["./src/pages/api/*"],
+			"@components/*": ["./src/components/*"],
+			"@layouts/*": ["./src/layouts/*"],
+			"@config/*": ["./src/+config/*"],
+			"@db/*": ["./src/+db/*"],
+			"@util/*": ["./src/+util/*"]
 		}
 	}
 }

@@ -15,7 +15,7 @@ const getData = (
 
 		const templateElementClone = noterefTemplate.content.cloneNode(true) as DocumentFragment;
 
-		const id = noterefTemplate.dataset.by;
+		const id = noterefTemplate.dataset['by'];
 		if (id === undefined) {
 			throw new Error('`data-by` attribute is not set');
 		}
