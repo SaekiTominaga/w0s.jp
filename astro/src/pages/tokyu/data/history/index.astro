@@ -156,12 +156,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="contents">
 						<div role="radiogroup" aria-labelledby="label-sort" aria-describedby="input-description-sort">
 							{
-								[
-									['num', '番号'],
-									['type', '形式'],
-									['annual', '呼称'],
-									['regist', '入籍日'],
-								].map(([name, value]) => (
+								Object.entries({ num: '番号', type: '形式', annual: '呼称', regist: '入籍日' }).map(([name, value]) => (
 									<Label label={value}>
 										<input type="radio" name="sort" value={name} checked={((requestParamSort === undefined || requestParamSort === '') && name === 'regist') || requestParamSort === name} />
 									</Label>
@@ -180,10 +175,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="contents">
 						<div role="radiogroup" aria-labelledby="label-era">
 							{
-								[
-									['ad', '西暦'],
-									['ja', '和暦'],
-								].map(([name, value], index) => (
+								Object.entries({ ad: '西暦', ja: '和暦' }).map(([name, value], index) => (
 									<Label label={value}>
 										<input type="radio" name="era" value={name} checked={((requestParamEra === undefined || requestParamEra === '') && index === 0) || requestParamEra === name} />
 									</Label>
