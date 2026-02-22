@@ -14,7 +14,7 @@ export default {
 		'src/pages/madoka/yomoyama/namae.astro', // 287 KB
 	],
 	rules: {
-		'disallowed-element': ['base', 'style', 'h5', 'h6', 'hr', 'i', 'u', 'area'],
+		'disallowed-element': ['noscript', 'embed', 'base', 'style', 'h5', 'h6', 'hr', 'i', 'u', 'area'],
 		'class-naming': [
 			'/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/',
 			'/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
@@ -38,6 +38,16 @@ export default {
 			},
 		},
 		{
+			selector: 'button > svg[role="img"]',
+			rules: {
+				'wai-aria': {
+					options: {
+						checkingPresentationalChildren: false,
+					},
+				},
+			},
+		},
+		{
 			selector: 'th:has(> DateWareki)',
 			rules: {
 				'require-accessible-name': false,
@@ -47,6 +57,12 @@ export default {
 			selector: 'summary',
 			rules: {
 				'permitted-contents': false,
+			},
+		},
+		{
+			selector: '.item-container .link > a',
+			rules: {
+				'redundant-accessible-name': false,
 			},
 		},
 	],
