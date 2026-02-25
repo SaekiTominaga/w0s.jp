@@ -91,6 +91,10 @@ export default {
 			selector: 'Table',
 			as: 'table',
 		},
+		{
+			selector: 'IndexTable',
+			as: 'table',
+		},
 	],
 	overrideMode: 'merge',
 	overrides: {
