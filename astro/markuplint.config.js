@@ -99,20 +99,6 @@ export default {
 			rules: {
 				'no-empty-palpable-content': false,
 			},
-			nodeRules: [
-				{
-					selector: 'input, textarea',
-					rules: {
-						'require-accessible-name': false,
-					},
-				},
-			],
-		},
-		'src/pages/tokyu/data/history/index.astro': {
-			rules: {
-				'no-orphaned-end-tag': false,
-				'permitted-contents': false,
-			},
 		},
 		'dist/client/**/*.html': {
 			rules: {
