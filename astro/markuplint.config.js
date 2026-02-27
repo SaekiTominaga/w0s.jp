@@ -48,12 +48,6 @@ export default {
 			},
 		},
 		{
-			selector: 'th:has(> DateWareki)',
-			rules: {
-				'require-accessible-name': false,
-			},
-		},
-		{
 			selector: 'summary',
 			rules: {
 				'permitted-contents': false,
@@ -74,6 +68,23 @@ export default {
 		{
 			selector: 'CrawlerDiffLine',
 			as: 'tr',
+		},
+		{
+			selector: 'DateWareki',
+			as: {
+				element: 'time',
+				attrs: [
+					{
+						name: 'datetime',
+						value: '2000-01-01',
+					},
+				],
+				aria: {
+					name: {
+						fromAttr: 'value',
+					},
+				},
+			},
 		},
 		{
 			selector: 'ListDescription',
