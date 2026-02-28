@@ -1,5 +1,3 @@
-import { Dayjs } from 'dayjs';
-
 export type SchemaOrgBreadcrumbListItem = Readonly<{
 	'@context'?: string;
 	'@type': 'ListItem';
@@ -67,7 +65,7 @@ export type StructuredData = Readonly<{
 	title: string;
 	heading?: string;
 	subHeading?: string;
-	dateModified?: Dayjs;
+	dateModified?: string;
 	description?: string;
 	image?: string;
 	breadcrumb?: readonly StructuredDataUrl[];

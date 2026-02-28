@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '../../@types/util.d.ts';
 
 interface Options {
@@ -61,7 +62,7 @@ export const getJsonLd = (structuredData: Readonly<StructuredData>, options: Rea
 		jsonLd.breadcrumb = breadcrumbList;
 	}
 	if (structuredData.dateModified !== undefined) {
-		jsonLd.dateModified = structuredData.dateModified.format('YYYYMMDDTHHmm');
+		jsonLd.dateModified = dayjs(structuredData.dateModified).format('YYYYMMDDTHHmm');
 	}
 	jsonLd.headline = structuredData.title;
 	if (structuredData.description !== undefined) {

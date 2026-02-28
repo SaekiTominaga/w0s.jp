@@ -1,12 +1,16 @@
 ---
+import dayjs from 'dayjs';
+
 interface Props {
 	title: string;
 	heading: string | undefined;
 	subHeading: string | undefined;
-	dateModified: import('dayjs').Dayjs | undefined;
+	dateModified: string | undefined;
 }
 
 const { title, heading, subHeading, dateModified } = Astro.props;
+
+const dateModifiedDayjs = dayjs(dateModified);
 ---
 
 <hgroup class="title">
@@ -22,7 +26,7 @@ const { title, heading, subHeading, dateModified } = Astro.props;
 	{
 		dateModified !== undefined && (
 			<p class="updated">
-				<time datetime={dateModified.format('YYYY-MM-DD')}>{dateModified.format('YYYY年M月D日')}</time>更新
+				<time datetime={dateModifiedDayjs.format('YYYY-MM-DD')}>{dateModifiedDayjs.format('YYYY年M月D日')}</time>更新
 			</p>
 		)
 	}
