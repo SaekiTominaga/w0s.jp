@@ -1,6 +1,8 @@
 ---
+import type { TocData } from '@util/toc';
+
 interface Props {
-	data: Map<string, string> | undefined;
+	data: TocData[] | undefined;
 	direction: 'column' | 'row' | undefined;
 }
 
@@ -8,9 +10,9 @@ const { data, direction } = Astro.props;
 ---
 
 {
-	data !== undefined && data.size >= 2 && (
+	data !== undefined && data.length >= 2 && (
 		<ol class:list={['toc', direction !== undefined ? `-${direction}` : undefined]} aria-label="目次">
-			{[...data].map(([id, headingHtml]) => (
+			{data.map(({ id, headingHtml }) => (
 				<li>
 					<a href={`#${encodeURIComponent(id)}`} set:html={headingHtml} />
 				</li>
