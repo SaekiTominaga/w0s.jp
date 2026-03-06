@@ -98,6 +98,7 @@ const updateEntries = collection
 		}
 
 		.main {
+			container-type: inline-size;
 			margin-block-start: 0.25em;
 		}
 
@@ -113,18 +114,17 @@ const updateEntries = collection
 		}
 
 		.list {
-			container-type: inline-size;
+			display: block grid;
 			border: 2px solid var(--color-border-light);
 			border-radius: var(--border-radius-normal);
-			background-color: var(--color-white);
 			overflow: hidden;
 
 			& > :global(li) {
 				--_padding: 15px;
 
 				display: block grid;
-				grid-template-areas: 'date info';
-				grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+				grid-template-columns: subgrid;
+				grid-column: 1 / -1;
 			}
 
 			& > :global(li:not(:first-child)) {
@@ -133,13 +133,12 @@ const updateEntries = collection
 		}
 
 		.date {
-			grid-column: date;
 			background-color: var(--color-bg-verylight);
 			padding: var(--_padding);
 		}
 
 		.info {
-			grid-column: info;
+			background-color: var(--color-white);
 			padding: var(--_padding);
 
 			& > :global(* + *) {
@@ -147,16 +146,13 @@ const updateEntries = collection
 			}
 		}
 
-		@container (inline-size <= 40rem) {
+		@container (inline-size> 40rem) {
 			.list {
-				& > :global(li) {
-					grid-template-areas:
-						'date'
-						'info';
-					grid-template-columns: 1fr;
-				}
+				grid-template-columns: auto 1fr;
 			}
+		}
 
+		@container (inline-size <= 40rem) {
 			.date {
 				padding-block: calc(var(--_padding) / 2);
 				font-weight: var(--font-weight-bold);
