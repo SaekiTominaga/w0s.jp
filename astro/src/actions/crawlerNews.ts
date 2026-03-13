@@ -11,7 +11,7 @@ export const crawlerNews = {
 	newsinsert: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.url(),
+			url: z.string().url(),
 			title: z.string(),
 			category: z.number(),
 			priority: z.number(),
@@ -60,7 +60,7 @@ export const crawlerNews = {
 	newsupdate: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.url(),
+			url: z.string().url(),
 			title: z.string(),
 			category: z.number(),
 			priority: z.number(),

@@ -10,7 +10,7 @@ export const crawlerResource = {
 	insert: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.url(),
+			url: z.string().url(),
 			title: z.string(),
 			category: z.number(),
 			priority: z.number(),
@@ -56,7 +56,7 @@ export const crawlerResource = {
 	update: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.url(),
+			url: z.string().url(),
 			title: z.string(),
 			category: z.number(),
 			priority: z.number(),
@@ -106,7 +106,7 @@ export const crawlerResource = {
 	delete: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.url(),
+			url: z.string().url(),
 		}),
 		handler: async (input) => {
 			const dao = new CrawlerResourceDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);
