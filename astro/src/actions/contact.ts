@@ -24,7 +24,7 @@ export const contact = {
 		accept: 'form',
 		input: z.object({
 			yourname: z.string().optional(),
-			email: z.email('Eメールアドレスの書式が正しくありません。'),
+			email: z.string().email('Eメールアドレスの書式が正しくありません。'),
 			reply: z.string(),
 			body: z.string(),
 		}),
