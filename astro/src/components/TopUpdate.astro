@@ -14,6 +14,7 @@ interface Props {
 const { id, collection, feedHref, updateHref } = Astro.props;
 
 const updateEntries = collection
+	.toReversed()
 	.filter(({ data }, index) => {
 		/* 件数と更新日でフィルターする */
 		const compareDate = new Date();
