@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 /* 更新情報 */
 const updateSchema = z.object({
