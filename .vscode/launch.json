@@ -1,0 +1,26 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Astro",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}/astro",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeExecutable": "astro",
+			"runtimeArgs": ["dev"],
+			"outputCapture": "std"
+		},
+		{
+			"name": "Express",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}/express",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeExecutable": "tsx",
+			"runtimeArgs": ["--watch", "--tsconfig", "tsconfig.json", "src/app.ts"],
+			"envFile": "${workspaceFolder}/.env.development",
+			"outputCapture": "std"
+		}
+	]
+}

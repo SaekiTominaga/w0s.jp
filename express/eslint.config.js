@@ -23,6 +23,12 @@ export default [
 		},
 	},
 	{
+		files: ['src/logger.ts'],
+		rules: {
+			'no-console': 'off',
+		},
+	},
+	{
 		files: ['src/util/**/*.ts'],
 		rules: {
 			'func-style': [
