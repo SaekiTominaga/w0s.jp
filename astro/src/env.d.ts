@@ -1,6 +1,6 @@
 declare namespace App {
 	interface Locals {
-		logger: Log4js.Logger;
+		logger: pino.Logger;
 		requestParams: URLSearchParams;
 	}
 }

@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "tsx --watch --tsconfig tsconfig.json src/app.ts",
+		"dev": "tsx --watch --env-file=../.env.development --tsconfig tsconfig.json src/app.ts",
 		"build": "tsc",
 		"lint": "eslint src/**/*.ts",
 		"pretest": "tsc --noEmit",
@@ -16,12 +16,15 @@
 		"compression": "1.8.1",
 		"express": "5.2.1",
 		"htpasswd-js": "1.0.2",
-		"log4js": "6.9.1"
+		"nodemailer": "8.0.2",
+		"pino": "10.3.1",
+		"pino-pretty": "13.1.3"
 	},
 	"devDependencies": {
 		"@types/basic-auth": "1.1.8",
 		"@types/compression": "1.8.1",
 		"@types/express": "5.0.6",
+		"@types/nodemailer": "7.0.11",
 		"tsx": "4.21.0"
 	},
 	"packageManager": "pnpm@10.28.1"

@@ -1,15 +1,17 @@
+import path from 'node:path';
 import SQLite from 'better-sqlite3';
 import dayjs from 'dayjs';
 import { Kysely, SqliteDialect } from 'kysely';
-import Log4js from 'log4js';
+import type { Logger } from 'pino';
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
 import type { DB } from '../../../@types/db_tokyu-car-history.d.ts';
+import { getLogger } from '../logger.ts';
 
 /**
  * 東急電車資料室・車歴表
  */
 export default class {
-	readonly #logger: Log4js.Logger;
+	readonly #logger: Logger;
 
 	readonly #db: Kysely<DB>;
 
@@ -17,7 +19,7 @@ export default class {
 	 * @param filePath - DB ファイルパス
 	 */
 	constructor(filePath: string) {
-		this.#logger = Log4js.getLogger('db - tokyu-car-history');
+		this.#logger = getLogger(path.basename(filePath));
 
 		const sqlite = new SQLite(filePath, {
 			/* https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md#new-databasepath-options */
@@ -43,7 +45,7 @@ export default class {
 		const rows = await query.execute();
 
 		const compiled = query.compile();
-		this.#logger.debug(compiled.sql, compiled.parameters);
+		this.#logger.debug(compiled.parameters, compiled.sql);
 
 		return rows.map((row) => ({
 			id: sqliteToJS(row.fk),
@@ -161,7 +163,7 @@ export default class {
 		const rows = await query.execute();
 
 		const compiled = query.compile();
-		this.#logger.debug(compiled.sql, compiled.parameters);
+		this.#logger.debug(compiled.parameters, compiled.sql);
 
 		const changeDataList = await this.#getCarChangeData();
 

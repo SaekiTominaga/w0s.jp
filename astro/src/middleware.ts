@@ -1,17 +1,15 @@
 import { loadEnvFile } from 'node:process';
 import { defineMiddleware } from 'astro:middleware';
 import * as cheerio from 'cheerio';
-import Log4js from 'log4js';
-import { env } from '@w0s/env-value-type';
 import URLSearchParamsCustomSeparator from '@w0s/urlsearchparams-custom-separator';
+import { getLogger } from './logger.ts';
 
 export const onRequest = defineMiddleware(async (context, next) => {
 	if (!context.isPrerendered) {
 		loadEnvFile(!import.meta.env.DEV ? '../.env.production' : '../.env.development');
 
 		/* Logger */
-		Log4js.configure(`${env('ROOT')}/${env('ASTRO_LOG4JS_CONF')}`);
-		const logger = Log4js.getLogger(context.url.pathname);
+		const logger = getLogger(context.url.pathname);
 		context.locals.logger = logger;
 
 		/* URLSearchParams */
