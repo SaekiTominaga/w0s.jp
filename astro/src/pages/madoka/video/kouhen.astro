@@ -6,12 +6,14 @@ import Anchor from '@components/+phrasing/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
 import VideoDiff from '@components/VideoDiff.astro';
 import VideoDiffItem from '@components/VideoDiffItem.astro';
+import image_chapter6_002650_tvcm3 from '@assets/madoka/video/kouhen_chapter6_00-26-50_tvcm3.jpg';
+import image_chapter6_002650_bd from '@assets/madoka/video/kouhen_chapter6_00-26-50_bd.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -126,13 +128,13 @@ const structuredData: StructuredData = {
 				<Grid column="medium">
 					<GridItem>
 						<Embedded border={true}>
-							<Image path="madoka/video/kouhen_chapter6_00-26-50_tvcm3.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+							<MyImage image={image_chapter6_002650_tvcm3} alt="画像拡大" width={294} height={166} link={true} slot="media" />
 							<Fragment slot="caption">TV CM 3（前編BD/DVD収録）</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
 						<Embedded border={true}>
-							<Image path="madoka/video/kouhen_chapter6_00-26-50_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+							<MyImage image={image_chapter6_002650_bd} alt="画像拡大" width={294} height={166} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>

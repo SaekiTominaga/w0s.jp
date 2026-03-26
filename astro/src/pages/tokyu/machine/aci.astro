@@ -3,8 +3,11 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_INV049 from '@assets/tokyu/machine/aci/INV049.jpg';
+import image_INV088 from '@assets/tokyu/machine/aci/INV088.jpg';
+import image_TCE220 from '@assets/tokyu/machine/aci/TCE220.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -30,7 +33,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">INV-049</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aci/INV049.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_INV049} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-07-18 -->
 						<Fragment slot="caption">クハ1022（5次車）海側</Fragment>
 					</Embedded>
@@ -45,7 +48,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">INV-088</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aci/INV088.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_INV088} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-02-14 -->
 						<Fragment slot="caption">デハ2251（1次車）海側</Fragment>
 					</Embedded>
@@ -67,7 +70,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">TCE-220</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aci/TCE220.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_TCE220} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2019-04-26 -->
 						<Fragment slot="caption">クハ9021（1次車）海側</Fragment>
 					</Embedded>

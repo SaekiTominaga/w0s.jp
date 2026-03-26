@@ -3,8 +3,18 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_1200Ns from '@assets/tokyu/machine/ub/1200Ns.jpg';
+import image_1200Nm from '@assets/tokyu/machine/ub/1200Nm.jpg';
+import image_1310Ns from '@assets/tokyu/machine/ub/1310Ns.jpg';
+import image_1310Nm from '@assets/tokyu/machine/ub/1310Nm.jpg';
+import image_1000Ns from '@assets/tokyu/machine/ub/1000Ns.jpg';
+import image_1000Nm from '@assets/tokyu/machine/ub/1000Nm.jpg';
+import image_1200N1000N_sea from '@assets/tokyu/machine/ub/1200N-1000N_sea.jpg';
+import image_1000N1200N_mount from '@assets/tokyu/machine/ub/1000N-1200N_mount.jpg';
+import image_1310N1200N_sea from '@assets/tokyu/machine/ub/1310N-1200N_sea.jpg';
+import image_1200N1310N_mount from '@assets/tokyu/machine/ub/1200N-1310N_mount.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -42,7 +52,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">海側</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1200Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<MyImage image={image_1200Ns} alt="写真拡大" width={485} height={152} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-09 -->
 						<Fragment slot="caption">デハ1212海側（3次車）</Fragment>
 					</Embedded>
@@ -55,7 +65,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">山側</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1200Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<MyImage image={image_1200Nm} alt="写真拡大" width={485} height={152} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-02 -->
 						<Fragment slot="caption">デハ1213山側（3次車）</Fragment>
 					</Embedded>
@@ -75,7 +85,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">海側</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1310Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<MyImage image={image_1310Ns} alt="写真拡大" width={485} height={152} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-09 -->
 						<Fragment slot="caption">デハ1313海側（3次車）</Fragment>
 					</Embedded>
@@ -88,7 +98,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">山側</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1310Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<MyImage image={image_1310Nm} alt="写真拡大" width={485} height={152} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-09 -->
 						<Fragment slot="caption">デハ1313山側（3次車）</Fragment>
 					</Embedded>
@@ -108,7 +118,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">海側</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1000Ns.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<MyImage image={image_1000Ns} alt="写真拡大" width={485} height={152} link={true} slot="media" />
 						<!-- 撮影日: 2008-03-01 -->
 						<Fragment slot="caption">クハ1012海側（3次車）</Fragment>
 					</Embedded>
@@ -121,7 +131,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">山側</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1000Nm.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+						<MyImage image={image_1000Nm} alt="写真拡大" width={485} height={152} link={true} slot="media" />
 						<!-- 撮影日: 2008-03-01 -->
 						<Fragment slot="caption">クハ1013山側（3次車）</Fragment>
 					</Embedded>
@@ -141,13 +151,13 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">デハ1200形 ｰ クハ1000形間</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1200N-1000N_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_1200N1000N_sea} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-17 -->
 						<Fragment slot="caption">デハ1213 ｰ クハ1013海側</Fragment>
 					</Embedded>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1000N-1200N_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_1000N1200N_mount} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-17 -->
 						<Fragment slot="caption">クハ1013 ｰ デハ1213山側</Fragment>
 					</Embedded>
@@ -158,12 +168,12 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">デハ1310形 ｰ デハ1200形間</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1310N-1200N_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_1310N1200N_sea} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-16 -->
 						<Fragment slot="caption">デハ1313 ｰ デハ1212海側</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/1200N-1310N_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_1200N1310N_mount} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2008-02-16 -->
 						<Fragment slot="caption">デハ1212 ｰ デハ1313山側</Fragment>
 					</Embedded>

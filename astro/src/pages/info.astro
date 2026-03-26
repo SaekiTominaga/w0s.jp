@@ -9,9 +9,14 @@ import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import AnchorIcon from '@components/+phrasing/AnchorIcon.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import ImageAmazon from '@components/+phrasing/ImageAmazon.astro';
 import TickAndCross from '@components/+phrasing/TickAndCross.astro';
+import image_info_profile from '@assets/info_profile.jpg';
+import image_tamagawa1067_cover from '@assets/tokyu/book/tamagawa1067_cover.jpg';
+import image_7700_cover from '@assets/tokyu/book/7700_cover.jpg';
+import image_tetsupic749_cover from '@assets/tokyu/book/tetsupic749_cover.jpg';
+import image_info_monimode3_cover from '@assets/info_moni-mode3_cover.png';
 import type { StructuredData } from '../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -36,7 +41,7 @@ const structuredData: StructuredData = {
 		<p><ruby>富永 冴樹<rp>（</rp><rt>とみなが さえき</rt><rp>）</rp></ruby> / トミー</p>
 
 		<Embedded border={true}>
-			<Image path="info_profile.jpg" alt="正方形のアイコン画像: 下っぱスーツでテンパる坪内地丹の顔が描かれたデザインカプチーノ" width={120} height={120} quality={60} slot="media" />
+			<MyImage image={image_info_profile} alt="正方形のアイコン画像: 下っぱスーツでテンパる坪内地丹の顔が描かれたデザインカプチーノ" width={120} height={120} slot="media" />
 		</Embedded>
 	</Section>
 
@@ -167,7 +172,7 @@ const structuredData: StructuredData = {
 				</GridItem>
 				<GridItem>
 					<BookItem sectionDepth={3} title="公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両" summary="自費出版、2024年12月発売" link="/tokyu/book/tamagawa1067">
-						<Image slot="image" path="tokyu/book/tamagawa1067_cover.jpg" alt="表紙: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={114} height={160} quality={60} />
+						<MyImage slot="image" image={image_tamagawa1067_cover} alt="表紙: クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={114} height={160} />
 						<Fragment slot="details">
 							<p>資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。</p>
 						</Fragment>
@@ -175,7 +180,7 @@ const structuredData: StructuredData = {
 				</GridItem>
 				<GridItem>
 					<BookItem sectionDepth={3} title="東急7700系形態分類" summary="自費出版、2019年8月発売" link="/tokyu/book/7700">
-						<Image slot="image" path="tokyu/book/7700_cover.jpg" alt="表紙: 上部に赤文字で書名、下部に7700系の正面写真が12枚並んでいる" width={114} height={160} quality={60} />
+						<MyImage slot="image" image={image_7700_cover} alt="表紙: 上部に赤文字で書名、下部に7700系の正面写真が12枚並んでいる" width={114} height={160} />
 						<Fragment slot="details">
 							<p>池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。</p>
 						</Fragment>
@@ -183,7 +188,7 @@ const structuredData: StructuredData = {
 				</GridItem>
 				<GridItem>
 					<BookItem sectionDepth={3} title="鉄道ピクトリアル" link="/tokyu/book/#tetsupic">
-						<Image slot="image" path="tokyu/book/tetsupic749_cover.jpg" alt="表紙: 上部に誌名と特集名、下部に5050系の正面がちの走行写真" width={114} height={160} quality={60} />
+						<MyImage slot="image" image={image_tetsupic749_cover} alt="表紙: 上部に誌名と特集名、下部に5050系の正面がちの走行写真" width={114} height={160} />
 						<Fragment slot="details">
 							<p>ときどき東急電車や譲渡車両に関する記事を書いています。</p>
 						</Fragment>
@@ -197,7 +202,7 @@ const structuredData: StructuredData = {
 			<Grid column="wide">
 				<GridItem>
 					<BookItem sectionDepth={3} title="もにも〜ど3" summary="シャフト批評合同誌（同人誌）、2025年11月発刊" link="https://blog.w0s.jp/entry/753">
-						<Image slot="image" path="info_moni-mode3_cover.png" alt="表紙: 黄緑色の背景、中央部に「GO!!・50!!」の文字とそれを囲む正円形の装飾、右下には羽ばたく鳥が複数舞っている" width={114} height={160} />
+						<MyImage slot="image" image={image_info_monimode3_cover} alt="表紙: 黄緑色の背景、中央部に「GO!!・50!!」の文字とそれを囲む正円形の装飾、右下には羽ばたく鳥が複数舞っている" width={114} height={160} />
 						<Fragment slot="details">
 							<p>「<cite>インタビューと制作資料で振り返るシャフト×久米田康治作品</cite>」と題して『<cite>さよなら絶望先生</cite>』や『<cite>かってに改蔵</cite>』などのアニメ関連資料を紹介する記事を寄稿しました。</p>
 						</Fragment>

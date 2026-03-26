@@ -4,10 +4,13 @@ import Box from '@components/Box.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import image_list_tokyo from '@assets/madoka/yomoyama/umeten_guide_list_tokyo.jpg';
+import image_list_osaka from '@assets/madoka/yomoyama/umeten_guide_list_osaka.jpg';
+import image_opus_click from '@assets/madoka/yomoyama/umeten_guide_opus_click.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -25,19 +28,19 @@ const structuredData: StructuredData = {
 		<Grid column="narrow">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="madoka/yomoyama/umeten_guide_list_tokyo.jpg" alt="画像拡大" width={155} height={220} quality={60} link={true} slot="media" />
+					<MyImage image={image_list_tokyo} alt="画像拡大" width={155} height={220} link={true} slot="media" />
 					<Fragment slot="caption">ガイドリスト（東京）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="madoka/yomoyama/umeten_guide_list_osaka.jpg" alt="画像拡大" width={155} height={220} quality={60} link={true} slot="media" />
+					<MyImage image={image_list_osaka} alt="画像拡大" width={155} height={220} link={true} slot="media" />
 					<Fragment slot="caption">ガイドリスト（大阪）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="madoka/yomoyama/umeten_guide_opus_click.jpg" alt="写真拡大" width={147} height={220} quality={60} link={true} slot="media" />
+					<MyImage image={image_opus_click} alt="写真拡大" width={147} height={220} link={true} slot="media" />
 					<!-- 2016-03-19 057C10068 -->
 					<Fragment slot="caption">マルチメディアガイド機オーパス</Fragment>
 				</Embedded>

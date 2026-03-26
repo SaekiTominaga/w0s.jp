@@ -4,8 +4,14 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_dnt_oimachi from '@assets/tokyu/machine/tra/dnt_oimachi.jpg';
+import image_dnt_ikegami from '@assets/tokyu/machine/tra/dnt_ikegami.jpg';
+import image_dnt_ikegami_7600 from '@assets/tokyu/machine/tra/dnt_ikegami_7600.jpg';
+import image_atc_toyoko from '@assets/tokyu/machine/tra/atc_toyoko.jpg';
+import image_atc_meguro from '@assets/tokyu/machine/tra/atc_meguro.jpg';
+import image_atc_oimachi from '@assets/tokyu/machine/tra/atc_oimachi.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -33,7 +39,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">大井町線</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/tra/dnt_oimachi.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_dnt_oimachi} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2008-06-08 -->
 						<Fragment slot="caption">クハ8091（12-1次車）海側</Fragment>
 					</Embedded>
@@ -46,12 +52,12 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">池上、多摩川線</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/tra/dnt_ikegami.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_dnt_ikegami} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2009-01-24 -->
 						<Fragment slot="caption">クハ7912（4次車）山側</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/tra/dnt_ikegami_7600.jpg" alt="写真拡大" width={485} height={397} quality={60} link={true} slot="media" />
+						<MyImage image={image_dnt_ikegami_7600} alt="写真拡大" width={485} height={397} link={true} slot="media" />
 						<!-- 撮影日: 2009-03-21 -->
 						<Fragment slot="caption">クハ7601（1次車）</Fragment>
 					</Embedded>
@@ -71,7 +77,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">東横線（1000系まで）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/tra/atc_toyoko.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_atc_toyoko} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2009-01-17 -->
 						<Fragment slot="caption">クハ9013（3次車）山側</Fragment>
 					</Embedded>
@@ -84,7 +90,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">目黒線、こどもの国線（Y000系）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/tra/atc_meguro.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_atc_meguro} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2008-12-06 -->
 						<Fragment slot="caption">クハ3004（2次車）山側</Fragment>
 					</Embedded>
@@ -99,7 +105,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">大井町線</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/tra/atc_oimachi.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_atc_oimachi} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2008-06-21 -->
 						<Fragment slot="caption">デハ8641（18-2次車）海側</Fragment>
 					</Embedded>

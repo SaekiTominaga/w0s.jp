@@ -3,8 +3,15 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_HD23 from '@assets/tokyu/yomoyama/hsc/HD23.jpg';
+import image_GR3 from '@assets/tokyu/yomoyama/hsc/GR3.jpg';
+import image_cocks from '@assets/tokyu/yomoyama/hsc/cocks.jpg';
+import image_connect from '@assets/tokyu/yomoyama/hsc/connect.jpg';
+import image_sakusei from '@assets/tokyu/yomoyama/hsc/sakusei.jpg';
+import image_konan_connect_m from '@assets/tokyu/yomoyama/hsc/konan_connect_m.jpg';
+import image_konan_connect_s from '@assets/tokyu/yomoyama/hsc/konan_connect_s.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -31,14 +38,14 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/HD23.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_HD23} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2009-05-12 -->
 					<Fragment slot="caption">HD23型ブレーキ制御装置（デヤ7200）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/GR3.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_GR3} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2009-06-09 -->
 					<Fragment slot="caption">参考比較: 旧7000系のブレーキ制御装置（福島交通デハ7111）</Fragment>
 				</Embedded>
@@ -58,14 +65,14 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/cocks.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_cocks} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2009-05-14 -->
 					<Fragment slot="caption">3本の空気管（デヤ7200）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/connect.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_connect} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2008-01-04 -->
 					<Fragment slot="caption">空気管がすべて連結された様子（デヤ7200+デヤ7290）</Fragment>
 				</Embedded>
@@ -83,7 +90,7 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/sakusei.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_sakusei} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2003-02-23 -->
 					<Fragment slot="caption">デヤ7290+デハ7706-デハ7806-クハ7906+デヤ7200</Fragment>
 				</Embedded>
@@ -101,14 +108,14 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/konan_connect_m.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_konan_connect_m} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2009-09-07 -->
 					<Fragment slot="caption">空気管側連結部（弘南鉄道デハ7152+デハ7011）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/konan_connect_s.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_konan_connect_s} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2009-04-24 -->
 					<Fragment slot="caption">電気栓側連結部（弘南鉄道デハ7011+デハ7153）</Fragment>
 				</Embedded>

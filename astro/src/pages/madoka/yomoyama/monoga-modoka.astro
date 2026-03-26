@@ -4,11 +4,13 @@ import Anchor from '@components/+phrasing/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import ListNote from '@components/ListNote.astro';
 import ListOrder from '@components/ListOrder.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import image_kanazawa1 from '@assets/madoka/yomoyama/monoga-modoka_kanazawa1.jpg';
+import image_kanazawa2 from '@assets/madoka/yomoyama/monoga-modoka_kanazawa2.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -169,14 +171,14 @@ const structuredData: StructuredData = {
 			<Grid column="medium">
 				<GridItem>
 					<Embedded border={true}>
-						<Image path="madoka/yomoyama/monoga-modoka_kanazawa1.jpg" alt="写真拡大" width={306} height={306} quality={60} link={true} slot="media" />
+						<MyImage image={image_kanazawa1} alt="写真拡大" width={306} height={306} link={true} slot="media" />
 						<Fragment slot="caption"><cite>MADOGATARI GALLERY</cite> でのキャラクターボード展示</Fragment>
 						<!-- 2016-12-22 IMG_5289 -->
 					</Embedded>
 				</GridItem>
 				<GridItem>
 					<Embedded border={true}>
-						<Image path="madoka/yomoyama/monoga-modoka_kanazawa2.jpg" alt="写真拡大" width={306} height={204} quality={60} link={true} slot="media" />
+						<MyImage image={image_kanazawa2} alt="写真拡大" width={306} height={204} link={true} slot="media" />
 						<Fragment slot="caption">キャラクターボードが展示されていたエリアの様子</Fragment>
 						<!-- 2016-12-22 IMG_5296 -->
 					</Embedded>

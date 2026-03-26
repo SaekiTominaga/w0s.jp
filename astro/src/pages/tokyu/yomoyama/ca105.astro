@@ -3,8 +3,11 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_CA105_kumamoto from '@assets/tokyu/yomoyama/ca105/CA105_kumamoto.jpg';
+import image_CA105_mizuma from '@assets/tokyu/yomoyama/ca105/CA105_mizuma.jpg';
+import image_mizuma_7003 from '@assets/tokyu/yomoyama/ca105/mizuma_7003.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -29,14 +32,14 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true} captionMeta={true}>
-					<Image path="tokyu/yomoyama/ca105/CA105_kumamoto.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_CA105_kumamoto} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2009-05-30 -->
 					<Fragment slot="caption">熊本電気鉄道モハ5101A</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true} captionMeta={true}>
-					<Image path="tokyu/yomoyama/ca105/CA105_mizuma.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_CA105_mizuma} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2007-06-24 -->
 					<Fragment slot="caption">水間鉄道デハ7003</Fragment>
 				</Embedded>
@@ -54,7 +57,7 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true} captionMeta={true}>
-					<Image path="tokyu/yomoyama/ca105/mizuma_7003.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_mizuma_7003} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<!-- 撮影日: 2007-10-20 -->
 					<Fragment slot="caption">水間鉄道デハ7003</Fragment>
 				</Embedded>
