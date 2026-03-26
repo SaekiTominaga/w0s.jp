@@ -67,7 +67,7 @@ export type StructuredData = Readonly<{
 	subHeading?: string;
 	dateModified?: string;
 	description?: string;
-	image?: string;
+	image?: ImageMetadata | URL;
 	breadcrumb?: readonly StructuredDataUrl[];
 	localNav?: Readonly<{
 		label: string;
