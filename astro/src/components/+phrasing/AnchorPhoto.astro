@@ -2,11 +2,11 @@
 import AnchorIcon from './AnchorIcon.astro';
 
 interface Props {
-	href: string;
+	image: ImageMetadata;
 	title?: string;
 }
 
-const { href, title } = Astro.props;
+const { image, title } = Astro.props;
 ---
 
-<a href={href} type="image/jpeg"><slot /></a><AnchorIcon fileName="image.svg" alt="写真" />{title !== undefined && <small>（リンク先写真は{title}）</small>}
+<a href={image.src} type="image/jpeg"><slot /></a><AnchorIcon fileName="image.svg" alt="写真" />{title !== undefined && <small>（リンク先写真は{title}）</small>}
