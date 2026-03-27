@@ -37,6 +37,13 @@ export default [
 			},
 		},
 		rules: {
+			camelcase: [
+				'error',
+				{
+					properties: 'never',
+					allow: ['^image_'],
+				},
+			],
 			'consistent-return': 'off',
 			'no-console': 'off',
 			'no-irregular-whitespace': 'off',
@@ -56,6 +63,12 @@ export default [
 			'import/no-unresolved': 'off',
 			'jsdoc/require-param-type': 'off',
 			'jsdoc/require-returns-type': 'off',
+		},
+	},
+	{
+		files: ['build/**/*.ts'],
+		rules: {
+			'no-console': 'off',
 		},
 	},
 	{
@@ -83,12 +96,6 @@ export default [
 		rules: {
 			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-unsafe-argument': 'off',
-		},
-	},
-	{
-		files: ['build/**/*.ts'],
-		rules: {
-			'no-console': 'off',
 		},
 	},
 	{
