@@ -3,7 +3,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 
 const inputDir = 'script';
-const outputDir = '../public/assets/script';
+const outputDir = 'dist/assets/script';
 
 const moduleFiles = ['w0s.ts', 'error.ts', 'contact.ts', 'library-tag.ts', 'tokyu-car-history.ts'];
 const legacyFiles = ['analytics.ts'];
