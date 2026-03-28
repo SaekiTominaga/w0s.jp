@@ -13,7 +13,7 @@
 		"build:static": "node build/static.ts -s static -d dist --svgoConfig svgo.config.js",
 		"build:css": "postcss style/*.css --base style -d dist/assets/style",
 		"build:js": "rollup -c --environment build:production",
-		"postbuild": "prettier --config ../.prettierrc.mjs -w \"dist/**/*.{css,js,mjs}\" && brotli-cli compress -g \"dist/**/*.{css,js,mjs,svg}\" -m text",
+		"postbuild": "prettier --config ../.prettierrc.mjs -w \"dist/**/*.{css,js,mjs}\" && brotli-cli compress -g \"dist/**/*.{css,js,mjs,svg}\" -g dist/favicon.ico -m text",
 		"lint": "pnpm run /^lint:.*/",
 		"lint:css": "stylelint -f verbose style/**/*.css",
 		"lint:ts": "tsc --project script --noEmit",
