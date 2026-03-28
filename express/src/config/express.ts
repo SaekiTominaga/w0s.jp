@@ -93,6 +93,7 @@ export default {
 					'.mjs': 'text/javascript;charset=utf-8',
 					'.txt': 'text/plain;charset=utf-8',
 					'.vtt': 'text/vtt',
+					'.webm': 'video/webm',
 				},
 			},
 			cacheControl: {
