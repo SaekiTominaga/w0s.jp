@@ -11,7 +11,8 @@ import Section from '@components/Section.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import Date from '@components/+phrasing/Date.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import imageCover from '@image/tokyu/book/tamagawa1067_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -19,7 +20,7 @@ const structuredData: StructuredData = {
 	heading: '公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両',
 	dateModified: '2025-12-31',
 	description: '資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。',
-	image: 'https://media.w0s.jp/image/tokyu/book/tamagawa1067_cover.jpg',
+	image: imageCover,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/book/', name: '鉄道本執筆' },
@@ -31,7 +32,7 @@ const structuredData: StructuredData = {
 	<Flex>
 		<FlexItem>
 			<Embedded border={true}>
-				<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} slot="media" />
+				<MyImage image={imageCover} alt="クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} slot="media" />
 				<Fragment slot="caption">表紙</Fragment>
 			</Embedded>
 		</FlexItem>

@@ -1,0 +1,40 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+	image: ImageMetadata;
+	alt?: string;
+	width: number;
+	height: number;
+	fetchPriority?: 'high' | 'low' | 'auto';
+	link?: boolean;
+	class?: string;
+	style?: string;
+}
+
+const { image, alt = '', width, height, fetchPriority, link = false, class: className, style } = Astro.props;
+
+let mimeType: string | undefined;
+switch (image.format) {
+	case 'jpg':
+	case 'jpeg': {
+		mimeType = 'image/jpeg';
+		break;
+	}
+	case 'png': {
+		mimeType = 'image/png';
+		break;
+	}
+	default:
+}
+---
+
+{
+	link && (
+		<a href={image.src} type={mimeType}>
+			<Image src={image} alt={alt} width={width} height={height} densities={[2]} format="avif" quality={30} loading="eager" decoding="auto" fetchpriority={fetchPriority} class:list={className} style={style} />
+		</a>
+	)
+}
+{!link && <Image src={image} alt={alt} width={width} height={height} densities={[2]} format="avif" quality={30} loading="eager" decoding="auto" fetchpriority={fetchPriority} class:list={className} style={style} />}

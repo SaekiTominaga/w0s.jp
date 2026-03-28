@@ -7,13 +7,21 @@ import DocOfficial from '@components/+phrasing/DocOfficial.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import image_DB1K4_hinomaru203 from '@image/tokyu/machine/cont/DB1-K4_hinomaru203.jpg';
+import image_PR150 from '@image/tokyu/machine/cont/PR150.jpg';
+import image_PR200 from '@image/tokyu/machine/cont/PR200.jpg';
+import image_PR1Y1 from '@image/tokyu/machine/cont/PR1Y1.jpg';
+import image_ES155_meitetsu755 from '@image/tokyu/machine/cont/ES155_meitetsu755.jpg';
+import image_ES504 from '@image/tokyu/machine/cont/ES504.jpg';
+import image_MMC200 from '@image/tokyu/machine/cont/MMC-200.jpg';
+import image_MMCH10K_towada3603 from '@image/tokyu/machine/cont/MMC-H-10K_towada3603.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -22,7 +30,7 @@ const structuredData: StructuredData = {
 	subHeading: '抵抗制御、旧性能車',
 	dateModified: '2024-04-12',
 	description: 'デハ1形からデハ3800形までの旧性能車（鉄道線の電動客車、電動貨車に限る）に搭載された制御装置を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/cont/MMC-H-10K_towada3603.jpg',
+	image: image_MMCH10K_towada3603,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -211,7 +219,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/DB1-K4_hinomaru203.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+					<MyImage image={image_DB1K4_hinomaru203} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 					<!-- 撮影日: 2024-03-19 -->
 					<Fragment slot="caption">東洋電機製造 DB1 式 K4 型マスコン（日ノ丸自動車デハ203 ← 池上乙号車）</Fragment>
 				</Embedded>
@@ -320,7 +328,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/PR150.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<MyImage image={image_PR150} alt="" width={485} height={243} slot="media" />
 					<Fragment slot="caption">電空カム軸制御器 PR-150 型<NoteRef by="pr150-photo-source" /></Fragment>
 				</Embedded>
 
@@ -328,7 +336,7 @@ const structuredData: StructuredData = {
 			</FlexItem>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/PR200.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<MyImage image={image_PR200} alt="" width={485} height={243} slot="media" />
 					<Fragment slot="caption">電空カム軸制御器 PR-200 型<NoteRef by="pr200-photo-source" /></Fragment>
 				</Embedded>
 
@@ -336,7 +344,7 @@ const structuredData: StructuredData = {
 			</FlexItem>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/PR1Y1.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<MyImage image={image_PR1Y1} alt="" width={485} height={243} slot="media" />
 					<Fragment slot="caption">メンテナンスフリーを目指して開発された PR-1Y1 型（試作品）<NoteRef by="pr1y1-photo-source" /></Fragment>
 				</Embedded>
 
@@ -421,7 +429,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/ES-155_meitetsu755.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<MyImage image={image_ES155_meitetsu755} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 					<!-- 撮影日: 2024-03-20 -->
 					<Fragment slot="caption">現存する ES-155 型（名古屋鉄道モ755）</Fragment>
 				</Embedded>
@@ -445,7 +453,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/ES504.jpg" alt="" width={485} height={162} quality={60} slot="media" />
+					<MyImage image={image_ES504} alt="" width={485} height={162} slot="media" />
 					<Fragment slot="caption">新京阪鉄道 P-6 形電車にも搭載された ES-504 型<NoteRef by="es504-photo-source" /></Fragment>
 				</Embedded>
 
@@ -534,7 +542,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/MMC-200.jpg" alt="" width={485} height={243} quality={60} slot="media" />
+					<MyImage image={image_MMC200} alt="" width={485} height={243} slot="media" />
 					<!-- 撮影日: 2006-04-30 -->
 					<Fragment slot="caption">多段式制御を実現した MMC-200 型<NoteRef by="mmc200-photo-source" /></Fragment>
 				</Embedded>
@@ -548,7 +556,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="tokyu/machine/cont/MMC-H-10K_towada3603.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<MyImage image={image_MMCH10K_towada3603} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 					<!-- 撮影日: 2006-04-30 -->
 					<Fragment slot="caption">旧性能車で最後に導入された MMC-H-10K 型、機器単体で見れば8000系1次車より新しい（十和田観光電鉄モハ3603 ← 東急デハ3655）</Fragment>
 				</Embedded>

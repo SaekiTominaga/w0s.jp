@@ -4,10 +4,16 @@ import Anchor from '@components/+phrasing/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import ListLink from '@components/ListLink.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import image_6201 from '@image/tokyu/yomoyama/ibaraki_6000/6201.jpg';
+import image_6201_surroundings from '@image/tokyu/yomoyama/ibaraki_6000/6201_surroundings.jpg';
+import image_6202 from '@image/tokyu/yomoyama/ibaraki_6000/6202.jpg';
+import image_6202_trace from '@image/tokyu/yomoyama/ibaraki_6000/6202_trace.jpg';
+import image_6302_1 from '@image/tokyu/yomoyama/ibaraki_6000/6302_1.jpg';
+import image_6302_2 from '@image/tokyu/yomoyama/ibaraki_6000/6302_2.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -15,7 +21,7 @@ const structuredData: StructuredData = {
 	heading: '茨城県の旧6000系廃車体',
 	dateModified: '2018-12-23',
 	description: '旧6000系（6200系）車両は晩年 VVVF 試験車として改造され、1987年まで活躍した後、4両全車が車体のみ売りに出され、茨城県各所で倉庫や店舗などに活用されました。これらの車体は2018年までにすべて撤去されましたが、ここでは現存当時の様子を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/yomoyama/ibaraki_6000/6201.jpg',
+	image: image_6201,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
@@ -36,13 +42,13 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/ibaraki_6000/6201.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_6201} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<Fragment slot="caption">デハ6201（撮影: 2009年5月<!-- 2009-05-03 -->）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/ibaraki_6000/6201_surroundings.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_6201_surroundings} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<Fragment slot="caption">デハ6201が置かれている周辺（撮影: 2017年4月<!-- 2017-04-22 -->）</Fragment>
 				</Embedded>
 			</GridItem>
@@ -68,13 +74,13 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/ibaraki_6000/6202.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_6202} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<Fragment slot="caption">デハ6202（撮影: 2009年5月<!-- 2009-05-03 -->）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/ibaraki_6000/6202_trace.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_6202_trace} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<Fragment slot="caption">デハ6202が置かれていた跡地（撮影: 2017年4月<!-- 2017-04-22 -->）</Fragment>
 				</Embedded>
 			</GridItem>
@@ -109,13 +115,13 @@ const structuredData: StructuredData = {
 		<Grid column="wide">
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/ibaraki_6000/6302_1.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_6302_1} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<Fragment slot="caption">デハ6302 （1位側）（撮影: 2009年5月<!-- 2009-05-03 -->）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
 				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/ibaraki_6000/6302_2.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+					<MyImage image={image_6302_2} alt="写真拡大" width={500} height={333} link={true} slot="media" />
 					<Fragment slot="caption">デハ6302 （2位側）（撮影: 2009年5月<!-- 2009-05-03 -->）</Fragment>
 				</Embedded>
 			</GridItem>

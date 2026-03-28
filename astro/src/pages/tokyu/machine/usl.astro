@@ -4,9 +4,15 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
+import image_7200_OLR1 from '@image/tokyu/machine/usl/7200_OLR1.jpg';
+import image_7200_OLR2 from '@image/tokyu/machine/usl/7200_OLR2.jpg';
+import image_8500_sidelamp from '@image/tokyu/machine/usl/8500_side-lamp.jpg';
+import image_9000_sidelamp4 from '@image/tokyu/machine/usl/9000_side-lamp-4.jpg';
+import image_9000_sidelamp3 from '@image/tokyu/machine/usl/9000_side-lamp-3.jpg';
+import image_8000_bcl from '@image/tokyu/machine/usl/8000_bcl.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -14,7 +20,7 @@ const structuredData: StructuredData = {
 	heading: '床下灯',
 	dateModified: '2008-02-01',
 	description: '鉄道車両の車体側面には戸閉め知らせ等のほかに機器の異常を知らせる表示灯が設けられることが多いですが、床下に付いているケースもあります。ここでは7200系から2000系までに設置されている床下設置タイプの表示灯を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/usl/9000_side-lamp-4.jpg',
+	image: image_9000_sidelamp4,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -34,7 +40,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">オリジナルタイプ</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/usl/7200_OLR1.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<MyImage image={image_7200_OLR1} alt="写真拡大" width={485} height={364} link={true} slot="media" />
 						<!-- 撮影日: 2006-09-16 -->
 						<Fragment slot="caption">デハ7662（2次車）山側</Fragment>
 					</Embedded>
@@ -47,7 +53,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">新型タイプ</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/usl/7200_OLR2.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<MyImage image={image_7200_OLR2} alt="写真拡大" width={485} height={364} link={true} slot="media" />
 						<!-- 撮影日: 2006-09-07 -->
 						<Fragment slot="caption">デヤ7200（2次車）海側</Fragment>
 					</Embedded>
@@ -67,12 +73,12 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">3灯タイプ</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/usl/8500_side-lamp.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<MyImage image={image_8500_sidelamp} alt="写真拡大" width={485} height={364} link={true} slot="media" />
 						<!-- 撮影日: 2006-08-13 -->
 						<Fragment slot="caption">デハ8591（20次車）山側</Fragment>
 					</Embedded>
 
-					<p>8000系で車体側面に設けられた<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/usl/8000_bcl.jpg" title="デハ8408"><!-- 撮影日: 2005-08-10 -->BC不緩解灯</AnchorPhoto>は、8500系では床下設置となりました。以降、8090系を除くすべての新造・改造形式は、車体にBC不緩解灯を持ちません。</p>
+					<p>8000系で車体側面に設けられた<AnchorPhoto image={image_8000_bcl} title="デハ8408"><!-- 撮影日: 2005-08-10 -->BC不緩解灯</AnchorPhoto>は、8500系では床下設置となりました。以降、8090系を除くすべての新造・改造形式は、車体にBC不緩解灯を持ちません。</p>
 
 					<p>床下灯は3灯で、上から「不緩解」「保安動作」「不足」です。</p>
 				</Section>
@@ -89,7 +95,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">4灯タイプ</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/usl/9000_side-lamp-4.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<MyImage image={image_9000_sidelamp4} alt="写真拡大" width={485} height={364} link={true} slot="media" />
 						<!-- 撮影日: 2006-10-21 -->
 						<Fragment slot="caption">デハ1218（4次車）山側</Fragment>
 					</Embedded>
@@ -102,7 +108,7 @@ const slugger = new GithubSlugger();
 					<Fragment slot="heading">3灯タイプ</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/usl/9000_side-lamp-3.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+						<MyImage image={image_9000_sidelamp3} alt="写真拡大" width={485} height={364} link={true} slot="media" />
 						<!-- 撮影日: 2006-08-19 -->
 						<Fragment slot="caption">サハ9706（2次車）山側</Fragment>
 					</Embedded>

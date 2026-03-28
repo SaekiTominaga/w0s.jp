@@ -9,7 +9,8 @@ import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import imageCover from '@image/tokyu/book/7700_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -17,7 +18,7 @@ const structuredData: StructuredData = {
 	heading: '東急7700系形態分類',
 	dateModified: '2026-01-23',
 	description: '池上線、東急多摩川線で活躍した東急7700系の形態バリエーションについて、2010年時点の在籍車36両を徹底解析しました。',
-	image: 'https://media.w0s.jp/image/tokyu/book/7700_cover.jpg',
+	image: imageCover,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/book/', name: '鉄道本執筆' },
@@ -29,7 +30,7 @@ const structuredData: StructuredData = {
 	<Flex>
 		<FlexItem>
 			<Embedded border={true}>
-				<Image path="tokyu/book/7700_cover.jpg" alt="上部に赤文字で書名、下部に7700系の正面写真が12枚並んでいる" width={170} height={240} quality={60} slot="media" />
+				<MyImage image={imageCover} alt="上部に赤文字で書名、下部に7700系の正面写真が12枚並んでいる" width={170} height={240} slot="media" />
 				<Fragment slot="caption">表紙</Fragment>
 			</Embedded>
 		</FlexItem>

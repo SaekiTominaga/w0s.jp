@@ -12,9 +12,10 @@ import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import TickAndCross from '@components/+phrasing/TickAndCross.astro';
+import image_pictorial9_cover from '@image/madoka/dojin/pictorial9_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -23,7 +24,7 @@ const structuredData: StructuredData = {
 	subHeading: '【特集】美樹さやか駅ポスターめぐり',
 	dateModified: '2018-08-11',
 	description: '首都圏をはじめ100か所を超える範囲に展開された『マギアレコード』美樹さやか駅ポスターの全容をまとめた同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial9_cover.jpg',
+	image: image_pictorial9_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -49,7 +50,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial9_cover.jpg" alt="駅の壁に掲出されたさやかポスターと、ホームに進入する東急電車の写真" width={170} height={240} quality={60} slot="media" />
+					<MyImage image={image_pictorial9_cover} alt="駅の壁に掲出されたさやかポスターと、ホームに進入する東急電車の写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>

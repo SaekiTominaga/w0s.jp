@@ -1,12 +1,27 @@
 ---
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
 import ListNote from '@components/ListNote.astro';
 import Section from '@components/Section.astro';
+import image_PT43 from '@image/tokyu/machine/pt/PT43.jpg';
+import image_PT43_side from '@image/tokyu/machine/pt/PT43_side.jpg';
+import image_PT44 from '@image/tokyu/machine/pt/PT44.jpg';
+import image_PT44_side from '@image/tokyu/machine/pt/PT44_side.jpg';
+import image_PT44SC from '@image/tokyu/machine/pt/PT44S-C.jpg';
+import image_PT44SC_side from '@image/tokyu/machine/pt/PT44S-C_side.jpg';
+import image_PT44S from '@image/tokyu/machine/pt/PT44S.jpg';
+import image_PT44S_side from '@image/tokyu/machine/pt/PT44S_side.jpg';
+import image_PT4309 from '@image/tokyu/machine/pt/PT4309.jpg';
+import image_PT4309_side from '@image/tokyu/machine/pt/PT4309_side.jpg';
+import image_PT7108A from '@image/tokyu/machine/pt/PT7108-A.jpg';
+import image_PT7108B from '@image/tokyu/machine/pt/PT7108-B.jpg';
+import image_PT7108_side from '@image/tokyu/machine/pt/PT7108_side.jpg';
+import image_PT43_fewinsulator from '@image/tokyu/machine/pt/PT43_few-insulator.jpg';
+import image_PT44_horn1 from '@image/tokyu/machine/pt/PT44_horn1.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -14,7 +29,7 @@ const structuredData: StructuredData = {
 	heading: '7200系、7600系、7700系　集電装置',
 	dateModified: '2011-01-01',
 	description: '7600系、7700系と、7200系（デヤ7200、デヤ7290）に搭載された集電装置を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/pt/PT44.jpg',
+	image: image_PT44,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -32,13 +47,13 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">PT43</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT43.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT43} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2010-06-30 -->
 						<Fragment slot="caption">デハ7701（1次車）</Fragment>
 					</Embedded>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT43_side.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT43_side} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2007-03-24 -->
 						<Fragment slot="caption">デハ7701（1次車）</Fragment>
 					</Embedded>
@@ -53,22 +68,22 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">PT44</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT44.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT44} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2010-06-30 -->
 						<Fragment slot="caption">デハ7801（1次車）</Fragment>
 					</Embedded>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT44_side.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT44_side} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2007-02-24 -->
 						<Fragment slot="caption">デハ7810（3次車）</Fragment>
 					</Embedded>
 
 					<p>旧7000系、7200系に搭載されたPT44型はPT43型とよく似ていますが、台枠内部の形状が異なるほか、下げシリンダを前後のいずれにも設置できるよう架台やシリンダに接続するてこが双方に準備されている個体が多いのが特徴です。なお、実際には下り方にのみシリンダが接続されていますが、デヤ7200のみは上り方の接続となっています。</p>
 
-					<p>7200系3次車の一部と4次車からは台枠取付部の<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/pt/PT43_few-insulator.jpg" title="デヤ7290上り方、PT43型"><!-- 撮影日: 2007-03-27 -->絶縁碍子が少なくなりました</AnchorPhoto>。デヤ7200、デヤ7290は特殊車への改造にあたりパンタグラフが増設されていますが、それらも少ないタイプとなっています。</p>
+					<p>7200系3次車の一部と4次車からは台枠取付部の<AnchorPhoto image={image_PT43_fewinsulator} title="デヤ7290上り方、PT43型"><!-- 撮影日: 2007-03-27 -->絶縁碍子が少なくなりました</AnchorPhoto>。デヤ7200、デヤ7290は特殊車への改造にあたりパンタグラフが増設されていますが、それらも少ないタイプとなっています。</p>
 
-					<p>現在、東急に残る個体はPT43型ともどもすべてホーンが2本のタイプとなっていますが、弘南鉄道6000系や福島交通7000系、上田電鉄7200系に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/pt/PT44_horn1.jpg" title="福島交通デハ7111"><!-- 撮影日: 2009-07-22 -->1本ホーンのタイプ</AnchorPhoto>が残っています。</p>
+					<p>現在、東急に残る個体はPT43型ともどもすべてホーンが2本のタイプとなっていますが、弘南鉄道6000系や福島交通7000系、上田電鉄7200系に<AnchorPhoto image={image_PT44_horn1} title="福島交通デハ7111"><!-- 撮影日: 2009-07-22 -->1本ホーンのタイプ</AnchorPhoto>が残っています。</p>
 				</Section>
 			</GridItem>
 			<GridItem>
@@ -76,12 +91,12 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">PT44S（C型）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT44S-C.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT44SC} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2010-08-20 -->
 						<Fragment slot="caption">デハ7705（2次車）</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT44S-C_side.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT44SC_side} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2007-02-24 -->
 						<Fragment slot="caption">デハ7805（3次車）</Fragment>
 					</Embedded>
@@ -100,12 +115,12 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">PT44S（D型、E型）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT44S.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT44S} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2010-07-01 -->
 						<Fragment slot="caption">デハ7682（1次車）下り方</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT44S_side.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT44S_side} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2007-03-03 -->
 						<Fragment slot="caption">デハ7681（1次車）下り方</Fragment>
 					</Embedded>
@@ -120,12 +135,12 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">PT4309（架線検測車・測定用）</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT4309.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT4309} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2005-05-17 -->
 						<Fragment slot="caption">デヤ7290（2次車）下り方</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT4309_side.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT4309_side} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2007-03-08 -->
 						<Fragment slot="caption">デヤ7290（2次車）下り方</Fragment>
 					</Embedded>
@@ -145,17 +160,17 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">PT7108</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT7108-A.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT7108A} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2010-06-07 -->
 						<Fragment slot="caption">デハ7715（5次車）</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT7108-B.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT7108B} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2010-06-07 -->
 						<Fragment slot="caption">デハ7815（4次車）</Fragment>
 					</Embedded>
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/pt/PT7108_side.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+						<MyImage image={image_PT7108_side} alt="写真拡大" width={485} height={324} link={true} slot="media" />
 						<!-- 撮影日: 2007-04-22 -->
 						<Fragment slot="caption">デハ7815（4次車）</Fragment>
 					</Embedded>

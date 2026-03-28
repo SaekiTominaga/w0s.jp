@@ -10,7 +10,8 @@ import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import image_pictorial6_cover from '@image/madoka/dojin/pictorial6_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -19,7 +20,7 @@ const structuredData: StructuredData = {
 	subHeading: '【特集】[新編]叛逆の物語　上映版とパッケージ版の比較',
 	dateModified: '2018-04-10',
 	description: '『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』の劇場上映版と Blu-ray / DVD 版の違いをまとめた同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial6_cover.jpg',
+	image: image_pictorial6_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -49,7 +50,7 @@ const slugger = new GithubSlugger();
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial6_cover.jpg" alt="[新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} slot="media" />
+					<MyImage image={image_pictorial6_cover} alt="[新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>

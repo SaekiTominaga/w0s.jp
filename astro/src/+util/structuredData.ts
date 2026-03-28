@@ -69,7 +69,11 @@ export const getJsonLd = (structuredData: Readonly<StructuredData>, options: Rea
 		jsonLd.description = structuredData.description;
 	}
 	if (structuredData.image !== undefined) {
-		jsonLd.image = structuredData.image;
+		if (structuredData.image instanceof URL) {
+			jsonLd.image = structuredData.image.toString();
+		} else {
+			jsonLd.image = `${options.site}${structuredData.image.src}`;
+		}
 	}
 	if (structuredData.mainEntity !== undefined) {
 		jsonLd.mainEntity = structuredData.mainEntity;

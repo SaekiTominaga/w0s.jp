@@ -3,9 +3,19 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
+import image_CMRDC129 from '@image/tokyu/machine/atc/CMR-DC-129.jpg';
+import image_ATCS21TK16 from '@image/tokyu/machine/atc/AT-CS21TK16.jpg';
+import image_toyoko_ATSP_1 from '@image/tokyu/machine/atc/toyoko_ATS-P_1.jpg';
+import image_ATCS21TK11 from '@image/tokyu/machine/atc/AT-CS21TK11.jpg';
+import image_CMRDC117 from '@image/tokyu/machine/atc/CMR-DC-117.jpg';
+import image_ATCS21TK5 from '@image/tokyu/machine/atc/AT-CS21TK5.jpg';
+import image_ATCS21TK17 from '@image/tokyu/machine/atc/AT-CS21TK17.jpg';
+import image_RB1367 from '@image/tokyu/machine/atc/RB1367.jpg';
+import image_ATCS21TK17_win from '@image/tokyu/machine/atc/AT-CS21TK17_win.jpg';
+import image_ATCS21TK17_8084 from '@image/tokyu/machine/atc/AT-CS21TK17_8084.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -13,7 +23,7 @@ const structuredData: StructuredData = {
 	heading: 'ATC 装置',
 	dateModified: '2008-11-01',
 	description: '8000系から新3000系までに搭載された ATC 装置を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/atc/AT-CS21TK5.jpg',
+	image: image_ATCS21TK5,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -31,7 +41,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">8590系、2000系<small>（三菱電機）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/CMR-DC-129.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_CMRDC129} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2009-02-28 -->
 						<Fragment slot="caption">デハ8695（20次車）海側</Fragment>
 					</Embedded>
@@ -46,7 +56,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">Y000系<small>（日立製作所）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/AT-CS21TK16.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_ATCS21TK16} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2007-10-02 -->
 						<Fragment slot="caption">クハY001（1次車）海側</Fragment>
 					</Embedded>
@@ -66,7 +76,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">8000系（一部）<small>（日立製作所）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/toyoko_ATS-P_1.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_toyoko_ATSP_1} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2006-03-20 -->
 						<Fragment slot="caption">クハ8024（3-1次車）山側</Fragment>
 					</Embedded>
@@ -81,7 +91,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">8000系、9000系、1000系<small>（日立製作所）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/AT-CS21TK11.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_ATCS21TK11} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2009-02-28 -->
 						<Fragment slot="caption">クハ9101（1次車）海側</Fragment>
 					</Embedded>
@@ -101,12 +111,12 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">新3000系<small>（三菱電機）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/CMR-DC-117.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_CMRDC117} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2008-01-05 -->
 						<Fragment slot="caption">クハ3010（2次車）海側</Fragment>
 					</Embedded>
 
-					<p>従来、ATC装置は編成の両先頭車に搭載されるのが一般的でしたが、1999年に導入された新3000系では下り向き先頭車に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/atc/RB1367.jpg" title="クハ3101海側"><!-- 撮影日: 2009-01-04 -->ATC増幅器</AnchorPhoto>（日本信号製）を搭載し、上り向き先頭車の制御部と伝送を行うことで本体を編成中に1台としました。</p>
+					<p>従来、ATC装置は編成の両先頭車に搭載されるのが一般的でしたが、1999年に導入された新3000系では下り向き先頭車に<AnchorPhoto image={image_RB1367} title="クハ3101海側"><!-- 撮影日: 2009-01-04 -->ATC増幅器</AnchorPhoto>（日本信号製）を搭載し、上り向き先頭車の制御部と伝送を行うことで本体を編成中に1台としました。</p>
 				</Section>
 			</GridItem>
 		</Grid>
@@ -121,7 +131,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">8000系、8090系、9000系<small>（日立製作所）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/AT-CS21TK5.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_ATCS21TK5} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2007-09-08 -->
 						<Fragment slot="caption">クハ8098（16-2次車）山側</Fragment>
 					</Embedded>
@@ -143,14 +153,14 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">8090系（一部）、9000系（一部）<small>（日立製作所）</small></Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/atc/AT-CS21TK17.jpg" alt="写真拡大" width={485} height={244} quality={60} link={true} slot="media" />
+						<MyImage image={image_ATCS21TK17} alt="写真拡大" width={485} height={244} link={true} slot="media" />
 						<!-- 撮影日: 2008-04-27 -->
 						<Fragment slot="caption">クハ8085（16-2次車）海側</Fragment>
 					</Embedded>
 
 					<p>2008年の大井町線ATC-P化に伴う機器換装では、東横線で使われていた装置を流用した車両と、新製品に換装された車両が存在します。</p>
 
-					<p>新型ATC-P装置は、3台目から表側に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/atc/AT-CS21TK17_win.jpg" title="クハ8088山側"><!-- 撮影日: 2010-04-01 -->点検窓</AnchorPhoto>が設けられ、後に<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/atc/AT-CS21TK17_8084.jpg" title="クハ8084山側"><!-- 撮影日: 2007-10-13 -->最初の2台</AnchorPhoto>も窓付きに改造されています。</p>
+					<p>新型ATC-P装置は、3台目から表側に<AnchorPhoto image={image_ATCS21TK17_win} title="クハ8088山側"><!-- 撮影日: 2010-04-01 -->点検窓</AnchorPhoto>が設けられ、後に<AnchorPhoto image={image_ATCS21TK17_8084} title="クハ8084山側"><!-- 撮影日: 2007-10-13 -->最初の2台</AnchorPhoto>も窓付きに改造されています。</p>
 
 					<p>なお、2005年に東横線から転籍した8590系は、東横時代の装置をそのまま使用しています。</p>
 				</Section>

@@ -9,7 +9,7 @@ export default defineConfig({
 		mode: 'middleware',
 	}),
 	srcDir: 'src',
-	publicDir: '../public',
+	publicDir: '../frontend/dist',
 	outDir: 'dist',
 	compressHTML: false,
 	scopedStyleStrategy: 'where',

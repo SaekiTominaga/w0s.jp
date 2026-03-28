@@ -104,7 +104,7 @@ await test('getJsonLd', async (t) => {
 				{
 					title: 'page title',
 					description: 'page description',
-					image: 'http://example.com/image.jpg',
+					image: new URL('http://example.com/image.jpg'),
 				},
 				{
 					site: 'http://example.com',

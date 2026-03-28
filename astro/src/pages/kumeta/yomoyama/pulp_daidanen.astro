@@ -2,10 +2,11 @@
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Embedded from '@components/Embedded.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import Toggle from '@components/Toggle.astro';
+import image_pulp15_daidanen from '@image/kumeta/yomoyama/pulp15_daidanen.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -26,7 +27,7 @@ const slugger = new GithubSlugger();
 			<Fragment slot="summary">イラストを見る<small>（※最終話ネタバレ注意）</small></Fragment>
 
 			<Embedded border={true}>
-				<Image path="kumeta/yomoyama/pulp15_daidanen.jpg" alt="画像拡大" width={1022} height={734} quality={60} link={true} slot="media" />
+				<MyImage image={image_pulp15_daidanen} alt="画像拡大" width={1022} height={734} link={true} slot="media" />
 				<Fragment slot="caption">見開きの大団円イラスト（<cite>楽園</cite> 32号 pp.360–361 を加工）</Fragment>
 			</Embedded>
 		</Toggle>

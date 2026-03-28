@@ -10,7 +10,8 @@ import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import image_pictorial10_cover from '@image/madoka/dojin/pictorial10_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -19,7 +20,7 @@ const structuredData: StructuredData = {
 	subHeading: '【特集】『劇場版　魔法少女まどか☆マギカ』韓国上映',
 	dateModified: '2018-08-11',
 	description: '『劇場版　魔法少女まどか☆マギカ』の韓国での上映の様子をまとめた同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial10_cover.jpg',
+	image: image_pictorial10_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -47,7 +48,7 @@ const structuredData: StructuredData = {
 		<Flex>
 			<FlexItem>
 				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial10_cover.jpg" alt="建物内にある[新編]の告知イラストが書かれた大きなポスターと、券売機ディスプレイに流れる[新編]映像の写真" width={170} height={240} quality={60} slot="media" />
+					<MyImage image={image_pictorial10_cover} alt="建物内にある[新編]の告知イラストが書かれた大きなポスターと、券売機ディスプレイに流れる[新編]映像の写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>

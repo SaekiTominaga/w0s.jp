@@ -3,9 +3,20 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
 import Section from '@components/Section.astro';
+import image_HD23 from '@image/tokyu/machine/bce/HD23.jpg';
+import image_E6M from '@image/tokyu/machine/bce/E6-M.jpg';
+import image_E30A from '@image/tokyu/machine/bce/E30-A.jpg';
+import image_E53 from '@image/tokyu/machine/bce/E53.jpg';
+import image_E78M1 from '@image/tokyu/machine/bce/E78-M1.jpg';
+import image_E80 from '@image/tokyu/machine/bce/E80.jpg';
+import image_BSR70 from '@image/tokyu/machine/bce/BSR70.jpg';
+import image_abs7590 from '@image/tokyu/machine/bce/abs-7590.jpg';
+import image_MCA001 from '@image/tokyu/machine/bce/MCA001.jpg';
+import image_7715 from '@image/tokyu/machine/bce/7715.jpg';
+import image_E78T from '@image/tokyu/machine/bce/E78-T.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -13,7 +24,7 @@ const structuredData: StructuredData = {
 	heading: 'ブレーキ制御装置',
 	dateModified: '2010-07-01',
 	description: '7200系から新3000系までに搭載されたブレーキ制御装置を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/bce/HD23.jpg',
+	image: image_HD23,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -31,7 +42,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">7200系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/HD23.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_HD23} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-12 -->
 						<Fragment slot="caption">デヤ7200（2次車）山側</Fragment>
 					</Embedded>
@@ -53,14 +64,14 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">8000系グループ、サヤ7590</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/E6-M.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_E6M} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2005-12-24 -->
 						<Fragment slot="caption">デハ8115（2次車）山側</Fragment>
 					</Embedded>
 
 					<p>8000系では全電気指令式ブレーキの<dfn>HRD</dfn>（High Response Digital）が採用されました。これは主幹制御器から3本の常用ブレーキ指令線を引き、0（オフ）と1（オン）の組み合わせによるデジタル指令を行うものであり、アナログ変換されたブレーキ指令を、ブレーキ制御装置で電気演算して空気ブレーキ制御装置へ送っています。</p>
 
-					<p>1998年に新製された軌道検測車サヤ7590は、7200系では唯一HRDブレーキとなり、また<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/abs-7590.jpg" title="サヤ7590山側"><!-- 撮影日: 2010-03-29 -->フラット防止装置（ABS）</AnchorPhoto>が搭載されています。</p>
+					<p>1998年に新製された軌道検測車サヤ7590は、7200系では唯一HRDブレーキとなり、また<AnchorPhoto image={image_abs7590} title="サヤ7590山側"><!-- 撮影日: 2010-03-29 -->フラット防止装置（ABS）</AnchorPhoto>が搭載されています。</p>
 				</Section>
 			</GridItem>
 			<GridItem>
@@ -68,14 +79,14 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">9000系、1000系、2000系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/E30-A.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_E30A} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2007-04-21 -->
 						<Fragment slot="caption">デハ9311（3次車）山側</Fragment>
 					</Embedded>
 
 					<p>9000系では、主幹制御器からの指令電送をアナログ信号で行う<dfn>HRA</dfn>（High Response Analog）となりました。ブレーキ制御装置はユニット方式を採用しています。</p>
 
-					<p>ブレーキユニット右側に設けられる装置は、M車やM1車は受量器、Tc車はマスコン指令をDCに変換する指令器、M2車やT車は継電器となっています。なお、<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/MCA001.jpg" title="デハ1318海側"><!-- 撮影日: 2007-04-15 -->M1c車の指令器</AnchorPhoto>は、海側に単体で設置されています。</p>
+					<p>ブレーキユニット右側に設けられる装置は、M車やM1車は受量器、Tc車はマスコン指令をDCに変換する指令器、M2車やT車は継電器となっています。なお、<AnchorPhoto image={image_MCA001} title="デハ1318海側"><!-- 撮影日: 2007-04-15 -->M1c車の指令器</AnchorPhoto>は、海側に単体で設置されています。</p>
 
 					<p>またデハ1215、クハ1015にはフラット防止装置が搭載されていましたが、クハ1015は上田電鉄への譲渡にあたり撤去されました。</p>
 				</Section>
@@ -85,12 +96,12 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">7600系、7700系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/E53.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_E53} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-08-19 -->
 						<Fragment slot="caption">デハ7713（5次車）山側</Fragment>
 					</Embedded>
 
-					<p>7600系、7700系は、当初は種車のままHSC-Rで竣功しましたが、遅れ込め制御などの実現のため海側に受量器が設置されました（ただし、後にT車から改造された<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/7715.jpg" title="デハ7715山側"><!-- 撮影日: 2007-06-03 -->デハ7715の受量器</AnchorPhoto>は山側にある。）</p>
+					<p>7600系、7700系は、当初は種車のままHSC-Rで竣功しましたが、遅れ込め制御などの実現のため海側に受量器が設置されました（ただし、後にT車から改造された<AnchorPhoto image={image_7715} title="デハ7715山側"><!-- 撮影日: 2007-06-03 -->デハ7715の受量器</AnchorPhoto>は山側にある。）</p>
 
 					<p>7700系は4次車より全電気指令式となり、ブレーキ制御装置は換装されました。ほかの車両も7700系は1992年までに、7600系は室内更新時に改造されています。</p>
 				</Section>
@@ -100,14 +111,14 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">新3000系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/E78-M1.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_E78M1} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2008-05-18 -->
 						<Fragment slot="caption">デハ3212（2次車）山側</Fragment>
 					</Embedded>
 
 					<p>新3000系から使われているブレーキ制御装置は、9000系などと同じユニット構造ですが、主制御器のある電動車では、受量器類および継電器類が一体の箱に収められており、フラット防止装置も内蔵されているため3部屋構造となっています。</p>
 
-					<p>主制御器のない車両は、受量器がない分<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/bce/E78-T.jpg" title="クハ3112山側"><!-- 撮影日: 2008-05-17 -->ユニット箱は小振り</AnchorPhoto>です。</p>
+					<p>主制御器のない車両は、受量器がない分<AnchorPhoto image={image_E78T} title="クハ3112山側"><!-- 撮影日: 2008-05-17 -->ユニット箱は小振り</AnchorPhoto>です。</p>
 				</Section>
 			</GridItem>
 			<GridItem>
@@ -115,13 +126,13 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">300系</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/E80.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_E80} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2005-11-30 -->
 						<Fragment slot="caption">デハ304A（2次車）山側</Fragment>
 					</Embedded>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/bce/BSR70.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_BSR70} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2007-10-21 -->
 						<Fragment slot="caption">デハ309A（2次車）山側</Fragment>
 					</Embedded>

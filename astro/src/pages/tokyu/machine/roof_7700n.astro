@@ -3,8 +3,11 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_7700N from '@image/tokyu/machine/roof/7700N.jpg';
+import image_7800N from '@image/tokyu/machine/roof/7800N.jpg';
+import image_7900N from '@image/tokyu/machine/roof/7900N.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -12,7 +15,7 @@ const structuredData: StructuredData = {
 	heading: '7700系（7915F）　屋根上機器配置',
 	dateModified: '2010-08-01',
 	description: '東急池上線、多摩川線で活躍した7700系のうち、中間車サハ7950形から改造され、先頭車化やシングルアーム式パンタグラフの搭載などが行われた 7915F の屋根上写真を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/roof/7801.jpg',
+	image: image_7800N,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -40,7 +43,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">デハ7715</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7700N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_7700N} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">デハ7715（5次車）</Fragment>
 					</Embedded>
@@ -64,7 +67,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">デハ7815</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7800N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_7800N} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">デハ7815（4次車）</Fragment>
 					</Embedded>
@@ -86,7 +89,7 @@ const structuredData: StructuredData = {
 					<Fragment slot="heading">クハ7915</Fragment>
 
 					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7900N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+						<MyImage image={image_7900N} alt="写真拡大" width={485} height={243} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">クハ7915（5次車）</Fragment>
 					</Embedded>
