@@ -58,7 +58,7 @@ export const contact = {
 
 			const sentInfo = await transporter.sendMail({
 				from: env('MAIL_FROM'),
-				to: env('MAIL_TO'),
+				to: env('CONTACT_MAIL_TO'),
 				subject: 'w0s.jp 問い合わせ',
 				html: html,
 			});
