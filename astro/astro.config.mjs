@@ -38,4 +38,14 @@ export default defineConfig({
 	server: {
 		port: 3000,
 	},
+	image: {
+		service: {
+			config: {
+				/* https://sharp.pixelplumbing.com/api-output/#avif */
+				avif: {
+					quality: 30,
+				},
+			},
+		},
+	},
 });
