@@ -44,6 +44,7 @@ export default defineConfig({
 				/* https://sharp.pixelplumbing.com/api-output/#avif */
 				avif: {
 					quality: 30,
+					chromaSubsampling: '4:2:0',
 				},
 			},
 		},
