@@ -13,15 +13,22 @@ export default defineConfig({
 	outDir: 'dist',
 	compressHTML: false,
 	scopedStyleStrategy: 'where',
-	security: {
-		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
-	},
 	vite: {
 		/* https://vite.dev/config/build-options.html */
 		build: {
 			cssCodeSplit: false,
 			minify: false,
 		},
+	},
+	security: {
+		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
+		allowedDomains: [
+			{
+				hostname: 'localhost',
+				protocol: 'http',
+				port: '3001',
+			},
+		],
 	},
 	build: {
 		format: 'preserve',
