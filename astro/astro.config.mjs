@@ -23,6 +23,15 @@ export default defineConfig({
 			minify: false,
 		},
 	},
+	security: {
+		allowedDomains: [
+			{
+				hostname: 'localhost',
+				protocol: 'http',
+				port: '3001',
+			},
+		],
+	},
 	build: {
 		format: 'preserve',
 		assets: 'assets/astro',
