@@ -1,6 +1,7 @@
 import { execSync, spawnSync } from 'node:child_process';
 import nodemailer from 'nodemailer';
 import pino, { type Logger } from 'pino';
+import pretty from 'pino-pretty';
 import { env } from '@w0s/env-value-type';
 
 const development = process.env['NODE_ENV'] !== 'production';
@@ -34,63 +35,55 @@ const sendErrorMail = async (message: string): Promise<void> => {
 export const getLogger = (name: string): Logger => {
 	init();
 
-	const logger = pino({
-		name: name,
-		level: development ? 'trace' : 'info',
-		transport: {
-			targets: development
-				? [
-						{
-							/* 標準出力 */
-							target: 'pino-pretty',
-							options: {
-								colorize: true,
-								translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
-								ignore: 'pid,hostname',
-								destination: 1,
-							},
-						},
-					]
-				: [
-						{
-							/* ファイル書き込み */
-							target: 'pino-pretty',
-							options: {
-								colorize: false,
-								translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
-								ignore: 'pid,hostname',
-								destination: `${env('ROOT')}/${env('LOGGER_FILE_ASTRO')}`,
-								mkdir: true,
-							},
-						},
-					],
-		},
-		hooks: {
-			logMethod(args, method, level) {
-				if (!development && level >= 50 /* https://getpino.io/#/docs/api?id=logger-level */) {
-					/* メール送信 */
-					const message = args
-						.map((arg) => {
-							if (arg instanceof Error) {
-								return arg.stack;
-							}
+	const logger = pino(
+		{
+			name: name,
+			level: development ? 'trace' : 'info',
+			hooks: {
+				logMethod(args, method, level) {
+					if (!development && level >= 50 /* https://getpino.io/#/docs/api?id=logger-level */) {
+						/* メール送信 */
+						const message = args
+							.map((arg) => {
+								if (arg instanceof Error) {
+									return arg.stack;
+								}
 
-							if (arg !== null && typeof arg === 'object') {
-								return `{ ${Object.entries(arg)
-									.map(([key, value]) => `${key}: ${String(value)}`)
-									.join(', ')} }`;
-							}
+								if (arg !== null && typeof arg === 'object') {
+									return `{ ${Object.entries(arg)
+										.map(([key, value]) => `${key}: ${String(value)}`)
+										.join(', ')} }`;
+								}
 
-							return arg;
-						})
-						.join(' ');
+								return arg;
+							})
+							.join(' ');
 
-					sendErrorMail(message).catch(console.error);
-				}
-				method.apply(this, args);
+						sendErrorMail(message).catch(console.error);
+					}
+					method.apply(this, args);
+				},
 			},
 		},
-	});
+		pretty(
+			development
+				? {
+						/* 標準出力 */
+						colorize: true,
+						translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
+						ignore: 'pid,hostname',
+						destination: 1,
+					}
+				: {
+						/* ファイル書き込み */
+						colorize: false,
+						translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
+						ignore: 'pid,hostname',
+						destination: `${env('ROOT')}/${env('LOGGER_FILE_ASTRO')}`,
+						mkdir: true,
+					},
+		),
+	);
 
 	return logger;
 };
