@@ -82,6 +82,7 @@ export default {
 					'.osdx': 'application/opensearchdescription+xml;charset=utf-8',
 					'.pdf': 'application/pdf',
 					'.xml': 'application/xml;charset=utf-8',
+					'.m4a': 'audio/mp4',
 					'.woff2': 'font/woff2',
 					'.avif': 'image/avif',
 					'.jpg': 'image/jpeg',
