@@ -106,11 +106,11 @@ export default {
 				],
 				extension: [
 					{
-						extensions: ['.webp', '.jpg', '.jpeg', '.png', '.svg'],
+						extensions: ['.jpg', '.png', '.svg'],
 						value: 'max-age=3600',
 					},
 					{
-						extensions: ['.webm', '.mp4'],
+						extensions: ['.webm'],
 						value: 'max-age=3600',
 					},
 					{
@@ -118,7 +118,7 @@ export default {
 						value: 'max-age=3600',
 					},
 					{
-						extensions: ['.woff2', '.woff', '.ttf'],
+						extensions: ['.woff2'],
 						value: 'max-age=2592000',
 					},
 					{
