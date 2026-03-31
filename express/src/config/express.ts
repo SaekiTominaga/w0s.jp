@@ -82,6 +82,7 @@ export default {
 					'.osdx': 'application/opensearchdescription+xml;charset=utf-8',
 					'.pdf': 'application/pdf',
 					'.xml': 'application/xml;charset=utf-8',
+					'.m4a': 'audio/mp4',
 					'.woff2': 'font/woff2',
 					'.avif': 'image/avif',
 					'.jpg': 'image/jpeg',
@@ -106,11 +107,11 @@ export default {
 				],
 				extension: [
 					{
-						extensions: ['.webp', '.jpg', '.jpeg', '.png', '.svg'],
+						extensions: ['.jpg', '.png', '.svg'],
 						value: 'max-age=3600',
 					},
 					{
-						extensions: ['.webm', '.mp4'],
+						extensions: ['.webm'],
 						value: 'max-age=3600',
 					},
 					{
@@ -118,7 +119,7 @@ export default {
 						value: 'max-age=3600',
 					},
 					{
-						extensions: ['.woff2', '.woff', '.ttf'],
+						extensions: ['.woff2'],
 						value: 'max-age=2592000',
 					},
 					{
