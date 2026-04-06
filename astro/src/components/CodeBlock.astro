@@ -1,8 +1,8 @@
 ---
+import crypto from 'node:crypto';
 import hljs from 'highlight.js/lib/core';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsXml from 'highlight.js/lib/languages/xml';
-import md5 from 'md5';
 
 interface Props {
 	code: string;
@@ -11,7 +11,9 @@ interface Props {
 
 const { code, language } = Astro.props;
 
-const id = `code-${md5(code)}`; // コード ID
+const hash = crypto.createHash('md5');
+hash.update(code);
+const id = `code-${hash.digest('hex')}`; // コード ID
 
 hljs.registerLanguage('xml', hljsXml);
 hljs.registerLanguage('javascript', hljsJavaScript);

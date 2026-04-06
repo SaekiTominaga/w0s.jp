@@ -78,9 +78,9 @@ export const yaml = (yamlStr: string) =>
 
 		const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
 
-		const md5 = crypto.createHash('md5');
-		md5.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
-		const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
+		const hash = crypto.createHash('md5');
+		hash.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
+		const unique = hash.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
 		return {
 			/* タイトル */

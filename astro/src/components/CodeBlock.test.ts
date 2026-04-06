@@ -1,5 +1,5 @@
+import crypto from 'node:crypto';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import md5 from 'md5';
 import { parse, type Options as ParseOptions } from 'node-html-parser';
 import { describe, expect, test } from 'vitest';
 // @ts-ignore: ts(2307)
@@ -26,10 +26,12 @@ test('base', async () => {
 	const clipboardButton = root.querySelector('.clipboard-button');
 	const code = root.querySelector('.code > code');
 
-	const codeId = `code-${md5(codeText)}`;
+	const hash = crypto.createHash('md5');
+	hash.update(codeText);
+	const id = `code-${hash.digest('hex')}`; // コード ID
 
-	expect(clipboardButton?.getAttribute('data-target')).toBe(codeId);
-	expect(code?.id).toBe(codeId);
+	expect(clipboardButton?.getAttribute('data-target')).toBe(id);
+	expect(code?.id).toBe(id);
 	expect(code?.innerHTML).toBe(codeText);
 });
 
