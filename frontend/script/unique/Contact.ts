@@ -133,17 +133,17 @@ export default class Contact {
 								/* ラジオボタン（未選択時）またはチェックボックス群 */
 								const labelTextList: string[] = [];
 								Array.from(formCtrls as RadioNodeList)
-									.filter((formCtrl: Node): boolean => (formCtrl as HTMLInputElement).checked)
+									.filter((formCtrl) => formCtrl.checked)
 									.forEach((formCtrlElement) => {
-										labelTextList.push(Contact.#getLabelTextFormControl(formCtrlElement as HTMLInputElement));
+										labelTextList.push(Contact.#getLabelTextFormControl(formCtrlElement));
 									});
 								value = labelTextList.join('、');
 							} else {
 								/* ラジオボタン（選択時） */
 								Array.from(formCtrls as RadioNodeList)
-									.filter((formCtrlElement) => (formCtrlElement as HTMLInputElement).value === value)
+									.filter((formCtrlElement) => formCtrlElement.value === value)
 									.forEach((formCtrlElement) => {
-										value = Contact.#getLabelTextFormControl(formCtrlElement as HTMLInputElement);
+										value = Contact.#getLabelTextFormControl(formCtrlElement);
 									});
 							}
 
@@ -197,10 +197,7 @@ export default class Contact {
 
 		const labelTextList: string[] = [];
 		labelElements.forEach((labelElement) => {
-			const labelText = labelElement.textContent;
-			if (labelText !== null) {
-				labelTextList.push(labelText);
-			}
+			labelTextList.push(labelElement.textContent);
 		});
 
 		return labelTextList.join(', ');
