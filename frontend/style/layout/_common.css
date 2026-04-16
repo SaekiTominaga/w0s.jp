@@ -12,6 +12,7 @@
 /* ===== ページヘッダー ===== */
 .l-header {
 	display: block grid;
+	container: header / inline-size;
 	grid-template-columns:
 		[full-start]
 		var(--_page-margin-inline) var(--page-padding-inline)
@@ -19,7 +20,6 @@
 		var(--page-padding-inline) var(--_page-margin-inline)
 		[full-end];
 	grid-column: header;
-	container: header / inline-size;
 	padding: 10px 0 40px;
 	line-height: var(--line-height-narrow);
 }
@@ -85,8 +85,8 @@
 
 /* ===== コンテンツエリア ===== */
 .l-content {
-	grid-column: content;
 	container: content / inline-size;
+	grid-column: content;
 
 	/* サイドバーがない場合は全幅で表示 */
 	&:not(:has(+ .l-sidebar)) {
@@ -131,21 +131,22 @@
 
 /* ===== サイドバー ===== */
 .l-sidebar {
-	grid-column: sidebar;
 	container: sidebar / inline-size;
+	grid-column: sidebar;
 	line-height: var(--line-height-narrow);
 }
 
 /* ===== 宣伝 ===== */
 .l-cm {
-	grid-column: cm;
 	container: cm / inline-size;
+	grid-column: cm;
 	margin-block-start: 100px;
 }
 
 /* ===== ページフッター ===== */
 .l-footer {
 	display: block grid;
+	container: footer / inline-size;
 	grid-template-columns:
 		[full-start]
 		var(--_page-margin-inline) var(--page-padding-inline)
@@ -153,7 +154,6 @@
 		var(--page-padding-inline) var(--_page-margin-inline)
 		[full-end];
 	grid-column: footer;
-	container: footer / inline-size;
 	margin-block-start: 80px;
 	border: solid var(--color-border-light);
 	border-width: 1px 0;
@@ -164,20 +164,20 @@
 
 /* サイトナビゲーション */
 .l-footer__nav {
-	grid-column: content;
 	container: footer-nav / inline-size;
+	grid-column: content;
 }
 
 /* ソーシャルメディア */
 .l-footer__social {
-	grid-column: content;
 	container: footer-social / inline-size;
+	grid-column: content;
 	margin-block-start: 2em;
 }
 
 /* アドセンス */
 .l-footer__ads {
-	grid-column: content;
 	container: footer-ads / inline-size;
+	grid-column: content;
 	margin-block-start: 8em;
 }

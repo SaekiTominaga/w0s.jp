@@ -5,6 +5,7 @@ export default {
 	extends: ['stylelint-config-html/astro', '@w0s/stylelint-config'],
 	ignoreFiles: ['dist/client/**/*.css'],
 	rules: {
+		'no-invalid-position-declaration': null, // Stylelint 17.5+ で style 属性がエラーになるため
 		'selector-pseudo-class-no-unknown': null, // allow `:global()` selector https://docs.astro.build/en/guides/styling/#global-styles
 		'max-nesting-depth': [
 			2,
