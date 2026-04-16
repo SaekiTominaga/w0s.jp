@@ -16,7 +16,7 @@
 		"postbuild": "prettier --config ../.prettierrc.mjs -w \"dist/**/*.{css,js,mjs}\" && brotli-cli compress -g \"dist/**/*.{css,js,mjs,svg}\" -g dist/favicon.ico -m text",
 		"lint": "pnpm run /^lint:.*/",
 		"lint:css": "stylelint -f verbose style/**/*.css",
-		"lint:ts": "tsc --project script --noEmit",
+		"lint:ts": "tsc --project build & tsc --project script",
 		"lint:js": "eslint build/**/*.ts script/**/*.ts"
 	},
 	"dependencies": {
