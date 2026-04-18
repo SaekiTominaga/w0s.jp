@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '../../@types/util.d.ts';
+import type { SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgOrganization, SchemaOrgPerson, StructuredData } from '../../@types/util.d.ts';
 
 interface Options {
 	site: string;
