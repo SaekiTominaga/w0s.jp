@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
-import { Parser, HtmlRenderer } from 'commonmark';
+import { HtmlRenderer, Parser } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
 import { load as yamlLoad } from 'js-yaml';

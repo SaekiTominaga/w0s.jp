@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { parse, type Options as ParseOptions } from 'node-html-parser';
+import { type Options as ParseOptions, parse } from 'node-html-parser';
 import { describe, expect, test } from 'vitest';
 // @ts-ignore: ts(2307)
 import CodeBlock from './CodeBlock.astro';

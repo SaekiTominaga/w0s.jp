@@ -1,6 +1,6 @@
 import path from 'node:path';
 import SQLite from 'better-sqlite3';
-import { Kysely, SqliteDialect, type LogEvent } from 'kysely';
+import { Kysely, type LogEvent, SqliteDialect } from 'kysely';
 import type { Logger } from 'pino';
 import { sqliteToJS } from '@w0s/sqlite-utility';
 import type { DB, MCategory, MPriority } from '../../../@types/db_crawler.d.ts';
