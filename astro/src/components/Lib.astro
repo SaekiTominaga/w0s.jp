@@ -113,7 +113,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 
 			border: var(--_border-width) solid var(--color-border-dark);
 			border-radius: var(--border-radius-normal);
-			background: var(--color-white);
+			background-color: var(--color-white);
 			line-height: var(--line-height-normal);
 			color: var(--color-black);
 		}
@@ -128,7 +128,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			contain: layout;
 			border-start-start-radius: var(--_border-radius-inner);
 			border-start-end-radius: var(--_border-radius-inner);
-			background: var(--color-verylightgreen);
+			background-color: var(--color-verylightgreen);
 			padding-block: var(--_header-padding-block);
 			padding-inline: calc(var(--_padding-inline) + var(--self-link-size)) var(--_padding-inline);
 		}
@@ -152,7 +152,8 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 
 		.release {
-			display: block flex;
+			display: inline flex;
+			flex-wrap: wrap;
 
 			&::before {
 				content: '（';
