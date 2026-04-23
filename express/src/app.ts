@@ -126,6 +126,7 @@ app.use(
 		next();
 	},
 	express.static(config.static.root, {
+		dotfiles: 'allow',
 		extensions: config.static.extensions.map((ext) => /* 拡張子の . は不要 */ ext.substring(1)),
 		index: config.static.index,
 		setHeaders: (res, localPath) => {
