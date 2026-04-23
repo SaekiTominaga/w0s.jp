@@ -6,8 +6,11 @@
 	--_color: var(--page-color);
 	--_bg-color: var(--page-bg-color);
 
+	line-height: var(--line-height-wide);
 	color: var(--_color);
-	font: var(--font-weight-normal) var(--page-font-size) / var(--line-height-wide) sans-serif;
+	font-family: sans-serif;
+	font-size: var(--page-font-size);
+	font-weight: var(--font-weight-normal);
 
 	@media print {
 		--_color: var(--color-black);
@@ -38,7 +41,7 @@ body {
 
 	/* for iOS Firefox auto link https://github.com/mozilla-mobile/firefox-ios/issues/8511 */
 	&[href^="tel:"] {
-		text-decoration: none;
+		text-decoration-line: none;
 		color: inherit;
 		pointer-events: none;
 	}
@@ -121,7 +124,7 @@ var {
 
 mark {
 	border: 1px solid var(--color-lightyellow);
-	background: var(--color-lightyellow);
+	background-color: var(--color-lightyellow);
 	font-weight: var(--font-weight-bold);
 
 	@media print {
@@ -162,7 +165,7 @@ x-popover {
 		outline-offset: -1px;
 		border: 1px solid var(--_border-color);
 		border-radius: var(--border-radius-normal);
-		background: var(--color-white);
+		background-color: var(--color-white);
 		padding: 15px;
 		max-inline-size: min(30em, 100%);
 		color: var(--color-black);

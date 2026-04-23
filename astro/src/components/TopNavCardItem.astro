@@ -26,19 +26,21 @@ const { linkHref, title, description } = Astro.props;
 	@layer component {
 		.box {
 			display: block flex; /* リンクのクリッカブルエリアを上下方向に伸ばすため */
+			flex-wrap: nowrap;
 
 			& > :global(a) {
 				--_border-width: 1px;
 				--_bg-color: var(--color-bg-light);
 				--_color: var(--color-darkgray);
 
-				flex: 1;
+				flex-basis: 0;
+				flex-grow: 1;
 				outline-offset: calc(0px - var(--_border-width));
 				outline-width: var(--outline-width-bold);
 				border: var(--_border-width) solid var(--color-border-light);
 				border-radius: var(--border-radius-normal);
 				box-shadow: 0 1px 2px var(--color-border-light);
-				background: var(--_bg-color);
+				background-color: var(--_bg-color);
 				overflow: hidden;
 				text-decoration-line: none;
 				color: var(--_color);
