@@ -7,7 +7,9 @@ interface Props {
 
 const { label } = Astro.props;
 
-const $ = cheerio.load(await Astro.slots.render('default'));
+const content = await Astro.slots.render('default');
+
+const $ = cheerio.load(content);
 
 const checkboxCtrl = $('input[type="checkbox"]').length !== 0;
 const radioCtrl = $('input[type="radio"]').length !== 0;
@@ -15,11 +17,11 @@ const switchCtrl = $('w0s-input-switch').length !== 0;
 ---
 
 <label class:list={['label', checkboxCtrl ? '-checkbox' : undefined, radioCtrl ? '-radio' : undefined]}>
-	{(checkboxCtrl || radioCtrl || switchCtrl) && <slot />}
+	{(checkboxCtrl || radioCtrl || switchCtrl) && <Fragment set:html={content} />}
 
 	<span class="text">{label}</span>
 
-	{!checkboxCtrl && !radioCtrl && !switchCtrl && <slot />}
+	{!checkboxCtrl && !radioCtrl && !switchCtrl && <Fragment set:html={content} />}
 </label>
 
 <style>

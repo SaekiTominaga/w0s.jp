@@ -1,14 +1,14 @@
 ---
 import * as cheerio from 'cheerio';
 
-const $ = cheerio.load(await Astro.slots.render('default'));
+const content = await Astro.slots.render('default');
+
+const $ = cheerio.load(content);
 
 const itemDigit = $('body > li').length.toString().length;
 ---
 
-<ol class="list" data-digit={itemDigit}>
-	<slot />
-</ol>
+<ol class="list" data-digit={itemDigit} set:html={content} />
 
 <style>
 	@layer component {
