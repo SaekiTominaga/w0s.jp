@@ -19,7 +19,7 @@ export type SchemaOrgPerson = Readonly<{
 	alternateName?: string;
 	description?: string;
 	identifier?: string;
-	image?: string | readonly string[] | Readonly<object>;
+	image?: string | URL;
 	interactionStatistic?: Readonly<object>;
 	sameAs?: string;
 }>; // https://schema.org/Person; https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification
@@ -31,7 +31,7 @@ export type SchemaOrgOrganization = Readonly<{
 	alternateName?: string;
 	description?: string;
 	identifier?: string;
-	image?: string | readonly string[] | Readonly<object>;
+	image?: string | URL;
 	interactionStatistic?: Readonly<object>;
 	sameAs?: string;
 }>; // https://schema.org/Person; https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification
