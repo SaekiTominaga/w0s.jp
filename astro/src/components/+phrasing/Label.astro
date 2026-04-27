@@ -1,5 +1,5 @@
 ---
-import * as cheerio from 'cheerio';
+import { parse } from 'node-html-parser';
 
 interface Props {
 	label: string;
@@ -9,11 +9,11 @@ const { label } = Astro.props;
 
 const content = await Astro.slots.render('default');
 
-const $ = cheerio.load(content);
+const root = parse(content);
 
-const checkboxCtrl = $('input[type="checkbox"]').length !== 0;
-const radioCtrl = $('input[type="radio"]').length !== 0;
-const switchCtrl = $('w0s-input-switch').length !== 0;
+const checkboxCtrl = root.querySelector('input[type="checkbox"]') !== null;
+const radioCtrl = root.querySelector('input[type="radio"]') !== null;
+const switchCtrl = root.querySelector('w0s-input-switch') !== null;
 ---
 
 <label class:list={['label', checkboxCtrl ? '-checkbox' : undefined, radioCtrl ? '-radio' : undefined]}>

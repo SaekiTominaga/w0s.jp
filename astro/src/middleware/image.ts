@@ -1,22 +1,21 @@
-import type { CheerioAPI } from 'cheerio';
+import type { HTMLElement } from 'node-html-parser';
 
 /**
  * `<img>` 要素のデフォルト値の属性を削除する
  *
- * @param $ - CheerioAPI
+ * @param root - Root element
  */
-export const removeImageDefaultAttribute = ($: CheerioAPI) => {
-	const $images = $('img');
-	$images.each((_index, image) => {
-		const $image = $(image);
-		if ($image.attr('decoding') === 'auto') {
-			$image.removeAttr('decoding');
+export const removeImageDefaultAttribute = (root: HTMLElement) => {
+	const images = root.querySelectorAll('img');
+	images.forEach((image) => {
+		if (image.getAttribute('decoding') === 'auto') {
+			image.removeAttribute('decoding');
 		}
-		if ($image.attr('loading') === 'eager') {
-			$image.removeAttr('loading');
+		if (image.getAttribute('loading') === 'eager') {
+			image.removeAttribute('loading');
 		}
-		if ($image.attr('fetchpriority') === 'auto') {
-			$image.removeAttr('fetchpriority');
+		if (image.getAttribute('fetchpriority') === 'auto') {
+			image.removeAttribute('fetchpriority');
 		}
 	});
 };

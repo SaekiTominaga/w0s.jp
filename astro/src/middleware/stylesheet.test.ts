@@ -1,11 +1,11 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
-import * as cheerio from 'cheerio';
+import { parse } from 'node-html-parser';
 import { adjustLinkStylesheetPosition } from './stylesheet.ts';
 
 await test('adjustLinkStylesheetPosition', async (t) => {
 	await t.test('no css', () => {
-		const $ = cheerio.load(`
+		const root = parse(`
 <!DOCTYPE html>
 <head>
 <title>title</title>
@@ -13,10 +13,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition($);
+		adjustLinkStylesheetPosition(root);
 
 		assert.equal(
-			$('head').html(),
+			root.querySelector('head')?.innerHTML,
 			`
 <title>title</title>
 <link rel="next" href="page2">
@@ -25,7 +25,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('signle css', () => {
-		const $ = cheerio.load(`
+		const root = parse(`
 <!DOCTYPE html>
 <head>
 <title>title</title>
@@ -33,10 +33,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition($);
+		adjustLinkStylesheetPosition(root);
 
 		assert.equal(
-			$('head').html(),
+			root.querySelector('head')?.innerHTML,
 			`
 <title>title</title>
 <link rel="stylesheet" href="css1">
@@ -45,7 +45,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('first place', () => {
-		const $ = cheerio.load(`
+		const root = parse(`
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="css1">
@@ -54,10 +54,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition($);
+		adjustLinkStylesheetPosition(root);
 
 		assert.equal(
-			$('head').html(),
+			root.querySelector('head')?.innerHTML,
 			`
 <link rel="stylesheet" href="css1"><link rel="stylesheet" href="css2">
 
@@ -67,7 +67,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('end place', () => {
-		const $ = cheerio.load(`
+		const root = parse(`
 <!DOCTYPE html>
 <head>
 <title>title</title>
@@ -76,10 +76,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition($);
+		adjustLinkStylesheetPosition(root);
 
 		assert.equal(
-			$('head').html(),
+			root.querySelector('head')?.innerHTML,
 			`
 <title>title</title>
 <link rel="stylesheet" href="css1"><link rel="stylesheet" href="css2">
@@ -89,7 +89,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('split', () => {
-		const $ = cheerio.load(`
+		const root = parse(`
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="css1">
@@ -100,10 +100,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition($);
+		adjustLinkStylesheetPosition(root);
 
 		assert.equal(
-			$('head').html(),
+			root.querySelector('head')?.innerHTML,
 			`
 <link rel="stylesheet" href="css1"><link rel="stylesheet" href="css2"><link rel="stylesheet" href="css3"><link rel="stylesheet" href="css4">
 
