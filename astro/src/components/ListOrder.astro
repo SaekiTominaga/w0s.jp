@@ -1,11 +1,11 @@
 ---
-import * as cheerio from 'cheerio';
+import { parse } from 'node-html-parser';
 
 const content = await Astro.slots.render('default');
 
-const $ = cheerio.load(content);
+const root = parse(content);
 
-const itemDigit = $('body > li').length.toString().length;
+const itemDigit = root.querySelectorAll('li').length.toString().length;
 ---
 
 <ol class="list" data-digit={itemDigit} set:html={content} />

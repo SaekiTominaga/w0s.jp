@@ -7,9 +7,6 @@ import ListOrder from './ListOrder.astro';
 test('digit 1', async () => {
 	const container = await AstroContainer.create();
 	const result = await container.renderToString(ListOrder, {
-		props: {
-			label: 'label',
-		},
 		slots: {
 			default: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>',
 		},
@@ -26,9 +23,6 @@ test('digit 1', async () => {
 test('digit 2', async () => {
 	const container = await AstroContainer.create();
 	const result = await container.renderToString(ListOrder, {
-		props: {
-			label: 'label',
-		},
 		slots: {
 			default: '<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>',
 		},

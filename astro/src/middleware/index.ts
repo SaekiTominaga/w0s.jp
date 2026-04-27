@@ -1,6 +1,6 @@
 import { loadEnvFile } from 'node:process';
 import { defineMiddleware } from 'astro:middleware';
-import * as cheerio from 'cheerio';
+import { parse } from 'node-html-parser';
 import URLSearchParamsCustomSeparator from '@w0s/urlsearchparams-custom-separator';
 import { getLogger } from '../logger.ts';
 import { removeImageDefaultAttribute } from './image.ts';
@@ -34,17 +34,17 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		});
 	}
 
-	const $ = cheerio.load(await response.text());
+	const root = parse(await response.text());
 
 	if (!import.meta.env.DEV) {
 		/* `<link rel="stylesheet">` の位置をまとめる */
-		adjustLinkStylesheetPosition($);
+		adjustLinkStylesheetPosition(root);
 	}
 
 	/* `<Image>` で自動的に設定される属性を回避するため <MyImage> でデフォルト属性を設定しているためそれらを削除 <https://docs.astro.build/en/reference/modules/astro-assets/#image-> */
-	removeImageDefaultAttribute($);
+	removeImageDefaultAttribute(root);
 
-	return new Response($.html(), {
+	return new Response(root.innerHTML, {
 		status: status,
 		statusText: statusText,
 		headers: headers,
