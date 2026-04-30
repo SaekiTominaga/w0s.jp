@@ -3,8 +3,8 @@ import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
+import List from '@components/List.astro';
 import ListNote from '@components/ListNote.astro';
-import ListOrder from '@components/ListOrder.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
@@ -83,16 +83,16 @@ const structuredData: StructuredData = {
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ListOrder>
+		<List>
 			<li>はじめに</li>
 			<li>車両一覧</li>
 			<li>年表</li>
 			<li>
 				車外
-				<ol>
+				<ul>
 					<li>
 						先頭車正面
-						<ol>
+						<ul>
 							<li>非常扉まわり</li>
 							<li>窓下・窓上手すり</li>
 							<li>外気取入口</li>
@@ -106,11 +106,11 @@ const structuredData: StructuredData = {
 							<li>運行番号表示器</li>
 							<li>急行サボ受け</li>
 							<li>赤帯</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						連結面
-						<ol>
+						<ul>
 							<li>渡り板</li>
 							<li>電気配管</li>
 							<li>幌枠</li>
@@ -122,11 +122,11 @@ const structuredData: StructuredData = {
 							<li>表記類</li>
 							<li>IRアンテナ撤去痕、準備工事</li>
 							<li>レスポンスブロック受け撤去痕</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						側面
-						<ol>
+						<ul>
 							<li>コルゲーション</li>
 							<li>アーク溶接痕</li>
 							<li>ジャッキアップポイント</li>
@@ -143,21 +143,21 @@ const structuredData: StructuredData = {
 							<li>車外スピーカー</li>
 							<li>赤帯</li>
 							<li>弱冷房車ステッカー</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						足まわり
-						<ol>
+						<ul>
 							<li>動力台車と主電動機</li>
 							<li>付随台車</li>
 							<li>速度発電機</li>
 							<li>軌条塗油器の油噴口</li>
 							<li>踏面清掃装置</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						床下
-						<ol>
+						<ul>
 							<li>主制御器</li>
 							<li>ブレーキ装置</li>
 							<li>空気圧縮機</li>
@@ -176,11 +176,11 @@ const structuredData: StructuredData = {
 							<li>識別票（IDタグ）</li>
 							<li>列車情報装置</li>
 							<li>積算電力量計</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						屋根上
-						<ol>
+						<ul>
 							<li>集電装置</li>
 							<li>ヒューズ箱</li>
 							<li>避雷器</li>
@@ -189,32 +189,32 @@ const structuredData: StructuredData = {
 							<li>列車無線アンテナ</li>
 							<li>冷房装置</li>
 							<li>ランニングボード</li>
-						</ol>
+						</ul>
 					</li>
 					<li>【コラム】デハ7814の謎</li>
-				</ol>
+				</ul>
 			</li>
 			<li>
 				車内
-				<ol>
+				<ul>
 					<li>
 						車内全般
-						<ol>
+						<ul>
 							<li>旧7000系からの変化</li>
 							<li>化粧板</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						床面
-						<ol>
+						<ul>
 							<li>滑り止め</li>
 							<li>水抜穴</li>
 							<li>押金</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						妻面
-						<ol>
+						<ul>
 							<li>連結面鴨居</li>
 							<li>妻窓</li>
 							<li>車内銘板</li>
@@ -223,11 +223,11 @@ const structuredData: StructuredData = {
 							<li>連結部注意表記</li>
 							<li>Dコック</li>
 							<li>運客仕切</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						側面
-						<ol>
+						<ul>
 							<li>側窓</li>
 							<li>カーテン</li>
 							<li>側ドア</li>
@@ -239,11 +239,11 @@ const structuredData: StructuredData = {
 							<li>車側灯点検蓋</li>
 							<li>側面表示器点検蓋</li>
 							<li>急停車注意表記</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						座席
-						<ol>
+						<ul>
 							<li>座席全般</li>
 							<li>モケット</li>
 							<li>袖仕切</li>
@@ -251,18 +251,18 @@ const structuredData: StructuredData = {
 							<li>蹴込板</li>
 							<li>個別Dコック</li>
 							<li>優先席</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						荷棚
-						<ol>
+						<ul>
 							<li>荷棚本体</li>
 							<li>荷棚受け</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						吊手
-						<ol>
+						<ul>
 							<li>吊手本体</li>
 							<li>固定具</li>
 							<li>広告</li>
@@ -270,29 +270,29 @@ const structuredData: StructuredData = {
 							<li>吊手棒受け</li>
 							<li>増設工事</li>
 							<li>優先席エリアの吊手</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						車椅子スペース
-						<ol>
+						<ul>
 							<li>車椅子スペース全般</li>
 							<li>吊手</li>
 							<li>吊手棒</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						天井
-						<ol>
+						<ul>
 							<li>点灯装置</li>
 							<li>スピーカー</li>
 							<li>中吊広告受け</li>
 							<li>扇風機</li>
 							<li>冷風口</li>
-						</ol>
+						</ul>
 					</li>
 					<li>
 						乗務員室
-						<ol>
+						<ul>
 							<li>運転台</li>
 							<li>車掌スイッチまわり</li>
 							<li>非常扉</li>
@@ -300,11 +300,11 @@ const structuredData: StructuredData = {
 							<li>列車無線</li>
 							<li>列車情報設定器</li>
 							<li>積算電力量計</li>
-						</ol>
+						</ul>
 					</li>
-				</ol>
+				</ul>
 			</li>
-		</ListOrder>
+		</List>
 	</Section>
 
 	<Section id="errata">
