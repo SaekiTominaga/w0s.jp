@@ -11,13 +11,13 @@ const { data, direction } = Astro.props;
 
 {
 	data !== undefined && data.length >= 2 && (
-		<ol class:list={['toc', direction !== undefined ? `-${direction}` : undefined]} aria-label="目次">
+		<ul class:list={['toc', direction !== undefined ? `-${direction}` : undefined]} aria-label="目次">
 			{data.map(({ id, headingHtml }) => (
 				<li>
 					<a href={`#${encodeURIComponent(id)}`} set:html={headingHtml} />
 				</li>
 			))}
-		</ol>
+		</ul>
 	)
 }
 
