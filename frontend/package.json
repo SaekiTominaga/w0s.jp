@@ -15,9 +15,9 @@
 		"build:js": "rollup -c --environment build:production",
 		"postbuild": "prettier --config ../.prettierrc.mjs -w \"dist/**/*.{css,js,mjs,json}\" && brotli-cli compress -g \"dist/**/*.{css,js,mjs,json,svg}\" -g dist/favicon.ico -m text",
 		"lint": "pnpm run /^lint:.*/",
-		"lint:css": "stylelint -f verbose style/**/*.css",
+		"lint:css": "stylelint -f verbose style",
 		"lint:ts": "tsc --project build & tsc --project script",
-		"lint:js": "eslint build/**/*.ts script/**/*.ts"
+		"lint:js": "eslint build script"
 	},
 	"dependencies": {
 		"@w0s/base.css": "1.4.0",
