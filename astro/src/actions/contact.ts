@@ -27,6 +27,7 @@ export const contact = {
 			email: z.email('Eメールアドレスの書式が正しくありません。'),
 			reply: z.string(),
 			body: z.string(),
+			time: z.number(),
 		}),
 		handler: async (input, context) => {
 			const requestHeaders = context.request.headers;
