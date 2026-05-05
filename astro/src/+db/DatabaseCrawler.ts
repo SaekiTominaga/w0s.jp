@@ -1,7 +1,8 @@
 import path from 'node:path';
+import { inspect } from 'node:util';
 import SQLite from 'better-sqlite3';
 import { Kysely, type LogEvent, SqliteDialect } from 'kysely';
-import type { Logger } from 'pino';
+import type { Logger } from 'winston';
 import { sqliteToJS } from '@w0s/sqlite-utility';
 import type { DB, MCategory, MPriority } from '../../../@types/db_crawler.d.ts';
 import { getLogger } from '../logger.ts';
@@ -35,11 +36,11 @@ export default class CrawlerDao {
 			log: (event: LogEvent) => {
 				switch (event.level) {
 					case 'error': {
-						this.#logger.error(event.query.parameters, event.query.sql);
+						this.#logger.error(`${inspect(event.query.parameters)} ${event.query.sql}`);
 						break;
 					}
 					default: {
-						this.#logger.info(event.query.parameters, event.query.sql);
+						this.#logger.info(`${inspect(event.query.parameters)} ${event.query.sql}`);
 					}
 				}
 			},

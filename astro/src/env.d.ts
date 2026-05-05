@@ -1,6 +1,6 @@
 declare namespace App {
 	interface Locals {
-		logger: pino.Logger;
+		logger: winston.Logger;
 		requestParams: URLSearchParams;
 	}
 }
