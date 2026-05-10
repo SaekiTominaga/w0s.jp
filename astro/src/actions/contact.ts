@@ -3,6 +3,7 @@ import { z } from 'astro/zod';
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
 import { env } from '@w0s/env-value-type';
+import configContact from '@config/contact.ts';
 
 /**
  * いわゆるルート相対パス部分を取得する
@@ -31,6 +32,7 @@ export const contact = {
 		}),
 		handler: async (input, context) => {
 			const requestHeaders = context.request.headers;
+			const elapsedTime = Date.now() - input.time; // ページを表示してから送信するまでの経過時間（ミリ秒）
 
 			/* bot 阻止 */
 			const fetchMode = requestHeaders.get('Sec-Fetch-Mode');
@@ -41,9 +43,20 @@ export const contact = {
 				});
 			}
 
+			if (!/[\u3040-\u30FF\u4E00-\u9FFF]/u.test(input.body)) {
+				/* 内容に日本語を含まない場合は追加のチェックを行う */
+				if (elapsedTime < configContact.elapsedTime * 1000) {
+					throw new ActionError({
+						code: 'BAD_REQUEST',
+						message: `The time between loading the page and submitting the form is too short (${String(elapsedTime / 1000)}s)`,
+					});
+				}
+			}
+
 			/* メール送信 */
 			const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
 				input: input,
+				elapsedTime: elapsedTime,
 				ip: context.clientAddress,
 				headers: requestHeaders,
 			});
