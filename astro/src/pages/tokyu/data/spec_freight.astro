@@ -2,6 +2,7 @@
 import Layout from '@layouts/Tokyu.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
 import List from '@components/List.astro';
+import ListNote from '@components/ListNote.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
@@ -24,6 +25,22 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="unit">
+		<Fragment slot="heading">本ページの表における単位</Fragment>
+
+		<List>
+			<li>元資料において英トン（噸）で記載された自重はメートル法におけるメートルトンに換算し、小数以下第3位は四捨五入する。</li>
+			<li>積載重量と容積は英トン＝メートルトンと見なして換算を行わない。</li>
+			<li>
+				元資料においてヤードポンド法におけるフィート、インチで記載された長さはメートル法に換算し、小数点以下は四捨五入する。ただしメートル法移行後の図面で1の位が丸められている場合や小数点以下を切り捨てている場合はそれに従う。
+				<ul>
+					<li>例：ト1形の車体長さはヤードポンド法時代の車両竣功図表では<q lang="en">19′‐4½″</q>であり、換算すると 5,906mm となるが、メートル法移行後に書き直された図面では<q>5910</q>とあるため、後者の値を採用している。</li>
+					<li>目蒲ト21形および玉川1–20 はメートル法移行後の図面が確認できないため、1の位の丸めをせず小数点以下を四捨五入する。</li>
+				</ul>
+			</li>
+		</List>
+	</Section>
+
 	<Section id="mekama&toyoko">
 		<Fragment slot="heading">目黒蒲田電鉄、東京横浜電鉄</Fragment>
 
@@ -263,6 +280,102 @@ const structuredData: StructuredData = {
 		<NoteRefContent id="to41-weight">製造時の認可申請書や車両竣功図表では 5.08t とされているが、<Anchor href="https://www.digital.archives.go.jp/item/508799"><DateWareki value="1929" />の貨車標記変更報告</Anchor>では 5.20t となっている。</NoteRefContent>
 
 		<NoteRefContent id="tomu81-weight">製造時の認可申請書では 7.57t とされているが、後の車両竣功図表や<Anchor href="https://www.digital.archives.go.jp/item/508799"><DateWareki value="1929" />の貨車標記変更報告</Anchor>では 7.73t となっている。</NoteRefContent>
+
+		<Section depth={2} headingType="b" id="to5">
+			<Fragment slot="heading">ト5形譲受前の前歴と諸元</Fragment>
+
+			<p>ト5形は目黒蒲田電鉄では2両とも同じ諸元とされていますが、まったく異なる出自を持っていました。日本鉄道や鉄道院時代の諸元を見ると、上州鉄道からの譲受車であることには疑問を持てるほどの違いがあることが分かります。</p>
+
+			<List>
+				<li>官営鉄道ト9115形9141号 → 中原鉄道（のち上州鉄道）ト1 → 目黒蒲田電鉄ト5形</li>
+				<li>日本鉄道乙31形 → 国有鉄道ト9183形9187号 → 中原鉄道（のち上州鉄道）ト2 → 目黒蒲田電鉄ト5形</li>
+			</List>
+
+			<Table scroll={true}>
+				<thead>
+					<tr>
+						<th scope="col" rowspan="2">車種、車号</th>
+						<th scope="colgroup" rowspan="2">メーカー</th>
+						<th scope="colgroup" rowspan="2">ブレーキ</th>
+						<th scope="colgroup" rowspan="2">締結器</th>
+						<th scope="colgroup" rowspan="2">自重</th>
+						<th scope="colgroup" colspan="2">積載</th>
+						<th scope="colgroup" colspan="3">最大寸法</th>
+						<th scope="colgroup" colspan="2">緩衝器高さ</th>
+						<th scope="colgroup" colspan="2">足まわり</th>
+						<th scope="col" rowspan="2">備考</th>
+					</tr>
+					<tr>
+						<th scope="col">重量</th>
+						<th scope="col">容積</th>
+						<th scope="col">長さ</th>
+						<th scope="col">幅</th>
+						<th scope="col">高さ</th>
+						<th scope="col">空車</th>
+						<th scope="col">満載</th>
+						<th scope="col">固定軸距</th>
+						<th scope="col">車輪径</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">鉄道院ト9115形</th>
+						<td>イギリス、新橋工場、神戸工場</td>
+						<td>?</td>
+						<td>螺旋連環</td>
+						<td class="u-cell -end">3.85噸</td>
+						<td class="u-cell -end">6噸</td>
+						<td class="u-cell -end">614立方呎</td>
+						<td lang="en">17′10″</td>
+						<td>?</td>
+						<td lang="en">6′0″</td>
+						<td lang="en">2′10″</td>
+						<td lang="en">2′9″</td>
+						<td lang="en">8′0″</td>
+						<td lang="en">2′10″</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th scope="row">日本鉄道乙31形</th>
+						<td>新橋工場</td>
+						<td>真空、車側</td>
+						<td>螺旋連環</td>
+						<td class="u-cell -end">3噸11本</td>
+						<td class="u-cell -end">5噸</td>
+						<td class="u-cell -end">618立方呎</td>
+						<td lang="en">18′0″</td>
+						<td lang="en">7′5″</td>
+						<td lang="en">5′6½″</td>
+						<td lang="en">2′11″</td>
+						<td lang="en">2′10″</td>
+						<td lang="en">9′0″</td>
+						<td lang="en">2′10″</td>
+						<td>鉄道院ト9183形時代は自重 3.55噸</td>
+					</tr>
+					<tr>
+						<th scope="row">目黒蒲田電鉄ト5形</th>
+						<td>?</td>
+						<td>車側</td>
+						<td>螺旋連環</td>
+						<td class="u-cell -end">4噸</td>
+						<td class="u-cell -end">9噸</td>
+						<td class="u-cell -end">676立方呎</td>
+						<td lang="en">18′3″</td>
+						<td lang="en">7′3″</td>
+						<td lang="en">5′10″</td>
+						<td lang="en">2′11″</td>
+						<td lang="en">2′9½″</td>
+						<td lang="en">9′0″</td>
+						<td lang="en">2′9″</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</Table>
+
+			<ListNote>
+				<li>本表のみ比較のため各種寸法は原資料のまま表記する。</li>
+			</ListNote>
+		</Section>
 	</Section>
 
 	<Section id="ikegami">
@@ -367,21 +480,5 @@ const structuredData: StructuredData = {
 			<li><DocBook name="東急電車形式集.2" authors={['レイルロード']} year={1996} pages={[134, 138]} url="https://www.amazon.co.jp/dp/4938343924/" /></li>
 			<li><DocBook name="東急電車形式集.3" authors={['レイルロード']} year={1997} pages={[142]} url="https://www.amazon.co.jp/dp/4947714034/" /></li>
 		</List>
-
-		<Section depth={2} headingType="b" id="unit">
-			<Fragment slot="heading">本ページの表における単位</Fragment>
-
-			<List>
-				<li>元資料において英トン（噸）で記載された自重はメートル法におけるメートルトンに換算し、小数以下第3位は四捨五入する。</li>
-				<li>積載重量と容積は英トン＝メートルトンと見なして換算を行わない。</li>
-				<li>
-					元資料においてヤードポンド法におけるフィート、インチで記載された長さはメートル法に換算し、小数点以下は四捨五入する。ただしメートル法移行後の図面で1の位が丸められている場合や小数点以下を切り捨てている場合はそれに従う。
-					<ul>
-						<li>例：ト1形の車体長さはヤードポンド法時代の車両竣功図表では<q lang="en">19′‐4½″</q>であり、換算すると 5,906mm となるが、メートル法移行後に書き直された図面では<q>5910</q>とあるため、後者の値を採用している。</li>
-						<li>目蒲ト21形および玉川1–20 はメートル法移行後の図面が確認できないため、1の位の丸めをせず小数点以下を四捨五入する。</li>
-					</ul>
-				</li>
-			</List>
-		</Section>
 	</Section>
 </Layout>
