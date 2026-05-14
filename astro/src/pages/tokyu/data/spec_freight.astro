@@ -1,0 +1,387 @@
+---
+import Layout from '@layouts/Tokyu.astro';
+import DateWareki from '@components/+phrasing/DateWareki.astro';
+import List from '@components/List.astro';
+import NoteRefContent from '@components/NoteRefContent.astro';
+import Section from '@components/Section.astro';
+import Table from '@components/Table.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import DocBook from '@components/+phrasing/DocBook.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
+import DocOfficial from '@components/+phrasing/DocOfficial.astro';
+import NoteRef from '@components/+phrasing/NoteRef.astro';
+import type { StructuredData } from '../../../../@types/util.d.ts';
+
+const structuredData: StructuredData = {
+	title: '東京急行電鉄前身会社　付随貨車　諸元',
+	dateModified: '2026-05-14',
+	description: '東京急行電鉄成立前（1942年以前）の前身会社に在籍した付随貨車の諸元をまとめました。',
+	breadcrumb: [
+		{ path: '/tokyu/', name: '東急電車資料室' },
+		{ path: '/tokyu/data/', name: '車両デ―タ' },
+	],
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<Section id="mekama&toyoko">
+		<Fragment slot="heading">目黒蒲田電鉄、東京横浜電鉄</Fragment>
+
+		<p>特記を除き<DateWareki value="1928-08" />の一斉改番（鉄道省貨車のム・ラ・サ・キ記号導入に伴う大改番にあわせたもの）時点のデータ</p>
+
+		<Table scroll={true}>
+			<thead>
+				<tr>
+					<th scope="col" rowspan="2">車種</th>
+					<th scope="col" rowspan="2">車号</th>
+					<th scope="col" rowspan="2">所属</th>
+					<th scope="col" rowspan="2">前歴</th>
+					<th scope="colgroup" colspan="2">製造</th>
+					<th scope="colgroup" rowspan="2">ブレーキ</th>
+					<th scope="colgroup" rowspan="2">締結器</th>
+					<th scope="colgroup" rowspan="2">自重</th>
+					<th scope="colgroup" colspan="2">積載</th>
+					<th scope="colgroup" colspan="3">最大寸法</th>
+					<th scope="colgroup" colspan="2">緩衝器高さ</th>
+					<th scope="colgroup" colspan="2">足まわり</th>
+					<th scope="col" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">メーカー</th>
+					<th scope="col">時期</th>
+					<th scope="col">重量</th>
+					<th scope="col">容積</th>
+					<th scope="col">長さ</th>
+					<th scope="col">幅</th>
+					<th scope="col">高さ</th>
+					<th scope="col">空車</th>
+					<th scope="col">満載</th>
+					<th scope="col">固定軸距</th>
+					<th scope="col">車輪径</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">ト1形</th>
+					<td>1–2</td>
+					<td rowspan="2">目蒲</td>
+					<td rowspan="2">―</td>
+					<td rowspan="2">汽車製造</td>
+					<td rowspan="2"><DateWareki value="1922-12" /></td>
+					<td>車側</td>
+					<td>螺旋連環</td>
+					<td class="u-cell -end">4.06t</td>
+					<td class="u-cell -end">10t<NoteRef by="to1-capacity1" /></td>
+					<td class="u-cell -end">7t<NoteRef by="to1-capacity2" /></td>
+					<td class="u-cell -end">5,910mm</td>
+					<td class="u-cell -end">2,200mm</td>
+					<td class="u-cell -end">1,660mm</td>
+					<td class="u-cell -end">890mm</td>
+					<td class="u-cell -end">865mm</td>
+					<td class="u-cell -end">2,440mm</td>
+					<td class="u-cell -end">840mm</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">ト11形</th>
+					<td>11–12</td>
+					<td>車側、手用</td>
+					<td>螺旋連環</td>
+					<td class="u-cell -end">4.06t</td>
+					<td class="u-cell -end">10t<NoteRef by="to11-capacity1" /></td>
+					<td class="u-cell -end">7t<NoteRef by="to11-capacity2" /></td>
+					<td class="u-cell -end">5,910mm</td>
+					<td class="u-cell -end">2,200mm</td>
+					<td class="u-cell -end">2,300mm<NoteRef by="to11-height" /></td>
+					<td class="u-cell -end">890mm</td>
+					<td class="u-cell -end">860mm</td>
+					<td class="u-cell -end">2,440mm</td>
+					<td class="u-cell -end">840mm</td>
+					<td>ト1形からの改造</td>
+				</tr>
+				<tr>
+					<th scope="row">ト15形</th>
+					<td>15–18</td>
+					<td>目蒲</td>
+					<td>―</td>
+					<td>汽車製造</td>
+					<td><DateWareki value="1924-02" /></td>
+					<td>車側、手用</td>
+					<td>自動</td>
+					<td class="u-cell -end">5.59t</td>
+					<td class="u-cell -end">10t</td>
+					<td class="u-cell -end">8t</td>
+					<td class="u-cell -end">5,820mm<NoteRef by="to15-width" /></td>
+					<td class="u-cell -end">2,340mm</td>
+					<td class="u-cell -end">2,280mm</td>
+					<td class="u-cell -end">880mm<NoteRef by="to15-coup1" /></td>
+					<td class="u-cell -end">850mm<NoteRef by="to15-coup2" /></td>
+					<td class="u-cell -end">2,440mm</td>
+					<td class="u-cell -end">860mm</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">ト5形</th>
+					<td>5–6</td>
+					<td>目蒲</td>
+					<td>上州鉄道</td>
+					<td>?</td>
+					<td>?</td>
+					<td>車側</td>
+					<td>螺旋連環</td>
+					<td class="u-cell -end">4.06t</td>
+					<td class="u-cell -end">9t</td>
+					<td class="u-cell -end">7t</td>
+					<td class="u-cell -end">5,560mm</td>
+					<td class="u-cell -end">2,210mm</td>
+					<td class="u-cell -end">1,780mm</td>
+					<td class="u-cell -end">890mm</td>
+					<td class="u-cell -end">850mm</td>
+					<td class="u-cell -end">2,740mm</td>
+					<td class="u-cell -end">840mm</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">ト21形</th>
+					<td>21–25</td>
+					<td>目蒲</td>
+					<td>播丹鉄道</td>
+					<td>東洋車輌</td>
+					<td><DateWareki value="1924-11" /></td>
+					<td>車側、手用</td>
+					<td>自動</td>
+					<td class="u-cell -end">5.79t</td>
+					<td class="u-cell -end">12t</td>
+					<td class="u-cell -end">9t</td>
+					<td class="u-cell -end">5,982mm</td>
+					<td class="u-cell -end">2,540mm</td>
+					<td class="u-cell -end">2,438mm<NoteRef by="to21-height" /></td>
+					<td class="u-cell -end">876mm<NoteRef by="to21-coup1" /></td>
+					<td class="u-cell -end">850mm<NoteRef by="to21-coup2" /></td>
+					<td class="u-cell -end">3,048mm</td>
+					<td class="u-cell -end">838mm</td>
+					<td>メートル法換算の丸めなし</td>
+				</tr>
+				<tr>
+					<th scope="row">ト31形</th>
+					<td>31–35</td>
+					<td>目蒲</td>
+					<td>―</td>
+					<td>日本車輌</td>
+					<td><DateWareki value="1925-03" /></td>
+					<td>車側、手用</td>
+					<td>自動</td>
+					<td class="u-cell -end">5.20t<NoteRef by="to31-weight" /></td>
+					<td class="u-cell -end">10t</td>
+					<td class="u-cell -end">8t</td>
+					<td class="u-cell -end">5,820mm</td>
+					<td class="u-cell -end">2,360mm</td>
+					<td class="u-cell -end">2,490mm</td>
+					<td class="u-cell -end">880mm</td>
+					<td class="u-cell -end">855mm</td>
+					<td class="u-cell -end">2,440mm</td>
+					<td class="u-cell -end">860mm</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">ト41形</th>
+					<td>41–70</td>
+					<td>東横</td>
+					<td>―</td>
+					<td>日本車輌</td>
+					<td><DateWareki value="1925-06" /></td>
+					<td>車側、手用</td>
+					<td>自動</td>
+					<td class="u-cell -end">5.20t<NoteRef by="to41-weight" /></td>
+					<td class="u-cell -end">10t</td>
+					<td class="u-cell -end">8t</td>
+					<td class="u-cell -end">5,820mm</td>
+					<td class="u-cell -end">2,360mm</td>
+					<td class="u-cell -end">2,490mm</td>
+					<td class="u-cell -end">880mm</td>
+					<td class="u-cell -end">855mm</td>
+					<td class="u-cell -end">2,740mm</td>
+					<td class="u-cell -end">860mm</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row" rowspan="2">トム81形</th>
+					<td>81–90</td>
+					<td>東横</td>
+					<td>―</td>
+					<td>日本車輌</td>
+					<td><DateWareki value="1926-05" /></td>
+					<td rowspan="2">車側、手用</td>
+					<td rowspan="2">自動</td>
+					<td rowspan="2" class="u-cell -end">7.73t<NoteRef by="tomu81-weight" /></td>
+					<td rowspan="2" class="u-cell -end">15t</td>
+					<td rowspan="2" class="u-cell -end">13t</td>
+					<td rowspan="2" class="u-cell -end">7,832mm</td>
+					<td rowspan="2" class="u-cell -end">2,452mm</td>
+					<td rowspan="2" class="u-cell -end">2,590mm</td>
+					<td rowspan="2" class="u-cell -end">883mm</td>
+					<td rowspan="2" class="u-cell -end">864mm</td>
+					<td rowspan="2" class="u-cell -end">3,900mm</td>
+					<td rowspan="2" class="u-cell -end">864mm</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>91–100</td>
+					<td>東横</td>
+					<td>―</td>
+					<td>東洋車輌</td>
+					<td><DateWareki value="1926-07" /></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</Table>
+
+		<NoteRefContent id="to1-capacity1">製造時は 7t、重量が変更されたのは<DateWareki value="1927-05" />。もともと 10t 積みとして設計されていたため寸法変更はない。</NoteRefContent>
+
+		<NoteRefContent id="to1-capacity2">製造時は 6t、容積が変更されたのは<DateWareki value="1927-05" />。もともと 10t 積みとして設計されていたため寸法変更はない。</NoteRefContent>
+
+		<NoteRefContent id="to11-height">車両竣功図表では手用ブレーキを含まない値（1,660mm）になっている。</NoteRefContent>
+
+		<NoteRefContent id="to11-capacity1">製造時は 7t、重量が変更されたのは<DateWareki value="1927-05" />。もともと 10t 積みとして設計されていたため寸法変更はない。</NoteRefContent>
+
+		<NoteRefContent id="to11-capacity2">製造時は 6t、容積が変更されたのは<DateWareki value="1927-05" />。もともと 10t 積みとして設計されていたため寸法変更はない。</NoteRefContent>
+
+		<NoteRefContent id="to15-width">製造時は螺旋連環連結器を装備のため 5,994mm。<Anchor href="https://www.digital.archives.go.jp/item/544134">自動連結器化の竣功</Anchor>は<DateWareki value="1926-05-31" />。</NoteRefContent>
+
+		<NoteRefContent id="to15-coup1">製造時は螺旋連環連結器を装備のため 908mm。<Anchor href="https://www.digital.archives.go.jp/item/544134">自動連結器化の竣功</Anchor>は<DateWareki value="1926-05-31" />。</NoteRefContent>
+
+		<NoteRefContent id="to15-coup2">製造時の値は不明。</NoteRefContent>
+
+		<NoteRefContent id="to21-height">譲受認可当初は手用ブレーキなしのため 1,902mm。</NoteRefContent>
+
+		<NoteRefContent id="to21-coup1">譲受認可当初は螺旋連環連結器を装備のため 901mm。<Anchor href="https://www.digital.archives.go.jp/item/544134">自動連結器化の竣功</Anchor>は<DateWareki value="1926-05-31" />。</NoteRefContent>
+
+		<NoteRefContent id="to21-coup2">譲受認可当初の値は不明。</NoteRefContent>
+
+		<NoteRefContent id="to31-weight">製造時の認可申請書や車両竣功図表では 5.08t とされているが、<Anchor href="https://www.digital.archives.go.jp/item/469083"><DateWareki value="1929" />の貨車標記変更報告</Anchor>では 5.20t となっている。</NoteRefContent>
+
+		<NoteRefContent id="to41-weight">製造時の認可申請書や車両竣功図表では 5.08t とされているが、<Anchor href="https://www.digital.archives.go.jp/item/508799"><DateWareki value="1929" />の貨車標記変更報告</Anchor>では 5.20t となっている。</NoteRefContent>
+
+		<NoteRefContent id="tomu81-weight">製造時の認可申請書では 7.57t とされているが、後の車両竣功図表や<Anchor href="https://www.digital.archives.go.jp/item/508799"><DateWareki value="1929" />の貨車標記変更報告</Anchor>では 7.73t となっている。</NoteRefContent>
+	</Section>
+
+	<Section id="ikegami">
+		<Fragment slot="heading">池上電気鉄道</Fragment>
+
+		<p>付随貨車の在籍なし</p>
+	</Section>
+
+	<Section id="tamagawa">
+		<Fragment slot="heading">玉川電気鉄道</Fragment>
+
+		<Table scroll={true}>
+			<thead>
+				<tr>
+					<th scope="col" rowspan="2">車号</th>
+					<th scope="colgroup" colspan="2">製造</th>
+					<th scope="colgroup" rowspan="2">ブレーキ</th>
+					<th scope="colgroup" rowspan="2">締結器</th>
+					<th scope="colgroup" rowspan="2">自重</th>
+					<th scope="colgroup" rowspan="2">積載重量</th>
+					<th scope="colgroup" colspan="3">最大寸法</th>
+					<th scope="colgroup" rowspan="2">緩衝器高さ（空車）</th>
+					<th scope="colgroup" colspan="2">足まわり</th>
+					<th scope="col" rowspan="2">備考</th>
+				</tr>
+				<tr>
+					<th scope="col">メーカー</th>
+					<th scope="col">時期</th>
+					<th scope="col">長さ</th>
+					<th scope="col">幅</th>
+					<th scope="col">高さ</th>
+					<th scope="col">固定軸距</th>
+					<th scope="col">車輪径</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>車号不明20両</td>
+					<td>高橋鐵工場(?)<NoteRef by="tamagawa1067-maker" /></td>
+					<td><DateWareki value="1907" />頃</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>?</td>
+					<td>狭軌時代の車両、詳細不明</td>
+				</tr>
+				<tr>
+					<td>1–20</td>
+					<td>玉川電気鉄道</td>
+					<td><DateWareki value="1920" /></td>
+					<td>手用</td>
+					<td>連環</td>
+					<td class="u-cell -end">4.06t</td>
+					<td class="u-cell -end">10t</td>
+					<td class="u-cell -end">6,096mm</td>
+					<td class="u-cell -end">2,193mm</td>
+					<td class="u-cell -end">2,724mm<NoteRef by="tamagawa1-height" /></td>
+					<td class="u-cell -end">742mm</td>
+					<td class="u-cell -end">2,438mm</td>
+					<td class="u-cell -end">762mm</td>
+					<td>書類上は新製だが実際は狭軌車両を改造した可能性がある</td>
+				</tr>
+			</tbody>
+		</Table>
+
+		<NoteRefContent id="tamagawa1067-maker">少なくとも一部車両は高橋鐵工場だが、全20両が同社製であるかどうかは不明。</NoteRefContent>
+
+		<NoteRefContent id="tamagawa1-height">両端に設けられた簡易屋根を含んだ高さ。後年は屋根を撤去した車両も多い。</NoteRefContent>
+	</Section>
+
+	<Section id="references">
+		<Fragment slot="heading">参考文献</Fragment>
+
+		<List>
+			<li><DocMagazine name="経済時報" no={61} article="高橋鐵工塲の製作事業に就て" authors={['牧嶺']} pages={[17]} url="https://dl.ndl.go.jp/pid/1888330/1/18" /></li>
+			<li><DocOfficial possess="tokyo" company="玉川電気鉄道" no="玉発第47号" date="1920-04-30" title="車輌構造認可願" url="https://www.archives.metro.tokyo.lg.jp/detail?cls=collection_04&pkey=303354" /></li>
+			<li><DocOfficial possess="tetsudo" company="中原鉄道" no="発第3号" date="1922-01-23" title="貨車使用認可申請" url="https://www.digital.archives.go.jp/item/504012" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" date="1922-07-07" title="車両購入許可申請書" url="https://www.digital.archives.go.jp/item/543718" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電第280号" date="1923-08-24" title="貨車購入認可申請書" url="https://www.digital.archives.go.jp/item/472594" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電第122号" date="1925-04-20" title="貨車購入認可申請書" url="https://www.digital.archives.go.jp/item/542868" /></li>
+			<li><DocOfficial possess="tetsudo" company="東京横浜電鉄" no="庶第414号" date="1925-04-21" title="貨車購入認可申請書" url="https://www.digital.archives.go.jp/item/534987" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電第165号" date="1925-05-21" title="車両設計変更認可申請書" url="https://www.digital.archives.go.jp/item/543700" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電第171号" date="1925-05-26" title="車両設計変更許可申請書" url="https://www.digital.archives.go.jp/item/542872" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電第32号" date="1926-01-20" title="車両設計変更許可申請書" url="https://www.digital.archives.go.jp/item/542883" /></li>
+			<li><DocOfficial possess="tetsudo" company="東京横浜電鉄" no="東横寅第990号" date="1926-05-24" title="貨車購入認可申請書" url="https://www.digital.archives.go.jp/item/505635" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電第398号" date="1926-11-27" title="付随貨車設計変更認可申請書" url="https://www.digital.archives.go.jp/item/543294" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電巳第265号" date="1929-02-25" url="https://www.digital.archives.go.jp/item/468550" /></li>
+			<li><DocOfficial possess="tetsudo" company="東京横浜電鉄" no="東横巳第200号" date="1929-02-25" url="https://www.digital.archives.go.jp/item/507226" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電巳第1908号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/469083" /></li>
+			<li><DocOfficial possess="tetsudo" company="東京横浜電鉄" no="東横巳第2360号" date="1929-11-16" title="非直通貨車標記書替報告" url="https://www.digital.archives.go.jp/item/508799" /></li>
+			<li><DocOfficial possess="tetsudo" company="目黒蒲田電鉄" no="目電亥第724号" date="1935-05-30" title="貨車廃止届" url="https://www.digital.archives.go.jp/item/504891" /></li>
+			<li><DocBook name="復刻　貨車略図　下巻" authors={['鉄道史資料保存会']} year={1990} article={['無蓋貨車　ト9115–9178.']} pages={[219]} url="https://dl.ndl.go.jp/pid/13160388/1/231" linkScope="page" /></li>
+			<li><DocBook name="復刻　貨車略図　下巻" authors={['鉄道史資料保存会']} year={1990} article={['無蓋貨車　ト9183–9204.']} pages={[221]} url="https://dl.ndl.go.jp/pid/13160388/1/233" linkScope="page" /></li>
+			<li><DocBook name="日本鉄道客車略図・貨車略図" authors={['鉄道史資料保存会']} year={1991} article={['貨車略図', '無蓋貨車　卯 5–20, 51–56.']} pages={[31]} url="https://dl.ndl.go.jp/pid/13151696/1/253" linkScope="page" /></li>
+			<li><DocBook name="東急電車形式集.1" authors={['レイルロード']} year={1996} pages={[74, 77]} url="https://www.amazon.co.jp/dp/4938343916/" /></li>
+			<li><DocBook name="東急電車形式集.2" authors={['レイルロード']} year={1996} pages={[134, 138]} url="https://www.amazon.co.jp/dp/4938343924/" /></li>
+			<li><DocBook name="東急電車形式集.3" authors={['レイルロード']} year={1997} pages={[142]} url="https://www.amazon.co.jp/dp/4947714034/" /></li>
+		</List>
+
+		<Section depth={2} headingType="b" id="unit">
+			<Fragment slot="heading">本ページの表における単位</Fragment>
+
+			<List>
+				<li>元資料において英トン（噸）で記載された自重はメートル法におけるメートルトンに換算し、小数以下第3位は四捨五入する。</li>
+				<li>積載重量と容積は英トン＝メートルトンと見なして換算を行わない。</li>
+				<li>
+					元資料においてヤードポンド法におけるフィート、インチで記載された長さはメートル法に換算し、小数点以下は四捨五入する。ただしメートル法移行後の図面で1の位が丸められている場合や小数点以下を切り捨てている場合はそれに従う。
+					<ul>
+						<li>例：ト1形の車体長さはヤードポンド法時代の車両竣功図表では<q lang="en">19′‐4½″</q>であり、換算すると 5,906mm となるが、メートル法移行後に書き直された図面では<q>5910</q>とあるため、後者の値を採用している。</li>
+						<li>目蒲ト21形および玉川1–20 はメートル法移行後の図面が確認できないため、1の位の丸めをせず小数点以下を四捨五入する。</li>
+					</ul>
+				</li>
+			</List>
+		</Section>
+	</Section>
+</Layout>
