@@ -49,19 +49,20 @@ const structuredData: StructuredData = {
 		<Table scroll={true}>
 			<thead>
 				<tr>
-					<th scope="col" rowspan="2">車種</th>
-					<th scope="col" rowspan="2">車号</th>
-					<th scope="col" rowspan="2">所属</th>
-					<th scope="col" rowspan="2">前歴</th>
+					<th scope="colgroup" rowspan="2">車種</th>
+					<th scope="colgroup" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">所属</th>
+					<th scope="colgroup" rowspan="2">前歴</th>
 					<th scope="colgroup" colspan="2">製造</th>
 					<th scope="colgroup" rowspan="2">ブレーキ</th>
-					<th scope="colgroup" rowspan="2">締結器</th>
+					<th scope="colgroup" rowspan="2">連結器</th>
+					<th scope="colgroup" rowspan="2">側板</th>
 					<th scope="colgroup" rowspan="2">自重</th>
 					<th scope="colgroup" colspan="2">積載</th>
 					<th scope="colgroup" colspan="3">最大寸法</th>
 					<th scope="colgroup" colspan="2">緩衝器高さ</th>
 					<th scope="colgroup" colspan="2">足まわり</th>
-					<th scope="col" rowspan="2">備考</th>
+					<th scope="colgroup" rowspan="2">備考</th>
 				</tr>
 				<tr>
 					<th scope="col">メーカー</th>
@@ -87,6 +88,7 @@ const structuredData: StructuredData = {
 					<td rowspan="2"><DateWareki value="1922-12" /></td>
 					<td>車側</td>
 					<td>螺旋連環</td>
+					<td>3枚側</td>
 					<td class="u-cell -end">4.06t</td>
 					<td class="u-cell -end">10t<NoteRef by="to1-capacity1" /></td>
 					<td class="u-cell -end">7t<NoteRef by="to1-capacity2" /></td>
@@ -104,6 +106,7 @@ const structuredData: StructuredData = {
 					<td>11–12</td>
 					<td>車側、手用</td>
 					<td>螺旋連環</td>
+					<td>3枚側</td>
 					<td class="u-cell -end">4.06t</td>
 					<td class="u-cell -end">10t<NoteRef by="to11-capacity1" /></td>
 					<td class="u-cell -end">7t<NoteRef by="to11-capacity2" /></td>
@@ -125,6 +128,7 @@ const structuredData: StructuredData = {
 					<td><DateWareki value="1924-02" /></td>
 					<td>車側、手用</td>
 					<td>自動</td>
+					<td>3枚側</td>
 					<td class="u-cell -end">5.59t</td>
 					<td class="u-cell -end">10t</td>
 					<td class="u-cell -end">8t</td>
@@ -146,6 +150,7 @@ const structuredData: StructuredData = {
 					<td>?</td>
 					<td>車側</td>
 					<td>螺旋連環</td>
+					<td>3枚側</td>
 					<td class="u-cell -end">4.06t</td>
 					<td class="u-cell -end">9t</td>
 					<td class="u-cell -end">7t</td>
@@ -167,6 +172,7 @@ const structuredData: StructuredData = {
 					<td><DateWareki value="1924-11" /></td>
 					<td>車側、手用</td>
 					<td>自動</td>
+					<td>4枚側</td>
 					<td class="u-cell -end">5.79t</td>
 					<td class="u-cell -end">12t</td>
 					<td class="u-cell -end">9t</td>
@@ -188,6 +194,7 @@ const structuredData: StructuredData = {
 					<td><DateWareki value="1925-03" /></td>
 					<td>車側、手用</td>
 					<td>自動</td>
+					<td>3枚側</td>
 					<td class="u-cell -end">5.20t<NoteRef by="to31-weight" /></td>
 					<td class="u-cell -end">10t</td>
 					<td class="u-cell -end">8t</td>
@@ -209,6 +216,7 @@ const structuredData: StructuredData = {
 					<td><DateWareki value="1925-06" /></td>
 					<td>車側、手用</td>
 					<td>自動</td>
+					<td>3枚側</td>
 					<td class="u-cell -end">5.20t<NoteRef by="to41-weight" /></td>
 					<td class="u-cell -end">10t</td>
 					<td class="u-cell -end">8t</td>
@@ -230,6 +238,7 @@ const structuredData: StructuredData = {
 					<td><DateWareki value="1926-05" /></td>
 					<td rowspan="2">車側、手用</td>
 					<td rowspan="2">自動</td>
+					<td rowspan="2">5枚側</td>
 					<td rowspan="2" class="u-cell -end">7.73t<NoteRef by="tomu81-weight" /></td>
 					<td rowspan="2" class="u-cell -end">15t</td>
 					<td rowspan="2" class="u-cell -end">13t</td>
@@ -287,17 +296,18 @@ const structuredData: StructuredData = {
 			<p>ト5形は目黒蒲田電鉄では2両とも同じ諸元とされていますが、まったく異なる出自を持っていました。日本鉄道や鉄道院時代の諸元を見ると、上州鉄道からの譲受車であることには疑いの余地があるほどの違いがあることが分かります。</p>
 
 			<List>
-				<li>官営鉄道ト9115形9141号 → 中原鉄道（のち上州鉄道）ト1号 → 目黒蒲田電鉄ト5形</li>
+				<li>官設鉄道ト9115形9141号 → 中原鉄道（のち上州鉄道）ト1号 → 目黒蒲田電鉄ト5形</li>
 				<li>日本鉄道乙31形 → 国有鉄道ト9183形9187号 → 中原鉄道（のち上州鉄道）ト2号 → 目黒蒲田電鉄ト5形</li>
 			</List>
 
 			<Table scroll={true}>
 				<thead>
 					<tr>
-						<th scope="col" rowspan="2">車種、車号</th>
+						<th scope="colgroup" rowspan="2">車種、車号</th>
 						<th scope="colgroup" colspan="2">製造</th>
 						<th scope="colgroup" rowspan="2">ブレーキ</th>
-						<th scope="colgroup" rowspan="2">締結器</th>
+						<th scope="colgroup" rowspan="2">連結器</th>
+						<th scope="colgroup" rowspan="2">側板</th>
 						<th scope="colgroup" rowspan="2">自重</th>
 						<th scope="colgroup" colspan="2">積載</th>
 						<th scope="colgroup" colspan="3">最大寸法</th>
@@ -322,14 +332,15 @@ const structuredData: StructuredData = {
 					<tr>
 						<th scope="row">鉄道院ト9115形<small>（<DateWareki value="1911" />時点）</small></th>
 						<td>イギリス、新橋工場、神戸工場</td>
-						<td>?</td>
-						<td>?</td>
-						<td>?</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>4枚側</td>
 						<td class="u-cell -end">3.85噸</td>
 						<td class="u-cell -end">6噸</td>
 						<td class="u-cell -end">614立方呎</td>
 						<td lang="en">17′‐10″</td>
-						<td>?</td>
+						<td></td>
 						<td lang="en">6′‐0″</td>
 						<td lang="en">2′‐10″</td>
 						<td lang="en">2′‐9″</td>
@@ -341,26 +352,46 @@ const structuredData: StructuredData = {
 						<td>イギリス、新橋工場、神戸工場</td>
 						<td><DateWareki value="1880" />～<DateWareki value="1895" /></td>
 						<td>車側</td>
-						<td>?</td>
+						<td></td>
+						<td>4枚側</td>
 						<td class="u-cell -end">3.61噸ないし4.62噸</td>
 						<td class="u-cell -end">5噸ないし8噸</td>
 						<td class="u-cell -end">6噸</td>
 						<td lang="en">17′‐10″</td>
-						<td>?</td>
+						<td></td>
 						<td lang="en">6′‐0″</td>
 						<td lang="en">2′‐10″</td>
 						<td lang="en">2′‐9″</td>
 						<td lang="en">8′‐0″</td>
 						<td lang="en">2′‐10″</td>
 					</tr>
+					<tr>
+						<th scope="row">中原鉄道ト1号<small>（<DateWareki value="1922" />時点）</small></th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td class="u-cell -end">4.31屯</td>
+						<td class="u-cell -end">9屯</td>
+						<td class="u-cell -end">7屯</td>
+						<td lang="en">17′‐10″</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td lang="en">8′‐0″</td>
+						<td></td>
+					</tr>
 				</tbody>
 				<tbody>
 					<tr>
 						<th scope="row">日本鉄道乙31形<small>（<DateWareki value="1906" />時点）</small></th>
 						<td>新橋工場</td>
-						<td>?</td>
+						<td></td>
 						<td>真空、車側</td>
 						<td>螺旋連環</td>
+						<td>3枚側</td>
 						<td class="u-cell -end">3噸11本</td>
 						<td class="u-cell -end">5噸</td>
 						<td class="u-cell -end">618立方呎</td>
@@ -375,9 +406,10 @@ const structuredData: StructuredData = {
 					<tr>
 						<th scope="row">鉄道院ト9183形<small>（<DateWareki value="1911" />時点）</small></th>
 						<td>新橋工場</td>
-						<td>?</td>
+						<td></td>
 						<td>真空、車側</td>
-						<td>?</td>
+						<td></td>
+						<td>3枚側</td>
 						<td class="u-cell -end">3.55噸</td>
 						<td class="u-cell -end">5噸</td>
 						<td class="u-cell -end">617立方呎</td>
@@ -394,7 +426,8 @@ const structuredData: StructuredData = {
 						<td>新橋工場</td>
 						<td><DateWareki value="1883" />～<DateWareki value="1886" /></td>
 						<td>車側</td>
-						<td>?</td>
+						<td></td>
+						<td>3枚側</td>
 						<td class="u-cell -end">3.55噸ないし3.77噸</td>
 						<td class="u-cell -end">5噸ないし8噸</td>
 						<td class="u-cell -end">6噸</td>
@@ -406,14 +439,33 @@ const structuredData: StructuredData = {
 						<td lang="en">9′‐0″</td>
 						<td lang="en">2′‐10″</td>
 					</tr>
+					<tr>
+						<th scope="row">中原鉄道ト2号<small>（<DateWareki value="1922" />時点）</small></th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td class="u-cell -end">3.84屯</td>
+						<td class="u-cell -end">9屯</td>
+						<td class="u-cell -end">7屯</td>
+						<td lang="en">18′‐0″</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td lang="en">9′‐0″</td>
+						<td></td>
+					</tr>
 				</tbody>
 				<tbody>
 					<tr>
 						<th scope="row">目黒蒲田電鉄ト5形</th>
-						<td>?</td>
-						<td>?</td>
+						<td>不明</td>
+						<td>不明</td>
 						<td>車側</td>
 						<td>螺旋連環</td>
+						<td>3枚側</td>
 						<td class="u-cell -end">4噸</td>
 						<td class="u-cell -end">9噸</td>
 						<td class="u-cell -end">676立方呎</td>
@@ -429,7 +481,8 @@ const structuredData: StructuredData = {
 			</Table>
 
 			<ListNote>
-				<li>本表のみ比較のため各種単位は原資料のまま表記する。</li>
+				<li>本表のみ各種単位は原資料のまま表記する。</li>
+				<li>官設鉄道、国有鉄道の車種、車号は<DateWareki value="1911" />改称のもので表記する。</li>
 			</ListNote>
 		</Section>
 	</Section>
@@ -446,16 +499,16 @@ const structuredData: StructuredData = {
 		<Table scroll={true}>
 			<thead>
 				<tr>
-					<th scope="col" rowspan="2">車号</th>
+					<th scope="colgroup" rowspan="2">車号</th>
 					<th scope="colgroup" colspan="2">製造</th>
 					<th scope="colgroup" rowspan="2">ブレーキ</th>
-					<th scope="colgroup" rowspan="2">締結器</th>
+					<th scope="colgroup" rowspan="2">連結器</th>
 					<th scope="colgroup" rowspan="2">自重</th>
 					<th scope="colgroup" rowspan="2">積載重量</th>
 					<th scope="colgroup" colspan="3">最大寸法</th>
 					<th scope="colgroup" rowspan="2">緩衝器高さ（空車）</th>
 					<th scope="colgroup" colspan="2">足まわり</th>
-					<th scope="col" rowspan="2">備考</th>
+					<th scope="colgroup" rowspan="2">備考</th>
 				</tr>
 				<tr>
 					<th scope="col">メーカー</th>
