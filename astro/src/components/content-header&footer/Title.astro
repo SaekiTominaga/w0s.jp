@@ -14,15 +14,10 @@ const dateModifiedDayjs = dayjs(dateModified);
 ---
 
 <hgroup class="title">
-	{subHeading === undefined && <h1>{heading ?? title}</h1>}
-	{
-		subHeading !== undefined && (
-			<h1>
-				{heading ?? title}
-				<span class="sub-heading">（{subHeading}）</span>
-			</h1>
-		)
-	}
+	<h1>
+		{heading ?? title}
+		{subHeading !== undefined && <span class="sub-heading">（{subHeading}）</span>}
+	</h1>
 	{
 		dateModified !== undefined && (
 			<p class="updated">
