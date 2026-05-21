@@ -111,26 +111,26 @@ const typeIcon = type !== undefined ? TYPE_ICONS.find((data) => data.type === ty
 const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url.host) : undefined;
 ---
 
-<a href={getHref(href)} rel={external ? 'external' : undefined} hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-current={href === undefined ? 'page' : undefined} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>
-{
-	icon && typeIcon !== undefined && (
-		<small class="type">
-			<AnchorIcon fileName={typeIcon.fileName} alt={typeIcon.name} />
-		</small>
-	)
-}
-{
-	icon && external && (
-		<small class="domain">
-			{hostIcon !== undefined && <AnchorIcon fileName={hostIcon.fileName} alt={hostIcon.name} />}
-			{hostIcon === undefined && (
-				<>
-					(<code>{url.host}</code>)
-				</>
-			)}
-		</small>
-	)
-}
+<><a href={getHref(href)} rel={external ? 'external' : undefined} hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-current={href === undefined ? 'page' : undefined} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>{
+		icon && typeIcon !== undefined && (
+			<small class="type">
+				<AnchorIcon fileName={typeIcon.fileName} alt={typeIcon.name} />
+			</small>
+		)
+	}
+	{
+		icon && external && (
+			<small class="domain">
+				{hostIcon !== undefined && <AnchorIcon fileName={hostIcon.fileName} alt={hostIcon.name} />}
+				{hostIcon === undefined && (
+					<>
+						(<code>{url.host}</code>)
+					</>
+				)}
+			</small>
+		)
+	}
+</>
 
 <style>
 	@layer component {
