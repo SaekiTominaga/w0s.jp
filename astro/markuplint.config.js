@@ -54,6 +54,10 @@ export default {
 			},
 		},
 		{
+			selector: 'Head',
+			as: 'head',
+		},
+		{
 			selector: 'ListDescription',
 			as: 'dl',
 		},
@@ -112,6 +116,16 @@ export default {
 					rules: {
 						'permitted-contents': false,
 						'required-attr': false,
+					},
+				},
+			],
+		},
+		'src/layouts/*.astro': {
+			nodeRules: [
+				{
+					selector: 'head',
+					rules: {
+						'permitted-contents': false, // コンポーネントの関係で title 要素がないと言われるため
 					},
 				},
 			],
