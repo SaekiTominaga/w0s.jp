@@ -4,7 +4,7 @@ import AnchorIcon from './AnchorIcon.astro';
 interface Props {
 	href?: string;
 	hreflang?: string;
-	type?: string;
+	type?: 'application/pdf';
 	lang?: string;
 	id?: string;
 	'aria-labelledby'?: string[];
@@ -85,54 +85,50 @@ const HOST_ICONS: HostIcon[] = [
 	},
 ];
 
-const { href, hreflang, type, lang, id, 'aria-labelledby': ariaLabelledby, icon = true, bullet } = Astro.props;
+const getUrl = (href: string | undefined): URL | undefined => {
+	if (href === undefined || !URL.canParse(href)) {
+		return;
+	}
 
-let url: URL | undefined;
+	return new URL(href);
+};
 
-if (href !== undefined) {
-	let urlStr = href;
+const getHref = (href: string | undefined): string | undefined => {
 	if (href?.match(/^https:\/\/www\.amazon\.[a-z]+(\.[a-z]+)?\/dp\/([A-Z0-9]{10})\/$/v)) {
-		urlStr = `${href}ref=nosim?tag=w0s.jp-22`;
+		return `${href}ref=nosim?tag=w0s.jp-22`;
 	}
 
-	if (URL.canParse(href)) {
-		url = new URL(urlStr);
-	}
-}
+	return href;
+};
+
+const { href, hreflang, type, lang, id, 'aria-labelledby': ariaLabelledby, icon = true, bullet = false } = Astro.props;
+
+const url = getUrl(href);
+
+const external = url !== undefined && !['blog.w0s.jp'].includes(url.host);
 
 const typeIcon = type !== undefined ? TYPE_ICONS.find((data) => data.type === type) : undefined;
 const hostIcon = url !== undefined ? HOST_ICONS.find((data) => data.host === url.host) : undefined;
 ---
 
+<a href={getHref(href)} rel={external ? 'external' : undefined} hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-current={href === undefined ? 'page' : undefined} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>
 {
-	url === undefined && (
-		<>
-			{/* prettier-ignore */}
-			<a href={href} hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-current={href === undefined ? 'page' : undefined} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>
-		</>
+	icon && typeIcon !== undefined && (
+		<small class="type">
+			<AnchorIcon fileName={typeIcon.fileName} alt={typeIcon.name} />
+		</small>
 	)
 }
 {
-	url !== undefined && (
-		<>
-			{/* prettier-ignore */}
-			<a href={url.toString()} rel="external" hreflang={hreflang} lang={lang} id={id} class:list={[{ '-bullet': bullet }]} aria-labelledby={ariaLabelledby?.join(' ')}><slot /></a>
-			{icon && typeIcon !== undefined && (
-				<small class="type">
-					<AnchorIcon fileName={typeIcon.fileName} alt={typeIcon.name} />
-				</small>
-			)}
-			{icon && hostIcon !== undefined && (
-				<small class="domain">
-					<AnchorIcon fileName={hostIcon.fileName} alt={hostIcon.name} />
-				</small>
-			)}
-			{icon && hostIcon === undefined && (
-				<small class="domain">
+	icon && external && (
+		<small class="domain">
+			{hostIcon !== undefined && <AnchorIcon fileName={hostIcon.fileName} alt={hostIcon.name} />}
+			{hostIcon === undefined && (
+				<>
 					(<code>{url.host}</code>)
-				</small>
+				</>
 			)}
-		</>
+		</small>
 	)
 }
 
