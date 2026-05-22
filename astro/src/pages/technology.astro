@@ -3,11 +3,11 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Site.astro';
 import CodeBlock from '@components/CodeBlock.astro';
 import List from '@components/List.astro';
-import ListDescription from '@components/ListDescription.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import type { StructuredData } from '../../@types/util.d.ts';
 
@@ -26,7 +26,7 @@ const slugger = new GithubSlugger();
 		<Fragment slot="heading">前提</Fragment>
 
 		<List>
-			<li>本ページで記載することは特記のない限り <a href="https://w0s.jp/"><code>w0s.jp</code></a> および <a href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></a> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
+			<li>本ページで記載することは特記のない限り <Anchor href="/"><code>w0s.jp</code></Anchor> および <Anchor href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></Anchor> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
 			<li>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい改修は度々実施しているが、本ドキュメントは常に追従できるとは限らない。</li>
 			<li>本ドキュメントは「当サイトでそれぞれの技術をどのように使用しているか」といった純粋な技術論に留まらず、筆者の Web 技術あるいは Web そのものに対する思想展開も行っている。</li>
 		</List>
@@ -85,7 +85,7 @@ const slugger = new GithubSlugger();
 			</thead>
 			<tbody>
 				<tr>
-					<td><a href="https://w0s.jp/"><code>w0s.jp</code></a></td>
+					<td><a href="/"><code>w0s.jp</code></a></td>
 					<td>個人サイト</td>
 					<td rowspan="3"><Anchor href="https://nodejs.org/" icon={false}>Node.js</Anchor> + <Anchor href="https://pm2.keymetrics.io/" icon={false}>PM2</Anchor></td>
 					<td><Anchor href="https://expressjs.com/" icon={false}>Express</Anchor>, <Anchor href="https://astro.build/" icon={false}>Astro</Anchor></td>
@@ -177,7 +177,7 @@ const slugger = new GithubSlugger();
 
 			<p>コンテンツのデータをスクレイピングで活用したいユーザーにとっては XML として処理できた方が便利だろうとの考えで以前は <code>application/xhtml+xml</code> で配信していたのだが、Google 翻訳（URL 指定）が対応していないなどの外部要因によりデメリットの方が大きくなってきており、現代では <code>text/html</code> の方が利便性は高いものと判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef type="ref" by="xhtml-blog" />。</p>
 
-			<NoteRefContent id="xhtml-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></a>（2024年）</NoteRefContent>
+			<NoteRefContent id="xhtml-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></Anchor>（2024年）</NoteRefContent>
 		</Section>
 
 		<Section id="html-indent" depth={2} headingType="b">
@@ -210,13 +210,15 @@ const slugger = new GithubSlugger();
 		<Section id="html-external" depth={2} headingType="b">
 			<Fragment slot="heading">外部リンク</Fragment>
 
+			<p>当サイトでは外部サイトのリンクに <code>target=_blank</code> の属性を設定していない。</p>
+
 			<p>世間では「外部サイトのリンクは別タブで開く」がスタンダードな慣習となっている。良い慣習ではないのだが、もはやこれを覆すのは不可能だろう。しかし明文化されたルールがあるわけではなく、実際にはどの性質のリンクを別タブで開くか統一されていない。</p>
 
 			<p>私の住む<Anchor href="https://www.city.yokohama.lg.jp/">神奈川県横浜市のサイト</Anchor>は世の慣習に反して、外部サイトのリンクであっても同一タブで開かれる。その代わりアンカーテキストには「○○のページ（外部サイト）」のように括弧書きのテキストが付与されているため、この先は横浜市が管理するページではないことが誰の目にも分かる。外部サイトの区別というものは本来こうあるべきだ。</p>
 
 			<p>逆に同一サイトであっても性質が異なるページへのリンクは別タブで開かせる設定をしているケースもある。それに対してアイコン等で区別をしているサイトもあれば、そうしていない（リンクを選択してみないと挙動が分からない）サイトもある。</p>
 
-			<p>もしも世の中のサイトが統一的なルールのもとに実装されているのなら（たとえ悪習だとしても）一考の余地があるのだが、現状そうではないのだからこの慣習に従う必要はない。そのため当サイトでは <code>target=_blank</code> を採用せず、代わりに以下のマークアップをしている。</p>
+			<p>もしも世の中のサイトが統一的なルールのもとに実装されているのなら（たとえ悪習だとしても）一考の余地があるのだが、現状そうではないのだからこの慣習に従う必要はない。そのため当サイトでは <code>target</code> 属性を設定せず、代わりに以下のマークアップをしている。</p>
 
 			<List>
 				<li><Anchor href="https://html.spec.whatwg.org/multipage/links.html#link-type-external"><code>rel=external</code></Anchor> のリンクタイプ属性を付ける</li>
@@ -231,7 +233,7 @@ const slugger = new GithubSlugger();
 
 			<p><Anchor href="https://www.rfc-editor.org/rfc/rfc9110#section-15.4">RFC 9110 の <cite lang="en">15.4. Redirection 3xx</cite></Anchor>では、ステータスコード 300, 301, 302, 307, 308 で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://www.rfc-editor.org/rfc/rfc9110#section-15.4">the user agent <mark>MAY</mark> use the Location field value for automatic redirection</q>と書かれている。<span lang="en">MUST</span> や <span lang="en">SHOULD</span> でなくあくまで <span lang="en">MAY</span> であり、実際にブラウザの環境によってはリダイレクトされずにレスポンスコンテンツ（ボディ）の内容が画面に表示されるケースが存在する<NoteRef type="ref" by="3xx-blog" />。</p>
 
-			<NoteRefContent id="3xx-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/763"><cite>3xx リダイレクト画面のマークアップ</cite></a>（2026年）</NoteRefContent>
+			<NoteRefContent id="3xx-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/763"><cite>3xx リダイレクト画面のマークアップ</cite></Anchor>（2026年）</NoteRefContent>
 
 			<p>これに対して Apache HTTP Server はリダイレクトしない環境が考慮されており、<code>Location</code> ヘッダーフィールドだけでなくレスポンスコンテンツにおいてもリダイレクト先のリンク付きの HTML を返すようになっている。curl にて当サイトのトップページの URL を https: でなくあえて http: で指定すると次のようになる。</p>
 
@@ -278,61 +280,22 @@ const slugger = new GithubSlugger();
 	<Section id="style">
 		<Fragment slot="heading">スタイルシート<small>（CSS）</small></Fragment>
 
-		<Section id="style-build" depth={2} headingType="b">
-			<Fragment slot="heading">ビルド</Fragment>
+		<Section id="style-class" depth={2} headingType="b">
+			<Fragment slot="heading">クラス名</Fragment>
 
-			<p>CSS ファイルのビルドには <Anchor href="https://postcss.org/">PostCSS</Anchor>を使用している。</p>
+			<p>CSS 設計やクラスの命名規則にはさまざまな考え方があるが、当サイトではユーティリティーファーストを採用していない。</p>
 
-			<p>複数のプラグインを使用しているが、それらはブラウザが対応していない機能の先行使用、あるいはパフォーマンス向上等が目的であり、標準化の見込みのないプラグインは使っていない。いざとなればビルド前のコードをそのままブラウザに読み込ませても問題ないような作り方をしている。</p>
-		</Section>
+			<p>HTML 4 で <Anchor href="https://www.w3.org/TR/2018/SPSD-html401-20180327/intro/intro.html#h-2.4.1">構造とプレゼンテーションの分離</Anchor> が掲げられて以来、プレゼンテーションをスタイルシートに分離して HTML は文書構造に専念する考え方が普及した。HTML 5 以降は仕様書の <Anchor href="https://html.spec.whatwg.org/multipage/dom.html#classes"><code>class</code> 属性</Anchor> の部分でクラス名に関して<q lang="en" cite="https://html.spec.whatwg.org/multipage/dom.html#classes">authors are encouraged to use values that describe the nature of the content, rather than values that describe the desired presentation of the content</q>との言及がある。</p>
 
-		<Section id="style-minify" depth={2} headingType="b">
-			<Fragment slot="heading">最小化</Fragment>
+			<p>しかし実際の Web 制作に際しては HTML から一切のプレゼンテーションを廃することは難しく、構造が視覚的なレイアウトに影響されることは避けられない。そのような状況下でクラス名を抽象化するのは無理があり<q>不自然な実装方法</q>との批判もある<NoteRef type="ref" by="utility-class-yuheiy" />。この批判自体は正当なものであるし、HTML 仕様書の記述はモダンなフロントエンドフレームワークが登場する前の<Anchor href="https://www.w3.org/TR/2008/WD-html5-20080122/#classes">2008年に公開された</Anchor>ものであるからして、2026年の現在においてはある程度懐疑的に受け取る必要があるだろう。</p>
 
-			<p>当サイトでは CSS の最小化を行っていない。理由は <a href="#html-minify">HTML のそれ</a> と同じである。</p>
+			<NoteRefContent id="utility-class-yuheiy"><DocMagazine name="WEB+DB PRESS" no={133} article="Tailwind CSS 実践入門" authors={['安田祐平']} pages={[66, 67]} /></NoteRefContent>
 
-			<p>それでも以前は従量制課金接続を考慮して最小化を行っていた時期もあるのだが、2022年に Internet Explorer 11 のサポートが終了し、すべてのメジャーブラウザが Brotli による高圧縮なファイル配信に対応したことから、もはや転送量の削減を最小化テクニックに頼る時代ではなくなったと判断して取り止めた<NoteRef type="ref" by="css-minify-blog" />。</p>
+			<p>とはいえ Web というものはユーザーが見た目や挙動を自由にカスタマイズできることが他メディアと比べてもっとも大きな特徴であり、そこを軽視することは Web が Web らしく発展する方向性を狭めてしまうと危惧している。</p>
 
-			<NoteRefContent id="css-minify-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></a>（2022年）</NoteRefContent>
-		</Section>
+			<p>ユーティリティーファーストの問題点はユーザースタイルシートでのカスタマイズに支障があることだ。これはアクセシビリティの問題であるからして、デメリットのひとつなのではなく、軽視してはいけない致命的な問題であると思う。ただし私はユーティリティーファーストの考え方そのものを否定するつもりはない。ユーティリティーファーストを採用した際に、警告文を赤文字で表現するならば <code>class="error text-red-500"</code> のようにセマンティックな名前とプレゼンテーション値を併記すれば良いのだ。HTML 仕様書は「クラス名にプレゼンテーションを含めてはいけない」とまでは言っていないのだから。</p>
 
-		<Section id="style-comment" depth={2} headingType="b">
-			<Fragment slot="heading">コメント</Fragment>
-
-			<p>最小化にも関連する話だが、HTML と同様に CSS もユーザーが直接閲覧するものであるためコメントを一律に削除することはせず、以下の2種に分類して処理している。</p>
-
-			<List>
-				<li>開発者向けのコメントはビルド過程で除去する</li>
-				<li>それ以外のコメントは残す</li>
-			</List>
-
-			<p>前者の代表的なものは <Anchor href="https://stylelint.io/user-guide/ignore-code/">Stylelint 用の設定コメント</Anchor> である。除去には CSSNANO の関連パッケージのひとつである <Anchor href="https://github.com/cssnano/cssnano/tree/master/packages/postcss-discard-comments">postcss-discard-comments</Anchor> を使用している。</p>
-
-			<p>一方、それ以外の多くのコメントは開発者だけでなくユーザーにもその情報を伝えることが重要だろう。当サイトが使用しているリセットスタイルの一例を挙げる。</p>
-
-			<CodeBlock
-				code={`a:not(:any-link) {
-	color: unset;
-}`}
-				language="css"
-			/>
-
-			<p>本来このようなリセットは必要ない。そのためユーザースタイルシートで当サイトのアンカーリンク色をカスタマイズしようとして制作者スタイルシートを閲覧したユーザーは、コメントがないとその意図を理解できずに混乱してしまうだろう。カスタマイズに支障が出るのはアクセシビリティの問題であるため、実際には以下のようにコメントを残すようにしている。</p>
-
-			<CodeBlock
-				code={`a:not(:any-link) {
-	color: unset; /* for Dark Reader, iOS Firefox with Website Dark Mode <https://github.com/darkreader/darkreader/issues/9836> */
-}`}
-				language="css"
-			/>
-		</Section>
-
-		<Section id="style-reader" depth={2} headingType="b">
-			<Fragment slot="heading">リーダー表示</Fragment>
-
-			<p>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダー表示を実装している。</p>
-
-			<p>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<Anchor href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</Anchor>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。他ブラウザでも拡張機能が公開されている。</p>
+			<p>もっともそのようなことを考慮すると、巷で言われているユーティリティーファーストの利点はだいぶ薄れてしまう。当サイトでユーティリティーファーストを採用していないのは単純に実装コスト面で判断した結果に過ぎない。</p>
 		</Section>
 
 		<Section id="style-darktheme" depth={2} headingType="b">
@@ -392,13 +355,70 @@ const slugger = new GithubSlugger();
 
 			<p>これらの事象を以前から意識していた場合、クセのある強制ダークテーマに対してもそれほど慌てる必要はないはずだ。とはいえ当サイトにおいても <code>border-color: transparent</code> を使用していた箇所を <code>subgrid</code> で置き換えるなど、いくつかの対応に迫られた<NoteRef type="ref" by="darktheme-blog-border" />。強制ダークテーマは産声を上げたばかりの機能であるため、今しばらくは注視を続ける必要があるだろう。</p>
 
-			<NoteRefContent id="darktheme-blog-border">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/765"><cite>ブラウザの強制ダークテーマ対策で <code>border-color: transparent</code> を避ける</cite></a>（2026年）</NoteRefContent>
+			<NoteRefContent id="darktheme-blog-border">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/765"><cite>ブラウザの強制ダークテーマ対策で <code>border-color: transparent</code> を避ける</cite></Anchor>（2026年）</NoteRefContent>
+		</Section>
+
+		<Section id="style-reader" depth={2} headingType="b">
+			<Fragment slot="heading">リーダー表示</Fragment>
+
+			<p>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダー表示を実装している。</p>
+
+			<p>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<Anchor href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</Anchor>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。他ブラウザでも拡張機能が公開されている。</p>
 		</Section>
 
 		<Section id="style-print" depth={2} headingType="b">
 			<Fragment slot="heading">印刷用スタイル</Fragment>
 
 			<p>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので Media Queries の <code>@media print</code> を使い完全な白（<code>#ffffff</code>）に設定している。</p>
+		</Section>
+
+		<Section id="style-build" depth={2} headingType="b">
+			<Fragment slot="heading">ビルド</Fragment>
+
+			<p>CSS ファイルのビルドには <Anchor href="https://postcss.org/">PostCSS</Anchor>を使用している。</p>
+
+			<p>複数のプラグインを使用しているが、それらはブラウザが対応していない機能の先行使用、あるいはパフォーマンス向上等が目的であり、標準化の見込みのないプラグインは使っていない。いざとなればビルド前のコードをそのままブラウザに読み込ませても問題ないような作り方をしている。</p>
+		</Section>
+
+		<Section id="style-minify" depth={2} headingType="b">
+			<Fragment slot="heading">最小化</Fragment>
+
+			<p>当サイトでは CSS の最小化を行っていない。理由は <a href="#html-minify">HTML のそれ</a> と同じである。</p>
+
+			<p>それでも以前は従量制課金接続を考慮して最小化を行っていた時期もあるのだが、2022年に Internet Explorer 11 のサポートが終了し、すべてのメジャーブラウザが Brotli による高圧縮なファイル配信に対応したことから、もはや転送量の削減を最小化テクニックに頼る時代ではなくなったと判断して取り止めた<NoteRef type="ref" by="css-minify-blog" />。</p>
+
+			<NoteRefContent id="css-minify-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></Anchor>（2022年）</NoteRefContent>
+		</Section>
+
+		<Section id="style-comment" depth={2} headingType="b">
+			<Fragment slot="heading">コメント</Fragment>
+
+			<p>最小化にも関連する話だが、HTML と同様に CSS もユーザーが直接閲覧するものであるため、ビルド工程でコメントを一律に削除することはせず、以下の2種に分類して処理している。</p>
+
+			<List>
+				<li>開発者向けのコメントはビルド工程で除去する</li>
+				<li>それ以外のコメントは残す</li>
+			</List>
+
+			<p>前者の代表的なものは <Anchor href="https://stylelint.io/user-guide/ignore-code/">Stylelint 用の設定コメント</Anchor> である。除去には CSSNANO の関連パッケージのひとつである <Anchor href="https://github.com/cssnano/cssnano/tree/master/packages/postcss-discard-comments">postcss-discard-comments</Anchor> を使用している。</p>
+
+			<p>一方、それ以外の多くのコメントは開発者だけでなくユーザーにもその情報を伝えることが重要だろう。当サイトが使用しているリセットスタイルの一例を挙げる。</p>
+
+			<CodeBlock
+				code={`a:not(:any-link) {
+	color: unset;
+}`}
+				language="css"
+			/>
+
+			<p>本来このようなリセットは必要ない。そのためユーザースタイルシートで当サイトのアンカーリンク色をカスタマイズしようとして制作者スタイルシートを閲覧したユーザーは、コメントがないとその意図を理解できずに混乱してしまうだろう。カスタマイズに支障が出るのはアクセシビリティの問題であるため、実際には以下のようにコメントを残すようにしている。</p>
+
+			<CodeBlock
+				code={`a:not(:any-link) {
+	color: unset; /* for Dark Reader, iOS Firefox with Website Dark Mode <https://github.com/darkreader/darkreader/issues/9836> */
+}`}
+				language="css"
+			/>
 		</Section>
 
 		<Section id="style-lint" depth={2} headingType="b">
@@ -532,7 +552,7 @@ doSomething(); // 環境によってはここには到達しない`}
 				<li>冗長コンテンツといっても表現方法などに違いがあるはずで、ユーザーはそのいずれにもアクセスする権利があるところ、<code>aria-hidden=true</code> が設定されると支援技術の利用者は存在にすら気付くことができない<NoteRef type="ref" by="ariahidden-blog" />。</li>
 			</List>
 
-			<NoteRefContent id="ariahidden-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/738"><cite>重複したリンクを <code>aria-hidden=true</code> するな</cite></a>（2025年）</NoteRefContent>
+			<NoteRefContent id="ariahidden-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/738"><cite>重複したリンクを <code>aria-hidden=true</code> するな</cite></Anchor>（2025年）</NoteRefContent>
 
 			<p>WAI-ARIA 仕様には<q lang="en" cite="https://www.w3.org/TR/wai-aria-1.2/#issue-container-generatedID-59">Authors are advised to use extreme caution and consider a wide range of disabilities when hiding visibly rendered content from assistive technologies.</q>との記述がある<NoteRef type="ref" by="ariahidden-spec" />。仕様書にこのような一文を入れられてしまう意味を制作者は重く受け止めるべきだろう。</p>
 
@@ -555,7 +575,7 @@ doSomething(); // 環境によってはここには到達しない`}
 
 			<p>余談だが、それでもこのテクニックを使う場合は CSS のルールセットにコメントでその意図を説明しておくべきだろう。Visually hidden は関連性のないプロパティを組み合わせた、ルールセット全体で初めて意味を持つテクニックである。制作者スタイルシートを書くエンジニア、ユーザースタイルシートを書く利用者のいずれにも、必ずしも周知されているとは限らない。現実にこのテクニックを知らない同僚が <code>display: none</code> に書き換えてしまった事例があるようだ<NoteRef type="ref" by="visuallyhidden-blog" />。そのような事故を防ぐ意味合いもあるし、なにより CSS はユーザーが見て理解するものでもあるのだから、Visually hidden に限らず本質的でないテクニックを使わざるを得ない際はコメントを併記しておくことがアクセシビリティ上必要である。</p>
 
-			<NoteRefContent id="visuallyhidden-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/746"><cite>Visually hidden の運用上の耐性</cite></a>（2025年）</NoteRefContent>
+			<NoteRefContent id="visuallyhidden-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/746"><cite>Visually hidden の運用上の耐性</cite></Anchor>（2025年）</NoteRefContent>
 		</Section>
 	</Section>
 
@@ -566,7 +586,7 @@ doSomething(); // 環境によってはここには到達しない`}
 
 		<p><Anchor href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</Anchor>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっているが、あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はない。そのため SVG 形式のファビコンファイルを <code>/favicon.ico</code> として配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef type="ref" by="favicon-svg-blog" />。ただし以下のデメリットがある。</p>
 
-		<NoteRefContent id="favicon-svg-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/656"><cite>SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</cite></a>（2021年）</NoteRefContent>
+		<NoteRefContent id="favicon-svg-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/656"><cite>SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</cite></Anchor>（2021年）</NoteRefContent>
 
 		<List>
 			<li>Android 版 Firefox は SVG ファビコンに対応しておらず、そればかりか <Anchor href="https://ogp.me/">The Open Graph protocol</Anchor>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう。（2026年5月、Android Firefox 150 にて確認）</li>
@@ -585,6 +605,6 @@ doSomething(); // 環境によってはここには到達しない`}
 			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<Anchor href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/node/src/controller/csp.ts">ソースコードは GitHub で公開</Anchor>している<NoteRef type="ref" by="csp-blog" />。</li>
 		</List>
 
-		<NoteRefContent id="csp-blog">当サイトのブログ記事：<a href="https://blog.w0s.jp/entry/730"><cite>Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</cite></a>（2025年）</NoteRefContent>
+		<NoteRefContent id="csp-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/730"><cite>Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</cite></Anchor>（2025年）</NoteRefContent>
 	</Section>
 </Layout>
