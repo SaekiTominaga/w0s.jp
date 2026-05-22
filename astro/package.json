@@ -10,7 +10,7 @@
 		"build:sitemap": "node build/sitemap.ts -t ../template/xml/sitemap.ejs -o dist/client --ignore 4** --ignore 5** --ignore admin",
 		"postbuild": "prettier --config ../.prettierrc.mjs -w dist/client/**/*.html dist/client/assets/astro/*.css && brotli-cli compress -g dist/client/**/*.{html,atom} -g dist/client/assets/astro/*.css -m text",
 		"lint": "pnpm run /^lint:.*/",
-		"lint:html": "markuplint src/pages/**/*.astro",
+		"lint:html": "markuplint src/**/*.astro",
 		"lint:css": "stylelint -f verbose src/**/*.astro",
 		"lint:js": "astro sync && eslint @types build src",
 		"lint-html-dist": "markuplint dist/client/**/*.html",
@@ -21,7 +21,7 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.9",
-		"@astrojs/node": "10.0.6",
+		"@astrojs/node": "10.1.1",
 		"@w0s/env-value-type": "2.0.0",
 		"@w0s/html-escape": "5.0.0",
 		"@w0s/isbn-verify": "4.0.0",
@@ -30,7 +30,7 @@
 		"@w0s/urlsearchparams-custom-separator": "4.0.0",
 		"@w0s/wareki": "2.0.0",
 		"astro": "6.2.2",
-		"better-sqlite3": "12.9.0",
+		"better-sqlite3": "12.10.0",
 		"commonmark": "0.31.2",
 		"dayjs": "1.11.20",
 		"diff": "9.0.0",
@@ -40,7 +40,7 @@
 		"highlight.js": "11.11.1",
 		"js-yaml": "4.1.1",
 		"jsdom": "29.1.1",
-		"kysely": "0.28.16",
+		"kysely": "0.29.0",
 		"node-html-parser": "7.1.0",
 		"nodemailer": "8.0.7",
 		"sharp": "0.34.5",
@@ -62,5 +62,5 @@
 		"stylelint-config-astro": "2.0.0",
 		"vitest": "4.1.5"
 	},
-	"packageManager": "pnpm@10.28.1"
+	"packageManager": "pnpm@11.1.2"
 }
