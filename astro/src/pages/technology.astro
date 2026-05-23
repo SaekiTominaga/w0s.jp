@@ -280,24 +280,6 @@ const slugger = new GithubSlugger();
 	<Section id="style">
 		<Fragment slot="heading">スタイルシート<small>（CSS）</small></Fragment>
 
-		<Section id="style-class" depth={2} headingType="b">
-			<Fragment slot="heading">クラス名</Fragment>
-
-			<p>CSS 設計やクラスの命名規則にはさまざまな考え方があるが、当サイトではユーティリティーファーストを採用していない。</p>
-
-			<p>HTML 4 で <Anchor href="https://www.w3.org/TR/2018/SPSD-html401-20180327/intro/intro.html#h-2.4.1">構造とプレゼンテーションの分離</Anchor> が掲げられて以来、プレゼンテーションをスタイルシートに分離して HTML は文書構造に専念する考え方が普及した。HTML 5 以降は仕様書の <Anchor href="https://html.spec.whatwg.org/multipage/dom.html#classes"><code>class</code> 属性</Anchor> の部分でクラス名に関して<q lang="en" cite="https://html.spec.whatwg.org/multipage/dom.html#classes">authors are encouraged to use values that describe the nature of the content, rather than values that describe the desired presentation of the content</q>との言及がある。</p>
-
-			<p>しかし実際の Web 制作に際しては HTML から一切のプレゼンテーションを廃することは難しく、構造が視覚的なレイアウトに影響されることは避けられない。そのような状況下でクラス名を抽象化するのは無理があり<q>不自然な実装方法</q>との批判もある<NoteRef type="ref" by="utility-class-yuheiy" />。この批判自体は正当なものであるし、HTML 仕様書の記述はモダンなフロントエンドフレームワークが登場する前の<Anchor href="https://www.w3.org/TR/2008/WD-html5-20080122/#classes">2008年に公開された</Anchor>ものであるからして、2026年の現在においてはある程度懐疑的に受け取る必要があるだろう。</p>
-
-			<NoteRefContent id="utility-class-yuheiy"><DocMagazine name="WEB+DB PRESS" no={133} article="Tailwind CSS 実践入門" authors={['安田祐平']} pages={[66, 67]} /></NoteRefContent>
-
-			<p>とはいえ Web というものはユーザーが見た目や挙動を自由にカスタマイズできることが他メディアと比べてもっとも大きな特徴であり、そこを軽視することは Web が Web らしく発展する方向性を狭めてしまうと危惧している。</p>
-
-			<p>ユーティリティーファーストの問題点はユーザースタイルシートでのカスタマイズに支障があることだ。これはアクセシビリティの問題であるからして、デメリットのひとつなのではなく、軽視してはいけない致命的な問題であると思う。ただし私はユーティリティーファーストの考え方そのものを否定するつもりはない。ユーティリティーファーストを採用した際に、警告文を赤文字で表現するならば <code>class="error text-red-500"</code> のようにセマンティックな名前とプレゼンテーション値を併記すれば良いのだ。HTML 仕様書は「クラス名にプレゼンテーションを含めてはいけない」とまでは言っていないのだから。</p>
-
-			<p>もっともそのようなことを考慮すると、巷で言われているユーティリティーファーストの利点はだいぶ薄れてしまう。当サイトでユーティリティーファーストを採用していないのは単純に実装コスト面で判断した結果に過ぎない。</p>
-		</Section>
-
 		<Section id="style-darktheme" depth={2} headingType="b">
 			<Fragment slot="heading">ダークテーマ</Fragment>
 
@@ -370,6 +352,24 @@ const slugger = new GithubSlugger();
 			<Fragment slot="heading">印刷用スタイル</Fragment>
 
 			<p>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので Media Queries の <code>@media print</code> を使い完全な白（<code>#ffffff</code>）に設定している。</p>
+		</Section>
+
+		<Section id="style-class" depth={2} headingType="b">
+			<Fragment slot="heading">クラス名</Fragment>
+
+			<p><code>class</code> 属性値の命名規則にはさまざまな考え方があるが、当サイトではユーティリティーファーストを採用していない。</p>
+
+			<p>HTML 4 で <Anchor href="https://www.w3.org/TR/2018/SPSD-html401-20180327/intro/intro.html#h-2.4.1">構造とプレゼンテーションの分離</Anchor> が掲げられて以来、プレゼンテーションをスタイルシートに分離して HTML は文書構造に専念する考え方が普及した。HTML 5 以降は仕様書の <Anchor href="https://html.spec.whatwg.org/multipage/dom.html#classes"><code>class</code> 属性</Anchor> の部分でクラス名に関して<q lang="en" cite="https://html.spec.whatwg.org/multipage/dom.html#classes">authors are encouraged to use values that describe the nature of the content, rather than values that describe the desired presentation of the content</q>との言及がある。</p>
+
+			<p>ユーティリティーファーストはこれと真逆の考え方であるが、その最大の問題点はユーザースタイルシートでのカスタマイズに支障があることだ。これはアクセシビリティの問題なので、他のメリットで打ち消されることがあってはならない。他メディアと比べて Web はユーザーが見た目や挙動を自由にカスタマイズできることが大きな特徴であり、それを軽視することは Web が Web らしく発展する方向性を狭めてしまうと危惧している。</p>
+
+			<p>ただし実際の Web 制作では HTML から一切のプレゼンテーションを廃するのは難しく、構造が視覚的なレイアウトに影響されることは避けられない。そのような状況下でクラス名を抽象化するのは無理があり<q>不自然な実装方法</q>との批判も見られる<NoteRef type="ref" by="utility-class-yuheiy" />。それ自体はもっともな意見であるし、上記で引用した HTML 仕様書の記述はモダンなフロントエンドフレームワークが登場する前の<Anchor href="https://www.w3.org/TR/2008/WD-html5-20080122/#classes">2008年に公開された</Anchor>ものであるからして、2026年の現在においてはある程度懐疑的に受け取る必要があるだろう。</p>
+
+			<NoteRefContent id="utility-class-yuheiy"><DocMagazine name="WEB+DB PRESS" no={133} article="Tailwind CSS 実践入門" authors={['安田祐平']} pages={[66, 67]} /></NoteRefContent>
+
+			<p>このような現実的な問題もあり、私はユーティリティーファーストの考え方そのものを否定するつもりはない。それを採用する際には、たとえば警告文ならば <code>class="error text-red-500"</code> のようにセマンティックな名前とプレゼンテーション値を併記すれば良いのだ。HTML 仕様書は「クラス名にプレゼンテーション値を含めてはいけない」とまでは言っていないのだから。</p>
+
+			<p>もっともこれらを考慮すると、巷で言われているユーティリティーファーストの利点はだいぶ薄れてしまう。当サイトでそれを採用していないのは単純に実装コスト面で判断した結果に過ぎない。</p>
 		</Section>
 
 		<Section id="style-build" depth={2} headingType="b">
