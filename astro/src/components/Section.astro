@@ -62,7 +62,8 @@ if (id !== undefined) {
 			--_margin-block: 1rem;
 
 			&:target {
-				animation: section-target 1s;
+				animation-name: section-target;
+				animation-duration: 1s;
 			}
 
 			&:not(:first-child) {
@@ -96,7 +97,7 @@ if (id !== undefined) {
 			&.-box {
 				border: 1px solid var(--color-border-dark);
 				border-radius: var(--border-radius-normal);
-				background: var(--color-white);
+				background-color: var(--color-white);
 				padding: 1em;
 			}
 
@@ -107,6 +108,7 @@ if (id !== undefined) {
 
 		.hdg {
 			display: block flex;
+			flex-wrap: nowrap;
 			gap: 0.5em;
 			line-height: var(--line-height-narrow);
 
@@ -120,7 +122,7 @@ if (id !== undefined) {
 			.section.-a > &::before {
 				border: 0.125em solid var(--color-gray);
 				border-radius: var(--border-radius-full);
-				background: var(--color-gray); /* for Chrome */
+				background-color: var(--color-gray); /* for Chrome */
 				content: '';
 
 				@media not print {
@@ -137,7 +139,7 @@ if (id !== undefined) {
 				transform: scaleY(75%);
 				border: 0.125em solid var(--color-lightgray);
 				border-radius: var(--border-radius-full);
-				background: var(--color-lightgray); /* for Chrome */
+				background-color: var(--color-lightgray); /* for Chrome */
 				content: '';
 			}
 
@@ -148,6 +150,7 @@ if (id !== undefined) {
 
 		.self-link {
 			display: block flex;
+			flex-wrap: nowrap;
 			align-items: center;
 			font-size: calc(100% / pow(var(--font-ratio), 3));
 		}

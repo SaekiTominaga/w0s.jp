@@ -1,8 +1,9 @@
 import path from 'node:path';
+import { inspect } from 'node:util';
 import SQLite from 'better-sqlite3';
 import dayjs from 'dayjs';
 import { Kysely, SqliteDialect } from 'kysely';
-import type { Logger } from 'pino';
+import type { Logger } from 'winston';
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
 import type { DB } from '../../../@types/db_tokyu-car-history.d.ts';
 import { getLogger } from '../logger.ts';
@@ -45,7 +46,7 @@ export default class {
 		const rows = await query.execute();
 
 		const compiled = query.compile();
-		this.#logger.debug(compiled.parameters, compiled.sql);
+		this.#logger.debug(`${inspect(compiled.parameters)} ${compiled.sql}`);
 
 		return rows.map((row) => ({
 			id: sqliteToJS(row.fk),
@@ -163,7 +164,7 @@ export default class {
 		const rows = await query.execute();
 
 		const compiled = query.compile();
-		this.#logger.debug(compiled.parameters, compiled.sql);
+		this.#logger.debug(`${inspect(compiled.parameters)} ${compiled.sql}`);
 
 		const changeDataList = await this.#getCarChangeData();
 

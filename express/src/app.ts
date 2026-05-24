@@ -126,6 +126,7 @@ app.use(
 		next();
 	},
 	express.static(config.static.root, {
+		dotfiles: 'allow',
 		extensions: config.static.extensions.map((ext) => /* 拡張子の . は不要 */ ext.substring(1)),
 		index: config.static.index,
 		setHeaders: (res, localPath) => {
@@ -188,7 +189,7 @@ app.use((req, res): void => {
 	res.status(404).sendFile(path.resolve(`${config.static.root}/404.html`));
 });
 app.use((err: Error, req: Request, res: Response, _next: NextFunction /* eslint-disable-line @typescript-eslint/no-unused-vars */): void => {
-	logger.fatal(`${req.method} ${req.url} ${String(err.stack)}`);
+	logger.error(`${req.method} ${req.url} ${String(err.stack)}`);
 
 	res.status(500).sendFile(path.resolve(`${config.static.root}/500.html`));
 });

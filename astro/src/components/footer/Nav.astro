@@ -10,13 +10,14 @@ const { pagePath } = Astro.props;
 	{
 		[
 			{ path: '/info', name: '制作者' },
-			{ path: '/privacy', name: 'プライバシーポリシー' },
+			{ path: '/privacy', name: 'プライバシーポリシー', rel: 'privacy-policy' },
 			{ path: '/technology', name: '当サイトの Web 技術' },
 			{ path: '/contact', name: '問い合わせ' },
-		].map((page) => (
+		].map(({ path, name, rel }) => (
 			<li>
-				{page.path === pagePath && <a aria-current="page">{page.name}</a>}
-				{page.path !== pagePath && <a href={page.path}>{page.name}</a>}
+				<a href={path !== pagePath ? path : undefined} rel={path !== pagePath ? rel : undefined} aria-current={path === pagePath ? 'page' : undefined}>
+					{name}
+				</a>
 			</li>
 		))
 	}
@@ -28,7 +29,8 @@ const { pagePath } = Astro.props;
 			--_flex-direction: column;
 
 			display: block flex;
-			flex-flow: var(--_flex-direction) wrap;
+			flex-direction: var(--_flex-direction);
+			flex-wrap: wrap;
 			gap: 1em 2em;
 			justify-content: flex-start;
 

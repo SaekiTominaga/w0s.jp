@@ -4,7 +4,6 @@
 export default {
 	extends: ['@w0s/stylelint-config'],
 	rules: {
-		'selector-no-deprecated': null, // https://github.com/stylelint/stylelint/issues/9221
 		'max-nesting-depth': [
 			5,
 			{

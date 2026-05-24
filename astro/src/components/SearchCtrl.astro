@@ -27,11 +27,12 @@ const buttonTitleId = getHTMLId();
 			--_border-color: var(--color-lightgray);
 
 			display: block flex;
+			flex-wrap: wrap;
 			align-items: center;
 			outline-offset: -1px;
 			border: 1px solid var(--_border-color);
 			border-radius: var(--border-radius-small);
-			background: var(--color-white);
+			background-color: var(--color-white);
 			color: var(--color-darkgray);
 
 			&:focus-within {
@@ -49,15 +50,15 @@ const buttonTitleId = getHTMLId();
 
 		/* キーワード入力欄 */
 		.query {
-			flex: 1;
+			flex-basis: 0;
+			flex-grow: 1;
 
 			& > :global(input) {
-				all: initial;
+				all: unset;
 				box-sizing: revert;
 				display: block flow;
 				padding: 0.25em;
 				inline-size: 100%;
-				font: inherit;
 			}
 		}
 
@@ -66,7 +67,7 @@ const buttonTitleId = getHTMLId();
 			& > :global(button) {
 				--_color: hsl(220deg 70% 45%);
 
-				all: initial;
+				all: unset;
 				box-sizing: revert;
 				display: block flow;
 				margin: var(--outline-width-bold);
@@ -74,7 +75,6 @@ const buttonTitleId = getHTMLId();
 				block-size: 2em;
 				inline-size: 2em;
 				color: var(--_color);
-				font: inherit;
 				fill: currentColor; /* SVG */
 			}
 
