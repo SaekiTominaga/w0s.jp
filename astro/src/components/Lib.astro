@@ -65,15 +65,13 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 		{
 			tags !== undefined && tags.length >= 1 && (
-				<ul class="tags">
+				<div class="tags">
 					{tags.map((tag) => (
-						<li>
-							<button type="button" class="tag-button js-library-tag" disabled="">
-								{tag}
-							</button>
-						</li>
+						<button type="button" class="tag-button js-library-tag" disabled="">
+							{tag}
+						</button>
 					))}
-				</ul>
+				</div>
 			)
 		}
 		{
