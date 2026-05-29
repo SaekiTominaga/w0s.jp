@@ -14,7 +14,7 @@ import type { StructuredData } from '../../@types/util.d.ts';
 const structuredData: StructuredData = {
 	title: 'w0s.jp の Web 技術',
 	heading: '当サイトの Web 技術',
-	dateModified: '2025-02-09',
+	dateModified: '2026-05-29',
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
@@ -26,9 +26,9 @@ const slugger = new GithubSlugger();
 		<Fragment slot="heading">前提</Fragment>
 
 		<List>
-			<li>本ページで記載することは特記のない限り <Anchor href="/"><code>w0s.jp</code></Anchor> および <Anchor href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></Anchor> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
-			<li>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい改修は度々実施しているが、本ドキュメントは常に追従できるとは限らない。</li>
-			<li>本ドキュメントは「当サイトでそれぞれの技術をどのように使用しているか」といった純粋な技術論に留まらず、筆者の Web 技術あるいは Web そのものに対する思想展開も行っている。</li>
+			<li>本ページの記載は特記のない限り <Anchor href="/"><code>w0s.jp</code></Anchor> および <Anchor href="https://blog.w0s.jp/"><code>blog.w0s.jp</code></Anchor> ドメインで公開しているコンテンツに関する情報である。その他のサブドメインは状況が異なる部分も多い。</li>
+			<li>当サイトは Web 技術の実験場としての役割も兼ねており、一時的なものも含めて細かい改修はたびたび実施しているが、本ドキュメントは常に追従できるとは限らない。</li>
+			<li>本ドキュメントは「サイト内でそれぞれの技術をどのように使用しているか」といった純粋な技術論に留まらず、筆者の Web 技術あるいは Web そのものに対する思想展開も行っている。</li>
 		</List>
 	</Section>
 
@@ -284,7 +284,7 @@ const slugger = new GithubSlugger();
 					<code>&lt;abbr&gt;</code> 要素での <code>title</code> 属性の使用を禁止する
 					<ul>
 						<li>推奨プリセットでは逆に <code>title</code> 属性が必須となっている。</li>
-						<li>しかし <code>title</code> 属性が有用とされていたのは HTML 4 時代の考え方であり、現代の閲覧環境にはそぐわないと思う<NoteRef type="ref" by="abbr-title" />。</li>
+						<li>しかし <code>title</code> 属性が有用とされていたのは HTML 4 時代の考え方であり、現代の閲覧環境にはそぐわない<NoteRef type="ref" by="abbr-title" />。</li>
 					</ul>
 				</li>
 			</List>
@@ -377,15 +377,15 @@ const slugger = new GithubSlugger();
 
 			<p><code>class</code> 属性値の命名規則にはさまざまな考え方があるが、当サイトではユーティリティーファーストを採用していない。</p>
 
-			<p>HTML 4 で <Anchor href="https://www.w3.org/TR/2018/SPSD-html401-20180327/intro/intro.html#h-2.4.1">構造とプレゼンテーションの分離</Anchor> が掲げられて以来、プレゼンテーションをスタイルシートに分離して HTML は文書構造に専念する考え方が普及した。HTML 5 以降は仕様書の <Anchor href="https://html.spec.whatwg.org/multipage/dom.html#classes"><code>class</code> 属性</Anchor> の部分で<q lang="en" cite="https://html.spec.whatwg.org/multipage/dom.html#classes">authors are encouraged to use values that describe the nature of the content, rather than values that describe the desired presentation of the content</q>との言及がある。</p>
+			<p>HTML 4 で <Anchor href="https://www.w3.org/TR/2018/SPSD-html401-20180327/intro/intro.html#h-2.4.1">構造とプレゼンテーションの分離</Anchor> が掲げられて以来、プレゼンテーションをスタイルシートに分離して HTML は文書構造に専念する手法が普及した。HTML 5 以降は仕様書の <Anchor href="https://html.spec.whatwg.org/multipage/dom.html#classes"><code>class</code> 属性</Anchor> の部分で<q lang="en" cite="https://html.spec.whatwg.org/multipage/dom.html#classes">authors are encouraged to use values that describe the nature of the content, rather than values that describe the desired presentation of the content</q>との言及がある。</p>
 
-			<p>ユーティリティーファーストはこれと真逆の考え方であるが、その最大の問題点はユーザースタイルシートでのカスタマイズに支障があることだ。これはアクセシビリティの問題なので、他のメリットで打ち消されることがあってはならない。他メディアと比べて Web はユーザーが見た目や挙動を自由にカスタマイズできることが大きな特徴であり、それを軽視することは Web が Web らしく発展する方向性を狭めてしまうと危惧している。</p>
+			<p>ユーティリティーファーストはこれと真逆の方法論であるが、その最大の問題点はユーザースタイルシートでのカスタマイズに支障があることだ。これはアクセシビリティの問題なので、他のメリットで打ち消されることがあってはならない。他メディアと比べて Web はユーザーが見た目や挙動を自由にカスタマイズできることが大きな特徴であり、それを軽視することは Web が Web らしく発展する方向性を狭めてしまうと危惧している。</p>
 
 			<p>ただし実際の Web 制作では HTML から一切のプレゼンテーションを廃するのは難しく、構造が視覚的なレイアウトに影響されることは避けられない。そのような状況下でクラス名を抽象化するのは無理があり<q>不自然な実装方法</q>との批判も見られる<NoteRef type="ref" by="utility-class-yuheiy" />。それ自体はもっともな意見であるし、上記で引用した HTML 仕様書の記述はモダンなフロントエンドフレームワークが登場する前の<Anchor href="https://www.w3.org/TR/2008/WD-html5-20080122/#classes">2008年に公開された</Anchor>ものであるからして、2026年現在においてはある程度懐疑的に受け取る必要があるだろう。</p>
 
 			<NoteRefContent id="utility-class-yuheiy"><DocMagazine name="WEB+DB PRESS" no={133} article="Tailwind CSS 実践入門" authors={['安田祐平']} pages={[66, 67]} /></NoteRefContent>
 
-			<p>このような現実的な問題もあり、私はユーティリティーファーストの考え方そのものを否定するつもりはない。それを採用する際には、たとえば警告文ならば <code>class="error text-red-500"</code> のようにセマンティックな名前とプレゼンテーション値を併記すれば良いのだ。HTML 仕様書は「クラス名にプレゼンテーション値を含めてはいけない」とまでは言っていないのだから。</p>
+			<p>このような現実的な問題もあり、私はユーティリティーファーストそのものを否定するつもりはない。それを採用する際には、たとえば警告文ならば <code>class="error text-red-500"</code> のようにセマンティックな名前とプレゼンテーション値を併記すれば良いのだ。HTML 仕様書は「クラス名にプレゼンテーション値を含めてはいけない」とまでは言っていないのだから。</p>
 
 			<p>もっともこれらを考慮すると、巷で言われているユーティリティーファーストの利点はだいぶ薄れてしまう。当サイトでそれを採用していないのは単純に実装コスト面で判断した結果に過ぎない。</p>
 		</Section>
@@ -551,13 +551,13 @@ doSomething(); // 環境によってはここには到達しない`}
 		<Section id="a11y-important" depth={2} headingType="b">
 			<Fragment slot="heading">アクセシビリティで重要視していること</Fragment>
 
-			<p>Web アクセシビリティでもっとも重要な点は「ユーザーの閲覧環境を問わないこと」だと考えている。決して「ユーザーの利便性を高めること」が目的なのではない。紙の本や TV など情報を伝える媒体にはそれぞれに特性があるが、こと閲覧環境の豊富さにおいて Web は他の追従を許さない。Web が Web であり続けるためにもこのことは最優先で守っていかなければならないと思う。</p>
+			<p>Web アクセシビリティでもっとも重要な点は「ユーザーの閲覧環境を問わないこと」だと考えている。決して「ユーザーの利便性を高めること」が目的なのではない。紙の本や TV など情報を伝える媒体にはそれぞれに特性があるが、こと閲覧環境の豊富さにおいて Web は他の追従を許さない。Web が Web であり続けるためにもこのことは最優先で守っていかなければならない。</p>
 
 			<p>そのため当サイトはどのような環境でもコンテンツの閲覧に支障が起こらないようにすることを心掛けている。ここでいう<q>環境</q>とは OS やブラウザの種類はもちろんであるが、それらの設定をも含む。ブラウザの設定で Cookie の受け入れを拒否するとまったく閲覧できなくなるサイトが多い現状は残念に思うが、当サイトでは特定の設定に依存した設計はしていない。「目が見えるはずだ」「色を区別できるはずだ」「Cookie を受け入れるはずだ」「JavaScript が実行されるはずだ」といったあらゆる前提を捨てている。フロントエンドフレームワークの選定に際しても機能面より先にまずこの点を最重要基準としている。</p>
 
 			<p>とはいえ難しいことをしているわけではない。コンテンツのデータは（JSON ではなく）HTML で提供すること、自分がよく理解していない技術は使わないこと。細かいことを挙げればキリはないが、大前提といえるのはこの2点のみだ。</p>
 
-			<p>さて、Web アクセシビリティではスクリーンリーダーをはじめとした支援技術の話題が事欠かない。しかし当サイトでは支援技術を特段に意識することはなく、読み上げの最適化も行っていない。本ページではここの章を含み見出しの横にはセルフリンクを設けているが、そのマークアップは単に <code>&lt;a href="#foo"&gt;§&lt;/a&gt;</code> としている。記号文字を読まないスクリーンリーダーの存在は承知しているが、だからといって <code>aria-label</code> 属性の追加といった対応を行うのは Web アクセシビリティとしてはナンセンスと考えている。</p>
+			<p>さて、Web アクセシビリティではスクリーンリーダーをはじめとした支援技術の話題が事欠かない。しかし当サイトでは支援技術を特段に意識することはなく、読み上げの最適化も行っていない。本ページではここの章を含み見出しの横にはセルフリンクを設けているが、そのマークアップは単に <code>&lt;a href="#foo"&gt;§&lt;/a&gt;</code> としている。記号文字を読まないスクリーンリーダーの存在は承知しているが、だからといって <code>aria-label</code> 属性の追加といった対応は Web アクセシビリティとしてはナンセンスである。</p>
 		</Section>
 
 		<Section id="a11y-visuallyhidden" depth={2} headingType="b">
