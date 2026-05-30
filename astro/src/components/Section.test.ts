@@ -72,22 +72,6 @@ test('depth', async () => {
 	expect(h).not.toBeNull();
 });
 
-test('headingType', async () => {
-	const result = await container.renderToString(Section, {
-		props: {
-			id: 'id',
-			headingType: 'b',
-		},
-	});
-
-	const root = parse(result);
-
-	const section = root.querySelector('section');
-
-	expect(section?.classList.contains('-a')).toBeFalsy();
-	expect(section?.classList.contains('-b')).toBeTruthy();
-});
-
 test('box', async () => {
 	const result = await container.renderToString(Section, {
 		props: {

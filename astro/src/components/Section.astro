@@ -9,21 +9,16 @@ interface Props {
 	slugger?: GithubSlugger;
 	id?: string;
 	depth?: Depth;
-	headingType?: HeadingType;
 	box?: boolean;
 	autofocus?: boolean;
 	class?: string;
 }
 
-const { slugger, id, depth = 1, headingType, box = false, autofocus = false, class: className } = Astro.props;
+const { slugger, id, depth = 1, box = false, autofocus = false, class: className } = Astro.props;
 
 const headingHtml = await Astro.slots.render('heading');
 
-const getHeadingType = (depth: Depth, headingType: HeadingType | undefined): HeadingType => {
-	if (headingType !== undefined) {
-		return headingType;
-	}
-
+const getHeadingType = (depth: Depth): HeadingType => {
 	return (
 		new Map<Depth, HeadingType>([
 			[1, 'a'],
@@ -47,7 +42,7 @@ if (id !== undefined) {
 }
 ---
 
-<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${getHeadingType(depth, headingType)}`, { '-box': box }, className]} id={sectionId}>
+<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${getHeadingType(depth)}`, { '-box': box }, className]} id={sectionId}>
 	<div class="hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
@@ -144,7 +139,7 @@ if (id !== undefined) {
 			}
 
 			.section.-b > & {
-				font-size: calc(100% * pow(var(--font-ratio), 4));
+				font-size: calc(100% * pow(var(--font-ratio), 3));
 			}
 
 			.section.-b > &::before {
