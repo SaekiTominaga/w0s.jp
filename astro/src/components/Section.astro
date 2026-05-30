@@ -6,15 +6,14 @@ type Depth = 1 | 2 | 3;
 type HeadingType = 'a' | 'b' | 'c';
 
 interface Props {
-	slugger?: GithubSlugger;
-	id?: string;
+	id: string | GithubSlugger;
 	depth?: Depth;
 	box?: boolean;
 	autofocus?: boolean;
 	class?: string;
 }
 
-const { slugger, id, depth = 1, box = false, autofocus = false, class: className } = Astro.props;
+const { id, depth = 1, box = false, autofocus = false, class: className } = Astro.props;
 
 const headingHtml = await Astro.slots.render('heading');
 
@@ -28,18 +27,17 @@ const getHeadingType = (depth: Depth): HeadingType => {
 	);
 };
 
-let sectionId = '';
-if (id !== undefined) {
-	sectionId = id;
-} else {
+const getSectionId = (id: string | GithubSlugger, headingHtml: string): string => {
+	if (typeof id === 'string') {
+		return id;
+	}
+
 	const headingText = headingHtml.replaceAll(/<.+?>/gv, '');
 
-	if (slugger !== undefined) {
-		sectionId = slugger.slug(headingText);
-	} else {
-		console.warn('The `slugger` property is not specified.', headingText);
-	}
-}
+	return id.slug(headingText);
+};
+
+const sectionId = getSectionId(id, headingHtml);
 ---
 
 <section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${getHeadingType(depth)}`, { '-box': box }, className]} id={sectionId}>

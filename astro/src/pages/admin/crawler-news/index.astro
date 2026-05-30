@@ -133,7 +133,7 @@ const reviseData = requestParamNewsId !== undefined ? await dao.getReviseData(re
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">データ登録</Fragment>
 
 		<form action={reviseData === undefined && updateActionResult === undefined ? actions.crawlernews.newsinsert : actions.crawlernews.newsupdate} method="post">
@@ -233,7 +233,7 @@ const reviseData = requestParamNewsId !== undefined ? await dao.getReviseData(re
 
 	{
 		[...newsPageList].map(([categoryName, newsPageOfCategory]) => (
-			<Section slugger={slugger}>
+			<Section id={slugger}>
 				<Fragment slot="heading">{categoryName}</Fragment>
 
 				<Table scroll={true}>

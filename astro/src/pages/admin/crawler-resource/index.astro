@@ -132,7 +132,7 @@ const reviseData = requestParamUrl !== undefined ? await dao.getReviseData(reque
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">データ登録</Fragment>
 
 		<form action={reviseData === undefined && updateActionResult === undefined ? actions.crawlerresource.insert : actions.crawlerresource.update} method="post">
@@ -218,7 +218,7 @@ const reviseData = requestParamUrl !== undefined ? await dao.getReviseData(reque
 
 	{
 		[...resourcePageList].map(([categoryName, resourcePageOfCategory]) => (
-			<Section slugger={slugger}>
+			<Section id={slugger}>
 				<Fragment slot="heading">{categoryName}</Fragment>
 
 				<Table scroll={true}>

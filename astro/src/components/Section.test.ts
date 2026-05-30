@@ -10,7 +10,7 @@ const container = await AstroContainer.create();
 test('base', async () => {
 	const result = await container.renderToString(Section, {
 		props: {
-			slugger: new GithubSlugger(),
+			id: new GithubSlugger(),
 		},
 		slots: {
 			default: '<p>text</p>',
