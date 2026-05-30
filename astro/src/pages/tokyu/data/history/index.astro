@@ -84,7 +84,7 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">検索条件入力</Fragment>
 
 		<form>
@@ -193,7 +193,7 @@ const slugger = new GithubSlugger();
 
 	{
 		cars !== undefined && (
-			<Section slugger={slugger} autofocus={true} class="js-scroll-into-view">
+			<Section id={slugger} autofocus={true} class="js-scroll-into-view">
 				<Fragment slot="heading">検索結果</Fragment>
 
 				{hitLength >= 1 && (

@@ -1,13 +1,12 @@
 ---
 interface Props {
-	column: 'wide' | 'medium' | 'narrow' | number;
-	headingType?: 'a' | 'b' | 'c' | 'd';
+	column: 'wide' | 'medium' | 'narrow';
 }
 
-const { column, headingType } = Astro.props;
+const { column } = Astro.props;
 ---
 
-<div class:list={['grid', typeof column === 'string' ? `-${column}` : undefined, headingType !== undefined ? `-hdg-${headingType}` : undefined]} style={typeof column === 'number' ? `--_min-inline-size: ${column}px` : undefined}>
+<div class:list={['grid', `-${column}`]}>
 	<slot />
 </div>
 
@@ -35,18 +34,6 @@ const { column, headingType } = Astro.props;
 			/* 4カラム */
 			&.-narrow {
 				--_min-inline-size: 180px;
-			}
-
-			&.-hdg-a {
-				--_gap-row: 4.5rem;
-			}
-
-			&.-hdg-b {
-				--_gap-row: 3.75rem;
-			}
-
-			&.-hdg-c {
-				--_gap-row: 3rem;
 			}
 		}
 	}

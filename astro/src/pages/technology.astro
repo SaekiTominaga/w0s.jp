@@ -35,25 +35,25 @@ const slugger = new GithubSlugger();
 	<Section id="history">
 		<Fragment slot="heading">歴史</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="d">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2001年2月</Fragment>
 
 			<p>前身のサイトを開設。<Anchor href="https://web.archive.org/web/20010202073300/http://www.cool.ne.jp/"><cite>COOL ONLINE</cite></Anchor>の無料会員枠を利用（容量20MB）。<q>地域コミュニティ</q>を謳っており、登録の際にまず都市を選択、それによってサブドメインが振り分けられた（e.g. <code>tokyo.cool.ne.jp</code>）。</p>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="d">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2001年6月<!-- 1日 --></Fragment>
 
 			<p>掲載写真の増大により容量面で厳しくなり、<Anchor href="https://web.archive.org/web/20010421065319/http://freehp.goo.ne.jp/"><cite>goo フリーホームページ</cite></Anchor>に移転（容量50MB）。URL は <code is:raw>http://users.goo.ne.jp/${userId}</code> 形式だが、IP アドレスのドメインにリダイレクトされる（ブラウザのアドレスバーには IP アドレスの数字が表示される）というすごい仕様だった。</p>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="d">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2002年3月<!-- 26日 --></Fragment>
 
 			<p><Anchor href="http://www.nurs.or.jp/"><cite>ネットワーク利用技術研究会（NURS）</cite></Anchor>に移転。レンタルサーバーではなく研究・実験目的のサーバーであり、Telnet が制限なしに使えたので、root 権限が必要なこと以外は割となんでもできた。</p>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="d">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2012年2月<!-- 12日 --></Fragment>
 
 			<p><cite>NURS</cite> はドメインがサブドメインで分ける方式ではなく全ユーザー共通であり、Cookie の導入がセキュリティ上の理由<NoteRef by="nurs-cookie" />で躊躇われることから<Anchor href="https://www.inetd.co.jp/"><cite>アイネットディー</cite></Anchor>に移転したうえで独自ドメインを取得。月額270円の格安サーバーにしては Cron の制限が緩いのがありがたかった。</p>
@@ -61,7 +61,7 @@ const slugger = new GithubSlugger();
 			<NoteRefContent id="nurs-cookie"><Anchor href="http://takagi-hiromitsu.jp/diary/20100501.html">高木浩光＠自宅の日記 - <cite>共用SSLサーバの危険性が理解されていない</cite></Anchor>で解説されているように、フレームを利用して他サイトから読み出すことが可能なため。</NoteRefContent>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="d">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2017年1月</Fragment>
 
 			<p>常時 TLS の波に乗り<Anchor href="https://vps.sakura.ad.jp/"><cite>さくらの VPS</cite></Anchor> に移転。<Anchor href="https://letsencrypt.org/">Let's Encrypt</Anchor>を利用して TLS 対応を行う。</p>
@@ -170,7 +170,7 @@ const slugger = new GithubSlugger();
 	<Section id="html">
 		<Fragment slot="heading">HTML</Fragment>
 
-		<Section id="html-mime" depth={2} headingType="b">
+		<Section id="html-mime" depth={2}>
 			<Fragment slot="heading">MIME タイプ</Fragment>
 
 			<p>HTML コンテンツの MIME タイプは <code>text/html</code> としている。</p>
@@ -180,7 +180,7 @@ const slugger = new GithubSlugger();
 			<NoteRefContent id="xhtml-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></Anchor>（2024年）</NoteRefContent>
 		</Section>
 
-		<Section id="html-indent" depth={2} headingType="b">
+		<Section id="html-indent" depth={2}>
 			<Fragment slot="heading">インデント</Fragment>
 
 			<p>インデントをタブにするかスペースにするかは永遠の議題であるが、当サイトではタブを採用している。</p>
@@ -190,7 +190,7 @@ const slugger = new GithubSlugger();
 			<NoteRefContent id="tab-raddit">Raddit の投稿：<Anchor href="https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/" lang="en"><cite>Nobody talks about the real reason to use Tabs over Spaces</cite></Anchor>（2019年）</NoteRefContent>
 		</Section>
 
-		<Section id="html-minify" depth={2} headingType="b">
+		<Section id="html-minify" depth={2}>
 			<Fragment slot="heading">最小化</Fragment>
 
 			<p>当サイトでは HTML の最小化を行っていない。……とわざわざ宣言しなければならないほど、昨今のフロントエンドフレームワークでは出力される HTML を自動的に最小化するのが当然の風潮がある。しかし最小化はデメリットも多く、あくまで最終手段と考えている。</p>
@@ -207,7 +207,7 @@ const slugger = new GithubSlugger();
 			<p><code>w0s.jp</code> ではフロントエンドフレームワークに <Anchor href="https://astro.build/">Astro</Anchor> を使用しているのだが、デフォルト設定では例に漏れず最小化されてしまうため <Anchor href="https://docs.astro.build/en/reference/configuration-reference/#compresshtml"><code>compressHTML</code></Anchor> を無効にしている。さらに事前レンダリングする静的ページでは <Anchor href="https://prettier.io/">Prettier</Anchor> による整形処理をビルド工程に挟んでいる。</p>
 		</Section>
 
-		<Section id="html-external" depth={2} headingType="b">
+		<Section id="html-external" depth={2}>
 			<Fragment slot="heading">外部リンク</Fragment>
 
 			<p>当サイトでは外部サイトのリンクに <code>target=_blank</code> の属性を設定していない。</p>
@@ -226,7 +226,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section id="html-redirect" depth={2} headingType="b">
+		<Section id="html-redirect" depth={2}>
 			<Fragment slot="heading">3xx リダイレクト画面</Fragment>
 
 			<p>URL が変更になった場合は 301 Moved Permanently、フォームの POST 送信後には 303 See Other などいくつかのケースでは HTTP レスポンスでリダイレクトを設定している。</p>
@@ -253,7 +253,7 @@ const slugger = new GithubSlugger();
 			<p>しかし近年の Web フレームワークはリダイレクト先のリンクが含まれていなかったり、好ましくない HTML を返していたり、あるいはレスポンスコンテンツ自体が空だったりといった有様である。そのため当サイトでは Express, Hono ともデフォルトで用意されているリダイレクト機能は使わず、前者は <Anchor href="https://expressjs.com/en/5x/api/response/#ressendbody"><code>res.send()</code></Anchor> メソッド、後者は <Anchor href="https://hono.dev/docs/api/context#html"><code>c.html()</code></Anchor> メソッドの第2〜3引数を活用する形で独自の HTML を返すようにカスタマイズしている。</p>
 		</Section>
 
-		<Section id="html-clienterror" depth={2} headingType="b">
+		<Section id="html-clienterror" depth={2}>
 			<Fragment slot="heading">4xx クライアントエラー画面</Fragment>
 
 			<p>404 Not Found のエラー画面には JavaScript で以下の機能を組み込んでいる。</p>
@@ -264,7 +264,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section id="html-lint" depth={2} headingType="b">
+		<Section id="html-lint" depth={2}>
 			<Fragment slot="heading">Lint</Fragment>
 
 			<p><Anchor href="https://markuplint.dev/">Markuplint</Anchor>を使用したチェックを実施している。</p>
@@ -298,7 +298,7 @@ const slugger = new GithubSlugger();
 	<Section id="style">
 		<Fragment slot="heading">スタイルシート<small>（CSS）</small></Fragment>
 
-		<Section id="style-darktheme" depth={2} headingType="b">
+		<Section id="style-darktheme" depth={2}>
 			<Fragment slot="heading">ダークテーマ</Fragment>
 
 			<p>いわゆるダークテーマを制作者スタイルシートで提供するサイトが多いが、本来は OS やブラウザが提供すべきものと考えており、当サイトにおいてテーマの切り替え機構を提供するつもりはない。</p>
@@ -358,7 +358,7 @@ const slugger = new GithubSlugger();
 			<NoteRefContent id="darktheme-blog-border">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/765"><cite>ブラウザの強制ダークテーマ対策で <code>border-color: transparent</code> を避ける</cite></Anchor>（2026年）</NoteRefContent>
 		</Section>
 
-		<Section id="style-reader" depth={2} headingType="b">
+		<Section id="style-reader" depth={2}>
 			<Fragment slot="heading">リーダー表示</Fragment>
 
 			<p>昨今のブラウザはリーダーモードを備えたものも多いが、制作者の意図どおりに表示されるとは限らないため、それとは別個に制作者スタイルシートにてリーダー表示を実装している。</p>
@@ -366,13 +366,13 @@ const slugger = new GithubSlugger();
 			<p>ヘッダーやフッターを非表示にする簡易なスタイルシートを用意し、<Anchor href="https://html.spec.whatwg.org/multipage/links.html#the-link-is-an-alternative-stylesheet">代替スタイルシート</Anchor>で任意に適用可能な状態としている。PC 版 Firefox ではメニューバーの「表示」→「スタイルシート」から切り替え可能である。他ブラウザでも拡張機能が公開されている。</p>
 		</Section>
 
-		<Section id="style-print" depth={2} headingType="b">
+		<Section id="style-print" depth={2}>
 			<Fragment slot="heading">印刷用スタイル</Fragment>
 
 			<p>ディスプレイ表示の眩しさを低減するため、ページの背景色は白色ではなく、若干黄味がかった色を設定している。印刷時にはそのような配慮は不要なので Media Queries の <code>@media print</code> を使い完全な白（<code>#ffffff</code>）に設定している。</p>
 		</Section>
 
-		<Section id="style-class" depth={2} headingType="b">
+		<Section id="style-class" depth={2}>
 			<Fragment slot="heading">クラス名</Fragment>
 
 			<p><code>class</code> 属性値の命名規則にはさまざまな考え方があるが、当サイトではユーティリティーファーストを採用していない。</p>
@@ -390,7 +390,7 @@ const slugger = new GithubSlugger();
 			<p>もっともこれらを考慮すると、巷で言われているユーティリティーファーストの利点はだいぶ薄れてしまう。当サイトでそれを採用していないのは単純に実装コスト面で判断した結果に過ぎない。</p>
 		</Section>
 
-		<Section id="style-build" depth={2} headingType="b">
+		<Section id="style-build" depth={2}>
 			<Fragment slot="heading">ビルド</Fragment>
 
 			<p>CSS ファイルのビルドには <Anchor href="https://postcss.org/">PostCSS</Anchor>を使用している。</p>
@@ -398,7 +398,7 @@ const slugger = new GithubSlugger();
 			<p>複数のプラグインを使用しているが、それらはブラウザが対応していない機能の先行使用、あるいはパフォーマンス向上等が目的であり、標準化の見込みのないプラグインは使っていない。いざとなればビルド前のコードをそのままブラウザに読み込ませても問題ないような作り方をしている。</p>
 		</Section>
 
-		<Section id="style-minify" depth={2} headingType="b">
+		<Section id="style-minify" depth={2}>
 			<Fragment slot="heading">最小化</Fragment>
 
 			<p>当サイトでは CSS の最小化を行っていない。理由は <a href="#html-minify">HTML のそれ</a>と同じである。</p>
@@ -408,7 +408,7 @@ const slugger = new GithubSlugger();
 			<NoteRefContent id="css-minify-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></Anchor>（2022年）</NoteRefContent>
 		</Section>
 
-		<Section id="style-comment" depth={2} headingType="b">
+		<Section id="style-comment" depth={2}>
 			<Fragment slot="heading">コメント</Fragment>
 
 			<p>最小化にも関連する話だが、HTML と同様に CSS もユーザーが直接閲覧するものであるため、ビルド工程でコメントを一律に削除することはせず、以下の2種に分類して処理している。</p>
@@ -439,7 +439,7 @@ const slugger = new GithubSlugger();
 			/>
 		</Section>
 
-		<Section id="style-lint" depth={2} headingType="b">
+		<Section id="style-lint" depth={2}>
 			<Fragment slot="heading">Lint</Fragment>
 
 			<p><Anchor href="https://stylelint.io/">Stylelint</Anchor>を使用したチェックを実施している。<Anchor href="https://github.com/stylelint/stylelint-config-standard"><code>stylelint-config-standard</code></Anchor> で定義されている一般的な慣習とは別に、当サイトでは<Anchor href="https://github.com/SaekiTominaga/config/tree/main/packages/stylelint">独自のルール</Anchor>を多数設定している。</p>
@@ -462,7 +462,7 @@ const slugger = new GithubSlugger();
 	<Section id="script">
 		<Fragment slot="heading">スクリプト<small>（JavaScript）</small></Fragment>
 
-		<Section id="script-disabled" depth={2} headingType="b">
+		<Section id="script-disabled" depth={2}>
 			<Fragment slot="heading">JavaScript 無効環境および類似ケースに対する考え方</Fragment>
 
 			<p>当サイトでは JavaScript は補助的な使用とし、スクリプトの全部ないし一部が動かない場合でもコンテンツの閲覧に支障がないようにしている。すなわち Client Side Rendering 方式のようにユーザーに JavaScript の動作を強要する作り方はしていない。</p>
@@ -513,7 +513,7 @@ doSomething(); // 環境によってはここには到達しない`}
 			/>
 		</Section>
 
-		<Section id="script-error" depth={2} headingType="b">
+		<Section id="script-error" depth={2}>
 			<Fragment slot="heading">エラー検知</Fragment>
 
 			<p>作成したスクリプト機能は普段使いのブラウザでの軽い動作確認はしているが、きちんとしたテストは行っていない。というよりサーバーサイドプログラムとは異なり、ブラウザには様々な設定項目があり、また Bot 等を含めたあらゆる環境が存在するためそれらを網羅したテストの実施は現実的に不可能である。もとより前述のとおり JavaScript が動かなくてもコンテンツの閲覧には支障がないように作っているため、テストの実施は割り切り、せめて発生してしまったエラーは把握できるよう <code>error</code> イベントを検知し通知する機能を組み込んでいる。<Anchor href="https://github.com/SaekiTominaga/js-library-browser/tree/main/packages/report-js-error">この検知プログラムは GitHub で公開</Anchor>しているが、簡略化したコード例を下記に示す。</p>
@@ -548,7 +548,7 @@ doSomething(); // 環境によってはここには到達しない`}
 	<Section id="a11y">
 		<Fragment slot="heading">アクセシビリティ</Fragment>
 
-		<Section id="a11y-important" depth={2} headingType="b">
+		<Section id="a11y-important" depth={2}>
 			<Fragment slot="heading">アクセシビリティで重要視していること</Fragment>
 
 			<p>Web アクセシビリティでもっとも重要な点は「ユーザーの閲覧環境を問わないこと」だと考えている。決して「ユーザーの利便性を高めること」が目的なのではない。紙の本や TV など情報を伝える媒体にはそれぞれに特性があるが、こと閲覧環境の豊富さにおいて Web は他の追従を許さない。Web が Web であり続けるためにもこのことは最優先で守っていかなければならない。</p>
@@ -560,7 +560,7 @@ doSomething(); // 環境によってはここには到達しない`}
 			<p>さて、Web アクセシビリティではスクリーンリーダーをはじめとした支援技術の話題が事欠かない。しかし当サイトでは支援技術を特段に意識することはなく、読み上げの最適化も行っていない。本ページではここの章を含み見出しの横にはセルフリンクを設けているが、そのマークアップは単に <code>&lt;a href="#foo"&gt;§&lt;/a&gt;</code> としている。記号文字を読まないスクリーンリーダーの存在は承知しているが、だからといって <code>aria-label</code> 属性の追加といった対応は Web アクセシビリティとしてはナンセンスである。</p>
 		</Section>
 
-		<Section id="a11y-visuallyhidden" depth={2} headingType="b">
+		<Section id="a11y-visuallyhidden" depth={2}>
 			<Fragment slot="heading">Visually hidden テクニック</Fragment>
 
 			<p>当サイトではいわゆる Visually hidden のテクニックは使っていない。</p>
