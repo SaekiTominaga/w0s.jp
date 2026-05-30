@@ -17,17 +17,14 @@ const { id, depth = 1, box = false, autofocus = false, class: className } = Astr
 
 const headingHtml = await Astro.slots.render('heading');
 
-const getHeadingType = (depth: Depth): HeadingType => {
-	return (
-		new Map<Depth, HeadingType>([
-			[1, 'a'],
-			[2, 'b'],
-			[3, 'c'],
-		]).get(depth) ?? 'a'
-	);
-};
+const getHeadingType = (): HeadingType =>
+	new Map<Depth, HeadingType>([
+		[1, 'a'],
+		[2, 'b'],
+		[3, 'c'],
+	]).get(depth) ?? 'a';
 
-const getSectionId = (id: string | GithubSlugger, headingHtml: string): string => {
+const getSectionId = (): string => {
 	if (typeof id === 'string') {
 		return id;
 	}
@@ -37,10 +34,10 @@ const getSectionId = (id: string | GithubSlugger, headingHtml: string): string =
 	return id.slug(headingText);
 };
 
-const sectionId = getSectionId(id, headingHtml);
+const sectionId = getSectionId();
 ---
 
-<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${getHeadingType(depth)}`, { '-box': box }, className]} id={sectionId}>
+<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${getHeadingType()}`, { '-box': box }, className]} id={sectionId}>
 	<div class="hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
