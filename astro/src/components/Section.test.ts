@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import GithubSlugger from 'github-slugger';
 import { parse } from 'node-html-parser';
-import { describe, expect, test } from 'vitest';
+import { expect, test } from 'vitest';
 // @ts-ignore: ts(2307)
 import Section from './Section.astro';
 
@@ -64,8 +64,11 @@ test('depth', async () => {
 
 	const root = parse(result);
 
+	const section = root.querySelector('section');
 	const h = root.querySelector('.hdg > h3');
 
+	expect(section?.classList.contains('-a')).toBeFalsy();
+	expect(section?.classList.contains('-b')).toBeTruthy();
 	expect(h).not.toBeNull();
 });
 
