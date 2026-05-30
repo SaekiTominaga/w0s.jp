@@ -9,9 +9,16 @@
 export const getPageUrl = (astroUrl: URL, astroFilePath: string | undefined): string => {
 	const astroPathname = astroUrl.pathname;
 
-	/* build - format: 'preserve' の設定ではビルド時のみ末尾に / が付いてしまうので除去する */
-	if (astroFilePath !== undefined && !astroFilePath.endsWith('/index.astro') && astroPathname.endsWith('/')) {
-		return astroPathname.slice(0, -1);
+	if (astroFilePath !== undefined) {
+		/* build - format: 'preserve' の設定では dev 時のみ末尾の / が付かないので付与する */
+		if (astroFilePath.endsWith('/index.astro') && !astroPathname.endsWith('/')) {
+			return `${astroPathname}/`;
+		}
+
+		/* build - format: 'preserve' の設定では build 時のみ末尾に / が付いてしまうので除去する */
+		if (!astroFilePath.endsWith('/index.astro') && astroPathname.endsWith('/')) {
+			return astroPathname.slice(0, -1);
+		}
 	}
 
 	return astroPathname;
