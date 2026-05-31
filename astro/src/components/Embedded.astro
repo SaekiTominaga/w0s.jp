@@ -1,14 +1,15 @@
 ---
 interface Props {
+	width?: number;
 	border?: boolean;
 	captionMeta?: boolean;
 }
 
-const { border, captionMeta } = Astro.props;
+const { width, border, captionMeta } = Astro.props;
 ---
 
-<figure>
-	<div class:list={['embedded', { '-border': border }]}>
+<figure class:list={[{ '-border': border }]} data-width={width} style={width !== undefined ? `--_width: ${width}px` : undefined}>
+	<div class="embedded">
 		<slot name="media" />
 	</div>
 	{
@@ -22,14 +23,24 @@ const { border, captionMeta } = Astro.props;
 
 <style>
 	@layer component {
-		.embedded {
+		figure {
 			--_border-width: 0px;
 
-			contain: layout;
+			/* stylelint-disable property-layout-mappings */
+			max-width: calc(attr(data-width px) + var(--_border-width) * 2);
+
+			@supports not (x: attr(x px)) {
+				max-width: calc(var(--_width) + var(--_border-width) * 2);
+			}
+			/* stylelint-enable property-layout-mappings */
 
 			&.-border {
 				--_border-width: 1px;
 			}
+		}
+
+		.embedded {
+			contain: layout;
 
 			& > :global(:any-link) {
 				--_expand-icon-padding: 4px;
