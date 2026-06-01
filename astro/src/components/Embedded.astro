@@ -27,10 +27,11 @@ const { width, border, captionMeta } = Astro.props;
 			--_border-width: 0px;
 
 			/* stylelint-disable property-layout-mappings */
-			max-width: calc(attr(data-width px) + var(--_border-width) * 2);
+			/* stylelint-disable-next-line declaration-property-value-no-unknown */
+			max-width: attr(data-width px);
 
 			@supports not (x: attr(x px)) {
-				max-width: calc(var(--_width) + var(--_border-width) * 2);
+				max-width: var(--_width);
 			}
 			/* stylelint-enable property-layout-mappings */
 
@@ -53,7 +54,6 @@ const { width, border, captionMeta } = Astro.props;
 			& > :global(:any-link::before) {
 				display: block flow;
 				position: absolute;
-				inset: 1px;
 				background-color: rgb(0 0 0 / 70%);
 				background-image: url('/assets/image/media-expansion.svg');
 				background-origin: content-box;
@@ -73,14 +73,16 @@ const { width, border, captionMeta } = Astro.props;
 			& :global(:is(img, video)) {
 				box-sizing: revert;
 				display: inline flow-root;
-				border: var(--_border-width) solid var(--color-black);
 				block-size: auto;
-				max-inline-size: calc(100% - var(--_border-width) * 2);
+				max-inline-size: 100%;
 				vertical-align: top;
 			} /* <audio> については block-size: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
 
+			& :global(:is(img, video):not(:focus)) {
+				outline: var(--_border-width) solid var(--color-black);
+			}
+
 			& :global(video) {
-				outline-offset: -1px;
 				outline-width: var(--outline-width-bold);
 			}
 
@@ -94,7 +96,7 @@ const { width, border, captionMeta } = Astro.props;
 
 				display: block flow;
 				margin-inline: auto;
-				border: var(--_border-width) solid var(--color-black);
+				outline: var(--_border-width) solid var(--color-black);
 				aspect-ratio: var(--aspect-ratio, auto);
 				block-size: auto;
 				inline-size: calc(100% - var(--_margin-inline) * 2);

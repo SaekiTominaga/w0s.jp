@@ -1,39 +1,56 @@
 ---
 interface Props {
-	column: 'wide' | 'medium' | 'narrow';
+	column: 2 | 3 | 4 | 5;
+	sectionDepth?: 1 | 2 | 3;
 }
 
-const { column } = Astro.props;
+const { column, sectionDepth } = Astro.props;
 ---
 
-<div class:list={['grid', `-${column}`]}>
+<div class="grid" data-column={column} data-section-depth={sectionDepth}>
 	<slot />
 </div>
 
 <style>
 	@layer component {
 		.grid {
-			--_gap-row: 50px;
-			--_gap-col: 50px;
-			--_min-inline-size: auto;
+			--_gap-row: var(--stack-margin-base);
+			--_gap-column: calc(var(--page-content-width) / 32);
+			--_column: attr(data-column type(<number>));
 
 			display: block grid;
-			grid-template-columns: repeat(auto-fill, minmax(min(var(--_min-inline-size), 100%), 1fr));
-			gap: var(--_gap-row) var(--_gap-col);
+			grid-template-columns: repeat(auto-fill, minmax(min(calc((var(--page-content-width) - var(--_gap-column) * var(--_column)) / (var(--_column) + 1) + 1px), 100%), 1fr));
+			gap: var(--_gap-row) var(--_gap-column);
 
-			/* 2カラム */
-			&.-wide {
-				--_min-inline-size: 360px;
+			@supports not (x: attr(x type(<number>))) {
+				&[data-column='2'] {
+					--_column: 2;
+				}
+
+				&[data-column='3'] {
+					--_column: 3;
+				}
+
+				&[data-column='4'] {
+					--_column: 4;
+				}
+
+				&[data-column='5'] {
+					--_column: 5;
+				}
 			}
 
-			/* 3カラム */
-			&.-medium {
-				--_min-inline-size: 240px;
+			/* <Section> コンポーネントの margin-block と同じ値を設定 */
+			&[data-section-depth='1'] {
+				--_gap-row: 4.5rem;
 			}
 
-			/* 4カラム */
-			&.-narrow {
-				--_min-inline-size: 180px;
+			&[data-section-depth='2'] {
+				--_gap-row: 3.75rem;
+			}
+
+			&[data-section-depth='3'] {
+				--_gap-row: 3rem;
 			}
 		}
 	}
