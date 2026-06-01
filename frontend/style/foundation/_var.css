@@ -9,18 +9,11 @@
 	initial-value: 1280px;
 }
 
-/* サイドバーの幅 */
-@property --page-sidebar-width {
+/* コンテンツエリアの最大幅 */
+@property --page-content-width {
 	syntax: "<length>";
 	inherits: false;
-	initial-value: 230px;
-}
-
-/* コンテンツエリアとサイドバーの横間隔 */
-@property --page-content-sidebar-gap {
-	syntax: "<length>";
-	inherits: false;
-	initial-value: 26px;
+	initial-value: 1024px;
 }
 
 /* ページの左右の余白 */
@@ -520,6 +513,9 @@
 }
 
 :root {
+	/* ページの左右の余白 */
+	--page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline));
+
 	/**
 	 * フォーム
 	 */
