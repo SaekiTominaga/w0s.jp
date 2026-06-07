@@ -20,6 +20,9 @@ export default defineConfig({
 			minify: false,
 		},
 	},
+	security: {
+		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
+	},
 	build: {
 		format: 'preserve',
 		assets: 'assets/astro',
