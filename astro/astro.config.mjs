@@ -20,16 +20,6 @@ export default defineConfig({
 			minify: false,
 		},
 	},
-	security: {
-		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
-		allowedDomains: [
-			{
-				hostname: 'localhost',
-				protocol: 'http',
-				port: '3001',
-			},
-		],
-	},
 	build: {
 		format: 'preserve',
 		assets: 'assets/astro',
