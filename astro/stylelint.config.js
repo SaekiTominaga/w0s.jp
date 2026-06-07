@@ -2,7 +2,7 @@
 
 /** @type {import('stylelint').Config} */
 export default {
-	extends: ['stylelint-config-astro', '@w0s/stylelint-config'],
+	extends: ['@w0s/stylelint-config'],
 	ignoreFiles: ['dist/client/**/*.css'],
 	rules: {
 		'max-nesting-depth': [
@@ -13,6 +13,10 @@ export default {
 		],
 	},
 	overrides: [
+		{
+			files: ['**/*.astro'],
+			customSyntax: 'postcss-html',
+		},
 		{
 			files: ['src/components/**/*.astro'],
 			rules: {
