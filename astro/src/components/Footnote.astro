@@ -1,29 +1,33 @@
 ---
 interface Props {
-	title: string;
+	heading: string;
 	data: Map<number, string | undefined>;
 	prefix: string;
 	refPrefix: string;
 }
 
-const { title, data, prefix, refPrefix } = Astro.props;
+const { heading, data, prefix, refPrefix } = Astro.props;
 ---
 
 {
 	data.size > 0 && (
 		<section class="footnote">
-			<h2 class="hdg">{title}</h2>
+			<h2 class="hdg">{heading}</h2>
 
 			<ul class="list">
 				{[...data].map(([no, html]) => (
 					<li>
-						<span class="no">{no}.</span>
-						<p class="content">
-							<span id={`${prefix}${no}`} set:html={html} />
-							<a href={`#${refPrefix}${no}`} class="backref">
-								↩ 戻る
-							</a>
-						</p>
+						<data value={no} class="no">
+							{no}.
+						</data>
+						<div id={`${prefix}${no}`} class="content">
+							<p>
+								<Fragment set:html={html} />
+								<a href={`#${refPrefix}${no}`} class="backref">
+									↩ 戻る
+								</a>
+							</p>
+						</div>
 					</li>
 				))}
 			</ul>
@@ -58,13 +62,6 @@ const { title, data, prefix, refPrefix } = Astro.props;
 				grid-template-columns: subgrid;
 				grid-column: 1 / -1;
 			}
-
-			& > :global(li:not(:first-child) > *) {
-			}
-		}
-
-		.no,
-		.content {
 		}
 
 		.no {
@@ -75,8 +72,11 @@ const { title, data, prefix, refPrefix } = Astro.props;
 		}
 
 		.backref {
-			margin-inline-start: 1em;
 			font-size: calc(100% / pow(var(--font-ratio), 2));
+
+			&:not(.content > &) {
+				margin-inline-start: 1em;
+			}
 		}
 	}
 </style>
