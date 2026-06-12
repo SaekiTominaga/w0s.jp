@@ -54,15 +54,18 @@ const { data, direction } = Astro.props;
 			flex-direction: var(--_direction);
 			flex-wrap: wrap;
 			gap: 0.75em 1.5em;
-			margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
 			font-size: calc(100% * pow(var(--font-ratio), 1));
+		}
 
-			& :global(:any-link) {
-				margin-inline-start: calc(0px - var(--_icon-inline-size) - var(--_icon-gap));
-				outline-offset: var(--outline-offset-linkonly);
-			}
+		:has(> :any-link) {
+			margin-inline-start: calc(var(--_icon-inline-size) + var(--_icon-gap));
+		}
 
-			& :global(:any-link::before) {
+		:any-link {
+			margin-inline-start: calc(0px - var(--_icon-inline-size) - var(--_icon-gap));
+			outline-offset: var(--outline-offset-linkonly);
+
+			&::before {
 				display: inline flow-root;
 				margin-inline-end: var(--_icon-gap);
 				border-block-start: var(--_icon-block-size) solid var(--_icon-color);
@@ -72,7 +75,7 @@ const { data, direction } = Astro.props;
 				content: '';
 			}
 
-			& :global(:any-link:hover) {
+			&:hover {
 				--_icon-color: var(--link-color-hover);
 			}
 		}
