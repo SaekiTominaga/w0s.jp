@@ -27,9 +27,10 @@ const { blockSize } = Astro.props;
 				border-radius: var(--border-radius-normal);
 				background-color: var(--_bg-color);
 				padding: var(--form-control-padding);
-				min-block-size: var(--_block-size, auto);
+				min-block-size: calc(var(--_block-size, auto) + var(--form-control-padding) * 2);
 				inline-size: 100%;
 				color: var(--_color);
+				field-sizing: content;
 			}
 
 			& > :global(textarea:enabled:read-write:hover) {

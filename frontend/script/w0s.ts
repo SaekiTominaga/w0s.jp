@@ -9,7 +9,6 @@ import formSubmitOverlay from '@w0s/form-submit-overlay';
 import inputDateToText from '@w0s/input-date-to-text';
 import InputSwitch from '@w0s/input-switch';
 import { convert } from '@w0s/string-convert';
-import textareaAutoSize from '@w0s/textarea-auto-size';
 import TableTheadStickey from './component/TableTheadStickey.ts';
 import adsense from './unique/adsense.ts';
 import { blogNewly } from './unique/sidebar.ts';
@@ -52,9 +51,6 @@ buttonMediaSamePlay(document.querySelectorAll('.js-button-media-same-play'));
 /* 日付入力欄を <input type="text"> で表示 */
 inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
 
-/* <textarea> 要素の高さを入力内容に応じて自動調整 */
-textareaAutoSize(document.querySelectorAll('.js-textarea-auto-size'));
-
 /* 送信ボタン2度押し防止 */
 formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
 
@@ -66,9 +62,6 @@ if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
 		}
 	});
 }
-
-/* 日記新着記事 */
-await blogNewly(document.getElementById('sidebar-blog-newly-template'));
 
 /* 指定位置スクロール */
 document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
@@ -93,3 +86,6 @@ formControlValidation(document.querySelectorAll('.js-validation'));
 
 /* Google AdSense */
 adsense(document.querySelectorAll('.js-ads-google'), { rootMargin: '100px' });
+
+/* 日記新着記事 */
+await blogNewly(document.getElementById('sidebar-blog-newly-template'));
