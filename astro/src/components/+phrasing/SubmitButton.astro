@@ -21,10 +21,10 @@ const { type, formaction, formmethod, name, value, id, buttonStyle, class: class
 			--_border-color: var(--_bg-color);
 			--_bg-color: hsl(204deg 100% 42%);
 			--_bg-color-hover: hsl(204deg 100% 48%); /* 太字の 15pt なのでコントラスト比の基準は 3:1 以上 */
-			--_padding-block: 0.5em;
+			--_padding-block: calc(var(--form-control-padding-block) - (1lh * (pow(var(--font-ratio), var(--_font-size-exp)) - 1)) / 2);
 			--_padding-inline: 1em;
 			--_color: var(--color-white);
-			--_font-size: calc(100% * pow(var(--font-ratio), 2));
+			--_font-size-exp: 2;
 			--_ripple-color: var(--color-white);
 			--_ripple-opacity: 0.25;
 			--_ripple-transition-duration: 0.5s;
@@ -39,11 +39,10 @@ const { type, formaction, formmethod, name, value, id, buttonStyle, class: class
 			padding: var(--_padding-block) var(--_padding-inline);
 			overflow: hidden; /* ripple effect */
 			vertical-align: middle;
-			line-height: var(--line-height-nowrap);
 			text-wrap-mode: nowrap;
 			color: var(--_color);
 			font-family: system-ui, sans-serif; /* Chrome で下側の空きが出てしまう対策 */
-			font-size: var(--_font-size);
+			font-size: calc(100% * pow(var(--font-ratio), var(--_font-size-exp)));
 			font-weight: var(--font-weight-bold);
 
 			&:enabled {
@@ -79,18 +78,19 @@ const { type, formaction, formmethod, name, value, id, buttonStyle, class: class
 
 			/* コンパクトなボタン */
 			&.-compact {
-				--_padding-block: 0.375em;
+				--_padding-block: 0.125em;
 				--_padding-inline: 0.375em;
-				--_font-size: 100%;
+				--_font-size-exp: 0;
 			}
 
 			/* キャンセルボタン */
 			&.-cancel {
+				--_padding-block: 0.125em;
 				--_color: var(--color-darkgray);
 				--_bg-color: var(--color-white);
 				--_bg-color-hover: var(--color-bg-superlight);
 				--_border-color: var(--_color);
-				--_font-size: 100%;
+				--_font-size-exp: 0;
 				--_ripple-color: var(--color-black);
 			}
 		}
