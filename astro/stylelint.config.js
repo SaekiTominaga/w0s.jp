@@ -2,8 +2,6 @@
 
 /** @type {import('stylelint').Config} */
 export default {
-	extends: ['@w0s/stylelint-config'],
-	ignoreFiles: ['dist/client/**/*.css'],
 	rules: {
 		'max-nesting-depth': [
 			2,
@@ -12,6 +10,11 @@ export default {
 			},
 		],
 	},
+	referenceFiles: {
+		files: ['../frontend/style/foundation/_var.css'],
+	},
+	extends: ['@w0s/stylelint-config'],
+	ignoreFiles: ['dist/client/**/*.css'],
 	overrides: [
 		{
 			files: ['**/*.astro'],
