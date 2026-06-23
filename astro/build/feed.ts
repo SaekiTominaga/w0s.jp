@@ -4,7 +4,7 @@ import { parseArgs } from 'node:util';
 import { HtmlRenderer, Parser } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { load as yamlLoad } from 'js-yaml';
+import { load as yamlLoad, JSON_SCHEMA } from 'js-yaml';
 import slash from 'slash';
 
 /**
@@ -68,18 +68,18 @@ export const markdownRendar = (mdStr: string) => {
 
 export const yaml = (yamlStr: string) =>
 	(
-		yamlLoad(yamlStr) as {
+		yamlLoad(yamlStr, { schema: JSON_SCHEMA }) as {
 			id: string;
-			updated: Date;
+			updated: string;
 			content: string;
 		}[]
-	).map(({ updated: updatedUTC, content }) => {
+	).map(({ updated, content }) => {
+		const updatedDayjs = dayjs(updated);
+
 		const { html: contentHtml, title, linkDestinations } = markdownRendar(content);
 
-		const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
-
 		const hash = crypto.createHash('md5');
-		hash.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
+		hash.update(`${String(updatedDayjs.unix())}${linkDestinations.join('')}`);
 		const unique = hash.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
 		return {
@@ -88,7 +88,7 @@ export const yaml = (yamlStr: string) =>
 			/* ID に使うユニークな値 */
 			unique: unique,
 			/* タイムゾーンを変更 */
-			updated: dayjs(updated),
+			updated: updatedDayjs,
 			/* 本文中にあるリンクの宛先 */
 			links: linkDestinations,
 			/* Markdown → HTML */
