@@ -4,7 +4,7 @@ import { parseArgs } from 'node:util';
 import { HtmlRenderer, Parser } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { load as yamlLoad, JSON_SCHEMA } from 'js-yaml';
+import { JSON_SCHEMA, load as yamlLoad } from 'js-yaml';
 import slash from 'slash';
 
 /**
