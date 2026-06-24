@@ -109,7 +109,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			--_border-radius-inner: calc(var(--border-radius-normal) - var(--_border-width));
 			--_padding-inline: clamp(8px, 1.5dvi, 16px);
 
-			border: var(--_border-width) solid var(--color-border-dark);
+			border: var(--_border-width) solid var(--border-color-dark);
 			border-radius: var(--border-radius-normal);
 			background-color: var(--color-white);
 			line-height: var(--line-height-normal);
@@ -126,7 +126,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			contain: layout;
 			border-start-start-radius: var(--_border-radius-inner);
 			border-start-end-radius: var(--_border-radius-inner);
-			background-color: var(--color-verylightgreen);
+			background-color: oklch(from var(--color-green) 100% calc(c - 0.1) h);
 			padding-block: var(--_header-padding-block);
 			padding-inline: calc(var(--_padding-inline) + var(--self-link-size)) var(--_padding-inline);
 		}
@@ -190,14 +190,14 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			}
 
 			&:not(:disabled):hover {
-				--_bgcolor: var(--color-bg-verylight);
+				--_bgcolor: var(--bgcolor-light);
 			}
 
 			&[aria-pressed='true' i] {
-				--_bgcolor: var(--color-lightred);
+				--_bgcolor: oklch(from var(--color-pink) calc(l + 0.1) c h);
 
 				&:hover {
-					--_bgcolor: var(--color-pink);
+					--_bgcolor: oklch(from var(--color-pink) calc(l + 0.05) c h);
 				}
 			}
 		}

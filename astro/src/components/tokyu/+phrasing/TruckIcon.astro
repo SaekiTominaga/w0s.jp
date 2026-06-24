@@ -24,14 +24,14 @@ const { type } = Astro.props;
 
 			/* 動力台車 */
 			&.-m {
-				--_color: var(--color-red);
-				--_bg-color: var(--color-verylightred);
+				--_color: oklch(from var(--color-red) calc(l - 0.079) c h);
+				--_bg-color: var(--bgcolor-lightred);
 			}
 
 			/* 付随台車 */
 			&.-t {
 				--_color: var(--color-blue);
-				--_bg-color: var(--color-superlightblue);
+				--_bg-color: var(--bgcolor-lightblue);
 			}
 		}
 	}

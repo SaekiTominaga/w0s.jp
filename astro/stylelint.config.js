@@ -4,11 +4,15 @@
 export default {
 	rules: {
 		'max-nesting-depth': [
-			2,
+			3,
 			{
 				severity: 'warning',
 			},
 		],
+
+		/* color function */
+		'color-no-hex': true,
+		'function-disallowed-list': ['rgb', 'hsl', 'hwb', 'lab', 'lch'], // `color-function` parameter accepts only `oklab()` or `oklch()` <https://drafts.csswg.org/css-color/#typedef-color-function>
 	},
 	referenceFiles: {
 		files: ['../frontend/style/foundation/_var.css'],
