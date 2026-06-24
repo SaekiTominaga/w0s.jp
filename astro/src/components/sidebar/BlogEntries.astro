@@ -24,26 +24,20 @@
 			}
 
 			&::before,
-			&::after,
-			& > :last-child {
-				border: var(--_border-width) solid var(--color-border-dark);
-			}
-
-			&::before,
 			&::after {
-				border-block-end-style: unset;
+				border-block-start: var(--_border-width) solid var(--border-color-dark);
 				content: '';
 			}
 
 			&::before {
 				grid-area: hleft;
-				border-inline-end-style: unset;
+				border-inline-start: var(--_border-width) solid var(--border-color-dark);
 				border-start-start-radius: var(--border-radius-normal);
 			}
 
 			&::after {
 				grid-area: hright;
-				border-inline-start-style: unset;
+				border-inline-end: var(--_border-width) solid var(--border-color-dark);
 				border-start-end-radius: var(--border-radius-normal);
 			}
 
@@ -54,7 +48,9 @@
 
 			& > :last-child {
 				grid-area: content;
-				border-block-start-style: unset;
+				border-block-end: var(--_border-width) solid var(--border-color-dark);
+				border-inline-start: var(--_border-width) solid var(--border-color-dark);
+				border-inline-end: var(--_border-width) solid var(--border-color-dark);
 			}
 		}
 
@@ -99,16 +95,16 @@
 			}
 
 			& > :global(li + li) {
-				border-block-start: 1px dotted var(--color-border-dark);
+				border-block-start: 1px dotted var(--border-color-dark);
 			}
 
 			/* 奇数行 */
 			& > :global(li:nth-child(2n + 1) :any-link) {
-				--_bg-color: var(--color-bg-superlight);
+				--_bg-color: var(--bgcolor-light);
 			}
 
 			& > :global(li :any-link:hover) {
-				--_bg-color: var(--color-lightyellow);
+				--_bg-color: oklch(from var(--color-yellow) l c h / 25%);
 				--_icon-color: var(--color-gray);
 			}
 		}

@@ -48,7 +48,7 @@ const { data, pagePath } = Astro.props;
 				flex-grow: 1;
 				flex-wrap: nowrap;
 				margin: -0.5px;
-				border: 1px solid var(--color-border-light);
+				border: 1px solid var(--border-color-light);
 			}
 
 			& :global(a) {
@@ -64,12 +64,12 @@ const { data, pagePath } = Astro.props;
 			}
 
 			& :global(a:any-link:hover) {
-				--_bg-color: var(--color-bg-superlight);
+				--_bg-color: var(--bgcolor-light);
 			}
 
 			& :global(a:not(:any-link)) {
 				/* 現在ページ */
-				--_bg-color: var(--color-lightpink);
+				--_bg-color: oklch(from var(--color-pink) 100% c h);
 
 				color: var(--color-darkgray);
 			}

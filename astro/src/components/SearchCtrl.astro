@@ -24,7 +24,7 @@ const buttonTitleId = getHTMLId();
 <style>
 	@layer component {
 		.search {
-			--_border-color: var(--color-lightgray);
+			--_border-color: var(--border-color-dark);
 
 			display: block flex;
 			flex-wrap: wrap;
@@ -65,8 +65,6 @@ const buttonTitleId = getHTMLId();
 		/* 送信ボタン */
 		.submit {
 			& > :global(button) {
-				--_color: hsl(220deg 70% 45%);
-
 				all: unset;
 				box-sizing: revert;
 				display: block flow;
@@ -74,12 +72,8 @@ const buttonTitleId = getHTMLId();
 				padding: 0.25em;
 				block-size: 2em;
 				inline-size: 2em;
-				color: var(--_color);
+				color: oklch(from var(--color-blue) l calc(c - 0.15) h);
 				fill: currentColor; /* SVG */
-			}
-
-			& > :global(button:focus:not(:focus-visible)) {
-				--_color: hsl(220deg 70% 35%);
 			}
 
 			& > :global(button:focus-visible) {
@@ -87,7 +81,7 @@ const buttonTitleId = getHTMLId();
 			}
 
 			& > :global(button:hover) {
-				--_color: hsl(220deg 70% 55%);
+				background-color: var(--bgcolor-dark);
 			}
 
 			& > :global(button > svg) {

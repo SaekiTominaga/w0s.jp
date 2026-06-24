@@ -46,17 +46,17 @@ const signDisplay = sign.replaceAll(/[0-9]+/gv, (match) => `<span class="u-tokyu
 
 			/* 電動車（直流電動機） */
 			&.-m-dc {
-				--_bg-color: var(--color-paleturquoise);
+				--_bg-color: oklch(from var(--color-aqua) l calc(c - 0.075) h);
 			}
 
 			/* 電動車（交流電動機） */
 			&.-m-ac {
-				--_bg-color: var(--color-orange);
+				--_bg-color: oklch(from var(--color-red) calc(l + 0.25) calc(c - 0.15) h);
 			}
 
 			/* 制御車、付随車 */
 			&.-t {
-				--_bg-color: var(--color-lightgreen);
+				--_bg-color: oklch(from var(--color-green) calc(l + 0.4) calc(c - 0.05) h);
 			}
 		}
 

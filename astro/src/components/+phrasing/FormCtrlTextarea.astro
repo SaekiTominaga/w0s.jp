@@ -14,7 +14,7 @@ const { blockSize } = Astro.props;
 	@layer component {
 		.textarea {
 			--_block-size: auto;
-			--_border-color: var(--color-border-dark);
+			--_border-color: var(--border-color-dark);
 			--_bg-color: var(--color-white);
 			--_color: var(--color-black);
 
@@ -37,18 +37,8 @@ const { blockSize } = Astro.props;
 				--_border-color: var(--outline-color);
 			}
 
-			& > :global(textarea:disabled) {
-				--_bg-color: var(--color-bg-verydark);
-				--_color: var(--color-gray);
-			}
-
-			& > :global(textarea:read-only) {
-				--_bg-color: var(--color-bg-verydark);
-				--_color: var(--color-gray);
-			}
-
 			& > :global(textarea[aria-invalid='true' i]) {
-				--_border-color: var(--invalid-border-color);
+				--_border-color: var(--color-red);
 			}
 		}
 	}

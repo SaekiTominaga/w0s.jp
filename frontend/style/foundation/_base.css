@@ -3,18 +3,10 @@
 }
 
 :root {
-	--_color: var(--page-color);
-	--_bg-color: var(--page-bg-color);
-
-	color: var(--_color);
+	color: var(--color-black);
 	font-family: sans-serif;
-	font-size: var(--page-font-size);
+	font-size: 100%;
 	font-weight: var(--font-weight-normal);
-
-	@media print {
-		--_color: var(--color-black);
-		--_bg-color: var(--color-white);
-	}
 
 	@media (prefers-reduced-motion: no-preference) {
 		scroll-behavior: smooth;
@@ -31,8 +23,13 @@ textarea {
 
 head /* for iOS Vialdi 7.7 (Force a dark theme on all websites) */,
 body {
-	background-color: var(--_bg-color);
+	background-color: oklch(99.836% 0.0079 106.54deg)
+		/* 本来の意図は `oklch(from var(--color-yellow) l c h / 2.5%)` だが、iOS Vivaldi の強制ダークテーマのためにアルファチャネルなしの表現で代用 */;
 	color: inherit;
+
+	@media print {
+		background-color: var(--color-white);
+	}
 }
 
 :focus {
@@ -106,25 +103,15 @@ dfn {
 
 code:not([class]) {
 	border-radius: var(--border-radius-normal);
-	background-color: var(--color-ultralightgreen);
+	background-color: oklch(from var(--color-green) 100% c h / 5%);
 	padding-block: 0.25em;
 	color: var(--color-green);
 
-	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, a) & {
+	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, :any-link) & {
 		border-radius: initial;
 		background-color: initial;
 		padding-block: initial;
 		color: inherit;
-	}
-
-	/* for Chrome, Safari */
-	:visited & {
-		color: var(--link-color-visited);
-	}
-
-	/* for Chrome, Safari */
-	:visited:hover & {
-		color: var(--link-color-hover);
 	}
 }
 
@@ -133,29 +120,28 @@ var {
 }
 
 mark {
-	border: 1px solid var(--color-lightyellow);
-	background-color: var(--color-lightyellow);
+	background-color: oklch(from var(--color-yellow) l calc(c - 0.05) h);
 	font-weight: var(--font-weight-bold);
 
 	@media print {
-		border-color: currentColor;
+		outline: 1px solid currentColor;
 	}
 }
 
 ins:not(.adsbygoogle) {
-	background-color: var(--color-verylightred);
+	background-color: var(--bgcolor-lightred);
 	text-decoration-style: dashed;
-	color: var(--color-red);
+	color: oklch(from var(--color-red) calc(l - 0.079) c h);
 }
 
 del {
-	background-color: var(--color-bg-light);
+	background-color: var(--bgcolor-dark);
 	text-decoration-style: double;
 	color: var(--color-gray);
 }
 
 input:is([type="radio" i], [type="checkbox" i]) {
-	accent-color: var(--color-skyblue);
+	accent-color: var(--form-control-theme-color);
 }
 
 w0s-input-switch {
@@ -165,7 +151,7 @@ w0s-input-switch {
 }
 
 x-popover {
-	--_border-color: var(--color-border-light);
+	--_border-color: var(--border-color-light);
 	--_hide-button-padding: 6px;
 	--_hide-button-image-size: 24px;
 
@@ -212,9 +198,9 @@ x-popover {
 	}
 
 	&::part(hide-button):hover {
-		--_background-color: var(--color-bg-superlight);
+		--_background-color: var(--bgcolor-light);
 
-		outline: 1px solid var(--color-bg-light);
+		outline: 1px solid var(--border-color-light);
 	}
 
 	&::part(hide-button):focus {

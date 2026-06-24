@@ -20,7 +20,7 @@ const { type } = Astro.props;
 			&.-gkakutei,
 			&.-semiexp,
 			&.-ikk-rapid {
-				color: #007e00; /* --color-bg-light に対してコントラスト比 4.5:1 を満たす限界値 */
+				color: oklch(from var(--color-green) calc(l + 0.01) c h); /* --bgcolor-light に対してコントラスト比 4.5:1 を満たす限界値 */
 			}
 
 			/* B各停、日比谷線直通 */
@@ -34,12 +34,12 @@ const { type } = Astro.props;
 			&.-kohnan-rapid,
 			&.-oigawa-exp,
 			&.-hokutetsu-semiexp {
-				color: #db0000; /* --color-bg-light に対してコントラスト比 4.5:1 を満たす限界値 */
+				color: oklch(from var(--color-red) calc(l - 0.08) c h); /* --bgcolor-light に対してコントラスト比 4.5:1 を満たす限界値 */
 			}
 
 			/* 特急 */
 			&.-ltd {
-				color: #ff4200; /* --color-bg-light に対してコントラスト比 3:1 を満たす限界値 */
+				color: oklch(from var(--color-red) calc(l + 0.11) c h); /* --bgcolor-light に対してコントラスト比 3:1 を満たす限界値 */
 			}
 		}
 	}

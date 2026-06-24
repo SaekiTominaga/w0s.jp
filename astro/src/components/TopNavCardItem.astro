@@ -30,33 +30,27 @@ const { linkHref, title, description } = Astro.props;
 
 			& > :global(a) {
 				--_border-width: 1px;
-				--_bg-color: var(--color-bg-light);
-				--_color: var(--color-darkgray);
+				--_bg-color: var(--bgcolor-dark);
 
 				flex-basis: 0;
 				flex-grow: 1;
 				outline-offset: calc(0px - var(--_border-width));
 				outline-width: var(--outline-width-bold);
-				border: var(--_border-width) solid var(--color-border-light);
+				border: var(--_border-width) solid var(--border-color-light);
 				border-radius: var(--border-radius-normal);
-				box-shadow: 0 1px 2px var(--color-border-light);
+				box-shadow: 0 1px 2px var(--border-color-light);
 				background-color: var(--_bg-color);
 				overflow: hidden;
 				text-decoration-line: none;
-				color: var(--_color);
+				color: var(--color-darkgray);
 
 				&:hover {
-					--_bg-color: var(--color-bg-verylight);
-					--_color: inherit;
+					--_bg-color: var(--bgcolor-light);
 				}
 			}
 		}
 
 		.image {
-			:any-link:hover & {
-				opacity: 0.9;
-			}
-
 			& :global(img) {
 				display: block flow;
 				inline-size: 100%;
@@ -71,7 +65,6 @@ const { linkHref, title, description } = Astro.props;
 		}
 
 		.title {
-			--_text-color: inherit;
 			--_icon-color: var(--color-gray); /* アイコンの色 */
 			--_icon-inline-size: 0.5625em; /* アイコンの幅 */
 			--_icon-block-size: 1em; /* アイコンの高さ */
@@ -81,7 +74,7 @@ const { linkHref, title, description } = Astro.props;
 			margin: 16px;
 			padding-inline-end: calc(var(--_icon-gap) + var(--_icon-inline-size));
 			line-height: var(--line-height-narrow);
-			color: var(--_text-color);
+			color: var(--color-black);
 			font-size: 150%;
 			font-weight: var(--font-weight-bold);
 
@@ -91,7 +84,6 @@ const { linkHref, title, description } = Astro.props;
 			}
 
 			:any-link:hover & {
-				--_text-color: var(--color-black);
 				--_icon-color: var(--color-darkgray);
 			}
 
