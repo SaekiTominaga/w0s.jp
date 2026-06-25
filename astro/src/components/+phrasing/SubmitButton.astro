@@ -20,7 +20,7 @@ const { type, formaction, formmethod, name, value, id, buttonStyle, class: class
 		.submit {
 			--_border-color: var(--form-control-theme-color);
 			--_bg-color: var(--form-control-theme-color);
-			--_bg-color-hover: oklch(from var(--form-control-theme-color) calc(l + 0.05) c h); /* 太字の 15pt なのでコントラスト比の基準は 3:1 以上 */
+			--_bg-color-hover: oklch(from var(--form-control-theme-color) calc(l + var(--bgcolor-hover-l)) c h); /* 太字の 15pt なのでコントラスト比の基準は 3:1 以上 */
 			--_padding-block: calc(var(--form-control-padding-block) - (1lh * (pow(var(--font-ratio), var(--_font-size-exp)) - 1)) / 2);
 			--_padding-inline: 1em;
 			--_color: var(--color-white);
@@ -83,7 +83,7 @@ const { type, formaction, formmethod, name, value, id, buttonStyle, class: class
 				--_padding-block: 0.125em;
 				--_color: var(--color-darkgray);
 				--_bg-color: var(--color-white);
-				--_bg-color-hover: var(--bgcolor-light);
+				--_bg-color-hover: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
 				--_border-color: var(--_color);
 				--_font-size-exp: 0;
 				--_ripple-color: var(--color-black);
