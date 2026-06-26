@@ -151,7 +151,6 @@ w0s-input-switch {
 }
 
 x-popover {
-	--_border-color: var(--border-color-light);
 	--_hide-button-padding: 6px;
 	--_hide-button-image-size: 24px;
 
@@ -159,8 +158,9 @@ x-popover {
 
 	&::part(content) {
 		outline-offset: -1px;
-		border: 1px solid var(--_border-color);
+		border: 1px solid var(--border-color-light);
 		border-radius: var(--border-radius-normal);
+		box-shadow: var(--box-shadow-length-standout) var(--box-shadow-color);
 		background-color: var(--color-white);
 		padding: 15px;
 		max-inline-size: min(30em, 100%);
@@ -170,10 +170,6 @@ x-popover {
 
 	&::part(content):focus {
 		outline: var(--outline-width-bold) solid var(--outline-color);
-	}
-
-	&::part(content):hover {
-		box-shadow: 0 0 0.5em var(--_border-color);
 	}
 
 	&::part(content)::before {

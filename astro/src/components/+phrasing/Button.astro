@@ -11,11 +11,9 @@ const { class: className } = Astro.props;
 <style>
 	@layer component {
 		.button {
-			--_border-color: var(--border-color-dark);
-
 			outline-offset: -1px;
 			outline-width: var(--outline-width-bold);
-			border: 1px solid var(--_border-color);
+			border: 1px solid var(--border-color-dark);
 			border-radius: var(--border-radius-normal);
 			background-image: linear-gradient(var(--color-white), var(--bgcolor-dark));
 			padding: 0.75em;
@@ -28,7 +26,7 @@ const { class: className } = Astro.props;
 			}
 
 			&:hover {
-				box-shadow: 0 0 2px var(--_border-color);
+				box-shadow: var(--box-shadow-length) var(--box-shadow-color);
 			}
 		}
 	}
