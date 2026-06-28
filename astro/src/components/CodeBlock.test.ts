@@ -1,7 +1,7 @@
-import crypto from 'node:crypto';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { type Options as ParseOptions, parse } from 'node-html-parser';
 import { describe, expect, test } from 'vitest';
+import { getHTMLId } from '@util/crypto.ts';
 // @ts-ignore: ts(2307)
 import CodeBlock from './CodeBlock.astro';
 
@@ -26,9 +26,7 @@ test('base', async () => {
 	const clipboardButton = root.querySelector('.clipboard-button');
 	const code = root.querySelector('.code > code');
 
-	const hash = crypto.createHash('md5');
-	hash.update(codeText);
-	const id = `code-${hash.digest('hex')}`; // コード ID
+	const id = 'code-YWNiZDE4ZGI0Y2MyZjg1Y2VkZWY2NTRmY2NjNGE0ZDg'; // コード ID
 
 	expect(clipboardButton?.getAttribute('data-target')).toBe(id);
 	expect(code?.id).toBe(id);
