@@ -1,7 +1,6 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { type Options as ParseOptions, parse } from 'node-html-parser';
 import { describe, expect, test } from 'vitest';
-import { getHTMLId } from '@util/crypto.ts';
 // @ts-ignore: ts(2307)
 import CodeBlock from './CodeBlock.astro';
 
