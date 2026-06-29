@@ -1,0 +1,20 @@
+<p class="note">
+	<span class="sign">※</span>
+	<span class="text"><slot /></span>
+</p>
+
+<style>
+	@layer component {
+		.note {
+			display: block grid;
+			grid-template-columns: auto 1fr;
+			column-gap: 0.25ic;
+			color: var(--color-darkgray);
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+
+			& + & {
+				margin-block-start: 1em;
+			}
+		}
+	}
+</style>

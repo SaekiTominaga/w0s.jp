@@ -3,7 +3,7 @@ import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import YouTube from '@components/EmbeddedYouTube.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
@@ -74,22 +74,8 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>入口ページ（<code>index.html</code>）とトップページ（<code>top.html</code>）が分かれていた TV アニメ 3サイトは、2024年に入口ページが廃止され、トップページを <code>top.html</code> から <code>index.html</code> にリネームされました。</li>
-			<li>
-				『<cite>懺・さよなら絶望先生</cite>』のサイトはトップページのメニュー部分も Flash によるものなので、現在はリンクを辿ることはできませんが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です。
-				<ul>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/news.html" icon={false}>ニュース</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/staff.html" icon={false}>スタッフ&amp;キャスト</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/sch.html" icon={false}>放送日時</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/release.html" icon={false}>リリース情報</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/gallery.html" icon={false}>ギャラリー</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/chara.html" icon={false}>キャラクター</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/arasuji.html" icon={false}>各話あらすじ</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/story.html" icon={false}>懺・さよなら絶望先生とは? （ストーリー）</Anchor></li>
-				</ul>
-			</li>
-		</ListNote>
+		<Note>入口ページ（<code>index.html</code>）とトップページ（<code>top.html</code>）が分かれていた TV アニメ 3サイトは、2024年に入口ページが廃止され、トップページを <code>top.html</code> から <code>index.html</code> にリネームされました。</Note>
+		<Note>『<cite>懺・さよなら絶望先生</cite>』のサイトはトップページのメニュー部分も Flash によるものなので、現在はリンクを辿ることはできませんが、コンテンツはサーバーに残っており URL を直接指定すれば閲覧可能です。（<Anchor href="https://king-cr.jp/special/zetsubou3/news.html" icon={false}><cite>最新情報</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/staff.html" icon={false}><cite>スタッフ&amp;キャスト</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/sch.html" icon={false}><cite>放送日時</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/release.html" icon={false}><cite>リリース情報</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/gallery.html" icon={false}><cite>ギャラリー</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/chara.html" icon={false}><cite>キャラクター</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/arasuji.html" icon={false}><cite>各話あらすじ</cite></Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/story.html" icon={false}><cite>懺・さよなら絶望先生とは?</cite></Anchor>）</Note>
 	</Section>
 	<Section id={slugger}>
 		<Fragment slot="heading"><cite>さよなら絶望先生</cite></Fragment>
@@ -101,24 +87,13 @@ const slugger = new GithubSlugger();
 
 		<YouTube id="kDSBb4UD5CQ" title="『俗・さよなら絶望先生』公式サイト閲覧の様子" />
 
-		<ListNote>
-			<li>裏ページ内の神谷浩史コメント動画は直接<Anchor href="https://king-cr.jp/special/zetsubou2/ura/kamiya_com.flv">動画ファイル（Flash Video 形式）</Anchor>をダウンロードして閲覧ください。</li>
-		</ListNote>
+		<Note>裏ページ内の神谷浩史コメント動画は直接<Anchor href="https://king-cr.jp/special/zetsubou2/ura/kamiya_com.flv">動画ファイル（Flash Video 形式）</Anchor>をダウンロードして閲覧ください。</Note>
 	</Section>
 	<Section id={slugger}>
 		<Fragment slot="heading"><cite>懺・さよなら絶望先生</cite></Fragment>
 
 		<YouTube id="t4j7jg8_GZQ" title="『懺・さよなら絶望先生』公式サイト閲覧の様子" />
 
-		<ListNote>
-			<li>
-				裏ページ内の動画コンテンツはそれぞれ以下のリンクから直接動画ファイル（Flash Video 形式）をダウンロードして閲覧ください。
-				<ul>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/ura/01_op.flv">オープニング　ムービー</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/ura/02_ed.flv">エンディング　ムービー</Anchor></li>
-					<li><Anchor href="https://king-cr.jp/special/zetsubou3/ura/05_otsuki.flv">大槻ケンヂ　コメント</Anchor></li>
-				</ul>
-			</li>
-		</ListNote>
+		<Note>裏ページ内の動画コンテンツはそれぞれ以下のリンクから動画ファイル（Flash Video 形式）をダウンロードして閲覧ください。（<Anchor href="https://king-cr.jp/special/zetsubou3/ura/01_op.flv" icon={false}>オープニング　ムービー</Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/ura/02_ed.flv" icon={false}>エンディング　ムービー</Anchor>、<Anchor href="https://king-cr.jp/special/zetsubou3/ura/05_otsuki.flv" icon={false}>大槻ケンヂ　コメント</Anchor>）</Note>
 	</Section>
 </Layout>
