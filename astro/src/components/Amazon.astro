@@ -56,20 +56,19 @@ const dateDayjs = date !== undefined ? dayjs(date) : undefined;
 			font-weight: var(--font-weight-bold);
 		}
 
+		/* stylelint-disable property-layout-mappings, unit-layout-mappings */
 		.item {
 			--_gap: 15px;
 			--_bullet-inline-size: 0.45em;
 			--_bullet-block-size: 0.75em;
 			--_bullet-color: var(--link-color-bullet);
 			--_bullet-gap: 0.5em;
-			/* stylelint-disable-next-line unit-layout-mappings */
 			--_image-width: min(160px, 30dvw);
 			--_image-height: 160px;
 
 			contain: layout;
 			margin: 1em min(1dvi, 1em);
 			padding-inline: calc(var(--_image-width) + var(--_gap) + var(--_bullet-inline-size) + var(--_bullet-gap)) 0;
-			/* stylelint-disable-next-line property-layout-mappings */
 			min-height: calc(var(--_image-height));
 
 			& > :any-link {
@@ -90,7 +89,6 @@ const dateDayjs = date !== undefined ? dayjs(date) : undefined;
 			inset-inline: 0 auto;
 			flex-wrap: nowrap;
 			justify-content: center;
-			/* stylelint-disable-next-line property-layout-mappings */
 			width: var(--_image-width);
 			pointer-events: none;
 		}
@@ -99,11 +97,9 @@ const dateDayjs = date !== undefined ? dayjs(date) : undefined;
 		.image {
 			display: block flow;
 			background-color: var(--color-white);
-			/* stylelint-disable property-layout-mappings */
 			max-width: var(--_image-width);
 			height: auto;
 			max-height: var(--_image-height);
-			/* stylelint-enable property-layout-mappings */
 			color: var(--color-black);
 			pointer-events: auto;
 
@@ -116,6 +112,7 @@ const dateDayjs = date !== undefined ? dayjs(date) : undefined;
 				box-shadow: var(--box-shadow-length-standout) oklch(from var(--_bg-color) calc(l - 0.1) calc(c + 0.1) h);
 			}
 		}
+		/* stylelint-enable property-layout-mappings, unit-layout-mappings */
 
 		/* 商品タイトル */
 		.title {
