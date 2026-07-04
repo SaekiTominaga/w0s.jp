@@ -33,7 +33,7 @@ const { href } = Astro.props;
 			line-height: var(--line-height-narrow);
 			font-size: calc(100% * pow(var(--font-ratio), 2));
 
-			& > :any-link {
+			& > :global(:any-link) {
 				outline: none;
 			}
 		}
@@ -43,13 +43,13 @@ const { href } = Astro.props;
 			margin-inline-end: calc(var(--_gap) + var(--_bullet-inline-size) + var(--_bullet-gap));
 			max-inline-size: 50%;
 
-			:focus & {
+			:global(:focus) & {
 				outline: var(--outline-width-bold) solid var(--outline-color);
 				outline-offset: -1px;
 			}
 
-			:any-link:hover & {
-				box-shadow: 0 0 5px var(--color-border-dark);
+			:global(:any-link:hover) & {
+				box-shadow: var(--box-shadow-length-standout) var(--box-shadow-color);
 			}
 
 			& :global(img) {
@@ -63,12 +63,12 @@ const { href } = Astro.props;
 		.title {
 			margin-inline-start: calc(0px - var(--_bullet-inline-size) - var(--_bullet-gap));
 
-			:focus & {
+			:global(:focus) & {
 				outline: var(--outline-width) solid var(--outline-color);
 				outline-offset: var(--outline-offset-linkonly);
 			}
 
-			:any-link:hover & {
+			:global(:any-link:hover) & {
 				--_bullet-color: var(--link-color-hover);
 			}
 

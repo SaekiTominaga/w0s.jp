@@ -1,7 +1,7 @@
 ---
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
@@ -95,16 +95,14 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>台車の製造初年は<DocMagazine name="鉄道ピクトリアル" date="1989年10月号" no={518} article="国鉄・JRおよびメーカー別の台車リスト(Ⅲ)" pages={[109]} />より。</li>
-		</ListNote>
+		<Note>台車の製造初年は<DocMagazine name="鉄道ピクトリアル" date="1989年10月号" no={518} article="国鉄・JRおよびメーカー別の台車リスト(Ⅲ)" pages={[109]} />より。</Note>
 	</Section>
 
 	<Section id="ts701">
 		<Fragment slot="heading">TS-701 型<small>（PⅢ-701 型）</small></Fragment>
 
 		<Section id="ts701-m" depth={2}>
-			<Fragment slot="heading">TS-701 <TruckIcon type="m"><small>動力台車</small></TruckIcon></Fragment>
+			<Fragment slot="heading">TS-701 <small><TruckIcon type="m">動力台車</TruckIcon></small></Fragment>
 
 			<Embedded width={1024} border={true} captionMeta={true}>
 				<MyImage image={image_TS701_mizuma7003} alt="写真拡大" width={1024} height={341} link={true} slot="media" />
@@ -120,7 +118,7 @@ const structuredData: StructuredData = {
 		</Section>
 
 		<Section id="ts701-t" depth={2}>
-			<Fragment slot="heading">TS-701 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
+			<Fragment slot="heading">TS-701 <small><TruckIcon type="t">付随台車</TruckIcon></small></Fragment>
 
 			<Embedded width={1024} border={true} captionMeta={true}>
 				<MyImage image={image_TS701_fukushima7315} alt="写真拡大" width={1024} height={341} link={true} slot="media" />
@@ -136,7 +134,7 @@ const structuredData: StructuredData = {
 		<Fragment slot="heading">TS-708 型<small>（PⅢ-708 型）</small></Fragment>
 
 		<Section id="ts708-t" depth={2}>
-			<Fragment slot="heading">TS-708 <TruckIcon type="t"><small>付随台車</small></TruckIcon></Fragment>
+			<Fragment slot="heading">TS-708 <small><TruckIcon type="t">付随台車</TruckIcon></small></Fragment>
 
 			<Embedded width={1024} border={true} captionMeta={true}>
 				<MyImage image={image_TS708_ueda7551} alt="写真拡大" width={1024} height={341} link={true} slot="media" />

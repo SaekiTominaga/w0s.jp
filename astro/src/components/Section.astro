@@ -52,11 +52,11 @@ const sectionId = getSectionId();
 	@layer component {
 		@keyframes section-target {
 			0% {
-				background-color: var(--color-verylightred);
+				background-color: var(--bgcolor-lightred);
 			}
 
 			50% {
-				background-color: var(--color-verylightred);
+				background-color: var(--bgcolor-lightred);
 			}
 
 			100% {
@@ -97,7 +97,7 @@ const sectionId = getSectionId();
 			}
 
 			&.-box {
-				border: 1px solid var(--color-border-dark);
+				border: 1px solid var(--border-color-dark);
 				border-radius: var(--border-radius-normal);
 				background-color: var(--color-white);
 				padding: 1em;
@@ -116,7 +116,7 @@ const sectionId = getSectionId();
 
 			.section.-a > & {
 				margin-block-end: 2rem;
-				border-block-end: 1px solid var(--color-border-dark);
+				border-block-end: 1px solid var(--border-color-dark);
 				padding-block-end: 0.375em;
 				font-size: calc(100% * pow(var(--font-ratio), 6));
 			}
@@ -147,6 +147,10 @@ const sectionId = getSectionId();
 
 			.section.-c > & {
 				font-size: calc(100% * pow(var(--font-ratio), 2));
+			}
+
+			& :global(small) {
+				font-weight: initial;
 			}
 		}
 

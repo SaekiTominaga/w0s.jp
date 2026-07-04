@@ -60,14 +60,6 @@ if (auth) {
 <style>
 	@layer component {
 		.button {
-			--_padding-block: 0.5em;
-			--_padding-inline: 0.75em;
-			--_border-color: var(--color-border-dark);
-			--_color: var(--color-black);
-			--_background: linear-gradient(var(--color-white), var(--color-bg-light));
-			--_font-size: 100%;
-			--_icon-size: 1.25em;
-
 			display: inline flex;
 			flex-wrap: nowrap;
 			gap: 0.5em;
@@ -75,44 +67,42 @@ if (auth) {
 			justify-content: center;
 			outline-offset: -1px;
 			outline-width: var(--outline-width-bold);
-			border: 1px solid var(--_border-color);
+			border: 1px solid var(--border-color-dark);
 			border-radius: var(--border-radius-normal);
-			background-image: var(--_background);
-			padding: var(--_padding-block) var(--_padding-inline);
+			background-color: var(--bgcolor-light);
+			padding: 0.5em 0.75em;
 			text-decoration-line: none;
 			line-height: var(--line-height-narrow);
-			color: var(--_color);
-			font-size: var(--_font-size);
+			color: var(--color-black);
 			font-weight: var(--font-weight-bold);
 
 			&:hover {
-				box-shadow: 0 0 2px var(--_border-color);
-				color: var(--_color);
+				box-shadow: var(--box-shadow-length) var(--box-shadow-color);
 			}
 
 			/* Feed */
 			&.-atom {
-				--_border-color: hsl(41deg 100% 53%);
-				--_color: var(--color-darkgray);
-				--_background: hsl(41deg 100% 93%);
+				border-color: var(--color-orange);
+				background-color: oklch(from var(--color-orange) calc(l + 0.175) calc(c - 0.125) calc(h + 10));
+				color: var(--color-darkgray);
 			}
 
 			/* Amazon */
 			&.-amazon {
-				--_border-color: #c2a24e;
-				--_background: linear-gradient(hsl(30deg 100% 87%), hsl(44deg 90% 62%));
+				border-color: var(--color-orange);
+				background-color: oklch(from var(--color-orange) calc(l + 0.175) c h);
 			}
 
 			/* 小さく表示 */
 			&.-narrow {
-				--_padding-block: 0.35em;
-				--_font-size: calc(100% / pow(var(--font-ratio), 1));
+				padding-block: 0.35em;
+				font-size: calc(100% / pow(var(--font-ratio), 1));
 			}
 		}
 
 		.icon {
-			block-size: var(--_icon-size);
-			inline-size: var(--_icon-size);
+			block-size: 1.25em;
+			inline-size: 1.25em;
 		}
 
 		.text {

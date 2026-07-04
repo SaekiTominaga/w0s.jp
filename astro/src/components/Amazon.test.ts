@@ -25,6 +25,7 @@ test('base', async () => {
 	const date = root.querySelector('.date');
 
 	expect(a?.getAttribute('href')).toBe('https://www.amazon.co.jp/dp/asin1234/ref=nosim?tag=w0s.jp-22');
+	expect(a?.getAttribute('rel')).toBe('external');
 	expect(img?.getAttribute('src')).toBe('https://m.media-amazon.com/images/I/image1234._SL160_.jpg');
 	expect(img?.getAttribute('srcset')).toBe('https://m.media-amazon.com/images/I/image1234._SL320_.jpg 2x');
 	expect(img?.getAttribute('width')).toBe('100');

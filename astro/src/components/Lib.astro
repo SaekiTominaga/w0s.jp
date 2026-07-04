@@ -109,7 +109,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			--_border-radius-inner: calc(var(--border-radius-normal) - var(--_border-width));
 			--_padding-inline: clamp(8px, 1.5dvi, 16px);
 
-			border: var(--_border-width) solid var(--color-border-dark);
+			border: var(--_border-width) solid var(--border-color-dark);
 			border-radius: var(--border-radius-normal);
 			background-color: var(--color-white);
 			line-height: var(--line-height-normal);
@@ -126,7 +126,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			contain: layout;
 			border-start-start-radius: var(--_border-radius-inner);
 			border-start-end-radius: var(--_border-radius-inner);
-			background-color: var(--color-verylightgreen);
+			background-color: oklch(from var(--color-green) 100% calc(c - 0.1) h);
 			padding-block: var(--_header-padding-block);
 			padding-inline: calc(var(--_padding-inline) + var(--self-link-size)) var(--_padding-inline);
 		}
@@ -170,12 +170,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 
 		.tag-button {
-			--_bgcolor: var(--color-white);
+			--_bg-color: var(--color-white);
 			--_color: var(--color-black);
 
 			border: 1px solid var(--color-black);
 			border-radius: var(--border-radius-large);
-			background-color: var(--_bgcolor);
+			background-color: var(--_bg-color);
 			padding: 0.25em;
 			line-height: var(--line-height-nowrap);
 			color: var(--_color);
@@ -189,16 +189,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 				outline: none;
 			}
 
-			&:not(:disabled):hover {
-				--_bgcolor: var(--color-bg-verylight);
+			&:enabled:hover {
+				background-color: oklch(from var(--_bg-color) calc(l - var(--bgcolor-hover-l)) c h);
 			}
 
 			&[aria-pressed='true' i] {
-				--_bgcolor: var(--color-lightred);
-
-				&:hover {
-					--_bgcolor: var(--color-pink);
-				}
+				--_bg-color: oklch(from var(--color-pink) calc(l + 0.1) c h);
 			}
 		}
 

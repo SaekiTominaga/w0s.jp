@@ -48,29 +48,27 @@ const { data, pagePath } = Astro.props;
 				flex-grow: 1;
 				flex-wrap: nowrap;
 				margin: -0.5px;
-				border: 1px solid var(--color-border-light);
+				border: 1px solid var(--border-color-light);
 			}
 
 			& :global(a) {
-				--_bg-color: var(--color-white);
-
 				flex-basis: 100%;
 				contain: content;
 				outline-offset: calc(1px - var(--outline-width-bold));
 				outline-width: var(--outline-width-bold);
-				background-color: var(--_bg-color);
+				background-color: var(--color-white);
 				padding: 0.75em;
 				text-align: center;
+				text-decoration-line: none;
 			}
 
 			& :global(a:any-link:hover) {
-				--_bg-color: var(--color-bg-superlight);
+				background-color: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
 			}
 
 			& :global(a:not(:any-link)) {
 				/* 現在ページ */
-				--_bg-color: var(--color-lightpink);
-
+				background-color: oklch(from var(--color-pink) 100% c h);
 				color: var(--color-darkgray);
 			}
 		}

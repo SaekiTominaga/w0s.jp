@@ -3,29 +3,32 @@
 }
 
 :root {
-	--_color: var(--page-color);
-	--_bg-color: var(--page-bg-color);
-
-	line-height: var(--line-height-wide);
-	color: var(--_color);
+	color: var(--color-black);
 	font-family: sans-serif;
-	font-size: var(--page-font-size);
-	font-weight: var(--font-weight-normal);
-
-	@media print {
-		--_color: var(--color-black);
-		--_bg-color: var(--color-white);
-	}
+	font-size: 100%;
 
 	@media (prefers-reduced-motion: no-preference) {
 		scroll-behavior: smooth;
 	}
 }
 
+:root,
+input,
+select,
+button,
+textarea {
+	line-height: var(--line-height-wide);
+}
+
 head /* for iOS Vialdi 7.7 (Force a dark theme on all websites) */,
 body {
-	background-color: var(--_bg-color);
+	background-color: oklch(99.836% 0.0079 106.54deg)
+		/* 本来の意図は `oklch(from var(--color-yellow) l c h / 2.5%)` だが、iOS Vivaldi の強制ダークテーマのためにアルファチャネルなしの表現で代用 */;
 	color: inherit;
+
+	@media print {
+		background-color: var(--color-white);
+	}
 }
 
 :focus {
@@ -39,11 +42,15 @@ body {
 :any-link {
 	outline-offset: var(--outline-offset);
 
-	/* for iOS Firefox auto link https://github.com/mozilla-mobile/firefox-ios/issues/8511 */
+	/* for iOS auto link */
 	&[href^="tel:"] {
-		text-decoration-line: none;
-		color: inherit;
+		text-decoration-line: unset;
+		color: unset;
 		pointer-events: none;
+	}
+
+	&:focus {
+		text-decoration-line: unset;
 	}
 
 	&:not([href^="tel:"]):hover {
@@ -76,7 +83,6 @@ em {
 
 small {
 	font-size: calc(100% / pow(var(--font-ratio), 2));
-	font-weight: var(--font-weight-normal);
 }
 
 cite:lang(zh) {
@@ -100,25 +106,15 @@ dfn {
 
 code:not([class]) {
 	border-radius: var(--border-radius-normal);
-	background-color: var(--color-ultralightgreen);
+	background-color: oklch(from var(--color-green) 100% c h / 5%);
 	padding-block: 0.25em;
 	color: var(--color-green);
 
-	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, a) & {
+	:is(h1, h2, h3, h4, h5, h6, hgroup, pre, :any-link) & {
 		border-radius: initial;
 		background-color: initial;
 		padding-block: initial;
 		color: inherit;
-	}
-
-	/* for Chrome, Safari */
-	:visited & {
-		color: var(--link-color-visited);
-	}
-
-	/* for Chrome, Safari */
-	:visited:hover & {
-		color: var(--link-color-hover);
 	}
 }
 
@@ -127,29 +123,28 @@ var {
 }
 
 mark {
-	border: 1px solid var(--color-lightyellow);
-	background-color: var(--color-lightyellow);
+	background-color: oklch(from var(--color-yellow) l calc(c - 0.05) h);
 	font-weight: var(--font-weight-bold);
 
 	@media print {
-		border-color: currentColor;
+		outline: 1px solid currentColor;
 	}
 }
 
 ins:not(.adsbygoogle) {
-	background-color: var(--color-verylightred);
+	background-color: var(--bgcolor-lightred);
 	text-decoration-style: dashed;
-	color: var(--color-red);
+	color: oklch(from var(--color-red) calc(l - 0.079) c h);
 }
 
 del {
-	background-color: var(--color-bg-light);
+	background-color: var(--bgcolor-dark);
 	text-decoration-style: double;
 	color: var(--color-gray);
 }
 
 input:is([type="radio" i], [type="checkbox" i]) {
-	accent-color: var(--color-skyblue);
+	accent-color: var(--form-control-theme-color);
 }
 
 w0s-input-switch {
@@ -159,7 +154,6 @@ w0s-input-switch {
 }
 
 x-popover {
-	--_border-color: var(--color-border-light);
 	--_hide-button-padding: 6px;
 	--_hide-button-image-size: 24px;
 
@@ -167,8 +161,9 @@ x-popover {
 
 	&::part(content) {
 		outline-offset: -1px;
-		border: 1px solid var(--_border-color);
+		border: 1px solid var(--border-color-light);
 		border-radius: var(--border-radius-normal);
+		box-shadow: var(--box-shadow-length-standout) var(--box-shadow-color);
 		background-color: var(--color-white);
 		padding: 15px;
 		max-inline-size: min(30em, 100%);
@@ -180,10 +175,6 @@ x-popover {
 		outline: var(--outline-width-bold) solid var(--outline-color);
 	}
 
-	&::part(content):hover {
-		box-shadow: 0 0 0.5em var(--_border-color);
-	}
-
 	&::part(content)::before {
 		display: block flow;
 		float: inline-end;
@@ -193,22 +184,19 @@ x-popover {
 	}
 
 	&::part(hide-button) {
-		--_background-color: transparent;
-
 		position: absolute;
 		inset-block-start: 1px;
 		inset-inline-end: 1px;
 		outline-offset: -1px;
 		border-style: none;
 		border-radius: var(--border-radius-normal);
-		background-color: var(--_background-color);
+		background-color: transparent;
 		padding: var(--_hide-button-padding);
 	}
 
 	&::part(hide-button):hover {
-		--_background-color: var(--color-bg-superlight);
-
-		outline: 1px solid var(--color-bg-light);
+		outline: 1px solid var(--border-color-light);
+		background-color: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
 	}
 
 	&::part(hide-button):focus {

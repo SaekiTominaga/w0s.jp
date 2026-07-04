@@ -17,6 +17,11 @@ const { name, current, hidden, jsClassName } = Astro.props;
 <style>
 	@layer component {
 		li {
+			--_step-arrow-color: var(--color-white); /* 矢印の色 */
+			--_step-arrow-inline-size: 2px; /* 矢印の幅 */
+			--_step-arrow-block-size: 1em; /* 矢印の高さ */
+			--_step-arrow-inclination: 0.6; /* 矢印の傾斜度（高さに対する割合、 1 = 45°） */
+
 			position: relative;
 			flex-grow: 1;
 			margin-inline-end: var(--_step-arrow-inline-size);
@@ -45,7 +50,7 @@ const { name, current, hidden, jsClassName } = Astro.props;
 
 		.text {
 			--_color: var(--color-black);
-			--_bg-color: var(--color-bg-verydark);
+			--_bg-color: oklch(from var(--color-white) calc(l - 1 / 8) c h);
 
 			display: block flow;
 			background-color: var(--_bg-color);
@@ -65,7 +70,7 @@ const { name, current, hidden, jsClassName } = Astro.props;
 
 			&.-current {
 				--_color: var(--color-darkgray);
-				--_bg-color: var(--color-lightred);
+				--_bg-color: oklch(from var(--color-pink) calc(l + 0.1) c h);
 
 				font-weight: var(--font-weight-bold);
 			}

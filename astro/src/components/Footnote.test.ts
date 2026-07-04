@@ -32,7 +32,7 @@ test('normal', async () => {
 	expect(listItems.at(0)?.querySelector('.no')?.textContent.trim()).toBe('1.');
 	expect(listItems.at(1)?.querySelector('.content')?.id).toBe('prefix2');
 	expect(listItems.at(2)?.querySelector('.content > p')?.innerHTML.trim()).toMatch(
-		/three<em>em<\/em>\n\t+<a href="#refprefix3" class="backref astro-[a-z0-9]+" data-astro-source-file=".+" data-astro-source-loc="[0-9]{2}:[0-9]{2}">\n\t+↩ 戻る\n\t+<\/a>/v,
+		/three<em>em<\/em>\n\t+<a href="#refprefix3" class="backref astro-[a-z0-9]+">\n\t+↩ 戻る\n\t+<\/a>/v,
 	);
 });
 

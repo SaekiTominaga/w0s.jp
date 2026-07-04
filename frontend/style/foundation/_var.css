@@ -1,499 +1,90 @@
-/**
- * ページ全体設定
- */
-
-/* ページの最大幅 */
-@property --page-max-width {
-	syntax: "<length>";
-	inherits: true;
-	initial-value: 1280px;
-}
-
-/* コンテンツエリアの最大幅 */
-@property --page-content-width {
-	syntax: "<length>";
-	inherits: false;
-	initial-value: 1024px;
-}
-
-/* ページの左右の余白 */
-@property --page-padding-inline {
-	syntax: "<length>";
-	inherits: false;
-	initial-value: 10px;
-}
-
-/* ページ文字色 */
-@property --page-color {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #000;
-}
-
-/* ページ背景色 */
-@property --page-bg-color {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fffff9;
-}
-
-/* デフォルトのフォントサイズ 12px=75%, 13px=81.3%, 14px=87.5%, 15px=93.8%, 16px=100%, 17px=106.3%, 18px=112.5% */
-@property --page-font-size {
-	syntax: "<percentage>";
-	inherits: false;
-	initial-value: 100%;
-}
-
-/**
- * border
- */
-@property --border-radius-small {
-	syntax: "*";
-	inherits: false;
-	initial-value: 0.125em;
-}
-
-@property --border-radius-normal {
-	syntax: "*";
-	inherits: false;
-	initial-value: 0.25em;
-}
-
-@property --border-radius-large {
-	syntax: "*";
-	inherits: false;
-	initial-value: 0.5em;
-}
-
-@property --border-radius-full {
-	syntax: "*";
-	inherits: false;
-	initial-value: 1em;
-}
-
-/**
- * 色
- */
-@property --color-white {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fff;
-}
-
-@property --color-lightgray {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #999;
-}
-
-@property --color-gray {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #666;
-}
-
-@property --color-darkgray {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #333;
-}
-
-@property --color-black {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #000;
-}
-
-@property --color-verylightred {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fee;
-}
-
-@property --color-lightred {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fdd;
-}
-
-@property --color-red {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #e00; /* --page-bg-color に対してコントラスト比 4.5:1 を満たす限界値 */
-}
-
-@property --color-darkred {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #df0000; /* --color-verylightred に対してコントラスト比 4.5:1 を満たす限界値 */
-}
-
-@property --color-lightpink {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fef;
-}
-
-@property --color-pink {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fbc;
-}
-
-@property --color-lightpurple {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #be00ff; /* --page-bg-color に対してコントラスト比 4.5:1 を満たす限界値 */
-}
-
-@property --color-purple {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #90f;
-}
-
-@property --color-ultralightgreen {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #f9fff9;
-}
-
-@property --color-superlightgreen {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #efe;
-}
-
-@property --color-verylightgreen {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #cfc;
-}
-
-@property --color-lightgreen {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #90ee90;
-}
-
-@property --color-green {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #008900; /* --page-bg-color, --color-ultralightgreen に対してコントラスト比 4.5:1 を満たす限界値 */
-}
-
-@property --color-darkgreen {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #060;
-}
-
-@property --color-yellowgreen {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #cf4;
-}
-
-@property --color-lightyellow {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #ffc;
-}
-
-@property --color-yellow {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #ff6;
-}
-
-@property --color-superlightblue {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #eff;
-}
-
-@property --color-lightblue {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #9ff;
-}
-
-@property --color-paleturquoise {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #afeeee;
-}
-
-@property --color-skyblue {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #006aff; /* --page-bg-color, --color-superlightblue に対してコントラスト比 4.5:1 を満たす限界値 */
-}
-
-@property --color-blue {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #00f;
-}
-
-@property --color-darkblue {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #00008b;
-}
-
-@property --color-lightorange {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fec;
-}
-
-@property --color-orange {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #fb9;
-}
-
-@property --color-border-light {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #ccc;
-}
-
-@property --color-border-dark {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #999;
-}
-
-@property --color-bg-superlight {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #f9f9f9;
-}
-
-@property --color-bg-verylight {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #f2f2f2;
-}
-
-@property --color-bg-light {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #eee;
-}
-
-@property --color-bg-verydark {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #ccc;
-}
-
-/**
- * フォント
- */
-@property --font-ratio {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 1.12;
-}
-
-/* 遊ゴシック */
-@property --font-yu-gothic {
-	syntax: "*";
-	inherits: false;
-	initial-value: "YuGothic", "Yu Gothic", sans-serif;
-}
-
-/* 遊明朝 */
-@property --font-yu-mincho {
-	syntax: "*";
-	inherits: false;
-	initial-value: "YuMincho", "Yu Mincho", serif;
-}
-
-/* 等幅 */
-@property --font-monospace {
-	syntax: "*";
-	inherits: false;
-	initial-value: monospace, serif; /* 'serif' 指定は Chrome 13px 対策 */
-}
-
-@property --font-weight-normal {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 500; /* Windows + 游ゴシック 対策で 400 より大きな値とする */
-}
-
-@property --font-weight-bold {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 700;
-}
-
-/**
- * テキスト
- */
-
-/* 広い行高さ（本文など） */
-@property --line-height-wide {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 1.8;
-}
-
-/* 通常の行高さ */
-@property --line-height-normal {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 1.5;
-}
-
-/* 狭い行高さ（見出しやボタンなど） */
-@property --line-height-narrow {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 1.25;
-}
-
-/* 改行しない文の行高さ */
-@property --line-height-nowrap {
-	syntax: "<number>";
-	inherits: false;
-	initial-value: 1;
-}
-
-/**
- * リンク
- */
-
-/* 未訪問リンク */
-@property --link-color {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #00f;
-}
-
-/* 既訪問リンク */
-@property --link-color-visited {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #800080;
-}
-
-/* マウスオーバー時の文字色 */
-@property --link-color-hover {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #d00;
-}
-
-/* ビュレット色 */
-@property --link-color-bullet {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #0bb;
-}
-
-/* マウスオーバー時の変化時間 */
-@property --link-hover-transition-duration {
-	syntax: "<time>";
-	inherits: false;
-	initial-value: 0.2s;
-}
-
-/**
- * フォーカスリング
- */
-@property --outline-width {
-	syntax: "<length>";
-	inherits: false;
-	initial-value: 1px;
-}
-
-@property --outline-width-bold {
-	syntax: "<length>";
-	inherits: false;
-	initial-value: 2px;
-}
-
-@property --outline-color {
-	syntax: "<color>";
-	inherits: false;
-	initial-value: #4d90fe;
-}
-
-@property --outline-offset {
-	syntax: "<length>";
-	inherits: false;
-	initial-value: 1px;
-}
-
-@property --outline-offset-linkonly {
-	syntax: "*";
-	inherits: false;
-	initial-value: 0.125em;
-}
-
-/**
- * フォーム
- */
-@property --form-control-padding {
-	syntax: "*";
-	inherits: false;
-	initial-value: 0.5em;
-}
-
-/**
- * Stack
- */
-@property --stack-margin-base {
-	syntax: "*";
-	inherits: false;
-	initial-value: 1.5rem;
-}
-
-/**
- * セルフリンク
- */
-@property --self-link-size {
-	syntax: "*";
-	inherits: false;
-	initial-value: 2.6ex;
-}
-
-/**
- * 図形
- */
-
-/* リンクアイコン ( ▶ ) */
-@property --shape-link-triangle {
-	syntax: "*";
-	inherits: false;
-	initial-value: polygon(0 0, 100% 50%, 0 100%);
-}
-
-/* リンクアイコン ( ▼ ) */
-@property --shape-pagelink-triangle {
-	syntax: "*";
-	inherits: false;
-	initial-value: polygon(0 0, 100% 0, 50% 100%);
-}
-
-/* リンクアイコン ( > ) */
-@property --shape-link-arrow {
-	syntax: "*";
-	inherits: false;
-	initial-value: polygon(17.68% 0, 100% 50%, 17.68% 100%, 0 88.21%, 64.64% 50%, 0 11.79%);
-}
-
 :root {
-	/* ページの左右の余白 */
-	--page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline));
+	/* ===== color ===== */
+	--color-black: oklch(0% 0 0deg); /* #000000 */
+	--color-white: oklch(100% 0 0deg); /* #ffffff */
+	--color-pink: oklch(86.774% 0.0735 7.086deg); /* #ffc0cb */
+	--color-red: oklch(62.8% 0.258 29.234deg); /* #ff0000 */
+	--color-orange: oklch(79.269% 0.171 70.67deg); /* #ffa500 */
+	--color-yellow: oklch(96.798% 0.211 109.77deg); /* #ffff00 */
+	--color-green: oklch(51.975% 0.1769 142.5deg); /* #008000 */
+	--color-aqua: oklch(90.54% 0.1546 194.77deg); /* #00ffff */
+	--color-blue: oklch(45.201% 0.3132 264.05deg); /* #0000ff */
+	--color-purple: oklch(42.091% 0.1935 328.36deg); /* #800080 */
 
-	/**
-	 * フォーム
-	 */
-	--invalid-border-color: var(--color-red);
+	--color-lightgray: oklch(from var(--color-white) calc(l - 1 / 4) c h);
+	--color-gray: oklch(from var(--color-white) calc(l - 2 / 4) c h);
+	--color-darkgray: oklch(from var(--color-white) calc(l - 3 / 4) c h);
+
+	--color-red-text: oklch(from var(--color-red) calc(l - 0.044) c h); /* ページ背景色に対してコントラスト比 4.5:1 を満たす限界値 */
+
+	/* ===== color ===== */
+	--bgcolor-light: oklch(from var(--color-white) calc(l - 1 / 32) c h);
+	--bgcolor-dark: oklch(from var(--color-white) calc(l - 2 / 32) c h);
+	--bgcolor-lightred: oklch(from var(--color-red) 100% calc(c - 0.2) h);
+	--bgcolor-red: oklch(from var(--color-red) calc(l - 0.044) c h); /* 白文字に対してコントラスト比 4.5:1 を満たす限界値 */
+	--bgcolor-lightblue: oklch(from var(--color-blue) 100% calc(c - 0.25) h);
+
+	--bgcolor-hover-l: calc(1 / 32); /* マウスオーバー時の明度（L値）変化 */
+
+	/* ===== border ===== */
+	--border-radius-small: 0.125em;
+	--border-radius-normal: 0.25em;
+	--border-radius-large: 0.5em;
+	--border-radius-full: 1em;
+	--border-color-light: oklch(from var(--color-white) calc(l - 1 / 8) c h);
+	--border-color-dark: oklch(from var(--color-white) calc(l - 2 / 8) c h);
+
+	/* ===== shadow ===== */
+	--box-shadow-length: 0 0 3px;
+	--box-shadow-length-standout: 0 0 6px 1px;
+	--box-shadow-color: var(--border-color-light);
+
+	--text-shadow-length: 0 0 0.05em;
+	--text-shadow-color: oklch(from currentColor l c h / 25%);
+
+	/* ===== text ===== */
+	--line-height-wide: 1.8; /* 広い行高さ（本文など） */
+	--line-height-normal: 1.5; /* 通常の行高さ */
+	--line-height-narrow: 1.25; /* 狭い行高さ（見出しやボタンなど） */
+	--line-height-nowrap: 1; /* 改行しない文の行高さ */
+
+	/* ===== font ===== */
+	--font-ratio: 1.12;
+	--font-monospace: monospace, serif; /* 等幅（'serif' 指定は Chrome 13px 対策） */
+	--font-weight-bold: 700;
+
+	/* ===== Stack ===== */
+	--stack-margin-base: 1.5rem;
+
+	/* ===== リンク ===== */
+	--link-color: oklch(from var(--color-blue) calc(l + 0.1) c h); /* 未訪問リンクの文字色 */
+	--link-color-visited: oklch(from var(--color-purple) calc(l + 0.05) c h); /* 既訪問リンクの文字色 */
+	--link-color-hover: oklch(from var(--color-red) calc(l - 0.1) c h); /* マウスオーバー時の文字色 */
+	--link-color-bullet: oklch(from var(--color-aqua) calc(l - 0.2) c h); /* ビュレット色 */
+	--link-hover-transition-duration: 0.2s; /* マウスオーバー時の変化時間 */
+
+	/* ===== フォーカスリング ===== */
+	--outline-width: 1px;
+	--outline-width-bold: 2px;
+	--outline-color: oklch(from var(--color-blue) calc(l + 0.25) c h);
+	--outline-offset: 1px;
+	--outline-offset-linkonly: 0.125em;
+
+	/* ===== フォーム ===== */
+	--form-control-padding-block: 0.5rem;
+	--form-control-theme-color: oklch(58.851% 0.1602 248.45deg);
+
+	/* ===== セルフリンク ===== */
+	--self-link-size: 2.6ex;
+
+	/* ===== 図形 ===== */
+	--shape-link-triangle: polygon(0 0, 100% 50%, 0 100%); /* リンクアイコン ( ▶ ) */
+	--shape-pagelink-triangle: polygon(0 0, 100% 0, 50% 100%); /* リンクアイコン ( ▼ ) */
+	--shape-link-arrow: polygon(17.68% 0, 100% 50%, 17.68% 100%, 0 88.21%, 64.64% 50%, 0 11.79%); /* リンクアイコン ( > ) */
+
+	/* ===== ページ全体設定 ===== */
+	--page-max-width: 1280px; /* ページの最大幅 */
+	--page-content-width: 1024px; /* コンテンツエリアの最大幅 */
+	--page-padding-inline: 10px; /* ページの左右の余白 */
+	--page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline)); /* ページの左右の余白 */
 }
