@@ -43,6 +43,14 @@ export const contact = {
 				});
 			}
 
+			/* 本文の NG ワード */
+			if (configContact.NGWords.some((ngWord) => input.body.includes(ngWord))) {
+				throw new ActionError({
+					code: 'BAD_REQUEST',
+					message: `The body text contains NG word`,
+				});
+			}
+
 			if (!/[\u3040-\u30FF\u4E00-\u9FFF]/u.test(input.body)) {
 				/* 内容に日本語を含まない場合は追加のチェックを行う */
 				if (elapsedTime < configContact.elapsedTime * 1000) {
