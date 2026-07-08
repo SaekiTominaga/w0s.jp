@@ -108,11 +108,7 @@ export default class Contact {
 					}
 
 					const formCtrls = this.#formElement.elements.namedItem(formCtrlName) as
-						| HTMLInputElement
-						| HTMLSelectElement
-						| HTMLTextAreaElement
-						| RadioNodeList
-						| undefined;
+						HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | RadioNodeList | undefined;
 
 					if (formCtrls === undefined) {
 						throw new Error(`name: ${formCtrlName} is none.`);
