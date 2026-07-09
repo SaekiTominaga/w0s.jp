@@ -10,7 +10,7 @@ const { id, full, scroll, font } = Astro.props;
 ---
 
 <div id={id} class:list={['table', { '-full': full }, { '-scroll': scroll }, { '-font-small': font === 'small' }]}>
-	<table>
+	<table class="js-thead-sticky-table">
 		<slot />
 	</table>
 </div>
@@ -18,8 +18,8 @@ const { id, full, scroll, font } = Astro.props;
 <style>
 	@layer component {
 		.table {
-			--_caption-text-align: center;
 			--stickey-thead-block-size: 1em;
+			--_caption-text-align: center;
 			--_border-color: var(--border-color-dark);
 			--_color: var(--color-black);
 			--_bg-color: var(--color-white);
