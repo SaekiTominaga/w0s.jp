@@ -9,7 +9,7 @@ import formSubmitOverlay from '@w0s/form-submit-overlay';
 import inputDateToText from '@w0s/input-date-to-text';
 import InputSwitch from '@w0s/input-switch';
 import { convert } from '@w0s/string-convert';
-import TableTheadStickey from './component/TableTheadStickey.ts';
+import tableTheadStickey from './component/tableTheadStickey.ts';
 import adsense from './unique/adsense.ts';
 import { blogNewly } from './unique/sidebar.ts';
 import reportJsError from './util/reportJsError.ts';
@@ -55,13 +55,7 @@ inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
 formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
 
 /* <thead> の sticky スクロール量調整 */
-if (document.querySelector('.p-table > :is(tbody, tfood) [id]') !== null) {
-	document.querySelectorAll<HTMLTableElement>('.p-table').forEach((tableElement) => {
-		if (tableElement.querySelector(':scope > :is(tbody, tfood) [id]') !== null) {
-			new TableTheadStickey(tableElement).init();
-		}
-	});
-}
+tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
 
 /* 指定位置スクロール */
 document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
