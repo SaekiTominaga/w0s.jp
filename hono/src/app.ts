@@ -1,0 +1,224 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { Hono } from 'hono';
+import { compress } from 'hono/compress';
+import { HTTPException } from 'hono/http-exception';
+import { type HttpBindings, serve } from '@hono/node-server';
+import { serveStatic } from '@hono/node-server/serve-static';
+import { RESPONSE_ALREADY_SENT } from '@hono/node-server/utils/response';
+import type { Logger } from 'winston';
+import { env } from '@w0s/env-value-type';
+import { escape } from '@w0s/html-escape';
+// @ts-expect-error: ts(7016)
+import { handler as ssrHandler } from '../../astro/dist/server/entry.mjs';
+import { getLogger } from './logger.ts';
+import config from './config/hono.ts';
+import { basicAuth } from './util/auth.ts';
+import { csp as cspHeader, reportingEndpoints as reportingEndpointsHeader } from './util/httpHeader.ts';
+
+export interface Variables {
+	logger: Logger;
+}
+
+const app = new Hono<{ Variables: Variables; Bindings: HttpBindings }>();
+
+/* Logger */
+app.use(async (context, next) => {
+	context.set('logger', getLogger(context.req.path.substring(1)));
+	await next();
+});
+
+/* Redirect */
+config.redirect.forEach(({ from, to }) => {
+	if (!to.startsWith('/') && !URL.canParse(to)) {
+		throw new Error(`The path of the redirect destination must begin with a URL or U+002F (slash): ${to}`);
+	}
+
+	app.get(from, (context) => {
+		const { req } = context;
+		const logger = context.get('logger');
+
+		let redirectPath = to;
+		Object.entries(req.param()).forEach(([, paramValue], index) => {
+			if (typeof paramValue !== 'string') {
+				throw new Error('Parameter value is not of type `string`');
+			}
+			redirectPath = redirectPath.replace(`$${String(index + 1)}`, paramValue);
+		});
+		logger.debug(`redirect: ${req.url} → ${redirectPath}`);
+
+		return context.html(
+			`<!DOCTYPE html>
+<html lang=ja>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>ページ移動</title>
+<p>このページは <a href="${escape(redirectPath)}"><code>${escape(redirectPath)}</code></a> に移動しました。`,
+			301,
+			{ Location: redirectPath },
+		);
+	});
+});
+
+/* Compress */
+app.use(
+	compress({
+		threshold: config.response.compression.threshold,
+	}),
+);
+
+/* Headers */
+app.use(async (context, next) => {
+	/* HSTS */
+	context.header('Strict-Transport-Security', config.response.header.hsts);
+
+	/* CSP */
+	context.header('Content-Security-Policy', cspHeader(config.response.header.csp));
+
+	/* Report */
+	context.header('Reporting-Endpoints', reportingEndpointsHeader(config.response.header.reportingEndpoints));
+
+	/* MIME スニッフィング抑止 */
+	context.header('X-Content-Type-Options', 'nosniff');
+
+	await next();
+});
+
+/* Auth */
+await Promise.all(
+	config.basicAuth.map(async ({ paths, realm, env: envKey }) => {
+		const basicAuthHandler = await basicAuth({
+			authFilePath: `${env('ROOT')}/${env('AUTH_DIR')}/${env(envKey)}`,
+			realm: realm,
+		});
+
+		paths.forEach((routingPath) => {
+			app.use(routingPath, basicAuthHandler);
+		});
+	}),
+);
+
+/* Static files */
+app.use(
+	serveStatic({
+		root: config.static.root,
+		index: config.static.index,
+		precompressed: true,
+		rewriteRequestPath: (urlPath) => {
+			if (!urlPath.endsWith('/') && !urlPath.includes('.')) {
+				/* 拡張子のない URL（e.g. /foo ） */
+				const extension = config.static.extensions.find((ext) => fs.existsSync(`${config.static.root}${urlPath}${ext}`));
+				if (extension !== undefined) {
+					return `${urlPath}${extension}`;
+				}
+			}
+
+			return urlPath;
+		},
+		onFound: (localPath, context) => {
+			const { res } = context;
+
+			const urlPath = localPath.substring(config.static.root.length).replace(/\.br$/v, '').replaceAll(path.sep, '/'); // URL のパス部分 e.g. ('/foo.html')
+			const urlExtension = path.extname(urlPath); // URL の拡張子部分 (e.g. '.html')
+
+			/* Content-Type; hono 公式に登録されていない MIME タイプを設定 */
+			const contentTypeRecord =
+				Object.entries(config.static.headers.contentType.path).find(([ctPath]) => ctPath === urlPath) ??
+				Object.entries(config.static.headers.contentType.extension).find(([ctExt]) => ctExt === urlExtension);
+			if (contentTypeRecord !== undefined) {
+				const [, contentType] = contentTypeRecord;
+				res.headers.set('Content-Type', contentType);
+			}
+
+			/* Cache-Control */
+			const cacheControl =
+				config.static.headers.cacheControl.path?.find((ccPath) => ccPath.paths.includes(urlPath))?.value ??
+				config.static.headers.cacheControl.extension.find((ccExt) => ccExt.extensions.includes(urlExtension))?.value ??
+				config.static.headers.cacheControl.default;
+			res.headers.set('Cache-Control', cacheControl);
+
+			/* SourceMap */
+			if (config.static.headers.sourceMap.includes(urlExtension)) {
+				const mapPath = `${urlPath}.map`;
+
+				res.headers.set('SourceMap', path.basename(mapPath));
+			}
+
+			/* CSP */
+			if (['.html'].includes(urlExtension)) {
+				res.headers.set('Content-Security-Policy', cspHeader(config.response.header.cspHtml));
+				res.headers.set('Content-Security-Policy-Report-Only', cspHeader(config.response.header.csproHtml));
+			}
+		},
+	}),
+);
+
+/* SSR */
+app.use(async (context, next) => {
+	const { incoming, outgoing } = context.env;
+
+	await ssrHandler(incoming, outgoing, next);
+
+	return RESPONSE_ALREADY_SENT;
+});
+
+/* Error pages */
+app.notFound(async (context) => {
+	const logger = context.get('logger');
+
+	logger.warn(`404 Not Found: ${context.req.method} ${context.req.url}`);
+
+	const html = (await fs.promises.readFile(path.resolve(`${config.static.root}/${config.errorpage.notfound}`))).toString();
+	return context.html(html, 404);
+});
+app.onError(async (err, context) => {
+	const logger = context.get('logger');
+
+	let htmlFilePath = config.errorpage.serverError;
+	const headers = new Headers();
+
+	if (err instanceof HTTPException) {
+		if (err.status >= 400 && err.status < 500) {
+			switch (err.status) {
+				case 401: {
+					htmlFilePath = config.errorpage.unauthorized;
+
+					/* 手動で `WWW-Authenticate` ヘッダーを設定 https://github.com/honojs/hono/issues/952 */
+					const wwwAuthenticate = err.res?.headers.get('WWW-Authenticate');
+					if (wwwAuthenticate !== null && wwwAuthenticate !== undefined) {
+						headers.set('WWW-Authenticate', wwwAuthenticate);
+					}
+					break;
+				}
+				default: {
+					htmlFilePath = config.errorpage.clientError;
+					logger.info(`${String(err.status)} ${err.message}`);
+				}
+			}
+		} else {
+			logger.error(err.message);
+		}
+	} else {
+		logger.error(err.stack);
+	}
+
+	const status = err instanceof HTTPException ? err.status : 500;
+
+	const html = (await fs.promises.readFile(path.resolve(`${config.static.root}/${htmlFilePath}`))).toString();
+	return context.html(html, status, Object.fromEntries(headers.entries()));
+});
+
+if (process.env['TEST'] !== 'test') {
+	const logger = getLogger(path.basename(import.meta.url));
+
+	serve(
+		{
+			fetch: app.fetch,
+			port: env('HONO_PORT', 'number'),
+		},
+		(info) => {
+			logger.info(`Server is running on http://localhost:${String(info.port)}`);
+		},
+	);
+}
+
+export default app;

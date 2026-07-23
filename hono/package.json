@@ -1,5 +1,5 @@
 {
-	"name": "express",
+	"name": "hono",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -7,23 +7,18 @@
 		"build": "tsc",
 		"lint": "eslint src",
 		"pretest": "tsc --noEmit",
-		"test": "node --experimental-test-coverage --test src/**/*.test.ts"
+		"test": "node --experimental-test-coverage --env-file=../.env.development --env-file=../.env.test --test src/**/*.test.ts"
 	},
 	"dependencies": {
+		"@hono/node-server": "2.0.9",
 		"@w0s/env-value-type": "2.0.0",
 		"@w0s/html-escape": "5.0.0",
-		"basic-auth": "2.0.1",
-		"compression": "1.8.1",
-		"express": "5.2.1",
-		"htpasswd-js": "1.0.2",
+		"hono": "4.12.22",
 		"nodemailer": "9.0.1",
 		"winston": "3.19.0",
 		"winston-transport": "4.9.0"
 	},
 	"devDependencies": {
-		"@types/basic-auth": "1.1.8",
-		"@types/compression": "1.8.1",
-		"@types/express": "5.0.6",
 		"@types/nodemailer": "8.0.0",
 		"tsx": "4.21.0"
 	},

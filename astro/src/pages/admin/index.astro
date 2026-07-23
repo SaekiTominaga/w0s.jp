@@ -1,0 +1,16 @@
+---
+import Layout from '@layouts/Admin.astro';
+import ListLink from '@components/ListLink.astro';
+import type { StructuredData } from '../../../@types/util.d.ts';
+
+const structuredData: StructuredData = {
+	title: '管理',
+};
+---
+
+<Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
+	<ListLink index={true}>
+		<li><a href="/admin/crawler-news/">ウェブ巡回・ニュース</a></li>
+		<li><a href="/admin/crawler-resource/">ウェブ巡回・リソース</a></li>
+	</ListLink>
+</Layout>

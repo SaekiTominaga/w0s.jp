@@ -61,7 +61,7 @@ export const getLogger = (name: string): winston.Logger => {
 					),
 					transports: [
 						new winston.transports.File({
-							filename: `${env('ROOT')}/${env('LOGGER_FILE_EXPRESS')}`,
+							filename: `${env('ROOT')}/${env('LOGGER_FILE_HONO')}`,
 						}),
 						new EmailTransport({
 							level: 'error',

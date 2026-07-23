@@ -38,7 +38,7 @@ export type SchemaOrgOrganization = Readonly<{
 
 export type StructuredDataErrorPage = Readonly<{
 	heading: string;
-	headingCode: string;
+	headingCode?: string;
 	moduleScripts?: readonly string[];
 }>;
 
