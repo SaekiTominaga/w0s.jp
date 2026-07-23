@@ -134,29 +134,21 @@ const config: HonoConfig = {
 				},
 			},
 			cacheControl: {
-				default: 'max-age=600',
+				default: 'max-age=600', // 10分
 				path: [
 					{
 						paths: ['/favicon.ico'],
-						value: 'max-age=604800',
+						value: 'max-age=604800', // 1週間
 					},
 				],
 				extension: [
 					{
-						extensions: ['.avif', '.webp', '.jpg', '.jpeg', '.png', '.svg'],
-						value: 'max-age=3600',
-					},
-					{
-						extensions: ['.webm'],
-						value: 'max-age=3600',
-					},
-					{
-						extensions: ['.m4a'],
-						value: 'max-age=3600',
+						extensions: ['.avif', '.webp', '.jpg', '.jpeg', '.png', '.svg', '.m4a', '.mp4', '.webm'],
+						value: 'max-age=3600', // 1時間
 					},
 					{
 						extensions: ['.woff2'],
-						value: 'max-age=2592000',
+						value: 'max-age=2592000', // 1か月
 					},
 					{
 						extensions: ['.map'],
