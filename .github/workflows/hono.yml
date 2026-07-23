@@ -1,9 +1,9 @@
-name: Express project
+name: Hono project
 
 on:
   pull_request:
     paths:
-      - 'express/**'
+      - 'hono/**'
       - 'package.json'
   workflow_dispatch:
 
@@ -35,8 +35,8 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: Run lint
-        run: pnpm -F express lint
-  test:
+        run: pnpm -F hono lint
+  tscheck:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -56,5 +56,5 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Run test
-        run: pnpm -F express test
+      - name: Run tsc
+        run: pnpm -F hono exec tsc --noEmit
