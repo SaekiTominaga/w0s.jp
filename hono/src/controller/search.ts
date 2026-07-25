@@ -34,6 +34,7 @@ const getURL = (params: Readonly<{ site: Site; engine: Engine; q: string }>): st
 		}
 		case 'bing': {
 			urlSearchParams.append('q', `${q} site:${getSite(site)}`); // https://support.microsoft.com/en-us/bing/advanced-search-keywords
+			urlSearchParams.append('rdr', '1');
 
 			return `https://www.bing.com/search?${urlSearchParams.toString()}`;
 		}
@@ -61,10 +62,10 @@ export const searchApp = new Hono<{ Variables: Variables }>().get(validatorParam
 
 	return context.html(
 		`<!DOCTYPE html>
-	<html lang=ja>
-	<meta name=viewport content="width=device-width,initial-scale=1">
-	<title>ページ移動</title>
-	<p>検索結果は次の URL で取得できます。 <a href="${escape(redirectUrl)}"><code>${escape(redirectUrl)}</code></a>`,
+<html lang=ja>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>ページ移動</title>
+<p>検索結果は次の URL で取得できます。 <a href="${escape(redirectUrl)}"><code>${escape(redirectUrl)}</code></a>`,
 		301,
 		{ Location: redirectUrl },
 	);

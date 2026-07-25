@@ -88,7 +88,7 @@ await test('engine', async (t) => {
 		const res = await app.request('/search?engine=bing&q=text');
 
 		assert.equal(res.status, 301);
-		assert.equal(res.headers.get('location'), 'https://www.bing.com/search?q=text+site%3Aw0s.jp');
+		assert.equal(res.headers.get('location'), 'https://www.bing.com/search?q=text+site%3Aw0s.jp&rdr=1');
 	});
 
 	await t.test('ddg', async () => {
