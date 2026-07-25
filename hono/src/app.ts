@@ -13,6 +13,7 @@ import { escape } from '@w0s/html-escape';
 import { handler as ssrHandler } from '../../astro/dist/server/entry.mjs';
 import { getLogger } from './logger.ts';
 import config from './config/hono.ts';
+import { searchApp } from './controller/search.ts';
 import { basicAuth } from './util/auth.ts';
 import { csp as cspHeader, reportingEndpoints as reportingEndpointsHeader } from './util/httpHeader.ts';
 
@@ -151,6 +152,9 @@ app.use(
 		},
 	}),
 );
+
+/* Routes */
+app.route('/search', searchApp);
 
 /* SSR */
 app.use(async (context, next) => {
