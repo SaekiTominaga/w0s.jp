@@ -20,6 +20,15 @@ export default [
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',
+			'import/no-extraneous-dependencies': [
+				'error',
+				{
+					devDependencies: true,
+					optionalDependencies: false,
+					peerDependencies: false,
+					bundledDependencies: false,
+				},
+			],
 		},
 	},
 	{

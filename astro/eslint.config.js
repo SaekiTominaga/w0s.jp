@@ -18,14 +18,6 @@ export default [
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
-		rules: {
-			'import/no-extraneous-dependencies': [
-				'error',
-				{
-					packageDir: ['../', './'],
-				},
-			],
-		},
 	},
 	{
 		files: ['**/*.astro'],
@@ -55,6 +47,10 @@ export default [
 			'import/no-extraneous-dependencies': [
 				'error',
 				{
+					devDependencies: false,
+					optionalDependencies: false,
+					peerDependencies: false,
+					bundledDependencies: false,
 					packageDir: ['../', './'],
 				},
 			],
@@ -69,6 +65,15 @@ export default [
 		files: ['build/**/*.ts'],
 		rules: {
 			'no-console': 'off',
+			'import/no-extraneous-dependencies': [
+				'error',
+				{
+					devDependencies: true,
+					optionalDependencies: false,
+					peerDependencies: false,
+					bundledDependencies: false,
+				},
+			],
 		},
 	},
 	{
@@ -96,6 +101,15 @@ export default [
 		rules: {
 			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-unsafe-argument': 'off',
+			'import/no-extraneous-dependencies': [
+				'error',
+				{
+					devDependencies: true,
+					optionalDependencies: false,
+					peerDependencies: false,
+					bundledDependencies: false,
+				},
+			],
 		},
 	},
 	{
