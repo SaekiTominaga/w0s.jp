@@ -7,6 +7,7 @@ import Section from '@components/Section.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
 import DocBook from '@components/+phrasing/DocBook.astro';
+import DocMagazine from '@components/+phrasing/DocMagazine.astro';
 import DocOfficial from '@components/+phrasing/DocOfficial.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import Licence from '@components/tokyu/Licence.astro';
@@ -15,7 +16,7 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '目黒蒲田電鉄、東京横浜電鉄　機関車&貨車　車歴表',
-	dateModified: '2026-05-17',
+	dateModified: '2026-07-31',
 	description: '目黒蒲田電鉄と東京横浜電鉄の開通から両社の合併（1939年）を経て、東京急行電鉄成立（1942年）までの鉄道線の機関車と貨車のうごきをまとめました。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
@@ -280,6 +281,16 @@ const structuredData: StructuredData = {
 		<Note>ト1形とフト10形の新旧車号対照は認可書類からは特定できない。上表は若い順に変更されたと仮定している。</Note>
 	</Section>
 
+	<Section id="ome">
+		<Fragment slot="heading">青梅鉄道借入車<small>（無車籍）</small></Fragment>
+
+		<p>目黒蒲田電鉄の創業期を知る社員の話で、開通当初に車両不足によって青梅鉄道<small>（現：JR青梅線の立川―御嶽間）</small>より車両を借り入れて砂利輸送に使用したとの証言があります<NoteRef type="ref" by="seiwa6-11" />。路線長が5哩2分で旅客車両数が5両の時代なので、目黒―丸子間の開通（<DateWareki value="1923-03" />）から丸子―蒲田間の延伸（同年11月）までの間の出来事といえるでしょう。</p>
+
+		<NoteRefContent id="seiwa6-11"><DocMagazine name="清和" date="第6巻第11号" article="創業以來の先輩社員に訊く　思い出の座談會" pages={[46, 47]} /></NoteRefContent>
+
+		<p>しかし車両としての許認可を取った形跡がなく、また統計資料にも現れていないため車種や両数は不明です。このことから砂利輸送とは蒲田線の建設工事におけるバラスト輸送のことであり、無車籍で使われたのち、後述の<a href="#to5">ト5形</a>入線と前後して短期間で返却されたものと推測します。</p>
+	</Section>
+
 	<Section id="futo1">
 		<Fragment slot="heading">フト1形 → ト15形</Fragment>
 
@@ -337,17 +348,19 @@ const structuredData: StructuredData = {
 	<Section id="to5">
 		<Fragment slot="heading">ト5形<small>（初代）</small>→ ト5形<small>（2代目）</small></Fragment>
 
-		<p>上州鉄道<small>（現：東武鉄道小泉線）</small>より譲り受けた9トン積み無蓋車で、<DateWareki value="1923-10" />に譲受認可を受けているのですが、竣功はそれから3年半以上もの期間が経った<DateWareki value="1927-06" />となっています。この車両は同社が中原鉄道と名乗っていた<DateWareki value="1921-08" />に鉄道省ト9115形9141号およびト9183形9187号の払い下げを受けたもので、後者はもとを辿れば日本鉄道の乙31号形<NoteRef type="ref" by="nittetsu-otsu31" />となります。</p>
+		<p>上州鉄道<small>（現：東武鉄道小泉線）</small>より譲り受けた9トン積み無蓋車で、<DateWareki value="1923-10" />に譲受認可を受けているのですが、竣功はそれから3年半以上もの期間が経った<DateWareki value="1927-06" />となっています。しかし<cite>営業報告書</cite>による<DateWareki value="1923-11-30" />時点の客貨車表にはすでに9トン積み無蓋車が2両含まれており、一方で上州鉄道側では<cite>鉄道統計資料</cite>によると前年度まで計上されていた無蓋車2両が0に減っているため<NoteRef type="ref" by="statistics1923" />、実際は認可に前後して入線していたものと思われます。</p>
 
-		<NoteRefContent id="nittetsu-otsu31"><DocBook name="日本鉄道客車略図・貨車略図" authors={['鉄道史史料保存会']} year={1991} article={['貨車略図', '無蓋貨車　卯 5–20, 51–56.']} pages={[31]} url="https://dl.ndl.go.jp/pid/13151696/1/253" linkScope="page" /></NoteRefContent>
+		<NoteRefContent id="statistics1923"><DocBook name="大正十二年度　鐵道省鐵道統計資料" authors={['鐵道省']} year={1926} article={['第十編　監󠄂督', '第一章　地方鐵道', '第六　車輛']} pages={[58, 59]} url="https://dl.ndl.go.jp/pid/974248/1/501" linkScope="page" /></NoteRefContent>
 
-		<p>上州鉄道側の認可申請書類によると、譲渡の理由として<q>来ル大正十五年四月一日以降御省線内ヘ直通運轉不能ニ有之且ツ改修ニ多大ノ費用ヲ要スルヲ以テ此際賣却スル方有利</q>と記載されています<NoteRef type="ref" by="jyoshu1923-10-12" />。これは鉄道省貨車における自動連結器への一斉交換に関連して、<DateWareki value="1926-04-01" />より10トン積み未満の貨車直通が禁止されたことを表します<NoteRef type="ref" by="jidorenketsuki" />。</p>
+		<p>上州鉄道の認可申請書類によると、譲渡の理由として<q>来ル大正十五年四月一日以降御省線内ヘ直通運轉不能ニ有之且ツ改修ニ多大ノ費用ヲ要スルヲ以テ此際賣却スル方有利</q>と記載されています<NoteRef type="ref" by="jyoshu1923-10-12" />。これは鉄道省貨車における自動連結器への一斉交換に関連して、<DateWareki value="1926-04-01" />より10トン積み未満の貨車直通が禁止されたことを表します<NoteRef type="ref" by="jidorenketsuki" />。</p>
 
 		<NoteRefContent id="jyoshu1923-10-12"><DocOfficial company="上州鉄道" no="発第101号" date="1923-10-12" title="貨車譲渡認可申請" url="https://www.digital.archives.go.jp/item/503204" /></NoteRefContent>
 
 		<NoteRefContent id="jidorenketsuki"><DocBook name="鐵道車輛ノ連結器ヲ自動連結器ニ取替ニ關スル記錄" authors={['鉄道省']} year={1928} article={['第十七章　地方鐵道車輛竝私有貨車', '第五節　增噸工事']} pages={[236]} url="https://dl.ndl.go.jp/pid/1877648/1/146" linkScope="page" /></NoteRefContent>
 
-		<p>前歴の違いから2両の間で車体長や軸距、自重、さらに側面扉の有無などに差異があったものの、目黒蒲田電鉄の車両竣功図表では同一諸元とされてしまっています。またその際、車体サイズや自重、車輪径などは鉄道省時代のどちらの車両とも異なるものとなったため、譲受認可から竣功までの3年半の間に何らかの処置が行われたとみるべきでしょう。</p>
+		<p>この車両は同社が中原鉄道と名乗っていた<DateWareki value="1921-08" />に鉄道省ト9115形9141号およびト9183形9187号の払い下げを受けたもので、後者はもとを辿れば日本鉄道の乙31号形<NoteRef type="ref" by="nittetsu-otsu31" />となります。前歴の違いから2両の間で車体長や軸距、自重、さらに側面扉の有無などに差異があったものの、目黒蒲田電鉄の車両竣功図表では同一諸元とされてしまっています。またその際、車体サイズや自重、車輪径などは鉄道省時代のどちらの車両とも異なるものとなったため、譲受認可から竣功までの3年半の間に何らかの処置が行われたとみるべきでしょう。</p>
+
+		<NoteRefContent id="nittetsu-otsu31"><DocBook name="日本鉄道客車略図・貨車略図" authors={['鉄道史史料保存会']} year={1991} article={['貨車略図', '無蓋貨車　卯 5–20, 51–56.']} pages={[31]} url="https://dl.ndl.go.jp/pid/13151696/1/253" linkScope="page" /></NoteRefContent>
 
 		<p><DateWareki value="1928-08" />の付随貨車一斉改番では車号の変更こそなかったものの、(旧)ト5形から(新)ト5形へ改称された扱いであったようで、後の車両竣功図表にも<q>形式称号　ト5</q> に対して、上州鉄道車号をわざわざ削除して<q>旧番号　ト5</q>と書き替えられています。</p>
 
