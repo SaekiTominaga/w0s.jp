@@ -19,7 +19,7 @@ await test('dateDisplay', async (t) => {
 		assert.equal(dateDisplay(undefined), undefined);
 	});
 
-	await test('no data-by', () => {
+	await test('invalid format', () => {
 		assert.throws(
 			() => {
 				dateDisplay('foo123');
