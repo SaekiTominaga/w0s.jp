@@ -1,13 +1,13 @@
 // @ts-check
 
-import parserAstro from 'astro-eslint-parser';
-import { configs as pluginAstroConfigs } from 'eslint-plugin-astro';
+import * as astroParser from 'astro-eslint-parser';
+import eslintPluginAstro from 'eslint-plugin-astro';
 import w0sConfig from '@w0s/eslint-config';
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
 	...w0sConfig,
-	...pluginAstroConfigs.recommended,
+	...eslintPluginAstro.configs.recommended,
 	{
 		ignores: ['dist', 'src/pages/kumeta/manga/subtitle.astro'],
 	},
@@ -22,7 +22,7 @@ export default [
 	{
 		files: ['**/*.astro'],
 		languageOptions: {
-			parser: parserAstro,
+			parser: astroParser,
 			parserOptions: {
 				parser: '@typescript-eslint/parser',
 				extraFileExtensions: ['.astro'],
