@@ -1,6 +1,6 @@
 ---
-import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
+import { dateDisplay } from '@util/date.ts';
 import EmbeddedLink from './EmbeddedLink.astro';
 import EmbeddedSidebar from './EmbeddedSidebar.astro';
 import Anchor from './+phrasing/Anchor.astro';
@@ -22,23 +22,6 @@ interface Props {
 }
 
 const { id, headingLevel, title, release, distribution, tags, isbn, amazonAsin, amazonImageId, amazonImageWidth, amazonImageHeight } = Astro.props;
-
-export const dateDisplay = (date: string | undefined): string | undefined => {
-	if (date === undefined) {
-		return undefined;
-	}
-
-	if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/v.test(date)) {
-		return dayjs(date).format('YYYY年M月D日');
-	} else if (/^[0-9]{4}-[0-9]{2}$/v.test(date)) {
-		return dayjs(date).format('YYYY年M月');
-	} else if (/^[0-9]{4}$/v.test(date)) {
-		return `${date}年`;
-	}
-
-	console.warn(`Invalid date: ${date}`);
-	return date;
-};
 
 if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 	console.warn(`Invalid ISBN: ${isbn}`);
