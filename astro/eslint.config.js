@@ -37,9 +37,7 @@ export default [
 				},
 			],
 			'consistent-return': 'off',
-			'no-console': 'off',
 			'no-irregular-whitespace': 'off',
-			'no-useless-return': 'off',
 			'import/default': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/named': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/namespace': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
@@ -57,8 +55,6 @@ export default [
 			'import/no-named-as-default': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/no-named-as-default-member': 'off', // `parseForESLint` from parser `context.languageOptions.parser` is invalid and will just be ignored
 			'import/no-unresolved': 'off',
-			'jsdoc/require-param-type': 'off',
-			'jsdoc/require-returns-type': 'off',
 		},
 	},
 	{
@@ -101,15 +97,6 @@ export default [
 		rules: {
 			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-unsafe-argument': 'off',
-			'import/no-extraneous-dependencies': [
-				'error',
-				{
-					devDependencies: true,
-					optionalDependencies: false,
-					peerDependencies: false,
-					bundledDependencies: false,
-				},
-			],
 		},
 	},
 	{

@@ -130,4 +130,17 @@ const foo = "foo";
 
 		expect(code?.innerHTML.trim()).toBe(`<span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;`);
 	});
+
+	test('invalid', async () => {
+		const container = await AstroContainer.create();
+
+		await expect(
+			container.renderToString(CodeBlock, {
+				props: {
+					code: '',
+					language: 'foo',
+				},
+			}),
+		).rejects.toThrow('Invalid language: `foo`');
+	});
 });
