@@ -9,11 +9,11 @@ const container = await AstroContainer.create();
 test('no heading', async () => {
 	const result = await container.renderToString(Toc);
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const toc = root.querySelector('.toc');
+	const $toc = $root.querySelector('.toc');
 
-	expect(toc).toBeNull();
+	expect($toc).toBeNull();
 });
 
 test('one heading', async () => {
@@ -28,11 +28,11 @@ test('one heading', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const toc = root.querySelector('.toc');
+	const $toc = $root.querySelector('.toc');
 
-	expect(toc).toBeNull();
+	expect($toc).toBeNull();
 });
 
 test('base', async () => {
@@ -51,18 +51,18 @@ test('base', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const toc = root.querySelector('.toc');
-	const heading = toc?.querySelector(':scope > h2');
-	const items = toc?.querySelectorAll(':scope > ul > li');
+	const $toc = $root.querySelector('.toc');
+	const $heading = $toc?.querySelector(':scope > h2');
+	const $items = $toc?.querySelectorAll(':scope > ul > li');
 
-	expect(toc).not.toBeNull();
-	expect(toc?.classNames).toMatch(/toc astro-[a-z0-9]+/v);
-	expect(heading?.textContent).toBe('目次');
-	expect(items?.length).toBe(2);
-	expect(items?.at(0)?.querySelector(':scope > a')?.getAttribute('href')).toBe('#%E8%A6%8B%E5%87%BA%E3%81%97ID1');
-	expect(items?.at(1)?.querySelector(':scope > a')?.innerHTML).toBe('heading <code>text2</code>');
+	expect($toc).not.toBeNull();
+	expect($toc?.classNames).toMatch(/toc astro-[a-z0-9]+/v);
+	expect($heading?.textContent).toBe('目次');
+	expect($items?.length).toBe(2);
+	expect($items?.at(0)?.querySelector(':scope > a')?.getAttribute('href')).toBe('#%E8%A6%8B%E5%87%BA%E3%81%97ID1');
+	expect($items?.at(1)?.querySelector(':scope > a')?.innerHTML).toBe('heading <code>text2</code>');
 });
 
 test('direction', async () => {
@@ -82,9 +82,9 @@ test('direction', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const toc = root.querySelector('.toc');
+	const $toc = $root.querySelector('.toc');
 
-	expect(toc?.classNames).toMatch(/toc -column astro-[a-z0-9]+/v);
+	expect($toc?.classNames).toMatch(/toc -column astro-[a-z0-9]+/v);
 });

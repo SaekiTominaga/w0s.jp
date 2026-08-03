@@ -15,13 +15,13 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const img = root.querySelector('img');
+		const $img = $root.querySelector('img');
 
-		expect(img?.getAttribute('alt')).toBe('');
-		expect(img?.getAttribute('fetchpriority')).toBeUndefined();
-		expect(img?.getAttribute('class')).toBeUndefined();
+		expect($img?.getAttribute('alt')).toBe('');
+		expect($img?.getAttribute('fetchpriority')).toBeUndefined();
+		expect($img?.getAttribute('class')).toBeUndefined();
 	});
 
 	test('all attributes', async () => {
@@ -37,17 +37,17 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const img = root.querySelector('img');
+		const $img = $root.querySelector('img');
 
-		expect(img?.getAttribute('src')).toBe('https://m.media-amazon.com/images/I/71SGaIZ7TAL._SL160_.jpg');
-		expect(img?.getAttribute('srcset')).toBe('https://m.media-amazon.com/images/I/71SGaIZ7TAL._SL320_.jpg 2x');
-		expect(img?.getAttribute('alt')).toBe('alt text');
-		expect(img?.getAttribute('width')).toBe('100');
-		expect(img?.getAttribute('height')).toBe('200');
-		expect(img?.getAttribute('fetchpriority')).toBe('high');
-		expect(img?.getAttribute('class')).toBe('my-class');
+		expect($img?.getAttribute('src')).toBe('https://m.media-amazon.com/images/I/71SGaIZ7TAL._SL160_.jpg');
+		expect($img?.getAttribute('srcset')).toBe('https://m.media-amazon.com/images/I/71SGaIZ7TAL._SL320_.jpg 2x');
+		expect($img?.getAttribute('alt')).toBe('alt text');
+		expect($img?.getAttribute('width')).toBe('100');
+		expect($img?.getAttribute('height')).toBe('200');
+		expect($img?.getAttribute('fetchpriority')).toBe('high');
+		expect($img?.getAttribute('class')).toBe('my-class');
 	});
 });
 

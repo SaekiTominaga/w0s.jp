@@ -17,21 +17,21 @@ test('base', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const a = root.querySelector('.item > a');
-	const img = root.querySelector('.image');
-	const title = root.querySelector('.title');
-	const date = root.querySelector('.date');
+	const $a = $root.querySelector('.item > a');
+	const $img = $root.querySelector('.image');
+	const $title = $root.querySelector('.title');
+	const $date = $root.querySelector('.date');
 
-	expect(a?.getAttribute('href')).toBe('https://www.amazon.co.jp/dp/asin1234/ref=nosim?tag=w0s.jp-22');
-	expect(a?.getAttribute('rel')).toBe('external');
-	expect(img?.getAttribute('src')).toBe('https://m.media-amazon.com/images/I/image1234._SL160_.jpg');
-	expect(img?.getAttribute('srcset')).toBe('https://m.media-amazon.com/images/I/image1234._SL320_.jpg 2x');
-	expect(img?.getAttribute('width')).toBe('100');
-	expect(img?.getAttribute('height')).toBe('200');
-	expect(title?.textContent).toBe('title');
-	expect(date).toBeNull();
+	expect($a?.getAttribute('href')).toBe('https://www.amazon.co.jp/dp/asin1234/ref=nosim?tag=w0s.jp-22');
+	expect($a?.getAttribute('rel')).toBe('external');
+	expect($img?.getAttribute('src')).toBe('https://m.media-amazon.com/images/I/image1234._SL160_.jpg');
+	expect($img?.getAttribute('srcset')).toBe('https://m.media-amazon.com/images/I/image1234._SL320_.jpg 2x');
+	expect($img?.getAttribute('width')).toBe('100');
+	expect($img?.getAttribute('height')).toBe('200');
+	expect($title?.textContent).toBe('title');
+	expect($date).toBeNull();
 });
 
 test('date', async () => {
@@ -41,9 +41,9 @@ test('date', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const date = root.querySelector('.date');
+	const $date = $root.querySelector('.date');
 
-	expect(date?.textContent).toBe('2000年1月2日発売');
+	expect($date?.textContent).toBe('2000年1月2日発売');
 });

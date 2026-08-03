@@ -14,17 +14,17 @@ test('base', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const h1 = root.querySelector('h1');
-	const subHeading = root.querySelector('.sub-heading');
-	const updated = root.querySelector('.updated');
-	const updatedTime = root.querySelector('.updated > time');
+	const $h1 = $root.querySelector('h1');
+	const $subHeading = $root.querySelector('.sub-heading');
+	const $updated = $root.querySelector('.updated');
+	const $updatedTime = $root.querySelector('.updated > time');
 
-	expect(h1?.innerHTML.trim().startsWith('title')).toBe(true);
-	expect(subHeading?.innerHTML).toBe('（subHeading）');
-	expect(updated?.textContent.trim()).toBe('2000年1月2日更新');
-	expect(updatedTime?.getAttribute('datetime')).toBe('2000-01-02');
+	expect($h1?.innerHTML.trim().startsWith('title')).toBe(true);
+	expect($subHeading?.innerHTML).toBe('（subHeading）');
+	expect($updated?.textContent.trim()).toBe('2000年1月2日更新');
+	expect($updatedTime?.getAttribute('datetime')).toBe('2000-01-02');
 });
 
 test('heading', async () => {
@@ -36,15 +36,15 @@ test('heading', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const h1 = root.querySelector('h1');
-	const subHeading = root.querySelector('.sub-heading');
-	const updated = root.querySelector('.updated');
-	const updatedTime = root.querySelector('.updated > time');
+	const $h1 = $root.querySelector('h1');
+	const $subHeading = $root.querySelector('.sub-heading');
+	const $updated = $root.querySelector('.updated');
+	const $updatedTime = $root.querySelector('.updated > time');
 
-	expect(h1?.innerHTML.trim().startsWith('heading')).toBe(true);
-	expect(subHeading).toBeNull();
-	expect(updated).toBeNull();
-	expect(updatedTime).toBeNull();
+	expect($h1?.innerHTML.trim().startsWith('heading')).toBe(true);
+	expect($subHeading).toBeNull();
+	expect($updated).toBeNull();
+	expect($updatedTime).toBeNull();
 });

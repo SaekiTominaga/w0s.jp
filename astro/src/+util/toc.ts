@@ -20,8 +20,8 @@ export const getData = (window: DOMWindow): TocData[] => {
 	const purify = DOMPurify(window);
 
 	return Array.from(document.querySelectorAll('section[id]'))
-		.map((sectioningElement): TocData | undefined => {
-			const headingHtml = sectioningElement.querySelector('h2')?.innerHTML;
+		.map(($section): TocData | undefined => {
+			const headingHtml = $section.querySelector('h2')?.innerHTML;
 			if (headingHtml === undefined) {
 				return undefined;
 			}
@@ -35,7 +35,7 @@ export const getData = (window: DOMWindow): TocData[] => {
 			}
 
 			return {
-				id: sectioningElement.id,
+				id: $section.id,
 				headingHtml: sanitizedHeadingHtml,
 			};
 		})

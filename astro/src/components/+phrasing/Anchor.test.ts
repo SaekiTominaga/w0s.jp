@@ -16,24 +16,24 @@ test('internal', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const a = root.querySelector('a');
-	const type = root.querySelector('.type');
-	const domain = root.querySelector('.domain');
+	const $a = $root.querySelector('a');
+	const $type = $root.querySelector('.type');
+	const $domain = $root.querySelector('.domain');
 
-	expect(a?.textContent).toBe('text');
-	expect(a?.getAttribute('href')).toBe('path/to');
-	expect(a?.getAttribute('rel')).toBeUndefined();
-	expect(a?.getAttribute('hreflang')).toBeUndefined();
-	expect(a?.getAttribute('lang')).toBeUndefined();
-	expect(a?.getAttribute('id')).toBeUndefined();
-	expect(a?.getAttribute('aria-labelledby')).toBeUndefined();
-	expect(a?.classList.contains('-bullet')).toBeFalsy();
+	expect($a?.textContent).toBe('text');
+	expect($a?.getAttribute('href')).toBe('path/to');
+	expect($a?.getAttribute('rel')).toBeUndefined();
+	expect($a?.getAttribute('hreflang')).toBeUndefined();
+	expect($a?.getAttribute('lang')).toBeUndefined();
+	expect($a?.getAttribute('id')).toBeUndefined();
+	expect($a?.getAttribute('aria-labelledby')).toBeUndefined();
+	expect($a?.classList.contains('-bullet')).toBeFalsy();
 
-	expect(type).toBeNull();
+	expect($type).toBeNull();
 
-	expect(domain).toBeNull();
+	expect($domain).toBeNull();
 });
 
 test('blog.w0s.jp', async () => {
@@ -46,19 +46,19 @@ test('blog.w0s.jp', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const a = root.querySelector('a');
-	const type = root.querySelector('.type');
-	const domain = root.querySelector('.domain');
+	const $a = $root.querySelector('a');
+	const $type = $root.querySelector('.type');
+	const $domain = $root.querySelector('.domain');
 
-	expect(a?.textContent).toBe('text');
-	expect(a?.getAttribute('href')).toBe('https://blog.w0s.jp/');
-	expect(a?.getAttribute('rel')).toBeUndefined();
+	expect($a?.textContent).toBe('text');
+	expect($a?.getAttribute('href')).toBe('https://blog.w0s.jp/');
+	expect($a?.getAttribute('rel')).toBeUndefined();
 
-	expect(type).toBeNull();
+	expect($type).toBeNull();
 
-	expect(domain).toBeNull();
+	expect($domain).toBeNull();
 });
 
 test('external', async () => {
@@ -71,21 +71,21 @@ test('external', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const a = root.querySelector('a');
-	const type = root.querySelector('.type');
-	const domain = root.querySelector('.domain');
-	const domainCode = domain?.querySelector(':scope > code');
+	const $a = $root.querySelector('a');
+	const $type = $root.querySelector('.type');
+	const $domain = $root.querySelector('.domain');
+	const $domainCode = $domain?.querySelector(':scope > code');
 
-	expect(a?.textContent).toBe('text');
-	expect(a?.getAttribute('href')).toBe('https://example.com/');
-	expect(a?.getAttribute('rel')).toBe('external');
+	expect($a?.textContent).toBe('text');
+	expect($a?.getAttribute('href')).toBe('https://example.com/');
+	expect($a?.getAttribute('rel')).toBe('external');
 
-	expect(type).toBeNull();
+	expect($type).toBeNull();
 
-	expect(domain?.textContent.trim()).toBe('(example.com)');
-	expect(domainCode?.textContent).toBe('example.com');
+	expect($domain?.textContent.trim()).toBe('(example.com)');
+	expect($domainCode?.textContent).toBe('example.com');
 });
 
 test('Amazon', async () => {
@@ -98,22 +98,22 @@ test('Amazon', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const a = root.querySelector('a');
-	const type = root.querySelector('.type');
-	const domain = root.querySelector('.domain');
-	const domainImage = domain?.querySelector(':scope > img');
+	const $a = $root.querySelector('a');
+	const $type = $root.querySelector('.type');
+	const $domain = $root.querySelector('.domain');
+	const $domainImage = $domain?.querySelector(':scope > img');
 
-	expect(a?.textContent).toBe('text');
-	expect(a?.getAttribute('href')).toBe('https://www.amazon.co.jp/dp/1234567890/ref=nosim?tag=w0s.jp-22');
-	expect(a?.getAttribute('rel')).toBe('external');
+	expect($a?.textContent).toBe('text');
+	expect($a?.getAttribute('href')).toBe('https://www.amazon.co.jp/dp/1234567890/ref=nosim?tag=w0s.jp-22');
+	expect($a?.getAttribute('rel')).toBe('external');
 
-	expect(type).toBeNull();
+	expect($type).toBeNull();
 
-	expect(domain).not.toBeNull();
-	expect(domainImage?.getAttribute('src')).toBe('/assets/image/icon/amazon.png');
-	expect(domainImage?.getAttribute('alt')).toBe('(Amazon)');
+	expect($domain).not.toBeNull();
+	expect($domainImage?.getAttribute('src')).toBe('/assets/image/icon/amazon.png');
+	expect($domainImage?.getAttribute('alt')).toBe('(Amazon)');
 });
 
 test('Type icon', async () => {
@@ -124,14 +124,14 @@ test('Type icon', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const type = root.querySelector('.type');
-	const typeImage = type?.querySelector(':scope > img');
+	const $type = $root.querySelector('.type');
+	const $typeImage = $type?.querySelector(':scope > img');
 
-	expect(type).not.toBeNull();
-	expect(typeImage?.getAttribute('src')).toBe('/assets/image/icon/pdf.png');
-	expect(typeImage?.getAttribute('alt')).toBe('(PDF)');
+	expect($type).not.toBeNull();
+	expect($typeImage?.getAttribute('src')).toBe('/assets/image/icon/pdf.png');
+	expect($typeImage?.getAttribute('alt')).toBe('(PDF)');
 });
 
 describe('attribute', () => {
@@ -142,11 +142,11 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const a = root.querySelector('a');
+		const $a = $root.querySelector('a');
 
-		expect(a?.getAttribute('hreflang')).toBe('en');
+		expect($a?.getAttribute('hreflang')).toBe('en');
 	});
 
 	test('lang', async () => {
@@ -156,11 +156,11 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const a = root.querySelector('a');
+		const $a = $root.querySelector('a');
 
-		expect(a?.getAttribute('lang')).toBe('en');
+		expect($a?.getAttribute('lang')).toBe('en');
 	});
 
 	test('id', async () => {
@@ -170,11 +170,11 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const a = root.querySelector('a');
+		const $a = $root.querySelector('a');
 
-		expect(a?.getAttribute('id')).toBe('foo');
+		expect($a?.getAttribute('id')).toBe('foo');
 	});
 
 	test('aria-labelledby', async () => {
@@ -184,11 +184,11 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const a = root.querySelector('a');
+		const $a = $root.querySelector('a');
 
-		expect(a?.getAttribute('aria-labelledby')).toBe('foo bar');
+		expect($a?.getAttribute('aria-labelledby')).toBe('foo bar');
 	});
 
 	test('icon', async () => {
@@ -199,11 +199,11 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const domain = root.querySelector('.domain');
+		const $domain = $root.querySelector('.domain');
 
-		expect(domain).toBeNull();
+		expect($domain).toBeNull();
 	});
 
 	test('bullet', async () => {
@@ -213,10 +213,10 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const a = root.querySelector('a');
+		const $a = $root.querySelector('a');
 
-		expect(a?.classList.contains('-bullet')).toBeTruthy();
+		expect($a?.classList.contains('-bullet')).toBeTruthy();
 	});
 });

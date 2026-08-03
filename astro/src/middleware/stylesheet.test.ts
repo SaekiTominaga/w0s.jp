@@ -5,7 +5,7 @@ import { adjustLinkStylesheetPosition } from './stylesheet.ts';
 
 await test('adjustLinkStylesheetPosition', async (t) => {
 	await t.test('no css', () => {
-		const root = parse(`
+		const $root = parse(`
 <!DOCTYPE html>
 <head>
 <title>title</title>
@@ -13,10 +13,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition(root);
+		adjustLinkStylesheetPosition($root);
 
 		assert.equal(
-			root.querySelector('head')?.innerHTML,
+			$root.querySelector('head')?.innerHTML,
 			`
 <title>title</title>
 <link rel="next" href="page2">
@@ -25,7 +25,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('signle css', () => {
-		const root = parse(`
+		const $root = parse(`
 <!DOCTYPE html>
 <head>
 <title>title</title>
@@ -33,10 +33,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition(root);
+		adjustLinkStylesheetPosition($root);
 
 		assert.equal(
-			root.querySelector('head')?.innerHTML,
+			$root.querySelector('head')?.innerHTML,
 			`
 <title>title</title>
 <link rel="stylesheet" href="css1">
@@ -45,7 +45,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('first place', () => {
-		const root = parse(`
+		const $root = parse(`
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="css1">
@@ -54,10 +54,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition(root);
+		adjustLinkStylesheetPosition($root);
 
 		assert.equal(
-			root.querySelector('head')?.innerHTML,
+			$root.querySelector('head')?.innerHTML,
 			`
 <link rel="stylesheet" href="css1"><link rel="stylesheet" href="css2">
 
@@ -67,7 +67,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('end place', () => {
-		const root = parse(`
+		const $root = parse(`
 <!DOCTYPE html>
 <head>
 <title>title</title>
@@ -76,10 +76,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition(root);
+		adjustLinkStylesheetPosition($root);
 
 		assert.equal(
-			root.querySelector('head')?.innerHTML,
+			$root.querySelector('head')?.innerHTML,
 			`
 <title>title</title>
 <link rel="stylesheet" href="css1"><link rel="stylesheet" href="css2">
@@ -89,7 +89,7 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 	});
 
 	await t.test('split', () => {
-		const root = parse(`
+		const $root = parse(`
 <!DOCTYPE html>
 <head>
 <link rel="stylesheet" href="css1">
@@ -100,10 +100,10 @@ await test('adjustLinkStylesheetPosition', async (t) => {
 </head>
 `);
 
-		adjustLinkStylesheetPosition(root);
+		adjustLinkStylesheetPosition($root);
 
 		assert.equal(
-			root.querySelector('head')?.innerHTML,
+			$root.querySelector('head')?.innerHTML,
 			`
 <link rel="stylesheet" href="css1"><link rel="stylesheet" href="css2"><link rel="stylesheet" href="css3"><link rel="stylesheet" href="css4">
 

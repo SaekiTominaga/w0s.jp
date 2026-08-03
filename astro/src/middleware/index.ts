@@ -34,17 +34,17 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		});
 	}
 
-	const root = parse(await response.text());
+	const $root = parse(await response.text());
 
 	if (!import.meta.env.DEV) {
 		/* `<link rel="stylesheet">` の位置をまとめる */
-		adjustLinkStylesheetPosition(root);
+		adjustLinkStylesheetPosition($root);
 	}
 
 	/* `<Image>` で自動的に設定される属性を回避するため <MyImage> でデフォルト属性を設定しているためそれらを削除 <https://docs.astro.build/en/reference/modules/astro-assets/#image-> */
-	removeImageDefaultAttribute(root);
+	removeImageDefaultAttribute($root);
 
-	return new Response(root.innerHTML, {
+	return new Response($root.innerHTML, {
 		status: status,
 		statusText: statusText,
 		headers: headers,

@@ -6,23 +6,23 @@ interface BlogNewlyJson {
 /**
  * 日記の新着情報を取得し、サイドバーに挿入する
  *
- * @param templateElement - 挿入するページに存在する <tempalte> 要素
+ * @param $template - 挿入するページに存在する <tempalte> 要素
  */
-export const blogNewly = async (templateElement: HTMLElement | undefined | null): Promise<void> => {
-	if (templateElement === null || templateElement === undefined) {
+export const blogNewly = async ($template: HTMLElement | undefined | null): Promise<void> => {
+	if ($template === null || $template === undefined) {
 		return;
-	} else if (!(templateElement instanceof HTMLTemplateElement)) {
-		throw new TypeError(`\`${templateElement.tagName.toLowerCase()}#${templateElement.id}\` is not HTMLTemplateElement`);
+	} else if (!($template instanceof HTMLTemplateElement)) {
+		throw new TypeError(`\`${$template.tagName.toLowerCase()}#${$template.id}\` is not HTMLTemplateElement`);
 	}
 
-	const preloadElement = document.getElementById('blog-newly-json');
-	if (preloadElement === null) {
+	const $preload = document.getElementById('blog-newly-json');
+	if ($preload === null) {
 		return;
-	} else if (!(preloadElement instanceof HTMLLinkElement)) {
-		throw new TypeError(`\`${preloadElement.tagName.toLowerCase()}#${preloadElement.id}\` is not HTMLLinkElement`);
+	} else if (!($preload instanceof HTMLLinkElement)) {
+		throw new TypeError(`\`${$preload.tagName.toLowerCase()}#${$preload.id}\` is not HTMLLinkElement`);
 	}
 
-	const endpoint = preloadElement.href;
+	const endpoint = $preload.href;
 
 	/* エンドポイントから JSON ファイルを取得する */
 	const response = await fetch(endpoint);
@@ -33,25 +33,25 @@ export const blogNewly = async (templateElement: HTMLElement | undefined | null)
 	const entries = (await response.json()) as readonly Readonly<BlogNewlyJson>[];
 
 	/* 取得したデータを HTML ページ内に挿入する */
-	const fragment = document.createDocumentFragment();
+	const $fragment = document.createDocumentFragment();
 
 	entries.forEach((entry) => {
-		const templateElementClone = templateElement.content.cloneNode(true) as DocumentFragment;
+		const $templateClone = $template.content.cloneNode(true) as DocumentFragment;
 
-		const aElement = templateElementClone.querySelector('a');
-		if (aElement !== null) {
-			aElement.href = `https://blog.w0s.jp/entry/${String(entry.id)}`;
-			aElement.insertAdjacentHTML('afterbegin', entry.title);
+		const $a = $templateClone.querySelector('a');
+		if ($a !== null) {
+			$a.href = `https://blog.w0s.jp/entry/${String(entry.id)}`;
+			$a.insertAdjacentHTML('afterbegin', entry.title);
 		}
 
-		fragment.appendChild(templateElementClone);
+		$fragment.appendChild($templateClone);
 	});
 
-	templateElement.parentNode?.appendChild(fragment);
+	$template.parentNode?.appendChild($fragment);
 
 	/* 直近の祖先要素の hidden 状態を解除する */
-	const ancestorHiddenElement = templateElement.closest<HTMLElement>('[hidden]');
-	if (ancestorHiddenElement !== null) {
-		ancestorHiddenElement.hidden = false;
+	const $ancestorHidden = $template.closest<HTMLElement>('[hidden]');
+	if ($ancestorHidden !== null) {
+		$ancestorHidden.hidden = false;
 	}
 };

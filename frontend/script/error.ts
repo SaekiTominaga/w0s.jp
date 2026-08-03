@@ -36,13 +36,13 @@ const { closestHTMLPageData } = await closestHTMLPage(undefined, {
 if (closestHTMLPageData !== undefined) {
 	const { url, title } = closestHTMLPageData;
 
-	const messageElement = document.getElementById('parentpage-msg');
-	const anchorElement = document.getElementById('parentpage-anchor') as HTMLAnchorElement | null;
+	const $message = document.getElementById('parentpage-msg');
+	const $anchor = document.getElementById('parentpage-anchor') as HTMLAnchorElement | null;
 
-	if (messageElement !== null && anchorElement !== null) {
-		messageElement.hidden = false;
+	if ($message !== null && $anchor !== null) {
+		$message.hidden = false;
 
-		anchorElement.href = url;
-		anchorElement.textContent = title ?? url;
+		$anchor.href = url;
+		$anchor.textContent = title ?? url;
 	}
 }

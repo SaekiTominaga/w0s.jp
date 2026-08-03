@@ -10,32 +10,32 @@ const getData = (
 ): Data => {
 	const data: Data = new Map();
 
-	document.querySelectorAll<HTMLTemplateElement>(options.selector).forEach((noterefTemplate, index) => {
+	document.querySelectorAll<HTMLTemplateElement>(options.selector).forEach(($noterefTemplate, index) => {
 		const no = index + 1;
 
-		const templateElementClone = noterefTemplate.content.cloneNode(true) as DocumentFragment;
+		const $templateClone = $noterefTemplate.content.cloneNode(true) as DocumentFragment;
 
-		const id = noterefTemplate.dataset['by'];
+		const id = $noterefTemplate.dataset['by'];
 		if (id === undefined) {
 			throw new Error('`data-by` attribute is not set');
 		}
 
-		const contentElement = document.getElementById(id);
+		const $content = document.getElementById(id);
 
-		data.set(no, contentElement?.innerHTML);
-		contentElement?.remove();
+		data.set(no, $content?.innerHTML);
+		$content?.remove();
 
-		const aElement = templateElementClone.querySelector('a');
-		if (aElement !== null) {
-			aElement.href = `#${options.footnoteIdPrefix}${String(no)}`;
-			aElement.id = `${options.noteRefIdPrefix}${String(no)}`;
+		const $a = $templateClone.querySelector('a');
+		if ($a !== null) {
+			$a.href = `#${options.footnoteIdPrefix}${String(no)}`;
+			$a.id = `${options.noteRefIdPrefix}${String(no)}`;
 		}
 
-		const numberElement = templateElementClone.querySelector('x-number');
-		numberElement?.replaceWith(document.createTextNode(String(no)));
+		const $number = $templateClone.querySelector('x-number');
+		$number?.replaceWith(document.createTextNode(String(no)));
 
-		noterefTemplate.parentNode?.appendChild(templateElementClone);
-		noterefTemplate.remove();
+		$noterefTemplate.parentNode?.appendChild($templateClone);
+		$noterefTemplate.remove();
 	});
 
 	return data;
