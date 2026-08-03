@@ -73,12 +73,6 @@ export default [
 		},
 	},
 	{
-		files: ['src/**/*.ts'],
-		rules: {
-			'no-console': 'off',
-		},
-	},
-	{
 		files: ['src/+util/**/*.ts'],
 		rules: {
 			'func-style': [

@@ -31,7 +31,7 @@ export const getData = (window: DOMWindow): TocData[] => {
 				ALLOWED_ATTR: ['lang'],
 			});
 			if (headingHtml !== sanitizedHeadingHtml) {
-				console.warn(`Table of Contents headings sanitized: ${headingHtml} → ${sanitizedHeadingHtml}`);
+				throw new Error(`The content of the heading element contains disallowed elements or attributes: \`${headingHtml}\``);
 			}
 
 			return {

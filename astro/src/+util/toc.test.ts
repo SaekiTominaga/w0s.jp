@@ -50,14 +50,22 @@ await test('getData', async (t) => {
 		assert.equal(getData(window).at(0)?.headingHtml, 'heading1 <span lang="en">span</span>');
 	});
 
-	await t.test('remove tags & attr', () => {
+	await t.test('disallowed tags & attr', () => {
 		const { window } = new JSDOM(`
 <!DOCTYPE html>
 <section id="heading1">
-	<h2>heading1 <span class="foo">span</span> <em>em</em></h2>
+	<h2>heading1 <span class="foo">span</span></h2>
 </section>
 `);
 
-		assert.equal(getData(window).at(0)?.headingHtml, 'heading1 <span>span</span> em');
+		assert.throws(
+			() => {
+				getData(window);
+			},
+			{
+				name: 'Error',
+				message: 'The content of the heading element contains disallowed elements or attributes: `heading1 <span class="foo">span</span>`',
+			},
+		);
 	});
 });
