@@ -20,7 +20,7 @@ importers:
         version: 24.13.2
       '@w0s/eslint-config':
         specifier: 9.8.0
-        version: 9.8.0(@eslint/js@9.39.5)(eslint-plugin-functional@10.0.0(eslint@9.39.5)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.62.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint-plugin-jsdoc@63.2.2(eslint@9.39.5))(eslint-plugin-safely-storage@1.1.0(eslint@9.39.5))(eslint@9.39.5)(globals@17.7.0)(typescript-eslint@8.62.1(eslint@9.39.5)(typescript@6.0.3))
+        version: 9.8.0(@eslint/js@9.39.5)(eslint-plugin-functional@10.0.0(eslint@9.39.5)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.62.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint-plugin-jsdoc@63.3.1(eslint@9.39.5))(eslint-plugin-safely-storage@1.1.0(eslint@9.39.5))(eslint@9.39.5)(globals@17.7.0)(typescript-eslint@8.62.1(eslint@9.39.5)(typescript@6.0.3))
       '@w0s/markuplint-config':
         specifier: 3.13.0
         version: 3.13.0(markuplint@4.18.3(typescript@6.0.3))
@@ -43,8 +43,8 @@ importers:
         specifier: 2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.62.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)
       eslint-plugin-jsdoc:
-        specifier: 63.2.2
-        version: 63.2.2(eslint@9.39.5)
+        specifier: 63.3.1
+        version: 63.3.1(eslint@9.39.5)
       eslint-plugin-safely-storage:
         specifier: 1.1.0
         version: 1.1.0(eslint@9.39.5)
@@ -1136,6 +1136,13 @@ packages:
 
   '@napi-rs/wasm-runtime@1.2.1':
     resolution: {integrity: sha512-KjZdi8Q1wh89gsVmghvbrMgWl6ZWmRmHV6wjB7/g4Zf0dyO+hH3neZUtuDNPO00qq5YE5RITVWvrIZKRaAmzGQ==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=23.5.0}
+    peerDependencies:
+      '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.3
+      '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.3
+
+  '@napi-rs/wasm-runtime@1.2.2':
+    resolution: {integrity: sha512-JfB4kuJQjaoHuCTseIINHtHWeJnvgEcxjwA5t/Y00ZgaOO1Crz3fjT/p8kT28zA/Caz7oiUMn3d6H2yOVCVwuw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=23.5.0}
     peerDependencies:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.3
@@ -2554,8 +2561,8 @@ packages:
       '@typescript-eslint/parser':
         optional: true
 
-  eslint-plugin-jsdoc@63.2.2:
-    resolution: {integrity: sha512-xCoHKeaRwAhZ+i2ZUY11few2Lmy9qpJLDsY139c4KNJLMSZYoFJ5UMYkDjdTkO9PfkFOKmVO+7i4Yjx+x7VQWQ==}
+  eslint-plugin-jsdoc@63.3.1:
+    resolution: {integrity: sha512-yVyTPtOY2tA8EjTwUtaM3pFxj9i/3m4/FSPMv5gMnDHSSleCpzIYQLyV8KnVmEIkkPpNhDlkDQ99mTfjxgqLxA==}
     engines: {node: ^22.13.0 || >=24}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
@@ -3208,6 +3215,10 @@ packages:
 
   js-yaml@4.3.0:
     resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
+    hasBin: true
+
+  js-yaml@4.3.1:
+    resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
     hasBin: true
 
   js-yaml@5.2.2:
@@ -5704,6 +5715,13 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
+  '@napi-rs/wasm-runtime@1.2.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
+    dependencies:
+      '@emnapi/core': 1.11.1
+      '@emnapi/runtime': 1.11.1
+      '@tybys/wasm-util': 0.10.3
+    optional: true
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -5762,7 +5780,7 @@ snapshots:
     dependencies:
       '@emnapi/core': 1.11.1
       '@emnapi/runtime': 1.11.1
-      '@napi-rs/wasm-runtime': 1.2.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+      '@napi-rs/wasm-runtime': 1.2.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
     optional: true
 
   '@rolldown/binding-win32-arm64-msvc@1.1.5':
@@ -6310,13 +6328,13 @@ snapshots:
 
   '@w0s/env-value-type@2.0.0': {}
 
-  '@w0s/eslint-config@9.8.0(@eslint/js@9.39.5)(eslint-plugin-functional@10.0.0(eslint@9.39.5)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.62.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint-plugin-jsdoc@63.2.2(eslint@9.39.5))(eslint-plugin-safely-storage@1.1.0(eslint@9.39.5))(eslint@9.39.5)(globals@17.7.0)(typescript-eslint@8.62.1(eslint@9.39.5)(typescript@6.0.3))':
+  '@w0s/eslint-config@9.8.0(@eslint/js@9.39.5)(eslint-plugin-functional@10.0.0(eslint@9.39.5)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.62.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint-plugin-jsdoc@63.3.1(eslint@9.39.5))(eslint-plugin-safely-storage@1.1.0(eslint@9.39.5))(eslint@9.39.5)(globals@17.7.0)(typescript-eslint@8.62.1(eslint@9.39.5)(typescript@6.0.3))':
     dependencies:
       '@eslint/js': 9.39.5
       eslint: 9.39.5
       eslint-plugin-functional: 10.0.0(eslint@9.39.5)(typescript@6.0.3)
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.62.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)
-      eslint-plugin-jsdoc: 63.2.2(eslint@9.39.5)
+      eslint-plugin-jsdoc: 63.3.1(eslint@9.39.5)
       eslint-plugin-safely-storage: 1.1.0(eslint@9.39.5)
       globals: 17.7.0
       typescript-eslint: 8.62.1(eslint@9.39.5)(typescript@6.0.3)
@@ -6826,7 +6844,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.3.0
+      js-yaml: 4.3.1
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 6.0.3
@@ -7254,7 +7272,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jsdoc@63.2.2(eslint@9.39.5):
+  eslint-plugin-jsdoc@63.3.1(eslint@9.39.5):
     dependencies:
       '@es-joy/jsdoccomment': 0.90.0
       '@es-joy/resolve.exports': 1.2.0
@@ -7957,6 +7975,10 @@ snapshots:
   js-tokens@9.0.1: {}
 
   js-yaml@4.3.0:
+    dependencies:
+      argparse: 2.0.1
+
+  js-yaml@4.3.1:
     dependencies:
       argparse: 2.0.1
 
