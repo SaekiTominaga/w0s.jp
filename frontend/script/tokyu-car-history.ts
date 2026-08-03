@@ -6,12 +6,12 @@ import TableCellDitto from '@w0s/table-cell-ditto';
  */
 
 /* 入力値を変換する */
-const numCtrlElement = document.querySelector<HTMLInputElement>('.js-convert-tokyu-car-histroy-num');
-if (numCtrlElement !== null) {
-	numCtrlElement.addEventListener(
+const $numCtrl = document.querySelector<HTMLInputElement>('.js-convert-tokyu-car-histroy-num');
+if ($numCtrl !== null) {
+	$numCtrl.addEventListener(
 		'change',
 		() => {
-			numCtrlElement.value = convert(numCtrlElement.value, {
+			$numCtrl.value = convert($numCtrl.value, {
 				trim: true,
 				toHankakuEisu: true,
 				toUpperCase: true,
@@ -25,21 +25,21 @@ if (numCtrlElement !== null) {
 	);
 }
 
-const resultTableElement = document.querySelector<HTMLTableElement>('.js-result-table');
-if (resultTableElement !== null) {
+const $resultTable = document.querySelector<HTMLTableElement>('.js-result-table');
+if ($resultTable !== null) {
 	/* 直上と同じ内容のセルを「〃」で表示する */
-	const dittoButtonElement = document.querySelector<HTMLInputElement>('.js-button-ditto');
-	if (dittoButtonElement !== null) {
-		const tableCellDitto = new TableCellDitto(resultTableElement);
+	const $dittoButton = document.querySelector<HTMLInputElement>('.js-button-ditto');
+	if ($dittoButton !== null) {
+		const tableCellDitto = new TableCellDitto($resultTable);
 
-		if (dittoButtonElement.checked) {
+		if ($dittoButton.checked) {
 			tableCellDitto.convert();
 		}
 
-		dittoButtonElement.addEventListener(
+		$dittoButton.addEventListener(
 			'change',
 			() => {
-				if (dittoButtonElement.checked) {
+				if ($dittoButton.checked) {
 					tableCellDitto.convert();
 				} else {
 					tableCellDitto.unConvert();

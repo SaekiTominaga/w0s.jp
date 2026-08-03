@@ -20,16 +20,16 @@ test('base', async () => {
 		},
 	});
 
-	const root = parse(result, parseOption);
+	const $root = parse(result, parseOption);
 
-	const clipboardButton = root.querySelector('.clipboard-button');
-	const code = root.querySelector('.code > code');
+	const $clipboardButton = $root.querySelector('.clipboard-button');
+	const $code = $root.querySelector('.code > code');
 
 	const id = 'code-YWNiZDE4ZGI0Y2MyZjg1Y2VkZWY2NTRmY2NjNGE0ZDg'; // コード ID
 
-	expect(clipboardButton?.getAttribute('data-target')).toBe(id);
-	expect(code?.id).toBe(id);
-	expect(code?.innerHTML).toBe(codeText);
+	expect($clipboardButton?.getAttribute('data-target')).toBe(id);
+	expect($code?.id).toBe(id);
+	expect($code?.innerHTML).toBe(codeText);
 });
 
 describe('language', () => {
@@ -47,11 +47,11 @@ describe('language', () => {
 			},
 		});
 
-		const root = parse(result, parseOption);
+		const $root = parse(result, parseOption);
 
-		const code = root.querySelector('.code > code');
+		const $code = $root.querySelector('.code > code');
 
-		expect(code?.innerHTML).toBe(
+		expect($code?.innerHTML).toBe(
 			`
 <span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span>?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">element</span> <span class="hljs-attr">attribute</span>=<span class="hljs-string">&quot;value&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">element</span>&gt;</span>
@@ -73,11 +73,11 @@ describe('language', () => {
 			},
 		});
 
-		const root = parse(result, parseOption);
+		const $root = parse(result, parseOption);
 
-		const code = root.querySelector('.code > code');
+		const $code = $root.querySelector('.code > code');
 
-		expect(code?.innerHTML).toBe(
+		expect($code?.innerHTML).toBe(
 			`
 <span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;className&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
@@ -99,11 +99,11 @@ describe('language', () => {
 			},
 		});
 
-		const root = parse(result, parseOption);
+		const $root = parse(result, parseOption);
 
-		const code = root.querySelector('.code > code');
+		const $code = $root.querySelector('.code > code');
 
-		expect(code?.innerHTML).toBe(
+		expect($code?.innerHTML).toBe(
 			`
 <span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span>?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;1.1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
@@ -124,11 +124,11 @@ const foo = "foo";
 			},
 		});
 
-		const root = parse(result, parseOption);
+		const $root = parse(result, parseOption);
 
-		const code = root.querySelector('.code > code');
+		const $code = $root.querySelector('.code > code');
 
-		expect(code?.innerHTML.trim()).toBe(`<span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;`);
+		expect($code?.innerHTML.trim()).toBe(`<span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;`);
 	});
 
 	test('invalid', async () => {

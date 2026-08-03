@@ -20,18 +20,18 @@ test('normal', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const footnote = root.querySelector('.footnote');
-	const heading = root.querySelector('.hdg');
-	const listItems = root.querySelectorAll('.list > li');
+	const $footnote = $root.querySelector('.footnote');
+	const $heading = $root.querySelector('.hdg');
+	const $$listItem = $root.querySelectorAll('.list > li');
 
-	expect(footnote).not.toBeNull();
-	expect(heading?.textContent).toBe('heading');
-	expect(listItems.length).toBe(3);
-	expect(listItems.at(0)?.querySelector('.no')?.textContent.trim()).toBe('1.');
-	expect(listItems.at(1)?.querySelector('.content')?.id).toBe('prefix2');
-	expect(listItems.at(2)?.querySelector('.content > p')?.innerHTML.trim()).toMatch(
+	expect($footnote).not.toBeNull();
+	expect($heading?.textContent).toBe('heading');
+	expect($$listItem.length).toBe(3);
+	expect($$listItem.at(0)?.querySelector('.no')?.textContent.trim()).toBe('1.');
+	expect($$listItem.at(1)?.querySelector('.content')?.id).toBe('prefix2');
+	expect($$listItem.at(2)?.querySelector('.content > p')?.innerHTML.trim()).toMatch(
 		/three<em>em<\/em>\n\t+<a href="#refprefix3" class="backref astro-[a-z0-9]+">\n\t+↩ 戻る\n\t+<\/a>/v,
 	);
 });
@@ -46,9 +46,9 @@ test('no data', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const footnote = root.querySelector('.footnote');
+	const $footnote = $root.querySelector('.footnote');
 
-	expect(footnote).toBeNull();
+	expect($footnote).toBeNull();
 });

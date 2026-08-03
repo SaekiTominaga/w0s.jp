@@ -3,9 +3,9 @@
  */
 const URL_PARAM_TAG = 'tag'; // URL パラメーター・タグのキー
 
-const librarySectionElements = document.querySelectorAll<HTMLElement>('.l-content__body > section');
-const libraryElements = document.querySelectorAll<HTMLElement>('.js-library');
-const tagButtonElements = document.querySelectorAll<HTMLButtonElement>('.js-library-tag');
+const $$librarySection = document.querySelectorAll<HTMLElement>('.l-content__body > section');
+const $$library = document.querySelectorAll<HTMLElement>('.js-library');
+const $$tagButton = document.querySelectorAll<HTMLButtonElement>('.js-library-tag');
 
 /**
  * 絞り込みを行う
@@ -14,36 +14,36 @@ const tagButtonElements = document.querySelectorAll<HTMLButtonElement>('.js-libr
  */
 const narrowDown = (tagName?: string): void => {
 	/* いったんリセット */
-	librarySectionElements.forEach((element) => {
+	$$librarySection.forEach((element) => {
 		element.hidden = false;
 	});
-	libraryElements.forEach((element) => {
+	$$library.forEach((element) => {
 		element.hidden = false;
 	});
-	tagButtonElements.forEach((element) => {
+	$$tagButton.forEach((element) => {
 		element.setAttribute('aria-pressed', 'false');
 	});
 
 	if (tagName !== undefined) {
 		/* 当該タグ以外の要素を非表示にする */
-		Array.from(libraryElements)
-			.filter((element) => Array.from(element.querySelectorAll('.js-library-tag')).every((tagElement) => tagElement.textContent.trim() !== tagName))
-			.forEach((element) => {
-				element.hidden = true;
+		Array.from($$library)
+			.filter(($element) => Array.from($element.querySelectorAll('.js-library-tag')).every(($tag) => $tag.textContent.trim() !== tagName))
+			.forEach(($element) => {
+				$element.hidden = true;
 			});
 
 		/* セクション内の表示要素が 0 件になった場合はセクションごと非表示にする */
-		Array.from(librarySectionElements)
-			.filter((element) => element.querySelectorAll('.js-library:not([hidden])').length === 0)
-			.forEach((element) => {
-				element.hidden = true;
+		Array.from($$librarySection)
+			.filter(($element) => $element.querySelectorAll('.js-library:not([hidden])').length === 0)
+			.forEach(($element) => {
+				$element.hidden = true;
 			});
 
 		/* 当該タグボタンの状態を設定する */
-		Array.from(tagButtonElements)
-			.filter((element) => element.textContent.trim() === tagName)
-			.forEach((element) => {
-				element.setAttribute('aria-pressed', 'true');
+		Array.from($$tagButton)
+			.filter(($element) => $element.textContent.trim() === tagName)
+			.forEach(($element) => {
+				$element.setAttribute('aria-pressed', 'true');
 			});
 	}
 };
@@ -52,8 +52,8 @@ const narrowDown = (tagName?: string): void => {
  * 初期処理
  */
 const init = (): void => {
-	tagButtonElements.forEach((element) => {
-		element.disabled = false;
+	$$tagButton.forEach(($element) => {
+		$element.disabled = false;
 	});
 
 	const url = new URL(location.toString());
@@ -69,13 +69,13 @@ const init = (): void => {
  * @param ev - イベント
  */
 const click = (ev: Event): void => {
-	const tagButtonElement = ev.currentTarget as HTMLButtonElement;
+	const $tagButton = ev.currentTarget as HTMLButtonElement;
 
-	const tagName = tagButtonElement.textContent.trim();
+	const tagName = $tagButton.textContent.trim();
 
 	const url = new URL(location.toString());
 
-	if (tagButtonElement.getAttribute('aria-pressed') === 'false') {
+	if ($tagButton.getAttribute('aria-pressed') === 'false') {
 		/* タグによる絞り込み実行 */
 		url.searchParams.set(URL_PARAM_TAG, tagName);
 
@@ -88,7 +88,7 @@ const click = (ev: Event): void => {
 	}
 
 	/* 押された当該ボタンのあるセクションまでスクロールする */
-	tagButtonElement.closest('.js-library')?.scrollIntoView();
+	$tagButton.closest('.js-library')?.scrollIntoView();
 
 	/* URL の書き換え */
 	url.hash = '';
@@ -97,6 +97,6 @@ const click = (ev: Event): void => {
 
 document.addEventListener('DOMContentLoaded', init, { passive: true });
 window.addEventListener('popstate', init, { passive: true });
-tagButtonElements.forEach((tagButtonElement): void => {
-	tagButtonElement.addEventListener('click', click, { passive: true });
+$$tagButton.forEach(($tagButton): void => {
+	$tagButton.addEventListener('click', click, { passive: true });
 });

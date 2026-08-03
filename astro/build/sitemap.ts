@@ -43,9 +43,9 @@ const fileList = await Array.fromAsync(
 
 const entries = await Promise.all(
 	fileList.map(async (filePath) => {
-		const root = parse((await fs.promises.readFile(filePath)).toString());
+		const $root = parse((await fs.promises.readFile(filePath)).toString());
 
-		const modifiedAt = root.querySelector('.l-content__header .updated > time')?.getAttribute('datetime');
+		const modifiedAt = $root.querySelector('.l-content__header .updated > time')?.getAttribute('datetime');
 
 		return {
 			pagePath: getPageUrl(filePath.substring(outDir.length)), // U+002F (/) から始まるパス絶対 URL

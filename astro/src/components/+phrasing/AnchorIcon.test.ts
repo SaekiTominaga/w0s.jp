@@ -13,14 +13,14 @@ test('normal', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const img = root.querySelector('img');
+	const $img = $root.querySelector('img');
 
-	expect(img?.getAttribute('src')).toBe('/assets/image/icon/foo');
-	expect(img?.getAttribute('alt')).toBe('');
-	expect(img?.getAttribute('width')).toBe('16');
-	expect(img?.getAttribute('height')).toBe('16');
+	expect($img?.getAttribute('src')).toBe('/assets/image/icon/foo');
+	expect($img?.getAttribute('alt')).toBe('');
+	expect($img?.getAttribute('width')).toBe('16');
+	expect($img?.getAttribute('height')).toBe('16');
 });
 
 describe('attribute', () => {
@@ -32,10 +32,10 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const img = root.querySelector('img');
+		const $img = $root.querySelector('img');
 
-		expect(img?.getAttribute('alt')).toBe('(text)');
+		expect($img?.getAttribute('alt')).toBe('(text)');
 	});
 });

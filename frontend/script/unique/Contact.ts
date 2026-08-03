@@ -2,68 +2,68 @@
  * 問い合わせフォーム
  */
 export default class Contact {
-	readonly #bodyElement: HTMLBodyElement;
+	readonly #$body: HTMLBodyElement;
 
 	/* 問い合わせフォーム要素 */
 	readonly #FORM_ELEMENT_ID = 'contact-form';
-	readonly #formElement: HTMLFormElement;
+	readonly #$form: HTMLFormElement;
 
 	/* 確認ボタン（確認画面へ進む） */
 	readonly #CONFIRM_BUTTON_ELEMENT_ID = 'js-confirm-button';
-	readonly #confirmButtonElement: HTMLButtonElement;
+	readonly #$confirmButton: HTMLButtonElement;
 
 	/* 修正ボタン（入力画面へ戻る） */
 	readonly #CORRECT_BUTTON_ELEMENT_ID = 'js-correct-button';
-	readonly #correctButtonElement: HTMLButtonElement;
+	readonly #$correctButton: HTMLButtonElement;
 
 	/* 送信ボタン（完了画面へ進む） */
 	readonly #SEND_BUTTON_ELEMENT_ID = 'js-send-button';
-	readonly #sendButtonElement: HTMLButtonElement;
+	readonly #$sendButton: HTMLButtonElement;
 
-	readonly #inputScreenElements: NodeListOf<HTMLElement>; // 入力画面で表示する要素
-	readonly #confirmScreenElements: NodeListOf<HTMLElement>; // 確認画面で表示する要素
-	readonly #confirmOutputElements: NodeListOf<HTMLElement>; // 入力画面で入力した内容を確認画面で出力する要素
+	readonly #$$inputScreen: NodeListOf<HTMLElement>; // 入力画面で表示する要素
+	readonly #$$confirmScreen: NodeListOf<HTMLElement>; // 確認画面で表示する要素
+	readonly #$$confirmOutput: NodeListOf<HTMLElement>; // 入力画面で入力した内容を確認画面で出力する要素
 
 	readonly #CONFIRM_HASH = 'confirm'; // 確認画面の URL に使用するハッシュ値
 
 	constructor() {
-		this.#bodyElement = document.body as HTMLBodyElement; // <body> 要素
+		this.#$body = document.body as HTMLBodyElement; // <body> 要素
 
-		const formElement = document.getElementById(this.#FORM_ELEMENT_ID) as HTMLFormElement | null; // 問い合わせフォーム要素
-		if (formElement === null) {
+		const $form = document.getElementById(this.#FORM_ELEMENT_ID) as HTMLFormElement | null; // 問い合わせフォーム要素
+		if ($form === null) {
 			throw new Error(`Element: #${this.#FORM_ELEMENT_ID} can not found.`);
 		}
-		this.#formElement = formElement;
+		this.#$form = $form;
 
-		const confirmButtonElement = document.getElementById(this.#CONFIRM_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 確認ボタン（確認画面へ進む）
-		if (confirmButtonElement === null) {
+		const $confirmButton = document.getElementById(this.#CONFIRM_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 確認ボタン（確認画面へ進む）
+		if ($confirmButton === null) {
 			throw new Error(`Element: #${this.#CONFIRM_BUTTON_ELEMENT_ID} can not found.`);
 		}
-		this.#confirmButtonElement = confirmButtonElement;
+		this.#$confirmButton = $confirmButton;
 
-		const correctButtonElement = document.getElementById(this.#CORRECT_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 修正ボタン（入力画面へ戻る）
-		if (correctButtonElement === null) {
+		const $correctButton = document.getElementById(this.#CORRECT_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 修正ボタン（入力画面へ戻る）
+		if ($correctButton === null) {
 			throw new Error(`Element: #${this.#CORRECT_BUTTON_ELEMENT_ID} can not found.`);
 		}
-		this.#correctButtonElement = correctButtonElement;
+		this.#$correctButton = $correctButton;
 
-		const sendButtonElement = document.getElementById(this.#SEND_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 送信ボタン（完了画面へ進む）
-		if (sendButtonElement === null) {
+		const $sendButton = document.getElementById(this.#SEND_BUTTON_ELEMENT_ID) as HTMLButtonElement | null; // 送信ボタン（完了画面へ進む）
+		if ($sendButton === null) {
 			throw new Error(`Element: #${this.#SEND_BUTTON_ELEMENT_ID} can not found.`);
 		}
-		this.#sendButtonElement = sendButtonElement;
+		this.#$sendButton = $sendButton;
 
-		this.#inputScreenElements = document.querySelectorAll('.js-screen-input'); // 入力画面で表示する要素
-		this.#confirmScreenElements = document.querySelectorAll('.js-screen-confirm'); // 確認画面で表示する要素
-		this.#confirmOutputElements = document.querySelectorAll('.js-confirm-output'); // 入力画面で入力した内容を確認画面で出力する要素
+		this.#$$inputScreen = document.querySelectorAll('.js-screen-input'); // 入力画面で表示する要素
+		this.#$$confirmScreen = document.querySelectorAll('.js-screen-confirm'); // 確認画面で表示する要素
+		this.#$$confirmOutput = document.querySelectorAll('.js-confirm-output'); // 入力画面で入力した内容を確認画面で出力する要素
 	}
 
 	/**
 	 * 初期処理
 	 */
 	init(): void {
-		this.#bodyElement.tabIndex = -1; // ボタン押下時にページ先頭へ focus() させるため
-		this.#confirmButtonElement.type = 'submit'; // HTMLInputElement.setCustomValidity() でツールチップを出すためにボタンは Submit Button 状態とする
+		this.#$body.tabIndex = -1; // ボタン押下時にページ先頭へ focus() させるため
+		this.#$confirmButton.type = 'submit'; // HTMLInputElement.setCustomValidity() でツールチップを出すためにボタンは Submit Button 状態とする
 
 		this.#stepChange();
 		window.addEventListener('hashchange', (): void => {
@@ -71,16 +71,16 @@ export default class Contact {
 		});
 
 		/* 入力画面にて確認ボタン押下（確認画面へ進む） */
-		this.#confirmButtonElement.addEventListener('click', (ev: MouseEvent): void => {
+		this.#$confirmButton.addEventListener('click', (ev: MouseEvent): void => {
 			ev.preventDefault();
 
-			if (this.#formElement.checkValidity()) {
+			if (this.#$form.checkValidity()) {
 				this.#stepChangeButtonClick(this.#CONFIRM_HASH);
 			}
 		});
 
 		/* 確認画面にて修正ボタン押下（入力画面へ戻る） */
-		this.#correctButtonElement.addEventListener('click', (): void => {
+		this.#$correctButton.addEventListener('click', (): void => {
 			this.#stepChangeButtonClick('');
 		});
 	}
@@ -92,35 +92,35 @@ export default class Contact {
 		switch (location.hash.substring(1)) {
 			/* 確認画面 */
 			case this.#CONFIRM_HASH:
-				this.#inputScreenElements.forEach((inputScreenElement) => {
-					inputScreenElement.hidden = true;
+				this.#$$inputScreen.forEach(($inputScreen) => {
+					$inputScreen.hidden = true;
 				});
-				this.#confirmScreenElements.forEach((confirmScreenElement) => {
-					confirmScreenElement.hidden = false;
+				this.#$$confirmScreen.forEach(($confirmScreen) => {
+					$confirmScreen.hidden = false;
 				});
-				this.#sendButtonElement.disabled = false;
+				this.#$sendButton.disabled = false;
 
 				/* 入力内容を出力する */
-				this.#confirmOutputElements.forEach((confirmOutputElement) => {
-					const formCtrlName = confirmOutputElement.dataset['ctrlName'];
+				this.#$$confirmOutput.forEach(($confirmOutput) => {
+					const formCtrlName = $confirmOutput.dataset['ctrlName'];
 					if (formCtrlName === undefined) {
 						throw new Error('Attribute: `data-ctrl-name` is not set.');
 					}
 
-					const formCtrls = this.#formElement.elements.namedItem(formCtrlName) as
+					const $$formCtrl = this.#$form.elements.namedItem(formCtrlName) as
 						HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | RadioNodeList | undefined;
 
-					if (formCtrls === undefined) {
+					if ($$formCtrl === undefined) {
 						throw new Error(`name: ${formCtrlName} is none.`);
 					}
 
-					let { value } = formCtrls;
+					let { value } = $$formCtrl;
 
-					switch (Object.prototype.toString.call(formCtrls)) {
+					switch (Object.prototype.toString.call($$formCtrl)) {
 						case '[object HTMLInputElement]':
-							if ((formCtrls as HTMLInputElement).type === 'checkbox') {
+							if (($$formCtrl as HTMLInputElement).type === 'checkbox') {
 								/* 単体チェックボックス */
-								value = Contact.#getLabelTextFormControl(formCtrls as HTMLInputElement);
+								value = Contact.#getLabelTextFormControl($$formCtrl as HTMLInputElement);
 							}
 
 							break;
@@ -128,18 +128,18 @@ export default class Contact {
 							if (value === '') {
 								/* ラジオボタン（未選択時）またはチェックボックス群 */
 								const labelTextList: string[] = [];
-								Array.from(formCtrls as RadioNodeList)
-									.filter((formCtrl) => formCtrl.checked)
-									.forEach((formCtrlElement) => {
-										labelTextList.push(Contact.#getLabelTextFormControl(formCtrlElement));
+								Array.from($$formCtrl as RadioNodeList)
+									.filter(($formCtrl) => $formCtrl.checked)
+									.forEach(($formCtrl) => {
+										labelTextList.push(Contact.#getLabelTextFormControl($formCtrl));
 									});
 								value = labelTextList.join('、');
 							} else {
 								/* ラジオボタン（選択時） */
-								Array.from(formCtrls as RadioNodeList)
-									.filter((formCtrlElement) => formCtrlElement.value === value)
-									.forEach((formCtrlElement) => {
-										value = Contact.#getLabelTextFormControl(formCtrlElement);
+								Array.from($$formCtrl as RadioNodeList)
+									.filter(($formCtrl) => $formCtrl.value === value)
+									.forEach(($formCtrl) => {
+										value = Contact.#getLabelTextFormControl($formCtrl);
 									});
 							}
 
@@ -147,20 +147,20 @@ export default class Contact {
 						default:
 					}
 
-					confirmOutputElement.textContent = value;
+					$confirmOutput.textContent = value;
 				});
 
 				break;
 
 			/* 入力画面 */
 			default:
-				this.#inputScreenElements.forEach((inputScreenElement) => {
-					inputScreenElement.hidden = false;
+				this.#$$inputScreen.forEach(($inputScreen) => {
+					$inputScreen.hidden = false;
 				});
-				this.#confirmScreenElements.forEach((confirmScreenElement) => {
-					confirmScreenElement.hidden = true;
+				this.#$$confirmScreen.forEach(($confirmScreen) => {
+					$confirmScreen.hidden = true;
 				});
-				this.#sendButtonElement.disabled = true;
+				this.#$sendButton.disabled = true;
 		}
 	}
 
@@ -172,7 +172,7 @@ export default class Contact {
 	#stepChangeButtonClick(hash: string): void {
 		history.pushState(null, '', hash === '' ? location.pathname : `#${hash}`);
 		window.scroll(0, 0);
-		this.#bodyElement.focus();
+		this.#$body.focus();
 
 		this.#stepChange();
 	}
@@ -180,20 +180,20 @@ export default class Contact {
 	/**
 	 * フォームコントロール（<input> など）のラベルテキストを取得する
 	 *
-	 * @param formCtrl - フォームコントロール
+	 * @param $formCtrl - フォームコントロール
 	 *
 	 * @returns ラベルテキスト（ラベルが存在しない場合は value 属性値）
 	 */
-	static #getLabelTextFormControl(formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
-		const labelElements = formCtrl.labels;
-		if (labelElements === null || labelElements.length === 0) {
-			console.info('label does not exist', formCtrl);
-			return formCtrl.value;
+	static #getLabelTextFormControl($formCtrl: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): string {
+		const $$label = $formCtrl.labels;
+		if ($$label === null || $$label.length === 0) {
+			console.info('label does not exist', $formCtrl);
+			return $formCtrl.value;
 		}
 
 		const labelTextList: string[] = [];
-		labelElements.forEach((labelElement) => {
-			labelTextList.push(labelElement.textContent);
+		$$label.forEach(($label) => {
+			labelTextList.push($label.textContent);
 		});
 
 		return labelTextList.join(', ');

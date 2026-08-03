@@ -13,11 +13,11 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const time = root.querySelector('time');
+		const $time = $root.querySelector('time');
 
-		expect(time?.getAttribute('class')).toBeUndefined();
+		expect($time?.getAttribute('class')).toBeUndefined();
 	});
 
 	test('all attributes', async () => {
@@ -29,13 +29,13 @@ describe('attribute', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const time = root.querySelector('time');
+		const $time = $root.querySelector('time');
 
-		expect(time?.getAttribute('datetime')).toBe('2000-01-02');
-		expect(time?.getAttribute('class')).toBe('my-class');
-		expect(time?.innerHTML).toBe('2000年1月2日');
+		expect($time?.getAttribute('datetime')).toBe('2000-01-02');
+		expect($time?.getAttribute('class')).toBe('my-class');
+		expect($time?.innerHTML).toBe('2000年1月2日');
 	});
 });
 
@@ -48,12 +48,12 @@ describe('format', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const time = root.querySelector('time');
+		const $time = $root.querySelector('time');
 
-		expect(time?.getAttribute('datetime')).toBe('2000-01-02');
-		expect(time?.innerHTML).toBe('2000年1月2日');
+		expect($time?.getAttribute('datetime')).toBe('2000-01-02');
+		expect($time?.innerHTML).toBe('2000年1月2日');
 	});
 
 	test('YYYY-MM', async () => {
@@ -64,12 +64,12 @@ describe('format', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const time = root.querySelector('time');
+		const $time = $root.querySelector('time');
 
-		expect(time?.getAttribute('datetime')).toBe('2000-01');
-		expect(time?.innerHTML).toBe('2000年1月');
+		expect($time?.getAttribute('datetime')).toBe('2000-01');
+		expect($time?.innerHTML).toBe('2000年1月');
 	});
 
 	test('YYYY', async () => {
@@ -80,12 +80,12 @@ describe('format', () => {
 			},
 		});
 
-		const root = parse(result);
+		const $root = parse(result);
 
-		const time = root.querySelector('time');
+		const $time = $root.querySelector('time');
 
-		expect(time?.getAttribute('datetime')).toBe('2000');
-		expect(time?.innerHTML).toBe('2000年');
+		expect($time?.getAttribute('datetime')).toBe('2000');
+		expect($time?.innerHTML).toBe('2000年');
 	});
 
 	test('invalid', async () => {

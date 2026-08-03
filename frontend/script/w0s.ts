@@ -63,11 +63,11 @@ document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
 });
 
 /* 入力値の変換 */
-document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim').forEach((formCtrlElement) => {
-	formCtrlElement.addEventListener(
+document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim').forEach(($formCtrl) => {
+	$formCtrl.addEventListener(
 		'change',
 		() => {
-			formCtrlElement.value = convert(formCtrlElement.value, {
+			$formCtrl.value = convert($formCtrl.value, {
 				trim: true,
 			});
 		},

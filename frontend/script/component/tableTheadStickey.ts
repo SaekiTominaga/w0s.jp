@@ -1,36 +1,36 @@
 /**
  * スクロールスナップの設定を行う
  *
- * @param tableElement - <table> 要素
+ * @param $table - <table> 要素
  */
-const setScrollSnap = (tableElement: HTMLTableElement): void => {
-	const theadElement = tableElement.tHead;
-	if (theadElement === null) {
+const setScrollSnap = ($table: HTMLTableElement): void => {
+	const $thead = $table.tHead;
+	if ($thead === null) {
 		return;
 	}
 
-	tableElement.style.setProperty('--stickey-thead-block-size', `${String(theadElement.scrollHeight)}px`);
+	$table.style.setProperty('--stickey-thead-block-size', `${String($thead.scrollHeight)}px`);
 };
 
 /**
  * <thead> の sticky スクロール量調整
  *
- * @param elements - 対象要素
+ * @param $$element - 対象要素
  */
-const tableTheadStickey = (elements: NodeListOf<Element>): void => {
-	const tableElements = Array.from(elements).map((element): HTMLTableElement => {
-		if (!(element instanceof HTMLTableElement)) {
+const tableTheadStickey = ($$element: NodeListOf<Element>): void => {
+	const $$table = Array.from($$element).map(($element): HTMLTableElement => {
+		if (!($element instanceof HTMLTableElement)) {
 			throw new Error('Element must be a `HTMLTableElement`');
 		}
 
-		return element;
+		return $element;
 	});
 
-	tableElements.forEach((tableElement) => {
-		setScrollSnap(tableElement);
+	$$table.forEach(($table) => {
+		setScrollSnap($table);
 	});
 
-	if (tableElements.length >= 1) {
+	if ($$table.length >= 1) {
 		window.addEventListener(
 			'hashchange',
 			(): void => {
@@ -39,12 +39,12 @@ const tableTheadStickey = (elements: NodeListOf<Element>): void => {
 					return;
 				}
 
-				const targetElement = tableElements.find((tableElement) => tableElement.contains(document.getElementById(id)));
-				if (targetElement === undefined) {
+				const $target = $$table.find(($table) => $table.contains(document.getElementById(id)));
+				if ($target === undefined) {
 					return;
 				}
 
-				setScrollSnap(targetElement);
+				setScrollSnap($target);
 			},
 			{ passive: true },
 		);

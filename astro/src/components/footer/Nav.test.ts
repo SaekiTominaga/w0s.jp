@@ -13,31 +13,31 @@ test('normal', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const lis = root.querySelectorAll('.nav > li');
-	const li1 = lis.at(0)?.querySelector(':scope > a');
-	const li2 = lis.at(1)?.querySelector(':scope > a');
-	const li3 = lis.at(2)?.querySelector(':scope > a');
-	const li4 = lis.at(3)?.querySelector(':scope > a');
+	const $$li = $root.querySelectorAll('.nav > li');
+	const $li1 = $$li.at(0)?.querySelector(':scope > a');
+	const $li2 = $$li.at(1)?.querySelector(':scope > a');
+	const $li3 = $$li.at(2)?.querySelector(':scope > a');
+	const $li4 = $$li.at(3)?.querySelector(':scope > a');
 
-	expect(lis.length).toBe(4);
+	expect($$li.length).toBe(4);
 
-	expect(li1?.getAttribute('href')).toBe('/info');
-	expect(li1?.getAttribute('rel')).toBeUndefined();
-	expect(li1?.getAttribute('aria-current')).toBeUndefined();
+	expect($li1?.getAttribute('href')).toBe('/info');
+	expect($li1?.getAttribute('rel')).toBeUndefined();
+	expect($li1?.getAttribute('aria-current')).toBeUndefined();
 
-	expect(li2?.getAttribute('href')).toBe('/privacy');
-	expect(li2?.getAttribute('rel')).toBe('privacy-policy');
-	expect(li2?.getAttribute('aria-current')).toBeUndefined();
+	expect($li2?.getAttribute('href')).toBe('/privacy');
+	expect($li2?.getAttribute('rel')).toBe('privacy-policy');
+	expect($li2?.getAttribute('aria-current')).toBeUndefined();
 
-	expect(li3?.getAttribute('href')).toBe('/technology');
-	expect(li3?.getAttribute('rel')).toBeUndefined();
-	expect(li3?.getAttribute('aria-current')).toBeUndefined();
+	expect($li3?.getAttribute('href')).toBe('/technology');
+	expect($li3?.getAttribute('rel')).toBeUndefined();
+	expect($li3?.getAttribute('aria-current')).toBeUndefined();
 
-	expect(li4?.getAttribute('href')).toBe('/contact');
-	expect(li4?.getAttribute('rel')).toBeUndefined();
-	expect(li4?.getAttribute('aria-current')).toBeUndefined();
+	expect($li4?.getAttribute('href')).toBe('/contact');
+	expect($li4?.getAttribute('rel')).toBeUndefined();
+	expect($li4?.getAttribute('aria-current')).toBeUndefined();
 });
 
 test('current', async () => {
@@ -47,17 +47,17 @@ test('current', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const lis = root.querySelectorAll('.nav > li');
-	const li1 = lis.at(0)?.querySelector(':scope > a');
-	const li2 = lis.at(1)?.querySelector(':scope > a');
+	const $$li = $root.querySelectorAll('.nav > li');
+	const $li1 = $$li.at(0)?.querySelector(':scope > a');
+	const $li2 = $$li.at(1)?.querySelector(':scope > a');
 
-	expect(li1?.getAttribute('href')).toBe('/info');
-	expect(li1?.getAttribute('rel')).toBeUndefined();
-	expect(li1?.getAttribute('aria-current')).toBeUndefined();
+	expect($li1?.getAttribute('href')).toBe('/info');
+	expect($li1?.getAttribute('rel')).toBeUndefined();
+	expect($li1?.getAttribute('aria-current')).toBeUndefined();
 
-	expect(li2?.getAttribute('href')).toBeUndefined();
-	expect(li2?.getAttribute('rel')).toBeUndefined();
-	expect(li2?.getAttribute('aria-current')).toBe('page');
+	expect($li2?.getAttribute('href')).toBeUndefined();
+	expect($li2?.getAttribute('rel')).toBeUndefined();
+	expect($li2?.getAttribute('aria-current')).toBe('page');
 });

@@ -12,15 +12,15 @@ test('base', async () => {
 		slots: {},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const figure = root.querySelector('figure');
-	const caption = root.querySelector('figcaption');
+	const $figure = $root.querySelector('figure');
+	const $caption = $root.querySelector('figcaption');
 
-	expect(figure?.classList.contains('-border')).toBeFalsy();
-	expect(figure?.getAttribute('data-width')).toBeUndefined();
-	expect(figure?.getAttribute('style')).toBeUndefined();
-	expect(caption).toBeNull();
+	expect($figure?.classList.contains('-border')).toBeFalsy();
+	expect($figure?.getAttribute('data-width')).toBeUndefined();
+	expect($figure?.getAttribute('style')).toBeUndefined();
+	expect($caption).toBeNull();
 });
 
 test('caption', async () => {
@@ -31,12 +31,12 @@ test('caption', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const caption = root.querySelector('figcaption');
+	const $caption = $root.querySelector('figcaption');
 
-	expect(caption?.classList.contains('-meta')).toBeFalsy();
-	expect(caption?.innerHTML.trim()).toBe('<span>caption</span>');
+	expect($caption?.classList.contains('-meta')).toBeFalsy();
+	expect($caption?.innerHTML.trim()).toBe('<span>caption</span>');
 });
 
 test('width', async () => {
@@ -47,12 +47,12 @@ test('width', async () => {
 		slots: {},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const figure = root.querySelector('figure');
+	const $figure = $root.querySelector('figure');
 
-	expect(figure?.getAttribute('data-width')).toBe('100');
-	expect(figure?.getAttribute('style')).toBe('--_width: 100px');
+	expect($figure?.getAttribute('data-width')).toBe('100');
+	expect($figure?.getAttribute('style')).toBe('--_width: 100px');
 });
 
 test('border', async () => {
@@ -63,11 +63,11 @@ test('border', async () => {
 		slots: {},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const figure = root.querySelector('figure');
+	const $figure = $root.querySelector('figure');
 
-	expect(figure?.classList.contains('-border')).toBeTruthy();
+	expect($figure?.classList.contains('-border')).toBeTruthy();
 });
 
 test('captionMeta', async () => {
@@ -80,9 +80,9 @@ test('captionMeta', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const caption = root.querySelector('figcaption');
+	const $caption = $root.querySelector('figcaption');
 
-	expect(caption?.classList.contains('-meta')).toBeTruthy();
+	expect($caption?.classList.contains('-meta')).toBeTruthy();
 });
