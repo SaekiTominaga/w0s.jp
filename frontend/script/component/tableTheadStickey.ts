@@ -17,10 +17,10 @@ const setScrollSnap = ($table: HTMLTableElement): void => {
  *
  * @param $$element - 対象要素
  */
-const tableTheadStickey = ($$element: NodeListOf<Element>): void => {
+export default ($$element: NodeListOf<Element>): void => {
 	const $$table = Array.from($$element).map(($element): HTMLTableElement => {
 		if (!($element instanceof HTMLTableElement)) {
-			throw new Error('Element must be a `HTMLTableElement`');
+			throw new TypeError('Element must be a `HTMLTableElement`');
 		}
 
 		return $element;
@@ -50,4 +50,3 @@ const tableTheadStickey = ($$element: NodeListOf<Element>): void => {
 		);
 	}
 };
-export default tableTheadStickey;

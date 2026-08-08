@@ -9,8 +9,9 @@ import formSubmitOverlay from '@w0s/form-submit-overlay';
 import inputDateToText from '@w0s/input-date-to-text';
 import InputSwitch from '@w0s/input-switch';
 import { convert } from '@w0s/string-convert';
+import adsense from './component/adsense.ts';
+import searchEngine from './component/searchEngine.ts';
 import tableTheadStickey from './component/tableTheadStickey.ts';
-import adsense from './unique/adsense.ts';
 import { blogNewly } from './unique/sidebar.ts';
 import reportJsError from './util/reportJsError.ts';
 import trustedTypes from './util/trustedTypes.ts';
@@ -77,6 +78,9 @@ document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-t
 
 /* 入力バリデーション（エラー時はメッセージを画面表示する） */
 formControlValidation(document.querySelectorAll('.js-validation'));
+
+/* 検索エンジン選択 */
+searchEngine(document.querySelector('.js-search-engine'));
 
 /* Google AdSense */
 adsense(document.querySelectorAll('.js-ads-google'), { rootMargin: '100px' });
