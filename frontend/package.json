@@ -17,7 +17,9 @@
 		"lint": "pnpm run /^lint:.*/",
 		"lint:css": "stylelint -f verbose style",
 		"lint:ts": "tsc --project build & tsc --project script",
-		"lint:js": "eslint build script"
+		"lint:js": "eslint build script",
+		"pretest": "tsc --project build & tsc --project script",
+		"test": "node --experimental-test-coverage --test script/**/*.test.ts"
 	},
 	"dependencies": {
 		"@w0s/base.css": "1.4.0",
@@ -41,8 +43,10 @@
 		"@rollup/plugin-commonjs": "29.0.3",
 		"@rollup/plugin-node-resolve": "16.0.3",
 		"@rollup/plugin-typescript": "12.3.0",
+		"@types/jsdom": "30.0.0",
 		"@types/trusted-types": "2.0.7",
 		"chokidar": "^5.0.0",
+		"jsdom": "30.0.1",
 		"postcss-cli": "11.0.1",
 		"postcss-custom-media": "12.0.1",
 		"postcss-discard-comments": "8.0.2",
