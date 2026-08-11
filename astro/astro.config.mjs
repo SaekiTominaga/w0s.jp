@@ -22,6 +22,12 @@ export default defineConfig({
 	},
 	security: {
 		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
+		allowedDomains: [
+			{
+				hostname: 'w0s.jp',
+				protocol: 'https',
+			},
+		],
 	},
 	build: {
 		format: 'preserve',
