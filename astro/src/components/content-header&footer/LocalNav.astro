@@ -21,12 +21,9 @@ const { data, pagePath } = Astro.props;
 			<ul class="local-nav">
 				{data.items.map((localNavItem) => (
 					<li>
-						{localNavItem.path !== pagePath && (
-							<Anchor href={localNavItem.path} bullet={true}>
-								{localNavItem.name}
-							</Anchor>
-						)}
-						{localNavItem.path === pagePath && <Anchor bullet={true}>{localNavItem.name}</Anchor>}
+						<Anchor href={localNavItem.path !== pagePath ? localNavItem.path : undefined} bullet={true}>
+							{localNavItem.name}
+						</Anchor>
 					</li>
 				))}
 			</ul>
