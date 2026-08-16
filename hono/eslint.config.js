@@ -1,12 +1,21 @@
 // @ts-check
 
+import { defineConfig } from 'eslint/config';
+import pluginPlaywright from 'eslint-plugin-playwright';
 import w0sConfig from '@w0s/eslint-config';
 
 /** @type {import("eslint").Linter.Config[]} */
-export default [
+export default defineConfig([
 	...w0sConfig,
 	{
 		ignores: ['dist'],
+	},
+	{
+		languageOptions: {
+			parserOptions: {
+				sourceType: 'module',
+			},
+		},
 	},
 	{
 		files: ['**/*.ts'],
@@ -17,9 +26,14 @@ export default [
 		},
 	},
 	{
+		files: ['e2e/**/*.spec.ts'],
+		extends: [pluginPlaywright.configs['flat/recommended']],
+		rules: {},
+	},
+	{
 		files: ['src/app.ts'],
 		rules: {
 			'@typescript-eslint/no-unsafe-call': 'off',
 		},
 	},
-];
+]);
