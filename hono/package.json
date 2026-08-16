@@ -5,9 +5,10 @@
 	"scripts": {
 		"dev": "tsx --watch --env-file=../.env.development --tsconfig tsconfig.json src/app.ts",
 		"build": "tsc",
-		"lint": "eslint src",
+		"lint": "eslint e2e src",
 		"pretest": "tsc --noEmit",
-		"test": "node --experimental-test-coverage --env-file=../.env.development --env-file=../.env.test --test src/**/*.test.ts"
+		"test": "node --experimental-test-coverage --env-file=../.env.development --env-file=../.env.test --test src/**/*.test.ts",
+		"test-e2e": "playwright test"
 	},
 	"dependencies": {
 		"@hono/node-server": "2.0.11",
@@ -19,6 +20,7 @@
 		"winston-transport": "4.9.0"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.62.1",
 		"@types/nodemailer": "8.0.1",
 		"tsx": "4.23.1"
 	},
