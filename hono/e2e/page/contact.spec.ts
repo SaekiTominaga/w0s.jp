@@ -17,6 +17,7 @@ test('page pattern', async ({ page }) => {
 	const stepItemComplete = stepItem.filter({ hasText: '完了' });
 
 	const userInput = page.locator('.js-screen-input').filter({ hasText: '名前 任意 Eメールアドレス 必須 返信の有無 必須 必要 不要' });
+	const userConfirm = page.locator('.js-screen-confirm').filter({ hasText: '入力内容確認' });
 
 	const confirmButton = page.getByRole('button', { name: '入力内容を確認' });
 	const correctButton = page.getByRole('button', { name: '修正' });
@@ -31,7 +32,7 @@ test('page pattern', async ({ page }) => {
 		expect(stepItemComplete).toBeVisible(),
 
 		expect(userInput).toBeVisible(),
-		expect(page.locator('.js-screen-confirm').filter({ hasText: '名前 Eメールアドレス 返信の有無 内容' })).toBeHidden(),
+		expect(userConfirm).toBeHidden(),
 
 		expect(confirmButton).toBeVisible(),
 		expect(correctButton).toBeHidden(),
@@ -54,7 +55,7 @@ test('page pattern', async ({ page }) => {
 		expect(stepItemComplete).toBeVisible(),
 
 		expect(userInput).toBeHidden(),
-		expect(page.locator('.js-screen-confirm').filter({ hasText: '名前 Eメールアドレス mail@example.com 返信の有無 必要 内容 message' })).toBeVisible(),
+		expect(userConfirm).toBeVisible(),
 
 		expect(confirmButton).toBeHidden(),
 		expect(correctButton).toBeVisible(),
@@ -72,7 +73,7 @@ test('page pattern', async ({ page }) => {
 		expect(stepItemComplete).toBeVisible(),
 
 		expect(userInput).toBeVisible(),
-		expect(page.locator('.js-screen-confirm').filter({ hasText: '名前 Eメールアドレス 返信の有無 内容' })).toBeHidden(),
+		expect(userConfirm).toBeHidden(),
 
 		expect(confirmButton).toBeVisible(),
 		expect(correctButton).toBeHidden(),
@@ -144,12 +145,12 @@ test('confirm', async ({ page }) => {
 	]);
 	await page.getByRole('button', { name: '入力内容を確認' }).click();
 
-	const confirm = page.locator('.js-screen-confirm').filter({ hasText: '名前 name Eメールアドレス mail@example.com 返信の有無 必要 内容 message' });
+	const confirm = page.locator('.js-screen-confirm').filter({ hasText: '入力内容確認' });
 
 	await Promise.all([
-		expect(confirm.locator('.js-confirm-output[data-ctrl-name="yourname"]')).toHaveText('name'),
-		expect(confirm.locator('.js-confirm-output[data-ctrl-name="email"]')).toHaveText('mail@example.com'),
-		expect(confirm.locator('.js-confirm-output[data-ctrl-name="reply"]')).toHaveText('必要'),
-		expect(confirm.locator('.js-confirm-output[data-ctrl-name="body"]')).toHaveText('message'),
+		expect(confirm.locator('.js-confirm-output[for="input-name"]')).toHaveText('name'),
+		expect(confirm.locator('.js-confirm-output[for="input-email"]')).toHaveText('mail@example.com'),
+		expect(confirm.locator('.js-confirm-output[for="input-reply-group"]')).toHaveText('必要'),
+		expect(confirm.locator('.js-confirm-output[for="input-body"]')).toHaveText('message'),
 	]);
 });
