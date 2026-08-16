@@ -7,9 +7,8 @@
 		"build": "tsc",
 		"lint": "eslint e2e src",
 		"pretest": "tsc --noEmit",
-		"test": "pnpm run /^test:.*/",
-		"test:node": "node --experimental-test-coverage --env-file=../.env.development --env-file=../.env.test --test src/**/*.test.ts",
-		"test:playwright": "playwright test"
+		"test": "node --experimental-test-coverage --env-file=../.env.development --env-file=../.env.test --test src/**/*.test.ts",
+		"test-e2e": "playwright test"
 	},
 	"dependencies": {
 		"@hono/node-server": "2.0.11",

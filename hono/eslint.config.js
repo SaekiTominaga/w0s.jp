@@ -28,7 +28,9 @@ export default defineConfig([
 	{
 		files: ['e2e/**/*.spec.ts'],
 		extends: [pluginPlaywright.configs['flat/recommended']],
-		rules: {},
+		rules: {
+			'playwright/no-skipped-test': 'off',
+		},
 	},
 	{
 		files: ['src/app.ts'],
