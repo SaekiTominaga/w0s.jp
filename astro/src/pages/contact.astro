@@ -7,10 +7,11 @@ import FormButtons from '@components/FormButtons.astro';
 import FormInvalid from '@components/FormInvalid.astro';
 import FormGridGroup from '@components/FormGridGroup.astro';
 import FormValidateMsg from '@components/FormValidateMsg.astro';
+import ListTable from '@components/ListTable.astro';
 import Stack from '@components/Stack.astro';
 import Step from '@components/Step.astro';
 import StepItem from '@components/StepItem.astro';
-import Table from '@components/Table.astro';
+import TextareaPreview from '@components/TextareaPreview.astro';
 import FormCtrlInput from '@components/+phrasing/FormCtrlInput.astro';
 import FormCtrlTextarea from '@components/+phrasing/FormCtrlTextarea.astro';
 import FormLabelIcon from '@components/+phrasing/FormLabelIcon.astro';
@@ -88,7 +89,7 @@ if (actionResult !== undefined) {
 						<Fragment slot="legend"><span id="label-reply">返信の有無 <FormLabelIcon type="required">必須</FormLabelIcon></span></Fragment>
 
 						<Fragment slot="contents">
-							<div class="js-validation" role="radiogroup" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
+							<div class="js-validation" role="radiogroup" id="input-reply-group" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
 								<Label label="必要">
 									<input type="radio" name="reply" value="yes" checked={requestFormdata?.get('reply') === 'yes'} required="" />
 								</Label>
@@ -123,28 +124,24 @@ if (actionResult !== undefined) {
 
 		<div class="js-screen-confirm" hidden="">
 			<Stack>
-				<Table full={true}>
-					<tbody>
-						<tr>
-							<th scope="row">名前</th>
-							<td class="js-confirm-output" data-ctrl-name="yourname"></td>
-						</tr>
-						<tr>
-							<th scope="row">Eメールアドレス</th>
-							<td class="js-confirm-output" data-ctrl-name="email"></td>
-						</tr>
-						<tr>
-							<th scope="row">返信の有無</th>
-							<td class="js-confirm-output" data-ctrl-name="reply"></td>
-						</tr>
-						<tr>
-							<th scope="row">内容</th>
-							<td>
-								<pre class="js-confirm-output" data-ctrl-name="body"></pre>
-							</td>
-						</tr>
-					</tbody>
-				</Table>
+				<ListTable caption="入力内容確認">
+					<div>
+						<dt>名前</dt>
+						<dd><output for="input-name" class="js-confirm-output"></output></dd>
+					</div>
+					<div>
+						<dt>Eメールアドレス</dt>
+						<dd><output for="input-email" class="js-confirm-output"></output></dd>
+					</div>
+					<div>
+						<dt>返信の有無</dt>
+						<dd><output for="input-reply-group" class="js-confirm-output"></output></dd>
+					</div>
+					<div>
+						<dt>内容</dt>
+						<dd><TextareaPreview><output for="input-body" class="js-confirm-output"></output></TextareaPreview></dd>
+					</div>
+				</ListTable>
 			</Stack>
 		</div>
 
