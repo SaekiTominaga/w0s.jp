@@ -64,6 +64,7 @@ export const searchApp = new Hono<{ Variables: Variables }>().get(validatorParam
 		`<!DOCTYPE html>
 <html lang=ja>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=text-scale content=scale>
 <title>ページ移動</title>
 <p>検索結果は次の URL で取得できます。 <a href="${escape(redirectUrl)}"><code>${escape(redirectUrl)}</code></a>`,
 		301,
