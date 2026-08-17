@@ -1,13 +1,15 @@
 // @ts-check
 
 import * as astroParser from 'astro-eslint-parser';
-import eslintPluginAstro from 'eslint-plugin-astro';
+import { defineConfig } from 'eslint/config';
+import pluginAstro from 'eslint-plugin-astro';
+import pluginPlaywright from 'eslint-plugin-playwright';
 import w0sConfig from '@w0s/eslint-config';
 
 /** @type {import("eslint").Linter.Config[]} */
-export default [
+export default defineConfig([
 	...w0sConfig,
-	...eslintPluginAstro.configs.recommended,
+	...pluginAstro.configs.recommended,
 	{
 		ignores: ['dist', 'src/pages/kumeta/manga/subtitle.astro'],
 	},
@@ -73,6 +75,13 @@ export default [
 		},
 	},
 	{
+		files: ['e2e/**/*.spec.ts'],
+		extends: [pluginPlaywright.configs['flat/recommended']],
+		rules: {
+			'playwright/no-skipped-test': 'off',
+		},
+	},
+	{
 		files: ['src/+util/**/*.ts'],
 		rules: {
 			'func-style': [
@@ -99,4 +108,4 @@ export default [
 			'import/no-unresolved': 'off',
 		},
 	},
-];
+]);

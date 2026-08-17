@@ -9,7 +9,7 @@ export default defineConfig({
 	forbidOnly: Boolean(process.env.CI),
 	reporter: 'list', // https://playwright.dev/docs/test-reporters
 	use: {
-		baseURL: 'http://localhost:3001',
+		baseURL: 'http://localhost:3000',
 	},
 	projects: [
 		{
@@ -26,8 +26,8 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: 'pnpm -F hono dev',
-		url: 'http://localhost:3001',
+		command: 'pnpm -F astro dev',
+		url: 'http://localhost:3000',
 		reuseExistingServer: !process.env.CI,
 	},
 	outputDir: '.playwright/test-results',
