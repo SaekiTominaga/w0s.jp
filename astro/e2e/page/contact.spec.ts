@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ context, page }) => {
+	await context.setExtraHTTPHeaders({
+		'X-Requested-With': '@playwright/test',
+	});
+
 	await page.goto('/contact');
 });
 
@@ -39,11 +43,9 @@ test('page pattern', async ({ page }) => {
 		expect(submitButton).toBeHidden(),
 	]);
 
-	await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com'); // TODO: Promise.all の中だとなぜか失敗する
-	await Promise.all([
-		page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check(),
-		page.getByRole('textbox', { name: '内容 必須' }).fill('Hello'),
-	]);
+	await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+	await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+	await page.getByRole('textbox', { name: '内容 必須' }).fill('Hello');
 	await confirmButton.click();
 
 	/* confirm */
@@ -137,12 +139,10 @@ test.describe('validator', () => {
 });
 
 test('confirm', async ({ page }) => {
-	await page.getByRole('textbox', { name: '名前 任意' }).fill('name'); // TODO: Promise.all の中だとなぜか失敗する
-	await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com'); // TODO: Promise.all の中だとなぜか失敗する
-	await Promise.all([
-		page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check(),
-		page.getByRole('textbox', { name: '内容 必須' }).fill('Hello'),
-	]);
+	await page.getByRole('textbox', { name: '名前 任意' }).fill('name');
+	await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+	await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+	await page.getByRole('textbox', { name: '内容 必須' }).fill('Hello');
 	await page.getByRole('button', { name: '入力内容を確認' }).click();
 
 	const confirm = page.locator('.js-screen-confirm').filter({ hasText: '入力内容確認' });
@@ -153,6 +153,94 @@ test('confirm', async ({ page }) => {
 		expect(confirm.locator('.js-confirm-output[for="input-reply-group"]')).toHaveText('必要'),
 		expect(confirm.locator('.js-confirm-output[for="input-body"]')).toHaveText('Hello'),
 	]);
+});
+
+test.describe('Astro Actions', () => {
+	test('Basic NG word', async ({ page }) => {
+		await page.getByRole('textbox', { name: '名前 任意' }).fill('name');
+		await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+		await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+		await page.getByRole('textbox', { name: '内容 必須' }).fill('もしお返事いただける際は当社管理番号を削除せずご返信願います。');
+		await page.getByRole('button', { name: '入力内容を確認' }).click();
+
+		const [response] = await Promise.all([
+			page.waitForResponse((res) => res.request().method() === 'POST'),
+			page.getByRole('button', { name: '送信' }).click(),
+		]);
+
+		expect(response.status()).toBe(400);
+		expect(response.url()).toBe('http://localhost:3000/contact?_action=contact.post');
+	});
+
+	test('Additional NG word', async ({ page }) => {
+		await page.getByRole('textbox', { name: '名前 任意' }).fill('name');
+		await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+		await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+		await page.getByRole('textbox', { name: '内容 必須' }).fill('Hello https://cutt.ly/XXX');
+		await page.getByRole('button', { name: '入力内容を確認' }).click();
+
+		const [response] = await Promise.all([
+			page.waitForResponse((res) => res.request().method() === 'POST'),
+			page.getByRole('button', { name: '送信' }).click(),
+		]);
+
+		expect(response.status()).toBe(400);
+		expect(response.url()).toBe('http://localhost:3000/contact?_action=contact.post');
+	});
+
+	test.describe('not contain Japanese', () => {
+		test('less than the required time', async ({ page }) => {
+			await page.getByRole('textbox', { name: '名前 任意' }).fill('name');
+			await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+			await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+			await page.getByRole('textbox', { name: '内容 必須' }).fill('Hello');
+			await page.getByRole('button', { name: '入力内容を確認' }).click();
+
+			/* ここで規定時間以上の待機がない場合はエラーになる */
+
+			const [response] = await Promise.all([
+				page.waitForResponse((res) => res.request().method() === 'POST'),
+				page.getByRole('button', { name: '送信' }).click(),
+			]);
+
+			expect(response.status()).toBe(400);
+			expect(response.url()).toBe('http://localhost:3000/contact?_action=contact.post');
+		});
+
+		test('success', async ({ page }) => {
+			await page.getByRole('textbox', { name: '名前 任意' }).fill('name');
+			await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+			await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+			await page.getByRole('textbox', { name: '内容 必須' }).fill('Hello');
+			await page.getByRole('button', { name: '入力内容を確認' }).click();
+
+			const [response] = await Promise.all([
+				page.waitForResponse((res) => res.request().method() === 'POST'),
+				page.getByRole('button', { name: '送信' }).click({ delay: 10000 }),
+			]);
+
+			expect(response.status()).toBe(303);
+			expect(await response.headerValue('Location')).toBe('/contact_completed?referrer=/contact');
+		});
+	});
+});
+
+test('referrer', async ({ context, page }) => {
+	await context.setExtraHTTPHeaders({
+		Referer: 'http://localhost:3000/path/to',
+		'X-Requested-With': '@playwright/test',
+	});
+
+	await page.getByRole('textbox', { name: '名前 任意' }).fill('name');
+	await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+	await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+	await page.getByRole('textbox', { name: '内容 必須' }).fill('こんにちは');
+	await page.getByRole('button', { name: '入力内容を確認' }).click();
+
+	const [response] = await Promise.all([page.waitForResponse((res) => res.request().method() === 'POST'), page.getByRole('button', { name: '送信' }).click()]);
+
+	expect(response.status()).toBe(303);
+	expect(await response.headerValue('Location')).toBe('/contact_completed?referrer=/path/to');
 });
 
 test.describe('JavaScript disabled', () => {
@@ -230,16 +318,14 @@ test.describe('JavaScript disabled', () => {
 		test('no error', async ({ page }) => {
 			const submitButton = page.getByRole('button', { name: '送信' });
 
-			await Promise.all([
-				page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com'),
-				page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check(),
-				page.getByRole('textbox', { name: '内容 必須' }).fill('Hello'),
-			]);
+			await page.getByRole('textbox', { name: 'Eメールアドレス 必須' }).fill('mail@example.com');
+			await page.getByRole('radiogroup', { name: '返信の有無 必須' }).getByRole('radio', { name: '必要' }).check();
+			await page.getByRole('textbox', { name: '内容 必須' }).fill('こんにちは');
 
 			const [response] = await Promise.all([page.waitForResponse((res) => res.request().method() === 'POST'), submitButton.click()]);
 
-			expect(response.status()).toBe(400); // Astro Action エラー
-			expect(response.url()).toBe('http://localhost:3000/contact?_action=contact.post');
+			expect(response.status()).toBe(303);
+			expect(await response.headerValue('Location')).toBe('/contact_completed?referrer=/contact');
 		});
 	});
 });
