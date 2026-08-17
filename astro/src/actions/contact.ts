@@ -2,6 +2,7 @@ import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
+import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { env } from '@w0s/env-value-type';
 import configContact from '@config/contact.ts';
 
@@ -68,29 +69,32 @@ export const contact = {
 				}
 			}
 
-			/* メール送信 */
-			const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
-				input: input,
-				elapsedTime: elapsedTime,
-				ip: context.clientAddress,
-				headers: requestHeaders,
-			});
+			let sentInfo: SMTPTransport.SentMessageInfo | undefined;
+			if (requestHeaders.get('X-Requested-With') !== '@playwright/test') {
+				/* メール送信 */
+				const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
+					input: input,
+					elapsedTime: elapsedTime,
+					ip: context.clientAddress,
+					headers: requestHeaders,
+				});
 
-			const transporter = nodemailer.createTransport({
-				host: env('MAIL_SMTP'),
-				port: env('MAIL_PORT', 'number'),
-				auth: {
-					user: env('MAIL_USER'),
-					pass: env('MAIL_PASSWORD'),
-				},
-			});
+				const transporter = nodemailer.createTransport({
+					host: env('MAIL_SMTP'),
+					port: env('MAIL_PORT', 'number'),
+					auth: {
+						user: env('MAIL_USER'),
+						pass: env('MAIL_PASSWORD'),
+					},
+				});
 
-			const sentInfo = await transporter.sendMail({
-				from: env('MAIL_FROM'),
-				to: env('CONTACT_MAIL_TO'),
-				subject: 'w0s.jp 問い合わせ',
-				html: html,
-			});
+				sentInfo = await transporter.sendMail({
+					from: env('MAIL_FROM'),
+					to: env('CONTACT_MAIL_TO'),
+					subject: 'w0s.jp 問い合わせ',
+					html: html,
+				});
+			}
 
 			return {
 				mailSentInfo: sentInfo,

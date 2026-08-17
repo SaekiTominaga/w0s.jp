@@ -46,7 +46,7 @@ if (actionResult !== undefined) {
 			return response400();
 		}
 	} else {
-		logger.info('Message sent: %s', data.mailSentInfo.messageId);
+		logger.info('Message sent: %s', data.mailSentInfo?.messageId);
 		return response303(Astro.request, `/contact_completed?referrer=${data.referrer ?? ''}`);
 	}
 }
