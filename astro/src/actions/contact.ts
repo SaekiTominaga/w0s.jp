@@ -25,9 +25,9 @@ export const contact = {
 		accept: 'form',
 		input: z.object({
 			yourname: z.string().optional(),
-			email: z.email('Eメールアドレスの書式が正しくありません。'),
-			reply: z.string(),
-			body: z.string(),
+			email: z.email('「Eメールアドレス」が入力されていないか、書式が正しくありません。'),
+			reply: z.string('「返信の有無」が選択されていません。'),
+			body: z.string('「内容」が入力されていません。'),
 			time: z.number(),
 		}),
 		handler: async (input, context) => {
