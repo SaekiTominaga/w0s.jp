@@ -19,6 +19,7 @@ export const response303 = (request: Request, url?: string): Response => {
 	return new Response(
 		`<!DOCTYPE html>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=text-scale content=scale>
 <title>See Other</title>
 <h1>303 See Other</h1>
 <p><a href="${escape(locationUrl)}">${escape(locationUrl)}</a>`,
@@ -41,6 +42,7 @@ export const response400 = (): Response =>
 	new Response(
 		`<!DOCTYPE html>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=text-scale content=scale>
 <title>w0s.jp</title>
 <h1>Client error</h1>`,
 		{
