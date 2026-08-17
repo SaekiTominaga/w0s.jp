@@ -13,12 +13,13 @@ const structuredData: StructuredData = {
 	breadcrumb: [{ path: '/', name: 'ホーム' }],
 };
 
-const requestParamReferrer = requestParams.get('referrer') ?? undefined;
+const requestParamReferrer = requestParams.get('referrer');
 
-let referrer = requestParamReferrer;
-if (requestParamReferrer !== undefined && requestParamReferrer !== '' && !requestParamReferrer.startsWith('/')) {
+let referrer: string | undefined;
+if (requestParamReferrer?.startsWith('/')) {
+	referrer = requestParamReferrer;
+} else if (requestParamReferrer !== null && requestParamReferrer !== '') {
 	logger.warn(`Invalid referrer value: ${requestParamReferrer}`);
-	referrer = undefined;
 }
 ---
 
@@ -34,18 +35,16 @@ if (requestParamReferrer !== undefined && requestParamReferrer !== '' && !reques
 	{
 		referrer !== undefined && (
 			<p>
-				<Anchor href={referrer} bullet={true}>
-					元のページへ戻る
-				</Anchor>
+				{/* prettier-ignore */}
+				<Anchor href={referrer} bullet={true}>元のページへ戻る</Anchor>
 			</p>
 		)
 	}
 	{
 		referrer === undefined && (
 			<p>
-				<Anchor href="/" bullet={true}>
-					トップページへ戻る
-				</Anchor>
+				{/* prettier-ignore */}
+				<Anchor href="/" bullet={true}>トップページへ戻る</Anchor>
 			</p>
 		)
 	}
