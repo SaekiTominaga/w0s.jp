@@ -97,7 +97,7 @@ const [categoryMaster, priorityMaster, newsPageListDto] = await Promise.all([
 	dao.getNewsPageList(), // 巡回ページデータ
 ]);
 
-const newsPageList: Map<
+const newsPageList = new Map<
 	string,
 	{
 		randomId: string;
@@ -109,7 +109,7 @@ const newsPageList: Map<
 		selectorDate: string | undefined;
 		selectorContent: string | undefined;
 	}[]
-> = new Map();
+>();
 for (const newsPage of newsPageListDto) {
 	const categoryName = newsPage.category;
 

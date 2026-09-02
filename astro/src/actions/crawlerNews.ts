@@ -2,7 +2,7 @@ import { defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 import { SqliteError } from 'better-sqlite3';
 import { env } from '@w0s/env-value-type';
-import configCrawlerNews from '@config/crawler-news.ts';
+import configCrawlerNews from '@config/crawlerNews';
 import CrawlerNewsDao from '@db/CrawlerNews.ts';
 import CrawlerNewsDataDao from '@db/CrawlerNewsData.ts';
 
@@ -33,12 +33,12 @@ export const crawlerNews = {
 					selector_date: input.selectordate,
 					selector_content: input.selectorcontent,
 				});
-			} catch (e) {
-				if (!(e instanceof SqliteError)) {
-					throw e;
+			} catch (error) {
+				if (!(error instanceof SqliteError)) {
+					throw error;
 				}
 
-				switch (e.code) {
+				switch (error.code) {
 					case 'SQLITE_CONSTRAINT_UNIQUE': {
 						return {
 							url: input.url,
@@ -48,7 +48,7 @@ export const crawlerNews = {
 					default:
 				}
 
-				throw e;
+				throw error;
 			}
 
 			return {
@@ -86,12 +86,12 @@ export const crawlerNews = {
 					},
 					input.baseurl,
 				);
-			} catch (e) {
-				if (!(e instanceof SqliteError)) {
-					throw e;
+			} catch (error) {
+				if (!(error instanceof SqliteError)) {
+					throw error;
 				}
 
-				switch (e.code) {
+				switch (error.code) {
 					case 'SQLITE_CONSTRAINT_UNIQUE': {
 						return {
 							url: input.url,
@@ -101,7 +101,7 @@ export const crawlerNews = {
 					default:
 				}
 
-				throw e;
+				throw error;
 			}
 
 			return {

@@ -4,7 +4,7 @@ import SQLite from 'better-sqlite3';
 import { Kysely, type LogEvent, SqliteDialect } from 'kysely';
 import type { Logger } from 'winston';
 import { sqliteToJS } from '@w0s/sqlite-utility';
-import type { DB, MCategory, MPriority } from '../../../@types/db_crawler.d.ts';
+import type { DB, MCategory, MPriority } from '../../../@types/dbCrawler.d.ts';
 import { getLogger } from '../logger.ts';
 
 /**

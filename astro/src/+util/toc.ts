@@ -19,7 +19,7 @@ export const getData = (window: DOMWindow): TocData[] => {
 	// eslint-disable-next-line new-cap
 	const purify = DOMPurify(window);
 
-	return Array.from(document.querySelectorAll('section[id]'))
+	return [...document.querySelectorAll('section[id]')]
 		.map(($section): TocData | undefined => {
 			const headingHtml = $section.querySelector('h2')?.innerHTML;
 			if (headingHtml === undefined) {

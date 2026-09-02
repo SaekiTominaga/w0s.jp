@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro';
+
 export type SchemaOrgBreadcrumbListItem = Readonly<{
 	'@context'?: string;
 	'@type': 'ListItem';

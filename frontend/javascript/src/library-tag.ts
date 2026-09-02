@@ -26,21 +26,21 @@ const narrowDown = (tagName?: string): void => {
 
 	if (tagName !== undefined) {
 		/* 当該タグ以外の要素を非表示にする */
-		Array.from($$library)
-			.filter(($element) => Array.from($element.querySelectorAll('.js-library-tag')).every(($tag) => $tag.textContent.trim() !== tagName))
+		[...$$library]
+			.filter(($element) => [...$element.querySelectorAll('.js-library-tag')].every(($tag) => $tag.textContent.trim() !== tagName))
 			.forEach(($element) => {
 				$element.hidden = true;
 			});
 
 		/* セクション内の表示要素が 0 件になった場合はセクションごと非表示にする */
-		Array.from($$librarySection)
+		[...$$librarySection]
 			.filter(($element) => $element.querySelectorAll('.js-library:not([hidden])').length === 0)
 			.forEach(($element) => {
 				$element.hidden = true;
 			});
 
 		/* 当該タグボタンの状態を設定する */
-		Array.from($$tagButton)
+		[...$$tagButton]
 			.filter(($element) => $element.textContent.trim() === tagName)
 			.forEach(($element) => {
 				$element.setAttribute('aria-pressed', 'true');
@@ -96,7 +96,7 @@ const click = (ev: Event): void => {
 };
 
 document.addEventListener('DOMContentLoaded', init, { passive: true });
-window.addEventListener('popstate', init, { passive: true });
+globalThis.addEventListener('popstate', init, { passive: true });
 $$tagButton.forEach(($tagButton): void => {
 	$tagButton.addEventListener('click', click, { passive: true });
 });
