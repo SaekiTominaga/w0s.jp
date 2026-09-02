@@ -175,9 +175,9 @@ const slugger = new GithubSlugger();
 
 			<p>HTML コンテンツの MIME タイプは <code>text/html</code> としている。</p>
 
-			<p>コンテンツのデータをスクレイピングで活用するケースにおいては XML として処理できた方が利便性が高いため以前は <code>application/xhtml+xml</code> で配信していた。しかしブラウザアドオンや外部サービスの中には <code>text/html</code> しか対応していないものが存在し、また昨今は新しい Web 技術が XML 構文に対応しない例も多くなってきているため、現代では XML 構文の採用はデメリットの方が大きくなってしまった状況と判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef type="ref" by="xhtml-blog" />。</p>
+			<p>コンテンツのデータをスクレイピングで活用するケースにおいては XML として処理できた方が利便性が高いため以前は <code>application/xhtml+xml</code> で配信していた。しかしブラウザアドオンや外部サービスの中には <code>text/html</code> しか対応していないものが存在し、また昨今は新しい Web 技術が XML 構文に対応しない例も多くなってきているため、現代では XML 構文の採用はデメリットの方が大きくなってしまった状況と判断する。ちなみに HTML Living Standard では2024年4月より XML 構文の使用は推奨されないとの記述が追加された<NoteRef type="ref" by="blog-xhtml" />。</p>
 
-			<NoteRefContent id="xhtml-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></Anchor>（2024年）</NoteRefContent>
+			<NoteRefContent id="blog-xhtml">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/706"><cite>XHTML の終焉と XHTML 1.0 Transitional 時代の思い出</cite></Anchor>（2024年）</NoteRefContent>
 		</Section>
 
 		<Section id="html-indent" depth={2}>
@@ -231,9 +231,9 @@ const slugger = new GithubSlugger();
 
 			<p>URL が変更になった場合は 301 Moved Permanently、フォームの POST 送信後には 303 See Other などいくつかのケースでは HTTP レスポンスでリダイレクトを設定している。</p>
 
-			<p><Anchor href="https://www.rfc-editor.org/rfc/rfc9110#section-15.4">RFC 9110 の <cite lang="en">15.4. Redirection 3xx</cite></Anchor>では、ステータスコード 300, 301, 302, 307, 308 で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://www.rfc-editor.org/rfc/rfc9110#section-15.4">the user agent <mark>MAY</mark> use the Location field value for automatic redirection</q>と書かれている。<span lang="en">MUST</span> や <span lang="en">SHOULD</span> でなくあくまで <span lang="en">MAY</span> であり、実際にブラウザの環境によってはリダイレクトされずにレスポンスコンテンツ（ボディ）の内容が画面に表示されるケースが存在する<NoteRef type="ref" by="3xx-blog" />。</p>
+			<p><Anchor href="https://www.rfc-editor.org/rfc/rfc9110#section-15.4">RFC 9110 の <cite lang="en">15.4. Redirection 3xx</cite></Anchor>では、ステータスコード 300, 301, 302, 307, 308 で <code>Location</code> ヘッダーフィールドが設定されている場合のユーザーエージェントの挙動として<q lang="en" cite="https://www.rfc-editor.org/rfc/rfc9110#section-15.4">the user agent <mark>MAY</mark> use the Location field value for automatic redirection</q>と書かれている。<span lang="en">MUST</span> や <span lang="en">SHOULD</span> でなくあくまで <span lang="en">MAY</span> であり、実際にブラウザの環境によってはリダイレクトされずにレスポンスコンテンツ（ボディ）の内容が画面に表示されるケースが存在する<NoteRef type="ref" by="blog-3xx" />。</p>
 
-			<NoteRefContent id="3xx-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/763"><cite>3xx リダイレクト画面のマークアップ</cite></Anchor>（2026年）</NoteRefContent>
+			<NoteRefContent id="blog-3xx">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/763"><cite>3xx リダイレクト画面のマークアップ</cite></Anchor>（2026年）</NoteRefContent>
 
 			<p>これに対して Apache HTTP Server はリダイレクトしない環境が考慮されており、<code>Location</code> ヘッダーフィールドだけでなくレスポンスコンテンツにおいてもリダイレクト先のリンク付きの HTML を返すようになっている。curl にて当サイトのトップページの URL を https: でなくあえて http: で指定すると次のようになる。</p>
 
@@ -279,19 +279,19 @@ const slugger = new GithubSlugger();
 						<li>仮に <code>Content-Type</code> メタデータでの指定ができずに <code>&lt;meta&gt;</code> 要素の記述を行う場合は、<code>charset</code> 属性を認識しないブラウザの存在を考慮して昔ながらの <code>&lt;meta http-equiv="content-type"&gt;</code> の使用を検討すべきだ。</li>
 					</ul>
 				</li>
-				<li><code>&lt;dl&gt;</code> 要素の子要素に <code>&lt;div&gt;</code> 要素の配置を強制する<NoteRef type="ref" by="dl-div" /></li>
+				<li><code>&lt;dl&gt;</code> 要素の子要素に <code>&lt;div&gt;</code> 要素の配置を強制する<NoteRef type="ref" by="blog-dl-div" /></li>
 				<li>
 					<code>&lt;abbr&gt;</code> 要素での <code>title</code> 属性の使用を禁止する
 					<ul>
 						<li>推奨プリセットでは逆に <code>title</code> 属性が必須となっている。</li>
-						<li>しかし <code>title</code> 属性が有用とされていたのは HTML 4 時代の考え方であり、現代の閲覧環境にはそぐわない<NoteRef type="ref" by="abbr-title" />。</li>
+						<li>しかし <code>title</code> 属性が有用とされていたのは HTML 4 時代の考え方であり、現代の閲覧環境にはそぐわない<NoteRef type="ref" by="blog-abbr-title" />。</li>
 					</ul>
 				</li>
 			</List>
 
-			<NoteRefContent id="dl-div">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/742"><cite><code>&lt;dl&gt;</code> 要素内の <code>&lt;div&gt;</code> 配置を必須化してみるテスト</cite></Anchor>（2025年）</NoteRefContent>
+			<NoteRefContent id="blog-dl-div">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/742"><cite><code>&lt;dl&gt;</code> 要素内の <code>&lt;div&gt;</code> 配置を必須化してみるテスト</cite></Anchor>（2025年）</NoteRefContent>
 
-			<NoteRefContent id="abbr-title">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/773"><cite><code>&lt;abbr&gt;</code> 要素に <code>title</code> 属性は付けるべきかどうか</cite></Anchor>（2026年）</NoteRefContent>
+			<NoteRefContent id="blog-abbr-title">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/773"><cite><code>&lt;abbr&gt;</code> 要素に <code>title</code> 属性は付けるべきかどうか</cite></Anchor>（2026年）</NoteRefContent>
 		</Section>
 	</Section>
 
@@ -353,9 +353,9 @@ const slugger = new GithubSlugger();
 
 			<p>配色とくに背景色（背景画像を含む）は以前から注意が必要なものであった。たとえば <code>&lt;mark&gt;</code> 要素のデフォルトスタイルは<Anchor href="https://html.spec.whatwg.org/multipage/rendering.html#phrasing-content-3">黄色背景に黒文字</Anchor>であるが、一般に印刷時は背景色が無視されて前後の文字列と区別が付かなくなるため、背景色と同色の枠線を設定するといった工夫が求められる。また強制ダークテーマのような現代的な機能ができる遙か以前の1990年代からブラウザは配色設定を有しており、ダークモードという言葉が存在しない時代からユーザーは背景色を暗く設定することができたのである。</p>
 
-			<p>これらの事象を以前から意識していた場合、クセのある強制ダークテーマに対してもそれほど慌てる必要はないはずだ。とはいえ当サイトにおいても <code>border-color: transparent</code> を使用していた箇所を <code>subgrid</code> で置き換えるなど、いくつかの対応に迫られた<NoteRef type="ref" by="darktheme-blog-border" />。強制ダークテーマは産声を上げたばかりの機能であるため、今しばらくは注視を続ける必要があるだろう。</p>
+			<p>これらの事象を以前から意識していた場合、クセのある強制ダークテーマに対してもそれほど慌てる必要はないはずだ。とはいえ当サイトにおいても <code>border-color: transparent</code> を使用していた箇所を <code>subgrid</code> で置き換えるなど、いくつかの対応に迫られた<NoteRef type="ref" by="blog-darktheme-border" />。強制ダークテーマは産声を上げたばかりの機能であるため、今しばらくは注視を続ける必要があるだろう。</p>
 
-			<NoteRefContent id="darktheme-blog-border">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/765"><cite>ブラウザの強制ダークテーマ対策で <code>border-color: transparent</code> を避ける</cite></Anchor>（2026年）</NoteRefContent>
+			<NoteRefContent id="blog-darktheme-border">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/765"><cite>ブラウザの強制ダークテーマ対策で <code>border-color: transparent</code> を避ける</cite></Anchor>（2026年）</NoteRefContent>
 		</Section>
 
 		<Section id="style-reader" depth={2}>
@@ -403,9 +403,9 @@ const slugger = new GithubSlugger();
 
 			<p>当サイトでは CSS の最小化を行っていない。理由は <a href="#html-minify">HTML のそれ</a>と同じである。</p>
 
-			<p>それでも以前は従量制課金接続を考慮して最小化を行っていた時期もあるのだが、2022年に Internet Explorer 11 のサポートが終了し、すべてのメジャーブラウザが Brotli による高圧縮なファイル配信に対応したことから、もはや転送量の削減を最小化テクニックに頼る時代ではなくなったと判断して取り止めた<NoteRef type="ref" by="css-minify-blog" />。</p>
+			<p>それでも以前は従量制課金接続を考慮して最小化を行っていた時期もあるのだが、2022年に Internet Explorer 11 のサポートが終了し、すべてのメジャーブラウザが Brotli による高圧縮なファイル配信に対応したことから、もはや転送量の削減を最小化テクニックに頼る時代ではなくなったと判断して取り止めた<NoteRef type="ref" by="blog-css-minify" />。</p>
 
-			<NoteRefContent id="css-minify-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></Anchor>（2022年）</NoteRefContent>
+			<NoteRefContent id="blog-css-minify">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/674"><cite>CSS ファイルの最小化を止めた</cite></Anchor>（2022年）</NoteRefContent>
 		</Section>
 
 		<Section id="style-comment" depth={2}>
@@ -452,10 +452,10 @@ const slugger = new GithubSlugger();
 				<li><code>background</code> や <code>font</code> などの複雑なショートハンドは使用しない</li>
 				<li>ビューポートパーセント単位にはデフォルトの単位（<code>v*</code>）ではなく、大きいビューポート（<code>lv*</code>）、小さいビューポート（<code>sv*</code>）、あるいは動的ビューポート（<code>dv*</code>）の単位を使用する</li>
 				<li><code>text-indent</code> プロパティにマイナス値は使用しない（<code>hanging</code> 値を活用する）</li>
-				<li>ルート要素では <code>color</code> と <code>background-color</code> プロパティをセットで使用する<NoteRef type="ref" by="color-bgcolor" /></li>
+				<li>ルート要素では <code>color</code> と <code>background-color</code> プロパティをセットで使用する<NoteRef type="ref" by="blog-color-bgcolor" /></li>
 			</List>
 
-			<NoteRefContent id="color-bgcolor">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/714"><cite>HTML のルート要素では <code>color</code> と <code>background-color</code> をセットで指定すべき</cite></Anchor>、およびその返信記事：<Anchor href="https://momdo.hatenablog.jp/entry/20240615/1718432030"><cite>Re: HTMLのルート要素ではcolorとbackground-colorをセットで指定すべき</cite></Anchor>（2024年）</NoteRefContent>
+			<NoteRefContent id="blog-color-bgcolor">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/714"><cite>HTML のルート要素では <code>color</code> と <code>background-color</code> をセットで指定すべき</cite></Anchor>、およびその返信記事：<Anchor href="https://momdo.hatenablog.jp/entry/20240615/1718432030"><cite>Re: HTMLのルート要素ではcolorとbackground-colorをセットで指定すべき</cite></Anchor>（2024年）</NoteRefContent>
 		</Section>
 	</Section>
 
@@ -574,9 +574,9 @@ doSomething(); // 環境によってはここには到達しない`}
 
 			<p>ブラウザにリーダーモードが搭載され、近年はさらに強制ダークテーマも普及し始めている。CSS の特徴のひとつに制作者スタイルシートよりもユーザー設定の方が優先される点が挙げられるが、今後ますますその傾向は強まるだろう。そのような流れの中で Visually hidden は閲覧環境に前提を求めすぎていると感じる。特定の前提のもとでは使い勝手が向上するケースもあるのだが、その前提から離れるほどさまざまな問題が起こりうる、そのようなものを「アクセシビリティのテクニック」として使う風潮には違和感を覚える。</p>
 
-			<p>余談だが、それでもこのテクニックを使う場合は CSS のルールセットにコメントでその意図を説明しておくべきだろう。Visually hidden は関連性のないプロパティを組み合わせた、ルールセット全体で初めて意味を持つテクニックである。制作者スタイルシートを書くエンジニア、ユーザースタイルシートを書く利用者のいずれにも、必ずしもその意味が周知されているとは限らない。現実にこのテクニックを知らない同僚が <code>display: none</code> に書き換えてしまった事例があるようだ<NoteRef type="ref" by="visuallyhidden-blog" />。そのような事故を防ぐ意味合いもあるし、なにより CSS はユーザーが見て理解するものでもあるのだから、Visually hidden に限らず本質的でないテクニックを使わざるを得ない際はコメントを併記しておくことがアクセシビリティ上必要である。</p>
+			<p>余談だが、それでもこのテクニックを使う場合は CSS のルールセットにコメントでその意図を説明しておくべきだろう。Visually hidden は関連性のないプロパティを組み合わせた、ルールセット全体で初めて意味を持つテクニックである。制作者スタイルシートを書くエンジニア、ユーザースタイルシートを書く利用者のいずれにも、必ずしもその意味が周知されているとは限らない。現実にこのテクニックを知らない同僚が <code>display: none</code> に書き換えてしまった事例があるようだ<NoteRef type="ref" by="blog-visuallyhidden" />。そのような事故を防ぐ意味合いもあるし、なにより CSS はユーザーが見て理解するものでもあるのだから、Visually hidden に限らず本質的でないテクニックを使わざるを得ない際はコメントを併記しておくことがアクセシビリティ上必要である。</p>
 
-			<NoteRefContent id="visuallyhidden-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/746"><cite>Visually hidden の運用上の耐性</cite></Anchor>（2025年）</NoteRefContent>
+			<NoteRefContent id="blog-visuallyhidden">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/746"><cite>Visually hidden の運用上の耐性</cite></Anchor>（2025年）</NoteRefContent>
 		</Section>
 	</Section>
 
@@ -585,9 +585,9 @@ doSomething(); // 環境によってはここには到達しない`}
 
 		<p>ファビコンは SVG 形式で提供している。</p>
 
-		<p><Anchor href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</Anchor>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっているが、あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はない。そのため SVG 形式のファビコンファイルを <code>/favicon.ico</code> として配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef type="ref" by="favicon-svg-blog" />。ただし以下のデメリットがある。</p>
+		<p><Anchor href="https://web.archive.org/web/20150306041048/http://support.microsoft.com/kb/415022/ja">Internet Explorer 5 の実装</Anchor>を発端とする歴史的な経緯により、<code>/favicon.ico</code> のファイルパスにすることでブラウザが自動的に読み取るようになっているが、あくまで URL が <code>/favicon.ico</code> であれば良く、ファイルの実体が ICO 形式である必要はない。そのため SVG 形式のファビコンファイルを <code>/favicon.ico</code> として配置し、MIME タイプを <code>image/svg+xml</code> で返すように設定することで <code>&lt;link rel="icon"&gt;</code> の記述を省略できる<NoteRef type="ref" by="blog-favicon-svg" />。ただし以下のデメリットがある。</p>
 
-		<NoteRefContent id="favicon-svg-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/656"><cite>SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</cite></Anchor>（2021年）</NoteRefContent>
+		<NoteRefContent id="blog-favicon-svg">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/656"><cite>SVG ファビコンのファイル名を <code>favicon.ico</code> にして <code>&lt;link rel="icon"&gt;</code> を省略する</cite></Anchor>（2021年）</NoteRefContent>
 
 		<List>
 			<li>Android 版 Firefox は SVG ファビコンに対応しておらず、そればかりか <Anchor href="https://ogp.me/">The Open Graph protocol</Anchor>が設定されているページでは <code>og:image</code> をファビコン代わりに表示してしまう。（2026年5月、Android Firefox 150 にて確認）</li>
@@ -603,9 +603,9 @@ doSomething(); // 環境によってはここには到達しない`}
 			<li>Fetch ディレクティブ（*-src）は <code>Content-Security-Policy-Report-Only</code> で設定。ユーザースタイルシートやユーザースクリプト、アドオン等によるカスタマイズを妨げないため、あくまで実態調査目的として Report-Only にしている。</li>
 			<li>Trusted Types 関係も現状は <code>Content-Security-Policy-Report-Only</code> で設定している。</li>
 			<li>それ以外のディレクティブは <code>Content-Security-Policy</code> で設定している。</li>
-			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<Anchor href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/hono/src/controller/csp.ts">ソースコードは GitHub で公開</Anchor>している<NoteRef type="ref" by="csp-blog" />。</li>
+			<li>Reporting のエンドポイントは <code>report.w0s.jp</code> 内に作成しており、<Anchor href="https://github.com/SaekiTominaga/report.w0s.jp/blob/main/hono/src/controller/csp.ts">ソースコードは GitHub で公開</Anchor>している<NoteRef type="ref" by="blog-csp" />。</li>
 		</List>
 
-		<NoteRefContent id="csp-blog">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/730"><cite>Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</cite></Anchor>（2025年）</NoteRefContent>
+		<NoteRefContent id="blog-csp">当サイトのブログ記事：<Anchor href="https://blog.w0s.jp/entry/730"><cite>Report URI サービスの有料化に伴い CSP レポートのエンドポイントを自作</cite></Anchor>（2025年）</NoteRefContent>
 	</Section>
 </Layout>

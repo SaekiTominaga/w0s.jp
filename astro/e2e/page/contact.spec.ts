@@ -216,7 +216,7 @@ test.describe('Astro Actions', () => {
 
 			const [response] = await Promise.all([
 				page.waitForResponse((res) => res.request().method() === 'POST'),
-				page.getByRole('button', { name: '送信' }).click({ delay: 10000 }),
+				page.getByRole('button', { name: '送信' }).click({ delay: 10_000 }),
 			]);
 
 			expect(response.status()).toBe(303);

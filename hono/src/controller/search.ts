@@ -3,9 +3,7 @@ import { escape } from '@w0s/html-escape';
 import type { Variables } from '../app.ts';
 import { type Engine, type Site, param as validatorParam } from '../validator/search.ts';
 
-/**
- * 検索
- */
+/* ===== 検索 ===== */
 
 const getSite = (param: Site): string => {
 	switch (param) {
@@ -17,7 +15,8 @@ const getSite = (param: Site): string => {
 		}
 		default:
 	}
-	throw new Error(); // 到達不能
+
+	throw new Error('Invalid site'); // validator でチェック済みのため到達不能の想定
 };
 
 const getURL = (params: Readonly<{ site: Site; engine: Engine; q: string }>): string => {
@@ -50,7 +49,8 @@ const getURL = (params: Readonly<{ site: Site; engine: Engine; q: string }>): st
 		}
 		default:
 	}
-	throw new Error(); // 到達不能
+
+	throw new Error('Invalid engine'); // validator でチェック済みのため到達不能の想定
 };
 
 export const searchApp = new Hono<{ Variables: Variables }>().get(validatorParam, (context) => {

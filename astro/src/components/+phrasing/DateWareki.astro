@@ -14,11 +14,11 @@ let warekiDisplay: string | undefined;
 let afterWarekiDisplay: string;
 
 if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/v.test(value)) {
-	beforeWarekiDisplay = value.substring(0, 4);
+	beforeWarekiDisplay = value.slice(0, 4);
 	warekiDisplay = new Wareki(value).getYear();
 	afterWarekiDisplay = dayjs(value).format('年M月D日');
 } else if (/^[0-9]{4}-[0-9]{2}$/v.test(value)) {
-	beforeWarekiDisplay = value.substring(0, 4);
+	beforeWarekiDisplay = value.slice(0, 4);
 	warekiDisplay = new Wareki(value).getYear();
 	afterWarekiDisplay = dayjs(value).format('年M月');
 } else if (/^[0-9]{4}$/v.test(value)) {

@@ -55,9 +55,10 @@ export const getJsonLd = (structuredData: Readonly<StructuredData>, options: Rea
 		};
 	}
 
-	const jsonLd = {} as JsonLd;
-	jsonLd['@context'] = 'https://schema.org/';
-	jsonLd['@type'] = structuredData['schema-type'] ?? 'WebPage';
+	const jsonLd = {
+		'@context': 'https://schema.org/',
+		'@type': structuredData['schema-type'] ?? 'WebPage',
+	} as JsonLd;
 	if (breadcrumbList !== undefined) {
 		jsonLd.breadcrumb = breadcrumbList;
 	}
@@ -69,11 +70,7 @@ export const getJsonLd = (structuredData: Readonly<StructuredData>, options: Rea
 		jsonLd.description = structuredData.description;
 	}
 	if (structuredData.image !== undefined) {
-		if (structuredData.image instanceof URL) {
-			jsonLd.image = structuredData.image.toString();
-		} else {
-			jsonLd.image = `${options.site}${structuredData.image.src}`;
-		}
+		jsonLd.image = structuredData.image instanceof URL ? structuredData.image.toString() : `${options.site}${structuredData.image.src}`;
 	}
 	if (structuredData.mainEntity !== undefined) {
 		jsonLd.mainEntity = structuredData.mainEntity;

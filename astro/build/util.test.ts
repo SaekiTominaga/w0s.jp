@@ -14,7 +14,7 @@ await test('getPageUrl', async (t) => {
 	});
 
 	await t.test('Windows path', () => {
-		assert.equal(getPageUrl('\\foo\\bar.html'), '/foo/bar');
+		assert.equal(getPageUrl(String.raw`\foo\bar.html`), '/foo/bar');
 	});
 
 	await t.test('invalid path', () => {

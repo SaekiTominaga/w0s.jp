@@ -48,7 +48,7 @@ const entries = await Promise.all(
 		const modifiedAt = $root.querySelector('.l-content__header .updated > time')?.getAttribute('datetime');
 
 		return {
-			pagePath: getPageUrl(filePath.substring(outDir.length)), // U+002F (/) から始まるパス絶対 URL
+			pagePath: getPageUrl(filePath.slice(outDir.length)), // U+002F (/) から始まるパス絶対 URL
 			modifiedAt: modifiedAt !== undefined ? dayjs(modifiedAt) : undefined,
 		};
 	}),

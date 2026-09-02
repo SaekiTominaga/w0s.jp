@@ -29,7 +29,7 @@ const INFO = [
 	},
 ];
 
-export const markdownRendar = (mdStr: string) => {
+const markdownRendar = (mdStr: string) => {
 	const parsed = new Parser().parse(mdStr);
 	const html = new HtmlRenderer().render(parsed);
 
@@ -62,11 +62,11 @@ export const markdownRendar = (mdStr: string) => {
 	return {
 		html: html.trim(),
 		title: title.join(' / '),
-		linkDestinations: Array.from(linkDestinations),
+		linkDestinations: [...linkDestinations],
 	};
 };
 
-export const yaml = (yamlStr: string) =>
+const yaml = (yamlStr: string) =>
 	(
 		yamlLoad(yamlStr, { schema: JSON_SCHEMA }) as {
 			id: string;
@@ -134,3 +134,5 @@ if (import.meta.url === slash(`file:///${process.argv.at(1) ?? ''}`)) {
 		}),
 	);
 }
+
+export { markdownRendar, yaml };
