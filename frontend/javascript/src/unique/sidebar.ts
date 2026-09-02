@@ -15,7 +15,7 @@ export const blogNewly = async ($template: HTMLElement | undefined | null): Prom
 		throw new TypeError(`\`${$template.tagName.toLowerCase()}#${$template.id}\` is not HTMLTemplateElement`);
 	}
 
-	const $preload = document.getElementById('blog-newly-json');
+	const $preload = document.querySelector('#blog-newly-json');
 	if ($preload === null) {
 		return;
 	} else if (!($preload instanceof HTMLLinkElement)) {
@@ -44,10 +44,10 @@ export const blogNewly = async ($template: HTMLElement | undefined | null): Prom
 			$a.insertAdjacentHTML('afterbegin', entry.title);
 		}
 
-		$fragment.appendChild($templateClone);
+		$fragment.append($templateClone);
 	});
 
-	$template.parentNode?.appendChild($fragment);
+	$template.parentNode?.append($fragment);
 
 	/* 直近の祖先要素の hidden 状態を解除する */
 	const $ancestorHidden = $template.closest<HTMLElement>('[hidden]');

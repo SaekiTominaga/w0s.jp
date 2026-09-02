@@ -1,5 +1,5 @@
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
-import type { DNews, DNewsData } from '../../../@types/db_crawler.d.ts';
+import type { DNews, DNewsData } from '../../../@types/dbCrawler.d.ts';
 import DatabaseCrawler from './DatabaseCrawler.ts';
 
 /**

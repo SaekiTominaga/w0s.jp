@@ -28,9 +28,9 @@ const stepChange = (elements: {
 	$$confirmOutput: NodeListOf<HTMLOutputElement>;
 	$sendButton: HTMLButtonElement | null;
 }): void => {
-	switch (location.hash.substring(1)) {
+	switch (location.hash.slice(1)) {
 		/* 確認画面 */
-		case CONFIRM_HASH:
+		case CONFIRM_HASH: {
 			elements.$$inputScreen.forEach(($inputScreen) => {
 				$inputScreen.hidden = true;
 			});
@@ -43,8 +43,8 @@ const stepChange = (elements: {
 
 			/* 入力内容を出力する */
 			elements.$$confirmOutput.forEach(($confirmOutput) => {
-				const value = Array.from($confirmOutput.htmlFor).map((formCtrlId): string => {
-					const $element = document.getElementById(formCtrlId);
+				const value = [...$confirmOutput.htmlFor].map((formCtrlId): string => {
+					const $element = document.querySelector(`#${formCtrlId}`);
 					if ($element === null) {
 						throw new Error(`Element \`#${formCtrlId}\` not found`);
 					}
@@ -52,24 +52,23 @@ const stepChange = (elements: {
 					if ($element instanceof HTMLInputElement || $element instanceof HTMLTextAreaElement) {
 						return $element.value;
 					} else if ($element.role === 'radiogroup') {
-						const $$label = Array.from($element.querySelectorAll<HTMLInputElement>('input[type="radio"]')).find(($radio) => $radio.checked)?.labels;
+						const $$label = [...$element.querySelectorAll<HTMLInputElement>('input[type="radio"]')].find(($radio) => $radio.checked)?.labels;
 						if ($$label !== null && $$label !== undefined) {
-							return Array.from($$label)
-								.map(($label) => $label.textContent)
-								.join();
+							return [...$$label].map(($label) => $label.textContent).join(',');
 						}
 					}
 
 					throw new Error(`Element \`#${formCtrlId}\` must be an HTMLInputElement, an HTMLTextAreaElement, or have \`role=radiogroup\``);
 				});
 
-				$confirmOutput.textContent = value.join();
+				$confirmOutput.textContent = value.join(',');
 			});
 
 			break;
+		}
 
 		/* 入力画面 */
-		default:
+		default: {
 			elements.$$inputScreen.forEach(($inputScreen) => {
 				$inputScreen.hidden = false;
 			});
@@ -79,6 +78,7 @@ const stepChange = (elements: {
 			if (elements.$sendButton !== null) {
 				elements.$sendButton.disabled = true;
 			}
+		}
 	}
 };
 
@@ -101,7 +101,7 @@ const stepChangeButtonClick = (
 		$sendButton: HTMLButtonElement | null;
 	},
 ): void => {
-	history.pushState(null, '', hash === '' ? location.pathname : `#${hash}`);
+	history.pushState({}, '', hash === '' ? location.pathname : `#${hash}`);
 	window.scroll(0, 0);
 	document.body.focus();
 
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		$sendButton: $sendButton,
 	});
 });
-window.addEventListener('hashchange', (): void => {
+globalThis.addEventListener('hashchange', (): void => {
 	stepChange({
 		$$inputScreen: $$inputScreen,
 		$$confirmScreen: $$confirmScreen,

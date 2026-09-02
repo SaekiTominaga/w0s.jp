@@ -1,6 +1,7 @@
 ---
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import path from 'node:path';
+import { promisify } from 'node:util';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import List from '@components/List.astro';
 import Toggle from '@components/Toggle.astro';
@@ -15,7 +16,7 @@ interface Props {
 
 const { pagePath, astroFilePath: astroFileFullPath, structuredData } = Astro.props;
 
-const rootPath = `${execSync('pnpm root -w').toString().trim()}/../`;
+const rootPath = `${(await promisify(exec)(`pnpm root -w`)).stdout.trim()}/../`;
 const astroFilePath = astroFileFullPath !== undefined ? path.relative(rootPath, astroFileFullPath).replaceAll('\\', '/') : undefined;
 
 /* TODO: `:empty` 疑似クラスがホワイトスペースの存在を許容するようになったら最初の if 文は不要になる https://drafts.csswg.org/selectors-4/#the-empty-pseudo */
