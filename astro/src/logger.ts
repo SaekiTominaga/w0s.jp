@@ -3,7 +3,7 @@ import winston from 'winston';
 import TransportStream from 'winston-transport';
 import { env } from '@w0s/env-value-type';
 
-const development = process.env.NODE_ENV !== 'production';
+const development = process.env['NODE_ENV'] !== 'production';
 
 class EmailTransport extends TransportStream {
 	readonly #transporter: nodemailer.Transporter;
