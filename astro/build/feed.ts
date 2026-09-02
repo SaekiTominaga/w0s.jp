@@ -39,7 +39,7 @@ const markdownRendar = (mdStr: string) => {
 
 	const title: string[] = [];
 	const linkDestinations = new Set<string>();
-	// eslint-disable-next-line functional/no-loop-statements
+
 	while (event !== null) {
 		if (event.entering) {
 			const { node } = event;

@@ -16,7 +16,7 @@ export interface TocData {
 export const getData = (window: DOMWindow): TocData[] => {
 	const { document } = window;
 
-	// eslint-disable-next-line new-cap
+	// oxlint-disable-next-line new-cap
 	const purify = DOMPurify(window);
 
 	return [...document.querySelectorAll('section[id]')]
