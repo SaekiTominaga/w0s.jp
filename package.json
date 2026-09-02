@@ -5,7 +5,7 @@
 	"scripts": {
 		"lint": "pnpm run /^lint:.*/",
 		"lint:css": "stylelint -f verbose astro/src/**/*.astro astro/dist/client/assets/astro/*.css frontend/css",
-		"lint:js": "oxlint",
+		"lint:js": "pnpm -F astro exec astro sync && oxlint",
 		"lint:html": "markuplint astro/src/**/*.astro",
 		"lint-dist:html": "markuplint astro/dist/client/**/*.html"
 	},
