@@ -6,10 +6,10 @@ import { validator } from 'hono/validator';
  */
 
 const SITE = ['www', 'blog'] as const;
-export type Site = (typeof SITE)[number];
+type Site = (typeof SITE)[number];
 
 const ENGINE = ['google', 'bing', 'yahoo', 'ddg'] as const;
-export type Engine = (typeof ENGINE)[number];
+type Engine = (typeof ENGINE)[number];
 
 interface RequestQuery {
 	site: Site;
@@ -17,7 +17,7 @@ interface RequestQuery {
 	q: string;
 }
 
-export const param = validator('query', (value): RequestQuery => {
+const param = validator('query', (value): RequestQuery => {
 	const { site, engine, q } = value;
 
 	if (site !== undefined) {
@@ -46,3 +46,5 @@ export const param = validator('query', (value): RequestQuery => {
 		q: q,
 	};
 });
+
+export { type Site, type Engine, param };

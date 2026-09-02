@@ -16,5 +16,5 @@ export const getHTMLId = (str?: string): string => {
 	const array = new Uint8Array(16);
 	crypto.getRandomValues(array);
 
-	return base64UrlEncode(String.fromCharCode(...array));
+	return base64UrlEncode(String.fromCodePoint(...array));
 };

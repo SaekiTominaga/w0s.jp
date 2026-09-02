@@ -86,4 +86,4 @@ searchEngine(document.querySelector('.js-search-engine'));
 adsense(document.querySelectorAll('.js-ads-google'), { rootMargin: '100px' });
 
 /* 日記新着記事 */
-await blogNewly(document.getElementById('sidebar-blog-newly-template'));
+await blogNewly(document.querySelector('#sidebar-blog-newly-template'));

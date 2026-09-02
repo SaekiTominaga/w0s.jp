@@ -72,14 +72,14 @@ const exec = async (srcFilePath: string): Promise<void> => {
 						.replace(' id="レイヤー_1"', ''),
 					svgoConfig,
 				);
-			} catch (e) {
-				if (e instanceof Error && e.name === 'SvgoParserError') {
+			} catch (error) {
+				if (error instanceof Error && error.name === 'SvgoParserError') {
 					// @ts-expect-error: ts(2339)
-					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-					console.warn(`[${e.name}] ${e.reason} <${srcFilePath}>`);
+					// oxlint-disable-next-line typescript/restrict-template-expressions
+					console.warn(`[${error.name}] ${error.reason} <${srcFilePath}>`);
 					return;
 				}
-				throw e;
+				throw error;
 			}
 
 			/* 出力 */
@@ -97,11 +97,11 @@ const exec = async (srcFilePath: string): Promise<void> => {
 if (watch) {
 	chokidarWatch(srcDir)
 		.on('add', (srcFilePath) => {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			// oxlint-disable-next-line typescript/no-floating-promises
 			exec(srcFilePath);
 		})
 		.on('change', (srcFilePath) => {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			// oxlint-disable-next-line typescript/no-floating-promises
 			exec(srcFilePath);
 		});
 } else {

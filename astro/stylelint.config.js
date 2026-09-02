@@ -15,7 +15,7 @@ export default {
 		'function-disallowed-list': ['rgb', 'hsl', 'hwb', 'lab', 'lch'], // `color-function` parameter accepts only `oklab()` or `oklch()` <https://drafts.csswg.org/css-color/#typedef-color-function>
 	},
 	referenceFiles: {
-		files: ['../frontend/style/foundation/_var.css'],
+		files: ['../frontend/css/foundation/_var.css'],
 	},
 	extends: ['@w0s/stylelint-config'],
 	overrides: [
@@ -48,7 +48,7 @@ export default {
 		{
 			files: ['src/components/**/*.astro'],
 			rules: {
-				'selector-class-pattern': /^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$/v,
+				'selector-class-pattern': /^-?([a-z][a-z0-9]*)(-[a-z0-9]+)*$/u,
 				'selector-pseudo-class-no-unknown': null, // allow `:global()` selector https://docs.astro.build/en/guides/styling/#global-styles
 
 				'order/order': [

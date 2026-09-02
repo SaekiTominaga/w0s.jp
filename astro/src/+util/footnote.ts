@@ -20,7 +20,7 @@ const getData = (
 			throw new Error('`data-by` attribute is not set');
 		}
 
-		const $content = document.getElementById(id);
+		const $content = document.querySelector(`#${id}`);
 
 		data.set(no, $content?.innerHTML);
 		$content?.remove();
@@ -34,7 +34,7 @@ const getData = (
 		const $number = $templateClone.querySelector('x-number');
 		$number?.replaceWith(document.createTextNode(String(no)));
 
-		$noterefTemplate.parentNode?.appendChild($templateClone);
+		$noterefTemplate.parentNode?.append($templateClone);
 		$noterefTemplate.remove();
 	});
 
@@ -48,7 +48,7 @@ const getData = (
  *
  * @returns 注釈データ
  */
-export const getNoteData = (document: Document): Data =>
+const getNoteData = (document: Document): Data =>
 	getData(document, {
 		selector: '.astro-noteref.-note',
 		noteRefIdPrefix: 'nr-note',
@@ -62,9 +62,11 @@ export const getNoteData = (document: Document): Data =>
  *
  * @returns 参考文献データ
  */
-export const getReferenceData = (document: Document): Data =>
+const getReferenceData = (document: Document): Data =>
 	getData(document, {
 		selector: '.astro-noteref.-ref',
 		noteRefIdPrefix: 'nr-ref',
 		footnoteIdPrefix: 'fn-ref',
 	});
+
+export { getNoteData, getReferenceData };

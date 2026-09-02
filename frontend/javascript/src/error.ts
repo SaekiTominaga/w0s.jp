@@ -36,8 +36,8 @@ const { closestHTMLPageData } = await closestHTMLPage(undefined, {
 if (closestHTMLPageData !== undefined) {
 	const { url, title } = closestHTMLPageData;
 
-	const $message = document.getElementById('parentpage-msg');
-	const $anchor = document.getElementById('parentpage-anchor') as HTMLAnchorElement | null;
+	const $message = document.querySelector<HTMLElement>('#parentpage-msg');
+	const $anchor = document.querySelector<HTMLAnchorElement>('#parentpage-anchor');
 
 	if ($message !== null && $anchor !== null) {
 		$message.hidden = false;
