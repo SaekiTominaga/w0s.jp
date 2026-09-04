@@ -1,26 +1,26 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
-import ListNote from '@components/ListNote.astro';
-import ListOrder from '@components/ListOrder.astro';
+import List from '@components/List.astro';
+import Note from '@components/Note.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import TickAndCross from '@components/+phrasing/TickAndCross.astro';
+import image_pictorial11_cover from '@image/madoka/dojin/pictorial11_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』同人誌「マギアレコード海外版動向」',
 	heading: '円環ピクトリアル No.11',
 	subHeading: '【特集】マギアレコード海外版動向',
-	dateModified: dayjs('2019-08-12'),
+	dateModified: '2019-08-12',
 	description: 'マギレコ中国版、繁中版、北米版のゲーム概要、イベントレポート、街頭広告の掲出例などをまとめた同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial11_cover.jpg',
+	image: image_pictorial11_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -45,8 +45,8 @@ const structuredData: StructuredData = {
 
 		<Flex>
 			<FlexItem>
-				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial11_cover.jpg" alt="複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} quality={60} slot="media" />
+				<Embedded width={170} border={true}>
+					<MyImage image={image_pictorial11_cover} alt="複数並んだ駅のホームの一つに横長のマギレコポスターが掲出されており、隣の線路には路面電車が停車している写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>
@@ -84,25 +84,23 @@ const structuredData: StructuredData = {
 			</FlexItem>
 		</Flex>
 
-		<ListNote>
-			<li>Kindle 版は画像形式による「固定レイアウト型」</li>
-		</ListNote>
+		<Note>Kindle 版は画像形式による「固定レイアウト型」</Note>
 	</Section>
 
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ListOrder>
+		<List>
 			<li>
 				中国版『<span lang="zh-Hans">魔法纪录 魔法少女小圆外传</span>』
-				<ol>
+				<ul>
 					<li>中国向けスマートフォンゲーム『<span lang="zh-Hans">魔法少女小圆</span>』</li>
 					<li>告知イベント（2018年8月）</li>
-				</ol>
+				</ul>
 			</li>
 			<li>
 				繁中版『<span lang="zh-Hant">魔法紀錄 魔法少女小圆外傳</span>』
-				<ol>
+				<ul>
 					<li>繁中版概要</li>
 					<li>リリース会見（2018年12月）</li>
 					<li>香港の駅広告（2018年12月〜2019年1月）</li>
@@ -111,16 +109,16 @@ const structuredData: StructuredData = {
 					<li>台北のバス、タクシー広告（2019年4月〜）</li>
 					<li><span lang="zh-Hant">第20屆漫畫博覽會</span>（2019年8月）<b>【増ページとして挿入】</b></li>
 					<li>マギレコ紹介雑誌</li>
-				</ol>
+				</ul>
 			</li>
 			<li>
 				北米版『<span lang="en">Magia Record -PUELLA MAGI MADOKA MAGICA Side Story-</span>』
-				<ol>
+				<ul>
 					<li>北米版概要</li>
 					<li><span lang="en">Anime Expo 2019</span>（2019年7月）</li>
-				</ol>
+				</ul>
 			</li>
-		</ListOrder>
+		</List>
 	</Section>
 
 	<Section id="errata">

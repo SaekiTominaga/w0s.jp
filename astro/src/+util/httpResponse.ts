@@ -8,7 +8,7 @@ import { escape } from '@w0s/html-escape';
  *
  * @returns Response
  */
-export const response303 = (request: Request, url?: string): Response => {
+const response303 = (request: Request, url?: string): Response => {
 	if (url === undefined && request.method === 'GET') {
 		/* 無限ループ回避 */
 		throw new Error(`The request URL and 303 redirect destination are the same (${request.url}), risking an infinite loop.`);
@@ -19,6 +19,7 @@ export const response303 = (request: Request, url?: string): Response => {
 	return new Response(
 		`<!DOCTYPE html>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=text-scale content=scale>
 <title>See Other</title>
 <h1>303 See Other</h1>
 <p><a href="${escape(locationUrl)}">${escape(locationUrl)}</a>`,
@@ -37,10 +38,11 @@ export const response303 = (request: Request, url?: string): Response => {
  *
  * @returns Response
  */
-export const response400 = (): Response =>
+const response400 = (): Response =>
 	new Response(
 		`<!DOCTYPE html>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=text-scale content=scale>
 <title>w0s.jp</title>
 <h1>Client error</h1>`,
 		{
@@ -50,3 +52,5 @@ export const response400 = (): Response =>
 			},
 		},
 	);
+
+export { response303, response400 };

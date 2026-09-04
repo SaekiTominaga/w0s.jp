@@ -1,6 +1,6 @@
 ---
 import type { getCollection } from 'astro:content';
-import { Parser, HtmlRenderer } from 'commonmark';
+import { HtmlRenderer, Parser } from 'commonmark';
 import dayjs from 'dayjs';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 
@@ -14,6 +14,7 @@ interface Props {
 const { id, collection, feedHref, updateHref } = Astro.props;
 
 const updateEntries = collection
+	.toSorted(({ data: a }, { data: b }) => b.updated.getTime() - a.updated.getTime())
 	.filter(({ data }, index) => {
 		/* 件数と更新日でフィルターする */
 		const compareDate = new Date();
@@ -91,13 +92,14 @@ const updateEntries = collection
 
 		header {
 			display: block flex;
-			flex-flow: wrap;
+			flex-wrap: wrap;
 			gap: 0.25em 1em;
 			align-items: baseline;
 			justify-content: space-between;
 		}
 
 		.main {
+			container-type: inline-size;
 			margin-block-start: 0.25em;
 		}
 
@@ -113,33 +115,31 @@ const updateEntries = collection
 		}
 
 		.list {
-			container-type: inline-size;
-			border: 2px solid var(--color-border-light);
+			display: block grid;
+			border: 2px solid var(--border-color-light);
 			border-radius: var(--border-radius-normal);
-			background-color: var(--color-white);
 			overflow: hidden;
 
 			& > :global(li) {
 				--_padding: 15px;
 
 				display: block grid;
-				grid-template-areas: 'date info';
-				grid-template-columns: calc(7.5em + var(--_padding) * 2) 1fr;
+				grid-template-columns: subgrid;
+				grid-column: 1 / -1;
 			}
 
 			& > :global(li:not(:first-child)) {
-				border-block-start: 1px dotted var(--color-border-light);
+				border-block-start: 1px dotted var(--border-color-light);
 			}
 		}
 
 		.date {
-			grid-column: date;
-			background-color: var(--color-bg-verylight);
+			background-color: var(--bgcolor-light);
 			padding: var(--_padding);
 		}
 
 		.info {
-			grid-column: info;
+			background-color: var(--color-white);
 			padding: var(--_padding);
 
 			& > :global(* + *) {
@@ -147,16 +147,13 @@ const updateEntries = collection
 			}
 		}
 
-		@container (inline-size <= 40rem) {
+		@container (inline-size> 40rem) {
 			.list {
-				& > :global(li) {
-					grid-template-areas:
-						'date'
-						'info';
-					grid-template-columns: 1fr;
-				}
+				grid-template-columns: auto 1fr;
 			}
+		}
 
+		@container (inline-size <= 40rem) {
 			.date {
 				padding-block: calc(var(--_padding) / 2);
 				font-weight: var(--font-weight-bold);

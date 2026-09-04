@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　弘南鉄道大鰐線　上り快速（6000系、2006年）',
 	heading: '弘南鉄道大鰐線　上り快速',
 	subHeading: '6000系、2006年',
-	dateModified: dayjs('2006-01-30'),
+	dateModified: '2006-01-30',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -90,13 +89,5 @@ const structuredData: StructuredData = {
 		</AnnounceStation>
 	</Announce>
 
-	<ListNote>
-		<li>
-			上記のほか、駅停車中に以下の放送がいずれか片方、または両方流れる場合があります。
-			<ul>
-				<li><q>ご乗車ありがとうございます。きっぷをお持ちでないお客様は、整理券をお取りください。</q></li>
-				<li><q>ドアが閉まります。ご注意ください。</q></li>
-			</ul>
-		</li>
-	</ListNote>
+	<Note>上記のほか、駅停車中に以下の放送がいずれか片方、または両方流れる場合があります。<q>ご乗車ありがとうございます。きっぷをお持ちでないお客様は、整理券をお取りください。</q><q>ドアが閉まります。ご注意ください。</q></Note>
 </Layout>

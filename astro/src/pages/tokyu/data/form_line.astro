@@ -1,13 +1,12 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import MachineForm from '@components/tokyu/MachineForm.astro';
-import MachineFormAps from '@components/tokyu/+phrasing/MachineFormAPS.astro';
+import MachineFormAps from '@components/tokyu/+phrasing/MachineFormAps.astro';
 import MachineFormBattery from '@components/tokyu/+phrasing/MachineFormBattery.astro';
 import MachineFormComp from '@components/tokyu/+phrasing/MachineFormComp.astro';
 import MachineFormCont from '@components/tokyu/+phrasing/MachineFormCont.astro';
@@ -18,7 +17,7 @@ const structuredData: StructuredData = {
 	title: '東急電車　主要機器搭載表（路線別）',
 	heading: '主要機器搭載表',
 	subHeading: '路線別',
-	dateModified: dayjs('2009-03-31'),
+	dateModified: '2009-03-31',
 	description: '東急電鉄、横浜高速鉄道の車両（新5000系以降を除く）について、制御装置、補助電源装置、空気圧縮機、蓄電池の搭載状況を編成表形式で紹介します。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
@@ -40,7 +39,7 @@ const slugger = new GithubSlugger();
 	<Section id="toyoko">
 		<Fragment slot="heading">東横線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">9000系</Fragment>
 
 			<MachineForm>
@@ -97,7 +96,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1000系</Fragment>
 
 			<MachineForm>
@@ -158,7 +157,7 @@ const slugger = new GithubSlugger();
 	<Section id="meguro">
 		<Fragment slot="heading">目黒線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">3000系</Fragment>
 
 			<MachineForm>
@@ -209,7 +208,7 @@ const slugger = new GithubSlugger();
 	<Section id="dento">
 		<Fragment slot="heading">田園都市線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8500系（CP3台編成）</Fragment>
 
 			<MachineForm>
@@ -275,12 +274,10 @@ const slugger = new GithubSlugger();
 				</Fragment>
 			</MachineForm>
 
-			<ListNote>
-				<li>18次車以降の空気圧縮機は HS-20形</li>
-			</ListNote>
+			<Note>18次車以降の空気圧縮機は HS-20形</Note>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8500系（CP4台編成・8637F）</Fragment>
 
 			<MachineForm>
@@ -347,7 +344,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8500系（VVVF車組込・8642F）</Fragment>
 
 			<MachineForm>
@@ -414,7 +411,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8090系（先頭車が8590系）</Fragment>
 
 			<MachineForm>
@@ -481,7 +478,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2000系</Fragment>
 
 			<MachineForm>
@@ -552,7 +549,7 @@ const slugger = new GithubSlugger();
 	<Section id="oimachi">
 		<Fragment slot="heading">大井町線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8090系（先頭車が12〜13次車）</Fragment>
 
 			<MachineForm>
@@ -593,12 +590,10 @@ const slugger = new GithubSlugger();
 				</Fragment>
 			</MachineForm>
 
-			<ListNote>
-				<li>デハ8296 の補助電源装置は 100kVA SIV</li>
-			</ListNote>
+			<Note>デハ8296 の補助電源装置は 100kVA SIV</Note>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8090系（先頭車が16〜17次車）</Fragment>
 
 			<MachineForm>
@@ -639,12 +634,10 @@ const slugger = new GithubSlugger();
 				</Fragment>
 			</MachineForm>
 
-			<ListNote>
-				<li>デハ8298、8282、8290 の補助電源装置は 100kVA SIV</li>
-			</ListNote>
+			<Note>デハ8298、8282、8290 の補助電源装置は 100kVA SIV</Note>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8090系（先頭車が8590系）</Fragment>
 
 			<MachineForm>
@@ -686,7 +679,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">8500系</Fragment>
 
 			<MachineForm>
@@ -728,7 +721,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">9000系</Fragment>
 
 			<MachineForm>
@@ -772,7 +765,7 @@ const slugger = new GithubSlugger();
 
 		<Flex>
 			<FlexItem>
-				<Section slugger={slugger} depth={2} headingType="c">
+				<Section id={slugger} depth={2}>
 					<Fragment slot="heading">デヤ7200形</Fragment>
 
 					<MachineForm>
@@ -795,7 +788,7 @@ const slugger = new GithubSlugger();
 				</Section>
 			</FlexItem>
 			<FlexItem>
-				<Section slugger={slugger} depth={2} headingType="c">
+				<Section id={slugger} depth={2}>
 					<Fragment slot="heading">デヤ7290形</Fragment>
 
 					<MachineForm>
@@ -818,7 +811,7 @@ const slugger = new GithubSlugger();
 				</Section>
 			</FlexItem>
 			<FlexItem>
-				<Section slugger={slugger} depth={2} headingType="c">
+				<Section id={slugger} depth={2}>
 					<Fragment slot="heading">サヤ7590形</Fragment>
 
 					<MachineForm>
@@ -846,7 +839,7 @@ const slugger = new GithubSlugger();
 	<Section id="iketama">
 		<Fragment slot="heading">池上、多摩川線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">7600系</Fragment>
 
 			<MachineForm>
@@ -878,7 +871,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">7700系</Fragment>
 
 			<MachineForm>
@@ -910,7 +903,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">7700系（7915F）</Fragment>
 
 			<MachineForm>
@@ -941,7 +934,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1000N′系</Fragment>
 
 			<MachineForm>
@@ -973,7 +966,7 @@ const slugger = new GithubSlugger();
 			</MachineForm>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1000N系</Fragment>
 
 			<MachineForm>
@@ -1009,7 +1002,7 @@ const slugger = new GithubSlugger();
 	<Section id="kodomo">
 		<Fragment slot="heading">こどもの国線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">横浜高速鉄道Y000系</Fragment>
 
 			<MachineForm>
@@ -1039,7 +1032,7 @@ const slugger = new GithubSlugger();
 	<Section id="setagaya">
 		<Fragment slot="heading">世田谷線</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">300系</Fragment>
 
 			<MachineForm>

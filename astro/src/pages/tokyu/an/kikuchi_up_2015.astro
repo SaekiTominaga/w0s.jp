@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　熊本電気鉄道菊池線　上り（5100形、2015年）',
 	heading: '熊本電気鉄道菊池線　上り',
 	subHeading: '5100形、2015年',
-	dateModified: dayjs('2015-04-12'),
+	dateModified: '2015-04-12',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -93,12 +92,5 @@ const structuredData: StructuredData = {
 		</AnnounceStation>
 	</Announce>
 
-	<ListNote>
-		<li>
-			上記のほか、途中駅停車中に以下の放送が流れます。
-			<ul>
-				<li><q>お待たせいたしました。上熊本行きです。整理券をお取りください。定期券、回数券の方も整理券をお取りください。</q></li>
-			</ul>
-		</li>
-	</ListNote>
+	<Note>上記のほか、途中駅停車中に以下の放送が流れます。<q>お待たせいたしました。上熊本行きです。整理券をお取りください。定期券、回数券の方も整理券をお取りください。</q></Note>
 </Layout>

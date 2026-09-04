@@ -1,17 +1,19 @@
 packages:
   - astro
-  - express
   - frontend
+  - hono
 
 # Settings <https://pnpm.io/settings>
 
 ## Dependency Resolution
 
+minimumReleaseAgeExclude:
+  - '@types/*'
+  - '@w0s/*'
 trustPolicy: no-downgrade
 trustPolicyExclude:
-  - chokidar@4.0.3
-  - semver@6.3.1
-  - vite@6.4.1
+  - chokidar@4.0.3 # @astrojs/check@0.9.9 <https://github.com/withastro/astro/blob/main/packages/language-tools/astro-check/package.json>
+  - semver@6.3.1 # eslint-plugin-import@2.32.0 <https://github.com/import-js/eslint-plugin-import/blob/main/package.json>
 blockExoticSubdeps: true
 
 ## Dependency Hoisting Settings
@@ -21,10 +23,17 @@ publicHoistPattern:
   - 'markuplint'
   - 'stylelint'
 
+## Peer Dependency Settings
+
+strictPeerDependencies: true
+
+## CLI Settings
+
+engineStrict: true
+
 ## Build Settings
 
 strictDepBuilds: true
-onlyBuiltDependencies:
-  - better-sqlite3
-  - esbuild
-  - sharp
+allowBuilds:
+  better-sqlite3: true
+  esbuild: true

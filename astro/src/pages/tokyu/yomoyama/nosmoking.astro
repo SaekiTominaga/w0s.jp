@@ -1,19 +1,28 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_bold_purple from '@image/tokyu/yomoyama/nosmoking/bold_purple.jpg';
+import image_bold_black from '@image/tokyu/yomoyama/nosmoking/bold_black.jpg';
+import image_bold_blue from '@image/tokyu/yomoyama/nosmoking/bold_blue.jpg';
+import image_thin_black from '@image/tokyu/yomoyama/nosmoking/thin_black.jpg';
+import image_pic_str from '@image/tokyu/yomoyama/nosmoking/pic_str.jpg';
+import image_pic_only from '@image/tokyu/yomoyama/nosmoking/pic_only.jpg';
+import image_3000 from '@image/tokyu/yomoyama/nosmoking/3000.jpg';
+import image_Y000 from '@image/tokyu/yomoyama/nosmoking/Y000.jpg';
+import image_300 from '@image/tokyu/yomoyama/nosmoking/300.jpg';
+import image_9000_renewal from '@image/tokyu/yomoyama/nosmoking/9000_renewal.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急電車の禁煙標記バリエーション',
 	heading: '禁煙標記バリエーション',
-	dateModified: dayjs('2006-07-01'),
+	dateModified: '2006-07-01',
 	description: '東急線の列車は言うまでもなく全車禁煙ですが、それを示す車内標記は車種や年代によってバリエーションが豊富です。近年はピクトグラムの導入や、プレート式をやめて化粧板に直接印刷されたものになるなどの変化もあります。',
-	image: 'https://media.w0s.jp/image/tokyu/yomoyama/nosmoking/bold_blue.jpg',
+	image: image_bold_blue,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
@@ -25,13 +34,13 @@ const structuredData: StructuredData = {
 	<Section id="string">
 		<Fragment slot="heading">文字のみのタイプ</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="bold-purple" depth={2} headingType="c">
+				<Section id="bold-purple" depth={2}>
 					<Fragment slot="heading">太フォント、英文紺字</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/bold_purple.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_bold_purple} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-07-30 -->
 						<Fragment slot="caption">デハ8218（4次車）</Fragment>
 					</Embedded>
@@ -40,11 +49,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="bold-black" depth={2} headingType="c">
+				<Section id="bold-black" depth={2}>
 					<Fragment slot="heading">太フォント、英文黒字</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/bold_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_bold_black} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-07-30 -->
 						<Fragment slot="caption">クハ8040（4次車）</Fragment>
 					</Embedded>
@@ -53,11 +62,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="bold-blue" depth={2} headingType="c">
+				<Section id="bold-blue" depth={2}>
 					<Fragment slot="heading">太フォント、英文青字</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/bold_blue.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_bold_blue} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-25 -->
 						<Fragment slot="caption">デハ1312（3次車）</Fragment>
 					</Embedded>
@@ -66,11 +75,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="thin-black" depth={2} headingType="c">
+				<Section id="thin-black" depth={2}>
 					<Fragment slot="heading">細フォント、英文黒字</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/thin_black.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_thin_black} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-25 -->
 						<Fragment slot="caption">クハ7908（2次車）</Fragment>
 					</Embedded>
@@ -84,13 +93,13 @@ const structuredData: StructuredData = {
 	<Section id="pictogram1">
 		<Fragment slot="heading">ピクトグラム（旧）</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="pic-str" depth={2} headingType="c">
+				<Section id="pic-str" depth={2}>
 					<Fragment slot="heading">ピクトグラム + 文字</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/pic_str.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_pic_str} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-18 -->
 						<Fragment slot="caption">デハ7653（1次車）</Fragment>
 					</Embedded>
@@ -99,11 +108,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="pic-only" depth={2} headingType="c">
+				<Section id="pic-only" depth={2}>
 					<Fragment slot="heading">ピクトグラムのみ</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/pic_only.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_pic_only} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-18 -->
 						<Fragment slot="caption">クハ8001（1次車）</Fragment>
 					</Embedded>
@@ -117,13 +126,13 @@ const structuredData: StructuredData = {
 	<Section id="pictogram2">
 		<Fragment slot="heading">ピクトグラム（新）</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="3000" depth={2} headingType="c">
+				<Section id="3000" depth={2}>
 					<Fragment slot="heading">新3000系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/3000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_3000} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-25 -->
 						<Fragment slot="caption">クハ3013（3次車）</Fragment>
 					</Embedded>
@@ -132,11 +141,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="y000" depth={2} headingType="c">
+				<Section id="y000" depth={2}>
 					<Fragment slot="heading">Y000系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/Y000.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_Y000} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-24 -->
 						<Fragment slot="caption">デハY011（1次車）</Fragment>
 					</Embedded>
@@ -145,11 +154,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="300" depth={2} headingType="c">
+				<Section id="300" depth={2}>
 					<Fragment slot="heading">300系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/300.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_300} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-06-24 -->
 						<Fragment slot="caption">デハ301A（1次車）</Fragment>
 					</Embedded>
@@ -158,11 +167,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="9000-renewal" depth={2} headingType="c">
+				<Section id="9000-renewal" depth={2}>
 					<Fragment slot="heading">9000系化粧板修繕車</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/yomoyama/nosmoking/9000_renewal.jpg" alt="写真拡大" width={485} height={323} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_9000_renewal} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2006-07-01 -->
 						<Fragment slot="caption">クハ9011（3次車）</Fragment>
 					</Embedded>

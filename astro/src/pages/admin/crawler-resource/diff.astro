@@ -1,7 +1,7 @@
 ---
 import fs from 'node:fs';
-import { diffLines, type Change as DiffChange } from 'diff';
-import { format, type Options as PrettierOptions } from 'prettier';
+import { type Change as DiffChange, diffLines } from 'diff';
+import { type Options as PrettierOptions, format } from 'prettier';
 import { env } from '@w0s/env-value-type';
 import Layout from '@layouts/Admin.astro';
 import Label from '@components/+phrasing/Label.astro';
@@ -54,17 +54,11 @@ if (requestParamDir !== undefined) {
 					const lines = diffPart.value.split('\n');
 
 					if (index === 0) {
-						diffPart.value = lines
-							.slice(lines.length - maxLine + 1)
-							.concat(omit)
-							.join('\n');
+						diffPart.value = [...lines.slice(lines.length - maxLine + 1), omit].join('\n');
 					} else if (index === diffs.length - 1) {
-						diffPart.value = [omit].concat(lines.slice(0, maxLine)).join('\n');
+						diffPart.value = [omit, ...lines.slice(0, maxLine)].join('\n');
 					} else if (diffPart.count > maxLine * 2) {
-						diffPart.value = lines
-							.slice(0, maxLine)
-							.concat(omit, lines.slice(lines.length - maxLine - 1))
-							.join('\n');
+						diffPart.value = [...lines.slice(0, maxLine), omit, ...lines.slice(lines.length - maxLine - 1)].join('\n');
 					}
 				}
 			});
@@ -73,7 +67,7 @@ if (requestParamDir !== undefined) {
 		}
 
 		/* 初期表示 */
-		fileList.push(...(await fs.promises.readdir(dir)).filter((filePath) => filePath.endsWith('.txt')).reverse());
+		fileList.push(...(await fs.promises.readdir(dir)).filter((filePath) => filePath.endsWith('.txt')).toReversed());
 	}
 }
 ---

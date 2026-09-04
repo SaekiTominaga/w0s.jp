@@ -5,92 +5,118 @@ const buttonTitleId = getHTMLId();
 ---
 
 <div class="search">
-	<span class="hidden">
-		<input type="hidden" name="as_sitesearch" value="w0s.jp" />
-	</span>
-	<span class="query">
-		<input type="search" name="q" required="" title="キーワード" />
-	</span>
-	<span class="submit">
-		<button>
-			<svg role="img" aria-labelledby={buttonTitleId}>
-				<title id={buttonTitleId}>検索</title>
-				<use href="/assets/image/icon/search.svg#icon"></use>
-			</svg>
-		</button>
-	</span>
+	<select name="engine" title="検索エンジン" class="engine js-search-engine" data-storage-key="search-engine">
+		<option value="google">Google</option>
+		<option value="bing">Bing</option>
+		<option value="yahoo">Yahoo! JAPAN</option>
+		<option value="ddg">DuckDuckGo</option>
+	</select>
+	<input type="search" name="q" required="" title="キーワード" class="query" />
+	<button class="submit">
+		<svg role="img" aria-labelledby={buttonTitleId}>
+			<title id={buttonTitleId}>検索</title>
+			<use href="/assets/image/icon/search.svg#icon"></use>
+		</svg>
+	</button>
 </div>
 
 <style>
 	@layer component {
 		.search {
-			--_border-color: var(--color-lightgray);
+			--_animation-duration: 0.1s;
 
 			display: block flex;
-			align-items: center;
-			outline-offset: -1px;
-			border: 1px solid var(--_border-color);
+			flex-wrap: wrap;
+			border: 1px solid var(--border-color-dark);
 			border-radius: var(--border-radius-small);
-			background: var(--color-white);
+			background-color: var(--color-white);
+			line-height: var(--line-height-narrow);
 			color: var(--color-darkgray);
 
-			&:focus-within {
-				outline: var(--outline-width-bold) solid var(--outline-color);
+			& :is(input, select, button) {
+				line-height: inherit;
 			}
 
-			&:hover {
-				--_border-color: var(--outline-color);
+			& :focus {
+				z-index: 0;
 			}
 		}
 
-		/* <input type="hidden"> */
-		.hidden {
+		/* 検索エンジン選択欄 */
+		.engine {
+			display: inline flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			transition-duration: var(--_animation-duration);
+			transition-property: background-color;
+			outline-offset: -1px;
+			border-block-style: unset;
+			border-inline-start-style: unset;
+			border-inline-end: 1px solid var(--border-color-dark);
+			border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
+			background-color: var(--color-white);
+			padding: 0 0.5em;
+			font-family: Arial, sans-serif;
+			font-size: calc(100% / pow(var(--font-ratio), 4));
+			font-stretch: condensed;
+			field-sizing: content;
+
+			& > :global(option) {
+				font-size: calc(100% * pow(var(--font-ratio), 4));
+			}
+
+			&:focus {
+				outline-width: var(--outline-width-bold);
+			}
+
+			&:hover {
+				background-color: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
+			}
 		}
 
 		/* キーワード入力欄 */
 		.query {
-			flex: 1;
+			all: unset;
+			display: block flow;
+			flex-basis: 0;
+			flex-grow: 1;
+			transition-duration: var(--_animation-duration);
+			transition-property: background-color;
+			outline-offset: -1px;
+			padding: 0.25em;
+			inline-size: 100%;
 
-			& > :global(input) {
-				all: initial;
-				box-sizing: revert;
-				display: block flow;
-				padding: 0.25em;
-				inline-size: 100%;
-				font: inherit;
+			&:focus {
+				outline: var(--outline-width-bold) solid var(--outline-color);
+			}
+
+			&:hover {
+				background-color: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
 			}
 		}
 
 		/* 送信ボタン */
 		.submit {
-			& > :global(button) {
-				--_color: hsl(220deg 70% 45%);
+			all: unset;
+			transition-duration: var(--_animation-duration);
+			transition-property: background-color;
+			outline-offset: -1px;
+			border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+			padding: 0.375em;
+			block-size: 1.5em;
+			inline-size: 1.5em;
+			color: oklch(from var(--color-blue) l calc(c - 0.15) h);
+			fill: currentColor; /* SVG */
 
-				all: initial;
-				box-sizing: revert;
-				display: block flow;
-				margin: var(--outline-width-bold);
-				padding: 0.25em;
-				block-size: 2em;
-				inline-size: 2em;
-				color: var(--_color);
-				font: inherit;
-				fill: currentColor; /* SVG */
+			&:focus-visible {
+				outline: var(--outline-width-bold) solid var(--outline-color);
 			}
 
-			& > :global(button:focus:not(:focus-visible)) {
-				--_color: hsl(220deg 70% 35%);
+			&:hover {
+				background-color: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
 			}
 
-			& > :global(button:focus-visible) {
-				outline: var(--outline-width-bold) dotted var(--color-black);
-			}
-
-			& > :global(button:hover) {
-				--_color: hsl(220deg 70% 55%);
-			}
-
-			& > :global(button > svg) {
+			& > :global(svg) {
 				block-size: 100%;
 				inline-size: 100%;
 			}

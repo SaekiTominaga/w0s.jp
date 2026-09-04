@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import ListLink from '@components/ListLink.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』公式サイト　ニュース一覧',
 	heading: '公式サイト　ニュース一覧',
-	dateModified: dayjs('2021-01-28'),
+	dateModified: '2021-01-28',
 	description: '『魔法少女まどか☆マギカ』公式サイトのニュースをリンク一覧にしました。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 };
@@ -20,7 +19,7 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">TV シリーズ</Fragment>
 
 		<ListLink index={true}>
@@ -105,7 +104,7 @@ const slugger = new GithubSlugger();
 			<li><Anchor href="https://www.madoka-magica.com/tv/news/#n263559" icon={false}>『魔法少女まどか☆マギカ オンライン』みんなでテスト参加者募集開始!</Anchor> （2012年6月4日）</li>
 		</ListLink>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">劇場版</Fragment>
 
 		<ListLink index={true}>
@@ -498,7 +497,5 @@ const slugger = new GithubSlugger();
 		</ListLink>
 	</Section>
 
-	<ListNote>
-		<li>2021年1月をもって収集作業を停止したので、以降のデータは<Anchor href="https://www.madoka-magica.com/rebellion/news/">公式サイトのニュースページ</Anchor>を参照ください。</li>
-	</ListNote>
+	<Note>2021年1月をもって収集作業を停止したので、以降のデータは<Anchor href="https://www.madoka-magica.com/rebellion/news/">公式サイトのニュースページ</Anchor>を参照ください。</Note>
 </Layout>

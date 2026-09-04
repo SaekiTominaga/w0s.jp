@@ -1,26 +1,25 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
 import List from '@components/List.astro';
-import ListNote from '@components/ListNote.astro';
-import ListOrder from '@components/ListOrder.astro';
+import Note from '@components/Note.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
 import Date from '@components/+phrasing/Date.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import imageCover from '@image/tokyu/book/tamagawa1067_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自費出版本「公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両」',
 	heading: '公文書と統計資料でたどる玉川電気鉄道狭軌時代の車両',
-	dateModified: dayjs('2025-12-31'),
+	dateModified: '2025-12-31',
 	description: '資料や写真が少なく謎に包まれている玉川電気鉄道の狭軌時代の車両について、公文書や統計資料などをもとに解明を試みました。',
-	image: 'https://media.w0s.jp/image/tokyu/book/tamagawa1067_cover.jpg',
+	image: imageCover,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/book/', name: '鉄道本執筆' },
@@ -31,8 +30,8 @@ const structuredData: StructuredData = {
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
 	<Flex>
 		<FlexItem>
-			<Embedded border={true}>
-				<Image path="tokyu/book/tamagawa1067_cover.jpg" alt="クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} quality={60} slot="media" />
+			<Embedded width={170} border={true}>
+				<MyImage image={imageCover} alt="クリーム色の背景に縦書きの書名、左下に公文書の本文（一部分）と青焼き図面の写真が1枚ずつ" width={170} height={240} slot="media" />
 				<Fragment slot="caption">表紙</Fragment>
 			</Embedded>
 		</FlexItem>
@@ -48,9 +47,7 @@ const structuredData: StructuredData = {
 				</div>
 			</ListTable>
 
-			<ListNote>
-				<li>本書は電子書籍のみの販売</li>
-			</ListNote>
+			<Note>本書は電子書籍のみの販売</Note>
 		</FlexItem>
 	</Flex>
 
@@ -70,52 +67,50 @@ const structuredData: StructuredData = {
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ListOrder>
+		<List>
 			<li><a href="#introduction">はじめに</a></li>
 			<li>
 				第1章　開通前の車両計画と諸元
-				<ol>
+				<ul>
 					<li>電動客車</li>
 					<li>アメリカ製特別客車</li>
 					<li>付随貨車</li>
-				</ol>
+				</ul>
 			</li>
 			<li>
 				第2章　開通時の車両とその後の増備
-				<ol>
+				<ul>
 					<li>路線全通までの車両</li>
 					<li>電動客車の増備</li>
 					<li>西武軌道より付随客車を譲受</li>
 					<li>さらなる増備と予備電機品</li>
-				</ol>
+				</ul>
 			</li>
 			<li>
 				第3章　電動客車のバリエーション
-				<ol>
+				<ul>
 					<li>車体メーカー</li>
 					<li>車体形態</li>
 					<li>電機品</li>
-				</ol>
+				</ul>
 			</li>
 			<li>第4章　改修工事</li>
 			<li>第5章　事故報道にみる電動客車の車号</li>
 			<li>
 				第6章　改軌に伴う譲渡、改造
-				<ol>
+				<ul>
 					<li>駿遠電気への譲渡</li>
 					<li>上田温泉電軌への譲渡</li>
 					<li>貨車の軌間改造</li>
-				</ol>
+				</ul>
 			</li>
-		</ListOrder>
+		</List>
 	</Section>
 
 	<Section id="introduction">
 		<Fragment slot="heading">本文冒頭抜粋</Fragment>
 
-		<ListNote>
-			<li>本文冒頭の「<cite>はじめに</cite>」を抜粋します。</li>
-		</ListNote>
+		<Note>本文冒頭の「<cite>はじめに</cite>」を抜粋します。</Note>
 
 		<p>玉川電気鉄道は<DateWareki value="1907-03" />の開通から<DateWareki value="1920-09" />までの13年間、1,067mmの狭軌で営業が行われていました。明治、大正期の私鉄研究には一般に『<cite>鉄道省文書</cite>』と呼ばれる公文書（許認可書類）の調査が欠かせないのですが、玉電狭軌車の許認可書類は一部しか残されていないためその全容は謎に包まれており、車両番号すら明確には分かっていないのが現状です。</p>
 

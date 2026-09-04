@@ -1,6 +1,5 @@
 import { strict as assert } from 'node:assert';
 import { test } from 'node:test';
-import dayjs from 'dayjs';
 import { getJsonLd } from './structuredData.ts';
 
 await test('getJsonLd', async (t) => {
@@ -89,7 +88,7 @@ await test('getJsonLd', async (t) => {
 				{
 					title: 'page title',
 					description: 'page description',
-					dateModified: dayjs('2000-01-01'),
+					dateModified: '2000-01-01',
 				},
 				{
 					site: 'http://example.com',
@@ -105,7 +104,7 @@ await test('getJsonLd', async (t) => {
 				{
 					title: 'page title',
 					description: 'page description',
-					image: 'http://example.com/image.jpg',
+					image: new URL('http://example.com/image.jpg'),
 				},
 				{
 					site: 'http://example.com',

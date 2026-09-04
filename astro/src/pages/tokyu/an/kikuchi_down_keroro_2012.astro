@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　熊本電気鉄道菊池線　下り「ケロロ電車」（5100形、2012年）',
 	heading: '熊本電気鉄道菊池線　下り「ケロロ電車」',
 	subHeading: '5100形、2012年',
-	dateModified: dayjs('2012-10-13'),
+	dateModified: '2012-10-13',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -32,9 +31,7 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData} toc={false}>
-	<ListNote>
-		<li><strong>一部に発音が聞き取れない箇所があり、ゲタ文字(〓)で表しています。</strong></li>
-	</ListNote>
+	<Note><strong>一部に発音が聞き取れない箇所があり、ゲタ文字(〓)で表しています。</strong></Note>
 
 	<Announce station="北熊本" type="local" operation="oneman" cars={['ケロロ電車（モハ5101A）']} period="2012年のケロロ電車運行開始から、2014年のコラボ終了まで" recordDate="2012-10-13" recordCar="5100形1両編成">
 		<AnnounceStation>

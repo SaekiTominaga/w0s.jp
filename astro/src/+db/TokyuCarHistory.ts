@@ -1,15 +1,18 @@
+import path from 'node:path';
+import { inspect } from 'node:util';
 import SQLite from 'better-sqlite3';
 import dayjs from 'dayjs';
 import { Kysely, SqliteDialect } from 'kysely';
-import Log4js from 'log4js';
+import type { Logger } from 'winston';
 import { jsToSQLiteComparison, sqliteToJS } from '@w0s/sqlite-utility';
-import type { DB } from '../../../@types/db_tokyu-car-history.d.ts';
+import type { DB } from '../../../@types/dbTokyuCarHistory.d.ts';
+import { getLogger } from '../logger.ts';
 
 /**
  * 東急電車資料室・車歴表
  */
 export default class {
-	readonly #logger: Log4js.Logger;
+	readonly #logger: Logger;
 
 	readonly #db: Kysely<DB>;
 
@@ -17,7 +20,7 @@ export default class {
 	 * @param filePath - DB ファイルパス
 	 */
 	constructor(filePath: string) {
-		this.#logger = Log4js.getLogger('db - tokyu-car-history');
+		this.#logger = getLogger(path.basename(filePath));
 
 		const sqlite = new SQLite(filePath, {
 			/* https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md#new-databasepath-options */
@@ -43,7 +46,7 @@ export default class {
 		const rows = await query.execute();
 
 		const compiled = query.compile();
-		this.#logger.debug(compiled.sql, compiled.parameters);
+		this.#logger.debug(`${inspect(compiled.parameters)} ${compiled.sql}`);
 
 		return rows.map((row) => ({
 			id: sqliteToJS(row.fk),
@@ -113,11 +116,9 @@ export default class {
 
 		/* 検索条件 */
 		if (number !== undefined && number !== '') {
-			if (numberOld) {
-				query = query.where((eb) => eb.or([eb('c.num', 'like', jsToSQLiteComparison(number)), eb('ch.before_num', 'like', jsToSQLiteComparison(number))]));
-			} else {
-				query = query.where('c.num', 'like', jsToSQLiteComparison(number));
-			}
+			query = numberOld
+				? query.where((eb) => eb.or([eb('c.num', 'like', jsToSQLiteComparison(number)), eb('ch.before_num', 'like', jsToSQLiteComparison(number))]))
+				: query.where('c.num', 'like', jsToSQLiteComparison(number));
 		}
 		if (seriesList !== undefined) {
 			query = query.where('se.fk', 'in', seriesList); // TODO: jsToSQLiteComparison() を付けたい
@@ -131,37 +132,44 @@ export default class {
 
 		/* ソート */
 		switch (sort) {
-			case 'num': // 番号
+			case 'num': {
+				// 番号
 				query = query.orderBy('se.register'); // 車種
 				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'type': // 形式
+			}
+			case 'type': {
+				// 形式
 				query = query.orderBy('se.register'); // 車種
 				query = query.orderBy('ty.name'); // 形式
 				query = query.orderBy('c.annual'); // 呼称
 				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'annual': // 呼称
+			}
+			case 'annual': {
+				// 呼称
 				query = query.orderBy('se.register'); // 車種
 				query = query.orderBy('c.annual'); // 呼称
 				query = query.orderBy('si.sort'); // 車種記号
 				query = query.orderBy('c.type'); // 形式
 				query = query.orderBy('c.num'); // 番号
 				break;
-			case 'regist':
-			default: // 入籍日
+			}
+			default: {
+				// 入籍日
 				query = query.orderBy('c.register_date'); // 入籍日
 				query = query.orderBy('se.register'); // 車種
 				query = query.orderBy('c.annual'); // 呼称
 				query = query.orderBy('si.sort'); // 車種記号
 				query = query.orderBy('c.type'); // 形式
-				query = query.orderBy('c.num'); // 番号
+				query = query.orderBy('c.num');
+			} // 番号
 		}
 
 		const rows = await query.execute();
 
 		const compiled = query.compile();
-		this.#logger.debug(compiled.sql, compiled.parameters);
+		this.#logger.debug(`${inspect(compiled.parameters)} ${compiled.sql}`);
 
 		const changeDataList = await this.#getCarChangeData();
 
@@ -171,7 +179,7 @@ export default class {
 			series: sqliteToJS(row.series),
 			type: sqliteToJS(row.type),
 			annual: sqliteToJS(row.annual),
-			register: new Date(Number(row.register.substring(0, 4)), Number(row.register.substring(5, 7)) - 1, Number(row.register.substring(8, 10))),
+			register: new Date(Number(row.register.slice(0, 4)), Number(row.register.slice(5, 7)) - 1, Number(row.register.slice(8, 10))),
 			renewal: sqliteToJS(row.renewal),
 			scrap: sqliteToJS(row.scrap, 'boolean'),
 			transfer: sqliteToJS(row.transfer),
@@ -216,11 +224,13 @@ export default class {
 		>();
 
 		rows.forEach((row) => {
+			const date = new Date(Number(row.date.slice(0, 4)), Number(row.date.slice(5, 7)) - 1, Number(row.date.slice(8, 10)));
+
 			const changeDataList = changeDataMap.get(row.now_num) ?? [];
 			changeDataList.push({
 				number: row.before_num,
 				sign: row.sign,
-				date: new Date(Number(row.date.substring(0, 4)), Number(row.date.substring(5, 7)) - 1, Number(row.date.substring(8, 10))),
+				date: date,
 			});
 			changeDataMap.set(row.now_num, changeDataList);
 		});

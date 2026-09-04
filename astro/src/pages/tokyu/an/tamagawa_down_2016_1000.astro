@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　東急多摩川線　下り（1000系、2016年）',
 	heading: '東急多摩川線　下り',
 	subHeading: '1000系、2016年',
-	dateModified: dayjs('2016-10-15'),
+	dateModified: '2016-10-15',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -97,7 +96,5 @@ const structuredData: StructuredData = {
 		</AnnounceStation>
 	</Announce>
 
-	<ListNote>
-		<li>矢口渡発車時の開扉方向案内（<q>出口は左 / 右側です</q>）は1500番台のみ。</li>
-	</ListNote>
+	<Note>矢口渡発車時の開扉方向案内（<q>出口は左 / 右側です</q>）は1500番台のみ。</Note>
 </Layout>

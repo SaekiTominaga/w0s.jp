@@ -1,0 +1,13 @@
+---
+import Layout from '@layouts/Error.astro';
+import type { StructuredDataErrorPage } from '../../@types/util.d.ts';
+
+const structuredData: StructuredDataErrorPage = {
+	heading: 'クライアントエラー',
+	moduleScripts: ['error.mjs'],
+};
+---
+
+<Layout structuredData={structuredData} search={true}>
+	<p id="parentpage-msg" hidden="">「<a id="parentpage-anchor"></a>」でお探しのコンテンツが見つかるかもしれませんし、見つからないかもしれません。</p>
+</Layout>

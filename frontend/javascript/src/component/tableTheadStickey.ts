@@ -1,0 +1,52 @@
+/**
+ * スクロールスナップの設定を行う
+ *
+ * @param $table - <table> 要素
+ */
+const setScrollSnap = ($table: HTMLTableElement): void => {
+	const $thead = $table.tHead;
+	if ($thead === null) {
+		return;
+	}
+
+	$table.style.setProperty('--stickey-thead-block-size', `${String($thead.scrollHeight)}px`);
+};
+
+/**
+ * <thead> の sticky スクロール量調整
+ *
+ * @param $$element - 対象要素
+ */
+export default ($$element: NodeListOf<Element>): void => {
+	const $$table = [...$$element].map(($element): HTMLTableElement => {
+		if (!($element instanceof HTMLTableElement)) {
+			throw new TypeError('Element must be a `HTMLTableElement`');
+		}
+
+		return $element;
+	});
+
+	$$table.forEach(($table) => {
+		setScrollSnap($table);
+	});
+
+	if ($$table.length > 0) {
+		globalThis.addEventListener(
+			'hashchange',
+			(): void => {
+				const id = location.hash.slice(1);
+				if (id === '') {
+					return;
+				}
+
+				const $target = $$table.find(($table) => $table.contains(document.querySelector(`#${id}`)));
+				if ($target === undefined) {
+					return;
+				}
+
+				setScrollSnap($target);
+			},
+			{ passive: true },
+		);
+	}
+};

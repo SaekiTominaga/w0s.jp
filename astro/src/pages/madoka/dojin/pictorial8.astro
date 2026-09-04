@@ -1,25 +1,25 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
-import ListNote from '@components/ListNote.astro';
-import ListOrder from '@components/ListOrder.astro';
+import List from '@components/List.astro';
+import Note from '@components/Note.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import image_pictorial8_cover from '@image/madoka/dojin/pictorial8_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』同人誌「まどか☆マギカ映像比較講義録」',
 	heading: '円環ピクトリアル No.8',
 	subHeading: '【特集】まどか☆マギカ映像比較講義録',
-	dateModified: dayjs('2018-04-10'),
+	dateModified: '2018-04-10',
 	description: '大学で『魔法少女まどか☆マギカ』の映像比較について登壇した講義録の同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial8_cover.jpg',
+	image: image_pictorial8_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -46,8 +46,8 @@ const structuredData: StructuredData = {
 
 		<Flex>
 			<FlexItem>
-				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial8_cover.jpg" alt="教室のスクリーンにスライドを映しながらマイクを持って説明している写真" width={170} height={240} quality={60} slot="media" />
+				<Embedded width={170} border={true}>
+					<MyImage image={image_pictorial8_cover} alt="教室のスクリーンにスライドを映しながらマイクを持って説明している写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>
@@ -82,16 +82,14 @@ const structuredData: StructuredData = {
 			</FlexItem>
 		</Flex>
 
-		<ListNote>
-			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
-			<li>購入者向け PDF の認証情報は奥付に記載</li>
-		</ListNote>
+		<Note><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></Note>
+		<Note>購入者向け PDF の認証情報は奥付に記載</Note>
 	</Section>
 
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ListOrder>
+		<List>
 			<li>挨拶</li>
 			<li>自己紹介</li>
 			<li>アジェンダ</li>
@@ -108,7 +106,7 @@ const structuredData: StructuredData = {
 			<li>映像差分を調べる意義</li>
 			<li>「TVシリーズ比較本」宣伝</li>
 			<li>「映像と文学」に繋げる</li>
-		</ListOrder>
+		</List>
 	</Section>
 
 	<Section id="slide">

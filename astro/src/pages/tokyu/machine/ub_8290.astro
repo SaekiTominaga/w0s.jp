@@ -1,19 +1,27 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_8290sBS33 from '@image/tokyu/machine/ub/8290s-BS33.jpg';
+import image_8290mBS33 from '@image/tokyu/machine/ub/8290m-BS33.jpg';
+import image_IC3C from '@image/tokyu/machine/ub/IC3C.jpg';
+import image_8290sINV104 from '@image/tokyu/machine/ub/8290s-INV104.jpg';
+import image_8290mINV104 from '@image/tokyu/machine/ub/8290m-INV104.jpg';
+import image_IC3Cfo from '@image/tokyu/machine/ub/IC3C-fo.jpg';
+import image_8290sINV153 from '@image/tokyu/machine/ub/8290s-INV153.jpg';
+import image_IC3Crem from '@image/tokyu/machine/ub/IC3C-rem.jpg';
+import image_8200s from '@image/tokyu/machine/ub/8200s.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急大井町線デハ8290形　床下機器配置',
 	heading: '大井町線デハ8290形　床下機器配置',
-	dateModified: dayjs('2007-08-01'),
+	dateModified: '2007-08-01',
 	description: '大井町線8090系は2000年代に補助電源装置の二電源化工事が行われましたが、施工は一部編成に留まり床下機器配置にはバリエーションが見られました。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/ub/8290m-BS33.jpg',
+	image: image_8290mBS33,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -33,13 +41,13 @@ const structuredData: StructuredData = {
 	<Section id="m2-8290-bs33">
 		<Fragment slot="heading">10kVA SIV 搭載車</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="m2-8290-bs33-s" depth={2} headingType="c">
+				<Section id="m2-8290-bs33-s" depth={2}>
 					<Fragment slot="heading">海側</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/8290s-BS33.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_8290sBS33} alt="写真拡大" width={540} height={169} link={true} slot="media" />
 						<!-- 撮影日: 2005-05-01 -->
 						<Fragment slot="caption">デハ8294海側（13次車）</Fragment>
 					</Embedded>
@@ -48,11 +56,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="m2-8290-bs33-m" depth={2} headingType="c">
+				<Section id="m2-8290-bs33-m" depth={2}>
 					<Fragment slot="heading">山側</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/8290m-BS33.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_8290mBS33} alt="写真拡大" width={540} height={169} link={true} slot="media" />
 						<!-- 撮影日: 2007-09-24 -->
 						<Fragment slot="caption">デハ8284山側（16-2次車）</Fragment>
 					</Embedded>
@@ -61,11 +69,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="m2-8290-bs33-j" depth={2} headingType="c">
+				<Section id="m2-8290-bs33-j" depth={2}>
 					<Fragment slot="heading">山側連結部</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/IC3C.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_IC3C} alt="写真拡大" width={540} height={405} link={true} slot="media" />
 						<!-- 撮影日: 2007-08-18 -->
 						<Fragment slot="caption">デハ8495 ｰ デハ8280山側</Fragment>
 					</Embedded>
@@ -79,13 +87,13 @@ const structuredData: StructuredData = {
 	<Section id="m2-8290-inv104">
 		<Fragment slot="heading">100kVA SIV（INV-104 型）搭載車</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="m2-8290-inv104-s" depth={2} headingType="c">
+				<Section id="m2-8290-inv104-s" depth={2}>
 					<Fragment slot="heading">海側</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/8290s-INV104.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_8290sINV104} alt="写真拡大" width={540} height={169} link={true} slot="media" />
 						<!-- 撮影日: 2005-05-01 -->
 						<Fragment slot="caption">デハ8282海側（16-2次車）</Fragment>
 					</Embedded>
@@ -94,11 +102,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="m2-8290-inv104-m" depth={2} headingType="c">
+				<Section id="m2-8290-inv104-m" depth={2}>
 					<Fragment slot="heading">山側</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/8290m-INV104.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_8290mINV104} alt="写真拡大" width={540} height={169} link={true} slot="media" />
 						<!-- 撮影日: 2007-10-13 -->
 						<Fragment slot="caption">デハ8296山側（13次車）</Fragment>
 					</Embedded>
@@ -107,11 +115,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="m2-8290-inv104-j" depth={2} headingType="c">
+				<Section id="m2-8290-inv104-j" depth={2}>
 					<Fragment slot="heading">山側連結部</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/IC3C-fo.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_IC3Cfo} alt="写真拡大" width={540} height={405} link={true} slot="media" />
 						<!-- 撮影日: 2007-04-15 -->
 						<Fragment slot="caption">デハ8496 ｰ デハ8282山側</Fragment>
 					</Embedded>
@@ -125,13 +133,13 @@ const structuredData: StructuredData = {
 	<Section id="m2-8290-inv153">
 		<Fragment slot="heading">100kVA SIV（INV-153 型）搭載車</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="m2-8290-inv153-s" depth={2} headingType="c">
+				<Section id="m2-8290-inv153-s" depth={2}>
 					<Fragment slot="heading">海側</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/8290s-INV153.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_8290sINV153} alt="写真拡大" width={540} height={169} link={true} slot="media" />
 						<!-- 撮影日: 2005-05-01 -->
 						<Fragment slot="caption">デハ8298海側（16-2次車）</Fragment>
 					</Embedded>
@@ -142,11 +150,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="m2-8290-inv153-j" depth={2} headingType="c">
+				<Section id="m2-8290-inv153-j" depth={2}>
 					<Fragment slot="heading">山側連結部</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/IC3C-rem.jpg" alt="写真拡大" width={485} height={364} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_IC3Crem} alt="写真拡大" width={540} height={405} link={true} slot="media" />
 						<!-- 撮影日: 2007-05-19 -->
 						<Fragment slot="caption">デハ8494 ｰ デハ8298山側</Fragment>
 					</Embedded>
@@ -158,13 +166,13 @@ const structuredData: StructuredData = {
 	<Section id="m2-8200">
 		<Fragment slot="heading">（参考）10kVA SIV 搭載車・デハ8200形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="m2-820-s" depth={2} headingType="c">
+				<Section id="m2-820-s" depth={2}>
 					<Fragment slot="heading">海側</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/ub/8200s.jpg" alt="写真拡大" width={485} height={152} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_8200s} alt="写真拡大" width={540} height={169} link={true} slot="media" />
 						<!-- 撮影日: 2005-05-01 -->
 						<Fragment slot="caption">デハ8203海側（1次車）</Fragment>
 					</Embedded>

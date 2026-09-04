@@ -1,0 +1,27 @@
+/** ==============================
+ *   エラーページ
+ * ============================== */
+
+.l-page {
+	/* ページの左右の余白 */
+	--page-margin-inline: calc((100% - var(--page-max-width)) / 2 - var(--page-padding-inline));
+
+	display: block grid;
+	grid-template-areas:
+		"margin-left padding-left header  padding-right margin-right"
+		"margin-left padding-left content padding-right margin-right";
+	grid-template-columns: var(--page-margin-inline) var(--page-padding-inline) 1fr var(--page-padding-inline) var(--page-margin-inline);
+}
+
+/* ===== ページヘッダー ===== */
+.l-header {
+	grid-column: header;
+	border-block-end: 1px dashed var(--border-color-dark);
+	padding-block: 12dvb 8dvb;
+}
+
+/* ===== コンテンツエリア ===== */
+.l-content {
+	grid-column: content;
+	padding-block: 10dvb;
+}

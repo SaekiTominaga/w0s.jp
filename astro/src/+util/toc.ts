@@ -1,36 +1,43 @@
 import DOMPurify from 'dompurify';
-import { JSDOM } from 'jsdom';
+import type { DOMWindow } from 'jsdom';
+
+export interface TocData {
+	id: string;
+	headingHtml: string;
+}
 
 /**
  * 目次データを取得する
  *
- * @param document - <main> 要素
+ * @param window - DOMWindow
  *
  * @returns 目次データ
  */
-export const getData = (document: Document): Map<string, string> => {
-	const { window } = new JSDOM('');
-	// eslint-disable-next-line new-cap
+export const getData = (window: DOMWindow): TocData[] => {
+	const { document } = window;
+
+	// oxlint-disable-next-line new-cap
 	const purify = DOMPurify(window);
 
-	const tocData = new Map<string, string>();
+	return [...document.querySelectorAll('section[id]')]
+		.map(($section): TocData | undefined => {
+			const headingHtml = $section.querySelector('h2')?.innerHTML;
+			if (headingHtml === undefined) {
+				return undefined;
+			}
 
-	document.querySelectorAll('section[id]').forEach((sectioningElement) => {
-		const headingHtml = sectioningElement.querySelector('h2')?.innerHTML.trim();
-		if (headingHtml === undefined || headingHtml === '') {
-			return;
-		}
+			const sanitizedHeadingHtml = purify.sanitize(headingHtml, {
+				ALLOWED_TAGS: ['small', 'cite', 'code', 'span'],
+				ALLOWED_ATTR: ['lang'],
+			});
+			if (headingHtml !== sanitizedHeadingHtml) {
+				throw new Error(`The content of the heading element contains disallowed elements or attributes: \`${headingHtml}\``);
+			}
 
-		const sanitizedHeadingHtml = purify.sanitize(headingHtml, {
-			ALLOWED_TAGS: ['small', 'cite', 'code', 'span'],
-			ALLOWED_ATTR: ['lang'],
-		});
-		if (headingHtml !== sanitizedHeadingHtml) {
-			console.warn(`Table of Contents headings sanitized: ${headingHtml} → ${sanitizedHeadingHtml}`);
-		}
-
-		tocData.set(sectioningElement.id, sanitizedHeadingHtml);
-	});
-
-	return tocData;
+			return {
+				id: $section.id,
+				headingHtml: sanitizedHeadingHtml,
+			};
+		})
+		.filter((data) => data !== undefined);
 };

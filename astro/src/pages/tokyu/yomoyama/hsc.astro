@@ -1,19 +1,25 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_HD23 from '@image/tokyu/yomoyama/hsc/HD23.jpg';
+import image_GR3 from '@image/tokyu/yomoyama/hsc/GR3.jpg';
+import image_cocks from '@image/tokyu/yomoyama/hsc/cocks.jpg';
+import image_connect from '@image/tokyu/yomoyama/hsc/connect.jpg';
+import image_sakusei from '@image/tokyu/yomoyama/hsc/sakusei.jpg';
+import image_konan_connect_m from '@image/tokyu/yomoyama/hsc/konan_connect_m.jpg';
+import image_konan_connect_s from '@image/tokyu/yomoyama/hsc/konan_connect_s.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急電車の HSC 電磁直通ブレーキ',
 	heading: 'HSC 電磁直通ブレーキ',
-	dateModified: dayjs('2009-05-01'),
+	dateModified: '2009-05-01',
 	description: '1966年に登場した旧8000系の特徴の一つに全電気指令ブレーキの採用が挙げられます。従来の空気指令式と比べて、空気管が元空気だめ管1本のみとなり保守の省力化が図れるとともに、ワンハンドルマスコン採用の決定打ともなりました。一方、旧6000系から7200系で採用されていた HSC（High Speed Control）ブレーキは、車両の廃車や改造とともに数を減らしており、現在ではわずか2両が残るのみとなっています。',
-	image: 'https://media.w0s.jp/image/tokyu/yomoyama/hsc/sakusei.jpg',
+	image: image_sakusei,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
@@ -29,17 +35,17 @@ const structuredData: StructuredData = {
 
 		<p>ブレーキ制御装置はHD23型で、左下には7000系までのA動作弁に代わって取り付けられた<dfn>M非常弁</dfn>があります。これは保守軽減のため、自動ブレーキの作用を非常ブレーキ（EB）のみとしたものです。</p>
 
-		<Grid column="wide">
+		<Grid column={2}>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/HD23.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_HD23} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2009-05-12 -->
 					<Fragment slot="caption">HD23型ブレーキ制御装置（デヤ7200）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/GR3.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_GR3} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2009-06-09 -->
 					<Fragment slot="caption">参考比較: 旧7000系のブレーキ制御装置（福島交通デハ7111）</Fragment>
 				</Embedded>
@@ -56,17 +62,17 @@ const structuredData: StructuredData = {
 
 		<p>前述のとおり、空気指令車はデヤ7200とデヤ7290の2両のみとなってしまったため、すべての空気管が連結された様子は、両車が2連を組んだ時にしか見ることができません。</p>
 
-		<Grid column="wide">
+		<Grid column={2}>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/cocks.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_cocks} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2009-05-14 -->
 					<Fragment slot="caption">3本の空気管（デヤ7200）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/connect.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_connect} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2008-01-04 -->
 					<Fragment slot="caption">空気管がすべて連結された様子（デヤ7200+デヤ7290）</Fragment>
 				</Embedded>
@@ -81,10 +87,10 @@ const structuredData: StructuredData = {
 
 		<p>現存する7200系空気指令車2両は、アルミ試作車として1967年に製造された2次車です。1991年には両運転台化などの改造が成され、動力車（デハ7200）および電気検測車（デヤ7290）として派手な塗装を施されました。なお、デハ7200は1996年にデヤ7200に改称されています。</p>
 
-		<Grid column="wide">
+		<Grid column={2}>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/sakusei.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_sakusei} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2003-02-23 -->
 					<Fragment slot="caption">デヤ7290+デハ7706-デハ7806-クハ7906+デヤ7200</Fragment>
 				</Embedded>
@@ -99,17 +105,17 @@ const structuredData: StructuredData = {
 
 		<p>元7000系が活躍する青森県の弘南鉄道弘南線では、休校日を除く平日朝の1往復（黒石駅7時20分発）のみ4両編成での運転となっており、黒石駅で車両の増解結が行われます。日常的にみられる空気指令車同士の連結・解放作業としては唯一のものです。</p>
 
-		<Grid column="wide">
+		<Grid column={2}>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/konan_connect_m.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_konan_connect_m} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2009-09-07 -->
 					<Fragment slot="caption">空気管側連結部（弘南鉄道デハ7152+デハ7011）</Fragment>
 				</Embedded>
 			</GridItem>
 			<GridItem>
-				<Embedded border={true}>
-					<Image path="tokyu/yomoyama/hsc/konan_connect_s.jpg" alt="写真拡大" width={500} height={333} quality={60} link={true} slot="media" />
+				<Embedded width={540} border={true}>
+					<MyImage image={image_konan_connect_s} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 					<!-- 撮影日: 2009-04-24 -->
 					<Fragment slot="caption">電気栓側連結部（弘南鉄道デハ7011+デハ7153）</Fragment>
 				</Embedded>

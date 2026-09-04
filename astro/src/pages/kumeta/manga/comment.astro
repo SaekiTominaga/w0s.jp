@@ -1,5 +1,4 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
@@ -10,7 +9,7 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 const structuredData: StructuredData = {
 	title: '久米田康治先生の本誌目次コメント',
 	heading: '本誌目次コメント',
-	dateModified: dayjs('2022-09-17'),
+	dateModified: '2022-09-17',
 	description: '漫画雑誌の巻末・目次ページに掲載された作者コメントの歴代全リストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 };
@@ -24,13 +23,13 @@ const slugger = new GithubSlugger();
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1991年</Fragment>
 
 			<p>巻末コメントなし。</p>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1992年</Fragment>
 
 			<Table>
@@ -286,7 +285,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1993年</Fragment>
 
 			<Table>
@@ -542,7 +541,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1994年</Fragment>
 
 			<Table>
@@ -847,7 +846,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1995年</Fragment>
 
 			<Table>
@@ -1152,7 +1151,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1996年</Fragment>
 
 			<Table>
@@ -1367,7 +1366,7 @@ const slugger = new GithubSlugger();
 
 		<p>連載中断前（1994年〜1996年）は「<cite>週刊少年サンデー増刊号</cite>」「<cite>週刊少年サンデー超</cite>」掲載ですがコメント欄なしのため、「<cite>週刊少年サンデー</cite>」にて連載再開した後の2回分のみ記載します。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2002年</Fragment>
 
 			<Table>
@@ -1402,7 +1401,7 @@ const slugger = new GithubSlugger();
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1996年</Fragment>
 
 			<Table>
@@ -1503,7 +1502,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1997年</Fragment>
 
 			<Table>
@@ -1700,7 +1699,7 @@ const slugger = new GithubSlugger();
 
 		<p>特記のないものは「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1998年</Fragment>
 
 			<Table>
@@ -1899,7 +1898,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">1999年</Fragment>
 
 			<Table>
@@ -2204,7 +2203,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2000年</Fragment>
 
 			<Table>
@@ -2519,7 +2518,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2001年</Fragment>
 
 			<Table>
@@ -2826,7 +2825,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2002年</Fragment>
 
 			<Table>
@@ -3125,7 +3124,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2003年</Fragment>
 
 			<Table>
@@ -3430,7 +3429,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2004年</Fragment>
 
 			<Table>
@@ -3633,7 +3632,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2011年</Fragment>
 
 			<Table>
@@ -3654,7 +3653,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2018年</Fragment>
 
 			<Table>
@@ -3683,7 +3682,7 @@ const slugger = new GithubSlugger();
 
 		<p>特記のないものは「<cite>週刊少年マガジン</cite>」掲載。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2005年</Fragment>
 
 			<Table>
@@ -3849,7 +3848,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2006年</Fragment>
 
 			<Table>
@@ -4105,7 +4104,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2007年</Fragment>
 
 			<Table>
@@ -4361,7 +4360,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2008年</Fragment>
 
 			<Table>
@@ -4622,7 +4621,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2009年</Fragment>
 
 			<Table>
@@ -4885,7 +4884,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2010年</Fragment>
 
 			<Table>
@@ -5141,7 +5140,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2011年</Fragment>
 
 			<Table>
@@ -5402,7 +5401,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2012年</Fragment>
 
 			<Table>
@@ -5832,7 +5831,7 @@ const slugger = new GithubSlugger();
 
 		<p>特記のないものは「<cite>週刊少年マガジン</cite>」掲載。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2013年</Fragment>
 
 			<Table>
@@ -5868,7 +5867,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2014年</Fragment>
 
 			<Table>
@@ -6129,7 +6128,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2015年</Fragment>
 
 			<Table>
@@ -6807,7 +6806,7 @@ const slugger = new GithubSlugger();
 				<tr>
 					<th scope="row">2018年12号</th>
 					<td>携帯買えました。ヘイSiri、今月のコメント考えて。「先日、遠くのスーパーでイチゴのミルメークを売っているのを見つけました。散歩をしてると色んな発見があるものですね」。（久米田）</td>
-					<td></td>
+					<td><q>買えました</q>は原文ママ</td>
 				</tr>
 				<tr>
 					<th scope="row">2019年1号</th>
@@ -6838,7 +6837,7 @@ const slugger = new GithubSlugger();
 
 		<p>すべて「<cite>週刊少年サンデー</cite>」掲載。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2021年</Fragment>
 
 			<Table>
@@ -6885,7 +6884,7 @@ const slugger = new GithubSlugger();
 			</Table>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">2022年</Fragment>
 
 			<p>調査中</p>

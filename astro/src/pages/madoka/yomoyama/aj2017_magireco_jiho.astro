@@ -1,5 +1,4 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Box from '@components/Box.astro';
@@ -9,7 +8,7 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: 'AnimeJapan 2017「マギアレコード」ブース時報',
-	dateModified: dayjs('2017-03-28'),
+	dateModified: '2017-03-28',
 	description: 'AnimeJapan 2017 の「マギアレコード」ブースで毎時00分に流れた時報の内容をまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 };
@@ -18,10 +17,8 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Embedded border={true}>
-		<video controls="" width="640" height="360" slot="media">
-			<source src="https://media.w0s.jp/video/madoka/yomoyama/aj2017_magireco_jiho_1100.webm" type="video/webm" />
-			<source src="https://media.w0s.jp/video/madoka/yomoyama/aj2017_magireco_jiho_1100.mp4" type="video/mp4" />
+	<Embedded width={640} border={true}>
+		<video src="/madoka/yomoyama/video/aj2017_magireco_jiho_1100.webm" controls="" width="640" height="360" slot="media">
 			<track kind="captions" label="セリフ字幕" src="/madoka/yomoyama/video/aj2017_magireco_jiho_1100.vtt" />
 		</video>
 		<Fragment slot="caption">11:00 の時報の例（暁美ほむら）</Fragment>
@@ -70,7 +67,7 @@ const slugger = new GithubSlugger();
 	<Section id="14:00">
 		<Fragment slot="heading">14:00　キュゥべえ</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">3月25日バージョン</Fragment>
 
 			<Box>
@@ -79,7 +76,7 @@ const slugger = new GithubSlugger();
 				<p>3時の時報は鹿目まどかだよ。</p>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">3月26日バージョン</Fragment>
 
 			<Box>

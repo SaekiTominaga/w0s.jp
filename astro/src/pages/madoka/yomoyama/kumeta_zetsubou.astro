@@ -1,18 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
-import AmazonItem from '@components/AmazonItem.astro';
 import Box from '@components/Box.astro';
 import List from '@components/List.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『さよなら絶望先生』における『魔法少女まどか☆マギカ』ネタ',
-	dateModified: dayjs('2017-04-25'),
+	dateModified: '2017-04-25',
 	description: '久米田康治先生の『さよなら絶望先生』の作中で描かれた『魔法少女まどか☆マギカ』ネタをまとめました。',
 	breadcrumb: [
 		{ path: '/madoka/', name: 'まどか資料館' },
@@ -47,10 +45,12 @@ const slugger = new GithubSlugger();
 	<Section id="manga">
 		<Fragment slot="heading">漫画</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百五十六話　出でよ、オツベルと象!</Fragment>
 
 			<p>2011年7月15日　単行本「第二六集」発売</p>
+
+			<Amazon asin="B00A765D5E" title="単行本 第二六集" date="2011-07-15" imageId="513b3GIZKxL" imageWidth={107} imageHeight={160} />
 
 			<p>11ページ目（第二六集の86ページ）</p>
 
@@ -60,7 +60,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百五十九話　アウェイなる一族</Fragment>
 
 			<p>2011年7月15日　単行本「第二六集」発売</p>
@@ -73,10 +73,12 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百六十一話　春は曙。やうやう難くなりゆくやめ際。</Fragment>
 
 			<p>2011年10月17日　単行本「第二七集」発売</p>
+
+			<Amazon asin="B00A765DCM" title="単行本 第二七集" date="2011-10-17" imageId="51PTVTKsCCL" imageWidth={107} imageHeight={160} />
 
 			<p>12ページ目（第二七集の17ページ）</p>
 
@@ -86,7 +88,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百六十六話　笹の上のメモ</Fragment>
 
 			<p>2011年10月17日　単行本「第二七集」発売</p>
@@ -99,10 +101,12 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百七十四話　善いサマリア人ね。善いサマリア人は善いね。</Fragment>
 
 			<p>2012年2月17日　単行本「第二八集」発売</p>
+
+			<Amazon asin="B00A765DGI" title="単行本 第二八集" date="2012-02-17" imageId="51blIkT7EXL" imageWidth={107} imageHeight={160} />
 
 			<p>6ページ目（第二八集の39ページ）</p>
 
@@ -112,7 +116,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百七十六話　悲しき絶対</Fragment>
 
 			<p>2012年2月17日　単行本「第二八集」発売</p>
@@ -125,7 +129,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百七十八話　似勢物語</Fragment>
 
 			<p>2012年2月17日　単行本「第二八集」発売</p>
@@ -143,10 +147,12 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第二百九十七話　（あと）五回の憂鬱</Fragment>
 
 			<p>2012年8月17日　単行本「第三十集」発売</p>
+
+			<Amazon asin="B005XOK9N6" title="単行本 第三十集" date="2012-08-17" imageId="51Co7rOEM-L" imageWidth={107} imageHeight={160} />
 
 			<p>8ページ目（第三十集の90ページ）</p>
 
@@ -159,13 +165,6 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-
-		<Amazon headingLevel={3}>
-			<AmazonItem asin="B00A765D5E" title="単行本 第二六集" date="2011-07-15" imageId="513b3GIZKxL" imageWidth={107} imageHeight={160} />
-			<AmazonItem asin="B00A765DCM" title="単行本 第二七集" date="2011-10-17" imageId="51PTVTKsCCL" imageWidth={107} imageHeight={160} />
-			<AmazonItem asin="B00A765DGI" title="単行本 第二八集" date="2012-02-17" imageId="51blIkT7EXL" imageWidth={107} imageHeight={160} />
-			<AmazonItem asin="B005XOK9N6" title="単行本 第三十集" date="2012-08-17" imageId="51Co7rOEM-L" imageWidth={107} imageHeight={160} />
-		</Amazon>
 	</Section>
 
 	<Section id="radio">
@@ -173,7 +172,7 @@ const slugger = new GithubSlugger();
 
 		<p>全203回配信 + DJCD16枚、その他DJDVDや携帯版、オールナイトニッポンRでの放送など。パーソナリティは神谷浩史（糸色望 役）と新谷良子（日塔奈美 役）。</p>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第166回　ティモシー・アーチャーの変声</Fragment>
 
 			<p>2010年11月24日配信</p>
@@ -186,11 +185,9 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 
-			<ListNote>
-				<li>放送前の制作発表へのメッセージ。絶望先生のアニメは三期の放送から1年が過ぎた時期。</li>
-			</ListNote>
+			<Note>放送前の制作発表へのメッセージ。絶望先生のアニメは三期の放送から1年が過ぎた時期。</Note>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第175回　フェッセンデンの普通</Fragment>
 
 			<p>2011年2月2日配信</p>
@@ -203,11 +200,9 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 
-			<ListNote>
-				<li>氷川へきる先生が第2話の予告イラストを担当されたことに対する言及。</li>
-			</ListNote>
+			<Note>氷川へきる先生が第2話の予告イラストを担当されたことに対する言及。</Note>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第177回　春季の祭典</Fragment>
 
 			<p>2011年2月16日配信</p>
@@ -220,11 +215,9 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 
-			<ListNote>
-				<li>再び予告イラストへの言及。「さのすけ」は第31回で誕生した絶望放送発祥のマスコットキャラクター（CV: 神谷浩史）だが、後に久米田作品はもとより様々な漫画、アニメに登場している。</li>
-			</ListNote>
+			<Note>再び予告イラストへの言及。「さのすけ」は第31回で誕生した絶望放送発祥のマスコットキャラクター（CV: 神谷浩史）だが、後に久米田作品はもとより様々な漫画、アニメに登場している。</Note>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第179回　はしごからの眺め</Fragment>
 
 			<p>2011年3月2日配信</p>
@@ -245,11 +238,9 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 
-			<ListNote>
-				<li><q>このラジオはフィクションであり……</q>のくだりは毎回読まれるものであるが、標語のネタ元に合わせて組織名の後の単語（今回で言えば<q>マスコット</q>、<q>契約</q>）は差し替えられる。</li>
-			</ListNote>
+			<Note><q>このラジオはフィクションであり……</q>のくだりは毎回読まれるものであるが、標語のネタ元に合わせて組織名の後の単語（今回で言えば<q>マスコット</q>、<q>契約</q>）は差し替えられる。</Note>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第182回　猫のネタに釘を打て</Fragment>
 
 			<p>2011年3月25日配信</p>
@@ -262,7 +253,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第184回　真・さよなら絶望放送</Fragment>
 
 			<p>2011年4月13日配信</p>
@@ -304,7 +295,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第190回　妻という名の魔女子たち</Fragment>
 
 			<p>2011年6月1日配信</p>
@@ -319,7 +310,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第191回　五十歩万歩の男</Fragment>
 
 			<p>2011年6月8日配信</p>
@@ -334,7 +325,7 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第201回　幻想と解禁</Fragment>
 
 			<p>2011年8月17日配信</p>
@@ -347,14 +338,14 @@ const slugger = new GithubSlugger();
 				</List>
 			</Box>
 
-			<ListNote>
-				<li><q>公演回</q>、<q>エノデンの回</q>とは、『<cite>懺・さよなら絶望先生</cite>』第8話 Cパートの「<cite>最後の、そして始まりのエノデン</cite>」のことで、全編にわたってイヌカレー空間による表現となった異色回。登場キャラクターは『<cite>まどか☆マギカ</cite>』でも多用された、切り絵風の表現となっている。</li>
-			</ListNote>
+			<Note><q>公演回</q>、<q>エノデンの回</q>とは、『<cite>懺・さよなら絶望先生</cite>』第8話 Cパートの「<cite>最後の、そして始まりのエノデン</cite>」のことで、全編にわたってイヌカレー空間による表現となった異色回。登場キャラクターは『<cite>まどか☆マギカ</cite>』でも多用された、切り絵風の表現となっている。</Note>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">携帯版　第190回　誰か注意してあげて下さい!!</Fragment>
 
 			<p>2011年6月1日配信</p>
+
+			<Amazon asin="B005XOK9N6" title="DJCD さよなら絶望放送 携帯盤SZ-04K" date="2011-12-21" imageId="51%2B2i1YWMNL" imageWidth={160} imageHeight={136} />
 
 			<p>コーナー「<cite>たれこみったー</cite>」</p>
 
@@ -366,15 +357,13 @@ const slugger = new GithubSlugger();
 					<li>（新谷良子）そうですね(笑)、んー。</li>
 				</List>
 			</Box>
-
-			<Amazon headingLevel={4}>
-				<AmazonItem asin="B005XOK9N6" title="DJCD さよなら絶望放送 携帯盤SZ-04K" date="2011-12-21" imageId="51%2B2i1YWMNL" imageWidth={160} imageHeight={136} />
-			</Amazon>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">DJCD　さよなら絶望放送　第十巻</Fragment>
 
 			<p>2011年10月26日発売</p>
+
+			<Amazon asin="B005I065Z6" title="DJCD　さよなら絶望放送　第十巻" date="2011-10-26" imageId="51zEn8RzOML" imageWidth={160} imageHeight={159} />
 
 			<p>コーナー「<cite>も、もげーっ! りょうこちゃん、もげーっ!</cite>」</p>
 
@@ -385,15 +374,13 @@ const slugger = new GithubSlugger();
 					<li>（ぴろし17歳（神谷））いやー、もげ! あー、仁美もげ! 俺は上条を絶対に許さない。いいか、絶対にだ!!</li>
 				</List>
 			</Box>
-
-			<Amazon headingLevel={4}>
-				<AmazonItem asin="B005I065Z6" title="DJCD　さよなら絶望放送　第十巻" date="2011-10-26" imageId="51zEn8RzOML" imageWidth={160} imageHeight={159} />
-			</Amazon>
 		</Section>
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">糸色望のオールナイトニッポンR</Fragment>
 
 			<p>2011年10月15日放送</p>
+
+			<Amazon asin="B0066C5J84" title="DJCD さよなら絶望放送特別版 〜糸色望のオールナイトニッポンR〜" date="2012-01-25" imageId="511tDm3LUdL" imageWidth={159} imageHeight={160} />
 
 			<p>オープニング</p>
 
@@ -402,10 +389,6 @@ const slugger = new GithubSlugger();
 					<li>（神谷浩史）ぜんぜん関係ないですけれども、あれ、まあ監督のね、新房さん、新房監督っていうまあ今もう、『まどか☆マギカ』だったりとか、あー、『化物語』だったりとか、いろんなこうものを監督をやってらっしゃる監督なんですけど、まあその監督が『さよなら絶望先生』の監督をやってくださってたんですけど、まあ当然そこんところも、その監督の手によるものなわけじゃないですか。</li>
 				</List>
 			</Box>
-
-			<Amazon headingLevel={4}>
-				<AmazonItem asin="B0066C5J84" title="DJCD さよなら絶望放送特別版 〜糸色望のオールナイトニッポンR〜" date="2012-01-25" imageId="511tDm3LUdL" imageWidth={159} imageHeight={160} />
-			</Amazon>
 		</Section>
 	</Section>
 </Layout>

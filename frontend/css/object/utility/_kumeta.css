@@ -1,0 +1,33 @@
+/**
+ * 久米田康治データベース
+ */
+
+/* ===== 筆記体フォント ===== */
+.u-kumeta-font-cursive {
+	font-family: cursive;
+}
+
+/* ===== × 印での取り消し ===== */
+.u-kumeta-text-decoration-times {
+	display: inline flow-root;
+	contain: paint;
+	text-decoration-line: none;
+
+	&::before,
+	&::after {
+		--_weight: 5%;
+
+		position: absolute;
+		inset: 0;
+		background-color: currentColor;
+		content: "";
+	}
+
+	&::before {
+		clip-path: polygon(0 var(--_weight), calc(100% - var(--_weight)) 100%, 100% calc(100% - var(--_weight)), var(--_weight) 0);
+	}
+
+	&::after {
+		clip-path: polygon(0 calc(100% - var(--_weight)), var(--_weight) 100%, 100% var(--_weight), calc(100% - var(--_weight)) 0);
+	}
+}

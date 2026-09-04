@@ -1,0 +1,15 @@
+---
+import Layout from '@layouts/Error.astro';
+import Anchor from '@components/+phrasing/Anchor.astro';
+import type { StructuredDataErrorPage } from '../../@types/util.d.ts';
+
+const structuredData: StructuredDataErrorPage = {
+	heading: 'サーバーエラー',
+};
+---
+
+<Layout structuredData={structuredData}>
+	<p>サーバー側で何らかのエラーが起こったため、コンテンツを閲覧することができません。</p>
+
+	<p>管理者への連絡は <Anchor href="https://github.com/SaekiTominaga" icon={false}>GitHub</Anchor>、<Anchor href="https://fedibird.com/@SaekiTominaga" icon={false}>Mastodon</Anchor>、<Anchor href="https://bsky.app/profile/w0s.jp" icon={false}>Bluesky</Anchor> のいずれかをご利用ください。</p>
+</Layout>

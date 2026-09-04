@@ -1,17 +1,17 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Embedded from '@components/Embedded.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import List from '@components/List.astro';
 import Section from '@components/Section.astro';
 import Toggle from '@components/Toggle.astro';
+import image_pulp15_daidanen from '@image/kumeta/yomoyama/pulp15_daidanen.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『スタジオパルプ』最終話　大団円イラストキャラ',
-	dateModified: dayjs('2022-03-27'),
+	dateModified: '2022-03-27',
 	description: '『スタジオパルプ』最終話（Act15.）の大団円イラストに描かれたキャラクターを特定してみました。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 };
@@ -20,22 +20,22 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">大団円イラスト</Fragment>
 
 		<Toggle>
 			<Fragment slot="summary">イラストを見る<small>（※最終話ネタバレ注意）</small></Fragment>
 
-			<Embedded border={true}>
-				<Image path="kumeta/yomoyama/pulp15_daidanen.jpg" alt="画像拡大" width={1022} height={734} quality={60} link={true} slot="media" />
+			<Embedded width={1024} border={true}>
+				<MyImage image={image_pulp15_daidanen} alt="画像拡大" width={1024} height={735} link={true} slot="media" />
 				<Fragment slot="caption">見開きの大団円イラスト（<cite>楽園</cite> 32号 pp.360–361 を加工）</Fragment>
 			</Embedded>
 		</Toggle>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">登場キャラクター一覧</Fragment>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>行け!!南国アイスホッケー部</cite></Fragment>
 
 			<List>
@@ -50,7 +50,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>育ってダーリン!!</cite></Fragment>
 
 			<List>
@@ -59,7 +59,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>太陽の戦士ポカポカ</cite></Fragment>
 
 			<List>
@@ -69,7 +69,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>かってに改蔵</cite></Fragment>
 
 			<List>
@@ -106,7 +106,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>さよなら絶望先生</cite></Fragment>
 
 			<List>
@@ -152,7 +152,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>せっかち伯爵と時間どろぼう</cite></Fragment>
 
 			<List>
@@ -167,7 +167,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>スタジオパルプ</cite></Fragment>
 
 			<List>
@@ -177,7 +177,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="b">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading"><cite>かくしごと</cite></Fragment>
 
 			<List>

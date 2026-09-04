@@ -2,40 +2,46 @@
 import type GithubSlugger from 'github-slugger';
 import SelfLink from './+phrasing/SelfLink.astro';
 
+type Depth = 1 | 2 | 3;
+type HeadingType = 'a' | 'b' | 'c';
+
 interface Props {
-	slugger?: GithubSlugger;
-	id?: string;
-	depth?: number;
-	headingType?: 'a' | 'b' | 'c' | 'd';
+	id: string | GithubSlugger;
+	depth?: Depth;
 	box?: boolean;
 	autofocus?: boolean;
 	class?: string;
 }
 
-const { slugger, id, depth = 1, headingType = 'a', box = false, autofocus = false, class: className } = Astro.props;
+const { id, depth = 1, box = false, autofocus = false, class: className } = Astro.props;
 
 const headingHtml = await Astro.slots.render('heading');
 
-let sectionId = '';
-if (id !== undefined) {
-	sectionId = id;
-} else {
+const getHeadingType = (): HeadingType =>
+	new Map<Depth, HeadingType>([
+		[1, 'a'],
+		[2, 'b'],
+		[3, 'c'],
+	]).get(depth) ?? 'a';
+
+const getSectionId = (): string => {
+	if (typeof id === 'string') {
+		return id;
+	}
+
 	const headingText = headingHtml.replaceAll(/<.+?>/gv, '');
 
-	if (slugger !== undefined) {
-		sectionId = slugger.slug(headingText);
-	} else {
-		console.warn('The `slugger` property is not specified.', headingText);
-	}
-}
+	return id.slug(headingText);
+};
+
+const sectionId = getSectionId();
 ---
 
-<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${headingType}`, { '-box': box }, className]} id={sectionId}>
+<section autofocus={autofocus} tabindex={autofocus ? -1 : undefined} class:list={['section', `-${getHeadingType()}`, { '-box': box }, className]} id={sectionId}>
 	<div class="hdg">
 		{depth === 1 && <h2 set:html={headingHtml} />}
 		{depth === 2 && <h3 set:html={headingHtml} />}
 		{depth === 3 && <h4 set:html={headingHtml} />}
-		{depth === 4 && <h5 set:html={headingHtml} />}
 		<p class="self-link"><SelfLink id={sectionId} /></p>
 	</div>
 
@@ -46,11 +52,11 @@ if (id !== undefined) {
 	@layer component {
 		@keyframes section-target {
 			0% {
-				background-color: var(--color-verylightred);
+				background-color: var(--bgcolor-lightred);
 			}
 
 			50% {
-				background-color: var(--color-verylightred);
+				background-color: var(--bgcolor-lightred);
 			}
 
 			100% {
@@ -62,7 +68,8 @@ if (id !== undefined) {
 			--_margin-block: 1rem;
 
 			&:target {
-				animation: section-target 1s;
+				animation-name: section-target;
+				animation-duration: 1s;
 			}
 
 			&:not(:first-child) {
@@ -89,14 +96,10 @@ if (id !== undefined) {
 				--_margin-block: 3rem;
 			}
 
-			&.-d {
-				--_margin-block: 2rem;
-			}
-
 			&.-box {
-				border: 1px solid var(--color-border-dark);
+				border: 1px solid var(--border-color-dark);
 				border-radius: var(--border-radius-normal);
-				background: var(--color-white);
+				background-color: var(--color-white);
 				padding: 1em;
 			}
 
@@ -107,12 +110,13 @@ if (id !== undefined) {
 
 		.hdg {
 			display: block flex;
+			flex-wrap: nowrap;
 			gap: 0.5em;
 			line-height: var(--line-height-narrow);
 
 			.section.-a > & {
 				margin-block-end: 2rem;
-				border-block-end: 1px solid var(--color-border-dark);
+				border-block-end: 1px solid var(--border-color-dark);
 				padding-block-end: 0.375em;
 				font-size: calc(100% * pow(var(--font-ratio), 6));
 			}
@@ -120,7 +124,7 @@ if (id !== undefined) {
 			.section.-a > &::before {
 				border: 0.125em solid var(--color-gray);
 				border-radius: var(--border-radius-full);
-				background: var(--color-gray); /* for Chrome */
+				background-color: var(--color-gray); /* for Chrome */
 				content: '';
 
 				@media not print {
@@ -130,24 +134,29 @@ if (id !== undefined) {
 			}
 
 			.section.-b > & {
-				font-size: calc(100% * pow(var(--font-ratio), 4));
+				font-size: calc(100% * pow(var(--font-ratio), 3));
 			}
 
 			.section.-b > &::before {
 				transform: scaleY(75%);
 				border: 0.125em solid var(--color-lightgray);
 				border-radius: var(--border-radius-full);
-				background: var(--color-lightgray); /* for Chrome */
+				background-color: var(--color-lightgray); /* for Chrome */
 				content: '';
 			}
 
 			.section.-c > & {
 				font-size: calc(100% * pow(var(--font-ratio), 2));
 			}
+
+			& :global(small) {
+				font-weight: initial;
+			}
 		}
 
 		.self-link {
 			display: block flex;
+			flex-wrap: nowrap;
 			align-items: center;
 			font-size: calc(100% / pow(var(--font-ratio), 3));
 		}

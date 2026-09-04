@@ -1,27 +1,26 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
 import List from '@components/List.astro';
-import ListNote from '@components/ListNote.astro';
-import ListOrder from '@components/ListOrder.astro';
+import Note from '@components/Note.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import image_pictorial7_cover from '@image/madoka/dojin/pictorial7_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』同人誌「TVシリーズ　放送版とパッケージ版の比較」',
 	heading: '円環ピクトリアル No.7',
 	subHeading: '【特集】TVシリーズ　放送版とパッケージ版の比較',
-	dateModified: dayjs('2019-11-25'),
+	dateModified: '2019-11-25',
 	description: '『魔法少女まどか☆マギカ』 TV シリーズの放送版と Blu-ray / DVD 版の映像違いをまとめまた同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial7_cover.jpg',
+	image: image_pictorial7_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -48,8 +47,8 @@ const slugger = new GithubSlugger();
 
 		<Flex>
 			<FlexItem>
-				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial7_cover.jpg" alt="イベント会場での展示ブースの中央にあるディスプレイに『まどか☆マギカ』のアニメが流れている様子を写した写真" width={170} height={240} quality={60} slot="media" />
+				<Embedded width={170} border={true}>
+					<MyImage image={image_pictorial7_cover} alt="イベント会場での展示ブースの中央にあるディスプレイに『まどか☆マギカ』のアニメが流れている様子を写した写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>
@@ -87,15 +86,13 @@ const slugger = new GithubSlugger();
 			</FlexItem>
 		</Flex>
 
-		<ListNote>
-			<li>購入者向け PDF の認証情報は奥付またはダウンロードカードに記載</li>
-		</ListNote>
+		<Note>購入者向け PDF の認証情報は奥付またはダウンロードカードに記載</Note>
 	</Section>
 
 	<Section id="toc">
 		<Fragment slot="heading">目次</Fragment>
 
-		<ListOrder>
+		<List>
 			<li>第1話 夢の中で逢った、ような……</li>
 			<li>第2話 それはとっても嬉しいなって</li>
 			<li>第3話 もう何も恐くない</li>
@@ -112,7 +109,7 @@ const slugger = new GithubSlugger();
 			<li>エンディング「Magia」</li>
 			<li>「提供クレジット」一覧</li>
 			<li>秋葉原でMBS版が流れた ―メディア芸術祭20周年企画展―</li>
-		</ListOrder>
+		</List>
 	</Section>
 
 	<Section id="errata">
@@ -156,7 +153,7 @@ const slugger = new GithubSlugger();
 
 		<p>本の発行後に判明した差分データです。</p>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第1話</Fragment>
 
 			<List>
@@ -166,7 +163,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第3話</Fragment>
 
 			<List>
@@ -174,7 +171,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第6話</Fragment>
 
 			<List>
@@ -184,7 +181,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第7話</Fragment>
 
 			<List>
@@ -205,7 +202,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第8話</Fragment>
 
 			<List>
@@ -233,7 +230,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第9話</Fragment>
 
 			<List>
@@ -246,7 +243,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第10話</Fragment>
 
 			<List>
@@ -272,7 +269,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第11話</Fragment>
 
 			<List>
@@ -283,7 +280,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">第12話</Fragment>
 
 			<List>

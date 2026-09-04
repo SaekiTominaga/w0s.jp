@@ -1,26 +1,26 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Embedded from '@components/Embedded.astro';
 import Flex from '@components/Flex.astro';
 import FlexItem from '@components/FlexItem.astro';
 import List from '@components/List.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import ListTable from '@components/ListTable.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import AnchorButton from '@components/+phrasing/AnchorButton.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import image_pictorial6_cover from '@image/madoka/dojin/pictorial6_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』同人誌「[新編]叛逆の物語　上映版とパッケージ版の比較」',
 	heading: '円環ピクトリアル No.6',
 	subHeading: '【特集】[新編]叛逆の物語　上映版とパッケージ版の比較',
-	dateModified: dayjs('2018-04-10'),
+	dateModified: '2018-04-10',
 	description: '『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』の劇場上映版と Blu-ray / DVD 版の違いをまとめた同人誌の紹介です。',
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial6_cover.jpg',
+	image: image_pictorial6_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -49,8 +49,8 @@ const slugger = new GithubSlugger();
 
 		<Flex>
 			<FlexItem>
-				<Embedded border={true}>
-					<Image path="madoka/dojin/pictorial6_cover.jpg" alt="[新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} quality={60} slot="media" />
+				<Embedded width={170} border={true}>
+					<MyImage image={image_pictorial6_cover} alt="[新編]パッケージを取り囲むように大量の特典フィルムが並べられた写真" width={170} height={240} slot="media" />
 					<Fragment slot="caption">表紙</Fragment>
 				</Embedded>
 			</FlexItem>
@@ -85,10 +85,8 @@ const slugger = new GithubSlugger();
 			</FlexItem>
 		</Flex>
 
-		<ListNote>
-			<li><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></li>
-			<li>購入者向け PDF の認証情報は奥付またはダウンロードカードに記載</li>
-		</ListNote>
+		<Note><strong>冊子は完売しました。電子書籍の販売予定はありません。</strong></Note>
+		<Note>購入者向け PDF の認証情報は奥付またはダウンロードカードに記載</Note>
 	</Section>
 
 	<Section id="errata">
@@ -117,7 +115,7 @@ const slugger = new GithubSlugger();
 
 		<p>本の発行後に判明した差分データです。</p>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">Chapter 10</Fragment>
 
 			<List>
@@ -126,7 +124,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">Chapter 25</Fragment>
 
 			<List>
@@ -134,7 +132,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">Chapter 27</Fragment>
 
 			<List>
@@ -143,7 +141,7 @@ const slugger = new GithubSlugger();
 			</List>
 		</Section>
 
-		<Section slugger={slugger} depth={2} headingType="c">
+		<Section id={slugger} depth={2}>
 			<Fragment slot="heading">Chapter 28</Fragment>
 
 			<List>

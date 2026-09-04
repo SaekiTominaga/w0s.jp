@@ -1,5 +1,4 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
@@ -14,7 +13,7 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 const structuredData: StructuredData = {
 	title: '久米田康治先生のインタビュー',
 	heading: 'インタビュー',
-	dateModified: dayjs('2022-07-20'),
+	dateModified: '2022-07-20',
 	description: '久米田先生によるインタビューや対談、コメントなどが掲載された事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 };
@@ -23,7 +22,7 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">書籍</Fragment>
 
 		<Table>
@@ -737,7 +736,7 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</Table>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">Web</Fragment>
 
 		<Table>
@@ -810,7 +809,7 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</Table>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">新聞</Fragment>
 
 		<Table>
@@ -838,7 +837,7 @@ const slugger = new GithubSlugger();
 			</tbody>
 		</Table>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">冊子</Fragment>
 
 		<Table>

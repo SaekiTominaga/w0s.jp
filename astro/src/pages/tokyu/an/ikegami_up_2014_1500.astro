@@ -1,18 +1,17 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　東急池上線　上り（1000系1500番台、2014年）',
 	heading: '池上線　上り',
 	subHeading: '1000系1500番台、2014年',
-	dateModified: dayjs('2014-06-01'),
+	dateModified: '2014-06-01',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -163,7 +162,5 @@ const structuredData: StructuredData = {
 		</AnnounceStation>
 	</Announce>
 
-	<ListNote>
-		<li>旗の台駅の広告放送の導入経緯については、<Anchor href="https://www.tokyu.co.jp/file/130422-3.pdf" type="application/pdf">「TOKYU OOH」の新商品として、東急線各駅の駅名標付近に、地元ゆかりの法人・施設名の広告看板を掲出</Anchor>を参照ください。</li>
-	</ListNote>
+	<Note>旗の台駅の広告放送の導入経緯については、<Anchor href="https://www.tokyu.co.jp/file/130422-3.pdf" type="application/pdf">「TOKYU OOH」の新商品として、東急線各駅の駅名標付近に、地元ゆかりの法人・施設名の広告看板を掲出</Anchor>を参照ください。</Note>
 </Layout>

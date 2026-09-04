@@ -1,7 +1,6 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
@@ -9,7 +8,7 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 const structuredData: StructuredData = {
 	title: '東急300系　TS-332 型台車製造年一覧',
 	heading: '300系　台車製造年一覧',
-	dateModified: dayjs('2023-04-09'),
+	dateModified: '2023-04-09',
 	description: '世田谷線300系の台車は旧型車からの流用品のほか、一部に新製増備品もあり、その出自にはバリエーションが見られます。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
@@ -317,9 +316,7 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>いずれも現車調査による。なお、実際の銘板では製造年、改造年は和暦表記である。</li>
-			<li>予備品を確保してのループ運用が行われているため、履用車両は時期によって変化する。</li>
-		</ListNote>
+		<Note>いずれも現車調査による。なお、実際の銘板では製造年、改造年は和暦表記である。</Note>
+		<Note>予備品を確保してのループ運用が行われているため、履用車両は時期によって変化する。</Note>
 	</Section>
 </Layout>

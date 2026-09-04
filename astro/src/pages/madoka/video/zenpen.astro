@@ -1,23 +1,23 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
-import AmazonItem from '@components/AmazonItem.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
-import ListNote from '@components/ListNote.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import VideoDiff from '@components/VideoDiff.astro';
 import VideoDiffItem from '@components/VideoDiffItem.astro';
+import image_chapter6_001713_trailer from '@image/madoka/video/zenpen_chapter6_00-17-13_trailer.jpg';
+import image_chapter6_001713_bd from '@image/madoka/video/zenpen_chapter6_00-17-13_bd.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『劇場版　魔法少女まどか☆マギカ[前編]始まりの物語』上映版とパッケージ版の比較',
 	heading: '『[前編]始まりの物語』上映版とパッケージ版の比較',
-	dateModified: dayjs('2017-03-11'),
+	dateModified: '2017-03-11',
 	description: '2012年10月に公開された『劇場版　魔法少女まどか☆マギカ[前編]始まりの物語』の劇場上映版と Blu-ray / DVD 版の映像の違いをまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
@@ -34,9 +34,7 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Amazon headingLevel={2}>
-		<AmazonItem asin="B00C3EDY68" title="劇場版 魔法少女まどか☆マギカ [前編] 始まりの物語/[後編] 永遠の物語【通常版】 [Blu-ray]" date="2013-07-24" imageId="51IOl9Ky54L" imageWidth={135} imageHeight={160} />
-	</Amazon>
+	<Amazon asin="B00C3EDY68" title="劇場版 魔法少女まどか☆マギカ [前編] 始まりの物語/[後編] 永遠の物語【通常版】 [Blu-ray]" date="2013-07-24" imageId="51IOl9Ky54L" imageWidth={135} imageHeight={160} />
 
 	<Section id="chapter2">
 		<Fragment slot="heading">Chapter 2<small>（オープニング）</small></Fragment>
@@ -51,16 +49,12 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:03:30">
 				<p>ウェディングまどかの髪の描き分けが細かくなり、ドレスに影が付いた。</p>
 
-				<ListNote>
-					<li><Anchor href="https://www.amazon.co.jp/dp/4896106768/">KEY ANIMATION NOTE extra 始まりの物語 永遠の物語</Anchor> p.37 の宮本幸裕監督のコメントによると、<q>このまどかはアルティメットまどかではなく、ウエディングドレスという設定</q>とのこと。</li>
-				</ListNote>
+				<Note><Anchor href="https://www.amazon.co.jp/dp/4896106768/">KEY ANIMATION NOTE extra 始まりの物語 永遠の物語</Anchor> p.37 の宮本幸裕監督のコメントによると、<q>このまどかはアルティメットまどかではなく、ウエディングドレスという設定</q>とのこと。</Note>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:03:53">
 				<p>まどか作画修正。髪やまつげが変わった。</p>
 
-				<ListNote>
-					<li>後編OPの同じカットは上映版、パッケージ版とも違いはないものと思われる。</li>
-				</ListNote>
+				<Note>後編OPの同じカットは上映版、パッケージ版とも違いはないものと思われる。</Note>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -84,7 +78,7 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:10:35">
 				<p>まどほむ校内連絡通路のシーンの後、静止画カット（4枚）の1枚目が縦型の3灯信号機を見上げたイラストに差し替え。</p>
 
-				<p>上映版は郊外のショッピングセンターの外観で、TVシリーズ1話の14m39sと同じもの（埼玉県羽生市の「<cite>イオンモール羽生</cite>」と思われる）。ただし、TV版より全体的にブラッシュアップされている。</p>
+				<p>上映版は郊外のショッピングセンターの外観で、TVシリーズ1話の14′39″と同じもの（埼玉県羽生市の「<cite>イオンモール羽生</cite>」と思われる）。ただし、TV版より全体的にブラッシュアップされている。</p>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -117,24 +111,22 @@ const structuredData: StructuredData = {
 
 				<p>魔法少女服の襟の内側が黄色く塗られていたミスを修正。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/zenpen_chapter6_00-17-13_trailer.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001713_trailer} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">予告編1（後編BD/DVD収録）</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/zenpen_chapter6_00-17-13_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001713_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<ListNote>
-					<li>予告編では画面周囲に額縁のようなものが描かれているが、上映版ではなくなっている。また、花びら模様もこのタイミングでは消えている。上映版とパッケージ版の違いはマミの作画のみ。</li>
-				</ListNote>
+				<Note>予告編では画面周囲に額縁のようなものが描かれているが、上映版ではなくなっている。また、花びら模様もこのタイミングでは消えている。上映版とパッケージ版の違いはマミの作画のみ。</Note>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -160,16 +152,16 @@ const structuredData: StructuredData = {
 				<p>部屋の小物が足されたり、窓から見えるビルが変更されたりといった変更もあり。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:21:46">
-				<p>画面の視点が上に上がった（3人の位置が下がった）。その他、21m35sと同じ変化。</p>
+				<p>画面の視点が上に上がった（3人の位置が下がった）。その他、21′35″と同じ変化。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:22:05">
-				<p>画面の視点が上に上がった（3人の位置が下がった）。その他、21m35sと同じ変化。</p>
+				<p>画面の視点が上に上がった（3人の位置が下がった）。その他、21′35″と同じ変化。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:22:11">
 				<p>上映版はテーブルの下からマミを透明なガラス板越しに見上げる構図だったが、テーブルの奥からの視点に変更され、キュゥべえも描かれる。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:22:26">
-				<p>マミの部屋のシーンが終わった後の静止画差し替え。19m19sと同じ変化。</p>
+				<p>マミの部屋のシーンが終わった後の静止画差し替え。19′19″と同じ変化。</p>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -211,10 +203,10 @@ const structuredData: StructuredData = {
 				<p>OLの上る階段が細かく。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:28:15">
-				<p>奥の街灯の数が減少、手前の街灯が追加、奥の斜張橋の形状と遠近感が変更、背景のビルが減少（27m47sと同じ変化）。</p>
+				<p>奥の街灯の数が減少、手前の街灯が追加、奥の斜張橋の形状と遠近感が変更、背景のビルが減少（27′47″と同じ変化）。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:28:21">
-				<p>奥の街灯の数が減少、手前の街灯が追加、奥の斜張橋の形状と遠近感が変更、背景のビルが減少（27m47sと同じ変化）。</p>
+				<p>奥の街灯の数が減少、手前の街灯が追加、奥の斜張橋の形状と遠近感が変更、背景のビルが減少（27′47″と同じ変化）。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:28:29">
 				<p>病院の前に放置されている廃車体が1台→4台に増加。</p>
@@ -250,9 +242,7 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:44:42">
 				<p>マミ変身シーンのラストの方で顔がアップになるところ、瞳の中にハートマークが描かれたカットが追加。</p>
 
-				<ListNote>
-					<li>Blu-ray限定版に付属のブックレット p.37 に<q>原画担当の松本元気さんたっての希望により、パッケージ版では動きのラスト付近に少し絵が足されています。</q>との山村洋貴さんのコメントが掲載されているが、おそらくこの変更を指しているものと思われる。</li>
-				</ListNote>
+				<Note>Blu-ray限定版に付属のブックレット p.37 に<q>原画担当の松本元気さんたっての希望により、パッケージ版では動きのラスト付近に少し絵が足されています。</q>との山村洋貴さんのコメントが掲載されているが、おそらくこの変更を指しているものと思われる。</Note>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>

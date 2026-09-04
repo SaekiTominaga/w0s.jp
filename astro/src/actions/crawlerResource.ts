@@ -2,7 +2,7 @@ import { defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 import { SqliteError } from 'better-sqlite3';
 import { env } from '@w0s/env-value-type';
-import configCrawlerResource from '@config/crawler-resource.ts';
+import configCrawlerResource from '@config/crawlerResource';
 import CrawlerResourceDao from '@db/CrawlerResource.ts';
 
 export const crawlerResource = {
@@ -10,7 +10,7 @@ export const crawlerResource = {
 	insert: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.string().url(),
+			url: z.url(),
 			title: z.string(),
 			category: z.number(),
 			priority: z.number(),
@@ -28,12 +28,12 @@ export const crawlerResource = {
 					browser: input.browser,
 					selector: input.selector,
 				});
-			} catch (e) {
-				if (!(e instanceof SqliteError)) {
-					throw e;
+			} catch (error) {
+				if (!(error instanceof SqliteError)) {
+					throw error;
 				}
 
-				switch (e.code) {
+				switch (error.code) {
 					case 'SQLITE_CONSTRAINT_PRIMARYKEY':
 					case 'SQLITE_CONSTRAINT_UNIQUE': {
 						return {
@@ -44,7 +44,7 @@ export const crawlerResource = {
 					default:
 				}
 
-				throw e;
+				throw error;
 			}
 
 			return {
@@ -56,7 +56,7 @@ export const crawlerResource = {
 	update: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.string().url(),
+			url: z.url(),
 			title: z.string(),
 			category: z.number(),
 			priority: z.number(),
@@ -78,12 +78,12 @@ export const crawlerResource = {
 					},
 					input.baseurl,
 				);
-			} catch (e) {
-				if (!(e instanceof SqliteError)) {
-					throw e;
+			} catch (error) {
+				if (!(error instanceof SqliteError)) {
+					throw error;
 				}
 
-				switch (e.code) {
+				switch (error.code) {
 					case 'SQLITE_CONSTRAINT_PRIMARYKEY':
 					case 'SQLITE_CONSTRAINT_UNIQUE': {
 						return {
@@ -94,7 +94,7 @@ export const crawlerResource = {
 					default:
 				}
 
-				throw e;
+				throw error;
 			}
 
 			return {
@@ -106,7 +106,7 @@ export const crawlerResource = {
 	delete: defineAction({
 		accept: 'form',
 		input: z.object({
-			url: z.string().url(),
+			url: z.url(),
 		}),
 		handler: async (input) => {
 			const dao = new CrawlerResourceDao(`${env('ROOT')}/${env('SQLITE_DIR')}/${env('SQLITE_CRAWLER')}`);

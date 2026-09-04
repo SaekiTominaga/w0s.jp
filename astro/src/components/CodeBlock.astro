@@ -1,8 +1,9 @@
 ---
 import hljs from 'highlight.js/lib/core';
+import hljsCss from 'highlight.js/lib/languages/css';
 import hljsJavaScript from 'highlight.js/lib/languages/javascript';
 import hljsXml from 'highlight.js/lib/languages/xml';
-import md5 from 'md5';
+import { getHTMLId } from '@util/crypto.ts';
 
 interface Props {
 	code: string;
@@ -11,9 +12,10 @@ interface Props {
 
 const { code, language } = Astro.props;
 
-const id = `code-${md5(code)}`; // コード ID
+const id = `code-${getHTMLId(code)}`; // コード ID
 
 hljs.registerLanguage('xml', hljsXml);
+hljs.registerLanguage('css', hljsCss);
 hljs.registerLanguage('javascript', hljsJavaScript);
 
 let registLanguageName: string | undefined;
@@ -25,12 +27,16 @@ if (language !== undefined) {
 			registLanguageName = 'xml';
 			break;
 		}
+		case 'css': {
+			registLanguageName = 'css';
+			break;
+		}
 		case 'javascript': {
 			registLanguageName = 'javascript';
 			break;
 		}
 		default: {
-			console.warn('無効な言語名', language);
+			throw new Error(`Invalid language: \`${language}\``);
 		}
 	}
 }
@@ -68,7 +74,7 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 		}
 
 		.clipboard-button {
-			--_bg-color: var(--color-bg-superlight);
+			--_bg-color: var(--bgcolor-light);
 			--_ripple-color: var(--color-black);
 			--_ripple-opacity: 0.25;
 			--_ripple-transition-duration: 0.5s;
@@ -77,15 +83,15 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 			contain: layout; /* ripple effect */
 			outline-offset: -1px;
 			outline-width: var(--outline-width-bold);
-			border: 1px solid var(--color-border-light);
+			border: 1px solid var(--border-color-light);
 			border-radius: var(--border-radius-normal);
-			background: var(--_bg-color);
+			background-color: var(--_bg-color);
 			padding: 0.5em;
 			overflow: hidden; /* ripple effect */
 			color: var(--color-black);
 
 			&:hover {
-				--_bg-color: var(--color-white);
+				background-color: oklch(from var(--_bg-color) calc(l + var(--bgcolor-hover-l)) c h);
 			}
 
 			/* ripple effect */
@@ -93,7 +99,7 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 				position: absolute;
 				inset: 0;
 				transform: scale(4);
-				transition: var(--_ripple-transition-duration);
+				transition-duration: var(--_ripple-transition-duration);
 				opacity: 0;
 				background-image: radial-gradient(circle, var(--_ripple-color) 25%, transparent 0);
 				block-size: 100%;
@@ -104,7 +110,7 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 			/* ripple effect */
 			&:active::before {
 				transform: scale(0);
-				transition: initial;
+				transition-duration: initial;
 				opacity: var(--_ripple-opacity);
 			}
 
@@ -116,8 +122,8 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 		}
 
 		.code {
-			border: 1px solid var(--color-border-light);
-			background: var(--color-white);
+			border: 1px solid var(--border-color-light);
+			background-color: var(--color-white);
 			padding: 1em;
 			overflow-x: auto;
 			line-height: var(--line-height-narrow);
@@ -128,86 +134,86 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 			}
 
 			& > :global(code) {
-				color: #24292e; /* https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css */
+				color: oklch(27.806% 0.012 248.25deg); /* #24292e; https://github.com/highlightjs/highlight.js/blob/main/src/styles/github.css */
 			}
 
 			/* stylelint-disable selector-class-pattern */
-			& > :global(code > :is(.hljs-doctag, .hljs-keyword, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-variable.language_)) {
+			& :global(:is(.hljs-doctag, .hljs-keyword, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-variable.language_)) {
 				/* prettylights-syntax-keyword */
-				color: #d73a49;
+				color: oklch(58.794% 0.193 20.469deg); /* #d73a49 */
 			}
 
-			& > :global(code > :is(.hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_)) {
+			& :global(:is(.hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_)) {
 				/* prettylights-syntax-entity */
-				color: #6f42c1;
+				color: oklch(50.152% 0.188 294.99deg); /* #6f42c1 */
 			}
 
-			& > :global(code > :is(.hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number, .hljs-operator, .hljs-variable, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id)) {
+			& :global(:is(.hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number, .hljs-operator, .hljs-variable, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id)) {
 				/* prettylights-syntax-constant */
-				color: #005cc5;
+				color: oklch(49.49% 0.18 257.601deg); /* #005cc5 */
 			}
 
-			& > :global(code > :is(.hljs-regexp, .hljs-string)) {
+			& :global(:is(.hljs-regexp, .hljs-string)) {
 				/* prettylights-syntax-string */
-				color: #032f62;
+				color: oklch(31.077% 0.101 255.87deg); /* #032f62 */
 			}
 
-			& > :global(code > :is(.hljs-built_in, .hljs-symbol)) {
+			& :global(:is(.hljs-built_in, .hljs-symbol)) {
 				/* prettylights-syntax-variable */
-				color: #e36209;
+				color: oklch(64.823% 0.18 45.869deg); /* #e36209 */
 			}
 
-			& > :global(code > :is(.hljs-comment, .hljs-code, .hljs-formula)) {
+			& :global(:is(.hljs-comment, .hljs-code, .hljs-formula)) {
 				/* prettylights-syntax-comment */
-				color: #6a737d;
+				color: oklch(55.137% 0.019 250.98deg); /* #6a737d */
 			}
 
-			& > :global(code > :is(.hljs-name, .hljs-quote, .hljs-selector-tag, .hljs-selector-pseudo)) {
+			& :global(:is(.hljs-name, .hljs-quote, .hljs-selector-tag, .hljs-selector-pseudo)) {
 				/* prettylights-syntax-entity-tag */
-				color: #22863a;
+				color: oklch(54.635% 0.144 147.32deg); /* #22863a */
 			}
 
-			& > :global(code > :is(.hljs-subst)) {
+			& :global(:is(.hljs-subst)) {
 				/* prettylights-syntax-storage-modifier-import */
-				color: #24292e;
+				color: oklch(27.806% 0.012 248.25deg); /* #24292e */
 			}
 
-			& > :global(code > :is(.hljs-section)) {
+			& :global(:is(.hljs-section)) {
 				/* prettylights-syntax-markup-heading */
-				color: #005cc5;
+				color: oklch(49.49% 0.18 257.6deg); /* #005cc5 */
 				font-weight: var(--font-weight-bold);
 			}
 
-			& > :global(code > :is(.hljs-bullet)) {
+			& :global(:is(.hljs-bullet)) {
 				/* prettylights-syntax-markup-list */
-				color: #735c0f;
+				color: oklch(48.457% 0.093 90.48deg); /* #735c0f */
 			}
 
-			& > :global(code > :is(.hljs-emphasis)) {
+			& :global(:is(.hljs-emphasis)) {
 				/* prettylights-syntax-markup-italic */
-				color: #24292e;
+				color: oklch(27.806% 0.012 248.25deg); /* #24292e */
 				font-style: italic;
 			}
 
-			& > :global(code > :is(.hljs-strong)) {
+			& :global(:is(.hljs-strong)) {
 				/* prettylights-syntax-markup-bold */
-				color: #24292e;
+				color: oklch(27.806% 0.012 248.25deg); /* #24292e */
 				font-weight: var(--font-weight-bold);
 			}
 
-			& > :global(code > :is(.hljs-addition)) {
+			& :global(:is(.hljs-addition)) {
 				/* prettylights-syntax-markup-inserted */
-				background-color: #f0fff4;
-				color: #22863a;
+				background-color: oklch(98.591% 0.021 154.14deg); /* #f0fff4 */
+				color: oklch(54.635% 0.144 147.32deg); /* #22863a */
 			}
 
-			& > :global(code > :is(.hljs-deletion)) {
+			& :global(:is(.hljs-deletion)) {
 				/* prettylights-syntax-markup-deleted */
-				background-color: #ffeef0;
-				color: #b31d28;
+				background-color: oklch(96.312% 0.019 9.298deg); /* #ffeef0 */
+				color: oklch(49.595% 0.183 24.187deg); /* #b31d28 */
 			}
 
-			& > :global(code > :is(.hljs-char.escape_, .hljs-link, .hljs-params, .hljs-property, .hljs-punctuation, .hljs-tag)) {
+			& :global(:is(.hljs-char.escape_, .hljs-link, .hljs-params, .hljs-property, .hljs-punctuation, .hljs-tag)) {
 				/* purposely ignored */
 			}
 			/* stylelint-enable selector-class-pattern */

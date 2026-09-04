@@ -9,19 +9,25 @@ export default defineConfig({
 		mode: 'middleware',
 	}),
 	srcDir: 'src',
-	publicDir: '../public',
+	publicDir: '../frontend/.dist',
 	outDir: 'dist',
 	compressHTML: false,
 	scopedStyleStrategy: 'where',
-	security: {
-		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
-	},
 	vite: {
 		/* https://vite.dev/config/build-options.html */
 		build: {
 			cssCodeSplit: false,
 			minify: false,
 		},
+	},
+	security: {
+		checkOrigin: false, // https://github.com/withastro/astro/issues/12851
+		allowedDomains: [
+			{
+				hostname: 'w0s.jp',
+				protocol: 'https',
+			},
+		],
 	},
 	build: {
 		format: 'preserve',
@@ -30,5 +36,17 @@ export default defineConfig({
 	},
 	server: {
 		port: 3000,
+	},
+	session: false,
+	image: {
+		service: {
+			config: {
+				/* https://sharp.pixelplumbing.com/api-output/#avif */
+				avif: {
+					quality: 30,
+					chromaSubsampling: '4:2:0',
+				},
+			},
+		},
 	},
 });

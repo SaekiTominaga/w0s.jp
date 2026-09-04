@@ -1,19 +1,22 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_1000N2 from '@image/tokyu/machine/roof/1000N2.jpg';
+import image_1200N from '@image/tokyu/machine/roof/1200N.jpg';
+import image_1200N2 from '@image/tokyu/machine/roof/1200N2.jpg';
+import image_1300N2 from '@image/tokyu/machine/roof/1300N2.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急1000N系（池上、多摩川線）、1000N′系　屋根上機器配置',
 	heading: '1000N系（池上、多摩川線）、1000N′系　屋根上機器配置',
-	dateModified: dayjs('2010-08-01'),
+	dateModified: '2010-08-01',
 	description: '東急池上線、多摩川線で活躍する1000N系、1000N′系の屋根上写真を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/roof/1200N.jpg',
+	image: image_1200N,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -35,13 +38,13 @@ const structuredData: StructuredData = {
 	<Section id="tc-1000">
 		<Fragment slot="heading">クハ1000形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="tc-1000N" depth={2} headingType="c">
+				<Section id="tc-1000N" depth={2}>
 					<Fragment slot="heading">1000N系、1000N′系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/1000N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_1000N2} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-11 -->
 						<Fragment slot="caption">クハ1017（4次車）</Fragment>
 					</Embedded>
@@ -57,13 +60,13 @@ const structuredData: StructuredData = {
 	<Section id="m-1200">
 		<Fragment slot="heading">デハ1200形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="m-1200N" depth={2} headingType="c">
+				<Section id="m-1200N" depth={2}>
 					<Fragment slot="heading">1000N系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/1200N.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_1200N} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-11 -->
 						<Fragment slot="caption">デハ1213（3次車）</Fragment>
 					</Embedded>
@@ -74,11 +77,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="m-1200N2" depth={2} headingType="c">
+				<Section id="m-1200N2" depth={2}>
 					<Fragment slot="heading">1000N′系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/1200N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_1200N2} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-11 -->
 						<Fragment slot="caption">デハ1221（4次車）</Fragment>
 					</Embedded>
@@ -92,13 +95,13 @@ const structuredData: StructuredData = {
 	<Section id="mc-1300">
 		<Fragment slot="heading">デハ1300形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="mc-1300N" depth={2} headingType="c">
+				<Section id="mc-1300N" depth={2}>
 					<Fragment slot="heading">1000N系、1000N′系</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/1300N2.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_1300N2} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-27 -->
 						<Fragment slot="caption">デハ1323（5次車）</Fragment>
 					</Embedded>

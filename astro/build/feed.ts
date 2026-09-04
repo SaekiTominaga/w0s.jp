@@ -1,10 +1,10 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { parseArgs } from 'node:util';
-import { Parser, HtmlRenderer } from 'commonmark';
+import { HtmlRenderer, Parser } from 'commonmark';
 import dayjs from 'dayjs';
 import ejs from 'ejs';
-import { load as yamlLoad } from 'js-yaml';
+import { JSON_SCHEMA, load as yamlLoad } from 'js-yaml';
 import slash from 'slash';
 
 /**
@@ -29,7 +29,7 @@ const INFO = [
 	},
 ];
 
-export const markdownRendar = (mdStr: string) => {
+const markdownRendar = (mdStr: string) => {
 	const parsed = new Parser().parse(mdStr);
 	const html = new HtmlRenderer().render(parsed);
 
@@ -39,7 +39,7 @@ export const markdownRendar = (mdStr: string) => {
 
 	const title: string[] = [];
 	const linkDestinations = new Set<string>();
-	// eslint-disable-next-line functional/no-loop-statements
+
 	while (event !== null) {
 		if (event.entering) {
 			const { node } = event;
@@ -62,25 +62,25 @@ export const markdownRendar = (mdStr: string) => {
 	return {
 		html: html.trim(),
 		title: title.join(' / '),
-		linkDestinations: Array.from(linkDestinations),
+		linkDestinations: [...linkDestinations],
 	};
 };
 
-export const yaml = (yamlStr: string) =>
+const yaml = (yamlStr: string) =>
 	(
-		yamlLoad(yamlStr) as {
+		yamlLoad(yamlStr, { schema: JSON_SCHEMA }) as {
 			id: string;
-			updated: Date;
+			updated: string;
 			content: string;
 		}[]
-	).map(({ updated: updatedUTC, content }) => {
+	).map(({ updated, content }) => {
+		const updatedDayjs = dayjs(updated);
+
 		const { html: contentHtml, title, linkDestinations } = markdownRendar(content);
 
-		const updated = updatedUTC.getTime() + updatedUTC.getTimezoneOffset() * 60 * 1000;
-
-		const md5 = crypto.createHash('md5');
-		md5.update(`${String(updated / 1000)}${linkDestinations.join('')}`);
-		const unique = md5.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
+		const hash = crypto.createHash('md5');
+		hash.update(`${String(updatedDayjs.unix())}${linkDestinations.join('')}`);
+		const unique = hash.digest('hex'); // entry 毎のユニーク文字列（更新日と URL の組み合わせならまあ被らないだろうという目論見）
 
 		return {
 			/* タイトル */
@@ -88,7 +88,7 @@ export const yaml = (yamlStr: string) =>
 			/* ID に使うユニークな値 */
 			unique: unique,
 			/* タイムゾーンを変更 */
-			updated: dayjs(updated),
+			updated: updatedDayjs,
 			/* 本文中にあるリンクの宛先 */
 			links: linkDestinations,
 			/* Markdown → HTML */
@@ -134,3 +134,5 @@ if (import.meta.url === slash(`file:///${process.argv.at(1) ?? ''}`)) {
 		}),
 	);
 }
+
+export { markdownRendar, yaml };

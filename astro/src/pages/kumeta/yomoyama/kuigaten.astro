@@ -1,11 +1,9 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Amazon from '@components/Amazon.astro';
-import AmazonItem from '@components/AmazonItem.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
@@ -15,9 +13,9 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 const structuredData: StructuredData = {
 	title: '久米田康治画集「悔画展」収録イラスト一覧',
 	heading: '「悔画展」収録イラスト一覧',
-	dateModified: dayjs('2023-11-19'),
+	dateModified: '2026-07-21',
 	description: '2016年に発売された久米田康治画集「悔画展」に収録されているイラストのリストです。',
-	image: 'https://m.media-amazon.com/images/I/51m9Oqxw9kL.jpg',
+	image: new URL('https://m.media-amazon.com/images/I/51m9Oqxw9kL.jpg'),
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 };
 
@@ -25,11 +23,9 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Amazon>
-		<AmazonItem asin="406364992X" title="久米田康治画集　悔画展" imageId="51m9Oqxw9kL" imageWidth={112} imageHeight={160} />
-	</Amazon>
+	<Amazon asin="406364992X" title="久米田康治画集　悔画展" imageId="51m9Oqxw9kL" imageWidth={112} imageHeight={160} />
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">収録イラスト一覧</Fragment>
 
 		<Table>
@@ -692,7 +688,7 @@ const slugger = new GithubSlugger();
 				<tr>
 					<td>漫画</td>
 					<td><cite>かってに改蔵</cite></td>
-					<td>週刊少年サンデー 2004年32・33号　表紙集合イラスト<NoteRef by="sunday2004-32+33" /></td>
+					<td>週刊少年サンデー 2004年32・33号　表紙集合イラスト<NoteRef by="sunday2004-32-33" /></td>
 					<td>2004年7月7日</td>
 				</tr>
 				<tr>
@@ -1038,7 +1034,7 @@ const slugger = new GithubSlugger();
 
 		<NoteRefContent id="goku-zetsubou3">悔画展では初出が<q>2008年</q>とされているが、実際の発売日は2009年2月17日。</NoteRefContent>
 
-		<NoteRefContent id="sunday2004-32+33">悔画展の初出には<q>週刊少年サンデー 2004年33号</q>とあるが、実際は合併号。</NoteRefContent>
+		<NoteRefContent id="sunday2004-32-33">悔画展の初出には<q>週刊少年サンデー 2004年33号</q>とあるが、実際は合併号。</NoteRefContent>
 
 		<NoteRefContent id="nonnonji">悔画展の初出には<q>付録小冊子寄稿イラスト</q>とあるが、実際はコミック本体。</NoteRefContent>
 
@@ -1055,15 +1051,13 @@ const slugger = new GithubSlugger();
 		<NoteRefContent id="youngsunday1996-07">悔画展ではなぜが初出年が抜けている。</NoteRefContent>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">主な非収録イラスト</Fragment>
 
-		<ListNote>
-			<li>すべての非収録事例をまとめているわけではありません。モノクロイラストや簡素な掲載例を除いた、画集に収録されるに相応しい事例のみを対象としています。意図としては、今後画集の第二弾が制作される暁には是非とも収録して欲しいものをまとめたリストとなります。</li>
-			<li>「<cite>悔画展</cite>」の発売後に発表されたイラストは除きます。</li>
-			<li>漫画形式のカラーページはトビラや大コマのみに絞っています。</li>
-			<li>単行本のカバーイラスト（表紙、裏表紙）やカラーページは電子版や中古販売で容易に入手可能なことから対象外としています。ただし『<cite>育ってダーリン!!</cite>』1巻（新装版ではないオリジナル版の方）のみ現在では入手困難なため、例外的に含めています。</li>
-		</ListNote>
+		<Note>すべての非収録事例をまとめているわけではありません。モノクロイラストや簡素な掲載例を除いた、画集に収録されるに相応しい事例のみを対象としています。意図としては、今後画集の第二弾が制作される暁には是非とも収録して欲しいものをまとめたリストとなります。</Note>
+		<Note>「<cite>悔画展</cite>」の発売後に発表されたイラストは除きます。</Note>
+		<Note>漫画形式のカラーページはトビラや大コマのみに絞っています。</Note>
+		<Note>単行本のカバーイラスト（表紙、裏表紙）やカラーページは電子版や中古販売で容易に入手可能なことから対象外としています。ただし『<cite>育ってダーリン!!</cite>』1巻（新装版ではないオリジナル版の方）のみ現在では入手困難なため、例外的に含めています。</Note>
 
 		<Table>
 			<thead>
@@ -1197,6 +1191,15 @@ const slugger = new GithubSlugger();
 				<tr>
 					<td>漫画</td>
 					<td><cite>行け!!南国アイスホッケー部</cite></td>
+					<td>私服で見つめ合う月斗&amp;そあら</td>
+					<td>少年サンデー特別増刊 1993年1月6日号 NEW YEAR SPECIAL</td>
+					<td>1992年12月</td>
+					<td class="u-cell -center">✘</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>漫画</td>
+					<td><cite>行け!!南国アイスホッケー部</cite></td>
 					<td>私服でスティックを構える月斗</td>
 					<td>週刊少年サンデー 1993年3・4号　表紙</td>
 					<td>1992年12月22日</td>
@@ -1283,6 +1286,15 @@ const slugger = new GithubSlugger();
 					<td>1994年6月22日</td>
 					<td class="u-cell -center">✘</td>
 					<td></td>
+				</tr>
+				<tr>
+					<td>漫画</td>
+					<td><cite>育ってダーリン!!</cite></td>
+					<td>ショートヘアのウェディングベールうらら&amp;タキシード冬馬</td>
+					<td>週刊少年サンデー 1994年49号　「<cite>少年サンデー12月増刊号のお知らせ</cite>」ページ</td>
+					<td>1994年11月9日</td>
+					<td class="u-cell -center">✘</td>
+					<td>同誌1994年50号〜1995年4号および増刊1994年12月号にも掲載、うち一部はカラー</td>
 				</tr>
 				<tr>
 					<td>漫画</td>

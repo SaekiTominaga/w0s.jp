@@ -1,19 +1,18 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』の雑誌での紹介例',
 	heading: 'メディア紹介 — 雑誌',
-	dateModified: dayjs('2021-02-17'),
+	dateModified: '2021-02-17',
 	description: '雑誌において『魔法少女まどか☆マギカ』のインタビューや作品紹介などが掲載された事例のリストです。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
@@ -32,7 +31,7 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2010年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2010年12月号" release="2010-10-30" amazonAsin="B00474KL90" amazonImageId="61XR55tA6hL" amazonImageWidth={124} amazonImageHeight={160}>
@@ -126,7 +125,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="オトナアニメ　Vol.19" release="2011-01-08" isbn="978-4-86248-679-0" amazonAsin="4862486797" amazonImageId="61nmwSf8AWL" amazonImageWidth={115} amazonImageHeight={160}>
@@ -256,9 +255,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[48, 53]}><em>「<cite>『魔法少女まどか☆マギカ』新房昭之インタビュー</cite>」</em>3話、5話の絵コンテ、オープニングのまどか変身シーン原画掲載。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲。</li>
-			</ListNote>
+			<Note>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="Febri　Vol.5" release="2011-03-28" amazonAsin="B004QGYZHI" amazonImageId="51KCW4Sk6KL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -348,9 +345,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[10, 11]}>「<cite>虚淵玄　緊急インタビュー</cite>」で『<cite>まどか☆マギカ</cite>』についても語られる。放送前に「虚淵玄」の名前が出たことは予定外だったこと、新房さんは『<cite>ジョジョの奇妙な冒険</cite>』のような能力者バトルを期待していたらしいこと、結末は自分なりにハッピーエンドであることなど。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>発売日は正確でない可能性。</li>
-			</ListNote>
+			<Note>発売日は正確でない可能性。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="娘TYPE　2011年6月号" release="2011-04-30" amazonAsin="B004WOTBP0" amazonImageId="61O-EUL9JZL" amazonImageWidth={122} amazonImageHeight={160}>
@@ -433,9 +428,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[19]}>同上、虚淵玄インタビュー。Twitter で気を遣ったこと、10話のループ設定など。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>SWITCH 編集部から通販で雑誌を買うと、表紙のイラストの A2 ポスターが付いてきた。</li>
-			</ListNote>
+			<Note>SWITCH 編集部から通販で雑誌を買うと、表紙のイラストの A2 ポスターが付いてきた。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="メガミマガジン　2011年8月号" release="2011-06-30" amazonAsin="B0055OKZ9M" amazonImageId="619ldq5b52L" amazonImageWidth={124} amazonImageHeight={160}>
@@ -656,9 +649,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[72, 77]}><em>『魔法少女まどか☆マギカ』新房昭之インタビュー</em>　9話、10話の絵コンテ、10話まどほむ抱きつきシーンの原画掲載。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲（原画、絵コンテは増減している）。</li>
-			</ListNote>
+			<Note>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲（原画、絵コンテは増減している）。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="B.L.T.　2012年2月号" release="2011-12-16" amazonAsin="B006IAZA4W" amazonImageId="61Dlcm49EfL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -680,7 +671,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメディア　2012年2月号" release="2012-01-10" amazonAsin="B006OAKCHG" amazonImageId="61QI+eiV6NL" amazonImageWidth={125} amazonImageHeight={160}>
@@ -806,9 +797,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[6, 12]}><em>「<cite>小池一夫×虚淵玄 『魔法少女まどか☆マギカ』の世界とキャラクターを語る!</cite>」</em><Anchor href="https://live.nicovideo.jp/watch/lv77366564">ニコニコ生放送で2012年1月29日に行われた対談</Anchor>の書き起こし。キャラクターの命名、1〜3話の構成の根拠、世界観をキャラクター化（キュゥべえ）したこと、執筆にあたり影響を受けた作品など。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>2013年発行の<Anchor href="https://www.amazon.co.jp/dp/4862258654/"><cite>小池一夫対談集　キャラクター60年</cite></Anchor>に再録。</li>
-			</ListNote>
+			<Note>2013年発行の<Anchor href="https://www.amazon.co.jp/dp/4862258654/"><cite>小池一夫対談集　キャラクター60年</cite></Anchor>に再録。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="電撃G's magazine　2012年5月号" release="2012-03-30" amazonAsin="B007IV4RLW" amazonImageId="61+QTjeMi+L" amazonImageWidth={132} amazonImageHeight={160}>
@@ -1233,7 +1222,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2013年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2013年2月号" release="2013-01-10" amazonAsin="B00ARJ2ESK" amazonImageId="51IfYsvmWUL" amazonImageWidth={124} amazonImageHeight={160}>
@@ -1433,9 +1422,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[103, 102]}>新房昭之インタビュー。最初の脚本からまどかの出番を増やしたこと、TVシリーズ12話のまどほむ空間は『<cite>2001年宇宙の旅</cite>』の白い部屋のイメージがあったこと、作品に反映されなかった設定の話など。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>ページ番号が逆になっているのは、本記事のみ裏表紙から続く形で逆向きに読ませる作りになっているため。</li>
-			</ListNote>
+			<Note>ページ番号が逆になっているのは、本記事のみ裏表紙から続く形で逆向きに読ませる作りになっているため。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="smart　2013年11月号" release="2013-09-24" amazonAsin="B00EUGDIJ0" amazonImageId="51UBhasoCSL" amazonImageWidth={109} amazonImageHeight={160}>
@@ -1670,7 +1657,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2014年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2014年2月号" release="2014-01-10" amazonAsin="B00HFD3P0M" amazonImageId="61t0wA+LD3L" amazonImageWidth={124} amazonImageHeight={160}>
@@ -1711,9 +1698,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[74, 79]}><em>『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』新房昭之インタビュー</em>　ほむら変身シーンの原画が掲載。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲。</li>
-			</ListNote>
+			<Note>2019年発行の「<cite>新房昭之×シャフト　クロニクル</cite>」に再掲。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="MdN　2014年5月号" release="2014-04-05" amazonAsin="B00J496WUA" amazonImageId="51sgs+ia4RL" amazonImageWidth={118} amazonImageHeight={160}>
@@ -1803,7 +1788,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2015年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.18　2015年3月号" release="2015-02-10" amazonAsin="B00S9X6I88" amazonImageId="61FGoVstVoL" amazonImageWidth={111} amazonImageHeight={160}>
@@ -1841,9 +1826,7 @@ const slugger = new GithubSlugger();
 				<LibItem position="付録">表紙イラストクリアファイル</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>『<cite>魔獣編</cite>』連載開始。</li>
-			</ListNote>
+			<Note>『<cite>魔獣編</cite>』連載開始。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2015年7月号" release="2015-06-10" amazonAsin="B00Y27U13I" amazonImageId="61QLgqAwPIL" amazonImageWidth={125} amazonImageHeight={160}>
@@ -1874,7 +1857,7 @@ const slugger = new GithubSlugger();
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2015年10月号" release="2015-09-07" amazonAsin="B0148CNZ9I" amazonImageId="51KG65G+RKL" amazonImageWidth={125} amazonImageHeight={160}>
 			<LibContent>
-				<LibItem pages={[143]}>「<cite>新房昭之のあの人とヒミツの話</cite>」で岩上敦宏（アニプレックス）と対談。後編のまどかとほむらの宇宙空間のシーンで服を着せる変更を行ったことに言及。</LibItem>
+				<LibItem pages={[143]}>「<cite>新房昭之のあの人とヒミツの話</cite>」で岩上敦宏（アニプレックス）と対談。後編のまどかとほむらの宇宙空間のシーンで服を着せるよう変更したことに言及。</LibItem>
 			</LibContent>
 		</LibBook>
 
@@ -1914,7 +1897,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2016年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ゲームラボ　2016年2月号" release="2016-01-16" amazonAsin="B000DZID9C" amazonImageId="616KMBlvFNL" amazonImageWidth={114} amazonImageHeight={160}>
@@ -2000,7 +1983,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="まんがタイムきらら☆マギカ　Vol.30　2017年3月号" release="2017-02-09" amazonAsin="B01N382U5A" amazonImageId="51ouabljNLL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -2085,7 +2068,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2018年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="コンプティーク　2018年2月号" release="2018-01-10" amazonAsin="B0788XQ6WR" amazonImageId="61AhnR30wkL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -2149,7 +2132,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2019年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2019年4月号" release="2019-03-09" amazonAsin="B07NRF18Y5" amazonImageId="510BJziYb7L" amazonImageWidth={127} amazonImageHeight={160}>
@@ -2201,7 +2184,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2020年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="月刊ニュータイプ　2020年2月号" release="2020-01-10" amazonAsin="B082PPJCM6" amazonImageId="51Ginn8ofbL" amazonImageWidth={127} amazonImageHeight={160}>
@@ -2240,9 +2223,7 @@ const slugger = new GithubSlugger();
 				<LibItem position="裏表紙">ドレス姿のいろは&amp;やちよ&amp;鶴乃。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>本の中身は未確認。</li>
-			</ListNote>
+			<Note>本の中身は未確認。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="アニメージュ　2020年4月号" release="2020-03-10" amazonAsin="B084Z4K3BG" amazonImageId="61iorSBt9sL" amazonImageWidth={126} amazonImageHeight={160}>
@@ -2307,7 +2288,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2021年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="リスアニ!　Vol.43.1「ClariS音楽大全“クラリスアニ！”」" release="2021-02-17" isbn="978-4-7897-7320-1" amazonAsin="4789773205" amazonImageId="515eM01TpCL" amazonImageWidth={113} amazonImageHeight={160}>

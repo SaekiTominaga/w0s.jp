@@ -1,8 +1,7 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import List from '@components/List.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
@@ -18,7 +17,7 @@ const structuredData: StructuredData = {
 	title: '東京急行電鉄　車歴表（1949年以前）',
 	heading: '東京急行電鉄　車歴表',
 	subHeading: '1949年以前',
-	dateModified: dayjs('2024-08-20'),
+	dateModified: '2024-08-20',
 	description: '東京急行電鉄成立（1942年）から1949年までの鉄道線車両のうごきをまとめました。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
@@ -63,7 +62,7 @@ const structuredData: StructuredData = {
 	<Section id="kuha3650">
 		<Fragment slot="heading">クハ3650形</Fragment>
 
-		<p>クハ3650形のうち最初に製造された6両の認可申請は東京横浜電鉄の時代に行われましたが、認可は東京横浜電鉄の成立後となり、製造当初から3000番台の車号が与えられた最初の車両であり、そして結果的に終戦前最後の新製車となってしまった車両でもあります。</p>
+		<p>クハ3650形のうち最初に製造された6両の認可申請は東京横浜電鉄の時代に行われたのですが、認可は東京急行電鉄の成立後となり、製造当初から3000番台の番号が与えられた最初のグループであり、そして結果的に終戦前最後の新製車となってしまったグループでもあります。</p>
 
 		<p><a href="/tokyu/data/history_mekama&toyoko_passenger#deha3550"><DateWareki value="1940-02" />に新製認可された44両の電動車</a>と連結使用する計画だったため、片運転台で連結面側は 1,100mm の広幅貫通路を持っており、また密着連結器（住友式 KS-13H-C 型）を装備する予定だったことが注目されます。認可申請の後、監督局とのやりとりの中で電動車の完成時期がずれたために1位側（連結面側）のみ密着連結器として2位側（運転台側）は自動連結器とするとされ<NoteRef type="ref" by="toyoko1942-04-30" />、初期の車両竣功図表でもそのようになっていますが、在来の電動車と連結する側を密着連結器とすることは中間連結器を常時取り付けるのでもない限り考えにくく、実際に密連が装備されたのかどうかは疑念が残ります。</p>
 
@@ -135,7 +134,7 @@ const structuredData: StructuredData = {
 	<Section id="deha1100">
 		<Fragment slot="heading">デハ1100形</Fragment>
 
-		<p>溝ノ口<small>（現：溝の口）</small>付近に工場新設が相次いだことに伴う輸送力強化のため、玉川線の延長線のような扱いだった溝ノ口線を改軌して大井町線列車を乗り入れるようにする変更が行われることになり、<DateWareki value="1943-07-01" />より乗り入れが開始、これに伴う車両増備として新宿営業局<small>（現：小田急電鉄）</small>よりデハ1100形3両が 600V 降圧化のうえ転籍されました。</p>
+		<p>溝ノ口<small>（現：溝の口）</small>付近に工場新設が相次いだことに伴う輸送力強化のため、玉川線の延長線のような扱いだった溝ノ口線を改軌して大井町線列車を乗り入れるようにすることとなり、<DateWareki value="1943-07-01" />より乗り入れが開始、これに伴う車両増備として新宿営業局<small>（現：小田急電鉄）</small>よりデハ1100形3両が 600V 降圧化のうえ転籍されました。</p>
 
 		<p>この車両は<DateWareki value="1938" />に当時の小田原急行鉄道<small>（現：小田急電鉄）</small>が鉄道省モハ1形の払い下げを受けてモハ51形とした木造電車で、元をたどれば京浜線<small>（現：JR 京浜東北線）</small>の増備車として製造されたデハ33500形となります。わずか3両の所帯でありながらラッシュ時用とするためか目蒲線と大井町線に分かれて配属されましたが、両線での使用は短期間に終わり、<DateWareki value="1944" />には相模鉄道へ貸与されて神中線<small>（現：相模鉄道の本線）</small>の 600V 区間（横浜〜二俣川）で使用されることとなり、<DateWareki value="1948" />には正式に譲渡されました。</p>
 
@@ -170,10 +169,8 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>新宿局からの転入は同一社内での異動につき届出書類は存在しない。</li>
-			<li>経営委託中だった相模鉄道への貸渡は届出書類が存在せず、詳細な時期は不明だが、<DocMagazine name="Romance Car" no={2} article="東京急行電鉄デハ1100形及び相模鉄道クハ1100形に就て" authors={['T.T.D. 東急電鐵部']} pages={[60, 61]} />および<DocMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[7]} />によると<DateWareki value="1944" />秋から<DateWareki value="1945" />にかけて順次移動したとされている。</li>
-		</ListNote>
+		<Note>新宿局からの転入は同一社内での異動につき届出書類は存在しない。</Note>
+		<Note>経営委託中だった相模鉄道への貸渡は届出書類が存在せず、詳細な時期は不明だが、<DocMagazine name="Romance Car" no={2} article="東京急行電鉄デハ1100形及び相模鉄道クハ1100形に就て" authors={['T.T.D. 東急電鐵部']} pages={[60, 61]} />および<DocMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[7]} />によると<DateWareki value="1944" />秋から<DateWareki value="1945" />にかけて順次移動したとされている。</Note>
 	</Section>
 
 	<Section id="deha3550" box={true}>
@@ -284,9 +281,9 @@ const structuredData: StructuredData = {
 	<Section id="deha3250">
 		<Fragment slot="heading">デハ3250形<small>（東京横浜電鉄引継）</small></Fragment>
 
-		<p>第二次世界大戦後の車両新製として東京急行電鉄にはモハ63形、クハ86形が計20両割り当てられ、20m 車を使用できる小田原線<small>（旧：小田急電鉄）</small>と厚木線<small>（経営委託中の相模鉄道）</small>に投入されましたが、それ対して現有車両のうち12両を供出することが命ぜられ、池上線デハ3250形8両、厚木線デハ1050形4両が対象とされています。</p>
+		<p>第二次世界大戦後の車両新製としてモハ63形、クハ86形が割り当てられ、東京急行電鉄には<DateWareki value="1946" />より20m 車を使用できる小田原線<small>（旧：小田急電鉄）</small>と厚木線<small>（経営委託中の相模鉄道）</small>へ計20両投入されたのですが、それに対して現有車両のうち12両を供出することが命ぜられました。これは池上線デハ3250形8両、厚木線デハ1050形4両が対象とされています。</p>
 
-		<p>このうちデハ3251〜3254 は譲渡時期が<DateWareki value="1948" />〜<DateWareki value="1949" />にずれ込んだため、<a href="#deha3700">デハ3700形、クハ3750形</a>の新製に対する供出と見なされたり、あるいは供出車に分類すること自体への疑念も出たりしていますが<NoteRef type="ref" by="pic171" />、運輸省文書ではモハ63形、クハ86形の新製に対する認可時の通牒で12両の供出が指示されているため<NoteRef type="ref" by="unyu1947-01-30" />、全8両分が当初から決定されていた供出車であると見なせるでしょう。</p>
+		<p>このうちデハ3251〜3254 は譲渡時期が<DateWareki value="1948" />〜<DateWareki value="1949" />にずれ込んだため、<a href="#deha3700">デハ3700形、クハ3750形</a>の新製に対する供出と見なされたり、あるいは供出車に分類すること自体への疑念も出たりしているのですが<NoteRef type="ref" by="pic171" />、運輸省文書ではモハ63形、クハ86形の新製に対する認可時の通牒で12両の供出が指示されているため<NoteRef type="ref" by="unyu1947-01-30" />、全8両分が当初から決定されていた供出車であると見なせるでしょう。</p>
 
 		<NoteRefContent id="pic171"><DocMagazine name="鉄道ピクトリアル" date="1965年6月号" no={171} article="私鉄高速電車発達史〔5〕〔脚注〕補遺" authors={['中川浩一']} pages={[71]} /></NoteRefContent>
 
@@ -625,16 +622,14 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>クハ3671〜3675, 3771〜3773 は<DateWareki value="1948-01-27" />に増備認可された<cite>陸業第58号</cite>を根拠に設計認可申請が行われたが、当該の増備申請における東横・目蒲線向け両数は電動客車15両、制御客車5両であり、これは明らかに<a href="#deha3700">デハ3700形、クハ3750形</a>を指しているものと思われる。そのため、これらクハ8両分が<cite>陸業第58号</cite>と紐付けられている理由は不明である。</li>
-			<li>クハ3671, 3675 の運輸省車号との対照は車両竣功図表による（認可書類には2両まとめての記載しかされていない）。</li>
-			<li>クハ3672〜3674 は当初クハ3673〜3675 として設計認可申請が行われたが、竣功の際に改番された。</li>
-			<li>クハ3675 は当初クハ3672 として設計認可申請が行われたが、竣功の際に改番された。</li>
-			<li>クハ3677 は当初<a href="#deha3600">デハ3600形</a>のデハ3616 として増加認可申請が行われたが、認可後に制御客車に変更された。なお、設計変更の申請書類は残されていないため経緯は不明である。</li>
-			<li>クハ3779 は当初<a href="#deha3600">デハ3600形</a>のデハ3607 として設計認可申請が行われたが、認可後に制御客車に変更された。なお、設計変更の申請（東急車発25第22号）は別の書類により申請日は判明しているものの、申請書類自体が残されていないため経緯は不明である。</li>
-			<li>クハ3781〜3782 はクハ3776〜3778 と同一設計として増加認可申請書（東急車発25第45号）が提出されたが、監督局にて同一設計とは認められず設計認可申請書とみなして処理された。</li>
-			<li>クハ3782 は当初クハ3670形のクハ3677 として増加認可申請が行われたが、認可後にクハ3780形に変更された。変更に際して設計変更の認可が行われたかどうかも含め、書類が残されていないため詳細は不明である。</li>
-		</ListNote>
+		<Note>クハ3671〜3675, 3771〜3773 は<DateWareki value="1948-01-27" />に増備認可された<cite>陸業第58号</cite>を根拠に設計認可申請が行われたが、当該の増備申請における東横・目蒲線向け両数は電動客車15両、制御客車5両であり、これは明らかに<a href="#deha3700">デハ3700形、クハ3750形</a>を指しているものと思われる。そのため、これらクハ8両分が<cite>陸業第58号</cite>と紐付けられている理由は不明である。</Note>
+		<Note>クハ3671, 3675 の運輸省車号との対照は車両竣功図表による（認可書類には2両まとめての記載しかされていない）。</Note>
+		<Note>クハ3672〜3674 は当初クハ3673〜3675 として設計認可申請が行われたが、竣功の際に改番された。</Note>
+		<Note>クハ3675 は当初クハ3672 として設計認可申請が行われたが、竣功の際に改番された。</Note>
+		<Note>クハ3677 は当初<a href="#deha3600">デハ3600形</a>のデハ3616 として増加認可申請が行われたが、認可後に制御客車に変更された。なお、設計変更の申請書類は残されていないため経緯は不明である。</Note>
+		<Note>クハ3779 は当初<a href="#deha3600">デハ3600形</a>のデハ3607 として設計認可申請が行われたが、認可後に制御客車に変更された。なお、設計変更の申請（東急車発25第22号）は別の書類により申請日は判明しているものの、申請書類自体が残されていないため経緯は不明である。</Note>
+		<Note>クハ3781〜3782 はクハ3776〜3778 と同一設計として増加認可申請書（東急車発25第45号）が提出されたが、監督局にて同一設計とは認められず設計認可申請書とみなして処理された。</Note>
+		<Note>クハ3782 は当初クハ3670形のクハ3677 として増加認可申請が行われたが、認可後にクハ3780形に変更された。変更に際して設計変更の認可が行われたかどうかも含め、書類が残されていないため詳細は不明である。</Note>
 	</Section>
 
 	<Section id="deha3700">
@@ -762,9 +757,7 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li><DateWareki value="1947-03-03" />の増備認可申請では小田原線20両（電動客車10両、制御客車10両）、東横・目蒲線20両（電動客車15両、制御客車5両）、湘南線10両（電動客車10両）の50両での申請が行われたが、<DateWareki value="1947-09-29" />の訂正では湘南線用を除いた40両に訂正された。</li>
-		</ListNote>
+		<Note><DateWareki value="1947-03-03" />の増備認可申請では小田原線20両（電動客車10両、制御客車10両）、東横・目蒲線20両（電動客車15両、制御客車5両）、湘南線10両（電動客車10両）の50両での申請が行われたが、<DateWareki value="1947-09-29" />の訂正では湘南線用を除いた40両に訂正された。</Note>
 	</Section>
 
 	<Section id="kuha3220">
@@ -850,9 +843,7 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>クハ3232 は復旧工事完成後もしばらく元住吉車庫で車体利用されており、<DateWareki value="1950-02" />に営業運転に復帰した模様<NoteRef type="ref" by="romancecar21" />。</li>
-		</ListNote>
+		<Note>クハ3232 は復旧工事完成後もしばらく元住吉車庫で車体利用されており、<DateWareki value="1950-02" />に営業運転に復帰した模様<NoteRef type="ref" by="romancecar21" />。</Note>
 
 		<NoteRefContent id="romancecar21"><DocMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" authors={['川垣恭三']} pages={[117]} /></NoteRefContent>
 	</Section>
@@ -971,10 +962,8 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>申請書類によればデハ3603〜3606, 3609 は新日国工業<small>（現：日産車体）</small>所在の車体を充当したとされている。</li>
-			<li>デハ3609 は当初デハ3608 として設計認可申請が行われたが、竣功の際に改番された。</li>
-		</ListNote>
+		<Note>申請書類によればデハ3603〜3606, 3609 は新日国工業<small>（現：日産車体）</small>所在の車体を充当したとされている。</Note>
+		<Note>デハ3609 は当初デハ3608 として設計認可申請が行われたが、竣功の際に改番された。</Note>
 	</Section>
 
 	<Section id="deto3010">
@@ -1011,10 +1000,8 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>デト3012 の江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>への貸渡は届出書類が残されていないため、実施時期は<DocMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[10]} />による。</li>
-			<li>デト3012 の江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>への譲渡は届出書類が残されていないため、実施時期は<DocMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" authors={['川垣恭三']} pages={[118]} />による。</li>
-		</ListNote>
+		<Note>デト3012 の江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>への貸渡は届出書類が残されていないため、実施時期は<DocMagazine name="Romance Car" no={19} article="東京急行電鉄3" authors={['川垣恭三']} pages={[10]} />による。</Note>
+		<Note>デト3012 の江ノ島電気鉄道<small>（現：江ノ島電鉄）</small>への譲渡は届出書類が残されていないため、実施時期は<DocMagazine name="Romance Car" no={[21, 22]} article="東京急行電鉄　完結篇" authors={['川垣恭三']} pages={[118]} />による。</Note>
 	</Section>
 
 	<Section id="dewa3040">

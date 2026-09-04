@@ -35,8 +35,9 @@ export const prerender = false;
  */
 const dateFormat = (date: Date, era: string | undefined): string => {
 	switch (era) {
-		case 'ja':
+		case 'ja': {
 			return date.toLocaleDateString('ja-JP-u-ca-japanese', { dateStyle: 'short' }).replaceAll('/', '.');
+		}
 		default:
 	}
 
@@ -92,7 +93,7 @@ export const GET = (async ({ locals }) => {
 		}
 	});
 
-	return new Response(JSON.stringify(cars satisfies ResponseJson), {
+	return Response.json(cars satisfies ResponseJson, {
 		headers: {
 			'Content-Type': 'application/json',
 		},

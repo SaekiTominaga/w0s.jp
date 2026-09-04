@@ -1,6 +1,6 @@
 declare namespace App {
 	interface Locals {
-		logger: Log4js.Logger;
+		logger: winston.Logger;
 		requestParams: URLSearchParams;
 	}
 }

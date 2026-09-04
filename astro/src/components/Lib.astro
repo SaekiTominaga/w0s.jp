@@ -1,6 +1,6 @@
 ---
-import dayjs from 'dayjs';
 import IsbnVerify from '@w0s/isbn-verify';
+import { dateDisplay } from '@util/date.ts';
 import EmbeddedLink from './EmbeddedLink.astro';
 import EmbeddedSidebar from './EmbeddedSidebar.astro';
 import Anchor from './+phrasing/Anchor.astro';
@@ -23,25 +23,8 @@ interface Props {
 
 const { id, headingLevel, title, release, distribution, tags, isbn, amazonAsin, amazonImageId, amazonImageWidth, amazonImageHeight } = Astro.props;
 
-export const dateDisplay = (date: string | undefined): string | undefined => {
-	if (date === undefined) {
-		return undefined;
-	}
-
-	if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/v.test(date)) {
-		return dayjs(date).format('YYYY年M月D日');
-	} else if (/^[0-9]{4}-[0-9]{2}$/v.test(date)) {
-		return dayjs(date).format('YYYY年M月');
-	} else if (/^[0-9]{4}$/v.test(date)) {
-		return `${date}年`;
-	}
-
-	console.warn(`Invalid date: ${date}`);
-	return date;
-};
-
 if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
-	console.warn(`Invalid ISBN: ${isbn}`);
+	throw new Error(`Invalid ISBN: \`${isbn}\``);
 }
 ---
 
@@ -65,15 +48,13 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 		{
 			tags !== undefined && tags.length >= 1 && (
-				<ul class="tags">
+				<div class="tags">
 					{tags.map((tag) => (
-						<li>
-							<button type="button" class="tag-button js-library-tag" disabled="">
-								{tag}
-							</button>
-						</li>
+						<button type="button" class="tag-button js-library-tag" disabled="">
+							{tag}
+						</button>
 					))}
-				</ul>
+				</div>
 			)
 		}
 		{
@@ -92,8 +73,8 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 				<EmbeddedSidebar>
 					<EmbeddedLink href={`https://www.amazon.co.jp/dp/${amazonAsin}/ref=nosim?tag=w0s.jp-22`} title="Amazon 商品ページ" slot="embedded">
 						<Fragment slot="media">
-							{amazonImageId !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} alt="表紙" width={amazonImageWidth} height={amazonImageHeight} />}
-							{amazonImageId === undefined && <img src="/assets/image/amazon-noimage.svg" alt="表紙画像なし" width="113" height="160" />}
+							{amazonImageId !== undefined && amazonImageWidth !== undefined && amazonImageHeight !== undefined && <ImageAmazon src={`https://m.media-amazon.com/images/I/${amazonImageId}._SL160_.jpg`} alt="表紙" width={amazonImageWidth} height={amazonImageHeight} />}
+							{(amazonImageId === undefined || amazonImageWidth === undefined || amazonImageHeight === undefined) && <img src="/assets/image/amazon-noimage.svg" alt="表紙画像なし" width="113" height="160" />}
 						</Fragment>
 					</EmbeddedLink>
 
@@ -111,9 +92,9 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			--_border-radius-inner: calc(var(--border-radius-normal) - var(--_border-width));
 			--_padding-inline: clamp(8px, 1.5dvi, 16px);
 
-			border: var(--_border-width) solid var(--color-border-dark);
+			border: var(--_border-width) solid var(--border-color-dark);
 			border-radius: var(--border-radius-normal);
-			background: var(--color-white);
+			background-color: var(--color-white);
 			line-height: var(--line-height-normal);
 			color: var(--color-black);
 		}
@@ -128,7 +109,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			contain: layout;
 			border-start-start-radius: var(--_border-radius-inner);
 			border-start-end-radius: var(--_border-radius-inner);
-			background: var(--color-verylightgreen);
+			background-color: oklch(from var(--color-green) 100% calc(c - 0.1) h);
 			padding-block: var(--_header-padding-block);
 			padding-inline: calc(var(--_padding-inline) + var(--self-link-size)) var(--_padding-inline);
 		}
@@ -152,7 +133,8 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 
 		.release {
-			display: block flex;
+			display: inline flex;
+			flex-wrap: wrap;
 
 			&::before {
 				content: '（';
@@ -171,12 +153,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 
 		.tag-button {
-			--_bgcolor: var(--color-white);
+			--_bg-color: var(--color-white);
 			--_color: var(--color-black);
 
 			border: 1px solid var(--color-black);
 			border-radius: var(--border-radius-large);
-			background-color: var(--_bgcolor);
+			background-color: var(--_bg-color);
 			padding: 0.25em;
 			line-height: var(--line-height-nowrap);
 			color: var(--_color);
@@ -190,16 +172,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 				outline: none;
 			}
 
-			&:not(:disabled):hover {
-				--_bgcolor: var(--color-bg-verylight);
+			&:enabled:hover {
+				background-color: oklch(from var(--_bg-color) calc(l - var(--bgcolor-hover-l)) c h);
 			}
 
 			&[aria-pressed='true' i] {
-				--_bgcolor: var(--color-lightred);
-
-				&:hover {
-					--_bgcolor: var(--color-pink);
-				}
+				--_bg-color: oklch(from var(--color-pink) calc(l + 0.1) c h);
 			}
 		}
 

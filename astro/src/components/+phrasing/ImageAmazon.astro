@@ -4,35 +4,17 @@ import PaapiItemImageUrlParser from '@w0s/paapi-item-image-url-parser';
 interface Props {
 	src: string;
 	alt?: string;
-	width?: number;
-	height?: number;
+	width: number;
+	height: number;
 	fetchPriority?: 'high' | 'low' | 'auto';
 	class?: string;
 }
 
 const { src, alt = '', width, height, fetchPriority, class: className } = Astro.props;
 
-let imageUrl: URL;
-try {
-	imageUrl = new URL(src);
-} catch {
-	console.warn('`src` attribute value is not a valid URL:', src);
-	return;
-}
-
-let imageUrl2x: string;
-try {
-	const paapiItemImageUrlParser = new PaapiItemImageUrlParser(imageUrl);
-	paapiItemImageUrlParser.setSizeMultiply(2);
-	imageUrl2x = paapiItemImageUrlParser.toString();
-} catch (e) {
-	if (e instanceof SyntaxError) {
-		console.warn(e.message, src);
-	} else {
-		console.error(e, src);
-	}
-	return;
-}
+const paapiItemImageUrlParser = new PaapiItemImageUrlParser(new URL(src));
+paapiItemImageUrlParser.setSizeMultiply(2);
+const imageUrl2x = paapiItemImageUrlParser.toString();
 ---
 
 <img src={src} srcset={`${imageUrl2x} 2x`} alt={alt} width={width} height={height} fetchpriority={fetchPriority} class:list={className} />

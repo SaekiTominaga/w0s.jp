@@ -19,20 +19,20 @@ test('base', async () => {
 		},
 	});
 
-	const root = parse(result);
+	const $root = parse(result);
 
-	const title = root.querySelector('.title');
-	const summary = root.querySelector('.summary');
-	const details = root.querySelector('.details');
-	const link = root.querySelector('.link');
-	const image = root.querySelector('.image');
+	const $title = $root.querySelector('.title');
+	const $summary = $root.querySelector('.summary');
+	const $details = $root.querySelector('.details');
+	const $link = $root.querySelector('.link');
+	const $image = $root.querySelector('.image');
 
-	expect(title?.tagName).toBe('H2');
-	expect(title?.querySelector(':scope > cite')?.textContent).toBe('title');
-	expect(summary?.querySelector(':scope > b')?.textContent).toBe('summary');
-	expect(details?.innerHTML.trim()).toBe('<p>details</p>');
-	expect(link?.querySelector(':scope > a')?.textContent).toBe('紹介ページ');
-	expect(image?.innerHTML.trim()).toBe('<img>');
+	expect($title?.tagName).toBe('H2');
+	expect($title?.querySelector(':scope > cite')?.textContent).toBe('title');
+	expect($summary?.querySelector(':scope > b')?.textContent).toBe('summary');
+	expect($details?.innerHTML.trim()).toBe('<p>details</p>');
+	expect($link?.querySelector(':scope > a')?.textContent).toBe('紹介ページ');
+	expect($image?.innerHTML.trim()).toBe('<img>');
 });
 
 describe('link', () => {

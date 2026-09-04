@@ -1,19 +1,26 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import Section from '@components/Section.astro';
+import image_7701 from '@image/tokyu/machine/roof/7701.jpg';
+import image_7700 from '@image/tokyu/machine/roof/7700.jpg';
+import image_7710 from '@image/tokyu/machine/roof/7710.jpg';
+import image_7801 from '@image/tokyu/machine/roof/7801.jpg';
+import image_7800 from '@image/tokyu/machine/roof/7800.jpg';
+import image_7810 from '@image/tokyu/machine/roof/7810.jpg';
+import image_7901 from '@image/tokyu/machine/roof/7901.jpg';
+import image_7900 from '@image/tokyu/machine/roof/7900.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急7700系　屋根上機器配置',
 	heading: '7700系　屋根上機器配置',
-	dateModified: dayjs('2010-08-01'),
+	dateModified: '2010-08-01',
 	description: '東急池上線、多摩川線で活躍した7700系の屋根上写真を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/roof/7801.jpg',
+	image: image_7801,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -35,13 +42,13 @@ const structuredData: StructuredData = {
 	<Section id="mc-7700">
 		<Fragment slot="heading">デハ7700形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="mc-7701" depth={2} headingType="c">
+				<Section id="mc-7701" depth={2}>
 					<Fragment slot="heading">デハ7701〜7702</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7701.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7701} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">デハ7702（1次車）</Fragment>
 					</Embedded>
@@ -54,11 +61,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="mc-7703" depth={2} headingType="c">
+				<Section id="mc-7703" depth={2}>
 					<Fragment slot="heading">デハ7703〜7708, 7712〜7714</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7700.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7700} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-12 -->
 						<Fragment slot="caption">デハ7707（3次車）</Fragment>
 					</Embedded>
@@ -67,11 +74,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="mc-7710" depth={2} headingType="c">
+				<Section id="mc-7710" depth={2}>
 					<Fragment slot="heading">デハ7710</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7710.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7710} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">デハ7710（3次車）</Fragment>
 					</Embedded>
@@ -85,13 +92,13 @@ const structuredData: StructuredData = {
 	<Section id="m-7800">
 		<Fragment slot="heading">デハ7800形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="mc-7801" depth={2} headingType="c">
+				<Section id="mc-7801" depth={2}>
 					<Fragment slot="heading">デハ7801, 7803</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7801.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7801} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-06-18 -->
 						<Fragment slot="caption">デハ7801（1次車）</Fragment>
 					</Embedded>
@@ -102,11 +109,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="mc-7802" depth={2} headingType="c">
+				<Section id="mc-7802" depth={2}>
 					<Fragment slot="heading">デハ7802, 7805〜7808, 7812〜7714</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7800.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7800} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">デハ7802（2次車）</Fragment>
 					</Embedded>
@@ -115,11 +122,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="mc-7810" depth={2} headingType="c">
+				<Section id="mc-7810" depth={2}>
 					<Fragment slot="heading">デハ7810</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7810.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7810} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">デハ7810（3次車）</Fragment>
 					</Embedded>
@@ -133,13 +140,13 @@ const structuredData: StructuredData = {
 	<Section id="tc-7900">
 		<Fragment slot="heading">クハ7900形</Fragment>
 
-		<Grid column="wide" headingType="c">
+		<Grid column={2}>
 			<GridItem>
-				<Section id="tc-7901" depth={2} headingType="c">
+				<Section id="tc-7901" depth={2}>
 					<Fragment slot="heading">クハ7901〜7902</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7901.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7901} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-06-18 -->
 						<Fragment slot="caption">クハ7901（1次車）</Fragment>
 					</Embedded>
@@ -150,11 +157,11 @@ const structuredData: StructuredData = {
 				</Section>
 			</GridItem>
 			<GridItem>
-				<Section id="tc-7903" depth={2} headingType="c">
+				<Section id="tc-7903" depth={2}>
 					<Fragment slot="heading">クハ7903〜7914</Fragment>
 
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/roof/7900.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_7900} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-21 -->
 						<Fragment slot="caption">クハ7910（3次車）</Fragment>
 					</Embedded>

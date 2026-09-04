@@ -1,4 +1,5 @@
-import type { StructuredData, SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgPerson, SchemaOrgOrganization } from '../../@types/util.d.ts';
+import dayjs from 'dayjs';
+import type { SchemaOrgBreadcrumbList, SchemaOrgBreadcrumbListItem, SchemaOrgOrganization, SchemaOrgPerson, StructuredData } from '../../@types/util.d.ts';
 
 interface Options {
 	site: string;
@@ -54,21 +55,22 @@ export const getJsonLd = (structuredData: Readonly<StructuredData>, options: Rea
 		};
 	}
 
-	const jsonLd = {} as JsonLd;
-	jsonLd['@context'] = 'https://schema.org/';
-	jsonLd['@type'] = structuredData['schema-type'] ?? 'WebPage';
+	const jsonLd = {
+		'@context': 'https://schema.org/',
+		'@type': structuredData['schema-type'] ?? 'WebPage',
+	} as JsonLd;
 	if (breadcrumbList !== undefined) {
 		jsonLd.breadcrumb = breadcrumbList;
 	}
 	if (structuredData.dateModified !== undefined) {
-		jsonLd.dateModified = structuredData.dateModified.format('YYYYMMDDTHHmm');
+		jsonLd.dateModified = dayjs(structuredData.dateModified).format('YYYYMMDDTHHmm');
 	}
 	jsonLd.headline = structuredData.title;
 	if (structuredData.description !== undefined) {
 		jsonLd.description = structuredData.description;
 	}
 	if (structuredData.image !== undefined) {
-		jsonLd.image = structuredData.image;
+		jsonLd.image = structuredData.image instanceof URL ? structuredData.image.toString() : `${options.site}${structuredData.image.src}`;
 	}
 	if (structuredData.mainEntity !== undefined) {
 		jsonLd.mainEntity = structuredData.mainEntity;

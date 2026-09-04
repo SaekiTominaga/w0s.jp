@@ -14,6 +14,7 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 
 <head>
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="text-scale" content="scale" />
 
 	<link rel="alternate" href="/kumeta/feed" type="application/atom+xml" title="「久米田康治データベース」の新着フィード" />
 
@@ -39,7 +40,7 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 			<>
 				<meta property="og:title" content={structuredData.title} />
 				<meta property="og:type" content={structuredData.type ?? 'article'} />
-				<meta property="og:image" content={structuredData.image} />
+				<meta property="og:image" content={structuredData.image instanceof URL ? structuredData.image.toString() : `${Astro.site}${structuredData.image.src.substring(1)}`} />
 				<meta property="og:url" content={`${Astro.site}${pagePath.substring(1)}`} />
 				<meta property="og:locale" content="ja_JP" />
 				<meta property="og:site_name" content="久米田康治データベース" />

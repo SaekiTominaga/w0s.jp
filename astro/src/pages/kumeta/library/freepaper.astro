@@ -1,19 +1,18 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Kumeta.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '久米田康治作品のフリーペーパーでの紹介例',
 	heading: 'メディア紹介 — フリーペーパー',
-	dateModified: dayjs('2024-10-13'),
+	dateModified: '2026-08-14',
 	description: 'フリーペーパーにおいて久米田先生のインタビューや作品紹介などが掲載された事例のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 	localNav: {
@@ -34,7 +33,37 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
+		<Fragment slot="heading">1998年</Fragment>
+
+		<LibBook slugger={slugger} headingLevel={3} title="コミックスサンデー Vol.15" distribution="1998-11">
+			<LibContent>
+				<LibItem pages={[12]}>「<cite>先生たちのお宝拝見!!</cite>」コーナーにて尻を出した写真を公開（<q>蒙古斑もばっちり</q>と解説されている）</LibItem>
+			</LibContent>
+		</LibBook>
+	</Section>
+
+	<Section id={slugger}>
+		<Fragment slot="heading">2000年</Fragment>
+
+		<LibBook slugger={slugger} headingLevel={3} title="コミックスサンデー Vol.22" distribution="2000-12">
+			<LibContent>
+				<LibItem pages={[29, 34]}>『<cite>かってに改蔵</cite>』10巻の内容紹介</LibItem>
+			</LibContent>
+		</LibBook>
+	</Section>
+
+	<Section id={slugger}>
+		<Fragment slot="heading">2002年</Fragment>
+
+		<LibBook slugger={slugger} headingLevel={3} title="コミックスサンデー Vol.24" distribution="2002-03">
+			<LibContent>
+				<LibItem pages={[17, 22]}>『<cite>かってに改蔵</cite>』15巻の内容紹介</LibItem>
+			</LibContent>
+		</LibBook>
+	</Section>
+
+	<Section id={slugger}>
 		<Fragment slot="heading">2003年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.70" distribution="2003-12-01">
@@ -50,7 +79,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2007年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="A-STATION 2007年8月号" distribution="2007-07-30" tags={['アニメ']}>
@@ -92,7 +121,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2008年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.17 夏号" distribution="2008-08-15" tags={['アニメ']}>
@@ -108,7 +137,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2009年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.21 夏号" distribution="2009-08-14" tags={['アニメ']}>
@@ -117,9 +146,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[1, 4]}>『<cite>懺・さよなら絶望先生</cite>』新房昭之インタビュー、非公式アニメコミック第四話、大槻ケンヂインタビュー</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li><Anchor href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</Anchor>で公開。</li>
-			</ListNote>
+			<Note><Anchor href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</Anchor>で公開。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ Vol.23 冬号" distribution="2009-12-29" tags={['アニメ']}>
@@ -127,13 +154,11 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[16]}>『<cite>懺・さよなら絶望先生</cite>』DVD 広告</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li><Anchor href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</Anchor>で公開。</li>
-			</ListNote>
+			<Note><Anchor href="https://web.archive.org/web/20231130051748/https://king-cr.jp/mania/">Web版 スタチャマニア？！</Anchor>で公開。</Note>
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="スタチャマニア？！ 2011 Spring Vol.28" distribution="2011" tags={['アニメ']}>
@@ -144,7 +169,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃTV Vol.8" distribution="2012-06-10" tags={['アニメ']}>
@@ -160,9 +185,7 @@ const slugger = new GithubSlugger();
 				<LibItem>参：制作陣・出演者ノ言葉。（久米田康治、ヤス、水島努、佐倉綾音、山本希望、小岩井ことり、南條愛乃、後藤沙緒里）</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>2012年6月30日、7月1日に秋葉原で行われた<Anchor href="https://king-cr.jp/special/joshiraku/news/news02.html">無料配布イベント2DAYS</Anchor>で配布。</li>
-			</ListNote>
+			<Note>2012年6月30日、7月1日に秋葉原で行われた<Anchor href="https://king-cr.jp/special/joshiraku/news/news02.html">無料配布イベント2DAYS</Anchor>で配布。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="声優きゃらびぃ Vol.7" distribution="2012-08-10" tags={['アニメ']}>
@@ -176,13 +199,11 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[32, 33]}>『<cite>じょしらく</cite>』山本希望×小岩井ことりインタビュー</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li><Anchor href="https://weekly.ascii.jp/elem/000/002/611/2611297/">紹介ページ</Anchor></li>
-			</ListNote>
+			<Note><Anchor href="https://weekly.ascii.jp/elem/000/002/611/2611297/">紹介ページ</Anchor></Note>
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.392" distribution="2017-05-05" tags={['描き下ろし']}>
@@ -192,7 +213,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2020年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="きゃらびぃ Vol.457" distribution="2020-01-20" tags={['アニメ']}>
@@ -202,7 +223,7 @@ const slugger = new GithubSlugger();
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2022年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="異質力奇譚" distribution="2020-03" tags={['描き下ろし']}>
@@ -210,13 +231,11 @@ const slugger = new GithubSlugger();
 				<LibItem>6ページの大学紹介漫画</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>和光大学の冊子（オープンキャンパス等で配布）。</li>
-			</ListNote>
+			<Note>和光大学の冊子（オープンキャンパス等で配布）。</Note>
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2023年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="WAKO UNIVERSITY 2024" distribution="2023-05" tags={['描き下ろし', 'インタビュー']}>
@@ -225,15 +244,13 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[5, 6]}>久米田康治インタビュー</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>和光大学の2024年度大学案内（オープンキャンパス等で配布）。</li>
-				<li>表紙イラストは<Anchor href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</Anchor>で公開。</li>
-				<li>掲載のインタビューは<Anchor href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</Anchor>とは異なる（「<cite>5つの質問</cite>」は同一）。</li>
-			</ListNote>
+			<Note>和光大学の2024年度大学案内（オープンキャンパス等で配布）。</Note>
+			<Note>表紙イラストは<Anchor href="https://x.com/wako_nyushi/status/1657251955780247554">和光大学入試広報課の X 投稿</Anchor>で公開。</Note>
+			<Note>掲載のインタビューは<Anchor href="https://www.wako.ac.jp/about/point/graduate/003.html">大学の Web サイトで公開されているインタビュー</Anchor>とは異なる（「<cite>5つの質問</cite>」は同一）。</Note>
 		</LibBook>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2024年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="GCLマガジン（ゲームクリエイターズラボマガジン）" distribution="2024-09-26" tags={['描き下ろし', 'インタビュー']}>
@@ -243,10 +260,8 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[6, 7]}>『<cite>違う冬のぼくら</cite>』紹介、イラスト掲載</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li><Anchor href="https://tgs.nikkeibp.co.jp/tgs/2024/jp/">東京ゲームショウ2024</Anchor> の「講談社ゲームクリエイターズラボ」ブースで配布。</li>
-				<li>表紙イラストは<Anchor href="https://creatorslab.kodansha.co.jp/topics/2673/">プレスリリース</Anchor>で公開。</li>
-			</ListNote>
+			<Note><Anchor href="https://tgs.nikkeibp.co.jp/tgs/2024/jp/">東京ゲームショウ2024</Anchor> の「講談社ゲームクリエイターズラボ」ブースで配布。</Note>
+			<Note>表紙イラストは<Anchor href="https://creatorslab.kodansha.co.jp/topics/2673/">プレスリリース</Anchor>で公開。</Note>
 		</LibBook>
 	</Section>
 </Layout>

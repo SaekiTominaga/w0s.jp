@@ -2,7 +2,9 @@ import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 import ejs from 'ejs';
 import nodemailer from 'nodemailer';
+import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { env } from '@w0s/env-value-type';
+import configContact from '@config/contact.ts';
 
 /**
  * いわゆるルート相対パス部分を取得する
@@ -24,12 +26,14 @@ export const contact = {
 		accept: 'form',
 		input: z.object({
 			yourname: z.string().optional(),
-			email: z.string().email('Eメールアドレスの書式が正しくありません。'),
-			reply: z.string(),
-			body: z.string(),
+			email: z.email('「Eメールアドレス」が入力されていないか、書式が正しくありません。'),
+			reply: z.string('「返信の有無」が選択されていません。'),
+			body: z.string('「内容」が入力されていません。'),
+			time: z.number(),
 		}),
 		handler: async (input, context) => {
 			const requestHeaders = context.request.headers;
+			const elapsedTime = Date.now() - input.time; // ページを表示してから送信するまでの経過時間（ミリ秒）
 
 			/* bot 阻止 */
 			const fetchMode = requestHeaders.get('Sec-Fetch-Mode');
@@ -40,28 +44,57 @@ export const contact = {
 				});
 			}
 
-			/* メール送信 */
-			const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
-				input: input,
-				ip: context.clientAddress,
-				headers: requestHeaders,
-			});
+			/* 本文の NG ワード */
+			if (configContact.basic.ngWords.some((ngWord) => input.body.includes(ngWord))) {
+				throw new ActionError({
+					code: 'BAD_REQUEST',
+					message: `The body text contains NG word`,
+				});
+			}
 
-			const transporter = nodemailer.createTransport({
-				host: env('MAIL_SMTP'),
-				port: env('MAIL_PORT', 'number'),
-				auth: {
-					user: env('MAIL_USER'),
-					pass: env('MAIL_PASSWORD'),
-				},
-			});
+			if (!/[\u3040-\u30FF\u4E00-\u9FFF]/u.test(input.body)) {
+				/* 内容に日本語を含まない場合は追加のチェックを行う */
+				if (configContact.additional.ngWords.some((ngWord) => input.body.includes(ngWord))) {
+					throw new ActionError({
+						code: 'BAD_REQUEST',
+						message: `The body text contains NG word`,
+					});
+				}
 
-			const sentInfo = await transporter.sendMail({
-				from: env('MAIL_FROM'),
-				to: env('MAIL_TO'),
-				subject: 'w0s.jp 問い合わせ',
-				html: html,
-			});
+				if (elapsedTime < configContact.additional.elapsedTime * 1000) {
+					throw new ActionError({
+						code: 'BAD_REQUEST',
+						message: `The time between loading the page and submitting the form is too short (${String(elapsedTime / 1000)}s)`,
+					});
+				}
+			}
+
+			let sentInfo: SMTPTransport.SentMessageInfo | undefined;
+			if (requestHeaders.get('X-Requested-With') !== '@playwright/test') {
+				/* メール送信 */
+				const html = await ejs.renderFile(`${env('ROOT')}/template/mail/contact.ejs`, {
+					input: input,
+					elapsedTime: elapsedTime,
+					ip: context.clientAddress,
+					headers: requestHeaders,
+				});
+
+				const transporter = nodemailer.createTransport({
+					host: env('MAIL_SMTP'),
+					port: env('MAIL_PORT', 'number'),
+					auth: {
+						user: env('MAIL_USER'),
+						pass: env('MAIL_PASSWORD'),
+					},
+				});
+
+				sentInfo = await transporter.sendMail({
+					from: env('MAIL_FROM'),
+					to: env('CONTACT_MAIL_TO'),
+					subject: 'w0s.jp 問い合わせ',
+					html: html,
+				});
+			}
 
 			return {
 				mailSentInfo: sentInfo,

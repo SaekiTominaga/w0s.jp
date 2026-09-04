@@ -26,10 +26,10 @@ const { astroFilePath, structuredData, top = false, toc = true, contentFooter = 
 const pagePath = getPageUrl(Astro.url, astroFilePath);
 
 const rendered = await Astro.slots.render('default');
-const dom = new JSDOM(rendered);
-const { document } = dom.window;
+const { window } = new JSDOM(rendered);
+const { document } = window;
 
-const tocData = toc ? getTocData(document) : undefined;
+const tocData = toc ? getTocData(window) : undefined;
 const footnoteNoteData = getNoteData(document);
 const footnoteReferenceData = getReferenceData(document);
 

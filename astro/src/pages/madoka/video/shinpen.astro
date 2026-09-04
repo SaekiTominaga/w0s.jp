@@ -1,25 +1,167 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
-import AmazonItem from '@components/AmazonItem.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
 import ListLink from '@components/ListLink.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import VideoDiff from '@components/VideoDiff.astro';
 import VideoDiffItem from '@components/VideoDiffItem.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import Button from '@components/+phrasing/Button.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import image_chapter1_000057_bd from '@image/madoka/video/shinpen_chapter1_00-00-57_bd.jpg';
+import image_chapter1_000135_tvtokyo from '@image/madoka/video/shinpen_chapter1_00-01-35_tvtokyo.jpg';
+import image_chapter1_000135_bd from '@image/madoka/video/shinpen_chapter1_00-01-35_bd.jpg';
+import image_chapter1_000153_bd from '@image/madoka/video/shinpen_chapter1_00-01-53_bd.jpg';
+import image_chapter1_000316_tvtokyo from '@image/madoka/video/shinpen_chapter1_00-03-16_tvtokyo.jpg';
+import image_chapter1_000316_bd from '@image/madoka/video/shinpen_chapter1_00-03-16_bd.jpg';
+import image_chapter1_000336_tvtokyo from '@image/madoka/video/shinpen_chapter1_00-03-36_tvtokyo.jpg';
+import image_chapter1_000336_bd from '@image/madoka/video/shinpen_chapter1_00-03-36_bd.jpg';
+import image_chapter1_000355_tvtokyo from '@image/madoka/video/shinpen_chapter1_00-03-55_tvtokyo.jpg';
+import image_chapter1_000355_bd from '@image/madoka/video/shinpen_chapter1_00-03-55_bd.jpg';
+import image_chapter2_000725_bd from '@image/madoka/video/shinpen_chapter2_00-07-25_bd.jpg';
+import image_chapter2_000733_bd from '@image/madoka/video/shinpen_chapter2_00-07-33_bd.jpg';
+import image_chapter3_000746_bd from '@image/madoka/video/shinpen_chapter3_00-07-46_bd.jpg';
+import image_chapter4_000913_zenpenbd from '@image/madoka/video/shinpen_chapter4_00-09-13_zenpenbd.jpg';
+import image_chapter4_000913_bd from '@image/madoka/video/shinpen_chapter4_00-09-13_bd.jpg';
+import image_chapter4_001118_bd from '@image/madoka/video/shinpen_chapter4_00-11-18_bd.jpg';
+import image_chapter5_001342_bd from '@image/madoka/video/shinpen_chapter5_00-13-42_bd.jpg';
+import image_chapter6_001654_bd from '@image/madoka/video/shinpen_chapter6_00-16-54_bd.jpg';
+import image_chapter6_001735_bd from '@image/madoka/video/shinpen_chapter6_00-17-35_bd.jpg';
+import image_chapter6_001914_bd from '@image/madoka/video/shinpen_chapter6_00-19-14_bd.jpg';
+import image_chapter6_001946_bd from '@image/madoka/video/shinpen_chapter6_00-19-46_bd.jpg';
+import image_chapter6_001958_bd from '@image/madoka/video/shinpen_chapter6_00-19-58_bd.jpg';
+import image_chapter7_002203_bd from '@image/madoka/video/shinpen_chapter7_00-22-03_bd.jpg';
+import image_chapter7_002206_bd from '@image/madoka/video/shinpen_chapter7_00-22-06_bd.jpg';
+import image_chapter7_002210_bd from '@image/madoka/video/shinpen_chapter7_00-22-10_bd.jpg';
+import image_chapter7_002236_bd from '@image/madoka/video/shinpen_chapter7_00-22-36_bd.jpg';
+import image_chapter7_002346_bd from '@image/madoka/video/shinpen_chapter7_00-23-46_bd.jpg';
+import image_chapter7_002554_bd from '@image/madoka/video/shinpen_chapter7_00-25-54_bd.jpg';
+import image_chapter7_002625_bd from '@image/madoka/video/shinpen_chapter7_00-26-25_bd.jpg';
+import image_chapter8_002848_bd from '@image/madoka/video/shinpen_chapter8_00-28-48_bd.jpg';
+import image_chapter8_002931_bd from '@image/madoka/video/shinpen_chapter8_00-29-31_bd.jpg';
+import image_chapter9_003058_bd from '@image/madoka/video/shinpen_chapter9_00-30-58_bd.jpg';
+import image_chapter9_003138_bd from '@image/madoka/video/shinpen_chapter9_00-31-38_bd.jpg';
+import image_chapter11_003803_bd from '@image/madoka/video/shinpen_chapter11_00-38-03_bd.jpg';
+import image_chapter12_004046_bd from '@image/madoka/video/shinpen_chapter12_00-40-46_bd.jpg';
+import image_chapter13_004146_bd from '@image/madoka/video/shinpen_chapter13_00-41-46_bd.jpg';
+import image_chapter13_004149_bd from '@image/madoka/video/shinpen_chapter13_00-41-49_bd.jpg';
+import image_chapter13_004207_bd from '@image/madoka/video/shinpen_chapter13_00-42-07_bd.jpg';
+import image_chapter13_004317_bd from '@image/madoka/video/shinpen_chapter13_00-43-17_bd.jpg';
+import image_chapter13_004443_bd from '@image/madoka/video/shinpen_chapter13_00-44-43_bd.jpg';
+import image_chapter13_004529_bd from '@image/madoka/video/shinpen_chapter13_00-45-29_bd.jpg';
+import image_chapter13_004547_bd from '@image/madoka/video/shinpen_chapter13_00-45-47_bd.jpg';
+import image_chapter13_004553_bd from '@image/madoka/video/shinpen_chapter13_00-45-53_bd.jpg';
+import image_chapter14_004609_bd from '@image/madoka/video/shinpen_chapter14_00-46-09_bd.jpg';
+import image_chapter14_004614_bd from '@image/madoka/video/shinpen_chapter14_00-46-14_bd.jpg';
+import image_chapter17_010000_bd from '@image/madoka/video/shinpen_chapter17_01-00-00_bd.jpg';
+import image_chapter18_010027_bd from '@image/madoka/video/shinpen_chapter18_01-00-27_bd.jpg';
+import image_chapter18_010102_bd from '@image/madoka/video/shinpen_chapter18_01-01-02_bd.jpg';
+import image_chapter20_010747_bd from '@image/madoka/video/shinpen_chapter20_01-07-47_bd.jpg';
+import image_chapter20_010810_bd from '@image/madoka/video/shinpen_chapter20_01-08-10_bd.jpg';
+import image_chapter20_010856_bd from '@image/madoka/video/shinpen_chapter20_01-08-56_bd.jpg';
+import image_chapter20_010951_tvcm5 from '@image/madoka/video/shinpen_chapter20_01-09-51_tvcm5.jpg';
+import image_chapter20_010951_bd from '@image/madoka/video/shinpen_chapter20_01-09-51_bd.jpg';
+import image_chapter20_011001_bd from '@image/madoka/video/shinpen_chapter20_01-10-01_bd.jpg';
+import image_chapter20_011047_bd from '@image/madoka/video/shinpen_chapter20_01-10-47_bd.jpg';
+import image_chapter20_011145_bd from '@image/madoka/video/shinpen_chapter20_01-11-45_bd.jpg';
+import image_chapter20_011208_bd from '@image/madoka/video/shinpen_chapter20_01-12-08_bd.jpg';
+import image_chapter21_011239_bd from '@image/madoka/video/shinpen_chapter21_01-12-39_bd.jpg';
+import image_chapter21_011244_bd from '@image/madoka/video/shinpen_chapter21_01-12-44_bd.jpg';
+import image_chapter21_011236_bd from '@image/madoka/video/shinpen_chapter21_01-12-36_bd.jpg';
+import image_chapter21_011253_bd from '@image/madoka/video/shinpen_chapter21_01-12-53_bd.jpg';
+import image_chapter21_011258_bd from '@image/madoka/video/shinpen_chapter21_01-12-58_bd.jpg';
+import image_chapter21_011357_bd from '@image/madoka/video/shinpen_chapter21_01-13-57_bd.jpg';
+import image_chapter21_011411_bd from '@image/madoka/video/shinpen_chapter21_01-14-11_bd.jpg';
+import image_chapter21_011415_bd from '@image/madoka/video/shinpen_chapter21_01-14-15_bd.jpg';
+import image_chapter21_011428_bd from '@image/madoka/video/shinpen_chapter21_01-14-28_bd.jpg';
+import image_chapter21_011445_bd from '@image/madoka/video/shinpen_chapter21_01-14-45_bd.jpg';
+import image_chapter21_011455_bd from '@image/madoka/video/shinpen_chapter21_01-14-55_bd.jpg';
+import image_chapter21_011500_bd from '@image/madoka/video/shinpen_chapter21_01-15-00_bd.jpg';
+import image_chapter21_011559_bd from '@image/madoka/video/shinpen_chapter21_01-15-59_bd.jpg';
+import image_chapter21_011707_bd from '@image/madoka/video/shinpen_chapter21_01-17-07_bd.jpg';
+import image_chapter21_011735_bd from '@image/madoka/video/shinpen_chapter21_01-17-35_bd.jpg';
+import image_chapter22_011826_tvcm4 from '@image/madoka/video/shinpen_chapter22_01-18-26_tvcm4.jpg';
+import image_chapter22_011826_bd from '@image/madoka/video/shinpen_chapter22_01-18-26_bd.jpg';
+import image_chapter22_011923_bd from '@image/madoka/video/shinpen_chapter22_01-19-23_bd.jpg';
+import image_chapter22_011930_bd from '@image/madoka/video/shinpen_chapter22_01-19-30_bd.jpg';
+import image_chapter22_011941_bd from '@image/madoka/video/shinpen_chapter22_01-19-41_bd.jpg';
+import image_chapter22_012222_bd from '@image/madoka/video/shinpen_chapter22_01-22-22_bd.jpg';
+import image_chapter22_012223_bd from '@image/madoka/video/shinpen_chapter22_01-22-23_bd.jpg';
+import image_chapter22_012231_bd from '@image/madoka/video/shinpen_chapter22_01-22-31_bd.jpg';
+import image_chapter22_012339_bd from '@image/madoka/video/shinpen_chapter22_01-23-39_bd.jpg';
+import image_chapter23_012401_bd from '@image/madoka/video/shinpen_chapter23_01-24-01_bd.jpg';
+import image_chapter23_012426_bd from '@image/madoka/video/shinpen_chapter23_01-24-26_bd.jpg';
+import image_chapter23_012430_bd from '@image/madoka/video/shinpen_chapter23_01-24-30_bd.jpg';
+import image_chapter23_012440_bd from '@image/madoka/video/shinpen_chapter23_01-24-40_bd.jpg';
+import image_chapter24_012556_bd from '@image/madoka/video/shinpen_chapter24_01-25-56_bd.jpg';
+import image_chapter24_012617_bd from '@image/madoka/video/shinpen_chapter24_01-26-17_bd.jpg';
+import image_chapter24_012644_bd from '@image/madoka/video/shinpen_chapter24_01-26-44_bd.jpg';
+import image_chapter24_012716_bd from '@image/madoka/video/shinpen_chapter24_01-27-16_bd.jpg';
+import image_chapter24_012729_bd from '@image/madoka/video/shinpen_chapter24_01-27-29_bd.jpg';
+import image_chapter24_012733_bd from '@image/madoka/video/shinpen_chapter24_01-27-33_bd.jpg';
+import image_chapter24_012735_bd from '@image/madoka/video/shinpen_chapter24_01-27-35_bd.jpg';
+import image_chapter24_012744_bd from '@image/madoka/video/shinpen_chapter24_01-27-44_bd.jpg';
+import image_chapter24_012800_bd from '@image/madoka/video/shinpen_chapter24_01-28-00_bd.jpg';
+import image_chapter24_012910_tvcm4 from '@image/madoka/video/shinpen_chapter24_01-29-10_tvcm4.jpg';
+import image_chapter24_012910_bd from '@image/madoka/video/shinpen_chapter24_01-29-10_bd.jpg';
+import image_chapter24_012914_bd from '@image/madoka/video/shinpen_chapter24_01-29-14_bd.jpg';
+import image_chapter24_012934_bd from '@image/madoka/video/shinpen_chapter24_01-29-34_bd.jpg';
+import image_chapter24_012956_bd from '@image/madoka/video/shinpen_chapter24_01-29-56_bd.jpg';
+import image_chapter24_013010_bd from '@image/madoka/video/shinpen_chapter24_01-30-10_bd.jpg';
+import image_chapter24_013012_bd from '@image/madoka/video/shinpen_chapter24_01-30-12_bd.jpg';
+import image_chapter24_013026_bd from '@image/madoka/video/shinpen_chapter24_01-30-26_bd.jpg';
+import image_chapter24_013038_bd from '@image/madoka/video/shinpen_chapter24_01-30-38_bd.jpg';
+import image_chapter24_013045_bd from '@image/madoka/video/shinpen_chapter24_01-30-45_bd.jpg';
+import image_chapter24_013046_bd from '@image/madoka/video/shinpen_chapter24_01-30-46_bd.jpg';
+import image_chapter25_013324_bd from '@image/madoka/video/shinpen_chapter25_01-33-24_bd.jpg';
+import image_chapter26_013352_bd from '@image/madoka/video/shinpen_chapter26_01-33-52_bd.jpg';
+import image_chapter26_013512_bd from '@image/madoka/video/shinpen_chapter26_01-35-12_bd.jpg';
+import image_chapter26_013556_bd from '@image/madoka/video/shinpen_chapter26_01-35-56_bd.jpg';
+import image_chapter26_013754_bd from '@image/madoka/video/shinpen_chapter26_01-37-54_bd.jpg';
+import image_chapter26_013754_2_bd from '@image/madoka/video/shinpen_chapter26_01-37-54_2_bd.jpg';
+import image_chapter26_013828_bd from '@image/madoka/video/shinpen_chapter26_01-38-28_bd.jpg';
+import image_chapter26_013918_bd from '@image/madoka/video/shinpen_chapter26_01-39-18_bd.jpg';
+import image_chapter26_013936_bd from '@image/madoka/video/shinpen_chapter26_01-39-36_bd.jpg';
+import image_chapter27_014059_bd from '@image/madoka/video/shinpen_chapter27_01-40-59_bd.jpg';
+import image_chapter27_014102_bd from '@image/madoka/video/shinpen_chapter27_01-41-02_bd.jpg';
+import image_chapter27_014141_bd from '@image/madoka/video/shinpen_chapter27_01-41-41_bd.jpg';
+import image_chapter27_014156_bd from '@image/madoka/video/shinpen_chapter27_01-41-56_bd.jpg';
+import image_chapter27_014244_bd from '@image/madoka/video/shinpen_chapter27_01-42-44_bd.jpg';
+import image_chapter27_014252_bd from '@image/madoka/video/shinpen_chapter27_01-42-52_bd.jpg';
+import image_chapter27_014253_bd from '@image/madoka/video/shinpen_chapter27_01-42-53_bd.jpg';
+import image_chapter27_014307_bd from '@image/madoka/video/shinpen_chapter27_01-43-07_bd.jpg';
+import image_chapter27_014311_bd from '@image/madoka/video/shinpen_chapter27_01-43-11_bd.jpg';
+import image_chapter27_014416_bd from '@image/madoka/video/shinpen_chapter27_01-44-16_bd.jpg';
+import image_chapter28_014511_bd from '@image/madoka/video/shinpen_chapter28_01-45-11_bd.jpg';
+import image_chapter28_014514_bd from '@image/madoka/video/shinpen_chapter28_01-45-14_bd.jpg';
+import image_chapter28_014552_bd from '@image/madoka/video/shinpen_chapter28_01-45-52_bd.jpg';
+import image_chapter28_014643_bd from '@image/madoka/video/shinpen_chapter28_01-46-43_bd.jpg';
+import image_chapter28_014645_bd from '@image/madoka/video/shinpen_chapter28_01-46-45_bd.jpg';
+import image_chapter28_014701_bd from '@image/madoka/video/shinpen_chapter28_01-47-01_bd.jpg';
+import image_chapter28_014727_bd from '@image/madoka/video/shinpen_chapter28_01-47-27_bd.jpg';
+import image_chapter28_014800_bd from '@image/madoka/video/shinpen_chapter28_01-48-00_bd.jpg';
+import image_chapter28_014805_bd from '@image/madoka/video/shinpen_chapter28_01-48-05_bd.jpg';
+import image_chapter28_014815_bd from '@image/madoka/video/shinpen_chapter28_01-48-15_bd.jpg';
+import image_chapter28_014916_bd from '@image/madoka/video/shinpen_chapter28_01-49-16_bd.jpg';
+import image_chapter28_014934_bd from '@image/madoka/video/shinpen_chapter28_01-49-34_bd.jpg';
+import image_chapter28_014944_bd from '@image/madoka/video/shinpen_chapter28_01-49-44_bd.jpg';
+import image_chapter28_014948_bd from '@image/madoka/video/shinpen_chapter28_01-49-48_bd.jpg';
+import image_chapter28_014949_bd from '@image/madoka/video/shinpen_chapter28_01-49-49_bd.jpg';
+import image_chapter28_014959_bd from '@image/madoka/video/shinpen_chapter28_01-49-59_bd.jpg';
+import image_chapter28_015003_bd from '@image/madoka/video/shinpen_chapter28_01-50-03_bd.jpg';
+import image_chapter29_015038_bd from '@image/madoka/video/shinpen_chapter29_01-50-38_bd.jpg';
+import image_chapter30_015529_bd from '@image/madoka/video/shinpen_chapter30_01-55-29_bd.jpg';
+import image_chapter30_015539_bd from '@image/madoka/video/shinpen_chapter30_01-55-39_bd.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』上映版とパッケージ版の比較',
 	heading: '『[新編]叛逆の物語』上映版とパッケージ版の比較',
-	dateModified: dayjs('2016-11-14'),
+	dateModified: '2016-11-14',
 	description: '2013年10月に公開された『劇場版　魔法少女まどか☆マギカ[新編]叛逆の物語』の劇場上映版と Blu-ray / DVD 版の映像の違いをまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
@@ -36,13 +178,9 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Amazon headingLevel={2}>
-		<AmazonItem asin="B00I9YND9E" title="劇場版 魔法少女まどか☆マギカ[新編]叛逆の物語(通常版) [Blu-ray]" date="2014-04-02" imageId="617z%2BzYhJ3L" imageWidth={136} imageHeight={160} />
-	</Amazon>
+	<Amazon asin="B00I9YND9E" title="劇場版 魔法少女まどか☆マギカ[新編]叛逆の物語(通常版) [Blu-ray]" date="2014-04-02" imageId="617z%2BzYhJ3L" imageWidth={136} imageHeight={160} />
 
-	<ListNote>
-		<li>本文中の<q>テレビ東京特番</q>とは、公開直後の2013年11月4日にテレビ東京で放送された <Anchor href="https://www.tv-tokyo.co.jp/anime/madoka-magica/">2時間でわかる! 魔法少女まどか☆マギカ</Anchor>内で冒頭3分間が流されたものを指します。この番組は一部を修正のうえ、 Blu-ray 限定版にも収録されていますが、映像ソースは劇場で上映されたものと同一と思われます。</li>
-	</ListNote>
+	<Note>本文中の<q>テレビ東京特番</q>とは、公開直後の2013年11月4日にテレビ東京で放送された <Anchor href="https://www.tv-tokyo.co.jp/anime/madoka-magica/">2時間でわかる! 魔法少女まどか☆マギカ</Anchor>内で冒頭3分間が流されたものを指します。この番組は一部を修正のうえ、 Blu-ray 限定版にも収録されていますが、映像ソースは劇場で上映されたものと同一と思われます。</Note>
 
 	<Section id="chapter1">
 		<Fragment slot="heading">Chapter 1</Fragment>
@@ -51,10 +189,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:00:19" timeEnd="00:01:24">
 				<p>ソウルジェムの回転具合、近づいてくるタイミング、魔女文字の書かれた壁画がブレる処理などが変更。また、近づいてきたソウルジェムの濁り部分が画面いっぱいに広がった後、5秒ほどブラックアウトになるように。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-00-57_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000057_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -63,16 +201,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:01:35">
 				<p>ほむらの語りが終わった後、夜の街並みの静止画カット（6枚）の4枚目が高速道路のジャンクションの画に差し替え。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-01-35_tvtokyo.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000135_tvtokyo} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">テレビ東京特番</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-01-35_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000135_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -81,10 +219,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:01:52">
 				<p>背景の夜空がパッチワーク（布片）に変わるときにSEが追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-01-53_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000153_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -93,16 +231,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:03:14">
 				<p>杏子の作画修正。また高速で回転する槍の表現が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-03-16_tvtokyo.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000316_tvtokyo} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">テレビ東京特番</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-03-16_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000316_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -111,16 +249,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:03:36" timeEnd="00:04:25">
 				<p>魔法部屋にある椅子の背もたれ上部の柄が変更。マミがティーセットをべべの頭に乗せるカット（4′25″）が分かりやすい。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-03-36_tvtokyo.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000336_tvtokyo} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">テレビ東京特番</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-03-36_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000336_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -129,16 +267,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:03:52">
 				<p>ナイトメアが部屋に入ってきたまどかの方を振り向くカットで、椅子が削除。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-03-55_tvtokyo.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000355_tvtokyo} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">テレビ東京特番</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter1_00-03-55_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter1_000355_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -147,22 +285,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:04:20">
 				<p>ナイトメアの時間を止める瞬間、フラッシュを焚いたように画面全体が白くなるコマが挿入。また、その直後のコマは画面がピンぼけし、若干上下方向に引き延ばされる処理が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<video controls="" width="294" height="166" id="video-chapter1-000420-tvtokyo" slot="media">
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter1_00-04-19_tvtokyo.webm" type="video/webm" />
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter1_00-04-19_tvtokyo.mp4" type="video/mp4" />
-							</video>
+						<Embedded width={320} border={true}>
+							<video src="/madoka/video/video/shinpen_chapter1_00-04-19_tvtokyo.webm" controls="" width="320" height="180" id="video-chapter1-000420-tvtokyo" slot="media"></video>
 							<Fragment slot="caption">テレビ東京特番</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<video controls="" width="294" height="166" id="video-chapter1-000420-bd" slot="media">
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter1_00-04-19_bd.webm" type="video/webm" />
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter1_00-04-19_bd.mp4" type="video/mp4" />
-							</video>
+						<Embedded width={320} border={true}>
+							<video src="/madoka/video/video/shinpen_chapter1_00-04-19_bd.webm" controls="" width="320" height="180" id="video-chapter1-000420-bd" slot="media"></video>
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -184,19 +316,19 @@ const structuredData: StructuredData = {
 
 				<p>座ったまどかの股が白く描かれてパンチラのように見えていたのを修正。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter2_00-07-25_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter2_000725_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter2_00-07-33_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter2_000733_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -212,10 +344,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:07:40">
 				<p>オープニングが始まるパンアップのカットで、日光のゴースト形状は上映版では正五角形だったが、パッケージ版では横長の形状に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter3_00-07-46_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter3_000746_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -231,16 +363,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:09:13">
 				<p>オープニング直後の静止画カット（3枚）の3枚目が林の中の遊歩道から親水公園的な場所の俯瞰の画に差し替え。なお、前編のOP直後も同じ流れで静止画カットが4枚あり、その3枚目が差し替え前の遊歩道と同じイラストである。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter4_00-09-13_zenpenbd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
-							<Fragment slot="caption">【参考】前編・パッケージ版（4m47s）</Fragment>
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter4_000913_zenpenbd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
+							<Fragment slot="caption">【参考】前編・パッケージ版（4′47″）</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter4_00-09-13_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter4_000913_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -249,10 +381,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:11:18">
 				<p>和子先生が妄想話をする中での他教室からのカットで、部屋や廊下の照明が消えている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter4_00-11-18_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter4_001118_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -268,10 +400,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:13:42">
 				<p>屋上でほむらと他の魔法少女達が顔合わせをした次の静止画カット（計6枚）の6枚目、夜景を見下ろした画が差し替え。差し替え後も夜景の画だが、ピントをボカしたような処理が施されている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter5_00-13-42_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter5_001342_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -287,10 +419,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:16:52">
 				<p>バスタオル姿で髪を解かすマミの鏡台に置かれている化粧品ケースに模様が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter6_00-16-54_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001654_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -299,10 +431,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:17:27" timeEnd="00:26:28">
 				<p>背景のパッチワークの柄が細かくなる。この変更はナイトメア戦が終わるまで続く。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter6_00-17-35_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001735_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -313,13 +445,10 @@ const structuredData: StructuredData = {
 
 				<p>モノレールの屋根でまどかとほむらが合流するシーン（後ろ姿の部分）の電柱の流れが逆向きに。上映版（奥から手前に）が正しく、パッケージ版（手前から奥に）が間違っている。なお、来場者特典フィルムはパッケージ版と同じ向きだった模様（<Anchor href="https://x.com/homuh0mu/status/486787749731528706">フィルムを入手された方の投稿</Anchor>）。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<video controls="" width="294" height="166" slot="media">
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter6_00-18-11_bd.webm" type="video/webm" />
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter6_00-18-11_bd.mp4" type="video/mp4" />
-							</video>
+						<Embedded width={320} border={true}>
+							<video src="/madoka/video/video/shinpen_chapter6_00-18-11_bd.webm" controls="" width="320" height="180" slot="media"></video>
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -328,10 +457,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:19:11" timeEnd="00:19:19">
 				<p>杏子変身シーンの前半、ソウルジェムを咥えてダンスする部分で背景の赤い丸模様が下から上に向かって動くようになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter6_00-19-14_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001914_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -340,10 +469,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:19:40" timeEnd="00:19:57">
 				<p>さやか変身シーン、ブレイクダンスをする前後の部分で背景の青い結晶が下から上に向かって動くようになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter6_00-19-46_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001946_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -352,10 +481,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:19:57">
 				<p>同じくさやか変身シーン、自身と混じり合った泡の中から出てくるさやかは上映版ではマントなども含め全体的に青く塗られていたが、白や金などの色付けが行われる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter6_00-19-58_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_001958_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -371,10 +500,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:22:00">
 				<p>飛び回るまどかに合わせて変化する背景が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-22-03_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002203_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -383,10 +512,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:22:04">
 				<p>ティロ・デュエット直前のマミとまどかが手を繋ぎ舞い踊るところで、背景に描かれる黄色とピンクの帯の本数が増加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-22-06_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002206_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -395,10 +524,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:22:10">
 				<p>ティロ・デュエットの決めポーズでマミとまどかの作画修正、背景のマスケット銃が増加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-22-10_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002210_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -407,10 +536,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:22:36">
 				<p>ビルの上でナイトメアを包む煙に花模様が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-22-36_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002236_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -419,10 +548,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:23:43">
 				<p>落ちてくるラスベリーを食べようとしているナイトメアが首を傾けるタイミングが遅くなる。キャプチャー画像の時点で、上映版ではすでに首を傾けていた。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-23-46_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002346_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -431,10 +560,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:25:51" timeEnd="00:26:09">
 				<p>ヒトミタマシイから魔法少女達のソウルジェムへ降り注ぐ光のカーテンの効果が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-25-54_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002554_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -443,10 +572,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:26:24">
 				<p>結界が消えるときのSEが変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter7_00-26-25_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter7_002625_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -462,10 +591,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:28:47">
 				<p><q>私たちの戦いって…これでよかったんだっけ?</q>の静止画カット（8枚）の4枚目が円筒形の池がある公園に変更。なお上映版は通学路の小川のカットで、これは「<cite>叛逆の物語　プロダクションノート</cite>」の p.202 に掲載されている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter8_00-28-48_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter8_002848_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -474,10 +603,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:29:28" timeEnd="00:29:54">
 				<p>屋上で弁当を食べるシーンの前半（<q>ほむらちゃんも から揚げどう?</q>より前）のみ、画面手前に柵が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter8_00-29-31_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter8_002931_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -493,10 +622,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:30:55">
 				<p>水上カフェで初めてほむらと杏子が遠景で写るカットの木の枝の描き込みが精巧に。上映版ではこのカットだけ細かい枝が描かれていなかった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter9_00-30-58_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter9_003058_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -505,10 +634,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:31:36" timeEnd="00:31:59">
 				<p>上映版では杏子が<q>ちょっとちょっと 何 あんた?――</q>と言って姿勢を変えるところから若干椅子から浮き上がっていたが、パッケージ版で修正。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter9_00-31-38_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter9_003138_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -518,10 +647,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:32:46">
 				<p><q>ただ行ってみるだけでいいんです</q>の部分でテーブルの下に偽街の子供達が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter9_00-32-48_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} />
+						<Embedded width={320} border={true}>
+							<MyImage image={chapter9_003248_bd} alt="画像拡大" width={320} height={180} link={true} />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -538,13 +667,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:34:20">
 				<p>バスが発車するとき、上映版では真横に動いていたが、斜め前に進むよう変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<video controls="" width="294" height="166" slot="media">
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter10_00-34-20_bd.webm" type="video/webm" />
-								<source src="https://media.w0s.jp/video/madoka/video/shinpen_chapter10_00-34-20_bd.mp4" type="video/mp4" />
-							</video>
+						<Embedded width={320} border={true}>
+							<video src="/madoka/video/video/shinpen_chapter10_00-34-20_bd.webm" controls="" width="320" height="180" slot="media"></video>
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -560,10 +686,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:38:02" timeEnd="00:38:14">
 				<p>ほむらと杏子に迫る群衆の髪型が変更。ほむらのメガネや三つ編み、杏子のポニーテールがより本人に近い形に再現。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter11_00-38-03_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter11_003803_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -579,10 +705,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:40:45">
 				<p>「魔女の井戸」の中で上を見上げるほむらに光が当たらなくなり、暗く描かれる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter12_00-40-46_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter12_004046_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -598,26 +724,24 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:41:44">
 				<p>キュゥべえの奥にある棚の置物が修正。上映版ではここを含むいくつかのカットで棚に入っている物が異なっていた。また、上映版では棚が4段で描かれたカットが存在しており、パッケージ版ではすべて5段に修正されている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-41-46_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004146_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<ListNote>
-					<li>これ以降、マミの部屋シーンの他のカットも同様に修正。</li>
-				</ListNote>
+				<Note>これ以降、マミの部屋シーンの他のカットも同様に修正。</Note>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:41:48">
 				<p>ベベが<q>チーズニナッチャウ!</q>と言って駆け回る背景に虎が追加。虎は<q>Be号</q>と書かれた腹巻き(?)を付けている。数匹の虎が駆け回ってバター（Ghee）になり、ホットケーキが作られる流れは童話『<cite>ちびくろサンボ</cite>』から来ている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-41-49_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004149_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -626,10 +750,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:42:06">
 				<p>ほむらが紅茶を飲むところ、上映版では紅茶を口に含んだ後、カップから口を離したが、パッケージ版では付いたまま。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-42-07_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004207_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -638,10 +762,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:43:16">
 				<p>上映版ではほむらが紅茶のカップを口に付けた体勢で5秒以上静止していたが（かなり不自然）、テーブルから少し持ち上げた体勢に変更。上映版では<q>ちょっとだけ気になって</q>直後のカットの使い回しをしていたものと思われる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-43-17_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004317_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -650,10 +774,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:44:41">
 				<p>ソウルジェムを取り出すほむらは、上映版では糸目の笑顔だったが、途中から目を開いた表情に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-44-43_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004443_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -664,28 +788,28 @@ const structuredData: StructuredData = {
 
 				<p>窓の開閉ボタンを押した後のほむらの立ち位置が修正（キャプチャー3枚目）。上映版ではテーブルから少し離れていた。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-45-29_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004529_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-45-47_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004547_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter13_00-45-53_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter13_004553_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -701,26 +825,24 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:46:08">
 				<p>TV版3話のお菓子の魔女空間内にもあった足場がカラフルになり、クッキーなどのお菓子が載せられている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter14_00-46-09_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter14_004609_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<ListNote>
-					<li>46′20″ も同様に変更。</li>
-				</ListNote>
+				<Note>46′20″ も同様に変更。</Note>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:46:12">
 				<p>ほむらが手前から奥に飛び立つカット（画像2枚目）では、新たに画面手前に足場が描かれている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter14_00-46-14_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter14_004614_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -736,10 +858,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:59:57">
 				<p>三叉路の壁に動きが付く。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter17_01-00-00_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter17_010000_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -755,10 +877,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:00:27">
 				<p>地面に映る輪回しの少女の影は、糸巻きを通過するときには隠れるように進む。上映版では影絵のように糸巻きに影が重なる描写だった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter18_01-00-27_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter18_010027_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -767,10 +889,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:01:00">
 				<p>コーヒーカップに入った紙絵のマミとべべは画面中央付近に位置していたが、やや左寄りに変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter18_01-01-02_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter18_010102_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -786,10 +908,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:07:45" timeEnd="01:08:20">
 				<p>ゲームセンターで「<cite>Dog Drug Reinforcement.</cite>」を踊る偽街の子供達はがに股でダンスをしていたが、内股に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-07-47_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_010747_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -798,10 +920,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:08:09">
 				<p>ほむらの足元が星の散らばる夜空のような模様に変更。上映版はこの直後のカットのような模様だった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-08-10_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_010810_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -810,10 +932,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:08:54">
 				<p>杏子に向かって落ちてくる飛行船の目の部分の炎がより燃え盛る感じに変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-08-56_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_010856_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -822,16 +944,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:09:49">
 				<p>バスの上で自分の右手を見つめるほむらの表情が変更。手のひらだけでなく、甲にもカラフルな模様が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-09-51_tvcm5.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_010951_tvcm5} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">TV CM 5</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-09-51_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_010951_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -842,24 +964,24 @@ const structuredData: StructuredData = {
 
 				<p>フクロウが増える。上映版ではバスの上の振り子時計に降りる3羽と、上空を舞う1羽の計4羽だった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-10-01_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_011001_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="01:10:46">
-				<p>燃え上がる街の路上に鍵の入った瓶が追加。ほむらがゴンドラに乗る直前の、首を切られ続けるうさぎのシーン（1h00m35s）に出てくるものと同一。鍵自体は仁美ナイトメア戦でのまどか変身シーンの背景（20m37s〜20m52s）や、ホムリリィ結界崩壊時の弾けるエフェクト（1h30m55s〜1h 31m07s）でも描かれている。</p>
+				<p>燃え上がる街の路上に鍵の入った瓶が追加。ほむらがゴンドラに乗る直前の、首を切られ続けるうさぎのシーン（1h 0′35″）に出てくるものと同一。鍵自体は仁美ナイトメア戦でのまどか変身シーンの背景（20′37″〜20′52″）や、ホムリリィ結界崩壊時の弾けるエフェクト（1h 30′55″〜1h 31′07″）でも描かれている。</p>
 
 				<p>地面から生えてくる建物が増える、外壁の色が変化する、巨大な生き物のようなオブジェが描かれるといった変化もある。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-10-47_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_011047_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -868,10 +990,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:11:44">
 				<p>ほむらが自分が魔女であることに気づいた直後、炎をバックにガンコ、ヒガミ、オクビョウ、マヌケが写るカットで、キャラクターに動きが付き（とくにヒガミとオクビョウは内緒話をするカクカクした動き）、全体に影が付けられる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-11-45_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_011145_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -880,10 +1002,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:12:07">
 				<p>マユの塔が出現した直後のアップのカットで、次のアルティメットまどか像のカットへの画面切り替え時に暗転エフェクトと水に潜るようなSEが追加。逆に、画面切り替えを表すSEは削除。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter20_01-12-08_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter20_011208_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -899,19 +1021,19 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:12:32" timeEnd="01:20:55">
 				<p>戸棚の中にあるベッドでほむらが被っているシーツの色は上映版では白一色だったが、半透明になりところどころカラフルな模様が発光するように。周囲の壁（戸棚の内部）の模様も変更。キャプチャー1枚目のカットでは、ほむらの顔にかかる位置にレース模様が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-12-39_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011239_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-12-44_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011244_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -920,10 +1042,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:12:36">
 				<p>マユの塔の中で最初にキュゥべえが正面アップになるカットの床の模様が変更。上映版は白い模様で、前後のカットとの整合性が取れていなかった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-12-36_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011236_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -932,10 +1054,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:12:52">
 				<p>ほむらが被っていたシーツが取れて、喪服が披露されたカットの表情が変更。また、全身に影がかかる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-12-53_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011253_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -944,10 +1066,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:12:56">
 				<p>皿に黒トカゲの下半身が載ったカットで、床面の模様が変更。上映版は白い床だった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-12-58_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011258_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -956,10 +1078,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:13:57">
 				<p>現実世界で台座に横たわるほむらを多数のキュゥべえが観察しているカット、上映版ではほむらが比較的大きく写っていたが、引いた構図に。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-13-57_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011357_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -968,26 +1090,24 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:14:11">
 				<p>ロッテのいる戸棚にミラーボールや星、雪の結晶などクリスマスに関連した装飾が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-14-11_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011411_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<ListNote>
-					<li>1h16′50″、1h18′11″〜 も同様に変更。</li>
-				</ListNote>
+				<Note>1h16′50″、1h18′11″〜 も同様に変更。</Note>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="01:14:14">
 				<p>戸棚に並ぶロッテの前でレイケツ、マヌケ、ヒガミが動き回っているカット、およびその次のウソツキがロッテの後ろから覗いているカットの背景（戸棚の内部）が赤いものに変更。上映版ではほむらのベッドがある戸棚中心部の電飾のような背景だった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-14-15_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011415_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -996,10 +1116,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:14:28">
 				<p>現実世界で台座に横たわるほむらを真上から見たカット、多数のカラフルな長方形の浮遊物(?)が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-14-28_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011428_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1008,10 +1128,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:14:40" timeEnd="01:14:47">
 				<p>キュゥべえの説明中に流れる、偽街が造られるイメージ映像にほむらの手が追加。手が追加された静止画は4カットあり、手は建物を移動したり、街路灯を建てたりしている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-14-45_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011445_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1020,10 +1140,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:14:54">
 				<p>落ちる飛行船を背景にキュゥべえが手前を振り向くとき、キュゥべえに影がかかり、目だけが光るようになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-14-55_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011455_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1032,10 +1152,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:14:59">
 				<p>マユの塔内部から上を見上げるカット、戸棚のほむらベッド以外の背景が黒に変更され、キラキラした効果が追加される。戸棚自体もより下から見上げたときのあおりを強調した形に修正されている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-15-00_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011500_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1044,10 +1164,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:15:56">
 				<p>キュゥべえの説明中に魔法少女達やよだれを垂らすベベが出てくるシーンで、廊下の両壁で回っている緑色の歯車の形状が変更され、配置が平面的になる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-15-59_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011559_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1056,10 +1176,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:17:01" timeEnd="01:17:08">
 				<p>ベッドで眠るまどかの仕上げがアニメ画から手描き画のような感じに変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-17-07_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011707_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1068,10 +1188,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:17:33">
 				<p>偽街の子供達がハンカチを持って泣く仕草が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter21_01-17-35_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter21_011735_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1087,16 +1207,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:18:25">
 				<p>ほむらの全身に影がかかる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-18-26_tvcm4.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_011826_tvcm4} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">TV CM 4</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-18-26_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_011826_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1105,19 +1225,19 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:19:23">
 				<p>キュゥべえがまち針に囲われている一連のカットで、床の模様が変更。上映版は黒（キュゥべえが床に落ちる）→白（キュゥべえアップ、キャプチャー1枚目）→茶（まち針の中を回る、キャプチャー2枚目）→黒とカットによって変わっていた。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-19-23_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_011923_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-19-30_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_011930_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1126,10 +1246,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:19:39">
 				<p>偽街の子供達の動きが変更。上映版ではカクカクしたパターンの動きを繰り返していたが、複雑な動きになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-19-41_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_011941_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1140,28 +1260,28 @@ const structuredData: StructuredData = {
 
 				<p>ホムリリィの口元のリボンが上映版では1本、パッケージ版では3本に増加し、形状も中空タイプになっている。「<cite>叛逆の物語　プロダクションノート</cite>」付属の「<cite>劇団イヌカレー イメージノート2</cite>」の p.172 に両タイプの絵柄が掲載されている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-22-22_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_012222_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-22-23_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_012223_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-22-31_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_012231_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1170,10 +1290,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:23:36">
 				<p><q>最後にお別れを言えなくて――ごめんね…</q>の部分で涙を流すトカゲの身体が紫色に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter22_01-23-39_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter22_012339_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1189,10 +1309,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:23:59">
 				<p>ほむらの描写がモノクロに近くなる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter23_01-24-01_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter23_012401_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1201,19 +1321,19 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:24:25">
 				<p>巨大ギロチン台が出現するシーン、上映版ではギロチン台の後方にマユの塔とそこからの道が写っていたが、パッケージ版で削除。マユの塔は直前のホムリリィ出現時に半壊しているので、上映版で無傷で描かれているのはおかしい。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter23_01-24-26_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter23_012426_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter23_01-24-30_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter23_012430_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1224,10 +1344,10 @@ const structuredData: StructuredData = {
 
 				<p>街中にお菓子や楽器などの小物類が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter23_01-24-40_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter23_012440_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1243,10 +1363,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:25:54">
 				<p>背景に描かれている水道橋のオブジェの位置と傾き方向が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-25-56_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012556_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1255,10 +1375,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:26:17">
 				<p>オクタヴィアが現れる時に、円形をした五線譜の中に音楽記号がある模様（黒色）が煙の表面に複数出現するようになる。オクタヴィアの周囲にも巨大な五線譜が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-26-17_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012617_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1267,10 +1387,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:26:42">
 				<p>オクタヴィアの腕の開き具合、剣の角度が変更。上映版では剣は外側に開く向きだった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-26-44_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012644_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1279,10 +1399,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:27:13">
 				<p>アントニー（薔薇園の魔女の手下）達が持つ武器が精巧に。先端部はバラの模様。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-27-16_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012716_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1291,10 +1411,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:27:28">
 				<p>手前のベッド(?)の位置がホムリリィとオクタヴィアにかからないように左にずれる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-27-29_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012729_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1303,10 +1423,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:27:30">
 				<p>オクタヴィアが持つ剣の角度が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-27-33_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012733_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1315,10 +1435,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:27:34">
 				<p>オクタヴィアが攻撃する時に、円形をした五線譜の中に音楽記号がある模様（白色）が周囲に複数出現。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-27-35_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012735_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1327,10 +1447,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:27:44">
 				<p>奥に多数の家具類が山のように積み上がったものが追加。まどかがマミの空中ブランコに抱えられて飛ぶのカット（1h27′48″）の右側にも描かれている。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-27-44_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012744_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1339,10 +1459,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:27:57">
 				<p>弓を放つまどかの周囲に家具やお菓子の小物が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-28-00_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012800_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1351,16 +1471,16 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:29:08">
 				<p>オクタヴィアのマント周りが変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-29-10_tvcm4.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012910_tvcm4} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">TV CM 4</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-29-10_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012910_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1369,10 +1489,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:29:13">
 				<p>上映版ではさやかがいったん瞳のみ正面を向いた後、後ろにいる杏子に向かって振り向く動きがあったが、パッケージ版では静止したまま。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-29-14_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012914_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1381,10 +1501,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:29:33">
 				<p>オクタヴィアは上映版では横スライドの動きだったが、上下に波打つ動きや尾を動かす動作が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-29-34_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012934_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1393,10 +1513,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:29:56">
 				<p>オクタヴィアは上映版では杏子の槍を両手で持っていたが、左手のみで持つ形に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-29-56_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_012956_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1406,10 +1526,10 @@ const structuredData: StructuredData = {
 				<p>ホムリリィの頭部の周りに白い歯が円形に配置。この後もいくつかのシーンで同様の追加が行われている（正面以外のカットでは描かれていない）。</p>
 				<!--<p>緑色の歯車の数が増加。</p>-->
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-30-10_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_013010_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1418,10 +1538,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:30:11">
 				<p>オクタヴィアの動き（左向きに横スライド）が速くなる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-30-12_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_013012_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1430,10 +1550,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:30:25">
 				<p>「ティロ・フィナーレ」直前にマミが出す巨大な砲弾に手毬のような描き込みが行われる。出現するときのSEが追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-30-26_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_013026_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1442,10 +1562,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:30:36">
 				<p>背景右側に描かれている、ホムリリィから伸びる枝の形状が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-30-38_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_013038_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1454,10 +1574,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:30:44">
 				<p>オクタヴィアの周囲に、円形をした五線譜の中に音楽記号がある模様（白色）が複数描き込まれる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-30-45_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_013045_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1468,10 +1588,10 @@ const structuredData: StructuredData = {
 
 				<p>オクタヴィアから巨大な円形の五線譜（黒色）が出現する。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter24_01-30-46_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter24_013046_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1487,10 +1607,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:33:23">
 				<p>ホムリリィの結界が消滅するときの効果が変更され、画面全体が揺れ動く感じに。花火の弾け具合も変わっており、弾けるSEが追加された。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter25_01-33-24_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter25_013324_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1506,22 +1626,22 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:33:51">
 				<p>鹿目家の3人のベンチにダニエル&amp;ジェニファー（ハコの魔女の手下）が追加。ベンチを下ろしつつ、手を振っている。次のカットでマミが手を振っているが、上映版では誰に振っているのか分からない状態だった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-33-52_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013352_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="01:35:11">
-				<p>ほむらのソウルジェムの色が上映版では青（1h33m39sと同じ）、パッケージ版は濃い青と紫に変更。またソウルジェム内部に泡が流れる表現が追加。</p>
+				<p>ほむらのソウルジェムの色が上映版では青（1h 33′39″と同じ）、パッケージ版は濃い青と紫に変更。またソウルジェム内部に泡が流れる表現が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-35-12_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013512_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1530,10 +1650,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:35:53" timeEnd="01:36:45">
 				<p>ほむらから発生する黒い煙に赤、青、緑などの色効果が付く。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-35-56_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013556_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1542,19 +1662,19 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:37:54">
 				<p>ソウルジェムが一瞬で細かい泡のようなものに変化し、ライン状に集まる一連の動きが表現される。上映版では最初から泡がライン状になっており、ソウルジェムが変化したものということが分からなかった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-37-54_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013754_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-37-54_2_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013754_2_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1565,10 +1685,10 @@ const structuredData: StructuredData = {
 
 				<p>一部のカットではキュゥべえの配置が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-38-28_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013828_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1577,10 +1697,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:39:17">
 				<p>ほむらが<q>愛よ</q>とつぶやくシーン、上映版ではセリフに合わせて口が動いていたが、ダークオーブを飲み込んだ後は口を閉じたままに変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-39-18_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013918_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1589,10 +1709,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:39:36">
 				<p>悪魔ほむらの衣装が披露されるシーンで、背中の翼が生える時に羽が飛び散るようになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter26_01-39-36_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter26_013936_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1610,10 +1730,10 @@ const structuredData: StructuredData = {
 
 				<p>ピョートル（お菓子の魔女の手下）を隠す花びらの形状や舞い方が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-40-59_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014059_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1622,10 +1742,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:41:01" timeEnd="01:43:04">
 				<p>ほむらが座っているパラソルの柱に魔女文字が描かれる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-41-02_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014102_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1634,10 +1754,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:41:39">
 				<p>ほむらは上映版では首を2回横に振っていたが、ゆっくり1回に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-41-41_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014141_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1650,10 +1770,10 @@ const structuredData: StructuredData = {
 
 				<p>ほむらの座っている位置が変更。上映版は向かって右側の椅子、パッケージ版では左側。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-41-56_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014156_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1662,10 +1782,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:42:43">
 				<p>上映版ではほむらとさやかに影が付いていたが、明るくなる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-42-44_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014244_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1678,19 +1798,19 @@ const structuredData: StructuredData = {
 
 				<p>オクタヴィアにエフェクトが追加され、もやもやと輝くようになった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-42-52_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014252_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-42-53_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014253_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1699,10 +1819,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:43:05">
 				<p>紫色の液体の流れ方が変更。上映版は画面右上から先端部がギザギザを描く形で流れてきた。また、液体が透過して路面の模様がうっすら見えるようになった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-43-07_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014307_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1711,10 +1831,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:43:11">
 				<p>オクタヴィアが消える時、波打つようなエフェクトがかかるようになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-43-11_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014311_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1729,10 +1849,10 @@ const structuredData: StructuredData = {
 
 				<p>さやか作画修正（髪型や制服の後ろリボンの形状など）。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter27_01-44-16_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter27_014416_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1748,10 +1868,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:45:11">
 				<p>教室で頬杖をつくほむらの奥にいたモブキャラ男子がいなくなる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-45-11_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014511_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1760,10 +1880,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:45:12">
 				<p>和子先生に頬の斜線表現が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-45-14_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014514_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1774,10 +1894,10 @@ const structuredData: StructuredData = {
 
 				<p>一部生徒の髪型が変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-45-52_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014552_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1786,10 +1906,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:46:42">
 				<p>ほむらの口元アップのカットで、口唇の境界線の表現がソフトに。上映版では口紅をしている感が強かった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-46-43_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014643_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1798,10 +1918,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:46:44">
 				<p>廊下のモブキャラが変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-46-45_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014645_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1810,10 +1930,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:46:58">
 				<p>上映版ではまどかのリボンが赤色だったが、黄色に修正。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-47-01_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014701_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1822,10 +1942,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:47:27">
 				<p>ほむらに案内されて校内の廊下を歩くカットで、まどかの頭上から見下ろしたカットが差し替え。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-47-27_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014727_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1836,10 +1956,10 @@ const structuredData: StructuredData = {
 
 				<p>まどかから発生する宇宙空間のようなものがカラフルに。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-48-00_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014800_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1848,10 +1968,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:48:03" timeEnd="01:48:14">
 				<p>まどかの背景に出現した宇宙空間のようなものがカラフルに。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-48-05_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014805_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1860,10 +1980,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:48:10" timeEnd="01:48:19">
 				<p>宇宙空間のような背景模様は、上映版では煙と共に消えていたが、パッケージ版では煙が消えた後も残る。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-48-15_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014815_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1878,10 +1998,10 @@ const structuredData: StructuredData = {
 
 				<p>背景の雲が右方向に動くようになる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-49-16_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014916_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1890,10 +2010,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:49:34">
 				<p>木が2本生えた場所の壁面に家具やお菓子などの絵が描かれる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-49-34_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014934_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1902,10 +2022,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:49:43">
 				<p>瓶に描かれた魔女文字 <span class="u-madoka-font-witch">GERTRUD WIE</span> が白色から黒色に変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-49-44_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014944_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1914,10 +2034,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:49:44" timeEnd="01:49:46">
 				<p>ショッピングをするマミの服に斑点模様が、なぎさの服に水玉模様が追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-49-48_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014948_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1928,10 +2048,10 @@ const structuredData: StructuredData = {
 
 				<p>なお、この直後の標識アップのカットでは上映版でも文字が描かれていた。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-49-49_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014949_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1940,10 +2060,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:49:58">
 				<p>エンディングに入る直前、街の上空で浮遊回転する、円環マークの描かれた茶色い石のようなものが追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-49-59_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_014959_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1952,10 +2072,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:50:03">
 				<p>魔女文字が変更。上映版は <span class="u-madoka-font-witch">WER TRÄUMT?</span> 、パッケージ版は <span class="u-madoka-font-witch">WER HATGETRÄUMT?</span> 。また、文字がかすれたようなエフェクトが追加。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter28_01-50-03_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter28_015003_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1971,10 +2091,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:50:05" timeEnd="01:55:00">
 				<p>エンディング「<cite>君の銀の庭</cite>」のシルエットの色が全編にわたって変更。一部、タイミングが変更された部分もある。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter29_01-50-38_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter29_015038_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -1992,10 +2112,10 @@ const structuredData: StructuredData = {
 
 				<p>雲が流れる方向も逆になる。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter30_01-55-29_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter30_015529_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
@@ -2004,10 +2124,10 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="01:55:35">
 				<p>草むらから出てくるキュゥべえは、上映版では通常のように身体が白く描かれていたが、光が当たっていないためか暗く変更。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/shinpen_chapter30_01-55-39_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter30_015539_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>

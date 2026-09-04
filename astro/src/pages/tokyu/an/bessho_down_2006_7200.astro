@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　上田電鉄別所線　下り（7200系、2006年）',
 	heading: '上田電鉄別所線　下り',
 	subHeading: '7200系、2006年',
-	dateModified: dayjs('2006-12-24'),
+	dateModified: '2006-12-24',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -139,7 +138,5 @@ const structuredData: StructuredData = {
 		</AnnounceStation>
 	</Announce>
 
-	<ListNote>
-		<li>八木沢発車時の<q>降り口はいちばん前、……</q>以降、および別所温泉到着時の放送は早朝、夜間の駅無人時間帯しか流れません。</li>
-	</ListNote>
+	<Note>八木沢発車時の<q>降り口はいちばん前、……</q>以降、および別所温泉到着時の放送は早朝、夜間の駅無人時間帯しか流れません。</Note>
 </Layout>

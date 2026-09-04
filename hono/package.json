@@ -1,0 +1,24 @@
+{
+	"name": "hono",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "tsx --watch --env-file=../.env.development --tsconfig tsconfig.json src/app.ts",
+		"build": "tsc",
+		"test": "node --experimental-test-coverage --env-file=../.env.development --env-file=../.env.test --test src/**/*.test.ts"
+	},
+	"dependencies": {
+		"@hono/node-server": "2.0.11",
+		"@w0s/env-value-type": "2.0.0",
+		"@w0s/html-escape": "5.0.0",
+		"hono": "4.12.31",
+		"nodemailer": "9.0.3",
+		"winston": "3.19.0",
+		"winston-transport": "4.9.0"
+	},
+	"devDependencies": {
+		"@types/nodemailer": "8.0.1",
+		"tsx": "4.23.1"
+	},
+	"packageManager": "pnpm@11.8.0"
+}

@@ -1,8 +1,7 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Kumeta.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
@@ -10,7 +9,7 @@ import type { StructuredData } from '../../../../@types/util.d.ts';
 const structuredData: StructuredData = {
 	title: '久米田康治作品のリスト',
 	heading: '作品リスト',
-	dateModified: dayjs('2023-08-04'),
+	dateModified: '2026-07-09',
 	description: '連載作品から読み切り、企画作品まで、漫画形態で制作された作品のリストです。',
 	breadcrumb: [{ path: '/kumeta/', name: '久米田康治データベース' }],
 };
@@ -131,14 +130,12 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li>連載開始日は予告編を含まず、読み切り掲載分を含みます。</li>
-		</ListNote>
+		<Note>連載開始日は予告編を含まず、読み切り掲載分を含みます。</Note>
 
-		<Section id="rensai-special" depth={2} headingType="b">
+		<Section id="rensai-special" depth={2}>
 			<Fragment slot="heading">連載作品の特別編、予告など</Fragment>
 
-			<Section id="rensai-special-nangoku" depth={3} headingType="c">
+			<Section id="rensai-special-nangoku" depth={3}>
 				<Fragment slot="heading"><cite>行け!!南国アイスホッケー部</cite></Fragment>
 
 				<Table>
@@ -170,7 +167,7 @@ const structuredData: StructuredData = {
 				</Table>
 			</Section>
 
-			<Section id="rensai-special-kaizo" depth={3} headingType="c">
+			<Section id="rensai-special-kaizo" depth={3}>
 				<Fragment slot="heading"><cite>かってに改蔵</cite></Fragment>
 
 				<Table>
@@ -243,7 +240,7 @@ const structuredData: StructuredData = {
 				</Table>
 			</Section>
 
-			<Section id="rensai-special-zetsubou" depth={3} headingType="c">
+			<Section id="rensai-special-zetsubou" depth={3}>
 				<Fragment slot="heading"><cite>さよなら絶望先生</cite></Fragment>
 
 				<Table>
@@ -353,7 +350,7 @@ const structuredData: StructuredData = {
 				</Table>
 			</Section>
 
-			<Section id="rensai-special-jyoshiraku" depth={3} headingType="c">
+			<Section id="rensai-special-jyoshiraku" depth={3}>
 				<Fragment slot="heading"><cite>じょしらく</cite></Fragment>
 
 				<Table>
@@ -414,7 +411,7 @@ const structuredData: StructuredData = {
 				</Table>
 			</Section>
 
-			<Section id="rensai-special-sekadoro" depth={3} headingType="c">
+			<Section id="rensai-special-sekadoro" depth={3}>
 				<Fragment slot="heading"><cite>せっかち伯爵と時間どろぼう</cite></Fragment>
 
 				<Table>
@@ -464,7 +461,7 @@ const structuredData: StructuredData = {
 				</Table>
 			</Section>
 
-			<Section id="rensai-special-kakushigoto" depth={3} headingType="c">
+			<Section id="rensai-special-kakushigoto" depth={3}>
 				<Fragment slot="heading"><cite>かくしごと</cite></Fragment>
 
 				<Table>
@@ -539,7 +536,7 @@ const structuredData: StructuredData = {
 				</Table>
 			</Section>
 
-			<Section id="rensai-special-shibuya" depth={3} headingType="c">
+			<Section id="rensai-special-shibuya" depth={3}>
 				<Fragment slot="heading"><cite>シブヤニアファミリー</cite></Fragment>
 
 				<Table>
@@ -556,9 +553,7 @@ const structuredData: StructuredData = {
 						<tr>
 							<td>（予告漫画）</td>
 							<td>2021年10月20日</td>
-							<td>
-								<Anchor href="https://www.amazon.co.jp/dp/B09JC22SCT/">週刊少年サンデー 2021年47号</Anchor>
-							</td>
+							<td>週刊少年サンデー 2021年47号</td>
 							<td><Anchor href="https://www.amazon.co.jp/dp/B0BC8JM421/">1巻</Anchor></td>
 							<td>作者名表記なし</td>
 						</tr>
@@ -644,9 +639,7 @@ const structuredData: StructuredData = {
 				<tr>
 					<td><cite>オフサイドトラップ</cite></td>
 					<td>2015年1月5日</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00R3BMQKQ/">ヤングマガジン 2015年6号</Anchor>
-					</td>
+					<td>ヤングマガジン 2015年6号</td>
 					<td class="u-cell -center">✘</td>
 					<td></td>
 				</tr>
@@ -710,9 +703,7 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li><q>選考結果発表日</q>は掲載誌の発売日を指します。実際に選考が行われた日ではありません。</li>
-		</ListNote>
+		<Note><q>選考結果発表日</q>は掲載誌の発売日を指します。実際に選考が行われた日ではありません。</Note>
 	</Section>
 
 	<Section id="etc">
@@ -739,6 +730,12 @@ const structuredData: StructuredData = {
 					<td>1993年12月15日</td>
 					<td>週刊少年サンデー増刊 1994年1月号</td>
 					<td>青山剛昌、久米田康治、椎名高志、上西園茂宣によるギャグ漫画企画</td>
+				</tr>
+				<tr>
+					<td><cite>Jってやつはもう...</cite></td>
+					<td>1994年11月</td>
+					<td>週刊少年サンデー特別増刊　Jサンデー　サッカーコミックスペシャル 1994年11月24日号</td>
+					<td>サンデー連載陣によるによる「<cite>Jリーグシアター</cite>」の作品（Jリーグ企画）</td>
 				</tr>
 				<tr>
 					<td><cite>酒と沮とダビスタと女</cite></td>
@@ -820,9 +817,7 @@ const structuredData: StructuredData = {
 					<td><cite>さよなら、失踪先生!</cite> <small>（『<cite>もう、しませんから。</cite>』File.55）</small></td>
 					<td>2005年10月26日</td>
 					<td>週刊少年マガジン 2005年48号</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00L5SYR5A/"><cite>もう、しませんから。</cite> 3巻</Anchor>
-					</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B00L5SYR5A/"><cite>もう、しませんから。</cite> 3巻</Anchor></td>
 					<td>久米田プロ訪問</td>
 				</tr>
 				<tr>
@@ -830,9 +825,7 @@ const structuredData: StructuredData = {
 					<td>うらやましくて絶望した!! <small>（『<cite>もう、しませんから。</cite>』File.141）</small></td>
 					<td>2007年8月22日</td>
 					<td>週刊少年マガジン 2007年38号</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UWS/"><cite>もう、しませんから。</cite> 6巻</Anchor>
-					</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B00LIN3UWS/"><cite>もう、しませんから。</cite> 6巻</Anchor></td>
 					<td>生前葬レポート</td>
 				</tr>
 				<tr>
@@ -840,9 +833,7 @@ const structuredData: StructuredData = {
 					<td>『<cite>ダイヤのA</cite>』小学館漫画賞受賞! <small>（『<cite>もう、しませんから。</cite>』File.166）</small></td>
 					<td>2008年3月26日</td>
 					<td>週刊少年マガジン 2008年17号</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UU0/"><cite>もう、しませんから。</cite> 7巻</Anchor>
-					</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B00LIN3UU0/"><cite>もう、しませんから。</cite> 7巻</Anchor></td>
 					<td>授賞式で久米田先生が寺嶋先生に花束を渡す様子が描かれる</td>
 				</tr>
 				<tr>
@@ -850,9 +841,7 @@ const structuredData: StructuredData = {
 					<td><cite>魔画尽町殺人事件（前編）</cite></td>
 					<td>2008年3月26日</td>
 					<td>週刊少年マガジン 2008年17号</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00LIN3UTQ/"><cite>もう、しませんから。</cite> 8巻</Anchor>
-					</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B00LIN3UTQ/"><cite>もう、しませんから。</cite> 8巻</Anchor></td>
 					<td>マガジン全連載作家による企画漫画（糸色望登場）</td>
 				</tr>
 				<tr>
@@ -860,9 +849,7 @@ const structuredData: StructuredData = {
 					<td><cite>AUSDYN（オースダイン）</cite></td>
 					<td>2009年7月8日</td>
 					<td>週刊少年サンデー 2009年32号</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00Y0OF38Q/"><cite>Z-END</cite> 2巻</Anchor>
-					</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B00Y0OF38Q/"><cite>Z-END</cite> 2巻</Anchor></td>
 					<td>サンデー×マガジン50周年企画　クロスライン（糸色望登場）</td>
 				</tr>
 				<tr>
@@ -870,22 +857,32 @@ const structuredData: StructuredData = {
 					<td><cite>MINEZAAG（マインザーク）</cite></td>
 					<td>2009年7月8日</td>
 					<td>週刊少年マガジン 2009年32号</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B00Y0OF38Q/"><cite>Z-END</cite> 2巻</Anchor>
-					</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B00Y0OF38Q/"><cite>Z-END</cite> 2巻</Anchor></td>
 					<td>サンデー×マガジン50周年企画　クロスライン（坪内地丹登場）、村枝賢一インタビュー内でキャラクター使用の交渉経緯（単行本非収録）</td>
+				</tr>
+				<tr>
+					<td>西本英雄</td>
+					<td><cite>10年間の応援、ありがとう</cite> <small>（『<cite>ちょっと盛りました。</cite>』97回）</small></td>
+					<td>2014年6月18日</td>
+					<td>週刊少年マガジン 2014年29号</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/4063951308/"><cite>ちょっと盛りました。</cite> 4巻</Anchor></td>
+					<td>寄せ書きイラスト掲載（サンジェルマン伯爵）</td>
 				</tr>
 				<tr>
 					<td>畑健二郎</td>
 					<td><cite>ハヤテのごとく! 2</cite> <small>（『<cite>トニカクカワイイ</cite>』第168話）</small></td>
 					<td>2021年10月27日</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B09JW9GKPF/">週刊少年サンデー 2021年48号</Anchor>
-					</td>
-					<td>
-						<Anchor href="https://www.amazon.co.jp/dp/B09RMKMKCV/"><cite>トニカクカワイイ</cite> 19巻</Anchor>
-					</td>
+					<td>週刊少年サンデー 2021年48号</td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B09RMKMKCV/"><cite>トニカクカワイイ</cite> 19巻</Anchor></td>
 					<td>『<cite>シブヤニアファミリー</cite>』連載開始祝い</td>
+				</tr>
+				<tr>
+					<td>ハルマキ</td>
+					<td><cite>次々と漫画家が消えて行く宿</cite></td>
+					<td>2023年5月〜2024年1月</td>
+					<td><Anchor href="https://harumaki-manga-energy.com/" icon={false}><cite>もみあげカワウソのマンガな話</cite></Anchor><small>（作者ブログ）</small></td>
+					<td><Anchor href="https://www.amazon.co.jp/dp/B0CRMC48NC/"><cite>次々と漫画家が消えて行く宿</cite></Anchor></td>
+					<td>サンデー連載漫画家をモデルとした創作、全43話</td>
 				</tr>
 			</tbody>
 		</Table>

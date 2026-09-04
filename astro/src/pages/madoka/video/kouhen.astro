@@ -1,24 +1,24 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
 import Amazon from '@components/Amazon.astro';
-import AmazonItem from '@components/AmazonItem.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
 import Grid from '@components/Grid.astro';
 import GridItem from '@components/GridItem.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import List from '@components/List.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import VideoDiff from '@components/VideoDiff.astro';
 import VideoDiffItem from '@components/VideoDiffItem.astro';
+import image_chapter6_002650_tvcm3 from '@image/madoka/video/kouhen_chapter6_00-26-50_tvcm3.jpg';
+import image_chapter6_002650_bd from '@image/madoka/video/kouhen_chapter6_00-26-50_bd.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『劇場版　魔法少女まどか☆マギカ[後編]永遠の物語』上映版とパッケージ版の比較',
 	heading: '『[後編]永遠の物語』上映版とパッケージ版の比較',
-	dateModified: dayjs('2020-08-22'),
+	dateModified: '2026-07-30',
 	description: '2012年10月に公開された『劇場版　魔法少女まどか☆マギカ[後編]永遠の物語』の劇場上映版と Blu-ray / DVD 版の映像の違いをまとめました。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
@@ -35,9 +35,7 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Amazon headingLevel={2}>
-		<AmazonItem asin="B00C3EDY68" title="劇場版 魔法少女まどか☆マギカ [前編] 始まりの物語/[後編] 永遠の物語【通常版】 [Blu-ray]" date="2013-07-24" imageId="51IOl9Ky54L" imageWidth={135} imageHeight={160} />
-	</Amazon>
+	<Amazon asin="B00C3EDY68" title="劇場版 魔法少女まどか☆マギカ [前編] 始まりの物語/[後編] 永遠の物語【通常版】 [Blu-ray]" date="2013-07-24" imageId="51IOl9Ky54L" imageWidth={135} imageHeight={160} />
 
 	<Section id="chapter1">
 		<Fragment slot="heading">Chapter 1</Fragment>
@@ -46,10 +44,13 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:00:37" timeEnd="00:02:13">
 				<p>画面手前の曲線を描いた柵は、上映版では黒色のみで表現されていたが、パッケージ版では白も混じって円筒形であることが表現され、立体的に見えるようになった。</p>
 
-				<p>なお、<a href="/madoka/video/zenpen#chapter32">前編の同じシーン（2h3′41″〜）</a>では上映版の柵はボケていたが、後編のこのシーンでは柵にもピントが合っている状態である。</p>
+				<p>なお<a href="/madoka/video/zenpen#chapter32">前編の同じシーン（2h 3′41″〜）</a>では上映版の柵はボケていたが、後編のこのシーンでは柵にもピントが合っている状態である。</p>
 			</VideoDiffItem>
 			<VideoDiffItem timeStart="00:02:07">
-				<p>宙に浮かぶさやかのグリーフシードは、上映版では4人掛けベンチの中央に浮いていたが、少し右にずれた。（<a href="/madoka/video/zenpen#chapter32">前編2h05′09″</a>と同じ変化）</p>
+				<p>宙に浮かぶさやかのグリーフシードは、上映版では4人掛けベンチの中央に浮いていたが、少し右にずれた。（<a href="/madoka/video/zenpen#chapter32">前編2h 5′9″</a>と同じ変化）</p>
+			</VideoDiffItem>
+			<VideoDiffItem timeStart="00:02:38" timeEnd="00:02:40">
+				<p>杏子が着地の後、身体を右に少し回転させる動作が追加。</p>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -67,9 +68,7 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:04:35">
 				<p>ウェディングまどかの髪の描き分けが細かくなり、ドレスに影が付いた。</p>
 
-				<ListNote>
-					<li><Anchor href="https://www.amazon.co.jp/dp/4896106768/">KEY ANIMATION NOTE extra 始まりの物語 永遠の物語</Anchor> p.37 の宮本幸裕監督のコメントによると、<q>このまどかはアルティメットまどかではなく、ウエディングドレスという設定</q>とのこと。</li>
-				</ListNote>
+				<Note><Anchor href="https://www.amazon.co.jp/dp/4896106768/">KEY ANIMATION NOTE extra 始まりの物語 永遠の物語</Anchor> p.37 の宮本幸裕監督のコメントによると、<q>このまどかはアルティメットまどかではなく、ウエディングドレスという設定</q>とのこと。</Note>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -124,24 +123,22 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:26:46">
 				<p>杏子とオクタヴィアの奥に並ぶ巨大な槍が少し小さくなった。</p>
 
-				<Grid column="medium">
+				<Grid column={3}>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/kouhen_chapter6_00-26-50_tvcm3.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_002650_tvcm3} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">TV CM 3（前編BD/DVD収録）</Fragment>
 						</Embedded>
 					</GridItem>
 					<GridItem>
-						<Embedded border={true}>
-							<Image path="madoka/video/kouhen_chapter6_00-26-50_bd.jpg" alt="画像拡大" width={294} height={166} quality={60} link={true} slot="media" />
+						<Embedded width={320} border={true}>
+							<MyImage image={image_chapter6_002650_bd} alt="画像拡大" width={320} height={180} link={true} slot="media" />
 							<Fragment slot="caption">パッケージ版</Fragment>
 						</Embedded>
 					</GridItem>
 				</Grid>
 
-				<ListNote>
-					<li>TV CM ではオクタヴィアに光が当たっているが、上映版では逆光になっている。上映版とパッケージ版の違いは奥に並ぶ槍の大きさのみ。</li>
-				</ListNote>
+				<Note>TV CM ではオクタヴィアに光が当たっているが、上映版では逆光になっている。上映版とパッケージ版の違いは奥に並ぶ槍の大きさのみ。</Note>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -164,9 +161,12 @@ const structuredData: StructuredData = {
 			<VideoDiffItem timeStart="00:36:18">
 				<p>マミ作画修正。上映版ではまどかの方を向いたときに口角が上がっていたが、パッケージ版ではニヤけ具合が低減した。</p>
 
-				<p>まどかとさやかの紅茶カップの把手の向きが逆転（右手で持つ向きへ変更）。その他、急須や皿などの作画修正。</p>
+				<p>まどかの紅茶カップの把手の向きが逆転（右手で持つ向きへ変更）。その他、急須や皿などの作画修正。</p>
 
-				<p>なお、1h30m09sの回想カットはパッケージ版も未修正である。</p>
+				<p>なお 1h 30′9″の回想カットはパッケージ版も未修正である。</p>
+			</VideoDiffItem>
+			<VideoDiffItem timeStart="00:49:00" timeEnd="00:49:07">
+				<p>まどかがソウルジェムを持った右手を上げる挙動をなめらかな動きに変更（上映版はTVシリーズ10話の17′10″〜17′18″と同じ動き）。</p>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -229,9 +229,7 @@ const structuredData: StructuredData = {
 					<li>「<span class="u-madoka-font-witch">HITORIBOTTIHA SABISHII MONNA</span>（独りぼっちは　さびしい　もんな）」 → 文字色が赤から黄へ変更</li>
 				</List>
 
-				<ListNote>
-					<li><Anchor href="https://www.amazon.co.jp/dp/4896106768/">KEY ANIMATION NOTE VOLUME extra 始まりの物語／永遠の物語</Anchor>に1枚画のロングポスターが封入されているが、これは<q>わたし　保健　がかり　なんだ</q>のみ修正されたものとなっている。なお、行間などの配置は上映版ともパッケージ版とも違う独自のものである。</li>
-				</ListNote>
+				<Note><Anchor href="https://www.amazon.co.jp/dp/4896106768/">KEY ANIMATION NOTE VOLUME extra 始まりの物語／永遠の物語</Anchor>に1枚画のロングポスターが封入されているが、これは<q>わたし　保健　がかり　なんだ</q>のみ修正されたものとなっている。なお行間などの配置は上映版ともパッケージ版とも違う独自のものである。</Note>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>
@@ -251,7 +249,7 @@ const structuredData: StructuredData = {
 
 		<VideoDiff>
 			<VideoDiffItem timeStart="01:50:01">
-				<p>マミとほむらが戦うシーンが長くなった。上映版は遊園地の部分がなく、1h50m03sの壁の部分から始まっていた。</p>
+				<p>マミとほむらが戦うシーンが長くなった。上映版は遊園地の部分がなく、1h 50′03″の壁の部分から始まっていた。</p>
 			</VideoDiffItem>
 		</VideoDiff>
 	</Section>

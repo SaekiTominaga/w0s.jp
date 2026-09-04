@@ -1,18 +1,23 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Madoka.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import TickAndCross from '@components/+phrasing/TickAndCross.astro';
+import image_pictorial11_cover from '@image/madoka/dojin/pictorial11_cover.jpg';
+import image_pictorial10_cover from '@image/madoka/dojin/pictorial10_cover.jpg';
+import image_pictorial9_cover from '@image/madoka/dojin/pictorial9_cover.jpg';
+import image_pictorial8_cover from '@image/madoka/dojin/pictorial8_cover.jpg';
+import image_pictorial7_cover from '@image/madoka/dojin/pictorial7_cover.jpg';
+import image_pictorial6_cover from '@image/madoka/dojin/pictorial6_cover.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』同人誌「円環ピクトリアル」在庫状況',
 	heading: '同人誌「円環ピクトリアル」在庫状況',
-	dateModified: dayjs('2021-01-02'),
-	image: 'https://media.w0s.jp/image/madoka/dojin/pictorial10_cover.jpg',
+	dateModified: '2021-01-02',
+	image: image_pictorial10_cover,
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
 		label: '円環ピクトリアル',
@@ -48,7 +53,7 @@ const structuredData: StructuredData = {
 			<tr>
 				<td>No.11</td>
 				<td>
-					<Image path="madoka/dojin/pictorial11_cover.jpg" width={57} height={80} quality={60} />
+					<MyImage image={image_pictorial11_cover} width={57} height={80} />
 					<a href="/madoka/dojin/pictorial11">マギアレコード海外版動向</a>
 				</td>
 				<td>2019年8月</td>
@@ -65,7 +70,7 @@ const structuredData: StructuredData = {
 			<tr>
 				<td>No.10</td>
 				<td>
-					<Image path="madoka/dojin/pictorial10_cover.jpg" width={57} height={80} quality={60} />
+					<MyImage image={image_pictorial10_cover} width={57} height={80} />
 					<a href="/madoka/dojin/pictorial10">『劇場版　魔法少女まどか☆マギカ』韓国上映</a>
 				</td>
 				<td>2018年8月</td>
@@ -80,7 +85,7 @@ const structuredData: StructuredData = {
 			<tr>
 				<td>No.9</td>
 				<td>
-					<Image path="madoka/dojin/pictorial9_cover.jpg" width={57} height={80} quality={60} />
+					<MyImage image={image_pictorial9_cover} width={57} height={80} />
 					<a href="/madoka/dojin/pictorial9">美樹さやか駅ポスターめぐり</a>
 				</td>
 				<td>2018年8月</td>
@@ -97,7 +102,7 @@ const structuredData: StructuredData = {
 			<tr>
 				<td>No.8</td>
 				<td>
-					<Image path="madoka/dojin/pictorial8_cover.jpg" width={57} height={80} quality={60} />
+					<MyImage image={image_pictorial8_cover} width={57} height={80} />
 					<a href="/madoka/dojin/pictorial8">まどか☆マギカ映像比較講義録</a>
 				</td>
 				<td>2017年12月</td>
@@ -108,7 +113,7 @@ const structuredData: StructuredData = {
 			<tr>
 				<td>No.7</td>
 				<td>
-					<Image path="madoka/dojin/pictorial7_cover.jpg" width={57} height={80} quality={60} />
+					<MyImage image={image_pictorial7_cover} width={57} height={80} />
 					<a href="/madoka/dojin/pictorial7">TVシリーズ　放送版とパッケージ版の比較</a>
 				</td>
 				<td>2017年8月</td>
@@ -123,7 +128,7 @@ const structuredData: StructuredData = {
 			<tr>
 				<td>No.6</td>
 				<td>
-					<Image path="madoka/dojin/pictorial6_cover.jpg" width={57} height={80} quality={60} />
+					<MyImage image={image_pictorial6_cover} width={57} height={80} />
 					<a href="/madoka/dojin/pictorial6">[新編]叛逆の物語　上映版とパッケージ版の比較</a>
 				</td>
 				<td>2016年12月</td>
@@ -134,7 +139,5 @@ const structuredData: StructuredData = {
 		</tbody>
 	</Table>
 
-	<ListNote>
-		<li>No.5 以前の旧作（コピー本）はいずれも再販ありません。</li>
-	</ListNote>
+	<Note>No.5 以前の旧作（コピー本）はいずれも再販ありません。</Note>
 </Layout>

@@ -1,19 +1,18 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Madoka.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import LibBook from '@components/LibBook.astro';
 import LibContent from '@components/LibContent.astro';
 import LibItem from '@components/LibItem.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '『魔法少女まどか☆マギカ』の図書での紹介例',
 	heading: 'メディア紹介 — 図書',
-	dateModified: dayjs('2023-06-20'),
+	dateModified: '2023-06-20',
 	description: '雑誌以外の書籍において『魔法少女まどか☆マギカ』のインタビューや作品紹介などが掲載された事例のリストです。',
 	breadcrumb: [{ path: '/madoka/', name: 'まどか資料館' }],
 	localNav: {
@@ -32,7 +31,7 @@ const slugger = new GithubSlugger();
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2011年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="@2.5" release="2011-03-31" isbn="978-4-04-894080-1" amazonAsin="4048940805" amazonImageId="51+ojV0aDoL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -40,9 +39,7 @@ const slugger = new GithubSlugger();
 				<LibItem pages={[34, 41]}><em>「『魔法少女まどか☆マギカ』」</em>岩上敦宏インタビュー。脚本制作時の話など。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>本書は2011年3月31日の発売だが、インタビューは12話までの放送が終了していることを前提とした会話であり、また10話までの本編画像も掲載されているため、震災前に取材、編集が行われたものと思われる。</li>
-			</ListNote>
+			<Note>本書は2011年3月31日の発売だが、インタビューは12話までの放送が終了していることを前提とした会話であり、また10話までの本編画像も掲載されているため、震災前に取材、編集が行われたものと思われる。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="BLACK PAST" release="2011-06-12" amazonAsin="B008F6Y5LG" amazonImageId="51TSD8MDIEL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -76,9 +73,7 @@ const slugger = new GithubSlugger();
 				<LibItem>TVシリーズのキャラクター設定、異空間設定、武器・小物設定、美術設定ほか。「<cite>劇団イヌカレー　イメージノート</cite>」付属。</LibItem>
 			</LibContent>
 
-			<ListNote>
-				<li>2014年3月には<Anchor href="https://www.amazon.co.jp/dp/4896109163/">新装版</Anchor>が発売されている。</li>
-			</ListNote>
+			<Note>2014年3月には<Anchor href="https://www.amazon.co.jp/dp/4896109163/">新装版</Anchor>が発売されている。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="100人がしゃべり倒す! 「魔法少女まどか☆マギカ」" release="2011-10-14" isbn="978-4-7966-8525-2" amazonAsin="4796685251" amazonImageId="61v0hG6jFpL" amazonImageWidth={115} amazonImageHeight={160}>
@@ -106,7 +101,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2012年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="平成23年度[第15回]文化庁メディア芸術祭受賞作品集" release="2012-02-01">
@@ -205,7 +200,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2013年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="魔法少女まどか☆マギカ　KEY ANIMATION NOTE extra 始まりの物語／永遠の物語" release="2013-02-28" amazonAsin="4896106768" amazonImageId="51X1+Ul732L" amazonImageWidth={111} amazonImageHeight={160}>
@@ -243,9 +238,7 @@ const slugger = new GithubSlugger();
 			<LibContent>
 				<LibItem>小池一夫×虚淵玄の対談（<Anchor href="https://live.nicovideo.jp/watch/lv77366564">ニコニコ生放送で2012年1月29日に行われた対談</Anchor>の書き起こし）。キャラクターの命名、1〜3話の構成の根拠、世界観をキャラクター化（キュゥべえ）したこと、執筆にあたり影響を受けた作品など。</LibItem>
 			</LibContent>
-			<ListNote>
-				<li>内容は雑誌<Anchor href="https://www.amazon.co.jp/dp/4862258239/">「<cite>カイト vol.4</cite>」</Anchor>の再掲。また、2014年6月には分冊化のうえ<Anchor href="https://www.amazon.co.jp/dp/B00LC2A81G/">電子書籍版</Anchor>が発売されている。</li>
-			</ListNote>
+			<Note>内容は雑誌<Anchor href="https://www.amazon.co.jp/dp/4862258239/">「<cite>カイト vol.4</cite>」</Anchor>の再掲。また、2014年6月には分冊化のうえ<Anchor href="https://www.amazon.co.jp/dp/B00LC2A81G/">電子書籍版</Anchor>が発売されている。</Note>
 		</LibBook>
 
 		<LibBook slugger={slugger} headingLevel={3} title="魔法少女まどか☆マギカぴあ" release="2013-10-12" isbn="978-4-8356-2267-5" amazonAsin="4835622677" amazonImageId="61RCQrbFshL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -274,7 +267,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2014年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="劇場版魔法少女まどか☆マギカ [新編]叛逆の物語　公式ガイドブック　only you." release="2014-04-12" isbn="978-4-8322-4429-0" amazonAsin="4832244299" amazonImageId="61oIrxBA5xL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -315,7 +308,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2015年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="いま、幸福について語ろう　宮台真司「幸福学」対談集" release="2015-02-25" isbn="978-4-86436-599-4" amazonAsin="4864365997" amazonImageId="51Gd9zGrLpL" amazonImageWidth={107} amazonImageHeight={160}>
@@ -356,7 +349,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2016年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="「MADOGATARI展」図録" release="2016-09-22" amazonAsin="B01LZLCCFB" amazonImageId="51jKmWdTPXL" amazonImageWidth={112} amazonImageHeight={160}>
@@ -378,7 +371,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2017年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="PRO-VISION English Communication Ⅰ NEW EDITION" release="2017-02-25" isbn="978-4-342-04122-8" amazonAsin="4342041227" amazonImageId="510muQzSkYL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -395,7 +388,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2018年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="ホビージャパン フィギュアJAPANマニアックス（ホビージャパンムック 857）" release="2018-04-03" isbn="978-4-7986-1667-4" amazonAsin="4798616672" amazonImageId="51eIq9wMQYL" amazonImageWidth={113} amazonImageHeight={160}>
@@ -436,7 +429,7 @@ const slugger = new GithubSlugger();
 			</LibContent>
 		</LibBook>
 	</Section>
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">2019年</Fragment>
 
 		<LibBook slugger={slugger} headingLevel={3} title="谷口淳一郎　アニメーション画集" release="2019-01-19" isbn="978-4-902948-25-7" amazonAsin="4902948257" amazonImageId="511cGO68yuL" amazonImageWidth={118} amazonImageHeight={160}>

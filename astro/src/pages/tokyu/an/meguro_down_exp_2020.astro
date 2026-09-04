@@ -1,17 +1,16 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Announce from '@components/tokyu/Announce.astro';
 import AnnounceStation from '@components/tokyu/AnnounceStation.astro';
 import AnnoucePhrase from '@components/tokyu/+phrasing/AnnoucePhrase.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '自動放送　東急目黒線　下り急行（新3000系、2020年）',
 	heading: '目黒線　下り急行',
 	subHeading: '新3000系、2020年',
-	dateModified: dayjs('2020-03-19'),
+	dateModified: '2020-03-19',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/an/', name: '自動放送' },
@@ -122,10 +121,5 @@ const structuredData: StructuredData = {
 		</AnnounceStation>
 	</Announce>
 
-	<ListNote>
-		<li>
-			東急(新)3000系は目黒 – 武蔵小山走行中に本来あるべき次駅案内が流れません。東急5080系、3020系、都交6300形、メトロ9000系、埼玉高速2000系では以下の放送が流れます。
-			<p><q>次は武蔵小山です。武蔵小山の次は大岡山に停まります。西小山、洗足には停まりません。出口は左側です。<span lang="en">The next station is Musashi-koyama, MG03. The stop after Musashi-koyama, will be Ōokayama. The doors on the left side will open.</span></q></p>
-		</li>
-	</ListNote>
+	<Note>東急(新)3000系は目黒 – 武蔵小山走行中に本来あるべき次駅案内が流れません。東急5080系、3020系、都交6300形、メトロ9000系、埼玉高速2000系では以下の放送が流れます。<q>次は武蔵小山です。武蔵小山の次は大岡山に停まります。西小山、洗足には停まりません。出口は左側です。<span lang="en">The next station is Musashi-koyama, MG03. The stop after Musashi-koyama, will be Ōokayama. The doors on the left side will open.</span></q></Note>
 </Layout>

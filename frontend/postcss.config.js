@@ -12,7 +12,7 @@ export default {
 			remove: (comment) => comment.startsWith('*') || comment.startsWith('stylelint-') || comment.startsWith('prettylights-syntax-'),
 		}),
 		pluginDiscardEmpty(),
-		pluginImport(),
+		pluginImport,
 		pluginNesting(),
 	],
 };

@@ -1,14 +1,15 @@
 ---
 interface Props {
+	width?: number;
 	border?: boolean;
 	captionMeta?: boolean;
 }
 
-const { border, captionMeta } = Astro.props;
+const { width, border, captionMeta } = Astro.props;
 ---
 
-<figure>
-	<div class:list={['embedded', { '-border': border }]}>
+<figure class:list={[{ '-border': border }]} data-width={width} style={width !== undefined ? `--_width: ${width}px` : undefined}>
+	<div class="embedded">
 		<slot name="media" />
 	</div>
 	{
@@ -22,14 +23,26 @@ const { border, captionMeta } = Astro.props;
 
 <style>
 	@layer component {
-		.embedded {
+		/* stylelint-disable property-layout-mappings */
+		figure {
 			--_border-width: 0px;
 
-			contain: layout;
+			/* stylelint-disable-next-line declaration-property-value-no-unknown */
+			max-width: attr(data-width px);
+
+			@supports not (x: attr(x px)) {
+				/* stylelint-disable-next-line no-unknown-custom-properties */
+				max-width: var(--_width);
+			}
 
 			&.-border {
 				--_border-width: 1px;
 			}
+		}
+		/* stylelint-enable property-layout-mappings */
+
+		.embedded {
+			contain: layout;
 
 			& > :global(:any-link) {
 				--_expand-icon-padding: 4px;
@@ -42,8 +55,12 @@ const { border, captionMeta } = Astro.props;
 			& > :global(:any-link::before) {
 				display: block flow;
 				position: absolute;
-				inset: 1px;
-				background: rgb(0 0 0 / 70%) url('/assets/image/media-expansion.svg') center/contain no-repeat content-box border-box;
+				background-color: oklch(from var(--color-black) l c h / 75%);
+				background-image: url('/assets/image/media-expansion.svg');
+				background-origin: content-box;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
 				padding: var(--_expand-icon-padding);
 				block-size: 24px;
 				inline-size: 24px;
@@ -57,14 +74,16 @@ const { border, captionMeta } = Astro.props;
 			& :global(:is(img, video)) {
 				box-sizing: revert;
 				display: inline flow-root;
-				border: var(--_border-width) solid var(--color-black);
 				block-size: auto;
-				max-inline-size: calc(100% - var(--_border-width) * 2);
+				max-inline-size: 100%;
 				vertical-align: top;
 			} /* <audio> については block-size: auto を指定すると Chrome で非表示になる現象があるので、ブラウザのデフォルトスタイルに任せる */
 
+			& :global(:is(img, video):not(:focus)) {
+				outline: var(--_border-width) solid var(--color-black);
+			}
+
 			& :global(video) {
-				outline-offset: -1px;
 				outline-width: var(--outline-width-bold);
 			}
 
@@ -78,7 +97,7 @@ const { border, captionMeta } = Astro.props;
 
 				display: block flow;
 				margin-inline: auto;
-				border: var(--_border-width) solid var(--color-black);
+				outline: var(--_border-width) solid var(--color-black);
 				aspect-ratio: var(--aspect-ratio, auto);
 				block-size: auto;
 				inline-size: calc(100% - var(--_margin-inline) * 2);

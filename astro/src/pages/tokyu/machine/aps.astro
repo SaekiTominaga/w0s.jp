@@ -1,27 +1,70 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import AnchorPhoto from '@components/+phrasing/AnchorPhoto.astro';
 import DocBook from '@components/+phrasing/DocBook.astro';
 import DocMagazine from '@components/+phrasing/DocMagazine.astro';
 import Embedded from '@components/Embedded.astro';
-import Flex from '@components/Flex.astro';
-import FlexItem from '@components/FlexItem.astro';
-import Image from '@components/+phrasing/Image.astro';
-import ListNote from '@components/ListNote.astro';
+import Grid from '@components/Grid.astro';
+import GridItem from '@components/GridItem.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
+import Note from '@components/Note.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
+import image_CLG107_matsumoto5005 from '@image/tokyu/machine/aps/CLG107_matsumoto5005.jpg';
+import image_CLG107_3043 from '@image/tokyu/machine/aps/CLG107_3043.jpg';
+import image_TDK381_konan6007 from '@image/tokyu/machine/aps/TDK381_konan6007.jpg';
+import image_HG533_konan7031 from '@image/tokyu/machine/aps/HG533_konan7031.jpg';
+import image_CLG339_7290 from '@image/tokyu/machine/aps/CLG339_7290.jpg';
+import image_SC102_toyohashi1809 from '@image/tokyu/machine/aps/SC102_toyohashi1809.jpg';
+import image_CLG319_7290 from '@image/tokyu/machine/aps/CLG319_7290.jpg';
+import image_CLG333_hakone107 from '@image/tokyu/machine/aps/CLG333_hakone107.jpg';
+import image_TDK359_kumamoto5102 from '@image/tokyu/machine/aps/TDK359_kumamoto5102.jpg';
+import image_TDK366_hokuriku7112 from '@image/tokyu/machine/aps/TDK366_hokuriku7112.jpg';
+import image_BS33_8201 from '@image/tokyu/machine/aps/BS33_8201.jpg';
+import image_INV009_8641 from '@image/tokyu/machine/aps/INV009_8641.jpg';
+import image_S11_konan7031 from '@image/tokyu/machine/aps/S11_konan7031.jpg';
+import image_CLG350_8015 from '@image/tokyu/machine/aps/CLG350_8015.jpg';
+import image_HG554_toyohashi2807 from '@image/tokyu/machine/aps/HG554_toyohashi2807.jpg';
+import image_TDK3725_mizuma1002 from '@image/tokyu/machine/aps/TDK3725_mizuma1002.jpg';
+import image_BS477_7200 from '@image/tokyu/machine/aps/BS477_7200.jpg';
+import image_BS477_mizuma1004 from '@image/tokyu/machine/aps/BS477_mizuma1004.jpg';
+import image_BS482_8097 from '@image/tokyu/machine/aps/BS482_8097.jpg';
+import image_INV006_7602 from '@image/tokyu/machine/aps/INV006_7602.jpg';
+import image_INV006_toyohashi2806 from '@image/tokyu/machine/aps/INV006_toyohashi2806.jpg';
+import image_INV008_8977 from '@image/tokyu/machine/aps/INV008_8977.jpg';
+import image_INV020_9310 from '@image/tokyu/machine/aps/INV020_9310.jpg';
+import image_SVH120_7914 from '@image/tokyu/machine/aps/SVH120_7914.jpg';
+import image_INV029_8398 from '@image/tokyu/machine/aps/INV029_8398.jpg';
+import image_INV029_toyama17482 from '@image/tokyu/machine/aps/INV029_toyama17482.jpg';
+import image_INV095_8932 from '@image/tokyu/machine/aps/INV095_8932.jpg';
+import image_INV127_3262 from '@image/tokyu/machine/aps/INV127_3262.jpg';
+import image_INV104_8296 from '@image/tokyu/machine/aps/INV104_8296.jpg';
+import image_INV146_8031 from '@image/tokyu/machine/aps/INV146_8031.jpg';
+import image_INV153_8290 from '@image/tokyu/machine/aps/INV153_8290.jpg';
+import image_INV205_9322_sea from '@image/tokyu/machine/aps/INV205_9322_sea.jpg';
+import image_INV205_9322_mount from '@image/tokyu/machine/aps/INV205_9322_mount.jpg';
+import image_CDA021_towada7204 from '@image/tokyu/machine/aps/CDA021_towada7204.jpg';
+import image_BS483_toyohashi2810 from '@image/tokyu/machine/aps/BS483_toyohashi2810.jpg';
+import image_RG5096_yoro7914 from '@image/tokyu/machine/aps/RG5096_yoro7914.jpg';
+import image_RG660_7715 from '@image/tokyu/machine/aps/RG660_7715.jpg';
+import image_SVF041_Y012 from '@image/tokyu/machine/aps/SVF041_Y012.jpg';
+import image_SVF091_1602 from '@image/tokyu/machine/aps/SVF091_1602.jpg';
+import image_DA61T_306B from '@image/tokyu/machine/aps/DA61T_306B.jpg';
+import image_CG91_7290 from '@image/tokyu/machine/aps/CG91_7290.jpg';
+import image_hokuriku7112_powerunit from '@image/tokyu/machine/aps/hokuriku7112_powerunit.jpg';
+import image_BS33_8288_keystone from '@image/tokyu/machine/aps/BS33_8288_keystone.jpg';
+import image_CG89_8294 from '@image/tokyu/machine/aps/CG89_8294.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急電車の補助電源装置',
 	heading: '補助電源装置',
-	dateModified: dayjs('2023-03-19'),
+	dateModified: '2023-03-19',
 	description: '旧5000系から新3000系まで（旧性能車のデハ150形を除く）に搭載された補助電源装置を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/machine/aps/INV020_9310.jpg',
+	image: image_INV020_9310,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/machine/', name: '車両機器' },
@@ -391,46 +434,34 @@ const structuredData: StructuredData = {
 			</tbody>
 		</Table>
 
-		<ListNote>
-			<li><q>東芝</q>のうち1984年以前は東京芝浦電気の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略、<q>富士</q>は富士電機の略、<q>小糸</q>は小糸工業の略。</li>
-			<li>小糸工業の鉄道事業は2011年にコイト電工に移管された。</li>
-			<li>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。例えば CLG107 型は旧5000系がデビューした<q>1954年</q>としているが、CLG107 型自体は他事業者でも広く使われており、その数年前から導入されている。</li>
-			<li>
-				他事業者からの転用品を搭載したものの登場年は以下のデータから採っている。これらも機器の実際の製造初年とは限らないので注意されたい。
-				<ul>
-					<li>CLG319: 万博モノレールの車両搬入年（開業前年）</li>
-					<li>CLG333: 京阪神急行電鉄（現: 阪急電鉄）に CLG333 型が初めて納入された年</li>
-					<li>TDK359: 熊本電気鉄道モハ5100形の現車調査（搭載車のうちモハ5101A, 5102A のみ）</li>
-					<li>TDK3725: 水間鉄道1000形の現車調査（搭載車のうちデハ1002<!-- 1970年 -->, 1008<!-- 1972年 --> のみ）</li>
-					<li>CDA021: 十和田観光電鉄7200系の現車調査（全2両）</li>
-					<li>BS483: 豊橋鉄道1800系の現車調査（搭載車全4両）</li>
-				</ul>
-			</li>
-		</ListNote>
+		<Note><q>東芝</q>のうち1984年以前は東京芝浦電気の略、<q>東洋</q>は東洋電機製造の略、<q>日立</q>は日立製作所の略、<q>三菱</q>は三菱電機の略、<q>富士</q>は富士電機の略、<q>小糸</q>は小糸工業の略。</Note>
+		<Note>小糸工業の鉄道事業は2011年にコイト電工に移管された。</Note>
+		<Note>機器の登場年は、試作タイプを除き東急電車でその機器が初めて搭載された車両の入籍日ないし改造日を基準としており、機器の実際の製造初年とは限らない。例えばCLG107型は旧5000系がデビューした<q>1954年</q>としているが、CLG107型自体は他の鉄道事業者でも広く使われており、その数年前から導入されている。</Note>
+		<Note>他事業者からの転用品を搭載したものの登場年は、CLG319型は万博モノレールの車両搬入年（開業前年）、CLG333型は京阪神急行電鉄<small>（現: 阪急電鉄）</small>に初めて納入された年、それ以外は現車調査による。これらも機器の実際の製造初年とは限らないので注意されたい。</Note>
 	</Section>
 
 	<Section id="mg-few">
 		<Fragment slot="heading">小容量 MG</Fragment>
 
-		<Section id="clg107" depth={2} headingType="b">
+		<Section id="clg107" depth={2}>
 			<Fragment slot="heading">CLG107<small>（東京芝浦電気、2.5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CLG107_matsumoto5005.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CLG107_matsumoto5005} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2010-06-20 -->
 						<Fragment slot="caption">松本電気鉄道モハ5005（東急デハ5055）</Fragment>
 					</Embedded>
-				</FlexItem>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CLG107_3043.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				</GridItem>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CLG107_3043} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2006-03-20 -->
 						<Fragment slot="caption">デワ3043 海側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧5000系グループに搭載され、デハ3700形やデハ3450形など一部の吊り掛け車にも採用された MG です。</p>
 
@@ -443,16 +474,16 @@ const structuredData: StructuredData = {
 			<p>稼働個体は長津田車両工場のデワ3043 を最後に消滅し、2023年現在は保存車で数基が残っています。</p>
 		</Section>
 
-		<Section id="clg308" depth={2} headingType="b">
+		<Section id="clg308" depth={2}>
 			<Fragment slot="heading">CLG308<small>（東京芝浦電気、1.5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="540" height="270" slot="media" />
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>玉川線のデハ200形に搭載された MG は交流出力の電圧が 200V となりました。</p>
 
@@ -461,34 +492,34 @@ const structuredData: StructuredData = {
 			<p>現在は電車とバスの博物館にデハ204 が保存されていますが、MG が現存しているかどうかは不明です。機器の写真が掲載された資料としては<DocMagazine name="東芝レビュー" date="1956年4月号" no={75} article="昭和30年における東芝技術の成果" pages={[427]} url="https://dl.ndl.go.jp/pid/3253766/1/39" />があります。</p>
 		</Section>
 
-		<Section id="clg316" depth={2} headingType="b">
+		<Section id="clg316" depth={2}>
 			<Fragment slot="heading">CLG316<small>（東京芝浦電気、5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="540" height="270" slot="media" />
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>5200系には空調装置として天井に軸流送風機が設置されており、その電源としてサハ5250形に専用の MG が搭載されたのが特徴でしたが、1972年の扇風機化で撤去されました<NoteRef type="ref" by="pic269" />。</p>
 
 			<NoteRefContent id="pic269"><DocMagazine name="鉄道ピクトリアル" date="1972年9月号" no={269} article="私鉄車両めぐり〔93〕東京急行電鉄の車両" authors={['荻原二郎', '久原秀雄', '宮田道一']} pages={[72]} /></NoteRefContent>
 		</Section>
 
-		<Section id="tdk381" depth={2} headingType="b">
+		<Section id="tdk381" depth={2}>
 			<Fragment slot="heading">TDK381<small>（東洋電機製造、6kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/TDK381_konan6007.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_TDK381_konan6007} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2006-09-03 -->
 						<Fragment slot="caption">弘南鉄道デハ6007（東急デハ6007）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧6000系、旧7000系の東洋電機車に搭載されていた MG です。</p>
 
@@ -499,16 +530,16 @@ const structuredData: StructuredData = {
 			<p>各地に譲渡された車両のうち弘南鉄道弘南線では7000系が現役で活躍しているほか、稼働機会は皆無なものの弘南鉄道大鰐線の6000系と水間鉄道7000系でも見ることができます。</p>
 		</Section>
 
-		<Section id="clg320" depth={2} headingType="b">
+		<Section id="clg320" depth={2}>
 			<Fragment slot="heading">CLG320<small>（東京芝浦電気、7kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="540" height="270" slot="media" />
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧6000系の東芝車に搭載されていた MG です。</p>
 
@@ -523,43 +554,43 @@ const structuredData: StructuredData = {
 			<p>なお、東洋電機車の MG が 400Hz 出力の高周波タイプになったのに対し、こちらは従来どおり 120Hz 出力でした。</p>
 		</Section>
 
-		<Section id="hg533" depth={2} headingType="b">
+		<Section id="hg533" depth={2}>
 			<Fragment slot="heading">HG533<small>（日立製作所、7.5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/HG533_konan7031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_HG533_konan7031} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2008-05-05 -->
 						<Fragment slot="caption">弘南鉄道デハ7031（東急デハ7031）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧7000系の日立車に搭載されていた MG で、東洋電機車と同じく交流出力の周波数は 400Hz です。</p>
 
 			<p>北陸鉄道譲渡車は譲渡時に <a href="#tdk366">TDK366 型</a>に換装されたため、2023年現在は弘南鉄道大鰐線のみに残っています。</p>
 		</Section>
 
-		<Section id="clg339" depth={2} headingType="b">
+		<Section id="clg339" depth={2}>
 			<Fragment slot="heading">CLG339<small>（東京芝浦電気、7.5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CLG339_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CLG339_7290} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2008-01-17 -->
 						<Fragment slot="caption">デヤ7290 山側</Fragment>
 					</Embedded>
-				</FlexItem>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/SC102_toyohashi1809.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				</GridItem>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_SC102_toyohashi1809} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2023-03-03 -->
 						<Fragment slot="caption"><b>【自動調整器】</b>豊橋鉄道モ1809（東急デハ7256）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>7200系に搭載されていた MG で、旧7000系に引き続き交流出力の周波数は 400Hz です。</p>
 
@@ -576,18 +607,18 @@ const structuredData: StructuredData = {
 			<p>譲渡車では、上田交通と豊橋鉄道向けの車両は大きな改造もなく、このうち豊橋鉄道では2023年現在も活躍中ですが、十和田観光電鉄譲渡車は両運化のため <a href="#cda021">SIV 搭載</a>により撤去されました。</p>
 		</Section>
 
-		<Section id="clg319" depth={2} headingType="b">
+		<Section id="clg319" depth={2}>
 			<Fragment slot="heading">CLG319<small>（東京芝浦電気、5.5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CLG319_7290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CLG319_7290} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-12 -->
 						<Fragment slot="caption">デヤ7290 山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧3000形グループは1970年代にその多くが目蒲線と池上線に集結し、3両固定化改造を受けますが、このうち中間に付随車が挟まった Mc–T–Mc の編成は先頭電動車の MG を撤去し、付随車に（3000形としては）容量の大きな 7.5kVA SIV ないし 5.5kVA MG を搭載することで補助電源装置を編成で1基に集約する工事が1972年より行われました<NoteRef type="ref" by="pic271" />。</p>
 
@@ -599,25 +630,25 @@ const structuredData: StructuredData = {
 
 			<NoteRefContent id="denkisha263"><DocMagazine name="電気車の科学" date="1970年3月号" no={263} article="私鉄情報" pages={[62]} /></NoteRefContent>
 
-			<p>万博モノレール車両は <a href="#clg339">CLG339 型</a>を搭載した7200系より後に製造されていますが、この CLG319 型自体は型番から分かるようにそれ以前に設計されたもので、1950年代後半から京成電鉄や小田急電鉄、ドリーム交通に使用されていました。万博モノレール用の D 型は自動調整器にサイリスタを使用しているものの<NoteRef type="ref" by="toshiba245" />、CLG339 型のような MG 直取り付けではなく、本体とは別置きで<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/aps/CG91_7290.jpg" title="デヤ7290 山側"><!-- 撮影日: 2009-05-12 -->抵抗器や整流装置と一体の箱</AnchorPhoto>に収められました。</p>
+			<p>万博モノレール車両は <a href="#clg339">CLG339 型</a>を搭載した7200系より後に製造されていますが、この CLG319 型自体は型番から分かるようにそれ以前に設計されたもので、1950年代後半から京成電鉄や小田急電鉄、ドリーム交通に使用されていました。万博モノレール用の D 型は自動調整器にサイリスタを使用しているものの<NoteRef type="ref" by="toshiba245" />、CLG339 型のような MG 直取り付けではなく、本体とは別置きで<AnchorPhoto image={image_CG91_7290} title="デヤ7290 山側"><!-- 撮影日: 2009-05-12 -->抵抗器や整流装置と一体の箱</AnchorPhoto>に収められました。</p>
 
 			<NoteRefContent id="toshiba245"><DocMagazine name="東芝レビュー" date="1970年6月号" no={245} article="場内輸送用モノレールおよび電気設備ほか" authors={['川平吉郎', '北野隆一', '本田貫一']} pages={[706]} url="https://dl.ndl.go.jp/pid/3253939/1/15" /></NoteRefContent>
 
 			<p>1991年に電気検測車に改造されたデヤ7290 には前述のとおり2基の MG が装備されましたが、2位寄りにはこの CLG319 型が搭載され、2012年の引退まで使用されました。</p>
 		</Section>
 
-		<Section id="clg333" depth={2} headingType="b">
+		<Section id="clg333" depth={2}>
 			<Fragment slot="heading">CLG333<small>（東京芝浦電気、9kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CLG333_hakone107.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CLG333_hakone107} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2011-06-26 -->
 						<Fragment slot="caption">箱根登山鉄道モハ107</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧5000系の譲渡車のうち、福島交通は電車線電圧が 750V（当時）、熊本電気鉄道は 600V なため、降圧化のため CP などとともに MG の換装が行われました。福島交通譲渡車は阪急電鉄からの転用品で 600V / 1500V 複電圧対応の CLG333 型<NoteRef type="ref" by="rj170" />、熊本電気鉄道のうち1981年に導入された最初の入線車（モハ5043–モハ5044）もやはり CLG333 型が搭載されていました。</p>
 
@@ -630,18 +661,18 @@ const structuredData: StructuredData = {
 			<NoteRefContent id="pic601"><DocMagazine name="鉄道ピクトリアル" date="1995年1月号" no={601} article="箱根登山鉄道車両沿革史〔前編〕" authors={['鈴木大地']} pages={[81]} /></NoteRefContent>
 		</Section>
 
-		<Section id="tdk359" depth={2} headingType="b">
+		<Section id="tdk359" depth={2}>
 			<Fragment slot="heading">TDK359<small>（東洋電機製造、9kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/TDK359_kumamoto5102.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_TDK359_kumamoto5102} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2007-01-02 -->
 						<Fragment slot="caption">熊本電気鉄道モハ5102A（東急デハ5032）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧5000系の熊本電気鉄道譲渡車のうち、1985年追加導入の両運改造車（モハ5101〜5104）は最初の2両とは異なり東洋電機製造製の複電圧 MG が搭載されました<NoteRef type="ref" by="rj229" />。</p>
 
@@ -652,68 +683,68 @@ const structuredData: StructuredData = {
 			<p>2023年現在は最後まで残っていたモハ5101A が北熊本車庫で動態保存されています。</p>
 		</Section>
 
-		<Section id="tdk366" depth={2} headingType="b">
+		<Section id="tdk366" depth={2}>
 			<Fragment slot="heading">TDK366<small>（東洋電機製造、5.5kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/TDK366_hokuriku7112.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_TDK366_hokuriku7112} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2006-11-04 -->
 						<Fragment slot="caption">北陸鉄道モハ7112（東急デハ7055）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>北陸鉄道に譲渡された旧7000系は走り装置をはじめ各種機器が一新されていますが、MG も南海電気鉄道からの転用品<NoteRef type="ref" by="pic701" />に交換されました。</p>
 
 			<NoteRefContent id="pic701"><DocMagazine name="鉄道ピクトリアル" date="2001年5月臨時増刊号" no={701} article="現有私鉄概要　北陸鉄道" authors={['山本宏之']} pages={[88]} /></NoteRefContent>
 
-			<p>なお、モハ7001、クハ7011 以外の8両には冷房装置が搭載されましたが、普通鉄道で一般的な交流方式ではなく、富士電機によるシステムで電車線電流を電源とした直流方式が採用されたため、冷房用の補助電源装置は搭載されていません。冷房車の各車床下にはファン駆動用の直流電動機やコンプレッサーが収められた<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/aps/hokuriku7112_powerunit.jpg" title="北陸鉄道モハ7112"><!-- 撮影日: 2007-11-23 -->パワーユニット</AnchorPhoto>が搭載されています。</p>
+			<p>なお、モハ7001、クハ7011 以外の8両には冷房装置が搭載されましたが、普通鉄道で一般的な交流方式ではなく、富士電機によるシステムで電車線電流を電源とした直流方式が採用されたため、冷房用の補助電源装置は搭載されていません。冷房車の各車床下にはファン駆動用の直流電動機やコンプレッサーが収められた<AnchorPhoto image={image_hokuriku7112_powerunit} title="北陸鉄道モハ7112"><!-- 撮影日: 2007-11-23 -->パワーユニット</AnchorPhoto>が搭載されています。</p>
 		</Section>
 	</Section>
 
 	<Section id="siv-few">
 		<Fragment slot="heading">小容量 SIV</Fragment>
 
-		<Section id="bs33" depth={2} headingType="b">
+		<Section id="bs33" depth={2}>
 			<Fragment slot="heading">BS33<small>（東京芝浦電気、10kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/BS33_8201.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_BS33_8201} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2006-12-10 -->
 						<Fragment slot="caption">デハ8201（1次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>補助電源装置として量産型 SIV を最初に採用したのは1968年の東京都交通局6000系ですが、東急電鉄でも翌年に登場した8000系に東京芝浦電気（現: 東芝）が開発した 10kVA の SIV が搭載されました。</p>
 
-			<p>インバーター装置本体には整流装置が内蔵され、単相交流 7.5kVA・60Hz と直流 2.5kW・105V の出力が行われます。この本体箱は密閉式であり、熱放散のため天井には放熱フィンが設置、また側面と底板は表面積拡大と強度担保を両立した<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/aps/BS33_8288_keystone.jpg" title="デハ8288 山側"><dfn>キーストンプレート<!-- 撮影日: 2010-03-23 --></dfn></AnchorPhoto>と呼ばれる波状の板が使用されている特徴があります<NoteRef type="ref" by="toshiba237" />。</p>
+			<p>インバーター装置本体には整流装置が内蔵され、単相交流 7.5kVA・60Hz と直流 2.5kW・105V の出力が行われます。この本体箱は密閉式であり、熱放散のため天井には放熱フィンが設置、また側面と底板は表面積拡大と強度担保を両立した<AnchorPhoto image={image_BS33_8288_keystone} title="デハ8288 山側"><dfn>キーストンプレート<!-- 撮影日: 2010-03-23 --></dfn></AnchorPhoto>と呼ばれる波状の板が使用されている特徴があります<NoteRef type="ref" by="toshiba237" />。</p>
 
 			<NoteRefContent id="toshiba237"><DocMagazine name="東芝レビュー" date="1969年10月号" no={237} article="車両用高圧インバータ" authors={['秦泉寺敏正', '草野陽介', '伊藤庄司']} pages={[1241]} url="https://dl.ndl.go.jp/pid/3253931/1/13" /></NoteRefContent>
 
-			<p>装置本体のほか、電車線からの直流 1500V を引き込む入力回路として、高速度遮断器やフィルタリアクトルなどで構成される<AnchorPhoto href="https://media.w0s.jp/image/tokyu/machine/aps/CG89_8294.jpg" title="デハ8294 海側"><!-- 撮影日: 2008-09-28 -->起動装置（遮断器箱）</AnchorPhoto>が独立して置かれています。</p>
+			<p>装置本体のほか、電車線からの直流 1500V を引き込む入力回路として、高速度遮断器やフィルタリアクトルなどで構成される<AnchorPhoto image={image_CG89_8294} title="デハ8294 海側"><!-- 撮影日: 2008-09-28 -->起動装置（遮断器箱）</AnchorPhoto>が独立して置かれています。</p>
 
 			<p>8500系や8090系の一部にも搭載されて長く活躍しましたが、2013年の大井町線8090系引退により国内からは消滅しました。その後もインドネシアの PT KAI 社に譲渡されたデハ8202 にのみ残っているはずですが、現地で2018年に撮影された映像<NoteRef type="ref" by="youtube-00vGUHVu_K4" />によると前面蓋の凸模様がなくなっており、何らかの改修が行われた可能性があります。</p>
 
 			<NoteRefContent id="youtube-00vGUHVu_K4"><Anchor href="https://www.youtube.com/watch?v=00vGUHVu_K4">2018/05/17 【ジャカルタ】 東急8000系 8003F カリデレス駅</Anchor>の先頭から2両目。</NoteRefContent>
 		</Section>
 
-		<Section id="inv009" depth={2} headingType="b">
+		<Section id="inv009" depth={2}>
 			<Fragment slot="heading">INV009<small>（東芝、2kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV009_8641.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV009_8641} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-03-22 -->
 						<Fragment slot="caption">デハ8641（18-2次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>8500系18次車のうち、1986年に田玉線と大井町線との共通予備車として 5 + 5 両に分割できる編成で新造された 8638F×⑩R は分割時に編成中の SIV が1基になってしまうのを防ぐため、上り向き先頭車のデハ8600形（デハ8638, 8639）に小容量 SIV が搭載されていました。続けて大井町線に新製投入された 8640F×⑤R、8641F×⑤R も同様です。</p>
 
@@ -726,18 +757,18 @@ const structuredData: StructuredData = {
 	<Section id="fan-power">
 		<Fragment slot="heading">扇風機電源装置</Fragment>
 
-		<Section id="s11" depth={2} headingType="b">
+		<Section id="s11" depth={2}>
 			<Fragment slot="heading">S11<small>（小糸工業、1kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/S11_konan7031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_S11_konan7031} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2007-08-05 -->
 						<Fragment slot="caption">弘南鉄道デハ7031（東急デハ7031）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>旧7000系は当初室内天井に送風機を装備していましたが、後に交流駆動の扇風機に更新され、MG の交流出力（200V・400Hz）を 60Hz に変換するコンバーター装置が MG 搭載車の床下に設置されました。</p>
 
@@ -750,18 +781,18 @@ const structuredData: StructuredData = {
 	<Section id="mg-much">
 		<Fragment slot="heading">大容量 MG</Fragment>
 
-		<Section id="clg350" depth={2} headingType="b">
+		<Section id="clg350" depth={2}>
 			<Fragment slot="heading">CLG350<small>（東京芝浦電気、140kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CLG350_8015.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CLG350_8015} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2006-07-08 -->
 						<Fragment slot="caption">クハ8015（2次車）海側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>東急電鉄では8000系2次車のうち1971年の東横線 8019F より冷房装置が搭載されました。前述のとおり、当時すでに <a href="#bs33">10kVA SIV</a> が実用化されていたものの、冷房用の大容量・三相交流出力に対応した SIV は開発されていなかったため、冷房電源は MG とされました。</p>
 
@@ -770,36 +801,36 @@ const structuredData: StructuredData = {
 			<p>8000系グループの廃車進行に伴い2011年をもって東急電鉄からは消滅しましたが、伊豆急行や長野電鉄、秩父鉄道などの譲渡先では今も多くが活躍しています。</p>
 		</Section>
 
-		<Section id="hg554" depth={2} headingType="b">
+		<Section id="hg554" depth={2}>
 			<Fragment slot="heading">HG554<small>（日立製作所、90kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/HG554_toyohashi2807.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_HG554_toyohashi2807} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2007-11-25 -->
 						<Fragment slot="caption">豊橋鉄道ク2807（東急クハ7554）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>7200系のうち1972年に冷房車として目蒲線に登場した5次車（7260F）および非冷房車のうち最初に冷改された田園都市線の2編成（7251F、7253F）には中間組み込み車を除くクハ7500形、すなわちクハ7552, 7554, 7560 に 90kVA の MG が搭載されました。写真は東急時代基準で海側から見たところです。</p>
 
 			<p>3両とも豊橋鉄道に譲渡されましたが、2009年に <a href="#bs483">SIV への置き換え</a>が行われて消滅しました。</p>
 		</Section>
 
-		<Section id="tdk3725" depth={2} headingType="b">
+		<Section id="tdk3725" depth={2}>
 			<Fragment slot="heading">TDK3725<small>（東洋電機製造、75kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/TDK3725_mizuma1002.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_TDK3725_mizuma1002} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2015-04-18 -->
 						<Fragment slot="caption">水間鉄道デハ1002（東急デハ7009）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>水間鉄道に譲渡された7000系は2006年より順次1000形へのリニューアルが行われましたが、最初に更新されたデハ1001–デハ1002 の編成は同時に冷房化がなされ、デハ1002（旧デハ7102） の MG が大容量タイプに換装されました。これは 600V / 1500V の複電圧対応タイプで、南海電気鉄道が昇圧準備のために用意した個体と思われます。</p>
 
@@ -812,16 +843,16 @@ const structuredData: StructuredData = {
 	<Section id="siv-much">
 		<Fragment slot="heading">大容量 SIV</Fragment>
 
-		<Section id="bs443" depth={2} headingType="b">
+		<Section id="bs443" depth={2}>
 			<Fragment slot="heading">BS443<small>（東京芝浦電気、170kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="540" height="270" slot="media" />
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>冷房電源に対応した大容量・三相交流出力の SIV は、インバーター回路の入力に使用する直流を電車線電圧から 600V へ降圧させる際にチョッパ回路を使用した<dfn>チョッパインバーター</dfn>が開発され、140kVA の試作 SIV を 8029F のクハ8029 に搭載しての現車試験が行われました。半導体スタックや軸流コンデンサが収められた本体箱と変圧器箱は強制風冷式で、本体箱にブロアーを内蔵し、巨大なダクトを通じて変圧器にも風を送る仕組みになっていました<NoteRef type="ref" by="toshiba301" />。</p>
 
@@ -834,25 +865,25 @@ const structuredData: StructuredData = {
 			<p>1990年から1996年にかけて GTO サイリスタを使用した <a href="#inv029">INV029 型</a>および IGBT の <a href="#inv095">INV095 型</a>への置き換えが行われ、消滅しました。8000系グループの2〜6次車に搭載されていた <a href="#clg350">CLG350 型 MG</a> は2011年の引退まで使われ、2023年現在も譲渡先で多数稼働しているのとは対照的です。</p>
 		</Section>
 
-		<Section id="bs477" depth={2} headingType="b">
+		<Section id="bs477" depth={2}>
 			<Fragment slot="heading">BS477<small>（東京芝浦電気、50kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/BS477_7200.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_BS477_7200} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-01-20 -->
 						<Fragment slot="caption">デヤ7200 山側</Fragment>
 					</Embedded>
-				</FlexItem>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/BS477_mizuma1004.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				</GridItem>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_BS477_mizuma1004} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2007-10-20 -->
 						<Fragment slot="caption">水間鉄道デハ1004（東急デハ7007）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>逆導通サイリスタの大容量 SIV 量産が進む中、GTO サイリスタの開発が進んだことで1978年には 2500V–600A の大容量タイプが登場し<NoteRef type="ref" by="toshiba351" />、これを SIV のインバーターに使用した現車試験がサハ8915 にて実施。1980年にはインバーターを電車線電圧に直接接続し、チョッパ部を省略した<dfn>直列分圧形</dfn>の 50kVA SIV が登場しました。冷却方式はそれまでの強制冷却から密閉式の自然冷却となり、前面が3枚の蓋で閉じられているため中身を伺うことはできませんが、向かって右側のやや狭い部屋には制御部、中央と左側の2部屋には半導体スタックが収められています。</p>
 
@@ -869,18 +900,18 @@ const structuredData: StructuredData = {
 			<p>一方、水間鉄道に譲渡された7000系のうち、1991年に現地で冷房改造されたデハ7101（現在のデハ1004）には同じ BS477 型でも改良型の B タイプが新製搭載されました。こちらは後述する <a href="#bs482">BS482 型</a>などと同じく箱前面の冷却フィンで冷却するタイプであり、半導体スタック部分の前面蓋が網目状になっているなど A タイプとは大きく異なる構造となっています。こちらは2022年現在も現役です。</p>
 		</Section>
 
-		<Section id="bs482" depth={2} headingType="b">
+		<Section id="bs482" depth={2}>
 			<Fragment slot="heading">BS482<small>（東京芝浦電気、170kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/BS482_8097.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_BS482_8097} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-03-01 -->
 						<Fragment slot="caption">クハ8097（16-2次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>1982年には直列分圧形 170kVA SIV の量産が開始され、8000系グループ13次車より（クハ8090形は16次車から）採用されました。</p>
 
@@ -891,16 +922,16 @@ const structuredData: StructuredData = {
 			<p>8000系グループの廃車に伴い東急電鉄からは2022年に消滅しましたが、秩父鉄道などの譲渡先で見ることができます。</p>
 		</Section>
 
-		<Section id="inv003" depth={2} headingType="b">
+		<Section id="inv003" depth={2}>
 			<Fragment slot="heading">INV003<small>（東芝、120kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="485" height="243" slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<img src="/assets/image/noimage-485x243.svg" alt="No Image" lang="en" width="540" height="270" slot="media" />
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>1986年に登場した VVVF インバーター車両9000系では、冷房装置の入力電源がそれまでの三相交流 200V から 440V へ変更され、また空気圧縮機（CP）が<a href="/tokyu/machine/cp#誘導電動機hs20-1">誘導電動機駆動</a>となったことにより SIV の三相交流出力電圧が 440V に変更されました。容量については、従来8500系の8両ないし10両編成で 170kVA SIV を2基搭載していましたが、9000系では CP 1基ごとに各 SIV で給電するため、CP の数に合わせて8両編成で SIV 3基搭載となり、容量は 120kVA に抑えられています。</p>
 
@@ -911,25 +942,25 @@ const structuredData: StructuredData = {
 			<NoteRefContent id="inv003-change">2005年時点の現車調査において、9000系1次車の SIV 搭載車（デハ9201, 9301, 9401）はいずれも1987年8月製造の INV020 型を搭載していました。2次車の最初の車両である 9002F の SIV は1987年8〜9月製造（入籍は同年11月）なので、それと同時期に交換されたものと考えられます。</NoteRefContent>
 		</Section>
 
-		<Section id="inv006" depth={2} headingType="b">
+		<Section id="inv006" depth={2}>
 			<Fragment slot="heading">INV006<small>（東芝、90kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV006_7602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV006_7602} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-09-04 -->
 						<Fragment slot="caption">クハ7602（1次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV006_toyohashi2806.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				</GridItem>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV006_toyohashi2806} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-01-10 -->
 						<Fragment slot="caption">豊橋鉄道ク2806（東急クハ7505）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>前述のとおり、7200系の冷房改造にあたっては初期の改造車2編成には <a href="#hg554">90kVA MG</a> が搭載されたのですが、10年以上の中断ののち1984年に再開された折、当初は転用品の <a href="#bs477">50kVA SIV</a> が、1986年の目蒲線 7201F 以降は新製品の 90kVA SIV が搭載されました。また、同じ1986年に登場した改造車7600系もデハ7600形（後のクハ7600形）に本タイプが搭載されています。</p>
 
@@ -938,54 +969,54 @@ const structuredData: StructuredData = {
 			<p>豊橋鉄道譲渡車のうち唯一 <a href="#bs477">50kVA SIV</a> を搭載していたク2806（東急クハ7505）はこの 90kVA タイプへ換装されましたが、転用品ではなく2003年に新製されたものであり、他の個体と比べて半導体スタック部分の前面蓋の網目面積が狭い特徴があります。</p>
 		</Section>
 
-		<Section id="inv008" depth={2} headingType="b">
+		<Section id="inv008" depth={2}>
 			<Fragment slot="heading">INV008<small>（東芝、170kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV008_8977.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV008_8977} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-02-11 -->
 						<Fragment slot="caption">サハ8977（18-2次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>8500系では、18次車の編成車（8637F）より冷房装置が後述する9000系と同じ交流 440V タイプへ変更されたことにより、 SIV も三相交流出力が従来の 200V から昇圧されました。</p>
 
 			<p>8500系の引退に伴い2023年に消滅しました。</p>
 		</Section>
 
-		<Section id="inv020" depth={2} headingType="b">
+		<Section id="inv020" depth={2}>
 			<Fragment slot="heading">INV020<small>（東芝、120kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV020_9310.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV020_9310} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-03-08 -->
 						<Fragment slot="caption">デハ9310（3次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>1987年に登場した7700系には9000系1次車の <a href="#inv003">INV003 型</a>と同仕様ながら新形式の INV020 型が搭載されました。</p>
 
 			<p>同年の9000系2次車以降もこのタイプが採用、9000系1次車も同時期に換装され、さらに1988年の1000系にも広まりました。</p>
 		</Section>
 
-		<Section id="rg467" depth={2} headingType="b">
+		<Section id="rg467" depth={2}>
 			<Fragment slot="heading">RG467 (SVH120-467)<small>（東洋電機製造、120kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/SVH120_7914.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_SVH120_7914} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-09-02 -->
 						<Fragment slot="caption">クハ7914（5次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>7700系はクハ7900形に SIV が搭載されましたが、そのうち2両は東急電車としては異色の東洋電機製造による SIV を搭載していました。出力容量は東芝製と同じ 120kVA ですが、当時の東洋電機 SIV としては標準的な<dfn>ブースター式</dfn>、すなわち電車線電圧の変動に対して直流電圧を一定に保つ調整機能を持つブースター部にて制御を行うことで対処する方式となっています<NoteRef type="ref" by="toyo56" />。</p>
 
@@ -998,25 +1029,25 @@ const structuredData: StructuredData = {
 			<p>クハ7910 は廃車後解体、クハ7914 は養老鉄道に譲渡されたものの SIV は<a href="#rg5096">換装された</a>ため現存しません。</p>
 		</Section>
 
-		<Section id="inv029" depth={2} headingType="b">
+		<Section id="inv029" depth={2}>
 			<Fragment slot="heading">INV029<small>（東芝、170kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV029_8398.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV029_8398} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-01-31 -->
 						<Fragment slot="caption">サハ8398（16-2次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV029_toyama17482.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				</GridItem>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV029_toyama17482} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2013-11-04 -->
 						<Fragment slot="caption">富山地方鉄道モハ17482（東急デハ8692）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>東横線の8000系は上り方先頭車のクハ8000形奇数車に大容量 MG または SIV が搭載されていましたが、1988年より1990年にかけて二電源化のため8両編成の6号車（デハ8200形）に SIV が追設されました。9000系搭載の <a href="#inv020">INV020 型</a>と比べて出力容量が 170kVA にアップされています。</p>
 
@@ -1029,18 +1060,18 @@ const structuredData: StructuredData = {
 			<p>富山地方鉄道に譲渡された8590系は改造が施され、半導体スタック部分の前面網目に覆いが付けられています。</p>
 		</Section>
 
-		<Section id="inv095" depth={2} headingType="b">
+		<Section id="inv095" depth={2}>
 			<Fragment slot="heading">INV095<small>（東芝、170kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV095_8932.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV095_8932} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2006-09-05 -->
 						<Fragment slot="caption">サハ8932（10-1次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>前述のとおり、8500系の<a href="#bs443">逆導通サイリスタ SIV（BS443 型）</a> の更新は、1990年の置き換え開始当初は GTO サイリスタ式の <a href="#inv029">INV029 型</a>へ交換されていましたが、1993年には主回路素子に IGBT を使用したこの INV095 型が登場し、1996年までに置き換えが完了しました。</p>
 
@@ -1049,72 +1080,72 @@ const structuredData: StructuredData = {
 			<NoteRefContent id="denkisha552"><DocMagazine name="電気車の科学" date="1994年4月号" no={552} article="鉄道車両用静止形低圧電源装置（SIV）開発の歴史と発展" authors={['宮田道一', '柳田啓一郎']} pages={[17]} /></NoteRefContent>
 		</Section>
 
-		<Section id="inv127" depth={2} headingType="b">
+		<Section id="inv127" depth={2}>
 			<Fragment slot="heading">INV127<small>（東芝、210kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV127_3262.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV127_3262} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2008-05-18 -->
 						<Fragment slot="caption">デハ3262（2次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>1999年に登場した新3000系には、出力容量を 210kVA に増加した SIV が搭載されました。</p>
 
 			<p><a href="#inv095">INV095 型</a>と同じく素子は IGBT を使用、冷却はヒートパイプ式自冷ですが、三相交流の出力電圧は 440V となっています。</p>
 		</Section>
 
-		<Section id="inv104" depth={2} headingType="b">
+		<Section id="inv104" depth={2}>
 			<Fragment slot="heading">INV104<small>（東芝、100kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV104_8296.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV104_8296} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-27 -->
 						<Fragment slot="caption">デハ8296（13次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>大井町線の8090系5両編成は、1号車（クハ8090形）に <a href="#bs482">170kVA SIV</a>、3号車（デハ8290形）に <a href="#bs33">10kVA SIV</a> がそれぞれ1基ずつ搭載されていましたが、2000年に2編成が二電源化工事を施工され、デハ8296 と 8282 が 100kVA の新型に交換されました。</p>
 
 			<p>2013年の大井町線8090系引退により東急電鉄からは消滅しましたが、デハ8282 は秩父鉄道に譲渡され、SIV もそのまま使われています。また、デハ8296 の搭載分は <a href="#bs33">10kVA SIV</a> を搭載していたデハ8280 の秩父鉄道譲渡に際し流用されました。その結果、秩父鉄道7800系（全4編成）は <a href="#inv153">INV 153 型</a>とともに SIV が 100kVA に統一されています。</p>
 		</Section>
 
-		<Section id="inv146" depth={2} headingType="b">
+		<Section id="inv146" depth={2}>
 			<Fragment slot="heading">INV146<small>（東芝、250kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV146_8031.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV146_8031} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2005-01-21 -->
 						<Fragment slot="caption">クハ8031（4次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>2001年に東横線クハ8031の 140kVA MG が 250kVA SIV に換装されました。翌年に登場した新5000系で本格的に採用されており、その試験的な意味合いだったものと思われます。</p>
 
 			<p>なお、この車両は2007年の伊豆急行への譲渡にあたり、電源装置が MG に戻されています。</p>
 		</Section>
 
-		<Section id="inv153" depth={2} headingType="b">
+		<Section id="inv153" depth={2}>
 			<Fragment slot="heading">INV153<small>（東芝、100kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV153_8290.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV153_8290} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-05-22 -->
 						<Fragment slot="caption">デハ8290（17-1次車）山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>大井町線8090系の二電源化工事は2000年に2編成のみに行われ、デハ8290形の 10kVA SIV が 100kVA の <a href="#inv104">INV104 型</a>に置き換えられていましたが、2005年にはさらに2編成が進行し、デハ8298 と 8290 が交換対象になりましたが、SIV 機器は新型タイプに変更されました。</p>
 
@@ -1123,25 +1154,25 @@ const structuredData: StructuredData = {
 			<p>東急電鉄での活躍はわずか8年ほどでしたが、両車とも秩父鉄道に譲渡されて活躍中です。</p>
 		</Section>
 
-		<Section id="inv205" depth={2} headingType="b">
+		<Section id="inv205" depth={2}>
 			<Fragment slot="heading">INV205<small>（東芝、260kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV205_9322_sea.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV205_9322_sea} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2023-01-19 -->
 						<Fragment slot="caption">デハ9322 海側</Fragment>
 					</Embedded>
-				</FlexItem>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/INV205_9322_mount.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				</GridItem>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_INV205_9322_mount} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2019-05-19 -->
 						<Fragment slot="caption">デハ9322 山側</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>2000系のうち 2003F は2018年に機器更新が行われ、SIV も換装されました。</p>
 
@@ -1150,18 +1181,18 @@ const structuredData: StructuredData = {
 			<p>2019年には9020系に改番され、他の編成ともども大井町線に転籍しています。</p>
 		</Section>
 
-		<Section id="cda021" depth={2} headingType="b">
+		<Section id="cda021" depth={2}>
 			<Fragment slot="heading">CDA021<small>（富士電機、30kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/CDA021_towada7204.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_CDA021_towada7204} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2007-04-30 -->
 						<Fragment slot="caption">十和田観光電鉄デハ7204（東急デハ7211）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>7200系の補助電源装置は電動車に小容量 MG が、制御車に冷房用の大容量 MG ないし SIV が搭載されていましたが、2002年の十和田観光電鉄への譲渡に際しては電動車のみの2連ないし単行で運転されるため、従来の <a href="#clg339">7.5kVA MG（CLG339 型）</a> を撤去して富士電機製の大容量 SIV が新設されました。</p>
 
@@ -1172,36 +1203,36 @@ const structuredData: StructuredData = {
 			<NoteRefContent id="pic644"><DocMagazine name="鉄道ピクトリアル" date="1997年10月臨時増刊号・新車年鑑" no={644} article="民鉄車両諸元表" pages={[175]} /></NoteRefContent>
 		</Section>
 
-		<Section id="bs483" depth={2} headingType="b">
+		<Section id="bs483" depth={2}>
 			<Fragment slot="heading">BS483<small>（東京芝浦電気、90kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/BS483_toyohashi2810.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_BS483_toyohashi2810} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2009-04-04 -->
 						<Fragment slot="caption">豊橋鉄道ク2810（東急クハ7551）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>上田電鉄7200系のうち 7251–7551 の2両は2008年に豊橋鉄道へ再譲渡されましたが、その際クハ7551（→豊橋鉄道ク2810）に搭載されていた冷房電源用の <a href="#bs477">50kVA SIV（BS477 型）</a> はこの 90kVA タイプへ換装されました。また、豊橋鉄道ク2807〜2809 は東急時代より <a href="#hg554">90kVA MG（HG554 型）</a> を搭載していましたが、2009年に置き換えが行われ、やはり当 SIV に換装されています。</p>
 
 			<p>いずれも新製ではなく転用品で、2007年に始まった更新工事で SIV を換装した小田急電鉄8000形（4両編成）の発生品である可能性が考えられます。</p>
 		</Section>
 
-		<Section id="rg5096" depth={2} headingType="b">
+		<Section id="rg5096" depth={2}>
 			<Fragment slot="heading">RG5096<small>（東洋電機製造）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/RG5096_yoro7914.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_RG5096_yoro7914} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 						<!-- 撮影日: 2022-10-18 -->
 						<Fragment slot="caption">養老鉄道ク7914（東急クハ7914）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>養老鉄道7700系のうちク7901, 7914 の2両は、譲渡に際し SIV が新型タイプへ換装されました。</p>
 
@@ -1239,18 +1270,18 @@ const structuredData: StructuredData = {
 		<Section id="vvvf">
 			<Fragment slot="heading">VVVF 主制御器 / SIV 一体型</Fragment>
 
-			<Section id="rg660" depth={2} headingType="b">
+			<Section id="rg660" depth={2}>
 				<Fragment slot="heading">RG660<small>（東洋電機製造、140kVA）</small></Fragment>
 
-				<Flex>
-					<FlexItem>
-						<Embedded border={true} captionMeta={true}>
-							<Image path="tokyu/machine/aps/RG660_7715.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				<Grid column={2}>
+					<GridItem>
+						<Embedded width={540} border={true} captionMeta={true}>
+							<MyImage image={image_RG660_7715} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 							<!-- 撮影日: 2009-05-12 -->
 							<Fragment slot="caption">デハ7715（5次車）山側</Fragment>
 						</Embedded>
-					</FlexItem>
-				</Flex>
+					</GridItem>
+				</Grid>
 
 				<p>サハ7950形を改造した車両を集めて1996年に池上線に登場した 7915F は、デハ7715 に主制御器の VVVF インバーターと一体になった SIV が搭載されました。</p>
 
@@ -1261,36 +1292,36 @@ const structuredData: StructuredData = {
 				<p>2010年に廃車され、消滅しました。</p>
 			</Section>
 
-			<Section id="svf041" depth={2} headingType="b">
+			<Section id="svf041" depth={2}>
 				<Fragment slot="heading">SVF041<small>（東芝、80kVA）</small></Fragment>
 
-				<Flex>
-					<FlexItem>
-						<Embedded border={true} captionMeta={true}>
-							<Image path="tokyu/machine/aps/SVF041_Y012.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				<Grid column={2}>
+					<GridItem>
+						<Embedded width={540} border={true} captionMeta={true}>
+							<MyImage image={image_SVF041_Y012} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 							<!-- 撮影日: 2006-07-09 -->
 							<Fragment slot="caption">デハY012 海側</Fragment>
 						</Embedded>
-					</FlexItem>
-				</Flex>
+					</GridItem>
+				</Grid>
 
 				<p>こどもの国線用として2両編成で登場したY000系も、VVVF 主制御器（2群）と SIV（1群）が一体となったデュアルモードシステムが採用されました。</p>
 
 				<p>2012年に登場した動力車デヤ7500、電気検測車デヤ7550 にも同じシステムが採用されています。</p>
 			</Section>
 
-			<Section id="svf091" depth={2} headingType="b">
+			<Section id="svf091" depth={2}>
 				<Fragment slot="heading">SVF091<small>（東芝、150kVA）</small></Fragment>
 
-				<Flex>
-					<FlexItem>
-						<Embedded border={true} captionMeta={true}>
-							<Image path="tokyu/machine/aps/SVF091_1602.jpg" alt="写真拡大" width={485} height={243} quality={60} link={true} slot="media" />
+				<Grid column={2}>
+					<GridItem>
+						<Embedded width={540} border={true} captionMeta={true}>
+							<MyImage image={image_SVF091_1602} alt="写真拡大" width={540} height={270} link={true} slot="media" />
 							<!-- 撮影日: 2016-10-18 -->
 							<Fragment slot="caption">デハ1602 海側</Fragment>
 						</Embedded>
-					</FlexItem>
-				</Flex>
+					</GridItem>
+				</Grid>
 
 				<p>東横線と日比谷線の相互直通運転取り止めに伴い余剰になった1000系を改造して2014年に登場した1000系1500番台では、新7000系と同じタイプのデュアルモード VVVF / SIV システムが採用されました。</p>
 
@@ -1306,18 +1337,18 @@ const structuredData: StructuredData = {
 	<Section id="series300">
 		<Fragment slot="heading">空調制御装置</Fragment>
 
-		<Section id="da61t" depth={2} headingType="b">
+		<Section id="da61t" depth={2}>
 			<Fragment slot="heading">DA61T<small>（三菱電機、20kVA）</small></Fragment>
 
-			<Flex>
-				<FlexItem>
-					<Embedded border={true} captionMeta={true}>
-						<Image path="tokyu/machine/aps/DA61T_306B.jpg" alt="写真拡大" width={485} height={324} quality={60} link={true} slot="media" />
+			<Grid column={2}>
+				<GridItem>
+					<Embedded width={540} border={true} captionMeta={true}>
+						<MyImage image={image_DA61T_306B} alt="写真拡大" width={540} height={360} link={true} slot="media" />
 						<!-- 撮影日: 2013-09-07 -->
 						<Fragment slot="caption">デハ306B（2次車）</Fragment>
 					</Embedded>
-				</FlexItem>
-			</Flex>
+				</GridItem>
+			</Grid>
 
 			<p>世田谷線の300系は、三菱電機製の空調制御装置が A 車、B 車のそれぞれ屋根上に設置されています。</p>
 

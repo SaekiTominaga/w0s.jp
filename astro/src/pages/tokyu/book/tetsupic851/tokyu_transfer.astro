@@ -1,22 +1,21 @@
 ---
-import dayjs from 'dayjs';
 import Layout from '@layouts/Tokyu.astro';
 import Amazon from '@components/Amazon.astro';
-import AmazonItem from '@components/AmazonItem.astro';
 import Box from '@components/Box.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import NoteRefContent from '@components/NoteRefContent.astro';
 import Section from '@components/Section.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
+import image_cover from '@image/tokyu/book/tetsupic851_cover.jpg';
 import type { StructuredData } from '../../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '鉄道ピクトリアル掲載原稿「地方私鉄へ譲渡された元東急の車両の近況」',
 	heading: '地方私鉄へ譲渡された元東急の車両の近況',
-	dateModified: dayjs('2012-04-12'),
+	dateModified: '2012-04-12',
 	description: '鉄道ピクトリアル 2011年8月号に掲載された「地方私鉄へ譲渡された元東急の車両の近況」の本文です。写真や編成表は挿入していません。完全版は掲載誌をご覧ください。',
-	image: 'https://media.w0s.jp/image/tokyu/book/tetsupic851_cover.jpg',
+	image: image_cover,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/book/', name: '鉄道本執筆' },
@@ -25,9 +24,7 @@ const structuredData: StructuredData = {
 ---
 
 <Layout astroFilePath={Astro.self.moduleId} structuredData={structuredData}>
-	<Amazon headingLevel={2}>
-		<AmazonItem asin="B0055D79J2" title="鉄道ピクトリアル 2011年8月号 【特集】地方私鉄の現状" date="2011-06-21" imageId="51AmFnfy6TL" imageWidth={114} imageHeight={160} />
-	</Amazon>
+	<Amazon asin="B0055D79J2" title="鉄道ピクトリアル 2011年8月号 【特集】地方私鉄の現状" date="2011-06-21" imageId="51AmFnfy6TL" imageWidth={114} imageHeight={160} />
 
 	<Section id="prologue">
 		<Fragment slot="heading">はじめに</Fragment>
@@ -270,10 +267,10 @@ const structuredData: StructuredData = {
 	<Section id="errata">
 		<Fragment slot="heading">正誤データ</Fragment>
 
-		<Section id="errata-ueda" depth={2} headingType="b">
+		<Section id="errata-ueda" depth={2}>
 			<Fragment slot="heading">上田電鉄</Fragment>
 
-			<Section id="errata-ueda-moquette" depth={3} headingType="c">
+			<Section id="errata-ueda-moquette" depth={3}>
 				<Fragment slot="heading">7200系「まるまどりーむ号」の座席モケット</Fragment>
 
 				<Box>
@@ -282,9 +279,7 @@ const structuredData: StructuredData = {
 					<p>(正) 2005(平成17)年には7253-7553と7255-7555が「まるまどりーむ号」となり、<b>（中略）</b>、室内も化粧板や座席モケットが替えられた<ins>（7255-7555の座席モケットは後に交換）</ins>。</p>
 				</Box>
 
-				<ListNote>
-					<li>7255-7555 は「まるまどりーむ号」になった当初、座席モケットは従来の「橙・薄茶」モケットのままでした。ほどなく 7253-7553 と同じ赤モケットに交換されています。</li>
-				</ListNote>
+				<Note>7255-7555 は「まるまどりーむ号」になった当初、座席モケットは従来の「橙・薄茶」モケットのままでした。ほどなく 7253-7553 と同じ赤モケットに交換されています。</Note>
 			</Section>
 		</Section>
 	</Section>

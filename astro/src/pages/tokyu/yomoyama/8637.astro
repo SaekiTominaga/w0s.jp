@@ -1,21 +1,31 @@
 ---
-import dayjs from 'dayjs';
 import GithubSlugger from 'github-slugger';
 import Layout from '@layouts/Tokyu.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import Embedded from '@components/Embedded.astro';
-import Image from '@components/+phrasing/Image.astro';
+import MyImage from '@components/+phrasing/MyImage.astro';
 import ListDescription from '@components/ListDescription.astro';
-import ListNote from '@components/ListNote.astro';
+import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
+import image_1987_red from '@image/tokyu/yomoyama/8637/1987_red.jpg';
+import image_1988_catv from '@image/tokyu/yomoyama/8637/1988_catv.jpg';
+import image_1988_olympic from '@image/tokyu/yomoyama/8637/1988_olympic.jpg';
+import image_1989_saha8974 from '@image/tokyu/yomoyama/8637/1989_saha8974.jpg';
+import image_1998_balloon from '@image/tokyu/yomoyama/8637/1998_balloon.jpg';
+import image_2001_balloon from '@image/tokyu/yomoyama/8637/2001_balloon.jpg';
+import image_2002_8537 from '@image/tokyu/yomoyama/8637/2002_8537.jpg';
+import image_2002_itscom from '@image/tokyu/yomoyama/8637/2002_itscom.jpg';
+import image_2002_itscom_sideWin from '@image/tokyu/yomoyama/8637/2002_itscom_side-win.jpg';
+import image_2003_tamadenentoshi50th from '@image/tokyu/yomoyama/8637/2003_tamadenentoshi-50th.jpg';
+import image_2010_blue from '@image/tokyu/yomoyama/8637/2010_blue.jpg';
 import type { StructuredData } from '../../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
 	title: '東急 8637F の装飾移り変わり',
 	heading: '8637F の装飾移り変わり',
-	dateModified: dayjs('2013-10-25'),
+	dateModified: '2013-10-25',
 	description: '田玉線の 8637F は登場後まもなく青帯を巻いて東急ケーブルテレビジョンの統一広告車となり、異色の存在として注目されていました。ここでは期間限定のものも含めて装飾の変遷や編成替えの記録を紹介します。',
-	image: 'https://media.w0s.jp/image/tokyu/yomoyama/8637/1998_balloon.jpg',
+	image: image_1998_balloon,
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
 		{ path: '/tokyu/yomoyama/', name: 'よもやま話' },
@@ -33,8 +43,8 @@ const slugger = new GithubSlugger();
 
 		<p>デビュー直後はほかの8500系と同じく、装飾は正面の赤帯のみとなっていましたが、この姿が見られたのは半年ほどの期間だったようです。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/1987_red.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_1987_red} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: 高橋うさおさん</Fragment>
 		</Embedded>
 	</Section>
@@ -44,8 +54,8 @@ const slugger = new GithubSlugger();
 
 		<p>デビュー翌年には東急ケーブルテレビジョンの統一広告車となり、正面帯を青色に変更、側面にも青帯が巻かれたほか、「TOKYU CABLE TV」ステッカーが貼られました。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/1988_catv.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_1988_catv} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: 高橋うさおさん</Fragment>
 		</Embedded>
 
@@ -53,8 +63,8 @@ const slugger = new GithubSlugger();
 
 		<p>東横線は9013Fだったようですが、田玉線はこの8637Fが抜擢され、「TOKYU CABLE TV」マーク下部に「がんばれ！ニッポン！オリンピック報道電車」のステッカーが貼られました。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/1988_olympic.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_1988_olympic} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: kazumaさん</Fragment>
 		</Embedded>
 
@@ -73,8 +83,8 @@ const slugger = new GithubSlugger();
 
 		<p>写真は側面の青帯が貼られたまま8642Fに組込まれて試運転を行うサハ8974で、組み替えにより通常の側帯のない車と混在しています。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/1989_saha8974.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_1989_saha8974} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: 高橋うさおさん</Fragment>
 		</Embedded>
 	</Section>
@@ -84,8 +94,8 @@ const slugger = new GithubSlugger();
 
 		<p>1991年3月には、両先頭車のみ正面と側面にしゃぼん玉の装飾が貼付されました。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/1998_balloon.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_1998_balloon} width={400} height={280} slot="media" />
 		</Embedded>
 	</Section>
 
@@ -94,20 +104,18 @@ const slugger = new GithubSlugger();
 
 		<p>1998年10月には帯の貼り替えが行われました。貼り替え前と比較すると、貫通扉枠部分の帯の有無や、しゃぼん玉の配置に変化がみられます。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/2001_balloon.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_2001_balloon} width={400} height={280} slot="media" />
 		</Embedded>
 
 		<p>また、2000年春には南町田駅前にグランベリーモールが開業したことを記念して、同施設のステッカーが「TOKYU CABLE TV」マークを隠す形で貼られました。</p>
 
-		<ListNote>
-			<li>参考: 東急電鉄ニュースリリース 2000年1月19日 <Anchor href="https://web.archive.org/web/20100907075332/https://www.tokyu.co.jp/contents_index/guide/news/000119-1.html">グランベリーモールが４月２１日（金）にオープン</Anchor></li>
-		</ListNote>
+		<Note>参考: 東急電鉄ニュースリリース 2000年1月19日 <Anchor href="https://web.archive.org/web/20100907075332/https://www.tokyu.co.jp/contents_index/guide/news/000119-1.html">グランベリーモールが４月２１日（金）にオープン</Anchor></Note>
 
 		<p>以下の写真は大小数十個のしゃぼん玉装飾が成された先頭車側面の様子です（帯貼替え後・デハ8537海側）。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/2002_8537.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_2002_8537} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: 高橋うさおさん</Fragment>
 		</Embedded>
 	</Section>
@@ -119,15 +127,15 @@ const slugger = new GithubSlugger();
 
 		<p>写真は2002年3月に急行停車駅に加えられたばかりのあざみ野駅に停車中の様子で、翌4月から急行灯の点灯が中止されたため、わずかな期間だけ見られた貴重なシーンとなりました。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/2002_itscom.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_2002_itscom} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: 高橋うさおさん</Fragment>
 		</Embedded>
 
 		<p>iTSCOMの装飾が行われていた時代には、一部の側窓に広告が入れられたこともありました。写真はデハ8537のものです。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/2002_itscom_side-win.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_2002_itscom_sideWin} width={400} height={280} slot="media" />
 			<Fragment slot="caption">撮影: 高橋うさおさん</Fragment>
 		</Embedded>
 	</Section>
@@ -139,13 +147,11 @@ const slugger = new GithubSlugger();
 
 		<p>写真は、2003年春に多摩田園都市開発50周年を記念して正面、側面に「東急多摩田園都市50周年」のステッカーが貼られていた時の姿です。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/2003_tamadenentoshi-50th.jpg" width={400} height={280} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_2003_tamadenentoshi50th} width={400} height={280} slot="media" />
 		</Embedded>
 
-		<ListNote>
-			<li>参考: 東急電鉄ニュースリリース 2003年3月5日 <Anchor href="https://www.tokyu.co.jp/file/030305_2.pdf" type="application/pdf">「東急多摩田園都市」が開発５０周年</Anchor></li>
-		</ListNote>
+		<Note>参考: 東急電鉄ニュースリリース 2003年3月5日 <Anchor href="https://www.tokyu.co.jp/file/030305_2.pdf" type="application/pdf">「東急多摩田園都市」が開発５０周年</Anchor></Note>
 	</Section>
 
 	<Section id="balloon">
@@ -155,12 +161,12 @@ const slugger = new GithubSlugger();
 
 		<p>つづけて2010年には正面のしゃぼん玉装飾も撤去され、青帯のみの姿となって現在に至ります。</p>
 
-		<Embedded border={true}>
-			<Image path="tokyu/yomoyama/8637/2010_blue.jpg" width={400} height={267} quality={60} slot="media" />
+		<Embedded width={400} border={true} captionMeta={true}>
+			<MyImage image={image_2010_blue} width={400} height={267} slot="media" />
 		</Embedded>
 	</Section>
 
-	<Section slugger={slugger}>
+	<Section id={slugger}>
 		<Fragment slot="heading">写真提供者</Fragment>
 
 		<ListDescription>

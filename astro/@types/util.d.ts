@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import type { ImageMetadata } from 'astro';
 
 export type SchemaOrgBreadcrumbListItem = Readonly<{
 	'@context'?: string;
@@ -21,7 +21,7 @@ export type SchemaOrgPerson = Readonly<{
 	alternateName?: string;
 	description?: string;
 	identifier?: string;
-	image?: string | readonly string[] | Readonly<object>;
+	image?: string | URL;
 	interactionStatistic?: Readonly<object>;
 	sameAs?: string;
 }>; // https://schema.org/Person; https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification
@@ -33,14 +33,14 @@ export type SchemaOrgOrganization = Readonly<{
 	alternateName?: string;
 	description?: string;
 	identifier?: string;
-	image?: string | readonly string[] | Readonly<object>;
+	image?: string | URL;
 	interactionStatistic?: Readonly<object>;
 	sameAs?: string;
 }>; // https://schema.org/Person; https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification
 
 export type StructuredDataErrorPage = Readonly<{
 	heading: string;
-	headingCode: string;
+	headingCode?: string;
 	moduleScripts?: readonly string[];
 }>;
 
@@ -67,9 +67,9 @@ export type StructuredData = Readonly<{
 	title: string;
 	heading?: string;
 	subHeading?: string;
-	dateModified?: Dayjs;
+	dateModified?: string;
 	description?: string;
-	image?: string;
+	image?: ImageMetadata | URL;
 	breadcrumb?: readonly StructuredDataUrl[];
 	localNav?: Readonly<{
 		label: string;
