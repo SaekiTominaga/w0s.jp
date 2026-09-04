@@ -16,7 +16,7 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="text-scale" content="scale" />
 
-	<link rel="alternate" href="/kumeta/feed" type="application/atom+xml" title="「久米田康治データベース」の新着フィード" />
+	<title>{structuredData.title}</title>
 
 	<link rel="stylesheet" href="/assets/style/kumeta.css" />
 	<link rel="stylesheet" href="/assets/style/layout_full.css" title="通常表示" />
@@ -25,6 +25,8 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 
 	<link rel="preload" href="https://blog.w0s.jp/json/newly_kumeta.json" as="fetch" crossorigin="" id="blog-newly-json" />
 
+	<link rel="alternate" href="/kumeta/feed" type="application/atom+xml" title="「久米田康治データベース」の新着フィード" />
+
 	{structuredData.opensearch !== undefined && <link rel="search" href={structuredData.opensearch.path} type="application/opensearchdescription+xml" title={structuredData.opensearch.name} />}
 
 	<script src="/assets/script/w0s.mjs" type="module" is:inline></script>
@@ -32,7 +34,7 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 	<script src="https://analytics.w0s.jp/matomo/matomo.js" async="" is:inline></script>
 	<script src="/assets/script/analytics.js" defer="" is:inline></script>
 
-	<title>{structuredData.title}</title>
+	{jsonLd !== undefined && <script type="application/ld+json" set:html={JSON.stringify(jsonLd, undefined, '\t')} is:inline />}
 
 	{structuredData.description !== undefined && <meta name="description" content={structuredData.description} />}
 	{
@@ -48,6 +50,4 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 			</>
 		)
 	}
-
-	{jsonLd !== undefined && <script type="application/ld+json" set:html={JSON.stringify(jsonLd, undefined, '\t')} is:inline />}
 </head>
