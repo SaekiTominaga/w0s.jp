@@ -10,16 +10,15 @@ packages:
 minimumReleaseAgeExclude:
   - '@types/*'
   - '@w0s/*'
+  - oxlint-plugin-safely-storage
 trustPolicy: no-downgrade
 trustPolicyExclude:
-  - chokidar@4.0.3 # @astrojs/check@0.9.9 <https://github.com/withastro/astro/blob/main/packages/language-tools/astro-check/package.json>
-  - semver@6.3.1 # eslint-plugin-import@2.32.0 <https://github.com/import-js/eslint-plugin-import/blob/main/package.json>
+  - chokidar@4.0.3 # @astrojs/check@0.9.10 <https://github.com/withastro/astro/blob/main/packages/language-tools/astro-check/package.json>
 blockExoticSubdeps: true
 
 ## Dependency Hoisting Settings
 
 publicHoistPattern:
-  - 'eslint'
   - 'markuplint'
   - 'stylelint'
 
@@ -37,3 +36,7 @@ strictDepBuilds: true
 allowBuilds:
   better-sqlite3: true
   esbuild: true
+
+## Other Settings
+
+savePrefix: ''
