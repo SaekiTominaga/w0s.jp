@@ -31,59 +31,119 @@ if (document.querySelector('w0s-input-switch') !== null) {
 	customElements.define('w0s-input-switch', InputSwitch);
 }
 
-/* ツールチップ */
-footnoteReferencePopover(document.querySelectorAll('.js-footnote-reference-popover'));
+try {
+	/* ツールチップ */
+	footnoteReferencePopover(document.querySelectorAll('.js-footnote-reference-popover'));
+} catch (error) {
+	console.error(error);
+}
 
-/* アニメーション <details> */
-detailsAnimation(document.querySelectorAll('.js-details-animation'));
+try {
+	/* アニメーション <details> */
+	detailsAnimation(document.querySelectorAll('.js-details-animation'));
+} catch (error) {
+	console.error(error);
+}
 
-/* クリップボード書き込みボタン */
-buttonClipboard(document.querySelectorAll('.js-button-clipboard'));
+try {
+	/* クリップボード書き込みボタン */
+	buttonClipboard(document.querySelectorAll('.js-button-clipboard'));
+} catch (error) {
+	console.error(error);
+}
 
-/* ボタン押下時に確認メッセージを表示 */
-buttonConfirm(document.querySelectorAll('.js-button-confirm'));
+try {
+	/* ボタン押下時に確認メッセージを表示 */
+	buttonConfirm(document.querySelectorAll('.js-button-confirm'));
+} catch (error) {
+	console.error(error);
+}
 
-/* チェックボックス群の全選択/全解除ボタン */
-buttonCheckboxes(document.querySelectorAll('.js-button-checkboxes'));
+try {
+	/* チェックボックス群の全選択/全解除ボタン */
+	buttonCheckboxes(document.querySelectorAll('.js-button-checkboxes'));
+} catch (error) {
+	console.error(error);
+}
 
-/* 複数音声/動画の同時再生ボタン */
-buttonMediaSamePlay(document.querySelectorAll('.js-button-media-same-play'));
+try {
+	/* 複数音声/動画の同時再生ボタン */
+	buttonMediaSamePlay(document.querySelectorAll('.js-button-media-same-play'));
+} catch (error) {
+	console.error(error);
+}
 
-/* 日付入力欄を <input type="text"> で表示 */
-inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
+try {
+	/* 日付入力欄を <input type="text"> で表示 */
+	inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
+} catch (error) {
+	console.error(error);
+}
 
-/* 送信ボタン2度押し防止 */
-formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
+try {
+	/* 送信ボタン2度押し防止 */
+	formSubmitOverlay(document.querySelectorAll('.js-submit-overlay'));
+} catch (error) {
+	console.error(error);
+}
 
-/* <thead> の sticky スクロール量調整 */
-tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
+try {
+	/* <thead> の sticky スクロール量調整 */
+	tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
+} catch (error) {
+	console.error(error);
+}
 
-/* 指定位置スクロール */
-document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
-	behavior: 'instant',
-});
+try {
+	/* 指定位置スクロール */
+	document.querySelector<HTMLElement>('.js-scroll-into-view')?.scrollIntoView({
+		behavior: 'instant',
+	});
+} catch (error) {
+	console.error(error);
+}
 
-/* 入力値の変換 */
-document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim').forEach(($formCtrl) => {
-	$formCtrl.addEventListener(
-		'change',
-		() => {
-			$formCtrl.value = convert($formCtrl.value, {
-				trim: true,
-			});
-		},
-		{ passive: true },
-	);
-});
+try {
+	/* 入力値の変換 */
+	document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.js-convert-trim').forEach(($formCtrl) => {
+		$formCtrl.addEventListener(
+			'change',
+			() => {
+				$formCtrl.value = convert($formCtrl.value, {
+					trim: true,
+				});
+			},
+			{ passive: true },
+		);
+	});
+} catch (error) {
+	console.error(error);
+}
 
-/* 入力バリデーション（エラー時はメッセージを画面表示する） */
-formControlValidation(document.querySelectorAll('.js-validation'));
+try {
+	/* 入力バリデーション（エラー時はメッセージを画面表示する） */
+	formControlValidation(document.querySelectorAll('.js-validation'));
+} catch (error) {
+	console.error(error);
+}
 
-/* 検索エンジン選択 */
-searchEngine(document.querySelector('.js-search-engine'));
+try {
+	/* 検索エンジン選択 */
+	searchEngine(document.querySelector('.js-search-engine'));
+} catch (error) {
+	console.error(error);
+}
 
-/* Google AdSense */
-adsense(document.querySelectorAll('.js-ads-google'), { rootMargin: '100px' });
+try {
+	/* 日記新着記事 */
+	await blogNewly(document.querySelector('#sidebar-blog-newly-template'));
+} catch (error) {
+	console.error(error);
+}
 
-/* 日記新着記事 */
-await blogNewly(document.querySelector('#sidebar-blog-newly-template'));
+try {
+	/* Google AdSense */
+	adsense(document.querySelectorAll('.js-ads-google'), { rootMargin: '100px' });
+} catch (error) {
+	console.error(error);
+}
