@@ -5,6 +5,17 @@ export default defineConfig({
 	extends: [config],
 	overrides: [
 		{
+			files: ['src/*.ts'],
+			rules: {
+				'no-console': [
+					'error',
+					{
+						allow: ['error'],
+					},
+				],
+			},
+		},
+		{
 			files: ['src/analytics.ts'],
 			rules: {
 				'no-implicit-globals': 'off',
