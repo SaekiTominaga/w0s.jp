@@ -10,7 +10,7 @@ try {
 	/* JS エラーレポート */
 	reportJsError();
 } catch (error) {
-	console.error(error);
+	reportError(error);
 }
 
 try {
@@ -31,7 +31,7 @@ try {
 		},
 	});
 } catch (error) {
-	console.error(error);
+	reportError(error);
 }
 
 try {
@@ -56,5 +56,5 @@ try {
 		}
 	}
 } catch (error) {
-	console.error(error);
+	reportError(error);
 }
