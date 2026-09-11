@@ -6,15 +6,15 @@
 		"predev": "rimraf -g \".dist/**/*.br\"",
 		"dev": "pnpm run /^dev:.*/",
 		"dev:static": "node build/src/static.ts -s static -d .dist --svgoConfig svgo.config.js -w",
-		"dev:css": "postcss css/*.css --base css -d .dist/assets/style -w",
+		"dev:css": "postcss \"css/*.css\" --base css -d .dist/assets/style -w",
 		"dev:js": "rollup -c -w --environment build:development",
-		"prebuild": "rimraf -g \".dist\"",
+		"prebuild": "rimraf .dist",
 		"build": "pnpm run /^build:.*/",
 		"build:static": "node build/src/static.ts -s static -d .dist --svgoConfig svgo.config.js",
-		"build:css": "postcss css/*.css --base css -d .dist/assets/style",
+		"build:css": "postcss \"css/*.css\" --base css -d .dist/assets/style",
 		"build:js": "rollup -c --environment build:production",
 		"postbuild": "prettier --config ../.prettierrc.mjs -w \".dist/**/*.{css,js,mjs,json}\" && brotli-cli compress -g \".dist/**/*.{css,js,mjs,json,svg}\" .dist/favicon.ico -m text",
-		"test": "node --experimental-test-coverage --test javascript/src/**/*.test.ts"
+		"test": "node --experimental-test-coverage --test \"javascript/src/**/*.test.ts\""
 	},
 	"dependencies": {
 		"@w0s/base.css": "1.4.0",
