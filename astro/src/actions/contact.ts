@@ -1,7 +1,7 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro/zod';
 import ejs from 'ejs';
-import nodemailer from 'nodemailer';
+import { createTransport } from 'nodemailer';
 import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { env } from '@w0s/env-value-type';
 import configContact from '@config/contact.ts';
@@ -79,7 +79,7 @@ export const contact = {
 					headers: requestHeaders,
 				});
 
-				const transporter = nodemailer.createTransport({
+				const transporter = createTransport({
 					host: env('MAIL_SMTP'),
 					port: env('MAIL_PORT', 'number'),
 					auth: {

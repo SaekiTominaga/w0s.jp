@@ -18,7 +18,7 @@ export default (): void => {
 		},
 		validate: {
 			filename: {
-				allows: [/^https:\/\/w0s\.jp\/assets\/script\/$/u],
+				allows: [/^https:\/\/w0s\.jp\/assets\/script\//u],
 			},
 			ua: {
 				denys: [/Googlebot\/2.1;/u],
