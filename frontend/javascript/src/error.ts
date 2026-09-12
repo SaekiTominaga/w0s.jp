@@ -6,43 +6,55 @@ import reportJsError from './util/reportJsError.ts';
  * 403, 404, 410 ページ
  */
 
-/* JS エラーレポート */
-reportJsError();
+try {
+	/* JS エラーレポート */
+	reportJsError();
+} catch (error) {
+	reportError(error);
+}
 
-/* リファラーレポート */
-await reportSameReferrer({
-	fetch: {
-		endpoint: 'https://report.w0s.jp/report/referrer',
-		param: {
-			documentURL: 'documentURL',
-			referrer: 'referrer',
+try {
+	/* リファラーレポート */
+	await reportSameReferrer({
+		fetch: {
+			endpoint: 'https://report.w0s.jp/report/referrer',
+			param: {
+				documentURL: 'documentURL',
+				referrer: 'referrer',
+			},
+			contentType: 'application/json',
 		},
-		contentType: 'application/json',
-	},
-	validate: {
-		referrer: {
-			sames: ['https://blog.w0s.jp'],
+		validate: {
+			referrer: {
+				sames: ['https://blog.w0s.jp'],
+			},
 		},
-	},
-});
+	});
+} catch (error) {
+	reportError(error);
+}
 
-/* 祖先ページの埋め込み */
-const { closestHTMLPageData } = await closestHTMLPage(undefined, {
-	maxFetchCount: 6,
-	fetchOptions: { redirect: 'manual' },
-	mimeTypes: ['text/html', 'application/xhtml+xml'],
-});
+try {
+	/* 祖先ページの埋め込み */
+	const { closestHTMLPageData } = await closestHTMLPage(undefined, {
+		maxFetchCount: 6,
+		fetchOptions: { redirect: 'manual' },
+		mimeTypes: ['text/html', 'application/xhtml+xml'],
+	});
 
-if (closestHTMLPageData !== undefined) {
-	const { url, title } = closestHTMLPageData;
+	if (closestHTMLPageData !== undefined) {
+		const { url, title } = closestHTMLPageData;
 
-	const $message = document.querySelector<HTMLElement>('#parentpage-msg');
-	const $anchor = document.querySelector<HTMLAnchorElement>('#parentpage-anchor');
+		const $message = document.querySelector<HTMLElement>('#parentpage-msg');
+		const $anchor = document.querySelector<HTMLAnchorElement>('#parentpage-anchor');
 
-	if ($message !== null && $anchor !== null) {
-		$message.hidden = false;
+		if ($message !== null && $anchor !== null) {
+			$message.hidden = false;
 
-		$anchor.href = url;
-		$anchor.textContent = title ?? url;
+			$anchor.href = url;
+			$anchor.textContent = title ?? url;
+		}
 	}
+} catch (error) {
+	reportError(error);
 }
