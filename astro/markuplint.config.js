@@ -1,3 +1,6 @@
+/** @type {string[]} */
+const restrictedElements = ['noscript', 'embed', 'base', 'style', 'h5', 'h6', 'hr', 'i', 'u', 'area'];
+
 /** @type {import('@markuplint/ml-config').Config} */
 export default {
 	extends: ['@w0s/markuplint-config'],
@@ -5,25 +8,55 @@ export default {
 		'\\.astro$': '@markuplint/astro-parser',
 	},
 	excludeFiles: [
-		'src/components/EmbeddedYouTube.astro', // style 属性値の中に '/' が含まれいるためパースエラーになる
+		'src/components/EmbeddedYouTube.astro', // style 属性値の中に '/' が含まれているためパースエラーになる
 
-		/* markuplint@4.13.1 + @markuplint/astro-parser@4.6.21 で巨大なファイルはエラーが出るため暫定的に除外 */
-		'src/pages/kumeta/library/book.astro', // 165 KB
-		'src/pages/kumeta/library/manga.astro', // 177 KB
-		'src/pages/kumeta/manga/comment.astro', // 251 KB
-		'src/pages/kumeta/manga/subtitle.astro', // 286 KB
-		'src/pages/madoka/library/magazine.astro', // 202 KB
-		'src/pages/madoka/yomoyama/namae.astro', // 287 KB
+		/* markuplint@5.0.0 + @markuplint/astro-parser@5.0.0 で巨大なファイルはエラーが出るため暫定的に除外 */
+		'src/pages/madoka/yomoyama/namae.astro', // 285 KB
+		'src/pages/kumeta/manga/subtitle.astro', // 276 KB
+		'src/pages/kumeta/manga/comment.astro', // 250 KB
+		'src/pages/madoka/library/magazine.astro', // 201 KB
+		'src/pages/kumeta/library/manga.astro', // 189 KB
+		'src/pages/kumeta/library/book.astro', // 175 KB
 	],
 	rules: {
-		'character-reference': false,
-		'no-empty-palpable-content': false,
+		'no-restricted-element': restrictedElements,
+		'class-naming': [
+			'/^[lcpu]-([a-z][a-z0-9]*)(-[a-z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*){0,2}$/',
+			'/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
+			'/^(class|constant|function|language)_$/',
+			'/^js-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
+			'/^adsbygoogle$/',
+		],
 	},
 	nodeRules: [
+		{
+			selector: '[id], ins.adsbygoogle',
+			rules: {
+				'no-empty-palpable-content': false,
+			},
+		},
 		{
 			selector: 'table',
 			rules: {
 				'require-accessible-name': false,
+			},
+		},
+		{
+			selector: 'button > svg[role="img"]',
+			rules: {
+				'no-aria-on-presentational-children': false,
+			},
+		},
+		{
+			selector: 'summary',
+			rules: {
+				'permitted-contents': false,
+			},
+		},
+		{
+			selector: '.item-container .link > a[aria-labelledby]',
+			rules: {
+				'no-redundant-accessible-name': false,
 			},
 		},
 	],
@@ -73,6 +106,10 @@ export default {
 			selector: 'Table',
 			as: 'table',
 		},
+		{
+			selector: 'IndexTable',
+			as: 'table',
+		},
 	],
 	overrideMode: 'merge',
 	overrides: {
@@ -81,41 +118,27 @@ export default {
 				'class-naming': false,
 			},
 		},
+		'src/**/*.astro': {
+			rules: {
+				'no-unescaped-char': false, // 属性値のエスケープが format で解除されてしまうため
+				'no-empty-palpable-content': false, // `set:html` による中身が空状態を許容
+				'no-restricted-element': restrictedElements.filter((name) => name !== 'style'), // `<style>` 要素を許容
+			},
+		},
 		'src/components/**/*.astro': {
 			rules: {
+				'no-empty-table-track': false, // `<slot>` 要素を許容
+				'permitted-contents': false, // `<slot>` 要素を許容
+				'require-owned-elements': false, // `set:html` による中身が空状態を許容
 				'class-naming': ['/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/'],
-				'disallowed-element': ['base', 'hr', 'i', 'u', 'area'],
-				'heading-levels': false,
 			},
-			nodeRules: [],
-		},
-		'src/components/TopNavCard.astro': {
-			nodeRules: [
-				{
-					selector: '.list',
-					rules: {
-						'wai-aria': false, // set:html を使っているため中身が空
-					},
-				},
-			],
-		},
-		'src/components/Embedded.astro': {
-			nodeRules: [
-				{
-					selector: 'figure',
-					rules: {
-						'permitted-contents': false,
-					},
-				},
-			],
 		},
 		'src/components/VideoDiffItem.astro': {
 			nodeRules: [
 				{
 					selector: 'div',
 					rules: {
-						'permitted-contents': false,
-						'required-attr': false,
+						'require-attr': false, // `<dl>` 直下の `<div>` は属性なしを許容
 					},
 				},
 			],
@@ -130,6 +153,11 @@ export default {
 				},
 			],
 		},
+		'src/layouts/content-body/Top.astro': {
+			rules: {
+				'class-naming': ['/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/'], // TODO: これはコンポーネントでは?
+			},
+		},
 		'src/pages/**/*.astro': {
 			rules: {
 				'class-naming': [
@@ -137,7 +165,7 @@ export default {
 					'/^-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
 					'/^js-([a-z][a-z0-9]*)(-[a-z0-9]+)*$/',
 				],
-				'disallowed-element': ['base', 'style', 'h1', 'hr', 'i', 'u', 'area'],
+				'no-restricted-element': [...restrictedElements, 'h1'],
 			},
 		},
 	},
