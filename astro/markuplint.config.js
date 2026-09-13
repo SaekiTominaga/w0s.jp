@@ -8,9 +8,9 @@ export default {
 		'\\.astro$': '@markuplint/astro-parser',
 	},
 	excludeFiles: [
-		'src/components/EmbeddedYouTube.astro', // style 属性値の中に '/' が含まれいるためパースエラーになる
+		'src/components/EmbeddedYouTube.astro', // style 属性値の中に '/' が含まれているためパースエラーになる
 
-		/* markuplint@5.0.0-rc.7 + @markuplint/astro-parser@5.0.0-rc.7 で巨大なファイルはエラーが出るため暫定的に除外 */
+		/* markuplint@5.0.0 + @markuplint/astro-parser@5.0.0 で巨大なファイルはエラーが出るため暫定的に除外 */
 		'src/pages/madoka/yomoyama/namae.astro', // 285 KB
 		'src/pages/kumeta/manga/subtitle.astro', // 276 KB
 		'src/pages/kumeta/manga/comment.astro', // 250 KB
