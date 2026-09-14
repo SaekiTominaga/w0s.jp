@@ -39,7 +39,7 @@ export default ($$element: NodeListOf<Element>): void => {
 					return;
 				}
 
-				const $target = $$table.find(($table) => $table.contains(document.querySelector(`#${id}`)));
+				const $target = $$table.find(($table) => $table.contains(document.querySelector(`#${CSS.escape(id)}`)));
 				if ($target === undefined) {
 					return;
 				}
