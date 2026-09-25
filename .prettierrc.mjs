@@ -15,6 +15,7 @@ const config = {
 			options: {
 				parser: 'astro',
 				printWidth: 9999,
+				astroCompressHTML: 'none',
 			},
 		},
 		{
