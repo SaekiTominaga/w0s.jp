@@ -13,7 +13,7 @@
 		"build:static": "node build/src/static.ts -s static -d .dist --svgoConfig svgo.config.js",
 		"build:css": "postcss \"css/*.css\" --base css -d .dist/assets/style",
 		"build:js": "rollup -c --environment build:production",
-		"postbuild": "prettier --config ../.prettierrc.mjs -w \".dist/**/*.{css,js,mjs,json}\" && brotli-cli compress -g \".dist/**/*.{css,js,mjs,json,svg}\" .dist/favicon.ico -m text",
+		"postbuild": "prettier --config ../.prettierrc.mjs -w \".dist/**/*.{css,json}\" && brotli-cli compress -g \".dist/**/*.{css,js,mjs,json,svg}\" .dist/favicon.ico -m text",
 		"test": "node --experimental-test-coverage --test \"javascript/src/**/*.test.ts\""
 	},
 	"dependencies": {
@@ -49,6 +49,7 @@
 		"postcss-import": "=17.0.0",
 		"postcss-nesting": "=14.0.1",
 		"rollup": "=4.63.3",
+		"rollup-plugin-prettier": "=4.2.0",
 		"slash": "=5.1.0",
 		"svgo": "=4.1.0",
 		"tslib": "=2.8.1"
