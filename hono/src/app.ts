@@ -21,7 +21,7 @@ interface Variables {
 	logger: Logger;
 }
 
-const commonHeaders: Record<string, string> = {
+const headersCommon: Readonly<Record<string, string>> = {
 	/* HSTS */
 	'Strict-Transport-Security': config.response.header.hsts,
 
@@ -33,6 +33,10 @@ const commonHeaders: Record<string, string> = {
 
 	/* MIME スニッフィング抑止 */
 	'X-Content-Type-Options': 'nosniff',
+};
+const headersCspHtml: Readonly<Record<string, string>> = {
+	'Content-Security-Policy': cspHeader(config.response.header.cspHtml),
+	'Content-Security-Policy-Report-Only': cspHeader(config.response.header.csproHtml),
 };
 
 const app = new Hono<{ Variables: Variables; Bindings: HttpBindings }>();
@@ -84,7 +88,7 @@ app.use(
 
 /* Headers */
 app.use(async (context, next) => {
-	Object.entries(commonHeaders).forEach(([name, value]) => {
+	Object.entries(headersCommon).forEach(([name, value]) => {
 		context.header(name, value);
 	});
 
@@ -153,8 +157,9 @@ app.use(
 
 			/* CSP */
 			if (['.html'].includes(urlExtension)) {
-				res.headers.set('Content-Security-Policy', cspHeader(config.response.header.cspHtml));
-				res.headers.set('Content-Security-Policy-Report-Only', cspHeader(config.response.header.csproHtml));
+				Object.entries(headersCspHtml).forEach(([name, value]) => {
+					res.headers.set(name, value);
+				});
 			}
 		},
 	}),
@@ -167,7 +172,7 @@ app.route('/search', searchApp);
 app.use(async (context, next) => {
 	const { incoming, outgoing } = context.env;
 
-	Object.entries(commonHeaders).forEach(([name, value]) => {
+	Object.entries({ ...headersCommon, ...headersCspHtml }).forEach(([name, value]) => {
 		outgoing.setHeader(name, value);
 	});
 
