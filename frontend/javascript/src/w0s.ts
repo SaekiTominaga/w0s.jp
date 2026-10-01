@@ -27,9 +27,11 @@ if ('reportError' in globalThis) {
 	/* Trusted Types */
 	trustedTypes();
 
-	/* <input type="switch"> */
-	if (document.querySelector('w0s-input-switch') !== null) {
+	try {
+		/* <input type="switch"> */
 		customElements.define('w0s-input-switch', InputSwitch);
+	} catch (error) {
+		reportError(error);
 	}
 
 	try {
