@@ -30,14 +30,14 @@ export const blogNewly = async ($template: HTMLElement | undefined | null): Prom
 		response = await fetch(endpoint);
 	} catch (error) {
 		if (error instanceof TypeError) {
-			throw new TypeError(`${error.message}: \`${endpoint}\``, { cause: error });
+			return; // ユーザー側要因であり得るエラーなので報告しない
 		}
 
-		throw new Error(`Failed to fetch: \`${endpoint}\``, { cause: error });
+		throw error;
 	}
 
 	if (!response.ok) {
-		throw new Error(`\`${response.url}\` is ${String(response.status)} ${response.statusText}`);
+		return;
 	}
 
 	const entries = (await response.json()) as readonly Readonly<BlogNewlyJson>[];
