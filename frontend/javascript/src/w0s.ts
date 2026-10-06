@@ -92,7 +92,9 @@ if ('reportError' in globalThis) {
 
 	try {
 		/* <thead> の sticky スクロール量調整 */
-		tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
+		if (CSS.supports('selector(x:has(x))')) {
+			tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
+		}
 	} catch (error) {
 		reportError(error);
 	}
