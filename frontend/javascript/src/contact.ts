@@ -44,7 +44,7 @@ const stepChange = (elements: {
 			/* 入力内容を出力する */
 			elements.$$confirmOutput.forEach(($confirmOutput) => {
 				const value = [...$confirmOutput.htmlFor].map((formCtrlId): string => {
-					const $element = document.querySelector(`#${formCtrlId}`);
+					const $element = document.querySelector(`#${CSS.escape(formCtrlId)}`);
 					if ($element === null) {
 						throw new Error(`Element \`#${formCtrlId}\` not found`);
 					}

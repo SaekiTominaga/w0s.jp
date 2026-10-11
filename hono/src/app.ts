@@ -21,6 +21,24 @@ interface Variables {
 	logger: Logger;
 }
 
+const headersCommon: Readonly<Record<string, string>> = {
+	/* HSTS */
+	'Strict-Transport-Security': config.response.header.hsts,
+
+	/* CSP */
+	'Content-Security-Policy': cspHeader(config.response.header.csp),
+
+	/* Report */
+	'Reporting-Endpoints': reportingEndpointsHeader(config.response.header.reportingEndpoints),
+
+	/* MIME スニッフィング抑止 */
+	'X-Content-Type-Options': 'nosniff',
+};
+const headersCspHtml: Readonly<Record<string, string>> = {
+	'Content-Security-Policy': cspHeader(config.response.header.cspHtml),
+	'Content-Security-Policy-Report-Only': cspHeader(config.response.header.csproHtml),
+};
+
 const app = new Hono<{ Variables: Variables; Bindings: HttpBindings }>();
 
 /* Logger */
@@ -70,17 +88,9 @@ app.use(
 
 /* Headers */
 app.use(async (context, next) => {
-	/* HSTS */
-	context.header('Strict-Transport-Security', config.response.header.hsts);
-
-	/* CSP */
-	context.header('Content-Security-Policy', cspHeader(config.response.header.csp));
-
-	/* Report */
-	context.header('Reporting-Endpoints', reportingEndpointsHeader(config.response.header.reportingEndpoints));
-
-	/* MIME スニッフィング抑止 */
-	context.header('X-Content-Type-Options', 'nosniff');
+	Object.entries(headersCommon).forEach(([name, value]) => {
+		context.header(name, value);
+	});
 
 	await next();
 });
@@ -147,8 +157,9 @@ app.use(
 
 			/* CSP */
 			if (['.html'].includes(urlExtension)) {
-				res.headers.set('Content-Security-Policy', cspHeader(config.response.header.cspHtml));
-				res.headers.set('Content-Security-Policy-Report-Only', cspHeader(config.response.header.csproHtml));
+				Object.entries(headersCspHtml).forEach(([name, value]) => {
+					res.headers.set(name, value);
+				});
 			}
 		},
 	}),
@@ -160,6 +171,10 @@ app.route('/search', searchApp);
 /* SSR */
 app.use(async (context, next) => {
 	const { incoming, outgoing } = context.env;
+
+	Object.entries({ ...headersCommon, ...headersCspHtml }).forEach(([name, value]) => {
+		outgoing.setHeader(name, value);
+	});
 
 	// oxlint-disable-next-line typescript/no-unsafe-call
 	await ssrHandler(incoming, outgoing, next);

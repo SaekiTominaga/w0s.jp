@@ -57,14 +57,14 @@ const config: HonoConfig = {
 			hsts: 'max-age=31536000',
 			csp: {
 				'frame-ancestors': ["'self'"],
-				'report-uri': ['https://report.w0s.jp/report/csp'],
+				'report-uri': ['https://api.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
 			cspHtml: {
 				'base-uri': ["'none'"],
 				'form-action': ["'self'", 'https://www.google.com', 'https://www.bing.com', 'https://search.yahoo.co.jp', 'https://duckduckgo.com'],
 				'frame-ancestors': ["'self'"],
-				'report-uri': ['https://report.w0s.jp/report/csp'],
+				'report-uri': ['https://api.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
 			csproHtml: {
@@ -104,11 +104,11 @@ const config: HonoConfig = {
 				'style-src': ["'self'", "'unsafe-inline'"],
 				'trusted-types': ['default', 'goog#html', 'google#safe', "'allow-duplicates'"],
 				'require-trusted-types-for': ["'script'"],
-				'report-uri': ['https://report.w0s.jp/report/csp'],
+				'report-uri': ['https://api.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
 			reportingEndpoints: {
-				default: 'https://report.w0s.jp/report/csp',
+				default: 'https://api.w0s.jp/report/csp',
 			},
 		},
 		compression: {

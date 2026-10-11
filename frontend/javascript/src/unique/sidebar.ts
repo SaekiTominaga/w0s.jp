@@ -25,9 +25,19 @@ export const blogNewly = async ($template: HTMLElement | undefined | null): Prom
 	const endpoint = $preload.href;
 
 	/* エンドポイントから JSON ファイルを取得する */
-	const response = await fetch(endpoint);
+	let response: Response;
+	try {
+		response = await fetch(endpoint);
+	} catch (error) {
+		if (error instanceof TypeError) {
+			return; // ユーザー側要因であり得るエラーなので報告しない
+		}
+
+		throw error;
+	}
+
 	if (!response.ok) {
-		throw new Error(`\`${response.url}\` is ${String(response.status)} ${response.statusText}`);
+		return;
 	}
 
 	const entries = (await response.json()) as readonly Readonly<BlogNewlyJson>[];

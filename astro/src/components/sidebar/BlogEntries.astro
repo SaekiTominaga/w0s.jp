@@ -13,11 +13,13 @@
 		.blog-entries {
 			--_border-width: 1px;
 
-			display: block grid;
-			grid-template:
-				'.       heading .      ' 1fr
-				'hleft   heading hright ' 1fr
-				'content content content' auto / calc(var(--_border-width) + 0.5em) auto minmax(calc(var(--_border-width) + 0.5em), 1fr);
+			&:not([hidden]) {
+				display: block grid;
+				grid-template:
+					'.       heading .      ' 1fr
+					'hleft   heading hright ' 1fr
+					'content content content' auto / calc(var(--_border-width) + 0.5em) auto minmax(calc(var(--_border-width) + 0.5em), 1fr);
+			}
 
 			&:first-child {
 				margin-block-start: -0.5lh;
