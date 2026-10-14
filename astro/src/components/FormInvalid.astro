@@ -6,7 +6,7 @@ interface Props {
 const { id } = Astro.props;
 ---
 
-<p class="invalid" hidden="" id={id}></p>
+<p><output class="invalid" id={id}></output></p>
 
 <style>
 	@layer component {
@@ -14,9 +14,11 @@ const { id } = Astro.props;
 			color: var(--color-red-text);
 			font-size: calc(100% / pow(var(--font-ratio), 1));
 
-			&::before {
-				margin-inline-end: 0.25em;
-				content: '⚠';
+			&:not(:empty) {
+				&::before {
+					margin-inline-end: 0.25em;
+					content: '⚠';
+				}
 			}
 		}
 	}
