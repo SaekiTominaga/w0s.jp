@@ -52,8 +52,8 @@ await test('yaml', async (t) => {
 	});
 
 	await t.test('unique', () => {
-		assert.equal(/^[a-z0-9]{32}$/v.test(entries.at(0)!.unique), true);
-		assert.equal(/^[a-z0-9]{32}$/v.test(entries.at(1)!.unique), true);
+		assert.match(entries.at(0)!.unique, /^[a-z0-9]{32}$/v);
+		assert.match(entries.at(1)!.unique, /^[a-z0-9]{32}$/v);
 	});
 
 	await t.test('updated', () => {
