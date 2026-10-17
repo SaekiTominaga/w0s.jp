@@ -12,7 +12,9 @@ interface Props {
 
 const { code, language } = Astro.props;
 
-const id = `code-${getHTMLId(code)}`; // コード ID
+const id = getHTMLId(code); // ID のベースとなる文字列（記事内でのユニークさを保つためにコード文字列と位置情報を組み合わせた文字列を元にする）
+const codeId = `code-${id}`; // コード ID
+const feedbackId = `fb-${id}`; // フィードバック ID
 
 hljs.registerLanguage('xml', hljsXml);
 hljs.registerLanguage('css', hljsCss);
@@ -47,11 +49,12 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 <figure>
 	<div class="code-block">
 		<div class="clipboard">
-			<button type="button" class="clipboard-button js-button-clipboard" data-target={id}>
+			<button type="button" class="clipboard-button js-button-clipboard" data-target={codeId} data-feedbacked-by={feedbackId} data-feedback-text="コピーしました" data-feedback-duration="3s">
 				<img src="/assets/image/copy.svg" alt="コピー" width="16" height="16" />
 			</button>
+			<output class="clipboard-feedback" id={feedbackId}></output>
 		</div>
-		<pre class="code">{highlighted !== undefined && <code id={id} set:html={highlighted} />}{highlighted === undefined && <code id={id}>{code}</code>}</pre>
+		<pre class="code">{highlighted !== undefined && <code id={codeId} set:html={highlighted} />}{highlighted === undefined && <code id={codeId}>{code}</code>}</pre>
 	</div>
 </figure>
 
@@ -60,17 +63,10 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 		.code-block {
 			position: relative;
 			contain: content;
+			anchor-scope: --clipboard-button;
 		}
 
 		.clipboard {
-			display: none;
-			position: absolute;
-			inset-block-start: 0.5em;
-			inset-inline-end: 0.5em;
-
-			.code-block:hover > :global(&) {
-				display: block flow;
-			}
 		}
 
 		.clipboard-button {
@@ -79,16 +75,28 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 			--_ripple-opacity: 0.25;
 			--_ripple-transition-duration: 0.5s;
 
-			display: block flow;
-			contain: layout; /* ripple effect */
+			position: absolute;
+			inset-block-start: 0.5em;
+			inset-inline-end: 0.5em;
 			outline-offset: -1px;
 			outline-width: var(--outline-width-bold);
 			border: 1px solid var(--border-color-light);
 			border-radius: var(--border-radius-normal);
 			background-color: var(--_bg-color);
 			padding: 0.5em;
+			contain: layout; /* ripple effect */
 			overflow: hidden; /* ripple effect */
+			line-height: var(--line-height-nowrap);
 			color: var(--color-black);
+			anchor-name: --clipboard-button;
+
+			.code-block:hover > :global(&) {
+				display: block flow;
+			}
+
+			&:focus:not(:focus-visible) {
+				outline: none;
+			}
 
 			&:hover {
 				background-color: oklch(from var(--_bg-color) calc(l + var(--bgcolor-hover-l)) c h);
@@ -118,6 +126,25 @@ const highlighted = registLanguageName !== undefined ? hljs.highlight(code, { la
 				display: block flow;
 				block-size: 1em;
 				inline-size: 1em;
+			}
+		}
+
+		.clipboard-feedback {
+			position: absolute;
+			position-anchor: --clipboard-button;
+			position-area: block-end span-all;
+			justify-self: anchor-center;
+			opacity: 0.9;
+			margin-block-start: 1px;
+			margin-inline: calc(0.5em * pow(var(--font-ratio), 4));
+			border-radius: var(--border-radius-normal);
+			background-color: var(--color-gray);
+			line-height: var(--line-height-nowrap);
+			color: var(--color-white);
+			font-size: calc(100% / pow(var(--font-ratio), 4));
+
+			&:not(:empty) {
+				padding: 0.5em;
 			}
 		}
 
