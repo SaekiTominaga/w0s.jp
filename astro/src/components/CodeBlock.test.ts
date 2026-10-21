@@ -23,12 +23,18 @@ test('base', async () => {
 	const $root = parse(result, parseOption);
 
 	const $clipboardButton = $root.querySelector('.clipboard-button');
+	const $clipboardFeedback = $root.querySelector('.clipboard-feedback');
 	const $code = $root.querySelector('.code > code');
 
-	const id = 'code-YWNiZDE4ZGI0Y2MyZjg1Y2VkZWY2NTRmY2NjNGE0ZDg'; // コード ID
+	const codeId = 'code-YWNiZDE4ZGI0Y2MyZjg1Y2VkZWY2NTRmY2NjNGE0ZDg'; // コード ID
+	const feedbackId = 'fb-YWNiZDE4ZGI0Y2MyZjg1Y2VkZWY2NTRmY2NjNGE0ZDg'; // フィードバック ID
 
-	expect($clipboardButton?.getAttribute('data-target')).toBe(id);
-	expect($code?.id).toBe(id);
+	expect($clipboardButton?.getAttribute('data-target')).toBe(codeId);
+	expect($clipboardButton?.getAttribute('data-feedbacked-by')).toBe(feedbackId);
+	expect($clipboardButton?.getAttribute('data-feedback-text')).toBe('コピーしました');
+	expect($clipboardButton?.getAttribute('data-feedback-duration')).toBe('3s');
+	expect($clipboardFeedback?.id).toBe(feedbackId);
+	expect($code?.id).toBe(codeId);
 	expect($code?.innerHTML).toBe(codeText);
 });
 
