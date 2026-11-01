@@ -5,6 +5,7 @@ interface HonoConfig {
 			csp: Record<string, string[]>;
 			cspHtml: Record<string, string[]>;
 			csproHtml: Record<string, string[]>;
+			cspHtmlIgnorePaths: string[];
 			reportingEndpoints: Record<string, string>;
 		};
 		compression: {
@@ -107,6 +108,7 @@ const config: HonoConfig = {
 				'report-uri': ['https://api.w0s.jp/report/csp'],
 				'report-to': ['default'],
 			},
+			cspHtmlIgnorePaths: ['/madoka/slide/20171128_madoka_compare/'],
 			reportingEndpoints: {
 				default: 'https://api.w0s.jp/report/csp',
 			},

@@ -6,6 +6,7 @@ import configHono from './hono/oxlint.config.ts';
 
 export default defineConfig({
 	extends: [configAstro, configFrontendBuild, configFrontendJavaScript, configHono],
+	ignorePatterns: ['frontend/static'],
 	options: {
 		typeAware: true,
 		typeCheck: true,

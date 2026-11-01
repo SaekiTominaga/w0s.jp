@@ -156,7 +156,7 @@ app.use(
 			}
 
 			/* CSP */
-			if (['.html'].includes(urlExtension)) {
+			if (['.html'].includes(urlExtension) && !config.response.header.cspHtmlIgnorePaths.some((ignorePath) => urlPath.startsWith(ignorePath))) {
 				Object.entries(headersCspHtml).forEach(([name, value]) => {
 					res.headers.set(name, value);
 				});
