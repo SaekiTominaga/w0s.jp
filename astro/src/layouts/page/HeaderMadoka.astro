@@ -11,17 +11,15 @@ const { top = false } = Astro.props;
 ---
 
 <header id="header" class="l-header">
-	<div class="l-header__main">
-		<div class="l-header__site">
-			<HeaderSite top={top} href="/madoka/" name="まどか資料館" summary="『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト" />
+	<div class="l-header__site">
+		<HeaderSite top={top} href="/madoka/" name="まどか資料館" summary="『魔法少女まどか☆マギカ』の各種データやイベントレポートを紹介するサイト" />
+	</div>
+	<div class="l-header__utility">
+		<div class="l-header__feed">
+			<AnchorButton href="/madoka/feed" type="atom">新着フィード</AnchorButton>
 		</div>
-		<div class="l-header__utility">
-			<div class="l-header__feed">
-				<AnchorButton href="/madoka/feed" type="atom">新着フィード</AnchorButton>
-			</div>
-			<div class="l-header__search">
-				<HeaderSearchForm />
-			</div>
+		<div class="l-header__search">
+			<HeaderSearchForm />
 		</div>
 	</div>
 </header>
