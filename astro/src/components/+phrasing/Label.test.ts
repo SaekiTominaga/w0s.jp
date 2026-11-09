@@ -83,7 +83,7 @@ test('switch', async () => {
 			label: 'label',
 		},
 		slots: {
-			default: '<w0s-input-switch></w0s-input-switch>',
+			default: '<input-switch></input-switch>',
 		},
 	});
 
@@ -94,7 +94,7 @@ test('switch', async () => {
 	const $ctrl = $$children?.at(0);
 	const $label = $$children?.at(1);
 
-	expect($ctrl?.tagName.toLowerCase()).toBe('w0s-input-switch');
+	expect($ctrl?.tagName.toLowerCase()).toBe('input-switch');
 	expect($label?.tagName.toLowerCase()).toBe('span');
 	expect($label?.textContent).toBe('label');
 });

@@ -7,7 +7,7 @@ import footnoteReferencePopover from '@w0s/footnote-reference-popover';
 import formControlValidation from '@w0s/form-control-validation';
 import formSubmitOverlay from '@w0s/form-submit-overlay';
 import inputDateToText from '@w0s/input-date-to-text';
-import InputSwitch from '@w0s/input-switch';
+import inputSwitch from '@w0s/input-switch';
 import { convert } from '@w0s/string-convert';
 import adsense from './component/adsense.ts';
 import searchEngine from './component/searchEngine.ts';
@@ -28,22 +28,8 @@ if ('reportError' in globalThis) {
 	trustedTypes();
 
 	try {
-		/* <input type="switch"> */
-		customElements.define('w0s-input-switch', InputSwitch);
-	} catch (error) {
-		reportError(error);
-	}
-
-	try {
-		/* ツールチップ */
-		footnoteReferencePopover(document.querySelectorAll('.js-footnote-reference-popover'));
-	} catch (error) {
-		reportError(error);
-	}
-
-	try {
-		/* アニメーション <details> */
-		detailsAnimation(document.querySelectorAll('.js-details-animation'));
+		/* チェックボックス群の全選択/全解除ボタン */
+		buttonCheckboxes(document.querySelectorAll('.js-button-checkboxes'));
 	} catch (error) {
 		reportError(error);
 	}
@@ -63,13 +49,6 @@ if ('reportError' in globalThis) {
 	}
 
 	try {
-		/* チェックボックス群の全選択/全解除ボタン */
-		buttonCheckboxes(document.querySelectorAll('.js-button-checkboxes'));
-	} catch (error) {
-		reportError(error);
-	}
-
-	try {
 		/* 複数音声/動画の同時再生ボタン */
 		buttonMediaSamePlay(document.querySelectorAll('.js-button-media-same-play'));
 	} catch (error) {
@@ -77,8 +56,22 @@ if ('reportError' in globalThis) {
 	}
 
 	try {
-		/* 日付入力欄を <input type="text"> で表示 */
-		inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
+		/* アニメーション <details> */
+		detailsAnimation(document.querySelectorAll('.js-details-animation'));
+	} catch (error) {
+		reportError(error);
+	}
+
+	try {
+		/* ツールチップ */
+		footnoteReferencePopover(document.querySelectorAll('.js-footnote-reference-popover'));
+	} catch (error) {
+		reportError(error);
+	}
+
+	try {
+		/* 入力バリデーション（エラー時はメッセージを画面表示する） */
+		formControlValidation(document.querySelectorAll('.js-validation'));
 	} catch (error) {
 		reportError(error);
 	}
@@ -91,12 +84,26 @@ if ('reportError' in globalThis) {
 	}
 
 	try {
-		/* <thead> の sticky スクロール量調整 */
-		if (CSS.supports('selector(x:has(x))')) {
-			tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
-		}
+		/* 日付入力欄を <input type="text"> で表示 */
+		inputDateToText(document.querySelectorAll('.js-input-date-to-text'));
 	} catch (error) {
 		reportError(error);
+	}
+
+	try {
+		/* Switch control */
+		inputSwitch('input-switch');
+	} catch (error) {
+		reportError(error);
+	}
+
+	if (CSS.supports('selector(x:has(x))')) {
+		try {
+			/* <thead> の sticky スクロール量調整 */
+			tableTheadStickey(document.querySelectorAll('.js-thead-sticky-table:has([id])'));
+		} catch (error) {
+			reportError(error);
+		}
 	}
 
 	try {
@@ -121,13 +128,6 @@ if ('reportError' in globalThis) {
 				{ passive: true },
 			);
 		});
-	} catch (error) {
-		reportError(error);
-	}
-
-	try {
-		/* 入力バリデーション（エラー時はメッセージを画面表示する） */
-		formControlValidation(document.querySelectorAll('.js-validation'));
 	} catch (error) {
 		reportError(error);
 	}
