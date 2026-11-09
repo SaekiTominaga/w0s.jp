@@ -147,10 +147,14 @@ input:is([type="radio" i], [type="checkbox" i]) {
 	accent-color: var(--form-control-theme-color);
 }
 
-w0s-input-switch {
-	--inline-size: 3em;
+input-switch {
 	--block-size: 1.5em;
-	--thumb-radius: calc(0.75em - 1px);
+	--inline-size: calc(var(--block-size) * 2);
+	--track-color-on: var(--form-control-theme-color);
+	--thumb-block-size: calc(var(--block-size) - 4px);
+	--thumb-inline-size: calc(var(--thumb-block-size));
+
+	outline-offset: var(--outline-offset-linkonly);
 }
 
 x-popover {
