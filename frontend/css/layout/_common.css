@@ -60,7 +60,8 @@
 	justify-content: center;
 	margin-inline: calc(0px - (var(--_padding-inline) + var(--page-padding-inline)));
 	border: solid var(--border-color-light);
-	border-width: 1px 0;
+	border-block-width: 1px;
+	border-inline-width: 0;
 	background-color: var(--bgcolor-light);
 	padding-inline: var(--_padding-inline);
 
@@ -102,7 +103,8 @@
 	&:not(:empty) {
 		&::before {
 			display: block flow;
-			margin: 60px auto;
+			margin-block: 60px;
+			margin-inline: auto;
 			border-block-start: 1px solid;
 			border-image: linear-gradient(to right, transparent 0%, var(--color-lightgray) 50%, transparent 100%) 1 / 1px;
 			inline-size: min(30em, 100%);
