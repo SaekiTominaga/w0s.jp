@@ -1,4 +1,4 @@
-type CompressionCcoding = 'gzip' | 'compress' | 'deflate' | 'br' | 'zstd'; // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding#directives
+type CompressionCoding = 'gzip' | 'compress' | 'deflate' | 'br' | 'zstd'; // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding#directives
 
 /**
  * 指定されたエンコーディングをサポートしているかどうか
@@ -8,7 +8,7 @@ type CompressionCcoding = 'gzip' | 'compress' | 'deflate' | 'br' | 'zstd'; // ht
  *
  * @returns サポートしていれば true
  */
-const supportCompressionEncoding = (acceptEncoding: string | undefined, searchCoding: CompressionCcoding): boolean => {
+const supportCompressionEncoding = (acceptEncoding: string | undefined, searchCoding: CompressionCoding): boolean => {
 	if (acceptEncoding === undefined) {
 		return false;
 	}
