@@ -154,15 +154,22 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 
 		.tag-button {
-			--_bg-color: var(--color-white);
-			--_color: var(--color-black);
-
+			display: inline flex;
+			flex-wrap: nowrap;
+			gap: 0.5em;
+			align-items: center;
 			border: 1px solid var(--color-black);
 			border-radius: var(--border-radius-large);
-			background-color: var(--_bg-color);
-			padding: 0.25em;
+			background-color: var(--color-white);
+			padding-block: 0.25em;
+			padding-inline: 0.5em;
 			line-height: var(--line-height-nowrap);
-			color: var(--_color);
+			color: var(--color-black);
+			font-size: calc(100% / pow(var(--font-ratio), 1));
+
+			&:disabled {
+				background-color: var(--bgcolor-dark);
+			}
 
 			&:focus-visible {
 				outline-offset: -1px;
@@ -173,12 +180,33 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 				outline: none;
 			}
 
-			&:enabled:hover {
-				background-color: oklch(from var(--_bg-color) calc(l - var(--bgcolor-hover-l)) c h);
+			&::after {
+				background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath d="M11,20q-0.42,0-0.71-0.29Q10,19.43 10,19V13L4.2,5.6Q3.83,5.1 4.09,4.55T5,4H19q0.65,0 0.91,0.55T19.8,5.6L14,13v6q0,0.43-0.29,0.71T13,20H11Zm1-7.7L16.95,6H7.05L12,12.3Zm0,0Z"/%3E%3C/svg%3E'); /* https://fonts.google.com/icons : Filter Alt */
+				background-position: top center;
+				background-repeat: no-repeat;
+				background-size: 1rem;
+				padding-block-start: 1rem;
+				font-size: calc(100% / pow(var(--font-ratio), 4));
+				content: '絞込';
+			}
+
+			&[aria-pressed='false' i] {
+				&:hover {
+					background-color: oklch(from var(--color-white) calc(l - var(--bgcolor-hover-l)) c h);
+				}
 			}
 
 			&[aria-pressed='true' i] {
-				--_bg-color: oklch(from var(--color-pink) calc(l + 0.1) c h);
+				background-color: oklch(from var(--color-pink) calc(l + 0.1) c h);
+
+				&:hover {
+					background-color: oklch(from var(--color-pink) calc(l + 0.1 - var(--bgcolor-hover-l)) c h);
+				}
+
+				&::after {
+					background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath d="M14.8,11.98l-1.43-1.43L16.95,6H8.83l-2-2H19q0.63,0 0.9,0.55T19.8,5.6l-5,6.38ZM19.78,22.6L14,16.83V19q0,0.43-0.29,0.71T13,20H11q-0.42,0-0.71-0.29Q10,19.43 10,19V12.83L1.4,4.22L2.8,2.8L21.2,21.2l-1.43,1.4Zm-6.4-12.05Z"/%3E%3C/svg%3E'); /* https://fonts.google.com/icons : Filter Alt Off */
+					content: '絞込解除';
+				}
 			}
 		}
 
