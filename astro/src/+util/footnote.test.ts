@@ -8,10 +8,10 @@ await test('getNoteData', async (t) => {
 <!DOCTYPE html>
 <div id="template">
 	<template class="astro-noteref -note" data-by="note1">
-		<a><x-number></x-number></a>
+		<a slot="anchor"><astro-number></astro-number></a>
 	</template>
 	<template class="astro-noteref -note" data-by="note2">
-		<a><x-number></x-number></a>
+		<a slot="anchor"><astro-number></astro-number></a>
 	</template>
 </div>
 
@@ -30,7 +30,7 @@ await test('getNoteData', async (t) => {
 	await t.test('HTML', () => {
 		assert.equal(
 			document.querySelector('#template')?.innerHTML.trim(),
-			'<a href="#fn-note1" id="nr-note1">1</a>\n\t\n\t\t<a href="#fn-note2" id="nr-note2">2</a>',
+			'<a slot="anchor" href="#fn-note1" id="nr-note1">1</a>\n\t\n\t\t<a slot="anchor" href="#fn-note2" id="nr-note2">2</a>',
 		);
 	});
 });
@@ -40,10 +40,10 @@ await test('getReferenceData', async (t) => {
 <!DOCTYPE html>
 <div id="template">
 	<template class="astro-noteref -ref" data-by="ref1">
-		<a><x-number></x-number></a>
+		<a slot="anchor"><astro-number></astro-number></a>
 	</template>
 	<template class="astro-noteref -ref" data-by="ref2">
-		<a><x-number></x-number></a>
+		<a slot="anchor"><astro-number></astro-number></a>
 	</template>
 </div>
 
@@ -60,7 +60,10 @@ await test('getReferenceData', async (t) => {
 	});
 
 	await t.test('HTML', () => {
-		assert.equal(document.querySelector('#template')?.innerHTML.trim(), '<a href="#fn-ref1" id="nr-ref1">1</a>\n\t\n\t\t<a href="#fn-ref2" id="nr-ref2">2</a>');
+		assert.equal(
+			document.querySelector('#template')?.innerHTML.trim(),
+			'<a slot="anchor" href="#fn-ref1" id="nr-ref1">1</a>\n\t\n\t\t<a slot="anchor" href="#fn-ref2" id="nr-ref2">2</a>',
+		);
 	});
 });
 

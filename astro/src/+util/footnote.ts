@@ -25,13 +25,13 @@ const getData = (
 		data.set(no, $content?.innerHTML);
 		$content?.remove();
 
-		const $a = $templateClone.querySelector('a');
+		const $a = $templateClone.querySelector<HTMLAnchorElement>('a[slot="anchor"]');
 		if ($a !== null) {
 			$a.href = `#${options.footnoteIdPrefix}${String(no)}`;
 			$a.id = `${options.noteRefIdPrefix}${String(no)}`;
 		}
 
-		const $number = $templateClone.querySelector('x-number');
+		const $number = $templateClone.querySelector('astro-number');
 		$number?.replaceWith(document.createTextNode(String(no)));
 
 		$noterefTemplate.parentNode?.append($templateClone);
