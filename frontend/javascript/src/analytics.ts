@@ -3,4 +3,4 @@
  */
 // oxlint-disable-next-line typescript/no-unnecessary-condition
 var _paq: string[][] = (globalThis._paq ??= []);
-_paq.push(['trackPageView'], ['enableLinkTracking'], ['setTrackerUrl', 'https://analytics.w0s.jp/matomo/matomo.php'], ['setSiteId', '1']);
+_paq.push(['trackPageView'], ['enableLinkTracking'], ['setTrackerUrl', 'https://analytics.w0s.jp/matomo.php'], ['setSiteId', '1']);

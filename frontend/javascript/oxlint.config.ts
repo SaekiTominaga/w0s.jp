@@ -13,5 +13,12 @@ export default defineConfig({
 				'no-var': 'off',
 			},
 		},
+		{
+			files: ['src/w0s.ts'],
+			rules: {
+				'typescript/no-misused-promises': 'off',
+				'typescript/strict-void-return': 'off',
+			},
+		},
 	],
 });

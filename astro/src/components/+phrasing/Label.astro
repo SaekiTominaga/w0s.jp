@@ -13,7 +13,7 @@ const $root = parse(content);
 
 const checkboxCtrl = $root.querySelector('input[type="checkbox"]') !== null;
 const radioCtrl = $root.querySelector('input[type="radio"]') !== null;
-const switchCtrl = $root.querySelector('w0s-input-switch') !== null;
+const switchCtrl = $root.querySelector('input-switch') !== null;
 ---
 
 <label class:list={['label', checkboxCtrl ? '-checkbox' : undefined, radioCtrl ? '-radio' : undefined]}>
@@ -45,7 +45,8 @@ const switchCtrl = $root.querySelector('w0s-input-switch') !== null;
 				border: 1px solid var(--_border-color);
 				border-radius: var(--border-radius-normal);
 				background-color: var(--_bg-color);
-				padding: calc(var(--form-control-padding-block) / 2) 0.25em;
+				padding-block: calc(var(--form-control-padding-block) / 2);
+				padding-inline: 0.25em;
 
 				:enabled & {
 					&:hover {

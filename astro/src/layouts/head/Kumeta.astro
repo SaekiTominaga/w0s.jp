@@ -31,7 +31,7 @@ const jsonLd = getStructuredDataJsonLd(structuredData, { site: import.meta.env.S
 
 	<script src="/assets/script/w0s.mjs" type="module" is:inline></script>
 	{structuredData.moduleScripts?.map((fileName) => <script src={`/assets/script/${fileName}`} type="module" is:inline />)}
-	<script src="https://analytics.w0s.jp/matomo/matomo.js" async="" is:inline></script>
+	<script src="https://analytics.w0s.jp/matomo.js" async="" is:inline></script>
 	<script src="/assets/script/analytics.js" defer="" is:inline></script>
 
 	{jsonLd !== undefined && <script type="application/ld+json" set:html={JSON.stringify(jsonLd, undefined, '\t')} is:inline />}

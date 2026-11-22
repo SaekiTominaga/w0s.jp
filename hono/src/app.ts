@@ -43,7 +43,7 @@ const app = new Hono<{ Variables: Variables; Bindings: HttpBindings }>();
 
 /* Logger */
 app.use(async (context, next) => {
-	context.set('logger', getLogger(context.req.path.slice(1)));
+	context.set('logger', getLogger(context.req.path));
 	await next();
 });
 
