@@ -1,6 +1,4 @@
 ---
-import NoteRefX from './NoteRefX.astro'; // このコンポーネント内で <style> を書くと、<a> 要素が直後にコピーされる事象が起こるため分離する
-
 interface Props {
 	type?: 'note' | 'ref';
 	by: string;
@@ -22,4 +20,117 @@ switch (type) {
 }
 ---
 
-<NoteRefX><template class:list={['astro-noteref', `-${type}`]} data-by={by}><a class="js-footnote-reference-popover" data-ignore=".backref" data-popover-label="脚注" data-popover-hide-text="閉じる" data-popover-hide-image-src="/assets/image/footnote-popover-close.svg" data-popover-hide-image-width="24" data-popover-hide-image-height="24">[{typeLabel}<x-number></x-number>]</a></template></NoteRefX>
+<footnote-reference ignore=".backref" popover-label="脚注">
+	<template class:list={['astro-noteref', `-${type}`]} data-by={by}>
+		<a slot="anchor">[{typeLabel}<astro-number></astro-number>]</a>
+		<template slot="popover__hide"><img src="/assets/image/footnote-popover-close.svg" alt="閉じる" width="12" height="12" /></template>
+	</template>
+</footnote-reference>
+
+<style>
+	@layer component {
+		footnote-reference {
+			& > [slot='anchor'] {
+				outline-offset: calc(0px - var(--outline-width-bold));
+				outline-width: var(--outline-width-bold);
+				padding: 0.375em;
+				vertical-align: super;
+				font-size: calc(100% / pow(var(--font-ratio), 2));
+
+				&[role="button" i] /* JavaScript で popover のアンカーになった時のみ */ {
+					color: var(--link-color);
+
+					&[aria-expanded='true' i] {
+						text-decoration-line: none;
+					}
+
+					&:focus:not(:focus-visible) {
+						outline: none;
+					}
+				}
+
+				&:target {
+					border: 1px solid var(--color-red);
+					background-color: var(--bgcolor-lightred);
+				}
+			}
+
+			&::part(popover) {
+				--tail-block-size: 9px;
+				--tail-inline-size: 16px;
+				--tail-inline-start: 0.5em;
+
+				margin-inline: calc(0px - var(--tail-inline-start)) 1em;
+				outline-offset: -1px;
+				border: unset;
+				background-color: unset;
+				padding: unset;
+				max-inline-size: min(30em, 100dvi);
+				overflow: unset;
+				color: unset;
+
+				@media (width <= 30em) {
+					position-area: block-end span-all;
+					margin-inline: min(3dvi, 2em);
+				}
+			}
+
+			&::part(popover)::before {
+				display: block flow;
+				margin-inline: calc(attr(data-anchor-x px) - attr(data-x px) + (attr(data-anchor-width px) - var(--tail-inline-size)) / 2) auto;
+				block-size: var(--tail-block-size);
+				inline-size: var(--tail-inline-size);
+				line-height: 0;
+				content: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"%3E%3Cpolyline points="1,9 8,1 15,9" fill="oklch(100% 0 0deg)" stroke="oklch(87.5% 0 0deg)" stroke-width="1" stroke-linejoin="round"/%3E%3C/svg%3E');
+
+				@supports not (x: attr(x px)) {
+					content: '';
+				}
+
+				@media (width > 30em) {
+					@container anchored(fallback: none) {
+						margin-inline: calc(var(--tail-inline-start) + (attr(data-anchor-width px) - var(--tail-inline-size)) / 2) auto;
+					}
+
+					@container anchored(fallback: flip-inline) {
+						margin-inline: auto calc(var(--tail-inline-start) + (attr(data-anchor-width px) - var(--tail-inline-size)) / 2);
+					}
+				}
+			}
+
+			&::part(popover__content) {
+				margin-block-start: -1px;
+				border: 1px solid var(--border-color-light);
+				border-radius: var(--border-radius-normal);
+				box-shadow: var(--box-shadow-length-standout) var(--box-shadow-color);
+				background-color: var(--color-white);
+				padding: 18px;
+				line-height: var(--line-height-wide);
+				color: var(--color-black);
+				font-size: calc(100% / pow(var(--font-ratio), 1));
+			}
+
+			&::part(popover__hide) {
+				display: inline flex;
+				position: absolute;
+				inset-block-start: 0;
+				inset-inline-end: 1px;
+				flex-wrap: wrap;
+				margin-block-start: var(--tail-block-size);
+				outline-offset: -1px;
+				border-style: none;
+				border-radius: var(--border-radius-normal);
+				background-color: transparent;
+				padding: 6px;
+			}
+
+			&::part(popover__hide):hover {
+				background-color: oklch(from var(--color-black) l c h / 10%);
+			}
+
+			&::part(popover__hide):focus {
+				outline: var(--outline-width-bold) solid var(--outline-color);
+			}
+		}
+	}
+</style>
