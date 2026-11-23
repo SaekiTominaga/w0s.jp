@@ -7,6 +7,7 @@ import Section from '@components/Section.astro';
 import Table from '@components/Table.astro';
 import Anchor from '@components/+phrasing/Anchor.astro';
 import DateWareki from '@components/+phrasing/DateWareki.astro';
+import DocBook from '@components/+phrasing/DocBook.astro';
 import DocMagazine from '@components/+phrasing/DocMagazine.astro';
 import DocOfficial from '@components/+phrasing/DocOfficial.astro';
 import NoteRef from '@components/+phrasing/NoteRef.astro';
@@ -17,7 +18,7 @@ const structuredData: StructuredData = {
 	title: '東京急行電鉄　車歴表（1949年以前）',
 	heading: '東京急行電鉄　車歴表',
 	subHeading: '1949年以前',
-	dateModified: '2024-08-20',
+	dateModified: '2026-11-23',
 	description: '東京急行電鉄成立（1942年）から1949年までの鉄道線車両のうごきをまとめました。',
 	breadcrumb: [
 		{ path: '/tokyu/', name: '東急電車資料室' },
@@ -1008,6 +1009,10 @@ const structuredData: StructuredData = {
 		<Fragment slot="heading">デワ3040形</Fragment>
 
 		<p>木造荷電の事故車を払い下げたもので、この車両も地方鉄道建設規定で定められた車両定規を超過しているため、使用路線を東横線のみとして特別設計許可を得ての復旧とされました。</p>
+
+		<p>下表のとおり設計認可申請は<DateWareki value="1949-10" />に提出されているのですが、現車はそれより以前の遅くとも6月には東急線入りしており、国鉄の密着連結器を取り付けたまま碑文谷工場に留置されている様子が記録されています<NoteRef type="ref" by="konjyaku" />。</p>
+
+		<NoteRefContent id="konjyaku"><DocBook name="譲渡車両　今昔" authors={['吉川文夫']} year={2003} article="私鉄の荷物電車として使われた木造国電" pages={[32]} url="https://www.amazon.co.jp/dp/4533047688/" /></NoteRefContent>
 
 		<p>東京急行電鉄では「デワ」の名のとおり電動有蓋貨車の扱いとなり、荷物電車としてだけではなく社用品輸送にも使用されたようです<NoteRef type="ref" by="pic98" />。</p>
 
