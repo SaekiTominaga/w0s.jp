@@ -68,7 +68,7 @@ describe('attribute', () => {
 		const $release = $header?.querySelectorAll('.release').at(0);
 		const $distribution = $header?.querySelectorAll('.release').at(1);
 		const $$tagButtons = $header?.querySelectorAll('.tags > .tag-button');
-		const $isbn = $header?.querySelector('.isbn');
+		const $isbnLink = $header?.querySelector('.isbn-link');
 
 		expect($section?.getAttribute('id')).toBe('id');
 		expect($heading?.textContent).toBe('title');
@@ -80,8 +80,8 @@ describe('attribute', () => {
 		expect($$tagButtons?.at(0)?.getAttribute('disabled')).toBe('');
 		expect($$tagButtons?.at(1)?.textContent.trim()).toBe('bar');
 		expect($$tagButtons?.at(1)?.getAttribute('disabled')).toBe('');
-		expect($isbn?.innerHTML.trim()).toMatch(
-			/^<a href="https:\/\/ndlsearch\.ndl\.go\.jp\/search\?cs=bib&amp;f-isbn=978-4-06-519981-7" rel="external" class="astro-[a-z0-9]+">ISBN: <data value="978-4-06-519981-7" class="astro-[a-z0-9]+">978-4-06-519981-7<\/data><\/a>/v,
+		expect($isbnLink?.innerHTML.trim()).toMatch(
+			/^ISBN: <a href="https:\/\/ndlsearch\.ndl\.go\.jp\/search\?cs=bib&amp;f-isbn=978-4-06-519981-7" rel="external" class="astro-[a-z0-9]+"><data value="978-4-06-519981-7" class="astro-[a-z0-9]+">978-4-06-519981-7<\/data><\/a>/v,
 		);
 
 		const $embeddedSidebar = $main?.querySelector('.embedded-sidebar');
