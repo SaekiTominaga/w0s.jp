@@ -9,9 +9,9 @@ import ListLink from '@components/ListLink.astro';
 import Note from '@components/Note.astro';
 import Section from '@components/Section.astro';
 import TopNavText from '@components/TopNavText.astro';
+import TopService from '@components/TopService.astro';
+import TopServiceItem from '@components/TopServiceItem.astro';
 import TopUpdate from '@components/TopUpdate.astro';
-import KumetaTopService from '@components/TopService.astro';
-import KumetaTopServiceItem from '@components/TopServiceItem.astro';
 import type { StructuredData } from '../../../@types/util.d.ts';
 
 const structuredData: StructuredData = {
@@ -100,13 +100,13 @@ const slugger = new GithubSlugger();
 							<Section id={slugger} depth={2}>
 								<Fragment slot="heading">最新ニュース</Fragment>
 
-								<KumetaTopService>
-									<KumetaTopServiceItem title="Google カレンダー" link="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" icon="/kumeta/image/icon_google-calendar.png" />
-									<KumetaTopServiceItem title="Mastodon" link="https://mastodon.social/@kumeta_news" icon="/assets/image/icon/mastodon.svg" />
-									<KumetaTopServiceItem title="Bluesky" link="https://bsky.app/profile/kumeta-news.bsky.social" icon="/assets/image/icon/bluesky.svg" />
-								</KumetaTopService>
+								<TopService>
+									<TopServiceItem title="Google カレンダー" link="https://calendar.google.com/calendar/u/0/embed?src=udi6d8s0b41c10iesq8iovb2c8@group.calendar.google.com" icon="/assets/image/icon/google-calendar.svg" />
+									<TopServiceItem title="Mastodon" link="https://mastodon.social/@kumeta_news" icon="/assets/image/icon/mastodon.svg" />
+									<TopServiceItem title="Bluesky" link="https://bsky.app/profile/kumeta-news.bsky.social" icon="/assets/image/icon/bluesky.svg" />
+								</TopService>
 
-								<Note>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Mastodon に流しています。</Note>
+								<Note>本誌連載、コミックス発売、イベント開催などの情報を Google カレンダーに蓄積し、自動投稿で Mastodon と Bluesky に流しています。</Note>
 							</Section>
 						</GridItem>
 					</Grid>
