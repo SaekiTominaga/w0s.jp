@@ -1,4 +1,6 @@
 ---
+import Anchor from '@components/+phrasing/Anchor.astro';
+
 interface Props {
 	pagePath: string;
 }
@@ -8,34 +10,36 @@ const { pagePath } = Astro.props;
 
 <ul class="social">
 	<li>
-		<a href="https://github.com/SaekiTominaga/w0s.jp" rel="external">
-			<span class="image"><img src="/assets/image/icon/github.svg" alt="" width="48" height="48" /></span>
-			<span class="text">GitHub</span>
-		</a>
+		<Anchor href="https://github.com/SaekiTominaga/w0s.jp" icon={false}>
+			<span class="icon"><img src="/assets/image/icon/github.svg" alt="" width="48" height="48" /></span>
+			<span class="text"><span class="title">GitHub</span></span>
+		</Anchor>
 	</li>
 	{
 		!pagePath.substring(1).includes('/') && (
 			<li>
-				<a href="https://fedibird.com/@SaekiTominaga" rel="external">
-					<span class="image">
+				<Anchor href="https://fedibird.com/@SaekiTominaga" icon={false}>
+					<span class="icon">
 						<img src="/assets/image/icon/mastodon.svg" alt="" width="48" height="48" />
 					</span>
-					<span class="text">Mastodon</span>
-				</a>
+					<span class="text">
+						<span class="title">Mastodon</span>
+					</span>
+				</Anchor>
 			</li>
 		)
 	}
 	<li>
-		<a href="https://bsky.app/profile/w0s.jp" rel="external">
-			<span class="image"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
-			<span class="text">Bluesky</span>
-		</a>
+		<Anchor href="https://bsky.app/profile/w0s.jp" icon={false}>
+			<span class="icon"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
+			<span class="text"><span class="title">Bluesky</span></span>
+		</Anchor>
 	</li>
 	<li>
-		<a href="https://www.youtube.com/@SaekiTominaga" rel="external">
-			<span class="image"><img src="/assets/image/icon/youtube.svg" alt="" width="48" height="48" /></span>
-			<span class="text">YouTube</span>
-		</a>
+		<Anchor href="https://www.youtube.com/@SaekiTominaga" icon={false}>
+			<span class="icon"><img src="/assets/image/icon/youtube.svg" alt="" width="48" height="48" /></span>
+			<span class="text"><span class="title">YouTube</span></span>
+		</Anchor>
 	</li>
 </ul>
 
@@ -46,7 +50,6 @@ const { pagePath } = Astro.props;
 			flex-direction: row;
 			flex-wrap: wrap;
 			gap: 24px;
-			text-align: center;
 			font-size: calc(100% / pow(var(--font-ratio), 2));
 
 			@container footer-social (inline-size >= 600px) {
@@ -54,23 +57,25 @@ const { pagePath } = Astro.props;
 			}
 
 			& :global(:any-link) {
-				outline-offset: var(--outline-offset-linkonly);
+				display: block grid;
+				justify-items: center;
+				outline-offset: 0.5em;
+				max-inline-size: 72px;
+				pointer-events: none;
 			}
 		}
 
-		.image {
-			display: inline flex;
-			flex-wrap: nowrap;
+		.icon {
 			padding-block-end: 0.5em;
+			pointer-events: auto;
 		}
 
 		.text {
-			inline-size: fit-content;
+		}
 
-			&::before {
-				display: block flow;
-				content: '';
-			}
+		.title {
+			word-break: auto-phrase;
+			pointer-events: auto;
 		}
 	}
 </style>
