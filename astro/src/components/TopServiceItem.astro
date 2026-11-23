@@ -13,7 +13,7 @@ const { title, link, icon } = Astro.props;
 <li>
 	<Anchor href={link} icon={false}>
 		<span class="icon"><img src={icon} alt="" width="72" height="72" /></span>
-		<span class="text"><span class="title">{title}</span></span>
+		<span class="title">{title}</span>
 	</Anchor>
 </li>
 
@@ -26,19 +26,18 @@ const { title, link, icon } = Astro.props;
 				outline-offset: 0.5em;
 				pointer-events: none;
 			}
+
+			& > :global(:any-link > *) {
+				pointer-events: auto;
+			}
 		}
 
 		.icon {
 			padding-block-end: 0.5em;
-			pointer-events: auto;
-		}
-
-		.text {
 		}
 
 		.title {
 			word-break: auto-phrase;
-			pointer-events: auto;
 		}
 	}
 </style>

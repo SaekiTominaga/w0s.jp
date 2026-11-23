@@ -12,7 +12,7 @@ const { pagePath } = Astro.props;
 	<li>
 		<Anchor href="https://github.com/SaekiTominaga/w0s.jp" icon={false}>
 			<span class="icon"><img src="/assets/image/icon/github.svg" alt="" width="48" height="48" /></span>
-			<span class="text"><span class="title">GitHub</span></span>
+			<span class="title">GitHub</span>
 		</Anchor>
 	</li>
 	{
@@ -22,9 +22,7 @@ const { pagePath } = Astro.props;
 					<span class="icon">
 						<img src="/assets/image/icon/mastodon.svg" alt="" width="48" height="48" />
 					</span>
-					<span class="text">
-						<span class="title">Mastodon</span>
-					</span>
+					<span class="title">Mastodon</span>
 				</Anchor>
 			</li>
 		)
@@ -32,13 +30,13 @@ const { pagePath } = Astro.props;
 	<li>
 		<Anchor href="https://bsky.app/profile/w0s.jp" icon={false}>
 			<span class="icon"><img src="/assets/image/icon/bluesky.svg" alt="" width="48" height="48" /></span>
-			<span class="text"><span class="title">Bluesky</span></span>
+			<span class="title">Bluesky</span>
 		</Anchor>
 	</li>
 	<li>
 		<Anchor href="https://www.youtube.com/@SaekiTominaga" icon={false}>
 			<span class="icon"><img src="/assets/image/icon/youtube.svg" alt="" width="48" height="48" /></span>
-			<span class="text"><span class="title">YouTube</span></span>
+			<span class="title">YouTube</span>
 		</Anchor>
 	</li>
 </ul>
@@ -63,19 +61,18 @@ const { pagePath } = Astro.props;
 				max-inline-size: 72px;
 				pointer-events: none;
 			}
+
+			& :global(:any-link > *) {
+				pointer-events: auto;
+			}
 		}
 
 		.icon {
 			padding-block-end: 0.5em;
-			pointer-events: auto;
-		}
-
-		.text {
 		}
 
 		.title {
 			word-break: auto-phrase;
-			pointer-events: auto;
 		}
 	}
 </style>
