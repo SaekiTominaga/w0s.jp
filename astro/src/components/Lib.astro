@@ -61,7 +61,7 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 			isbn !== undefined && (
 				<p class="isbn">
 					{/* prettier-ignore */}
-					<Anchor href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`}>ISBN: <data value={isbn}>{isbn}</data></Anchor>
+					<span class="isbn-link">ISBN: <Anchor href={`https://ndlsearch.ndl.go.jp/search?cs=bib&f-isbn=${isbn}`}><data value={isbn}>{isbn}</data></Anchor></span>
 				</p>
 			)
 		}
@@ -211,8 +211,12 @@ if (isbn !== undefined && !new IsbnVerify(isbn, { strict: true }).isValid()) {
 		}
 
 		.isbn {
+			display: inline grid;
 			flex-basis: 100%;
-			text-align: end;
+			justify-items: end;
+		}
+
+		.isbn-link {
 		}
 	}
 </style>
