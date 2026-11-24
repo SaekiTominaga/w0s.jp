@@ -7,21 +7,18 @@ const { type } = Astro.props;
 ---
 
 <span class:list={['tac', `-${type}`]}>
-	<span class="inner">
-		<slot />
-	</span>
+	<span class="text"><slot /></span>
 </span>
 
 <style>
 	@layer component {
 		.tac {
-			display: inline flex;
-			flex-wrap: wrap;
+			display: inline grid;
+			grid-template-columns: minmax(1ic, auto) auto;
+			gap: 0.25em;
 
 			&::before {
-				margin-inline-end: 0.25em;
-				min-inline-size: 1ic;
-				text-align: center;
+				justify-self: center;
 				text-shadow:
 					0.5px 0.5px,
 					0.5px -0.5px,

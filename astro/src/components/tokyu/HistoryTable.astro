@@ -18,7 +18,6 @@ const { class: className, id } = Astro.props;
 			--_border-color: var(--border-color-dark);
 			--_color: var(--color-black);
 			--_bg-color: var(--color-white);
-			--_text-align: start;
 
 			@media print {
 				--_border-color: var(--color-black);
@@ -37,17 +36,16 @@ const { class: className, id } = Astro.props;
 				background-color: var(--_bg-color);
 				padding-block: var(--_padding-block);
 				padding-inline: min(1dvi, 5px);
-				text-align: var(--_text-align);
 				color: var(--_color);
 				font-size: clamp(calc(100% / pow(var(--font-ratio), 1)), 2svi, 100%);
 			}
 
 			& > :global(thead) {
 				--_bg-color: var(--bgcolor-dark);
-				--_text-align: center;
 
 				position: sticky;
 				inset-block-start: 0;
+				text-align: center;
 			}
 
 			& > :global(tbody) {

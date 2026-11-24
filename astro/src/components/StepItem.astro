@@ -25,7 +25,6 @@ const { name, current, hidden, jsClassName } = Astro.props;
 			position: relative;
 			flex-grow: 1;
 			margin-inline-end: var(--_step-arrow-inline-size);
-			text-align: center;
 			font-size: calc(100% * pow(var(--font-ratio), 1));
 
 			&:not(:first-child) {
@@ -52,7 +51,8 @@ const { name, current, hidden, jsClassName } = Astro.props;
 			--_color: var(--color-black);
 			--_bg-color: oklch(from var(--color-white) calc(l - 1 / 8) c h);
 
-			display: block flow;
+			display: block grid;
+			justify-content: center;
 			background-color: var(--_bg-color);
 			padding: 0.5em;
 			color: var(--_color);

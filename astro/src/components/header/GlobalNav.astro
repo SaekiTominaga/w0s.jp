@@ -44,10 +44,8 @@ const { pagePath, data } = Astro.props;
 			margin-inline: calc(var(--_border-width) / 2);
 
 			& > :global(li) {
-				display: block flex;
 				flex-basis: auto;
 				flex-grow: 1;
-				flex-wrap: nowrap;
 				margin: calc(0px - var(--_border-width) / 2);
 				border: var(--_border-width) solid var(--border-color-light);
 			}
@@ -56,14 +54,14 @@ const { pagePath, data } = Astro.props;
 		.link {
 			--_link-border-width: 0px;
 
-			flex-basis: 100%;
+			display: block grid;
+			justify-items: center;
 			contain: content; /* フォーカスリングとの関係 */
 			outline-offset: calc(1px - var(--outline-width-bold));
 			outline-width: var(--outline-width-bold);
 			background-color: var(--color-white);
 			padding-block: 0.5em calc(0.5em - var(--_link-border-width));
 			padding-inline: 0.25em;
-			text-align: center;
 			text-decoration-line: none;
 			color: var(--color-darkgray);
 			font-size: clamp(100%, 2.5svi, calc(100% * pow(var(--font-ratio), 2)));
