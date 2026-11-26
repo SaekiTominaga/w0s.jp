@@ -1,4 +1,6 @@
 ---
+import { parse } from 'node-html-parser';
+
 interface Props {
 	id?: string;
 	full?: boolean;
@@ -7,24 +9,39 @@ interface Props {
 }
 
 const { id, full, scroll, font } = Astro.props;
+
+const $root = parse(await Astro.slots.render('default'));
+const $caption = $root.querySelector('caption');
+const $thead = $root.querySelector('thead');
+const $$tbody = $root.querySelectorAll('tbody');
+const $tfoot = $root.querySelector('tfoot');
 ---
 
-<div id={id} class:list={['table', { '-full': full }, { '-scroll': scroll }, { '-font-small': font === 'small' }]}>
+<div id={id} class:list={['table-wrapper', { '-full': full }, { '-scroll': scroll }, { '-font-small': font === 'small' }]}>
 	<table class="js-thead-sticky-table">
-		<slot />
+		{
+			$caption !== null && (
+				<caption>
+					<div class="caption-inner">
+						<Fragment set:html={$caption?.innerHTML} />
+					</div>
+				</caption>
+			)
+		}
+		<Fragment set:html={$thead} />
+		<Fragment set:html={$$tbody} />
+		<Fragment set:html={$tfoot} />
 	</table>
 </div>
 
 <style>
 	@layer component {
-		.table {
+		.table-wrapper {
 			--stickey-thead-block-size: 1em;
-			--_caption-text-align: center;
 			--_border-color: var(--border-color-dark);
-			--_color: var(--color-black);
 			--_bg-color: var(--color-white);
+			--_color: var(--color-black);
 			--_font-size-base: 100%;
-			--_text-align: start;
 
 			@media print {
 				--_border-color: var(--color-black);
@@ -32,13 +49,11 @@ const { id, full, scroll, font } = Astro.props;
 
 			/* 全幅 */
 			&.-full {
-				--_inline-size: 100%;
+				inline-size: 100%;
 			}
 
 			/* 横スクロール */
 			&.-scroll {
-				--_caption-text-align: start;
-
 				@media not print {
 					--_text-wrap-mode: nowrap;
 
@@ -53,14 +68,37 @@ const { id, full, scroll, font } = Astro.props;
 			}
 
 			& > :global(table) {
-				inline-size: var(--_inline-size);
 				line-height: var(--line-height-narrow);
 			}
 
 			& > :global(table > caption) {
 				margin-block-end: 0.25em;
-				text-align: var(--_caption-text-align);
 				font-weight: var(--font-weight-bold);
+			}
+
+			&:not(.-scroll) {
+				& .caption-inner {
+					margin-inline: auto;
+					inline-size: fit-content;
+				}
+			}
+
+			& > :global(table > thead) {
+				--_bg-color: var(--bgcolor-dark);
+				--_text-align: center;
+
+				position: sticky;
+				inset-block-start: 0;
+				z-index: 1;
+			}
+
+			& > :global(table > tbody) {
+				--_text-align: start;
+			}
+
+			& > :global(table > tfoot) {
+				--_bg-color: var(--bgcolor-dark);
+				--_text-align: start;
 			}
 
 			& > :global(table > :is(thead + tbody, tbody + tbody, tfoot)) {
@@ -75,25 +113,12 @@ const { id, full, scroll, font } = Astro.props;
 				padding-inline: min(1dvi, 10px);
 				text-align: var(--_text-align);
 				text-wrap-mode: var(--_text-wrap-mode);
-				color: var(--_color);
+				color: var(--color-black);
 				font-size: clamp(calc(var(--_font-size-base) / pow(var(--font-ratio), 1)), 2svi, var(--_font-size-base));
-			}
-
-			& > :global(table > thead) {
-				--_bg-color: var(--bgcolor-dark);
-				--_text-align: center;
-
-				position: sticky;
-				inset-block-start: 0;
-				z-index: 1;
 			}
 
 			& > :global(table > tbody th) {
 				--_bg-color: var(--bgcolor-light);
-			}
-
-			& > :global(table > tfoot) {
-				--_bg-color: var(--bgcolor-dark);
 			}
 
 			& > :global(table > :is(tbody, tfoot) :target) {
