@@ -90,11 +90,11 @@ if (actionResult !== undefined) {
 
 						<Fragment slot="contents">
 							<div class="js-validation" role="radiogroup" id="input-reply-group" aria-labelledby="label-reply" aria-describedby="input-description-reply" aria-errormessage="input-validate-reply">
-								<Label label="必要">
-									<input type="radio" name="reply" value="yes" checked={requestFormdata?.get('reply') === 'yes'} required="" />
-								</Label>
 								<Label label="不要">
 									<input type="radio" name="reply" value="no" checked={requestFormdata?.get('reply') === 'no'} required="" />
+								</Label>
+								<Label label="必要">
+									<input type="radio" name="reply" value="yes" checked={requestFormdata?.get('reply') === 'yes'} required="" />
 								</Label>
 							</div>
 						</Fragment>
@@ -104,7 +104,7 @@ if (actionResult !== undefined) {
 						</Fragment>
 
 						<Fragment slot="note">
-							<p id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、内容によっては返信しかねる場合があります。</p>
+							<p id="input-description-reply">おことわり: <q>必要</q>を選択された場合でも、スパム等の場合は返信しません。</p>
 						</Fragment>
 					</FormGridGroup>
 					<FormGridGroup>
